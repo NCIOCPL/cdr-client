@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.117 2004-03-22 21:54:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.118 2004-04-08 19:56:09 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.117  2004/03/22 21:54:40  bkline
+     Removed Patient Publish Preview button from CTGov protocol toolbar
+     (see request #1148).
+
      Revision 1.116  2004/03/22 21:51:52  bkline
      Added support for OverallContact element.
 
@@ -2457,6 +2461,49 @@
         }
     }
 
+    function addPDQBoardMemberInfoToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR PDQBoardMemberInfo"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR PDQBoardMemberInfo toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR PDQBoardMemberInfo", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR PDQBoardMemberInfo toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["PDQBoardMemberInfo"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function bugRepro() {
         var cmdBars = Application.CommandBars;
         var i       = 0;
@@ -2537,6 +2584,7 @@
     addMiscToolbar();
     addMailerToolbar();
     addCTGovToolbar();
+    addPDQBoardMemberInfoToolbar();
     addCdrMenus();
     hideToolbars();
     // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
