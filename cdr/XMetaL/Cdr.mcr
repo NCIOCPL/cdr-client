@@ -1,9 +1,22 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.7 2001-10-23 13:47:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.8 2001-10-23 13:55:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.7  2001/10/23 13:47:52  bkline
+     Added new macros:
+        Insert Lead Org
+        CDR Get OrgAddress
+        CDR Persons Linking to Org Address Fragment
+        CDR Terminology Hierarchy Display
+        CDR Terminology Usage Report
+        CDR Copy Fragment Link
+        CDR Paste Fragment Link
+
+     Revision 1.6  2001/09/20 14:44:40  bkline
+     Snapshot before switch to new workstation.
+
      Revision 1.5  2001/08/27 19:09:43  bkline
      Added "CDR Advanced Search" macro.
 
@@ -34,7 +47,36 @@
     // Clipboard for CDR links.
     var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
-  
+
+    function padNumber(number, length, padChar) {
+        var str = '' + number;
+        while (str.length < length)
+            str = padChar + str;
+        return str;
+    }
+    
+    /*
+     * Produce string containing current date as YYYY-MM-DD string.
+     */
+     function getCurDateString() {
+        var d = new Date();
+        var str = padNumber(d.getFullYear(), 4, '0') + '-'
+                + padNumber(d.getMonth() + 1, 2, '0') + '-'
+                + padNumber(d.getDate(), 2, '0');
+        return str;
+    }
+        
+    /*
+     * Produce string containing current time as hh:mm:ss string.
+     */
+    function getCurTimeString() {
+        var d = new Date();
+        var str = padNumber(d.getHours(), 2, '0') + ':'
+                + padNumber(d.getMinutes(), 2, '0') + ':'
+                + padNumber(d.getSeconds(), 2, '0');
+        return str;
+    }
+        
     /*
      * Utility function to extract the text content of an element.
      */
@@ -2295,6 +2337,24 @@
     }
 
     termUsageReport();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Insert Current Date"
+        lang="JScript" 
+        desc="Inserts the current date as text content of current elem"
+        hide="false">
+  <![CDATA[
+
+    function insCurrentDate() {
+        if (Selection != null) {
+            // Selection.SelectContainerContents();
+            str = getCurDateString();
+            Selection.Text = str;
+        }
+    }
+    insCurrentDate();
 
   ]]>
 </MACRO>
