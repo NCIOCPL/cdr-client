@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	GlossaryTerm.css                                                 */
 /*                                                                       */
+/*      v. 3.4                                                           */
+/*      6/11/02  by ebator                                               */
+/*      Added Comment                                                    */
+/*                                                                       */
+/*      v. 3.3                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.2                                                           */
 /*      1/15/02  by ebator                                               */
 /*      Added notations for required *, optional &, multiple +           */
@@ -47,7 +55,7 @@
 
 $DOCUMENT 
 
-     { font-family: "Arial", sans serif;
+     { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
@@ -77,6 +85,7 @@ GlossaryTerm,
 /***************************************************************************/ 
 
 
+Comment,
 DateLastModified,
 GlossaryTerm,
 PdqKey,
@@ -104,6 +113,7 @@ TermType,
 /* & = Optional element */
 
 
+Comment:before			{ content: "Comments &: "; } 
 DateLastModified:before		{ content: "Last Modified &: "; }
 PdqKey:before			{ content: "PDQ Key &: "; }
 SpanishTermDefinition:before	{ content: "Span Definition &: "; }
@@ -137,6 +147,7 @@ TermType,
 /***************************************************************************/ 
   
 
+Comment:before,
 DateLastModified:before,
 SpanishTermDefinition:before,
 SpanishTermName:before,
@@ -196,6 +207,8 @@ StatusDate,				{ margin-left: 85pt;
 
 /* Key element for length = DateLastModified				   */
 
+Comment,				{ margin-left: 100pt;
+					  text-indent: -82pt;  }
 DateLastModified,			{ margin-left: 100pt;
 					  text-indent: -96pt; }
 PdqKey,					{ margin-left: 100pt;
@@ -211,6 +224,7 @@ TermName,
 
 /* Margin-bottom to simulate a text box                                    */
 
+Comment,
 DateLastModified,
 PdqKey,
 SpanishTermDefinition,
@@ -231,6 +245,7 @@ TermType,
 /***************************************************************************/ 
 
 
+Comment,
 DateLastModified,
 PdqKey,
 SpanishTermDefinition,
@@ -246,6 +261,7 @@ TermType,
 	{ background-color: white; }
 
 
+Comment:before,
 DateLastModified:before,
 PdqKey:before,
 SpanishTermDefinition:before,
