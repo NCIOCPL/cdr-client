@@ -102,12 +102,11 @@
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 		</CurrentOrgStatus> 
 		</LeadOrgProtocolStatuses> 
-		<LeadOrgPersonnel cdr:id="Enter a link"> 
-		<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
-		<ProtocolSpecificContact> 
-		</ProtocolSpecificContact> 
-		<PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
-		</LeadOrgPersonnel> 
+		<LeadOrgPersonnel cdr:id="id required">
+         <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+         <ProtocolSpecificContact></ProtocolSpecificContact>
+         <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+      </LeadOrgPersonnel>
 		<ProtocolSites> 
 		  <OrgSite> 
 		  <OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
