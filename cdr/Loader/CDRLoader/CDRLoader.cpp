@@ -151,6 +151,8 @@ BOOL CCDRLoaderApp::InitInstance()
 	CString manifest_directory = _T( ".\\" );
 	CString	manifest_filename = _T( "CDR_MANIFEST.XML" );
 	CString cdr_application = _T( "C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe" );
+	CString http_server = _T( "mmdb2.nci.nih.gov" );
+
     if (m_lpCmdLine[0] != _T('\0'))
     {
 		// user specified the manifest file to use
@@ -209,6 +211,13 @@ BOOL CCDRLoaderApp::InitInstance()
 					}
 					break;
 
+					case 'H':
+					case 'h':
+					{
+						http_server = cur_token;
+					}
+					break;
+
 					case 'B':
 					case 'b':
 					{
@@ -253,6 +262,7 @@ BOOL CCDRLoaderApp::InitInstance()
 		CString	err = _T("Unknown error.");
 
 		CDRTicketStub ticket_stub;
+		ticket_stub.SetHttpServer( http_server );
 
 		CString uid = dlg.UserId;
 		CString key = dlg.SessionId;

@@ -8,6 +8,8 @@ public:
 	CDRTicketStub(void);
 	virtual ~CDRTicketStub(void);
 
+	void SetHttpServer( CString serv );
+
 	void InitializeFileLocation( CString manifest_file );
 
 	CString GetLocalTicket( CString manifest_xml );
@@ -34,6 +36,7 @@ public:
 	CString CDR_CLIENT_PATH;
 	CString CDR_MANIFEST_FILE;
 	CString ErrorLog;
+	CString http_Server;
 
 	static const CString REQ_TEMPLATE;
 };

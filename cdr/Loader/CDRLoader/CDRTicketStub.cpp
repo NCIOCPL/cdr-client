@@ -35,6 +35,11 @@ CString CDRTicketStub::GetErrorLog( void )
 	return ErrorLog;
 }
 
+void CDRTicketStub::SetHttpServer( CString serv )
+{
+	http_Server = serv;
+}
+
 void CDRTicketStub::InitializeFileLocation( CString manifest_file )
 {
 	wchar_t base_path[ _MAX_PATH ];
@@ -159,7 +164,7 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 
 	try
 	{
-		CHttpConnection * http_session = inet_session.GetHttpConnection( _T("mmdb2") );
+		CHttpConnection * http_session = inet_session.GetHttpConnection( http_Server );
 		CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
 		CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
 		CString my_req = REQ_TEMPLATE;
