@@ -162,7 +162,7 @@ appropriate.]</Para>
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent X cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  X <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -321,7 +321,7 @@ appropriate.]</Para>
 <SectionType>Treatment options by stage</SectionType>
 </SectMetaData>
 <Title>Treatment Options for Recurrent X Cancer</Title>
-<Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent x cancer</GlossaryTermRef> may include the following:</Para>
+<Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent </GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> may include the following:</Para>
 <ItemizedList Style="bullet">
      <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef></ListItem>
 	  <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef></ListItem>
