@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.38 2004-02-26 00:48:10 bkline Exp $
+ * $Id: Commands.cpp,v 1.39 2004-02-26 01:45:53 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.38  2004/02/26 00:48:10  bkline
+ * Fixed code broken by Microsoft in upgrade to Visual Studio 7.10.
+ *
  * Revision 1.37  2003/05/13 19:23:39  bkline
  * Implemented enhancement for request #717, to allow the user to control
  * the level of markup filtering for validation from the toolbar.
@@ -141,6 +144,7 @@
 #include "ParticOrgs.h"
 #include "CheckIn.h"
 #include "PassedValidation.h"
+#include "Glossify.h"
 #include "resource.h"
 
 // System headers
@@ -564,7 +568,7 @@ STDMETHODIMP CCommands::logon(int *pRet)
     // Handle any extraordinary error conditions.
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -624,7 +628,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -677,7 +681,7 @@ STDMETHODIMP CCommands::search(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -826,12 +830,12 @@ STDMETHODIMP CCommands::save(int *pRet)
                    _T("Description: %s"), ode->m_wCode, ode->m_strSource, 
                                           ode->m_strDescription);
         ::AfxMessageBox(msg);
-		ode->Delete();
+        ode->Delete();
         *pRet = 6;
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -892,13 +896,13 @@ STDMETHODIMP CCommands::validate(int *pRet)
             }
             if (validateDialog.m_linkValidation)
                 os << separator << _T("Links");
-			int filterLevel = 3;
-			if (validateDialog.m_includeProposedAndApprovedMarkup)
-				filterLevel = 1;
-			else if (validateDialog.m_includeApprovedMarkup)
-				filterLevel = 2;
+            int filterLevel = 3;
+            if (validateDialog.m_includeProposedAndApprovedMarkup)
+                filterLevel = 1;
+            else if (validateDialog.m_includeApprovedMarkup)
+                filterLevel = 2;
             os << _T("'><CdrDoc Type='") << (LPCTSTR)docType 
-			   << _T("' RevisionFilterLevel='") << filterLevel
+               << _T("' RevisionFilterLevel='") << filterLevel
                << _T("'><CdrDocCtl>");
             if (!ctrlInfo.docId.IsEmpty())
                 os << _T("<DocId>") << (LPCTSTR)ctrlInfo.docId 
@@ -929,7 +933,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 2;
     }
     catch (...) { 
@@ -1065,7 +1069,7 @@ STDMETHODIMP CCommands::edit(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 3;
     }
     catch (...) {
@@ -1283,12 +1287,12 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
                        _T("Description: %s"), ode->m_wCode, ode->m_strSource, 
                                               ode->m_strDescription);
             ::AfxMessageBox(msg);
-			ode->Delete();
+            ode->Delete();
             return false;
         }
         catch (::CException* e) {
             e->ReportError();
-			e->Delete();
+            e->Delete();
             return false;
         }
         catch (...) {
@@ -1758,7 +1762,7 @@ STDMETHODIMP CCommands::protUpdPerson(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -1870,7 +1874,7 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -1953,7 +1957,7 @@ STDMETHODIMP CCommands::particOrgs(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -2094,7 +2098,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -2192,7 +2196,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
         }
         catch (::CException* e) {
             e->ReportError();
-			e->Delete();
+            e->Delete();
             *pRet = 2;
         }
         catch (...) {
@@ -2321,7 +2325,7 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
     }
     catch (::CException* e) {
         e->ReportError();
-		e->Delete();
+        e->Delete();
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
@@ -2347,5 +2351,15 @@ STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet)
 
     CString urlString(*url);
     *pRet = cdr::showPage(urlString);
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::glossify(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CGlossify glossify;
+    glossify.DoModal();
+
     return S_OK;
 }

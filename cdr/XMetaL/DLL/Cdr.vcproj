@@ -551,6 +551,9 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\EditElement.cpp">
 			</File>
 			<File
+				RelativePath=".\Glossify.cpp">
+			</File>
+			<File
 				RelativePath=".\LogonDialog.cpp">
 			</File>
 			<File
@@ -629,7 +632,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\VersionList.cpp">
 			</File>
 			<File
-				RelativePath=".\xmetal3.cpp">
+				RelativePath=".\xmetal4.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -646,6 +649,9 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			</File>
 			<File
 				RelativePath=".\EditElement.h">
+			</File>
+			<File
+				RelativePath=".\Glossify.h">
 			</File>
 			<File
 				RelativePath=".\LogonDialog.h">
@@ -693,7 +699,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\VersionList.h">
 			</File>
 			<File
-				RelativePath=".\xmetal3.h">
+				RelativePath=".\xmetal4.h">
 			</File>
 		</Filter>
 		<Filter
@@ -708,5 +714,8 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 		</Filter>
 	</Files>
 	<Globals>
+		<Global
+			Name="RESOURCE_FILE"
+			Value="Cdr.rc"/>
 	</Globals>
 </VisualStudioProject>

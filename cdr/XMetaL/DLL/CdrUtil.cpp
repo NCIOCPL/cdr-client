@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.22 2004-02-26 00:46:33 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.23 2004-02-26 01:45:53 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.22  2004/02/26 00:46:33  bkline
+ * Added code for suppressing/expanding leading zeros in document IDs.
+ *
  * Revision 1.21  2003/03/05 12:41:50  bkline
  * Added workaround for XMetaL entity encoding bugs in attributes.
  *
@@ -77,6 +80,7 @@
 // System headers.
 #include <map>
 #include <set>
+#include <fstream>
 
 // Implement our own command to show an HTML page.
 // #define SHOW_PAGE_WITH_DDE /* Use ActiveX Automation instead. */
@@ -1136,3 +1140,61 @@ int cdr::showPage(const CString& url)
     return EXIT_SUCCESS;
 }
 #endif
+
+cdr::GlossaryTree::GlossaryTree() {
+    std::string line;
+    std::ifstream is("c:/tmp/GlossaryPhrases.txt");
+    while (std::getline(is, line)) {
+        int numWords = 0;
+        std::string::size_type start = 0;
+        GlossaryNodeMap* currentMap = &nodeMap;
+        GlossaryNode*    currentNode = 0;
+        int docId = 0;
+        while (start < line.size()) {
+            std::string::size_type end = line.find('\t', start);
+            std::string word = line.substr(start, end - start);
+            if (start == 0)
+                docId = atoi(word.c_str());
+            else if (!word.empty()) {
+                CString w = utf8ToCString(word.c_str());
+                // std::cout << "got word [" << word.c_str() << "]\n";
+                ++numWords;
+                GlossaryNodeMap::iterator iter = currentMap->find(w);
+                if (iter == currentMap->end())
+                    currentNode = (*currentMap)[w] = new GlossaryNode;
+                else
+                    currentNode = iter->second;
+                currentMap = &currentNode->nodeMap;
+            }
+            start = end;
+            if (end != std::string::npos)
+                ++start;
+            //std::cerr << "start=" << start << " end=" << end;
+            //if (start)
+            //    std::cerr << " word=" << word.c_str();
+            //std::cerr << '\n';
+        }
+        if (currentNode)
+            currentNode->docId = docId;
+        if (numWords) {
+            if (numWords > (int)counts.size()) {
+                counts.resize(numWords);
+                counts[numWords - 1] = 0;
+            }
+            ++counts[numWords - 1];
+        }
+    }
+}
+
+cdr::GlossaryTree::~GlossaryTree() {
+    // std::cout << "~GlossaryTree\n";
+    GlossaryNodeMap::iterator i = nodeMap.begin();
+    while (i != nodeMap.end()) {
+        // std::cout << "deleting node for " << i->first << '\n';
+        delete i->second;
+        ++i;
+    }
+}
+
+static cdr::GlossaryTree glossaryTree;
+cdr::GlossaryTree* cdr::getGlossaryTree() { return &glossaryTree; }

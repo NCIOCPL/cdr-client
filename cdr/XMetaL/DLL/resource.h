@@ -1,7 +1,8 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by Cdr.rc
 //
+#define IDOK2                           3
 #define IDS_PROJNAME                    100
 #define IDS_COMMANDS_DESC               102
 #define IDR_Commands                    103
@@ -45,6 +46,8 @@
 #define IDB_CERTIFICATE                 217
 #define IDD_VERSION_LIST                218
 #define ID_CURRENT_ACTIVITY_TEXT        219
+#define IDD_GLOSSIFY                    219
+#define IDD_GLOSSIFY_DIALOG             219
 #define ID_LOGON_OK                     221
 #define IDC_LINK_TITLE_LABEL            222
 #define IDC_TEXT_MESSAGE                224
@@ -54,7 +57,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        219
+#define _APS_NEXT_RESOURCE_VALUE        220
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         226
 #define _APS_NEXT_SYMED_VALUE           104
