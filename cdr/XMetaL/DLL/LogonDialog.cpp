@@ -65,7 +65,7 @@ void LogonDialog::OnLogonOk()
     UpdateData(true);
     //CWaitCursor wc;
     m_okButton.EnableWindow(FALSE);
-    if (CCommands::doLogon(*this))
+    if (CCommands::doLogon(this))
         EndDialog(IDOK);
     m_okButton.EnableWindow(TRUE);
     loggingOn = false;
