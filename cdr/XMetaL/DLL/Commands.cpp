@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.25 2002-07-01 22:49:01 bkline Exp $
+ * $Id: Commands.cpp,v 1.26 2002-07-18 00:54:06 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.25  2002/07/01 22:49:01  bkline
+ * Removed remaining instances of hard-coded mmdb2.
+ *
  * Revision 1.24  2002/06/13 18:48:48  bkline
  * Added hostname property.
  *
@@ -1149,7 +1152,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
             retrievedDocTitle.Format(_T("CDR%u%s%s - %s"), docNo,
                                      (LPCTSTR)verPart,
                                      checkOut ? _T("") : _T(" [READ ONLY]"),
-                                     (LPCTSTR)docTitle);
+                                     (LPCTSTR)cdr::decode(docTitle));
         }
     }
 
@@ -1175,7 +1178,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
             CString ctl = _T("\n <CdrDocCtl>\n  <DocId>")
                             + docId
                             + _T("</DocId>\n  <DocTitle>")
-                            + cdr::encode(docTitle, true)
+                            + docTitle
                             + _T("</DocTitle>\n </CdrDocCtl>\n ");
             try {
                 fixedDoc = fixDoc(docXml, ctl, docType, !checkOut);
@@ -1200,7 +1203,10 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
         try {
             _Document doc = docs.Open((LPCTSTR)docPath, 1);
             if (doc) {
-                doc.SetTitle(retrievedDocTitle);
+                CString host = CdrSocket::getShortHostName();
+                host.MakeUpper();
+                doc.SetTitle(_T("[") + host + _T("] ") +
+                             retrievedDocTitle);
                 return true;
             }
             return false;
