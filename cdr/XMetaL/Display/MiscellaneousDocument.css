@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	MiscellaneousDocument.css                                        */
 /*                                                                       */
+/*      v. 3.3                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.2                                                           */
 /*      1/15/02  by ebator                                               */
 /*      Added notations for required *, optional &, multiple +           */
@@ -42,7 +46,7 @@
 
 $DOCUMENT 
 
-     { font-family: "Arial", sans serif;
+     { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;

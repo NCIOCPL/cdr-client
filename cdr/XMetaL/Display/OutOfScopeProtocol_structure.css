@@ -2,6 +2,10 @@
 /*                                                                       */
 /*     OutofScopeProtocol_structure.css                                  */
 /*                                                                       */
+/*     v. 3.3                                                            */
+/*     3/19/02  by ebator                                                */
+/*     Changed "sans serif" to sans-serif                                */
+/*                                                                       */
 /*     v. 3.2                                                            */
 /*     02/22/02  by ebator                                               */
 /*     Syntax in Default Properties modified to work with XMetaL 3       */
@@ -55,7 +59,7 @@
 	  margin-left: 10px;
 	  margin-top: 0px;
 	  margin-bottom: 0px;
-	  font-family: Arial, "sans serif";
+	  font-family: Arial, sans-serif;
 	  font-size: 10pt; 
 	  font-style: normal;
 	  font-weight: bold;

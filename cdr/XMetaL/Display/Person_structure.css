@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Person_structure.css                                             */
 /*                                                                       */
+/*      v. 3.6                                                           */
+/*      5/03/02  by ebator                                               */
+/*      Changed before text for BoardCertifiedSpecialtyName per users    */
+/*                                                                       */
 /*      v. 3.5                                                           */
 /*      4/9/02  by ebator                                                */
 /*      Add PrivatePracticeLocation (CIPS Contact info displaying)       */
@@ -189,7 +193,7 @@ Verified,
 AcceptsCalls:before			{ content: "Accepts Call? "; }
 AdministrativeInformation:before  	{ content: "Administrative Information "; }
 BoardCertifiedSpecialty:before		{ content: "Board Certified Specialty"; }
-BoardCertifiedSpecialtyName:before	{ content: "Specialty Name"; }
+BoardCertifiedSpecialtyName:before	{ content: "Board Specialty"; }
 Certified:before			{ content: "Certified?"; }
 CertificationStatus:before		{ content: "Status "; }
 CertificationVerification:before	{ content: "Verified? "; }

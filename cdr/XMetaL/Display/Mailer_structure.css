@@ -1,6 +1,18 @@
 /*************************************************************************/
 /* 	Mailer_structure.css                                             */
 /*                                                                       */
+/*      v. 2.4                                                           */
+/*      10/31/02  by ebator                                              */
+/*      Schema changes: MailerAddress elements, RemailerFor              */
+/*                                                                       */
+/*      v. 2.3                                                           */
+/*      6/20/02  by ebator                                               */
+/*      Added RemailerFor element                                        */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 2.1                                                           */
 /*      02/22/02  by ebator                                              */
 /*      Syntax in Default Properties modified to work with XMetaL 3      */
@@ -36,7 +48,7 @@
 	  margin-left: 10px;
 	  margin-top: 0px;
 	  margin-bottom: 0px;
-	  font-family: Arial, "sans serif";
+	  font-family: Arial, sans-serif;
 	  font-size: 10pt; 
 	  font-style: normal;
 	  font-weight: bold;
@@ -67,15 +79,20 @@ Mailer,
   
 
 Address,
+AddressLine,
 ChangesCategory,
 Comment,
+MailerAddress>Country,
 Deadline,
 Document,
 JobId,
 Mailer,
+MailerAddress,
 MailerResponse,
+PostalCode,
 Received,
 Recipient,
+RemailerFor,
 Response,
 Sent,
 Type,
@@ -90,15 +107,20 @@ Type,
 
 
 Address:before				{ content: "ADDRESS "; }
+AddressLine:before			{ content: "Address Line "; }
 ChangesCategory:before			{ content: "Changes Category "; }
 Comment:before				{ content: "Comments "; }
+MailerAddress>Country:before		{ content: "Country "; }
 Deadline:before				{ content: "Deadline "; }
 Document:before				{ content: "Document "; }
 JobId:before				{ content: "Job ID "; }
 Mailer:before				{ content: "MAILER "; }
+MailerAddress:before			{ content: "MAILER ADDRESS "; }
 MailerResponse:before			{ content: "Mailer Response "; }
+PostalCode:before			{ content: "Postal Code "; }
 Received:before				{ content: "Received "; }
 Recipient:before			{ content: "Recipient "; }
+RemailerFor:before			{ content: "Remailer For "; }
 Response:before				{ content: "RESPONSE "; }
 Sent:before				{ content: "Sent "; }
 Type:before				{ content: "Type "; }
@@ -110,6 +132,7 @@ Type:before				{ content: "Type "; }
   
 
 Address:before,
+MailerAddress:before,
 
    {  color: black;  
       font-family: Arial, "sans serif";
@@ -123,6 +146,7 @@ Address:before,
   
 
 Address,
+MailerAddress,
 Response,
 
      { border: none;  }
@@ -133,12 +157,16 @@ Response,
 /***************************************************************************/ 
 
 
+AddressLine:before,
 Comment:before,
+MailerAddress>Country:before,
 Deadline:before,
 Document:before,
 JobId:before,
+PostalCode:before,
 Received:before,
 Recipient:before,
+RemailerFor:before,
 Response:before,
 Sent:before,
 
@@ -169,15 +197,19 @@ Type:before,
 /* Remove negative text-indent settings  */
 
 Address,
+AddressLine,
 ChangesCategory,
 Comment,
 Country,
+MailerAddress>Country,
 Deadline,
 Document,
 JobId,
 MailerResponse,
+PostalCode,
 Received,
 Recipient,
+RemailerFor,
 Response,
 Sent,
 Type,
@@ -191,14 +223,18 @@ Type,
   
 
 Address,
+AddressLine,
 ChangesCategory,
 Comment,
+MailerAddress>Country,
 Deadline,
 Document,
 JobId,
 MailerResponse,
+PostalCode,
 Received,
 Recipient,
+RemailerFor,
 Response,
 Sent,
 Type,
@@ -208,17 +244,24 @@ Type,
 
 Address,
 Address:before,
+AddressLine,
+AddressLine:before,
 ChangesCategory:before,
 Comment:before,
 Country:before,
+MailerAddress:Country:before,
 Deadline:before,
 Document:before,
 JobId:before,
+MailerAddress,
+MailerAddress:before,
 MailerResponse:before,
 PostalAddress,
 PostalAddress:before,
+PostalCode:before,
 Received:before,
 Recipient:before,
+RemailerFor:before,
 Response:before,
 Sent:before,
 Type:before,
