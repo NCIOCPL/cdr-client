@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.71 2002-07-19 22:07:14 bkline Exp $
+     $Id: Cdr.mcr,v 1.72 2002-07-26 16:20:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.71  2002/07/19 22:07:14  bkline
+     Replaced buggy SoftQuad code for Accept/Reject Change macros.  Added
+     hotkey for macro to insert current date.
+
      Revision 1.70  2002/07/17 13:55:19  bkline
      Fixed Move Next/Prev macros.
 
@@ -641,21 +645,13 @@
         else {
             Selection.ReadOnlyContainer = false;
         }
-        // Added to Softquad macro to make link elements read-only.
-        //if (Selection.hasAttribute("cdr:ref") && !gEditingCdrLink) {
-        //    Selection.ReadOnlyContainer = true;
-        //} 
-
-        // Added to Softquad macro to make CdrDocCtl element read-only.
-        //else if (Selection.ContainerNode && 
-        //        Selection.ContainerNode.nodeName == "CdrDocCtl") {
-        //    Selection.CollapsedContainerTags = true;
-        //    Selection.ReadOnlyContainer = true;
-        //}
-        //else {
-        //    Selection.ReadOnlyContainer = false;
-        //}
     }
+
+    if (ActiveDocument == null
+    ||  ActiveDocument.documentElement == null
+    ||  ActiveDocument.documentElement.getAttribute("readonly") == "yes")
+        Application.DisableMacro("Cdr Save");
+
 
   ]]>
 </MACRO>
@@ -2193,7 +2189,7 @@
 </MACRO>
 
 <MACRO  name="Cdr Save" 
-        key="" 
+        key="Ctrl+Shift+S"
         lang="JScript" 
         tooltip="Store Document in the CDR" 
         id="1365">
@@ -2249,7 +2245,7 @@
 <MACRO  name="Protocol Update Person" 
         key="" 
         lang="JScript" 
-        tooltip="Store Document in the CDR" >
+        tooltip="Pick a protocol update person" >
   <![CDATA[
     protUpdPerson();
   ]]>
@@ -2457,10 +2453,10 @@
 </MACRO>
 -->
 
-<MACRO name="On_Update_UI"
+<MACRO name="xOn_Update_UI"
        lang="JScript"
        hide="true"
-       id="144">
+       id="144x">
          <![CDATA[
        
     function refreshStyles() {
