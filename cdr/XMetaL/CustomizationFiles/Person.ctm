@@ -850,6 +850,19 @@
 <OrganizationLocation><?xm-replace_text {Optionally select an organization fragment link} ?></OrganizationLocation>
 <PersonTitle><?xm-replace_text {Optionally enter the person's title at this organization} ?></PersonTitle>
 <PersonRole><?xm-replace_text {Optionally select the person's role at this location} ?></PersonRole>
+<SpecificPostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line specific to this person at this organization} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</SpecificPostalAddress>
+<SpecificPhone><?xm-replace_text {Optionally enter a phone number specific to this person at this organization} ?></SpecificPhone>
+<SpecificTollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number specific to this person at this organization} ?></SpecificTollFreePhone>
+<SpecificFax><?xm-replace_text {Optionally enter a fax number specific to this person at this organization} ?></SpecificFax>
+<SpecificEmail><?xm-replace_text {Optionally enter an e-mail address specific to this person at this organization} ?></SpecificEmail>
+<SpecificWebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address specific to this person at this organization} ?></SpecificWebSite>
 <ComplexAffiliation>
 <Organization><?xm-replace_text {Optionally select an organization link} ?></Organization>
 <RoleAtAffiliatedOrganization><?xm-replace_text {Select the person's role at this organization (required)} ?></RoleAtAffiliatedOrganization>
