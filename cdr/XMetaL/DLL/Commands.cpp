@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.13 2002-03-01 21:13:40 bkline Exp $
+ * $Id: Commands.cpp,v 1.14 2002-03-09 03:24:46 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.13  2002/03/01 21:13:40  bkline
+ * Fixed bug that was causing saved document to be marked readonly.
+ *
  * Revision 1.12  2002/02/20 12:23:03  bkline
  * Set edit command to return non-zero on cancelled command.
  *
@@ -80,6 +83,7 @@
 // Local functions.
 static void     getDocTypeStrings(CString& err);
 static void     messageLoop();
+static void removeDoc(const CString& docId);
 static bool		openDoc(const CString& resp, const CString& docId,
 						BOOL checkOut);
 static CString& fixDoc(CString& doc, const CString& ctl, 
@@ -715,6 +719,8 @@ STDMETHODIMP CCommands::save(int *pRet)
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
                     if (!saveDialog.m_checkIn)
 					    openDoc(rsp, docId.getString(), true);
+                    else
+                        removeDoc(docId.getString());
 				}
 			}
 			break;
@@ -975,8 +981,32 @@ bool CCommands::doRetrieve(const CString& id,
                            BOOL checkOut, 
                            const CString& version)
 {
+    // Make sure the document isn't already open.
+    _Application app = cdr::getApp();
+    Documents docs = app.GetDocuments();
+    unsigned int docNo = cdr::getDocNo(id);
+    CString match;
+    match.Format(_T("CDR%u "), docNo);
+    int matchLen = match.GetLength();
+    for (long i = docs.GetCount(); i > 0; --i) {
+        COleVariant vi;
+        vi = i;
+        _Document doc = docs.item(&vi);
+        if (doc.GetTitle().Left(matchLen) == match) {
+            if (!doc.GetSaved()) {
+                int rc = ::AfxMessageBox(_T("A modified copy of ") + match +
+                    _T("is already open.\n") +
+                    _T("Do you want to abandon the changes?"),
+                    MB_YESNO);
+                if (rc != IDYES)
+                    return false;
+            }
+            doc.Close(2); // 2=Don't save changes.
+        }
+    }
+
     // Make canonical document ID.
-    CString docId = cdr::docIdString(cdr::getDocNo(id));
+    CString docId = cdr::docIdString(docNo);
 
     // Ask the server for the document.
     CString request;
@@ -992,9 +1022,23 @@ bool CCommands::doRetrieve(const CString& id,
     return openDoc(response, docId, checkOut);
 }
 
+void removeDoc(const CString& docId)
+{
+    unsigned int docNo = cdr::getDocNo(docId);
+    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
+    CString docPath;
+    docPath.Format(_T("%s\\Checkout\\CDR%u.xml"), (LPCTSTR)cdrPath, docNo);
+    try {
+        CFile::Remove((LPCTSTR)docPath);
+    }
+    catch (CFileException&) { /* ignore */ }
+}
+
 bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
 {
     // Extract the CdrDoc element.
+    _Application app = cdr::getApp();
+    Documents docs = app.GetDocuments();
     unsigned int docNo = cdr::getDocNo(docId);
     CString err;
     CString docType;
@@ -1005,8 +1049,12 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
     CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
     cdr::Element cdrDocElem = cdr::Element::extractElement(resp, 
                                                            _T("CdrDoc"));
+
     // Build up path string.
-    docPath.Format(_T("%s\\CDR%u.xml"), (LPCTSTR)cdrPath, docNo);
+    docPath.Format(_T("%s\\%s\\CDR%u.xml"), 
+                   (LPCTSTR)cdrPath, 
+                   checkOut ? _T("Checkout") : _T("ReadOnly"),
+                   docNo);
 
     if (!cdrDocElem) {
 
@@ -1025,8 +1073,9 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
                                                               _T("DocTitle"));
         if (titleElem) {
             docTitle = titleElem.getString();
-            retrievedDocTitle.Format(_T("%s (CDR%u)"), 
-                                     (LPCTSTR)docTitle, docNo);
+            retrievedDocTitle.Format(_T("CDR%u%s - %s"), docNo,
+                                     checkOut ? _T("") : _T(" [READ ONLY]"),
+                                     (LPCTSTR)docTitle);
         }
     }
 
@@ -1074,8 +1123,6 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
     else {
 
         // Open the document and set its title bar string.
-        _Application app = cdr::getApp();
-        Documents docs = app.GetDocuments();
         _Document doc = docs.Open((LPCTSTR)docPath, 1);
         if (doc) {
             doc.SetTitle(retrievedDocTitle);
@@ -1204,6 +1251,14 @@ bool CCommands::doLogon(LogonDialog& logonDialog)
                     + _T("</UserName><Password>")
                     + logonDialog.m_Password
 					+ _T("</Password></CdrLogon>");
+
+    // Make the document directories if they aren't already there.
+    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
+    CString roPath  = cdrPath + _T("\\ReadOnly");
+    CString coPath  = cdrPath + _T("\\Checkout");
+    _wmkdir((LPCTSTR)cdrPath);
+    _wmkdir((LPCTSTR)roPath);
+    _wmkdir((LPCTSTR)coPath);
 
     // Submit the command to the CDR server.
     username = _T("");
@@ -2014,8 +2069,11 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
             else if (*pRet)
                 ::AfxMessageBox(_T("Failure without explanation"), 
 					MB_ICONEXCLAMATION);
-			else
+			else {
 				doc.Close(2); // 2=don't save changes.
+                removeDoc(ctrlInfo.docId);
+            }
+
 				//doRetrieve(ctrlInfo.docId, FALSE, _T(""));
 			break;
 		}
