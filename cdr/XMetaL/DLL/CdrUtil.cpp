@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.19 2002-12-24 15:04:15 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.20 2003-01-23 17:21:43 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.19  2002/12/24 15:04:15  bkline
+ * Switched from DDE to ActiveX Automation for showPage().
+ *
  * Revision 1.18  2002/10/16 19:56:26  bkline
  * Workaround for XMetaL automation bug.
  *
@@ -950,13 +953,7 @@ CdrLinkInfo cdr::extractLinkInfo(const CString& str)
     // Move.
     if (!rng.MoveToElement(elemName, FALSE))
         return ::Range();
-    /*
-    while (rng && rng.GetElementName(0) != elemName) {
-        rng.SelectContainerContents();
-        rng.Collapse(1);
-        rng.MoveLeft(0);
-    }
-    */
+
     return rng;
 }
 
