@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.14 2002-01-31 14:21:35 bkline Exp $
+     $Id: Cdr.mcr,v 1.15 2002-02-02 18:57:45 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.14  2002/01/31 14:21:35  bkline
+     Added enumerated valid values for RevisionLevel attribute.
+
      Revision 1.13  2002/01/31 13:51:36  bkline
      Issue #63: moved cursor to end of enumerated value instead of beginning.
 
@@ -851,7 +854,7 @@
                            "Insert Current Date",
                            "Date",
                            "Insert current date",
-                           null, 0, 0,
+                           "CDR", 6, 8,
                            false),
             new CdrCmdItem("D&rug Name",
                            "Insert DrugName Element",
@@ -1138,6 +1141,12 @@
                            "Ordered List",
                            "Insert ordered list",
                            "CDR", 6, 2,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert Current Date",
+                           "Current Date",
+                           "Insert Current Date",
+                           "CDR", 6, 8,
                            false),
             new CdrCmdItem(null,
                            "CDR Help",
