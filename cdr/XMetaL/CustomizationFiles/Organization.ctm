@@ -495,7 +495,6 @@
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
@@ -672,7 +671,6 @@
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
@@ -684,6 +682,20 @@
 <WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
 </Location>
 </OrganizationLocation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationDetails</Name>
+      <MiniTemplate><![CDATA[<OrganizationDetails>
+<CIPSContactPerson><?xm-replace_text {Optionally select a link to the person designated as the contact for CIPS queries } ?></CIPSContactPerson>
+<OrganizationAdministrativeInformation Directory="Treatment">
+<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<PreferredDirectoryContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for directory information } ?></PreferredDirectoryContactMode>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OrganizationAdministrativeInformation>
+<PreferredProtocolContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for protocol information } ?></PreferredProtocolContactMode>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OrganizationDetails>]]></MiniTemplate>
     </Template>
   </Templates>
 </DTDExtensions>

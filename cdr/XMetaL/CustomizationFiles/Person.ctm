@@ -830,7 +830,6 @@
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
@@ -853,13 +852,11 @@
 <SpecificPostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line specific to this person at this organization} ?></Street>
 <City><?xm-replace_text {Enter a city name (required)} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 </SpecificPostalAddress>
 <SpecificPhone><?xm-replace_text {Optionally enter a phone number specific to this person at this organization} ?></SpecificPhone>
-<SpecificTollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number specific to this person at this organization} ?></SpecificTollFreePhone>
 <SpecificFax><?xm-replace_text {Optionally enter a fax number specific to this person at this organization} ?></SpecificFax>
 <SpecificEmail><?xm-replace_text {Optionally enter an e-mail address specific to this person at this organization} ?></SpecificEmail>
 <SpecificWebSite><?xm-replace_text {Optionally enter a Web site address specific to this person at this organization} ?></SpecificWebSite>
@@ -920,7 +917,6 @@
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
@@ -944,7 +940,11 @@
     </Template>
     <Template>
       <Name>PDQBoardMembershipDetails</Name>
-      <MiniTemplate><![CDATA[<PDQBoardMembershipDetails><PDQEditorialBoard><?xm-replace_text {Optionally select an organization, or Change to another board type} ?></PDQEditorialBoard></PDQBoardMembershipDetails>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<PDQBoardMembershipDetails>
+<PDQEditorialBoard><?xm-replace_text {Optionally select an organization/Editorial Board} ?></PDQEditorialBoard>
+<PDQAdvisoryBoard><?xm-replace_text {Optionally select an organization/Advisory Board} ?></PDQAdvisoryBoard>
+<PDQVoluntaryProtocolReviewBoard><?xm-replace_text {Optionally select an organization/Voluntary Protocol Review Board} ?></PDQVoluntaryProtocolReviewBoard>
+</PDQBoardMembershipDetails>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PDQAdvisoryBoard</Name>
@@ -1131,7 +1131,6 @@
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
@@ -1153,7 +1152,6 @@
       <MiniTemplate><![CDATA[<SpecificPostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line specific to this person at this organization} ?></Street>
 <City><?xm-replace_text {Enter a city name (required)} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
 <Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
