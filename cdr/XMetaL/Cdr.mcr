@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.121 2004-04-09 17:05:15 bkline Exp $
+     $Id: Cdr.mcr,v 1.122 2004-04-19 15:26:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.121  2004/04/09 17:05:15  bkline
+     Adjusted the cdrIsReadOnly() function further, making sure that we prevent
+     direct editing of the DocId and DocType elements.
+
      Revision 1.120  2004/04/09 16:46:25  bkline
      Implemented the behavior which the comment added for revision 1.75
      said we were going to use (we don't want to block direct editing of
@@ -440,6 +444,7 @@
     // Clipboard for CDR links.
     var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
+    var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
 
     function padNumber(number, length, padChar) {
@@ -974,6 +979,7 @@
      */
     var container = Selection.ContainerNode;
     var docType = ActiveDocument.doctype;
+    var rng = ActiveDocument.Range;
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
     Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
@@ -998,7 +1004,6 @@
                                 "CDR Participating Orgs");
         Application.AppendMacro("Retrieve Person Address", 
                                 "CDR Get Person Address");
-        var rng = ActiveDocument.Range;
         if (rng.IsParentElement("ProtocolLeadOrg"))
             Application.AppendMacro("Change Org Statuses",
                     "Change Participating Org Status");
@@ -1014,6 +1019,7 @@
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
                                 "CDR Get Org Postal Address");
+        Application.AppendMacro("Copy Fragment ID", "Cdr Copy Fragment ID");
     }
     if (docType.name == "Organization") {
         if (Selection.IsParentElement("Location")) {
@@ -1021,6 +1027,12 @@
                 "CDR Persons Linking to Org Address Fragment");
             Application.AppendMacro("Remember Postal Address",
                                     "Remember Org Postal Address")
+        }
+    }
+    if (docType.name == "PDQBoardMemberInfo") {
+        if (rng.IsParentElement("PersonContactID")) {
+            Application.AppendMacro("Paste Fragment ID",
+                                    "Cdr Paste Fragment ID");
         }
     }
    
@@ -2815,6 +2827,38 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Cdr Copy Fragment ID"
+        key="" 
+        lang="JScript" 
+        tooltip="Copy Fragment ID to CDR Clipboard">
+  <![CDATA[
+    function copyFragmentId() {
+        CdrFragIdClipboard = "";
+        var node           = Selection.ContainerNode;
+        var depth          = 5;
+        var fragId         = "";
+        while (node && !fragId) {
+            if (depth-- < 1)
+                break;
+            if (node.nodeType != 1)
+                node = node.parentNode;
+            else {
+                fragId = node.getAttribute("cdr:id");
+                if (!fragId)
+                    node = node.parentNode;
+            }
+        }
+        if (!fragId)
+            Application.Alert("No fragment ID found");
+        else {
+            CdrFragIdClipboard = fragId;
+            Application.Alert("CdrFragIdClipboard=" + CdrFragIdClipboard);
+        }
+    }
+    copyFragmentId();
+  ]]>
+</MACRO>
+
 <MACRO  name="Cdr Paste Document Link"
         key="" 
         lang="JScript" 
@@ -2886,6 +2930,42 @@
     }
 
     pasteFragmentLink();
+  ]]>
+</MACRO>
+
+<MACRO  name="Cdr Paste Fragment ID"
+        key="" 
+        lang="JScript" 
+        tooltip="Paste Fragment ID From CDR Clipboard">
+ <![CDATA[
+    function pasteFragmentId() {
+        if (CdrFragIdClipboard == "") {
+            Application.Alert("CDR Fragment ID Clipboard is empty");
+            return;
+        }
+        var container = Selection.ContainerNode;
+        if (!container || container.nodeType != 1) { // Look for element.
+            Application.Alert("Can't find current element.");
+            return;
+        }
+        docType = ActiveDocument.doctype;
+        if (docType.name != "PDQBoardMemberInfo") {
+            Application.Alert("Wrong doctype for ID paste target");
+            return;
+        }
+        if (container.nodeName != "PersonContactID") {
+            Application.Alert("Current element is not PersonContactID");
+            return;
+        }
+        Selection.SelectContainerContents();
+        if (Selection.ReadOnly) {
+            Application.Alert("Cannot modify current element");
+            return;
+        }
+        Selection.Text = CdrFragIdClipboard;
+    }
+
+    pasteFragmentId();
   ]]>
 </MACRO>
 
