@@ -298,6 +298,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ListTitle</Name>
+      <TagColor>FFFF33</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -947,47 +948,7 @@
       <TagColor>66FF66</TagColor>
     </ElementProperties>
     <ElementProperties>
-      <Name>CitationLink</Name>
-      <TagColor>99CCFF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>CitationRef</Name>
-      <TagColor>99CCFF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
       <Name>ExternalRef</Name>
-      <TagColor>FFFF33</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>SummaryFragmentLink</Name>
-      <TagColor>CC66FF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>SummaryFragmentRef</Name>
-      <TagColor>CC66FF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>SummaryLink</Name>
-      <TagColor>CC66FF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>SummaryRef</Name>
-      <TagColor>CC66FF</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LOEFragmentLink</Name>
-      <TagColor>FFCC00</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LOEFragmentRef</Name>
-      <TagColor>FFCC00</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LOELink</Name>
-      <TagColor>FFCC00</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LOERef</Name>
       <TagColor>FFCC00</TagColor>
     </ElementProperties>
   </ElementPropertiesList>
