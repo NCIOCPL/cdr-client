@@ -31,6 +31,7 @@
 #define IDD_PROT_UPD_PERSON             209
 #define IDC_CHECK2                      210
 #define IDD_PERSON_LOCS                 210
+#define IDC_BUTTON3                     210
 #define IDD_PARTIC_ORGS                 211
 #define IDD_ORG_LOCS                    212
 #define IDC_CHECK3                      213
@@ -42,6 +43,7 @@
 #define IDC_CHECK6                      216
 #define IDC_PROGRESS1                   217
 #define IDB_CERTIFICATE                 217
+#define IDD_VERSION_LIST                218
 #define ID_CURRENT_ACTIVITY_TEXT        219
 #define ID_LOGON_OK                     221
 #define IDC_LINK_TITLE_LABEL            222
@@ -52,7 +54,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        218
+#define _APS_NEXT_RESOURCE_VALUE        219
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         226
 #define _APS_NEXT_SYMED_VALUE           104
