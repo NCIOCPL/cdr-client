@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.10 2002-06-13 18:48:47 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.11 2002-07-05 18:57:59 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.10  2002/06/13 18:48:47  bkline
+ * Added hostname property.
+ *
  * Revision 1.9  2002/04/29 10:57:30  bkline
  * Added code to preserve XML comments.
  *
@@ -553,9 +556,11 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
 		for (int i = 0; i < n; ++i) {
 			DOMNode attr = attrs.item(i);
 			CString attrName = attr.GetNodeName();
-			CString val = attr.GetNodeValue();
-			os << _T(" ") << (LPCTSTR)attrName << _T("='")
-               << (LPCTSTR)cdr::encode(val, true) << _T("'");
+            if (attrName != _T("readonly")) {
+			    CString val = attr.GetNodeValue();
+			    os << _T(" ") << (LPCTSTR)attrName << _T("='")
+                << (LPCTSTR)cdr::encode(val, true) << _T("'");
+            }
 		}
 		if (!node.hasChildNodes())
 			os << _T("/");
