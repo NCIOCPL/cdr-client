@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.69 2002-07-15 22:39:22 bkline Exp $
+     $Id: Cdr.mcr,v 1.70 2002-07-17 13:55:19 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.69  2002/07/15 22:39:22  bkline
+     Switched to Normal view before saving.
+
      Revision 1.68  2002/07/02 20:47:02  bkline
      Fixed icon number for doc version history report button.
 
@@ -1142,7 +1145,7 @@
                            "CDR", 1, 8,                 // Icon set, row, col.
                            false),                      // Starts new group?
             new CdrCmdItem("Find &Previous Change",
-                           "Find Previous",
+                           "Find Prev",
                            "Find Previous Change",
                            "Find previous markup change",
                            "CDR", 1, 9,
@@ -3436,6 +3439,8 @@
     // Moves the selection to the next Marked change in the document
     // If the end of the document is reached the search is resumed from 
     // the beginning of the document 
+    // XXX This is SoftQuad's code.  Very complicated and impressive,
+    //     but it doesn't work.  Replaced below.
     //----------------------------------------------------------------------
     function doFindNext() {
 
@@ -3575,8 +3580,49 @@
         }
     }
   
+    //----------------------------------------------------------------------
+    // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
+    // report #330.
+    //----------------------------------------------------------------------
+    function findNextInsertionOrDeletion() {
+        var delElem = ActiveDocument.Range;
+        var insElem = ActiveDocument.Range;
+        var keepGoing = true;
+        while (keepGoing) {
+            delElem.Collapse();
+            insElem.Collapse();
+            var foundDel = delElem.MoveToElement('Deletion', true);
+            var foundIns = insElem.MoveToElement('Insertion', true);
+            if (!foundDel && !foundIns) {
+                keepGoing = Application.Confirm(
+                    "Reached the end of the Document.  " +
+                    "Do you want to continue searching " +
+                    "from the beginning of the document?");
+                if (keepGoing) {
+                    delElem.MoveToDocumentStart();
+                    insElem.MoveToDocumentStart();
+                }
+            }
+            else {
+                keepGoing = false;
+                var whichRange = null;
+                if (!foundDel)
+                    whichRange = insElem;
+                else if (!foundIns)
+                    whichRange = delElem;
+                else if (insElem.IsGreaterThan(delElem))
+                    whichRange = delElem;
+                else
+                    whichRange = insElem;
+                whichRange.SelectContainerContents();
+                whichRange.Select();
+            }
+        }
+    }
+
     if (CanRunMacros()) {
-        doFindNext();
+        //doFindNext();
+        findNextInsertionOrDeletion();
     }
 
   ]]>
@@ -3593,6 +3639,7 @@
     // Moves the selection to the previous Marked change in the document
     // If the beginning of the document is reached the search is resumed 
     // from the end of the document 
+    // XXX Buggy SoftQuad code.  See note on doFindNext() above.
     //----------------------------------------------------------------------
     function doFindPrev() {
 
@@ -3641,8 +3688,49 @@
         rng2 = null;
     }
 
+    //----------------------------------------------------------------------
+    // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
+    // report #330.
+    //----------------------------------------------------------------------
+    function findPrevInsertionOrDeletion() {
+        var delElem = ActiveDocument.Range;
+        var insElem = ActiveDocument.Range;
+        var keepGoing = true;
+        while (keepGoing) {
+            //delElem.Collapse();
+            //insElem.Collapse();
+            var foundDel = delElem.MoveToElement('Deletion', false);
+            var foundIns = insElem.MoveToElement('Insertion', false);
+            if (!foundDel && !foundIns) {
+                keepGoing = Application.Confirm(
+                    "Reached the beginning of the Document.  " +
+                    "Do you want to continue searching " +
+                    "from the end of the document?");
+                if (keepGoing) {
+                    delElem.MoveToDocumentEnd();
+                    insElem.MoveToDocumentEnd();
+                }
+            }
+            else {
+                keepGoing = false;
+                var whichRange = null;
+                if (!foundDel)
+                    whichRange = insElem;
+                else if (!foundIns)
+                    whichRange = delElem;
+                else if (insElem.IsGreaterThan(delElem))
+                    whichRange = insElem;
+                else
+                    whichRange = delElem;
+                whichRange.SelectContainerContents();
+                whichRange.Select();
+            }
+        }
+    }
+
     if (CanRunMacros()) {
-        doFindPrev();
+        //doFindPrev();
+        findPrevInsertionOrDeletion();
     }
 
   ]]>
