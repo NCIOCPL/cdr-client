@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<!-- Added Jean's couleurs. -->
+<!-- $Id: Summary.ctm,v 1.2 2002-01-24 22:11:50 ebator Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
