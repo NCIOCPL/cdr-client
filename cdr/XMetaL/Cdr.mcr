@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.65 2002-06-13 21:50:22 bkline Exp $
+     $Id: Cdr.mcr,v 1.66 2002-06-26 21:48:37 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.65  2002/06/13 21:50:22  bkline
+     Fixed Insert DateLastModified macro.
+
      Revision 1.64  2002/06/13 19:01:16  bkline
      Replaced hardcoded host name with COM property.
 
@@ -2741,6 +2744,9 @@
     // Allows the users to track changes while inserting any text in the 
     // document.  If the user selects some text and clicks on insertion 
     // toolbar button the selected text is surrounded by deletion element
+    //
+    // XXX Lakshmi decided she doesn't want the fancier approach used by
+    //     SoftQuad.
     //----------------------------------------------------------------------
     function getInsertion() {
         if (Selection.IsInsertionPoint) {
@@ -2755,19 +2761,19 @@
                     Selection.ContainerStyle = getMarkupStyle("Insertion");
                     Selection.SelectBeforeContainer();
                     if (Selection.CanInsert("Deletion")) {
-                    Selection.InsertElement("Deletion");
-                    Selection.ContainerStyle = getMarkupStyle("Deletion");
-                    Selection.Text = temp_text;
+                        Selection.InsertElement("Deletion");
+                        Selection.ContainerStyle = getMarkupStyle("Deletion");
+                        Selection.Text = temp_text;
+                    }
+                    Selection.MoveToElement("Insertion");
                 }
-                Selection.MoveToElement("Insertion");
-            }
-            else {  
-                Selection.Surround("Deletion");
-                Selection.ContainerAttribute("UserName") = CdrUserName;
-                var date = new Date();
-                    Selection.ContainerAttribute("Time") = date.toLocaleString();
-                    Selection.ContainerAttribute("RevisionLevel") = 
-                        "approved";
+                else {  
+                    Selection.Surround("Deletion");
+                    Selection.ContainerAttribute("UserName") = CdrUserName;
+                    var date = new Date();
+                    Selection.ContainerAttribute("Time") = 
+                        date.toLocaleString();
+                    Selection.ContainerAttribute("RevisionLevel") = "approved";
                     Selection.ContainerStyle = getMarkupStyle("Deletion");
                     Selection.SelectAfterContainer();
                     doInsertion();
@@ -2822,8 +2828,33 @@
         }
     }
 
+    // Replacement function for the above two.  Keep those in case the
+    // users change their minds back.
+    function simpleInsertion() {
+        var date = new Date();
+        if (!Selection.IsInsertionPoint) {
+            if (!Selection.CanSurround("Insertion")) {
+                Application.Alert("Unable to apply Insertion markup");
+                return;
+            }
+            Selection.Surround("Insertion");
+        }
+        else {
+            if (!Selection.CanInsert("Insertion")) {
+                Application.Alert("Unable to apply Insertion markup");
+                return;
+            }
+            Selection.InsertElement("Insertion");
+            Selection.InsertReplaceableText("Insert text here");
+        }
+        Selection.ContainerAttribute("UserName") = CdrUserName;
+        Selection.ContainerAttribute("Time") = date.toLocaleString();
+        Selection.ContainerAttribute("RevisionLevel") = "approved";
+        Selection.ContainerStyle = getMarkupStyle("Insertion");
+    }
+
     if (CanRunMacros()) {
-        getInsertion();
+        simpleInsertion();
     }
 
   ]]>
