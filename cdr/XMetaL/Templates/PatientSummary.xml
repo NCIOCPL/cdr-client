@@ -254,7 +254,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Stage 0 X Cancer (Carcinoma in Situ)</Title>
 <Para>Treatment of stage 0 x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
      <ListItem>[treatment here]</ListItem>
      <ListItem>A clinical trial of ....</ListItem>
@@ -267,7 +267,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Stage I X Cancer</Title>
 <Para>Treatment of stage I x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
@@ -280,7 +280,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Stage II X Cancer</Title>
 <Para>Treatment of stage II x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
@@ -293,7 +293,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Stage III X Cancer</Title>
 <Para>Treatment of stage III x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
@@ -307,7 +307,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Stage IV X Cancer</Title>
 <Para>Treatment of stage IV x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
@@ -322,7 +322,7 @@ appropriate.]</Para>
 </SectMetaData>
 <Title>Treatment Options for Recurrent X Cancer</Title>
 <Para>Treatment of recurrent x cancer may include the following:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
      <ListItem><GlossaryTermRef cdr:href="CDR0000076001">Surgery</GlossaryTermRef></ListItem>
 	  <ListItem><GlossaryTermRef cdr:href="CDR0000075450">Radiation therapy</GlossaryTermRef></ListItem>
 	  <ListItem><GlossaryTermRef cdr:href="CDR0000075647">Chemotherapy</GlossaryTermRef></ListItem>
