@@ -43,7 +43,7 @@ DECLARE_REGISTRY_RESOURCEID(IDR_Commands)
 
 // ICommands
 public:
-	STDMETHOD(isReadOnly)(/*[out, retval]*/ int* pRet, /*[in]*/ const VARIANT& docType, /*[in]*/ const VARIANT& elemName);
+	STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
 	STDMETHOD(edit)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(validate)(/*[out, retval]*/ int* pRet);
