@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+  </ElementPropertiesList>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>BoardMemberContact</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>PersonContactID</ChangeListElement>
+        <ChangeListElement>SpecificBoardMemberContact</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
+</DTDExtensions>
