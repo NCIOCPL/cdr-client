@@ -1,9 +1,13 @@
 /*
- * $Id: CdrUtil.cpp,v 1.8 2002-04-12 01:32:25 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.9 2002-04-29 10:57:30 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.8  2002/04/12 01:32:25  bkline
+ * Fixed bug in PI handling.  Added CDR_HOST and CDR_PORT environment
+ * variable overrides.
+ *
  * Revision 1.7  2002/02/12 21:44:05  bkline
  * Replaced mmdb2 with mmdb2.nci.nih.gov.
  *
@@ -562,6 +566,13 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
 		CString val = node.GetNodeValue();
 		os << _T("<?") << (LPCTSTR)name << _T(" ") << (LPCTSTR)val << _T("?>");
 	}
+
+    // Don't lose comments.
+    else if (nodeType == 8) {
+
+        CString val = node.GetNodeValue();
+        os << _T("<!--") << (LPCTSTR)val << _T("-->");
+    }
 
 	// Process any children of the node.
 	if (node.hasChildNodes() && name != "CdrDocCtl") {
