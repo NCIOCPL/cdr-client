@@ -54,6 +54,7 @@ protected:
 	afx_msg void OnSearchButton();
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDblclkDocument();
+	afx_msg void OnVersionsButton();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
