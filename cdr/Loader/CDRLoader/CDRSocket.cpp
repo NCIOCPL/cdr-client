@@ -67,7 +67,7 @@ CdrSocket::CdrSocket()
 	else
 	{
 		const char* hostEnv = getenv("CDR_HOST");
-		host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
+		host = hostEnv ? hostEnv : "mahler.nci.nih.gov";
 	}
 
 	int port;
