@@ -76,6 +76,5 @@
   <OrganizationType><?xm-replace_text {Select a type for this organization (required)} ?></OrganizationType>
   <ProtocolIDAcronym><?xm-replace_text {Optionally enter an acronym used to identify this organization in a protocol } ?></ProtocolIDAcronym>
   
-   
-  
+ <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
 </Organization>

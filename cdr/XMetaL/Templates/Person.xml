@@ -94,6 +94,6 @@
 	 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
 	 <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> </Status> 
-   
+ <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
   
-  </Person>
+</Person>
