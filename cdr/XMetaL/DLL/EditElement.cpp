@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: EditElement.cpp,v 1.2 2001-04-18 14:45:01 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
+ *
  */
 
 // Local headers.
@@ -93,8 +96,7 @@ void CEditElement::OnOK()
         << element
         << "</SourceElementType><TargetTitlePattern>"
         << (const char*)m_title
-        << "%</TargetTitlePattern></CdrSearchLinks>"
-        << std::ends;
+        << "%</TargetTitlePattern></CdrSearchLinks>";
 
     // Submit the request to the CDR server.
 	CWaitCursor wc;
