@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.59 2002-06-03 20:22:43 bkline Exp $
+     $Id: Cdr.mcr,v 1.60 2002-06-06 14:57:37 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.59  2002/06/03 20:22:43  bkline
+     Fixed CitationLink macro button; plugged in help index.
+
      Revision 1.58  2002/05/31 13:00:45  bkline
      Added published version report button and stub macro.
 
@@ -1299,18 +1302,20 @@
                            " start tag",
                            "CDR", 6, 4,
                            false),
+            /* Bug in XMetaL prevents this from working...
             new CdrCmdItem(null,
                            "Undo Last Edit",
                            "Undo",
                            "Undo Last Action",
                            "Standard", 2, 2,
                            true),
+             */
             new CdrCmdItem(null,
                            "Insertion",
                            "Insertion",
                            "Add Insertion markup",
                            "CDR", 1, 6,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "Deletion",
                            "Deletion",
@@ -4698,11 +4703,12 @@
                 + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
                 + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
                 + "&Filter5=name:Health+Professional+Summary+Report"
+                + "-Bold/Underline"
                 + "&DocId=" + docId;
         Application.ShowPage(url);
     }
-    Application.Alert("Don't have filters for this command yet.");
-    //boldUnderlineReport();
+    //Application.Alert("Don't have filters for this command yet.");
+    boldUnderlineReport();
   ]]>
 </MACRO>
 
@@ -4828,7 +4834,6 @@
 </MACRO>
 
 <MACRO name="Undo Last Edit" 
-        key="Ctrl+Z"
        lang="JScript" >
   <![CDATA[
     if (ActiveDocument)
