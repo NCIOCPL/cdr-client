@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.56 2002-05-16 02:51:28 bkline Exp $
+     $Id: Cdr.mcr,v 1.57 2002-05-20 15:41:00 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.56  2002/05/16 02:51:28  bkline
+     Added macro for inserting protocol amendment elements.
+
      Revision 1.55  2002/05/13 19:49:07  bkline
      Removed value from StatusName element when adding new org status for
      protocol.
@@ -1290,11 +1293,17 @@
                            "CDR", 6, 4,
                            false),
             new CdrCmdItem(null,
+                           "Undo Last Edit",
+                           "Undo",
+                           "Undo Last Action",
+                           "Standard", 2, 2,
+                           true),
+            new CdrCmdItem(null,
                            "Insertion",
                            "Insertion",
                            "Add Insertion markup",
                            "CDR", 1, 6,
-                           true),
+                           false),
             new CdrCmdItem(null,
                            "Deletion",
                            "Deletion",
@@ -1412,27 +1421,39 @@
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
                            "New Summary Section",       // Macro.
-                           "New Summary Section",       // Tooltip.
+                           "New Section",               // Tooltip.
                            "Insert new SummarySection", //Description
                            "General (Custom)", 5, 8,    // Icon set, row, col.
                            false),                      // Starts new group?
             new CdrCmdItem(null,
                            "Next Summary Section",
-                           "Next Summary Section",
+                           "Next Section",
                            "Move to next SummarySection",
                            "CDR", 4, 4,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "Previous Summary Section",
-                           "Previous Summary Section",
+                           "Previous Section",
                            "Move to previous SummarySection",
                            "CDR", 4, 5,
                            false),
             new CdrCmdItem(null,
                            "Higher Summary Section",
-                           "Higher Summary Section",
+                           "Higher Section",
                            "Move to higher SummarySection",
                            "CDR", 4, 6,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert Citation Link",
+                           "Citation Link",
+                           "Insert Citation Link",
+                           "CDR", 6, 9,
+                           true),
+            new CdrCmdItem(null,
+                           "Insert DateLastModified",
+                           "DateLastModified",
+                           "Insert DateLastModified",
+                           "CDR", 5, 2,
                            false),
             new CdrCmdItem(null,
                            "Bold Underline Report",
@@ -1448,9 +1469,9 @@
                            false),
             new CdrCmdItem(null,
                            "Patient Summary QC Report",
-                           "Patient Summary QC",
+                           "Patient QC",
                            "Patient Summary QC Report",
-                           "CDR", 3, 4,
+                           "CDR", 3, 5,
                            false),
             new CdrCmdItem(null,
                            "Generate Mailer",
@@ -4043,35 +4064,39 @@
 
 <MACRO name="Itemized List" 
        key="Alt+L" 
-       lang="VBScript" 
+       lang="JScript" 
        id="20404">
   <![CDATA[
-    Selection.InsertElement "ItemizedList"
-    Selection.ElementAttribute("Style", "ItemizedList", 0) = "simple"
-    Selection.InsertWithTemplate "ListTitle"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
+    Selection.InsertElement("ItemizedList");
+    Selection.ElementAttribute("Style", "ItemizedList", 0) = "simple";
+    Selection.InsertWithTemplate("ListTitle");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Selection.MoveUp();
+    Selection.MoveUp();
   ]]>
 </MACRO>
 
 <MACRO name="Ordered List" 
        key="Alt+O" 
-       lang="VBScript" 
+       lang="JScript" 
        id="20412">
   <![CDATA[
-    Selection.InsertElement "OrderedList"
-    Selection.ElementAttribute("Style", "OrderedList", 0) = "Arabic"
-    Selection.InsertWithTemplate "ListTitle"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
-    Selection.MoveRight 
-    Selection.InsertWithTemplate "ListItem"
+    Selection.InsertElement("OrderedList");
+    Selection.ElementAttribute("Style", "OrderedList", 0) = "Arabic";
+    Selection.InsertWithTemplate("ListTitle");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Application.Run("Jump Past Element");
+    Selection.InsertWithTemplate("ListItem");
+    Selection.MoveUp();
+    Selection.MoveUp();
   ]]>
 </MACRO>
 
@@ -4778,6 +4803,15 @@
             rng.InsertWithTemplate("DatedAction");
     }
     insertProtocolAmendmentInformation();
+  ]]>
+</MACRO>
+
+<MACRO name="Undo Last Edit" 
+        key="Ctrl+Z"
+       lang="JScript" >
+  <![CDATA[
+    if (ActiveDocument)
+        ActiveDocument.Undo();
   ]]>
 </MACRO>
 
