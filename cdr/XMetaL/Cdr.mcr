@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.70 2002-07-17 13:55:19 bkline Exp $
+     $Id: Cdr.mcr,v 1.71 2002-07-19 22:07:14 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.70  2002/07/17 13:55:19  bkline
+     Fixed Move Next/Prev macros.
+
      Revision 1.69  2002/07/15 22:39:22  bkline
      Switched to Normal view before saving.
 
@@ -2954,7 +2957,7 @@
         FindPrev = true;
         FindNext = true;
         var AcceptOrReject_Dlg = CreateFormDlg(Application.Path + 
-                "\\Forms\\Revision Control\\AcceptOrReject.hhf");
+                "\\Cdr\\AcceptOrReject.hhf");
         var rng = ActiveDocument.Range;
         Insertion_list = ActiveDocument.getElementsByTagName("Insertion");
         Deletion_list = ActiveDocument.getElementsByTagName("Deletion");
@@ -3027,6 +3030,7 @@
     // Incorporates the current marked change i.e. if the selection is inside
     // an Insertion the contents are merged and if inside an Deletion the
     // contents are deleted.
+    // XXX This SoftQuad is buggy.  Replace it!
     //----------------------------------------------------------------------
     function doAcceptChange()
     {
@@ -3086,8 +3090,31 @@
         }
     }
     var rng_temp;
+
+    //----------------------------------------------------------------------
+    // Replacement for buggy SoftQuad code.
+    //----------------------------------------------------------------------
+    function doAcceptChangeWithoutSoftQuadBugs() {
+        if (cdrDocReadOnly())
+            Application.Alert("Document is not checked out for editing.");
+        else if (Selection) {
+            var elemName = Selection.ElementName(0);
+            if (elemName == "Insertion")
+                Selection.RemoveContainerTags();
+            else if (elemName == "Deletion") {
+                Selection.SelectContainerContents();
+                Selection.Delete();
+                Selection.RemoveContainerTags();
+            }
+            else
+                Application.Alert("Accept Change can only be used " +
+                                  "within Insertion or Deletion markup.");
+        }
+    }
+
     if (CanRunMacros()) {
-        doAcceptChange();
+        //doAcceptChange();
+        doAcceptChangeWithoutSoftQuadBugs();
     }
     
   ]]>
@@ -3103,6 +3130,7 @@
     // Rejects the current marked change i.e. if the selection is inside an 
     // Insertion the contents are removed and if the contents are inside an 
     // Deletion they are merged back with the document.
+    // XXX This SoftQuad code is buggy.  Replace it.
     //----------------------------------------------------------------------
     function doRejectChange() {
         if (Selection.IsParentElement("Insertion")) {
@@ -3155,8 +3183,30 @@
         return(endRng);
     }
 
+    //----------------------------------------------------------------------
+    // Replacement for buggy SoftQuad code.
+    //----------------------------------------------------------------------
+    function doRejectChangeCorrectly() {
+        if (cdrDocReadOnly())
+            Application.Alert("Document is not checked out for editing.");
+        else if (Selection) {
+            var elemName = Selection.ElementName(0);
+            if (elemName == "Deletion")
+                Selection.RemoveContainerTags();
+            else if (elemName == "Insertion") {
+                Selection.SelectContainerContents();
+                Selection.Delete();
+                Selection.RemoveContainerTags();
+            }
+            else
+                Application.Alert("Reject Change can only be used " +
+                                  "within Insertion or Deletion markup.");
+        }
+    }
+
     if (CanRunMacros()) {
-        doRejectChange();
+        //doRejectChange();
+        doRejectChangeCorrectly();
     }
 
   ]]>
@@ -4099,6 +4149,7 @@
 
 <MACRO  name="Insert Current Date"
         lang="JScript" 
+        key="Alt+D" 
         desc="Inserts the current date as text content of current elem"
         hide="false">
   <![CDATA[
