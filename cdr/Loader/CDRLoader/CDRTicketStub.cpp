@@ -164,12 +164,15 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 
 	try
 	{
+	DebugWrite( "HTTP top of try.\n" );
 		CHttpConnection * http_session = inet_session.GetHttpConnection( http_Server );
+	DebugWrite( "HTTP GotConnection.\n" );
 		CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
 		CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
+	DebugWrite( "HTTP Request Open.\n" );
 		CString my_req = REQ_TEMPLATE;
 		my_req.Replace( _T("%s"), data );
-		DWORD l = my_req.GetLength();
+		//DWORD l = my_req.GetLength();
 		/***
 			// !DEBUG!
 			CFile junk4( "REQ-DUMP.txt", CFile::modeCreate | CFile::modeWrite );
@@ -178,24 +181,64 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 		***/
 		// remember to switch out of unicode to talk to TICKET server
 		CStringA plain_req = (CStringA )my_req.GetString();
-		http_page->SendRequest( _T(""), 0, (void *)plain_req.GetString(), l );
+		DWORD rlen = plain_req.GetLength();
+	DebugWrite( "HTTP Request is:\n" );
+	DebugWrite( my_req );
+	try 
+	{
+		http_page->SendRequest( _T(""), 0, (void *)plain_req.GetString(), rlen );
+	}
+	catch ( CInternetException &ee )
+	{
+		_TCHAR  errmsg[ 1024 ];
+		int len = 1000;
+		ee.GetErrorMessage( errmsg, len );
+		ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+		DebugWrite( "Caught at SendRequest() CInternetException" );
+		DebugWrite( errmsg );
+	}
+	catch ( CException &ee )
+	{
+		_TCHAR  errmsg[ 1024 ];
+		int len = 1000;
+		ee.GetErrorMessage( errmsg, len );
+		ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+		DebugWrite( "Caught at SendRequest() CException" );
+		DebugWrite( errmsg );
+	}
+	catch ( CObject &co )
+	{
+		DebugWrite( "Caught at SendRequest() CObject" );
+	}
+	catch ( ... )
+	{
+		DebugWrite( "Caught at SendRequest() ..." );
+	}
+	DebugWrite( "HTTP Request Sent.\n" );
 		DWORD result;
 		http_page->QueryInfoStatusCode( result );
+	DebugWrite( "HTTP look at status.\n" );
 		if (result != HTTP_STATUS_OK)
 		{
 			char num[32];
 			ltoa( result, num, 10 );
 			ErrorLog += _T("<HTTP_ERR>") + CString( num ) + _T("</HTTP_ERR>");
+	DebugWrite( "HTTP status not OK.\n" );
 		}
 		char buff[ 1024 ];
 		UINT nRead = http_page->Read( buff, 1000 );
+	DebugWrite( "HTTP Did first read.\n" );
 		while ( nRead > 0 )
 		{
 			buff[ nRead ] = '\0';
 			http_response_data += buff;
 			nRead = http_page->Read( buff, 1000 );
+	DebugWrite( "HTTP Did next read.\n" );
 		}
 		
+	DebugWrite( "HTTP Done reading.\n" );
 
 		/*** 
 			//!DEBUG!
@@ -204,18 +247,31 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 			junk5.Close();
 		***/
 		http_page->Close();
+	DebugWrite( "HTTP closed page.\n" );
 		http_session->Close();
+	DebugWrite( "HTTP closed session.\n" );
 
 		delete http_page;
+	DebugWrite( "HTTP delete page.\n" );
 		delete http_session;
+	DebugWrite( "HTTP delete session.\n" );
 
+	}
+	catch ( CInternetException &e )
+	{
+		_TCHAR  errmsg[ 1024 ];
+		int len = 1000;
+		e.GetErrorMessage( errmsg, len );
+		ErrorLog += _T("<HTTP_EXCEPTION type=CInternet>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+		DebugWrite( errmsg );
 	}
 	catch ( CException &e )
 	{
 		_TCHAR  errmsg[ 1024 ];
 		int len = 1000;
 		e.GetErrorMessage( errmsg, len );
-		ErrorLog += _T("<HTTP_EXCEPTION>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+		ErrorLog += _T("<HTTP_EXCEPTION type=CException>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
 
 		DebugWrite( errmsg );
 	}
