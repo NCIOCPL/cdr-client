@@ -1,9 +1,17 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.120 2004-04-09 16:46:25 bkline Exp $
+     $Id: Cdr.mcr,v 1.121 2004-04-09 17:05:15 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.120  2004/04/09 16:46:25  bkline
+     Implemented the behavior which the comment added for revision 1.75
+     said we were going to use (we don't want to block direct editing of
+     linking or value-list controlled elements because that disables
+     things we want, such as adding a new instance of a repeatable
+     element with the Enter key, or editing the attributes on the element.
+     See comments in Bugzilla issue #1155.
+
      Revision 1.119  2004/04/08 20:14:49  bkline
      Dramatic simplification of deletion markup logic (request #1163).
 
@@ -555,8 +563,12 @@
         if (ActiveDocument.doctype == null)           { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
         if (Selection.ContainerNode.nodeName == null) { return 0; }
-        if (ActiveDocument.doctype.name == "Mailer") {
-            var elName = Selection.ContainerNode.nodeName;
+        if (Selection == null)                        { return 0; }
+        if (cdrObj == null)                           { return 0; }
+        var dtName = ActiveDocument.doctype.name;
+        var elName = Selection.ContainerNode.nodeName;
+        if (elName == "DocId" || elName == "DocType") { return 1; }
+        if (dtName == "Mailer") {
             if (elName == "Received" ||
                 elName == "ChangesCategory" ||
                 elName == "Response" ||
@@ -565,23 +577,16 @@
             return 1;
         }
         /*
-         * XXX We cannot use the rest of this function to block
+         * XXX We cannot use the following DLL method to block
          *     editing of linking elements without disabling the
          *     feature of inserting a new occurrence of a repeating
          *     element by pressing the Enter key.  Lakshmi has
          *     agreed that it is preferable to keep the latter
          *     feature.
          */
+        // return cdrObj.isReadOnly(dtName, elName);
+        
         return 0;
-        if (cdrObj == null)                           { return 0; }
-        if (Selection == null)                        { return 0; }
-        if (Selection.ContainerNode == null)          { return 0; }
-        if (Selection.ContainerNode.nodeName == null) { return 0; }
-        if (ActiveDocument.doctype == null)           { return 0; }
-        var dtName = ActiveDocument.doctype.name;
-        var elName = Selection.ContainerNode.nodeName;
-        //Application.Alert("dtName=" + dtName + " elName=" + elName);
-        return cdrObj.isReadOnly(dtName, elName);
     }
 
     function switchCSS(from, to) {
