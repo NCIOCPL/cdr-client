@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.18 2002-05-06 18:48:24 bkline Exp $
+ * $Id: Commands.cpp,v 1.19 2002-05-08 21:20:52 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.18  2002/05/06 18:48:24  bkline
+ * Added code to populate comment for version table.
+ *
  * Revision 1.17  2002/04/29 11:01:31  bkline
  * Added code to eliminate extra space after CdrDocCtl element.
  *
@@ -1194,6 +1197,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
         catch (...) {
             ::AfxMessageBox(_T("Unexpected exception encountered ")
                             _T("retrieving document"));
+            return false;
         }
     }
 }
