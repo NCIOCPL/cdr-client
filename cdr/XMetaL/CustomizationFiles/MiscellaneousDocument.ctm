@@ -439,5 +439,9 @@
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </Section>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>ItemizedList</Name>
+      <MiniTemplate><![CDATA[<ItemizedList Style="bullet"></ItemizedList>]]></MiniTemplate>
+    </Template>
   </Templates>
 </DTDExtensions>

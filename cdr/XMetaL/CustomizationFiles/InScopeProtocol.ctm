@@ -1534,6 +1534,10 @@
 </ProtocolAmendment>
 </ProtocolAmendmentInformation>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>ItemizedList</Name>
+      <MiniTemplate><![CDATA[<ItemizedList Style="bullet"></ItemizedList>]]></MiniTemplate>
+    </Template>
   </Templates>
   <ChangeLists>
     <ChangeList>

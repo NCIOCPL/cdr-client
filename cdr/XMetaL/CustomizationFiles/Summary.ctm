@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.8 2002-10-17 19:19:40 ebator Exp $ -->
+<!-- $Id: Summary.ctm,v 1.9 2003-08-14 21:23:51 bkline Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
@@ -599,7 +599,7 @@
     </Template>
     <Template>
       <Name>ItemizedList</Name>
-      <MiniTemplate><![CDATA[<ItemizedList Style="simple"></ItemizedList>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<ItemizedList Style="bullet"></ItemizedList>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PatientVersionOf</Name>
