@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.98 2003-03-04 16:47:42 bkline Exp $
+     $Id: Cdr.mcr,v 1.99 2003-05-05 22:00:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.98  2003/03/04 16:47:42  bkline
+     Modified macro Insert Participating Org as requested by enhancement #433.
+
      Revision 1.97  2003/03/04 16:08:16  bkline
      Added new macro Verify Specialties.
 
@@ -75,8 +78,8 @@
      Revision 1.75  2002/08/27 18:45:56  bkline
      Added patient publish preview.  Moved publish preview commands from menus
      and from general CDR toolbar to protocol and summary toolbars.  Changed
-     patient publish preview icon at Eileen's request.  Added comment explaining
-     why readonly settings are not imposed on linking elements.
+     patient publish preview icon at Eileen's request.  Added comment
+     explaining why readonly settings are not imposed on linking elements.
 
      Revision 1.74  2002/08/22 13:12:21  bkline
      Turned on Publish Preview.
@@ -360,6 +363,7 @@
     // Clipboard for CDR links.
     var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
+    var CdrOrgAddressClipboard = null;
 
     function padNumber(number, length, padChar) {
         var str = '' + number;
@@ -924,6 +928,9 @@
         if (rng.IsParentElement("ProtocolLeadOrg"))
             Application.AppendMacro("Change Org Statuses",
                     "Change Participating Org Status");
+        if (rng.IsParentElement("GenericPerson") && CdrOrgAddressClipboard)
+            Application.AppendMacro("Paste Org Address Elements",
+                    "Paste Org Address Elements");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
@@ -933,6 +940,8 @@
         if (Selection.IsParentElement("Location")) {
             Application.AppendMacro("Persons Linking to This Location",
                 "CDR Persons Linking to Org Address Fragment");
+            Application.AppendMacro("Remember Postal Address",
+                                    "Remember Org Postal Address")
         }
     }
    
@@ -4346,6 +4355,136 @@
     }
 
     personsLinkingToOrgLoc();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Remember Org Postal Address"
+        lang="JScript" 
+        desc="Stores org postal address in an internal clipboard."
+        hide="false">
+  <![CDATA[
+
+    function rememberOrgPostalAddress() {
+        var rng = getElemRange("Location");
+        if (!rng) {
+            Application.Alert(
+                "Current position is not within an org location.");
+            return;
+        }
+        locElem = rng.ContainerNode;
+        addrList = locElem.getElementsByTagName("PostalAddress");
+        if (!addrList.length) {
+            Application.Alert("No PostalAddress element found.");
+            return;
+        }
+        //CdrOrgAddressClipboard = addrList.item(0);
+        rng.MoveToElement("PostalAddress");
+        rng.SelectElement();
+        CdrOrgAddressClipboard = rng.Text;
+        //Application.Alert("CB: " + CdrOrgAddressClipboard);
+    }
+
+    rememberOrgPostalAddress();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Paste Org Address Elements"
+        lang="JScript" 
+        desc="Pastes org address elements from internal clipboard."
+        hide="false">
+  <![CDATA[
+
+    /*
+     * This is necessary because the DOM interface doesn't support
+     * cloning elements for use in another document.
+     *
+     * XXX Doesn't work.  Another bug in XMetaL.
+     */
+    function cloneElementAcrossDocs(newDoc, oldElem) {
+        if (!oldElem || !newDoc) return null;
+        // Application.Alert("creating a new " + oldElem.nodeName);
+        var newElem = newDoc.createElement(oldElem.nodeName);
+        if (!newElem) return null;
+        var attrs = oldElem.attributes;
+        for (var i = 0; i < attrs.length; ++i) {
+            var attr = attrs.item(i);
+            newElem.setAttribute(attr.nodeName, attr.nodeValue);
+        }
+        var child = oldElem.firstChild;
+        while (child) {
+            if (child.nodeType == 1) { // DOMElement
+                var newChild = cloneElementAcrossDocs(newDoc, child);
+                newElem.appendChild(newChild);
+            }
+            else if (child.nodeType == 2) { // DOMText
+                var textNode = newDoc.createTextNode(child.nodeValue);
+                newElem.appendChild(textNode);
+            }
+            else if (child.nodeType == 7) { // DOMProcessingInstruction
+                var piNode = newDoc.createProcessingInstruction(child.target,
+                                                                child.data);
+                newElem.appendChild(piNode);
+            }
+            else if (child.nodeType == 8) { // DOMComment
+                var cmt = newDoc.createComment(child.data);
+                newElem.appendChild(cmt);
+            }
+            else if (child.nodeType == 505) { // DOMCharacterReference
+                Application.Alert("Please inform development staff that " +
+                                  "a DOM character reference was found.");
+            }
+            child = child.nextSibling;
+        }
+        return newElem;
+    }
+
+    function pasteOrgAddressElements() {
+
+        if (!CdrOrgAddressClipboard) {
+            Application.Alert("Org address clipbard is empty!");
+            return;
+        }
+        var rng = getElemRange("GenericPerson");
+        if (!rng) {
+            Application.Alert(
+                "Current position is not within a GenericPerson element.");
+            return;
+        }
+
+        var gpElem = rng.ContainerNode;
+        var addrList = gpElem.getElementsByTagName("PostalAddress");
+        if (!addrList.length) {
+            if (!rng.FindInsertLocation("PostalAddress")) {
+                Application.Alert("No PostalAddress element found.");
+                return;
+            }
+            rng.Select();
+        }
+        else {
+            rng.MoveToElement("PostalAddress");
+            rng.SelectElement();
+        }
+        rng.Text = CdrOrgAddressClipboard;
+        return;
+        /*
+         * Doesn't work: bug in XMetaL.
+        var paElem = addrList.item(0);
+        var cdElem = paElem.parentNode;
+        var newNode = cloneElementAcrossDocs(ActiveDocument,
+                                             CdrOrgAddressClipboard);
+        if (!newNode) {
+            Application.Alert("Failure cloning address node");
+            return;
+        }
+        Application.Alert("Replacing " + paElem.nodeName +
+                          " with " + newNode.nodeName);
+        cdElem.replaceChild(newNode, paElem);
+         */
+    }
+
+    pasteOrgAddressElements();
 
   ]]>
 </MACRO>
