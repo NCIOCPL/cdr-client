@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.129 2004-10-29 19:10:15 bkline Exp $
+     $Id: Cdr.mcr,v 1.130 2004-11-02 18:18:11 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.129  2004/10/29 19:10:15  bkline
+     Added macro to insert board manager information in org documents.
+
      Revision 1.128  2004/08/11 20:01:26  bkline
      Added command to create a new glossary term phrase mapping.
 
@@ -813,7 +816,8 @@
             toolbars[docType.name].Visible = true;
         }
     }
-    adjustToolbars2();
+    if (Application.VersionNumber < 4.5)
+        adjustToolbars2();
 
     // this will only work if no On_Update_UI macro is defined for the DTD
     if (Selection.IsInsertionPoint && ActiveDocument.ViewType == 1) {
@@ -2597,7 +2601,7 @@
      */
     function hideToolbars() {
         for (var i in toolbars) {
-            if (toolbars[i])
+            if (toolbars[i] && toolbars[i].Visible)
                 toolbars[i].Visible = false;
         }
     }
@@ -2635,7 +2639,7 @@
      * for us to customize our installation in a way which installs the CDR
      * menu as part of a customized default.tbr.
      */
-    var toolbars = new Array();
+    var toolbars = new Object();
     addCdrToolbar();
     addSymbolToolbar();
     addSummaryToolbar();
@@ -2651,8 +2655,6 @@
     addPDQBoardMemberInfoToolbar();
     addCdrMenus();
     hideToolbars();
-    // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
-    //bugRepro();
 
   ]]>
 </MACRO>
@@ -4282,82 +4284,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Test Me"
-        lang="JScript" 
-        desc="dummy test macro"
-        key="Ctrl+Alt+T" 
-        hide="false">
-  <![CDATA[
-    function xturnOffStandardToolbars() {
-        var cmdBars = Application.CommandBars;
-        var cmdBar  = null;
-        
-        try { cmdBar = cmdBars.item("Standard"); }
-        catch (e) { }
-        if (cmdBar)
-            cmdBar.Visible = false;
-        cmdBar = null;
-        try { cmdBar = cmdBars.item("Formatting"); }
-        catch (e) { }
-        if (cmdBar) {
-            cmdBar.Visible = true;
-            var controls = cmdBar.Controls;
-            Application.Alert("count=" + controls.count);
-            for (var i = controls.count; i >= 1; --i) {
-                try {
-                    item = controls.item(i);
-                    var str = item.DescriptionText;
-                    if (str.indexOf("List") != -1) {
-                        Application.Alert("deleting " + str);
-                        item.Delete();
-                    }
-                }
-                catch (e) {}
-            }
-        }
-    }
-    function testMe() {
-
-        var cmdBars = Application.CommandBars;
-        var cmdBar  = null;
-        
-        try { cmdBar = cmdBars.item("Formatting"); }
-        catch (e) { }
-        if (cmdBar) {
-            cmdBar.Visible = true;
-            var controls = cmdBar.Controls;
-            Application.Alert("Count: " + controls.count);
-            for (var i = 1; i <= controls.count; ++i) {
-                item = controls.item(i);
-                try {
-                    var str = item.DescriptionText;
-                    Application.Alert("Desc(" + i + "): " + str);
-                    Application.Alert("OnAction(" + i + "): " + item.OnAction);
-                    Application.Alert("TT(" + i + "): " + item.TooltipText);
-                }
-                catch (e) {}
-            }
-        }
-        return;
-        Application.Alert("control: " + controls.item(i).TooltipText);
-        Application.Alert("file menu has " + controls.Count + " controls");
-        var printItem    = controls.item("Print...");
-        Application.Alert("printItem is [" + printItem + "]");
-        var printAction  = printItem.OnAction;
-        Application.Alert("Print action name is [" + printAction + "]");
-        return;
-    }
-    //testMe();
-    xturnOffStandardToolbars();
-    //var testElem = Selection.ContainerNode;
-    //Application.Alert("container name is " + testElem.nodeName
-    //    + "; container type is " + testElem.nodeType)
-    //Selection.ReadOnlyContainer = false;
-    //var testNode = ActiveDocument.createTextNode("foobar");
-    //testElem.appendChild(testNode);
-  ]]>
-</MACRO>
-
 <MACRO  name="CDR Get Org Postal Address"
         lang="JScript" 
         desc="Retrieve org address from fragment link"
@@ -4894,7 +4820,6 @@
         var docType = ActiveDocument.doctype;
         if (toolbars[docType.name] != null) {
             toolbars[docType.name].Visible = true;
-            //Application.Alert("Just turned on toolbar for " + docType.name);
         }
     }
     if (Application.VersionNumber < 4.5)
@@ -5938,7 +5863,6 @@
         var docType = ActiveDocument.doctype;
         if (docType && toolbars[docType.name] != null) {
             if (!toolbars[docType.name].Visible) {
-                // Application.Alert("Turning on " + docType.name);
                 toolbars[docType.name].Visible = true;
             }
         }
