@@ -1,7 +1,15 @@
 /*************************************************************************/
 /* 	Documentation_structure.css                                      */
 /*                                                                       */
-/*      v 1.23                                                           */
+/*      v. 1.5                                                           */
+/*      02/22/02  by ebator                                              */
+/*      Syntax in Default Properties modified to work with XMetaL 3      */
+/*                                                                       */
+/*      v 1.4                                                            */
+/*      02/20/02    by ebator                                            */
+/*      Minor changes                                                    */
+/*                                                                       */
+/*      v 1.3                                                            */
 /*      02/14/02    by ebator                                            */
 /*      Minor changes to tags                                            */
 /*                                                                       */
@@ -34,16 +42,16 @@
 
 /* @sq-start-only-tags;      */
 
-     { white-space: nowrap;
-     text-align: left;
-     margin-left: 10px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-     font-family: Arial, "sans serif";
-     font-size: 10pt;
-     font-style: normal;
-     font-weight: bold;
-     color: black;        }
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, "sans serif";
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
 
 /* top-level elements */
 
@@ -112,7 +120,7 @@ RelatedTopic[RelationshipType="Narrower"]:before
 					{ content: "Narrower Topic: "; }
 Subject:before				{ content: "Keyword: "; }
 Tip:before				{ content: "Tip "; }
-TopicRelationship:before		{ content: "Related Topics: "; }
+TopicRelationship:before		{ content: "Related Topics "; }
 TopicSection:before			{ content: "Section "; }
 TopicText:before			{ content: "Text "; }
 

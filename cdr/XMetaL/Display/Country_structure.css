@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Country_structure.css                                            */
 /*                                                                       */
+/*      v. 1.2                                                           */
+/*      02/22/02  by ebator                                              */
+/*      Syntax in Default Properties modified to work with XMetaL 3      */
+/*                                                                       */
 /*      v. 1.1                                                           */
 /*      12/17/01  by ebator                                              */
 /*      Added Continent                                                  */
@@ -28,16 +32,16 @@
 
 /* @sq-start-only-tags;      */
 
-     { white-space: nowrap;
-     text-align: left;
-     margin-left: 10px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-     font-family: Arial, "sans serif";
-     font-size: 10pt;
-     font-style: normal;
-     font-weight: bold;
-     color: black;        }
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, "sans serif";
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
 
 /* top-level elements */
 

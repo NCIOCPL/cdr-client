@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Person_structure.css                                             */
 /*                                                                       */
+/*      v. 3.3                                                           */
+/*      02/22/02  by ebator                                              */
+/*      Syntax in Default Properties modified to work with XMetaL 3      */
+/*                                                                       */
 /* 	v. 3.2                                                           */
 /*      1/16/02  by ebator                                               */
 /* 	Updated with schema changes from 1/9/02                          */
@@ -58,16 +62,16 @@
 
 /* @sq-start-only-tags;      */
 
-     { white-space: nowrap;
-     text-align: left;
-     margin-left: 10px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-     font-family: Arial, "sans serif";
-     font-size: 10pt;
-     font-style: normal;
-     font-weight: bold;
-     color: black;        }
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, "sans serif";
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
 
 /* top-level elements */
 

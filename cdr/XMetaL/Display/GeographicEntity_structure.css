@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	GeographicEntity_structure.css                                   */
 /*                                                                       */
+/*      v. 2.3                                                           */
+/*      02/22/02  by ebator                                              */
+/*      Syntax in Default Properties modified to work with XMetaL 3      */
+/*                                                                       */
 /*      v. 2.2                                                           */
 /*      10/26/01  by ebator                                              */
 /*      Schema changes from 10/22,24/01                                  */
@@ -36,16 +40,16 @@
 
 /* @sq-start-only-tags;      */
 
-     { white-space: nowrap;
-     text-align: left;
-     margin-left: 10px;
-     margin-top: 0px;
-     margin-bottom: 0px;
-     font-family: Arial, "sans serif";
-     font-size: 10pt;
-     font-style: normal;
-     font-weight: bold;
-     color: black;        }
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, "sans serif";
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
 
 /* top-level elements */
 
