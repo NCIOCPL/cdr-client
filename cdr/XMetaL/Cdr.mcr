@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.118 2004-04-08 19:56:09 bkline Exp $
+     $Id: Cdr.mcr,v 1.119 2004-04-08 20:14:49 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.118  2004/04/08 19:56:09  bkline
+     New function addPDQBoardMemberInfoToolbar().
+
      Revision 1.117  2004/03/22 21:54:40  bkline
      Removed Patient Publish Preview button from CTGov protocol toolbar
      (see request #1148).
@@ -3161,97 +3164,27 @@
     // selected text has an Deletion inside then it merges it with the
     // current parent.  If the selected text has an Insertion element
     // inside then it deletes the elemetn and its contents.
+    //
+    // NOTE: Logic drastically simplified in keeping with request #1163.
     //------------------------------------------------------------------
-    function doDeletion()
-    {
-        var del = ActiveDocument.Range;
-        var date = new Date();
-        
+    function doDeletion() {
+
         // If some text is selected:
-        if (!del.IsInsertionPoint) {
+        if (!ActiveDocument.Range.IsInsertionPoint) {
 
-            // If the selection is inside an Insertion element:
-            if (Selection.isParentElement("Insertion")) {
-                var del_txt = Selection.Text;
-
-                // Delete it temporarily.
-                Selection.Delete();
-
-                // Split the container into two Insertion elements 
-                Selection.SplitContainer();
-                Selection.ContainerStyle = getMarkupStyle("Insertion");
-                Selection.SelectBeforeContainer();
-                if (!Selection.IsParentElement("Deletion")) {
-                    if (Selection.CanInsert("Deletion")) {
-                        Selection.InsertElement("Deletion");
-                        Selection.ContainerAttribute("UserName") = CdrUserName;
-                        Selection.ContainerAttribute("Time") = 
-                            date.toLocaleString();
-                        Selection.ContainerAttribute("RevisionLevel") = 
-                            "approved";
-                        Selection.ContainerStyle = getMarkupStyle("Deletion");
-                        Selection.Text = del_txt;
-                    }
-                }
+            if (Selection.CanSurround("Deletion")) {
+                var date = new Date();
+                Selection.Surround("Deletion");
+                Selection.ContainerStyle = getMarkupStyle("Deletion");
+                Selection.ContainerAttribute("UserName") = CdrUserName;
+                Selection.ContainerAttribute("Time") = date.toLocaleString();
+                Selection.ContainerAttribute("RevisionLevel") = "approved";
             }
-            else if (!Selection.isParentElement("Deletion")) {
-                if (Selection.CanSurround("Deletion")) {
-                    Selection.Surround("Deletion");
-                    Selection.ContainerStyle = getMarkupStyle("Deletion");
-                    Selection.ContainerAttribute("UserName") = CdrUserName;
-                    Selection.ContainerAttribute("Time") =
-                                                    date.toLocaleString();
-                    Selection.ContainerAttribute("RevisionLevel") = 
-                        "approved";
-                    var rng = ActiveDocument.Range;
-                    rng.SelectContainerContents();
-                    var start = rng.Duplicate;
-                    start.Collapse(1);
-                    var end = rng.Duplicate;
-                    end.Collapse(0);
-                    readtree(start, end);
-                    //Application.Alert("Did it!");
-                }
-                else {
-                    //Application.Alert("Can't do it!");
-                }
-            }
+            else
+                Application.Alert("Deletion markup not allowed here.");
         }
-        del = null;
-    }
-
-    function readtree(startRng, endRng) {
-
-        // If the node represents an "Insertion" element, remove it
-        while(true) {
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            }
-            else {
-                if (startRng.isLessThan(endRng)) {
-                    if (startRng.ContainerNode) {
-                        var element = startRng.ContainerNode.nodeName;
-                        if (element == "Deletion") {
-                            startRng.RemoveContainerTags();
-                        }
-                        else if (element == "Insertion") {
-                            startRng.SelectContainerContents();
-                            startRng.Delete();
-                            startRng.RemoveContainerTags();
-                        }
-                        else {
-                            startRng.ContainerStyle = getMarkupStyle("Deletion");
-                            element = "";
-                        }
-                    }
-                } else {
-                    break;
-                }
-            }
-        }
+        else
+            Application.Alert("The current selection is empty.");
     }
 
     if (CanRunMacros()) {
