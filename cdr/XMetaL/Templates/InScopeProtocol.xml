@@ -102,7 +102,7 @@
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 		</CurrentOrgStatus> 
 		</LeadOrgProtocolStatuses> 
-		<LeadOrgPersonnel cdr:id="id required">
+		<LeadOrgPersonnel>
          <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
          <ProtocolSpecificContact></ProtocolSpecificContact>
          <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
