@@ -392,19 +392,19 @@
     </Template>
     <Template>
       <Name>Audience</Name>
-      <MiniTemplate><![CDATA[<Audience><?xm-replace_text {Select an audience for the definition (required)} ?></Audience>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Audience><?xm-replace_text {Select an target audience (required)} ?></Audience>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Dictionary</Name>
-      <MiniTemplate><![CDATA[<Dictionary><?xm-replace_text {Optionally select a dictionary for the definition} ?></Dictionary>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>TermDefinition</Name>
-      <MiniTemplate><![CDATA[<TermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary for the definition} ?></Dictionary><Audience><?xm-replace_text {Select an audience for the definition (required)} ?></Audience></TermDefinition>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<TermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary><Audience><?xm-replace_text {Select an target audience (required)} ?></Audience></TermDefinition>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>SpanishTermDefinition</Name>
-      <MiniTemplate><![CDATA[<SpanishTermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term in Spanish (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary for the definition} ?></Dictionary><Audience><?xm-replace_text {Select an audience for the definition (required)} ?></Audience></SpanishTermDefinition>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<SpanishTermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term in Spanish (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary><Audience><?xm-replace_text {Select an target audience (required)} ?></Audience></SpanishTermDefinition>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>StatusDate</Name>
