@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.17 2002-10-15 22:22:05 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.18 2002-10-16 19:56:26 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.17  2002/10/15 22:22:05  bkline
+ * Adding code for issue #471.
+ *
  * Revision 1.16  2002/10/14 20:06:22  bkline
  * Added DDE replacement for SoftQuad's ShowPage().
  *
@@ -548,6 +551,10 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
                 ::DOMElement cdrDocCtl = node;
                 if (cdrDocCtl.getAttribute(_T("readyForReview")) == _T("Y"))
                     info.readyForReview = true;
+
+                // MUST do this!  Otherwise XMetaL blows up with a complaint
+                // about a pure virtual function!
+                cdrDocCtl.m_bAutoRelease = 0;
 
                 node = node.GetFirstChild();
                 while (node) {

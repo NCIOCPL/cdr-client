@@ -52,6 +52,8 @@ private:
     void fixCheckBoxes();
 public:
     virtual BOOL OnInitDialog();
+private:
+    CButton m_readyForReviewCheckbox;
 };
 
 //{{AFX_INSERT_LOCATION}}

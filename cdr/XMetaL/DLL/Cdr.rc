@@ -151,10 +151,10 @@ BEGIN
     PUSHBUTTON      "Versions",IDC_BUTTON3,251,113,50,14
 END
 
-IDD_SAVE_DIALOG DIALOG  0, 0, 286, 178
+IDD_SAVE_DIALOG DIALOGEX 0, 0, 286, 178
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Save CDR Document"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,213,7,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,213,24,50,14
@@ -172,8 +172,8 @@ BEGIN
     CONTROL         "Block Publication of Any Version of This Document",
                     IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,45,
                     176,10
-    CONTROL         "Ready for Pre-Publication Mailer",IDC_CHECK6,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,27,60,117,10
+    CONTROL         "Ready for First Mailer",IDC_CHECK6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,60,82,10
 END
 
 IDD_VALIDATE_DIALOG DIALOG  0, 0, 186, 95

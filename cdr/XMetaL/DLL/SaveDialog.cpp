@@ -1,9 +1,12 @@
 /*
- * $Id: SaveDialog.cpp,v 1.5 2002-10-15 22:22:05 bkline Exp $
+ * $Id: SaveDialog.cpp,v 1.6 2002-10-16 19:56:27 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2002/10/15 22:22:05  bkline
+ * Adding code for issue #471.
+ *
  * Revision 1.4  2002/07/20 13:45:43  bkline
  * Added automatic setting of dialog controls.
  *
@@ -62,6 +65,7 @@ void CSaveDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Check(pDX, IDC_CHECK5, m_docInactive);
     DDX_Check(pDX, IDC_CHECK6, m_readyForReview);
     //}}AFX_DATA_MAP
+    DDX_Control(pDX, IDC_CHECK6, m_readyForReviewCheckbox);
 }
 
 
@@ -107,7 +111,7 @@ BOOL CSaveDialog::OnInitDialog()
     CDialog::OnInitDialog();
 
     if (m_readyForReview)
-        SendDlgItemMessage(IDC_CHECK6, WM_ENABLE, 0, 0);
+        m_readyForReviewCheckbox.EnableWindow(FALSE);
 
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
