@@ -15,7 +15,7 @@ class CSaveDialog : public CDialog
 {
 // Construction
 public:
-    CSaveDialog(CWnd* pParent = NULL);
+    CSaveDialog(bool readyForReview, CWnd* pParent = NULL);
 
 // Dialog Data
     //{{AFX_DATA(CSaveDialog)
@@ -50,6 +50,8 @@ public:
     afx_msg void OnBnClickedCheck1();
 private:
     void fixCheckBoxes();
+public:
+    virtual BOOL OnInitDialog();
 };
 
 //{{AFX_INSERT_LOCATION}}

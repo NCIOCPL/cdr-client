@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.16 2002-10-14 20:06:22 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.17 2002-10-15 22:22:05 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.16  2002/10/14 20:06:22  bkline
+ * Added DDE replacement for SoftQuad's ShowPage().
+ *
  * Revision 1.15  2002/10/04 16:42:42  bkline
  * Added my own showPage method, to get around the buggy version in XMetaL.
  *
@@ -522,6 +525,9 @@ CString cdr::trim(const CString& s)
  */
 void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
 {
+    // Initialize flags to defaults.
+    info.readyForReview = false;
+
     // Get type from doc element name
     info.docType = node.GetNodeName();
 
@@ -534,6 +540,15 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
 
             // If CdrDocCtl, walk through its child nodes.
             if (node.GetNodeName() == _T("CdrDocCtl")) {
+
+                // Check the ready-for-review flag.  This is where we
+                // stick the document when we pass it off to XMetaL
+                // (so we don't have to worry about formatting it in
+                // the CSS).
+                ::DOMElement cdrDocCtl = node;
+                if (cdrDocCtl.getAttribute(_T("readyForReview")) == _T("Y"))
+                    info.readyForReview = true;
+
                 node = node.GetFirstChild();
                 while (node) {
 
@@ -541,9 +556,17 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
                     if (node.GetNodeType() == 1) {
                         CString name = node.GetNodeName();
                         if (name == _T("DocTitle"))
-                            info.docTitle = cdr::encode(extractElementText(node));
+                            info.docTitle = 
+                                cdr::encode(extractElementText(node));
                         else if (name == _T("DocId"))
                             info.docId = cdr::trim(extractElementText(node));
+
+                        // This is where we find this flag when we get the 
+                        // document from the CDR Server.
+                        else if (name == _T("ReadyForReview")) {
+                            if (extractElementText(node) == _T("Y"))
+                                info.readyForReview = true;
+                        }
                     }
                     node = node.GetNextSibling();
                 }

@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.10 2002-10-04 16:42:42 bkline Exp $
+ * $Id: CdrUtil.h,v 1.11 2002-10-15 22:22:05 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.10  2002/10/04 16:42:42  bkline
+ * Added my own showPage method, to get around the buggy version in XMetaL.
+ *
  * Revision 1.9  2002/08/12 20:19:51  bkline
  * Added destructor for CdrSocket class to close the socket.
  *
@@ -51,6 +54,7 @@ struct CdrDocCtrlInfo {
 	CString docType;
 	CString docId;
 	CString docTitle;
+    bool    readyForReview;
 };
 
 // Link ID, title, etc.

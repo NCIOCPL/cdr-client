@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.33 2002-10-14 20:06:23 bkline Exp $
+ * $Id: Commands.cpp,v 1.34 2002-10-15 22:22:05 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.33  2002/10/14 20:06:23  bkline
+ * Added DDE replacement for SoftQuad's ShowPage().
+ *
  * Revision 1.32  2002/10/04 16:42:42  bkline
  * Added my own showPage method, to get around the buggy version in XMetaL.
  *
@@ -708,7 +711,7 @@ STDMETHODIMP CCommands::save(int *pRet)
             docTitle = _T("Server will replace this dummy title");
 
         // Ask the user for options to be used for the operation.
-        CSaveDialog saveDialog(0);
+        CSaveDialog saveDialog(ctrlInfo.readyForReview);
         switch (saveDialog.DoModal()) {
         case IDOK:
         {
@@ -1149,6 +1152,13 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
     cdr::Element cdrDocElem = cdr::Element::extractElement(resp, 
                                                            _T("CdrDoc"));
 
+    // Find out if the document has been marked ReadyForReview.
+    CString readyForReview = _T("N");
+    cdr::Element docCtlElem = cdr::Element::extractElement(resp,
+            _T("ReadyForReview"));
+    if (docCtlElem && docCtlElem.getString() == _T("Y"))
+        readyForReview = _T("Y");
+
     // Build up path string.
     CString verPart = _T("");
     if (version != _T("Current"))
@@ -1202,7 +1212,9 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
             err.Format(_T("Can't write xml document at %s"), (LPCTSTR)docPath);
         else {
             CString fixedDoc;
-            CString ctl = _T("\n <CdrDocCtl>\n  <DocId>")
+            CString ctl = _T("\n <CdrDocCtl readyForReview='")
+                            + readyForReview
+                            + _T("'>\n  <DocId>")
                             + docId
                             + _T("</DocId>\n  <DocTitle>")
                             + docTitle
