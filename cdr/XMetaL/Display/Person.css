@@ -1,6 +1,27 @@
 /*************************************************************************/
 /* 	Person.css                                                       */
 /* 	                                                                 */
+/*      v. 3.8                                                           */
+/*      5/14/02  by ebator                                               */
+/*      Show PreviousLocation attribute on PrivatePractice and           */
+/*      OtherPracticeLocation                                            */
+/*                                                                       */
+/*      v. 3.7                                                           */
+/*      5/03/02  by ebator                                               */
+/*      Changed before text for BoardCertifiedSpecialtyName per users    */
+/*                                                                       */
+/*      v. 3.6                                                           */
+/*      4/02-03/02  by ebator                                            */
+/*      Display the cdr:id attribute on locations for CIPS Contact info  */
+/*                                                                       */
+/*      v. 3.5                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
+/* 	v. 3.4                                                           */
+/*      3/5/02  by ebator                                                */
+/* 	Added margin-top to SpecificPhone, now in OtherPracticeLocation  */
+/*                                                                       */
 /* 	v. 3.3                                                           */
 /*      1/16/02  by ebator                                               */
 /* 	Updated with schema changes from 1/9/02                          */
@@ -101,7 +122,7 @@
 
 $DOCUMENT 
 
-     { font-family: "Arial", sans serif;
+     { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
        margin-left: 5px;
@@ -183,6 +204,7 @@ PhysicianSpecialtyInformation, /* not titled here; use in structure css */
 PreferredContactMode,
 Prefix,
 PrivatePractice,
+PrivatePracticeLocation,
 ProfessionalInformation,
 ProvidesServices,
 Role,
@@ -215,7 +237,7 @@ Verified,
 
 
 AcceptsCalls:before			{ content: "Accepts Calls? *: "; }
-BoardCertifiedSpecialtyName:before	{ content: "Specialty Name *: "; }
+BoardCertifiedSpecialtyName:before	{ content: "Board Specialty *: "; }
 Certified:before			{ content: "Certified? *: "; }
 CertificationStatus:before		{ content: "Status *: "; }
 CertificationVerification:before	{ content: "Verified? &: "; }
@@ -241,6 +263,7 @@ GeneticsBoardName:before		{ content: "Board *: "; }
 GeneticsProfessionalDetails:before	{ content: "GENETICS PROFESSIONAL DETAILS &";}
 GivenName:before			{ content: "Given Name &: "; }
 Home:before				{ content: "HOME LOCATION & @"; }
+Home[cdr\:id]:before			{ content: "HOME LOCATION [" attr(cdr\:id) "]"; }
 Include:before				{ content: "Include in Dir? *: "; }
 InterdisciplinaryTeamMember:before	{ content: "Interdisciplinary Team? *: "; }
 MemberOfCooperativeGroup:before		{ content: "Member of Cooperative Group & + @: "; }
@@ -250,7 +273,12 @@ MiddleInitial:before			{ content: "Middle Initial &: "; }
 NameFormat:before			{ content: "Name Format &: "; }
 Organization:before			{ content: "Organizatn * @: "; }
 OrganizationLocation:before		{ content: "Org Locatn * @: "; }
-OtherPracticeLocation:before		{ content: "OTHER PRACTICE LOCATION @ & +"; }
+OtherPracticeLocation:before		{ content: "OTHER PRACTICE LOCATION & + @ "; }
+OtherPracticeLocation[PreviousLocation="Yes"][cdr\:id]:before	
+					{ content: "OTHER PRACTICE LOCATION [Previous] [" attr(cdr\:id) "] "; }
+OtherPracticeLocation[PreviousLocation="Yes"]:before
+					{ content: "OTHER PRACTICE LOCATION [Previous] & + @ "; }
+OtherPracticeLocation[cdr\:id]:before	{ content: "OTHER PRACTICE LOCATION [" attr(cdr\:id) "] "; }
 OtherSpecialty:before			{ content: "Other Specialty * +: "; }
 PDQAdvisoryBoard:before			{ content: "PDQ Advisory Brd & + @: "; }
 PDQBoardMembershipDetails:before	{ content: "PDQ BOARD MEMBERSHIP &"; }
@@ -266,7 +294,11 @@ PhysicianMembershipInformation:before	{ content: "MEMBERSHIP INFORMATION &"; }
 PhysicianSpecialtyInformation:before	{ content: "SPECIALTY INFORMATION & +" ; }
 PreferredContactMode:before		{ content: "Preferred Contact &: "; }
 Prefix:before				{ content: "Prefix &: "; }
-PrivatePractice:before			{ content: "PRIVATE PRACTICE LOCATION & + @"; }
+PrivatePractice:before			{ content: "PRIVATE PRACTICE & + @"; }
+PrivatePractice[PreviousLocation="Yes"]:before
+					{ content: "PRIVATE PRACTICE LOCATION [Previous] & + @ "; }
+PrivatePracticeLocation:before		{ content: "PRIVATE PRACTICE LOCATION * @";}
+PrivatePracticeLocation[cdr\:id]:before	{ content: "PRIVATE PRACTICE LOCATION [" attr(cdr\:id) "] ";}
 ProfessionalInformaton:before		{ content: "Professional Information &"; }
 ProvidesServices:before			{ content: "Provides Services? *: "; }
 RoleAtAffiliatedOrganization:before	{ content: "Role at Aff Org *: "; }
@@ -354,6 +386,10 @@ MemberOfCooperativeGroup,
 	{ margin-top: .5em;
 	  margin-bottom: 1em; }
 
+SpecificPhone,
+
+	{ margin-top: 1em; }
+
 /***************************************************************************/ 
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
@@ -364,6 +400,7 @@ Home:before,
 PDQBoardMembershipDetails:before,
 PhysicianDetails:before,
 PrivatePractice:before,
+PrivatePracticeLocation:before,
 
      { font-weight: bold;
        font-size: 12pt;
@@ -501,7 +538,7 @@ PDQVoluntaryProtocolReviewBoard,	{ margin-left: 150pt;
 /* Key element for length = MemberOfMedicalSociety			   */
 
 BoardCertifiedSpecialtyName,		{ margin-left: 150pt;
-					  text-indent: -103.5pt; }
+					  text-indent: -106pt; }
 Certified,				{ margin-left: 150pt;
 					  text-indent: -70.5pt; }
 CertificationVerification,		{ margin-left: 150pt;  
