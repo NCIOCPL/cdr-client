@@ -1,6 +1,10 @@
 /*************************************************************************/
 /*     Citation.CSS                                                      */
 /*                                                                       */
+/*     V. 3.4                                                            */
+/*     02/07/02   by ebator                                              */
+/*     Removed ModifiedRecord per LGrama                                 */
+/*                                                                       */
 /*     V. 3.3                                                            */
 /*     1/17,22,23,24/02   by ebator                                      */
 /*     Edited for NLM schema changes                                     */
@@ -171,7 +175,6 @@ MedlineTA,
 MeshHeading,
 MeshHeadingList,
 PDQCitation>AuthorList>Author>MiddleName,
-ModifiedRecord,
 NlmUniqueID,
 NumberOfReferences,
 OtherPublicationInformation, 
@@ -299,7 +302,6 @@ PDQCitation>AuthorList>Author>MiddleName:before
 					{ content: "Middle Name &: "; }
 MedlineCitation>Article>AuthorList>Author>MiddleName:after
 					{ content: " "; }
-ModifiedRecord:before			{ content: "Modified Record?: "; }
 Month:before				{ content: "/"; }
 NameOfSubstance:before			{ content: "Substance: "; }
 NlmUniqueID:before			{ content: "NLM Code: "; }
@@ -502,7 +504,6 @@ Volume:before,
 ArticleIdList>ArticleId:before,
 Comment:before,
 DateLastModified:before,
-ModifiedRecord:before,
 PdqKey:before,
 PublicationStatus:before,
 URL[URLType="Full_Text"]>URLstring:before,	
@@ -688,8 +689,6 @@ URL,					{ margin-left: 130pt;
 
 PublicationStatus,			{ margin-left: 130pt;
 					  text-indent: -70.5pt; }
-ModifiedRecord,				{ margin-left: 130pt;
-					  text-indent: -109pt; }
 PdqKey,					{ margin-left: 130pt;
 					  text-indent: -59pt; }
 DateLastModified,			{ margin-left: 100pt;
@@ -777,7 +776,6 @@ MedlinePgn,
 MedlineTA,
 MeshHeading,
 PDQCitation>AuthorList>Author>MiddleName,
-ModifiedRecord, 
 Month,
 Month:before,
 NlmUniqueID,
@@ -901,7 +899,6 @@ MedlineDate,
 MedlineID,
 MedlinePgn, 
 MedlineTA,
-ModifiedRecord,
 Month,
 Month:before,
 NameOfSubstance,

@@ -1,6 +1,10 @@
 /*************************************************************************/
 /*     Citation_structure.CSS                                            */
 /*                                                                       */
+/*     V. 3.3                                                            */
+/*     02/07/02   by ebator                                              */
+/*     Removed ModifiedRecord per LGrama                                 */
+/*                                                                       */
 /*     V. 3.2                                                            */
 /*     1/17,22,23,24/02   by ebator                                      */
 /*     Edited for NLM schema changes                                     */
@@ -138,7 +142,6 @@ MedlineTA,
 MeshHeading,
 MeshHeadingList,
 MiddleName,
-ModifiedRecord,
 Month,
 NameOfSubstance,
 NlmUniqueID,
@@ -253,7 +256,6 @@ MedlineTA:before			{ content: "Journal Abbrev "; }
 MeshHeading:before			{ content: "Mesh Heading "; }
 MeshHeadingList:before			{ content: "MESH HEADINGS "; }
 MiddleName:before			{ content: "Middle Name "; }
-ModifiedRecord:before			{ content: "Modified Record? "; }
 Month:before				{ content: "Month"; }
 NameOfSubstance:before			{ content: "Substance "; }
 NlmUniqueID:before			{ content: "NLM Code "; }
@@ -396,7 +398,6 @@ MedlineDate:before,
 MedlineID:before,
 MedlineTA:before,
 MiddleName:before,
-ModifiedRecord:before,
 Month:before,
 NameOfSubstance:before,
 NumberOfReferences:before,
@@ -482,7 +483,6 @@ MedlineID,
 MedlinePgn,
 MedlineTA,
 MeshHeading,
-ModifiedRecord,
 NlmUniqueID,
 NumberOfReferences,
 OtherPublicationInformation,
@@ -554,7 +554,6 @@ MedlinePgn,
 MedlineTA,
 MeshHeading,
 MeshHeadingList,
-ModifiedRecord,
 NlmUniqueID,
 NumberOfReferences,
 OtherPublicationInformation, 
@@ -667,7 +666,6 @@ MedlineJournalInfo:before,
 MedlinePgn:before,
 MeshHeadingList,
 MeshHeadingList:before,
-ModifiedRecord:before,
 NlmUniqueID:before,
 NumberOfReferences:before,
 OtherPublicationInformation:before,
