@@ -95,6 +95,11 @@ Organization,
 
 AffiliateMemberOf,
 AlternateName,
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+BoardMeetingDate,
+DayTime,
 FormerName,
 CCOP,
 CIPSContact,
@@ -129,6 +134,7 @@ OrganizationNameInformation,
 OrganizationParent,
 OrganizationType,
 ParentOrganization,
+PDQBoardInformation,
 PdqKey,
 PersonAssigned, 
 PreferredDirectoryContactMode,
@@ -140,6 +146,7 @@ Public,
 ResearchBaseFor,
 ShortName,
 Status,
+Year
 
 	{ display: block; }
 
@@ -152,6 +159,11 @@ Status,
 
 AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF"; }
 AlternateName:before			{ content: "Alternate Name "; }
+BoardManager:before             { content: "Board Manager "; }
+BoardManagerPhone:before             { content: "Board Manager Phone "; }
+BoardManagerEmail:before             { content: "Board Manager Email "; }
+BoardMeetingDate:before         { content: "BOARD MEETING DATE(S) "; }
+DayTime:before                  { content: "Meeting Times "; }
 FormerName:before               { content: "Former Name "; }
 CCOP:before				{ content: "CCOP"; }
 CIPSContact:before			{ content: "CIPS Contact "; }
@@ -195,6 +207,7 @@ OrganizationParent:before		{ content: "Organization Parent"; }
 OrganizationType:before			{ content: "Organization Type"; }
 
 ParentOrganization:before		{ content: "Parent Org "; }
+PDQBoardInformation:before  { content: "PDQ BOARD INFORMATION"; }
 PdqKey:before				{ content: "PDQ Key"; }
 PersonAssigned:before			{ content: "Person Assigned "; }
 PreferredDirectoryContactMode:before	{ content: "Preferred Dir Contact"; }
@@ -206,6 +219,7 @@ ResearchBaseFor:before			{ content: "Research Base For "; }
 ShortName:before			{ content: "Short Name "; }
 Status:before				{ content: "STATUS"; }
 Type:before				{ content: "Type " }
+Year:before             { content: "Year "; }
 
 
 
@@ -226,7 +240,12 @@ OrganizationLocation,
 
 
 AffiliateMemberOf:before,
+BoardManager:before,
+BoardManagerPhone:before,
+BoardManagerEmail:before,
+BoardMeetingDate:before,
 ClinicalTrialsOfficeContact:before,
+DayTime:before,
 MainMemberOf:before,
 Location:before,
 MemberOfCCOP:before,
@@ -241,8 +260,10 @@ OrganizationLocations:before,
 OrganizationNameInformation:before,
 OrganizationParent:before,
 OrganizationType:before,
+PDQBoardInformation:before,
 ShortName:before,
 Status:before,
+Year:before
 
 	{  font-weight: bold;
 	   color: black;        }  
@@ -307,6 +328,7 @@ ClinicalTrialsOfficeContact,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
+PDQBoardInformation,
 Status,
 
    { border: none;  }
@@ -321,6 +343,11 @@ Status,
 
 AffiliateMemberOf,
 AlternateName,
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+BoardMeetingDate,
+DayTime,
 FormerName,
 CCOP,
 CIPSContact,
@@ -351,6 +378,7 @@ OrganizationNameInformation,
 OrganizationParent,
 OrganizationType,
 ParentOrganization, 
+PDQBoardInformation,
 PdqKey,
 PersonAssigned,
 PreferredDirectoryContactMode, 
@@ -363,6 +391,7 @@ ResearchBaseFor,
 ShortName,
 Status,
 Type,
+Year
 
 	{ text-indent: 0pt; }
 
@@ -371,7 +400,13 @@ Type,
 /*                            HIDE TEXT                                    */ 
 /***************************************************************************/ 
 
-
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+BoardMeetingDate,
+Year,
+DayTime,
+PDQBoardInformation,
 AffiliateMemberOf,
 AlternateName,
 FormerName,
@@ -425,7 +460,14 @@ Type,
        background-color: white; }
 
 
-AffiliateMemberOf,
+BoardManager:before,
+BoardManagerPhone:before,
+BoardManagerEmail:before,
+BoardMeetingDate:before,
+Year:before,
+DayTime:before,
+PDQBoardInformation:before,
+AffiliateMemberOf:before,
 AlternateName:before,
 FormerName:before,
 CCOP:before,
