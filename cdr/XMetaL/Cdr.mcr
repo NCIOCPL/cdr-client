@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.35 2002-03-07 20:49:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.36 2002-03-07 22:29:55 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.35  2002/03/07 20:49:34  bkline
+     Fixed icon for CDR Markup/View Original menu item.
+
      Revision 1.34  2002/03/02 14:08:40  bkline
      Added macro for report of checked-out documents.
 
@@ -1518,6 +1521,18 @@
                            "Scientific Info",
                            "Go To Scientific Info Section",
                            "CDR", 6, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert PatientCharacteristics",
+                           "Patient Characteristics",
+                           "Patient Characteristics",
+                           "CDR", 1, 2,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert PriorConcurrentTherapy",
+                           "Prior Concurrent Therapy",
+                           "Prior Concurrent Therapy",
+                           "CDR", 1, 3,
                            false),
             new CdrCmdItem(null,
                            "Protocol Merge",
@@ -4020,6 +4035,103 @@
         ActiveDocument.RulesChecking = rulesChecking;
     }
     newCurrentOrgStatus();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert PatientCharacteristics" 
+       lang="JScript">
+  <![CDATA[
+    function insertPatientCharacteristics() {
+        //Selection.MoveRight();
+        //Selection.MoveLeft();
+        var rng = ActiveDocument.Range;
+        var savePos = ActiveDocument.Range;
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+        var newElems = "<ItemizedList>"
+                     + "<ListTitle>Age</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Performance status</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Life expectancy</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Hematopoietic</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Hepatic</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Renal</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Cardiovascular</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Pulmonary</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Other</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>";
+  
+        rng.PasteString(newElems);
+        savePos.Select();
+        ActiveDocument.RulesChecking = rulesChecking;
+    }
+    insertPatientCharacteristics();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert PriorConcurrentTherapy" 
+       lang="JScript">
+  <![CDATA[
+    function insertPriorConcurrentTherapy() {
+        //Selection.MoveRight();
+        //Selection.MoveLeft();
+        var rng = ActiveDocument.Range;
+        var savePos = ActiveDocument.Range;
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+        var newElems = "<ItemizedList>"
+                     + "<ListTitle>Biologic therapy</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Chemotherapy</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Endocrine therapy</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Radiotherapy</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Surgery</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>"
+                     + "<ItemizedList>"
+                     + "<ListTitle>Other</ListTitle>"
+                     + "<ListItem></ListItem>"
+                     + "</ItemizedList>";
+        rng.PasteString(newElems);
+        savePos.Select();
+        ActiveDocument.RulesChecking = rulesChecking;
+    }
+    insertPriorConcurrentTherapy();
   ]]>
 </MACRO>
 
