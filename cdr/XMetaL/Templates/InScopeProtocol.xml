@@ -141,7 +141,8 @@
 <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person><Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
 <SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
  <SpecificEmail><?xm-replace_text {Optionally enter the person's email address}?></SpecificEmail>
-</SpecificPerson> 
+</SpecificPerson>
+<ClinicalTrialOffice><?xm-replace_text {Optionally link to a clinical trial office} ?></ClinicalTrialOffice>
 		  </OrgSiteContact> 
 		  </OrgSite> 
 		</ProtocolSites> 
