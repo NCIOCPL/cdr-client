@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.28 2002-02-20 18:32:27 bkline Exp $
+     $Id: Cdr.mcr,v 1.29 2002-02-21 02:24:07 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.28  2002/02/20 18:32:27  bkline
+     Added new toolbar buttons for Find Next Change, Accept Change, and
+     Reject Change.
+
      Revision 1.27  2002/02/20 04:12:21  bkline
      Removed Get Org Address from main CDR toolbar.
 
@@ -543,6 +547,12 @@
     //Application.DisablePlainTextView();
 </MACRO>
 
+<MACRO  name="On_Application_Open_Complete" 
+        hide="true" 
+        lang="JScript">
+    turnOffStandardToolbars();
+</MACRO>
+
 <MACRO  name="On_Application_Close" 
         hide="true" 
         lang="JScript">
@@ -1061,7 +1071,7 @@
         //                    menuControls.Count + " i: " + i);
             var menu = menuControls.item(i);
             var caption = menu.Caption.toUpperCase();
-            var pos = caption.indexOf("CDR") 
+            var pos = caption.indexOf("CDR");
             if (pos == 0 || pos == 1) {
                 menu.Delete();
                 //Application.Alert("Deleted " + caption);
@@ -1746,6 +1756,34 @@
         }
     }
 
+    function turnOffStandardToolbars() {
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("Standard"); }
+        catch (e) { }
+        if (cmdBar) {
+            cmdBar.Visible = false;
+        }
+        cmdBar = null;
+        try { cmdBar = cmdBars.item("Formatting"); }
+        catch (e) { }
+        if (cmdBar) {
+            cmdBar.Visible = true;
+            var controls = cmdBar.Controls;
+            for (var i = controls.count; i >= 1; --i) {
+                try {
+                    item = controls.item(i);
+                    var str = item.DescriptionText;
+                    if (str.indexOf("List") != -1) {
+                        item.Delete();
+                    }
+                }
+                catch (e) {}
+            }
+        }
+    }
+
     /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
@@ -1762,6 +1800,7 @@
     addCitationToolbar();
     addCdrMenus();
     hideToolbars();
+    // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
     //bugRepro();
 
   ]]>
@@ -3421,8 +3460,57 @@
         key="Ctrl+Alt+T" 
         hide="false">
   <![CDATA[
+    function xturnOffStandardToolbars() {
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("Standard"); }
+        catch (e) { }
+        if (cmdBar)
+            cmdBar.Visible = false;
+        cmdBar = null;
+        try { cmdBar = cmdBars.item("Formatting"); }
+        catch (e) { }
+        if (cmdBar) {
+            cmdBar.Visible = true;
+            var controls = cmdBar.Controls;
+            Application.Alert("count=" + controls.count);
+            for (var i = controls.count; i >= 1; --i) {
+                try {
+                    item = controls.item(i);
+                    var str = item.DescriptionText;
+                    if (str.indexOf("List") != -1) {
+                        Application.Alert("deleting " + str);
+                        item.Delete();
+                    }
+                }
+                catch (e) {}
+            }
+        }
+    }
     function testMe() {
 
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("Formatting"); }
+        catch (e) { }
+        if (cmdBar) {
+            cmdBar.Visible = true;
+            var controls = cmdBar.Controls;
+            Application.Alert("Count: " + controls.count);
+            for (var i = 1; i <= controls.count; ++i) {
+                item = controls.item(i);
+                try {
+                    var str = item.DescriptionText;
+                    Application.Alert("Desc(" + i + "): " + str);
+                    Application.Alert("OnAction(" + i + "): " + item.OnAction);
+                    Application.Alert("TT(" + i + "): " + item.TooltipText);
+                }
+                catch (e) {}
+            }
+        }
+        return;
         Application.Alert("control: " + controls.item(i).TooltipText);
         Application.Alert("file menu has " + controls.Count + " controls");
         var printItem    = controls.item("Print...");
@@ -3431,7 +3519,8 @@
         Application.Alert("Print action name is [" + printAction + "]");
         return;
     }
-    testMe();
+    //testMe();
+    xturnOffStandardToolbars();
     //var testElem = Selection.ContainerNode;
     //Application.Alert("container name is " + testElem.nodeName
     //    + "; container type is " + testElem.nodeType)
