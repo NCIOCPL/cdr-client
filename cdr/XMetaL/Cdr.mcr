@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.58 2002-05-31 13:00:45 bkline Exp $
+     $Id: Cdr.mcr,v 1.59 2002-06-03 20:22:43 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.58  2002/05/31 13:00:45  bkline
+     Added published version report button and stub macro.
+
      Revision 1.57  2002/05/20 15:41:00  bkline
      Replaced SoftQuad macros for inserting lists with code that works all
      the time.  New macros and buttons for inserting various elements.
@@ -1448,7 +1451,7 @@
                            "CDR", 4, 6,
                            false),
             new CdrCmdItem(null,
-                           "Insert Citation Link",
+                           "Insert CitationLink",
                            "Citation Link",
                            "Insert Citation Link",
                            "CDR", 6, 9,
@@ -4153,7 +4156,7 @@
 <MACRO name="CDR Help" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Sorry, we can't help you right now ... :-)");
+    Application.ShowPage(CdrCgiBin + "Help.py")
   ]]>
 </MACRO>
 
