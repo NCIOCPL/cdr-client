@@ -14,15 +14,17 @@ class CSaveDialog : public CDialog
 {
 // Construction
 public:
-	CSaveDialog(const CString&, CWnd* pParent = NULL);
+	CSaveDialog(CWnd* pParent = NULL);
 
 // Dialog Data
 	//{{AFX_DATA(CSaveDialog)
 	enum { IDD = IDD_DIALOG4 };
 	BOOL	m_validate;
 	BOOL	m_checkIn;
-	CString	m_title;
 	CString	m_comment;
+	BOOL	m_createVersion;
+	BOOL	m_versionPublishable;
+	BOOL	m_docInactive;
 	//}}AFX_DATA
 
 
