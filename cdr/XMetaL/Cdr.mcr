@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.18 2002-02-05 18:52:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.19 2002-02-05 23:00:50 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.18  2002/02/05 18:52:52  bkline
+     Added toolbar macro and hotkey for Insert User Name.
+
      Revision 1.17  2002/02/05 14:38:46  bkline
      Hooked in Org status change to context menu.
 
@@ -871,6 +874,12 @@
                            "Insert current date",
                            "CDR", 6, 8,
                            false),
+            new CdrCmdItem("&User",
+                           "Insert User ID",
+                           "User",
+                           "Insert user ID",
+                           "CDR", 5, 10,
+                           false),
             new CdrCmdItem("D&rug Name",
                            "Insert DrugName Element",
                            "Drug Name",
@@ -1158,16 +1167,16 @@
                            "CDR", 6, 2,
                            false),
             new CdrCmdItem(null,
-                           "Insert User Name",
-                           "User Name",
-                           "Insert User Name",
-                           "CDR", 5, 10,
-                           false),
-            new CdrCmdItem(null,
                            "Insert Current Date",
                            "Current Date",
                            "Insert Current Date",
                            "CDR", 6, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert User ID",
+                           "User Name",
+                           "Insert User ID",
+                           "CDR", 5, 10,
                            false),
             new CdrCmdItem(null,
                            "New Current Org Status",
@@ -3134,7 +3143,7 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Insert User Name"
+<MACRO  name="Insert User ID"
         lang="JScript" 
         desc="Inserts the login name as text content of current elem"
         key="Alt+U" 
