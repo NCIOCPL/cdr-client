@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.7 2002-02-12 21:44:05 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.8 2002-04-12 01:32:25 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2002/02/12 21:44:05  bkline
+ * Replaced mmdb2 with mmdb2.nci.nih.gov.
+ *
  * Revision 1.6  2002/02/08 18:53:27  bkline
  * Fixed typos in last change.
  *
@@ -73,16 +76,21 @@ CdrSocket::Init::~Init()
  */
 CdrSocket::CdrSocket()
 {
+    const char* hostEnv = getenv("CDR_HOST");
+    const char* portEnv = getenv("CDR_PORT");
+    const char* host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
+    int port = portEnv ? atoi(portEnv) : CDR_SOCK;
+
     // Working variables.
     struct sockaddr_in  addr;
-    struct hostent *    ph = gethostbyname("mmdb2.nci.nih.gov");
+    struct hostent *    ph = gethostbyname(host);
     if (!ph)
         throw _T("Failure resolving host name");
 
     // Build the socket address.
     addr.sin_family = ph->h_addrtype;
     memcpy(&addr.sin_addr, ph->h_addr, ph->h_length);
-    addr.sin_port = htons(CDR_SOCK);
+    addr.sin_port = htons(port);
 
     // Create the socket.
     sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -549,7 +557,7 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
 	}
 
     // Handle processing instructions.
-	else if (nodeType == 9) {
+	else if (nodeType == 7) {
 
 		CString val = node.GetNodeValue();
 		os << _T("<?") << (LPCTSTR)name << _T(" ") << (LPCTSTR)val << _T("?>");
