@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.31 2002-02-21 22:33:12 bkline Exp $
+     $Id: Cdr.mcr,v 1.32 2002-02-26 21:38:18 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.31  2002/02/21 22:33:12  bkline
+     Switched icons for Find Next and Find Previous macros.
+
      Revision 1.30  2002/02/21 22:28:56  bkline
      Changed RevisionLevel attribute default from proposed to approved.
 
@@ -596,51 +599,35 @@
         // In this macro the new document is not yet the active document,
         // so this is how we get to its document type.
         docType  = Application.NewDocumentType;
-        //docType  = ActiveDocument.doctype;
         rootElem = docType.name;
 
         // Add the Deletion element.
         docType.addElement("Deletion", "Deletion", true , false);
         docType.addAttribute("Deletion", "UserName", "", 0, 0);
         docType.addAttribute("Deletion", "Time", "", 0, 0);
-        //docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "approved");
         docType.addEnumeratedAttribute("Deletion", "RevisionLevel",
             "Indicates status of proposed deletion", 9, // ordinary enumeration
             2, // default value is explicity specified
-            "proposed", "approved", "proposed", "publish", "rejected");
+            "approved", "approved", "proposed", "publish", "rejected");
 
         // Add the Insertion element.
         docType.addElement("Insertion", "Insertion", true , false);
         docType.addAttribute("Insertion", "UserName", "", 0, 0);
         docType.addAttribute("Insertion", "Time", "", 0, 0);
-        //docType.addAttribute("Insertion", "RevisionLevel", "", 0, 0, 
-        //"proposed");
         docType.addEnumeratedAttribute("Insertion", "RevisionLevel",
             "Indicates status of proposed insertion", 9, // ordinary enumeration
             2, // default value is explicity specified
-            "proposed", "approved", "proposed", "publish", "rejected");
+            "approved", "approved", "proposed", "publish", "rejected");
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
-            //Application.Alert("Root element is " + rootElem);
             if (docType.hasElementType("Deletion")) {
                 docType.addElementToInclusions("Deletion", rootElem);
             }
             if (docType.hasElementType("Insertion")) {
                 docType.addElementToInclusions("Insertion", rootElem);
-                //Application.Alert("Insertion/Deletion elements added");
             }
         }
-        //var i;
-        //var elems = docType.elementTypes;
-        //var nElems = elems.ubound() + 1;
-        //for (i = 0; i < nElems; ++i) {
-        //    elem = elems.getItem(i);
-        //    if (elem != rootElem && elem != "Deletion" && elem != "Insertion") {
-        //        docType.addElementToInclusions(elem, "Deletion");
-        //        docType.addElementToInclusions(elem, "Insertion");
-        //    }
-        //}
     }
 
     doAddElements();
