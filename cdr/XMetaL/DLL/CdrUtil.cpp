@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.20 2003-01-23 17:21:43 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.21 2003-03-05 12:41:50 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.20  2003/01/23 17:21:43  bkline
+ * Eliminated some dead code.
+ *
  * Revision 1.19  2002/12/24 15:04:15  bkline
  * Switched from DDE to ActiveX Automation for showPage().
  *
@@ -635,8 +638,19 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
             CString attrName = attr.GetNodeName();
             if (attrName != _T("readonly")) {
                 CString val = attr.GetNodeValue();
+
+                // OK, this is bizarre, but necessary because of a strange
+                // pair of bugs in XMetaL.  XXX This runs the risk of
+                // stepping on the intentions of the user, in the rare
+                // (probably so rare that it will never happen) case in
+                // which she really wants to end up with an EntityRef as
+                // the _value_ (not just the representation) of the
+                // attribute.  No way around this problem until Corel
+                // fixes their bugs.  When that happens, take out the
+                // call to cdr::decode() here and things will work the
+                // way they should in _all_ cases.
                 os << _T(" ") << (LPCTSTR)attrName << _T("='")
-                << (LPCTSTR)cdr::encode(val, true) << _T("'");
+                   << (LPCTSTR)cdr::encode(cdr::decode(val), true) << _T("'");
             }
         }
         if (!node.hasChildNodes())
