@@ -202,7 +202,7 @@ appropriate.]</Para>
 <SummarySection>
 <KeyPoint><InterventionName>Hormone therapy</InterventionName></KeyPoint>
 
-<Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that blocks the action of hormones and stops cancer cells from growing.  <GlossaryTermRef cdr:href="CDR0000045713">Hormones</GlossaryTermRef> are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and circulated in the bloodstream.  The presence of some hormones can cause certain cancers to grow.  If tests show the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para></SummarySection>
+<Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that blocks the action of <GlossaryTermRef cdr:href="CDR0000045713">hormones</GlossaryTermRef> and stops cancer cells from growing.  Hormones are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and circulated in the bloodstream.  The presence of some hormones can cause certain cancers to grow.  If tests show the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para></SummarySection>
 
 <SummarySection>
 <KeyPoint>Biologic therapy</KeyPoint>
