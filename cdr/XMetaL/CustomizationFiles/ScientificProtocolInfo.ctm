@@ -1087,7 +1087,11 @@
     <Template>
       <Name>EligibilityText</Name>
       <MiniTemplate><![CDATA[<EligibilityText>
-<Para><?xm-replace_text {Paragraph} ?></Para>
+<ItemizedList Style="bullet">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</ItemizedList>
 </EligibilityText>]]></MiniTemplate>
     </Template>
     <Template>
@@ -1272,7 +1276,7 @@
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </Purpose>
 <EligibilityText>
-<Para><?xm-replace_text {Paragraph} ?></Para>
+<ItemizedList><?xm-replace_text {ItemizedList} ?></ItemizedList>
 </EligibilityText>
 <TreatmentIntervention>
 <Para><?xm-replace_text {Paragraph} ?></Para>
@@ -1282,6 +1286,30 @@
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </Patient>
 </ProtocolAbstract>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ListItem</Name>
+      <MiniTemplate><![CDATA[<ListItem><?xm-replace_text {ListItem} ?></ListItem>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ListTitle</Name>
+      <MiniTemplate><![CDATA[<ListTitle><?xm-replace_text {ListTitle} ?></ListTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ItemizedList</Name>
+      <MiniTemplate><![CDATA[<ItemizedList Style="bullet">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</ItemizedList>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrderedList</Name>
+      <MiniTemplate><![CDATA[<OrderedList>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</OrderedList>]]></MiniTemplate>
     </Template>
   </Templates>
   <ChangeLists>
@@ -1295,6 +1323,226 @@
       <ChangeListElements>
         <ChangeListElement>RelatedProtocols</ChangeListElement>
         <ChangeListElement>RelatedWebsites</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>EligibilityText</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>Objectives</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>Outline</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>DiseaseCharacteristics</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>PatientCharacteristics</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>PriorConcurrentTherapy</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>ProjectedAccrual</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>EndPoints</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>Rationale</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>Purpose</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>TreatmentIntervention</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        
+        
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>Multimedia</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        
+        <ChangeListElement>Section</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
       </ChangeListElements>
     </ChangeList>
   </ChangeLists>
