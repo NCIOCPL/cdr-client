@@ -1,6 +1,10 @@
 /*************************************************************************/
 /*     Citation.CSS                                                      */
 /*                                                                       */
+/*     v. 3.5                                                            */
+/*     3/19/02  by ebator                                                */
+/*     Changed "sans serif" to sans-serif                                */
+/*                                                                       */
 /*     V. 3.4                                                            */
 /*     02/07/02   by ebator                                              */
 /*     Removed ModifiedRecord per LGrama                                 */
@@ -79,7 +83,7 @@
 
 $DOCUMENT
 
-  {  font-family: Arial, "sans serif";       
+  {  font-family: Arial, sans-serif;       
      font-size: 12pt;
      margin-top: 5px;
      margin-left: 5px;  
