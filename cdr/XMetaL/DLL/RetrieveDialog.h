@@ -20,6 +20,8 @@ public:
 	//{{AFX_DATA(RetrieveDialog)
 	enum { IDD = IDD_DIALOG2 };
 	CString	m_DocId;
+	BOOL	m_CheckOut;
+	CString	m_Version;
 	//}}AFX_DATA
 
 
@@ -35,7 +37,6 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(RetrieveDialog)
-		// NOTE: the ClassWizard will add member functions here
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -1,9 +1,12 @@
 /*
- * $Id: RetrieveDialog.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: RetrieveDialog.cpp,v 1.2 2001-06-09 12:40:58 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
+ *
  */
 
 // Local headers.
@@ -26,6 +29,8 @@ RetrieveDialog::RetrieveDialog(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(RetrieveDialog)
 	m_DocId = _T("");
+	m_CheckOut = TRUE;
+	m_Version = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -35,15 +40,17 @@ void RetrieveDialog::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(RetrieveDialog)
 	DDX_Text(pDX, IDC_EDIT1, m_DocId);
+	DDX_Check(pDX, IDC_CHECK1, m_CheckOut);
+	DDX_Text(pDX, IDC_EDIT2, m_Version);
 	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(RetrieveDialog, CDialog)
 	//{{AFX_MSG_MAP(RetrieveDialog)
-		// NOTE: the ClassWizard will add message map macros here
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // RetrieveDialog message handlers
+
