@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.108 2003-11-29 13:18:48 bkline Exp $
+     $Id: Cdr.mcr,v 1.109 2003-12-01 13:46:43 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.108  2003/11/29 13:18:48  bkline
+     Added Publish Preview button to CTGovProtocol toolbar.
+
      Revision 1.107  2003/11/20 21:37:34  bkline
      Added toolbar button for CTGovProtocol QC report.
 
@@ -2291,6 +2294,12 @@
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
                            false),
+            new CdrCmdItem(null,
+                           "Patient Publish Preview",
+                           "Patient CTGovProtocol Publish Preview",
+                           "Patient Publish Preview",
+                           "Structure (Custom)", 1, 9,
+                           false),
             new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
                            "QC Report",                 // Tooltip.
@@ -4268,6 +4277,13 @@
        lang="JScript">
   <![CDATA[
     publishPreview("summary_patient");
+  ]]>
+</MACRO>
+
+<MACRO name="Patient CTGovProtocol Publish Preview" 
+       lang="JScript">
+  <![CDATA[
+    publishPreview("CTGovProtocol_Patient");
   ]]>
 </MACRO>
 
