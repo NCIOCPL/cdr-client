@@ -25,7 +25,7 @@
 		<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>
 		<Date><?xm-replace_text {Enter the directory inclusion date (required)} ?></Date>
 		 
-	 </OrganizationAdministrativeInformation> 
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment></OrganizationAdministrativeInformation> 
 	 
 	  
   </OrganizationDetails> 
