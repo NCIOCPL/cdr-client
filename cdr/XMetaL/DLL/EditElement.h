@@ -59,6 +59,7 @@ private:
     bool            insertProtPerson(const CString& str);
     bool            insertOrgLocation(const CString& str);
     void            extractLeadOrgs(const CString& str);
+    CFont           biggerFont;
 };
 
 //{{AFX_INSERT_LOCATION}}

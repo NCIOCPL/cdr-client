@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.7 2002-02-01 21:58:37 bkline Exp $
+ * $Id: EditElement.cpp,v 1.8 2002-03-04 11:58:23 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2002/02/01 21:58:37  bkline
+ * Added code to populate the text node for the lead org.
+ *
  * Revision 1.6  2002/01/29 22:55:32  bkline
  * Modified wildcard handing.
  *
@@ -210,7 +213,7 @@ void CEditElement::OnSelectButton()
                     return;
                 break;
         }
-        EndDialog(IDCANCEL);
+        EndDialog(IDOK);
     }
 }
 
@@ -290,6 +293,7 @@ void CEditElement::insertLeadOrg(const CString& str)
             ::DOMNode dummy = elem.appendChild(textNode);
         }        
         orgIdPos.SetReadOnlyContainer(TRUE);
+        orgIdPos.Select();
     }
 }
 
@@ -396,6 +400,14 @@ BOOL CEditElement::OnInitDialog()
         SetWindowText(_T("Lead Organization"));
         m_label.SetWindowText(_T("Name"));
     }
+    /*
+        CreatePFont(25,  0,  0,  0, 400, FALSE, FALSE, 0,
+ANSI_CHARSET,		   OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,
+DEFAULT_QUALITY,					   DEFAULT_PITCH |
+FF_SWISS, "Arial"); */
+
+    if (biggerFont.CreatePointFont(100, _T("Arial")))
+        m_linkList.SetFont(&biggerFont);
     UpdateData(FALSE);
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
