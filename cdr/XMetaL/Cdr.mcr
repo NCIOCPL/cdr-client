@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.16 2002-02-05 14:19:53 bkline Exp $
+     $Id: Cdr.mcr,v 1.17 2002-02-05 14:38:46 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.16  2002/02/05 14:19:53  bkline
+     Added New Current Org Status macro for protocols.
+
      Revision 1.15  2002/02/02 18:57:45  bkline
      Hooked in Insert Current Date macro to toolbar.
 
@@ -612,19 +615,25 @@
      * Adds a menu option to the popup context menu for custom editing
      * of a link element.
      */
+    var docType = ActiveDocument.doctype;
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
     Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
     Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
     Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
-    Application.AppendMacro("-", "");
-    Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
-    Application.AppendMacro("Prot Update Person", "Protocol Update Person");
-    Application.AppendMacro("Retrieve Person Address", "CDR Get Person Address");
+    if (docType.name == "InScopeProtocol") {
+        Application.AppendMacro("-", "");
+        Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
+        Application.AppendMacro("Prot Update Person", "Protocol Update Person");
+        Application.AppendMacro("New Current Org Status", 
+                                "New Current Org Status");
+        Application.AppendMacro("Add Participating Orgs", 
+                                "CDR Participating Orgs");
+    }
+    Application.AppendMacro("Retrieve Person Address", 
+                            "CDR Get Person Address");
     Application.AppendMacro("Retrieve Org Address", "CDR Get Org Address");
-    Application.AppendMacro("Add Participating Orgs", "CDR Participating Orgs");
-    var docType = ActiveDocument.doctype;
     if (docType.name == "Organization") {
         if (Selection.IsParentElement("Location")) {
             Application.AppendMacro("Persons Linking to This Location",
@@ -1150,6 +1159,12 @@
                            "Current Date",
                            "Insert Current Date",
                            "CDR", 6, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "New Current Org Status",
+                           "Change Org Status",
+                           "Add new org status for protocol",
+                           "CDR", 6, 10,
                            false),
             new CdrCmdItem(null,
                            "CDR Help",
