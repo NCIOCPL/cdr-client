@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
 
-<!-- $Id: Cdr.mcr,v 1.2 2001-06-11 21:19:40 bkline Exp $
+<!-- 
+     $Id: Cdr.mcr,v 1.3 2001-06-12 02:21:44 bkline Exp $
+
      $Log: not supported by cvs2svn $
-# Revision 1.1  2000/10/17  14:46:55  bobk
-# Initial revision
-#
+     Revision 1.2  2001/06/11 21:19:40  bkline
+     Added call to isReadOnly().
+
+     Revision 1.1  2000/10/17  14:46:55  bobk
+     Initial revision
+ 
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
@@ -43,18 +48,31 @@
     }
 
     /*
+     * Determine whether the document is read-only.
+     */
+    function cdrDocReadOnly() {
+        if (ActiveDocument == null)                   { return 0; }
+        if (ActiveDocument.documentElement == null)   { return 0; }
+        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
+                                                      { return 1; }
+        return 0;
+    }
+
+    /*
      * Determine whether the current element should be read-only.
      */
     function cdrIsReadOnly() {
-        var i;
+        if (ActiveDocument == null)                   { return 0; }
+        if (ActiveDocument.documentElement == null)   { return 0; }
+        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
+                                                      { return 1; }
         if (cdrObj == null)                           { return 0; }
         if (Selection == null)                        { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
         if (Selection.ContainerNode.nodeName == null) { return 0; }
-        if (ActiveDocument == null)                   { return 0; }
         if (ActiveDocument.doctype == null)           { return 0; }
-        dtName = ActiveDocument.doctype.name;
-        elName = Selection.ContainerNode.nodeName;
+        var dtName = ActiveDocument.doctype.name;
+        var elName = Selection.ContainerNode.nodeName;
         //Application.Alert("dtName=" + dtName + " elName=" + elName);
         return cdrObj.isReadOnly(dtName, elName);
     }
@@ -88,6 +106,24 @@
         }
     }
 
+    /*
+     * Allows the user to modify a linking element.
+     */
+    function cdrEdit() {
+        if (cdrDocReadOnly()) {
+            Application.Alert("Document retrieved as read-only.");
+        }
+        else if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+        }
+        else {
+
+            // Prevent On_Update_UI macro from blocking our editing.
+            gEditingCdrLink = true;
+            var rc  = cdrObj.edit();
+            gEditingCdrLink = false;
+        }
+    }
   
 ]]></MACRO>
 
@@ -462,21 +498,6 @@ doaddElements()
 
 <MACRO name="Cdr Edit" key="" lang="JScript" tooltip="Store Document in the CDR" id="1912">
  <![CDATA[
-    /*
-     * Allows the user to modify a linking element.
-     */
-    function cdrEdit() {
-        if (cdrObj == null) {
-            Application.Alert("You are not logged on to the CDR");
-        }
-        else {
-
-            // Prevent On_Update_UI macro from blocking our editing.
-            gEditingCdrLink = true;
-            var rc  = cdrObj.edit();
-            gEditingCdrLink = false;
-        }
-    }
     cdrEdit();
   ]]>
 </MACRO>
@@ -516,16 +537,7 @@ doaddElements()
 ]]></MACRO>
 
 <MACRO name="On_Double_Click" lang="JScript" key="Ctrl+Shift+E"><![CDATA[
-    if (cdrObj == null) {
-        Application.Alert("You are not logged on to the CDR");
-    }
-    else {
-
-        // Prevent On_Update_UI macro from blocking our editing.
-        gEditingCdrLink = true;
-        var rc  = cdrObj.edit();
-        gEditingCdrLink = false;
-    }
+    cdrEdit();
 ]]></MACRO>
 
 </MACROS>
