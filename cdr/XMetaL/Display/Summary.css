@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Summary.css                                                      */
 /*                                                                       */
+/*      v. 3.3                                                           */
+/*      1/29/02  by ebator                                               */
+/*      Removed Key Point tag after creating Patient Summary template    */
+/*                                                                       */
 /*      v. 3.2                                                           */
 /*      1/15/02  by ebator                                               */
 /*      Added notations for required *, optional &, multiple +           */
@@ -185,7 +189,7 @@ TranslationOf,
 Board:before				{ content: "Summary Board * @: "; }
 BoardMember:before			{ content: "Board Member & + @: "; }
 DateLastModified:before			{ content: "Last Modified &: "; }
-KeyPoint:before				{ content: "Key Point & +: "; }
+/*KeyPoint:before			{ content: "Key Point & +: "; } */
 MainTopics>Term:before			{ content: "Main Topics * +: "; }
 PdqKey:before				{ content: "PDQ Key &: "; }
 SecondaryTopics>Term:before 		{ content: "Secondary Topics & +: " }
