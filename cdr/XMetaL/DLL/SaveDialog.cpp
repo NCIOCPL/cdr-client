@@ -1,9 +1,12 @@
 /*
- * $Id: SaveDialog.cpp,v 1.2 2001-06-09 12:42:17 bkline Exp $
+ * $Id: SaveDialog.cpp,v 1.3 2001-11-28 21:05:11 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2001/06/09 12:42:17  bkline
+ * Removed title control; added controls for versioning and status.
+ *
  * Revision 1.1  2000/10/16 22:29:27  bkline
  * Initial revision
  *
@@ -34,6 +37,7 @@ CSaveDialog::CSaveDialog(CWnd* pParent /*=NULL*/)
 	m_createVersion = FALSE;
 	m_versionPublishable = FALSE;
 	m_docInactive = FALSE;
+	m_readyForReview = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -49,6 +53,7 @@ void CSaveDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK3, m_createVersion);
 	DDX_Check(pDX, IDC_CHECK4, m_versionPublishable);
 	DDX_Check(pDX, IDC_CHECK5, m_docInactive);
+	DDX_Check(pDX, IDC_CHECK6, m_readyForReview);
 	//}}AFX_DATA_MAP
 }
 
