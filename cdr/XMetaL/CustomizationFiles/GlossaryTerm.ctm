@@ -270,6 +270,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>MediaLink</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>TermName</Name>
       <PrettyPrintOptions>
         <IndentContent/>
@@ -401,6 +407,14 @@
     <Template>
       <Name>TermDefinition</Name>
       <MiniTemplate><![CDATA[<TermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary><Audience><?xm-replace_text {Select an target audience (required)} ?></Audience></TermDefinition>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Caption</Name>
+      <MiniTemplate><![CDATA[<Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MediaLink</Name>
+      <MiniTemplate><![CDATA[<MediaLink><MediaID><?xm-replace_text {Enter the Media ID (required)} ?></MediaID><Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption></MediaLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>SpanishTermDefinition</Name>

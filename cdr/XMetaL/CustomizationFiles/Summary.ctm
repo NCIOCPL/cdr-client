@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.10 2003-09-04 21:05:37 bkline Exp $ -->
+<!-- $Id: Summary.ctm,v 1.11 2004-12-29 16:59:23 venglisc Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
@@ -604,6 +604,14 @@
     <Template>
       <Name>ItemizedList</Name>
       <MiniTemplate><![CDATA[<ItemizedList Style="bullet"></ItemizedList>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Caption</Name>
+      <MiniTemplate><![CDATA[<Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MediaLink</Name>
+      <MiniTemplate><![CDATA[<MediaLink><MediaID><?xm-replace_text {Select a Media ID (required)} ?></MediaID><Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption></MediaLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PatientVersionOf</Name>
