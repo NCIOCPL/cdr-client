@@ -1,6 +1,23 @@
 /*************************************************************************/
 /* 	CdrCommonSchema.css                                              */
 /*                                                                       */
+/*      v. 2.2                                                           */
+/*      6/13/02  by ebator                                               */
+/*      Table Footer set to Blue with borders                            */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      5/28/02  by ebator                                               */
+/*      When a styled element is embedded within an Insertion or a       */
+/*      Deletion, it takes on the style of the Insertion or Deletion.    */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
+/*      v. 1.9                                                           */
+/*      2/25/02  by ebator                                               */
+/*      Changed color of ProtocolRef and ProtocolLink per users          */
+/*                                                                       */
 /*      v. 1.8                                                           */
 /*      2/11/02  by ebator                                               */
 /*      Set Table margin-left to match Para                              */
@@ -48,7 +65,7 @@
 
 $DOCUMENT 
 
-     { font-family: "Arial", sans serif;
+     { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
@@ -452,9 +469,6 @@ LOEFragmentRef,
 LOELink,
 LOERef,
 LOEReference,
-ProtocolLink,
-ProtocolRef,
-ProtocolReference,
 SummaryFragmentLink,
 SummaryFragmentRef,
 SummaryLink,
@@ -463,6 +477,12 @@ SummaryRef,
      { text-decoration: underline; 
        color: blue; }
 
+ProtocolLink,
+ProtocolRef,
+ProtocolReference,
+
+     { text-decoration: underline; 
+       color: purple; }
 
 
 /***************************************************************************/ 
@@ -525,6 +545,167 @@ Answer
 
      { text-indent: 20pt; }
 
+
+
+/***************************************************************************/ 
+/*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */ 
+/***************************************************************************/ 
+
+Insertion>CitationLink,
+Insertion>CitationLink:before,
+Insertion>CitationRef,
+Insertion>CitationReference:before,
+Insertion>ExternalRef,
+Insertion>GlossaryRef,
+Insertion>GlossaryTerm,
+Insertion>GlossaryTermLink,
+Insertion>GlossaryTermRef,
+Insertion>InterventionName,
+Insertion>LOEFragmentLink, 
+Insertion>LOEFragmentRef,
+Insertion>LOELink,
+Insertion>LOERef,
+Insertion>LOEReference,
+Insertion>SummaryFragmentLink,
+Insertion>SummaryFragmentRef,
+Insertion>SummaryLink,
+Insertion>SummaryRef,
+
+     { text-decoration: underline; 
+       color: red; }
+
+Insertion>ProtocolLink,
+Insertion>ProtocolRef,
+Insertion>ProtocolReference,
+
+     { text-decoration: underline; 
+       color: red; }
+
+Insertion>DrugName,
+Insertion>Emphasis,
+Insertion>ForeignWord,
+Insertion>GeneName,
+Insertion>Note,
+Insertion>Quote,
+Insertion>ScientificName,
+
+     { font-style: italic; 
+       color: red;         }
+
+Insertion>Strong,
+
+     { font-weight: bold;  
+       color: red;          }
+
+Insertion>Subscript,
+
+     { vertical-align: sub; 
+       color: red;           }
+
+Insertion>Superscript,
+
+     { vertical-align: super; 
+       color: red;             }
+
+Insertion>Note,
+Insertion>Note:before,
+Insertion>Note:after,
+
+     { font-size: 10pt;
+       color: red;     }
+
+Insertion>Question 
+
+     { font-weight: bold; 
+       color: red;         }
+
+Insertion>Answer 
+
+     { text-indent: 20pt; 
+       color: red;        }
+
+
+Deletion>CitationLink,
+Deletion>CitationLink:before,
+Deletion>CitationRef,
+Deletion>CitationReference:before,
+Deletion>ExternalRef,
+Deletion>GlossaryRef,
+Deletion>GlossaryTerm,
+Deletion>GlossaryTermLink,
+Deletion>GlossaryTermRef,
+Deletion>InterventionName,
+Deletion>LOEFragmentLink, 
+Deletion>LOEFragmentRef,
+Deletion>LOELink,
+Deletion>LOERef,
+Deletion>LOEReference,
+Deletion>SummaryFragmentLink,
+Deletion>SummaryFragmentRef,
+Deletion>SummaryLink,
+Deletion>SummaryRef,
+
+     { text-decoration: underline;
+       text-decoration: line-through; 
+       color: red; }
+
+Deletion>ProtocolLink,
+Deletion>ProtocolRef,
+Deletion>ProtocolReference,
+
+     { text-decoration: underline; 
+       text-decoration: line-through;
+       color: red; }
+
+Deletion>DrugName,
+Deletion>Emphasis,
+Deletion>ForeignWord,
+Deletion>GeneName,
+Deletion>Note,
+Deletion>Quote,
+Deletion>ScientificName,
+
+     { font-style: italic; 
+       text-decoration: line-through;
+       color: red;        }
+
+Deletion>Strong,
+
+     { font-weight: bold;  
+       text-decoration: line-through;
+       color: red;       }
+
+Deletion>Subscript,
+
+     { vertical-align: sub; 
+       text-decoration: line-through;
+       color: red;        }
+
+Deletion>Superscript,
+
+     { vertical-align: super; 
+       text-decoration: line-through;
+       color: red;       }
+
+Deletion>Note,
+Deletion>Note:before,
+Deletion>Note:after,
+
+     { font-size: 10pt;
+       text-decoration: line-through;
+       color: red;     }
+
+Deletion>Question 
+
+     { font-weight: bold; 
+       text-decoration: line-through;
+       color: red;         }
+
+Deletion>Answer 
+
+     { text-indent: 20pt; 
+       text-decoration: line-through;
+       color: red;        }
 
 
 /***************************************************************************/ 
@@ -628,10 +809,8 @@ Table,
 
 TFoot>Row>entry,
 
-  {color: black; 
+  {color: blue; 
    text-align: left;
-   /*bordercolor:white; */
-   border: hidden;
    vertical-align: bottom;   }  
 
 Table>Title,
