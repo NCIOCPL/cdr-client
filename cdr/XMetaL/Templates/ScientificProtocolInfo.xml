@@ -57,6 +57,8 @@
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</Purpose> 
 		<EligibilityText>
+          <Para>
+            <GlossaryTermRef cdr:href="CDR0000346518">Eligibility criteria</GlossaryTermRef> include the following:</Para>
 <ItemizedList Style="bullet">
 <ListItem><?xm-replace_text {ListItem} ?></ListItem>
 <ListItem><?xm-replace_text {ListItem} ?></ListItem>
