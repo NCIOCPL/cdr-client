@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.17 2002-04-29 11:01:31 bkline Exp $
+ * $Id: Commands.cpp,v 1.18 2002-05-06 18:48:24 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.17  2002/04/29 11:01:31  bkline
+ * Added code to eliminate extra space after CdrDocCtl element.
+ *
  * Revision 1.16  2002/04/20 19:19:58  bkline
  * Removed version string from search and retrieve dialogs.  Will replace
  * soon with more sophisticated picklist for most recent versions.
@@ -705,6 +708,10 @@ STDMETHODIMP CCommands::save(int *pRet)
                << _T("</DocActiveStatus><DocNeedsReview>")
 			   << (saveDialog.m_readyForReview ? _T("Y") : _T("N"))
 			   << _T("</DocNeedsReview>");
+			if (!saveDialog.m_comment.IsEmpty())
+				os << _T("<DocComment>" )
+                   << (LPCTSTR)cdr::encode(saveDialog.m_comment)
+				   << _T("</DocComment>");
             os << _T("</CdrDocCtl>");
 			os << _T("<CdrDocXml><![CDATA[") << docElement 
 			   << _T("]]></CdrDocXml>");
