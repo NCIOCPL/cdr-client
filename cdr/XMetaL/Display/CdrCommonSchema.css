@@ -1,5 +1,11 @@
+/*
+ * $Id: CdrCommonSchema.css,v 1.5 2003-02-05 21:02:30 bkline Exp $
+ *
+ * $Log: not supported by cvs2svn $
+ */
+
 /*************************************************************************/
-/* 	CdrCommonSchema.css                                              */
+/*      CdrCommonSchema.css                                              */
 /*                                                                       */
 /*      v. 2.2                                                           */
 /*      6/13/02  by ebator                                               */
@@ -721,6 +727,8 @@ ItemizedList,
        text-align: left;
        list-style-type: none;
        list-style-position: outside; }
+
+ItemizedList[Compact="No"] > ListItem { margin-top: 17pt; }
 
 ItemizedList[Style="simple"], 
 
