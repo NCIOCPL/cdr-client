@@ -42,5 +42,5 @@
 	 <Para><?xm-replace_text {Paragraph} ?></Para> 
   </SummarySection> 
   <TranslationOf><?xm-replace_text {Optionally link to the original English summary} ?></TranslationOf>
-  <PatientVersionOf><?xm-replace_text {Optionally link to the Health Professionals summary} ?></PatientVersionOf><DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
   </Summary> 
