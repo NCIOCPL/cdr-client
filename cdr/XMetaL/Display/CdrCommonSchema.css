@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.9 2004-08-17 12:03:30 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.10 2004-09-09 17:25:25 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2004/08/17 12:03:30  bkline
+ * Changed teal to green for proposed markup.
+ *
  * Revision 1.8  2004/08/10 19:37:18  bkline
  * Fixed last change to apply to proposed markup instead of approved.
  *
@@ -1002,3 +1005,7 @@ Table>Title,
 	  font-size: 12pt; 
 	  font-weight: bold; }
 
+/* Added 2004-09-09 RMK at Sheri's request (#1213) */
+Insertion[RevisionLevel='proposed'] Comment,
+Deletion[RevisionLevel='proposed'] Comment
+{font-style: italic; background-color: green; color: white; }
