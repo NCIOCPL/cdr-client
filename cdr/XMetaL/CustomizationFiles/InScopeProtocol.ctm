@@ -1232,21 +1232,7 @@
       <Name>LeadOrgPersonnel</Name>
       <MiniTemplate><![CDATA[<LeadOrgPersonnel cdr:id="Enter a link">
 <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
-<ProtocolSpecificContact>
-<PostalAddress AddressType="US">
-<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Enter a city name (required)} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
-<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
-<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
-</PostalAddress>
-<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
-<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
-<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
-<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
-<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
-</ProtocolSpecificContact>
+<ProtocolSpecificContact></ProtocolSpecificContact>
 <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
 </LeadOrgPersonnel>]]></MiniTemplate>
     </Template>
