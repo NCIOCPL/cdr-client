@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.5 2002-01-29 21:53:30 bkline Exp $
+ * $Id: EditElement.cpp,v 1.6 2002-01-29 22:55:32 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2002/01/29 21:53:30  bkline
+ * Fixed bug in insertion of lead org name.
+ *
  * Revision 1.4  2001/11/27 14:21:01  bkline
  * Version used at November 2001 demo.
  *
@@ -108,6 +111,10 @@ void CEditElement::OnOK()
         return;
     }
 
+    // Escape underscores and left brackets, but not percent sign.
+    m_title.Replace(_T("["), _T("[[]"));
+    m_title.Replace(_T("_"), _T("[_]"));
+
     std::basic_ostringstream<TCHAR> cmd;
     CString rsp;
     CWaitCursor wc;
@@ -116,11 +123,6 @@ void CEditElement::OnOK()
         case NORMAL:
         case PROT_PERSON:
         case ORG_LOCATION:
-
-            // Escape characters used as SQL Server wildcards.
-            m_title.Replace(_T("["), _T("[[]"));
-            m_title.Replace(_T("%"), _T("[%]"));
-            m_title.Replace(_T("_"), _T("[_]"));
 
             // Build the command to request the list of documents.
             cmd << _T("<CdrSearchLinks MaxDocs='150'><SourceDocType>")
