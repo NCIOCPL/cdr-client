@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.67 2002-07-02 19:52:06 bkline Exp $
+     $Id: Cdr.mcr,v 1.68 2002-07-02 20:47:02 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.67  2002/07/02 19:52:06  bkline
+     Added document history report macro.
+
      Revision 1.66  2002/06/26 21:48:37  bkline
      Modified Insertion macro to implement simpler logic as requested by users.
 
@@ -1285,7 +1288,7 @@
                            "Document History Report",
                            "Document History",
                            "Show Document History",
-                           "CDR", 4, 7,
+                           "CDR", 4, 8,
                            true),
             new CdrCmdItem(null,
                            "Show Checked Out Docs",
