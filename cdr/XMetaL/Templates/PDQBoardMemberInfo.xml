@@ -7,104 +7,50 @@
  </CdrDocCtl>
  <BoardMemberName><?xm-replace_text {Select a link to a person document (required)}?></BoardMemberName>
  <BoardMemberContact>
+   <PersonContactID><?xm-replace_text {Paste in a fragment ID)}?></PersonContactID>
   <!--
-   <PersonContactID>
-    <?xm-replace_text {Paste in a fragment ID)}?>
-   </PersonContactID>
-  -->
   <SpecificBoardMemberContact>
-   <BoardContactOrganizationName>
-    <?xm-replace_text {Optionally enter a contact organization name}?>
-   </BoardContactOrganizationName>
+   <BoardContactOrganizationName><?xm-replace_text {Optionally enter a contact organization name}?></BoardContactOrganizationName>
    <BoardContactPostalAddress AddressType="US">
-    <Street>
-     <?xm-replace_text {Optionally enter a street address line} ?>
-    </Street>
+    <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
     <City><?xm-replace_text {Optionally enter a city name} ?></City>
-    <PoliticalSubUnit_State>
-     <?xm-replace_text {Optionally select a subunit/state link} ?>
-    </PoliticalSubUnit_State>
+    <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
     <Country><?xm-replace_text {Select a country link (required)} ?></Country>
-    <PostalCode_ZIP>
-     <?xm-replace_text {Optionally enter the postal, mail, or zip code} ?>
-    </PostalCode_ZIP>
+    <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
    </BoardContactPostalAddress>
-   <BoardContactPhone>
-    <?xm-replace_text {Enter a phone number (required)}?>
-   </BoardContactPhone>
-   <BoardContactFax>
-    <?xm-replace_text {Enter a fax number (required)}?>
-   </BoardContactFax>
-   <BoardContactEmail Public="No">
-    <?xm-replace_text {Enter an email address (required)}?>
-   </BoardContactEmail>
+   <BoardContactPhone><?xm-replace_text {Enter a phone number (required)}?></BoardContactPhone>
+   <BoardContactFax><?xm-replace_text {Enter a fax number (required)}?></BoardContactFax>
+   <BoardContactEmail Public="No"><?xm-replace_text {Enter an email address (required)}?></BoardContactEmail>
   </SpecificBoardMemberContact>
+  -->
  </BoardMemberContact>
- <BoardMemberContactMode>
-  <?xm-replace_text {Choose a contact mode (required)}?>
- </BoardMemberContactMode>
+ <BoardMemberContactMode><?xm-replace_text {Choose a contact mode (required)}?></BoardMemberContactMode>
  <BoardMemberAssistant>
-  <AssistantName>
-   <?xm-replace_text {Enter an assistant name (required)}?>
-  </AssistantName>
-  <AssistantPhone>
-   <?xm-replace_text {Enter a phone number (required)}?>
-  </AssistantPhone>
-  <AssistantFax>
-   <?xm-replace_text {Optionally nter a fax number}?>
-  </AssistantFax>
-  <AssistantEmail Public="No">
-   <?xm-replace_text {Optionally enter an email address}?>
-  </AssistantEmail>
+  <AssistantName><?xm-replace_text {Enter an assistant name (required)}?></AssistantName>
+  <AssistantPhone><?xm-replace_text {Enter a phone number (required)}?></AssistantPhone>
+  <AssistantFax><?xm-replace_text {Optionally enter a fax number}?></AssistantFax>
+  <AssistantEmail Public="No"><?xm-replace_text {Optionally enter an email address}?></AssistantEmail>
  </BoardMemberAssistant>
  <BoardMembershipDetails>
-  <BoardName>
-   <?xm-replace_text {Select a link to a board (required)}?>
-  </BoardName>
+  <BoardName><?xm-replace_text {Select a link to a board (required)}?></BoardName>
   <CurrentMember><?xm-replace_text {Select value (required)}?></CurrentMember>
   <InvitationDate><?xm-replace_text {Enter date (required)}?></InvitationDate>
-  <ResponseToInvitation>
-   <?xm-replace_text {select value (required)}?>
-  </ResponseToInvitation>
-  <RecommendedBy>
-   <?xm-replace_text {Optionally enter name of recommender}?>
-  </RecommendedBy>
-  <TransferFromBoard>
-   <?xm-replace_text {Optionally select name of board}?>
-  </TransferFromBoard>
-  <TermStartDate>
-   <?xm-replace_text {Optionally enter start date for membership term}?>
-  </TermStartDate>
-  <TermRenewalFrequency>
-   <?xm-replace_text {Optionally enter frequency of term renewal}?>
-  </TermRenewalFrequency>
-  <TermEndDate>
-   <?xm-replace_text {Optionally enter ending date for membership term}?>
-  </TermEndDate>
-  <TermEndReason>
-   <?xm-replace_text {Optionally enter reason for termination of term}?>
-  </TermEndReason>
-  <AreaOfExpertise>
-   <?xm-replace_text {Optionally select an area of expertise}?>
-  </AreaOfExpertise>
-  <MemberOfSubgroup>
-   <?xm-replace_text {Optionally enter the name of a subgroup of which the person is a member}?>
-  </MemberOfSubgroup>
+  <ResponseToInvitation><?xm-replace_text {Select value (required)}?></ResponseToInvitation>
+  <RecommendedBy><?xm-replace_text {Optionally enter name of recommender}?></RecommendedBy>
+  <TransferFromBoard><?xm-replace_text {Optionally select name of board}?></TransferFromBoard>
+  <TermStartDate><?xm-replace_text {Optionally enter start date for membership term}?></TermStartDate>
+  <TermRenewalFrequency><?xm-replace_text {Optionally enter frequency of term renewal}?></TermRenewalFrequency>
+  <TermEndDate><?xm-replace_text {Optionally enter ending date for membership term}?></TermEndDate>
+  <TermEndReason><?xm-replace_text {Optionally enter reason for termination of term}?></TermEndReason>
+  <AreaOfExpertise><?xm-replace_text {Optionally select an area of expertise}?></AreaOfExpertise>
+  <MemberOfSubgroup><?xm-replace_text {Optionally enter the name of a subgroup of which the person is a member}?></MemberOfSubgroup>
   <DatedAction> 
-   <ActionDescription>
-    <?xm-replace_text {Describe the future record action} ?>
-   </ActionDescription>
-   <ActionDate>
-    <?xm-replace_text {Enter the date on which the action should be taken} ?>
-   </ActionDate>
+   <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+   <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
    <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
   </DatedAction> 
  </BoardMembershipDetails>
- <ConflictOfInterestFormSigned>
-  <?xm-replace_text {Optionally select a value}?>
- </ConflictOfInterestFormSigned>
- <DateSigned>
-  <?xm-replace_text {Optionally enter date form was signed}?>
- </DateSigned>
+ <ConflictOfInterestFormSigned><?xm-replace_text {Optionally select a value}?></ConflictOfInterestFormSigned>
+ <DateSigned><?xm-replace_text {Optionally enter date form was signed}?></DateSigned>
  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </PDQBoardMemberInfo>
