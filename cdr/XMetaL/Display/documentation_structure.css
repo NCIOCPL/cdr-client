@@ -1,6 +1,15 @@
 /*************************************************************************/
 /* 	Documentation_structure.css                                      */
 /*                                                                       */
+/*      v 1.2                                                            */
+/*      02/13/02    by ebator                                            */
+/*      TopicRelationship tags updated                                   */
+/*                                                                       */
+/*      v 1.1                                                            */
+/*      02/12/02  by ebator                                              */
+/*      Removed most tags in the structure view; included significant    */
+/*        text instead; used display:none for user-irrelevant tags       */
+/*                                                                       */
 /*      v 1.0                                                            */
 /*      02/11/02  by ebator                                              */
 /*      Based on Summary_structure.css and Documentation.css             */
@@ -49,27 +58,26 @@ $PROCINS
 /***************************************************************************/ 
   
 
-Documentation,
-Comment,
-Documentation,
+ActionDate,
+ActionDescription,
 Body,
+Comment,
+DatedAction,
+DateLastModified,
+DocType,
+Documentation,
 DocumentationTitle,
-TopicSection,
-TopicTitle,
-TopicText,
 Example,
-Tip,
+Function,
+Metadata,
 RelatedTopic,
 RelatedTopicID,
-RelationshipType,
-Metadata,
-DocType,
-Function,
 Subject,
-DateLastModified,
-DatedAction,
-ActionDescription,
-ActionDate,
+Tip,
+TopicRelationship,
+TopicSection,
+TopicSectionTitle,
+TopicText,
 
     { display: block; }
 
@@ -83,21 +91,26 @@ ActionDate,
 Body:before				{ content: "Body "; }
 Comment:before				{ content: "Comment "; }
 DateLastModified:before			{ content: "Last Modified "; }
-DocType:before				{ content: "Doc Type "; }
+DocType:before				{ content: "Doc Type: "; }
 Documentation:before			{ content: "DOCUMENTATION "; }
-DocumentationTitle:before		{ content: "TITLE "; }
+DocumentationTitle:before		{ content: "TITLE: "; }
 Example:before				{ content: "Example "; }
-Function:before				{ content: "Function "; }
+Function:before				{ content: "Function: "; }
 Metadata:before				{ content: "METADATA "; }
 Para:before				{ content: "Paragraph "; }
-RelatedTopic:before			{ content: "Related Topics "; }
-RelatedTopicID:before			{ content: "Related Topic ID"; }
-RelationshipType:before			{ content: "Relationship "; }
-Subject:before				{ content: "Keywords "; }
+RelatedTopic[RelationshipType="See Also"]:before	
+					{ content: "See Also: "; }
+RelatedTopic[RelationshipType="See"]:before	
+					{ content: "See: "; }
+RelatedTopic[RelationshipType="Broader"]:before	
+					{ content: "Broader Topic: "; }
+RelatedTopic[RelationshipType="Narrower"]:before	
+					{ content: "Narrower Topic: "; }
+Subject:before				{ content: "Keywords: "; }
 Tip:before				{ content: "Tip "; }
+TopicRelationship:before		{ content: "Related Topics: "; }
 TopicSection:before			{ content: "Section "; }
 TopicText:before			{ content: "Text "; }
-TopicTitle:before			{ content: "Section Title "; }
 
 
 
@@ -107,17 +120,17 @@ TopicTitle:before			{ content: "Section Title "; }
 
 
 Documentation:before,
-DocumentationTitle:before,
 Metadata:before,
 Para:before,
-RelatedTopicID:before,
-RelationshipType:before,
+RelatedTopic:before,
+TopicRelationship:before,
 TopicSection:before,
 
      { color: black; 
-       font-weight: bold; }
+       font-weight: bold;
+       font-size: 10pt; }
 
-TOpicSection:before,
+DocumentationTitle:before,
 
      { color: navy;
        font-weight: bold; }
@@ -134,21 +147,17 @@ Subject:before,
 /***************************************************************************/ 
 
 
-Example:before,
 DateLastModified:before,
+Example:before,
 Tip:before,
-RelatedTopic:before,
-TopicTitle:before,
+Example:before,
 TopicText:before,
 
      { color: black; 
        font-weight: bold; 
        font-size: 10pt; }
 
-Title,
 
-     { color: black;  
-       font-weight: normal;  }
 
 /***************************************************************************/ 
 /*                            BORDER CONTROL                               */ 
@@ -171,23 +180,42 @@ ActionDescription,
 Comment,
 DatedAction,
 DateLastModified,
-DocType,
 Documentation,
-DocumentationTitle,
 Example,
-Function,
 Metadata,
-RelatedTopicID,
-RelationshipType,
-Subject,
 Tip,
 TopicSection,
 TopicText,
-TopicTitle,
 
      { color: white;
        background-color: white; }
 
+ActionDate,
+ActionDescription,
+Example,
+Para,
+ItemizedList,
+OrderedList,
+Tip,
+TopicText,
+
+     { display: none; }
+
+
+
+/***************************************************************************/ 
+/*                            DISPLAY TEXT                                 */ 
+/***************************************************************************/ 
+
+DocType,
+DocumentationTitle,
+Function,
+RelatedTopicID,
+Subject,
+TopicSectionTitle,
+
+     { color: navy;
+       font-weight: bold; }
 
 
 /***************************************************************************/ 
