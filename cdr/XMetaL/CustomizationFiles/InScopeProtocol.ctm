@@ -981,7 +981,7 @@
     </Template>
     <Template>
       <Name>HighAge</Name>
-      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>AgeText</Name>

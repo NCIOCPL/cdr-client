@@ -80,7 +80,7 @@
   </ProtocolDetail> 
   <Eligibility> 
 	 <LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>
-	 <HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>
+	 <HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>
 	 <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
 	 </Eligibility> 
   <ProtocolSpecialCategory> 

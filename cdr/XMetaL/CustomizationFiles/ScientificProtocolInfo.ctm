@@ -844,7 +844,7 @@
     </Template>
     <Template>
       <Name>HighAge</Name>
-      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>AgeText</Name>
@@ -1001,7 +1001,7 @@
       <MiniTemplate><![CDATA[<Eligibility>
 <HealthyVolunteers><?xm-replace_text {Optionally select yes or no} ?></HealthyVolunteers>
 <LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>
-<HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>
+<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>
 <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
 <Diagnosis><?xm-replace_text {Optionally link to a diagnosis term} ?></Diagnosis>
 <ExclusionCriteria><?xm-replace_text {Optionally link to an exclusion term} ?></ExclusionCriteria>

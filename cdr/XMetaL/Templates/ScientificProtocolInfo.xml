@@ -109,8 +109,8 @@
   <Eligibility> 
 	 <HealthyVolunteers>No</HealthyVolunteers>
 	 <LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>
-	 <HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>
-	 <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
+	 
+	 <HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge><AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
 	 <Diagnosis><?xm-replace_text {Optionally link to a diagnosis term} ?></Diagnosis>
 	 <ExclusionCriteria><?xm-replace_text {Optionally link to an exclusion term} ?></ExclusionCriteria>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
