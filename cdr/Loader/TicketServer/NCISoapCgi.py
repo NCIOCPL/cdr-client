@@ -1,9 +1,12 @@
 #----------------------------------------------------------------------
-# $Id: NCISoapCgi.py,v 1.1.1.1 2002-06-03 16:51:20 jholmes Exp $
+# $Id: NCISoapCgi.py,v 1.2 2002-06-13 21:17:35 jholmes Exp $
 #
 # Stub for SOAP interface to CDR from Cancer.gov.
 #
 # $Log: not supported by cvs2svn $
+# Revision 1.1.1.1  2002/06/03 16:51:20  jholmes
+# CDR Loader including server side python.
+#
 #----------------------------------------------------------------------
 import os, sys, re
 
@@ -12,7 +15,12 @@ class NCISoapCgi:
     def __init__( self ):
         self.ini_done = 1
         self.BLOCK_SIZE = 1024
+        self.my_logf = None;
 
+
+
+    def SetLogFile( self, logf ):
+        self.my_logf = logf
         
     #----------------------------------------------------------------------
     # Send an XML SOAP message back to the client.
@@ -63,6 +71,7 @@ class NCISoapCgi:
     # Gather in the client's message.
     #----------------------------------------------------------------------
     def ReadRequest( self ):
+        self.WriteLog( "Reading SOAP Request\n" )
         requestMethod = os.getenv("REQUEST_METHOD")
         if not requestMethod:
             self.SendErrorMessage("Request method not specified")
@@ -77,16 +86,21 @@ class NCISoapCgi:
             self.SendErrorMessage("Invalid content length: %s" % contentLengthString)
         if contentLength < 1:
             self.SendErrorMessage("Invalid content length: %s" % contentLengthString)
+        self.WriteLog( "Content length is %s\n" % contentLengthString )
         try:
             request = ""
             tl = 0
             while ( tl < contentLength - self.BLOCK_SIZE ):
                 request += sys.stdin.read( self.BLOCK_SIZE )
+                self.WriteLog( "Read a block\n" )
                 tl += self.BLOCK_SIZE
             request += sys.stdin.read( contentLength - tl )
+            self.WriteLog( "Read final block\n" )
         except:
             self.SendErrorMessage("Failure reading message")
-            
+
+        self.WriteLog( "returning request\n" );            
+        self.WriteLog( "---\n" );            
         return request
 
 #        "<env:Body>\n"
@@ -102,6 +116,10 @@ class NCISoapCgi:
         else:
             result = ""
         return result
+
+    def WriteLog( self, msg ):
+        if ( self.my_logf != None ):
+            self.my_logf.write( msg )
 
 
 # Main is used mainly for testing

@@ -8,6 +8,7 @@ import os
 import string
 import urllib
 import re
+import time
 
 import ManifestComparitor
 import TicketValidator
@@ -93,13 +94,27 @@ def SendZip( payload ):
 ###########################################
 
 
-## start by fetching the cgi parameters    
-soap = NCISoapCgi.NCISoapCgi()
-soap_doc = soap.ReadRequest()
-
 ## find out where the cgi is living so we can use absolute paths
 if ( os.environ.has_key( "PATH_TRANSLATED" ) ):
     CGI_PATH = string.replace( os.environ[ "PATH_TRANSLATED" ], "TicketCgi.py", "" )
+    
+ticket_serv_log = open( CGI_PATH + "TicketServer.Log", "a+" )
+ticket_serv_log.write( "\n===========\n" );
+ticket_serv_log.write( "CGI-BIN-START " )
+ticket_serv_log.write( `time.time()` )
+ticket_serv_log.write( " " + os.environ[ "REMOTE_HOST" ] + " " + os.environ[ "HTTP_USER_AGENT" ] )
+ticket_serv_log.write( "\n---\n" );
+
+## start by fetching the cgi parameters    
+soap = NCISoapCgi.NCISoapCgi()
+soap.SetLogFile( ticket_serv_log )
+soap_doc = soap.ReadRequest()
+
+ticket_serv_log.write( "INPUT " )
+ticket_serv_log.write( `time.time()` )
+ticket_serv_log.write( "\n...\n" );
+ticket_serv_log.write( soap_doc )
+ticket_serv_log.write( "\n---\n" );
 
 ## The location of CDR files & manifest list shoudl be known to the server
 ## if not, then maybe the caller provided it to us
@@ -167,8 +182,15 @@ elif ( doc_type == "ZIPREQ" ):
 else:
     output = "<ERROR>\nUnknown request document type " + doc_type + "\n</ERROR>\n"
     
-
 db_output = db_output + "</DB_OUT>\n"    
+ticket_serv_log.write( "DEBUG " )
+ticket_serv_log.write( `time.time()` )
+ticket_serv_log.write( "\n...\n" );
+ticket_serv_log.write( db_output )
+ticket_serv_log.write( "\n===========\n" );
+ticket_serv_log.flush()
+ticket_serv_log.close()
+
 soap.SendMessage( output )
 
 
