@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.37 2003-05-13 19:23:39 bkline Exp $
+ * $Id: Commands.cpp,v 1.38 2004-02-26 00:48:10 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.37  2003/05/13 19:23:39  bkline
+ * Implemented enhancement for request #717, to allow the user to control
+ * the level of markup filtering for validation from the toolbar.
+ *
  * Revision 1.36  2003/01/29 18:48:26  bkline
  * Added ability to paste cdr:href links.
  *
@@ -558,8 +562,9 @@ STDMETHODIMP CCommands::logon(int *pRet)
     }
 
     // Handle any extraordinary error conditions.
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -617,8 +622,9 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
         if (!err.IsEmpty())
             ::AfxMessageBox(err, MB_ICONEXCLAMATION);
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -669,8 +675,9 @@ STDMETHODIMP CCommands::search(int *pRet)
             }
         }
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -812,17 +819,19 @@ STDMETHODIMP CCommands::save(int *pRet)
             break;
         }
     }
-    catch (::COleDispatchException &ode) {
+    catch (::COleDispatchException* ode) {
         CString msg;
         msg.Format(_T("Dispatch Exception; error code: %lu\n")
                    _T("From application: %s\n")
-                   _T("Description: %s"), ode.m_wCode, ode.m_strSource, 
-                                          ode.m_strDescription);
+                   _T("Description: %s"), ode->m_wCode, ode->m_strSource, 
+                                          ode->m_strDescription);
         ::AfxMessageBox(msg);
+		ode->Delete();
         *pRet = 6;
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 6;
     }
     catch (...) {
@@ -918,8 +927,9 @@ STDMETHODIMP CCommands::validate(int *pRet)
             break;
         }
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 2;
     }
     catch (...) { 
@@ -1053,8 +1063,9 @@ STDMETHODIMP CCommands::edit(int *pRet)
         if (editDialog.DoModal() != IDOK)
             *pRet = 2;
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 3;
     }
     catch (...) {
@@ -1145,7 +1156,7 @@ void removeDoc(const CString& docId)
     try {
         CFile::Remove((LPCTSTR)docPath);
     }
-    catch (CFileException&) { /* ignore */ }
+    // catch (CFileException&) { /* ignore */ }
     catch (...) { /* ignore this, too; MFC docs are incorrect about which
                   exception will be thrown. */ }
 }
@@ -1265,17 +1276,19 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
             }
             return false;
         }
-        catch (::COleDispatchException &ode) {
+        catch (::COleDispatchException* ode) {
             CString msg;
             msg.Format(_T("Dispatch Exception; error code: %lu\n")
                        _T("From application: %s\n")
-                       _T("Description: %s"), ode.m_wCode, ode.m_strSource, 
-                                              ode.m_strDescription);
+                       _T("Description: %s"), ode->m_wCode, ode->m_strSource, 
+                                              ode->m_strDescription);
             ::AfxMessageBox(msg);
+			ode->Delete();
             return false;
         }
-        catch (::CException &e) {
-            e.ReportError();
+        catch (::CException* e) {
+            e->ReportError();
+			e->Delete();
             return false;
         }
         catch (...) {
@@ -1743,8 +1756,9 @@ STDMETHODIMP CCommands::protUpdPerson(int *pRet)
         CProtUpdPerson pupDialog(leadOrgId);
         pupDialog.DoModal();
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -1854,8 +1868,9 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
             pscLoc.PasteString(pscData);
 
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -1936,8 +1951,9 @@ STDMETHODIMP CCommands::particOrgs(int *pRet)
         CParticOrgs poDialog(leadOrgId);
         poDialog.DoModal();
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -2076,8 +2092,9 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
             spaLoc.PasteString(spaData);
 
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
         *pRet = 2;
     }
     catch (...) {
@@ -2173,8 +2190,9 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
             ::DOMText textNode = doc.createTextNode(denormData);
             ::DOMNode dummy = elem.appendChild(textNode);
         }
-        catch (::CException &e) {
-            e.ReportError();
+        catch (::CException* e) {
+            e->ReportError();
+			e->Delete();
             *pRet = 2;
         }
         catch (...) {
@@ -2301,8 +2319,9 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
             break;
         }
     }
-    catch (::CException &e) {
-        e.ReportError();
+    catch (::CException* e) {
+        e->ReportError();
+		e->Delete();
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
