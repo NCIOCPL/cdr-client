@@ -492,7 +492,7 @@
     <Template>
       <Name>Location</Name>
       <MiniTemplate><![CDATA[<Location>
-<PostalAddress>
+<PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
@@ -545,7 +545,7 @@
     </Template>
     <Template>
       <Name>PostalAddress</Name>
-      <MiniTemplate><![CDATA[<PostalAddress>
+      <MiniTemplate><![CDATA[<PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
@@ -669,7 +669,7 @@
       <Name>OrganizationLocation</Name>
       <MiniTemplate><![CDATA[<OrganizationLocation>
 <Location>
-<PostalAddress>
+<PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
 <City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
