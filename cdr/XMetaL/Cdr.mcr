@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.116 2004-03-22 21:51:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.117 2004-03-22 21:54:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.116  2004/03/22 21:51:52  bkline
+     Added support for OverallContact element.
+
      Revision 1.115  2004/03/10 19:45:25  bkline
      Plugged in macro for pasting org address elements into new
      OverallContact element.
@@ -2411,12 +2414,6 @@
                            "Publish Preview",
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Patient CTGovProtocol Publish Preview",
-                           "Patient Publish Preview",
-                           "Patient Publish Preview",
-                           "Structure (Custom)", 1, 9,
                            false),
             new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
