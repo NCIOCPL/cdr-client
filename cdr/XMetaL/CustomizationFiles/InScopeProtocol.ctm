@@ -1283,13 +1283,6 @@
 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
 <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 </CurrentOrgStatus>
-<PreviousOrgStatus>
-<StatusName><?xm-replace_text {Select the lead organization's former status on this protocol (required)} ?></StatusName>
-<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
-<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
-</PreviousOrgStatus>
 </LeadOrgProtocolStatuses>
 <LeadOrgPersonnel>
 <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
