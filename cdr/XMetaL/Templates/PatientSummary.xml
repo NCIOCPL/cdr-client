@@ -162,7 +162,7 @@ appropriate.]</Para>
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the xx or in other parts of the body.  <!--[if true]--> </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the x or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -334,9 +334,9 @@ appropriate.]</Para>
 <Title>Treatment Options for Recurrent X Cancer</Title>
 <Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent </GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> may include the following:</Para>
 <ItemizedList Style="bullet">
-     <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef></ListItem>
-	  <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef></ListItem>
-	  <ListItem><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef></ListItem>
+     <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef>.</ListItem>
+	  <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef>.</ListItem>
+	  <ListItem><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef>.</ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
 	  </ItemizedList>
