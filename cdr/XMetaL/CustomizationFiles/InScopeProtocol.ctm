@@ -1231,14 +1231,14 @@
     <Template>
       <Name>LeadOrgPersonnel</Name>
       <MiniTemplate><![CDATA[<LeadOrgPersonnel>
-<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
 <ProtocolSpecificContact></ProtocolSpecificContact>
 <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
 </LeadOrgPersonnel>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Person</Name>
-      <MiniTemplate><![CDATA[<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>MailAbstractTo</Name>
@@ -1267,7 +1267,7 @@
 </PreviousOrgStatus>
 </LeadOrgProtocolStatuses>
 <LeadOrgPersonnel>
-<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
 <ProtocolSpecificContact>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -1287,7 +1287,7 @@
 </LeadOrgPersonnel>
 <ProtocolSites>
 <OrgSite>
-<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID>
 <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
 <OrgSiteContact>
 <SpecificPerson>
@@ -1318,7 +1318,7 @@
     </Template>
     <Template>
       <Name>OrgSiteID</Name>
-      <MiniTemplate><![CDATA[<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>OrgSiteStatus</Name>
@@ -1345,7 +1345,7 @@
     </Template>
     <Template>
       <Name>ContactName</Name>
-      <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ContactDetail</Name>
@@ -1368,7 +1368,7 @@
     <Template>
       <Name>GenericPersonContact</Name>
       <MiniTemplate><![CDATA[<GenericPersonContact>
-<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>
+<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
 <ContactDetail>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -1391,7 +1391,7 @@
       <MiniTemplate><![CDATA[<GenericPerson>
 <PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>
 <GenericPersonContact>
-<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>
+<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
 <ContactDetail>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -1423,7 +1423,7 @@
     <Template>
       <Name>OrgSite</Name>
       <MiniTemplate><![CDATA[<OrgSite>
-<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID>
 <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
 <OrgSiteContact>
 <SpecificPerson>
@@ -1438,7 +1438,7 @@
       <Name>ProtocolSites</Name>
       <MiniTemplate><![CDATA[<ProtocolSites>
 <OrgSite>
-<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID>
 <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
 <OrgSiteContact>
 <SpecificPerson>
@@ -1505,6 +1505,37 @@
     <Template>
       <Name>IDType</Name>
       <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolAmendment</Name>
+      <MiniTemplate><![CDATA[<ProtocolAmendment>
+<AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>
+<AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>
+<AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>
+<DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>
+<DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>
+<ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolAmendment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolAmendmentInformation</Name>
+      <MiniTemplate><![CDATA[<ProtocolAmendmentInformation>
+<ProtocolAmendment>
+<AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>
+<AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>
+<AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>
+<DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>
+<DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>
+<ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolAmendment>
+<DatedAction>
+<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DatedAction>
+</ProtocolAmendmentInformation>]]></MiniTemplate>
     </Template>
   </Templates>
   <ChangeLists>

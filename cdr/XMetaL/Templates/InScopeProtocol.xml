@@ -103,20 +103,18 @@
 		</CurrentOrgStatus> 
 		</LeadOrgProtocolStatuses> 
 		<LeadOrgPersonnel>
-         <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+         <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
          <ProtocolSpecificContact></ProtocolSpecificContact>
          <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
       </LeadOrgPersonnel>
 		<ProtocolSites> 
-		  <OrgSite> 
-		  <OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+		  <OrgSite><OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID> 
 		  <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
 		  <OrgSiteContact> 
-		  <SpecificPerson> 
-			 <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person>
-			 <Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
-			 <SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
-			 </SpecificPerson> 
+		  <SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person><Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson> 
 		  </OrgSiteContact> 
 		  </OrgSite> 
 		</ProtocolSites> 
