@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.54 2002-05-11 03:01:05 bkline Exp $
+     $Id: Cdr.mcr,v 1.55 2002-05-13 19:49:07 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.54  2002/05/11 03:01:05  bkline
+     Implemented several newly requested enhancements.
+
      Revision 1.53  2002/05/08 20:28:19  bkline
      Removed HTML Summary button.
 
@@ -4198,7 +4201,7 @@
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
         var newElem = "<CurrentOrgStatus>"
-                    + "<StatusName>Completed</StatusName>"
+                    + "<StatusName></StatusName>"
                     + "<StatusDate>" + getCurDateString() + "</StatusDate>"
                     + "<Comment>Your comment here ...</Comment>"
                     + "<EnteredBy>" + CdrUserName + "</EnteredBy>"
