@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.86 2002-10-15 13:48:32 bkline Exp $
+     $Id: Cdr.mcr,v 1.87 2002-10-18 22:19:30 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.86  2002/10/15 13:48:32  bkline
+     Renamed some macros (issue #406).
+
      Revision 1.85  2002/10/10 16:34:18  bkline
      Dropped cdr:id attribute from LeadOrgPersonnel in Insert Lead Org macro.
 
@@ -856,6 +859,7 @@
      * Adds a menu option to the popup context menu for custom editing
      * of a link element.
      */
+    var container = Selection.ContainerNode;
     var docType = ActiveDocument.doctype;
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
@@ -863,6 +867,14 @@
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
     Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
     Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
+    if (container && container.nodeType == 1) { // we're in an element?
+        if (docType.hasAttribute(container.nodeName, "Public")) {
+            if (container.getAttribute("Public") == "No")
+                Application.AppendMacro("Remove Public=No", "Set Public");
+            else
+                Application.AppendMacro("Make Public=No", "Set Non-Public");
+        }
+    }
     if (docType.name == "InScopeProtocol") {
         Application.AppendMacro("-", "");
         Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
@@ -5293,7 +5305,6 @@
 </MACRO>
 
 <MACRO name="Insert Mailer Response" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function insertMailerResponse() {
@@ -5308,6 +5319,61 @@
         rng.Select();
     }
     insertMailerResponse();
+  ]]>
+</MACRO>
+
+<MACRO name="Set Non-Public" 
+       lang="JScript" >
+  <![CDATA[
+    function setNonPublic() {
+        var container = Selection.ContainerNode;
+        if (!container || container.nodeType != 1) { // Look for element.
+            Application.Alert("Can't find current element.");
+            return;
+        }
+        docType = ActiveDocument.doctype;
+        if (!docType.hasAttribute(container.nodeName, "Public")) {
+            Application.Alert(
+                "Current element does not have a Public attribute.");
+            return;
+        }
+        
+        var holdFlag = Selection.ReadOnlyContainer;
+        Selection.ReadOnlyContainer = false;
+        gEditingCdrLink = true;
+        container.setAttribute("Public", "No");
+        gEditingCdrLink = false;
+        Selection.ReadOnlyContainer = holdFlag;
+    }
+    setNonPublic();
+  ]]>
+</MACRO>
+
+<MACRO name="Set Public" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function setPublic() {
+        var container = Selection.ContainerNode;
+        if (!container || container.nodeType != 1) { // Look for element.
+            Application.Alert("Can't find current element.");
+            return;
+        }
+        docType = ActiveDocument.doctype;
+        if (!docType.hasAttribute(container.nodeName, "Public")) {
+            Application.Alert(
+                "Current element does not have a Public attribute.");
+            return;
+        }
+        
+        var holdFlag = Selection.ReadOnlyContainer;
+        Selection.ReadOnlyContainer = false;
+        gEditingCdrLink = true;
+        container.removeAttribute("Public");
+        gEditingCdrLink = false;
+        Selection.ReadOnlyContainer = holdFlag;
+    }
+    setPublic();
   ]]>
 </MACRO>
 
