@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.61 2002-06-07 20:48:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.62 2002-06-11 13:26:30 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.61  2002/06/07 20:48:41  bkline
+     Added NHL macro and button; replace some Filter.py URLs with QcReport.py.
+
      Revision 1.60  2002/06/06 14:57:37  bkline
      Unplugged Undo macro; added Bold/Underline QC report.
 
@@ -1706,7 +1709,7 @@
                            "NHL Text",
                            "NHL Text",
                            "NHL Text",
-                           "General (Custom)", 2, 5,
+                           "CDR", 5, 7,
                            false),
             new CdrCmdItem(null,
                            "Generate QC Report",
