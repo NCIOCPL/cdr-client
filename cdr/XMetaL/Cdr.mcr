@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.92 2002-11-21 12:54:35 bkline Exp $
+     $Id: Cdr.mcr,v 1.93 2002-12-11 20:51:15 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.92  2002/11/21 12:54:35  bkline
+     Moved Mailer History button from Summary to Protocol toolbar.
+
      Revision 1.91  2002/11/21 12:51:35  bkline
      Plugged in Mailer History toolbar buttons.
 
@@ -4717,39 +4720,39 @@
         var savePos = ActiveDocument.Range;
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
-        var newElems = "<ItemizedList>"
+        var newElems = "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Age</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Performance status</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Life expectancy</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Hematopoietic</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Hepatic</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Renal</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Cardiovascular</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Pulmonary</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Other</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>";
@@ -4772,27 +4775,27 @@
         var savePos = ActiveDocument.Range;
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
-        var newElems = "<ItemizedList>"
+        var newElems = "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Biologic therapy</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Chemotherapy</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Endocrine therapy</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Radiotherapy</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Surgery</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>"
-                     + "<ItemizedList>"
+                     + "<ItemizedList Style='bullet'>"
                      + "<ListTitle>Other</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>";
@@ -5262,6 +5265,7 @@
             return;
         }
         rng.InsertElement("Para");
+        rng.InsertElement("Note");
         rng.Text = "A new classification scheme for adult non-Hodgkin's "
                  + "lymphoma has been adopted by PDQ.  The terminology "
                  + "of \"indolent\" or \"aggressive\" lymphoma will "
