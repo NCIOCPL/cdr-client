@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.66 2002-06-26 21:48:37 bkline Exp $
+     $Id: Cdr.mcr,v 1.67 2002-07-02 19:52:06 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.66  2002/06/26 21:48:37  bkline
+     Modified Insertion macro to implement simpler logic as requested by users.
+
      Revision 1.65  2002/06/13 21:50:22  bkline
      Fixed Insert DateLastModified macro.
 
@@ -1279,11 +1282,17 @@
                            "CDR", 3, 2,
                            false),
             new CdrCmdItem(null,
+                           "Document History Report",
+                           "Document History",
+                           "Show Document History",
+                           "CDR", 4, 7,
+                           true),
+            new CdrCmdItem(null,
                            "Show Checked Out Docs",
                            "Checked Out",
                            "Show Checked Out Docs",
                            "CDR", 1, 1,
-                           true),
+                           false),
             new CdrCmdItem(null,
                            "Print",
                            "Print",
@@ -4846,6 +4855,29 @@
         Application.ShowPage(url);
     }
     generateSummaryMailers();
+  ]]>
+</MACRO>
+
+<MACRO name="Document History Report"
+       lang="JScript">
+  <![CDATA[
+    function documentHistoryReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "DocVersionHistory.py?Session="
+                + CdrSession
+                + "&DocId="
+                + docId;
+        Application.ShowPage(url);
+    }
+    documentHistoryReport();
   ]]>
 </MACRO>
 
