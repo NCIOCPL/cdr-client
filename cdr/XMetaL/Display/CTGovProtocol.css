@@ -1,7 +1,11 @@
 /*
- * $Id: CTGovProtocol.css,v 1.2 2003-11-12 21:21:16 bkline Exp $
+ * $Id: CTGovProtocol.css,v 1.3 2003-11-19 16:27:05 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2003/11/12 21:21:16  bkline
+ * Added support for newly added elements EnteredBy, EntryDate, and
+ * ProtocolDesign.
+ *
  * Revision 1.1  2003/10/28 13:12:55  bkline
  * Style sheets for new document type for ClinicalTrials.gov documents.
  *
@@ -98,6 +102,7 @@ OverallContactBackup,
 OverallOfficial,
 OverallStatus,
 PDQIndexing,
+PDQPerson,
 PDQSponsorship,
 Para,
 Phase,
@@ -191,6 +196,7 @@ Contact             :before { content: "CONTACT & + @"; }
 ContactBackup       :before { content: "CONTACT BACKUP & @"; }
 Investigator        :before { content: "INVESTIGATOR & + @"; }
 Role                :before { content: "Role &: "; }
+PDQPerson           :before { content: "PDQ Person & @: "; }
 PDQIndexing         :before { content: "PDQ INDEXING * "; }
 StudyType           :before { content: "Study Type *: "; }
 StudyCategory       :before { content: "STUDY CATEGORY * +"; }
@@ -274,6 +280,7 @@ Contact             :before,
 ContactBackup       :before,
 Investigator        :before,
 Role                :before,
+PDQPerson           :before,
 
 PDQIndexing         :before,
 StudyType           :before,
@@ -420,6 +427,8 @@ Location Phone                   { margin-left: 135pt; text-indent:  -73.0pt; }
 Location PhoneExt                { margin-left: 135pt; text-indent: -118.5pt; }
 Location Email                   { margin-left: 135pt; text-indent:  -67.0pt; }
 
+PDQPerson                        { margin-left: 135pt; text-indent: -105.5pt; }
+
 StudyType                        { margin-left: 150pt; text-indent:  -81.0pt; }
 StudyCategoryType                { margin-left: 150pt; text-indent: -136.5pt; }
 StudyCategoryName                { margin-left: 150pt; text-indent: -141.2pt; }
@@ -461,6 +470,7 @@ ProfessionalSuffix,
 Phone,
 PhoneExt,
 Email,
+PDQPerson,
 
 OverallStatus,
 StartDate,
@@ -568,6 +578,7 @@ OverallContactBackup,
 OverallOfficial,
 OverallStatus,
 PDQIndexing,
+PDQPerson,
 PDQSponsorship,
 Para,
 Phase,
@@ -632,6 +643,7 @@ MiddleInitial          :before,
 Surname                :before,
 ProfessionalSuffix     :before,
 PhoneExt               :before,
+PDQPerson              :before,
 
 Location,
 Facility,
