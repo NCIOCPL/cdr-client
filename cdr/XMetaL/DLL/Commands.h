@@ -28,7 +28,7 @@ public:
                            BOOL checkOut, 
                            const CString& version = _T("Current"));
     static bool doInsertLink(const CString&);
-    static bool doLogon(LogonDialog& dialog);
+    static bool doLogon(LogonDialog* dialog);
 
 BEGIN_COM_MAP(CCommands)
 	COM_INTERFACE_ENTRY(IDispatch)
@@ -60,6 +60,8 @@ public:
 	STDMETHOD(search)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+
+    static bool invokedFromClientRefreshTool;
 
 private:
     static CString username;
