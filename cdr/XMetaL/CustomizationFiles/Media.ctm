@@ -1063,7 +1063,7 @@
       <Name ns="">DerivedFrom</Name>
       <MiniTemplate><![CDATA[<DerivedFrom>
    <FromObject>
-    <FromCdrMedia><?xm-replace_text {Select a media link or enter external file source (required)} ?></FromCdrMedia>
+    <FromCdrMedia><?xm-replace_text {Select a media link (required)} ?></FromCdrMedia>
     <FromMethod><?xm-replace_text {Optionally enter the import method} ?></FromMethod>
    </FromObject>
    <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
@@ -1112,13 +1112,13 @@
     <Template>
       <Name ns="">FromObject</Name>
       <MiniTemplate><![CDATA[<FromObject>
-    <FromCdrMedia><?xm-replace_text {Select a media link or enter external file source (required)} ?></FromCdrMedia>
+    <FromCdrMedia><?xm-replace_text {Select a media link (required)} ?></FromCdrMedia>
     <FromMethod><?xm-replace_text {Optionally enter the import method} ?></FromMethod>
    </FromObject>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">FromCdrMedia</Name>
-      <MiniTemplate><![CDATA[<FromCdrMedia><?xm-replace_text {Select a media link or enter external file source (required)} ?></FromCdrMedia>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<FromCdrMedia><?xm-replace_text {Select a media link (required)} ?></FromCdrMedia>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">FromExternalFile</Name>
