@@ -89,10 +89,11 @@ Comment,
 DateLastModified,
 GlossaryTerm,
 PdqKey,
-SpanishTermDefinition,
+DefinitionText,
+Audience,
+Dictionary,
 SpanishTermName,
 StatusDate,
-TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
@@ -116,10 +117,12 @@ TermType,
 Comment:before			{ content: "Comments &: "; } 
 DateLastModified:before		{ content: "Last Modified &: "; }
 PdqKey:before			{ content: "PDQ Key &: "; }
-SpanishTermDefinition:before	{ content: "Span Definition &: "; }
+SpanishTermDefinition>DefinitionText:before	{ content: "Span Definition *: "; }
+Audience:before         { content: "Audience * +: "; }
+Dictionary:before       { content: "Dictionary & +: "; }
 SpanishTermName:before		{ content: "Spanish Name &: "; }
 StatusDate:before		{ content: "Status Date *: "; }
-TermDefinition:before		{ content: "Term Definition *: "; }
+TermDefinition>DefinitionText:before { content: "Term Definition *: "; }
 TermName:before			{ content: "Term Name *: "; }
 TermPronunciation:before	{ content: "Pronunciation &: "; }
 TermSource:before		{ content: "Term Source *: "; }
@@ -134,6 +137,7 @@ TermType:before			{ content: "Term Type * +: "; }
 
 
 DateLastModified,
+SpanishTermDefinition,
 SpanishTermName,
 TermDefinition,
 TermSource,
@@ -149,10 +153,11 @@ TermType,
 
 Comment:before,
 DateLastModified:before,
-SpanishTermDefinition:before,
+DefinitionText:before,
+Audience:before,
+Dictionary:before,
 SpanishTermName:before,
 StatusDate:before,
-TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
 
@@ -187,12 +192,14 @@ TermName,				{ margin-left: 125pt;
 					  text-indent: -80.5pt; }
 TermPronunciation,			{ margin-left: 125pt; 
 					  text-indent: -100.5pt; }
-TermDefinition,				{ margin-left: 125pt; 
+TermDefinition>DefinitionText,				{ margin-left: 125pt; 
 					  text-indent: -102pt; }
 SpanishTermName,			{ margin-left: 125pt; 
 					  text-indent: -103pt; }
-SpanishTermDefinition,			{ margin-left: 125pt; 
-					  text-indent: -107pt; }
+SpanishTermDefinition>DefinitionText,			{ margin-left: 125pt; 
+					  text-indent: -103pt; }
+Dictionary            { margin-left: 125pt; text-indent: -88pt; }
+Audience              { margin-left: 125pt; text-indent: -79pt; }
 
 /* Key element for length = TermSource					   */
 
@@ -248,10 +255,11 @@ TermType,
 Comment,
 DateLastModified,
 PdqKey,
-SpanishTermDefinition,
+DefinitionText,
+Audience,
+Dictionary,
 SpanishTermName,
 StatusDate,
-TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
@@ -264,10 +272,11 @@ TermType,
 Comment:before,
 DateLastModified:before,
 PdqKey:before,
-SpanishTermDefinition:before,
+DefinitionText:before,
+Audience:before,
+Dictionary:before,
 SpanishTermName:before,
 StatusDate:before,
-TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
 TermSource:before,

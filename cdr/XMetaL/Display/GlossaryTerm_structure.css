@@ -94,10 +94,11 @@ Comment,
 DateLastModified,
 GlossaryTerm,
 PdqKey,
-SpanishTermDefinition,
+DefinitionText,
+Dictionary,
+Audience,
 SpanishTermName,
 StatusDate,
-TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
@@ -112,15 +113,16 @@ TermType,
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
 
-
+Audience:before         { content: "Audience"; }
+Dictionary:before       { content: "Dictionary"; }
 Comment:before			{ content: "Comments"; }
 DateLastModified:before		{ content: "Last Modified"; }
 GlossaryTerm:before		{ content: "GLOSSARY TERM"; }
 PdqKey:before			{ content: "PDQ Key"; }
-SpanishTermDefinition:before	{ content: "Spanish Definition  "; }
+SpanishTermDefinition>DefinitionText:before	{ content: "Spanish Definition  "; }
 SpanishTermName:before		{ content: "Spanish Term Name "; }
 StatusDate:before		{ content: "Status Date "; }
-TermDefinition:before		{ content: "Term Definition "; }
+TermDefinition>DefinitionText:before		{ content: "Term Definition "; }
 TermName:before			{ content: "Term Name "; }
 TermPronunciation:before	{ content: "Term Pronunciation "; }
 TermSource:before		{ content: "Term Source "; }
@@ -151,10 +153,11 @@ GlossaryTerm:before,
   
 
 Comment:before,
-SpanishTermDefinition:before,
+DefinitionText:before,
+Audience:before,
+Dictionary:before,
 SpanishTermName:before,
 StatusDate:before,
-TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
 
@@ -185,10 +188,11 @@ Comment,
 DateLastModified,
 GlossaryTerm,
 PdqKey,
-SpanishTermDefinition,
+DefinitionText,
+Dictionary,
+Audience,
 SpanishTermName,
 StatusDate,
-TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
@@ -208,10 +212,11 @@ Comment,
 DateLastModified,
 GlossaryTerm,
 PdqKey,
-SpanishTermDefinition,
+DefinitionText,
+Audience,
+Dictionary,
 SpanishTermName,
 StatusDate,
-TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
@@ -226,10 +231,11 @@ Comment:before,
 DateLastModified:before,
 GlossaryTerm:before,
 PdqKey:before,
-SpanishTermDefinition:before,
+DefinitionText:before,
+Audience:before,
+Dictionary:before,
 SpanishTermName:before,
 StatusDate:before,
-TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
 TermSource:before,
