@@ -39,9 +39,9 @@
   <RecommendedBy><?xm-replace_text {Optionally enter name of recommender}?></RecommendedBy>
   <TransferFromBoard><?xm-replace_text {Optionally select name of board}?></TransferFromBoard>
   <TermStartDate><?xm-replace_text {Optionally enter start date for membership term}?></TermStartDate>
-  <TermRenewalFrequency><?xm-replace_text {Optionally enter frequency of term renewal}?></TermRenewalFrequency>
+  <TermRenewalFrequency><?xm-replace_text {Optionally select frequency of term renewal}?></TermRenewalFrequency>
   <TermEndDate><?xm-replace_text {Optionally enter ending date for membership term}?></TermEndDate>
-  <TermEndReason><?xm-replace_text {Optionally enter reason for termination of term}?></TermEndReason>
+  <TermEndReason><?xm-replace_text {Optionally select reason for termination of term}?></TermEndReason>
   <AreaOfExpertise><?xm-replace_text {Optionally select an area of expertise}?></AreaOfExpertise>
   <MemberOfSubgroup><?xm-replace_text {Optionally enter the name of a subgroup of which the person is a member}?></MemberOfSubgroup>
   <DatedAction> 
