@@ -204,12 +204,9 @@ GrantContractNo:before		{ content: "Grant Contract Number *: "; }
 LeadOrganizationID:before	{ content: "Org Name *: "; }
 LeadOrgProtocolID:before	{ content: "Org Prot ID * + @: "; }
 LeadOrgRole:before		{ content: "Role *: "; }
-LeadOrgPersonnel:before		{ content: "LEAD ORGANIZATION PERSONNEL (Public) * + @ "; }
-LeadOrgPersonnel[Public="No"][cdr\:id]:before
+LeadOrgPersonnel[Public="No"]:before
 				{ content: "LEAD ORGANIZATION PERSONNEL (Not public) [" attr(cdr\:id) "] "; }
-LeadOrgPersonnel[Public="No"]:before	
-				{ content: "LEAD ORGANIZATION PERSONNEL (Not public) "; }
-LeadOrgPersonnel[cdr\:id]:before	
+LeadOrgPersonnel:before	
 				{ content: "LEAD ORGANIZATION PERSONNEL (Public) ["attr(cdr\:id) "] "; }
 LeadOrgProtocolStatuses:before	{ content: "LEAD ORGANIZATION PROTOCOL STATUSES *"; }
 MailAbstractTo:before		{ content: "Mail Abstr To &: "; }

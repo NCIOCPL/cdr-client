@@ -267,8 +267,7 @@ GeneticsBoardCertification:before	{ content: "BOARD CERTIFICATION & +"; }
 GeneticsBoardName:before		{ content: "Board *: "; }
 GeneticsProfessionalDetails:before	{ content: "GENETICS PROFESSIONAL DETAILS &";}
 GivenName:before			{ content: "Given Name &: "; }
-Home:before				{ content: "HOME LOCATION & @"; }
-Home[cdr\:id]:before			{ content: "HOME LOCATION [" attr(cdr\:id) "]"; }
+Home:before						{ content: "HOME LOCATION [" attr(cdr\:id) "]"; }
 Include:before				{ content: "Include in Dir? *: "; }
 InterdisciplinaryTeamMember:before	{ content: "Interdisciplinary Team? *: "; }
 MemberOfCooperativeGroup:before		{ content: "Member of Cooperative Group & + @: "; }
@@ -278,12 +277,9 @@ MiddleInitial:before			{ content: "Middle Initial &: "; }
 NameFormat:before			{ content: "Name Format &: "; }
 Organization:before			{ content: "Organizatn * @: "; }
 OrganizationLocation:before		{ content: "Org Locatn * @: "; }
-OtherPracticeLocation:before		{ content: "OTHER PRACTICE LOCATION & + @ "; }
-OtherPracticeLocation[PreviousLocation="Yes"][cdr\:id]:before	
+OtherPracticeLocation[PreviousLocation="Yes"]:before	
 					{ content: "OTHER PRACTICE LOCATION [Previous] [" attr(cdr\:id) "] "; }
-OtherPracticeLocation[PreviousLocation="Yes"]:before
-					{ content: "OTHER PRACTICE LOCATION [Previous] & + @ "; }
-OtherPracticeLocation[cdr\:id]:before	{ content: "OTHER PRACTICE LOCATION [" attr(cdr\:id) "] "; }
+OtherPracticeLocation:before	{ content: "OTHER PRACTICE LOCATION [" attr(cdr\:id) "] "; }
 OtherSpecialty:before			{ content: "Other Specialty * +: "; }
 PDQAdvisoryBoard:before			{ content: "PDQ Advisory Brd & + @: "; }
 PDQBoardMembershipDetails:before	{ content: "PDQ BOARD MEMBERSHIP &"; }
@@ -302,8 +298,7 @@ Prefix:before				{ content: "Prefix &: "; }
 PrivatePractice:before			{ content: "PRIVATE PRACTICE & + @"; }
 PrivatePractice[PreviousLocation="Yes"]:before
 					{ content: "PRIVATE PRACTICE LOCATION [Previous] & + @ "; }
-PrivatePracticeLocation:before		{ content: "PRIVATE PRACTICE LOCATION * @";}
-PrivatePracticeLocation[cdr\:id]:before	{ content: "PRIVATE PRACTICE LOCATION [" attr(cdr\:id) "] ";}
+PrivatePracticeLocation:before		{ content: "PRIVATE PRACTICE LOCATION [" attr(cdr\:id) "] ";}
 ProfessionalInformaton:before		{ content: "Professional Information &"; }
 ProvidesServices:before			{ content: "Provides Services? *: "; }
 RoleAtAffiliatedOrganization:before	{ content: "Role at Aff Org *: "; }

@@ -180,8 +180,7 @@ CurrentStatus:before			{ content: "Current Status *: "; }
 Date:before				{ content: "Date *: "; }
 DateLastModified:before			{ content: "Last Modified &: "; }
 IncludeInDirectory:before		{ content: "Include in Directory? *: "; } 
-Location:before				{ content: "LOCATION * @ "; }
-Location[cdr\:id]:before		{ content: "LOCATION [" attr(cdr\:id) "] "; }
+Location:before				{ content: "LOCATION [" attr(cdr\:id) "] "; }
 MainMember:before			{ content: "Main Member & @: "; } 
 MainMemberOf:before			{ content: "MAIN MEMBER OF & + "; }
 MemberOfAdHocGroup:before		{ content: "Member Ad-Hoc Grp & + @: "; }
