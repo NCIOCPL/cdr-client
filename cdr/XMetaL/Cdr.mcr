@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.95 2003-02-14 20:47:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.96 2003-02-14 21:07:20 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.95  2003/02/14 20:47:40  bkline
+     Added support for cdr:href link pasting; turned off warning for
+     publish preview.
+
      Revision 1.94  2002/12/24 15:08:41  bkline
      Swapped in our own implementation of showPage() to replace SoftQuad's
      buggy version.
@@ -1385,6 +1389,12 @@
                            "Show Document History",
                            "CDR", 4, 8,
                            true),
+            new CdrCmdItem(null,
+                           "Audit Trail Report",
+                           "Audit Trail",
+                           "Show Audit Trail",
+                           "Annotations (Custom)", 1, 6,
+                           false),
             new CdrCmdItem(null,
                            "Show Checked Out Docs",
                            "Checked Out",
@@ -5430,7 +5440,6 @@
 </MACRO>
 
 <MACRO name="Mailer History" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function mailerHistory() {
@@ -5450,6 +5459,27 @@
         cdrObj.showPage(url);
     }
     mailerHistory();
+  ]]>
+</MACRO>
+
+<MACRO name="Audit Trail Report" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function auditTrailReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "AuditTrail.py?id=" + docId;
+        cdrObj.showPage(url);
+    }
+    auditTrailReport();
   ]]>
 </MACRO>
 
