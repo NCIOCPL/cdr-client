@@ -1122,7 +1122,7 @@
     </Template>
     <Template>
       <Name>CurrentProtocolStatus</Name>
-      <MiniTemplate><![CDATA[<CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated based on organization statuses (required)} ?></CurrentProtocolStatus>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated during validation, based on organization statuses (required)} ?></CurrentProtocolStatus>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>StatusName</Name>
