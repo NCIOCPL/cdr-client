@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	InScopeProtocol.css                                              */
 /* 	                                                                 */
+/*      v. 3.3                                                           */
+/*      2/19/02  by ebator                                               */
+/*      User-requested changes                                           */
+/*                                                                       */
 /*      v. 3.2                                                           */
 /*      1/16/02  by ebator                                               */
 /*      Added notations for required *, optional &, multiple +           */
@@ -196,7 +200,7 @@ ProtocolSites:before		{ content: "PROTOCOL SITES & "; }
 ProtocolSource:before		{ content: "PROTOCOL SOURCE * +"; }
 ProtocolSources:before		{ content: "PROTOCOL SOURCES *"; }
 ProtocolSpecialCategory:before	{ content: "PROTOCOL SPECIAL CATEGORY &"; }
-ProtocolSpecificContact:before	{ content: "PROTOCOL SPECIFIC CONTACT & @ "; }
+ProtocolSpecificContact:before	{ content: "Protocol Specific Contact & @ "; }
 ProtocolSponsors:before		{ content: "PROTOCOL SPONSORS &"; }
 ReimbursementApprovalType:before 
 				{ content: "Reimbursmnt Approval Type & +: "; }
@@ -323,6 +327,7 @@ ProtocolAdminInfo>DatedAction,
 DateLastModified,
 LeadOrgProtocolID,
 MailAbstractTo,
+PersonRole,
 ProtocolLeadOrg,
 ProtocolSites,
 OrgSite,
@@ -553,6 +558,7 @@ SpecialCategory,
 SponsorName,
 SourceName,
 StatusName,
+
 	{ margin-top: 4pt; }
 
 

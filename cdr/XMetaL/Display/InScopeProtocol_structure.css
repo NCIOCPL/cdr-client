@@ -1,6 +1,10 @@
 /**************************************************************************/
 /*     InScopeProtocol_structure.css                                      */
 /*                                                                        */
+/*      v. 3.3                                                            */
+/*      2/19/02  by ebator                                                */
+/*      User-requested changes                                            */
+/*                                                                        */
 /* 	v. 3.2                                                            */ 
 /*      1/16/02   by ebator                                               */
 /* 	Minor changes to match Normal View *&+@ heading additions         */
@@ -204,7 +208,7 @@ ProtocolProcessingDetails:before
 ProtocolSites:before		{ content: "PROTOCOL SITES ";  }
 ProtocolSource:before		{ content: "Protocol Source "; }
 ProtocolSources:before		{ content: "PROTOCOL SOURCES";  }
-ProtocolSpecificContact:before	{ content: "PROTOCOL SPECIFIC CONTACT "; }
+ProtocolSpecificContact:before	{ content: "Protocol Specific Contact "; }
 ProtocolSponsors:before		{ content: "PROTOCOL SPONSORS";  }
 ProtocolSpecialCategory:before	{ content: "PROTOCOL SPECIAL CATEGORY"; }
 ReimbursementApprovalType:before  { content: "Reimbursement Approval Type "; }
