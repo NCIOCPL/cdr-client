@@ -6,6 +6,21 @@
       <NoPrettyPrinting/>
     </GlobalPrettyPrintOptions>
   </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>BoardContactPostalAddress</Name>
+      <MiniTemplate><![CDATA[
+        <BoardContactPostalAddress AddressType="US">
+          <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+          <City><?xm-replace_text {Optionally enter a city name} ?></City>
+          <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+          <Country><?xm-replace_text {Select a country link (required)} ?></Country>
+          <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+        </BoardContactPostalAddress>
+]]>
+      </MiniTemplate>
+    </Template>
+  </Templates>
   <ChangeLists>
     <ChangeList>
       <Selectors>
