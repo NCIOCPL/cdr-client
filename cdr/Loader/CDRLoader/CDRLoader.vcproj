@@ -150,10 +150,16 @@
 				RelativePath="CDRGenerics.cpp">
 			</File>
 			<File
+				RelativePath="CDRIniData.cpp">
+			</File>
+			<File
 				RelativePath="CDRLoader.cpp">
 			</File>
 			<File
 				RelativePath="CDRLoaderDlg.cpp">
+			</File>
+			<File
+				RelativePath="CDROptions2.cpp">
 			</File>
 			<File
 				RelativePath="CDRSocket.cpp">
@@ -187,10 +193,16 @@
 				RelativePath="CDRGenerics.h">
 			</File>
 			<File
+				RelativePath="CDRIniData.h">
+			</File>
+			<File
 				RelativePath="CDRLoader.h">
 			</File>
 			<File
 				RelativePath="CDRLoaderDlg.h">
+			</File>
+			<File
+				RelativePath="CDROptions2.h">
 			</File>
 			<File
 				RelativePath="CDRSocket.h">

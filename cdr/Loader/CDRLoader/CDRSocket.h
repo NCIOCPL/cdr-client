@@ -24,6 +24,10 @@
 			static bool loggedOn() { return !sessionString.IsEmpty(); }
 			static const CString getSessionString() { return sessionString; }
 			static CString errResponse(const CString& err);
+			static void SetServer( CString serv, CString port );
+
+			static char SERVER_NAME[1024];
+			static char SERVER_PORT[32];
 
 		private:
 			int sock;
@@ -38,6 +42,7 @@
 				static Init init;
 			};
 			static CString sessionString;
+
 	};
 
 #endif	// CDR_SOCKET_H_

@@ -41,6 +41,17 @@ CdrSocket::Init::~Init()
     WSACleanup();
 }
 
+char CdrSocket::SERVER_NAME[1024];
+char CdrSocket::SERVER_PORT[32];
+
+void CdrSocket::SetServer( CString serv, CString port )
+{
+	strncpy( SERVER_NAME, ((CStringA)serv).GetString(), 1023 );
+	SERVER_NAME[ 1023 ] = '\0';  // insurance
+	strncpy( SERVER_PORT, ((CStringA)port).GetString(), 31 );
+	SERVER_PORT[ 31 ]   = '\0';
+}
+
 /**
  * Creates a socket and connects to the CDR server.
  *
@@ -48,10 +59,27 @@ CdrSocket::Init::~Init()
  */
 CdrSocket::CdrSocket()
 {
-    const char* hostEnv = getenv("CDR_HOST");
-    const char* portEnv = getenv("CDR_PORT");
-    const char* host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
-    int port = portEnv ? atoi(portEnv) : CDR_SOCK;
+	const char* host;
+	if ( strlen( CdrSocket::SERVER_NAME ) > 0 )
+	{
+		host = CdrSocket::SERVER_NAME;
+	}
+	else
+	{
+		const char* hostEnv = getenv("CDR_HOST");
+		host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
+	}
+
+	int port;
+	if ( strlen( CdrSocket::SERVER_PORT ) > 0 )
+	{
+		port = atoi( CdrSocket::SERVER_PORT );
+	}
+	else
+	{
+		const char* portEnv = getenv("CDR_PORT");
+		port = portEnv ? atoi(portEnv) : CDR_SOCK;
+	}
 
     // Working variables.
     struct sockaddr_in  addr;

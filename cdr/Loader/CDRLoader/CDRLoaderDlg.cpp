@@ -6,6 +6,8 @@
 #include "CDRLoaderDlg.h"
 #include "CDRSocket.h"
 #include "CDRGenerics.h"
+#include "CDROptions2.h"
+#include "CDRIniData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -53,6 +55,7 @@ CCDRLoaderDlg::CCDRLoaderDlg(CWnd* pParent /*=NULL*/)
 	, UserPwd(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_XM_ICON);
+	ini_Data = NULL;
 }
 
 void CCDRLoaderDlg::DoDataExchange(CDataExchange* pDX)
@@ -69,6 +72,7 @@ BEGIN_MESSAGE_MAP(CCDRLoaderDlg, CDialog)
 	ON_WM_QUERYDRAGICON()
 	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
+	ON_BN_CLICKED(IDC_OPTIONS, OnBnClickedOptions)
 END_MESSAGE_MAP()
 
 
@@ -104,6 +108,10 @@ BOOL CCDRLoaderDlg::OnInitDialog()
 	// TODO: Add extra initialization here
 	UserIDControl.SetFocus();
 	
+	// make sure we have the current data
+	CDataExchange dx( this, false );
+	DoDataExchange( &dx );
+
 	return FALSE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -170,6 +178,9 @@ void CCDRLoaderDlg::OnBnClickedOk()
 						+ UserPwd
 						+ _T("</Password></CdrLogon>");
 
+	// where to go for the cdr stuff
+	CdrSocket::SetServer( ini_Data->cdr_Server, ini_Data->cdr_Port );
+
 	// Submit the command to the CDR server.
 	CString response = CdrSocket::sendCommand(request);
 	CString err;
@@ -201,5 +212,27 @@ void CCDRLoaderDlg::OnBnClickedOk()
 	if ( ! err.IsEmpty() )
 	{
 		::AfxMessageBox(err, MB_ICONEXCLAMATION);
+	}
+}
+
+void CCDRLoaderDlg::OnBnClickedOptions()
+{
+	// TODO: Add your control notification handler code here
+	CDROptions	opt_dialog;
+
+	opt_dialog.ticket_Server = ini_Data->ticket_Server;
+	opt_dialog.ticket_Port = ini_Data->ticket_Port;
+	opt_dialog.cdr_Server = ini_Data->cdr_Server;
+	opt_dialog.cdr_Port = ini_Data->cdr_Port;
+
+	INT_PTR nResponse = opt_dialog.DoModal();
+
+	if (nResponse == IDOK)
+	{
+		// save the user options
+		ini_Data->ticket_Server = opt_dialog.ticket_Server;
+		ini_Data->ticket_Port = opt_dialog.ticket_Port;
+		ini_Data->cdr_Server = opt_dialog.cdr_Server;
+		ini_Data->cdr_Port = opt_dialog.cdr_Port;
 	}
 }

@@ -146,12 +146,17 @@ BOOL CCDRLoaderApp::InitInstance()
 
 	AfxEnableControlContainer();
 
+	ini_Data.ReadOptions();
+
 	// process command line values
 	//	m_lpCmdLine
 	CString manifest_directory = _T( ".\\" );
 	CString	manifest_filename = _T( "CDR_MANIFEST.XML" );
 	CString cdr_application = _T( "C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe" );
-	CString http_server = _T( "mmdb2.nci.nih.gov" );
+
+	// give this the value fromt he file, override from the command line if set
+	CString default_http_server = _T( "mmdb2.nci.nih.gov" );
+	CString http_server = _T( "" );
 
     if (m_lpCmdLine[0] != _T('\0'))
     {
@@ -211,13 +216,6 @@ BOOL CCDRLoaderApp::InitInstance()
 					}
 					break;
 
-					case 'H':
-					case 'h':
-					{
-						http_server = cur_token;
-					}
-					break;
-
 					case 'B':
 					case 'b':
 					{
@@ -252,6 +250,9 @@ BOOL CCDRLoaderApp::InitInstance()
 
 	DebugWrite( "Created dummy window\n" );
 
+	dlg.UserId = ini_Data.last_User;
+	dlg.SetInit( &ini_Data );
+
 	INT_PTR nResponse = dlg.DoModal();
 
 	DebugWrite( "Returned from modal dialog\n" );
@@ -261,11 +262,29 @@ BOOL CCDRLoaderApp::InitInstance()
 		bool	ok_to_launch = false;
 		CString	err = _T("Unknown error.");
 
+
+		CString http_server;
+		if ( ini_Data.ticket_Server.GetLength() > 0 )
+		{
+			http_server = ini_Data.ticket_Server;
+
+			if ( ini_Data.ticket_Port.GetLength() > 0 )
+			{
+				http_server += _T( ":" ) + ini_Data.ticket_Port;
+			}
+		}
+		else
+		{
+			http_server = default_http_server;
+		}
 		CDRTicketStub ticket_stub;
 		ticket_stub.SetHttpServer( http_server );
 
 		CString uid = dlg.UserId;
+		ini_Data.last_User = uid;
+
 		CString key = dlg.SessionId;
+
 		if ( true )
 		{
 			DebugWrite( "Evaluating state.\n" );
@@ -322,8 +341,12 @@ BOOL CCDRLoaderApp::InitInstance()
 
 		if ( ok_to_launch )
 		{
+			DebugWrite( "Saving INI options prior launch.\n" );
+			ini_Data.WriteOptions();
+
 			DebugWrite( "Closing debug prior launch.\n" );
 			DebugEnd();
+
 			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key ) )
 			{
 				// failed after all
@@ -355,6 +378,10 @@ BOOL CCDRLoaderApp::InitInstance()
 		// They said never mind, leave
 		// nothing to do
 	}
+
+	DebugWrite( "Saving INI options.\n" );
+
+	ini_Data.WriteOptions();
 
 	DebugWrite( "Finished processing, destroying dummy window.\n" );
 

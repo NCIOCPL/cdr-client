@@ -15,13 +15,14 @@ public:
 // Dialog Data
 	enum { IDD = IDD_CDRLOADER_DIALOG };
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 
 
 // Implementation
 protected:
 	HICON m_hIcon;
+	CDRIniData * ini_Data;
 
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
@@ -38,4 +39,7 @@ public:
 	CString SessionId;
 	afx_msg void OnBnClickedOk();
 	CEdit UserIDControl;
+	afx_msg void OnBnClickedOptions();
+
+	void SetInit( CDRIniData * ini ) { ini_Data = ini; };
 };

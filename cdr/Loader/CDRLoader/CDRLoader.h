@@ -8,6 +8,7 @@
 #endif
 
 #include "resource.h"		// main symbols
+#include "CDRIniData.h"
 
 
 // CCDRLoaderApp:
@@ -18,6 +19,8 @@ class CCDRLoaderApp : public CWinApp
 {
 public:
 	CCDRLoaderApp();
+
+	CDRIniData	ini_Data;
 
 // Overrides
 	public:
