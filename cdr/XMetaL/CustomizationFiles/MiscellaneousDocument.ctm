@@ -428,5 +428,16 @@
       <Name>MiscellaneousDocumentText</Name>
       <MiniTemplate><![CDATA[<MiscellaneousDocumentText><Para><?xm-replace_text {Paragraph} ?></Para></MiscellaneousDocumentText>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>Title</Name>
+      <MiniTemplate><![CDATA[<Title><?xm-replace_text {Section Title} ?></Title>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Section</Name>
+      <MiniTemplate><![CDATA[<Section>
+<Title><?xm-replace_text {Section Title} ?></Title>
+<Para><?xm-replace_text {Paragraph} ?></Para>
+</Section>]]></MiniTemplate>
+    </Template>
   </Templates>
 </DTDExtensions>

@@ -12,7 +12,10 @@
   <Audience><?xm-replace_text {Select an audience (required)} ?></Audience>
   </MiscellaneousDocumentMetadata> 
   <MiscellaneousDocumentText> 
-  <Para><?xm-replace_text {Paragraph} ?></Para> 
+  <Section>
+<Title><?xm-replace_text {Section Title} ?></Title>
+<Para><?xm-replace_text {Paragraph} ?></Para>
+</Section> 
   </MiscellaneousDocumentText> 
   <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
   </MiscellaneousDocument>
