@@ -339,9 +339,28 @@ SummarySection>SummarySection>Insertion>Title,
 	{ font-style: italic; }
 
 Insertion>SummarySection,
+Insertion>SummarySection>Para>CitationLink,
+Insertion>SummarySection>Para>CitationLink:before,
+Insertion>SummarySection>Title,
+Insertion>SummarySection>Table>Title,
+Insertion>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Insertion>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Insertion>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
 Insertion>SummarySection:before,
 
 	{ color: red; }
+
+Deletion>SummarySection,
+Deletion>SummarySection>Para>CitationLink,
+Deletion>SummarySection>Para>CitationLink:before,
+Deletion>SummarySection>Title,
+Deletion>SummarySection>Table>Title,
+Deletion>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Deletion>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Deletion>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
+Deletion>SummarySection:before,
+
+	{ text-decoration: line-through; color: red; }
 
 /***************************************************************************/ 
 /*                         SECTION META DATA                               */ 
