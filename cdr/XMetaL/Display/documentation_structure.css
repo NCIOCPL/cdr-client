@@ -1,0 +1,209 @@
+/*************************************************************************/
+/* 	Documentation_structure.css                                      */
+/*                                                                       */
+/*      v 1.0                                                            */
+/*      02/11/02  by ebator                                              */
+/*      Based on Summary_structure.css and Documentation.css             */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_Structure.css";  
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Documentation,
+Comment,
+Documentation,
+Body,
+DocumentationTitle,
+TopicSection,
+TopicTitle,
+TopicText,
+Example,
+Tip,
+RelatedTopic,
+RelatedTopicID,
+RelationshipType,
+Metadata,
+DocType,
+Function,
+Subject,
+DateLastModified,
+DatedAction,
+ActionDescription,
+ActionDate,
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+Body:before				{ content: "Body "; }
+Comment:before				{ content: "Comment "; }
+DateLastModified:before			{ content: "Last Modified "; }
+DocType:before				{ content: "Doc Type "; }
+Documentation:before			{ content: "DOCUMENTATION "; }
+DocumentationTitle:before		{ content: "TITLE "; }
+Example:before				{ content: "Example "; }
+Function:before				{ content: "Function "; }
+Metadata:before				{ content: "METADATA "; }
+Para:before				{ content: "Paragraph "; }
+RelatedTopic:before			{ content: "Related Topics "; }
+RelatedTopicID:before			{ content: "Related Topic ID"; }
+RelationshipType:before			{ content: "Relationship "; }
+Subject:before				{ content: "Keywords "; }
+Tip:before				{ content: "Tip "; }
+TopicSection:before			{ content: "Section "; }
+TopicText:before			{ content: "Text "; }
+TopicTitle:before			{ content: "Section Title "; }
+
+
+
+/***************************************************************************/ 
+/*                             HEADINGS                                    */ 
+/***************************************************************************/ 
+
+
+Documentation:before,
+DocumentationTitle:before,
+Metadata:before,
+Para:before,
+RelatedTopicID:before,
+RelationshipType:before,
+TopicSection:before,
+
+     { color: black; 
+       font-weight: bold; }
+
+TOpicSection:before,
+
+     { color: navy;
+       font-weight: bold; }
+
+DocType:before,
+Function:before,
+Subject:before,
+
+	{ font-size: 10pt; }
+
+
+/***************************************************************************/ 
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
+/***************************************************************************/ 
+
+
+Example:before,
+DateLastModified:before,
+Tip:before,
+RelatedTopic:before,
+TopicTitle:before,
+TopicText:before,
+
+     { color: black; 
+       font-weight: bold; 
+       font-size: 10pt; }
+
+Title,
+
+     { color: black;  
+       font-weight: normal;  }
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+Metadata,
+
+     { border: none; }
+
+
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+ActionDate,
+ActionDescription,
+Comment,
+DatedAction,
+DateLastModified,
+DocType,
+Documentation,
+DocumentationTitle,
+Example,
+Function,
+Metadata,
+RelatedTopicID,
+RelationshipType,
+Subject,
+Tip,
+TopicSection,
+TopicText,
+TopicTitle,
+
+     { color: white;
+       background-color: white; }
+
+
+
+/***************************************************************************/ 
+/*                            FORM CONTROL                                 */ 
+/***************************************************************************/ 
+
+DocType:before,
+Function:before,
+Subject:before,
+
+	{ background-color: white; }
+
+
+DocType,
+Function,
+Subject,
+
+	{ text-indent: 0pt; }
+
