@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.64 2002-06-13 19:01:16 bkline Exp $
+     $Id: Cdr.mcr,v 1.65 2002-06-13 21:50:22 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.64  2002/06/13 19:01:16  bkline
+     Replaced hardcoded host name with COM property.
+
      Revision 1.63  2002/06/11 13:33:11  bkline
      Moved new NHL Text button.
 
@@ -4841,13 +4844,14 @@
   <![CDATA[
     function insertDateLastModified() {
         var rng = ActiveDocument.Range;
-        if (!rng.FindInsertLocation("DateLastModified", true)) {
+        rng.MoveToDocumentEnd();
+        if (!rng.MoveToElement("DateLastModified", false)) {
             if (!rng.FindInsertLocation("DateLastModified", false)) {
                 Application.Alert("Can't insert DateLastModified element");
                 return; 
             }
+            rng.InsertWithTemplate("DateLastModified");
         }
-        rng.InsertWithTemplate("DateLastModified");
         rng.Select();
     }
     insertDateLastModified();
