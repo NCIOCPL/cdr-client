@@ -707,10 +707,10 @@ bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CStri
 	CStringA port_env = "CDR_PORT=" + CStringA( port );
 
 	// these change current environment settings
-	_putenv( (CString::PCYSTR)uenv );
-	_putenv( (CString::PCYSTR)senv );
-	_putenv( (CString::PCYSTR)serv_env );
-	_putenv( (CString::PCYSTR)port_env );
+	_putenv( (LPCSTR)uenv );
+	_putenv( (LPCSTR)senv );
+	_putenv( (LPCSTR)serv_env );
+	_putenv( (LPCSTR)port_env );
 
 	//char * tprog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
 	//char * tprog = "C:\\WINNT\\system32\\cmd.exe";
