@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.52 2002-05-08 20:04:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.53 2002-05-08 20:28:19 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.52  2002/05/08 20:04:38  bkline
+     Renamed filters; rearranged buttons on Protocol toolbar.
+
      Revision 1.51  2002/05/06 18:55:28  bkline
      Turned on redline/strikeout report.
 
@@ -1410,17 +1413,11 @@
                            "CDR", 4, 6,
                            false),
             new CdrCmdItem(null,
-                           "Create HTML for Board",
-                           "HTML",
-                           "Create HTML for Board",
-                           "Integration (Custom)", 1, 9, 
-                           true),
-            new CdrCmdItem(null,
                            "Bold Underline Report",
                            "Bold Underline",
                            "Bold Underline Report",
                            "CDR", 2, 3,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "Redline Strikeout Report",
                            "Redline Strikeout",
