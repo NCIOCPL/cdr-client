@@ -430,6 +430,15 @@ BOOL CCDRLoaderApp::InitInstance()
 			//DebugWrite( "Closing debug prior launch.\n" );
 			//DebugEnd();
 
+            // Register the CDR DLL.
+            int rc = system("regsvr32 /s Cdr\\Cdr.dll");
+            if (rc) {
+                CString errMsg;
+                errMsg.Format(_T("Failure registering Cdr.dll; ")
+                              _T("rc=%d; errno=%d"), rc, errno);
+                DebugWrite(errMsg);
+            }
+
 			if ( ! ticket_stub.LaunchCDR( cdr_application ) )
 			{
 				// failed after all
