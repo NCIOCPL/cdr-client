@@ -263,4 +263,7 @@
   <Para>Los sumarios del PDQ con información sobre el cáncer se revisan con regularidad y se actualizan en la medida en que se obtiene nueva información. Esta sección describe los cambios más recientes hechos a este sumario a partir de la fecha arriba indicada.</Para>
   <Para>Este sumario fue revisado y actualizado de forma substancial.</Para>
  </SummarySection>
+ <PatientVersionOf>[select title of HP version]</PatientVersionOf>
+ <ReplacementFor>[select previous document for summary]</ReplacementFor>
+ <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
 </Summary>
