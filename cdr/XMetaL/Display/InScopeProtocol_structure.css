@@ -111,6 +111,7 @@ InScopeProtocol,
 /***************************************************************************/ 
 
 
+ClinicalTrialOffice,
 Comment,
 ContactInformation,
 CurrentOrgStatus, 
@@ -182,6 +183,7 @@ StatusName,
 /***************************************************************************/ 
  
 
+ClinicalTrialOffice:before  { content: "Clinical Trial Office "; }
 CurrentOrgStatus:before		{ content: "Current Org Status "; }
 CurrentProtocolStatus:before	{ content: "Current Protocol Status";  }
 DateLastModified:before		{ content: "Last Modified "; }
@@ -337,6 +339,7 @@ StatusDate:before,
 /***************************************************************************/ 
   
 
+ClinicalTrialOffice:before,
 CurrentProtocolStatus:before,
 LeadOrganizationID:before,
 LeadOrgRole:before,
@@ -367,6 +370,7 @@ StatusName:before,
 /***************************************************************************/ 
   
 
+ClinicalTrialOffice,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
 DateLastModified,
@@ -430,6 +434,7 @@ StatusName,
   
 /* Administrative Information						   */
 
+ClinicalTrialOffice:before,
 FundingInfo>NIHGrantContract>Comment:before,
 FundingInfo>OtherGrantContractInfo>Comment:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment:before,
@@ -523,7 +528,7 @@ ProtocolAdminInfo>DatedAction,
 
 /* Remove negative text-indent settings  */
 
-
+ClinicalTrialOffice,
 NIHGrantContract>Comment,
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment,
 LeadOrgProtocolStatuses>PreviousOrgStatus>Comment,

@@ -116,6 +116,7 @@ $PROCINS
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 
+ClinicalTrialOffice,
 Comment,
 ContactInformation, 
 CurrentOrgStatus, 
@@ -196,6 +197,7 @@ StatusName,
 
 LeadOrgProtocolStatuses>Comment:before	
 				{ content: "Comments &: "; }
+ClinicalTrialOffice:before { content: "Trial Office & @: "; }
 CurrentOrgStatus:before		{ content: "Current Org Status *"; }
 CurrentProtocolStatus:before	{ content: "Current Protocol Status *: "; } 
 DateLastModified:before		{ content: "Last Modified &: "; }
@@ -338,7 +340,7 @@ StatusDate:before,
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
 /***************************************************************************/ 
   
-
+ClinicalTrialOffice:before,
 LeadOrganizationID:before,
 LeadOrgRole:before,
 MailAbstractTo:before,
@@ -387,6 +389,7 @@ ProtocolAmendmentInformation>DatedAction,
 
    { border: none;     }
 
+ClinicalTrialOffice,
 CurrentProtocolStatus,
 DateLastModified,
 LeadOrgProtocolID,
@@ -524,6 +527,8 @@ OrgSiteID,				{ margin-left: 100pt;
 OrgSiteStatus,				{ margin-left: 100pt;
 					  text-indent: -51.5pt;}
 
+ClinicalTrialOffice   { margin-left: 100pt; text-indent:  -96.0pt; }
+
 Person                { margin-left: 100pt; text-indent:  -71.5pt; }
 Role                  { margin-left: 100pt; text-indent:  -41.5pt; }
 SpecificPhone         { margin-left: 100pt; text-indent:  -57.0pt; }
@@ -566,6 +571,7 @@ PdqKey,					{ margin-left: 100pt;
 
 
 LeadOrgProtocolStatuses > Comment, 
+ClinicalTrialOffice,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -650,6 +656,7 @@ StatusName,
 /***************************************************************************/ 
 
 
+ClinicalTrialOffice,
 CurrentProtocolStatus,
 DateLastModified, 
 EnteredBy, 
@@ -691,6 +698,7 @@ StatusName,
 
 /* Blue = Administrative Information                                       */
 
+ClinicalTrialOffice:before,
 FundingInfo>NIHGrantContract>Comment:before,
 FundingInfo>OtherGrantContractInfo>Comment:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment:before,
