@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.85 2002-10-10 16:34:18 bkline Exp $
+     $Id: Cdr.mcr,v 1.86 2002-10-15 13:48:32 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.85  2002/10/10 16:34:18  bkline
+     Dropped cdr:id attribute from LeadOrgPersonnel in Insert Lead Org macro.
+
      Revision 1.84  2002/10/09 14:11:54  bkline
      Lifted read-only block for PUP.
 
@@ -866,7 +869,7 @@
         Application.AppendMacro("Prot Update Person", "Protocol Update Person");
         Application.AppendMacro("New Current Org Status", 
                                 "New Current Org Status");
-        Application.AppendMacro("Add Participating Orgs", 
+        Application.AppendMacro("Insert Grp POs", 
                                 "CDR Participating Orgs");
         Application.AppendMacro("Retrieve Person Address", 
                                 "CDR Get Person Address");
@@ -1802,8 +1805,8 @@
                            false),
             new CdrCmdItem(null,
                            "Insert Participating Org",
-                           "Insert Participating Org",
-                           "Insert Participating Org",
+                           "Add POs",
+                           "Add Participating Organizations",
                            "CDR", 5, 6,
                            false),
             new CdrCmdItem(null,
