@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.15 2002-04-18 21:49:04 bkline Exp $
+ * $Id: Commands.cpp,v 1.16 2002-04-20 19:19:58 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.15  2002/04/18 21:49:04  bkline
+ * Added more sophisticated exception handling.
+ *
  * Revision 1.14  2002/03/09 03:24:46  bkline
  * Implemented enhancement for Issue #125.
  *
@@ -533,8 +536,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 			switch (rc) {
 			case IDOK:
 				if (doRetrieve(retrieveDialog.m_DocId,
-                               retrieveDialog.m_CheckOut,
-                               retrieveDialog.m_Version))
+                               retrieveDialog.m_CheckOut))
 					*pRet = 0;
 				else
 					*pRet = 2;
@@ -1013,8 +1015,7 @@ static int findFirst(const CString& str, LPCTSTR chars, int offset)
  *                          successfully.
  */
 bool CCommands::doRetrieve(const CString& id, 
-                           BOOL checkOut, 
-                           const CString& version)
+                           BOOL checkOut)
 {
     // Make sure the document isn't already open.
     _Application app = cdr::getApp();
@@ -1048,10 +1049,9 @@ bool CCommands::doRetrieve(const CString& id,
     request.Format(_T("<CdrGetDoc>")
                    _T("<DocId>%s</DocId>")
                    _T("<Lock>%s</Lock>")
-                   _T("<DocVersion>%s</DocVersion>")
+                   _T("<DocVersion>Current</DocVersion>")
                    _T("</CdrGetDoc>"), docId,
-                                       (checkOut ? _T("Y") : _T("N")),
-                                       version);
+                                       (checkOut ? _T("Y") : _T("N")));
     CString response = CdrSocket::sendCommand(request);
 
     return openDoc(response, docId, checkOut);

@@ -25,8 +25,7 @@ class CCommands :
 public:
 	CCommands() {}
     static bool doRetrieve(const CString& id,
-                           BOOL checkOut,
-                           const CString& version);
+                           BOOL checkOut);
     static bool doInsertLink(const CString&);
     static bool doLogon(LogonDialog& dialog);
 

@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.4 2001-11-27 14:21:01 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.5 2002-04-20 19:20:00 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/11/27 14:21:01  bkline
+ * Version used at November 2001 demo.
+ *
  * Revision 1.3  2001/06/14 01:25:14  bkline
  * Added missing UpdateData() call.
  *
@@ -35,7 +38,6 @@ struct LastSearch {
     StringType stringType;
     cdr::DocSet docSet;
     CString searchString;
-    CString version;
     BOOL checkOut;
     int docType;
     int selection;
@@ -55,7 +57,6 @@ CSearchDialog::CSearchDialog(const std::list<CString>& typeList,
 {
 	//{{AFX_DATA_INIT(CSearchDialog)
 	m_searchString = _T("");
-	m_version = _T("");
 	m_checkOut = TRUE;
 	//}}AFX_DATA_INIT
 }
@@ -73,7 +74,6 @@ void CSearchDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_RADIO2, m_titleContains);
 	DDX_Control(pDX, IDC_RADIO1, m_titleStart);
 	DDX_Text(pDX, IDC_EDIT1, m_searchString);
-	DDX_Text(pDX, IDC_EDIT2, m_version);
 	DDX_Check(pDX, IDC_CHECK1, m_checkOut);
 	//}}AFX_DATA_MAP
 }
@@ -106,11 +106,10 @@ void CSearchDialog::OnRetrieveButton()
 	if (curSel >= 0) {
 		CString str;
 		m_docList.GetText(curSel, str);
-        if (CCommands::doRetrieve(str, m_checkOut, m_version))
+        if (CCommands::doRetrieve(str, m_checkOut))
     		EndDialog(IDCANCEL);	
         lastSearch.selection = curSel;
         lastSearch.checkOut  = m_checkOut;
-        lastSearch.version   = m_version;
     }
 }
 
@@ -190,7 +189,6 @@ void CSearchDialog::OnSearchButton()
     }
 
     // Remember this search.
-    lastSearch.version      = m_version;
     lastSearch.checkOut     = m_checkOut;
     lastSearch.empty        = false;
 }
@@ -216,7 +214,6 @@ BOOL CSearchDialog::OnInitDialog()
 	m_docTypes.SetCurSel(0);
     if (!lastSearch.empty) {
         m_searchString = lastSearch.searchString;
-        m_version      = lastSearch.version;
         m_checkOut     = lastSearch.checkOut;
         m_docTypes.SetCurSel(lastSearch.docType);
         m_titleStart.SetCheck(0);

@@ -32,7 +32,6 @@ public:
 	CButton	m_titleContains;
 	CButton	m_titleStart;
 	CString	m_searchString;
-	CString	m_version;
 	BOOL	m_checkOut;
 	//}}AFX_DATA
 

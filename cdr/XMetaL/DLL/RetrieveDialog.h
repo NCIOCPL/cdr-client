@@ -21,7 +21,6 @@ public:
 	enum { IDD = IDD_RETRIEVE_DIALOG };
 	CString	m_DocId;
 	BOOL	m_CheckOut;
-	CString	m_Version;
 	//}}AFX_DATA
 
 
