@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.83 2002-10-07 11:45:17 bkline Exp $
+     $Id: Cdr.mcr,v 1.84 2002-10-09 14:11:54 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.83  2002/10/07 11:45:17  bkline
+     Eliminated more dead code.
+
      Revision 1.82  2002/09/26 15:30:51  bkline
      Eliminated dead code.
 
@@ -564,9 +567,12 @@
         else {
 
             // Prevent On_Update_UI macro from blocking our editing.
+            var whatItWas = Selection.ReadOnlyContainer;
+            Selection.ReadOnlyContainer = false;
             gEditingCdrLink = true;
             var rc  = cdrObj.protUpdPerson();
             gEditingCdrLink = false;
+            Selection.ReadOnlyContainer = whatItWas;
         }
     }
   
