@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.50 2002-04-26 23:08:32 bkline Exp $
+     $Id: Cdr.mcr,v 1.51 2002-05-06 18:55:28 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.50  2002/04/26 23:08:32  bkline
+     Added MiscellaneousDocument toolbar.
+
      Revision 1.49  2002/04/24 23:53:00  bkline
      Replaced stub for Generate Mailers macro.
 
@@ -4635,8 +4638,8 @@
                             + "&DocId=" + docId;
         Application.ShowPage(url);
     }
-    Application.Alert("Don't have filters for this command yet.");
-    //redlineStrikeoutReport();
+    //Application.Alert("Don't have filters for this command yet.");
+    redlineStrikeoutReport();
   ]]>
 </MACRO>
 
