@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.2 2001-06-09 12:43:36 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.3 2001-06-14 01:25:14 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2001/06/09 12:43:36  bkline
+ * Switched to Unicode; added code to make search state persistent.
+ *
  * Revision 1.1  2000/10/16 22:29:27  bkline
  * Initial revision
  *
@@ -95,6 +98,7 @@ BOOL CSearchDialog::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD 
  */
 void CSearchDialog::OnRetrieveButton() 
 {
+    UpdateData(true);
 	int curSel = m_docList.GetCurSel();
 	if (curSel >= 0) {
 		CString str;
