@@ -780,7 +780,7 @@
     </Template>
     <Template>
       <Name>PublicationYear</Name>
-      <MiniTemplate><![CDATA[<PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication} ?></PublicationYear>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CancerLitID</Name>
@@ -788,7 +788,7 @@
     </Template>
     <Template>
       <Name>OtherPublicationInformation</Name>
-      <MiniTemplate><![CDATA[<OtherPublicationInformation><?xm-replace_text {Enter other relevant publication details (required)} ?></OtherPublicationInformation>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<OtherPublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></OtherPublicationInformation>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CopyrightInformation</Name>
@@ -808,7 +808,7 @@
     </Template>
     <Template>
       <Name>FirstName</Name>
-      <MiniTemplate><![CDATA[<FirstName><?xm-replace_text {Enter the author's first name (required)} ?></FirstName>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<FirstName><?xm-replace_text {Enter the author's initials (required)} ?></FirstName>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Initials</Name>
@@ -845,11 +845,9 @@
       <Name>Author</Name>
       <MiniTemplate><![CDATA[<Author>
 <LastName><?xm-replace_text {Enter the author's last name (required)} ?></LastName>
-<FirstName><?xm-replace_text {Enter the author's first name (required)} ?></FirstName>
+<FirstName><?xm-replace_text {Enter the author's initials (required)} ?></FirstName>
 <MiddleName><?xm-replace_text {Optionally enter the author's middle name} ?></MiddleName>
 <Initials><?xm-replace_text {Optionally enter the author's initials} ?></Initials>
-<Suffix><?xm-replace_text {Optionally enter the author's suffix} ?></Suffix>
-<Affiliation><?xm-replace_text {Optionally enter the author's affiliation} ?></Affiliation>
 </Author>]]></MiniTemplate>
     </Template>
     <Template>
