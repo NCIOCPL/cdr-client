@@ -1530,11 +1530,6 @@
 <ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolAmendment>
-<DatedAction>
-<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
-<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</DatedAction>
 </ProtocolAmendmentInformation>]]></MiniTemplate>
     </Template>
   </Templates>
