@@ -86,7 +86,7 @@
 <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
 <Para>The following tests and procedures may be used:</Para>
 <ItemizedList Style="bullet">
-			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: <GlossaryTermRef cdr:href="CDR0000046476">Cells</GlossaryTermRef>, <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef>, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046698">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045657">core biopsy</GlossaryTermRef>. When an entire <GlossaryTermRef cdr:href="CDR0000046634">tumor</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046324">lesion</GlossaryTermRef> is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046411">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000045798">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045691">fine-needle aspiration</GlossaryTermRef>.</ListItem>
+			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed   under a microscope to check for signs of cancer.  [Tailor full definition to fit the cancer.] </ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
@@ -110,7 +110,7 @@
 <SectMetaData>
 <SectionType>Diagnostic tests</SectionType>
 </SectMetaData>
-<KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the X or to other parts of the body. </KeyPoint>
+<KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the x or to other parts of the body. </KeyPoint>
 <Para>The process used to find out if <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> has spread within the x or to other
 parts of the body is called <GlossaryTermRef cdr:href="CDR0000046597">staging</GlossaryTermRef>. The information gathered from the
 staging process determines the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the disease. It is important to know
@@ -132,12 +132,12 @@ appropriate.]</Para>
 </SectMetaData><KeyPoint>The following stages are used for x cancer:</KeyPoint>
 <SummarySection>
 <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
-<Para>In stage 0, the cancer is found in .... Stage 0 cancer is also called <GlossaryTermRef cdr:href="CDR0000046488">carcinoma in situ</GlossaryTermRef>.</Para>
+<Para>In stage 0, cancer is found in .... Stage 0 cancer is also called <GlossaryTermRef cdr:href="CDR0000046488">carcinoma in situ</GlossaryTermRef>.</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Stage I</KeyPoint>
-<Para>In stage I, the cancer has spread .....</Para>
+<Para>In stage I, cancer has spread .....</Para>
 </SummarySection>
 
 <SummarySection>
@@ -162,7 +162,7 @@ appropriate.]</Para>
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  X <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the xx or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -172,11 +172,21 @@ appropriate.]</Para>
 <SectMetaData>
 <SectionType>Standard treatment</SectionType>
 </SectMetaData>
-<KeyPoint>There are different types of treatment for  patients with X cancer.</KeyPoint>
-<Para>Different types of treatments are available for  patients with X <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
+<KeyPoint>There are different types of treatment for  patients with x cancer.</KeyPoint>
+<Para>Different types of treatments are available for  patients with x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
 <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
 </SummarySection>
 
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Standard treatment</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. [Use for childhood treatment summaries.  Tailor if needed for adult.]</KeyPoint>
+<Para>Your child's treatment will be overseen by a <GlossaryTermRef cdr:href="CDR0000046245">pediatric</GlossaryTermRef> <GlossaryTermRef cdr:href="CDR0000046260">oncologist</GlossaryTermRef>, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: [Add or delete specialists to fit the cancer treatment.]</Para>
+<ItemizedList Style="bullet"><ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem><ListItem>Neuropathologist.</ListItem><ListItem>Neuroradiologist.</ListItem><ListItem>Rehabilitation specialist.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem><ListItem>Psychologist.</ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem></ItemizedList></SummarySection>
 <SummarySection>
 <SectMetaData>
 <SectionType>Standard treatment</SectionType>
@@ -251,7 +261,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<Diagnosis>208/00000</Diagnosis>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
 </SectMetaData>
 <Title>Stage 0 X Cancer (Carcinoma in Situ)</Title>
 <Para>Treatment of stage 0 x cancer may include the following:</Para>
@@ -264,7 +274,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<Diagnosis>208/00000</Diagnosis>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
 </SectMetaData>
 <Title>Stage I X Cancer</Title>
 <Para>Treatment of stage I x cancer may include the following:</Para>
@@ -277,7 +287,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<Diagnosis>208/00000</Diagnosis>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
 </SectMetaData>
 <Title>Stage II X Cancer</Title>
 <Para>Treatment of stage II x cancer may include the following:</Para>
@@ -290,7 +300,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<Diagnosis>208/00000</Diagnosis>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
 </SectMetaData>
 <Title>Stage III X Cancer</Title>
 <Para>Treatment of stage III x cancer may include the following:</Para>
@@ -304,7 +314,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<Diagnosis>208/00000</Diagnosis>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
 </SectMetaData>
 <Title>Stage IV X Cancer</Title>
 <Para>Treatment of stage IV x cancer may include the following:</Para>
@@ -319,7 +329,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <SectMetaData>
-<SectionType>Treatment options by stage</SectionType>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis><SectionType>Treatment options by stage</SectionType>
 </SectMetaData>
 <Title>Treatment Options for Recurrent X Cancer</Title>
 <Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent </GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> may include the following:</Para>
