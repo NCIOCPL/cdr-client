@@ -61,7 +61,7 @@
 		<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
 		<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
 		<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax> 
-		<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email> 
+		<Email Public="No"><?xm-replace_text {Optionally enter an e-mail address} ?></Email> 
 		<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite></PrivatePracticeLocation>
 		</PrivatePractice> 
 	 <OtherPracticeLocation> 
