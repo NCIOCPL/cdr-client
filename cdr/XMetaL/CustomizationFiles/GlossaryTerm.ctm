@@ -406,5 +406,9 @@
       <Name>Para</Name>
       <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
   </Templates>
 </DTDExtensions>
