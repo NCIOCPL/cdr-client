@@ -55,7 +55,7 @@ BOOL CVersionList::OnInitDialog()
     std::basic_ostringstream<TCHAR> cmd;
     cmd << _T("<CdrListVersions><DocId>")
         << (LPCTSTR)docId
-        << _T("</DocId><NumVersions>5</NumVersions></CdrListVersions>");
+        << _T("</DocId></CdrListVersions>");
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
@@ -75,7 +75,9 @@ BOOL CVersionList::OnInitDialog()
     while (v) {
         cdr::Element num      = v.extractElement(v.getString(), _T("Num"));
         cdr::Element comment  = v.extractElement(v.getString(), _T("Comment"));
+        cdr::Element date     = v.extractElement(v.getString(), _T("Date"));
         CString commentString = comment ? comment.getString() : _T("No comment");
+		CString dateString    = date ? date.getString().Left(11) : _T("");
         commentString.Replace(_T("\r"), _T(" "));
         commentString.Replace(_T("\n"), _T(" "));
         while (commentString.Replace(_T("  "), _T(" ")) > 0)
@@ -83,6 +85,7 @@ BOOL CVersionList::OnInitDialog()
         CString str           = _T("[") 
                               + num.getString()
                               + _T("] ")
+							  + dateString
                               + commentString;
         m_choiceList.AddString(str);
         ++numVersions;
