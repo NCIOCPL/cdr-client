@@ -43,7 +43,7 @@
 <SectionType>Risk factors</SectionType>
 </SectMetaData>
 <KeyPoint>A, B, C can affect the risk of developing x cancer. </KeyPoint>
-<Para><?xm-replace_text {Paragraph} ?></Para>
+<Para>Risk factors include the following:</Para>
 <ItemizedList Style="bullet"> 
 		  <ListItem>[risk here]</ListItem> 
 		  <ListItem>[risk here]</ListItem> 
@@ -85,7 +85,7 @@
 </SectMetaData>
 <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
 <Para>The following tests and procedures may be used:</Para>
-<ItemizedList>
+<ItemizedList Style="bullet">
 			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: Cells, tissues, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046698">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045657">core biopsy</GlossaryTermRef>. When an entire tumor or lesion is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046411">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000045798">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045691">fine-needle aspiration</GlossaryTermRef>.</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
@@ -162,7 +162,7 @@ appropriate.]</Para>
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para>Recurrent X cancer is cancer that has recurred (come back) after it has been treated. Recurrent X cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
+<Para>Recurrent X cancer is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -191,7 +191,7 @@ appropriate.]</Para>
 
 <SummarySection>
 <KeyPoint><InterventionName>Radiation therapy</InterventionName></KeyPoint>
-<Para>Radiation therapy is the use of x-rays or other types of radiation to kill cancer cells and shrink tumors. Radiation therapy may use external radiation (using a machine outside the body) or internal radiation. Internal radiation involves putting radioisotopes (materials that produce radiation) through thin plastic tubes into the area where cancer cells are found. [Include any of the following sentences that apply.] X cancer is treated with _____radiation. Radiation may be used alone or in addition to surgery, chemotherapy or both. Radiation may be used alone or before or after surgery.</Para>
+<Para>Radiation therapy is the use of x-rays or other types of radiation to kill cancer cells and shrink tumors. Radiation therapy may use external radiation (using a machine outside the body) or internal radiation. Internal radiation involves putting radioisotopes (materials that produce radiation) through thin plastic tubes into the area where cancer cells are found. X cancer is treated with _____radiation.</Para>
 </SummarySection>
 
 <SummarySection>
