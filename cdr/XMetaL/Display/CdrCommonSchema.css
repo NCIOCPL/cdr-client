@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.8 2004-08-10 19:37:18 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.9 2004-08-17 12:03:30 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.8  2004/08/10 19:37:18  bkline
+ * Fixed last change to apply to proposed markup instead of approved.
+ *
  * Revision 1.7  2004/08/10 19:29:13  bkline
  * Made approved markup blue instead of red (request #1213).
  *
@@ -548,13 +551,13 @@ Deletion
 Deletion[RevisionLevel='proposed']
 
      { text-decoration: line-through;
-       color: #009999; }
+       color: green; }
 
 Insertion 
 
      { color: red; }
 
-Insertion[RevisionLevel='proposed'] { color: #009999 }
+Insertion[RevisionLevel='proposed'] { color: green }
 
 /*       Special case style elements                                       */
 
@@ -667,14 +670,14 @@ Insertion[RevisionLevel='proposed']>SummaryLink,
 Insertion[RevisionLevel='proposed']>SummaryRef,
 
      { text-decoration: underline; 
-       color: #009999; }
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>ProtocolLink,
 Insertion[RevisionLevel='proposed']>ProtocolRef,
 Insertion[RevisionLevel='proposed']>ProtocolReference,
 
      { text-decoration: underline; 
-       color: #009999; }
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>DrugName,
 Insertion[RevisionLevel='proposed']>Emphasis,
@@ -685,39 +688,39 @@ Insertion[RevisionLevel='proposed']>Quote,
 Insertion[RevisionLevel='proposed']>ScientificName,
 
      { font-style: italic; 
-       color: #009999;         }
+       color: green;         }
 
 Insertion[RevisionLevel='proposed']>Strong,
 
      { font-weight: bold;  
-       color: #009999;          }
+       color: green;          }
 
 Insertion[RevisionLevel='proposed']>Subscript,
 
      { vertical-align: sub; 
-       color: #009999;           }
+       color: green;           }
 
 Insertion[RevisionLevel='proposed']>Superscript,
 
      { vertical-align: super; 
-       color: #009999;             }
+       color: green;             }
 
 Insertion[RevisionLevel='proposed']>Note,
 Insertion[RevisionLevel='proposed']>Note:before,
 Insertion[RevisionLevel='proposed']>Note:after,
 
      { font-size: 10pt;
-       color: #009999;     }
+       color: green;     }
 
 Insertion[RevisionLevel='proposed']>Question 
 
      { font-weight: bold; 
-       color: #009999;         }
+       color: green;         }
 
 Insertion[RevisionLevel='proposed']>Answer 
 
      { text-indent: 20pt; 
-       color: #009999;        }
+       color: green;        }
 
 
 Deletion>CitationLink,
@@ -825,7 +828,7 @@ Deletion[RevisionLevel='proposed']>SummaryRef,
 
      { text-decoration: underline;
        text-decoration: line-through; 
-       color: #009999; }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>ProtocolLink,
 Deletion[RevisionLevel='proposed']>ProtocolRef,
@@ -833,7 +836,7 @@ Deletion[RevisionLevel='proposed']>ProtocolReference,
 
      { text-decoration: underline; 
        text-decoration: line-through;
-       color: #009999; }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>DrugName,
 Deletion[RevisionLevel='proposed']>Emphasis,
@@ -845,25 +848,25 @@ Deletion[RevisionLevel='proposed']>ScientificName,
 
      { font-style: italic; 
        text-decoration: line-through;
-       color: #009999;        }
+       color: green;        }
 
 Deletion[RevisionLevel='proposed']>Strong,
 
      { font-weight: bold;  
        text-decoration: line-through;
-       color: #009999;       }
+       color: green;       }
 
 Deletion[RevisionLevel='proposed']>Subscript,
 
      { vertical-align: sub; 
        text-decoration: line-through;
-       color: #009999;        }
+       color: green;        }
 
 Deletion[RevisionLevel='proposed']>Superscript,
 
      { vertical-align: super; 
        text-decoration: line-through;
-       color: #009999;       }
+       color: green;       }
 
 Deletion[RevisionLevel='proposed']>Note,
 Deletion[RevisionLevel='proposed']>Note:before,
@@ -871,19 +874,19 @@ Deletion[RevisionLevel='proposed']>Note:after,
 
      { font-size: 10pt;
        text-decoration: line-through;
-       color: #009999;     }
+       color: green;     }
 
 Deletion[RevisionLevel='proposed']>Question 
 
      { font-weight: bold; 
        text-decoration: line-through;
-       color: #009999;         }
+       color: green;         }
 
 Deletion[RevisionLevel='proposed']>Answer 
 
      { text-indent: 20pt; 
        text-decoration: line-through;
-       color: #009999;        }
+       color: green;        }
 
 
 /***************************************************************************/ 
