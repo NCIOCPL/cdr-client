@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.51 2002-05-06 18:55:28 bkline Exp $
+     $Id: Cdr.mcr,v 1.52 2002-05-08 20:04:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.51  2002/05/06 18:55:28  bkline
+     Turned on redline/strikeout report.
+
      Revision 1.50  2002/04/26 23:08:32  bkline
      Added MiscellaneousDocument toolbar.
 
@@ -1639,12 +1642,6 @@
                            "CDR", 3, 6,
                            false),
             new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
                            "Protocol Patient QC Report",
                            "Patient QC",
                            "Patient QC Report",
@@ -1661,6 +1658,12 @@
                            "Citations QC",
                            "Citations QC Report",
                            "CDR", 3, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Generate Mailer",
+                           "Mailer",
+                           "Generate Mailer",
+                           "CDR", 5, 8,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -4367,7 +4370,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Denormalization+Filter:+InScope+Protocol" +
+                "&Filter=name:Denormalization+Filter+(1/1):+InScope+Protocol" +
                 "&Filter1=name:InScope+Protocol+Administrative+Report+Filter";
         Application.ShowPage(url);
     }
@@ -4558,13 +4561,13 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py"
-                            + "?Filter=name:Summary+Filter1"
-                            + "&Filter1=name:Summary+Filter2"
-                            + "&Filter2=name:Summary+Filter3"
-                            + "&Filter3=name:Summary+Filter4"
-                            + "&Filter4=name:Summary+Filter5"
-                            + "&Filter5=name:Health+Professional+Summary+Report"
-                            + "&DocId=" + docId;
+                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
+                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
+                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
+                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
+                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
+                + "&Filter5=name:Health+Professional+Summary+Report"
+                + "&DocId=" + docId;
         Application.ShowPage(url);
     }
     createSummaryMarkupReport();
@@ -4581,13 +4584,13 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py"
-                            + "?Filter=name:Summary+Filter1"
-                            + "&Filter1=name:Summary+Filter2"
-                            + "&Filter2=name:Summary+Filter3"
-                            + "&Filter3=name:Summary+Filter4"
-                            + "&Filter4=name:Summary+Filter5"
-                            + "&Filter5=name:Health+Professional+Summary+Report"
-                            + "&DocId=" + docId;
+                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
+                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
+                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
+                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
+                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
+                + "&Filter5=name:Health+Professional+Summary+Report"
+                + "&DocId=" + docId;
         Application.ShowPage(url);
     }
     Application.Alert("Don't have filters for this command yet.");
@@ -4605,13 +4608,13 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py"
-                            + "?Filter=name:Summary+Filter1"
-                            + "&Filter1=name:Summary+Filter2"
-                            + "&Filter2=name:Summary+Filter3"
-                            + "&Filter3=name:Summary+Filter4"
-                            + "&Filter4=name:Summary+Filter5"
-                            + "&Filter5=name:Health+Professional+Summary+Report"
-                            + "&DocId=" + docId;
+                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
+                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
+                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
+                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
+                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
+                + "&Filter5=name:Health+Professional+Summary+Report"
+                + "&DocId=" + docId;
         Application.ShowPage(url);
     }
     Application.Alert("Don't have filters for this command yet.");
@@ -4629,17 +4632,41 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py"
-                            + "?Filter=name:Summary+Filter1"
-                            + "&Filter1=name:Summary+Filter2"
-                            + "&Filter2=name:Summary+Filter3"
-                            + "&Filter3=name:Summary+Filter4"
-                            + "&Filter4=name:Summary+Filter5"
-                            + "&Filter5=name:Health+Professional+Summary+Report"
-                            + "&DocId=" + docId;
+                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
+                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
+                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
+                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
+                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
+                + "&Filter5=name:Health+Professional+Summary+Report"
+                + "&DocId=" + docId;
         Application.ShowPage(url);
     }
     //Application.Alert("Don't have filters for this command yet.");
     redlineStrikeoutReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Patient Summary QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function patientSummaryQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId +
+                "&Filter=name:Summary-Copy XML for Patient Summary Report" +
+                "&Filter1=name:Patient Summary QC Report Filter";
+        Application.ShowPage(url);
+    }
+    //Application.Alert("Don't have the filters yet for this report.");
+    patientSummaryQcReport();
   ]]>
 </MACRO>
 
