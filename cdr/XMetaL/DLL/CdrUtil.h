@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.7 2002-06-13 18:48:48 bkline Exp $
+ * $Id: CdrUtil.h,v 1.8 2002-07-18 00:52:13 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2002/06/13 18:48:48  bkline
+ * Added hostname property.
+ *
  * Revision 1.6  2002/04/18 21:47:53  bkline
  * Replaced include statement for xmetal2.h with xmetal3.h.
  *
@@ -62,6 +65,12 @@ public:
 	static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }
     static const CString getHostName() { return hostName; }
+    static CString getShortHostName() {
+        int dot = hostName.Find(TCHAR('.'));
+        if (dot != -1 && !_istdigit(hostName[0]))
+            return hostName.Left(dot);
+        return hostName;
+    }
 private:
     int sock;
     enum { CDR_SOCK = 2019 };
@@ -159,6 +168,7 @@ namespace cdr {
     _Application getApp();
     CString getXmetalPath();
     CString encode(CString str, bool fixQuotes = false);
+    CString decode(CString str);
     unsigned long getDocNo(const CString& docString);
     CString extractElementText(DOMNode node);
     CString trim(const CString& s);
