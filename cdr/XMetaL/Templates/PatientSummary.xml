@@ -1,362 +1,339 @@
 <?xml version="1.0"?>
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
 <Summary xmlns:cdr="cips.nci.nih.gov/cdr">
-<CdrDocCtl>
-<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-</CdrDocCtl>
-<SummaryMetaData>
-<SummaryType>Treatment</SummaryType>
-<SummaryAudience>Patients</SummaryAudience>
-<SummaryLanguage>English</SummaryLanguage>
-<PDQBoard>
-<Board cdr:ref="CDR0000035049">PDQ Adult Treatment Advisory Board;PDQ ATAB;Bethesda;Maryland</Board>
-<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
-</PDQBoard>
-<MainTopics>
-<Term>X cancer</Term>
-</MainTopics>
-<SecondaryTopics>
-<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
-</SecondaryTopics>
-</SummaryMetaData>
-<SummaryTitle>Cancer Title</SummaryTitle>
-
-<SummarySection>
-
-<Title>General Information About X Cancer</Title>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Cancer description</SectionType>
-<SectionType>Organ description</SectionType>
-</SectMetaData>
-<KeyPoint>X cancer is a disease in which malignant (cancer) cells form in
-		  the tissues of the x.</KeyPoint>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Risk factors</SectionType>
-</SectMetaData>
-<KeyPoint>A, B, C can affect the risk of developing x cancer. </KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000045873">Risk factors</GlossaryTermRef> include the following:</Para>
-<ItemizedList Style="bullet"> 
-		  <ListItem>[risk here]</ListItem> 
-		  <ListItem>[risk here]</ListItem> 
-		  <ListItem>[risk here]</ListItem> 
-		  <ListItem>[risk here]</ListItem> 
-		</ItemizedList>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Genetic aspects</SectionType>
-</SectMetaData>
-<KeyPoint>X cancer is sometimes caused by inherited gene mutations.</KeyPoint>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-<ItemizedList Style="bullet"> 
-		  <ListItem>[gene here]</ListItem> 
-		  <ListItem>[gene here]</ListItem> 
-		  <ListItem>[gene here]</ListItem> 
-		</ItemizedList>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Symptoms</SectionType>
-</SectMetaData>
-<KeyPoint>Possible signs of x cancer include A, B, C. </KeyPoint>
-<Para>These and other <GlossaryTermRef cdr:href="CDR0000045022">symptoms</GlossaryTermRef> may be caused by x cancer or by other conditions. A doctor should be consulted if any of the following problems occur:</Para>
-<ItemizedList Style="bullet"> 
-		  <ListItem>[possible sign here]</ListItem> 
-		  <ListItem>[possible sign here]</ListItem> 
-		  <ListItem>[possible sign here]</ListItem> 
-		  <ListItem>[possible sign here]</ListItem> 
-		</ItemizedList>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Diagnostic tests</SectionType>
-</SectMetaData>
-<KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
-<Para>The following tests and procedures may be used:</Para>
-<ItemizedList Style="bullet">
-			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed   under a microscope to check for signs of cancer.  [Tailor full definition to fit the cancer.] </ListItem>
-			 <ListItem>[test here]</ListItem>
-			 <ListItem>[test here]</ListItem>
-			 <ListItem>[test here]</ListItem>
-			 <ListItem>[test here]</ListItem>
-			 </ItemizedList>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Prognostic factors</SectionType>
-</SectMetaData>
-<KeyPoint>Certain factors affect treatment options and prognosis (chance of recovery).</KeyPoint>
-<Para>The treatment options and <GlossaryTermRef cdr:href="CDR0000045849">prognosis</GlossaryTermRef> (chance of recovery) depend on the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the cancer (whether it affects part of the x, involves the whole x, or has spread to other places in the body), the type of cancer, the size of the <GlossaryTermRef cdr:href="CDR0000046634">tumor</GlossaryTermRef>, and the patient's general health. [Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<Title>Stages of X Cancer</Title>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Diagnostic tests</SectionType>
-</SectMetaData>
-<KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the x or to other parts of the body. </KeyPoint>
-<Para>The process used to find out if <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> has spread within the x or to other
-parts of the body is called <GlossaryTermRef cdr:href="CDR0000046597">staging</GlossaryTermRef>. The information gathered from the
-staging process determines the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the disease. It is important to know
-the stage in order to plan the best treatment. The following tests and
-procedures may be used in the staging process:
-
-[Note: The last sentence should be changed to only tests or only procedures, as
-appropriate.]</Para>
-<ItemizedList Style="bullet"> 
-		  <ListItem> [test here]</ListItem> 
-		  <ListItem> [test here]</ListItem> 
-		  <ListItem> [test here]</ListItem> 
-		  </ItemizedList>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Classification by stage</SectionType>
-</SectMetaData><KeyPoint>The following stages are used for x cancer:</KeyPoint>
-<SummarySection>
-<KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
-<Para>In stage 0, cancer is found in .... Stage 0 cancer is also called <GlossaryTermRef cdr:href="CDR0000046488">carcinoma in situ</GlossaryTermRef>.</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint>Stage I</KeyPoint>
-<Para>In stage I, cancer has spread .....</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint>Stage II</KeyPoint>
-<Para>In stage II, cancer has spread .....</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint>Stage III</KeyPoint>
-<Para>In stage III, cancer has spread .....</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint>Stage IV</KeyPoint>
-<Para>In stage IV, cancer has spread .....</Para>
-</SummarySection>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Classification by stage</SectionType>
-</SectMetaData>
-<Title>Recurrent X Cancer</Title>
-<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef>  x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the x or in other parts of the body.  <!--[if true]--> </Para>
-</SummarySection>
-
-<SummarySection>
-<Title>Treatment Option Overview</Title>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Standard treatment</SectionType>
-</SectMetaData>
-<KeyPoint>There are different types of treatment for  patients with x cancer.</KeyPoint>
-<Para>Different types of treatments are available for  patients with x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
-<Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-
-<SectionType>Standard treatment</SectionType>
-</SectMetaData>
-
-
-<KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. [Use for childhood treatment summaries.  Tailor if needed for adult.]</KeyPoint>
-<Para>Your child's treatment will be overseen by a <GlossaryTermRef cdr:href="CDR0000046245">pediatric</GlossaryTermRef> <GlossaryTermRef cdr:href="CDR0000046260">oncologist</GlossaryTermRef>, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: [Add or delete specialists to fit the cancer treatment.]</Para>
-<ItemizedList Style="bullet">
- <ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem>
- <ListItem>Neuropathologist.</ListItem>
- <ListItem>Neuroradiologist.</ListItem>
- <ListItem>Rehabilitation specialist.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000044716">Psychologist</GlossaryTermRef>.</ListItem>
- <ListItem><GlossaryTermRef cdr:href="CDR0000044730">Social Worker</GlossaryTermRef>.</ListItem>
- <ListItem><?xm-replace_text {ListItem}?></ListItem>
- <ListItem><?xm-replace_text {ListItem}?></ListItem>
-</ItemizedList>
-</SummarySection>
-<SummarySection>
-<SectMetaData>
-<SectionType>Standard treatment</SectionType>
-</SectMetaData>
-<KeyPoint># types of standard treatment are used:</KeyPoint>
-
-<SummarySection>
-<KeyPoint><InterventionName>Surgery</InterventionName></KeyPoint>
-<Para>[describe surgery here]</Para>
-<Para>Even if the doctor removes all the cancer that can be seen at the time of the <GlossaryTermRef cdr:href="CDR0000045570">surgery</GlossaryTermRef>, some patients may be given <GlossaryTermRef cdr:href="CDR0000045214">chemotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000044971">radiation therapy</GlossaryTermRef> after surgery to kill any cancer cells that are left. Treatment given after the surgery, to increase the chances of a cure, is called <GlossaryTermRef cdr:href="CDR0000045587">adjuvant therapy</GlossaryTermRef>.</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint><InterventionName>Radiation therapy</InterventionName></KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high-energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a <GlossaryTermRef cdr:href="CDR0000046550">radioactive</GlossaryTermRef> substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer.</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint><InterventionName>Chemotherapy</InterventionName></KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   Because some normal cells such as <GlossaryTermRef cdr:href="CDR0000270735">blood</GlossaryTermRef> and hair can be affected, <GlossaryTermRef cdr:href="CDR0000046580">side effects</GlossaryTermRef> can occur.  When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can affect cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000301626">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an <GlossaryTermRef cdr:href="CDR0000257523">organ</GlossaryTermRef>, the drugs mainly affect cancer cells in those areas.</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint><InterventionName>Hormone therapy</InterventionName></KeyPoint>
-
-<Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that blocks the action of <GlossaryTermRef cdr:href="CDR0000045713">hormones</GlossaryTermRef> and stops cancer cells from growing.  Hormones are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and circulated in the bloodstream.  The presence of some hormones can cause certain cancers to grow.  If tests show the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para></SummarySection>
-
-<SummarySection>
-<KeyPoint>Biologic therapy</KeyPoint>
-
-<Para><GlossaryTermRef cdr:href="CDR0000045617">Biologic therapy</GlossaryTermRef> is a treatment that uses the patient's <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called <GlossaryTermRef cdr:href="CDR0000044483">biotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045729">immunotherapy</GlossaryTermRef>.
-</Para></SummarySection>
-
-<SummarySection>
-<KeyPoint><InterventionName>[Therapy here]</InterventionName></KeyPoint>
-<Para>[describe therapy here]</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint><InterventionName>[Therapy here]</InterventionName></KeyPoint>
-<Para>[describe therapy here]</Para>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Treatment in clinical trials</SectionType>
-</SectMetaData>
-<KeyPoint>Other types of treatment are being tested in clinical trials. These include the following:</KeyPoint>
-
-<SummarySection>
-<KeyPoint>Clinical trial here</KeyPoint>
-<Para>[para here]</Para>
-</SummarySection>
-
-<SummarySection>
-<KeyPoint>Clinical trial here</KeyPoint>
-<Para>[para here]</Para>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<SectionType>Treatment options by stage</SectionType>
-</SectMetaData>
-<Title>Treatment Options by Stage </Title>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
-</SectMetaData>
-<Title>Stage 0 X Cancer (Carcinoma in Situ)</Title>
-<Para>Treatment of stage 0 x cancer may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem>[treatment here]</ListItem>
-     <ListItem>[treatment here]</ListItem>
-     <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
-</ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
-</SectMetaData>
-<Title>Stage I X Cancer</Title>
-<Para>Treatment of stage I x cancer may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem>[treatment here]</ListItem>
-	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A clinical trial of ....</ListItem>
-	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
-</SectMetaData>
-<Title>Stage II X Cancer</Title>
-<Para>Treatment of stage II x cancer may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem>[treatment here]</ListItem>
-	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A clinical trial of ....</ListItem>
-	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
-</SectMetaData>
-<Title>Stage III X Cancer</Title>
-<Para>Treatment of stage III x cancer may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem>[treatment here]</ListItem>
-	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A clinical trial of ....</ListItem>
-	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
-</SectMetaData>
-<Title>Stage IV X Cancer</Title>
-<Para>Treatment of stage IV x cancer may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem>[treatment here]</ListItem>
-	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A clinical trial of ....</ListItem>
-	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
-</SummarySection>
-</SummarySection>
-
-<SummarySection>
-<SectMetaData>
-<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis><SectionType>Treatment options by stage</SectionType>
-</SectMetaData>
-<Title>Treatment Options for Recurrent X Cancer</Title>
-<Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent </GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> may include the following:</Para>
-<ItemizedList Style="bullet">
-     <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef>.</ListItem>
-	  <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef>.</ListItem>
-	  <ListItem><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef>.</ListItem>
-	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
-	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
-</SummarySection>
-
+ <CdrDocCtl>
+  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+ </CdrDocCtl>
+ <SummaryMetaData>
+  <SummaryType>Treatment</SummaryType>
+  <SummaryAudience>Patients</SummaryAudience>
+  <SummaryLanguage>English</SummaryLanguage>
+  <PDQBoard>
+   <Board cdr:ref="CDR0000035049">PDQ Adult Treatment Advisory Board;PDQ ATAB;Bethesda;Maryland</Board>
+   <BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
+  </PDQBoard>
+  <MainTopics>
+   <Term>X cancer</Term>
+  </MainTopics>
+  <SecondaryTopics>
+   <Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+  </SecondaryTopics>
+ </SummaryMetaData>
+ <SummaryTitle>Cancer Title</SummaryTitle>
+ <SummarySection>
+  <Title>General Information About X Cancer</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Cancer description</SectionType>
+    <SectionType>Organ description</SectionType>
+   </SectMetaData>
+   <KeyPoint>X cancer is a disease in which malignant (cancer) cells form in the tissues of the x.</KeyPoint>
+   <Para><?xm-replace_text {Paragraph} ?></Para>
+   <Para><?xm-replace_text {Paragraph} ?></Para>
+   <Para><?xm-replace_text {Paragraph} ?></Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>A, B, C can affect the risk of developing x cancer.</KeyPoint>
+   <Para><GlossaryTermRef cdr:href="CDR0000045873">Risk factors</GlossaryTermRef> include the following:</Para>
+   <ItemizedList Style="bullet"> 
+    <ListItem>[risk here]</ListItem> 
+    <ListItem>[risk here]</ListItem> 
+    <ListItem>[risk here]</ListItem> 
+    <ListItem>[risk here]</ListItem> 
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Genetic aspects</SectionType>
+   </SectMetaData>
+   <KeyPoint>X cancer is sometimes caused by inherited gene mutations.</KeyPoint>
+   <Para><?xm-replace_text {Paragraph} ?></Para>
+   <ItemizedList Style="bullet"> 
+    <ListItem>[gene here]</ListItem> 
+    <ListItem>[gene here]</ListItem> 
+    <ListItem>[gene here]</ListItem> 
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Symptoms</SectionType>
+   </SectMetaData>
+   <KeyPoint>Possible signs of x cancer include A, B, C.</KeyPoint>
+   <Para>These and other <GlossaryTermRef cdr:href="CDR0000045022">symptoms</GlossaryTermRef> may be caused by x cancer or by other conditions. A doctor should be consulted if any of the following problems occur:</Para>
+   <ItemizedList Style="bullet"> 
+    <ListItem>[possible sign here]</ListItem> 
+    <ListItem>[possible sign here]</ListItem> 
+    <ListItem>[possible sign here]</ListItem> 
+    <ListItem>[possible sign here]</ListItem> 
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Diagnostic tests</SectionType>
+   </SectMetaData>
+   <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
+   <Para>The following tests and procedures may be used:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem><GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed   under a microscope to check for signs of cancer.  [Tailor full definition to fit the cancer.] </ListItem>
+    <ListItem>[test here]</ListItem>
+    <ListItem>[test here]</ListItem>
+    <ListItem>[test here]</ListItem>
+    <ListItem>[test here]</ListItem>
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Prognostic factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>Certain factors affect prognosis (chance of recovery) and treatment options.</KeyPoint>
+   <Para>The prognosis (chance of recovery) depends on: [Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[factor here]</ListItem>
+    <ListItem>[factor here]</ListItem>
+    <ListItem>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects prognosis, i.e., "Whether x cancer has just been diagnosed or has recurred (come back)."]</ListItem>
+   </ItemizedList>
+   <Para>Treatment options depend on:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[factor here]</ListItem>
+    <ListItem>[factor here]</ListItem>
+    <ListItem>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects treatment, i.e., "Whether x cancer has just been diagnosed or has recurred (come back)."]</ListItem>
+   </ItemizedList>
+  </SummarySection>
+ </SummarySection>
+ <SummarySection>
+  <Title>Stages of X Cancer</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Diagnostic tests</SectionType>
+   </SectMetaData>
+   <KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the x or to other parts of the body.</KeyPoint>
+   <Para>The process used to find out if <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> has spread within the x or to other parts of the body is called <GlossaryTermRef cdr:href="CDR0000046597">staging</GlossaryTermRef>. The information gathered from the staging process determines the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the disease. It is important to know the stage in order to plan treatment. The following tests and procedures may be used in the staging process: [Note: The last sentence should be changed to only tests or only procedures, as appropriate.]</Para>
+   <ItemizedList Style="bullet"> 
+    <ListItem>[test here]</ListItem> 
+    <ListItem>[test here]</ListItem> 
+    <ListItem>[test here]</ListItem> 
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Classification by stage</SectionType>
+   </SectMetaData>
+   <KeyPoint>The following stages are used for x cancer:</KeyPoint>
+   <SummarySection>
+    <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
+    <Para>In stage 0, cancer is found in .... Stage 0 cancer is also called <GlossaryTermRef cdr:href="CDR0000046488">carcinoma in situ</GlossaryTermRef>.</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Stage I</KeyPoint>
+    <Para>In stage I, cancer has spread .....</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Stage II</KeyPoint>
+    <Para>In stage II, cancer has spread .....</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Stage III</KeyPoint>
+    <Para>In stage III, cancer has spread .....</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Stage IV</KeyPoint>
+    <Para>In stage IV, cancer has spread .....</Para>
+   </SummarySection>
+  </SummarySection>
+ </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Classification by stage</SectionType>
+  </SectMetaData>
+  <Title>Recurrent X Cancer</Title>
+  <Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent</GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the x or in other parts of the body.<!--[if true]--></Para>
+ </SummarySection>
+ <SummarySection>
+  <Title>Treatment Option Overview</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Standard treatment</SectionType>
+   </SectMetaData>
+   <KeyPoint>There are different types of treatment for patients with x cancer.</KeyPoint>
+   <Para>Different types of treatments are available for patients with x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
+   <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Standard treatment</SectionType>
+   </SectMetaData>
+   <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. [Use for childhood treatment summaries.  Tailor if needed for adult.]</KeyPoint>
+   <Para>Your child's treatment will be overseen by a <GlossaryTermRef cdr:href="CDR0000046245">pediatric</GlossaryTermRef> <GlossaryTermRef cdr:href="CDR0000046260">oncologist</GlossaryTermRef>, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: [Add or delete specialists to fit the cancer treatment.]</Para>
+   <ItemizedList Style="bullet">
+    <ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem>
+    <ListItem>Neuropathologist.</ListItem>
+    <ListItem>Neuroradiologist.</ListItem>
+    <ListItem>Rehabilitation specialist.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000044716">Psychologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000044730">Social Worker</GlossaryTermRef>.</ListItem>
+    <ListItem><?xm-replace_text {ListItem}?></ListItem>
+    <ListItem><?xm-replace_text {ListItem}?></ListItem>
+   </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Standard treatment</SectionType>
+   </SectMetaData>
+   <KeyPoint># types of standard treatment are used:</KeyPoint>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>Surgery</InterventionName>
+    </KeyPoint>
+    <Para>[describe surgery here]</Para>
+    <Para>Even if the doctor removes all the cancer that can be seen at the time of the <GlossaryTermRef cdr:href="CDR0000045570">surgery</GlossaryTermRef>, some patients may be given <GlossaryTermRef cdr:href="CDR0000045214">chemotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000044971">radiation therapy</GlossaryTermRef> after surgery to kill any cancer cells that are left. Treatment given after the surgery, to increase the chances of a cure, is called <GlossaryTermRef cdr:href="CDR0000045587">adjuvant therapy</GlossaryTermRef>.</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>Radiation therapy</InterventionName>
+    </KeyPoint>
+    <Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high-energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a <GlossaryTermRef cdr:href="CDR0000046550">radioactive</GlossaryTermRef> substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the cancer being treated.</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>Chemotherapy</InterventionName>
+    </KeyPoint>
+    <Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000301626">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an <GlossaryTermRef cdr:href="CDR0000257523">organ</GlossaryTermRef>, the drugs mainly affect cancer cells in those areas.  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>Hormone therapy</InterventionName>
+    </KeyPoint>
+    <Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that removes <GlossaryTermRef cdr:href="CDR0000045713">hormones</GlossaryTermRef> or blocks their action and stops cancer cells from growing. Hormones are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef>  in the body and circulated in the bloodstream. The presence of some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptor</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Biologic therapy</KeyPoint>
+    <Para><GlossaryTermRef cdr:href="CDR0000045617">Biologic therapy</GlossaryTermRef> is a treatment that uses the patient's <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called <GlossaryTermRef cdr:href="CDR0000044483">biotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045729">immunotherapy</GlossaryTermRef></Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>[Therapy here]</InterventionName>
+    </KeyPoint>
+    <Para>[describe therapy here]</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>
+     <InterventionName>[Therapy here]</InterventionName>
+    </KeyPoint>
+    <Para>[describe therapy here]</Para>
+   </SummarySection>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Treatment in clinical trials</SectionType>
+   </SectMetaData>
+   <KeyPoint>Other types of treatment are being tested in clinical trials. These include the following:</KeyPoint>
+   <SummarySection>
+    <KeyPoint>Clinical trial here</KeyPoint>
+    <Para>[para here]</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>Clinical trial here</KeyPoint>
+    <Para>[para here]</Para>
+   </SummarySection>
+  </SummarySection>
+  <SummarySection>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+ </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Treatment options by stage</SectionType>
+  </SectMetaData>
+  <Title>Treatment Options by Stage </Title>
+  <SummarySection>
+   <SectMetaData>
+    <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+   </SectMetaData>
+   <Title>Stage 0 X Cancer (Carcinoma in Situ)</Title>
+   <Para>Treatment of stage 0 x cancer may include the following:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
+   </ItemizedList>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+   </SectMetaData>
+   <Title>Stage I X Cancer</Title>
+   <Para>Treatment of stage I x cancer may include the following:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>A clinical trial of ....</ListItem>
+   </ItemizedList>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+   </SectMetaData>
+   <Title>Stage II X Cancer</Title>
+   <Para>Treatment of stage II x cancer may include the following:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>A clinical trial of ....</ListItem>
+   </ItemizedList>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+   </SectMetaData>
+   <Title>Stage III X Cancer</Title>
+   <Para>Treatment of stage III x cancer may include the following:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>A clinical trial of ....</ListItem>
+   </ItemizedList>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+   </SectMetaData>
+   <Title>Stage IV X Cancer</Title>
+   <Para>Treatment of stage IV x cancer may include the following:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>[treatment here]</ListItem>
+    <ListItem>A clinical trial of ....</ListItem>
+   </ItemizedList>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  </SummarySection>
+ </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis><SectionType>Treatment options by stage</SectionType>
+  </SectMetaData>
+  <Title>Treatment Options for Recurrent X Cancer</Title>
+  <Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent </GlossaryTermRef> x <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> may include the following:</Para>
+  <ItemizedList Style="bullet">
+   <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef>.</ListItem>
+   <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef>.</ListItem>
+   <ListItem><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef>.</ListItem>
+   <ListItem>[treatment here]</ListItem>
+   <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
+  </ItemizedList>
+  <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+ </SummarySection>
  <SummarySection>
   <SectMetaData>
    <SectionType>Changes to summary</SectionType>
