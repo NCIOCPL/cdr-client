@@ -1550,6 +1550,7 @@
       <ChangeListElements>
         <ChangeListElement>GenericPerson</ChangeListElement>
         <ChangeListElement>SpecificPerson</ChangeListElement>
+        <ChangeListElement>ClinicalTrialOffice</ChangeListElement>
       </ChangeListElements>
     </ChangeList>
     <ChangeList>
