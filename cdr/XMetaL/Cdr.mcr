@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.20 2002-02-08 15:07:16 bkline Exp $
+     $Id: Cdr.mcr,v 1.21 2002-02-12 20:12:50 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.20  2002/02/08 15:07:16  bkline
+     Fixed protocol tag names in attempt to keep up with schema changes.
+
      Revision 1.19  2002/02/05 23:00:50  bkline
      Aligned Insert User ID command with Eileen's requirements.
 
@@ -85,6 +88,10 @@
     //------------------------------------------------------------------
     var CdrWebServer = "http://mmdb2.nci.nih.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
+    
+    //"Summary", "Person", "Organization",
+    //                             "InScopeProtocol", "Term",
+    //                             "Citation", "GlossaryTerm");
 
     // To be overridden by successful logon.
     var CdrUserName = "";
@@ -1285,16 +1292,16 @@
                            "CDR", 3, 4,
                            true),
             new CdrCmdItem(null,
-                           "Generate Summary Mailers",
-                           "Generate Summary Mailers",
-                           "Generate Summary Mailers",
+                           "Generate Mailers",
+                           "Mailers",
+                           "Generate Mailers",
                            "CDR", 5, 8,
                            false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
         
-        try { cmdBar = cmdBars.item("Summary"); }
+        try { cmdBar = cmdBars.item("CDR Summary"); }
         catch (e) { 
             //Application.Alert(e.description);
             //Application.Alert("Error number: " + (e.number & 0xFFFF));
@@ -1305,19 +1312,359 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR toolbar: " + e);
+                Application.Alert("Failure deleting old CDR Summary Toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        try { cmdBar = cmdBars.item("Summary"); }
+        catch (e) { 
+            // Do nothing.
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old Summary toolbar: " + e);
             }
             cmdBar = null; 
         }
         
         
         try {
-            cmdBar = cmdBars.add("Summary", 2);
+            cmdBar = cmdBars.add("CDR Summary", 2);
+            //cmdBar.Visible = false;
         }
         catch (e) {
-            Application.Alert("Failure adding Summary toolbar: " + e);
+            Application.Alert("Failure adding CDR Summary toolbar: " + e);
         }
         if (cmdBar) {
+            toolbars["Summary"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addPersonToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Reset Contact Information", // Macro.
+                           "Reset Contact",             // Tooltip.
+                           "Reset Contact Information", // Description
+                           "CDR", 4, 9,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Generate QC Report",
+                           "QC Report",
+                           "Generate QC Report",
+                           "CDR", 3, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Generate Mailer",
+                           "Mailer",
+                           "Generate Mailer",
+                           "CDR", 5, 8,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Person"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Person toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Person", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Person toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Person"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addOrganizationToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Generate Mailer",
+                           "Mailer",
+                           "Generate Mailer",
+                           "CDR", 5, 8,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Organization"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Organization toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Organization", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Organization toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Organization"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addProtocolToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Go To Admin Info Section",  // Macro.
+                           "Admin Info",                // Tooltip.
+                           "Go To Admin Info Section",  // Description
+                           "General (Custom)", 7, 1,    // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Go To Scientific Info Section",
+                           "Scientific Info",
+                           "Go To Scientific Info Section",
+                           "CDR", 6, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Protocol Merge",
+                           "Merge",
+                           "Protocol Merge",
+                           "Integration (Custom)", 8, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Change Organization Status",
+                           "Org Status",
+                           "Change Organization Status",
+                           "CDR", 6, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Generate QC Report",
+                           "QC Report",
+                           "Generate QC Report",
+                           "CDR", 3, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Generate Mailer",
+                           "Mailer",
+                           "Generate Mailer",
+                           "CDR", 5, 8,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Protocol"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old " + 
+                    "CDR Protocol toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Protocol", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+        Application.Alert("Failure adding CDR Protocol toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["InScopeProtocol"] = cmdBar;
+            toolbars["OutOfScopeProtocol"] = cmdBar;
+            toolbars["ScientificProtocolInfo"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addTermToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "View Hierarchy",            // Macro.
+                           "Hierarchy",                 // Tooltip.
+                           "View Hierarchy",            // Description
+                           "Databases (Custom)", 6, 3,  // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Generate QC Report",
+                           "QC Report",
+                           "Generate QC Report",
+                           "CDR", 3, 4,
+                           true)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Term"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+            Application.Alert("Failure deleting old CDR Term toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Term", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Term toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Term"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addGlossaryToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Glossary Term"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Glossary Term toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Glossary Term", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Glossary Term toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["GlossaryTerm"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addCitationToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Search PubMed",             // Macro.
+                           "PubMed",                    // Tooltip.
+                           "Search PubMed",             // Description
+                           "CDR", 3, 3,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Generate QC Report",
+                           "QC Report",
+                           "Generate QC Report",
+                           "CDR", 3, 4,
+                           true)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Citation"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Citation toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Citation", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Citation toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Citation"] = cmdBar;
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -1350,14 +1697,32 @@
     }
 
     /*
+     * Turn off all the document-specific toolbars.
+     */
+    function hideToolbars() {
+        for (var i in toolbars) {
+            if (toolbars[i])
+                toolbars[i].Visible = false;
+        }
+    }
+
+    /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
      * menu as part of a customized default.tbr.
      */
-     addCdrToolbar();
-     addSummaryToolbar();
-     addCdrMenus();
-     //bugRepro();
+    var toolbars = new Array();
+    addCdrToolbar();
+    addSummaryToolbar();
+    addPersonToolbar();
+    addOrganizationToolbar();
+    addProtocolToolbar();
+    addTermToolbar();
+    addGlossaryToolbar();
+    addCitationToolbar();
+    addCdrMenus();
+    hideToolbars();
+    //bugRepro();
 
   ]]>
 </MACRO>
@@ -3410,6 +3775,26 @@
   ]]>
 </MACRO>
 
+<MACRO name="On_Document_Activate"
+       lang="JScript">
+  <![CDATA[
+    function adjustToolbars() {
+        hideToolbars();
+        var docType = ActiveDocument.doctype;
+        if (toolbars[docType.name] != null)
+            toolbars[docType.name].Visible = true;
+    }
+    adjustToolbars();
+  ]]>
+</MACRO>
+
+<MACRO name="On_Document_Close"
+       lang="JScript">
+  <![CDATA[
+    hideToolbars();
+  ]]>
+</MACRO>
+
 <MACRO name="On_Document_Open_View" 
        lang="JScript">
   <![CDATA[
@@ -3455,6 +3840,69 @@
         ActiveDocument.RulesChecking = rulesChecking;
     }
     newCurrentOrgStatus();
+  ]]>
+</MACRO>
+
+<MACRO name="Reset Contact Information" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Reset Contact Information Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Generate QC Report" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Generate QC Report Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Generate Mailer" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Generate Mailer Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Go To Admin Info Section"
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Go To Admin Info Section Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Go To Scientific Info Section"
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Go To Scientific Info Section Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Protocol Merge" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Protocol Merge Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Change Organization Status" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Change Organization Status Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="View Hierarchy"
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for View Hierarchy Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Search PubMed" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("Stub for Search PubMed Macro");
   ]]>
 </MACRO>
 
