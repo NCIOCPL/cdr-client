@@ -1256,8 +1256,7 @@
     <Template>
       <Name>LeadOrgPersonnel</Name>
       <MiniTemplate><![CDATA[<LeadOrgPersonnel>
-<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
-<ProtocolSpecificContact></ProtocolSpecificContact>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
 <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
 </LeadOrgPersonnel>]]></MiniTemplate>
     </Template>
@@ -1285,22 +1284,7 @@
 </CurrentOrgStatus>
 </LeadOrgProtocolStatuses>
 <LeadOrgPersonnel>
-<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
-<ProtocolSpecificContact>
-<PostalAddress AddressType="US">
-<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Optionally enter a city name} ?></City>
-<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
-<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-<Country><?xm-replace_text {Select a country link (required)} ?></Country>
-<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
-</PostalAddress>
-<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
-<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
-<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
-<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
-<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
-</ProtocolSpecificContact>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
 <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
 </LeadOrgPersonnel>
 <ProtocolSites>
