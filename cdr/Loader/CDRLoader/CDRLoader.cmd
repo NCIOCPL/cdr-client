@@ -1,1 +1,1 @@
-CDRLoader.exe
+CDRLoader.exe -B 1
