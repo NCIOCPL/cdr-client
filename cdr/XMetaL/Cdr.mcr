@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.97 2003-03-04 16:08:16 bkline Exp $
+     $Id: Cdr.mcr,v 1.98 2003-03-04 16:47:42 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.97  2003/03/04 16:08:16  bkline
+     Added new macro Verify Specialties.
+
      Revision 1.96  2003/02/14 21:07:20  bkline
      Added Audit Trail Report.
 
@@ -4163,13 +4166,31 @@
         desc="Insert new Protocol participating organization"
         hide="false">
   <![CDATA[
+    /*
+     * Modified 2003-03-04 at Lakshmi's request (#433) to insert
+     * the missing ProtocolSites parent element when the user
+     * has failed to do so.
+     */
     function insertParticipatingOrg() {
-        var rng = ActiveDocument.Range;
-        if (!rng.FindInsertLocation("OrgSite", true)) {
-            if (!rng.FindInsertLocation("OrgSite", false)) {
-                Application.Alert("Can't insert OrgSite element");
-                return; 
+        var rng = getElemRange("ProtocolLeadOrg");
+        if (!rng) {
+            Application.Alert(
+                "Current position is not within a lead organization");
+            return;
+        }
+        leadOrg = rng.ContainerNode;
+        protSites = leadOrg.getElementsByTagName("ProtocolSites");
+        if (!protSites.length) {
+            // Application.Alert("Inserting ProtocolSites element");
+            if (!rng.FindInsertLocation("ProtocolSites", true)) {
+                Application.Alert("Failure inserting ProtocolSites element");
+                return;
             }
+            rng.InsertElementWithRequired("ProtocolSites");
+        }
+        if (!rng.FindInsertLocation("OrgSite", true)) {
+            Application.Alert("Can't insert OrgSite element");
+            return; 
         }
         rng.InsertWithTemplate("OrgSite");
         rng.Select();
