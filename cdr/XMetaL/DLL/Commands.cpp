@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.6 2001-11-27 14:21:01 bkline Exp $
+ * $Id: Commands.cpp,v 1.7 2002-01-22 22:50:53 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2001/11/27 14:21:01  bkline
+ * Version used at November 2001 demo.
+ *
  * Revision 1.5  2001/06/14 01:21:18  bkline
  * Added code to pull down a fresh copy of the CSS stylesheets for the
  * client.  Added new isReadOnly() command.
@@ -69,6 +72,16 @@ static cdr::ValidValueSets  validValueSets;
 static cdr::ElementSets     linkingElements;
 CString CCommands::username;
 
+/**
+ * Determines whether a given element in a particular document type can
+ * link to another document or fragment.  Do this by checking the set of 
+ * linking elements we downloaded at startup.
+ *
+ *  @param  docType     string representing the document type.
+ *  @param  elemName    string naming the element.
+ *  @return             <code>true</code> iff the element can link to
+ *                      another document or fragment.
+ */
 static bool isLinkingElement(const CString& docType,
                              const CString& elemName)
 {
@@ -100,6 +113,12 @@ static CString stringFromVariant(const VARIANT FAR& v)
     }
 }
 
+/**
+ * Parses a set of schema-controlled enumerated valid values for a data type.
+ *
+ *  @param  resp        reference to string containing CDR server response.
+ *  @param  vvSet       container to be populated.
+ */
 static void extractValidValueSet(const CString& resp, 
                                  cdr::ValidValueSet& vvSet)
 {
@@ -1209,13 +1228,26 @@ bool CCommands::doInsertLink(const CString& info)
     // Find the source element for the link.
     ::Range selection = cdr::getApp().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
-    selection.SetReadOnlyContainer(FALSE);
+    //selection.SetReadOnlyContainer(FALSE);
     while (elem && elem.GetNodeType() != 1) // DOMElement
         elem = elem.GetParentNode();
     if (elem) {
 
+        // Determine whether this is a cdr:ref or cdr:href link.
+        ::_Document doc = cdr::getApp().GetActiveDocument();
+        ::DOMDocumentType docType = doc.GetDoctype();
+        CString attrName;
+        if (docType.GetHasAttribute(elem.GetNodeName(), _T("cdr:ref")))
+            attrName = _T("cdr:ref");
+        else
+            attrName = _T("cdr:href");
+
         // Plug in the link attribute.
-        elem.setAttribute(_T("cdr:ref"), linkInfo.target);
+        elem.setAttribute(attrName, linkInfo.target);
+
+        // If this is a cdr:href link, that's all we need to do.
+        if (attrName == _T("cdr:href"))
+            return true;
 
         // Find the text node for the element.
         ::DOMText textNode = elem.GetFirstChild();
@@ -1298,7 +1330,7 @@ bool CCommands::doInsertLink(const CString& info)
     }
 
     // The user cannot edit the element directly.
-    selection.SetReadOnlyContainer(TRUE);
+    //selection.SetReadOnlyContainer(TRUE);
     return inserted;
 }
 
