@@ -201,13 +201,14 @@ appropriate.]</Para>
 
 <SummarySection>
 <KeyPoint><InterventionName>Hormone therapy</InterventionName></KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000045713">Hormones</GlossaryTermRef> are chemicals produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and are circulated in the bloodstream.  <GlossaryTermRef cdr:href="CDR0000046076">Estrogen</GlossaryTermRef> and <GlossaryTermRef cdr:href="CDR0000045158">progesterone</GlossaryTermRef> are hormones that affect the way some cancers grow. If tests show that the cancer cells have estrogen and progesterone <GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef> (molecules found in some cancer cells to which estrogen and progesterone will attach), <GlossaryTermRef cdr:href="CDR0000045110">hormone therapy</GlossaryTermRef> is used to block the way these hormones help the cancer grow. This may be done by using drugs that block the way hormones work or by surgically removing organs that make hormones, such as the [<GlossaryTermRef cdr:href="CDR0000046687">ovaries</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046611">testicles</GlossaryTermRef>].</Para>
-</SummarySection>
+
+<Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that blocks the action of hormones and stops cancer cells from growing.  <GlossaryTermRef cdr:href="CDR0000045713">Hormones</GlossaryTermRef> are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and circulated in the bloodstream.  The presence of some hormones can cause certain cancers to grow.  If tests show the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para></SummarySection>
 
 <SummarySection>
-<KeyPoint>Biological therapy</KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000045617">Biological therapy</GlossaryTermRef> is treatment to stimulate the ability of the <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer. Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against disease. Biological therapy is sometimes called <GlossaryTermRef cdr:href="CDR0000045616">biological response modifier (BRM)</GlossaryTermRef> therapy or <GlossaryTermRef cdr:href="CDR0000045729">immunotherapy</GlossaryTermRef>.</Para>
-</SummarySection>
+<KeyPoint>Biologic therapy</KeyPoint>
+
+<Para><GlossaryTermRef cdr:href="CDR0000045617">Biologic therapy</GlossaryTermRef> is a treatment that uses the patient's <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called <GlossaryTermRef cdr:href="CDR0000044483">biotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045729">immunotherapy</GlossaryTermRef>.
+</Para></SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>[Therapy here]</InterventionName></KeyPoint>
@@ -259,7 +260,7 @@ appropriate.]</Para>
      <ListItem>[treatment here]</ListItem>
      <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
 </ItemizedList>
-</SummarySection>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
 
 <SummarySection>
 <SectMetaData>
@@ -272,7 +273,7 @@ appropriate.]</Para>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
-</SummarySection>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
 
 <SummarySection>
 <SectMetaData>
@@ -285,7 +286,7 @@ appropriate.]</Para>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
-</SummarySection>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para></SummarySection>
 
 <SummarySection>
 <SectMetaData>
