@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.47 2002-04-24 19:57:14 bkline Exp $
+     $Id: Cdr.mcr,v 1.48 2002-04-24 21:18:04 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.47  2002/04/24 19:57:14  bkline
+     Plugged in Terminology hierarchy view.
+
      Revision 1.46  2002/04/24 17:40:28  bkline
      Plugged in filters for Protocol Admin QC Report.
 
@@ -1607,7 +1610,7 @@
                            "Integration (Custom)", 8, 4,
                            false),
             new CdrCmdItem(null,
-                           "Change Organization Status",
+                           "New Current Org Status",
                            "Org Status",
                            "Change Organization Status",
                            "CDR", 6, 10,
@@ -3932,7 +3935,11 @@
        lang="JScript" 
        id="2022">
   <![CDATA[
-    Application.Alert("Stub for PubMed Browse");
+    function searchPubMed() {
+        var url = "http://www.ncbi.nlm.nih.gov/entrez/";
+        Application.ShowPage(url);
+    }
+    searchPubMed();
   ]]>
 </MACRO>
 
@@ -4339,35 +4346,43 @@
 <MACRO name="Go To Admin Info Section"
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Go To Admin Info Section Macro");
+    if (Selection != null) {
+        Selection.MoveToDocumentStart();
+        Selection.MoveToElement("CurrentProtocolStatus");
+        Selection.SelectContainerContents();
+    }
   ]]>
 </MACRO>
 
 <MACRO name="Go To Scientific Info Section"
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Go To Scientific Info Section Macro");
+    if (Selection != null) {
+        Selection.MoveToDocumentStart();
+        Selection.MoveToElement("ProtocolAbstract");
+    }
   ]]>
 </MACRO>
 
 <MACRO name="Protocol Merge" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Protocol Merge Macro");
-  ]]>
-</MACRO>
-
-<MACRO name="Change Organization Status" 
-       lang="JScript">
-  <![CDATA[
-    Application.Alert("Stub for Change Organization Status Macro");
+    function protocolMerge() {
+        var url = CdrCgiBin + "MergeProt.py?Session=" + CdrSession;
+        Application.ShowPage(url);
+    }
+    protocolMerge();
   ]]>
 </MACRO>
 
 <MACRO name="Search PubMed" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Search PubMed Macro");
+    function searchPubMed() {
+        var url = "http://www.ncbi.nlm.nih.gov/entrez/";
+        Application.ShowPage(url);
+    }
+    searchPubMed();
   ]]>
 </MACRO>
 
