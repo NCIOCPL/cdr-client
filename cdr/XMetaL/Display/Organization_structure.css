@@ -99,6 +99,10 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson, 
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -152,6 +156,10 @@ FormerName:before               { content: "Former Name "; }
 CCOP:before				{ content: "CCOP"; }
 CIPSContact:before			{ content: "CIPS Contact "; }
 CIPSContactPerson:before		{ content: "CIPS Contact Person "; }
+ClinicalTrialsOfficeContact:before      { content: "CLINICAL TRIALS OFFICE CONTACT "; }
+ClinicalTrialsOfficeContactEmail:before { content: "Email "; }
+ClinicalTrialsOfficeContactName:before  { content: "Name "; }
+ClinicalTrialsOfficeContactPhone:before { content: "Phone "; }
 Comment:before				{ content: "Comments "; } 
 CooperativeGroup:before			{ content: "Cooperative Group "; }
 CurrentStatus:before			{ content: "Current Status "; }
@@ -218,6 +226,7 @@ OrganizationLocation,
 
 
 AffiliateMemberOf:before,
+ClinicalTrialsOfficeContact:before,
 MainMemberOf:before,
 Location:before,
 MemberOfCCOP:before,
@@ -271,6 +280,9 @@ Type:before,
 
 
 AlternateName:before,
+ClinicalTrialsOfficeContactEmail:before,
+ClinicalTrialsOfficeContactName:before,
+ClinicalTrialsOfficeContactPhone:before,
 FormerName:before,
 CIPSContact:before,
 Comment:before,
@@ -291,7 +303,7 @@ ShortName > Name:before,
 /*                            BORDER CONTROL                               */ 
 /***************************************************************************/ 
 
-
+ClinicalTrialsOfficeContact,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
@@ -313,6 +325,9 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -363,6 +378,10 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson, 
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -412,6 +431,10 @@ FormerName:before,
 CCOP:before,
 CIPSContact:before,
 CIPSContactPerson:before,
+ClinicalTrialsOfficeContact:before,
+ClinicalTrialsOfficeContactEmail:before,
+ClinicalTrialsOfficeContactName:before,
+ClinicalTrialsOfficeContactPhone:before,
 Comment:before,
 CooperativeGroup:before, 
 CurrentStatus:before,

@@ -117,6 +117,10 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -174,6 +178,10 @@ FormerName:before			{ content: "Former Name & +: "; }
 CCOP:before				{ content: "CCOP * @: "; }
 CIPSContact:before			{ content: "CIPS Contact *: "; }
 CIPSContactPerson:before		{ content: "CIPS Contact Person & @: "; }
+ClinicalTrialsOfficeContact:before      { content: "CLINICAL TRIAL OFFICE CONTACT &: "; }
+ClinicalTrialsOfficeContactEmail:before { content: "Email & @: "; }
+ClinicalTrialsOfficeContactName:before  { content: "Name &: "; }
+ClinicalTrialsOfficeContactPhone:before { content: "Phone * + @: "; }
 Comment:before				{ content: "Comments &: "; } 
 CooperativeGroup:before			{ content: "Cooperative Group * @: "; }
 CurrentStatus:before			{ content: "Current Status *: "; }
@@ -224,6 +232,7 @@ Status:before				{ content: "STATUS *"; }
   
 
 AffiliateMemberOf:before,
+ClinicalTrialsOfficeContact:before,
 Location:before,
 MainMemberOf:before,
 OrganizationAdministrativeInformation:before,
@@ -249,6 +258,8 @@ OrganizationAdministrativeInformation,
 	   margin-bottom: .5em;   }
 
 CIPSContactPerson,
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactName,
 CurrentStatus,
 MemberOfCCOP,
 OfficialName,
@@ -278,7 +289,7 @@ OrganizationType,
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
   
-
+ClinicalTrialsOfficeContact,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
@@ -298,6 +309,9 @@ Status,
 
 AlternateName:before,
 FormerName:before,
+ClinicalTrialsOfficeContactEmail:before,
+ClinicalTrialsOfficeContactName:before,
+ClinicalTrialsOfficeContactPhone:before,
 CIPSContact:before,
 Comment:before,
 Date:before,
@@ -429,6 +443,10 @@ PdqKey,					{ margin-left: 100pt;
 					  text-indent: -71pt; }
 
 
+ClinicalTrialsOfficeContactEmail        { margin-left: 110pt; text-indent: -96pt; }
+ClinicalTrialsOfficeContactPhone        { margin-left: 110pt; text-indent: -107pt; }
+ClinicalTrialsOfficeContactName         { margin-left: 110pt; text-indent: -82.5pt; }
+
 /* Margin-bottom to simulate a text box                                    */
 
 AffiliateMemberOf,
@@ -437,6 +455,9 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -493,6 +514,10 @@ FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactEmail,
+ClinicalTrialsOfficeContactName,
+ClinicalTrialsOfficeContactPhone,
 Comment,
 CooperativeGroup, 
 CurrentStatus,
@@ -533,6 +558,10 @@ FormerName:before,
 CCOP:before,
 CIPSContact:before,
 CIPSContactPerson:before,
+ClinicalTrialsOfficeContact,
+ClinicalTrialsOfficeContactEmail:before,
+ClinicalTrialsOfficeContactName:before,
+ClinicalTrialsOfficeContactPhone:before,
 Comment:before,
 CooperativeGroup:before, 
 CurrentStatus:before,
