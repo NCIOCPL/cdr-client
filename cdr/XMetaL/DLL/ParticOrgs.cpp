@@ -174,7 +174,7 @@ void CParticOrgs::OnOK()
             std::basic_ostringstream<TCHAR> dat;
             CString statString = _T("Active");
             if (iter->getCoopMemb() == _T("Affiliate"))
-                statString = _T("Approved-Not Yet Active");
+                statString = _T("Approved-not yet active");
             dat << _T("<OrgSite><OrgSiteID cdr:ref='")
                 << (LPCTSTR)info.target
                 << _T("'>")
@@ -188,7 +188,7 @@ void CParticOrgs::OnOK()
                     << (LPCTSTR)pi->target
                     << _T("'>")
                     << (LPCTSTR)pi->data
-                    << _T("</Person><Role>Principal Investigator</Role>")
+                    << _T("</Person><Role>Principal investigator</Role>")
                        _T("</SpecificPerson>");
                 ++pi;
             }
