@@ -102,21 +102,21 @@ TransferFromBoard,
 AreaComment:before                      { content: "Comment & : "; }
 AreaOfExpertise:before			{ content: "Area of Expertise &: "; }
 AssistantEmail:before	                { content: "Email & @: "; }
-AssistantEmail[Public="No"]:after	{ content: "(Not Public) "; }
-AssistantEmail:after	                { content: "(Public) "; }
+AssistantEmail[Public="No"]:after	{ content: " (Not Public) "; }
+AssistantEmail:after	                { content: " (Public) "; }
 AssistantFax:before			{ content: "Fax &: "; }
 AssistantName:before     		{ content: "Name *: "; }
 AssistantPhone:before	                { content: "Phone * @ : "; }
-AssistantPhone[Public="No"]:after	{ content: "(Not Public) "; }
-AssistantPhone:after	                { content: "(Public) "; }
+AssistantPhone[Public="No"]:after	{ content: " (Not Public) "; }
+AssistantPhone:after	                { content: " (Public) "; }
 BoardContactEmail:before		{ content: "Email * @: "; }
-BoardContactEmail[Public="No"]:after	{ content: "(Not Public) "; }
-BoardContactEmail:after	                { content: "(Public) "; }
+BoardContactEmail[Public="No"]:after	{ content: " (Not Public) "; }
+BoardContactEmail:after	                { content: " (Public) "; }
 BoardContactFax:before			{ content: "Fax * : "; }
 BoardContactOrganizationName:before	{ content: "B C Org Name &: "; }
 BoardContactPhone:before		{ content: "Phone * @: "; }
-BoardContactPhone[Public="No"]:after	{ content: "(Not Public) "; }
-BoardContactPhone:after	                { content: "(Public) "; }
+BoardContactPhone[Public="No"]:after	{ content: " (Not Public) "; }
+BoardContactPhone:after	                { content: " (Public) "; }
 BoardContactPostalAddress:before        { content: "Board Contact Postal Address *";}
 BoardMemberAssistant:before		{ content: "BOARD MEMBER ASSISTANT & "; }
 BoardMemberContact:before		{ content: "BOARD MEMBER CONTACT  * "; }
@@ -355,11 +355,11 @@ AreaOfExpertise,                         { margin-left: 135pt;
                                           text-indent: -118.5pt; }
 
 BoardName,                               { margin-left: 135pt;
-                                          text-indent: -84pt; }
+                                          text-indent: -87pt; }
 
 
 CurrentMember,                           { margin-left: 135pt;
-                                          text-indent: -105pt; }
+                                          text-indent: -108pt; }
 
 EditorInChief>TermEndDate,                { margin-left: 135pt;
                                           text-indent: -108.5pt; }
@@ -368,32 +368,32 @@ EditorInChief>TermStartDate,              { margin-left: 135pt;
                                           text-indent: -107pt; }
 
 InvitationDate,                          { margin-left: 135pt;
-                                          text-indent: -95.5pt; }
+                                          text-indent: -97.5pt; }
 
 MemberOfSubgroup,                        { margin-left: 135pt;
                                           text-indent: -127pt; }
 
 
 RecommendedBy,                           { margin-left: 135pt;
-                                          text-indent: -125.5pt; }
+                                          text-indent: -126pt; }
 
 ResponseToInvitation,                   { margin-left: 135pt;
-                                          text-indent: -117.5pt; }
+                                          text-indent: -119.5pt; }
 
 TermRenewalFrequency,                    { margin-left: 135pt;
-                                          text-indent: -120pt; } 
+                                          text-indent: -121.5pt; } 
 
 TermEndDate,                             { margin-left: 135pt;
-                                          text-indent: -104pt; }
+                                          text-indent: -105pt; }
 
 TermEndReason,                           { margin-left: 135pt;
-                                          text-indent: -122pt; }
+                                          text-indent: -123pt; }
 
 TermStartDate,                           { margin-left: 135pt;
-                                          text-indent: -107pt; }
+                                          text-indent: -108.5pt; }
 
 TransferFromBoard,                       { margin-left: 135pt;
-                                          text-indent: -134.5pt; }
+                                          text-indent: -135.5pt; }
 
  /*  Dated Action  */
 
