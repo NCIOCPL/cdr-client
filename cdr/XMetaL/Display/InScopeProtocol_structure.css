@@ -1,5 +1,10 @@
 /**************************************************************************/
-/*     InScopeProtocol_structure.css                                      */
+/*     InScopeProtocol_structure.css  
+                                    */
+/*  
+/*      v. 3.7                                                           */
+/*      3/30/04  by Cburg                                                 */
+/*      Added data element UpdateMode                                     */  
 /*                                                                        */
 /*      v. 3.6                                                            */
 /*      8/20/02  by ebator                                                */
@@ -174,6 +179,7 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+UpdateMode,
 
    { display: block; }
 
@@ -248,7 +254,7 @@ SpecificPhone:before		{ content: "Phone "; }
 SponsorName:before		{ content: "Sponsor Name ";  }
 StatusDate:before		{ content: "Status Date "; }
 StatusName:before		{ content: "Status "; }
-
+UpdateMode:before               { content: "Update Mode "; }
 
 /***************************************************************************/ 
 /*                     NON-DISPLAY ELEMENTS                                */ 
@@ -329,6 +335,7 @@ SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
+UpdateMode:before,
 
    {  font-weight: bold;
       color: black;  }
@@ -427,6 +434,7 @@ SpecificEmail,
 SponsorName,
 StatusDate,
 StatusName,
+UpdateMode,
 
    {  color: white;
       background-color: white;  }
@@ -489,6 +497,7 @@ SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
 StatusName:before,
+UpdateMode:before,
 
 	{ background-color: white }  
 
@@ -575,5 +584,6 @@ SpecificPhone,
 SponsorName,
 StatusDate,
 StatusName,
+UpdateMode,
 
 	{ text-indent: 0pt; }
