@@ -2,7 +2,7 @@
 
 
 /* File created by MIDL compiler version 5.01.0164 */
-/* at Fri Jun 08 15:02:34 2001
+/* at Mon Jun 11 16:05:02 2001
  */
 /* Compiler settings for D:\cdr\src\CdrClient\Cdr.idl:
     Oicf (OptLev=i2), W1, Zp8, env=Win32, ms_ext, c_ext
@@ -98,6 +98,11 @@ EXTERN_C const IID IID_ICommands;
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE edit( 
             /* [retval][out] */ int __RPC_FAR *pRet) = 0;
         
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE isReadOnly( 
+            /* [in] */ const BSTR __RPC_FAR *docType,
+            /* [in] */ const BSTR __RPC_FAR *elemName,
+            /* [retval][out] */ BOOL __RPC_FAR *pVal) = 0;
+        
     };
     
 #else 	/* C style interface */
@@ -174,6 +179,12 @@ EXTERN_C const IID IID_ICommands;
             ICommands __RPC_FAR * This,
             /* [retval][out] */ int __RPC_FAR *pRet);
         
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *isReadOnly )( 
+            ICommands __RPC_FAR * This,
+            /* [in] */ const BSTR __RPC_FAR *docType,
+            /* [in] */ const BSTR __RPC_FAR *elemName,
+            /* [retval][out] */ BOOL __RPC_FAR *pVal);
+        
         END_INTERFACE
     } ICommandsVtbl;
 
@@ -230,6 +241,9 @@ EXTERN_C const IID IID_ICommands;
 
 #define ICommands_edit(This,pRet)	\
     (This)->lpVtbl -> edit(This,pRet)
+
+#define ICommands_isReadOnly(This,docType,elemName,pVal)	\
+    (This)->lpVtbl -> isReadOnly(This,docType,elemName,pVal)
 
 #endif /* COBJMACROS */
 
@@ -322,6 +336,20 @@ void __RPC_STUB ICommands_edit_Stub(
     DWORD *_pdwStubPhase);
 
 
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_isReadOnly_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [in] */ const BSTR __RPC_FAR *docType,
+    /* [in] */ const BSTR __RPC_FAR *elemName,
+    /* [retval][out] */ BOOL __RPC_FAR *pVal);
+
+
+void __RPC_STUB ICommands_isReadOnly_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
 
 #endif 	/* __ICommands_INTERFACE_DEFINED__ */
 
@@ -346,6 +374,11 @@ Commands;
 #endif /* __CDRLib_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
+
+unsigned long             __RPC_USER  BSTR_UserSize(     unsigned long __RPC_FAR *, unsigned long            , BSTR __RPC_FAR * ); 
+unsigned char __RPC_FAR * __RPC_USER  BSTR_UserMarshal(  unsigned long __RPC_FAR *, unsigned char __RPC_FAR *, BSTR __RPC_FAR * ); 
+unsigned char __RPC_FAR * __RPC_USER  BSTR_UserUnmarshal(unsigned long __RPC_FAR *, unsigned char __RPC_FAR *, BSTR __RPC_FAR * ); 
+void                      __RPC_USER  BSTR_UserFree(     unsigned long __RPC_FAR *, BSTR __RPC_FAR * ); 
 
 /* end of Additional Prototypes */
 
