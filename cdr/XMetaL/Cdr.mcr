@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.60 2002-06-06 14:57:37 bkline Exp $
+     $Id: Cdr.mcr,v 1.61 2002-06-07 20:48:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.60  2002/06/06 14:57:37  bkline
+     Unplugged Undo macro; added Bold/Underline QC report.
+
      Revision 1.59  2002/06/03 20:22:43  bkline
      Fixed CitationLink macro button; plugged in help index.
 
@@ -1698,6 +1701,12 @@
                            "Org Status",
                            "Change Organization Status",
                            "CDR", 6, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "NHL Text",
+                           "NHL Text",
+                           "NHL Text",
+                           "General (Custom)", 2, 5,
                            false),
             new CdrCmdItem(null,
                            "Generate QC Report",
@@ -4649,6 +4658,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
+        /*
         var url = CdrCgiBin + "Filter.py"
                 + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
                 + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
@@ -4657,6 +4667,11 @@
                 + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
                 + "&Filter5=name:Health+Professional+Summary+Report"
                 + "&DocId=" + docId;
+        */
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
+                            + docId
+                            + "&Session="
+                            + CdrSession;
         Application.ShowPage(url);
     }
     createSummaryMarkupReport();
@@ -4696,6 +4711,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
+        /*
         var url = CdrCgiBin + "Filter.py"
                 + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
                 + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
@@ -4705,6 +4721,11 @@
                 + "&Filter5=name:Health+Professional+Summary+Report"
                 + "-Bold/Underline"
                 + "&DocId=" + docId;
+        */
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary:bu&DocId="
+                            + docId
+                            + "&Session="
+                            + CdrSession;
         Application.ShowPage(url);
     }
     //Application.Alert("Don't have filters for this command yet.");
@@ -4721,6 +4742,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
+        /*
         var url = CdrCgiBin + "Filter.py"
                 + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
                 + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
@@ -4729,6 +4751,11 @@
                 + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
                 + "&Filter5=name:Health+Professional+Summary+Report"
                 + "&DocId=" + docId;
+        */
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary:rs&DocId="
+                            + docId
+                            + "&Session="
+                            + CdrSession;
         Application.ShowPage(url);
     }
     //Application.Alert("Don't have filters for this command yet.");
@@ -4812,7 +4839,6 @@
 </MACRO>
 
 <MACRO name="Insert ProtocolAmendmentInformation" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function insertProtocolAmendmentInformation() {
@@ -4838,6 +4864,33 @@
   <![CDATA[
     if (ActiveDocument)
         ActiveDocument.Undo();
+  ]]>
+</MACRO>
+
+<MACRO name="NHL Text" 
+        key="Alt+Z"
+       lang="JScript">
+  <![CDATA[
+    function nhlText() {
+        var rng = ActiveDocument.Range;
+        if (!rng.IsParentElement("DiseaseCharacteristics")) {
+            Application.Alert("This macro can only be used within the "
+                    + "DiseaseCharacteristics element");
+            return;
+        }
+        if (!rng.FindInsertLocation("Para")) {
+            Application.Alert("Unable to insert new Para element");
+            return;
+        }
+        rng.InsertElement("Para");
+        rng.Text = "A new classification scheme for adult non-Hodgkin's "
+                 + "lymphoma has been adopted by PDQ.  The terminology "
+                 + "of \"indolent\" or \"aggressive\" lymphoma will "
+                 + "replace the former terminology of \"low\", "
+                 + "\"intermediate\", or \"high\" grade lymphoma. "
+                 + "However, this protocol uses the former terminology.";
+    }
+    nhlText();
   ]]>
 </MACRO>
 
