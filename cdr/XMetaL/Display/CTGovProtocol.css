@@ -1,0 +1,685 @@
+/*
+ * $Id: CTGovProtocol.css,v 1.1 2003-10-28 13:12:55 bkline Exp $
+ *
+ * $Log: not supported by cvs2svn $
+ */
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+  
+@import "CdrCommonSchema.css";
+
+$DOCUMENT
+
+  {  font-family: Arial, sans-serif;       
+     font-size: 12pt;
+     margin-top: 5px;
+     margin-left: 5px;  
+     color: black;        }
+
+$COMMENT 
+
+  {  display: block;
+     color: purple;
+     white-space: pre;  }
+
+$PROCINS 
+
+  {  color: blue;
+     background-color: white;  }
+
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+Affiliation,
+AgeText,
+BriefSummary,
+BriefTitle,
+CTCondition,
+CTCriteria,
+CTEligibility,
+CTExpectedEnrollment,
+CTGender,
+CTGovIndexing,
+CTGovProtocol,
+CTIntervention,
+CTInterventionName,
+CTInterventionType,
+CTMaximumAge,
+CTMinimumAge,
+CTStudyDesign,
+City,
+Collaborator,
+Comment,
+Condition,
+Contact,
+ContactBackup,
+Country,
+DetailedDescription,
+Diagnosis,
+DownloadDate,
+Eligibility,
+Email,
+EndDate,
+ExclusionCriteria,
+Facility,
+Gene,
+GivenName,
+HealthyVolunteers,
+HighAge,
+IDInfo,
+Intervention,
+InterventionName,
+InterventionType,
+Investigator,
+ItemizedList,
+LastChangedDate,
+LeadSponsor,
+LinkText,
+/* ListItem, */
+Location,
+LowAge,
+MiddleInitial,
+NCTID,
+Name,
+OfficialTitle,
+OrgStudyID,
+OverallContact,
+OverallContactBackup,
+OverallOfficial,
+OverallStatus,
+PDQIndexing,
+PDQSponsorship,
+Para,
+Phase,
+Phone,
+PhoneExt,
+PoliticalSubUnit_State,
+PostalAddress,
+PostalCode_ZIP,
+ProfessionalSuffix,
+RequiredHeader,
+Role,
+SecondaryID,
+Sponsors,
+StartDate,
+Status,
+StudyCategory,
+StudyCategoryName,
+StudyCategoryType,
+StudyType,
+Surname,
+URL,
+VerificationDate
+
+{ display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+  
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+RequiredHeader      :before { content: "REQUIRED HEADER * "; }
+DownloadDate        :before { content: "Download Date *: "; }
+LinkText            :before { content: "Link Text *: "; }
+URL                 :before { content: "URL *: "; }
+IDInfo              :before { content: "ID INFORMATION * "; }
+OrgStudyID          :before { content: "Org Study ID *: "; }
+SecondaryID         :before { content: "Secondary ID & +: "; }
+NCTID               :before { content: "NCTID *: "; }
+BriefTitle          :before { content: "BRIEF TITLE *: \A"; }
+OfficialTitle       :before { content: "OFFICIAL TITLE &: \A"; }
+
+Sponsors            :before { content: "SPONSORS *"; }
+PDQSponsorship      :before { content: "PDQ Sponsorship &: "; }
+LeadSponsor         :before { content: "Lead Sponsor & @: "; }
+Collaborator        :before { content: "Collaborator & + @: "; }
+
+OverallOfficial     :before { content: "OVERALL OFFICIAL & +"; }
+OverallContact      :before { content: "OVERALL CONTACT &"; }
+OverallContactBackup:before { content: "OV. CONT. BACKUP &"; }
+GivenName           :before { content: "Given Name &: "; }
+MiddleInitial       :before { content: "Middle Initial &: "; }
+Surname             :before { content: "Surname *: "; }
+ProfessionalSuffix  :before { content: "Professional Suffix &: "; }
+PhoneExt            :before { content: "Phone Extension &: "; }
+
+OverallStatus       :before { content: "Overall Status *: "; }
+StartDate           :before { content: "Start Date &: "; }
+EndDate             :before { content: "End Date &: "; }
+Phase               :before { content: "Phase * +: "; }
+
+Location            :before { content: "LOCATION * +"; }
+Facility>Name       :before { content: "Facility Name * @: "; }
+PostalAddress       :before { content: "ADDRESS *"; }
+Status              :before { content: "Status *: "; }
+
+BriefSummary        :before { content: "BRIEF SUMMARY *"; }
+DetailedDescription :before { content: "DETAILED DESCRIPTION &"; }
+
+CTGovIndexing       :before { content: "CTGOV INDEXING *"; }
+CTStudyDesign       :before { content: "Study Design *: "; }
+CTCondition         :before { content: "Condition & +: "; }
+CTIntervention      :before { content: "INTERVENTION & +"; }
+CTInterventionType  :before { content: "Type *: "; }
+CTInterventionName  :before { content: "Name *: "; }
+
+CTEligibility       :before { content: "CTGOV ELIGITIBILITY &"; }
+CTCriteria          :before { content: "CRITERIA *"; }
+CTExpectedEnrollment:before { content: "Expected Enrollment &: "; }
+CTGender            :before { content: "Gender *: "; }
+CTMinimumAge        :before { content: "Minimum Age *: "; }
+CTMaximumAge        :before { content: "Maximum Age *: "; }
+
+Contact             :before { content: "CONTACT & + @"; }
+ContactBackup       :before { content: "CONTACT BACKUP & @"; }
+Investigator        :before { content: "INVESTIGATOR & + @"; }
+Role                :before { content: "Role &: "; }
+PDQIndexing         :before { content: "PDQ INDEXING * "; }
+StudyType           :before { content: "Study Type *: "; }
+StudyCategory       :before { content: "STUDY CATEGORY * +"; }
+StudyCategoryType   :before { content: "Study Category Type *: "; }
+StudyCategoryName   :before { content: "Study Category Name *: "; }
+Intervention        :before { content: "INTERVENTION & +"; }
+InterventionType    :before { content: "Intervention Type * @: "; }
+InterventionName    :before { content: "Intervention Name & + @: "; }
+Condition           :before { content: "Condition & + @: "; }
+Gene                :before { content: "Gene & + @: "; }
+Eligibility         :before { content: "ELIGIBILITY CRITERIA * "; }
+HealthyVolunteers   :before { content: "Healthy Volunteers? &: "; }
+LowAge              :before { content: "Low Age &: "; }
+HighAge             :before { content: "High Age &: "; }
+AgeText             :before { content: "Age Criteria (Text) &: "; }
+Diagnosis           :before { content: "Diagnosis & + @: "; }
+ExclusionCriteria   :before { content: "Exclusion Criteria & + @: "; }
+Comment             :before { content: "Comment &: "; }
+VerificationDate    :before { content: "Verification Date *: "; }
+LastChangedDate     :before { content: "Last Changed Date &: "; }
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+
+RequiredHeader      :before,
+DownloadDate        :before,
+LinkText            :before,
+URL                 :before,
+IDInfo              :before,
+OrgStudyID          :before,
+SecondaryID         :before,
+NCTID               :before,
+
+Sponsors            :before,
+PDQSponsorship      :before,
+LeadSponsor         :before,
+Collaborator        :before,
+
+OverallOfficial     :before,
+OverallContact      :before,
+OverallContactBackup:before,
+GivenName           :before,
+MiddleInitial       :before,
+Surname             :before,
+ProfessionalSuffix  :before,
+PhoneExt            :before,
+
+OverallStatus       :before,
+StartDate           :before,
+EndDate             :before,
+Phase               :before,
+
+Location            :before,
+Facility>Name       :before,
+PostalAddress       :before,
+Status              :before,
+
+BriefSummary        :before,
+DetailedDescription :before,
+
+CTGovIndexing       :before,
+CTStudyDesign       :before,
+CTCondition         :before,
+CTIntervention      :before,
+CTInterventionType  :before,
+CTInterventionName  :before,
+
+CTEligibility       :before,
+CTEligibility       :before,
+CTCriteria          :before,
+CTExpectedEnrollment:before,
+CTGender            :before,
+CTMinimumAge        :before,
+CTMaximumAge        :before,
+
+Contact             :before,
+ContactBackup       :before,
+Investigator        :before,
+Role                :before,
+
+PDQIndexing         :before,
+StudyType           :before,
+StudyCategory       :before,
+StudyCategoryType   :before,
+StudyCategoryName   :before,
+Intervention        :before,
+InterventionType    :before,
+InterventionName    :before,
+Condition           :before,
+
+Gene                :before,
+Eligibility         :before,
+HealthyVolunteers   :before,
+LowAge              :before,
+HighAge             :before,
+AgeText             :before,
+Diagnosis           :before,
+ExclusionCriteria   :before,
+Comment             :before,
+VerificationDate    :before,
+LastChangedDate     :before,
+
+   {  font-weight: bold; color: black;  }
+
+
+/***************************************************************************/ 
+/*                    BORDERED ELEMENTS AND SECTIONS                       */
+/***************************************************************************/
+
+Phone { margin-top: 0em; }
+
+RequiredHeader,
+IDInfo,
+PDQIndexing,
+
+ { margin-bottom: 4pt; }
+
+BriefTitle,
+OfficialTitle,
+
+ { margin-top: 1em; margin-bottom: 1em; }
+
+OverallOfficial,
+OverallContact,
+OverallContactBackup,
+
+OverallStatus,
+CTGovIndexing,
+CTStudyDesign,
+CTIntervention,
+CTCriteria,
+Facility>Name,
+PostalAddress,
+Location>Status,
+Contact,
+ContactBackup,
+Investigator,
+PDQSponsorship,
+StudyCategory,
+Intervention,
+Eligibility,
+VerificationDate,
+LastChangedDate
+
+ { margin-top: 1em; }
+
+RequiredHeader,
+IDInfo,
+Sponsors,
+PDQIndexing,
+BriefSummary,
+DetailedDescription,
+CTGovIndexing,
+CTEligibility,
+Location
+
+   {  border: solid; 
+      border-color: gray;
+      border-width: thin;
+      margin-top: 1em;  }
+
+ProtocolLeadOrg + ProtocolLeadOrg,
+
+	{ margin-top: 3em; }
+
+
+/***************************************************************************/
+/*                  MARGINS FOR ALIGNING TAGS AND TEXT                     */
+/***************************************************************************/
+
+DownloadDate                     { margin-left: 110pt; text-indent: -103.5pt; }
+LinkText                         { margin-left: 110pt; text-indent:  -68.0pt; }
+URL                              { margin-left: 110pt; text-indent:  -41.0pt; }
+
+OrgStudyID                       { margin-left: 110pt; text-indent:  -89.0pt; }
+SecondaryID                      { margin-left: 110pt; text-indent: -108.0pt; }
+NCTID                            { margin-left: 110pt; text-indent:  -53.0pt; }
+
+PDQSponsorship                   { margin-left: 130pt; text-indent: -123.5pt; }
+LeadSponsor                      { margin-left: 130pt; text-indent: -116.0pt; }
+Collaborator                     { margin-left: 130pt; text-indent: -116.5pt; }
+Sponsors GivenName               { margin-left: 130pt; text-indent:  -89.5pt; }
+Sponsors MiddleInitial           { margin-left: 130pt; text-indent:  -90.5pt; }
+Sponsors Surname                 { margin-left: 130pt; text-indent:  -67.5pt; }
+Sponsors ProfessionalSuffix      { margin-left: 130pt; text-indent: -128.0pt; }
+Sponsors Phone                   { margin-left: 130pt; text-indent:  -73.0pt; }
+Sponsors PhoneExt                { margin-left: 130pt; text-indent: -118.5pt; }
+Sponsors Email                   { margin-left: 130pt; text-indent:  -67.0pt; }
+
+OverallStatus                    { margin-left: 135pt; text-indent:  -95.0pt; }
+StartDate                        { margin-left: 135pt; text-indent:  -76.5pt; }
+EndDate                          { margin-left: 135pt; text-indent:  -72.5pt; }
+Phase                            { margin-left: 135pt; text-indent:  -61.5pt; }
+
+CTStudyDesign                    { margin-left: 100pt; text-indent:  -93.0pt; }
+CTCondition                      { margin-left: 100pt; text-indent:  -86.5pt; }
+CTInterventionType               { margin-left: 100pt; text-indent:  -44.5pt; }
+CTInterventionName               { margin-left: 100pt; text-indent:  -49.0pt; }
+
+CTExpectedEnrollment             { margin-left: 150pt; text-indent: -139.5pt; }
+CTGender                         { margin-left: 150pt; text-indent:  -58.0pt; }
+CTMinimumAge                     { margin-left: 150pt; text-indent:  -93.0pt; }
+CTMaximumAge                     { margin-left: 150pt; text-indent:  -96.0pt; }
+
+Facility Name                    { margin-left: 135pt; text-indent: -107.0pt; }
+Facility City                    { margin-left: 135pt; text-indent:  -42.5pt; }
+Facility PoliticalSubUnit_State  { margin-left: 135pt; text-indent:  -95.0pt; }
+Facility Country                 { margin-left: 135pt; text-indent:  -77.0pt; }
+Facility PostalCode_ZIP          { margin-left: 135pt; text-indent:  -90.0pt; }
+
+Status                           { margin-left: 135pt; text-indent:  -52.5pt; }
+Role                             { margin-left: 135pt; text-indent:  -46.5pt; }
+
+Location GivenName               { margin-left: 135pt; text-indent:  -89.5pt; }
+Location MiddleInitial           { margin-left: 135pt; text-indent:  -90.5pt; }
+Location Surname                 { margin-left: 135pt; text-indent:  -67.5pt; }
+Location ProfessionalSuffix      { margin-left: 135pt; text-indent: -128.0pt; }
+Location Phone                   { margin-left: 135pt; text-indent:  -73.0pt; }
+Location PhoneExt                { margin-left: 135pt; text-indent: -118.5pt; }
+Location Email                   { margin-left: 135pt; text-indent:  -67.0pt; }
+
+StudyType                        { margin-left: 150pt; text-indent:  -81.0pt; }
+StudyCategoryType                { margin-left: 150pt; text-indent: -136.5pt; }
+StudyCategoryName                { margin-left: 150pt; text-indent: -141.2pt; }
+InterventionType                 { margin-left: 150pt; text-indent: -130.5pt; }
+InterventionName                 { margin-left: 150pt; text-indent: -149.0pt; }
+Condition                        { margin-left: 150pt; text-indent: -101.0pt; }
+Gene                             { margin-left: 150pt; text-indent:  -75.0pt; }
+HealthyVolunteers                { margin-left: 150pt; text-indent: -136.5pt; }
+LowAge                           { margin-left: 150pt; text-indent:  -70.5pt; }
+HighAge                          { margin-left: 150pt; text-indent:  -73.0pt; }
+AgeText                          { margin-left: 150pt; text-indent: -122.0pt; }
+Diagnosis                        { margin-left: 150pt; text-indent: -103.0pt; }
+ExclusionCriteria                { margin-left: 150pt; text-indent: -146.0pt; }
+Comment                          { margin-left: 150pt; text-indent:  -75.5pt; }
+
+VerificationDate                 { margin-left: 135pt; text-indent: -110.0pt; }
+LastChangedDate                  { margin-left: 135pt; text-indent: -131.0pt; }
+
+
+/* Margin-bottom for simulated text boxes                                  */
+
+DownloadDate,
+LinkText,
+URL,
+OrgStudyID,
+SecondaryID,
+NCTID,
+
+PDQSponsorship,
+LeadSponsor,
+Collaborator,
+GivenName,
+MiddleInitial,
+Surname,
+ProfessionalSuffix,
+Phone,
+PhoneExt,
+Email,
+
+OverallStatus,
+StartDate,
+EndDate,
+Phase,
+
+CTStudyDesign,
+CTCondition,
+CTInterventionType,
+CTInterventionName,
+CTExpectedEnrollment,
+CTGender,
+CTMinimumAge,
+CTMaximumAge,
+
+Status,
+Role,
+
+StudyType,
+StudyCategoryType,
+StudyCategoryName,
+InterventionType,
+InterventionName,
+Condition,
+Gene,
+HealthyVolunteers,
+LowAge,
+HighAge,
+AgeText,
+Diagnosis,
+ExclusionCriteria,
+Comment,
+VerificationDate,
+LastChangedDate
+
+	{ margin-bottom: 4pt; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+Affiliation,
+AgeText,
+BriefSummary,
+BriefTitle,
+CTCondition,
+CTCriteria,
+CTEligibility,
+CTExpectedEnrollment,
+CTGender,
+CTGovIndexing,
+CTGovProtocol,
+CTIntervention,
+CTInterventionName,
+CTInterventionType,
+CTMaximumAge,
+CTMinimumAge,
+CTStudyDesign,
+City,
+Collaborator,
+Comment,
+Condition,
+Contact,
+ContactBackup,
+Country,
+DetailedDescription,
+Diagnosis,
+DownloadDate,
+Eligibility,
+Email,
+EndDate,
+ExclusionCriteria,
+Facility,
+Gene,
+GivenName,
+HealthyVolunteers,
+HighAge,
+IDInfo,
+Intervention,
+InterventionName,
+InterventionType,
+Investigator,
+ItemizedList,
+LastChangedDate,
+LeadSponsor,
+LinkText,
+ListItem,
+Location,
+LowAge,
+MiddleInitial,
+NCTID,
+Name,
+OfficialTitle,
+OrgStudyID,
+OverallContact,
+OverallContactBackup,
+OverallOfficial,
+OverallStatus,
+PDQIndexing,
+PDQSponsorship,
+Para,
+Phase,
+Phone,
+PhoneExt,
+PoliticalSubUnit_State,
+PostalAddress,
+PostalCode_ZIP,
+ProfessionalSuffix,
+Role,
+SecondaryID,
+Sponsors,
+StartDate,
+Status,
+StudyCategory,
+StudyCategoryName,
+StudyCategoryType,
+StudyType,
+Surname,
+URL,
+VerificationDate,
+
+DownloadDate,
+LinkText,
+URL,
+OrgStudyID,
+SecondaryID,
+NCTID,
+
+VerificationDate,
+LastChangedDate
+
+  { background-color: white; }
+
+
+/* Blue = Administrative Information                                       */
+
+RequiredHeader,
+DownloadDate:before,
+LinkText:before,
+URL:before,
+
+IDInfo,
+OrgStudyID             :before,
+SecondaryID            :before,
+NCTID                  :before,
+
+Sponsors,
+Sponsors               :before,
+PDQSponsorship         :before,
+LeadSponsor            :before,
+Collaborator           :before,
+
+OverallOfficial,
+OverallContact,
+OverallContactBackup,
+OverallOfficial        :before,
+OverallContact         :before,
+OverallContactBackup   :before,
+GivenName              :before,
+MiddleInitial          :before,
+Surname                :before,
+ProfessionalSuffix     :before,
+PhoneExt               :before,
+
+Location,
+Facility,
+Name                   :before,
+Status                 :before,
+PostalAddress,
+Contact,
+ContactBackup,
+Investigator,
+Role
+
+{ background-color: #CCCCFF; }  /*light blue*/
+
+OverallStatus          :before,
+StartDate              :before,
+EndDate                :before,
+Phase                  :before,
+
+BriefTitle             :before,
+OfficialTitle          :before,
+VerificationDate       :before,
+LastChangedDate        :before
+
+    { font-weight: bold; color: navy; }
+
+/* Green = Scientific Information                                   	   */
+
+PDQIndexing,
+BriefSummary,
+DetailedDescription,
+CTGovIndexing,
+CTStudyDesign          :before,
+CTCondition            :before,
+CTIntervention,
+CTInterventionType     :before,
+CTInterventionName     :before,
+
+CTEligibility,
+CTCriteria,
+CTExpectedEnrollment   :before,
+CTGender               :before,
+CTMinimumAge           :before,
+CTMaximumAge           :before,
+
+StudyType              :before,
+StudyCategory          :before,
+StudyCategoryType      :before,
+StudyCategoryName      :before,
+Intervention           :before,
+InterventionType       :before,
+InterventionName       :before,
+Condition              :before,
+Gene                   :before,
+Intervention,
+StudyCategory,
+Eligibility,
+HealthyVolunteers      :before,
+LowAge                 :before,
+HighAge                :before,
+AgeText                :before,
+Diagnosis              :before,
+ExclusionCriteria      :before,
+Comment                :before,
+
+	{ background-color: #CCFFCC; }  /*light green*/
+
+Foobar    { font-weight: bold; color: green; }
+
+/* Override common css, which formats elements of this name as inline markup */
+InterventionName { text-decoration: none; color: black; }
+
+ItemizedList      { margin-left: 50pt; }
+ListItem { display: list-item; list-style-type: disc; margin-left: 0pt; }
