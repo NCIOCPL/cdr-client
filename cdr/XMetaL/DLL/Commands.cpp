@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.10 2002-02-15 23:05:01 bkline Exp $
+ * $Id: Commands.cpp,v 1.11 2002-02-19 23:14:40 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.10  2002/02/15 23:05:01  bkline
+ * Changed save command so that document is not reopened after checkin.
+ *
  * Revision 1.9  2002/02/14 01:13:22  bkline
  * Dialog box message changed for new document save.
  *
@@ -1775,26 +1778,37 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
             return S_OK;
         }
         CString addrStr = addressElements.getString();
+        cdr::Element postalAddressElement =
+            cdr::Element::extractElement(addrStr, _T("PostalAddress"));
+        if (!postalAddressElement) {
+            if (!cdr::showErrors(rsp))
+                ::AfxMessageBox(_T("Unable to find PostalAddress element"),
+                                MB_ICONEXCLAMATION);
+            return S_OK;
+        }
+        CString paStr = postalAddressElement.getString();
 
         // Find the proper location for the address.
-        ::Range scLoc = cdr::findOrCreateChild(oplLoc, _T("SpecificContact"));
-        if (!scLoc) {
-            ::AfxMessageBox(_T("Failure creating SpecificContact element"), 
-				MB_ICONEXCLAMATION);
+        ::Range spaLoc = cdr::findOrCreateChild(oplLoc, 
+                                                _T("SpecificPostalAddress"));
+        if (!spaLoc) {
+            ::AfxMessageBox(_T("Failure creating ")
+                            _T("SpecificPostalAddress element"),
+				            MB_ICONEXCLAMATION);
             return S_OK;
         }
 
         // Plug in our own data.
-        scLoc.SelectElement();
-        scLoc.Select();
-        CString scData = _T("<SpecificContact>") + addrStr +
-                         _T("</SpecificContact>");
+        spaLoc.SelectElement();
+        spaLoc.Select();
+        CString spaData = _T("<SpecificPostalAddress>") + paStr +
+                          _T("</SpecificPostalAddress>");
         //::AfxMessageBox(pscData);
-        if (!scLoc.GetCanPaste(scData, FALSE))
-            ::AfxMessageBox(_T("Unable to insert ") + scData,
+        if (!spaLoc.GetCanPaste(spaData, FALSE))
+            ::AfxMessageBox(_T("Unable to insert ") + spaData,
                     MB_ICONEXCLAMATION);
         else
-            scLoc.PasteString(scData);
+            spaLoc.PasteString(spaData);
 
     }
     catch (...) {
