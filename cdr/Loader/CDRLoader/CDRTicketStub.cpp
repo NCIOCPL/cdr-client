@@ -186,7 +186,8 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 	DebugWrite( my_req );
 	try 
 	{
-		http_page->SendRequest( _T(""), 0, (void *)plain_req.GetString(), rlen );
+		CStringA::PCXSTR t = plain_req.GetString();
+		http_page->SendRequest( _T(""), 0, (void *)t, rlen );
 	}
 	catch ( CInternetException &ee )
 	{
