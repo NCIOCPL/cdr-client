@@ -11,6 +11,7 @@
 
 #include "resource.h"       // main symbols
 #include <string>
+#include "LogonDialog.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CCommands
@@ -23,8 +24,11 @@ class CCommands :
 {
 public:
 	CCommands() {}
-    static bool doRetrieve(const std::string& id);
-    static bool doInsertLink(const std::string&);
+    static bool doRetrieve(const CString& id,
+                           BOOL checkOut,
+                           const CString& version);
+    static bool doInsertLink(const CString&);
+    static bool doLogon(LogonDialog& dialog);
 
 BEGIN_COM_MAP(CCommands)
 	COM_INTERFACE_ENTRY(IDispatch)
