@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.29 2002-08-03 12:13:59 bkline Exp $
+ * $Id: Commands.cpp,v 1.30 2002-08-16 22:03:07 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.29  2002/08/03 12:13:59  bkline
+ * Backed out private practice picklist support temporarily [per LG].
+ *
  * Revision 1.28  2002/07/30 21:37:37  bkline
  * Fixed problem with & in DocTitle; removed hard tabs inserted by Visual
  * Studio.
@@ -1007,8 +1010,8 @@ STDMETHODIMP CCommands::edit(int *pRet)
             }
             else if (elemName == _T("Person"))
                 editType = CEditElement::PROT_PERSON;
-            //else if (elemName == _T("PrivatePracticeSiteID"))
-            //    editType = CEditElement::PRIV_PRACTICE;
+            else if (elemName == _T("PrivatePracticeSiteID"))
+                editType = CEditElement::PRIV_PRACTICE;
         }
         else if (docType == _T("Person")) {
             if (elemName  == _T("OrganizationLocation")) {
