@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.43 2002-04-15 02:37:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.44 2002-04-20 02:44:05 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.43  2002/04/15 02:37:41  bkline
+     Added code to switch from text-only view when validating.
+
      Revision 1.42  2002/04/12 01:34:09  bkline
      Replaced stub for QC button.
 
@@ -294,6 +297,17 @@
         if (ActiveDocument.documentElement == null)   { return 0; }
         if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
                                                       { return 1; }
+        if (ActiveDocument.doctype == null)           { return 0; }
+        if (Selection.ContainerNode == null)          { return 0; }
+        if (Selection.ContainerNode.nodeName == null) { return 0; }
+        if (ActiveDocument.doctype.name == "Mailer") {
+            var elName = Selection.ContainerNode.nodeName;
+            if (elName == "Received" ||
+                elName == "ChangesCategory" ||
+                elName == "Comment")
+                return 0;
+            return 1;
+        }
         return 0; /* XXX */
         if (cdrObj == null)                           { return 0; }
         if (Selection == null)                        { return 0; }
