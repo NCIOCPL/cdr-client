@@ -1,5 +1,9 @@
 /*************************************************************************/
-/* 	InScopeProtocol.css                                              */
+/* 	InScopeProtocol.css  
+/*                                                                      */
+/*      v. 4.1                                                          */
+/*      3/30/04  by Cburg                                               */
+/*      Added data element UpdateMode                                   */                /*                                                                      */
 /* 	                                                                 */
 /*      v. 4.0                                                           */
 /*      9/24/02  by ebator                                               */
@@ -180,6 +184,7 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+UpdateMode,
 
    { display: block; }
 
@@ -270,6 +275,10 @@ SpecificEmail:after				{ content: " (Public) "; }
 SponsorName:before		{ content: "Sponsor * +: ";  }
 StatusDate:before		{ content: "Status Date *: "; }
 StatusName:before		{ content: "Status *: "; }
+UpdateMode:before               { content: "Updt Mode &+@: ";}
+UpdateMode[MailerType="Protocol_SandP"]:after  { content: " (Protocol_SandP) ";}
+UpdateMode[MailerType="Protocol_Abstract"]:after { content: " (Protocol_Abstract) ";}
+
 
 
 /***************************************************************************/ 
@@ -331,6 +340,8 @@ SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
+UpdateMode:before,
+UpdateMode:after,
 
    {  font-weight: bold;
       color: black;  }
@@ -551,6 +562,9 @@ PrivatePracticeSiteStatus,		{ margin-left: 100pt;
 MailAbstractTo,				{ margin-left: 100pt;
 					  text-indent: -94pt; }
 
+UpdateMode,				{ margin-left: 100pt;
+					  text-indent: -100pt; }
+
 /* Key element for length = ProcessingStatus				   */
 
 ProcessingStatus,			{ margin-left: 120pt; 
@@ -628,6 +642,7 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+UpdateMode,
 
 	{ margin-bottom: 4pt; }
 
@@ -692,6 +707,7 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+UpdateMode,
 
 	{ background-color: white; }
 
@@ -753,7 +769,8 @@ StatusName:before,
 FDAINDInfo,
 INDGrantor:before,
 INDNumber:before,
-INDSerialNumber:before
+INDSerialNumber:before,
+UpdateMode:before,
 
 	{ background-color: #CCCCFF; }  /*light blue*/
 
