@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.14 2002-03-09 03:24:46 bkline Exp $
+ * $Id: Commands.cpp,v 1.15 2002-04-18 21:49:04 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.14  2002/03/09 03:24:46  bkline
+ * Implemented enhancement for Issue #125.
+ *
  * Revision 1.13  2002/03/01 21:13:40  bkline
  * Fixed bug that was causing saved document to be marked readonly.
  *
@@ -491,6 +494,10 @@ STDMETHODIMP CCommands::logon(int *pRet)
 	}
 
     // Handle any extraordinary error conditions.
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 6;
+    }
 	catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
 			MB_ICONEXCLAMATION);
@@ -547,6 +554,10 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 		if (!err.IsEmpty())
 			::AfxMessageBox(err, MB_ICONEXCLAMATION);
 	}
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 6;
+    }
 	catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), MB_ICONEXCLAMATION);
         *pRet = 6;
@@ -595,6 +606,10 @@ STDMETHODIMP CCommands::search(int *pRet)
 			}
 		}
 	}
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 6;
+    }
 	catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
 			MB_ICONEXCLAMATION);
@@ -730,6 +745,18 @@ STDMETHODIMP CCommands::save(int *pRet)
 			break;
 		}
 	}
+    catch (::COleDispatchException &ode) {
+        CString msg;
+        msg.Format(_T("Dispatch Exception; error code: %lu\n")
+                   _T("From application: %s\n")
+                   _T("Description: %s"), ode.m_wCode, ode.m_strSource, ode.m_strDescription);
+        ::AfxMessageBox(msg);
+        *pRet = 6;
+    }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 6;
+    }
 	catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
 			MB_ICONEXCLAMATION);
@@ -817,6 +844,10 @@ STDMETHODIMP CCommands::validate(int *pRet)
 			break;
 		}
 	}
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 2;
+    }
 	catch (...) { 
         ::AfxMessageBox(_T("Unexpected error from validation command."), 
 			MB_ICONEXCLAMATION);
@@ -945,6 +976,10 @@ STDMETHODIMP CCommands::edit(int *pRet)
         CEditElement editDialog(docType, elemName, editType);
         if (editDialog.DoModal() != IDOK)
             *pRet = 2;
+    }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 3;
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error from edit command."), 
@@ -1123,12 +1158,29 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
     else {
 
         // Open the document and set its title bar string.
-        _Document doc = docs.Open((LPCTSTR)docPath, 1);
-        if (doc) {
-            doc.SetTitle(retrievedDocTitle);
-            return true;
+        try {
+            _Document doc = docs.Open((LPCTSTR)docPath, 1);
+            if (doc) {
+                doc.SetTitle(retrievedDocTitle);
+                return true;
+            }
+            return false;
         }
-        return false;
+        catch (::COleDispatchException &ode) {
+            CString msg;
+            msg.Format(_T("Dispatch Exception; error code: %lu\n")
+                       _T("From application: %s\n")
+                       _T("Description: %s"), ode.m_wCode, ode.m_strSource, ode.m_strDescription);
+            ::AfxMessageBox(msg);
+            return false;
+        }
+        catch (::CException &e) {
+            e.ReportError();
+            return false;
+        }
+        catch (...) {
+            ::AfxMessageBox(_T("Unexpected exception encountered retrieving document"));
+        }
     }
 }
 
@@ -1559,6 +1611,10 @@ STDMETHODIMP CCommands::protUpdPerson(int *pRet)
         CProtUpdPerson pupDialog(leadOrgId);
 		pupDialog.DoModal();
     }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 2;
+    }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error from ")
                         _T("Protocol Update Person command."), 
@@ -1665,6 +1721,10 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
             pscLoc.PasteString(pscData);
 
     }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 2;
+    }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error retrieving ")
                         _T("contact address information"), 
@@ -1742,6 +1802,10 @@ STDMETHODIMP CCommands::particOrgs(int *pRet)
         // Most of the real work is done inside this call.
         CParticOrgs poDialog(leadOrgId);
 		poDialog.DoModal();
+    }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 2;
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error from ")
@@ -1874,6 +1938,10 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
             spaLoc.PasteString(spaData);
 
     }
+    catch (::CException &e) {
+        e.ReportError();
+        *pRet = 2;
+    }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error retrieving ")
                         _T("contact address information"), 
@@ -1956,6 +2024,10 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
             // Pop in the new content.
             ::DOMText textNode = doc.createTextNode(denormData);
             ::DOMNode dummy = elem.appendChild(textNode);
+        }
+        catch (::CException &e) {
+            e.ReportError();
+            *pRet = 2;
         }
         catch (...) {
             ::AfxMessageBox(_T("Unexpected error pasting doc link"), 
@@ -2081,6 +2153,9 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
 			break;
 		}
 	}
+    catch (::CException &e) {
+        e.ReportError();
+    }
 	catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
 			MB_ICONEXCLAMATION);
