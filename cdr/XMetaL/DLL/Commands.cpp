@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.40 2004-09-09 18:43:03 bkline Exp $
+ * $Id: Commands.cpp,v 1.41 2004-12-27 19:20:45 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.40  2004/09/09 18:43:03  bkline
+ * Glossifier implemented.
+ *
  * Revision 1.39  2004/02/26 01:45:53  bkline
  * Added glossifier support.
  *
@@ -905,6 +908,8 @@ STDMETHODIMP CCommands::validate(int *pRet)
                 filterLevel = 1;
             else if (validateDialog.m_includeApprovedMarkup)
                 filterLevel = 2;
+            if (!ctrlInfo.docId.IsEmpty())
+                os << _T("' Id='") << (LPCTSTR)ctrlInfo.docId;
             os << _T("'><CdrDoc Type='") << (LPCTSTR)docType 
                << _T("' RevisionFilterLevel='") << filterLevel
                << _T("'><CdrDocCtl>");
