@@ -342,6 +342,19 @@
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </RelatedTerm>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>MenuItem</Name>
+      <MiniTemplate><![CDATA[ <MenuItem>
+  <MenuType><?xm-replace_text {Select the menu type}?></MenuType>
+  <MenuParent><?xm-replace_text {Optionally select a menu parent term}?></MenuParent>
+  <DisplayName><?xm-replace_text {Optionally enter a display string}?></DisplayName>
+  <MenuStatus><?xm-replace_text {Select the menu status}?></MenuStatus>
+  <EnteredBy><?xm-replace_text {Enter your CDR user initials}?></EnteredBy>
+  <EntryDate><?xm-replace_text {Enter today's date}?></EntryDate>
+  <Comment><?xm-replace_text {Optionally enter a comment}?></Comment>
+ </MenuItem>
+]]></MiniTemplate>
+    </Template>
   </Templates>
   <ChangeLists>
     <ChangeList>
