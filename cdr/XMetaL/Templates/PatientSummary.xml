@@ -73,7 +73,7 @@
    <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording><GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed under a microscope to check for signs of cancer.</StandardWording>  [Tailor full definition to fit the cancer.]</ListItem>
+    <ListItem><StandardWording>Biopsy: The removal of cells or tissues so they can be viewed under a microscope to check for signs of cancer.</StandardWording>  [Tailor full definition to fit the cancer.]</ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
