@@ -186,7 +186,21 @@ appropriate.]</Para>
 
 <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. [Use for childhood treatment summaries.  Tailor if needed for adult.]</KeyPoint>
 <Para>Your child's treatment will be overseen by a <GlossaryTermRef cdr:href="CDR0000046245">pediatric</GlossaryTermRef> <GlossaryTermRef cdr:href="CDR0000046260">oncologist</GlossaryTermRef>, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: [Add or delete specialists to fit the cancer treatment.]</Para>
-<ItemizedList Style="bullet"><ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem><ListItem>Neuropathologist.</ListItem><ListItem>Neuroradiologist.</ListItem><ListItem>Rehabilitation specialist.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem><ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem><ListItem>Psychologist.</ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem></ItemizedList></SummarySection>
+<ItemizedList Style="bullet">
+ <ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem>
+ <ListItem>Neuropathologist.</ListItem>
+ <ListItem>Neuroradiologist.</ListItem>
+ <ListItem>Rehabilitation specialist.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000044716">Psychologist</GlossaryTermRef>.</ListItem>
+ <ListItem><GlossaryTermRef cdr:href="CDR0000044730">Social Worker</GlossaryTermRef>.</ListItem>
+ <ListItem><?xm-replace_text {ListItem}?></ListItem>
+ <ListItem><?xm-replace_text {ListItem}?></ListItem>
+</ItemizedList>
+</SummarySection>
 <SummarySection>
 <SectMetaData>
 <SectionType>Standard treatment</SectionType>
@@ -201,12 +215,12 @@ appropriate.]</Para>
 
 <SummarySection>
 <KeyPoint><InterventionName>Radiation therapy</InterventionName></KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a radioactive substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer. X cancer is treated with _____radiation.</Para>
+<Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high-energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a <GlossaryTermRef cdr:href="CDR0000046550">radioactive</GlossaryTermRef> substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer.</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>Chemotherapy</InterventionName></KeyPoint>
-<Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   Because some normal cells such as blood and hair can be affected, <GlossaryTermRef cdr:href="CDR0000046580">side effects</GlossaryTermRef> can occur.  When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can affect cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000045922">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an organ, the drugs mainly affect cancer cells in those areas.   </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   Because some normal cells such as <GlossaryTermRef cdr:href="CDR0000270735">blood</GlossaryTermRef> and hair can be affected, <GlossaryTermRef cdr:href="CDR0000046580">side effects</GlossaryTermRef> can occur.  When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can affect cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000301626">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an <GlossaryTermRef cdr:href="CDR0000257523">organ</GlossaryTermRef>, the drugs mainly affect cancer cells in those areas.</Para>
 </SummarySection>
 
 <SummarySection>
@@ -257,7 +271,7 @@ appropriate.]</Para>
 <SectMetaData>
 <SectionType>Treatment options by stage</SectionType>
 </SectMetaData>
-<Title>Treatment Options By Stage </Title>
+<Title>Treatment Options by Stage </Title>
 
 <SummarySection>
 <SectMetaData>
@@ -343,5 +357,14 @@ appropriate.]</Para>
 <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
 </SummarySection>
 
-<PatientVersionOf><?xm-replace_text {Select a link to the Health Professionals summary} ?></PatientVersionOf><DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Changes to summary</SectionType>
+  </SectMetaData>
+  <Title>Changes to This Summary (MM/DD/YYYY)</Title>
+  <Para>The PDQ cancer information summaries are reviewed regularly and updated as new information becomes available.  This section describes the latest changes made to this summary as of the date above.</Para>
+  <Para>This summary was completely reformatted and some content was added.</Para>
+ </SummarySection>
+ <PatientVersionOf><?xm-replace_text {Select a link to the Health Professionals summary} ?></PatientVersionOf>
+ <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
 </Summary>
