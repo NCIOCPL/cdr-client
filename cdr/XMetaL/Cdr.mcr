@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.131 2004-11-03 22:11:35 bkline Exp $
+     $Id: Cdr.mcr,v 1.132 2005-02-16 19:09:03 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.131  2004/11/03 22:11:35  bkline
+     More modifications to the wording of the prompts in a new board member
+     info block.
+
      Revision 1.130  2004/11/02 18:18:11  bkline
      Plugged in fix for toolbar bug (#963).
 
@@ -550,7 +554,9 @@
                 CdrWebServer = "http://" + cdrObj.hostname;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
-            //Application.Alert("User Name is " + CdrUserName);
+//if (CdrUserName == 'rmk')
+//            Application.Alert("User Name is " + CdrUserName);
+            cdrObj.setTitleBar();
         }
     }
 
@@ -848,7 +854,7 @@
     ||  ActiveDocument.documentElement.getAttribute("readonly") == "yes")
         Application.DisableMacro("Cdr Save");
 
-
+    if (Documents.Count > 0 && cdrObj) cdrObj.setTitleBar();
   ]]>
 </MACRO>
 
@@ -904,6 +910,8 @@
         hide="true" 
         lang="JScript">
     turnOffStandardToolbars();
+    if (cdrObj != null)
+        cdrObj.setTitleBar();
 </MACRO>
 
 <MACRO  name="On_Application_Close" 
@@ -953,15 +961,25 @@
             "Indicates status of proposed deletion", 9, // ordinary enumeration
             2, // default value is explicity specified
             "approved", "approved", "proposed", "publish", "rejected");
+        docType.addEnumeratedAttribute("Deletion", "Source",
+            "Used to tag deletions submitted by an Advisory Board member",
+            9, 0, // attribute is optional (#IMPLIED)
+            "advisory-board", // this is ignored because attr-type is 0
+            "advisory-board", "editorial-board");
 
         // Add the Insertion element.
         docType.addElement("Insertion", "Insertion", true , false);
         docType.addAttribute("Insertion", "UserName", "", 0, 0);
         docType.addAttribute("Insertion", "Time", "", 0, 0);
         docType.addEnumeratedAttribute("Insertion", "RevisionLevel",
-            "Indicates status of proposed insertion", 9, // ordinary enumeration
+            "Indicates status of proposed insertion", 9, //ordinary enumeration
             2, // default value is explicity specified
             "approved", "approved", "proposed", "publish", "rejected");
+        docType.addEnumeratedAttribute("Insertion", "Source",
+            "Used to tag insertions submitted by an Advisory Board member",
+            9, 0, // attribute is optional (#IMPLIED)
+            "advisory-board", // this is ignored because attr-type is 0
+            "advisory-board", "editorial-board");
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
@@ -1414,6 +1432,12 @@
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
                            "Design (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("R&eview All Changes",
+                           "Review Markup",
+                           "Review Markup",
+                           "Accept or Reject Changes",
+                           null, 0, 0,
                            false),
             new CdrCmdItem("Vie&w Changes With Highlighting",
                            "Show Changes With Highlighting",
@@ -3276,10 +3300,23 @@
   ]]>
 </MACRO>
  
+<MACRO  name="Review Markup"
+        lang="JScript"
+        id="1948"
+        key="Ctrl+Alt+A"
+        desc="Accept or Reject Changes..."
+        tooltip="Accept or Reject Changes... (Ctrl+Alt+A)">
+  <![CDATA[
+    if (cdrDocReadOnly())
+        Application.Alert("Document is not checked out for editing.");
+    else if (CanRunMacros())
+        cdrObj.acceptOrRejectMarkup();
+  ]]>
+</MACRO>
+
 <MACRO  name="Accept or Reject Changes"
         lang="JScript"
         id="1904"
-        key="Ctrl+Alt+A"
         desc="Accept or Reject Changes..."
         tooltip="Accept or Reject Changes... (Ctrl+Alt+A)">
   <![CDATA[
@@ -3353,9 +3390,9 @@
         AcceptOrReject_Dlg.DoModal();
     }
 
-    if (CanRunMacros()) {
-        doAcceptOrReject();
-    }
+    //if (CanRunMacros()) {
+    //    doAcceptOrReject();
+    //}
 
   ]]>
 </MACRO>
@@ -4835,6 +4872,7 @@
   <![CDATA[
     if (Application.VersionNumber < 4.5)
         hideToolbars();
+    //cdrObj.setTitleBar();
   ]]>
 </MACRO>
 
@@ -5571,7 +5609,6 @@
 </MACRO>
 
 <MACRO name="Insert PDQ Board Info" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function insertPdqBoardInfo() {
@@ -5835,7 +5872,15 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        var url = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
+        var url  = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
+        var name = ActiveDocument.Name;
+        var pos  = name.indexOf('-V');
+        if (pos > 0) {
+            var period = name.indexOf('.', pos + 2);
+            var ver    = name.substring(pos + 2, period);
+            if (ver)
+                url += '&ver=' + ver;
+        }
         cdrObj.showPage(url);
     }
     previewMailer();
@@ -5864,9 +5909,10 @@
   <![CDATA[
     function showToolbarForDoctype() {
         var docType = ActiveDocument.doctype;
-        if (docType && toolbars[docType.name] != null) {
-            if (!toolbars[docType.name].Visible) {
-                toolbars[docType.name].Visible = true;
+        if (docType) {
+            var bar = toolbars[docType.name];
+            if (bar != null && !bar.Visible) {
+                bar.Visible = true;
             }
         }
     }
@@ -5879,6 +5925,13 @@
        lang="JScript">
     try { hideToolbars(); }
     catch (e) {}
+</MACRO>
+
+<MACRO name="ShowCDRServer"
+        key="Alt+Z"
+       lang="JScript">
+    if (cdrObj)
+        cdrObj.setTitleBar();
 </MACRO>
 
 <MACRO name="SC Up"      lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
