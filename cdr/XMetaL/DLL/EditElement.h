@@ -60,6 +60,8 @@ private:
     bool            insertOrgLocation(const CString& str);
     void            extractLeadOrgs(const CString& str);
     CFont           biggerFont;
+public:
+    afx_msg void OnLbnSelchangeList1();
 };
 
 //{{AFX_INSERT_LOCATION}}

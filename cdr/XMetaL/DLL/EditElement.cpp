@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.11 2002-07-01 22:49:02 bkline Exp $
+ * $Id: EditElement.cpp,v 1.12 2002-07-25 01:40:31 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2002/07/01 22:49:02  bkline
+ * Removed remaining instances of hard-coded mmdb2.
+ *
  * Revision 1.10  2002/06/01 00:47:06  bkline
  * Replaced raw XML display for View button with QC reports.
  *
@@ -38,6 +41,7 @@
 
 // Local headers.
 #include "stdafx.h"
+#include "afxtempl.h"
 #include "resource.h"
 #include "EditElement.h"
 #include "PersonLocs.h"
@@ -98,6 +102,7 @@ BEGIN_MESSAGE_MAP(CEditElement, CDialog)
     ON_LBN_DBLCLK(IDC_LIST1, OnDblclkLink)
     ON_BN_CLICKED(IDC_BUTTON2, OnButton2)
     //}}AFX_MSG_MAP
+    ON_LBN_SELCHANGE(IDC_LIST1, OnLbnSelchangeList1)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -198,17 +203,36 @@ void CEditElement::OnOK()
  */
 void CEditElement::OnSelectButton() 
 {
-    // Find out which candidate document the user selected.
-    int curSel = m_linkList.GetCurSel();
+    // Find out where we are.
 
-    // Don't do anything if there is no selection.
-    if (curSel >= 0) {
+
+    // Find out which candidate documents the user selected.
+    int selCount = m_linkList.GetSelCount();
+    if (selCount > 0) {
         CWaitCursor wc;
+        CArray<int, int> selections;
+        selections.SetSize(selCount);
+        m_linkList.GetSelItems(selCount, selections.GetData());
         CString str;
+        int i = 0;
+        int curSel = selections[i];
         m_linkList.GetText(curSel, str);
         switch (type) {
             case NORMAL:
                 CCommands::doInsertLink(str);
+                while (++i < selCount) {
+                    ::Selection selection = cdr::getApp().GetSelection();
+                    if (!selection.FindInsertLocation(element, TRUE)) {
+                        ::AfxMessageBox(_T("You selected more items than ")
+                                        _T("are allowed at this position."));
+                        break;
+                    }
+                    selection.InsertElement(element);
+                    selection.MoveToElement(element, TRUE);
+                    curSel = selections[i];
+                    m_linkList.GetText(curSel, str);
+                    CCommands::doInsertLink(str);
+                }
                 break;
             case LEAD_ORG:
                 insertLeadOrg(str);
@@ -425,4 +449,27 @@ BOOL CEditElement::OnInitDialog()
     UpdateData(FALSE);
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CEditElement::OnLbnSelchangeList1()
+{
+    if (type != NORMAL) {
+        int sel = m_linkList.GetCurSel();
+        int selCount = m_linkList.GetSelCount();
+        //CString msg;
+        //msg.Format(L"cursel is %d; selcount is %d", sel, selCount);
+        //::AfxMessageBox((LPCTSTR)msg);
+        while (selCount > 1) {
+            int selections[2];
+            m_linkList.GetSelItems(2, selections);
+            for (int i = 0; i < 2; ++i) {
+                int j = selections[i];
+                if (j != sel)
+                    m_linkList.SetSel(j, FALSE);
+            }
+            selCount = m_linkList.GetSelCount();
+            //msg.Format(L"now selcount is %d", selCount);
+            //::AfxMessageBox((LPCTSTR)msg);
+        }
+    }
 }
