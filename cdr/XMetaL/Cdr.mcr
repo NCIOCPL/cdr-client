@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.34 2002-03-02 14:08:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.35 2002-03-07 20:49:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.34  2002/03/02 14:08:40  bkline
+     Added macro for report of checked-out documents.
+
      Revision 1.33  2002/03/01 21:29:38  bkline
      Adjusted CdrEdit function to remove XMetaL PIs earlier.
 
@@ -1045,7 +1048,7 @@
                            "Show Original",
                            "View Original",
                            "View document before markup",
-                           "CDR", 2, 1,
+                           "CDR", 2, 10,
                            false)
         );
 
