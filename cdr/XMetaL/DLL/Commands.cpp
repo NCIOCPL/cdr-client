@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.4 2001-06-11 18:27:18 bkline Exp $
+ * $Id: Commands.cpp,v 1.5 2001-06-14 01:21:18 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/06/11 18:27:18  bkline
+ * Snapshot prior to re-working automation support using CCmdTarget.
+ *
  * Revision 1.3  2001/06/09 12:33:45  bkline
  * Switched to Unicode; added code to sync client with server.
  *
@@ -46,12 +49,21 @@
 static void     getDocTypeStrings(CString& err);
 static void     messageLoop();
 static CString& fixDoc(CString& doc, const CString& ctl, 
-                       const CString& docType);
+                       const CString& docType, bool readOnly);
 
 // Local data.
 static cdr::StringList      docTypeStrings;
 static cdr::ValidValueSets  validValueSets;
 static cdr::ElementSets     linkingElements;
+
+static bool isLinkingElement(const CString& docType,
+                             const CString& elemName)
+{
+    if (linkingElements.find(docType) == linkingElements.end())
+        return false;
+    cdr::StringSet& ss = linkingElements[docType];
+    return ss.find(elemName) != ss.end();
+}
 
 /**
  * Converts a reference to an OLE VARIANT object to an MFC
@@ -200,6 +212,60 @@ static void getDocType(const CString docType, CLogonProgress& dialog)
                 MB_ICONEXCLAMATION);
 }
 
+bool getCssFiles(LogonDialog& dialog, CLogonProgress& progressDialog)
+{
+    cdr::StringList files;
+    _Application app = cdr::getApp();
+    CString displayPath = cdr::getXmetalPath() + _T("\\Display");
+    messageLoop();
+    CString resp = CdrSocket::sendCommand(_T("<CdrGetCssFiles/>"));
+    messageLoop();
+    cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
+    if (err) {
+        ::AfxMessageBox(err.getString(), MB_ICONEXCLAMATION);
+        return false;
+    }
+    cdr::Element file = cdr::Element::extractElement(resp, _T("File"));
+    while (file) {
+        messageLoop();
+        files.push_back(file.getString());
+        file = cdr::Element::extractElement(resp, _T("File"),
+                                            file.getEndPos());
+    }
+    cdr::StringList::const_iterator iter = files.begin();
+    while (iter != files.end()) {
+        if (!dialog.keepGoing()) {
+            app.SetStatusText(_T("Logon cancelled."));
+            progressDialog.m_progressBar.SetPos(0);
+            progressDialog.UpdateData(FALSE);
+            return false;
+        }
+        messageLoop();
+        CString s = *iter++;
+        cdr::Element nameElem = cdr::Element::extractElement(s, _T("Name"));
+        cdr::Element dataElem = cdr::Element::extractElement(s, _T("Data"));
+        CString name = nameElem.getString();
+        CString data = dataElem.getString();
+
+        app.SetStatusText(_T("Retrieving CSS stylesheet ") + name);
+        CString cssPath;
+        cssPath.Format(_T("%s\\%s"), (LPCTSTR)displayPath, (LPCTSTR)name);
+        std::string pathName = cdr::cStringToUtf8(cssPath);
+
+        // Write out the stylesheet
+        std::basic_ofstream<TCHAR> cssStream(pathName.c_str(),
+                std::ios::binary);
+        if (!cssStream) {
+            ::AfxMessageBox(_T("Unable to write stylesheet at ") + cssPath,
+                    MB_ICONEXCLAMATION);
+            return false;
+        }
+        cssStream << (LPCTSTR)data;
+    }
+    app.SetStatusText(_T("Document type information loaded."));
+    return true;
+}
+
 bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
 {
     docTypeStrings.clear();
@@ -247,7 +313,6 @@ bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
         //dialog.m_progressBar.SetPos((100 * ++i) / nameCount);
         progressDialog.m_progressBar.SetPos((100 * ++i) / nameCount);
     }
-    app.SetStatusText(_T("Document type information loaded."));
     return true;
 }
 
@@ -512,10 +577,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                 os << _T("<Version>N</Version>");
             os << _T("<Validate>")
 			   << (saveDialog.m_validate ? _T("Y") : _T("N"))
-			   << _T("</Validate>")
-               << _T("<DocActiveStatus>")
-               << (saveDialog.m_docInactive ? _T("I") : _T("A"))
-               << _T("</DocActiveStatus>");
+			   << _T("</Validate>");
 			if (!saveDialog.m_comment.IsEmpty())
 				os << _T("<Reason>" )
                    << (LPCTSTR)cdr::encode(saveDialog.m_comment)
@@ -530,7 +592,11 @@ STDMETHODIMP CCommands::save(int *pRet)
 			os << _T("<DocType>") << (LPCTSTR)ctrlInfo.docType 
                << _T("</DocType>");
 			os << _T("<DocTitle>") << (LPCTSTR)ctrlInfo.docTitle 
-			   << _T("</DocTitle></CdrDocCtl>");
+			   << _T("</DocTitle>");
+            os << _T("<ActiveStatus>")
+               << (saveDialog.m_docInactive ? _T("I") : _T("A"))
+               << _T("</ActiveStatus>");
+            os << _T("</CdrDocCtl>");
 			os << _T("<CdrDocXml><![CDATA[") << docElement 
 			   << _T("]]></CdrDocXml>");
 			os << _T("</CdrDoc></") << (LPCTSTR)cmdTag << _T(">");
@@ -841,7 +907,7 @@ bool CCommands::doRetrieve(const CString& id,
                             + _T("</DocId>\n    <DocTitle>")
                             + cdr::encode(docTitle, true)
                             + _T("</DocTitle>\n  </CdrDocCtl>\n");
-            CString fixedDoc = fixDoc(docXml, ctl, docType);
+            CString fixedDoc = fixDoc(docXml, ctl, docType, !checkOut);
             xmlStream << cdr::cStringToUtf8(fixedDoc).c_str();
         }
     }
@@ -914,10 +980,11 @@ void getDocTypeStrings(CString& err)
  *  @param  ctl             reference to string containing CdrDocCtl
  *                          element to be inserted.
  *  @param  docType         string identifying document type.
+ *  @param  readOnly        true if user is not checking the document out.
  *  @return                 reference to modified document string.
  */
 CString& fixDoc(CString& doc, const CString& ctl,
-                    const CString& docType)
+                    const CString& docType, bool readOnly)
 {
 	// Skip leading whitespace.
     doc.TrimLeft();
@@ -941,8 +1008,17 @@ CString& fixDoc(CString& doc, const CString& ctl,
     doc.Insert(pos + 1, ctl);
 
     // Add the 'cdr' namespace declaration if it's not already present.
-	if (doc.Find(_T(" xmlns:cdr")) == -1)
-		doc.Insert(pos, _T(" xmlns:cdr='cdr:cips.nci.nih.gov'"));
+	if (doc.Find(_T(" xmlns:cdr")) == -1) {
+        CString nsDecl = _T(" xmlns:cdr='cdr:cips.nci.nih.gov'");
+		doc.Insert(pos, nsDecl);
+        pos += nsDecl.GetLength();
+    }
+    if (readOnly) {
+        ::AfxMessageBox(_T("yess, it's readonly!!!"));
+        int roPos = doc.Find(_T("readonly="));
+        if (roPos == -1 || roPos > pos)
+            doc.Insert(pos, _T(" readonly='yes'"));
+    }
 
     // Strip out whitespace between elements.
 #if 0
@@ -987,6 +1063,7 @@ bool CCommands::doLogon(LogonDialog& logonDialog)
         progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
         progressDialog.ShowWindow(SW_SHOW);
         bool gotDocTypes = getDocTypes(logonDialog, progressDialog);
+        getCssFiles(logonDialog, progressDialog);
         progressDialog.DestroyWindow();
         return gotDocTypes;
     }
@@ -1062,29 +1139,26 @@ bool CCommands::doInsertLink(const CString& info)
     return true;
 }
 
-#if 0
-STDMETHODIMP CCommands::xisReadOnly(BOOL *pRet, 
-                                    VARIANT docType, 
-                                    VARIANT elemName)
-{
-	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-
-	return S_OK;
-}
-#endif
-
-STDMETHODIMP CCommands::isReadOnly(BOOL *pRet, 
-                                   const VARIANT& docType, 
-                                   const VARIANT& elemName)
+STDMETHODIMP CCommands::isReadOnly(const BSTR *docType, const BSTR *elemName, BOOL *pVal)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
 	// Initial assumption: the element is not read-only.
-    CString dt = stringFromVariant(docType);
-    CString el = stringFromVariant(elemName);
-    ::AfxMessageBox(_T("doc type is ") + dt + _T(" and element name is ") + el);
-    *pRet = FALSE;
-
-	return S_OK;
+    *pVal = FALSE;
+    CString dt(*docType);
+    CString el(*elemName);
+    cdr::StringList* vvList = getSchemaValidValues(dt, el);
+    if (vvList && !vvList->empty())
+        *pVal = TRUE;
+    else if (isLinkingElement(dt, el))
+        *pVal = TRUE;
+    // Stopgap until readonly attributes are in place.
+    else if (el == "DocId" || el == "DocType")
+        *pVal = TRUE;
+#if 0
+    if (*pVal)
+        ::AfxMessageBox(_T("doc type is ") + dt + _T(" and READONLY element name is ") + el);
+#endif
+    return S_OK;
 }
