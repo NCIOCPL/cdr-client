@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.11 2002-02-19 23:14:40 bkline Exp $
+ * $Id: Commands.cpp,v 1.12 2002-02-20 12:23:03 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2002/02/19 23:14:40  bkline
+ * Modified getOrgAddress to pull down and insert SpecificPostalAddress only.
+ *
  * Revision 1.10  2002/02/15 23:05:01  bkline
  * Changed save command so that document is not reopened after checkin.
  *
@@ -905,7 +908,8 @@ STDMETHODIMP CCommands::edit(int *pRet)
             //}
             //::AfxMessageBox(_T("Found valid values"));
             CSchemaPicklist schemaPicklist(validValues, _T(""), elemName);
-            schemaPicklist.DoModal();
+            if (schemaPicklist.DoModal() != IDOK)
+                *pRet = 2;
             return S_OK;
         }
 
@@ -930,14 +934,15 @@ STDMETHODIMP CCommands::edit(int *pRet)
 
         // Most of the real work is done inside this call.
         CEditElement editDialog(docType, elemName, editType);
-		editDialog.DoModal();
+        if (editDialog.DoModal() != IDOK)
+            *pRet = 2;
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected error from edit command."), 
-			MB_ICONEXCLAMATION);
-        *pRet = 2; 
+                        MB_ICONEXCLAMATION);
+        *pRet = 3; 
     }
-	return S_OK;
+    return S_OK;
 }
 
 static int findFirst(const CString& str, LPCTSTR chars, int offset)
@@ -979,21 +984,21 @@ bool CCommands::doRetrieve(const CString& id,
                    _T("</CdrGetDoc>"), docId,
                                        (checkOut ? _T("Y") : _T("N")),
                                        version);
-	CString response = CdrSocket::sendCommand(request);
+    CString response = CdrSocket::sendCommand(request);
 
-	return openDoc(response, docId, checkOut);
+return openDoc(response, docId, checkOut);
 }
 
 bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
 {
     // Extract the CdrDoc element.
     unsigned int docNo = cdr::getDocNo(docId);
-	CString err;
+    CString err;
     CString docType;
     CString docPath;
     CString retrievedDocTitle;
     CString cdrDoc;
- 	CString docTitle;
+    CString docTitle;
     CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
     cdr::Element cdrDocElem = cdr::Element::extractElement(resp, 
                                                            _T("CdrDoc"));
@@ -1018,7 +1023,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
         if (titleElem) {
             docTitle = titleElem.getString();
             retrievedDocTitle.Format(_T("%s (CDR%u)"), 
-					                 (LPCTSTR)docTitle, docNo);
+                                     (LPCTSTR)docTitle, docNo);
         }
     }
 
@@ -1062,8 +1067,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
     if (!err.IsEmpty()) {
         ::AfxMessageBox(err, MB_ICONEXCLAMATION);
         return false;
-	}
-	else {
+    }
+    else {
 
         // Open the document and set its title bar string.
         _Application app = cdr::getApp();
@@ -1074,7 +1079,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
             return true;
         }
         return false;
-	}
+    }
 }
 
 /**
@@ -1087,27 +1092,27 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
 void getDocTypeStrings(CString& err)
 {
     // Ask the user for the list of document types.
-	CString response = CdrSocket::sendCommand(_T("<CdrListDocTypes/>"));
+    CString response = CdrSocket::sendCommand(_T("<CdrListDocTypes/>"));
     if (response.IsEmpty())
-		err = _T("Empty response from server");
+        err = _T("Empty response from server");
 
     // Parse the type names from the server's response.
-	if (err.IsEmpty()) {
-		docTypeStrings.push_back(_T("Any Type"));
-		int pos = 0;
-		while ((pos = response.Find(_T("<DocType>"), pos)) != -1) {
-			pos += 9;
-			int endPos = response.Find(_T("</DocType>"), pos);
-			if (endPos == -1 || endPos == pos) {
-				err = _T("Malformed response for document type list");
-				break;
-			}
+    if (err.IsEmpty()) {
+        docTypeStrings.push_back(_T("Any Type"));
+        int pos = 0;
+        while ((pos = response.Find(_T("<DocType>"), pos)) != -1) {
+            pos += 9;
+            int endPos = response.Find(_T("</DocType>"), pos);
+            if (endPos == -1 || endPos == pos) {
+                err = _T("Malformed response for document type list");
+                break;
+            }
 
             // Add the document type to the list.
-			CString typeName = response.Mid(pos, endPos - pos);
-			docTypeStrings.push_back(typeName);
-			pos = endPos + 10;
-		}
+            CString typeName = response.Mid(pos, endPos - pos);
+            docTypeStrings.push_back(typeName);
+            pos = endPos + 10;
+        }
     }
 }
 
@@ -1132,7 +1137,7 @@ void getDocTypeStrings(CString& err)
 CString& fixDoc(CString& doc, const CString& ctl,
                     const CString& docType, bool readOnly)
 {
-	// Skip leading whitespace.
+    // Skip leading whitespace.
     doc.TrimLeft();
 
     // Remove the XML declaration.
@@ -1145,9 +1150,9 @@ CString& fixDoc(CString& doc, const CString& ctl,
 
     // Find the document element.
     CString startTag = _T("<") + docType;
-	pos = doc.Find(startTag);
-	if (pos == -1) {
-		throw L"Unable to find document element " + docType;
+    pos = doc.Find(startTag);
+    if (pos == -1) {
+        throw L"Unable to find document element " + docType;
     }
 
     // Insert the DOCTYPE declaration.
@@ -1158,14 +1163,14 @@ CString& fixDoc(CString& doc, const CString& ctl,
     // Insert the CdrDocCtl element.
     doc.Insert(pos, dtd);
     pos = doc.Find(_T(">"), pos + dtd.GetLength() + 1);
-	if (pos == -1)
-		return doc;
+    if (pos == -1)
+        return doc;
     doc.Insert(pos + 1, ctl);
 
     // Add the 'cdr' namespace declaration if it's not already present.
-	if (doc.Find(_T(" xmlns:cdr")) == -1) {
+    if (doc.Find(_T(" xmlns:cdr")) == -1) {
         CString nsDecl = _T(" xmlns:cdr='cips.nci.nih.gov/cdr'");
-		doc.Insert(pos, nsDecl);
+        doc.Insert(pos, nsDecl);
         pos += nsDecl.GetLength();
     }
     if (readOnly) {
@@ -1176,25 +1181,25 @@ CString& fixDoc(CString& doc, const CString& ctl,
 
     // Strip out whitespace between elements.
 #if 0
-	while ((pos = doc.find('>', pos)) != doc.npos) {
-		++pos;
-		size_t n = 0;
-		while (isspace(doc[pos + n]))
-			++n;
-		if (n)
-			doc.erase(pos, n);
-	}
+    while ((pos = doc.find('>', pos)) != doc.npos) {
+        ++pos;
+        size_t n = 0;
+        while (isspace(doc[pos + n]))
+            ++n;
+        if (n)
+            doc.erase(pos, n);
+    }
 #endif
-	return doc;
+    return doc;
 }
 
 bool CCommands::doLogon(LogonDialog& logonDialog)
 {
     // Create the logon command.
-	CString request = _T("<CdrLogon><UserName>")
-					+ logonDialog.m_UserId 
-					+ _T("</UserName><Password>")
-					+ logonDialog.m_Password
+    CString request = _T("<CdrLogon><UserName>")
+                    + logonDialog.m_UserId 
+                    + _T("</UserName><Password>")
+                    + logonDialog.m_Password
 					+ _T("</Password></CdrLogon>");
 
     // Submit the command to the CDR server.
