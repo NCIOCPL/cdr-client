@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.132 2005-02-16 19:09:03 bkline Exp $
+     $Id: Cdr.mcr,v 1.133 2005-03-18 17:24:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.132  2005/02/16 19:09:03  bkline
+     Added code to set the title bar of the application.  Added new attribute
+     ("Source") for Insertion and Deletion elements.  Added support for
+     previewing mailers for specific summary document versions.  Added macro
+     to invoke dialog window for reviewing all change markup.
+
      Revision 1.131  2004/11/03 22:11:35  bkline
      More modifications to the wording of the prompts in a new board member
      info block.
@@ -452,6 +458,11 @@
     var CdrWebServer = "http://mahler.nci.nih.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     
+    var blobLinkElementNames = [
+        "MediaLink",
+        "SupplementaryInfo"
+    ];
+
     //"Summary", "Person", "Organization",
     //                             "InScopeProtocol", "Term",
     //                             "Citation", "GlossaryTerm");
@@ -496,6 +507,21 @@
         var val  = getTextContent(elem);
         if (val.length < 1) { return null; }
         return val;
+    }
+
+    /*
+     * Extracts the version number (if any) from the open document.
+     */
+    function getDocVersion() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = Application.ActiveDocument.Name;
+        var pos  = name.indexOf('-V');
+        if (pos > 0) {
+            var period = name.indexOf('.', pos + 2);
+            var ver    = name.substring(pos + 2, period);
+            if (ver) return ver;
+        }
+        return null;
     }
 
     /*
@@ -1051,8 +1077,8 @@
         Application.AppendMacro("Retrieve Person Address", 
                                 "CDR Get Person Address");
         if (rng.IsParentElement("ProtocolLeadOrg"))
-            Application.AppendMacro("Change Org Statuses",
-                    "Change Participating Org Status");
+            Application.AppendMacro("Change Site Statuses",
+                    "Change Participating Site Statuses");
         if (CdrOrgAddressClipboard) {
             if (rng.IsParentElement("GenericPerson") ||
                 rng.IsParentElement("OverallContact"))
@@ -1087,6 +1113,13 @@
         if (rng.IsParentElement("PersonContactID")) {
             Application.AppendMacro("Paste Fragment ID",
                                     "Cdr Paste Fragment ID");
+        }
+    }
+    for (var i in blobLinkElementNames) {
+        if (rng.IsParentElement(blobLinkElementNames[i])) {
+            Application.AppendMacro("Show Linked Object",
+                                    "Show Linked Blob");
+            break;
         }
     }
    
@@ -2599,6 +2632,51 @@
         }
     }
 
+    function addMediaToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Show Doc Blob",             // Macro.
+                           "Launch Object File",        // Tooltip.
+                           "Launch Object File",        // Description
+                           "Design (Custom)", 2, 3,     // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Media Document"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Media " +
+                                  "Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Media Document", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Media Document " +
+                              "toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Media"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function bugRepro() {
         var cmdBars = Application.CommandBars;
         var i       = 0;
@@ -2680,6 +2758,7 @@
     addMailerToolbar();
     addCTGovToolbar();
     addPDQBoardMemberInfoToolbar();
+    addMediaToolbar();
     addCdrMenus();
     hideToolbars();
 
@@ -5519,10 +5598,10 @@
   ]]>
 </MACRO>
 
-<MACRO name="Change Participating Org Status" 
+<MACRO name="Change Participating Site Statuses" 
        lang="JScript">
   <![CDATA[
-    function changePOStatus() {
+    function changeSiteStatuses() {
         var rng = ActiveDocument.Range;
         if (!rng.IsParentElement("ProtocolLeadOrg")) {
             Application.Alert("This macro can only be used within a "
@@ -5555,38 +5634,51 @@
         var displayOkNoCancelButtons = 3;
         var useWarningQueryIcon = 32;
         var dlgConfig = displayOkNoCancelButtons + useWarningQueryIcon;
-        var dlgMsg = "Set participating org statuses to " + status + "?";
-        var dlgTitle = "Adjust Participating Organization Status";
+        var dlgMsg = "Set participating site statuses to " + status + "?";
+        var dlgTitle = "Adjust Participating Site Statuses";
         response = Application.MessageBox(dlgMsg, dlgConfig, dlgTitle);
         if (response != yes)
             return;
-        elemList = node.getElementsByTagName("ProtocolSites");
-        if (!elemList || !elemList.length) {
+        var sitesList = node.getElementsByTagName("ProtocolSites");
+        if (!sitesList || !sitesList.length) {
             Application.Alert("Can't find ProtocolSites element.");
             return;
         }
-        elemList = elemList.item(0).getElementsByTagName("OrgSite");
-        if (!elemList || !elemList.length) {
-            Application.Alert("No participating organizations found.");
-            return;
-        }
-        for (var i = 0; i < elemList.length; ++i) {
+        var numStatuses = 0;
+        elemList = sitesList.item(0).getElementsByTagName("OrgSite");
+        for (var i = 0; elemList && i < elemList.length; ++i) {
             var site = elemList.item(i);
             var statusList = site.getElementsByTagName("OrgSiteStatus");
             if (statusList && statusList.length) {
-                //var poStatus = getTextContent(statusList.item(0));
                 var statusNode = statusList.item(0);
                 rng.selectNodeContents(statusNode);
                 var oldSetting = rng.WritePermittedContainer;
                 rng.WritePermittedContainer = true;
                 rng.pasteString(status);
                 rng.WritePermittedContainer = oldSetting;
+                numStatuses += 1;
             }
         }
-        Application.Alert("Status set for " + elemList.length + 
-                " participating organizations.");
+        elemList = sitesList.item(0).getElementsByTagName(
+                                                      "PrivatePracticeSite");
+        for (var i = 0; elemList && i < elemList.length; ++i) {
+            var site = elemList.item(i);
+            var statusList = site.getElementsByTagName(
+                                                "PrivatePracticeSiteStatus");
+            if (statusList && statusList.length) {
+                var statusNode = statusList.item(0);
+                rng.selectNodeContents(statusNode);
+                var oldSetting = rng.WritePermittedContainer;
+                rng.WritePermittedContainer = true;
+                rng.pasteString(status);
+                rng.WritePermittedContainer = oldSetting;
+                numStatuses += 1;
+            }
+        }
+        Application.Alert("Status set for " + numStatuses + 
+                " participating sites.");
     }
-    changePOStatus();
+    changeSiteStatuses();
   ]]>
 </MACRO>
 
@@ -5872,15 +5964,10 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        var url  = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
-        var name = ActiveDocument.Name;
-        var pos  = name.indexOf('-V');
-        if (pos > 0) {
-            var period = name.indexOf('.', pos + 2);
-            var ver    = name.substring(pos + 2, period);
-            if (ver)
-                url += '&ver=' + ver;
-        }
+        var url = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
+        var ver = getDocVersion()
+        if (ver)
+            url += '&ver=' + ver;
         cdrObj.showPage(url);
     }
     previewMailer();
@@ -5932,6 +6019,58 @@
        lang="JScript">
     if (cdrObj)
         cdrObj.setTitleBar();
+</MACRO>
+
+<MACRO name="Show Doc Blob" 
+       lang="JScript" >
+  <![CDATA[
+    function showDocBlob() {
+        var docId  = getDocId();
+        var docVer = getDocVersion();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!cdrObj) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        cdrObj.launchBlob(docId, docVer ? docVer : "");
+    }
+    showDocBlob();
+  ]]>
+</MACRO>
+
+<MACRO name="Show Linked Blob" 
+       lang="JScript" >
+  <![CDATA[
+    function showLinkedBlob() {
+        if (!cdrObj) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var docId    = null;
+        var elemName = null;
+        var rng      = ActiveDocument.Range;
+        for (var i in blobLinkElementNames) {
+            if (rng.IsParentElement(blobLinkElementNames[i])) {
+                elemName = elemNames[i];
+                break;
+            }
+        }
+        if (elemName) {
+            if (rng.MoveToElement(elemName, false)) {
+                var elem = rng.ContainerNode;
+                docId = elem.GetAttribute("cdr:ref");
+            }
+        }
+        if (docId)
+            cdrObj.launchBlob(docId, "");
+        else
+            Application.Alert("No link found to a viewable object.");
+    }
+    showLinkedBlob();
+  ]]>
 </MACRO>
 
 <MACRO name="SC Up"      lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
