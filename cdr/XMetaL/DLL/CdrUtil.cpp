@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.15 2002-10-04 16:42:42 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.16 2002-10-14 20:06:22 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.15  2002/10/04 16:42:42  bkline
+ * Added my own showPage method, to get around the buggy version in XMetaL.
+ *
  * Revision 1.14  2002/07/30 21:37:36  bkline
  * Fixed problem with & in DocTitle; removed hard tabs inserted by Visual
  * Studio.
@@ -56,6 +59,12 @@
 // System headers.
 #include <map>
 #include <set>
+
+// Implement our own command to show an HTML page.
+#define SHOW_PAGE_WITH_DDE
+#ifdef SHOW_PAGE_WITH_DDE
+#include <ddeml.h>
+#endif
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -947,6 +956,66 @@ CString cdr::docIdString(int id)
     return buf;
 }
 
+// Implement our own command to show an HTML page 
+// (SoftQuad's version has bugs).
+#ifdef SHOW_PAGE_WITH_DDE
+static HDDEDATA ddeCallback(UINT type, UINT fmt, HCONV conv, 
+                            HSZ str1, HSZ str2,
+                            HDDEDATA data, DWORD data1, DWORD data2)
+{
+    return NULL;
+}
+
+int cdr::showPage(const CString& url)
+{
+    // Initial assumptions about where the browser is.
+    const char* ie  = "c:\\Program Files\\Internet Explorer\\IEXPLORE.EXE";
+    const char* app = ie;
+
+    // Put together the DDE command.
+    std::string cmdStr = "\"" + cStringToUtf8(url) + "\",,-1,,,,,";
+    const char* cmd = cmdStr.c_str();
+    size_t len = strlen(cmd) + 1;
+
+    // Prepare the DDE variables.
+    DWORD instance = 0;
+    HCONV conv     = 0;
+    DWORD flags    = APPCLASS_STANDARD | APPCMD_CLIENTONLY;
+
+    // Initialize DDE.
+    UINT rc = DdeInitialize(&instance, (PFNCALLBACK)&ddeCallback, flags, 0);
+    if (rc != DMLERR_NO_ERROR)
+        return EXIT_FAILURE;
+
+    // Connect to the service.
+    HSZ service = DdeCreateStringHandle(instance, L"IExplore", 0);
+    HSZ topic   = DdeCreateStringHandle(instance, L"WWW_OpenURL", 0);
+    conv = DdeConnect(instance, service, topic, NULL);
+    if (!conv) {
+        WinExec(app, SW_SHOWMINNOACTIVE);
+        conv = DdeConnect(instance, service, topic, NULL);
+    }
+
+    // Clean up.
+    DdeFreeStringHandle(instance, service);
+    DdeFreeStringHandle(instance, topic);
+
+    // Bring up the URL.
+    if (conv) {
+        DWORD dummy = 0;
+        LPBYTE vCmd = (LPBYTE)cmd;
+        DdeClientTransaction(vCmd, len, conv, 0, 0, XTYP_EXECUTE, 2000, &dummy);
+        DdeDisconnect(conv);
+        return EXIT_SUCCESS;
+    }
+    else
+        return EXIT_FAILURE;
+}
+
+#else
+
+// This version uses ActiveX Automation instead of DDE, 
+// to get around a bug in Internet Explorer's DDE code.
 int cdr::showPage(const CString& url)
 {
     COleDispatchDriver ie;
@@ -971,3 +1040,4 @@ int cdr::showPage(const CString& url)
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
     return EXIT_SUCCESS;
 }
+#endif
