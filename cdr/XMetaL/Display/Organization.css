@@ -111,6 +111,7 @@ Organization,
   
 
 URI, /* First element in the list is not working */
+AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
 FormerName,
@@ -179,6 +180,7 @@ Year
 /* & = Optional element */
 
 
+AdvisoryBoardFor:before         { content: "AdvBoardFor &: "; }
 AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF & + "; }
 AlternateName:before			{ content: "Alternate Name & +: "; }
 BoardManager:before             { content: "Manager *: "; }
@@ -245,6 +247,7 @@ Year:before                 { content: "Year *: "; }
 /***************************************************************************/ 
   
 
+AdvisoryBoardFor:before,
 AffiliateMemberOf:before,
 BoardManager:before,
 BoardManagerPhone:before,
@@ -476,6 +479,7 @@ ClinicalTrialsOfficeContactEmail        { margin-left: 110pt; text-indent: -96pt
 ClinicalTrialsOfficeContactPhone        { margin-left: 110pt; text-indent: -107pt; }
 ClinicalTrialsOfficeContactName         { margin-left: 110pt; text-indent: -82.5pt; }
 
+AdvisoryBoardFor             { margin-left: 100pt; text-indent: -97.5pt; }
 BoardManager                 { margin-left: 100pt; text-indent: -65pt; }
 BoardManagerPhone            { margin-left: 100pt; text-indent: -68pt; }
 BoardManagerEmail            { margin-left: 100pt; text-indent: -62pt; }
@@ -485,6 +489,7 @@ BoardMeetingDate > Date      { margin-left: 100pt; text-indent: -41.5pt; }
 
 /* Margin-bottom to simulate a text box                                    */
 
+AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
 BoardManager,
@@ -550,6 +555,7 @@ IncludeInDirectory,
 /***************************************************************************/ 
 
 
+AdvisoryBoardFor,
 AlternateName,
 BoardManager,
 BoardManagerPhone,
@@ -598,6 +604,7 @@ Year
 	{ background-color: white; }
 
 
+AdvisoryBoardFor:before,
 AffiliateMemberOf,
 AlternateName:before,
 BoardManager:before,
