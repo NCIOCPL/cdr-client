@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.110 2003-12-01 20:06:25 bkline Exp $
+     $Id: Cdr.mcr,v 1.111 2003-12-01 21:17:04 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.110  2003/12/01 20:06:25  bkline
+     Fixed bug in CTGovProtocol Patient Publish Preview toolbar button
+     (macro name in wrong place).
+
      Revision 1.109  2003/12/01 13:46:43  bkline
      Added another button for patient publish preview of CTGovProtocol
      documents.
@@ -1803,6 +1807,12 @@
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Linked Docs Report",
+                           "Linked Docs",
+                           "Launch Linked Docs Report",
+                           "Integration (Custom)", 3, 9,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -1858,6 +1868,12 @@
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Linked Docs Report",
+                           "Linked Docs",
+                           "Launch Linked Docs Report",
+                           "Integration (Custom)", 3, 9,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -5830,6 +5846,30 @@
         cdrObj.showPage(url);
     }
     mailerHistory();
+  ]]>
+</MACRO>
+
+<MACRO name="Linked Docs Report"
+       lang="JScript" >
+  <![CDATA[
+    function linkedDocsReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "LinkedDocs.py?Session="
+                + CdrSession
+                + "&DocId="
+                + docId
+                + "&LinkingDocType=Any+Type";
+        cdrObj.showPage(url);
+    }
+    linkedDocsReport();
   ]]>
 </MACRO>
 
