@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.34 2002-10-15 22:22:05 bkline Exp $
+ * $Id: Commands.cpp,v 1.35 2003-01-10 15:16:22 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.34  2002/10/15 22:22:05  bkline
+ * Adding code for issue #471.
+ *
  * Revision 1.33  2002/10/14 20:06:23  bkline
  * Added DDE replacement for SoftQuad's ShowPage().
  *
@@ -748,9 +751,9 @@ STDMETHODIMP CCommands::save(int *pRet)
                << _T("</DocType>");
             os << _T("<DocTitle>") << (LPCTSTR)ctrlInfo.docTitle 
                << _T("</DocTitle>");
-            os << _T("<DocActiveStatus>")
-               << (saveDialog.m_docInactive ? _T("I") : _T("A"))
-               << _T("</DocActiveStatus><DocNeedsReview>")
+            if (saveDialog.m_docInactive)
+                os << _T("<DocActiveStatus>I</DocActiveStatus>");
+            os << _T("<DocNeedsReview>")
                << (saveDialog.m_readyForReview ? _T("Y") : _T("N"))
                << _T("</DocNeedsReview>");
             if (!saveDialog.m_comment.IsEmpty())
