@@ -1,11 +1,13 @@
 /*
- * $Id: Commands.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: Commands.cpp,v 1.2 2001-04-18 14:46:24 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
  */
 
 // Local headers.
@@ -32,7 +34,8 @@
 
 // Local functions.
 static void         getDocTypeStrings(CString& err);
-static std::string& fixDoc(std::string& doc, const std::string& ctl);
+static std::string& fixDoc(std::string& doc, const std::string& ctl,
+                           const std::string& docType);
 
 // Local data.
 static std::list<std::string> docTypeStrings;
@@ -284,10 +287,8 @@ STDMETHODIMP CCommands::save(int *pRet)
             if (!ctrlInfo.docId.empty())
                 os << " Id='" << ctrlInfo.docId << "'";
 			os << "><CdrDocCtl>";
-            if (!ctrlInfo.docId.empty()) {
-                ::AfxMessageBox("docId is not empty!");
+            if (!ctrlInfo.docId.empty())
                 os << "<DocId>" << ctrlInfo.docId << "</DocId>";
-            }
 			os << "<DocType>" << ctrlInfo.docType << "</DocType>";
 			os << "<DocTitle>" << ctrlInfo.docTitle << "</DocTitle></CdrDocCtl>";
 			os << "<CdrDocXml><![CDATA[" << docElement << "]]></CdrDocXml>";
@@ -371,6 +372,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
             std::string cmd = os.str();
 
             // Submit the validate command to the server.
+            //::AfxMessageBox(cmd.c_str());
             std::string rsp = CdrSocket::sendCommand(cmd);
             if (rsp.find("<Error") != rsp.npos) {
                 cdr::showErrors(rsp);
@@ -465,6 +467,17 @@ STDMETHODIMP CCommands::edit(int *pRet)
         ::Selection selection = cdr::getApp().GetSelection();
         std::string elemName = selection.GetContainerName();
 
+        // XXX May move this into separate command; depends on what
+        //     happens with the client requirements.
+        //cdr::xsd::Schema* schema = getSchema(docType);
+        //cdr::xsd::Type* elemType = getElemType(docType, elemName);
+        //if (hasEnumeratedValues(elemType)) {
+            //CEnumElement enumElement(elemType);
+            //std::ofstream("c:\\enum.lst");
+
+            //return;
+        //}
+
         // Most of the real work is done inside this call.
         CEditElement editDialog(docType, elemName);
 		editDialog.DoModal();
@@ -532,9 +545,31 @@ bool CCommands::doRetrieve(const std::string& id)
         }
     }
 
+    // Extract the document type.
+    std::string docType;
+    if (!cdrDoc.empty()) {
+        size_t end = cdrDoc.npos;
+        size_t start = cdrDoc.find(" Type");
+        if (start != cdrDoc.npos)
+            start = cdrDoc.find("=", start);
+        if (start != cdrDoc.npos)
+            start = cdrDoc.find_first_of("'\"", start);
+        if (start != cdrDoc.npos)
+            end = cdrDoc.find_first_of("'\"", ++start);
+        if (end != cdrDoc.npos) {
+            while (end > start && isspace(cdrDoc[start]))
+                ++start;
+            while (end > start && isspace(cdrDoc[end - 1]))
+                --end;
+            docType = cdrDoc.substr(start, end - start);
+        }
+        if (docType.empty())
+            err = "Missing Type attribute in CdrDoc element";
+    }
+
     // Extract the DocXml.
     std::string docXml;
-    if (!cdrDoc.empty()) {
+    if (!docType.empty()) {
         size_t cdata = cdrDoc.find("<![CDATA[");
         if (cdata == cdrDoc.npos)
             err = "Malformed document: missing CDATA section";
@@ -548,38 +583,18 @@ bool CCommands::doRetrieve(const std::string& id)
         }
     }
 
-    // Extract the document type.
-    std::string docType;
-    if (!docXml.empty()) {
-        size_t nameStart = docXml.find('<');
-        if (nameStart == docXml.npos)
-            err = "Malformed document: missing top element";
-        else {
-            size_t nameEnd = docXml.find_first_of("\t\n\r >", ++nameStart);
-            if (nameEnd == docXml.npos || nameEnd == nameStart)
-                err = "Malformed document: can't find element name end";
-            else
-                docType = docXml.substr(nameStart, nameEnd - nameStart);
-        }
-    }
-
     // Write out the document.
-    if (!docType.empty()) {
+    if (!docXml.empty()) {
         std::ofstream xmlStream((const char *)docPath);
         if (!xmlStream)
             err.Format("Can't write xml document at %s", (const char*)docPath);
         else {
-            std::string ctl = std::string("<CdrDocCtl><DocId>")
+            std::string ctl = std::string("\n  <CdrDocCtl>\n    <DocId>")
                             + (const char *)docId
-                            + "</DocId><DocTitle>"
+                            + "</DocId>\n    <DocTitle>"
                             + cdr::encode(docTitle, true)
-                            + "</DocTitle></CdrDocCtl>";
-            xmlStream << "<!DOCTYPE " 
-                      << docType
-                      << " SYSTEM '" 
-                      << docType 
-                      << ".dtd'>\n"
-                      << fixDoc(docXml, ctl);
+                            + "</DocTitle>\n  </CdrDocCtl>\n";
+            xmlStream << fixDoc(docXml, ctl, docType);
         }
     }
 
@@ -601,133 +616,7 @@ bool CCommands::doRetrieve(const std::string& id)
         return false;
 	}
 }
-#if 0
-/**
- * Common public method which factors out the code to retrieve and
- * open a CDR document.
- *
- *  @param  id              reference to CDR document ID.
- *  @return                 <code>true</code> if document retrieved
- *                          successfully.
- */
-bool CCommands::doRetrieve(const std::string& id)
-{
-    // Working variables.
-    unsigned int docNo = cdr::getDocNo(id);
-	CString err;
-    CString docPath;
-    CString docId;
-    CString retrievedDocTitle;
-    std::string cdrDoc;
-	std::string docTitle;
-    std::string cdrPath = cdr::getXmetalPath() + "\\Cdr";
 
-    // Build up path strings.
-    docPath.Format("%s\\CDR%u.xml", cdrPath.c_str(), docNo);
-    docId.Format("CDR%010u", docNo);
-
-    // Ask the server for the document.
-    std::string request = "<CdrGetDoc><DocId>" 
-                        + docId 
-                        + "</DocId></CdrGetDoc>";
-	std::string response = CdrSocket::sendCommand(request);
-    if (response.empty())
-        err = "Empty response from server";
-
-    // Extract the CdrDoc element.
-    else {
-        TinyXmlParser parser(response);
-        int begin = response.find("<CdrDoc ");
-        if (begin == response.npos) {
-            std::string serverErr = parser.extract("Err");
-            if (serverErr.empty())
-                err = "Unknown failure retrieving document from CDR";
-            else
-                err = serverErr.c_str();
-        }
-        else {
-            int end = response.find("</CdrDoc>", begin);
-            if (end == response.npos)
-                err = "Malformed response from server";
-            else {
-                cdrDoc = response.substr(begin, (end - begin) + 9);
-				docTitle = parser.extract("DocTitle");
-				retrievedDocTitle.Format("%s (CDR%u)", 
-					                     docTitle.c_str(), docNo);
-			}
-        }
-    }
-
-    // Extract the DocXml.
-    std::string docXml;
-    if (!cdrDoc.empty()) {
-        size_t cdata = cdrDoc.find("<![CDATA[");
-        if (cdata == cdrDoc.npos)
-            err = "Malformed document: missing CDATA section";
-        else {
-            cdata += 9;
-            size_t endCdata = cdrDoc.find("]]>", cdata);
-            if (endCdata == cdrDoc.npos)
-                err = "Malformed document: missing CDATA end delimiter";
-            else
-                docXml = cdrDoc.substr(cdata, endCdata - cdata);
-        }
-    }
-
-    // Extract the document type.
-    std::string docType;
-    if (!docXml.empty()) {
-        size_t nameStart = docXml.find('<');
-        if (nameStart == docXml.npos)
-            err = "Malformed document: missing top element";
-        else {
-            size_t nameEnd = docXml.find_first_of("\t\n\r >", ++nameStart);
-            if (nameEnd == docXml.npos || nameEnd == nameStart)
-                err = "Malformed document: can't find element name end";
-            else
-                docType = docXml.substr(nameStart, nameEnd - nameStart);
-        }
-    }
-
-    // Write out the document.
-    if (!docType.empty()) {
-        std::ofstream xmlStream((const char *)docPath);
-        if (!xmlStream)
-            err.Format("Can't write xml document at %s", (const char*)docPath);
-        else {
-            std::string ctl = std::string("<CdrDocCtl><DocId>")
-                            + (const char *)docId
-                            + "</DocId><DocTitle>"
-                            + cdr::encode(docTitle, true)
-                            + "</DocTitle></CdrDocCtl>";
-            xmlStream << "<!DOCTYPE " 
-                      << docType
-                      << " SYSTEM '" 
-                      << docType 
-                      << ".dtd'>\n"
-                      << fixDoc(docXml, ctl);
-        }
-    }
-
-    // Show any bad news to the user.
-    if (!err.IsEmpty()) {
-        ::AfxMessageBox(err, MB_ICONEXCLAMATION);
-        return false;
-	}
-	else {
-
-        // Open the document and set its title bar string.
-        _Application app = cdr::getApp();
-        Documents docs = app.GetDocuments();
-        _Document doc = docs.Open((const char*)docPath, 1);
-        if (doc) {
-            doc.SetTitle(retrievedDocTitle);
-            return true;
-        }
-        return false;
-	}
-}
-#endif
 /**
  * Populates the list of document type strings used to narrow a
  * user's CDR document search request.
@@ -776,20 +665,34 @@ void getDocTypeStrings(CString& err)
  *                          from the CDR server.
  *  @param  ctl             reference to string containing CdrDocCtl
  *                          element to be inserted.
+ *  @param  docType         string identifying document type.
  *  @return                 reference to modified document string.
  */
-std::string& fixDoc(std::string& doc, const std::string& ctl)
+std::string& fixDoc(std::string& doc, const std::string& ctl,
+                    const std::string& docType)
 {
 	// Skip leading whitespace.
 	size_t pos = 0;
 	while (isspace(doc[pos]))
 		++pos;
 	doc.erase(0, pos);
-	pos = doc.find('>');
+
+    // Find the document element.
+    std::string startTag = "<" + docType;
+	pos = doc.find(startTag);
 	if (pos == doc.npos)
 		return doc;
 
+    // Insert the DOCTYPE declaration.
+    std::string dtd = "<!DOCTYPE " + docType 
+                    + " SYSTEM '" + docType 
+                    + ".dtd'>\n";
+
     // Insert the CdrDocCtl element.
+    doc.insert(pos, dtd);
+    pos = doc.find('>', pos + dtd.length() + 1);
+	if (pos == doc.npos)
+		return doc;
     doc.insert(pos + 1, ctl);
 
     // Add the 'cdr' namespace declaration if it's not already present.
@@ -797,6 +700,7 @@ std::string& fixDoc(std::string& doc, const std::string& ctl)
 		doc.insert(pos, " xmlns:cdr='cips.nci.nih.gov/cdr'");
 
     // Strip out whitespace between elements.
+#if 0
 	while ((pos = doc.find('>', pos)) != doc.npos) {
 		++pos;
 		size_t n = 0;
@@ -805,6 +709,7 @@ std::string& fixDoc(std::string& doc, const std::string& ctl)
 		if (n)
 			doc.erase(pos, n);
 	}
+#endif
 	return doc;
 }
 
