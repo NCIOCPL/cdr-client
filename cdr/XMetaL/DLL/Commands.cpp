@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.41 2004-12-27 19:20:45 bkline Exp $
+ * $Id: Commands.cpp,v 1.42 2005-02-15 19:02:55 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.41  2004/12/27 19:20:45  bkline
+ * Added missing Id attribute to validation command.
+ *
  * Revision 1.40  2004/09/09 18:43:03  bkline
  * Glossifier implemented.
  *
@@ -2411,5 +2414,20 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void)
     else
         ::AfxMessageBox(_T("Glossary phrase added ")
                         _T("to external mapping table."));
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::setTitleBar(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString title;
+    title.Format(_T("CDR Editor (%s)"), 
+                 CdrSocket::getShortHostName().MakeUpper());
+    //::AfxMessageBox(title);
+    CWnd* w = ::AfxGetMainWnd();
+    if (w)
+        w->SetWindowText(title);
+
     return S_OK;
 }

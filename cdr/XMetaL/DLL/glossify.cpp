@@ -73,6 +73,9 @@ void CGlossify::OnMarkup()
         curNode->markedUp = true;
     CString val;
     m_markup.GetWindowText(val);
+    int semicolon = val.Find(';');
+    if (semicolon != -1)
+        val = val.Left(semicolon);
     range.Surround(TAG_NAME);
 
     range.SetContainerAttribute(_T("cdr:href"), val);

@@ -36,6 +36,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(25), helpstring("method showPage")] HRESULT showPage([in] const BSTR* url, [out,retval]  int* pRet);
         [id(26), helpstring("method glossify")] HRESULT glossify(void);
         [id(27), helpstring("method addGlossaryPhrase")] HRESULT addGlossaryPhrase(void);
+        [id(28), helpstring("method setTitleBar")] HRESULT setTitleBar(void);
     };
 
 [
