@@ -1,0 +1,376 @@
+/*************************************************************************/
+/* 	PDQBoardMemberInfo_structure.css                                             */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      3/05/04  by CBurg                                               */
+/*           
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, sans-serif;
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+PDQBoardMemberInfo,
+
+     { background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+AreaOfExpertise,
+AssistantEmail,
+AssistantFax,
+AssistantName,
+AssistantPhone,
+BoardContactEmail,
+BoardContactFax,
+BoardContactOrganizationName,
+BoardContactPhone,
+BoardContactPostalAddress,
+BoardMemberAssistant,
+BoardMemberContact,
+BoardMemberContactMode,
+BoardMemberName,
+BoardMembershipDetails,
+BoardName,
+Comment,
+ConflictOfInterestFormSigned,
+BoardContactPostalAddress>Country,
+CurrentMember,
+Date,
+DatedAction,
+DatedAction>Comment,
+DateSigned,
+EditorInChief>TermEndDate,
+EditorInChief>TermStartDate,
+InvitationDate,
+PDQBoardMemberInfo,
+PersonContactID,
+MemberOfSubgroup,
+RecommendedBy,
+ResponseToInvitation,
+SpecificBoardMemberContact,
+TermEndDate,
+TermEndReason,
+TermRenewalFrequency,
+TermStartDate,
+TransferFromBoard,  
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+AreaComment:before                      { content: "Comment "; }
+AreaOfExpertise:before			{ content: "Area of Expertise  ";} AssistantEmail:before	                { content: "Email "; }
+AssistantEmail[Public="No"]:after	{ content: "( Not Public) "; }
+AssistantEmail:after	                { content: "(Public) "; }
+AssistantFax:before			{ content: "Fax  "; }
+AssistantName:before     		{ content: "Name  "; }
+AssistantPhone:before	                { content: "Phone "; }
+BoardContactEmail:before		{ content: "Email "; }
+BoardContactFax:before			{ content: "Fax  "; }
+BoardContactOrganizationName:before	{ content: "B C Org Name  "; }
+BoardContactPhone:before		{ content: "Phone  "; }
+BoardContactPostalAddress:before        { content: "Board Contact Postal Address ";}
+BoardMemberAssistant:before		{ content: "BOARD MEMBER ASSISTANT "; }
+BoardMemberContact:before		{ content: "BOARD MEMBER CONTACT  "; }
+BoardMemberContactMode:before           { content: "Contact Mode  "; }
+BoardMemberName:before                  { content: "Board Member Name "; }
+BoardMembershipDetails:before           { content: "BOARD MEMBERSHIP DETAILS "; }
+BoardName:before                        { content: "Board Name  "; }
+Comment:before                          { content: "Comment  "; }
+ConflictOfInterestFormSigned:before     { content: "C I Form Signed  "; }
+BoardContactPostalAddress>Country:before {content:"Country  " ;}
+CurrentMember:before                    { content: "Current Member  ";}
+DateSigned:before                       { content: "Date Signed ";}
+EditorInChief:before                    { content: "Editor In Chief ";}
+EditorInChief>TermEndDate:before        { content: "Term End Date "; }
+EditorInChief>TermStartDate:before	{ content: "Term Start Date "; }
+InvitationDate:before			{ content: "Invitation Date  ";}
+PDQBoardMemberInfo:before               { content: "PDQBOARDMEMBERINFO ";}
+PersonContactID:before                  { content: "Person Contact ID ";}
+MemberOfSubgroup:before                 { content: "Member of Subgroup ";}
+RecommendedBy:before			{ content: "Recommended By  "; }
+ResponseToInvitation:before		{ content: "Resp To Invitation "; }
+SpecificBoardMemberContact:before	{ content: "SPECIFIC BOARD MEMBER CONTACT "; }
+TermEndDate:before			{ content: "Term End Date "; }
+TermEndReason:before			{ content: "Term End Reason  "; }
+TermRenewalFrequency:before		{ content: "Term Renew Freq  "; }
+TermStartDate:before			{ content: "Term Start Date  "; }
+TransferFromBoard:before		{ content: "Transfer from Board "; }
+
+
+			
+
+
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+
+/* some properties don't get applied on the first element in a list        */
+
+BoardMemberAssistant:before,
+BoardMemberContact:before,
+BoardMembershipDetails:before,
+BoardMemberName:before,
+SpecificBoardMemberContact:before,
+ 
+
+   {  color: black;  
+      font-family: Arial, "sans serif";
+      font-size: 10pt;
+      font-weight: bold;    }  
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+AreaOfExpertise:before,
+AssistantEmail:before,
+AssistantFax:before,
+AssistantName:before,
+AssistantPhone:before,
+BoardContactEmail:before,
+BoardContactFax:before,
+BoardContactOrganizationName:before,
+BoardContactPhone:before,
+BoardMemberContactMode:before,
+BoardMemberName:before,
+BoardName:before,
+Comment:before,
+ConflictOfInterestFormSigned:before,
+CurrentMember:before,
+DateSigned:before,
+EditorInChief>TermEndDate:before,
+EditorInChief>TermStartDate:before,
+InvitationDate:before,
+PersonContactID:before,
+MemberOfSubgroup:before,
+RecommendedBy:before,
+ResponseToInvitation:before,
+TermEndDate:before,
+TermEndReason:before,
+TermRenewalFrequency:before,
+TermStartDate:before,
+BoardMemberContactMode:before,
+ResponseToInvitation:before,
+TermRenewalFrequency:before,
+TermEndReason:before,
+TransferFromBoard:before,
+
+   {  color: black;  
+      font-family: Arial, "sans serif";
+      font-size: 10pt;
+      font-weight: bold;    }  
+
+
+
+
+/**************************************************************************/
+/*   TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS             */
+/**************************************************************************/
+
+BoardMemberContactMode:before,
+ResponseToInvitation:before,
+TermRenewalFrequency:before,
+TermEndReason:before,
+AreaOfExpertise:before,
+
+
+    {  color: black;
+       font-family: Arial, "sans serif";
+       font-size:  10pt;
+       font-weight: bold;              }    
+
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+BoardMemberAssistant,
+BoardMembershipDetails,
+DatedAction,
+SpecificBoardMemberContact,
+
+   { border: none; }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+AreaOfExpertise,
+AssistantEmail,
+AssistantFax,
+AssistantName,
+AssistantPhone,
+BoardContactEmail,
+BoardContactFax,
+BoardContactOrganizationName,
+BoardContactPhone,
+BoardContactPostalAddress,
+BoardMemberAssistant,
+BoardMemberContact,
+BoardMemberContactMode,
+BoardMemberName,
+BoardMembershipDetails,
+BoardName,
+Comment,
+ConflictOfInterestFormSigned,
+Country,
+CurrentMember,
+Date,
+DatedAction,
+DatedAction>Comment,
+DateSigned,
+EditorInChief>TermEndDate,
+EditorInChief>TermStartDate,
+InvitationDate,
+PDQBoardMemberInfo
+PersonContactID,
+MemberOfSubgroup,
+RecommendedBy,
+ResponseToInvitation,
+SpecificBoardMemberContact,
+TermEndDate,
+TermEndReason,
+TermRenewalFrequency,
+TermStartDate,
+TransferFromBoard,  
+
+	{ text-indent: 0pt; }
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+AreaOfExpertise,
+AssistantEmail,
+AssistantFax,
+AssistantName,
+AssistantPhone,
+BoardContactEmail,
+BoardContactFax,
+BoardContactOrganizationName,
+BoardContactPhone,
+BoardMemberContact,
+BoardMemberContactMode,
+BoardMemberName,
+BoardMembershipDetails,
+BoardName,
+Comment,
+ConflictOfInterestFormSigned,
+CurrentMember,
+Date,
+DatedAction,
+DatedAction>Comment,
+DateSigned,
+EditorInChief>TermEndDate,
+EditorInChief>TermStartDate,
+InvitationDate,
+PersonContactID,
+MemberOfSubgroup,
+RecommendedBy,
+ResponseToInvitation,
+SpecificBoardMemberContact,
+TermEndDate,
+TermEndReason,
+TermRenewalFrequency,
+TermStartDate,
+TransferFromBoard,  
+
+     { color: white;
+       background-color: white; }
+
+AreaOfExpertise:before,
+AssistantEmail:before,
+AssistantFax:before,
+AssistantName:before,
+AssistantPhone:before,
+AssistantPhone:after,
+AssistantPhone[Public="No"]:after,
+BoardContactEmail:before,
+BoardContactFax:before,
+BoardContactOrganizationName:before,
+BoardContactPhone:before,
+BoardContactPostalAddress:before,
+BoardMemberAssistant:before,
+BoardMemberContact:before,
+BoardMemberContactMode:before,
+BoardMemberName:before,
+BoardMembershipDetails:before,
+BoardName:before,
+Comment:before,
+ConflictOfInterestFormSigned:before,
+Country:before,
+CurrentMember:before,
+Date:before,
+DatedAction:before,
+DatedAction>Comment:before,
+DateSigned:before,
+EditorInChief>TermEndDate:before,
+EditorInChief>TermStartDate:before,
+InvitationDate:before,
+PDQBoardMemberInfo:before,
+PersonContactID:before,
+MemberOfSubgroup:before,
+RecommendedBy:before,
+ResponseToInvitation:before,
+SpecificBoardMemberContact:before,
+TermEndDate:before,
+TermEndReason:before,
+TermRenewalFrequency:before,
+TermStartDate:before,
+TransferFromBoard:before,  
+
+
+	{ background-color: white; }
