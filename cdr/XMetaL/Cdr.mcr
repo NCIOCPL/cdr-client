@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.93 2002-12-11 20:51:15 bkline Exp $
+     $Id: Cdr.mcr,v 1.94 2002-12-24 15:08:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.93  2002/12/11 20:51:15  bkline
+     Enhancements for issues #527 and #528.
+
      Revision 1.92  2002/11/21 12:54:35  bkline
      Moved Mailer History button from Summary to Protocol toolbar.
 
@@ -671,7 +674,7 @@
                 + CdrSession + "&DocId=" + docId;
         if (flavor)
             url += "&Flavor=" + flavor;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
 
   ]]>
@@ -3998,7 +4001,7 @@
             return;
         }
         var url = CdrCgiBin + "AdvancedSearch.py?Session=" + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     advancedSearch();
 
@@ -4018,7 +4021,7 @@
         }
         var url = CdrCgiBin + "CheckedOutDocs.py?Session=" + CdrSession
                             + "&User=" + CdrUserName;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     checkedOutDocs();
 
@@ -4290,7 +4293,7 @@
                     var val  = getTextContent(elem);
                     var url = CdrCgiBin + "PersonOrgLocLinks.py?FragLink=" + 
                               val + "%23" + id;
-                    Application.ShowPage(url);
+                    cdrObj.showPage(url);
                 }
             }
         }
@@ -4318,7 +4321,7 @@
                 url += "?DocId=" + docId;
             }
         }
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
 
     termHierarchyDisplay();
@@ -4340,7 +4343,7 @@
                 var elem  = nodes.item(0);
                 var docId = getTextContent(elem);
                 var url = CdrCgiBin + "TermUsage.py?DocId=" + docId;
-                Application.ShowPage(url);
+                cdrObj.showPage(url);
             }
             else {
                 Application.Alert("This is a new document.");
@@ -4455,7 +4458,7 @@
     function administrativeSubsystem() {
         
         var url = CdrCgiBin + "Admin.py?Session=" + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     administrativeSubsystem();
   ]]>
@@ -4508,7 +4511,7 @@
   <![CDATA[
     function searchPubMed() {
         var url = "http://www.ncbi.nlm.nih.gov/entrez/";
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     searchPubMed();
   ]]>
@@ -4594,7 +4597,7 @@
 <MACRO name="CDR Help" 
        lang="JScript">
   <![CDATA[
-    Application.ShowPage(CdrCgiBin + "Help.py")
+    cdrObj.showPage(CdrCgiBin + "Help.py")
   ]]>
 </MACRO>
 
@@ -4829,7 +4832,7 @@
         }
         var url = CdrCgiBin + "QcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     qcReport();
   ]]>
@@ -4850,7 +4853,7 @@
         }
         var url = CdrCgiBin + "ProtocolHpQcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     protocolHpQcReport();
   ]]>
@@ -4871,7 +4874,7 @@
         }
         var url = CdrCgiBin + "ProtocolPatientQcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     protocolPatientQcReport();
   ]]>
@@ -4894,7 +4897,7 @@
                 + CdrSession + "&DocId=" + docId +
                 "&Filter=name:Denormalization+Filter+(1/1):+InScope+Protocol" +
                 "&Filter1=name:InScope+Protocol+Administrative+Report+Filter";
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     protocolAdminQcReport();
   ]]>
@@ -4915,7 +4918,7 @@
         }
         var url = CdrCgiBin + "ProtocolCitationsQcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     protocolCitationsQcReport();
   ]]>
@@ -4926,7 +4929,7 @@
   <![CDATA[
     function generateMailer() {
         var url = CdrCgiBin + "Mailers.py?Session=" + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     generateMailer();
   ]]>
@@ -4958,7 +4961,7 @@
   <![CDATA[
     function protocolMerge() {
         var url = CdrCgiBin + "MergeProt.py?Session=" + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     protocolMerge();
   ]]>
@@ -4969,7 +4972,7 @@
   <![CDATA[
     function searchPubMed() {
         var url = "http://www.ncbi.nlm.nih.gov/entrez/";
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     searchPubMed();
   ]]>
@@ -5085,7 +5088,7 @@
                             + docId
                             + "&Session="
                             + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     createSummaryMarkupReport();
   ]]>
@@ -5101,7 +5104,7 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py?DocId=" + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     Application.Alert("Don't have filters for this command yet.");
     //createHtmlForBoard();
@@ -5121,7 +5124,7 @@
                             + docId
                             + "&Session="
                             + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     boldUnderlineReport();
   ]]>
@@ -5140,7 +5143,7 @@
                             + docId
                             + "&Session="
                             + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     redlineStrikeoutReport();
   ]]>
@@ -5163,7 +5166,7 @@
                 + CdrSession + "&DocId=" + docId +
                 "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
                 "&Filter1=name:Patient+Summary+QC+Report+Filter";
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     patientSummaryQcReport();
   ]]>
@@ -5175,7 +5178,7 @@
     function generateSummaryMailers() {
         var url = CdrCgiBin + "PDQMailerRequestForm.py?Session="
             + CdrSession;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     generateSummaryMailers();
   ]]>
@@ -5198,7 +5201,7 @@
                 + CdrSession
                 + "&DocId="
                 + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     documentHistoryReport();
   ]]>
@@ -5438,7 +5441,7 @@
                 + CdrSession
                 + "&DocId="
                 + docId;
-        Application.ShowPage(url);
+        cdrObj.showPage(url);
     }
     mailerHistory();
   ]]>
