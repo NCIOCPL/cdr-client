@@ -504,7 +504,7 @@
 <TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
 <Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
 <Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
-<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
 </Location>]]></MiniTemplate>
     </Template>
     <Template>
@@ -541,7 +541,7 @@
     </Template>
     <Template>
       <Name>WebSite</Name>
-      <MiniTemplate><![CDATA[<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PostalAddress</Name>
@@ -681,7 +681,7 @@
 <TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
 <Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
 <Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
-<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
 </Location>
 </OrganizationLocation>]]></MiniTemplate>
     </Template>
