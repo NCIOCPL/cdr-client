@@ -993,7 +993,7 @@
     </Template>
     <Template>
       <Name>DateReceived</Name>
-      <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Comment</Name>
@@ -1003,7 +1003,7 @@
       <Name>ProtocolSource</Name>
       <MiniTemplate><![CDATA[<ProtocolSource>
 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
-<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>
+<DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolSource>]]></MiniTemplate>
     </Template>
@@ -1481,7 +1481,7 @@
       <MiniTemplate><![CDATA[<ProtocolSources>
 <ProtocolSource>
 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
-<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>
+<DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolSource>
 </ProtocolSources>]]></MiniTemplate>
