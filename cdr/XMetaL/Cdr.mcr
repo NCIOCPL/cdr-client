@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.79 2002-09-23 20:17:21 bkline Exp $
+     $Id: Cdr.mcr,v 1.80 2002-09-24 15:30:47 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.79  2002/09/23 20:17:21  bkline
+     Added macro to move to next lead org block.
+
      Revision 1.78  2002/09/23 20:10:20  bkline
      Added macro to insert participating org.
 
@@ -645,6 +648,7 @@
 </MACRO>
 -->
 
+<!--
 <MACRO  name="MakeReplaceText" 
         key="Ctrl+Alt+Z" 
         lang="VBScript" 
@@ -667,7 +671,8 @@
  
   ]]>
 </MACRO>
- 
+-->
+
 <MACRO  name="On_Update_UI" 
         hide="true" 
         lang="JScript">
@@ -1786,11 +1791,17 @@
                            "CDR", 6, 7,
                            false),
             new CdrCmdItem(null,
+                           "Next Lead Org",
+                           "Go To Next Lead Org",
+                           "Go To Next Lead Org",
+                           "CDR", 1, 4,
+                           false),
+            new CdrCmdItem(null,
                            "Insert PatientCharacteristics",
                            "Patient Characteristics",
                            "Patient Characteristics",
                            "CDR", 1, 2,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "Insert PriorConcurrentTherapy",
                            "Prior Concurrent Therapy",
@@ -1810,14 +1821,20 @@
                            "CDR", 5, 4,
                            false),
             new CdrCmdItem(null,
+                           "Insert Participating Org",
+                           "Insert Participating Org",
+                           "Insert Participating Org",
+                           "CDR", 5, 6,
+                           false),
+            new CdrCmdItem(null,
                            "Protocol Merge",
                            "Merge",
                            "Protocol Merge",
                            "Integration (Custom)", 8, 4,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "New Current Org Status",
-                           "Org Status",
+                           "New Current Org Status",
                            "Change Organization Status",
                            "CDR", 6, 10,
                            false),
@@ -4030,6 +4047,7 @@
 
 <MACRO  name="Insert Participating Org"
         lang="JScript" 
+        key="Ctrl+Alt+Z" 
         desc="Insert new Protocol participating organization"
         hide="false">
   <![CDATA[
