@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.89 2002-11-14 14:49:17 bkline Exp $
+     $Id: Cdr.mcr,v 1.90 2002-11-14 14:59:30 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.89  2002/11/14 14:49:17  bkline
+     Added Mailer History macro.
+
      Revision 1.88  2002/11/14 13:20:40  bkline
      Fixed icon for mailer response button.
 
@@ -4014,6 +4017,13 @@
        lang="JScript">
   <![CDATA[
     publishPreview("protocol_patient");
+  ]]>
+</MACRO>
+
+<MACRO name="Patient Summary Publish Preview" 
+       lang="JScript">
+  <![CDATA[
+    publishPreview("summary_patient");
   ]]>
 </MACRO>
 
