@@ -262,15 +262,16 @@ BOOL CCDRLoaderApp::InitInstance()
 		bool	ok_to_launch = false;
 		CString	err = _T("Unknown error.");
 
+		int cur_server_ndx = ini_Data.GetCurrentServer();
 
 		CString http_server;
-		if ( ini_Data.ticket_Server.GetLength() > 0 )
+		if ( ini_Data.servers[ cur_server_ndx ].ticket_Server.GetLength() > 0 )
 		{
-			http_server = ini_Data.ticket_Server;
+			http_server = ini_Data.servers[ cur_server_ndx ].ticket_Server;
 
-			if ( ini_Data.ticket_Port.GetLength() > 0 )
+			if ( ini_Data.servers[ cur_server_ndx ].ticket_Port.GetLength() > 0 )
 			{
-				http_server += _T( ":" ) + ini_Data.ticket_Port;
+				http_server += _T( ":" ) + ini_Data.servers[ cur_server_ndx ].ticket_Port;
 			}
 		}
 		else
@@ -347,7 +348,9 @@ BOOL CCDRLoaderApp::InitInstance()
 			DebugWrite( "Closing debug prior launch.\n" );
 			DebugEnd();
 
-			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key, ini_Data.cdr_Server, ini_Data.cdr_Port ) )
+			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key, 
+											ini_Data.servers[ cur_server_ndx ].cdr_Server, 
+											ini_Data.servers[ cur_server_ndx ].cdr_Port ) )
 			{
 				// failed after all
 				ok_to_launch = false;

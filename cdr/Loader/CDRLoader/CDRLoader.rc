@@ -112,22 +112,44 @@ BEGIN
     LTEXT           "Please wait.",IDC_STATIC,30,18,40,8
 END
 
-IDD_Options DIALOGEX 0, 0, 196, 119
+IDD_Options DIALOGEX 0, 0, 208, 329
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
 CAPTION "CDR Loader Options"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,138,78,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,138,95,50,14
-    LTEXT           "Ticket Server",IDC_STATIC,6,6,43,8
-    LTEXT           "Ticket Port",IDC_STATIC,6,24,35,8
-    LTEXT           "CDR Port",IDC_STATIC,6,60,30,8
-    LTEXT           "CDR Server",IDC_STATIC,6,42,38,8
-    EDITTEXT        IDC_ticket_Server,54,6,78,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_Ticket_Port,54,24,36,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_Cdr_Server,54,42,78,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_Cdr_Port,54,60,36,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,84,306,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,150,306,50,14
+    LTEXT           "Client Update Server",IDC_STATIC,36,24,68,8
+    LTEXT           "Client Update Port",IDC_STATIC,36,42,60,8
+    LTEXT           "CDR Port",IDC_STATIC,36,79,30,8
+    LTEXT           "CDR Server",IDC_STATIC,36,60,38,8
+    EDITTEXT        IDC_ticket_Server,114,24,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Ticket_Port,114,42,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Server,114,60,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Port,114,79,36,14,ES_AUTOHSCROLL
+    LTEXT           "Client Update Server",IDC_STATIC,36,120,68,8
+    LTEXT           "Client Update Port",IDC_STATIC,36,138,60,8
+    LTEXT           "CDR Port",IDC_STATIC,36,175,30,8
+    LTEXT           "CDR Server",IDC_STATIC,36,156,38,8
+    EDITTEXT        IDC_ticket_Server2,114,120,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Ticket_Port2,114,138,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Server2,114,156,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Port2,114,175,36,14,ES_AUTOHSCROLL
+    GROUPBOX        "Testing",IDC_STATIC,6,108,192,90
+    GROUPBOX        "Production",IDC_STATIC,6,12,192,90
+    LTEXT           "Client Update Server",IDC_STATIC,36,216,68,8
+    LTEXT           "Client Update Port",IDC_STATIC,36,234,60,8
+    LTEXT           "CDR Port",IDC_STATIC,36,271,30,8
+    LTEXT           "CDR Server",IDC_STATIC,36,252,38,8
+    EDITTEXT        IDC_ticket_Server3,114,216,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Ticket_Port3,114,234,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Server3,114,252,78,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Cdr_Port3,114,271,36,14,ES_AUTOHSCROLL
+    GROUPBOX        "Development",IDC_STATIC,6,204,192,90
+    CONTROL         "",IDC_RADIO_P,"Button",BS_AUTORADIOBUTTON,12,54,16,8
+    CONTROL         "",IDC_RADIO_T,"Button",BS_AUTORADIOBUTTON,12,150,16,8
+    CONTROL         "",IDC_RADIO_D,"Button",BS_AUTORADIOBUTTON,12,246,16,8
 END
 
 
@@ -205,9 +227,9 @@ BEGIN
     IDD_Options, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 189
+        RIGHTMARGIN, 201
         TOPMARGIN, 7
-        BOTTOMMARGIN, 112
+        BOTTOMMARGIN, 322
     END
 END
 #endif    // APSTUDIO_INVOKED

@@ -1,5 +1,6 @@
 #pragma once
 
+
 class CDRIniData
 {
 public:
@@ -9,6 +10,10 @@ public:
 	void ReadOptions( void );
 	void WriteOptions( void );
 
+	int GetCurrentServer( void );
+	void SetCurrentServer( int cs );
+
+	enum SERVER_NDX { CDR_SRV_PROD = 0, CDR_SRV_TEST, CDR_SRV_DEV, CDR_SRV_LEN };
 
 	/*
 	*	yes there should be gets & sets
@@ -17,11 +22,16 @@ public:
 	*	while we are developing, no it'll be used after we're in production
 	*	whoops add this and that and the other feature... )
 	*/
-	CString ticket_Server;
-	CString ticket_Port;
-	CString cdr_Server;
-	CString cdr_Port;
+	struct ServerStrings 
+	{
+		CString ticket_Server;
+		CString ticket_Port;
+		CString cdr_Server;
+		CString cdr_Port;
+	};
 	CString last_User;
+	CString default_Server;
+	ServerStrings servers[ CDR_SRV_LEN ];
 
 	static const CString CURRENT_VERSION;
 };

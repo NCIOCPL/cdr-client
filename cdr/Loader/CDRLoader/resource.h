@@ -19,14 +19,25 @@
 #define IDC_TicketPort                  1001
 #define IDC_Ticket_Port                 1001
 #define IDC_PROGRESS1                   1002
+#define IDC_Ticket_Port2                1002
 #define IDC_OPTIONS                     1003
+#define IDC_Ticket_Port3                1003
 #define IDC_TicketServer                1004
 #define IDC_CDRServer                   1005
 #define IDC_CDRPort                     1006
 #define IDC_ticket_Server               1007
 #define IDC_Cdr_Server                  1008
-#define IDC_EDIT4                       1009
 #define IDC_Cdr_Port                    1009
+#define IDC_ticket_Server2              1010
+#define IDC_Cdr_Server2                 1011
+#define IDC_Cdr_Port2                   1012
+#define IDC_ticket_Server3              1013
+#define IDC_Cdr_Server3                 1014
+#define IDC_Cdr_Port3                   1015
+#define IDC_RADIO_P                     1017
+#define IDC_RADIO_T                     1018
+#define IDC_RADIO5                      1019
+#define IDC_RADIO_D                     1019
 
 // Next default values for new objects
 // 
@@ -34,7 +45,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        136
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1010
+#define _APS_NEXT_CONTROL_VALUE         1018
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

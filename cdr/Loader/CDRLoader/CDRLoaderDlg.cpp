@@ -186,8 +186,10 @@ void CCDRLoaderDlg::OnBnClickedOk()
 						+ UserPwd
 						+ _T("</Password></CdrLogon>");
 
+	int cur_server_ndx = ini_Data->GetCurrentServer();
+
 	// where to go for the cdr stuff
-	CdrSocket::SetServer( ini_Data->cdr_Server, ini_Data->cdr_Port );
+	CdrSocket::SetServer( ini_Data->servers[ cur_server_ndx ].cdr_Server, ini_Data->servers[ cur_server_ndx ].cdr_Port );
 
 	// Submit the command to the CDR server.
 	CString response = CdrSocket::sendCommand(request);
@@ -228,19 +230,43 @@ void CCDRLoaderDlg::OnBnClickedOptions()
 	// TODO: Add your control notification handler code here
 	CDROptions	opt_dialog;
 
-	opt_dialog.ticket_Server = ini_Data->ticket_Server;
-	opt_dialog.ticket_Port = ini_Data->ticket_Port;
-	opt_dialog.cdr_Server = ini_Data->cdr_Server;
-	opt_dialog.cdr_Port = ini_Data->cdr_Port;
+	opt_dialog.ticket_Server = ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].ticket_Server;
+	opt_dialog.ticket_Port = ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].ticket_Port;
+	opt_dialog.cdr_Server = ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].cdr_Server;
+	opt_dialog.cdr_Port = ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].cdr_Port;
+
+	opt_dialog.test_ticket_Server = ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].ticket_Server;
+	opt_dialog.test_ticket_Port = ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].ticket_Port;
+	opt_dialog.test_cdr_Server = ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].cdr_Server;
+	opt_dialog.test_cdr_Port = ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].cdr_Port;
+
+	opt_dialog.dev_ticket_Server = ini_Data->servers[ CDRIniData::CDR_SRV_DEV ].ticket_Server;
+	opt_dialog.dev_ticket_Port = ini_Data->servers[ CDRIniData::CDR_SRV_DEV ].ticket_Port;
+	opt_dialog.dev_cdr_Server = ini_Data->servers[ CDRIniData::CDR_SRV_DEV ].cdr_Server;
+	opt_dialog.dev_cdr_Port = ini_Data->servers[ CDRIniData::CDR_SRV_DEV ].cdr_Port;
+
+	opt_dialog.SetCurrentServer( ini_Data->GetCurrentServer() );
 
 	INT_PTR nResponse = opt_dialog.DoModal();
 
 	if (nResponse == IDOK)
 	{
 		// save the user options
-		ini_Data->ticket_Server = opt_dialog.ticket_Server;
-		ini_Data->ticket_Port = opt_dialog.ticket_Port;
-		ini_Data->cdr_Server = opt_dialog.cdr_Server;
-		ini_Data->cdr_Port = opt_dialog.cdr_Port;
+		ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].ticket_Server = opt_dialog.ticket_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].ticket_Port = opt_dialog.ticket_Port;
+		ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].cdr_Server = opt_dialog.cdr_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_PROD ].cdr_Port = opt_dialog.cdr_Port;
+
+		ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].ticket_Server = opt_dialog.test_ticket_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].ticket_Port = opt_dialog.test_ticket_Port;
+		ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].cdr_Server = opt_dialog.test_cdr_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_TEST ].cdr_Port = opt_dialog.test_cdr_Port;
+
+		ini_Data->servers[ CDRIniData::CDR_SRV_DEV  ].ticket_Server = opt_dialog.dev_ticket_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_DEV  ].ticket_Port = opt_dialog.dev_ticket_Port;
+		ini_Data->servers[ CDRIniData::CDR_SRV_DEV  ].cdr_Server = opt_dialog.dev_cdr_Server;
+		ini_Data->servers[ CDRIniData::CDR_SRV_DEV  ].cdr_Port = opt_dialog.dev_cdr_Port;
+
+		ini_Data->SetCurrentServer(	opt_dialog.GetCurrentServer() );
 	}
 }
