@@ -149,7 +149,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,131,71,67,10
     CONTROL         "Entire title",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,
                     131,84,47,10
-    LTEXT           "Title: ",IDC_STATIC,38,28,18,8
+    LTEXT           "DocTitle:",IDC_STATIC,31,28,30,8
     LTEXT           "Document Type:",IDC_STATIC,21,119,54,8
     CONTROL         "Check Out?",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,63,54,10

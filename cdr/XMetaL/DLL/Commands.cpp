@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.22 2002-05-17 20:11:42 bkline Exp $
+ * $Id: Commands.cpp,v 1.23 2002-05-28 22:26:45 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.22  2002/05/17 20:11:42  bkline
+ * Added AddressType attribute to top-level element for getOrgAddress().
+ *
  * Revision 1.21  2002/05/15 23:39:24  bkline
  * Modified to work with Jeff's new utility to refresh the client files.
  *
@@ -479,9 +482,11 @@ STDMETHODIMP CCommands::logon(int *pRet)
 		}
 
         // See if the client machine has the refresh utility installed.
-        CString manifestName = cdr::getXmetalPath() + _T("\\Cdr\\Cdr_Manifest.xml");
+        CString manifestName = cdr::getXmetalPath() + _T("\\CDR_MANIFEST.XML");
         invokedFromClientRefreshTool = false;
+        //::AfxMessageBox(_T("Looking for ") + manifestName);
         if (!_waccess((LPCTSTR)manifestName, 0)) {
+            //::AfxMessageBox(_T("Found it!"));
             invokedFromClientRefreshTool = true;
             doLogon(NULL);
             *pRet = 0;
@@ -489,6 +494,7 @@ STDMETHODIMP CCommands::logon(int *pRet)
         }
 
         // Get the user's CDR credentials.
+        //::AfxMessageBox(_T("Couldn't find ") + manifestName);
 		LogonDialog logonDialog;
 		int rc = logonDialog.DoModal();
 		switch (rc) {
