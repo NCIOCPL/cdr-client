@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE Documentation SYSTEM "Documentation.dtd">
+<Documentation xmlns:cdr="cips.nci.nih.gov/cdr" InfoType="Reference" Use="Editorial"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {DocId}?></DocId> 
+	 <DocTitle><?xm-replace_text {DocTitle}?></DocTitle> 
+  </CdrDocCtl> 
+  <Body> 
+	 <DocumentationTitle>Type of shortcuts</DocumentationTitle> 
+	 <TopicSection> 
+		<TopicText> 
+		  <Para>Use these keystroke shortcuts for general XMetaL editing
+			 functions.</Para> 
+		  <Table> 
+		  <Title>CDR Revision Markup Shortcuts</Title> 
+		  <TGroup Cols="2"><ColSpec ColNum="1" ColName="col1" ColWidth="1.37*"/><ColSpec ColNum="2" ColName="col2" ColWidth="1.00*"/> 
+			 <TBody> 
+				<Row> 
+				  <entry NameSt="col1" NameEnd="col2"><Strong>Inserting/Deleting
+					 Markup</Strong></entry> 
+				</Row> 
+				<Row> 
+				  <entry>Insertion</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+S, Alt+I</entry> 
+				</Row> 
+				<Row> 
+				  <entry>Deletion</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+S, Alt+D</entry> 
+				</Row> 
+				<Row> 
+				  <entry NameSt="col1" NameEnd="col2"><Strong>Finding
+					 Changes</Strong></entry> 
+				</Row> 
+				<Row> 
+				  <entry>Find Next Change</entry> 
+				  <entry NameSt="col2" NameEnd="col2"> Alt+M, Alt+N</entry> 
+				</Row> 
+				<Row> 
+				  <entry>Find Previous Change</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+P</entry> 
+				</Row> 
+				<Row> 
+				  <entry NameSt="col1" NameEnd="col2"><Strong>Accepting/Rejecting
+					 Changes</Strong></entry> 
+				</Row> 
+				<Row> 
+				  <entry>Accept Change</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+A</entry> 
+				</Row> 
+				<Row> 
+				  <entry>Accept All Changes</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+C</entry> 
+				</Row> 
+				<Row> 
+				  <entry>Reject Change</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+R</entry> 
+				</Row> 
+				<Row> 
+				  <entry>Reject All Changes</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+J</entry> 
+				</Row> 
+				<Row> 
+				  <entry NameSt="col1" NameEnd="col2"><Strong>Viewing
+					 Changes</Strong></entry> 
+				</Row> 
+				<Row> 
+				  <entry>View Changes With Highlighting</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+W</entry> 
+				</Row> 
+				<Row> 
+				  <entry>View Changes Without Highlighting</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+O</entry> 
+				</Row> 
+				<Row> 
+				  <entry>View Original</entry> 
+				  <entry NameSt="col2" NameEnd="col2">Alt+M, Alt+V</entry> 
+				</Row> 
+			 </TBody> 
+		  </TGroup> 
+		  </Table> 
+		</TopicText> 
+	 </TopicSection> <TopicRelationship> 
+	 <RelatedTopic RelationshipType="See Also"> 
+		<RelatedTopicID>Topic</RelatedTopicID> 
+	 </RelatedTopic></TopicRelationship> 
+  </Body> 
+  <Metadata> 
+	 <DocType>All</DocType> 
+	 <Function>Editing</Function> 
+	 <Subject>shortcuts</Subject> 
+  </Metadata>
+</Documentation>

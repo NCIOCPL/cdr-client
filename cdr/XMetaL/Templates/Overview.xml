@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE Documentation SYSTEM "Documentation.dtd">
+<Documentation xmlns:cdr="cips.nci.nih.gov/cdr" InfoType="Overview" Use="Any"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {DocId}?></DocId> 
+	 <DocTitle><?xm-replace_text {DocTitle}?></DocTitle> 
+  </CdrDocCtl> 
+  <Body> 
+	 <DocumentationTitle>Topic: Overview</DocumentationTitle> 
+	 <TopicSection> 
+		<TopicText> 
+		  <Para>Description of subject</Para> 
+		  <ItemizedList Style="bullet"> 
+			 <ListTitle>When this subject is relevant</ListTitle> 
+			 <ListItem>Time one</ListItem> 
+			 <ListItem>Time two</ListItem> 
+			 <ListItem>Time three</ListItem> 
+		  </ItemizedList> 
+		</TopicText> 
+	 </TopicSection> <TopicRelationship> 
+	 <RelatedTopic RelationshipType="Narrower"> 
+		<RelatedTopicID>Topic</RelatedTopicID> 
+	 </RelatedTopic> 
+	 <RelatedTopic RelationshipType="See Also"> 
+		<RelatedTopicID>Topic</RelatedTopicID> 
+	 </RelatedTopic></TopicRelationship> 
+  </Body> 
+  <Metadata> 
+	 <DocType>None</DocType> 
+	 <Function>System</Function> 
+	 <Subject>subject</Subject> 
+  </Metadata>
+</Documentation>

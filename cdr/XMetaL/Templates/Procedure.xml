@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE Documentation SYSTEM "Documentation.dtd">
+<Documentation xmlns:cdr="cips.nci.nih.gov/cdr" InfoType="Procedure" Use="Editorial"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {DocId}?></DocId> 
+	 <DocTitle><?xm-replace_text {DocTitle}?></DocTitle> 
+  </CdrDocCtl> 
+  <Body> 
+	 <DocumentationTitle>Doing a task</DocumentationTitle> 
+	 <TopicSection> 
+		<TopicText> 
+		  <Para>Description of task</Para> 
+		  <ItemizedList Style="bullet"> 
+			 <ListTitle>When this task should be done:</ListTitle> 
+			 <ListItem>Time one</ListItem> 
+			 <ListItem>Time two</ListItem> 
+			 <ListItem>Time three</ListItem> 
+		  </ItemizedList> 
+		</TopicText> 
+	 </TopicSection> 
+	 <TopicSection><TopicSectionTitle>Doing a subtask (displays in structure
+		view)</TopicSectionTitle> 
+		<TopicText> 
+		  <Para>What this subtask is. When you should do this subtask.</Para> 
+		  <OrderedList> 
+			 <ListTitle>To do this task (if a title is necessary) (hot in
+				structure view)</ListTitle> 
+			 <ListItem>Step one 
+				<Para><Strong>Example:</Strong> text</Para></ListItem> 
+			 <ListItem>Copy the macro file from: 
+				<Para>source location</Para> 
+				<Para>to:</Para> 
+				<Para>destination location</Para></ListItem> 
+			 <ListItem>Step three 
+				<Para><Strong>Note:</Strong> Here is a tip or a
+				  warning.</Para></ListItem> 
+		  </OrderedList> 
+		</TopicText> 
+	 </TopicSection> 
+	 <TopicSection><TopicSectionTitle>Doing a second subtask</TopicSectionTitle>
+		
+		<TopicText> 
+		  <Para>Guidelines for doing this specialized subtask.</Para> 
+		  <OrderedList> 
+			 <ListItem><?xm-replace_text {ListItem}?></ListItem> 
+			 <ListItem><?xm-replace_text {ListItem}?></ListItem> 
+			 <ListItem><?xm-replace_text {ListItem}?></ListItem> 
+		  </OrderedList> 
+		</TopicText> 
+	 </TopicSection> <TopicRelationship> 
+	 <RelatedTopic RelationshipType="See Also"> 
+		<RelatedTopicID>Topic</RelatedTopicID> 
+	 </RelatedTopic></TopicRelationship> 
+  </Body> 
+  <Metadata> 
+	 <DocType>None</DocType> 
+	 <Function>System</Function> 
+	 <Subject>subject</Subject> 
+  </Metadata>
+</Documentation>
