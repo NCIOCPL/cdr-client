@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.109 2003-12-01 13:46:43 bkline Exp $
+     $Id: Cdr.mcr,v 1.110 2003-12-01 20:06:25 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.109  2003/12/01 13:46:43  bkline
+     Added another button for patient publish preview of CTGovProtocol
+     documents.
+
      Revision 1.108  2003/11/29 13:18:48  bkline
      Added Publish Preview button to CTGovProtocol toolbar.
 
@@ -2295,8 +2299,8 @@
                            "Structure (Custom)", 1, 8,
                            false),
             new CdrCmdItem(null,
-                           "Patient Publish Preview",
                            "Patient CTGovProtocol Publish Preview",
+                           "Patient Publish Preview",
                            "Patient Publish Preview",
                            "Structure (Custom)", 1, 9,
                            false),
