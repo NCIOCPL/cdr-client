@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.4 2001-11-27 14:21:01 bkline Exp $
+ * $Id: EditElement.cpp,v 1.5 2002-01-29 21:53:30 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/11/27 14:21:01  bkline
+ * Version used at November 2001 demo.
+ *
  * Revision 1.3  2001/06/09 12:35:21  bkline
  * Switched to Unicode; added button to launch browser view of document.
  *
@@ -51,32 +54,32 @@ CEditElement::CEditElement(const CString& t,
                            const CString& e,
                            Type elemType,
                            CWnd* pParent /*=NULL*/)
-	: CDialog(CEditElement::IDD, pParent), docType(t), element(e),
+    : CDialog(CEditElement::IDD, pParent), docType(t), element(e),
       type(elemType)
 {
-	//{{AFX_DATA_INIT(CEditElement)
-	m_title = _T("");
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(CEditElement)
+    m_title = _T("");
+    //}}AFX_DATA_INIT
 }
 
 
 void CEditElement::DoDataExchange(CDataExchange* pDX)
 {
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CEditElement)
-	DDX_Control(pDX, IDC_LINK_TITLE_LABEL, m_label);
-	DDX_Control(pDX, IDC_LIST1, m_linkList);
-	DDX_Text(pDX, IDC_EDIT1, m_title);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(pDX);
+    //{{AFX_DATA_MAP(CEditElement)
+    DDX_Control(pDX, IDC_LINK_TITLE_LABEL, m_label);
+    DDX_Control(pDX, IDC_LIST1, m_linkList);
+    DDX_Text(pDX, IDC_EDIT1, m_title);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CEditElement, CDialog)
-	//{{AFX_MSG_MAP(CEditElement)
-	ON_BN_CLICKED(IDC_BUTTON1, OnSelectButton)
-	ON_LBN_DBLCLK(IDC_LIST1, OnDblclkLink)
-	ON_BN_CLICKED(IDC_BUTTON2, OnButton2)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(CEditElement)
+    ON_BN_CLICKED(IDC_BUTTON1, OnSelectButton)
+    ON_LBN_DBLCLK(IDC_LIST1, OnDblclkLink)
+    ON_BN_CLICKED(IDC_BUTTON2, OnButton2)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +92,7 @@ END_MESSAGE_MAP()
 void CEditElement::OnOK() 
 {
     // Transfer the data from the dialog form to this object.
-	UpdateData(true);
+    UpdateData(true);
 
     // Make sure the user has specified at least a portion of the title.
     if (m_title.IsEmpty()) {
@@ -165,11 +168,11 @@ void CEditElement::OnOK()
     }
 
     if (cdr::fillListBox(m_linkList, docSet) > 0) {
-		m_linkList.SetCurSel(0);
-		m_linkList.EnableWindow();
-	}
-	else
-		::AfxMessageBox(_T("No documents match this query"));
+        m_linkList.SetCurSel(0);
+        m_linkList.EnableWindow();
+    }
+    else
+        ::AfxMessageBox(_T("No documents match this query"));
 
 }
 
@@ -179,13 +182,13 @@ void CEditElement::OnOK()
 void CEditElement::OnSelectButton() 
 {
     // Find out which candidate document the user selected.
-	int curSel = m_linkList.GetCurSel();
+    int curSel = m_linkList.GetCurSel();
 
     // Don't do anything if there is no selection.
     if (curSel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_linkList.GetText(curSel, str);
+        m_linkList.GetText(curSel, str);
         switch (type) {
             case NORMAL:
                 CCommands::doInsertLink(str);
@@ -196,11 +199,11 @@ void CEditElement::OnSelectButton()
             case PROT_PERSON:
                 if (!insertProtPerson(str))
                     return;
-				break;
+                break;
             case ORG_LOCATION:
                 if (!insertOrgLocation(str))
                     return;
-				break;
+                break;
         }
         EndDialog(IDCANCEL);
     }
@@ -245,7 +248,7 @@ void CEditElement::insertLeadOrg(const CString& str)
     cdr::DocSet::iterator i = std::find_if(docSet.begin(), docSet.end(),
             std::bind2nd(std::equal_to<cdr::SearchResult>(), info.target));
     if (i == docSet.end()) {
-		::AfxMessageBox(_T("Internal error: can't find ") + 
+        ::AfxMessageBox(_T("Internal error: can't find ") + 
                 info.target + _T(" in result set info"));
         return;
     }
@@ -276,6 +279,11 @@ void CEditElement::insertLeadOrg(const CString& str)
             textNode = textNode.GetNextSibling();
         if (textNode)
             textNode.SetData(info.data);
+        else {
+            ::_Document curDoc = cdr::getApp().GetActiveDocument();
+            textNode = curDoc.createTextNode(info.data);
+            ::DOMNode dummy = elem.appendChild(textNode);
+        }        
         orgIdPos.SetReadOnlyContainer(TRUE);
     }
 }
@@ -301,7 +309,7 @@ void CEditElement::OnButton2()
         return;
     }
 #if SERVER_SIDE_OF_LINK_PICKLISTS_WORKING
-	int curSel = m_linkList.GetCurSel();
+    int curSel = m_linkList.GetCurSel();
 
     // Don't do anything if there is no selection.
     if (curSel < 0)
@@ -309,7 +317,7 @@ void CEditElement::OnButton2()
 
     // Parse out the document ID.
     CString info;
-	m_linkList.GetText(curSel, info);
+    m_linkList.GetText(curSel, info);
     int pos = info.Find(_T("["));
     if (pos == -1) {
         ::AfxMessageBox(_T("Unable to find document ID start delimiter."));
@@ -362,12 +370,12 @@ void CEditElement::extractLeadOrgs(const CString& rsp)
 
 BOOL CEditElement::OnInitDialog() 
 {
-	CDialog::OnInitDialog();
-	
+    CDialog::OnInitDialog();
+    
     if (type == LEAD_ORG) {
         SetWindowText(_T("Lead Organization"));
         m_label.SetWindowText(_T("Name"));
     }
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }
