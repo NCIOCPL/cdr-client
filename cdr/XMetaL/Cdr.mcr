@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.111 2003-12-01 21:17:04 bkline Exp $
+     $Id: Cdr.mcr,v 1.112 2003-12-03 20:26:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.111  2003/12/01 21:17:04  bkline
+     Added macro and toolbar buttons for Linked Docs Report.
+
      Revision 1.110  2003/12/01 20:06:25  bkline
      Fixed bug in CTGovProtocol Patient Publish Preview toolbar button
      (macro name in wrong place).
@@ -1634,6 +1637,71 @@
         }
     }
 
+    function addSymbolToolbar() {
+        var buttons = new Array(
+    new CdrCmdItem(null, "SC Up", "Up", "Up", "CDR", 7, 2, false),
+    new CdrCmdItem(null, "SC Down", "Down", "Down", "CDR", 7, 3, false),
+    new CdrCmdItem(null, "SC Right", "Right", "Right", "CDR", 7, 5, false),
+    new CdrCmdItem(null, "SC Left", "Left", "Left", "CDR", 7, 4, false),
+    new CdrCmdItem(null, "SC alpha", "alpha", "alpha", "CDR", 7, 6, false),
+    new CdrCmdItem(null, "SC beta", "beta", "beta", "CDR", 7, 7, false),
+    new CdrCmdItem(null, "SC gamma", "gamma", "gamma", "CDR", 7, 8, false),
+    new CdrCmdItem(null, "SC delta", "delta", "delta", "CDR", 7, 9, false),
+    new CdrCmdItem(null, "SC mu", "mu", "mu", "CDR", 7, 10, false),
+    new CdrCmdItem(null, "SC le", "</=", "</=", "CDR", 8, 1, false),
+    new CdrCmdItem(null, "SC ge", ">/=", ">/=", "CDR", 8, 2, false),
+    new CdrCmdItem(null, "SC copy", "(C)", "(C)", "CDR", 8, 3, false),
+    new CdrCmdItem(null, "SC reg", "(R)", "(R)", "CDR", 8, 4, false),
+    new CdrCmdItem(null, "SC TM", "TM", "TM", "CDR", 8, 5, false),
+    new CdrCmdItem(null, "SC deg", "Degree", "Degree", "CDR", 8, 6, false),
+    new CdrCmdItem(null, "SC cross", "Dagger", "Dagger", "CDR", 8, 7, false),
+    new CdrCmdItem(null, "SC dblx", "DDagger", "DDagger", "CDR", 8, 8, false),
+    new CdrCmdItem(null, "SC mdash", "Em Dash", "Em dash", "CDR", 8, 9, false),
+    new CdrCmdItem(null, "SC plusmin", "+/-", "+/-", "CDR", 8, 10, false),
+    new CdrCmdItem(null, "SC lapos", "LApos", "LApos", "CDR2", 1, 1, false),
+    new CdrCmdItem(null, "SC rapos", "RApos", "RApos", "CDR2", 1, 2, false),
+    new CdrCmdItem(null, "SC lquot", "LQuot", "LQuot", "CDR2", 1, 3, false),
+    new CdrCmdItem(null, "SC rquot", "RQuot", "RQuot", "CDR2", 1, 4, false),
+    new CdrCmdItem(null, "SC quarter", "1/4", "1/4", "CDR2", 1, 5, false),
+    new CdrCmdItem(null, "SC half", "1/2", "1/2", "CDR2", 1, 6, false),
+    new CdrCmdItem(null, "SC 3quart", "3/4", "3/4", "CDR2", 1, 7, false),
+    new CdrCmdItem(null, "SC nbsp", "NBSP", "NBSP", "CDR2", 1, 8, false)
+        );
+        
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        try { cmdBar = cmdBars.item("CDR Symbols"); }
+        catch (e) { 
+            //Application.Alert(e.description);
+            //Application.Alert("Error number: " + (e.number & 0xFFFF));
+            //Application.Alert("Error description: " + e.description);
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR symbols " +
+                                  "toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Symbols", 4);
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Symbols toolbar: " + e);
+        }
+        if (cmdBar) {
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function addSummaryToolbar() {
 
         var buttons = new Array(
@@ -2431,6 +2499,7 @@
      */
     var toolbars = new Array();
     addCdrToolbar();
+    addSymbolToolbar();
     addSummaryToolbar();
     addPersonToolbar();
     addOrganizationToolbar();
@@ -5980,5 +6049,33 @@
     previewMailer();
   ]]>
 </MACRO>
+
+<MACRO name="SC Up"      lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
+<MACRO name="SC Down"    lang="JScript">Selection.TypeText("&amp;#x2193;");</MACRO>
+<MACRO name="SC Right"   lang="JScript">Selection.TypeText("&amp;#x2192;");</MACRO>
+<MACRO name="SC Left"    lang="JScript">Selection.TypeText("&amp;#x2190;");</MACRO>
+<MACRO name="SC alpha"   lang="JScript">Selection.TypeText("&amp;#x03B1;");</MACRO>
+<MACRO name="SC beta"    lang="JScript">Selection.TypeText("&amp;#x03B2;");</MACRO>
+<MACRO name="SC gamma"   lang="JScript">Selection.TypeText("&amp;#x03B3;");</MACRO>
+<MACRO name="SC delta"   lang="JScript">Selection.TypeText("&amp;#x03B4;");</MACRO>
+<MACRO name="SC mu"      lang="JScript">Selection.TypeText("&amp;#x03BC;");</MACRO>
+<MACRO name="SC le"      lang="JScript">Selection.TypeText("&amp;#x2264;");</MACRO>
+<MACRO name="SC ge"      lang="JScript">Selection.TypeText("&amp;#x2265;");</MACRO>
+<MACRO name="SC copy"    lang="JScript">Selection.TypeText("&amp;#x00A9;");</MACRO>
+<MACRO name="SC reg"     lang="JScript">Selection.TypeText("&amp;#x00AE;");</MACRO>
+<MACRO name="SC TM"      lang="JScript">Selection.TypeText("&amp;#x2122;");</MACRO>
+<MACRO name="SC deg"     lang="JScript">Selection.TypeText("&amp;#x00B0;");</MACRO>
+<MACRO name="SC cross"   lang="JScript">Selection.TypeText("&amp;#x2020;");</MACRO>
+<MACRO name="SC dblx"    lang="JScript">Selection.TypeText("&amp;#x2021;");</MACRO>
+<MACRO name="SC mdash"   lang="JScript">Selection.TypeText("&amp;#x2014;");</MACRO>
+<MACRO name="SC plusmin" lang="JScript">Selection.TypeText("&amp;#x00B1;");</MACRO>
+<MACRO name="SC lquot"   lang="JScript">Selection.TypeText("&amp;#x201C;");</MACRO>
+<MACRO name="SC rquot"   lang="JScript">Selection.TypeText("&amp;#x201D;");</MACRO>
+<MACRO name="SC lapos"   lang="JScript">Selection.TypeText("&amp;#x2018;");</MACRO>
+<MACRO name="SC rapos"   lang="JScript">Selection.TypeText("&amp;#x2019;");</MACRO>
+<MACRO name="SC quarter" lang="JScript">Selection.TypeText("&amp;#x00BC;");</MACRO>
+<MACRO name="SC half"    lang="JScript">Selection.TypeText("&amp;#x00BD;");</MACRO>
+<MACRO name="SC 3quart"  lang="JScript">Selection.TypeText("&amp;#x00BE;");</MACRO>
+<MACRO name="SC nbsp"    lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
 
 </MACROS>
