@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.12 2002-01-23 19:02:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.13 2002-01-31 13:51:36 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.12  2002/01/23 19:02:41  bkline
+     Added hotkey (Ctrl+Enter) for cdr field editing.
+
      Revision 1.11  2001/12/19 14:10:05  bkline
      Added macros for publish preview, jump before/after element, etc.
 
@@ -248,6 +251,8 @@
             gEditingCdrLink = true;
             var rc  = cdrObj.edit();
             if (!rc) {
+                Selection.SelectContainerContents();
+                Selection.MoveRight(0);
                 dumpXmPis();
             }
             gEditingCdrLink = false;
