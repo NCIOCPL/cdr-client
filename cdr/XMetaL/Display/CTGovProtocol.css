@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol.css,v 1.5 2003-12-04 16:02:32 bkline Exp $
+ * $Id: CTGovProtocol.css,v 1.6 2004-08-05 22:53:57 ameyer Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2003/12/04 16:02:32  bkline
+ * Fixed typo in ELIGIBILITY prompt.
+ *
  * Revision 1.4  2003/12/03 16:05:55  bkline
  * Fixed bugs in support for Role and Affiliation elements.
  *
@@ -88,7 +91,7 @@ HealthyVolunteers,
 HighAge,
 IDInfo,
 Intervention,
-InterventionName,
+InterventionNameLink,
 InterventionType,
 Investigator,
 ItemizedList,

@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.3 2003-11-19 16:27:05 bkline Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.4 2004-08-05 22:54:12 ameyer Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2003/11/19 16:27:05  bkline
+ * Added support for PDQPerson display.
+ *
  * Revision 1.2  2003/11/12 21:21:16  bkline
  * Added support for newly added elements EnteredBy, EntryDate, and
  * ProtocolDesign.
@@ -92,7 +95,7 @@ HealthyVolunteers,
 HighAge,
 IDInfo,
 Intervention,
-InterventionName,
+InterventionNameLink,
 InterventionType,
 Investigator,
 ItemizedList,
