@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.2 2001-04-18 14:46:24 bkline Exp $
+ * $Id: Commands.cpp,v 1.3 2001-06-09 12:33:45 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2001/04/18 14:46:24  bkline
+ * Switched to extracting document types from Type attribute (instead of
+ * inferring it from first tag).  Removed some dead code.
+ *
  * Revision 1.1  2000/10/16 22:29:27  bkline
  * Initial revision
  */
@@ -21,10 +25,13 @@
 #include "SaveDialog.h"
 #include "ValidateDialog.h"
 #include "EditElement.h"
+#include "SchemaPicklist.h"
+#include "LogonProgress.h"
 #include "resource.h"
 
 // System headers
 #include <list>
+#include <map>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -33,12 +40,209 @@
 #pragma warning(disable : 4503)
 
 // Local functions.
-static void         getDocTypeStrings(CString& err);
-static std::string& fixDoc(std::string& doc, const std::string& ctl,
-                           const std::string& docType);
+static void     getDocTypeStrings(CString& err);
+static CString& fixDoc(CString& doc, const CString& ctl, 
+                       const CString& docType);
 
 // Local data.
-static std::list<std::string> docTypeStrings;
+static cdr::StringList      docTypeStrings;
+static cdr::ValidValueSets  validValueSets;
+
+static cdr::ValidValueSet* extractValidValueSet(const CString& resp)
+{
+    cdr::ValidValueSet* vvSet = new cdr::ValidValueSet;
+    try {
+        cdr::Element enumSet = 
+            cdr::Element::extractElement(resp, _T("EnumSet"));
+        while (enumSet) {
+            CString path = enumSet.getAttribute(_T("Node"));
+            if (vvSet->find(path) == vvSet->end()) {
+                cdr::StringList* vvList = new cdr::StringList;
+                (*vvSet)[path] = vvList;
+                CString eString = enumSet.getString();
+                cdr::Element validValue = 
+                    cdr::Element::extractElement(eString, _T("ValidValue"));
+                while (validValue) {
+                    vvList->push_back(validValue.getString());
+                    validValue = 
+                        cdr::Element::extractElement(eString, _T("ValidValue"), 
+                                                     validValue.getEndPos());
+                }
+            }
+            enumSet = cdr::Element::extractElement(resp, _T("EnumSet"), 
+                                                   enumSet.getEndPos());
+        }
+    }
+    catch (LPCTSTR ex) {
+        ::AfxMessageBox(ex, MB_ICONEXCLAMATION);
+        delete vvSet;
+        vvSet = 0;
+    }
+    catch (...) { 
+        ::AfxMessageBox(_T("Unexpected exception encountered"),
+                        MB_ICONEXCLAMATION);
+        delete vvSet; 
+        return vvSet = 0; 
+    }
+    return vvSet;
+}
+
+static bool syncDtd(const CString& dtd, const CString& docType)
+{
+    if (dtd.IsEmpty()) {
+        ::AfxMessageBox(_T("Empty DTD for document type ") + docType,
+                MB_ICONEXCLAMATION);
+        return false;
+    }
+
+    // Find out where to write the DTD.
+    CString dtdPath;
+    CString rulesPath = cdr::getXmetalPath() + _T("\\Rules");
+    dtdPath.Format(_T("%s\\%s.dtd"), (LPCTSTR)rulesPath, (LPCTSTR)docType);
+    std::string pathName = cdr::cStringToUtf8(dtdPath);
+
+    // Write out the DTD.
+    std::ofstream dtdStream(pathName.c_str());
+    if (!dtdStream) {
+        ::AfxMessageBox(_T("Unable to write DTD at ") + dtdPath,
+                MB_ICONEXCLAMATION);
+        return false;
+    }
+    dtdStream << cdr::cStringToUtf8(dtd).c_str();
+    return true;
+}
+
+static void getDocType(const CString docType, LogonDialog& dialog)
+{
+    // Get the document type information from the CDR Server.
+    CString cmd;
+    cmd.Format(_T("<CdrGetDocType Type='%s' GetEnumValues='Y'/>"),
+               (LPCTSTR)docType);
+    CString resp = CdrSocket::sendCommand(cmd);
+
+    // Check for problems.
+    cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
+    if (err) {
+        ::AfxMessageBox(docType + _T(": ") + err.getString(), 
+                MB_ICONEXCLAMATION);
+        return;
+    }
+
+    // Don't bother with doc types which don't have a format of XML.
+    cdr::Element respElem = 
+        cdr::Element::extractElement(resp, _T("CdrGetDocTypeResp"));
+    if (respElem.getAttribute(_T("Format")) != _T("xml"))
+        return;
+
+    // Keep the user from getting impatient.
+    dialog.m_progressText.SetWindowText(
+        _T("Synchronizing information for document type ")
+        + docType);
+
+    // Remember this type for pull-down menus.
+    docTypeStrings.push_back(docType);
+
+    // Extract the valid value sets from the response.
+    cdr::ValidValueSet* vvSet = extractValidValueSet(resp);
+    if (vvSet)
+        validValueSets[docType] = vvSet;
+
+    // Synchronize the client's copy of the DTD.
+    cdr::Element dtd = cdr::Element::extractElement(resp, _T("DocDtd"));
+    if (dtd)
+        syncDtd(dtd.getCdataSection(), docType);
+    else
+        ::AfxMessageBox(_T("Unable to find DTD for document type ") + docType,
+                MB_ICONEXCLAMATION);
+}
+
+bool getDocTypes(LogonDialog& dialog)
+{
+    docTypeStrings.clear();
+    validValueSets.clear();
+    _Application app = cdr::getApp();
+    CString resp = CdrSocket::sendCommand(_T("<CdrListDocTypes/>"));
+    cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
+    if (err) {
+        ::AfxMessageBox(err.getString(), MB_ICONEXCLAMATION);
+        return false;
+    }
+    docTypeStrings.push_back(_T("Any Type"));
+
+    // Collect the list of doc type names so we'll know up front
+    // how many there are.
+    cdr::StringList tempList;
+    cdr::Element docType = cdr::Element::extractElement(resp, _T("DocType"));
+    while (docType) {
+        tempList.push_back(docType.getString());
+        docType = cdr::Element::extractElement(resp, _T("DocType"),
+                                               docType.getEndPos());
+    }
+    size_t nameCount = tempList.size();
+    size_t i = 0;
+
+    // Loop through the list of names.
+    cdr::StringList::const_iterator iter = tempList.begin();
+    while (iter != tempList.end()) {
+        if (!dialog.keepGoing()) {
+            app.SetStatusText(_T("Logon cancelled."));
+            dialog.m_progressBar.SetPos(0);
+            dialog.m_progressText.SetWindowText(_T("Logon cancelled."));
+            dialog.UpdateData(FALSE);
+            return false;
+        }
+        CString name = *iter++;
+        app.SetStatusText(_T("Retrieving information for document type ")
+                + name);
+        getDocType(name, dialog);
+        MSG msg;
+        ::PeekMessage(&msg, 0, 0, 0, PM_REMOVE);
+        dialog.m_progressBar.SetPos((100 * ++i) / nameCount);
+    }
+    app.SetStatusText(_T("Document type information loaded."));
+    return true;
+}
+
+#if 0
+static void getDocTypes()
+{
+    //CWaitCursor wc;
+    CLogonProgress progressDialog;
+    CWinThread* thread = AfxBeginThread(&syncInfoFromServer,
+        &progressDialog);
+    progressDialog.DoModal();
+}
+#endif
+
+static cdr::ValidValueSet* getValidValueSet(const CString docType)
+{
+    CString cmd;
+    cmd.Format(_T("<CdrGetDocType Type='%s' GetEnumValues='Y'/>"),
+               (LPCTSTR)docType);
+    CString resp = CdrSocket::sendCommand(cmd);
+    cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
+    if (err) {
+        ::AfxMessageBox(err.getString(), MB_ICONEXCLAMATION);
+        return 0;
+    }
+    return extractValidValueSet(resp);
+}
+
+
+static cdr::StringList* getSchemaValidValues(const CString docType,
+                                             const CString path)
+{
+    if (validValueSets.find(docType) == validValueSets.end()) {
+        cdr::ValidValueSet* vvSet = getValidValueSet(docType);
+        if (!vvSet)
+            return 0;
+        validValueSets[docType] = vvSet;
+    }
+    cdr::ValidValueSet* vvSet = validValueSets[docType];
+    if (vvSet->find(path) == vvSet->end())
+        return 0;
+    return (*vvSet)[path];
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // This method was generated by a MSVC++ wizard.
@@ -71,7 +275,7 @@ STDMETHODIMP CCommands::logon(int *pRet)
 
         // Make sure the user isn't already logged on.
 		if (CdrSocket::loggedOn()) {
-			::AfxMessageBox("This session is already logged into the CDR",
+			::AfxMessageBox(_T("This session is already logged into the CDR"),
 							MB_ICONEXCLAMATION);
 			*pRet = 1;
 			return S_OK;
@@ -82,46 +286,23 @@ STDMETHODIMP CCommands::logon(int *pRet)
 		int rc = logonDialog.DoModal();
 		switch (rc) {
 		case IDOK:
-			break;
+			//::AfxMessageBox(_T("CDR Logon Successful"));
+            *pRet = 0;
+            return S_OK;
 		case IDCANCEL:
 			*pRet = 2;
 			return S_OK;
 		case -1:
 		default:
-			::AfxMessageBox("Internal failure", MB_ICONEXCLAMATION);
+			::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
 			*pRet = 3;
-			return S_OK;
-		}
-
-        // Create the logon command.
-		std::string request = std::string("<CdrLogon><UserName>")
-							+ (const char*)logonDialog.m_UserId 
-							+ "</UserName><Password>"
-							+ (const char*)logonDialog.m_Password
-							+ "</Password></CdrLogon>";
-
-        // Submit the command to the CDR server.
-		std::string response = CdrSocket::sendCommand(request);
-		if (!response.empty()) {
-			TinyXmlParser p(response);
-			CdrSocket::setSessionString(p.extract("SessionId"));
-			if (!CdrSocket::loggedOn()) {
-				std::string err = p.extract("Err");
-				if (err.empty())
-					err = "Unknown failure logging on to the CDR";
-				::AfxMessageBox(err.c_str(), MB_ICONEXCLAMATION);
-				*pRet = 4;
-				return S_OK;
-			}
-			::AfxMessageBox("CDR Logon Successful");
-			*pRet = 0;
 			return S_OK;
 		}
 	}
 
     // Handle any extraordinary error conditions.
 	catch (...) {
-        ::AfxMessageBox("Unexpected exception encountered.");
+        ::AfxMessageBox(_T("Unexpected exception encountered."));
         *pRet = 6;
     }
     *pRet = 5;
@@ -153,7 +334,9 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 			int rc = retrieveDialog.DoModal();
 			switch (rc) {
 			case IDOK:
-				if (doRetrieve((const std::string)retrieveDialog.m_DocId))
+				if (doRetrieve(retrieveDialog.m_DocId,
+                               retrieveDialog.m_CheckOut,
+                               retrieveDialog.m_Version))
 					*pRet = 0;
 				else
 					*pRet = 2;
@@ -164,7 +347,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 			case -1:
 			default:
 				*pRet = 2;
-				err = "Internal failure";
+				err = _T("Internal failure");
 				break;
 			}
 		}
@@ -174,7 +357,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 			::AfxMessageBox(err, MB_ICONEXCLAMATION);
 	}
 	catch (...) {
-        ::AfxMessageBox("Unexpected exception encountered.");
+        ::AfxMessageBox(_T("Unexpected exception encountered."));
         *pRet = 6;
     }
     return S_OK;
@@ -215,14 +398,14 @@ STDMETHODIMP CCommands::search(int *pRet)
 					return S_OK;
 				case -1:
 				default:
-					::AfxMessageBox("Internal error");
+					::AfxMessageBox(_T("Internal error"));
 					return S_OK;
 				}
 			}
 		}
 	}
 	catch (...) {
-        ::AfxMessageBox("Unexpected exception encountered.");
+        ::AfxMessageBox(_T("Unexpected exception encountered."));
         *pRet = 6;
     }
 
@@ -243,7 +426,7 @@ STDMETHODIMP CCommands::save(int *pRet)
 
         // Make sure the user is logged on to the CDR.
         if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox("This session is not logged into the CDR");
+            ::AfxMessageBox(_T("This session is not logged into the CDR"));
             *pRet = 6;
             return S_OK;
         }
@@ -251,7 +434,7 @@ STDMETHODIMP CCommands::save(int *pRet)
         // Get the currently active document.
         _Document doc = cdr::getApp().GetActiveDocument();
         if (!doc) {
-            ::AfxMessageBox("There is no active document.");
+            ::AfxMessageBox(_T("There is no active document."));
             *pRet = 3;
             return S_OK;
         }
@@ -260,43 +443,58 @@ STDMETHODIMP CCommands::save(int *pRet)
 		DOMNode docElement = doc.GetDocumentElement();
 		CdrDocCtrlInfo ctrlInfo;
         cdr::extractCtlInfo(docElement, ctrlInfo);
-		CString docTitle = ctrlInfo.docTitle.c_str();
+		CString docTitle = ctrlInfo.docTitle;
+        if (docTitle.IsEmpty())
+            docTitle = _T("Server will replace this dummy title");
 
         // Ask the user for options to be used for the operation.
-		CSaveDialog saveDialog(docTitle, 0);
+		CSaveDialog saveDialog(0);
 		switch (saveDialog.DoModal()) {
 		case IDOK:
 		{
             CWaitCursor wc;
 
             // Build the save command.
-        	std::ostringstream os;
-            std::string docTitle = cdr::encode((std::string)saveDialog.m_title);
-            std::string cmdTag = ctrlInfo.docId.empty() ? "CdrAddDoc" 
-                                                        : "CdrRepDoc";
-			os << "<" << cmdTag << "><CheckIn>"
-			   << (saveDialog.m_checkIn ? "Y" : "N")
-			   << "</CheckIn><Validate>"
-			   << (saveDialog.m_validate ? "Y" : "N")
-			   << "</Validate>";
+        	std::basic_ostringstream<TCHAR> os;
+            CString cmdTag = ctrlInfo.docId.IsEmpty() ? _T("CdrAddDoc")
+                                                      : _T("CdrRepDoc");
+			os << _T("<") << (LPCTSTR)cmdTag << _T("><CheckIn>")
+			   << (saveDialog.m_checkIn ? _T("Y") : _T("N"))
+			   << _T("</CheckIn>");
+            if (saveDialog.m_createVersion)
+                os << _T("<Version Publishable='")
+                   << (saveDialog.m_versionPublishable ? _T("Y") : _T("N"))
+                   << _T("'>Y</Version>");
+            else
+                os << _T("<Version>N</Version>");
+            os << _T("<Validate>")
+			   << (saveDialog.m_validate ? _T("Y") : _T("N"))
+			   << _T("</Validate>")
+               << _T("<DocActiveStatus>")
+               << (saveDialog.m_docInactive ? _T("I") : _T("A"))
+               << _T("</DocActiveStatus>");
 			if (!saveDialog.m_comment.IsEmpty())
-				os << "<Reason>" 
-                   << cdr::encode(std::string(saveDialog.m_comment))
-				   << "</Reason>";
-			os << "<CdrDoc Type='" << ctrlInfo.docType << "'";
-            if (!ctrlInfo.docId.empty())
-                os << " Id='" << ctrlInfo.docId << "'";
-			os << "><CdrDocCtl>";
-            if (!ctrlInfo.docId.empty())
-                os << "<DocId>" << ctrlInfo.docId << "</DocId>";
-			os << "<DocType>" << ctrlInfo.docType << "</DocType>";
-			os << "<DocTitle>" << ctrlInfo.docTitle << "</DocTitle></CdrDocCtl>";
-			os << "<CdrDocXml><![CDATA[" << docElement << "]]></CdrDocXml>";
-			os << "</CdrDoc></" << cmdTag << ">";
+				os << _T("<Reason>" )
+                   << (LPCTSTR)cdr::encode(saveDialog.m_comment)
+				   << _T("</Reason>");
+			os << _T("<CdrDoc Type='") << (LPCTSTR)ctrlInfo.docType << _T("'");
+            if (!ctrlInfo.docId.IsEmpty())
+                os << _T(" Id='") << (LPCTSTR)ctrlInfo.docId << _T("'");
+			os << _T("><CdrDocCtl>");
+            if (!ctrlInfo.docId.IsEmpty())
+                os << _T("<DocId>") << (LPCTSTR)ctrlInfo.docId 
+                   << _T("</DocId>");
+			os << _T("<DocType>") << (LPCTSTR)ctrlInfo.docType 
+               << _T("</DocType>");
+			os << _T("<DocTitle>") << (LPCTSTR)ctrlInfo.docTitle 
+			   << _T("</DocTitle></CdrDocCtl>");
+			os << _T("<CdrDocXml><![CDATA[") << docElement 
+			   << _T("]]></CdrDocXml>");
+			os << _T("</CdrDoc></") << (LPCTSTR)cmdTag << _T(">");
 
             // Submit the save command to the server.
-            std::string rsp = CdrSocket::sendCommand(os.str());
-            if (rsp.find("<Error") != rsp.npos) {
+            CString rsp = CdrSocket::sendCommand(os.str().c_str());
+            if (rsp.Find(_T("<Error")) != -1) {
                 cdr::showErrors(rsp);
                 *pRet = 2;
             }
@@ -308,7 +506,7 @@ STDMETHODIMP CCommands::save(int *pRet)
 		}
 	}
 	catch (...) {
-        ::AfxMessageBox("Unexpected exception encountered.");
+        ::AfxMessageBox(_T("Unexpected exception encountered."));
         *pRet = 6;
     }
 	return S_OK;
@@ -329,7 +527,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
 
         // Make sure the user is logged on to the CDR.
         if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox("This session is not logged into the CDR");
+            ::AfxMessageBox(_T("This session is not logged into the CDR"));
             *pRet = 6;
             return S_OK;
         }
@@ -348,38 +546,41 @@ STDMETHODIMP CCommands::validate(int *pRet)
 		    DOMNode docElement = doc.GetDocumentElement();
 		    CdrDocCtrlInfo ctrlInfo;
             cdr::extractCtlInfo(docElement, ctrlInfo);
-            std::string docType = docElement.GetNodeName();
+            CString docType = docElement.GetNodeName();
 
             // Build the validate command.
-            std::ostringstream os;
-            os << "<CdrValidateDoc DocType='" << docType 
-               << "' ValidationTypes='";
+            std::basic_ostringstream<TCHAR> os;
+            os << _T("<CdrValidateDoc DocType='") << (LPCTSTR)docType 
+               << _T("' ValidationTypes='");
 
             // Dialog box ensures that at least one is true.
-            const char* separator = "";
+            LPCTSTR separator = _T("");
             if (validateDialog.m_schemaValidation) {
-                os << "Schema";
-                separator = " ";
+                os << _T("Schema");
+                separator = _T(" ");
             }
             if (validateDialog.m_linkValidation)
-                os << separator << "Links";
-            os << "'><CdrDoc Type='" << docType << "'><CdrDocCtl>";
-            if (!ctrlInfo.docId.empty())
-                os << "<DocId>" << ctrlInfo.docId << "</DocId>";
-            os << "<DocTitle>" << ctrlInfo.docTitle << "</DocTitle></CdrDocCtl>"
-                  "<CdrDocXml><![CDATA[" << docElement << "]]></CdrDocXml>"
-                  "</CdrDoc></CdrValidateDoc>";
-            std::string cmd = os.str();
+                os << separator << _T("Links");
+            os << _T("'><CdrDoc Type='") << (LPCTSTR)docType 
+               << _T("'><CdrDocCtl>");
+            if (!ctrlInfo.docId.IsEmpty())
+                os << _T("<DocId>") << (LPCTSTR)ctrlInfo.docId 
+                   << _T("</DocId>");
+            os << _T("<DocTitle>") << (LPCTSTR)ctrlInfo.docTitle 
+			   << _T("</DocTitle></CdrDocCtl><CdrDocXml><![CDATA[") 
+			   << docElement 
+			   << _T("]]></CdrDocXml></CdrDoc></CdrValidateDoc>");
+            CString cmd = os.str().c_str();
 
             // Submit the validate command to the server.
             //::AfxMessageBox(cmd.c_str());
-            std::string rsp = CdrSocket::sendCommand(cmd);
-            if (rsp.find("<Error") != rsp.npos) {
+            CString rsp = CdrSocket::sendCommand(cmd);
+            if (rsp.Find(_T("<Error")) != -1) {
                 cdr::showErrors(rsp);
                 *pRet = 1;
             }
             else
-                ::AfxMessageBox("Document passes validation.");
+                ::AfxMessageBox(_T("Document passes validation."));
             break;
         }
 		case IDCANCEL:
@@ -388,7 +589,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
 		}
 	}
 	catch (...) { 
-        ::AfxMessageBox("Unexpected error from validation command."); 
+        ::AfxMessageBox(_T("Unexpected error from validation command."));
         *pRet = 2; 
     }
 	return S_OK;
@@ -410,20 +611,20 @@ STDMETHODIMP CCommands::logoff(int *pRet)
 
 	    // Make sure the user is logged on to the CDR.
         if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox("This session is not logged into the CDR");
+            ::AfxMessageBox(_T("This session is not logged into the CDR"));
             *pRet = 1;
             return S_OK;
         }
 
         // Submit the logoff request to the server.
-        std::string rsp = CdrSocket::sendCommand("<CdrLogoff/>");
-        if (rsp.find("<Error") != rsp.npos) {
+        CString rsp = CdrSocket::sendCommand(_T("<CdrLogoff/>"));
+        if (rsp.Find(_T("<Error")) != -1) {
             cdr::showErrors(rsp);
             *pRet = 2;
         }
     }
     catch (...) {
-        ::AfxMessageBox("Unexpected error from logoff command."); 
+        ::AfxMessageBox(_T("Unexpected error from logoff command."));
         *pRet = 3; 
     }
 
@@ -434,7 +635,8 @@ STDMETHODIMP CCommands::logoff(int *pRet)
 
 /**
  * Allows user to edit the current node, which represents a link to
- * another CDR document.
+ * another CDR document, or a value controlled by the schema for this document
+ * type.
  *
  *  @param  pRet    address of value returned for Microsoft Automation.
  */
@@ -449,7 +651,7 @@ STDMETHODIMP CCommands::edit(int *pRet)
 
 	    // Make sure the user is logged on to the CDR.
         if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox("This session is not logged into the CDR");
+            ::AfxMessageBox(_T("This session is not logged into the CDR"));
             *pRet = 1;
             return S_OK;
         }
@@ -461,34 +663,55 @@ STDMETHODIMP CCommands::edit(int *pRet)
 		DOMNode docElement = doc.GetDocumentElement();
 		CdrDocCtrlInfo ctrlInfo;
         cdr::extractCtlInfo(docElement, ctrlInfo);
-        std::string docType = docElement.GetNodeName();
+        CString docType = docElement.GetNodeName();
 
         // Find the element with the current focus.
         ::Selection selection = cdr::getApp().GetSelection();
-        std::string elemName = selection.GetContainerName();
+        CString elemName = selection.GetContainerName();
 
         // XXX May move this into separate command; depends on what
         //     happens with the client requirements.
-        //cdr::xsd::Schema* schema = getSchema(docType);
-        //cdr::xsd::Type* elemType = getElemType(docType, elemName);
-        //if (hasEnumeratedValues(elemType)) {
-            //CEnumElement enumElement(elemType);
-            //std::ofstream("c:\\enum.lst");
-
-            //return;
-        //}
+        const cdr::StringList* validValues = getSchemaValidValues(docType, 
+                                                                  elemName);
+        if (validValues) {
+            std::basic_ofstream<TCHAR> os("c:\\enum.lst");
+            if (os) {
+                cdr::StringList::const_iterator i = validValues->begin();
+                while (i != validValues->end())
+                    os << (LPCTSTR)*i++ << std::endl;
+            }
+            //::AfxMessageBox(_T("Found valid values"));
+            CSchemaPicklist schemaPicklist(validValues, _T(""), elemName);
+            schemaPicklist.DoModal();
+            return S_OK;
+        }
 
         // Most of the real work is done inside this call.
         CEditElement editDialog(docType, elemName);
 		editDialog.DoModal();
     }
     catch (...) {
-        ::AfxMessageBox("Unexpected error from edit command."); 
+        ::AfxMessageBox(_T("Unexpected error from edit command."));
         *pRet = 2; 
     }
 	return S_OK;
 }
 
+static int findFirst(const CString& str, LPCTSTR chars, int offset)
+{
+    int strLen = str.GetLength();
+    int numChars = _tcslen(chars);
+    while (offset < strLen) {
+        TCHAR ch = str[offset];
+        for (int i = 0; i < numChars; ++i) {
+            if (ch == chars[i])
+                return offset;
+        }
+    }
+    return -1;
+}
+
+    
 /**
  * Common public method which factors out the code to retrieve and
  * open a CDR document.
@@ -497,7 +720,9 @@ STDMETHODIMP CCommands::edit(int *pRet)
  *  @return                 <code>true</code> if document retrieved
  *                          successfully.
  */
-bool CCommands::doRetrieve(const std::string& id)
+bool CCommands::doRetrieve(const CString& id, 
+                           BOOL checkOut, 
+                           const CString& version)
 {
     // Working variables.
     unsigned int docNo = cdr::getDocNo(id);
@@ -505,96 +730,76 @@ bool CCommands::doRetrieve(const std::string& id)
     CString docPath;
     CString docId;
     CString retrievedDocTitle;
-    std::string cdrDoc;
-	std::string docTitle;
-    std::string cdrPath = cdr::getXmetalPath() + "\\Cdr";
+    CString cdrDoc;
+	CString docTitle;
+    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
 
     // Build up path strings.
-    docPath.Format("%s\\CDR%u.xml", cdrPath.c_str(), docNo);
-    docId.Format("CDR%010u", docNo);
+    docPath.Format(_T("%s\\CDR%u.xml"), (LPCTSTR)cdrPath, docNo);
+    docId.Format(_T("CDR%010u"), docNo);
 
     // Ask the server for the document.
-    std::string request = "<CdrGetDoc><DocId>" 
-                        + docId 
-                        + "</DocId></CdrGetDoc>";
-	std::string response = CdrSocket::sendCommand(request);
-    if (response.empty())
-        err = "Empty response from server";
+    CString request;
+    request.Format(_T("<CdrGetDoc>")
+                   _T("<DocId>%s</DocId>")
+                   _T("<Lock>%s</Lock>")
+                   _T("<DocVersion>%s</DocVersion>")
+                   _T("</CdrGetDoc>"), docId,
+                                       (checkOut ? _T("Y") : _T("N")),
+                                       version);
+	CString response = CdrSocket::sendCommand(request);
 
     // Extract the CdrDoc element.
-    else {
-        TinyXmlParser parser(response);
-        int begin = response.find("<CdrDoc ");
-        if (begin == response.npos) {
-            std::string serverErr = parser.extract("Err");
-            if (serverErr.empty())
-                err = "Unknown failure retrieving document from CDR";
-            else
-                err = serverErr.c_str();
-        }
-        else {
-            int end = response.find("</CdrDoc>", begin);
-            if (end == response.npos)
-                err = "Malformed response from server";
-            else {
-                cdrDoc = response.substr(begin, (end - begin) + 9);
-				docTitle = parser.extract("DocTitle");
-				retrievedDocTitle.Format("%s (CDR%u)", 
-					                     docTitle.c_str(), docNo);
-			}
-        }
-    }
+    CString docType;
+    cdr::Element cdrDocElem = cdr::Element::extractElement(response, 
+                                                           _T("CdrDoc"));
+    if (!cdrDocElem) {
 
-    // Extract the document type.
-    std::string docType;
-    if (!cdrDoc.empty()) {
-        size_t end = cdrDoc.npos;
-        size_t start = cdrDoc.find(" Type");
-        if (start != cdrDoc.npos)
-            start = cdrDoc.find("=", start);
-        if (start != cdrDoc.npos)
-            start = cdrDoc.find_first_of("'\"", start);
-        if (start != cdrDoc.npos)
-            end = cdrDoc.find_first_of("'\"", ++start);
-        if (end != cdrDoc.npos) {
-            while (end > start && isspace(cdrDoc[start]))
-                ++start;
-            while (end > start && isspace(cdrDoc[end - 1]))
-                --end;
-            docType = cdrDoc.substr(start, end - start);
+        cdr::Element errElem = cdr::Element::extractElement(response, 
+                                                            _T("Err"));
+        if (errElem)
+            err = errElem.getString();
+        if (err.IsEmpty())
+            err = _T("Unknown failure retrieving document from CDR");
+    }
+    else {
+
+        cdrDoc  = cdrDocElem.getString();
+        docType = cdrDocElem.getAttribute(_T("Type"));
+        cdr::Element titleElem = cdr::Element::extractElement(cdrDoc,
+                                                              _T("DocTitle"));
+        if (titleElem) {
+            docTitle = titleElem.getString();
+            retrievedDocTitle.Format(_T("%s (CDR%u)"), 
+					                 (LPCTSTR)docTitle, docNo);
         }
-        if (docType.empty())
-            err = "Missing Type attribute in CdrDoc element";
     }
 
     // Extract the DocXml.
-    std::string docXml;
-    if (!docType.empty()) {
-        size_t cdata = cdrDoc.find("<![CDATA[");
-        if (cdata == cdrDoc.npos)
-            err = "Malformed document: missing CDATA section";
-        else {
-            cdata += 9;
-            size_t endCdata = cdrDoc.find("]]>", cdata);
-            if (endCdata == cdrDoc.npos)
-                err = "Malformed document: missing CDATA end delimiter";
-            else
-                docXml = cdrDoc.substr(cdata, endCdata - cdata);
-        }
+    CString docXml;
+    if (err.IsEmpty() && docType.IsEmpty())
+        err = _T("Missing Type attribute in CdrDoc element");
+    else {
+        cdr::Element xmlElem = cdr::Element::extractElement(cdrDoc,
+                                                            _T("CdrDocXml"));
+        if (xmlElem)
+            docXml = xmlElem.getCdataSection();
     }
 
     // Write out the document.
-    if (!docXml.empty()) {
-        std::ofstream xmlStream((const char *)docPath);
+    if (!docXml.IsEmpty()) {
+        std::string pathName = cdr::cStringToUtf8(docPath);
+        std::ofstream xmlStream(pathName.c_str());
         if (!xmlStream)
-            err.Format("Can't write xml document at %s", (const char*)docPath);
+            err.Format(_T("Can't write xml document at %s"), (LPCTSTR)docPath);
         else {
-            std::string ctl = std::string("\n  <CdrDocCtl>\n    <DocId>")
-                            + (const char *)docId
-                            + "</DocId>\n    <DocTitle>"
+            CString ctl = _T("\n  <CdrDocCtl>\n    <DocId>")
+                            + docId
+                            + _T("</DocId>\n    <DocTitle>")
                             + cdr::encode(docTitle, true)
-                            + "</DocTitle>\n  </CdrDocCtl>\n";
-            xmlStream << fixDoc(docXml, ctl, docType);
+                            + _T("</DocTitle>\n  </CdrDocCtl>\n");
+            CString fixedDoc = fixDoc(docXml, ctl, docType);
+            xmlStream << cdr::cStringToUtf8(fixedDoc).c_str();
         }
     }
 
@@ -608,7 +813,7 @@ bool CCommands::doRetrieve(const std::string& id)
         // Open the document and set its title bar string.
         _Application app = cdr::getApp();
         Documents docs = app.GetDocuments();
-        _Document doc = docs.Open((const char*)docPath, 1);
+        _Document doc = docs.Open((LPCTSTR)docPath, 1);
         if (doc) {
             doc.SetTitle(retrievedDocTitle);
             return true;
@@ -627,24 +832,24 @@ bool CCommands::doRetrieve(const std::string& id)
 void getDocTypeStrings(CString& err)
 {
     // Ask the user for the list of document types.
-	std::string response = CdrSocket::sendCommand("<CdrListDocTypes/>");
-    if (response.empty())
-		err = "Empty response from server";
+	CString response = CdrSocket::sendCommand(_T("<CdrListDocTypes/>"));
+    if (response.IsEmpty())
+		err = _T("Empty response from server");
 
     // Parse the type names from the server's response.
 	if (err.IsEmpty()) {
-		docTypeStrings.push_back("Any Type");
-		size_t pos = 0;
-		while ((pos = response.find("<DocType>", pos)) != response.npos) {
+		docTypeStrings.push_back(_T("Any Type"));
+		int pos = 0;
+		while ((pos = response.Find(_T("<DocType>"), pos)) != -1) {
 			pos += 9;
-			size_t endPos = response.find("</DocType>", pos);
-			if (endPos == response.npos || endPos == pos) {
-				err = "Malformed response for document type list";
+			int endPos = response.Find(_T("</DocType>"), pos);
+			if (endPos == -1 || endPos == pos) {
+				err = _T("Malformed response for document type list");
 				break;
 			}
 
             // Add the document type to the list.
-			std::string typeName = response.substr(pos, endPos - pos);
+			CString typeName = response.Mid(pos, endPos - pos);
 			docTypeStrings.push_back(typeName);
 			pos = endPos + 10;
 		}
@@ -668,36 +873,33 @@ void getDocTypeStrings(CString& err)
  *  @param  docType         string identifying document type.
  *  @return                 reference to modified document string.
  */
-std::string& fixDoc(std::string& doc, const std::string& ctl,
-                    const std::string& docType)
+CString& fixDoc(CString& doc, const CString& ctl,
+                    const CString& docType)
 {
 	// Skip leading whitespace.
-	size_t pos = 0;
-	while (isspace(doc[pos]))
-		++pos;
-	doc.erase(0, pos);
+    doc.TrimLeft();
 
     // Find the document element.
-    std::string startTag = "<" + docType;
-	pos = doc.find(startTag);
-	if (pos == doc.npos)
+    CString startTag = _T("<") + docType;
+	int pos = doc.Find(startTag);
+	if (pos == -1)
 		return doc;
 
     // Insert the DOCTYPE declaration.
-    std::string dtd = "<!DOCTYPE " + docType 
-                    + " SYSTEM '" + docType 
-                    + ".dtd'>\n";
+    CString dtd = _T("<!DOCTYPE ") + docType 
+                    + _T(" SYSTEM '") + docType 
+                    + _T(".dtd'>\n");
 
     // Insert the CdrDocCtl element.
-    doc.insert(pos, dtd);
-    pos = doc.find('>', pos + dtd.length() + 1);
-	if (pos == doc.npos)
+    doc.Insert(pos, dtd);
+    pos = doc.Find(_T(">"), pos + dtd.GetLength() + 1);
+	if (pos == -1)
 		return doc;
-    doc.insert(pos + 1, ctl);
+    doc.Insert(pos + 1, ctl);
 
     // Add the 'cdr' namespace declaration if it's not already present.
-	if (doc.find(" xmlns:cdr") == doc.npos)
-		doc.insert(pos, " xmlns:cdr='cips.nci.nih.gov/cdr'");
+	if (doc.Find(_T(" xmlns:cdr")) == -1)
+		doc.Insert(pos, _T(" xmlns:cdr='cdr:cips.nci.nih.gov'"));
 
     // Strip out whitespace between elements.
 #if 0
@@ -713,6 +915,32 @@ std::string& fixDoc(std::string& doc, const std::string& ctl,
 	return doc;
 }
 
+bool CCommands::doLogon(LogonDialog& logonDialog)
+{
+    // Create the logon command.
+	CString request = _T("<CdrLogon><UserName>")
+					+ logonDialog.m_UserId 
+					+ _T("</UserName><Password>")
+					+ logonDialog.m_Password
+					+ _T("</Password></CdrLogon>");
+
+    // Submit the command to the CDR server.
+	CString response = CdrSocket::sendCommand(request);
+	if (!response.IsEmpty()) {
+		TinyXmlParser p(response);
+		CdrSocket::setSessionString(p.extract(_T("SessionId")));
+		if (!CdrSocket::loggedOn()) {
+			CString err = p.extract(_T("Err"));
+			if (err.IsEmpty())
+				err = _T("Unknown failure logging on to the CDR");
+			::AfxMessageBox(err, MB_ICONEXCLAMATION);
+			return false;
+		}
+        return getDocTypes(logonDialog);
+    }
+    return false;
+}
+
 /**
  * Parses document ID and denormalized value from string argument
  * and inserts the former as a cdr:ref attribute and the latter
@@ -724,24 +952,24 @@ std::string& fixDoc(std::string& doc, const std::string& ctl,
  *                  the format of this string is "[id] text-content".
  *  @return         <code>true</code> if link inserted successfully.
  */
-bool CCommands::doInsertLink(const std::string& info)
+bool CCommands::doInsertLink(const CString& info)
 {
     // Parse out the document ID and text content.
-    size_t pos = info.find("[");
-    if (pos == info.npos) {
-        ::AfxMessageBox("Unable to find document ID start delimiter.");
+    int pos = info.Find(_T("["));
+    if (pos == -1) {
+        ::AfxMessageBox(_T("Unable to find document ID start delimiter."));
         return false;
     }
-    size_t endPos = info.find("]", ++pos);
-    if (endPos == info.npos) {
-        ::AfxMessageBox("Unable to find document ID end delimiter.");
+    int endPos = info.Find(_T("]"), ++pos);
+    if (endPos == -1) {
+        ::AfxMessageBox(_T("Unable to find document ID end delimiter."));
         return false;
     }
-    std::string targetDocId = info.substr(pos, endPos - pos);
+    CString targetDocId = info.Mid(pos, endPos - pos);
     pos = endPos + 1;
-    while (pos < info.size() && info[pos] == ' ')
+    while (pos < info.GetLength() && info[pos] == _T(' '))
         ++pos;
-    std::string targetDocTitle = info.substr(pos);
+    CString targetDocTitle = info.Mid(pos);
 
     // Find the source element for the link.
     ::Selection selection = cdr::getApp().GetSelection();
@@ -758,7 +986,7 @@ bool CCommands::doInsertLink(const std::string& info)
         elem.m_bAutoRelease = 0;
 
         // Plug in the link attribute.
-        elem.setAttribute("cdr:ref", targetDocId.c_str());
+        elem.setAttribute(_T("cdr:ref"), targetDocId);
 
         // Find the text node for the element.
         ::DOMNode child = node.GetFirstChild();
@@ -772,8 +1000,8 @@ bool CCommands::doInsertLink(const std::string& info)
 
             // Replace the text node with the linked document's title.
             long len = textNode.GetLength();
-            const char* pTitle = targetDocTitle.c_str();
-            textNode.replaceData(0, len, pTitle);
+            //const char* pTitle = targetDocTitle.c_str();
+            textNode.replaceData(0, len, targetDocTitle);
         }
     }
 
