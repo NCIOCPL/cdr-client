@@ -58,7 +58,7 @@
     <SectionType>Symptoms</SectionType>
    </SectMetaData>
    <KeyPoint>Possible signs of x cancer include A, B, C.</KeyPoint>
-   <Para>These and other symptoms may be caused by x cancer or by other conditions. A doctor should be consulted if any of the following problems occur:</Para>
+   <Para>These and other symptoms may be caused by x cancer. Other conditions may cause the same symptoms. A doctor should be consulted if any of the following problems occur:</Para>
    <ItemizedList Style="bullet">
     <ListItem>[possible sign here]</ListItem> 
     <ListItem>[possible sign here]</ListItem> 
@@ -73,7 +73,7 @@
    <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording>Biopsy: The removal of cells or tissues so they can be viewed under a microscope to check for signs of cancer.</StandardWording>  [Tailor full definition to fit the cancer.]</ListItem>
+    <ListItem><StandardWording>Biopsy: The removal of cells or tissues so they can be viewed under a microscope by a pathologist to check for signs of cancer.</StandardWording> <Comment>[Note: Within a summary, the description may be tailored to the cancer type.]</Comment></ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
@@ -85,17 +85,17 @@
     <SectionType>Prognostic factors</SectionType>
    </SectMetaData>
    <KeyPoint>Certain factors affect prognosis (chance of recovery) and treatment options.</KeyPoint>
-   <Para>The prognosis (chance of recovery) depends on the following: [Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
+   <Para>The prognosis (chance of recovery) depends on the following: <Comment>[Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Comment></Para>
    <ItemizedList Style="bullet">
     <ListItem>[factor here]</ListItem>
     <ListItem>[factor here]</ListItem>
-    <ListItem>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects prognosis, i.e., "Whether x cancer has just been diagnosed or has recurred (come back)."]</ListItem>
+    <ListItem><Comment>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects prognosis, i.e., "Whether the cancer has just been diagnosed or has recurred (come back)."]</Comment></ListItem>
    </ItemizedList>
    <Para>Treatment options depend on the following:</Para>
    <ItemizedList Style="bullet">
     <ListItem>[factor here]</ListItem>
     <ListItem>[factor here]</ListItem>
-    <ListItem>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects treatment, i.e., "Whether x cancer has just been diagnosed or has recurred (come back)."]</ListItem>
+    <ListItem><Comment>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects treatment, i.e., "Whether the cancer has just been diagnosed or has recurred (come back)."]</Comment></ListItem>
    </ItemizedList>
   </SummarySection>
  </SummarySection>
@@ -106,7 +106,7 @@
     <SectionType>Diagnostic tests</SectionType>
    </SectMetaData>
    <KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the x or to other parts of the body.</KeyPoint>
-   <Para>The process used to find out if cancer has spread within the x or to other parts of the body is called staging. The information gathered from the staging process determines the stage of the disease. It is important to know the stage in order to plan treatment. The following tests and procedures may be used in the staging process: [Note: The last sentence should be changed to only tests or only procedures, as appropriate.]</Para>
+   <Para>The process used to find out if cancer has spread within the x or to other parts of the body is called staging. The information gathered from the staging process determines the stage of the disease. It is important to know the stage in order to plan treatment. The following tests and procedures may be used in the staging process: <Comment>[Note: The last sentence should be changed to only tests or only procedures, as appropriate.]</Comment></Para>
    <ItemizedList Style="bullet"> 
     <ListItem>[test here]</ListItem> 
     <ListItem>[test here]</ListItem> 
@@ -117,7 +117,7 @@
    <SectMetaData>
     <SectionType>Classification by stage</SectionType>
    </SectMetaData>
-   <KeyPoint>The following stages are used for x cancer: [Linking note: Link all glossary terms under each stage.]</KeyPoint>
+   <KeyPoint>The following stages are used for x cancer: <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment></KeyPoint>
    <SummarySection>
     <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
     <Para>In stage 0, cancer is found in .... Stage 0 cancer is also called carcinoma in situ.</Para>
@@ -155,14 +155,14 @@
    </SectMetaData>
    <KeyPoint>There are different types of treatment for patients with x cancer.</KeyPoint>
    <Para>Different types of treatments are available for patients with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  standard treatment, the new treatment may become the standard treatment.</Para>
-   <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
+   <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
-   <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. [Use for childhood treatment summaries.  Tailor if needed for adult.]</KeyPoint>
-   <Para>Your child's treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: [Add or delete specialists to fit the cancer treatment.]</Para>
+   <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. <Comment>[Use for childhood treatment summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
+   <Para>Your child's treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
    <ItemizedList Style="bullet">
     <ListItem>Neurosurgeon.</ListItem>
     <ListItem>Neurologist.</ListItem>
@@ -233,7 +233,8 @@
   <SectMetaData>
    <SectionType>Treatment options by stage</SectionType>
   </SectMetaData>
-  <Title>Treatment Options by Stage [Linking note: Link all glossary terms under each stage.]</Title>
+  <Title>Treatment Options by Stage</Title>
+  <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment>
   <SummarySection>
    <SectMetaData>
    </SectMetaData>
@@ -244,7 +245,7 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -256,7 +257,7 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -268,7 +269,7 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -280,7 +281,7 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -292,7 +293,7 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
  </SummarySection>
  <SummarySection>
@@ -308,7 +309,7 @@
    <ListItem>[treatment here]</ListItem>
    <ListItem>A clinical trial of ....</ListItem>
   </ItemizedList>
-  <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
+  <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
  </SummarySection>
  <SummarySection>
   <SectMetaData>
