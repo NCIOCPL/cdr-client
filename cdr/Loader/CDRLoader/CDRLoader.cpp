@@ -25,6 +25,9 @@ TCHAR *  DEBUG_FILE = _T( "CDRLoader.log" );
 bool	g_debug_flag = false;
 CStdioFile   db_trickle;
 
+// Flag for keeping current loader version.
+bool keepLoader = false;
+
 // CString	VERSION_STR = _T( "Version 20030309 1836\n" );
 
 void SetDebugFlag( bool f )
@@ -159,9 +162,12 @@ CCDRLoaderApp theApp;
 static CString lookupXmetalApp()
 {
     CString choices[] = {
+        _T(".\\xmetal45.exe"),
         _T(".\\xmetal4.exe"),
         _T(".\\xmetal31.exe"),
         _T(".\\xmetal3.exe"),
+        _T("C:\\Program Files\\Blast Radius\\XMetaL 4.5")
+        _T("\\Author\\xmetal45.exe"),
         _T("C:\\Program Files\\Corel\\XMetaL 4\\Author\\xmetal4.exe"),
         _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal31.exe"),
         _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe")
@@ -264,7 +270,7 @@ BOOL CCDRLoaderApp::InitInstance()
 					}
 					break;
 
-					case 'B':
+ 					case 'B':
 					case 'b':
 					{
 						SetDebugFlag( cur_token[0] != '0' );
@@ -286,6 +292,14 @@ BOOL CCDRLoaderApp::InitInstance()
 						int err = remove( "CDRLoaderUpdated.cmd" );
 					}
 					break;
+
+ 					case 'K':
+					case 'k':
+					{
+                        keepLoader = cur_token[0] != '0';
+					}
+					break;
+
 				}
 			}
 			cur_token = cmd_line.Tokenize( space, pos );

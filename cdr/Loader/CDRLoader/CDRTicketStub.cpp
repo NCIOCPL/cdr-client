@@ -17,6 +17,7 @@ extern void DebugWrite( char *  msg );
 extern void DebugWrite( CString msg );
 extern void DebugResume( void );
 extern void DebugEnd( void );
+extern bool keepLoader;
 
 const CString CDRTicketStub::REQ_TEMPLATE = 
     _T("<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n")
@@ -289,6 +290,10 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         //DebugWrite( "\n" );
         CStringA::PCXSTR t;
         DWORD socket_err = 0;
+        CString logMsg;
+        logMsg.Format(_T("server=%s port=%d page=%p select=%s req=%s\n"),
+                      http_Server, http_Port, http_page, select, my_req);
+        DebugWrite(logMsg);
         try
         {
             t = plain_req.GetString();
@@ -1070,7 +1075,7 @@ bool CDRTicketStub::LaunchCDR( CString app )
 
     CStringA aapp( app );
 
-    if ( PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
+    if ( !keepLoader && PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
     {
         //DebugResume();
         DebugWrite( "Modified CDRLoader installed; "
