@@ -124,10 +124,14 @@ DateLastModified,
 ProtocolSource>DateReceived,
 EnteredBy, 
 EntryDate, 
+FDAINDInfo,
 FundingInfo, 
 GenericPerson, 
 GenericPersonContact, 
 GrantContractNo,
+INDGrantor,
+INDNumber,
+INDSerialNumber,
 InScopeProtocol, 
 LeadOrganizationID, 
 LeadOrgPersonnel,
@@ -143,6 +147,7 @@ OrgSiteID,
 OrgSiteStatus, 
 OrgStatus, 
 OtherGrantContractInfo,  
+OverallContact,
 PdqKey, 
 Person, 
 PersonRole, 
@@ -168,6 +173,7 @@ ReviewApprovalType,
 Role, 
 SourceName, 
 SpecialCategory, 
+SpecificEmail,
 SpecificPerson, 
 SpecificPhone,  
 SponsorName, 
@@ -197,10 +203,14 @@ ProtocolSource>DateReceived:before
 				{ content: "Date Rec'd *: "; }
 EnteredBy:before		{ content: "Entered By *: "; }
 EntryDate:before		{ content: "Entry Date *: "; }
+FDAINDInfo:before       { content: "FDA IND INFO &"; }
 FundingInfo:before		{ content: "FUNDING INFORMATION &"; }
 GenericPerson:before		{ content: "Generic Contact * +";  }
 GenericPersonContact:before	{ content: "Generic Person Contact Information *: "; }
 GrantContractNo:before		{ content: "Grant Contract Number *: "; }
+INDGrantor:before           { content: "IND Grantor *: "; }
+INDNumber:before            { content: "IND Number *: "; }
+INDSerialNumber:before      { content: "IND Serial Number &: "; }
 LeadOrganizationID:before	{ content: "Org Name *: "; }
 LeadOrgProtocolID:before	{ content: "Org Prot ID * + @: "; }
 LeadOrgRole:before		{ content: "Role *: "; }
@@ -212,16 +222,19 @@ LeadOrgProtocolStatuses:before	{ content: "LEAD ORGANIZATION PROTOCOL STATUSES *
 MailAbstractTo:before		{ content: "Mail Abstr To &: "; }
 NIHGrantContract:before		{ content: "NIH GRANT CONTRACT & +"; }
 NIHGrantContractType:before	{ content: "NIH Grant Contract Type *: ";  }
+OrgSite[SuppressContactInformation='Yes']:before			{ content: "PARTICIPATING ORGANIZATION (suppress contact information) * + @"; } 
 OrgSite:before			{ content: "PARTICIPATING ORGANIZATION * + @"; } 
 OrgSiteContact:before		{ content: "Site Contact *: "; }
 OrgSiteID:before		{ content: "Org Name * @: "; }
 OrgSiteStatus:before		{ content: "Status *: "; }
 OtherGrantContractInfo:before	{ content: "OTHER GRANT CONTRACT INFORMATION & +"; }
+OverallContact:before   { content: "OVERALL CONTACT & "; }
 PdqKey:before			{ content: "PDQ Key &: "; }
 Person:before			{ content: "Person * @: "; }
 PersonRole:before		{ content: "Role * +: "; }
 PersonTitle:before		{ content: "Title *: ";  }
 PreviousOrgStatus:before	{ content: "Previous Org Status & +"; }
+PrivatePracticeSite[SuppressContactInformation='Yes']:before	{ content: "PRIVATE PRACTICE SITE (suppress contact information)* + @"; }
 PrivatePracticeSite:before	{ content: "PRIVATE PRACTICE SITE * + @"; }
 PrivatePracticeSiteID:before	{ content: "Site ID * @: "; }
 PrivatePracticeSiteStatus:before	
@@ -233,6 +246,7 @@ ProtocolApproval:before		{ content: "PROTOCOL APPROVAL *"; }
 ProtocolLeadOrg:before		{ content: "LEAD/SECONDARY LEAD ORGANIZATION * + @"; }
 ProtocolProcessingDetails:before
 				{ content: "PROTOCOL PROCESSING DETAILS &"; }
+ProtocolSites[SuppressContactInformation='Yes']:before		{ content: "PROTOCOL SITES (suppress contact information) & "; }
 ProtocolSites:before		{ content: "PROTOCOL SITES & "; }
 ProtocolSource:before		{ content: "PROTOCOL SOURCE * +"; }
 ProtocolSources:before		{ content: "PROTOCOL SOURCES *"; }
@@ -248,6 +262,9 @@ SpecialCategory:before		{ content: "Category *: "; }
 OrgSiteContact>SpecificPerson:before
 				{ content: "Specific Contact * +"; }
 SpecificPhone:before		{ content: "Phone &: "; }
+SpecificEmail:before    { content: "Email & @ : "; }
+SpecificEmail[Public="No"]:after		{ content: " (Not public) "; }
+SpecificEmail:after				{ content: " (Public) "; }
 SponsorName:before		{ content: "Sponsor * +: ";  }
 StatusDate:before		{ content: "Status Date *: "; }
 StatusName:before		{ content: "Status *: "; }
@@ -260,6 +277,7 @@ StatusName:before		{ content: "Status *: "; }
 
 CurrentOrgStatus:before,
 /* CurrentProtocolStatus:before, */
+FDAINDInfo:before,
 FundingInfo:before,
 GenericPerson:before,
 GenericPersonContact:before,
@@ -270,6 +288,7 @@ OrgSite:before,
 OrgSiteContact:before,
 OrgSiteContact>SpecificPerson:before,
 OtherGrantContractInfo:before,
+OverallContact:before,
 PreviousOrgStatus:before,
 PrivatePracticeSite:before,
 ProtocolAdminInfo:before,
@@ -298,10 +317,15 @@ ProtocolSource>DateReceived:before,
 EnteredBy:before,
 EntryDate:before,
 GrantContractNo:before,
+INDGrantor:before,
+INDNumber:before,
+INDSerialNumber:before,
 LeadOrgProtocolID:before,
 PersonTitle:before,
 ProcessingDate:before,
 SourceName:before,
+SpecificEmail:after,
+SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
@@ -342,7 +366,7 @@ StatusName:before,
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
   
-
+FDAINDInfo,
 FundingInfo, 
 /* ProtocolAdminInfo, */
 ProtocolAdminInfo>DatedAction,
@@ -371,6 +395,7 @@ PersonRole,
 ProtocolLeadOrg,
 ProtocolSites,
 OrgSite,
+OverallContact,
 PrivatePracticeSite,
 
    {  margin-top: 1em;    }
@@ -489,8 +514,6 @@ LeadOrgProtocolStatuses>PreviousOrgStatus>EntryDate,
 					{ margin-left: 100pt; 
 					  text-indent: -75pt; }
 
-Person,					{ margin-left: 100pt; 
-					  text-indent: -71.5pt; }
 PersonRole,				{ margin-left: 100pt; 
 					  text-indent: -51pt; }
 
@@ -499,11 +522,16 @@ PersonRole,				{ margin-left: 100pt;
 OrgSiteID,				{ margin-left: 100pt;
 					  text-indent: -87pt; }
 OrgSiteStatus,				{ margin-left: 100pt;
-					  text-indent: -51.5pt; }
-Role,					{ margin-left: 100pt;
-					  text-indent: -41.5pt; }
-SpecificPhone,				{ margin-left: 100pt;
-					  text-indent: -57pt; }
+					  text-indent: -51.5pt;}
+
+Person                { margin-left: 100pt; text-indent:  -71.5pt; }
+Role                  { margin-left: 100pt; text-indent:  -41.5pt; }
+SpecificPhone         { margin-left: 100pt; text-indent:  -57.0pt; }
+SpecificEmail         { margin-left: 100pt; text-indent:  -69.0pt; }
+
+INDGrantor            { margin-left: 130pt; text-indent:  -83.5pt; }
+INDNumber             { margin-left: 130pt; text-indent:  -85.5pt; }
+INDSerialNumber       { margin-left: 130pt; text-indent: -125.0pt; }
 
 /* Key element for length = PoliticalSubUnit_State			   */
 
@@ -547,6 +575,9 @@ FundingInfo,
 GenericPerson, 
 GenericPersonContact, 
 GrantContractNo,
+INDGrantor,
+INDNumber,
+INDSerialNumber,
 InScopeProtocol,  
 LeadOrganizationID, 
 LeadOrgPersonnel,
@@ -585,7 +616,8 @@ ReviewApprovalType,
 Role, 
 SourceName, 
 SpecialCategory, 
-SpecificPerson, 
+SpecificPerson,
+SpecificEmail,
 SpecificPhone,  
 SponsorName, 
 StatusDate, 
@@ -595,6 +627,7 @@ StatusName,
 
 CurrentProtocolStatus,
 GrantContractNo,
+INDGrantor,
 LeadOrganizationID,
 NIHGrantContractType,
 OrgSiteID,
@@ -622,6 +655,9 @@ DateLastModified,
 EnteredBy, 
 EntryDate, 
 GrantContractNo,
+INDGrantor,
+INDNumber,
+INDSerialNumber,
 InScopeProtocol,
 LeadOrganizationID, 
 LeadOrgProtocolID, 
@@ -644,6 +680,7 @@ ReviewApprovalType,
 Role, 
 SourceName, 
 SpecialCategory,
+SpecificEmail,
 SpecificPhone,  
 SponsorName, 
 StatusDate, 
@@ -700,10 +737,15 @@ ReimbursementApprovalType:before,
 ReviewApprovalType:before,
 SourceName:before,
 SpecialCategory:before,
+SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
 StatusName:before,
+FDAINDInfo,
+INDGrantor:before,
+INDNumber:before,
+INDSerialNumber:before
 
 	{ background-color: #CCCCFF; }  /*light blue*/
 
