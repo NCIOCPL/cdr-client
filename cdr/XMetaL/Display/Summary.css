@@ -434,13 +434,11 @@ Deletion>SummarySection:before,
 
 	{ text-decoration: line-through; color: red; }
 
-Comment {font-style: italic; color: #EE11EE; }
-Comment:before { font-style: italic: color: #EE11EE; font-size: 10pt;
+Comment {font-style: italic; background-color: green; color: white; }
+Comment:before { color: white; background-color: green; 
                  content: "Comment: "; }
 SummarySection>Comment
-     { font-style: italic;
-       font-size: 10pt;
-       color: #EE11EE;  
+     { color: white; background-color: green;
        margin-top: 15pt;
        margin-bottom: 10pt; }
 

@@ -265,8 +265,7 @@ Term:before,
 
 	{ font-size: 10pt; }
 
-SummarySection>Comment:before { color: #EE11EE; font-size: 10pt;
-                                font-style: italic; }
+SummarySection>Comment:before { color: black; background-color: white; }
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
 
