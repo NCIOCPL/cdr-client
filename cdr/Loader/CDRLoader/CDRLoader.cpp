@@ -347,7 +347,7 @@ BOOL CCDRLoaderApp::InitInstance()
 			DebugWrite( "Closing debug prior launch.\n" );
 			DebugEnd();
 
-			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key ) )
+			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key, ini_Data.cdr_Server, ini_Data.cdr_Port ) )
 			{
 				// failed after all
 				ok_to_launch = false;

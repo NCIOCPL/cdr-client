@@ -698,18 +698,22 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 	return valid;
 }
 
-bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session )
+bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CString server, CString port )
 {
 	CStringA aapp( app );
 	CStringA uenv = "CDRUser="  + CStringA( user );
 	CStringA senv = "CDRSession="  + CStringA( session );
+	CStringA serv_env = "CDR_HOST=" + CStringA( server );
+	CStringA port_env = "CDR_PORT=" + CStringA( port );
 
 	// these change current environment settings
 	_putenv( (CString::PCYSTR)uenv );
 	_putenv( (CString::PCYSTR)senv );
+	_putenv( (CString::PCYSTR)serv_env );
+	_putenv( (CString::PCYSTR)port_env );
 
-	//char * prog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
-	//char * prog = "C:\\WINNT\\system32\\cmd.exe";
+	//char * tprog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
+	//char * tprog = "C:\\WINNT\\system32\\cmd.exe";
 
 	char prog_name[512];
 	strncpy( prog_name, aapp.GetBuffer(), aapp.GetLength() );
@@ -724,6 +728,7 @@ bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session )
 
 	// null pointer for my_env inhierts current
 	int err = _execve( aapp.GetBuffer(), my_args, NULL );
+	//int err = _execve( tprog, my_args, NULL );
 
 	ErrorLog += _T("<EXEC_ERR>");
 	ErrorLog += _T("Unable to execute ") + CString( my_args[0] ) + _T(" : ");

@@ -31,7 +31,7 @@ public:
 
 	CString GetErrorLog( void );
 
-	bool LaunchCDR( CString app, CString user, CString session );
+	bool LaunchCDR( CString app, CString user, CString session, CString server, CString port );
 
 	CString CDR_CLIENT_PATH;
 	CString CDR_MANIFEST_FILE;
