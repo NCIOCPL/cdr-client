@@ -48,10 +48,10 @@
 			 <Para><?xm-replace_text {Paragraph} ?></Para> 
 		  </DiseaseCharacteristics> 
 		  <PatientCharacteristics> 
-			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+			  
 		  </PatientCharacteristics> 
 		  <PriorConcurrentTherapy> 
-			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+			  
 		  </PriorConcurrentTherapy> 
 		   
 		</EntryCriteria> 
