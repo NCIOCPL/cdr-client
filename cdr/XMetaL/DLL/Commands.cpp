@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.12 2002-02-20 12:23:03 bkline Exp $
+ * $Id: Commands.cpp,v 1.13 2002-03-01 21:13:40 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.12  2002/02/20 12:23:03  bkline
+ * Set edit command to return non-zero on cancelled command.
+ *
  * Revision 1.11  2002/02/19 23:14:40  bkline
  * Modified getOrgAddress to pull down and insert SpecificPostalAddress only.
  *
@@ -711,7 +714,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                            _T("Please check in when processing is complete.");
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
                     if (!saveDialog.m_checkIn)
-					    openDoc(rsp, docId.getString(), false);
+					    openDoc(rsp, docId.getString(), true);
 				}
 			}
 			break;
@@ -986,7 +989,7 @@ bool CCommands::doRetrieve(const CString& id,
                                        version);
     CString response = CdrSocket::sendCommand(request);
 
-return openDoc(response, docId, checkOut);
+    return openDoc(response, docId, checkOut);
 }
 
 bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
