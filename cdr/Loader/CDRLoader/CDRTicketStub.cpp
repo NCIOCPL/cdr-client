@@ -48,6 +48,11 @@ void CDRTicketStub::SetHttpServer( CString serv )
     http_Server = serv;
 }
 
+void CDRTicketStub::SetHttpPort( int port )
+{
+    http_Port = port;
+}
+
 void CDRTicketStub::InitializeFileLocation( CString manifest_file )
 {
     wchar_t base_path[ _MAX_PATH ];
@@ -268,7 +273,8 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
     try
     {
         //DebugWrite( "HTTP top of try.\n" );
-        CHttpConnection * http_session = inet_session.GetHttpConnection( http_Server );
+        CHttpConnection * http_session = inet_session.GetHttpConnection(http_Server,
+            (INTERNET_PORT)http_Port );
         //DebugWrite( "HTTP GotConnection.\n" );
         CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
         CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
@@ -295,30 +301,41 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         int sr_val = 0;
         while (( sr_val == 0 ) && ( retry++ < 3 ))
         {
+            //if (retry)
+            //    Sleep(500);
+                     
             //DebugWrite( "SendRequest() Retry loop\n" );
             try 
             {
                 sr_val = http_page->SendRequest( _T(""), 0, (void *)t, rlen );
             }
-            catch ( CInternetException &ee )
+            catch ( CInternetException* ee )
             {
+                CString msg;
+                msg.Format(_T("Request length: %d; HTTP server: [%s]"), rlen, http_Server);
+                ::AfxMessageBox(msg);
                 _TCHAR  errmsg[ 1024 ];
                 int len = 1000;
-                ee.GetErrorMessage( errmsg, len );
+                ee->GetErrorMessage( errmsg, len );
                 ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
                 
                 DebugWrite( "Caught at SendRequest() CInternetException\n" );
                 DebugWrite( errmsg );
+				ee->Delete();
             }
-            catch ( CException &ee )
+            catch ( CException* ee )
             {
+                CString msg;
+                msg.Format(_T("Request length: %d; HTTP server: [%s]"), rlen, http_Server);
+                ::AfxMessageBox(msg);
                 _TCHAR  errmsg[ 1024 ];
                 int len = 1000;
-                ee.GetErrorMessage( errmsg, len );
+                ee->GetErrorMessage( errmsg, len );
                 ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
                 
                 DebugWrite( "Caught at SendRequest() CException\n" );
                 DebugWrite( errmsg );
+				ee->Delete();
             }
             catch ( CObject & )
             {
@@ -326,6 +343,9 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
             }
             catch ( ... )
             {
+                CString msg;
+                msg.Format(_T("Request length: %d; HTTP server: [%s]"), rlen, http_Server);
+                ::AfxMessageBox(msg);
                 DebugWrite( "Caught at SendRequest() ...\n" );
                 socket_err = GetLastError();
                 char se[32];
@@ -385,24 +405,26 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         //DebugWrite( "HTTP delete session.\n" );
 
     }
-    catch ( CInternetException &e )
+    catch ( CInternetException* e )
     {
         _TCHAR  errmsg[ 1024 ];
         int len = 1000;
-        e.GetErrorMessage( errmsg, len );
+        e->GetErrorMessage( errmsg, len );
         ErrorLog += _T("<HTTP_EXCEPTION type=CInternet>") +
                      CString( errmsg ) + _T("</HTTP_EXCEPTION>");
 
         DebugWrite( errmsg );
+		e->Delete();
     }
-    catch ( CException &e )
+    catch ( CException* e )
     {
         _TCHAR  errmsg[ 1024 ];
         int len = 1000;
-        e.GetErrorMessage( errmsg, len );
+        e->GetErrorMessage( errmsg, len );
         ErrorLog += _T("<HTTP_EXCEPTION type=CException>") +
             CString( errmsg ) + _T("</HTTP_EXCEPTION>");
         DebugWrite( errmsg );
+		e->Delete();
     }
     catch ( ... )
     {
@@ -506,35 +528,43 @@ bool CDRTicketStub::SaveZipFile( CString zip_xml, CString &fname )
                     epos = zip_xml.Find( _T("</DATA>"), pos );
                     if ( epos != -1 )
                     {
-                        CString b64data = zip_xml.Mid( pos, epos - pos - 1 );
+                        CString b64data = zip_xml.Mid( pos, epos - pos );
 
                         long blen = b64data.GetLength();
-                        BYTE * bin_buffer = new BYTE [ blen * 2 ];
+                        // BYTE * bin_buffer = new BYTE [ blen * 2 ];
                         /*
                             // !DEBUG! dump the base64 data for comparison
-                            CStdioFile b64file( "B64Dump.txt", CFile::typeBinary | CFile::modeWrite | CFile::modeCreate );
-                            b64file.Write( b64data.GetBuffer(), blen );
+                            CStdioFile b64file( _T("uB64Dump.txt"), CFile::typeBinary | CFile::modeWrite | CFile::modeCreate );
+                            b64file.Write( b64data.GetBuffer(), blen * 2);
                             b64file.Close();
-                        */
+                         */
                         int decoded_size = 1;
-                        CStringA temp( b64data );
-                        if ( ! Base64Decode( temp.GetString(), blen, bin_buffer, &decoded_size ) )
-                        {
+                        //CStringA temp( b64data );
+                        //FILE* fp = fopen("B64Dump.txt", "wb");
+                        //if (fp) {
+                        //    fwrite((void*)temp.GetString(), blen, 1, fp);
+                        //    fclose(fp);
+                        //}
+                        // if ( ! Base64Decode( temp.GetString(), blen, bin_buffer, &decoded_size ) )
+                        std::string binString;
+                        try {
+                            binString = cdr::decodeBase64String(b64data);
+                            decoded_size = (int)binString.size();
+                        }
+                        catch (const wchar_t* whatHappened) {
                             // this is a real failure
                             ErrorLog += _T("<ZIP_ERR>Unable to decode (base64) binary data.</ZIP_ERR>\n");
-
+                            ::AfxMessageBox(whatHappened);
                             // set things up to carry on.
-                            bin_buffer[0] = 0;
-                            decoded_size = 0;
+                            //bin_buffer[0] = 0;
+                            //decoded_size = 0;
+                            return false;
                         }
-                        else
+                        // this shouldn't happen, but if it does we're OK I guess
+                        if ( decoded_size > blen )
                         {
-                            // this shouldn't happen, but if it does we're OK I guess
-                            if ( decoded_size > blen )
-                            {
-                                ErrorLog += _T("<ZIP_ERR>PANIC! Binary data decode overran buffer.</ZIP_ERR>\n");
-                                decoded_size = 0;
-                            }
+                            ErrorLog += _T("<ZIP_ERR>PANIC! Binary data decode overran buffer.</ZIP_ERR>\n");
+                            decoded_size = 0;
                         }
 
                         // first make sure we have data to write
@@ -563,7 +593,7 @@ bool CDRTicketStub::SaveZipFile( CString zip_xml, CString &fname )
 
                                 // dump our bits into the file
                                 // don't write the trailing 0
-                                zip_file.Write( bin_buffer, decoded_size );
+                                zip_file.Write( binString.data(), decoded_size );
                                 zip_file.Close();
 
                                 success = true;
@@ -708,7 +738,8 @@ bool CDRTicketStub::ProcessZipFile( CString client_dir, CString manifest_xml, CD
             // Hmmm, Zipfile tag is missing completely!
             // v. bad, shouldn't happen
             ErrorLog +=
-                _T("<XML_ERR doc=DELTA>Missing ZIPFILE tag.</XML_ERR>\n");
+                _T("<XML_ERR doc=DELTA>Missing ZIPFILE tag</XML_ERR>\n");
+            ErrorLog += manifest_xml;
         }
     }
 
