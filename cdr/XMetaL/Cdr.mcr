@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.13 2002-01-31 13:51:36 bkline Exp $
+     $Id: Cdr.mcr,v 1.14 2002-01-31 14:21:35 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.13  2002/01/31 13:51:36  bkline
+     Issue #63: moved cursor to end of enumerated value instead of beginning.
+
      Revision 1.12  2002/01/23 19:02:41  bkline
      Added hotkey (Ctrl+Enter) for cdr field editing.
 
@@ -534,14 +537,22 @@
         docType.addElement("Deletion", "Deletion", true , false);
         docType.addAttribute("Deletion", "UserName", "", 0, 0);
         docType.addAttribute("Deletion", "Time", "", 0, 0);
-        docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "proposed");
+        //docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "proposed");
+        docType.addEnumeratedAttribute("Deletion", "RevisionLevel",
+            "Indicates status of proposed deletion", 9, // ordinary enumeration
+            2, // default value is explicity specified
+            "proposed", "approved", "publish", "rejected");
 
         // Add the Insertion element.
         docType.addElement("Insertion", "Insertion", true , false);
         docType.addAttribute("Insertion", "UserName", "", 0, 0);
         docType.addAttribute("Insertion", "Time", "", 0, 0);
-        docType.addAttribute("Insertion", "RevisionLevel", "", 0, 0, 
-            "proposed");
+        //docType.addAttribute("Insertion", "RevisionLevel", "", 0, 0, 
+        //"proposed");
+        docType.addEnumeratedAttribute("Insertion", "RevisionLevel",
+            "Indicates status of proposed insertion", 9, // ordinary enumeration
+            2, // default value is explicity specified
+            "proposed", "approved", "publish", "rejected");
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
@@ -3083,6 +3094,22 @@
         }
     }
     insCurrentDate();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Insert User Name"
+        lang="JScript" 
+        desc="Inserts the login name as text content of current elem"
+        hide="false">
+  <![CDATA[
+
+    function insUserName() {
+        if (Selection != null) {
+            Selection.Text = CdrUserName;
+        }
+    }
+    insUserName();
 
   ]]>
 </MACRO>
