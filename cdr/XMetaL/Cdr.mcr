@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.40 2002-04-05 14:05:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.41 2002-04-05 14:15:05 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.40  2002/04/05 14:05:38  bkline
+     Added separator to Person toolbar between first and second buttons.
+
      Revision 1.39  2002/04/03 20:44:51  bkline
      Plugged in the filters for the Summary Markup report.
 
@@ -1165,11 +1168,17 @@
                            "CDR", 3, 2,
                            false),
             new CdrCmdItem(null,
+                           "Show Checked Out Docs",
+                           "Checked Out",
+                           "Show Checked Out Docs",
+                           "CDR", 1, 1,
+                           true),
+            new CdrCmdItem(null,
                            "Print",
                            "Print",
                            "Print the current document",
                            "CDR", 1, 10,
-                           true),
+                           false),
             new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
