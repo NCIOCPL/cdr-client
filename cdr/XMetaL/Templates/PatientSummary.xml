@@ -81,7 +81,7 @@
 <KeyPoint>Tests that examine the A, B, and C are used to help diagnose (find) x cancer.</KeyPoint>
 <Para>The following tests and procedures can help detect x cancer:</Para>
 <ItemizedList>
-			 <ListItem> <GlossaryTermLink cdr:ref="CDR0000074369">Biopsy</GlossaryTermLink>: Cells, tissues, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermLink cdr:ref="CDR0000075897">incisional biopsy</GlossaryTermLink> or <GlossaryTermLink cdr:ref="CDR0000074856">core biopsy</GlossaryTermLink>. When an entire tumor or lesion is removed, the procedure is called an <GlossaryTermLink cdr:ref="CDR0000075609">excisional biopsy</GlossaryTermLink>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermLink cdr:ref="CDR0000074997">needle biopsy</GlossaryTermLink> or <GlossaryTermLink cdr:ref="CDR0000074890">fine-needle aspiration</GlossaryTermLink>.</ListItem>
+			 <ListItem> <GlossaryTermRef cdr:href="CDR0000075597">Biopsy</GlossaryTermRef>: Cells, tissues, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000077129">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000076088">core biopsy</GlossaryTermRef>. When an entire tumor or lesion is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000076841">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000076229">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000076122">fine-needle aspiration</GlossaryTermRef>.</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
@@ -120,27 +120,27 @@
 </SectMetaData><KeyPoint>The following stages are used for x cancer:</KeyPoint>
 <SummarySection>
 <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
-<Para>In stage 0, the cancer is found in .... Stage 0 cancer is also called <GlossaryTermLink cdr:ref="CDR0000075686">carcinoma in situ</GlossaryTermLink>.</Para>
+<Para>In stage 0, the cancer is found in .... Stage 0 cancer is also called <GlossaryTermRef cdr:href="CDR0000076918">carcinoma in situ</GlossaryTermRef>.</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Stage I</KeyPoint>
-<Para>In <GlossaryTermLink>stage I</GlossaryTermLink>, the cancer has spread .....</Para>
+<Para>In <GlossaryTermRef>stage I</GlossaryTermRef>, the cancer has spread .....</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Stage II</KeyPoint>
-<Para>In <GlossaryTermLink>stage II</GlossaryTermLink>, cancer as spread .....</Para>
+<Para>In <GlossaryTermRef>stage II</GlossaryTermRef>, cancer as spread .....</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Stage III</KeyPoint>
-<Para>In <GlossaryTermLink>stage III</GlossaryTermLink>, cancer has spread .....</Para>
+<Para>In <GlossaryTermRef>stage III</GlossaryTermRef>, cancer has spread .....</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Stage IV</KeyPoint>
-<Para>In <GlossaryTermLink>stage IV</GlossaryTermLink>, cancer has spread .....</Para>
+<Para>In <GlossaryTermRef>stage IV</GlossaryTermRef>, cancer has spread .....</Para>
 </SummarySection>
 </SummarySection>
 </SummarySection>
@@ -161,7 +161,7 @@
 <SectionType>Standard treatment</SectionType>
 </SectMetaData>
 <KeyPoint>There are treatments for all patients with x cancer.</KeyPoint>
-<Para>Treatments are available for all patients with x cancer. Some treatments are standard, and some are being tested in <GlossaryTermLink cdr:ref="CDR0000075161">clinical trials</GlossaryTermLink>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the treatment currently used as <GlossaryTermLink cdr:ref="CDR0000074195">"standard" therapy</GlossaryTermLink>, the new treatment may become the standard treatment.</Para>
+<Para>Treatments are available for all patients with x cancer. Some treatments are standard, and some are being tested in <GlossaryTermRef cdr:href="CDR0000076392">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the treatment currently used as <GlossaryTermRef cdr:href="CDR0000075410">"standard" therapy</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
 <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
 </SummarySection>
 
@@ -184,17 +184,17 @@
 
 <SummarySection>
 <KeyPoint><InterventionName>Chemotherapy</InterventionName></KeyPoint>
-<Para>Chemotherapy is the use of drugs to kill cancer cells. Chemotherapy may be taken by mouth, or it may be put into the body by inserting a needle into a vein or muscle. Either type of chemotherapy is called <GlossaryTermLink cdr:ref="CDR0000075121">systemic therapy</GlossaryTermLink> because the drugs enter the bloodstream, travel through the body, and can kill cancer cells throughout the body. </Para>
+<Para>Chemotherapy is the use of drugs to kill cancer cells. Chemotherapy may be taken by mouth, or it may be put into the body by inserting a needle into a vein or muscle. Either type of chemotherapy is called <GlossaryTermRef cdr:href="CDR0000076353">systemic therapy</GlossaryTermRef> because the drugs enter the bloodstream, travel through the body, and can kill cancer cells throughout the body. </Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>Hormone therapy</InterventionName></KeyPoint>
-<Para>Hormones are chemicals produced by <GlossaryTermLink cdr:ref="CDR0000075583">glands</GlossaryTermLink> in the body and are circulated in the bloodstream.  <GlossaryTermLink cdr:ref="CDR0000075273">Estrogen</GlossaryTermLink> and <GlossaryTermLink cdr:ref="CDR0000074363">progesterone</GlossaryTermLink> are hormones that affect the way some cancers grow. If tests show that the cancer cells have estrogen and progesterone receptors (molecules found in some cancer cells to which estrogen and progesterone will attach), hormone therapy is used to block the way these hormones help the cancer grow. This may be done by using drugs that block the way hormones work or by surgically removing organs that make hormones, such as the [ovaries or testicles].</Para>
+<Para>Hormones are chemicals produced by <GlossaryTermRef cdr:href="CDR0000076815">glands</GlossaryTermRef> in the body and are circulated in the bloodstream.  <GlossaryTermRef cdr:href="CDR0000076506">Estrogen</GlossaryTermRef> and <GlossaryTermRef cdr:href="CDR0000075591">progesterone</GlossaryTermRef> are hormones that affect the way some cancers grow. If tests show that the cancer cells have estrogen and progesterone receptors (molecules found in some cancer cells to which estrogen and progesterone will attach), hormone therapy is used to block the way these hormones help the cancer grow. This may be done by using drugs that block the way hormones work or by surgically removing organs that make hormones, such as the [ovaries or testicles].</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint>Biological therapy</KeyPoint>
-<Para><GlossaryTermLink cdr:ref="CDR0000074816">Biological therapy</GlossaryTermLink> is treatment to stimulate the ability of the <GlossaryTermLink cdr:ref="CDR0000075553">immune system</GlossaryTermLink> to fight cancer. Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against disease. Biological therapy is sometimes called <GlossaryTermLink cdr:ref="CDR0000075277">biological response modifier (BRM)</GlossaryTermLink> therapy or <GlossaryTermLink cdr:ref="CDR0000074928">immunotherapy</GlossaryTermLink>.</Para>
+<Para><GlossaryTermRef cdr:href="CDR0000076048">Biological therapy</GlossaryTermRef> is treatment to stimulate the ability of the <GlossaryTermRef cdr:href="CDR0000076785">immune system</GlossaryTermRef> to fight cancer. Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against disease. Biological therapy is sometimes called <GlossaryTermRef cdr:href="CDR0000076047">biological response modifier (BRM)</GlossaryTermRef> therapy or <GlossaryTermRef cdr:href="CDR0000076160">immunotherapy</GlossaryTermRef>.</Para>
 </SummarySection>
 
 <SummarySection>
@@ -311,9 +311,9 @@
 <Title>Treatment Options for Recurrent X Cancer</Title>
 <Para>Treatment of recurrent x cancer may include the following:</Para>
 <ItemizedList>
-     <ListItem><GlossaryTermLink cdr:ref="CDR0000074770">Surgery</GlossaryTermLink></ListItem>
-	  <ListItem><GlossaryTermLink cdr:ref="CDR0000074235">Radiation therapy</GlossaryTermLink></ListItem>
-	  <ListItem><GlossaryTermLink cdr:ref="CDR0000074419">Chemotherapy</GlossaryTermLink></ListItem>
+     <ListItem><GlossaryTermRef cdr:href="CDR0000076001">Surgery</GlossaryTermRef></ListItem>
+	  <ListItem><GlossaryTermRef cdr:href="CDR0000075450">Radiation therapy</GlossaryTermRef></ListItem>
+	  <ListItem><GlossaryTermRef cdr:href="CDR0000075647">Chemotherapy</GlossaryTermRef></ListItem>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
