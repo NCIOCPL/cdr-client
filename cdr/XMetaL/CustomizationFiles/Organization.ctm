@@ -703,5 +703,26 @@
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </OrganizationDetails>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>BoardManager</Name>
+      <MiniTemplate><![CDATA[<BoardManager><?xm-replace_text {Enter Board Manager name} ?></BoardManager>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>BoardManagerPhone</Name>
+      <MiniTemplate><![CDATA[<BoardManagerPhone><?xm-replace_text {Enter Board Manager phone} ?></BoardManagerPhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>BoardManagerEmail</Name>
+      <MiniTemplate><![CDATA[<BoardManagerEmail><?xm-replace_text {Enter Board Manager e-mail} ?></BoardManagerEmail>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Year</Name>
+      <Parent>BoardMeetingDate</Parent>
+      <MiniTemplate><![CDATA[<Year><?xm-replace_text {Enter year for set of meeting dates} ?></Year>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DayTime</Name>
+      <MiniTemplate><![CDATA[<DayTime><?xm-replace_text {Enter meeting day and time} ?></DayTime>]]></MiniTemplate>
+    </Template>
   </Templates>
 </DTDExtensions>
