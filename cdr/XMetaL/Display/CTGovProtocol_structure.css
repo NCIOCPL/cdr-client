@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.4 2004-08-05 22:54:12 ameyer Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.5 2004-10-08 02:19:27 ameyer Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2004/08/05 22:54:12  ameyer
+ * Changed InterventionName to InterventionNameLink, mirroring schema change.
+ *
  * Revision 1.3  2003/11/19 16:27:05  bkline
  * Added support for PDQPerson display.
  *
@@ -183,7 +186,7 @@ HealthyVolunteers            :before,
 HighAge                      :before,
 IDInfo                       :before,
 Intervention                 :before,
-InterventionName             :before,
+InterventionNameLink         :before,
 InterventionType             :before,
 Investigator                 :before,
 ItemizedList                 :before,
@@ -279,7 +282,7 @@ HealthyVolunteers            :before { content: "Healthy Volunteers "; }
 HighAge                      :before { content: "High Age "; }
 IDInfo                       :before { content: "ID INFO "; }
 Intervention                 :before { content: "INTERVENTION "; }
-InterventionName             :before { content: "Intervention Name "; }
+InterventionNameLink         :before { content: "Intervention Name "; }
 InterventionType             :before { content: "Intervention Type "; }
 Investigator                 :before { content: "INVESTIGATOR "; }
 ItemizedList                 :before { content: "..Itemized List "; }
