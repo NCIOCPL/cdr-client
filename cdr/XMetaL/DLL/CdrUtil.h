@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.8 2002-07-18 00:52:13 bkline Exp $
+ * $Id: CdrUtil.h,v 1.9 2002-08-12 20:19:51 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.8  2002/07/18 00:52:13  bkline
+ * Added decode() and getShortHostName().
+ *
  * Revision 1.7  2002/06/13 18:48:48  bkline
  * Added hostname property.
  *
@@ -75,6 +78,7 @@ private:
     int sock;
     enum { CDR_SOCK = 2019 };
     CdrSocket();
+    ~CdrSocket() { closesocket(sock); }
     std::string read();
     struct Init {
         Init();
