@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.35 2003-01-10 15:16:22 bkline Exp $
+ * $Id: Commands.cpp,v 1.36 2003-01-29 18:48:26 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.35  2003/01/10 15:16:22  bkline
+ * Blocked sending instruction to change document status to Active.
+ *
  * Revision 1.34  2002/10/15 22:22:05  bkline
  * Adding code for issue #471.
  *
@@ -2106,6 +2109,16 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
         elem = elem.GetParentNode(); 
     if (elem) {
         try {
+
+            // Determine whether this is a cdr:ref or cdr:href link.
+            ::DOMDocumentType dt = doc.GetDoctype();
+            if (dt.GetHasAttribute(elem.GetNodeName(), _T("cdr:href"))) {
+
+                // If this is a cdr:href link, this is all we need to do.
+                elem.setAttribute(_T("cdr:href"), docLink);
+                *pRet = 0;
+                return S_OK;
+            }
 
             // Ask the server for the denormalized data.
             CString cmd = _T("<CdrPasteLink><SourceDocType>")
