@@ -44,6 +44,11 @@
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
 	 </OtherGrantContractInfo> 
   </FundingInfo> 
+  <FDAINDInfo>
+    <INDGrantor><?xm-replace_text {Enter IND Grantor (required)}?></INDGrantor>
+    <INDNumber><?xm-replace_text {Enter IND Number (required)}?></INDNumber>
+    <INDSerialNumber><?xm-replace_text {Optionally enter IND serial number}?></INDSerialNumber>
+  </FDAINDInfo>
   <ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>
   <ProtocolAbstract> 
 	 <Professional> 
@@ -107,6 +112,27 @@
          <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
          <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
       </LeadOrgPersonnel>
+      <OverallContact>
+        <PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required)} ?></PersonTitle>
+        <GenericPersonContact>
+          <ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
+          <ContactDetail>
+            <PostalAddress AddressType="US">
+              <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+              <City><?xm-replace_text {Optionally enter a city name} ?></City>
+              <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+              <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+              <Country><?xm-replace_text {Select a country link (required)} ?></Country>
+              <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+            </PostalAddress>
+            <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+            <TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+            <Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+            <Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+            <WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+          </ContactDetail>
+        </GenericPersonContact>
+      </OverallContact>
       <ProtocolSites> 
 		  <OrgSite><OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID> 
 		  <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
@@ -114,6 +140,7 @@
 		  <SpecificPerson>
 <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person><Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
 <SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+ <SpecificEmail><?xm-replace_text {Optionally enter the person's email address}?></SpecificEmail>
 </SpecificPerson> 
 		  </OrgSiteContact> 
 		  </OrgSite> 
