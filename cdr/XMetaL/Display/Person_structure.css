@@ -179,6 +179,7 @@ SpecificWebSite,
 StandardProfessionalSuffix,
 Status,
 SurName,
+UpdateMode,
 Verified,
 
     { display: block; }
@@ -261,6 +262,7 @@ SpecificWebSite:before			{ content: "Specfic Web Site "; }
 StandardProfessionalSuffix:before	{ content: "Standard Prof'l Suffix "; }
 Status:before				{ content: "STATUS"; }
 SurName:before				{ content: "Surname "; }
+UpdateMode:before                       { content: "Update Mode ";}
 Verified:before				{ content: "Verified?"; }
 
 
@@ -331,7 +333,8 @@ MiddleInitial:before,
 PersonTitle:before,
 Prefix:before,	
 ServiceLimitations:before,
-SurName:before,	
+SurName:before,
+UpdateMode:before,	
 
    {  color:  black; 
       font-family: Arial, "sans serif";
@@ -469,6 +472,7 @@ SpecificWebSite,
 StandardProfessionalSuffix,
 Status>Comment,	
 SurName,
+UpdateMode,
 Verified,
 
 	{ text-indent: 0pt; }
@@ -536,7 +540,8 @@ SpecificPostalAddress,
 SpecificTollFreePhone,
 SpecificWebSite,
 StandardProfessionalSuffix,
-SurName,	
+SurName,
+UpdateMode,	
 Verified,
 
      { color: white;
@@ -600,6 +605,7 @@ SpecificTollFreePhone:before,
 SpecificWebSite:before,
 StandardProfessionalSuffix:before,
 SurName:before,
+UpdateMode:before,
 Verified:before,
 
 	{ background-color: white; }

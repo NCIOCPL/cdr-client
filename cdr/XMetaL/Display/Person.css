@@ -1,6 +1,11 @@
 /*************************************************************************/
-/* 	Person.css                                                       */
-/* 	                                                                 */
+/* 	Person.css 
+/*                                                           */
+/* 
+/*      v. 3.10                                                         */
+/*      3/25/2004  by Cburg	                                        */
+/*      Added UpdateMode data element                                    */
+/*                                                                       */              
 /*      v. 3.9                                                           */
 /*      10/24/02  by ebator                                              */
 /*      Added more Before: cases for SpecificPostalAddress               */
@@ -224,6 +229,7 @@ SpecificWebSite,
 StandardProfessionalSuffix,
 Status,
 SurName,
+UpdateMode,
 Verified,
 
 	{ display: block; }
@@ -323,6 +329,9 @@ SpecificWebSite:before			{ content: "Sp WebSite & @: "; }
 StandardProfessionalSuffix:before	{ content: "Std Prof Suffix & +: "; }
 Status:before				{ content: "STATUS *"; }
 SurName:before				{ content: "Surname *: "; }
+UpdateMode:before                       { content: "Updt Mode &+@: ";}
+UpdateMode[MailerType="Protocol_SAndP"]:after { content:" (Protocol_SAndP) ";} 
+UpdateMode[MailerType="Protocol_Abstract"]:after { content: " (Protocol_Abstract) ";}       
 Verified:before				{ content: "Verified? &: "; }
 
 
@@ -452,7 +461,9 @@ SpecificPhone:before,
 SpecificPhone:after,
 SpecificTollFreePhone:before,
 SpecificWebSite:before,
-SurName:before,	
+SurName:before,
+UpdateMode:before,
+UpdateMode:after,	
 
    {  font-weight: bold;
       color: black;       }
@@ -495,6 +506,7 @@ PreferredContactMode:before,
 ProvidesServices:before,
 RoleAtAffiliatedOrganization:before,
 StandardProfessionalSuffix:before,
+UpdateMode:before,
 Verified:before,
 
    {  font-weight: bold;
@@ -628,6 +640,11 @@ RoleAtAffiliatedOrganization,		{ margin-left: 100pt;
 
 CIPSContact,				{ margin-left: 100pt;  
 					  text-indent: -91.5pt; }
+
+UpdateMode,				{ margin-left: 100pt;  
+					  text-indent: -101pt; } 
+
+
 PersonLocations>Comment,		{ margin-left: 100pt; 
 					  text-indent: -82pt; }
 
@@ -701,6 +718,7 @@ SpecificTollFreePhone,
 SpecificWebSite,
 StandardProfessionalSuffix,
 SurName,
+UpdateMode,
 Verified,
 
 	{ margin-bottom: 4pt; }
@@ -763,6 +781,7 @@ SpecificTollFreePhone,
 SpecificWebSite,
 StandardProfessionalSuffix,
 SurName,
+UpdateMode,
 Verified,
 
 	{ background-color: white; }
@@ -823,6 +842,7 @@ SpecificTollFreePhone:before,
 SpecificWebSite:before,
 StandardProfessionalSuffix:before,
 SurName:before,
+UpdateMode:before,
 Verified:before,
 
 	{ background-color: #CCCCFF; }
