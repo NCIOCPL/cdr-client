@@ -23,7 +23,7 @@ TCHAR *  DEBUG_FILE = _T( "CDRLoad-Debug.txt" );
 bool	g_debug_flag = false;
 CStdioFile   db_trickle;
 
-CString	VERSION_STR = _T( "Version 20020910 1744\n" );
+CString	VERSION_STR = _T( "Version 20020916 1241\n" );
 
 void SetDebugFlag( bool f )
 {

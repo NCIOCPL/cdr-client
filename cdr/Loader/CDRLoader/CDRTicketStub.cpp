@@ -811,14 +811,31 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 			//	if we got delta info, we need to act on it
 			//  only if both actions are successful can we
 			//	proceed with a "true" update result
-			valid  = ProcessZipFile( client_dir, manifest_response, pb );
+			if ( ! ProcessZipFile( client_dir, manifest_response, pb ) )
+			{
+				// something went wrong with the zip file
+				// jAH 020917 per BKline, delete/rename the manifest
+				struct tm *now;
+				time_t ts = time( NULL );
+				now = localtime( &ts );
+				char t_buf[64];
+				strftime( t_buf, 60, "%Y%m%d-%H%M%S", now );
+				CString bad_name = CDR_MANIFEST_FILE + _T(".BAD.") + CString(t_buf);
+				_wrename( CDR_MANIFEST_FILE, bad_name );
+				ErrorLog += _T("<ZIP_ERR>Zip file could not be unpacked, MANIFEST deleted.</ZIP_ERR>\n");
+			}
+			else
+			{
+				// unzipped files without problem
+				valid = true;
 
-			pb->Advance();
+				pb->Advance();
 
-			valid &= ProcessInvarientDeletes( pb );
-			valid &= ProcessDeleteList( manifest_response, pb );
+				valid &= ProcessInvarientDeletes( pb );
+				valid &= ProcessDeleteList( manifest_response, pb );
 
-			pb->Advance();
+				pb->Advance();
+			}
 		}
 	}
 
