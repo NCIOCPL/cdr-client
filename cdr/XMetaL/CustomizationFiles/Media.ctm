@@ -1251,6 +1251,10 @@
       <MiniTemplate><![CDATA[<Labeled><?xm-replace_text {Select Yes or No (required)} ?></Labeled>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name ns="">Inlined</Name>
+      <MiniTemplate><![CDATA[<Inlined>No</Inlined>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name ns="">ImageDimensions</Name>
       <MiniTemplate><![CDATA[<ImageDimensions>
     <HeightPixels><?xm-replace_text {Enter an integer number (required)} ?></HeightPixels>
