@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.94 2002-12-24 15:08:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.95 2003-02-14 20:47:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.94  2002/12/24 15:08:41  bkline
+     Swapped in our own implementation of showPage() to replace SoftQuad's
+     buggy version.
+
      Revision 1.93  2002/12/11 20:51:15  bkline
      Enhancements for issues #527 and #528.
 
@@ -657,10 +661,10 @@
     }
 
     function publishPreview(flavor) {
-        Application.Alert("*** WARNING ***\n" +
-                          "This service is still under development.\n" +
-                          "Formatting and content may be significantly\n" +
-                          "different in final version of software.");
+        //Application.Alert("*** WARNING ***\n" +
+        //                "This service is still under development.\n" +
+        //                "Formatting and content may be significantly\n" +
+        //                "different in final version of software.");
         var docId = getDocId();
         if (!docId) {
             Application.Alert("Document has not yet been saved in the CDR");
@@ -2508,7 +2512,8 @@
             return;
         }
         docType = ActiveDocument.doctype;
-        if (!docType.hasAttribute(container.nodeName, "cdr:ref")) {
+        if (!docType.hasAttribute(container.nodeName, "cdr:ref") &&
+            !docType.hasAttribute(container.nodeName, "cdr:href")) {
             Application.Alert("Current element cannot accept links.");
             return;
         }
@@ -2544,7 +2549,8 @@
             return;
         }
         docType = ActiveDocument.doctype;
-        if (!docType.hasAttribute(container.nodeName, "cdr:ref")) {
+        if (!docType.hasAttribute(container.nodeName, "cdr:ref") && 
+            !docType.hasAttribute(container.nodeName, "cdr:href")) {
             Application.Alert("Current element cannot accept links.");
             return;
         }
