@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.13 2002-07-26 20:30:15 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.14 2002-07-30 21:37:36 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.13  2002/07/26 20:30:15  bkline
+ * Added wait cursor to sendCommand().
+ *
  * Revision 1.12  2002/07/18 00:51:37  bkline
  * Added cdr::decode().
  *
@@ -144,13 +147,13 @@ CString CdrSocket::sendCommand(const CString& cmd)
         if (!sessionString.IsEmpty())
             request += _T("<SessionId>") + sessionString + _T("</SessionId>");
         request += _T("<CdrCommand>") + cmd 
-			+ _T("</CdrCommand></CdrCommandSet>");
+            + _T("</CdrCommand></CdrCommandSet>");
 
         // Connect to the server.
         CdrSocket cdrSocket;
 
         // Tell the server the size of the coming request buffer.
-		std::string buf = cdr::cStringToUtf8(request);
+        std::string buf = cdr::cStringToUtf8(request);
         long len = htonl(buf.length());
         if (send(cdrSocket.sock, (char *)&len, sizeof len, 0) < 0)
             throw _T("Failure sending command length");
@@ -181,7 +184,7 @@ std::string CdrSocket::read()
         int leftToRead = sizeof lengthBytes - totalRead;
         int bytesRead = recv(sock, lengthBytes + totalRead, leftToRead, 0);
         if (bytesRead < 0)
-			throw _T("Failure reading byte count from server");
+            throw _T("Failure reading byte count from server");
         totalRead += bytesRead;
     }
     long length;
@@ -205,7 +208,7 @@ std::string CdrSocket::read()
         if (n > 0)
             recd += n;
         else if (n < 0)
-			throw _T("Failure reading reply from server");
+            throw _T("Failure reading reply from server");
     }
     return buf;
 }
@@ -252,34 +255,34 @@ CString TinyXmlParser::extract(const CString& tag) const
 bool cdr::showErrors(const CString& msg)
 {
     // Find the first Err element.
-	int pos = msg.Find(_T("<Err>"));
-	int n = 0;
-	while (pos != -1) {
+    int pos = msg.Find(_T("<Err>"));
+    int n = 0;
+    while (pos != -1) {
 
         // Extract the error message.
-		pos += 5;
-		int endPos = msg.Find(_T("</Err>"), pos);
-		if (endPos == -1) {
-			::AfxMessageBox(_T("Missing closing tag for Err element"));
-			break;
-		}
-		if (pos < endPos) {
+        pos += 5;
+        int endPos = msg.Find(_T("</Err>"), pos);
+        if (endPos == -1) {
+            ::AfxMessageBox(_T("Missing closing tag for Err element"));
+            break;
+        }
+        if (pos < endPos) {
 
             // Show the error message to the user.
-			int rc = ::AfxMessageBox(msg.Mid(pos, endPos - pos), MB_OKCANCEL);
-			++n;
+            int rc = ::AfxMessageBox(msg.Mid(pos, endPos - pos), MB_OKCANCEL);
+            ++n;
 
             // Let the user bail out to avoid seeing cascading error messages.
             if (rc == IDCANCEL)
                 break;
-		}
+        }
 
         // Find the next Err element.
-		pos = msg.Find(_T("<Err>"), endPos);
-	}
+        pos = msg.Find(_T("<Err>"), endPos);
+    }
 
     // Tell the caller if we displayed any error messages.
-	return n > 0;
+    return n > 0;
 }
 
 /**
@@ -382,7 +385,7 @@ _Application cdr::getApp()
             return app;
     }
     catch (CException *e) {
-		e->ReportError();
+        e->ReportError();
     }
     throw _T("Unable to create XMetaL Application-level automation object");
 }
@@ -418,14 +421,14 @@ CString cdr::getXmetalPath()
  */
 CString cdr::encode(CString str, bool fixQuotes)
 {
-	str.Replace(_T("&"), _T("&amp;"));
-	str.Replace(_T("<"), _T("&lt;"));
-	str.Replace(_T(">"), _T("&gt;"));
-	if (fixQuotes) {
-		str.Replace(_T("\""), _T("&quot;"));
-		str.Replace(_T("'"), _T("&apos;"));
-	}
-	return str;
+    str.Replace(_T("&"), _T("&amp;"));
+    str.Replace(_T("<"), _T("&lt;"));
+    str.Replace(_T(">"), _T("&gt;"));
+    if (fixQuotes) {
+        str.Replace(_T("\""), _T("&quot;"));
+        str.Replace(_T("'"), _T("&apos;"));
+    }
+    return str;
 }
 
 /**
@@ -437,12 +440,12 @@ CString cdr::encode(CString str, bool fixQuotes)
  */
 CString cdr::decode(CString str)
 {
-	str.Replace(_T("&amp;"), _T("&"));
-	str.Replace(_T("&lt;"), _T("<"));
-	str.Replace(_T("&gt;"), _T(">"));
-	str.Replace(_T("&quot;"), _T("\""));
-	str.Replace(_T("&apos;"), _T("'"));
-	return str;
+    str.Replace(_T("&amp;"), _T("&"));
+    str.Replace(_T("&lt;"), _T("<"));
+    str.Replace(_T("&gt;"), _T(">"));
+    str.Replace(_T("&quot;"), _T("\""));
+    str.Replace(_T("&apos;"), _T("'"));
+    return str;
 }
 
 /**
@@ -455,9 +458,9 @@ CString cdr::decode(CString str)
  */
 unsigned long cdr::getDocNo(const CString& docString)
 {
-	int pos = docString.FindOneOf(_T("0123456789"));
-	if (pos == -1)
-		return 0L;
+    int pos = docString.FindOneOf(_T("0123456789"));
+    if (pos == -1)
+        return 0L;
     LPCTSTR p = (LPCTSTR)docString;
     return _tcstoul(p + pos, 0, 10);
 }
@@ -491,10 +494,10 @@ CString cdr::extractElementText(DOMNode node)
  */
 CString cdr::trim(const CString& s)
 {
-	CString newStr = s;
-	newStr.TrimRight();
-	newStr.TrimLeft();
-	return newStr;
+    CString newStr = s;
+    newStr.TrimRight();
+    newStr.TrimLeft();
+    return newStr;
 }
 
 /**
@@ -507,11 +510,11 @@ CString cdr::trim(const CString& s)
 void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
 {
     // Get type from doc element name
-	info.docType = node.GetNodeName();
+    info.docType = node.GetNodeName();
 
     // Rest is in CdrDocCtl, a child of the doc element.
     node = node.GetFirstChild();
-	while (node) {
+    while (node) {
 
         // Look for an element.
         if (node.GetNodeType() == 1) {
@@ -525,19 +528,19 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
                     if (node.GetNodeType() == 1) {
                         CString name = node.GetNodeName();
                         if (name == _T("DocTitle"))
-                            info.docTitle = extractElementText(node);
+                            info.docTitle = cdr::encode(extractElementText(node));
                         else if (name == _T("DocId"))
                             info.docId = cdr::trim(extractElementText(node));
                     }
-            		node = node.GetNextSibling();
+                    node = node.GetNextSibling();
                 }
 
                 // Once we've seen CdrDocCtl, we're done.
                 break;
             }
         }
-		node = node.GetNextSibling();
-	}
+        node = node.GetNextSibling();
+    }
 }
 
 /**
@@ -550,8 +553,8 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
  */
 CString errResponse(const CString& err)
 {
-	return _T("<CdrResponseSet><CdrResponse Status='failure'><Errors><Err>")
-		+ err + _T("</Err></Errors></CdrResponse></CdrResponseSet>");
+    return _T("<CdrResponseSet><CdrResponse Status='failure'><Errors><Err>")
+        + err + _T("</Err></Errors></CdrResponse></CdrResponseSet>");
 }
 
 /**
@@ -564,47 +567,47 @@ CString errResponse(const CString& err)
  *  @return                 reference to output stream.
  */
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 
-									  DOMNode& node)
+                                      DOMNode& node)
 {
-	// Obtain some local copies of the node's "attributes" (not in the XML 
+    // Obtain some local copies of the node's "attributes" (not in the XML 
     // sense).
-	int nodeType = node.GetNodeType();
-	CString name = node.GetNodeName();
+    int nodeType = node.GetNodeType();
+    CString name = node.GetNodeName();
 
     // Swallow the CdrDocCtl element.
-	if (nodeType == 1 && name != _T("CdrDocCtl")) {
+    if (nodeType == 1 && name != _T("CdrDocCtl")) {
 
-		// Element node.  Output the start tag.
-		os << _T("<") << (LPCTSTR)name;
-		DOMNamedNodeMap attrs = node.GetAttributes();
-		int n = attrs.GetLength();
-		for (int i = 0; i < n; ++i) {
-			DOMNode attr = attrs.item(i);
-			CString attrName = attr.GetNodeName();
+        // Element node.  Output the start tag.
+        os << _T("<") << (LPCTSTR)name;
+        DOMNamedNodeMap attrs = node.GetAttributes();
+        int n = attrs.GetLength();
+        for (int i = 0; i < n; ++i) {
+            DOMNode attr = attrs.item(i);
+            CString attrName = attr.GetNodeName();
             if (attrName != _T("readonly")) {
-			    CString val = attr.GetNodeValue();
-			    os << _T(" ") << (LPCTSTR)attrName << _T("='")
+                CString val = attr.GetNodeValue();
+                os << _T(" ") << (LPCTSTR)attrName << _T("='")
                 << (LPCTSTR)cdr::encode(val, true) << _T("'");
             }
-		}
-		if (!node.hasChildNodes())
-			os << _T("/");
-		os << _T(">");
+        }
+        if (!node.hasChildNodes())
+            os << _T("/");
+        os << _T(">");
     }
 
     // If this is a text node (type 3) pump out the characters.
-	else if (nodeType == 3) {
+    else if (nodeType == 3) {
 
-		CString val = node.GetNodeValue();
+        CString val = node.GetNodeValue();
         os << (LPCTSTR)cdr::encode(val);
-	}
+    }
 
     // Handle processing instructions.
-	else if (nodeType == 7) {
+    else if (nodeType == 7) {
 
-		CString val = node.GetNodeValue();
-		os << _T("<?") << (LPCTSTR)name << _T(" ") << (LPCTSTR)val << _T("?>");
-	}
+        CString val = node.GetNodeValue();
+        os << _T("<?") << (LPCTSTR)name << _T(" ") << (LPCTSTR)val << _T("?>");
+    }
 
     // Don't lose comments.
     else if (nodeType == 8) {
@@ -613,21 +616,21 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
         os << _T("<!--") << (LPCTSTR)val << _T("-->");
     }
 
-	// Process any children of the node.
-	if (node.hasChildNodes() && name != "CdrDocCtl") {
-		DOMNode n = node.GetFirstChild();
-		os << n;
+    // Process any children of the node.
+    if (node.hasChildNodes() && name != "CdrDocCtl") {
+        DOMNode n = node.GetFirstChild();
+        os << n;
 
-		// If this is an element node, write the closing tag.
-		if (nodeType == 1)
-			os << _T("</") << (LPCTSTR)name << _T(">");
-	}
+        // If this is an element node, write the closing tag.
+        if (nodeType == 1)
+            os << _T("</") << (LPCTSTR)name << _T(">");
+    }
 
-	// Continue with this node's siblings
-	DOMNode sibling = node.GetNextSibling();
-	if (sibling)
-		os << sibling;
-	return os;
+    // Continue with this node's siblings
+    DOMNode sibling = node.GetNextSibling();
+    if (sibling)
+        os << sibling;
+    return os;
 }
 
 /**
@@ -638,12 +641,12 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
 
 #ifdef _UNICODE
 inline unsigned short charToUnsignedShort(TCHAR c) {
-	return static_cast<unsigned short>(c);
+    return static_cast<unsigned short>(c);
 }
 #else
 inline unsigned short charToUnsignedShort(TCHAR c) {
-	unsigned char uc = static_cast<unsigned char>(c);
-	return static_cast<unsigned short>(uc);
+    unsigned char uc = static_cast<unsigned char>(c);
+    return static_cast<unsigned short>(uc);
 }
 #endif
 
@@ -651,10 +654,10 @@ std::string cdr::cStringToUtf8(const CString& str)
 {
     // Calculate storage requirement.
     size_t i, len = 0;
-	size_t strLen = str.GetLength();
+    size_t strLen = str.GetLength();
     LPCTSTR wchars = static_cast<LPCTSTR>(str);
     for (i = 0; i < strLen; ++i) {
-		unsigned short ch = charToUnsignedShort(wchars[i]);
+        unsigned short ch = charToUnsignedShort(wchars[i]);
         if (ch < 0x80)
             ++len;
         else if (ch < 0x800)
@@ -700,7 +703,7 @@ CString cdr::utf8ToCString(const char* s)
     }
 
     // Make room.
-	std::wstring newStr(len, ' ');
+    std::wstring newStr(len, ' ');
 
     // Populate string.
     for (i = 0; i < len; ++i) {
@@ -721,17 +724,17 @@ CString cdr::utf8ToCString(const char* s)
             s += 3;
         }
 #ifndef _UNICODE
-		if ((unsigned short)newStr[j] > 0xFF) {
-			CString err;
-			err.Format(_T("Received Unicode character U%04X which")
-				       _T(" will not fit in the ANSI character set;")
-					   _T(" build DLL with _UNICODE defined."),
-					   (unsigned short)newStr[i]);
-			throw (LPCTSTR)err;
-		}
+        if ((unsigned short)newStr[j] > 0xFF) {
+            CString err;
+            err.Format(_T("Received Unicode character U%04X which")
+                       _T(" will not fit in the ANSI character set;")
+                       _T(" build DLL with _UNICODE defined."),
+                       (unsigned short)newStr[i]);
+            throw (LPCTSTR)err;
+        }
 #endif
     }
-	return CString(newStr.c_str());
+    return CString(newStr.c_str());
 }
 
 CString cdr::Element::getAttribute(const CString& name) const
