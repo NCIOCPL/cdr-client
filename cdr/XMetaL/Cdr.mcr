@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.104 2003-08-14 21:27:15 bkline Exp $
+     $Id: Cdr.mcr,v 1.105 2003-09-24 22:26:31 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.104  2003/08/14 21:27:15  bkline
+     Changed Style attribute from 'simple' to 'bullet' for Itemized List
+     macro.
+
      Revision 1.102  2003/05/27 15:06:44  bkline
      Added dialog box for selecting markup levels in Accept All Changes macro.
 
@@ -5184,8 +5188,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Denormalization+Filter+(1/1):+InScope+Protocol" +
-                "&Filter1=name:InScope+Protocol+Administrative+Report+Filter";
+                "&Filter=set:QC InScopeProtocol Admin Set";
         cdrObj.showPage(url);
     }
     protocolAdminQcReport();
