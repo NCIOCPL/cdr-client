@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.96 2003-02-14 21:07:20 bkline Exp $
+     $Id: Cdr.mcr,v 1.97 2003-03-04 16:08:16 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.96  2003/02/14 21:07:20  bkline
+     Added Audit Trail Report.
+
      Revision 1.95  2003/02/14 20:47:40  bkline
      Added support for cdr:href link pasting; turned off warning for
      publish preview.
@@ -1714,6 +1717,12 @@
                            "QC Report",
                            "Generate QC Report",
                            "CDR", 3, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Verify Specialties",
+                           "Specialties",
+                           "Link to American Board of Medical Specialties",
+                           "Misc 1 (Custom)", 8, 6,
                            false),
             new CdrCmdItem(null,
                            "Mailer History",
@@ -5463,7 +5472,6 @@
 </MACRO>
 
 <MACRO name="Audit Trail Report" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function auditTrailReport() {
@@ -5481,6 +5489,12 @@
     }
     auditTrailReport();
   ]]>
+</MACRO>
+
+<MACRO name="Verify Specialties" 
+        key="Alt+Z"
+       lang="JScript" >
+    cdrObj.showPage("http://www.abms.org/");
 </MACRO>
 
 </MACROS>
