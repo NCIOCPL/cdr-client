@@ -19,7 +19,7 @@
 <ProtocolSources> 
   <ProtocolSource> 
 	 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
-	 <DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>
+	 <DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </ProtocolSource> 
   </ProtocolSources> 
@@ -87,9 +87,9 @@
 	 <SpecialCategory><?xm-replace_text {Select a specialized trial category, if relevant (required)} ?></SpecialCategory>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </ProtocolSpecialCategory> 
-  <ProtocolAdminInfo><CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated during validation, based on organization statuses (required)} ?></CurrentProtocolStatus> 
-	  
-	 <ProtocolLeadOrg Group="Yes"> 
+  <ProtocolAdminInfo>
+  <CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated during validation, based on organization statuses (required)} ?></CurrentProtocolStatus> 
+	<ProtocolLeadOrg Group="Yes"> 
 		<LeadOrganizationID><?xm-replace_text {Link to the protocol's lead organization (required)?></LeadOrganizationID>
 		<LeadOrgRole><?xm-replace_text {Select a Primary or Secondary role for this lead organization (required)} ?></LeadOrgRole>
 		<LeadOrgProtocolID><?xm-replace_text {Enter identification information for the lead organization in this protocol (required)} ?></LeadOrgProtocolID>
@@ -101,7 +101,6 @@
 		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 		</CurrentOrgStatus> 
-		 
 		</LeadOrgProtocolStatuses> 
 		<LeadOrgPersonnel cdr:id="Enter a link"> 
 		<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
