@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.45 2002-04-22 13:42:18 bkline Exp $
+     $Id: Cdr.mcr,v 1.46 2002-04-24 17:40:28 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.45  2002/04/22 13:42:18  bkline
+     Shifted QC macros to the right buttons.  Brought toolbar code in line
+     with Eileen's Access tables.
+
      Revision 1.44  2002/04/20 02:44:05  bkline
      Added readonly protection for selected Mailer document elements.
 
@@ -4290,12 +4294,14 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        var url = CdrCgiBin + "ProtocolAdminQcReport.py?Session="
-                + CdrSession + "&DocId=" + docId;
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId +
+                "&Filter=name:Denormalization+Filter:+InScope+Protocol" +
+                "&Filter1=name:InScope+Protocol+Administrative+Report+Filter";
         Application.ShowPage(url);
     }
-    Application.Alert("Don't have the filters yet for this report.");
-    //protocolAdminQcReport();
+    //Application.Alert("Don't have the filters yet for this report.");
+    protocolAdminQcReport();
   ]]>
 </MACRO>
 
