@@ -1,9 +1,12 @@
 /*
- * $Id: SaveDialog.cpp,v 1.6 2002-10-16 19:56:27 bkline Exp $
+ * $Id: SaveDialog.cpp,v 1.7 2005-03-18 17:17:50 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2002/10/16 19:56:27  bkline
+ * Workaround for XMetaL automation bug.
+ *
  * Revision 1.5  2002/10/15 22:22:05  bkline
  * Adding code for issue #471.
  *
@@ -25,6 +28,9 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "SaveDialog.h"
+#include ".\savedialog.h"
+
+#include <afxdlgs.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,7 +42,9 @@ static char THIS_FILE[] = __FILE__;
 // CSaveDialog dialog
 
 
-CSaveDialog::CSaveDialog(bool readyForReview, CWnd* pParent /*=NULL*/)
+CSaveDialog::CSaveDialog(bool readyForReview, 
+                         bool blobPossible /*=false*/,
+                         CWnd* pParent /*=NULL*/)
     : CDialog(CSaveDialog::IDD, pParent)
 {
     //{{AFX_DATA_INIT(CSaveDialog)
@@ -49,6 +57,7 @@ CSaveDialog::CSaveDialog(bool readyForReview, CWnd* pParent /*=NULL*/)
     m_readyForReview = FALSE;
     //}}AFX_DATA_INIT
     m_readyForReview = readyForReview;
+    m_blobPossible = blobPossible;
 }
 
 
@@ -66,6 +75,8 @@ void CSaveDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Check(pDX, IDC_CHECK6, m_readyForReview);
     //}}AFX_DATA_MAP
     DDX_Control(pDX, IDC_CHECK6, m_readyForReviewCheckbox);
+    DDX_Control(pDX, IDC_MEDIA_FILENAME, m_blobFilename);
+    DDX_Control(pDX, IDC_MEDIA_FILE_BROWSE, m_browseButton);
 }
 
 
@@ -75,6 +86,7 @@ BEGIN_MESSAGE_MAP(CSaveDialog, CDialog)
     ON_BN_CLICKED(IDC_CHECK4, OnBnClickedCheck4)
     ON_BN_CLICKED(IDC_CHECK3, OnBnClickedCheck3)
     ON_BN_CLICKED(IDC_CHECK1, OnBnClickedCheck1)
+    ON_BN_CLICKED(IDC_MEDIA_FILE_BROWSE, OnBnClickedMediaFileBrowse)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,6 +125,20 @@ BOOL CSaveDialog::OnInitDialog()
     if (m_readyForReview)
         m_readyForReviewCheckbox.EnableWindow(FALSE);
 
+    if (!m_blobPossible) {
+        m_browseButton.EnableWindow(FALSE);
+        this->m_blobFilename.EnableWindow(FALSE);
+    }
+
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CSaveDialog::OnBnClickedMediaFileBrowse()
+{
+    CFileDialog fileDialog(TRUE);
+    if (fileDialog.DoModal() == IDOK) {
+        m_blobFilenameString = fileDialog.GetPathName();
+        m_blobFilename.SetWindowText(m_blobFilenameString);
+    }
 }

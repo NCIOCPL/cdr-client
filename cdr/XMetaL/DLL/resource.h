@@ -66,6 +66,8 @@
 #define IDC_NEXT_MARKUP                 236
 #define IDC_REVIEW_LEVEL                237
 #define IDC_MARKUP_SOURCE               238
+#define IDC_MEDIA_FILENAME              239
+#define IDC_MEDIA_FILE_BROWSE           240
 
 // Next default values for new objects
 // 
@@ -73,7 +75,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        221
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         239
+#define _APS_NEXT_CONTROL_VALUE         241
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

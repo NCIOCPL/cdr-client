@@ -73,6 +73,7 @@ public:
     STDMETHOD(addGlossaryPhrase)(void);
     STDMETHOD(setTitleBar)(void);
     STDMETHOD(acceptOrRejectMarkup)(void);
+    STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.43 2005-03-03 15:02:09 bkline Exp $
+ * $Id: Commands.cpp,v 1.44 2005-03-18 17:17:50 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.43  2005/03/03 15:02:09  bkline
+ * Added new interface for reviewing all of the change markup at once.
+ *
  * Revision 1.42  2005/02/15 19:02:55  bkline
  * Added setTitleBar command.  Added code to strip unwanted portion of
  * glossary document title.
@@ -171,6 +174,7 @@
 #include <direct.h>
 #include <wchar.h>
 #include <windows.h>
+#include <atlenc.h>
 #include ".\commands.h"
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
@@ -185,6 +189,7 @@ static bool     openDoc(const CString& resp, const CString& docId,
                         const CString& version = _T("Current"));
 static CString& fixDoc(CString& doc, const CString& ctl, 
                        const CString& docType, bool readOnly);
+static CString getBlobExtension(const CString& doc, const CString& type);
 
 // Local data.
 static cdr::StringList      docTypeStrings;
@@ -709,6 +714,46 @@ STDMETHODIMP CCommands::search(int *pRet)
 }
 
 /**
+ * Load bytes for a document BLOB from the specified file and
+ * encode it.
+ */
+static CString getBlobFromFile(const CString& path) {
+    CFile file;
+    file.Open((LPCTSTR)path, CFile::modeRead);
+    int srcLen = (int)file.GetLength();
+
+    // Use a local buffer type to ensure memory release even if an
+    // exception occurs.
+    struct Buf {
+        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
+        ~Buf() { delete [] buf; }
+        char* buf;
+    };
+    Buf src((size_t)srcLen);
+    int totalRead = 0;
+    while (totalRead < srcLen) {
+        int bytesRead = file.Read(src.buf + totalRead, srcLen - totalRead);
+        if (bytesRead < 1) {
+            ::AfxMessageBox(_T("Failure reading blob file"));
+            throw _T("Zero bytes read from blob file");
+        }
+        totalRead += bytesRead;
+    }
+    int dstLen = srcLen * 2; // more than enough
+    Buf dst((size_t)dstLen);
+    if (!::Base64Encode((const BYTE*)src.buf, srcLen, 
+                        (LPSTR)dst.buf, &dstLen)) {
+        ::AfxMessageBox(_T("Failure encoding blob file"));
+        throw _T("Failure encoding Blob file");
+    }
+
+    CString msg;
+    // msg.Format(_T("encoded %d-byte %s as %d bytes"), srcLen, path, dstLen);
+    ::AfxMessageBox(msg);
+    return CString(dst.buf, dstLen);
+}
+
+/**
  * Save the currently active document in the CDR repository.
  *
  *  @param  pRet    address of value returned for Microsoft Automation.
@@ -746,7 +791,11 @@ STDMETHODIMP CCommands::save(int *pRet)
             docTitle = _T("Server will replace this dummy title");
 
         // Ask the user for options to be used for the operation.
-        CSaveDialog saveDialog(ctrlInfo.readyForReview);
+        bool blobPossible = false;
+        if (ctrlInfo.docType == _T("Media") || 
+            ctrlInfo.docType == _T("SupplementaryInfo"))
+            blobPossible = true;
+        CSaveDialog saveDialog(ctrlInfo.readyForReview, blobPossible);
         switch (saveDialog.DoModal()) {
         case IDOK:
         {
@@ -795,6 +844,22 @@ STDMETHODIMP CCommands::save(int *pRet)
             os << _T("</CdrDocCtl>");
             os << _T("<CdrDocXml><![CDATA[") << docElement 
                << _T("]]></CdrDocXml>");
+            CString blobFilename = saveDialog.m_blobFilenameString;
+            if (!blobFilename.IsEmpty()) {
+                try {
+                    os << _T("<CdrDocBlob>") 
+                       << (LPCTSTR)getBlobFromFile(blobFilename)
+                       << _T("</CdrDocBlob>");
+                }
+                catch (...) {
+                    CString msg;
+                    msg.Format(_T("Failure loading %s"), 
+                               saveDialog.m_blobFilename);
+                    ::AfxMessageBox(msg);
+                    *pRet = 7;
+                    return S_OK;
+                }
+            }
             os << _T("</CdrDoc></") << (LPCTSTR)cmdTag << _T(">");
 
             // Submit the save command to the server.
@@ -1444,9 +1509,11 @@ bool CCommands::doLogon(LogonDialog* logonDialog)
     CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
     CString roPath  = cdrPath + _T("\\ReadOnly");
     CString coPath  = cdrPath + _T("\\Checkout");
+    CString mePath  = cdrPath + _T("\\Media");
     _wmkdir((LPCTSTR)cdrPath);
     _wmkdir((LPCTSTR)roPath);
     _wmkdir((LPCTSTR)coPath);
+    _wmkdir((LPCTSTR)mePath);
 
     // Clear out the username.
     username = _T("");
@@ -2444,5 +2511,130 @@ STDMETHODIMP CCommands::acceptOrRejectMarkup(void)
     CReviewMarkup markupReviewDialog;
     markupReviewDialog.DoModal();
 
+    return S_OK;
+}
+
+CString getBlobExtension(const CString& docXml, const CString& docType) {
+    CString extension;
+    if (docType == _T("Media")) {
+        cdr::Element elem = cdr::Element::extractElement(docXml, 
+                                                         _T("ImageEncoding"));
+        if (!elem)
+            elem = cdr::Element::extractElement(docXml, _T("VideoEncoding"));
+        if (!elem)
+            elem = cdr::Element::extractElement(docXml, _T("SoundEncoding"));
+        if (elem)
+            extension = _T(".") + elem.getString();
+    }
+    else if (docType == _T("SupplementalInfo")) {
+        cdr::Element elem = cdr::Element::extractElement(docXml, 
+                                                         _T("MimeType"));
+        CString elemText = elem.getString();
+        if (elemText == _T("application/pdf"))
+            extension = _T(".pdf");
+        else if (elemText == _T("application/msword"))
+            extension = _T(".doc");
+        else if (elemText == _T("application/vnd.ms-excel"))
+            extension = _T(".xls");
+        else if (elemText == _T("application/vnd.ms-wordperfect"))
+            extension = _T(".wpd");
+        else if (elemText == _T("text/html"))
+            extension = _T(".html");
+        else if (elemText == _T("text/plain"))
+            extension = _T(".txt");
+        else if (elemText == _T("message/rfc822"))
+            extension = _T(".txt");
+    }
+    return extension.MakeLower();
+}
+
+STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*docId);
+    CString ver(*docVer);
+    CString fileName;
+    int intId = cdr::getDocNo(id);
+    fileName.Format(_T("CDR%d"), intId);
+    if (!ver.IsEmpty())
+        fileName += _T("-") + ver;
+    else
+        ver = _T("Current");
+
+    // Construct the command to retrieve the document with its blob.
+    CString cmd;
+    cmd.Format(_T("<CdrGetDoc includeXml='Y' includeBlob='Y'>")
+               _T("<DocId>%s</DocId>")
+               _T("<Lock>N</Lock>")
+               _T("<DocVersion>%s</DocVersion>")
+               _T("</CdrGetDoc>"), id, ver);
+    CString resp = CdrSocket::sendCommand(cmd);
+
+    // Extract the payload.
+    cdr::Element docElem = cdr::Element::extractElement(resp, _T("CdrDoc"));
+    if (!docElem) {
+        cdr::showErrors(resp);
+        return S_OK;
+    }
+    CString cdrDoc  = docElem.getString();
+    CString docType = docElem.getAttribute(_T("Type"));
+
+    // Extract the blob.
+    cdr::Element blobElem = cdr::Element::extractElement(cdrDoc, 
+                                                         _T("CdrDocBlob"));
+    if (!blobElem) {
+        ::AfxMessageBox(_T("Binary object not found"));
+        return S_OK;
+    }
+    CString docBlob = blobElem.getString();
+
+    // Use a local buffer type to ensure memory release even if an
+    // exception occurs.
+    struct Buf {
+        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
+        ~Buf() { delete [] buf; }
+        char* buf;
+    };
+    int dstLen = ::Base64DecodeGetRequiredLength(docBlob.GetLength());
+    Buf blob((size_t)dstLen);
+    std::string bytes = cdr::cStringToUtf8(docBlob);
+    if (!::Base64Decode(bytes.c_str(), docBlob.GetLength(), 
+                        (BYTE*)blob.buf, &dstLen)) {
+        ::AfxMessageBox(_T("Failure decoding blob file"));
+        return S_OK;
+    }
+
+    // Extract the DocXml.
+    cdr::Element xmlElem = cdr::Element::extractElement(cdrDoc, 
+                                                        _T("CdrDocXml"));
+    if (!xmlElem) {
+        ::AfxMessageBox(_T("Missing document XML"));
+        return S_OK;
+    }
+    CString docXml = xmlElem.getCdataSection();
+
+    // Save the file.
+    CString path = cdr::getXmetalPath() + _T("\\Cdr\\Media");
+    ::CreateDirectory((LPCTSTR)path, NULL);
+    path += _T("\\") + fileName;
+    CString ext = getBlobExtension(docXml, docType);
+    if (ext.IsEmpty()) {
+        ::AfxMessageBox(_T("Unable to determine filename extension"));
+        return S_OK;
+    }
+    path += ext;
+    std::string pathName = cdr::cStringToUtf8(path);
+    std::ofstream xmlStream(pathName.c_str(), std::ios_base::binary |
+                                              std::ios_base::out);
+    if (!xmlStream) {
+        ::AfxMessageBox(_T("Unable to write ") + path);
+        return S_OK;
+    }
+    xmlStream.write(blob.buf, dstLen);
+    xmlStream.close();
+
+    // Invoke the application registered by the user for this file type.
+    ::ShellExecute(NULL, _T("open"), path, NULL, NULL, SW_SHOWNORMAL);
     return S_OK;
 }

@@ -15,7 +15,8 @@ class CSaveDialog : public CDialog
 {
 // Construction
 public:
-    CSaveDialog(bool readyForReview, CWnd* pParent = NULL);
+    CSaveDialog(bool readyForReview, bool blobPossible = false, 
+                CWnd* pParent = NULL);
 
 // Dialog Data
     //{{AFX_DATA(CSaveDialog)
@@ -54,6 +55,12 @@ public:
     virtual BOOL OnInitDialog();
 private:
     CButton m_readyForReviewCheckbox;
+    bool    m_blobPossible;
+public:
+    afx_msg void OnBnClickedMediaFileBrowse();
+    CEdit m_blobFilename;
+    CString m_blobFilenameString;
+    CButton m_browseButton;
 };
 
 //{{AFX_INSERT_LOCATION}}
