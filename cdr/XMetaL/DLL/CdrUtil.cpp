@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.11 2002-07-05 18:57:59 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.12 2002-07-18 00:51:37 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2002/07/05 18:57:59  bkline
+ * Masked out 'readonly' attributes.
+ *
  * Revision 1.10  2002/06/13 18:48:47  bkline
  * Added hostname property.
  *
@@ -339,7 +342,7 @@ int cdr::fillListBox(CListBox& listBox, const DocSet& docSet)
             ++n;
 
             // Append the new string to the list box object.
-            CString str = _T("[") + id + _T("] ") + title;
+            CString str = _T("[") + id + _T("] ") + cdr::decode(title);
             CSize size  = dc->GetTextExtent(str);
             if (maxWidth < size.cx)
                 maxWidth = size.cx;
@@ -417,6 +420,23 @@ CString cdr::encode(CString str, bool fixQuotes)
 		str.Replace(_T("\""), _T("&quot;"));
 		str.Replace(_T("'"), _T("&apos;"));
 	}
+	return str;
+}
+
+/**
+ * Reverses the XML encoding process, replacing builting entity
+ * references with the corresponding characters.
+ *
+ *  @param  str         caller's string object to be modified in place.
+ *  @return             copy of modified string.
+ */
+CString cdr::decode(CString str)
+{
+	str.Replace(_T("&amp;"), _T("&"));
+	str.Replace(_T("&lt;"), _T("<"));
+	str.Replace(_T("&gt;"), _T(">"));
+	str.Replace(_T("&quot;"), _T("\""));
+	str.Replace(_T("&apos;"), _T("'"));
 	return str;
 }
 
