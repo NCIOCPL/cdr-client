@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.76 2002-09-23 19:51:21 bkline Exp $
+     $Id: Cdr.mcr,v 1.77 2002-09-23 19:58:25 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.76  2002/09/23 19:51:21  bkline
+     Added Change Participating Org Status macro.
+
      Revision 1.75  2002/08/27 18:45:56  bkline
      Added patient publish preview.  Moved publish preview commands from menus
      and from general CDR toolbar to protocol and summary toolbars.  Changed
@@ -876,6 +879,10 @@
                                 "CDR Participating Orgs");
         Application.AppendMacro("Retrieve Person Address", 
                                 "CDR Get Person Address");
+        var rng = ActiveDocument.Range;
+        if (rng.IsParentElement("ProtocolLeadOrg"))
+            Application.AppendMacro("Change Org Statuses",
+                    "Change Participating Org Status");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
