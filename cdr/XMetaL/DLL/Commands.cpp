@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.20 2002-05-14 14:22:46 bkline Exp $
+ * $Id: Commands.cpp,v 1.21 2002-05-15 23:39:24 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.20  2002/05/14 14:22:46  bkline
+ * Finished implementation of version retrieval.
+ *
  * Revision 1.19  2002/05/08 21:20:52  bkline
  * Added return statement from exception handler to eliminate warning.
  *
@@ -95,6 +98,7 @@
 #include <sstream>
 #include <process.h>
 #include <direct.h>
+#include <wchar.h>
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -114,6 +118,7 @@ static cdr::StringList      docTypeStrings;
 static cdr::ValidValueSets  validValueSets;
 static cdr::ElementSets     linkingElements;
 CString CCommands::username;
+bool    CCommands::invokedFromClientRefreshTool = false;
 
 /**
  * Determines whether a given element in a particular document type can
@@ -269,8 +274,11 @@ static void getDocType(const CString docType, CLogonProgress& dialog)
 {
     // Get the document type information from the CDR Server.
     CString cmd;
-    cmd.Format(_T("<CdrGetDocType Type='%s' GetEnumValues='Y'/>"),
-               (LPCTSTR)docType);
+    CString omitDtd;
+    if (CCommands::invokedFromClientRefreshTool)
+        omitDtd = _T("OmitDtd='Y' ");
+    cmd.Format(_T("<CdrGetDocType Type='%s' %sGetEnumValues='Y'/>"),
+               (LPCTSTR)docType, (LPCTSTR)omitDtd);
     CString resp = CdrSocket::sendCommand(cmd);
 
     // Check for problems.
@@ -305,16 +313,18 @@ static void getDocType(const CString docType, CLogonProgress& dialog)
     extractLinkingElements(resp, elemSet);
     linkingElements[docType] = elemSet;
 
-    // Synchronize the client's copy of the DTD.
-    cdr::Element dtd = cdr::Element::extractElement(resp, _T("DocDtd"));
-    if (dtd)
-        syncDtd(dtd.getCdataSection(), docType);
-    else
-        ::AfxMessageBox(_T("Unable to find DTD for document type ") + docType,
-                MB_ICONEXCLAMATION);
+    // Synchronize the client's copy of the DTD if appropriate.
+    if (!CCommands::invokedFromClientRefreshTool) {
+        cdr::Element dtd = cdr::Element::extractElement(resp, _T("DocDtd"));
+        if (dtd)
+            syncDtd(dtd.getCdataSection(), docType);
+        else
+            ::AfxMessageBox(_T("Unable to find DTD for document type ") 
+                    + docType, MB_ICONEXCLAMATION);
+    }
 }
 
-bool getCssFiles(LogonDialog& dialog, CLogonProgress& progressDialog)
+bool getCssFiles(LogonDialog* dialog, CLogonProgress& progressDialog)
 {
     cdr::StringList files;
     _Application app = cdr::getApp();
@@ -336,7 +346,7 @@ bool getCssFiles(LogonDialog& dialog, CLogonProgress& progressDialog)
     }
     cdr::StringList::const_iterator iter = files.begin();
     while (iter != files.end()) {
-        if (!dialog.keepGoing()) {
+        if (dialog && !dialog->keepGoing()) {
             app.SetStatusText(_T("Logon cancelled."));
             progressDialog.m_progressBar.SetPos(0);
             progressDialog.UpdateData(FALSE);
@@ -368,7 +378,7 @@ bool getCssFiles(LogonDialog& dialog, CLogonProgress& progressDialog)
     return true;
 }
 
-bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
+bool getDocTypes(LogonDialog* dialog, CLogonProgress& progressDialog)
 {
     docTypeStrings.clear();
     validValueSets.clear();
@@ -401,7 +411,7 @@ bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
     // Loop through the list of names.
     cdr::StringList::const_iterator iter = tempList.begin();
     while (iter != tempList.end()) {
-        if (!dialog.keepGoing()) {
+        if (dialog && !dialog->keepGoing()) {
             app.SetStatusText(_T("Logon cancelled."));
             progressDialog.m_progressBar.SetPos(0);
             progressDialog.UpdateData(FALSE);
@@ -412,36 +422,10 @@ bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
         app.SetStatusText(_T("Retrieving information for document type ")
                 + name);
         getDocType(name, progressDialog);
-        //dialog.m_progressBar.SetPos((100 * ++i) / nameCount);
         progressDialog.m_progressBar.SetPos((100 * ++i) / nameCount);
     }
     return true;
 }
-
-#if 0
-static void getDocTypes()
-{
-    //CWaitCursor wc;
-    CLogonProgress progressDialog;
-    CWinThread* thread = AfxBeginThread(&syncInfoFromServer,
-        &progressDialog);
-    progressDialog.DoModal();
-}
-
-static cdr::ValidValueSet* getValidValueSet(const CString docType)
-{
-    CString cmd;
-    cmd.Format(_T("<CdrGetDocType Type='%s' GetEnumValues='Y'/>"),
-               (LPCTSTR)docType);
-    CString resp = CdrSocket::sendCommand(cmd);
-    cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
-    if (err) {
-        ::AfxMessageBox(err.getString(), MB_ICONEXCLAMATION);
-        return 0;
-    }
-    return extractValidValueSet(resp);
-}
-#endif
 
 static cdr::StringList* getSchemaValidValues(const CString docType,
                                              const CString path)
@@ -490,6 +474,16 @@ STDMETHODIMP CCommands::logon(int *pRet)
 			*pRet = 1;
 			return S_OK;
 		}
+
+        // See if the client machine has the refresh utility installed.
+        CString manifestName = cdr::getXmetalPath() + _T("\\Cdr\\Cdr_Manifest.xml");
+        invokedFromClientRefreshTool = false;
+        if (!_waccess((LPCTSTR)manifestName, 0)) {
+            invokedFromClientRefreshTool = true;
+            doLogon(NULL);
+            *pRet = 0;
+            return S_OK;
+        }
 
         // Get the user's CDR credentials.
 		LogonDialog logonDialog;
@@ -1335,15 +1329,8 @@ CString& fixDoc(CString& doc, const CString& ctl,
     return doc;
 }
 
-bool CCommands::doLogon(LogonDialog& logonDialog)
+bool CCommands::doLogon(LogonDialog* logonDialog)
 {
-    // Create the logon command.
-    CString request = _T("<CdrLogon><UserName>")
-                    + logonDialog.m_UserId 
-                    + _T("</UserName><Password>")
-                    + logonDialog.m_Password
-					+ _T("</Password></CdrLogon>");
-
     // Make the document directories if they aren't already there.
     CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
     CString roPath  = cdrPath + _T("\\ReadOnly");
@@ -1352,10 +1339,38 @@ bool CCommands::doLogon(LogonDialog& logonDialog)
     _wmkdir((LPCTSTR)roPath);
     _wmkdir((LPCTSTR)coPath);
 
-    // Submit the command to the CDR server.
+    // Clear out the username.
     username = _T("");
-	CString response = CdrSocket::sendCommand(request);
-	if (!response.IsEmpty()) {
+
+    // If we were invoked directly, get the logon info from the environment.
+    if (!logonDialog) {
+        const char* sessId = getenv("CDRSession");
+        const char* userId = getenv("CDRUser");
+
+        // If the environment variables aren't set, the user wants to
+        // run XMetaL in a standalone session.
+        if (!sessId || !userId)
+            return false;
+
+        username = userId;
+		CdrSocket::setSessionString(sessId);
+    }
+
+    // Otherwise, log on to the CDR server directly.
+    else {
+
+        // Create the logon command.
+        CString request = _T("<CdrLogon><UserName>")
+                        + logonDialog->m_UserId 
+                        + _T("</UserName><Password>")
+                        + logonDialog->m_Password
+					    + _T("</Password></CdrLogon>");
+
+        // Submit the command to the CDR server.
+	    CString response = CdrSocket::sendCommand(request);
+	    if (response.IsEmpty())
+            return false;
+
 		TinyXmlParser p(response);
 		CdrSocket::setSessionString(p.extract(_T("SessionId")));
 		if (!CdrSocket::loggedOn()) {
@@ -1365,20 +1380,19 @@ bool CCommands::doLogon(LogonDialog& logonDialog)
 			::AfxMessageBox(err, MB_ICONEXCLAMATION);
 			return false;
 		}
-        username = logonDialog.m_UserId;
-        CLogonProgress progressDialog;
-        progressDialog.Create(progressDialog.IDD /*, &logonDialog*/);
-        //CRect dim;
-        //dim.Height();
-        //dim.Width();
-        progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
-        progressDialog.ShowWindow(SW_SHOW);
-        bool gotDocTypes = getDocTypes(logonDialog, progressDialog);
-        getCssFiles(logonDialog, progressDialog);
-        progressDialog.DestroyWindow();
-        return gotDocTypes;
+        username = logonDialog->m_UserId;
     }
-    return false;
+
+    // Get the document type information we need.
+    CLogonProgress progressDialog;
+    progressDialog.Create(progressDialog.IDD);
+    progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
+    progressDialog.ShowWindow(SW_SHOW);
+    bool gotDocTypes = getDocTypes(logonDialog, progressDialog);
+    if (!invokedFromClientRefreshTool)
+        getCssFiles(logonDialog, progressDialog);
+    progressDialog.DestroyWindow();
+    return gotDocTypes;
 }
 
 /**
