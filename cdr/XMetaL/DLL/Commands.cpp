@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.9 2002-02-14 01:13:22 bkline Exp $
+ * $Id: Commands.cpp,v 1.10 2002-02-15 23:05:01 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2002/02/14 01:13:22  bkline
+ * Dialog box message changed for new document save.
+ *
  * Revision 1.8  2002/02/01 22:01:03  bkline
  * Removed doRetrieve call in checkIn command.  Fixed save command to
  * refresh local copy of document even if validation failed.
@@ -701,7 +704,8 @@ STDMETHODIMP CCommands::save(int *pRet)
                         msg += _T("\nIt is now checked out to you.\n")
                            _T("Please check in when processing is complete.");
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
-					openDoc(rsp, docId.getString(), !saveDialog.m_checkIn);
+                    if (!saveDialog.m_checkIn)
+					    openDoc(rsp, docId.getString(), false);
 				}
 			}
 			break;
