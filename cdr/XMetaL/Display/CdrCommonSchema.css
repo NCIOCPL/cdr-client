@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.7 2004-08-10 19:29:13 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.8 2004-08-10 19:37:18 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2004/08/10 19:29:13  bkline
+ * Made approved markup blue instead of red (request #1213).
+ *
  * Revision 1.6  2003/08/14 21:57:50  bkline
  * Added handling for Compact='No' in ordered lists.
  *
@@ -542,7 +545,7 @@ Deletion
      { text-decoration: line-through;
        color: red; }
 
-Deletion[RevisionLevel='approved']
+Deletion[RevisionLevel='proposed']
 
      { text-decoration: line-through;
        color: #009999; }
@@ -551,7 +554,7 @@ Insertion
 
      { color: red; }
 
-Insertion[RevisionLevel='approved'] { color: #009999 }
+Insertion[RevisionLevel='proposed'] { color: #009999 }
 
 /*       Special case style elements                                       */
 
@@ -643,75 +646,75 @@ Insertion>Answer
      { text-indent: 20pt; 
        color: red;        }
 
-Insertion[RevisionLevel='approved']>CitationLink,
-Insertion[RevisionLevel='approved']>CitationLink:before,
-Insertion[RevisionLevel='approved']>CitationRef,
-Insertion[RevisionLevel='approved']>CitationReference:before,
-Insertion[RevisionLevel='approved']>ExternalRef,
-Insertion[RevisionLevel='approved']>GlossaryRef,
-Insertion[RevisionLevel='approved']>GlossaryTerm,
-Insertion[RevisionLevel='approved']>GlossaryTermLink,
-Insertion[RevisionLevel='approved']>GlossaryTermRef,
-Insertion[RevisionLevel='approved']>InterventionName,
-Insertion[RevisionLevel='approved']>LOEFragmentLink, 
-Insertion[RevisionLevel='approved']>LOEFragmentRef,
-Insertion[RevisionLevel='approved']>LOELink,
-Insertion[RevisionLevel='approved']>LOERef,
-Insertion[RevisionLevel='approved']>LOEReference,
-Insertion[RevisionLevel='approved']>SummaryFragmentLink,
-Insertion[RevisionLevel='approved']>SummaryFragmentRef,
-Insertion[RevisionLevel='approved']>SummaryLink,
-Insertion[RevisionLevel='approved']>SummaryRef,
+Insertion[RevisionLevel='proposed']>CitationLink,
+Insertion[RevisionLevel='proposed']>CitationLink:before,
+Insertion[RevisionLevel='proposed']>CitationRef,
+Insertion[RevisionLevel='proposed']>CitationReference:before,
+Insertion[RevisionLevel='proposed']>ExternalRef,
+Insertion[RevisionLevel='proposed']>GlossaryRef,
+Insertion[RevisionLevel='proposed']>GlossaryTerm,
+Insertion[RevisionLevel='proposed']>GlossaryTermLink,
+Insertion[RevisionLevel='proposed']>GlossaryTermRef,
+Insertion[RevisionLevel='proposed']>InterventionName,
+Insertion[RevisionLevel='proposed']>LOEFragmentLink, 
+Insertion[RevisionLevel='proposed']>LOEFragmentRef,
+Insertion[RevisionLevel='proposed']>LOELink,
+Insertion[RevisionLevel='proposed']>LOERef,
+Insertion[RevisionLevel='proposed']>LOEReference,
+Insertion[RevisionLevel='proposed']>SummaryFragmentLink,
+Insertion[RevisionLevel='proposed']>SummaryFragmentRef,
+Insertion[RevisionLevel='proposed']>SummaryLink,
+Insertion[RevisionLevel='proposed']>SummaryRef,
 
      { text-decoration: underline; 
        color: #009999; }
 
-Insertion[RevisionLevel='approved']>ProtocolLink,
-Insertion[RevisionLevel='approved']>ProtocolRef,
-Insertion[RevisionLevel='approved']>ProtocolReference,
+Insertion[RevisionLevel='proposed']>ProtocolLink,
+Insertion[RevisionLevel='proposed']>ProtocolRef,
+Insertion[RevisionLevel='proposed']>ProtocolReference,
 
      { text-decoration: underline; 
        color: #009999; }
 
-Insertion[RevisionLevel='approved']>DrugName,
-Insertion[RevisionLevel='approved']>Emphasis,
-Insertion[RevisionLevel='approved']>ForeignWord,
-Insertion[RevisionLevel='approved']>GeneName,
-Insertion[RevisionLevel='approved']>Note,
-Insertion[RevisionLevel='approved']>Quote,
-Insertion[RevisionLevel='approved']>ScientificName,
+Insertion[RevisionLevel='proposed']>DrugName,
+Insertion[RevisionLevel='proposed']>Emphasis,
+Insertion[RevisionLevel='proposed']>ForeignWord,
+Insertion[RevisionLevel='proposed']>GeneName,
+Insertion[RevisionLevel='proposed']>Note,
+Insertion[RevisionLevel='proposed']>Quote,
+Insertion[RevisionLevel='proposed']>ScientificName,
 
      { font-style: italic; 
        color: #009999;         }
 
-Insertion[RevisionLevel='approved']>Strong,
+Insertion[RevisionLevel='proposed']>Strong,
 
      { font-weight: bold;  
        color: #009999;          }
 
-Insertion[RevisionLevel='approved']>Subscript,
+Insertion[RevisionLevel='proposed']>Subscript,
 
      { vertical-align: sub; 
        color: #009999;           }
 
-Insertion[RevisionLevel='approved']>Superscript,
+Insertion[RevisionLevel='proposed']>Superscript,
 
      { vertical-align: super; 
        color: #009999;             }
 
-Insertion[RevisionLevel='approved']>Note,
-Insertion[RevisionLevel='approved']>Note:before,
-Insertion[RevisionLevel='approved']>Note:after,
+Insertion[RevisionLevel='proposed']>Note,
+Insertion[RevisionLevel='proposed']>Note:before,
+Insertion[RevisionLevel='proposed']>Note:after,
 
      { font-size: 10pt;
        color: #009999;     }
 
-Insertion[RevisionLevel='approved']>Question 
+Insertion[RevisionLevel='proposed']>Question 
 
      { font-weight: bold; 
        color: #009999;         }
 
-Insertion[RevisionLevel='approved']>Answer 
+Insertion[RevisionLevel='proposed']>Answer 
 
      { text-indent: 20pt; 
        color: #009999;        }
@@ -800,83 +803,83 @@ Deletion>Answer
        color: red;        }
 
 
-Deletion[RevisionLevel='approved']>CitationLink,
-Deletion[RevisionLevel='approved']>CitationLink:before,
-Deletion[RevisionLevel='approved']>CitationRef,
-Deletion[RevisionLevel='approved']>CitationReference:before,
-Deletion[RevisionLevel='approved']>ExternalRef,
-Deletion[RevisionLevel='approved']>GlossaryRef,
-Deletion[RevisionLevel='approved']>GlossaryTerm,
-Deletion[RevisionLevel='approved']>GlossaryTermLink,
-Deletion[RevisionLevel='approved']>GlossaryTermRef,
-Deletion[RevisionLevel='approved']>InterventionName,
-Deletion[RevisionLevel='approved']>LOEFragmentLink, 
-Deletion[RevisionLevel='approved']>LOEFragmentRef,
-Deletion[RevisionLevel='approved']>LOELink,
-Deletion[RevisionLevel='approved']>LOERef,
-Deletion[RevisionLevel='approved']>LOEReference,
-Deletion[RevisionLevel='approved']>SummaryFragmentLink,
-Deletion[RevisionLevel='approved']>SummaryFragmentRef,
-Deletion[RevisionLevel='approved']>SummaryLink,
-Deletion[RevisionLevel='approved']>SummaryRef,
+Deletion[RevisionLevel='proposed']>CitationLink,
+Deletion[RevisionLevel='proposed']>CitationLink:before,
+Deletion[RevisionLevel='proposed']>CitationRef,
+Deletion[RevisionLevel='proposed']>CitationReference:before,
+Deletion[RevisionLevel='proposed']>ExternalRef,
+Deletion[RevisionLevel='proposed']>GlossaryRef,
+Deletion[RevisionLevel='proposed']>GlossaryTerm,
+Deletion[RevisionLevel='proposed']>GlossaryTermLink,
+Deletion[RevisionLevel='proposed']>GlossaryTermRef,
+Deletion[RevisionLevel='proposed']>InterventionName,
+Deletion[RevisionLevel='proposed']>LOEFragmentLink, 
+Deletion[RevisionLevel='proposed']>LOEFragmentRef,
+Deletion[RevisionLevel='proposed']>LOELink,
+Deletion[RevisionLevel='proposed']>LOERef,
+Deletion[RevisionLevel='proposed']>LOEReference,
+Deletion[RevisionLevel='proposed']>SummaryFragmentLink,
+Deletion[RevisionLevel='proposed']>SummaryFragmentRef,
+Deletion[RevisionLevel='proposed']>SummaryLink,
+Deletion[RevisionLevel='proposed']>SummaryRef,
 
      { text-decoration: underline;
        text-decoration: line-through; 
        color: #009999; }
 
-Deletion[RevisionLevel='approved']>ProtocolLink,
-Deletion[RevisionLevel='approved']>ProtocolRef,
-Deletion[RevisionLevel='approved']>ProtocolReference,
+Deletion[RevisionLevel='proposed']>ProtocolLink,
+Deletion[RevisionLevel='proposed']>ProtocolRef,
+Deletion[RevisionLevel='proposed']>ProtocolReference,
 
      { text-decoration: underline; 
        text-decoration: line-through;
        color: #009999; }
 
-Deletion[RevisionLevel='approved']>DrugName,
-Deletion[RevisionLevel='approved']>Emphasis,
-Deletion[RevisionLevel='approved']>ForeignWord,
-Deletion[RevisionLevel='approved']>GeneName,
-Deletion[RevisionLevel='approved']>Note,
-Deletion[RevisionLevel='approved']>Quote,
-Deletion[RevisionLevel='approved']>ScientificName,
+Deletion[RevisionLevel='proposed']>DrugName,
+Deletion[RevisionLevel='proposed']>Emphasis,
+Deletion[RevisionLevel='proposed']>ForeignWord,
+Deletion[RevisionLevel='proposed']>GeneName,
+Deletion[RevisionLevel='proposed']>Note,
+Deletion[RevisionLevel='proposed']>Quote,
+Deletion[RevisionLevel='proposed']>ScientificName,
 
      { font-style: italic; 
        text-decoration: line-through;
        color: #009999;        }
 
-Deletion[RevisionLevel='approved']>Strong,
+Deletion[RevisionLevel='proposed']>Strong,
 
      { font-weight: bold;  
        text-decoration: line-through;
        color: #009999;       }
 
-Deletion[RevisionLevel='approved']>Subscript,
+Deletion[RevisionLevel='proposed']>Subscript,
 
      { vertical-align: sub; 
        text-decoration: line-through;
        color: #009999;        }
 
-Deletion[RevisionLevel='approved']>Superscript,
+Deletion[RevisionLevel='proposed']>Superscript,
 
      { vertical-align: super; 
        text-decoration: line-through;
        color: #009999;       }
 
-Deletion[RevisionLevel='approved']>Note,
-Deletion[RevisionLevel='approved']>Note:before,
-Deletion[RevisionLevel='approved']>Note:after,
+Deletion[RevisionLevel='proposed']>Note,
+Deletion[RevisionLevel='proposed']>Note:before,
+Deletion[RevisionLevel='proposed']>Note:after,
 
      { font-size: 10pt;
        text-decoration: line-through;
        color: #009999;     }
 
-Deletion[RevisionLevel='approved']>Question 
+Deletion[RevisionLevel='proposed']>Question 
 
      { font-weight: bold; 
        text-decoration: line-through;
        color: #009999;         }
 
-Deletion[RevisionLevel='approved']>Answer 
+Deletion[RevisionLevel='proposed']>Answer 
 
      { text-indent: 20pt; 
        text-decoration: line-through;
