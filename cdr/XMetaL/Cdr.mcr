@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.62 2002-06-11 13:26:30 bkline Exp $
+     $Id: Cdr.mcr,v 1.63 2002-06-11 13:33:11 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.62  2002/06/11 13:26:30  bkline
+     Plugged in new icon for NHL Text Macro button.
+
      Revision 1.61  2002/06/07 20:48:41  bkline
      Added NHL macro and button; replace some Filter.py URLs with QcReport.py.
 
@@ -1688,6 +1691,12 @@
                            "CDR", 1, 3,
                            false),
             new CdrCmdItem(null,
+                           "NHL Text",
+                           "NHL Text",
+                           "NHL Text",
+                           "CDR", 5, 7,
+                           false),
+            new CdrCmdItem(null,
                            "Insert ProtocolAmendmentInformation",
                            "Amendment",
                            "Insert ProtocolAmendmentInformation",
@@ -1704,12 +1713,6 @@
                            "Org Status",
                            "Change Organization Status",
                            "CDR", 6, 10,
-                           false),
-            new CdrCmdItem(null,
-                           "NHL Text",
-                           "NHL Text",
-                           "NHL Text",
-                           "CDR", 5, 7,
                            false),
             new CdrCmdItem(null,
                            "Generate QC Report",
