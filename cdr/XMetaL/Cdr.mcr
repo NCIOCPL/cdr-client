@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.73 2002-07-26 16:29:09 bkline Exp $
+     $Id: Cdr.mcr,v 1.74 2002-08-22 13:12:21 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.73  2002/07/26 16:29:09  bkline
+     Removed DatedAction from Insert ProtocolAmendmentInformation (Issue #346).
+
      Revision 1.72  2002/07/26 16:20:01  bkline
      Removed dead code.  Added code to disable CDR Save macro for readonly
      documents.  Disabled extra On_Update_UI macro.  Added hotkey for CDR
@@ -3876,10 +3879,16 @@
                 + CdrSession + "&DocId=" + docId;
         Application.ShowPage(url);
     }
+    /*
     Application.Alert("The Publish Preview command will hook directly to " +
                       "Cancer.Gov\nDid you mean to use one of the QC " +
                       "commands?");
-    //publishPreview();
+     */
+    Application.Alert("*** WARNING ***\n" +
+                      "This service is still under development.\n" +
+                      "Formatting and content may be significantly\n" +
+                      "different in final version of software.");
+    publishPreview();
   ]]>
 </MACRO>
 
