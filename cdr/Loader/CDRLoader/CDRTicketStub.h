@@ -32,7 +32,8 @@ public:
 
 	CString GetErrorLog( void );
 
-	bool LaunchCDR( CString app, CString user, CString session, CString server, CString port );
+	bool LaunchCDR( CString app );
+	static void BequeathEnvironment( CString user, CString session, CString server, CString port );
 
 	CString CDR_CLIENT_PATH;
 	CString CDR_MANIFEST_FILE;

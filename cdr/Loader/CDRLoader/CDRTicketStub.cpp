@@ -705,36 +705,42 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 						DebugWrite( fname );
 						DebugWrite( " ?\n" );
 
-						if ( ! fname.CompareNoCase( app_name ) )
+						if ( fname.CompareNoCase( app_name ) )
 						{
-							DebugWrite( "Yes, skipping self-delete.\n" );
-							// we can't delete ourself, don't try
-							continue;
-						}
+							DebugWrite( "No, deleting " );
+							DebugWrite( fname );
+							DebugWrite( "\n" );
 
-						// delete the file
-						CStringA t( fname );
+							// delete the file
+							CStringA t( fname );
 
-						//!DEBUG!
-						int r = remove( t.GetString() );
-						
-						// non zero means error, 
-						// ENOENT means it was already gone, which is OK
-						if ( r && ( errno != ENOENT ) )
-						{
-							success = false;
+							//!DEBUG!
+							int r = remove( t.GetString() );
+							
+							// non zero means error, 
+							// ENOENT means it was already gone, which is OK
+							if ( r && ( errno != ENOENT ) )
+							{
+								success = false;
 
-							ErrorLog += _T("<FILE_ERR>");
-							ErrorLog += _T("Unable to delete ") + fname + _T(" : ");
-							ErrorLog += CString( strerror( errno ) );
-							ErrorLog += _T("</FILE_ERR>\n");
+								ErrorLog += _T("<FILE_ERR>");
+								ErrorLog += _T("Unable to delete ") + fname + _T(" : ");
+								ErrorLog += CString( strerror( errno ) );
+								ErrorLog += _T("</FILE_ERR>\n");
+							}
+							else
+							{
+								// we deleted at least one file, hopefully we'll get them all
+								success = true;
+
+								pb->Advance();
+							}
 						}
 						else
 						{
-							// we deleted at least one file, hopefully we'll get them all
-							success = true;
-
-							pb->Advance();
+							DebugWrite( "Yes, skipping self-delete of " );
+							DebugWrite( fname );
+							DebugWrite( "\n" );
 						}
 
 						// keep looking for more file names
@@ -819,16 +825,8 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 	return valid;
 }
 
-bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CString server, CString port )
+void CDRTicketStub::BequeathEnvironment( CString user, CString session, CString server, CString port )
 {
-	char * my_args[3];
-
-	//my_args[0] = aapp.GetBuffer();
-	my_args[0] = "dummy_arg";
-	my_args[1] = NULL;
-	my_args[2] = NULL;
-
-	CStringA aapp( app );
 	CStringA uenv = "CDRUser="  + CStringA( user );
 	CStringA senv = "CDRSession="  + CStringA( session );
 	CStringA serv_env = "CDR_HOST=" + CStringA( server );
@@ -840,18 +838,41 @@ bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CStri
 	_putenv( (LPCSTR)serv_env );
 	_putenv( (LPCSTR)port_env );
 
+	DebugWrite( "-- Setting Environment\n" );
+	DebugWrite( (CString)uenv );
+	DebugWrite( "\n" );
+	DebugWrite( (CString)senv );
+	DebugWrite( "\n" );
+	DebugWrite( (CString)serv_env );
+	DebugWrite( "\n" );
+	DebugWrite( (CString)port_env );
+	DebugWrite( "\n" );
+	DebugWrite( "-- Done Setting Environment\n" );
+}
+
+bool CDRTicketStub::LaunchCDR( CString app )
+{
+	char * my_args[3];
+
+	//my_args[0] = aapp.GetBuffer();
+	my_args[0] = "dummy_arg";
+	my_args[1] = NULL;
+	my_args[2] = NULL;
+
+	CStringA aapp( app );
+
 	if ( PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
 	{
-		DebugResume();
-		DebugWrite( "Need to Relaunch self.\n" );
+		//DebugResume();
+		//DebugWrite( "Need to Relaunch self.\n" );
 
 		// we need to relaunch ourselves to handle new options
 		//CStringA reflexive_launch = "C:\\WINNT\\system32\\cmd.exe";
 		CStringA reflexive_launch = "CDRLoaderUpdated.cmd";
 		my_args[0] = reflexive_launch.GetBuffer();
 
-		DebugWrite( "Closing debug prior relaunch.\n" );
-		DebugEnd();
+		//DebugWrite( "Closing debug prior relaunch.\n" );
+		//DebugEnd();
 
 		// null pointer for my_env inhierts current
 		int err = _execve( reflexive_launch.GetBuffer(), my_args, NULL );

@@ -23,6 +23,8 @@ TCHAR *  DEBUG_FILE = _T( "CDRLoad-Debug.txt" );
 bool	g_debug_flag = false;
 CStdioFile   db_trickle;
 
+CString	VERSION_STR = _T( "Version 20020910 1744\n" );
+
 void SetDebugFlag( bool f )
 {
 	g_debug_flag = f;
@@ -62,7 +64,7 @@ void DebugStart( void )
 	{
 		CFileException e;
 
-		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeCreate | CFile::modeWrite, &e ) )
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeCreate | CFile::modeReadWrite | CFile::shareDenyNone, &e ) )
 		{
 			_TCHAR  errmsg[ 1024 ];
 			int len = 1000;
@@ -70,7 +72,10 @@ void DebugStart( void )
 			printf( "Debug file broken: %s", errmsg );
 		}
 		DebugWrite( "Started Debugging\n" );
-		DebugWrite( "Version 20020820 1119\n" );
+		DebugWrite( VERSION_STR );
+		time_t t = time(NULL);
+		DebugWrite( ctime( &t ) );
+		DebugWrite( "\n" );
 	}
 }
 
@@ -83,7 +88,7 @@ void DebugResume( void )
 	{
 		CFileException e;
 
-		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeWrite | CFile::modeCreate | CFile::modeNoTruncate , &e ) )
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeReadWrite | CFile::modeCreate | CFile::modeNoTruncate | CFile::shareDenyNone, &e ) )
 		{
 			_TCHAR  errmsg[ 1024 ];
 			int len = 1000;
@@ -93,7 +98,12 @@ void DebugResume( void )
 
 		db_trickle.SeekToEnd();
 
+		DebugWrite( "**********************\n" );
 		DebugWrite( "Resumed Debugging\n" );
+		DebugWrite( VERSION_STR );
+		time_t t = time(NULL);
+		DebugWrite( ctime( &t ) );
+		DebugWrite( "\n" );
 	}
 }
 
@@ -223,7 +233,14 @@ BOOL CCDRLoaderApp::InitInstance()
 					case 'b':
 					{
 						SetDebugFlag( cur_token[0] != '0' );
-						DebugStart();
+						if ( cur_token[0] == '1' )
+						{
+                            DebugStart();
+						}
+						else
+						{
+							DebugResume();
+						}
 					}
 					break;
 
@@ -264,26 +281,43 @@ BOOL CCDRLoaderApp::InitInstance()
 	dlg.UserId = ini_Data.last_User;
 	dlg.SetInit( &ini_Data );
 
+	//DebugBreak();
+
+	int cur_server_ndx = ini_Data.GetCurrentServer();
+
 	INT_PTR nResponse;
 	TCHAR * cdr_s_id = _wgetenv( _T( "CDRSession" ) );
 	if ( cdr_s_id == NULL )
 	{
-		nResponse = dlg.DoModal();
-		DebugWrite( "Returned from modal dialog\n" );
+ 		nResponse = dlg.DoModal();
+		DebugWrite( "Returned from modal dialog, setting environment.\n" );
+
+		CString uid = dlg.UserId;
+		ini_Data.last_User = uid;
+
+		CString key = dlg.SessionId;
+
+		cur_server_ndx = ini_Data.GetCurrentServer();
+
+		CDRTicketStub::BequeathEnvironment( uid, 
+							 key, 
+							 ini_Data.servers[ cur_server_ndx ].cdr_Server, 
+							 ini_Data.servers[ cur_server_ndx ].cdr_Port );
 	}
 	else
 	{
 		// we logged in earlier, don't repeat
 		nResponse = IDOK;
-		DebugWrite( "Skipped modal dialog Session Id already set.\n" );
+		DebugWrite( "Skipped modal dialog Session Id already set, leaving environment as it was.\n" );
+		DebugWrite( "Session Id was " );
+		DebugWrite( cdr_s_id );
+		DebugWrite( "\n" );
 	}
 
 	if (nResponse == IDOK)
 	{
 		bool	ok_to_launch = false;
 		CString	err = _T("Unknown error.");
-
-		int cur_server_ndx = ini_Data.GetCurrentServer();
 
 		CString http_server;
 		if ( ini_Data.servers[ cur_server_ndx ].ticket_Server.GetLength() > 0 )
@@ -300,12 +334,10 @@ BOOL CCDRLoaderApp::InitInstance()
 			http_server = default_http_server;
 		}
 		CDRTicketStub ticket_stub;
+		DebugWrite( "Http Server is " );
+		DebugWrite( http_server );
+		DebugWrite( "\n" );
 		ticket_stub.SetHttpServer( http_server );
-
-		CString uid = dlg.UserId;
-		ini_Data.last_User = uid;
-
-		CString key = dlg.SessionId;
 
 		if ( true )
 		{
@@ -369,9 +401,7 @@ BOOL CCDRLoaderApp::InitInstance()
 			DebugWrite( "Closing debug prior launch.\n" );
 			DebugEnd();
 
-			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key, 
-											ini_Data.servers[ cur_server_ndx ].cdr_Server, 
-											ini_Data.servers[ cur_server_ndx ].cdr_Port ) )
+			if ( ! ticket_stub.LaunchCDR( cdr_application ) )
 			{
 				// failed after all
 				ok_to_launch = false;

@@ -20,8 +20,9 @@ Global
 	GlobalSection(SolutionItems) = postSolution
 		Item:1 = CDRLoader.cmd
 		Item:2 = CDRLoader.ini
-		Item:3 = SetupCDRLoader.cmd
-		Item:4 = unzip.exe
+		Item:3 = CreatingTheInstallZip.txt
+		Item:4 = SetupCDRLoader.cmd
+		Item:5 = unzip.exe
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
