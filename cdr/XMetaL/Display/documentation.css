@@ -1,0 +1,230 @@
+/*************************************************************************/
+/* 	Documentation.css                                                */
+/*                                                                       */
+/*      v 1.0                                                            */
+/*      02/11/02    by ebator                                            */
+/*      Based on Summary.css                                             */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";  
+
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: navy;
+       font-weight: normal;
+       background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+ActionDate,
+ActionDescription,
+Body,
+Comment,
+DatedAction,
+DateLastModified,
+DocType,
+Documentation,
+DocumentationTitle,
+Example,
+Function,
+Metadata,
+RelatedTopic,
+RelatedTopicID,
+RelationshipType,
+Subject,
+Tip,
+TopicSection,
+TopicText,
+TopicTitle,
+
+
+    { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+ActionDate:before			{ content: "Date: "; }
+ActionDescription:before		{ content: "Action: "; }
+Comment:before				{ content: "Comment: "; }
+DatedAction:before			{ content: "DATED ACTION "; }
+DateLastModified:before			{ content: "Last Modified: "; }
+DocType:before				{ content: "Doc Type: "; }
+Example:before				{ content: "Example: "; }
+Function:before				{ content: "Function: "; }
+Metadata:before				{ content: "METADATA "; }
+RelatedTopic:before			{ content: "Related Topics: "; }
+RelatedTopicID:before			{ content: "Related Topic: "; }
+RelationshipType:before			{ content: "Relationship: "; }
+Subject:before				{ content: "Keywords: "; }
+Tip:before				{ content: "Tip: "; }
+
+
+/***************************************************************************/ 
+/*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
+/***************************************************************************/ 
+
+
+Metadata,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+Metadata,
+
+     { font-size: 12pt; }
+
+DocType:before, 
+Function:before, 
+Subject:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black; }
+
+/*SecondaryTopics>Term,
+
+     { prefix-format: "[ %attribute-list; ]"; } *./
+
+
+/***************************************************************************/ 
+/*                      DOCUMENTATION TITLE                                */ 
+/***************************************************************************/ 
+
+DocumentationTitle,
+
+     { font-size: 20pt;
+       font-weight: bold;
+       margin-top: 12pt; }
+
+
+/***************************************************************************/ 
+/*                TOPOIC SECTION TITLES, INDENTS, SUBSECTIONS              */ 
+/***************************************************************************/ 
+
+
+DateLastModified:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  
+       margin-top: 15pt;
+       margin-bottom: 10pt; }
+
+TopicTitle,
+
+     { font-weight: bold;
+       font-size: 14pt;
+       color: blue; }
+
+TopicText>Para, 
+
+     { margin-left: 20pt;
+       margin-bottom: .5em; }
+
+Example:before,
+RelatedTopic:before,
+Tip:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: blue; }
+
+Metadata:before,
+RelatedTopicID:before,
+RelationshipType:before,
+
+     { font-weight: bold; }
+
+
+
+/***************************************************************************/ 
+/*                               TABLES                                    */ 
+/***************************************************************************/ 
+
+
+TopicText>Table, 
+
+     { margin-left: 20pt;
+       margin-bottom: .5em; }
+
+
+
+/***************************************************************************/ 
+/*                               FORM DATA                                 */ 
+/***************************************************************************/ 
+
+
+DocType:before,
+Function:before,
+Metadata,
+Subject:before,
+
+	{ background-color: #CCCCFF; }
+
+
+DocType,
+Function,
+Subject,
+
+	{ background-color: white; }
+
+
+/* Key element for length = SummaryLanguage                               */
+
+DocType,				{ margin-left: 80pt;
+					  text-indent: -62pt; }
+Function,				{ margin-left: 80pt; 
+					  text-indent: -58.5pt;}
+Subject,				{ margin-left: 80pt; 
+					  text-indent: -66pt;}
+ActionDescription,			{ margin-left: 80pt; 
+					  text-indent: -44pt;}
+ActionDate,				{ margin-left: 80pt; 
+					  text-indent: -34pt;}
+
+DocType,
+Example,
+Function,
+Subject,
+RelatedTOpicID,
+RelationshipType,
+Tip,
+
+	{ margin-bottom: 4pt; }
+
+DateLastModified,
+DocType,
+
+	{ margin-top: 4pt; }
+
