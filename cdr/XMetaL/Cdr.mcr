@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.113 2003-12-16 13:32:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.114 2004-03-10 19:42:04 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.113  2003/12/16 13:32:52  bkline
+     Added macro to navigate to patient abstract.
+
      Revision 1.112  2003/12/03 20:26:52  bkline
      Plugged in Unicode for TM symbol.
 
@@ -2378,6 +2381,12 @@
     function addCTGovToolbar() {
 
         var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Go To Brief Summary",       // Macro.
+                           "Brief Summary",             // Tooltip.
+                           "Move to Brief Summary element",// Description
+                           "General (Custom)", 7, 2,    // Icon set, row, col.
+                           false),                      // Starts new group?
             new CdrCmdItem(null,                        // Label.
                            "CTGovProtocol Diff",        // Macro.
                            "Diff ",                     // Tooltip.
@@ -5438,6 +5447,16 @@
     if (Selection != null) {
         Selection.MoveToDocumentStart();
         Selection.MoveToElement("ProtocolAbstract");
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Go To Brief Summary"
+       lang="JScript">
+  <![CDATA[
+    if (Selection != null) {
+        Selection.MoveToDocumentStart();
+        Selection.MoveToElement("BriefSummary");
     }
   ]]>
 </MACRO>
