@@ -6,7 +6,7 @@ copy unzip.exe  "%XM_DESTINATION%"
 copy CDRLoader.exe "%XM_DESTINATION%"
 copy CDRLoader.ini "%XM_DESTINATION%"
 copy CDRLoader.cmd "%XM_DESTINATION%"
-copy CDRLoader.lnk "%DESK_DESTINATION%"
+copy CDR.lnk "%DESK_DESTINATION%"
 echo Finished copying CDRLoader Files
 echo You may now delete the CDRLdrInstall directory.
 pause

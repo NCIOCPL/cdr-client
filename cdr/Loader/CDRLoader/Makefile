@@ -1,10 +1,13 @@
 #----------------------------------------------------------------------
 #
-# $Id: Makefile,v 1.3 2002-12-17 20:50:04 bkline Exp $
+# $Id: Makefile,v 1.4 2002-12-24 17:20:11 bkline Exp $
 #
 # Rules for building and packing up CDR client files.
 #
 # $Log: not supported by cvs2svn $
+# Revision 1.3  2002/12/17 20:50:04  bkline
+# Added DRV variable.
+#
 # Revision 1.2  2002/12/17 20:47:12  bkline
 # Made zip archive store the files in a subdirectory.
 #
@@ -18,7 +21,7 @@
 #----------------------------------------------------------------------
 DRV=d:
 DEVENV=$(DRV)\Program Files\Microsoft Visual Studio .NET\Common7\IDE\devenv.exe
-ARCHIVE_FILES=CDRLoader.exe unzip.exe CDRLoader.ini CDRLoader.lnk \
+ARCHIVE_FILES=CDRLoader.exe unzip.exe CDRLoader.ini CDR.lnk \
 SetupCDRLoader.cmd CDRLoader.cmd
 
 #----------------------------------------------------------------------
