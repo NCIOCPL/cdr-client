@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.1 2003-10-28 13:12:55 bkline Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.2 2003-11-12 21:21:16 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2003/10/28 13:12:55  bkline
+ * Style sheets for new document type for ClinicalTrials.gov documents.
+ *
  */
 
 
@@ -75,6 +78,8 @@ DownloadDate,
 Eligibility,
 Email,
 EndDate,
+EnteredBy,
+EntryDate,
 ExclusionCriteria,
 Facility,
 Gene,
@@ -112,6 +117,7 @@ PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
 ProfessionalSuffix,
+ProtocolDesign,
 RequiredHeader,
 Role,
 SecondaryID,
@@ -159,6 +165,8 @@ DownloadDate                 :before,
 Eligibility                  :before,
 Email                        :before,
 EndDate                      :before,
+EnteredBy                    :before,
+EntryDate                    :before,
 ExclusionCriteria            :before,
 Facility                     :before,
 Gene                         :before,
@@ -196,6 +204,7 @@ PoliticalSubUnit_State       :before,
 PostalAddress                :before,
 PostalCode_ZIP               :before,
 ProfessionalSuffix           :before,
+ProtocolDesign               :before,
 RequiredHeader               :before,
 Role                         :before,
 SecondaryID                  :before,
@@ -251,6 +260,8 @@ DownloadDate                 :before { content: "Download Date "; }
 Eligibility                  :before { content: "ELIGIBILITY "; }
 Email                        :before { content: "Email "; }
 EndDate                      :before { content: "End Date "; }
+EnteredBy                    :before { content: "Entered By "; }
+EntryDate                    :before { content: "Entered Date "; }
 ExclusionCriteria            :before { content: "Exclusion Criteria "; }
 Facility                     :before { content: "FACILITY "; }
 Gene                         :before { content: "Gene "; }
@@ -286,6 +297,7 @@ PoliticalSubUnit_State       :before { content: "Polit Unit/State "; }
 PostalAddress                :before { content: "POSTAL ADDRESS "; }
 PostalCode_ZIP               :before { content: "Postal Code "; }
 ProfessionalSuffix           :before { content: "Prof'l Suffix "; }
+ProtocolDesign               :before { content: "Protocol Design "; }
 RequiredHeader               :before { content: "REQUIRED HEADER "; }
 Role                         :before { content: "Role "; }
 SecondaryID                  :before { content: "Secondary ID "; }

@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol.css,v 1.1 2003-10-28 13:12:55 bkline Exp $
+ * $Id: CTGovProtocol.css,v 1.2 2003-11-12 21:21:16 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2003/10/28 13:12:55  bkline
+ * Style sheets for new document type for ClinicalTrials.gov documents.
+ *
  */
 
 /**************************************************************************/ 
@@ -65,6 +68,8 @@ DownloadDate,
 Eligibility,
 Email,
 EndDate,
+EnteredBy,
+EntryDate,
 ExclusionCriteria,
 Facility,
 Gene,
@@ -102,6 +107,7 @@ PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
 ProfessionalSuffix,
+ProtocolDesign,
 RequiredHeader,
 Role,
 SecondaryID,
@@ -193,6 +199,7 @@ StudyCategoryName   :before { content: "Study Category Name *: "; }
 Intervention        :before { content: "INTERVENTION & +"; }
 InterventionType    :before { content: "Intervention Type * @: "; }
 InterventionName    :before { content: "Intervention Name & + @: "; }
+ProtocolDesign      :before { content: "Protocol Design & +: "; }
 Condition           :before { content: "Condition & + @: "; }
 Gene                :before { content: "Gene & + @: "; }
 Eligibility         :before { content: "ELIGIBILITY CRITERIA * "; }
@@ -203,6 +210,8 @@ AgeText             :before { content: "Age Criteria (Text) &: "; }
 Diagnosis           :before { content: "Diagnosis & + @: "; }
 ExclusionCriteria   :before { content: "Exclusion Criteria & + @: "; }
 Comment             :before { content: "Comment &: "; }
+EnteredBy           :before { content: "Entered By *: "; }
+EntryDate           :before { content: "Entry Date *: "; }
 VerificationDate    :before { content: "Verification Date *: "; }
 LastChangedDate     :before { content: "Last Changed Date &: "; }
 
@@ -274,6 +283,7 @@ StudyCategoryName   :before,
 Intervention        :before,
 InterventionType    :before,
 InterventionName    :before,
+ProtocolDesign      :before,
 Condition           :before,
 
 Gene                :before,
@@ -285,6 +295,8 @@ AgeText             :before,
 Diagnosis           :before,
 ExclusionCriteria   :before,
 Comment             :before,
+EnteredBy           :before,
+EntryDate           :before,
 VerificationDate    :before,
 LastChangedDate     :before,
 
@@ -296,6 +308,7 @@ LastChangedDate     :before,
 /***************************************************************************/
 
 Phone { margin-top: 0em; }
+Para  { margin-bottom: 1em; }
 
 RequiredHeader,
 IDInfo,
@@ -412,6 +425,7 @@ StudyCategoryType                { margin-left: 150pt; text-indent: -136.5pt; }
 StudyCategoryName                { margin-left: 150pt; text-indent: -141.2pt; }
 InterventionType                 { margin-left: 150pt; text-indent: -130.5pt; }
 InterventionName                 { margin-left: 150pt; text-indent: -149.0pt; }
+ProtocolDesign                   { margin-left: 150pt; text-indent: -122.0pt; }
 Condition                        { margin-left: 150pt; text-indent: -101.0pt; }
 Gene                             { margin-left: 150pt; text-indent:  -75.0pt; }
 HealthyVolunteers                { margin-left: 150pt; text-indent: -136.5pt; }
@@ -421,6 +435,8 @@ AgeText                          { margin-left: 150pt; text-indent: -122.0pt; }
 Diagnosis                        { margin-left: 150pt; text-indent: -103.0pt; }
 ExclusionCriteria                { margin-left: 150pt; text-indent: -146.0pt; }
 Comment                          { margin-left: 150pt; text-indent:  -75.5pt; }
+EnteredBy                        { margin-left: 150pt; text-indent:  -79.5pt; }
+EntryDate                        { margin-left: 150pt; text-indent:  -76.0pt; }
 
 VerificationDate                 { margin-left: 135pt; text-indent: -110.0pt; }
 LastChangedDate                  { margin-left: 135pt; text-indent: -131.0pt; }
@@ -468,6 +484,7 @@ StudyCategoryType,
 StudyCategoryName,
 InterventionType,
 InterventionName,
+ProtocolDesign,
 Condition,
 Gene,
 HealthyVolunteers,
@@ -477,6 +494,8 @@ AgeText,
 Diagnosis,
 ExclusionCriteria,
 Comment,
+EnteredBy,
+EntryDate,
 VerificationDate,
 LastChangedDate
 
@@ -508,6 +527,9 @@ CTStudyDesign,
 City,
 Collaborator,
 Comment,
+EnteredBy,
+EntryDate,
+ProtocolDesign,
 Condition,
 Contact,
 ContactBackup,
@@ -661,6 +683,7 @@ StudyCategoryName      :before,
 Intervention           :before,
 InterventionType       :before,
 InterventionName       :before,
+ProtocolDesign         :before,
 Condition              :before,
 Gene                   :before,
 Intervention,
@@ -673,6 +696,8 @@ AgeText                :before,
 Diagnosis              :before,
 ExclusionCriteria      :before,
 Comment                :before,
+EnteredBy              :before,
+EntryDate              :before,
 
 	{ background-color: #CCFFCC; }  /*light green*/
 
