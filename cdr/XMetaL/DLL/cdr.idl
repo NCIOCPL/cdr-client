@@ -37,6 +37,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(26), helpstring("method glossify")] HRESULT glossify(void);
         [id(27), helpstring("method addGlossaryPhrase")] HRESULT addGlossaryPhrase(void);
         [id(28), helpstring("method setTitleBar")] HRESULT setTitleBar(void);
+        [id(29), helpstring("method acceptOrRejectMarkup")] HRESULT acceptOrRejectMarkup(void);
     };
 
 [

@@ -331,6 +331,40 @@ BEGIN
     PUSHBUTTON      "Skip This Time",IDC_GLOSSIFY_SKIP_FIRST,169,54,71,14
 END
 
+IDD_REVIEW_MARKUP DIALOGEX 0, 0, 186, 178
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Review Markup"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Next",IDC_NEXT_MARKUP,121,9,50,14
+    PUSHBUTTON      "Done",IDCANCEL,121,60,50,14
+    CONTROL         "all",IDC_ALL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,37,
+                    21,23,10
+    CONTROL         "publish",IDC_PUBLISH,"Button",BS_AUTORADIOBUTTON,37,33,
+                    38,10
+    CONTROL         "approved",IDC_APPROVED,"Button",BS_AUTORADIOBUTTON,37,
+                    45,47,10
+    CONTROL         "proposed",IDC_PROPOSED,"Button",BS_AUTORADIOBUTTON,37,
+                    57,38,10
+    PUSHBUTTON      "Accept",IDC_ACCEPT,121,26,50,14
+    PUSHBUTTON      "Reject",IDC_REJECT,121,43,50,14
+    GROUPBOX        "Review Markup Level(s)",IDC_STATIC,7,9,100,64
+    GROUPBOX        "Current Markup",IDC_STATIC,7,84,172,74
+    LTEXT           "User",IDC_STATIC,23,97,16,8
+    LTEXT           "Date",IDC_STATIC,23,108,16,8
+    LTEXT           "Content",IDC_STATIC,23,141,27,8
+    LTEXT           "vshields",IDC_MARKUP_USER,65,97,101,8
+    LTEXT           "Wednesday, January 19, 2005",IDC_MARKUP_DATE,65,108,101,
+                    8
+    LTEXT           "In an analysis conducted ...",IDC_MARKUP_CONTENT,65,141,
+                    101,8
+    LTEXT           "Level",IDC_STATIC,23,119,21,8
+    LTEXT           "approved",IDC_REVIEW_LEVEL,65,119,56,8
+    LTEXT           "Source",IDC_STATIC,23,130,23,8
+    LTEXT           "Editorial Board",IDC_MARKUP_SOURCE,65,130,47,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -466,6 +500,14 @@ BEGIN
         RIGHTMARGIN, 320
         TOPMARGIN, 7
         BOTTOMMARGIN, 72
+    END
+
+    IDD_REVIEW_MARKUP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
     END
 END
 #endif    // APSTUDIO_INVOKED

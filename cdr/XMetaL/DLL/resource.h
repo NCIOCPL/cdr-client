@@ -48,19 +48,32 @@
 #define ID_CURRENT_ACTIVITY_TEXT        219
 #define IDD_GLOSSIFY                    219
 #define IDD_GLOSSIFY_DIALOG             219
+#define IDD_REVIEW_MARKUP               220
 #define ID_LOGON_OK                     221
 #define IDC_LINK_TITLE_LABEL            222
 #define IDC_TEXT_MESSAGE                224
 #define IDC_SUCCESS_ICON                225
 #define IDC_GLOSSIFY_SKIP_FIRST         226
+#define IDC_ALL                         227
+#define IDC_PUBLISH                     228
+#define IDC_APPROVED                    229
+#define IDC_PROPOSED                    230
+#define IDC_MARKUP_USER                 231
+#define IDC_MARKUP_DATE                 232
+#define IDC_MARKUP_CONTENT              233
+#define IDC_ACCEPT                      234
+#define IDC_REJECT                      235
+#define IDC_NEXT_MARKUP                 236
+#define IDC_REVIEW_LEVEL                237
+#define IDC_MARKUP_SOURCE               238
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        220
+#define _APS_NEXT_RESOURCE_VALUE        221
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         227
+#define _APS_NEXT_CONTROL_VALUE         239
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

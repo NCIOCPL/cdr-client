@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.42 2005-02-15 19:02:55 bkline Exp $
+ * $Id: Commands.cpp,v 1.43 2005-03-03 15:02:09 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.42  2005/02/15 19:02:55  bkline
+ * Added setTitleBar command.  Added code to strip unwanted portion of
+ * glossary document title.
+ *
  * Revision 1.41  2004/12/27 19:20:45  bkline
  * Added missing Id attribute to validation command.
  *
@@ -154,6 +158,7 @@
 #include "CheckIn.h"
 #include "PassedValidation.h"
 #include "Glossify.h"
+#include "ReviewMarkup.h"
 #include "resource.h"
 
 // System headers
@@ -2428,6 +2433,16 @@ STDMETHODIMP CCommands::setTitleBar(void)
     CWnd* w = ::AfxGetMainWnd();
     if (w)
         w->SetWindowText(title);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::acceptOrRejectMarkup(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CReviewMarkup markupReviewDialog;
+    markupReviewDialog.DoModal();
 
     return S_OK;
 }
