@@ -7,6 +7,10 @@
 #include "cdrticketstub.h"
 #include "DRProgress.h"
 
+extern void DebugWrite( char *  msg );
+extern void DebugWrite( CString msg );
+
+
 
 	const CString CDRTicketStub::REQ_TEMPLATE = 
 		_T("<?xml version = \"1.0\" encoding = \"UTF-8\"?>\n")
@@ -46,6 +50,8 @@ void CDRTicketStub::InitializeFileLocation( CString manifest_file )
 
 	_tmakepath( base_path, NULL, NULL, file, ext );
 	CDR_MANIFEST_FILE = base_path;
+
+	DebugWrite( "Set file location\n" );
 }
 
 CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
@@ -54,6 +60,8 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
 	CString tic_end   = _T( "</TICKET>" );
 
 	CString ticket_xml = _T( "<TICKET/>" );
+
+	DebugWrite( "Looking for ticket in manifest.\n" );
 
 	// extract the ticket portion of the manifest
 	// locat the begining of the ticket tag
@@ -69,11 +77,15 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
 		else
 		{
 			ErrorLog += _T( "<XML_ERR doc=LOCAL>Local MANIFEST has unbalanced TICKET tag.</XML_ERR>\n" );
+
+			DebugWrite( "Didn't find ticket.\n" );
 		}
 	}
 	else
 	{
 		ErrorLog += _T( "<XML_ERR doc=LOCAL>Local MANIFEST missing TICKET tag.</XML_ERR>\n" );
+
+		DebugWrite( "Didn't find ticket.\n" );
 	}
 
 	return ticket_xml;
@@ -81,6 +93,10 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
 
 CString CDRTicketStub::LoadFile( CString fname )
 {
+	DebugWrite( "Loading file, looking for " );
+	DebugWrite( fname );
+	DebugWrite( "\n" );
+
 	CString lt = _T("");
 
 	CStdioFile	ticket_file;
@@ -111,6 +127,8 @@ CString CDRTicketStub::LoadFile( CString fname )
 						+ _T("\">")
 						+ CString( errmsg ) 
 						+ _T("</FILE_ERR>\n");
+
+		DebugWrite( ErrorLog );
 	}
 
 	return lt;
@@ -118,63 +136,92 @@ CString CDRTicketStub::LoadFile( CString fname )
 
 CString CDRTicketStub::GetLocalManifest( void )
 {
+	DebugWrite( "Looking For Manifest.\n" );
+
 	CString t_name = CDR_CLIENT_PATH + CDR_MANIFEST_FILE;
 	CString result = LoadFile( t_name );
 	if ( result.GetLength() == 0 )
 	{
 		result = "<MANIFEST />";
+
+		DebugWrite( "Didn't find Manifest.\n" );
 	}
 	return result;
 }
 
 CString CDRTicketStub::HttpRoundTrip( CString &data )
 {
+
+	DebugWrite( "Starting HTTP calls.\n" );
+
 	CInternetSession inet_session;
-	CHttpConnection * http_session = inet_session.GetHttpConnection( _T("mmdb2") );
-	CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
-	CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
-	CString my_req = REQ_TEMPLATE;
-	my_req.Replace( _T("%s"), data );
-	DWORD l = my_req.GetLength();
-	/***
-		// !DEBUG!
-		CFile junk4( "REQ-DUMP.txt", CFile::modeCreate | CFile::modeWrite );
-		junk4.Write( my_req.GetString(), my_req.GetLength() );
-		junk4.Close();
-	***/
-	// remember to switch out of unicode to talk to TICKET server
-	CStringA plain_req = (CStringA )my_req.GetString();
-	http_page->SendRequest( _T(""), 0, (void *)plain_req.GetString(), l );
-	DWORD result;
 	CString http_response_data = _T("");
-	http_page->QueryInfoStatusCode( result );
-	if (result != HTTP_STATUS_OK)
-	{
-		char num[32];
-		ltoa( result, num, 10 );
-		ErrorLog += _T("<HTTP_ERR>") + CString( num ) + _T("</HTTP_ERR>");
-	}
-	char buff[ 1024 ];
-	UINT nRead = http_page->Read( buff, 1000 );
-	while ( nRead > 0 )
-	{
-		buff[ nRead ] = '\0';
-		http_response_data += buff;
-		nRead = http_page->Read( buff, 1000 );
-	}
-	
 
-	//*** 
-		//!DEBUG!
-		CFile junk5( _T("RESP-DUMP.txt"), CFile::modeCreate | CFile::modeWrite );
-		junk5.Write( http_response_data.GetString(), http_response_data.GetLength() );
-		junk5.Close();
-	//***/
-	http_page->Close();
-	http_session->Close();
+	try
+	{
+		CHttpConnection * http_session = inet_session.GetHttpConnection( _T("mmdb2") );
+		CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
+		CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
+		CString my_req = REQ_TEMPLATE;
+		my_req.Replace( _T("%s"), data );
+		DWORD l = my_req.GetLength();
+		/***
+			// !DEBUG!
+			CFile junk4( "REQ-DUMP.txt", CFile::modeCreate | CFile::modeWrite );
+			junk4.Write( my_req.GetString(), my_req.GetLength() );
+			junk4.Close();
+		***/
+		// remember to switch out of unicode to talk to TICKET server
+		CStringA plain_req = (CStringA )my_req.GetString();
+		http_page->SendRequest( _T(""), 0, (void *)plain_req.GetString(), l );
+		DWORD result;
+		http_page->QueryInfoStatusCode( result );
+		if (result != HTTP_STATUS_OK)
+		{
+			char num[32];
+			ltoa( result, num, 10 );
+			ErrorLog += _T("<HTTP_ERR>") + CString( num ) + _T("</HTTP_ERR>");
+		}
+		char buff[ 1024 ];
+		UINT nRead = http_page->Read( buff, 1000 );
+		while ( nRead > 0 )
+		{
+			buff[ nRead ] = '\0';
+			http_response_data += buff;
+			nRead = http_page->Read( buff, 1000 );
+		}
+		
 
-	delete http_page;
-	delete http_session;
+		/*** 
+			//!DEBUG!
+			CFile junk5( _T("RESP-DUMP.txt"), CFile::modeCreate | CFile::modeWrite );
+			junk5.Write( http_response_data.GetString(), http_response_data.GetLength() );
+			junk5.Close();
+		***/
+		http_page->Close();
+		http_session->Close();
+
+		delete http_page;
+		delete http_session;
+
+	}
+	catch ( CException &e )
+	{
+		_TCHAR  errmsg[ 1024 ];
+		int len = 1000;
+		e.GetErrorMessage( errmsg, len );
+		ErrorLog += _T("<HTTP_EXCEPTION>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+		DebugWrite( errmsg );
+	}
+	catch ( ... )
+	{
+		ErrorLog += _T("<HTTP_EXCEPTION type=Unknown>Exception of Unknown variety.</HTTP_EXCEPTION>");
+
+		DebugWrite( "Unknown Exception!" );
+	}
+
+	DebugWrite( "Finished HTTP calls.\n" );
 
 	return http_response_data;
 }

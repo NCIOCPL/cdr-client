@@ -16,6 +16,94 @@
 #define new DEBUG_NEW
 #endif
 
+/*
+*	DEBUG Tool
+*/
+TCHAR *  DEBUG_FILE = _T( "CDRLoad-Debug.txt" );
+bool	g_debug_flag = false;
+CStdioFile   db_trickle;
+
+void SetDebugFlag( bool f )
+{
+	g_debug_flag = f;
+}
+
+void DebugWrite( char * msg )
+{
+	if ( ! g_debug_flag )
+		return;
+
+	if ( db_trickle.m_hFile != CFile::hFileNull  )
+	{
+		db_trickle.Write( msg, strlen( msg ) );
+		db_trickle.Flush();
+	}
+}
+
+void DebugWrite( CString msg )
+{
+	if ( ! g_debug_flag )
+		return;
+
+	if ( db_trickle.m_hFile != CFile::hFileNull  )
+	{
+		CStringA dummy( msg );
+		db_trickle.Write( (CString::PCYSTR)dummy, strlen( (CString::PCYSTR)dummy ) );
+		db_trickle.Flush();
+	}
+}
+
+void DebugStart( void )
+{
+	if ( ! g_debug_flag )
+		return;
+
+	if ( db_trickle.m_hFile == CFile::hFileNull  )
+	{
+		CFileException e;
+
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeCreate | CFile::modeWrite, &e ) )
+		{
+			_TCHAR  errmsg[ 1024 ];
+			int len = 1000;
+			e.GetErrorMessage( errmsg, len );
+			printf( "Debug file broken: %s", errmsg );
+		}
+		DebugWrite( "Started Debugging\n" );
+	}
+}
+
+void DebugResume( void )
+{
+	if ( ! g_debug_flag )
+		return;
+
+	if ( db_trickle.m_hFile == CFile::hFileNull  )
+	{
+		CFileException e;
+
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeWrite, &e ) )
+		{
+			_TCHAR  errmsg[ 1024 ];
+			int len = 1000;
+			e.GetErrorMessage( errmsg, len );
+			printf( "Debug file broken: %s", errmsg );
+		}
+		DebugWrite( "Resumed Debugging\n" );
+	}
+}
+
+void DebugEnd( void )
+{
+	if ( ! g_debug_flag )
+		return;
+
+	if ( db_trickle.m_hFile != CFile::hFileNull  )
+	{
+		db_trickle.Flush();
+		db_trickle.Close();
+	}
+}
 
 // CCDRLoaderApp
 
@@ -95,6 +183,9 @@ BOOL CCDRLoaderApp::InitInstance()
 					case 'm':
 					{
 						manifest_filename = cur_token;
+						DebugWrite( "Set manifest_filename\n" );
+						DebugWrite( manifest_filename );
+						DebugWrite( "\n" );
 					}
 					break;
 
@@ -102,6 +193,9 @@ BOOL CCDRLoaderApp::InitInstance()
 					case 'a':
 					{
 						cdr_application =  cur_token;
+						DebugWrite( "Set cdr_application\n\t" );
+						DebugWrite( cdr_application.GetString() );
+						DebugWrite( "\n" );
 					}
 					break;
 
@@ -109,6 +203,17 @@ BOOL CCDRLoaderApp::InitInstance()
 					case 'd':
 					{
 						manifest_directory = cur_token;
+						DebugWrite( "Set manifest_directory\n\t" );
+						DebugWrite( manifest_directory.GetString() );
+						DebugWrite( "\n" );
+					}
+					break;
+
+					case 'B':
+					case 'b':
+					{
+						SetDebugFlag( cur_token[0] != '0' );
+						DebugStart();
 					}
 					break;
 				}
@@ -116,6 +221,8 @@ BOOL CCDRLoaderApp::InitInstance()
 			cur_token = cmd_line.Tokenize( space, pos );
 		}
     }
+
+	DebugWrite( "Processed command line\n" );
 
 
 	/****
@@ -134,7 +241,12 @@ BOOL CCDRLoaderApp::InitInstance()
 	CCDRLoaderDlg dlg;
 	m_pMainWnd = dummy_win;
 
+	DebugWrite( "Created dummy window\n" );
+
 	INT_PTR nResponse = dlg.DoModal();
+
+	DebugWrite( "Returned from modal dialog\n" );
+
 	if (nResponse == IDOK)
 	{
 		bool	ok_to_launch = false;
@@ -146,12 +258,25 @@ BOOL CCDRLoaderApp::InitInstance()
 		CString key = dlg.SessionId;
 		if ( true )
 		{
+			DebugWrite( "Evaluating state.\n" );
+
 			ticket_stub.InitializeFileLocation( manifest_directory + manifest_filename );
+
+			DebugWrite( "Loading local manifest.\n" );
+
 			CString local_manifest = ticket_stub.GetLocalManifest();
+
+			DebugWrite( "Extracting ticket from local manifest.\n" );
+
 			CString	local_ticket = ticket_stub.GetLocalTicket( local_manifest );
+
+			DebugWrite( "Validating Ticket.\n" );
 
 			if ( ! ticket_stub.ValidateTicket( local_ticket ) )
 			{
+
+				DebugWrite( "Creating Progress Dialog.\n" );
+
 				CDRProgress p_dlg;
 				p_dlg.Create( CDRProgress::IDD, m_pMainWnd );
 				
@@ -160,6 +285,8 @@ BOOL CCDRLoaderApp::InitInstance()
 				p_dlg.ShowWindow( SW_SHOWNORMAL );
 
 				p_dlg.Advance();
+
+				DebugWrite( "Updating Files\n" );
 
 				// ticket doesn't match, need to update files
 				if ( ticket_stub.UpdateFiles( local_manifest, manifest_directory, &p_dlg ) )
@@ -171,6 +298,8 @@ BOOL CCDRLoaderApp::InitInstance()
 					err = ticket_stub.GetErrorLog();
 				}
 
+				DebugWrite( "Closing progress dialog.\n" );
+
 				p_dlg.CloseWindow();
 			}
 			else
@@ -179,15 +308,24 @@ BOOL CCDRLoaderApp::InitInstance()
 			}
 		}
 
+		DebugWrite( "Ready to launch\n" );
+
 		if ( ok_to_launch )
 		{
+			DebugWrite( "Closing debug prior launch.\n" );
+			DebugEnd();
 			if ( ! ticket_stub.LaunchCDR( cdr_application, uid, key ) )
 			{
 				// failed after all
 				ok_to_launch = false;
 				err = ticket_stub.GetErrorLog();
+
+				DebugResume();
+				DebugWrite( "Launch failed\n" );
 			}
 		}
+
+		DebugWrite( "Did not launch\n" );
 
 		if ( ! ok_to_launch )
 		{
@@ -198,17 +336,25 @@ BOOL CCDRLoaderApp::InitInstance()
 			CString e_msg = _T("Unable to launch CDR Client\nError Log:\n\n") + err;
 			AfxMessageBox( e_msg, MB_ICONERROR );
 		}
+
+		DebugWrite( "User acknowledged failure message\n" );
 	}
 	else if (nResponse == IDCANCEL)
 	{
+		DebugWrite( "User Cancelled\n" );
 		// They said never mind, leave
 		// nothing to do
 	}
+
+	DebugWrite( "Finished processing, destroying dummy window.\n" );
 
 	// get rid of our 'main' window
 	delete dummy_win;
 	m_pMainWnd = 0;
 	dummy_win = 0;
+
+	DebugWrite( "Return FALSE when done.\n" );
+	DebugEnd();
 
 	// Since the dialog has been closed, return FALSE so that we exit the
 	//  application, rather than start the application's message pump.
