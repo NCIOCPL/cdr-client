@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Documentation.css                                                */
 /*                                                                       */
+/*      v 1.3                                                            */
+/*      02/14/02    by ebator                                            */
+/*      Minor changes to tags                                            */
+/*                                                                       */
 /*      v 1.2                                                            */
 /*      02/13/02    by ebator                                            */
 /*      TopicRelationship tags updated                                   */
@@ -96,7 +100,7 @@ RelatedTopic[RelationshipType="Broader"]:before
 					{ content: "Broader Topic: "; }
 RelatedTopic[RelationshipType="Narrower"]:before	
 					{ content: "Narrower Topic: "; }
-Subject:before				{ content: "Keywords: "; }
+Subject:before				{ content: "Keyword: "; }
 Tip:before				{ content: "Tip: "; }
 
 
@@ -222,7 +226,7 @@ DocType,				{ margin-left: 80pt;
 Function,				{ margin-left: 80pt; 
 					  text-indent: -58.5pt;}
 Subject,				{ margin-left: 80pt; 
-					  text-indent: -66pt;}
+					  text-indent: -59pt;}
 ActionDescription,			{ margin-left: 80pt; 
 					  text-indent: -44pt;}
 ActionDate,				{ margin-left: 80pt; 

@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Documentation_structure.css                                      */
 /*                                                                       */
+/*      v 1.23                                                           */
+/*      02/14/02    by ebator                                            */
+/*      Minor changes to tags                                            */
+/*                                                                       */
 /*      v 1.2                                                            */
 /*      02/13/02    by ebator                                            */
 /*      TopicRelationship tags updated                                   */
@@ -106,7 +110,7 @@ RelatedTopic[RelationshipType="Broader"]:before
 					{ content: "Broader Topic: "; }
 RelatedTopic[RelationshipType="Narrower"]:before	
 					{ content: "Narrower Topic: "; }
-Subject:before				{ content: "Keywords: "; }
+Subject:before				{ content: "Keyword: "; }
 Tip:before				{ content: "Tip "; }
 TopicRelationship:before		{ content: "Related Topics: "; }
 TopicSection:before			{ content: "Section "; }
