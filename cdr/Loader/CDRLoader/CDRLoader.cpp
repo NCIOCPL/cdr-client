@@ -7,6 +7,7 @@
 
 #include "stdafx.h"
 
+#include "atlpath.h"
 #include "CDRLoader.h"
 #include "CDRLoaderDlg.h"
 #include "CDRTicketStub.h"
@@ -155,6 +156,22 @@ CCDRLoaderApp theApp;
 
 // CCDRLoaderApp initialization
 
+static CString lookupXmetalApp()
+{
+    CString choices[] = {
+        _T("xmetal31.exe"),
+        _T("xmetal3.exe")
+    };
+    CString base = _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\");
+    for (size_t i = 0; i < sizeof choices / sizeof *choices; ++i) {
+        CString s = base + choices[i];
+        CPath p(s);
+        if (p.FileExists())
+            return s;
+    }
+    return _T("");
+}
+
 BOOL CCDRLoaderApp::InitInstance()
 {
 	// InitCommonControls() is required on Windows XP if an application
@@ -179,10 +196,11 @@ BOOL CCDRLoaderApp::InitInstance()
 	//	m_lpCmdLine
 	CString manifest_directory = _T( ".\\" );
 	CString	manifest_filename = _T( "CDR_MANIFEST.XML" );
-	CString cdr_application = _T( "C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe" );
+	CString cdr_application = lookupXmetalApp();
+    
 
 	// give this the value fromt he file, override from the command line if set
-	CString default_http_server = _T( "mmdb2.nci.nih.gov" );
+	CString default_http_server = _T( "bach.nci.nih.gov" );
 	CString http_server = _T( "" );
 
     if (m_lpCmdLine[0] != _T('\0'))
