@@ -16,7 +16,7 @@ class CEditElement : public CDialog
 {
 // Construction
 public:
-    CEditElement(const std::string&, const std::string&, 
+    CEditElement(const CString&, const CString&, 
                  CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
@@ -42,12 +42,13 @@ protected:
 	virtual void OnOK();
 	afx_msg void OnSelectButton();
 	afx_msg void OnDblclkLink();
+	afx_msg void OnButton2();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:
-    std::string docType;
-    std::string element;
+    CString docType;
+    CString element;
 };
 
 //{{AFX_INSERT_LOCATION}}
