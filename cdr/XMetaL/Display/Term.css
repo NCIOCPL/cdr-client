@@ -160,7 +160,7 @@ DisplayName:before          { content: "Display Name &: "; }
 EnteredBy:before            { content: "Entered By *: "; }
 EntryDate:before            { content: "Entry Date *: "; }
 /* MenuInformation:before      */
-MenuItem:before             { content: "MENU ITEM & + @: "; }
+MenuItem:before             { content: "MENU ITEM & + @ "; }
 MenuParent:before           { content: "Menu Parent & +: "; }
 MenuStatus:before           { content: "Menu Status *: "; }
 MenuType:before             { content: "Menu Type *: "; }
