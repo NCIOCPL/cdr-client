@@ -4,8 +4,10 @@
 #include <direct.h>
 #include <atlenc.h>	// i hope this isn't managed code!
 
+#include "cdrloader.h"
 #include "cdrticketstub.h"
 #include "DRProgress.h"
+
 
 extern void DebugWrite( char *  msg );
 extern void DebugWrite( CString msg );
@@ -559,9 +561,83 @@ bool CDRTicketStub::ProcessZipFile( CString client_dir, CString manifest_xml, CD
 	return success;
 }
 
+bool CDRTicketStub::ProcessInvarientDeletes( CDRProgress * pb )
+{
+	CString keeper_files[] = 
+	{
+		CString( _T( "macros.rlx" )),
+		CString( _T( "tbr.rlx" )),
+		CString( _T( "xmetal.rlx" )),
+		CString( _T( "ctm.rlx" )),
+		CString( _T( "journalist.rlx" )),
+		CString( _T( "Meeting.rlx" )),
+		CString( _T( "openruleset.rlx" ))
+	};
+
+	bool success = true;
+
+	CFileFind rlx_hunter;
+	
+	BOOL have_more = rlx_hunter.FindFile( _T( ".\\Rules\\*.rlx" ) );
+	while ( have_more )
+	{
+		have_more = rlx_hunter.FindNextFile();
+		CString found = rlx_hunter.GetFileName();
+		bool keeper = false;
+		for ( int i = 0; i < 7; i++  )
+		{
+			if ( ! found.CompareNoCase( keeper_files[ i ] ) )
+			{
+				// this one is in the list,
+				// check the next in directory
+				keeper = true;
+				break;
+			}
+		}
+		if ( ! keeper )
+		{
+			// this is where we delete it!
+			CString victim = rlx_hunter.GetFilePath();
+			CStringA t( victim );
+			keeper = false;
+			int r = remove( t.GetString() );
+			// non zero means error, 
+			// ENOENT means it was already gone, which is OK
+			if ( r && ( errno != ENOENT ) )
+			{
+				success = false;
+
+				ErrorLog += _T("<FILE_ERR>");
+				ErrorLog += _T("Unable to delete ") + victim + _T(" : ");
+				ErrorLog += CString( strerror( errno ) );
+				ErrorLog += _T("</FILE_ERR>\n");
+			}
+		}
+	}
+
+	pb->Advance();
+
+	return success;
+}
+
+
 bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 {
+
 	bool success = false;
+
+	CString app_name = AfxGetAppName();
+	CString a_name = theApp.m_pszAppName;
+	CString b_name = theApp.m_pszExeName; 
+
+	DebugWrite( "Possible Names\n" );
+	DebugWrite( app_name );
+	DebugWrite( "\n" );
+	DebugWrite( a_name );
+	DebugWrite( "\n" );
+	DebugWrite( b_name );
+	DebugWrite( "\n" );
+
 
 	long epos;
 	// yea I know big assumptions about valid sections
@@ -593,6 +669,12 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 					if ( epos != -1 )
 					{
 						CString fname = del_list.Mid( fpos, epos - fpos );
+
+						if ( ! fname.CompareNoCase( b_name ) )
+						{
+							// we can't delete ourself, don't try
+							continue;
+						}
 
 						// delete the file
 						CStringA t( fname );
@@ -677,8 +759,10 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 		int pos = manifest_response.Find( _T("<DELTA/>") );
 		if ( pos != -1 )
 		{
-			// we got a empty delta, we're clean roll out true
-			valid = true;
+			// we got a empty delta, 
+			// we're clean roll out true
+			// if we delete the list of always delete...
+			valid = ProcessInvarientDeletes( pb );
 		}
 		else
 		{
@@ -689,6 +773,7 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 
 			pb->Advance();
 
+			valid &= ProcessInvarientDeletes( pb );
 			valid &= ProcessDeleteList( manifest_response, pb );
 
 			pb->Advance();

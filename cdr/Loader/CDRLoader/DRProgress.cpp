@@ -29,7 +29,7 @@ void CDRProgress::Init( void )
 	CDataExchange dx( this, false );
 	DoDataExchange( &dx );
 
-	ProgressBar.SetRange( 1, 10 );
+	ProgressBar.SetRange( 1, 11 );
 	ProgressBar.SetStep( 1 );
 }
 

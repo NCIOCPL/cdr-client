@@ -25,6 +25,7 @@ public:
 
 	bool ProcessZipFile( CString client_dir, CString manifest_xml, CDRProgress * pb );
 	bool ProcessDeleteList( CString manifest_xml, CDRProgress * pb );
+	bool ProcessInvarientDeletes( CDRProgress * pb );
 
 	bool SaveZipFile( CString zip_xml, CString &fname );
 	bool ExecuteZipFile( CString client_dir, CString fname );

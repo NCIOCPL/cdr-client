@@ -202,7 +202,6 @@ void CCDRLoaderDlg::OnBnClickedOk()
 		if ( ! CdrSocket::loggedOn() ) 
 		{
 			err = p.extract(_T("Err"));
-			// err = "Unable to link CDRClient dll, test stubs still in place.";
 			if (err.IsEmpty())
 			{
 				err = _T("Unknown failure logging on to the CDR");

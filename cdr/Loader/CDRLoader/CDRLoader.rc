@@ -175,14 +175,10 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "TODO: <Company name>"
-            VALUE "FileDescription", "TODO: <File description>"
-            VALUE "FileVersion", "1.0.0.1"
-            VALUE "InternalName", "CDRLoader.exe"
-            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
-            VALUE "OriginalFilename", "CDRLoader.exe"
-            VALUE "ProductName", "TODO: <Product name>"
-            VALUE "ProductVersion", "1.0.0.1"
+            VALUE "CompanyName", "National Cancer Institute"
+            VALUE "FileDescription", "This program updates the macro and other ancilliary files needed to run the CDR Client application."
+            VALUE "FileVersion", "2002.07.01"
+            VALUE "ProductVersion", "1.2"
         END
     END
     BLOCK "VarFileInfo"
