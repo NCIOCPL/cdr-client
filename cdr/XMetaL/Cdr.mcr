@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.90 2002-11-14 14:59:30 bkline Exp $
+     $Id: Cdr.mcr,v 1.91 2002-11-21 12:51:35 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.90  2002/11/14 14:59:30  bkline
+     Added Patient Summary Publish Preview macro.
+
      Revision 1.89  2002/11/14 14:49:17  bkline
      Added Mailer History macro.
 
@@ -1611,6 +1614,12 @@
                            "CDR", 3, 5,
                            false),
             new CdrCmdItem(null,
+                           "Mailer History",
+                           "Mailer History",
+                           "Mailer History",
+                           "CDR", 7, 1,
+                           false),
+            new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
                            "Publish Preview",
@@ -1690,6 +1699,12 @@
                            "CDR", 3, 4,
                            false),
             new CdrCmdItem(null,
+                           "Mailer History",
+                           "Mailer History",
+                           "Mailer History",
+                           "CDR", 7, 1,
+                           false),
+            new CdrCmdItem(null,
                            "Generate Mailer",
                            "Mailer",
                            "Generate Mailer",
@@ -1738,6 +1753,12 @@
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Mailer History",
+                           "Mailer History",
+                           "Mailer History",
+                           "CDR", 7, 1,
+                           false),
             new CdrCmdItem(null,
                            "Generate Mailer",
                            "Mailer",
