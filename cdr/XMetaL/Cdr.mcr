@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.103 2003-08-06 21:19:29 bkline Exp $
+     $Id: Cdr.mcr,v 1.104 2003-08-14 21:27:15 bkline Exp $
 
      $Log: not supported by cvs2svn $
      Revision 1.102  2003/05/27 15:06:44  bkline
@@ -4819,7 +4819,7 @@
        id="20404">
   <![CDATA[
     Selection.InsertElement("ItemizedList");
-    Selection.ElementAttribute("Style", "ItemizedList", 0) = "simple";
+    Selection.ElementAttribute("Style", "ItemizedList", 0) = "bullet";
     Selection.InsertWithTemplate("ListTitle");
     Application.Run("Jump Past Element");
     Selection.InsertWithTemplate("ListItem");
