@@ -1,9 +1,13 @@
 /*
- * $Id: SearchDialog.cpp,v 1.5 2002-04-20 19:20:00 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.6 2002-05-08 21:19:50 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2002/04/20 19:20:00  bkline
+ * Removed version string from search and retrieve dialogs.  Will replace
+ * soon with more sophisticated picklist for most recent versions.
+ *
  * Revision 1.4  2001/11/27 14:21:01  bkline
  * Version used at November 2001 demo.
  *
@@ -57,7 +61,7 @@ CSearchDialog::CSearchDialog(const std::list<CString>& typeList,
 {
 	//{{AFX_DATA_INIT(CSearchDialog)
 	m_searchString = _T("");
-	m_checkOut = TRUE;
+	m_checkOut = FALSE;
 	//}}AFX_DATA_INIT
 }
 
