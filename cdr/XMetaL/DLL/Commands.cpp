@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.7 2002-01-22 22:50:53 bkline Exp $
+ * $Id: Commands.cpp,v 1.8 2002-02-01 22:01:03 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2002/01/22 22:50:53  bkline
+ * Some code cleanup.
+ *
  * Revision 1.6  2001/11/27 14:21:01  bkline
  * Version used at November 2001 demo.
  *
@@ -680,7 +683,7 @@ STDMETHODIMP CCommands::save(int *pRet)
             else if (*pRet == 2)
                 ::AfxMessageBox(_T("Failure without explanation"), 
 					MB_ICONEXCLAMATION);
-			else {
+			if (!*pRet) {
 				cdr::Element docId = 
 					cdr::Element::extractElement(rsp, _T("DocId"));
 				if (!docId) {
@@ -1978,7 +1981,7 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
 					MB_ICONEXCLAMATION);
 			else
 				doc.Close(2); // 2=don't save changes.
-				doRetrieve(ctrlInfo.docId, FALSE, _T(""));
+				//doRetrieve(ctrlInfo.docId, FALSE, _T(""));
 			break;
 		}
 		case IDCANCEL:
