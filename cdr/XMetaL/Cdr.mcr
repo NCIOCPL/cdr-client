@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.5 2001-08-27 19:09:43 bkline Exp $
+     $Id: Cdr.mcr,v 1.6 2001-09-20 14:24:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.5  2001/08/27 19:09:43  bkline
+     Added "CDR Advanced Search" macro.
+
      Revision 1.4  2001/08/17 14:27:03  bkline
      Added test for HTML data entry form; added Insertion/Deletion macros.
 
@@ -25,20 +28,41 @@
         lang="JScript">
   <![CDATA[
 
-    // XXX Temporary.  Need to be replaced with calls to the DLL.
-    var UserName = 'rmk';
+    // To be overridden by successful logon.
+    var CdrUserName = "";
+
+    // Clipboard for CDR links.
+    var CdrLinkClipboard = "";
   
+    /*
+     * Utility function to extract the text content of an element.
+     */
+    function getTextContent(elem) {
+        var textContent = "";
+        var child = elem.firstChild;
+        while (child) {
+            if (child.nodeType == 3) { // Text node
+                textContent += child.nodeValue;
+                child = child.nextSibling;
+            }
+        }
+        return textContent;
+    }
+
     /*
      * Obtains account credentials from the user and submits them to the CDR
      * server to establish a logged in session.
      */
     function cdrLogon() {
+        CdrUserName = "";
         cdrObj = new ActiveXObject("Cdr.Commands");
         if (cdrObj == null) {
             Application.Alert("Unable to find CDR DLL.");
         }
         else {
             cdrObj.logon();
+            CdrUserName = cdrObj.username;
+            Application.Alert("User Name is " + CdrUserName);
         }
     }
 
@@ -46,6 +70,7 @@
      * Log the user out of the CDR server.
      */
     function cdrLogoff() {
+        CdrUserName = "";
         if (cdrObj == null) {
             Application.Alert("You are not logged on to the CDR");
         }
@@ -73,6 +98,7 @@
      * Determine whether the current element should be read-only.
      */
     function cdrIsReadOnly() {
+        if (gEditingCdrLink)                          { return 0; }
         if (ActiveDocument == null)                   { return 0; }
         if (ActiveDocument.documentElement == null)   { return 0; }
         if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
@@ -132,6 +158,25 @@
             // Prevent On_Update_UI macro from blocking our editing.
             gEditingCdrLink = true;
             var rc  = cdrObj.edit();
+            gEditingCdrLink = false;
+        }
+    }
+  
+    /*
+     * Allows the user to pick a protocol update person.
+     */
+    function protUpdPerson() {
+        if (cdrDocReadOnly()) {
+            Application.Alert("Document retrieved as read-only.");
+        }
+        else if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+        }
+        else {
+
+            // Prevent On_Update_UI macro from blocking our editing.
+            gEditingCdrLink = true;
+            var rc  = cdrObj.protUpdPerson();
             gEditingCdrLink = false;
         }
     }
@@ -334,7 +379,7 @@
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
-            Application.Alert("Root element is " + rootElem);
+            //Application.Alert("Root element is " + rootElem);
             if (docType.hasElementType("Deletion")) {
                 docType.addElementToInclusions("Deletion", rootElem);
             }
@@ -386,6 +431,10 @@
      */
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
+    Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
+    Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
+    Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
+    Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
    
   ]]>
 </MACRO>
@@ -592,6 +641,71 @@
         id="1912">
  <![CDATA[
     cdrEdit();
+  ]]>
+</MACRO>
+
+<MACRO  name="Protocol Update Person" 
+        key="" 
+        lang="JScript" 
+        tooltip="Store Document in the CDR" >
+ <![CDATA[
+    protUpdPerson();
+  ]]>
+</MACRO>
+
+<MACRO  name="Cdr Copy Document Link"
+        key="" 
+        lang="JScript" 
+        tooltip="Copy Document Link to CDR Clipboard">
+ <![CDATA[
+    function copyDocumentLink() {
+        var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
+        if (nodes.length < 1) {
+            Application.Alert("This is a new document without a document ID.");
+        }
+        else {
+            var elem = nodes.item(0);
+            var val  = getTextContent(elem);
+            CdrLinkClipboard = val;
+        }
+    }
+    copyDocumentLink();
+  ]]>
+</MACRO>
+
+<MACRO  name="Cdr Paste Document Link"
+        key="" 
+        lang="JScript" 
+        tooltip="Paste Document Link From CDR Clipboard">
+ <![CDATA[
+    function pasteDocumentLink() {
+        if (CdrLinkClipboard == "") {
+            Application.Alert("CDR Link Clipboard is empty");
+            return;
+        }
+        var container = Selection.ContainerNode;
+        if (!container || container.nodeType != 1) { // Look for element.
+            Application.Alert("Can't find current element.");
+            return;
+        }
+        Application.Alert("Element name is " + container.nodeName);
+        docType = ActiveDocument.doctype;
+        if (!docType.hasAttribute(container.nodeName, "cdr:ref")) {
+            Application.Alert("Current element cannot accept links.");
+            return;
+        }
+        Selection.ReadOnlyContainer = false;
+        container.setAttribute("cdr:ref", CdrLinkClipboard);
+        child = container.firstChild;
+        while (child) {
+            nextChild = child.nextSibling;
+            container.removeChild(child);
+            child = nextChild;
+        }
+        Selection.ReadOnlyContainer = true;
+    }
+
+    pasteDocumentLink();
   ]]>
 </MACRO>
 
@@ -899,7 +1013,7 @@
                 if (!Selection.IsParentElement("Deletion")) {
                     if (Selection.CanInsert("Deletion")) {
                         Selection.InsertElement("Deletion");
-                        Selection.ContainerAttribute("UserName") = UserName;
+                        Selection.ContainerAttribute("UserName") = CdrUserName;
                         Selection.ContainerAttribute("Time") = 
                             date.toLocaleString();
                         Selection.ContainerStyle = getMarkupStyle("Deletion");
@@ -911,7 +1025,7 @@
                 if (Selection.CanSurround("Deletion")) {
                     Selection.Surround("Deletion");
                     Selection.ContainerStyle = getMarkupStyle("Deletion");
-                    Selection.ContainerAttribute("UserName") = UserName;
+                    Selection.ContainerAttribute("UserName") = CdrUserName;
                     Selection.ContainerAttribute("Time") =
                                                     date.toLocaleString();
                     var rng = ActiveDocument.Range;
@@ -1005,7 +1119,7 @@
             }
             else {  
                 Selection.Surround("Deletion");
-                Selection.ContainerAttribute("UserName") = UserName;
+                Selection.ContainerAttribute("UserName") = CdrUserName;
                 var date = new Date();
                     Selection.ContainerAttribute("Time") = date.toLocaleString();
                     Selection.ContainerStyle = getMarkupStyle("Deletion");
@@ -1029,7 +1143,7 @@
                     // Insert "Insertion"
                     Selection.InsertElement("Insertion");
                     Selection.InsertReplaceableText("Insert text here");
-                    Selection.ContainerAttribute("UserName") = UserName;
+                    Selection.ContainerAttribute("UserName") = CdrUserName;
                     var date = new Date();
                     Selection.ContainerAttribute("Time") = 
                         date.toLocaleString();
@@ -1867,5 +1981,38 @@
 
   ]]>
 </MACRO>
+
+<MACRO  name="CDR Get Address"
+        lang="JScript" 
+        desc="Retrieve address from fragment link"
+        hide="false">
+  <![CDATA[
+
+    if (cdrObj == null) {
+        Application.Alert("You are not logged on to the CDR");
+    }
+    else {
+        cdrObj.getAddress();
+    }
+
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Participating Orgs"
+        lang="JScript" 
+        desc="Select Participating Organizations for Protocol"
+        hide="false">
+  <![CDATA[
+
+    if (cdrObj == null) {
+        Application.Alert("You are not logged on to the CDR");
+    }
+    else {
+        cdrObj.particOrgs();
+    }
+
+  ]]>
+</MACRO>
+
 
 </MACROS>
