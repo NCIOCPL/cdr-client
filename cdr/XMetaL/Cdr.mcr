@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.127 2004-08-11 19:52:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.128 2004-08-11 20:01:26 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.127  2004/08/11 19:52:34  bkline
+     Suppressed glossifier command for readonly documents.
+
      Revision 1.126  2004/08/10 19:45:28  bkline
      Dropped some more dead code.  Suppressed code to manipulate the
      ContainerStyle from the macros (leaving this to the CSS, so I can
@@ -1032,9 +1035,13 @@
         }
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
-        docType.name == "ScientificProtocolInfo")
+        docType.name == "ScientificProtocolInfo") {
         if (!cdrDocReadOnly())
             Application.AppendMacro("Glossify Document", "Glossify Document");
+        if (Selection.IsParentElement("GlossaryTermRef"))
+            Application.AppendMacro("Add Glossary Phrase",
+                                    "Add Glossary Phrase");
+    }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
                                 "CDR Get Org Postal Address");
@@ -5857,13 +5864,20 @@
 </MACRO>
 
 <MACRO name="Glossify Document" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
         cdrObj.glossify();
         ActiveDocument.FormattingUpdating = true;
     }
+  ]]>
+</MACRO>
+
+<MACRO name="Add Glossary Phrase" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    cdrObj.addGlossaryPhrase();
   ]]>
 </MACRO>
 
