@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.119 2004-04-08 20:14:49 bkline Exp $
+     $Id: Cdr.mcr,v 1.120 2004-04-09 16:46:25 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.119  2004/04/08 20:14:49  bkline
+     Dramatic simplification of deletion markup logic (request #1163).
+
      Revision 1.118  2004/04/08 19:56:09  bkline
      New function addPDQBoardMemberInfoToolbar().
 
@@ -569,7 +572,7 @@
          *     agreed that it is preferable to keep the latter
          *     feature.
          */
-        // return 0;
+        return 0;
         if (cdrObj == null)                           { return 0; }
         if (Selection == null)                        { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
