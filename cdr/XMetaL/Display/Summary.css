@@ -206,7 +206,7 @@ SummaryType:before			{ content: "Summary Type *: "; }
 SummaryAudience:before			{ content: "Summary Audience *: "; }
 SummaryLanguage:before			{ content: "Summary Language *: "; }
 TranslationOf:before			{ content: "Translation of &: "; }
-PatientVersionOf:before			{ content: "Patient Version of &: "; }
+PatientVersionOf:before			{ content: "Patient Version of: "; }
 
 
 /***************************************************************************/ 
@@ -277,6 +277,7 @@ SummaryTitle,
 KeyPoint, 
 KeyPoint:before,
 DateLastModified:before,
+PatientVersionOf:before,
 
      { font-weight: bold;
        font-size: 12pt;
@@ -284,7 +285,6 @@ DateLastModified:before,
        margin-top: 15pt;
        margin-bottom: 10pt; }
 
-PatientVersionOf:before,
 PdqKey:before,
 TranslationOf:before,
     
