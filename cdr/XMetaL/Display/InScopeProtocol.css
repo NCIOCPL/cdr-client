@@ -239,7 +239,7 @@ ProtocolProcessingDetails:before
 ProtocolSites:before		{ content: "PROTOCOL SITES & "; }
 ProtocolSource:before		{ content: "PROTOCOL SOURCE * +"; }
 ProtocolSources:before		{ content: "PROTOCOL SOURCES *"; }
-ProtocolSpecialCategory:before	{ content: "PROTOCOL SPECIAL CATEGORY &"; }
+ProtocolSpecialCategory:before	{ content: "PROTOCOL SPECIAL CATEGORY & +"; }
 ProtocolSpecificContact:before	{ content: "Protocol Specific Contact & @ "; }
 ProtocolSponsors:before		{ content: "PROTOCOL SPONSORS &"; }
 ReimbursementApprovalType:before 
