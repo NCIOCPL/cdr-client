@@ -1,6 +1,40 @@
 /*************************************************************************/
 /* 	InScopeProtocol.css                                              */
 /* 	                                                                 */
+/*      v. 4.0                                                           */
+/*      9/24/02  by ebator                                               */
+/*      LeadOrgPersonnel header was not showing up.  Don't know why,     */ 
+/* 	since I haven't changed that element.  Closed up line breaks     */
+/* 	on the Before text definitions for the element to fix it.        */
+/* 	                                                                 */
+/*      v. 3.9                                                           */
+/*      8/22/02  by ebator                                               */
+/*      Fixed ProtocolLeadOrg Header                                     */ 
+/*      Increased white space between ProtocolLeadOrg boxes              */
+/*                                                                       */
+/*      v. 3.8                                                           */
+/*      8/22/02  by ebator                                               */
+/*      Aligned CurrentProtocolStatus                                    */ 
+/*                                                                       */
+/*      v. 3.7                                                           */
+/*      8/20/02  by ebator                                               */
+/*      Break up ProtocolAdminInfo bordered box group so that            */ 
+/*         multiple occurrences of ProtocolLeadOrg are                   */
+/*         more easily distinguished                                     */
+/*                                                                       */
+/*      v. 3.6                                                           */
+/*      5/16/02  by ebator                                               */
+/*      Show LeadOrgPersonnel Public attribute on template               */ 
+/*                                                                       */
+/*      v. 3.5                                                           */
+/*      4/03/02  by ebator                                               */
+/*      Display the cdr:id attribute on LeadOrgPersonnel for             */ 
+/*         MailAbstractTo info                                           */
+/*                                                                       */
+/*      v. 3.4                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.3                                                           */
 /*      2/19/02  by ebator                                               */
 /*      User-requested changes                                           */
@@ -59,7 +93,7 @@
 
 $DOCUMENT
 
-  {  font-family: Arial, "sans serif";       
+  {  font-family: Arial, sans-serif;       
      font-size: 12pt;
      margin-top: 5px;
      margin-left: 5px;  
@@ -154,10 +188,10 @@ StatusName,
 /* & = Optional element */
 
 
-LeadOrgProtocolStatuses > Comment:before	
+LeadOrgProtocolStatuses>Comment:before	
 				{ content: "Comments &: "; }
 CurrentOrgStatus:before		{ content: "Current Org Status *"; }
-CurrentProtocolStatus:before	{ content: "Current Status *: "; }
+CurrentProtocolStatus:before	{ content: "Current Protocol Status *: "; } 
 DateLastModified:before		{ content: "Last Modified &: "; }
 ProtocolSource>DateReceived:before
 				{ content: "Date Rec'd *: "; }
@@ -170,7 +204,13 @@ GrantContractNo:before		{ content: "Grant Contract Number *: "; }
 LeadOrganizationID:before	{ content: "Org Name *: "; }
 LeadOrgProtocolID:before	{ content: "Org Prot ID * + @: "; }
 LeadOrgRole:before		{ content: "Role *: "; }
-LeadOrgPersonnel:before		{ content: "LEAD ORGANIZATION PERSONNEL * + @ "; }
+LeadOrgPersonnel:before		{ content: "LEAD ORGANIZATION PERSONNEL (Public) * + @ "; }
+LeadOrgPersonnel[Public="No"][cdr\:id]:before
+				{ content: "LEAD ORGANIZATION PERSONNEL (Not public) [" attr(cdr\:id) "] "; }
+LeadOrgPersonnel[Public="No"]:before	
+				{ content: "LEAD ORGANIZATION PERSONNEL (Not public) "; }
+LeadOrgPersonnel[cdr\:id]:before	
+				{ content: "LEAD ORGANIZATION PERSONNEL (Public) ["attr(cdr\:id) "] "; }
 LeadOrgProtocolStatuses:before	{ content: "LEAD ORGANIZATION PROTOCOL STATUSES *"; }
 MailAbstractTo:before		{ content: "Mail Abstr To &: "; }
 NIHGrantContract:before		{ content: "NIH GRANT CONTRACT & +"; }
@@ -222,7 +262,7 @@ StatusName:before		{ content: "Status *: "; }
   
 
 CurrentOrgStatus:before,
-CurrentProtocolStatus:before,
+/* CurrentProtocolStatus:before, */
 FundingInfo:before,
 GenericPerson:before,
 GenericPersonContact:before,
@@ -307,8 +347,10 @@ StatusName:before,
   
 
 FundingInfo, 
-ProtocolAdminInfo,
+/* ProtocolAdminInfo, */
+ProtocolAdminInfo>DatedAction,
 ProtocolApproval,
+ProtocolLeadOrg,
 ProtocolProcessingDetails,
 ProtocolSources,
 ProtocolSpecialCategory,
@@ -320,10 +362,11 @@ ProtocolSponsors,
       margin-top: 1em;  }
 
 ProtocolAmendmentInformation>DatedAction,
-ProtocolAdminInfo>DatedAction,
+/* ProtocolAdminInfo>DatedAction, */
 
    { border: none;     }
 
+CurrentProtocolStatus,
 DateLastModified,
 LeadOrgProtocolID,
 MailAbstractTo,
@@ -357,6 +400,15 @@ ProtocolSponsors,
 
    {  margin-bottom: .5em;  }
 
+	
+ProtocolAdminInfo,
+
+   { margin-top: 1em;
+     margin-bottom: 1em;  } 
+
+ProtocolLeadOrg + ProtocolLeadOrg,
+
+	{ margin-top: 3em; }
 
 
 /***************************************************************************/ 
@@ -406,10 +458,10 @@ SpecialCategory,			{ margin-left: 100pt;
 ProtocolSpecialCategory>Comment,	{ margin-left: 100pt;
 					  text-indent: -82pt; }
 
-/* Key element for length = CurrentProtocolStatus			   */
+/* Key element for length = CurrentProtocolStatus		  	  */
 
-CurrentProtocolStatus,			{ margin-left: 100pt;
-					  text-indent: -98.5pt; }
+CurrentProtocolStatus,			{ margin-left: 150pt;
+					  text-indent: -150pt; } 	
 
 LeadOrganizationID,			{ margin-left: 100pt; 
 					  text-indent: -72pt; }
@@ -615,7 +667,7 @@ ProtocolProcessingDetails>Comment:before,
 ProtocolSource>Comment:before,
 ProtocolSpecialCategory>Comment:before,
 ProtocolSponsors>Comment:before,
-CurrentProtocolStatus:before,
+/* CurrentProtocolStatus:before, */
 ProtocolSource>DateReceived:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate:before,
@@ -639,7 +691,7 @@ PrivatePracticeSiteID:before,
 PrivatePracticeSiteStatus:before,
 ProcessingDate:before,
 ProcessingStatus:before,
-ProtocolAdminInfo,
+/* ProtocolAdminInfo, */
 ProtocolApproval,
 ProtocolLeadOrg,
 ProtocolProcessingDetails,
@@ -658,8 +710,10 @@ StatusName:before,
 
 	{ background-color: #CCCCFF; }  /*light blue*/
 
+CurrentProtocolStatus:before,
 DateLastModified:before,
 PdqKey:before,
+ProtocolAdminInfo:before,
 
 	{ font-weight: bold;
 	  color: navy;         }
@@ -671,7 +725,6 @@ ProtocolAmendmentInformation>DatedAction>ActionDate:before,
 ProtocolAmendment>Comment:before,
 ProtocolAmendmentInformation>DatedAction,
 ProtocolAmendmentInformation>DatedAction>Comment:before,
-Form,
 
 	{ background-color: #CCFFCC; }  /*light green*/
 
