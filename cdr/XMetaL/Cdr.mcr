@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.77 2002-09-23 19:58:25 bkline Exp $
+     $Id: Cdr.mcr,v 1.78 2002-09-23 20:10:20 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.77  2002/09/23 19:58:25  bkline
+     Added new org status change macro to popup menu.
+
      Revision 1.76  2002/09/23 19:51:21  bkline
      Added Change Participating Org Status macro.
 
@@ -4022,6 +4025,27 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Insert Participating Org"
+        lang="JScript" 
+        key="Alt+Z"
+        desc="Insert new Protocol participating organization"
+        hide="false">
+  <![CDATA[
+    function insertParticipatingOrg() {
+        var rng = ActiveDocument.Range;
+        if (!rng.FindInsertLocation("OrgSite", true)) {
+            if (!rng.FindInsertLocation("OrgSite", false)) {
+                Application.Alert("Can't insert OrgSite element");
+                return; 
+            }
+        }
+        rng.InsertWithTemplate("OrgSite");
+        rng.Select();
+    }
+    insertParticipatingOrg();
+  ]]>
+</MACRO>
+
 <MACRO  name="Test Me"
         lang="JScript" 
         desc="dummy test macro"
@@ -5195,7 +5219,6 @@
 </MACRO>
 
 <MACRO name="Change Participating Org Status" 
-        key="Alt+Z"
        lang="JScript">
   <![CDATA[
     function changePOStatus() {
