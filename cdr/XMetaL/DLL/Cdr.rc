@@ -153,6 +153,7 @@ BEGIN
     LTEXT           "Document Type:",IDC_STATIC,21,119,54,8
     CONTROL         "Check Out?",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,63,54,10
+    PUSHBUTTON      "Versions",IDC_BUTTON3,251,113,50,14
 END
 
 IDD_SAVE_DIALOG DIALOG DISCARDABLE  0, 0, 286, 178
@@ -304,6 +305,17 @@ BEGIN
                     10
 END
 
+IDD_VERSION_LIST DIALOG DISCARDABLE  0, 0, 422, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,365,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,365,24,50,14
+    LISTBOX         IDC_LIST1,17,15,341,49,LBS_SORT | LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -423,6 +435,14 @@ BEGIN
         RIGHTMARGIN, 194
         TOPMARGIN, 7
         BOTTOMMARGIN, 53
+    END
+
+    IDD_VERSION_LIST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 415
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
     END
 END
 #endif    // APSTUDIO_INVOKED

@@ -368,6 +368,10 @@ SOURCE=.\ValidateDialog.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\VersionList.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\xmetal3.cpp
 # End Source File
 # End Group
@@ -445,6 +449,10 @@ SOURCE=.\StdAfx.h
 # Begin Source File
 
 SOURCE=.\ValidateDialog.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\VersionList.h
 # End Source File
 # Begin Source File
 
