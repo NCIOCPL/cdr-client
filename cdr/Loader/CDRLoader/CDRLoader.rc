@@ -79,7 +79,7 @@ CAPTION "About CDRLoader"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_XM_ICON,IDC_STATIC,11,17,20,20
-    LTEXT           "CDRLoader Version 1.0",IDC_STATIC,40,10,119,8,
+    LTEXT           "CDRLoader Version 2002.08.20",IDC_STATIC,40,10,119,8,
                     SS_NOPREFIX
     LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP

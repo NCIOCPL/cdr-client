@@ -828,6 +828,18 @@ bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CStri
 	my_args[1] = NULL;
 	my_args[2] = NULL;
 
+	CStringA aapp( app );
+	CStringA uenv = "CDRUser="  + CStringA( user );
+	CStringA senv = "CDRSession="  + CStringA( session );
+	CStringA serv_env = "CDR_HOST=" + CStringA( server );
+	CStringA port_env = "CDR_PORT=" + CStringA( port );
+
+	// these change current environment settings
+	_putenv( (LPCSTR)uenv );
+	_putenv( (LPCSTR)senv );
+	_putenv( (LPCSTR)serv_env );
+	_putenv( (LPCSTR)port_env );
+
 	if ( PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
 	{
 		DebugResume();
@@ -853,19 +865,6 @@ bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CStri
 	}
 	else
 	{
-
-		CStringA aapp( app );
-		CStringA uenv = "CDRUser="  + CStringA( user );
-		CStringA senv = "CDRSession="  + CStringA( session );
-		CStringA serv_env = "CDR_HOST=" + CStringA( server );
-		CStringA port_env = "CDR_PORT=" + CStringA( port );
-
-		// these change current environment settings
-		_putenv( (LPCSTR)uenv );
-		_putenv( (LPCSTR)senv );
-		_putenv( (LPCSTR)serv_env );
-		_putenv( (LPCSTR)port_env );
-
 		//char * tprog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
 		//char * tprog = "C:\\WINNT\\system32\\cmd.exe";
 

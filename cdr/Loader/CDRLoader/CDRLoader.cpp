@@ -70,7 +70,7 @@ void DebugStart( void )
 			printf( "Debug file broken: %s", errmsg );
 		}
 		DebugWrite( "Started Debugging\n" );
-		DebugWrite( "Version 20020813 1407\n" );
+		DebugWrite( "Version 20020820 1119\n" );
 	}
 }
 
@@ -264,9 +264,19 @@ BOOL CCDRLoaderApp::InitInstance()
 	dlg.UserId = ini_Data.last_User;
 	dlg.SetInit( &ini_Data );
 
-	INT_PTR nResponse = dlg.DoModal();
-
-	DebugWrite( "Returned from modal dialog\n" );
+	INT_PTR nResponse;
+	TCHAR * cdr_s_id = _wgetenv( _T( "CDRSession" ) );
+	if ( cdr_s_id == NULL )
+	{
+		nResponse = dlg.DoModal();
+		DebugWrite( "Returned from modal dialog\n" );
+	}
+	else
+	{
+		// we logged in earlier, don't repeat
+		nResponse = IDOK;
+		DebugWrite( "Skipped modal dialog Session Id already set.\n" );
+	}
 
 	if (nResponse == IDOK)
 	{
