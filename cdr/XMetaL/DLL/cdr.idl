@@ -1,0 +1,56 @@
+// Cdr.idl : IDL source for Cdr.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Cdr.tlb) and marshalling code.
+
+import "oaidl.idl";import "ocidl.idl";
+	
+	[
+		object,
+		uuid(744ECEA9-3F8F-497C-ABCA-2A6C4C653466),
+		dual,
+		helpstring("ICommands Interface"),
+		pointer_default(unique)
+	]
+	interface ICommands : IDispatch
+	{
+		[id(1), helpstring("method logon")] HRESULT logon([out, retval] int* pRet);
+		[id(2), helpstring("method retrieve")] HRESULT retrieve([out, retval] int* pRet);
+		[id(8), helpstring("method search")] HRESULT search([out, retval] int* pRet);
+		[id(9), helpstring("method save")] HRESULT save([out, retval] int* pRet);
+		[id(10), helpstring("method validate")] HRESULT validate([out, retval] int* pRet);
+		[id(11), helpstring("method logoff")] HRESULT logoff([out, retval] int* pRet);
+		[id(12), helpstring("method edit")] HRESULT edit([out, retval] int* pRet);
+		[id(13), helpstring("method isReadOnly")] HRESULT isReadOnly([in] const BSTR* docType, [in] const BSTR* elemName, [out, retval] BOOL* pVal);
+		[id(14), helpstring("method advancedSearch")] HRESULT advancedSearch([out, retval] int* retVal);
+		[propget, id(15), helpstring("Name of account used to log into the CDR")] HRESULT username([out, retval] BSTR *pVal);
+		[id(17), helpstring("method protUpdPerson")] HRESULT protUpdPerson([out, retval] int* pRet);
+		[id(18), helpstring("method getPersonAddress")] HRESULT getPersonAddress([out, retval] int* pRet);
+		[id(19), helpstring("method particOrgs")] HRESULT particOrgs([out, retval] int* pRet);
+		[id(20), helpstring("method getOrgAddress")] HRESULT getOrgAddress([out, retval] int* pRet);
+		[id(21), helpstring("method pasteDocLink")] HRESULT pasteDocLink(const BSTR*val, [out, retval] int* pRet);
+		[propget, id(22), helpstring("property session")] HRESULT session([out, retval] BSTR *pVal);
+		[id(23), helpstring("method checkIn")] HRESULT checkIn([out, retval] int* pRet);
+	};
+
+[
+	uuid(D268DB6C-44A0-4A9B-8F92-4D61120F7EAE),
+	version(1.0),
+	helpstring("Cdr 1.0 Type Library")
+]
+library CDRLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	
+	[
+		uuid(41A6D40C-952F-4E4C-B329-CE529E4F3C16),
+		helpstring("Commands Class")
+	]
+	coclass Commands
+	{
+		[default] interface ICommands;
+	};
+};
