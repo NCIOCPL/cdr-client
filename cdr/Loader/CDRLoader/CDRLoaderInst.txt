@@ -1,0 +1,20 @@
+CDRLoader installation & operation instructions
+[DRAFT 02.05.28 - first beta test]
+
+Enclosed with this are two files; CDRLoader.exe and unzip.exe.
+Both of these files should be copied into the XMetal directory
+	C:\Program Files\SoftQuad\XMetaL 3
+For conveinence and reliability a shortcut for CDRLoader should be created.
+	[ Viewing the CDRLoader.exe file using Windows Explorer, right click on
+	the file, select "Send To..."  "Desktop". This will create a new 
+	shortcut icon on your desktop, you may rename it to suit yourself.
+	Right click on the new shortcut and select "Properties".  Confirm 
+	that the starting directory is "C:\Program Files\SoftQuad\XMetaL 3".
+	Dismiss the properties window. You should be ready to go.]
+	
+If all is well, at this point you should be able to start the CDRLoader 
+from the shortcut.  It will display a CDR login screen, enter your user id 
+and password, then click "OK".  There will be a longer delay this first time 
+as it needs to get all the CDR files, but thereafter you should only notice 
+a delay if files have changed.  After the files are updated, XMetal should
+start with the CDR extensions enabled.
