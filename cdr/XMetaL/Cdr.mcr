@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.106 2003-11-13 01:42:28 bkline Exp $
+     $Id: Cdr.mcr,v 1.107 2003-11-20 21:37:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.106  2003/11/13 01:42:28  bkline
+     Added CTGovProtocol toolbar.  Added macro to diff CWD against
+     previous version.
+
      Revision 1.105  2003/09/24 22:26:31  bkline
      Plugged in named filter set for Protocol Admin QC report.
 
@@ -2275,7 +2279,14 @@
                            "CTGovProtocol Diff",        // Macro.
                            "Diff ",                     // Tooltip.
                            "Diff against prior version",// Description
-                           "CDR", 6, 5,                 // Icon set, row, col.
+                           // "CDR", 6, 5,                
+                           "Databases (Custom)", 2, 9,  // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
                            false)                       // Starts new group?
         );
         var cmdBars = Application.CommandBars;
