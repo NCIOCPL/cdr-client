@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.4 2001-11-27 14:18:57 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.5 2002-02-08 14:28:32 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/11/27 14:18:57  bkline
+ * New utility methods; modified extraction methods.
+ *
  * Revision 1.3  2001/06/09 12:31:51  bkline
  * Switched to Unicode strings; added more sophisticated XML parsing.
  *
@@ -696,7 +699,7 @@ cdr::Element cdr::Element::extractElement(const CString& s,
         TCHAR ch = s[startPos];
 
         // Make sure we don't have another tag that starts the same way.
-        if (_istspace(ch) || ch == (TCHAR)'>')
+        if (_istspace(ch) || ch == (TCHAR)'>' || ch == (TCHAR)'/')
             break;
 
         // Try another position.
@@ -713,6 +716,16 @@ cdr::Element cdr::Element::extractElement(const CString& s,
         int     attrValueStart;
         TCHAR   delim;
         TCHAR   ch = s[startPos];
+
+        // Check for an empty-element tag.
+        if (ch == (TCHAR)'/') {
+            startPos = s.find(_T(">"), startPos);
+            if (startPos == -1)
+                return e;
+            e.startPos = e.endPos = startPos + 1;
+            s.str = T("");
+            return e;
+        }
 
         // Check for end of tag; move past it if we find it.
         if (ch == (TCHAR)'>') {
@@ -763,7 +776,7 @@ cdr::Element cdr::Element::extractElement(const CString& s,
 
     // We now have all the attributes and startPos points just past closing >.
     // XXX Note that this approach fails with nested elements of the same
-    // name.  Should not pos a problem for the uses the client DLL makes of
+    // name.  Should not pose a problem for the uses the client DLL makes of
     // this method, but watch out for future uses.  At that point we may need
     // to link in a real XML parser.
     int endPos = s.Find(_T("</") + name + _T(">"), startPos);
