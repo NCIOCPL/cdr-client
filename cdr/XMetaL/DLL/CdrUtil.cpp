@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.5 2002-02-08 14:28:32 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.6 2002-02-08 18:53:27 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2002/02/08 14:28:32  bkline
+ * Added code to handle empty element tags.
+ *
  * Revision 1.4  2001/11/27 14:18:57  bkline
  * New utility methods; modified extraction methods.
  *
@@ -719,11 +722,11 @@ cdr::Element cdr::Element::extractElement(const CString& s,
 
         // Check for an empty-element tag.
         if (ch == (TCHAR)'/') {
-            startPos = s.find(_T(">"), startPos);
+            startPos = s.Find(_T(">"), startPos);
             if (startPos == -1)
                 return e;
             e.startPos = e.endPos = startPos + 1;
-            s.str = T("");
+            e.str = _T("");
             return e;
         }
 
