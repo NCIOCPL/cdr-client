@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.8 2001-10-23 13:55:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.9 2001-10-23 21:46:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.8  2001/10/23 13:55:01  bkline
+     Added Insert Current Date macro.
+
      Revision 1.7  2001/10/23 13:47:52  bkline
      Added new macros:
         Insert Lead Org
@@ -15,7 +18,9 @@
         CDR Paste Fragment Link
 
      Revision 1.6  2001/09/20 14:44:40  bkline
-     Snapshot before switch to new workstation.
+     Snapshot before switch to new workstation. (Bob)
+     Added macros for toolbar separator, itemized list, ordered list, and
+     stubs. (Eileen)
 
      Revision 1.5  2001/08/27 19:09:43  bkline
      Added "CDR Advanced Search" macro.
@@ -86,8 +91,8 @@
         while (child) {
             if (child.nodeType == 3) { // Text node
                 textContent += child.nodeValue;
-                child = child.nextSibling;
             }
+            child = child.nextSibling;
         }
         return textContent;
     }
@@ -201,10 +206,34 @@
             // Prevent On_Update_UI macro from blocking our editing.
             gEditingCdrLink = true;
             var rc  = cdrObj.edit();
+            if (!rc) {
+                dumpXmPis();
+            }
             gEditingCdrLink = false;
         }
     }
-  
+
+    /*
+     * Remove any XMetaL processing instructions for placeholder data.
+     */
+    function dumpXmPis() {
+        if (Selection) {
+            if (Selection.ContainerNode) {
+                var elem = Selection.ContainerNode;
+                var child = elem.firstChild;
+                while (child) {
+                    var nextChild = child.nextSibling;
+                    if (child.nodeType == 7) {
+                        if (child.target == "xm-replace_text") {
+                            elem.removeChild(child);
+                        }
+                    }
+                    child = child.nextSibling;
+                }
+            }
+        }
+    }
+    
     /*
      * Allows the user to pick a protocol update person.
      */
@@ -2358,5 +2387,78 @@
 
   ]]>
 </MACRO>
+
+<MACRO name="Toolbar Separator" key="Ctrl+Alt+Shift+T" lang="JScript"><![CDATA[
+
+var cmdBars = Application.CommandBars;
+var cmdBar = cmdBars.item("CDR Stuff");
+
+// get the fifth button
+var cmdBarControl = cmdBar.Controls.item(5);
+// add a separator
+cmdBarControl.BeginGroup = true;
+Application.Alert(cmdBarControl.BeginGroup);
+
+// get the tenth button
+var cmdBarControl = cmdBar.Controls.item(10);
+// add a separator
+cmdBarControl.BeginGroup = true;
+Application.Alert(cmdBarControl.BeginGroup);
+
+// get the fourteenth button
+var cmdBarControl = cmdBar.Controls.item(14);
+// add a separator
+cmdBarControl.BeginGroup = true;
+Application.Alert(cmdBarControl.BeginGroup);
+
+]]></MACRO>
+
+<MACRO name="Administrative Subsystem" lang="JScript" id="1019"><![CDATA[
+    Application.Alert("Stub for Administrative Subsystem");
+]]></MACRO>
+
+<MACRO name="New CDR Document" lang="JScript" id="2028"><![CDATA[
+    Application.Alert("Stub for New CDR Document");
+]]></MACRO>
+
+<MACRO name="Publish Preview" lang="JScript"><![CDATA[
+    Application.Alert("Stub for Publish Preview");
+]]></MACRO>
+
+<MACRO name="Print" lang="JScript" id="2009"><![CDATA[
+    Application.Alert("Stub for Print");
+]]></MACRO>
+
+<MACRO name="PubMed Browse" lang="JScript" id="2022"><![CDATA[
+    Application.Alert("Stub for PubMed Browse");
+]]></MACRO>
+
+<MACRO name="Itemized List" key="Alt+L" lang="VBScript" id="20404"><![CDATA[
+    Selection.InsertElement "ItemizedList"
+    Selection.ElementAttribute("Style", "ItemizedList", 0) = "simple"
+    Selection.InsertWithTemplate "ListTitle"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+]]></MACRO>
+
+<MACRO name="Ordered List" key="Alt+O" lang="VBScript" id="20412"><![CDATA[
+    Selection.InsertElement "OrderedList"
+    Selection.ElementAttribute("Style", "OrderedList", 0) = "Arabic"
+    Selection.InsertWithTemplate "ListTitle"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+    Selection.MoveRight 
+    Selection.InsertWithTemplate "ListItem"
+]]></MACRO>
+
+<MACRO name="CDR Help" lang="JScript><![CDATA[
+    Application.Alert("Sorry, we can't help you right now ... :-)");
+]]></MACRO>
 
 </MACROS>
