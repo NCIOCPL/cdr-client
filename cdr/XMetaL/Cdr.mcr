@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.27 2002-02-20 04:12:21 bkline Exp $
+     $Id: Cdr.mcr,v 1.28 2002-02-20 18:32:27 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.27  2002/02/20 04:12:21  bkline
+     Removed Get Org Address from main CDR toolbar.
+
      Revision 1.26  2002/02/19 23:15:41  bkline
      Enabled code to pull down Org postal address into person document.
 
@@ -1190,11 +1193,29 @@
                            "CDR", 1, 7,
                            false),
             new CdrCmdItem(null,
+                           "Find Next",
+                           "Find Next",
+                           "Find Next Change",
+                           "CDR", 1, 9,
+                           false),
+            new CdrCmdItem(null,
+                           "Accept Change",
+                           "Accept Change",
+                           "Accept Change",
+                           "CDR", 2, 6,
+                           false),
+            new CdrCmdItem(null,
+                           "Reject Change",
+                           "Reject Change",
+                           "Reject Change",
+                           "CDR", 2, 8,
+                           false),
+            new CdrCmdItem(null,
                            "Itemized List",
                            "Itemized List",
                            "Insert itemized list",
                            "CDR", 6, 1,
-                           false),
+                           true),
             new CdrCmdItem(null,
                            "Ordered List",
                            "Ordered List",
