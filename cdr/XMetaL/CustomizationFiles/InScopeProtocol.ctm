@@ -1413,6 +1413,30 @@
 </GenericPerson>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>OverallContact</Name>
+      <MiniTemplate><![CDATA[<OverallContact>
+<PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>
+<GenericPersonContact>
+<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
+<ContactDetail>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ContactDetail>
+</GenericPersonContact>
+</OverallContact>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>OrgSiteContact</Name>
       <MiniTemplate><![CDATA[<OrgSiteContact>
 <SpecificPerson>
