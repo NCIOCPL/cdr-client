@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE Citation SYSTEM "Media.dtd">
+<Media xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+ </CdrDocCtl> 
+ <MediaTitle><?xm-replace_text {The media title} ?></MediaTitle>
+ <PhysicalMedia>
+  <ImageData>
+   <ImageType><?xm-replace_text {Select the type for this image (required)} ?></ImageType>
+   <ImageEncoding><?xm-replace_text {Select the image encoding type for this image (required)} ?></ImageEncoding>
+   <Color><?xm-replace_text {Select the color for this image (required)} ?></Color>
+   <Labeled><?xm-replace_text {Select Yes or No (required)} ?></Labeled>
+   <ImageDimensions>
+    <HeightPixels><?xm-replace_text {Enter an integer number (required)} ?></HeightPixels>
+    <WidthPixels><?xm-replace_text {Enter an integer number (required)} ?></WidthPixels>
+    <MinWidthPixels><?xm-replace_text {Optionally enter an integer number} ?></MinWidthPixels>
+   </ImageDimensions>
+  </ImageData>
+ </PhysicalMedia>
+ <MediaSource>
+  <OriginalSource>
+   <Creator><?xm-replace_text {Optionally enter the creator} ?></Creator>
+   <SourcePublication><?xm-replace_text {Optionally enter the publication source} ?></SourcePublication>
+   <DateCreated><?xm-replace_text {Optionally enter the date the document got created} ?></DateCreated>
+   <TextDateCreated><?xm-replace_text {Optionally enter the date the text got created} ?></TextDateCreated>
+   <Acknowledgement><?xm-replace_text {Optionally enter an acknowledgment text} ?></Acknowledgement>
+   <SourceFilename><?xm-replace_text {Optionally enter the source filename} ?></SourceFilename>
+   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+  </OriginalSource>
+ </MediaSource>
+ <MediaContent>
+  <Categories>
+   <Category><?xm-replace_text {Select the category (required)} ?></Category>
+  </Categories>
+  <Diagnoses>
+   <Diagnosis><?xm-replace_text {Select a diagnosis link (required)} ?></Diagnosis>
+  </Diagnoses>
+  <Topics>
+   <Topic><?xm-replace_text {Select a terminology link (required)} ?></Topic>
+  </Topics>
+  <ContentDescriptions>
+   <ContentDescription><?xm-replace_text {Enter the content description (required)} ?></ContentDescription>
+  </ContentDescriptions>
+  <Captions>
+   <MediaCaption><?xm-replace_text {Optionally enter a caption} ?></MediaCaption>
+  </Captions>
+  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+  <MediaLanguage>en</MediaLanguage>
+ </MediaContent>
+ <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Media>
