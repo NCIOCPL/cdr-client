@@ -368,7 +368,7 @@ SOURCE=.\ValidateDialog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\xmetal2.cpp
+SOURCE=.\xmetal3.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -448,11 +448,7 @@ SOURCE=.\ValidateDialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\xmetal.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\xmetal2.h
+SOURCE=.\xmetal3.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
