@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.15 2002-02-02 18:57:45 bkline Exp $
+     $Id: Cdr.mcr,v 1.16 2002-02-05 14:19:53 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.15  2002/02/02 18:57:45  bkline
+     Hooked in Insert Current Date macro to toolbar.
+
      Revision 1.14  2002/01/31 14:21:35  bkline
      Added enumerated valid values for RevisionLevel attribute.
 
@@ -3377,6 +3380,44 @@
     if (ActiveDocument.ViewType != 0) {
         ActiveDocument.ViewType = 0;
     }
+  ]]>
+</MACRO>
+
+<MACRO name="New Current Org Status" 
+       lang="JScript">
+  <![CDATA[
+    function newCurrentOrgStatus() {
+        Selection.MoveRight();
+        Selection.MoveLeft();
+        var rng = ActiveDocument.Range;
+        var savePos = ActiveDocument.Range;
+        rng.SelectElement();
+        var oldStatusElem = rng.ContainerNode;
+        if (oldStatusElem.nodeName != "CurrentOrgStatus") {
+            Application.Alert("Not in CurrentOrgStatus");
+            return;
+        }
+        rng.SelectElement();
+        elemText = rng.Text;
+        elemText = elemText.replace("<CurrentOrgStatus", "<PreviousOrgStatus");
+        elemText = elemText.replace("</CurrentOrgStatus>", 
+                                    "</PreviousOrgStatus>");
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+        var newElem = "<CurrentOrgStatus>"
+                    + "<StatusName>Completed</StatusName>"
+                    + "<StatusDate>" + getCurDateString() + "</StatusDate>"
+                    + "<Comment>Your comment here ...</Comment>"
+                    + "<EnteredBy>" + CdrUserName + "</EnteredBy>"
+                    + "<EntryDate>" + getCurDateString() + "</EntryDate>"
+                    + "</CurrentOrgStatus>";
+        rng.PasteString(newElem + elemText);
+        savePos.Select();
+        Selection.MoveRight();
+        Selection.MoveLeft();
+        ActiveDocument.RulesChecking = rulesChecking;
+    }
+    newCurrentOrgStatus();
   ]]>
 </MACRO>
 
