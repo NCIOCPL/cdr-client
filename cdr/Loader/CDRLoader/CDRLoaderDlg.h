@@ -42,4 +42,5 @@ public:
 	afx_msg void OnBnClickedOptions();
 
 	void SetInit( CDRIniData * ini ) { ini_Data = ini; };
+	CEdit PwdControl;
 };

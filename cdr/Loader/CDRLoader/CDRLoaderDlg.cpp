@@ -64,6 +64,7 @@ void CCDRLoaderDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, UserIdEdit, UserId);
 	DDX_Text(pDX, UserPwdEdit, UserPwd);
 	DDX_Control(pDX, UserIdEdit, UserIDControl);
+	DDX_Control(pDX, UserPwdEdit, PwdControl);
 }
 
 BEGIN_MESSAGE_MAP(CCDRLoaderDlg, CDialog)
@@ -106,7 +107,14 @@ BOOL CCDRLoaderDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	UserIDControl.SetFocus();
+	if ( UserId.GetLength() > 0 )
+	{
+		PwdControl.SetFocus();
+	}
+	else
+	{
+		UserIDControl.SetFocus();
+	}
 	
 	// make sure we have the current data
 	CDataExchange dx( this, false );
