@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.25 2002-02-19 13:36:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.26 2002-02-19 23:15:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.25  2002/02/19 13:36:01  bkline
+     Disabled code to move to newly inserted table's Title element.  Fixed
+     typo in macro name Show Original.
+
      Revision 1.24  2002/02/14 19:29:54  bkline
      Made macro for getting person address conditional on popup menu.
      Commented out macro for getting org address.
@@ -664,11 +668,10 @@
         Application.AppendMacro("Retrieve Person Address", 
                                 "CDR Get Person Address");
     }
-    /*
     if (docType.name == "Person") {
-        Application.AppendMacro("Retrieve Org Address", "CDR Get Org Address");
+        Application.AppendMacro("Retrieve Org Postal Address", 
+                                "CDR Get Org Postal Address");
     }
-    */
     if (docType.name == "Organization") {
         if (Selection.IsParentElement("Location")) {
             Application.AppendMacro("Persons Linking to This Location",
@@ -3420,7 +3423,7 @@
   ]]>
 </MACRO>
 
-<MACRO  name="CDR Get Org Address"
+<MACRO  name="CDR Get Org Postal Address"
         lang="JScript" 
         desc="Retrieve org address from fragment link"
         hide="false">
