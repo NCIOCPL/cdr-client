@@ -1027,7 +1027,6 @@
     <WidthPixels><?xm-replace_text {Enter an integer number (required)} ?></WidthPixels>
     <MinWidthPixels><?xm-replace_text {Optionally enter an integer number} ?></MinWidthPixels>
    </ImageDimensions>
-   <Inlined>No</Inlined>
   </ImageData>]]></MiniTemplate>
     </Template>
     <Template>
@@ -1221,7 +1220,6 @@
     <WidthPixels><?xm-replace_text {Enter an integer number (required)} ?></WidthPixels>
     <MinWidthPixels><?xm-replace_text {Optionally enter an integer number} ?></MinWidthPixels>
    </ImageDimensions>
-   <Inlined>No</Inlined>
   </ImageData>
   <VideoData>
    <VideoType><?xm-replace_text {Enter an the video type (required)} ?></VideoType>
@@ -1271,10 +1269,6 @@
     <Template>
       <Name ns="">MinWidthPixels</Name>
       <MiniTemplate><![CDATA[<MinWidthPixels><?xm-replace_text {Optionally enter an integer number} ?></MinWidthPixels>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">Inlined</Name>
-      <MiniTemplate><![CDATA[<Inlined>No</Inlined>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">SoundType</Name>
