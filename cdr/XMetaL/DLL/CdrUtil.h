@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.5 2001-11-27 14:18:57 bkline Exp $
+ * $Id: CdrUtil.h,v 1.6 2002-04-18 21:47:53 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2001/11/27 14:18:57  bkline
+ * New utility methods; modified extraction methods.
+ *
  * Revision 1.4  2001/06/11 18:26:43  bkline
  * Snapshot prior to re-working automation support using CCmdTarget.
  *
@@ -22,7 +25,7 @@
 
 // Local headers.
 #include "stdafx.h"
-#include "xmetal2.h"
+#include "xmetal3.h"
 
 // System headers.
 #include <string>
