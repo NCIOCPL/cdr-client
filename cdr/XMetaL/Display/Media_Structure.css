@@ -1,0 +1,451 @@
+/*************************************************************************/
+/* 	Media.css                                                            */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      2004-11-10 by Volker Englisch                                    */
+/*      Based on the new Media schema                                    */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+ 
+@sq-plus-minus;
+ 
+/* @sq-structure-view-icons; */
+ 
+/* @sq-start-only-tags;      */
+ 
+*   { white-space: nowrap;
+      text-align: left;   
+      margin-left: 10px;  
+      margin-top: 0px;    
+      margin-bottom: 0px; 
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold; 
+      color: black; }    
+                                                                 
+      /* top-level elements */
+      
+$DOCUMENT > *
+                                                           
+     { margin-left: 0px;  }
+                                                                     
+$PROCINS
+                                                                
+     { color: white;
+       font-weight: normal;
+       background-color: white;} 
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+Acknowledgement,
+AlternativeText,
+Audience,
+Color,
+Caption,
+Captions,
+Categories,
+Category,
+Comment,
+ContentDescriptions,
+ContentDescription,
+Creator,
+DateCreated,
+DerivationMethod,
+DerivedFrom,
+Diagnoses,
+Diagnosis,
+DocTitle,
+FromCdrMedia,
+FromExternalFile,
+FromMethod,
+FromObject,
+HeightPixels,
+ImageData,
+ImageDimensions,
+ImageType,
+ImageEncoding,
+Inlined,
+Labeled,
+Language,
+Media,
+MediaContent,
+MediaLanguage,
+MediaSource,
+MediaTitle,
+MinWidthPixels,
+OriginalSource,
+PhysicalMedia,
+RunSeconds,
+SoundData,
+SoundEncoding,
+SoundType,
+SourceFilename,
+SourcePublication,
+TextDateCreated,
+Topic,
+Topics,
+VideoData,
+VideaEncoding,
+VideaType,
+WidthPixels,
+    
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+Acknowledgement:before,     { content: "Acknowledgement "; }
+AlternativeText:before,     { content: "Alternative Text "; }
+Audience:before,            { content: "Audience "; }
+Color:before,               { content: "Color "; }
+Caption:before,             { content: "Caption "; }
+Captions:before,            { content: "CAPTIONS "; }
+Categories:before,          { content: "CATEGORIES "; }
+Category:before,            { content: "Category "; }
+Comment:before,             { content: "Comment "; }
+ContentDescriptions:before, { content: "CONTENT DESCRIPTIONS "; }
+ContentDescription:before,  { content: "Content Description "; }
+Creator:before,             { content: "Creator "; }
+DateCreated:before,         { content: "Date Created "; }
+DerivedFrom:before,         { content: "DERIVED FROM "; }
+Diagnoses:before,           { content: "DIAGNOSES "; }
+Diagnosis:before,           { content: "Diagnosis "; }
+DocTitle:before,            { content: "Doc Title "; }
+FromCdrMedia:before,        { content: "From CDR Media "; }
+FromExternalFile:before,    { content: "From External File "; }
+FromMethod:before,          { content: "From Method "; }
+FromObject:before,          { content: "FROM OBJECT "; }
+HeightPixels:before,        { content: "Height (Pixels) "; }
+ImageData:before,           { content: "IMAGE DATA ";}
+ImageDimensions:before,     { content: "IMAGE DIMENSIONS "; }
+ImageType:before,           { content: "Image Type "; }
+ImageEncoding:before,       { content: "Image Encoding "; }
+Inlined:before,             { content: "Inlined "; }
+Labeled:before,             { content: "Labeled "; }
+Language:before,            { content: "Language "; }
+Media:before,               { content: "Media "; }
+MediaContent:before,        { content: "MEDIA CONTENT "; }
+MediaLanguage:before,       { content: "Media Language "; }
+MediaSource:before,         { content: "MEDIA SOURCE "; }
+MediaTitle:before,          { content: "MediaTitle "; }
+MinWidthPixels:before,      { content: "MinWidth (Pixels) "; }
+OriginalSource:before,      { content: "ORIGINAL SOURCE "; }
+PhysicalMedia:before,       { content: "PHYSICAL MEDIA "; }
+RunSeconds:before,          { content: "Run (sec) "; }
+SoundData:before,           { content: "Sound Data "; }
+SoundEncoding:before,       { content: "Sound Encoding "; }
+SoundType:before,           { content: "Sound Type "; }
+SourceFilename:before,      { content: "Source Filename "; }
+SourcePublication:before,   { content: "Source Publication "; }
+TextDateCreated:before,     { content: "Text Date Created "; }
+Topic:before,               { content: "Topic "; }
+Topics:before,              { content: "TOPICS "; }
+VideoData:before,           { content: "Video Data "; }
+VideaEncoding:before,       { content: "Video Encoding "; }
+VideaType:before,           { content: "Video Type "; }
+WidthPixels:before,         { content: "Width (Pixels) "; }
+
+
+
+/***************************************************************************/
+/*                      DOCUMENT TITLE AND ID                              */
+/***************************************************************************/
+ 
+PhysicalMedia, 
+MediaSource, 
+MediaContent,
+     
+       { border: none;   }
+        
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+
+Captions:before,
+Categories:before,
+ContentDescriptions:before,
+DerivedFrom:before,
+Diagnoses:before,
+FromObject:before,
+ImageData:before,
+ImageDimensions:before,
+Media:before,
+MediaContent:before,
+MediaSource:before,
+OriginalSource:before,
+PhysicalMedia:before,
+Topics:before,
+
+   { color: black;
+     font-size: 10pt; }
+
+
+
+/***************************************************************************/ 
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
+/***************************************************************************/ 
+Acknowledgement:before,
+AlternativeText:before,
+Audience:before,
+Color:before,
+Caption:before,
+Captions:before,
+Categories:before,
+Category:before,
+Comment:before,
+ContentDescriptions:before,
+ContentDescription:before,
+Creator:before,
+DateCreated:before,
+DerivationMethod:before,
+DerivedFrom:before,
+Diagnoses:before,
+Diagnosis:before,
+DocTitle:before,
+FromCdrMedia:before,
+FromExternalFile:before,
+FromMethod:before,
+FromObject:before,
+HeightPixels:before,
+ImageData:before,
+ImageDimensions:before,
+ImageType:before,
+ImageEncoding:before,
+Inlined:before,
+Labeled:before,
+Language:before,
+Media:before,
+MediaContent:before,
+MediaLanguage:before,
+MediaSource:before,
+MediaTitle:before,
+MinWidthPixels:before,
+OriginalSource:before,
+PhysicalMedia:before,
+RunSeconds:before,
+SoundData:before,
+SoundEncoding:before,
+SoundType:before,
+SourceFilename:before,
+SourcePublication:before,
+TextDateCreated:before,
+Topic:before,
+Topics:before,
+VideoData:before,
+VideaEncoding:before,
+VideaType:before,
+WidthPixels:before,
+
+     { color: black;  background-color: white; }
+
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
+
+Acknowledgement,
+AlternativeText,
+Audience,
+Color,
+Caption,
+Category,
+Comment,
+ContentDescription,
+Creator,
+DateCreated,
+DerivationMethod,
+Diagnosis,
+DocTitle,
+FromCdrMedia,
+FromExternalFile,
+FromMethod,
+HeightPixels,
+ImageType,
+ImageEncoding,
+Inlined,
+Labeled,
+Language,
+MediaLanguage,
+MediaTitle,	
+MinWidthPixels,
+OriginalSource,
+RunSeconds,
+SoundData,
+SoundEncoding,
+SoundType,
+SourceFilename,
+SourcePublication,
+TextDateCreated,
+Topic,
+VideoData,
+VideaEncoding,
+VideaType,
+WidthPixels,
+
+     { text-indent: 0pt; }
+
+
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
+
+Acknowledgement,
+AlternativeText,
+Audience,
+Color,
+Caption,
+Category,
+Comment,
+ContentDescription,
+Creator,
+DateCreated,
+DerivationMethod,
+Diagnosis,
+DocTitle,
+FromCdrMedia,
+FromExternalFile,
+FromMethod,
+HeightPixels,
+ImageType,
+ImageEncoding,
+Inlined,
+Labeled,
+Language,
+MediaLanguage,
+MediaTitle,	
+MinWidthPixels,
+OriginalSource,
+RunSeconds,
+SoundData,
+SoundEncoding,
+SoundType,
+SourceFilename,
+SourcePublication,
+TextDateCreated,
+Topic,
+VideoData,
+VideaEncoding,
+VideaType,
+WidthPixels,
+
+     { color: white;
+       background-color: green; }
+
+
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+/* Background color for Fields (Do not include Container Elements here */
+
+AlternativeText:before,
+Audience:before,
+Color:before,
+Caption:before,
+Category:before,
+Comment:before,
+ContentDescription:before,
+Creator:before,
+DateCreated:before,
+DerivationMethod:before,
+Diagnosis:before,
+DocTitle:before,
+FromCdrMedia:before,
+FromExternalFile:before,
+FromMethod:before,
+HeightPixels:before,
+ImageType:before,
+ImageEncoding:before,
+Inlined:before,
+Labeled:before,
+Language:before,
+MediaLanguage:before,
+MediaTitle:before,
+MinWidthPixels:before,
+OriginalSource:before,
+PhysicalMedia:before,
+RunSeconds:before,
+SoundData:before,
+SoundEncoding:before,
+SoundType:before,
+SourceFilename:before,
+SourcePublication:before,
+TextDateCreated:before,
+Topic:before,
+VideoData:before,
+VideaEncoding:before,
+VideaType:before,
+WidthPixels:before,
+
+   { background-color: white; }
+
+Acknowledgement,
+AlternativeText,
+Audience,
+Color,
+Caption,
+Captions,
+Categories,
+Category,
+Comment,
+ContentDescriptions,
+ContentDescription,
+Creator,
+DateCreated,
+DerivationMethod,
+DerivedFrom,
+Diagnoses,
+Diagnosis,
+DocTitle,
+FromCdrMedia,
+FromExternalFile,
+FromMethod,
+FromObject,
+HeightPixels,
+ImageData,
+ImageDimensions,
+ImageType,
+ImageEncoding,
+Inlined,
+Labeled,
+Language,
+Media,
+MediaContent,
+MediaLanguage,
+MediaSource,
+MediaTitle,
+MinWidthPixels,
+OriginalSource,
+PhysicalMedia,
+RunSeconds,
+SoundData,
+SoundEncoding,
+SoundType,
+SourceFilename,
+SourcePublication,
+TextDateCreated,
+Topic,
+Topics,
+VideoData,
+VideaEncoding,
+VideaType,
+WidthPixels,
+    
+   { background-color: white; }
