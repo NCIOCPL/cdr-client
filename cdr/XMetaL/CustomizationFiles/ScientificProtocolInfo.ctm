@@ -1175,18 +1175,6 @@
 </DiseaseCharacteristics>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>PatientCharacteristics</Name>
-      <MiniTemplate><![CDATA[<PatientCharacteristics>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PatientCharacteristics>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>PriorConcurrentTherapy</Name>
-      <MiniTemplate><![CDATA[<PriorConcurrentTherapy>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PriorConcurrentTherapy>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name>GeneralEligibilityCriteria</Name>
       <MiniTemplate><![CDATA[<GeneralEligibilityCriteria>
 <Para><?xm-replace_text {Paragraph} ?></Para>
@@ -1198,12 +1186,8 @@
 <DiseaseCharacteristics>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </DiseaseCharacteristics>
-<PatientCharacteristics>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PatientCharacteristics>
-<PriorConcurrentTherapy>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PriorConcurrentTherapy>
+<PatientCharacteristics></PatientCharacteristics>
+<PriorConcurrentTherapy></PriorConcurrentTherapy>
 </EntryCriteria>]]></MiniTemplate>
     </Template>
     <Template>
@@ -1219,12 +1203,8 @@
 <DiseaseCharacteristics>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </DiseaseCharacteristics>
-<PatientCharacteristics>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PatientCharacteristics>
-<PriorConcurrentTherapy>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PriorConcurrentTherapy>
+<PatientCharacteristics></PatientCharacteristics>
+<PriorConcurrentTherapy></PriorConcurrentTherapy>
 </EntryCriteria>
 <ProjectedAccrual>
 <Para><?xm-replace_text {Paragraph} ?></Para>
