@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.46 2002-04-24 17:40:28 bkline Exp $
+     $Id: Cdr.mcr,v 1.47 2002-04-24 19:57:14 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.46  2002/04/24 17:40:28  bkline
+     Plugged in filters for Protocol Admin QC Report.
+
      Revision 1.45  2002/04/22 13:42:18  bkline
      Shifted QC macros to the right buttons.  Brought toolbar code in line
      with Eileen's Access tables.
@@ -1686,7 +1689,7 @@
 
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
-                           "View Hierarchy",            // Macro.
+                           "Term Hierarchy",            // Macro.
                            "Hierarchy",                 // Tooltip.
                            "View Hierarchy",            // Description
                            "Databases (Custom)", 6, 3,  // Icon set, row, col.
@@ -3724,7 +3727,7 @@
   ]]>
 </MACRO>
 
-<MACRO  name="CDR Terminology Hierarchy Display"
+<MACRO  name="Term Hierarchy"
         lang="JScript" 
         desc="Web interface for displaying Term document hierarchies"
         hide="false">
@@ -4358,13 +4361,6 @@
        lang="JScript">
   <![CDATA[
     Application.Alert("Stub for Change Organization Status Macro");
-  ]]>
-</MACRO>
-
-<MACRO name="View Hierarchy"
-       lang="JScript">
-  <![CDATA[
-    Application.Alert("Stub for View Hierarchy Macro");
   ]]>
 </MACRO>
 
