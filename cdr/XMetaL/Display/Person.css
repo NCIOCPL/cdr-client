@@ -1,6 +1,11 @@
 /*************************************************************************/
 /* 	Person.css                                                       */
 /* 	                                                                 */
+/*      v. 3.9                                                           */
+/*      10/24/02  by ebator                                              */
+/*      Added more Before: cases for SpecificPostalAddress               */
+/*         (attribute combinations and Public label)                     */
+/*                                                                       */
 /*      v. 3.8                                                           */
 /*      5/14/02  by ebator                                               */
 /*      Show PreviousLocation attribute on PrivatePractice and           */
@@ -310,9 +315,14 @@ SpecificFax:before			{ content: "Sp Fax &: "; }
 SpecificPhone:before			{ content: "Sp Phone & @: "; }
 SpecificPhone[Public="No"]:after	{ content: " (Not public) "; }
 SpecificPhone:after			{ content: " (Public) "; }
-SpecificPostalAddress:before		{ content: "SPECIFIC POSTAL ADDRESS & @"; }
-SpecficPostalAddress[Public="No"]:before{ content: "SPECIFIC POSTAL ADDRESS (Not Public) & @"; }
-SpecificPostalAddress:before		{ content: "SPECIFIC POSTAL ADDRESS (Public) & @"; }
+SpecificPostalAddress[AddressType][Public="No"]:before
+					{ content: "SPECIFIC POSTAL ADDRESS (Not Public) & @"; }
+SpecificPostalAddress[AddressType]:before		
+					{ content: "SPECIFIC POSTAL ADDRESS (Public) & @"; }
+SpecificPostalAddress[Public="No"]:before
+					{ content: "SPECIFIC POSTAL ADDRESS (Not Public) & @"; }
+SpecificPostalAddress:before		
+					{ content: "SPECIFIC POSTAL ADDRESS (Public) & @"; }
 SpecificTollFreePhone:before		{ content: "Sp Toll Free &: "; }
 SpecificWebSite:before			{ content: "Sp WebSite & @: "; }
 StandardProfessionalSuffix:before	{ content: "Std Prof Suffix & +: "; }
