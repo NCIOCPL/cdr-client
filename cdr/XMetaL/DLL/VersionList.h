@@ -42,6 +42,7 @@ protected:
 	//{{AFX_MSG(CVersionList)
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
+	afx_msg void OnDblclkList1();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

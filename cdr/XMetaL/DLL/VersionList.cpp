@@ -5,6 +5,7 @@
 #include "cdr.h"
 #include "VersionList.h"
 #include "CdrUtil.h"
+#include "Commands.h"
 
 // System headers.
 #include <sstream>
@@ -39,6 +40,7 @@ void CVersionList::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CVersionList, CDialog)
 	//{{AFX_MSG_MAP(CVersionList)
+	ON_LBN_DBLCLK(IDC_LIST1, OnDblclkList1)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -74,6 +76,10 @@ BOOL CVersionList::OnInitDialog()
         cdr::Element num      = v.extractElement(v.getString(), _T("Num"));
         cdr::Element comment  = v.extractElement(v.getString(), _T("Comment"));
         CString commentString = comment ? comment.getString() : _T("No comment");
+        commentString.Replace(_T("\r"), _T(" "));
+        commentString.Replace(_T("\n"), _T(" "));
+        while (commentString.Replace(_T("  "), _T(" ")) > 0)
+            ;
         CString str           = _T("[") 
                               + num.getString()
                               + _T("] ")
@@ -99,7 +105,7 @@ BOOL CVersionList::OnInitDialog()
 
 void CVersionList::OnOK() 
 {
-	// Find out which candidate document the user selected.
+	// Find out which version the user selected.
 	int curSel = m_choiceList.GetCurSel();
 
     // Don't do anything if there is no selection.
@@ -107,9 +113,32 @@ void CVersionList::OnOK()
         CWaitCursor wc;
         CString str;
 		m_choiceList.GetText(curSel, str);
-        ::AfxMessageBox(str);
-        EndDialog(IDOK);
+        //::AfxMessageBox(str);
+
+        // Find the delimiters.
+        int left = str.Find(_T("["));
+        if (left == -1) {
+            ::AfxMessageBox(_T("Unable to find left version delimiter."));
+            return;
+        }
+        int right = str.Find(_T("]"), ++left);
+        if (right == -1) {
+            ::AfxMessageBox(_T("Unable to find right version delimiter."));
+            return;
+        }
+        CString version = str.Mid(left, right - left);
+
+        // Retrieve the version as read-only.
+        if (CCommands::doRetrieve(docId, FALSE, version))
+            EndDialog(IDOK);
     }
-	
-	CDialog::OnOK();
+}
+
+/**
+ * Allows the user to double-click on a search result as an alternative
+ * to the Retrieve button.
+ */
+void CVersionList::OnDblclkList1() 
+{
+	OnOK();
 }

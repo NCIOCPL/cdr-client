@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.19 2002-05-08 21:20:52 bkline Exp $
+ * $Id: Commands.cpp,v 1.20 2002-05-14 14:22:46 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.19  2002/05/08 21:20:52  bkline
+ * Added return statement from exception handler to eliminate warning.
+ *
  * Revision 1.18  2002/05/06 18:48:24  bkline
  * Added code to populate comment for version table.
  *
@@ -99,9 +102,10 @@
 // Local functions.
 static void     getDocTypeStrings(CString& err);
 static void     messageLoop();
-static void removeDoc(const CString& docId);
+static void     removeDoc(const CString& docId);
 static bool		openDoc(const CString& resp, const CString& docId,
-						BOOL checkOut);
+						BOOL checkOut, 
+                        const CString& version = _T("Current"));
 static CString& fixDoc(CString& doc, const CString& ctl, 
                        const CString& docType, bool readOnly);
 
@@ -1030,14 +1034,18 @@ static int findFirst(const CString& str, LPCTSTR chars, int offset)
  *                          successfully.
  */
 bool CCommands::doRetrieve(const CString& id, 
-                           BOOL checkOut)
+                           BOOL checkOut,
+                           const CString& version)
 {
     // Make sure the document isn't already open.
     _Application app = cdr::getApp();
     Documents docs = app.GetDocuments();
     unsigned int docNo = cdr::getDocNo(id);
     CString match;
-    match.Format(_T("CDR%u "), docNo);
+    if (version != _T("Current"))
+        match.Format(_T("CDR%u-V%s "), docNo, version);
+    else
+        match.Format(_T("CDR%u "), docNo);
     int matchLen = match.GetLength();
     for (long i = docs.GetCount(); i > 0; --i) {
         COleVariant vi;
@@ -1064,12 +1072,13 @@ bool CCommands::doRetrieve(const CString& id,
     request.Format(_T("<CdrGetDoc>")
                    _T("<DocId>%s</DocId>")
                    _T("<Lock>%s</Lock>")
-                   _T("<DocVersion>Current</DocVersion>")
+                   _T("<DocVersion>%s</DocVersion>")
                    _T("</CdrGetDoc>"), docId,
-                                       (checkOut ? _T("Y") : _T("N")));
+                                       (checkOut ? _T("Y") : _T("N")),
+                                       version);
     CString response = CdrSocket::sendCommand(request);
 
-    return openDoc(response, docId, checkOut);
+    return openDoc(response, docId, checkOut, version);
 }
 
 void removeDoc(const CString& docId)
@@ -1084,7 +1093,8 @@ void removeDoc(const CString& docId)
     catch (CFileException&) { /* ignore */ }
 }
 
-bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
+bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
+             const CString& version)
 {
     // Extract the CdrDoc element.
     _Application app = cdr::getApp();
@@ -1101,10 +1111,14 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
                                                            _T("CdrDoc"));
 
     // Build up path string.
-    docPath.Format(_T("%s\\%s\\CDR%u.xml"), 
+    CString verPart = _T("");
+    if (version != _T("Current"))
+        verPart.Format(_T("-V%s"), version);
+    docPath.Format(_T("%s\\%s\\CDR%u%s.xml"), 
                    (LPCTSTR)cdrPath, 
                    checkOut ? _T("Checkout") : _T("ReadOnly"),
-                   docNo);
+                   docNo, 
+                   (LPCTSTR)verPart);
 
     if (!cdrDocElem) {
 
@@ -1123,7 +1137,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
                                                               _T("DocTitle"));
         if (titleElem) {
             docTitle = titleElem.getString();
-            retrievedDocTitle.Format(_T("CDR%u%s - %s"), docNo,
+            retrievedDocTitle.Format(_T("CDR%u%s%s - %s"), docNo,
+                                     (LPCTSTR)verPart,
                                      checkOut ? _T("") : _T(" [READ ONLY]"),
                                      (LPCTSTR)docTitle);
         }
@@ -1714,15 +1729,15 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
         CString rsp = CdrSocket::sendCommand(cmd.str().c_str());
 
         // Extract the address elements.
-        cdr::Element repBody = 
-            cdr::Element::extractElement(rsp, _T("ReportBody"));
-        if (!repBody) {
+        // Change requested May 2002 by LG: only import PostalAddress.
+        cdr::Element paElement = 
+            cdr::Element::extractElement(rsp, _T("PostalAddress"));
+        if (!paElement) {
             if (!cdr::showErrors(rsp))
                 ::AfxMessageBox(_T("Unknown failure from search"),
                                 MB_ICONEXCLAMATION);
             return S_OK;
         }
-        CString addrStr = repBody.getCdataSection();
 
         // Find the proper location for the address.
         ::Range pscLoc = cdr::findOrCreateChild(lopLoc, 
@@ -1737,8 +1752,9 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
         // Plug in our own data.
         pscLoc.SelectElement();
         pscLoc.Select();
-        CString pscData = _T("<ProtocolSpecificContact>") + addrStr +
-                          _T("</ProtocolSpecificContact>");
+        CString pscData = _T("<ProtocolSpecificContact><PostalAddress>") 
+                        + paElement.getString()
+                        + _T("</PostalAddress></ProtocolSpecificContact>");
         //::AfxMessageBox(pscData);
         if (!pscLoc.GetCanPaste(pscData, FALSE))
             ::AfxMessageBox(_T("Unable to insert ") + pscData, 

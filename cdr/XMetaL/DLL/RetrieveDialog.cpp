@@ -1,9 +1,13 @@
 /*
- * $Id: RetrieveDialog.cpp,v 1.3 2002-04-20 19:19:59 bkline Exp $
+ * $Id: RetrieveDialog.cpp,v 1.4 2002-05-14 14:22:48 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2002/04/20 19:19:59  bkline
+ * Removed version string from search and retrieve dialogs.  Will replace
+ * soon with more sophisticated picklist for most recent versions.
+ *
  * Revision 1.2  2001/06/09 12:40:58  bkline
  * Added controls for checkout flag and version string.
  *
@@ -32,7 +36,7 @@ RetrieveDialog::RetrieveDialog(CWnd* pParent /*=NULL*/)
 {
 	//{{AFX_DATA_INIT(RetrieveDialog)
 	m_DocId = _T("");
-	m_CheckOut = TRUE;
+	m_CheckOut = FALSE;
 	//}}AFX_DATA_INIT
 }
 
