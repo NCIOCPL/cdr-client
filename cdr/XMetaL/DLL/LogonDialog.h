@@ -7,6 +7,8 @@
 // LogonDialog.h : header file
 //
 
+#include <afxcmn.h>
+
 /////////////////////////////////////////////////////////////////////////////
 // LogonDialog dialog
 
@@ -15,10 +17,14 @@ class LogonDialog : public CDialog
 // Construction
 public:
 	LogonDialog(CWnd* pParent = NULL);   // standard constructor
+    bool keepGoing() const { return !userCancelled; }
 
 // Dialog Data
 	//{{AFX_DATA(LogonDialog)
 	enum { IDD = IDD_DIALOG1 };
+	CProgressCtrl	m_progressBar;
+	CStatic	m_progressText;
+	CButton	m_okButton;
 	CString	m_UserId;
 	CString	m_Password;
 	//}}AFX_DATA
@@ -36,9 +42,13 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(LogonDialog)
-		// NOTE: the ClassWizard will add member functions here
+	virtual void OnCancel();
+	afx_msg void OnLogonOk();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+    bool userCancelled;
 };
 
 //{{AFX_INSERT_LOCATION}}
