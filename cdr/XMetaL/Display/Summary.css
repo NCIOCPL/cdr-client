@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Summary.css                                                      */
+/*      Summary.css                                                      */
 /*                                                                       */
 /*      v. 3.6                                                           */
 /*      10/08/02  by ebator                                              */
@@ -129,8 +129,6 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
 /**************************************************************************/ 
 /*                     DEFAULT PROPERTIES                                 */ 
 /**************************************************************************/ 
@@ -162,15 +160,16 @@ $PROCINS
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-  
-
 AltTitle,
+Caption,
 Board, 
 BoardMember, 
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
 MainTopics, 
+MediaLink,
+MediaID,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
@@ -188,90 +187,81 @@ SummaryType,
 Term,
 Title, 
 TranslationOf,
-
     { display: block; }
 
 
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-
-Board:before				{ content: "Summary Board * @: "; }
-BoardMember:before			{ content: "Board Member & + @: "; }
-DateLastModified:before			{ content: "Last Modified &: "; }
-/*KeyPoint:before			{ content: "Key Point & +: "; } */
-MainTopics>Term:before			{ content: "Main Topics * +: "; }
-PdqKey:before				{ content: "PDQ Key &: "; }
+Board:before                { content: "Summary Board * @: "; }
+BoardMember:before          { content: "Board Member & + @: "; }
+DateLastModified:before     { content: "Last Modified &: "; }
+/*KeyPoint:before           { content: "Key Point & +: "; } */
+MainTopics>Term:before      { content: "Main Topics * +: "; }
+MediaID:before              { content: "Media ID: "; }
+Caption:before              { content: "Caption: "; }
+PdqKey:before               { content: "PDQ Key &: "; }
 ReplacementFor:before       { content: "Replacement for &: "; }
-SecondaryTopics>Term:before 		{ content: "Secondary Topics & +: " }
-SummaryType:before			{ content: "Summary Type *: "; }
-SummaryAudience:before			{ content: "Summary Audience *: "; }
-SummaryLanguage:before			{ content: "Summary Language *: "; }
-TranslationOf:before			{ content: "Translation of &: "; }
-PatientVersionOf:before			{ content: "Patient Version of: "; }
+SecondaryTopics>Term:before { content: "Secondary Topics & +: " }
+SummaryType:before          { content: "Summary Type *: "; }
+SummaryAudience:before      { content: "Summary Audience *: "; }
+SummaryLanguage:before      { content: "Summary Language *: "; }
+TranslationOf:before        { content: "Translation of &: "; }
+PatientVersionOf:before     { content: "Patient Version of: "; }
 
 
 /***************************************************************************/ 
 /*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
 /***************************************************************************/ 
-
+SummaryMetaData,
+    { border: solid; 
+      border-color: black;
+      border-width: thin;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
 
 SummaryMetaData,
 
-   { border: solid; 
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
-
-SummaryMetaData,
-
-     { font-size: 12pt; }
+    { font-size: 12pt; }
 
 SummaryType:before, 
 SummaryAudience:before, 
 SummaryLanguage:before,
-
-     { font-weight: bold;
-       font-size: 12pt;
-       color: black; }
+    { font-weight: bold;
+      font-size: 12pt;
+      color: black; }
 
 Board:before,
 BoardMember:before,
 MainTopics>Term:before,
+MediaID:before,
+Caption:before,
 SecondaryTopics>Term:before,
-
-     { font-weight: bold;
-       font-size: 12pt; 
-       color: black; }
+    { font-weight: bold;
+      font-size: 12pt; 
+      color: black; }
 
 BoardMember,
-
-     { margin-left: 1em; }
+    { margin-left: 1em; }
 
 PDQBoard,
-
-     { margin-top: 1em; 
-       margin-bottom: 1em;  }
+    { margin-top: 1em; 
+      margin-bottom: 1em;  }
 
 
 SecondaryTopics>Term,
-
-     { prefix-format: "[ %attribute-list; ]"; }
+    { prefix-format: "[ %attribute-list; ]"; }
 
 
 /***************************************************************************/ 
 /*                            SUMMARY TITLE                                */ 
 /***************************************************************************/ 
-
 SummaryTitle,
-
      { font-size: 20pt;
        font-weight: bold;
        margin-top: 12pt; }
@@ -280,14 +270,11 @@ SummaryTitle,
 /***************************************************************************/ 
 /*                 SUMMARY SECTION TITLES, INDENTS, SUBSECTIONS            */ 
 /***************************************************************************/ 
-
-
 KeyPoint, 
 KeyPoint:before,
 DateLastModified:before,
 PatientVersionOf:before,
 ReplacementFor:before,
-
      { font-weight: bold;
        font-size: 12pt;
        color: black;  
@@ -296,51 +283,42 @@ ReplacementFor:before,
 
 PdqKey:before,
 TranslationOf:before,
-    
      { font-weight: bold;
        color: purple; } 
 
 PdqKey,
-
      { margin-bottom: 10pt;  }
 
 SummarySection>AltTitle,
-
      { font-weight: bold;
        font-size: 14pt;
        color: blue; }
 
 SummarySection>Para, 
-
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
 SummarySection>Title, 
-
      { font-weight: bold;
        font-size: 16pt;
        color: blue; }
 
 Title, 
-
      { font-size: 14pt;
        font-weight: bold;
        text-align: left; }
 
 SummarySection>SummarySection,
-
-	{ margin-left: 20pt; }
+    { margin-left: 20pt; }
 
 SummarySection>SummarySection>SummarySection,
-
-	{ margin-left: 40pt; }
+    { margin-left: 40pt; }
 
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
 SummarySection>SummarySection>Insertion>Title:before,
 SummarySection>SummarySection>Insertion>Title,
-
-	{ font-style: italic; }
+    { font-style: italic; }
 
 Insertion>SummarySection,
 Insertion>SummarySection>Para>CitationLink,
@@ -385,8 +363,7 @@ Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Insertion>SummarySection:before,
-
-	{ color: red; }
+    { color: red; }
 
 Insertion[RevisionLevel='proposed']>SummarySection,
 Insertion[RevisionLevel='proposed']>SummarySection>Para>CitationLink,
@@ -431,8 +408,7 @@ Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Insertion[RevisionLevel='proposed']>SummarySection:before,
-
-	{ color: green; }
+    { color: green; }
 
 Deletion>SummarySection,
 Deletion>SummarySection>Para>CitationLink,
@@ -477,8 +453,7 @@ Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion>SummarySection:before,
-
-	{ text-decoration: line-through; color: red; }
+    { text-decoration: line-through; color: red; }
 
 Deletion[RevisionLevel='proposed']>SummarySection,
 Deletion[RevisionLevel='proposed']>SummarySection>Para>CitationLink,
@@ -523,23 +498,28 @@ Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion[RevisionLevel='proposed']>SummarySection:before,
+    { text-decoration: line-through; color: green; }
 
-	{ text-decoration: line-through; color: green; }
+Comment 
+    { font-style: italic; 
+      background-color: green; 
+      color: white; }
+Comment:before 
+    { color: white; 
+      background-color: green; 
+      content: "Comment: "; }
 
-Comment {font-style: italic; background-color: green; color: white; }
-Comment:before { color: white; background-color: green; 
-                 content: "Comment: "; }
 SummarySection>Comment
-     { color: white; background-color: green;
-       margin-top: 15pt;
-       margin-bottom: 10pt; }
+    { color: white; 
+      background-color: green;
+      margin-top: 15pt;
+      margin-bottom: 10pt; }
+
 
 /***************************************************************************/ 
 /*                         SECTION META DATA                               */ 
 /***************************************************************************/ 
-
 SectMetaData, 
-
      { text-align: right;
        font-weight: lighter;
        font-style: oblique;
@@ -549,10 +529,7 @@ SectMetaData,
 /***************************************************************************/ 
 /*                               TABLES                                    */ 
 /***************************************************************************/ 
-
-
 SummarySection>Table, 
-
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
@@ -561,8 +538,6 @@ SummarySection>Table,
 /***************************************************************************/ 
 /*                               FORM DATA                                 */ 
 /***************************************************************************/ 
-
-
 Board:before,
 BoardMember:before,
 SummaryMetaData,
@@ -574,8 +549,7 @@ MainTopics,
 MainTopics>Term:before,
 SecondaryTopics,
 SecondaryTopics>Term:before,
-
-	{ background-color: #CCCCFF; }
+    { background-color: #CCCCFF; }
 
 
 SummaryType,
@@ -585,36 +559,57 @@ Board,
 BoardMember,
 MainTopics>Term,
 SecondaryTopics>Term,
-
-	{ background-color: white; }
+    { background-color: white; }
 
 
 /* Key element for length = SummaryLanguage                               */
 
-SummaryType,				{ margin-left: 135pt;
-					  text-indent: -101.5pt; }
-SummaryAudience,			{ margin-left: 135pt; 
-					  text-indent: -126.5pt;}
-SummaryLanguage,			{ margin-left: 135pt; 
-					  text-indent: -130.5pt;}
-Board,					{ margin-left: 135pt; 
-					  text-indent: -123pt;}
-BoardMember,				{ margin-left: 135pt; 
-					  text-indent: -128pt;}
-MainTopics>Term,			{ margin-left: 135pt;
-					  text-indent: -94pt; }
-SecondaryTopics>Term,			{ margin-left: 135pt; 
-					  text-indent: -133.5pt; }
+Board,    
+                  { margin-left: 135pt; 
+                    text-indent: -123pt;}
+BoardMember,    
+                  { margin-left: 135pt; 
+                    text-indent: -128pt;}
+SummaryType,    
+                  { margin-left: 135pt;
+                    text-indent: -101.5pt; }
+SummaryAudience,    
+                  { margin-left: 135pt; 
+                    text-indent: -126.5pt;}
+SummaryLanguage,    
+                  { margin-left: 135pt; 
+                    text-indent: -130.5pt;}
+MainTopics>Term,    
+                  { margin-left: 135pt;
+                    text-indent: -94pt; }
+SecondaryTopics>Term,    
+                  { margin-left: 135pt; 
+                    text-indent: -133.5pt; }
 
+Caption,
+                  { margin-left: 70pt; 
+                    text-indent: -53pt; }
+MediaID,
+                  { margin-left: 70pt; 
+                    text-indent: -57pt; }
+
+MediaLink,
+    { border: solid; 
+      border-color: black;
+      border-width: thin;
+      margin-top: 6pt;
+      margin-bottom: 6pt; }
+
+Board,
+BoardMember,
+Caption,
+MediaID,
 SummaryType,
 SummaryAudience,
 SummaryLanguage,
-Board,
-BoardMember,
 MainTopics>Term,
 SecondaryTopics>Term,
-
-	{ margin-bottom: 4pt; }
+    { margin-bottom: 4pt; }
 
 DateLastModified,
 PatientVersionOf,
@@ -622,8 +617,7 @@ PdqKey,
 SummaryType,
 TranslationOf,
 ReplacementFor,
-
-	{ margin-top: 4pt; }
+    { margin-top: 4pt; }
 
 Insertion[RevisionLevel='proposed'] { color: green; }
 Deletion[RevisionLevel='proposed'] { color: green; }

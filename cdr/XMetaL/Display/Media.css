@@ -47,7 +47,6 @@ Acknowledgement,
 AlternativeText,
 Audience,
 Color,
-Caption,
 Captions,
 Categories,
 Category,
@@ -74,6 +73,7 @@ Inlined,
 Labeled,
 Language,
 Media,
+MediaCaption,
 MediaContent,
 MediaLanguage,
 MediaSource,
@@ -114,7 +114,6 @@ Acknowledgement:before,     { content: "Acknowledgemnt &: ";}
 AlternativeText:before,     { content: "Alternative Text *: "; }
 Audience:before,            { content: "Audience *: ";}
 Color:before,               { content: "Color *: ";}
-Caption:before,             { content: "Caption * + @: "; }
 Captions:before,            { content: "CAPTIONS &: ";}
 Categories:before,          { content: "CATEGORIES *: ";}
 Category:before,            { content: "Category * +: ";}
@@ -139,6 +138,7 @@ ImageEncoding:before,       { content: "Image Encoding *: ";}
 Inlined:before,             { content: "Inlined &: ";}
 Labeled:before,             { content: "Labeled *: ";}
 Language:before,            { content: "Language *: ";}
+MediaCaption:before,        { content: "Caption * + @: "; }
 MediaContent:before,        { content: "MEDIA CONTENT *:"; }
 MediaLanguage:before,       { content: "Media Language &: ";}
 MediaSource:before,         { content: "MEDIA SOURCE &:"; }
@@ -183,7 +183,6 @@ Acknowledgement:before,
 AlternativeText:before,
 Audience:before,
 Color:before,
-Caption:before,
 Captions:before,
 Categories:before,
 Category:before,
@@ -210,6 +209,7 @@ Inlined:before,
 Labeled:before,
 Language:before,
 Media:before,
+MediaCaption:before,
 MediaContent:before,
 MediaLanguage:before,
 MediaSource:before,
@@ -249,21 +249,18 @@ WidthPixels:before,
 Acknowledgement,
                         { margin-left: 120pt;
                           text-indent: -120pt; }
-AlternativeText,		
+AlternativeText,
                         { margin-left: 120pt; 
-					      text-indent: -104pt; }
+                          text-indent: -104pt; }
 Color,
                         { margin-left: 120pt;
                           text-indent: -47.5pt; }
-Caption,		        
-                        { margin-left: 120pt; 
-					      text-indent: -85.5pt; }
 Category,
                         { margin-left: 120pt;
                           text-indent: -78pt; }
-
-Comment,		        { margin-left: 120pt; 
-					      text-indent: -64pt; }
+Comment,        
+                        { margin-left: 120pt; 
+                          text-indent: -64pt; }
 ContentDescription,
                         { margin-left: 120pt;
                           text-indent: -111pt; }
@@ -279,16 +276,15 @@ DerivationMethod,
 Diagnosis,
                         { margin-left: 120pt;
                           text-indent: -83pt; }
-
-DocTitle,				{ margin-left: 120pt; 
-					      text-indent: -100pt; }
-
+DocTitle,
+                        { margin-left: 120pt; 
+                          text-indent: -100pt; }
 FromCdrMedia,
                         { margin-left: 120pt;
-                          text-indent: 0pt; }
+                          text-indent: -112.5pt; }
 FromExternalFile,
                         { margin-left: 120pt;
-                          text-indent: 0pt; }
+                          text-indent: -119pt; }
 FromMethod,
                         { margin-left: 120pt;
                           text-indent: -111pt; }
@@ -310,12 +306,15 @@ Labeled,
 Language,
                         { margin-left: 120pt;
                           text-indent: 0pt; }
+MediaCaption,        
+                        { margin-left: 120pt; 
+                          text-indent: -85.5pt; }
 MediaLanguage,
                         { margin-left: 120pt;
                           text-indent: -115pt; }
-MediaTitle,				
+MediaTitle,
                         { margin-left: 120pt; 
-					      text-indent: -73.5pt; }
+                          text-indent: -73.5pt; }
 MinWidthPixels,
                         { margin-left: 120pt;
                           text-indent: -118.5pt; }
@@ -356,17 +355,22 @@ WidthPixels,
 /***************************************************************************/ 
 Acknowledgement,
 AlternativeText,
-Caption,
+Category,
 Color,
 Comment,
+ContentDescription,
 Creator,
 DateCreated,
 DocTitle,
+FromCdrMedia,
+FromExternalFile,
 FromMethod,
 HeightPixels,
 ImageType,
 ImageEncoding, 
+MediaCaption,
 MediaContent,
+MediaLanguage,
 MediaSource,
 MediaTitle,
 MinWidthPixels,
@@ -385,11 +389,12 @@ WidthPixels,
 Captions,
 Categories,
 ContentDescriptions,
+Diagnoses,
 Labeled,
 MediaContent,
 MediaSource,
 PhysicalMedia,
-Topic,
+Topics,
 
 	{ margin-bottom: 10pt; }
 
@@ -402,7 +407,6 @@ Acknowledgement,
 AlternativeText,
 Audience,
 Color,
-Caption,
 Category,
 Comment,
 ContentDescription,
@@ -420,6 +424,7 @@ ImageEncoding,
 Inlined,
 Labeled,
 Language,
+MediaCaption,
 MediaLanguage,
 MediaTitle,
 MinWidthPixels,
@@ -442,7 +447,6 @@ Acknowledgement:before,
 AlternativeText:before,
 Audience:before,
 Color:before,
-Caption:before,
 Captions:before, 
 Categories:before,
 Category:before,
@@ -469,6 +473,7 @@ Inlined:before,
 Labeled:before,
 Language:before,
 Media:before,
+MediaCaption:before,
 MediaContent:before,
 MediaLanguage:before,
 MediaSource:before,

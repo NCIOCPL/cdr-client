@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.10 2004-09-09 17:25:25 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.11 2005-01-05 00:17:16 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.10  2004/09/09 17:25:25  bkline
+ * Switched Comment colors back to white on green (request #1213).
+ *
  * Revision 1.9  2004/08/17 12:03:30  bkline
  * Changed teal to green for proposed markup.
  *
@@ -109,8 +112,6 @@ $PROCINS
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-
-
 ActionDate,
 ActionDescription,
 AltTitle,
@@ -179,6 +180,7 @@ LOEFragmentRef,
 LOELink,
 LOERef,
 LOEReference,
+MediaRef,
 Note,
 ProtocolLink,
 ProtocolRef,
@@ -491,6 +493,7 @@ LOEFragmentRef,
 LOELink,
 LOERef,
 LOEReference,
+MediaRef,
 SummaryFragmentLink,
 SummaryFragmentRef,
 SummaryLink,
@@ -579,6 +582,7 @@ Answer
 /*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */ 
 /***************************************************************************/ 
 
+Insertion>Caption,
 Insertion>CitationLink,
 Insertion>CitationLink:before,
 Insertion>CitationRef,
@@ -594,6 +598,9 @@ Insertion>LOEFragmentRef,
 Insertion>LOELink,
 Insertion>LOERef,
 Insertion>LOEReference,
+Insertion>MediaCaption,
+Insertion>MediaID,
+Insertion>MediaRef,
 Insertion>SummaryFragmentLink,
 Insertion>SummaryFragmentRef,
 Insertion>SummaryLink,
@@ -652,6 +659,7 @@ Insertion>Answer
      { text-indent: 20pt; 
        color: red;        }
 
+Insertion[RevisionLevel='proposed']>Caption,
 Insertion[RevisionLevel='proposed']>CitationLink,
 Insertion[RevisionLevel='proposed']>CitationLink:before,
 Insertion[RevisionLevel='proposed']>CitationRef,
@@ -667,6 +675,9 @@ Insertion[RevisionLevel='proposed']>LOEFragmentRef,
 Insertion[RevisionLevel='proposed']>LOELink,
 Insertion[RevisionLevel='proposed']>LOERef,
 Insertion[RevisionLevel='proposed']>LOEReference,
+Insertion[RevisionLevel='proposed']>MediaCaption,
+Insertion[RevisionLevel='proposed']>MediaID,
+Insertion[RevisionLevel='proposed']>MediaRef,
 Insertion[RevisionLevel='proposed']>SummaryFragmentLink,
 Insertion[RevisionLevel='proposed']>SummaryFragmentRef,
 Insertion[RevisionLevel='proposed']>SummaryLink,
@@ -726,6 +737,7 @@ Insertion[RevisionLevel='proposed']>Answer
        color: green;        }
 
 
+Deletion>Caption,
 Deletion>CitationLink,
 Deletion>CitationLink:before,
 Deletion>CitationRef,
@@ -741,6 +753,9 @@ Deletion>LOEFragmentRef,
 Deletion>LOELink,
 Deletion>LOERef,
 Deletion>LOEReference,
+Deletion>MediaCaption,
+Deletion>MediaID,
+Deletion>MediaRef,
 Deletion>SummaryFragmentLink,
 Deletion>SummaryFragmentRef,
 Deletion>SummaryLink,
@@ -809,6 +824,7 @@ Deletion>Answer
        color: red;        }
 
 
+Deletion[RevisionLevel='proposed']>Caption,
 Deletion[RevisionLevel='proposed']>CitationLink,
 Deletion[RevisionLevel='proposed']>CitationLink:before,
 Deletion[RevisionLevel='proposed']>CitationRef,
@@ -824,6 +840,9 @@ Deletion[RevisionLevel='proposed']>LOEFragmentRef,
 Deletion[RevisionLevel='proposed']>LOELink,
 Deletion[RevisionLevel='proposed']>LOERef,
 Deletion[RevisionLevel='proposed']>LOEReference,
+Deletion[RevisionLevel='proposed']>MediaCaption,
+Deletion[RevisionLevel='proposed']>MediaID,
+Deletion[RevisionLevel='proposed']>MediaRef,
 Deletion[RevisionLevel='proposed']>SummaryFragmentLink,
 Deletion[RevisionLevel='proposed']>SummaryFragmentRef,
 Deletion[RevisionLevel='proposed']>SummaryLink,

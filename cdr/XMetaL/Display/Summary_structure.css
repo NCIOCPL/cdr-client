@@ -125,15 +125,16 @@ $PROCINS
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-  
-
 AltTitle,
 Board, 
 BoardMember, 
+Caption,
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
 MainTopics,
+MediaID,
+MediaLink,
 PatientVersionOf, 
 PDQBoard,
 PdqKey, 
@@ -151,7 +152,6 @@ Term,
 Title, 
 TranslationOf,
 ReplacementFor
-
     { display: block; }
 
 
@@ -159,60 +159,60 @@ ReplacementFor
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-
-
 AltTitle:before			{ content: "Alternate Title "; }
 Board:before			{ content: "Summary Board "; }
 BoardMember:before		{ content: "Board Member "; }
-DateLastModified:before		{ content: "Last Modified"; }
+Caption:before          { content: "Caption "; }
+DateLastModified:before	{ content: "Last Modified"; }
 Diagnosis:before		{ content: "Diagnosis "; }
 KeyPoint:before			{ content: "Key Point "; }
 MainTopics:before		{ content: "Main Topics "; }
-Para:before			{ content: counter(para)". Paragraph "; }
+MediaID:before          { content: "MediaID "; }
+MediaLink:before        { content: "MEDIALINK "; }
+Para:before	            { content: counter(para)". Paragraph "; }
 SummarySection>SummarySection>Para:before
-				{ content: counter(subpara)". Subparagraph "; }
-PatientVersionOf:before		{ content: "Patient Version Of "; }
+                        { content: counter(subpara)". Subparagraph "; }
+PatientVersionOf:before	{ content: "Patient Version Of "; }
 PDQBoard:before			{ content: "PDQ Board "; }
 PdqKey:before			{ content: "PDQ Key "; }
-SecondaryTopics:before 		{ content: "Secondary Topics " }
+SecondaryTopics:before 	{ content: "Secondary Topics " }
 SectMetaData:before		{ content: "Section Metadata "; }
 SectionType:before		{ content: "Section Type "; }
 Summary:before			{ content: "SUMMARY "; }
 SummaryID:before		{ content: "Summary ID "; }
 SummaryType:before		{ content: "Summary Type "; }
-SummaryAudience:before		{ content: "Summary Audience "; }
-SummaryLanguage:before		{ content: "Summary Language "; }
-SummaryMetaData:before		{ content: "SUMMARY METADATA "; }
-SummarySection:before		{ content: "Section "; }
-SummarySection>Comment:before { content: "Comment "; }
+SummaryAudience:before	{ content: "Summary Audience "; }
+SummaryLanguage:before	{ content: "Summary Language "; }
+SummaryMetaData:before	{ content: "SUMMARY METADATA "; }
+SummarySection:before	{ content: "Section "; }
+SummarySection>Comment:before 
+                        { content: "Comment "; }
 SummarySection>SummarySection:before
-				{ content: "Sub-section "; }
+				        { content: "Sub-section "; }
 SummarySection>SummarySection>SummarySection:before
-				{ content: "Sub-sub-section "; }
+				        { content: "Sub-sub-section "; }
 SummarySection>SummarySection>SummarySection>SummarySection:before
-				{ content: "Sub-sub-sub-section "; }
+				        { content: "Sub-sub-sub-section "; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection:before
-				{ content: "Sub-sub-sub-sub-section "; }
+				        { content: "Sub-sub-sub-sub-section "; }
 SummaryTitle:before		{ content: "SUMMARY TITLE "; }
-Term:before			{ content: "Term "; }
+Term:before	            { content: "Term "; }
 SummarySection>Title:before	{ content: "Section Title: "; }
 SummarySection>SummarySection>Title:before   
-				{ content: "Sub-section Title: "; }
+				        { content: "Sub-section Title: "; }
 SummarySection>SummarySection>SummarySection>Title:before   
-				{ content: "Sub-sub-section Title: "; }
+				        { content: "Sub-sub-section Title: "; }
 SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-				{ content: "Sub-sub-sub-section Title: "; }
+				        { content: "Sub-sub-sub-section Title: "; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-				{ content: "Sub-sub-sub-sub-section Title: "; }
-TranslationOf:before		{ content: "Translation Of "; }
-ReplacementFor:before		{ content: "Replacement For "; }
+	        			{ content: "Sub-sub-sub-sub-section Title: "; }
+TranslationOf:before	{ content: "Translation Of "; }
+ReplacementFor:before	{ content: "Replacement For "; }
 
 
 /***************************************************************************/ 
 /*                     COUNTER DEFINITIONS                                 */ 
 /***************************************************************************/ 
-  
-
 SummarySection,
 
 	{ counter-reset: para; }
@@ -235,8 +235,6 @@ SummarySection>SummarySection>Para,
 /***************************************************************************/ 
 /*                             HEADINGS                                    */ 
 /***************************************************************************/ 
-
-
 MainTopics:before,
 PDQBoard:before,
 SecondaryTopics:before,
@@ -265,7 +263,10 @@ Term:before,
 
 	{ font-size: 10pt; }
 
-SummarySection>Comment:before { color: black; background-color: white; }
+SummarySection>Comment:before 
+    { color: black; 
+      background-color: white; }
+
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
 
@@ -299,14 +300,16 @@ TranslationOf:before,
 
 
 AltTitle:before,
+Caption:before,
 DateLastModified:before,
 KeyPoint:before,
+MediaID:before,
 PatientVersionOf:before,
 SummarySection>Para:before,
 SummarySection>SummarySection>Para:before,
 Title:before,
 TranslationOf:before,
-ReplacementOf:before
+ReplacementFor:before
 
      { color: black; 
        font-weight: bold; 
@@ -320,8 +323,7 @@ Title,
 /***************************************************************************/ 
 /*                            BORDER CONTROL                               */ 
 /***************************************************************************/ 
-
-
+MediaLink,
 SummaryMetaData,
 
      { border: none; }
@@ -331,16 +333,16 @@ SummaryMetaData,
 /***************************************************************************/ 
 /*                            HIDE TEXT                                    */ 
 /***************************************************************************/ 
-
-
 AltTitle,
 Board, 
 BoardMember,
+Caption,
 Comment,
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
 MainTopics,
+MediaID,
 PatientVersionOf,
 PDQBoard,
 PdqKey, 
@@ -380,7 +382,9 @@ SecondaryTopics>Term:before,
 
 Board,
 BoardMember,
+Caption,
 MainTopics>Term,
+MediaID,
 SecondaryTopics>Term,				
 SummaryAudience,
 SummaryLanguage,
