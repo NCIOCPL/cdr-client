@@ -18,13 +18,14 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CSaveDialog)
-	enum { IDD = IDD_DIALOG4 };
+	enum { IDD = IDD_SAVE_DIALOG };
 	BOOL	m_validate;
 	BOOL	m_checkIn;
 	CString	m_comment;
 	BOOL	m_createVersion;
 	BOOL	m_versionPublishable;
 	BOOL	m_docInactive;
+	BOOL	m_readyForReview;
 	//}}AFX_DATA
 
 

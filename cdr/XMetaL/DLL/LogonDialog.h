@@ -21,7 +21,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(LogonDialog)
-	enum { IDD = IDD_DIALOG1 };
+	enum { IDD = IDD_LOGON_DIALOG };
 	CButton	m_okButton;
 	CString	m_UserId;
 	CString	m_Password;

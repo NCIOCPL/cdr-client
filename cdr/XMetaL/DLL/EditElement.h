@@ -7,6 +7,7 @@
 // EditElement.h : header file
 //
 
+#include "CdrUtil.h"
 #include <string>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -16,12 +17,14 @@ class CEditElement : public CDialog
 {
 // Construction
 public:
-    CEditElement(const CString&, const CString&, 
+    enum Type { NORMAL, LEAD_ORG, PROT_PERSON, ORG_LOCATION };
+    CEditElement(const CString&, const CString&, Type = NORMAL,
                  CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CEditElement)
-	enum { IDD = IDD_DIALOG6 };
+	enum { IDD = IDD_LINK_EDIT_DIALOG };
+	CStatic	m_label;
 	CListBox	m_linkList;
 	CString	m_title;
 	//}}AFX_DATA
@@ -43,12 +46,19 @@ protected:
 	afx_msg void OnSelectButton();
 	afx_msg void OnDblclkLink();
 	afx_msg void OnButton2();
+	virtual BOOL OnInitDialog();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:
-    CString docType;
-    CString element;
+    CString         docType;
+    CString         element;
+    Type            type;
+    cdr::DocSet     docSet;
+    void            insertLeadOrg(const CString& str);
+    bool            insertProtPerson(const CString& str);
+    bool            insertOrgLocation(const CString& str);
+    void            extractLeadOrgs(const CString& str);
 };
 
 //{{AFX_INSERT_LOCATION}}

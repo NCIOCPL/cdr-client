@@ -18,7 +18,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(RetrieveDialog)
-	enum { IDD = IDD_DIALOG2 };
+	enum { IDD = IDD_RETRIEVE_DIALOG };
 	CString	m_DocId;
 	BOOL	m_CheckOut;
 	CString	m_Version;

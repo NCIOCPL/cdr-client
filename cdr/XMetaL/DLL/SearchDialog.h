@@ -22,7 +22,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CSearchDialog)
-	enum { IDD = IDD_DIALOG3 };
+	enum { IDD = IDD_SEARCH_DIALOG };
 	CComboBox	m_docTypes;
 	CListBox	m_docList;
 	CButton	m_retrieveButton;

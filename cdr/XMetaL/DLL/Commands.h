@@ -43,6 +43,15 @@ DECLARE_REGISTRY_RESOURCEID(IDR_Commands)
 
 // ICommands
 public:
+	STDMETHOD(checkIn)(/*[out, retval]*/ int* pRet);
+	STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
+	STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
+	STDMETHOD(getOrgAddress)(/*[out, retval]*/ int* pRet);
+	STDMETHOD(particOrgs)(/*[out, retval]*/ int* pRet);
+	STDMETHOD(getPersonAddress)(/*[out, retval]*/ int* pRet);
+	STDMETHOD(protUpdPerson)(/*[out, retval]*/ int* pRet);
+	STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
+	STDMETHOD(advancedSearch)(/*[out, retval]*/ int* retVal);
 	STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
 	STDMETHOD(edit)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
@@ -51,6 +60,10 @@ public:
 	STDMETHOD(search)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+
+private:
+    static CString username;
+    static CString linkClipboard;
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

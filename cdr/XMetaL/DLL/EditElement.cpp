@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.3 2001-06-09 12:35:21 bkline Exp $
+ * $Id: EditElement.cpp,v 1.4 2001-11-27 14:21:01 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/09 12:35:21  bkline
+ * Switched to Unicode; added button to launch browser view of document.
+ *
  * Revision 1.2  2001/04/18 14:45:01  bkline
  * Removed std::ends (no longer using obsolete strstream).
  *
@@ -16,12 +19,16 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "EditElement.h"
+#include "PersonLocs.h"
+#include "OrgLocs.h"
 #include "CdrUtil.h"
 #include "Cdr.h"
 #include "Commands.h"
 
 // System headers.
 #include <sstream>
+#include <algorithm>
+#include <functional>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,8 +49,10 @@ static char THIS_FILE[] = __FILE__;
  */
 CEditElement::CEditElement(const CString& t,
                            const CString& e,
+                           Type elemType,
                            CWnd* pParent /*=NULL*/)
-	: CDialog(CEditElement::IDD, pParent), docType(t), element(e)
+	: CDialog(CEditElement::IDD, pParent), docType(t), element(e),
+      type(elemType)
 {
 	//{{AFX_DATA_INIT(CEditElement)
 	m_title = _T("");
@@ -55,6 +64,7 @@ void CEditElement::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CEditElement)
+	DDX_Control(pDX, IDC_LINK_TITLE_LABEL, m_label);
 	DDX_Control(pDX, IDC_LIST1, m_linkList);
 	DDX_Text(pDX, IDC_EDIT1, m_title);
 	//}}AFX_DATA_MAP
@@ -83,39 +93,77 @@ void CEditElement::OnOK()
 
     // Make sure the user has specified at least a portion of the title.
     if (m_title.IsEmpty()) {
-        ::AfxMessageBox(_T("Title string is empty."));
+        switch (type) {
+            case NORMAL:
+                ::AfxMessageBox(_T("Title string is empty."));
+                break;
+            case LEAD_ORG:
+            case ORG_LOCATION:
+                ::AfxMessageBox(_T("Organization name string is empty."));
+                break;
+        }
         return;
     }
 
-    // Escape characters used as SQL Server wildcards.
-    m_title.Replace(_T("["), _T("[[]"));
-    m_title.Replace(_T("%"), _T("[%]"));
-    m_title.Replace(_T("_"), _T("[_]"));
-
-    // Build the command to request the list of documents.
     std::basic_ostringstream<TCHAR> cmd;
-    cmd << _T("<CdrSearchLinks MaxDocs='150'><SourceDocType>")
-        << (LPCTSTR)docType
-        << _T("</SourceDocType><SourceElementType>")
-        << (LPCTSTR)element
-        << _T("</SourceElementType><TargetTitlePattern>")
-        << (LPCTSTR)m_title
-        << _T("%</TargetTitlePattern></CdrSearchLinks>");
+    CString rsp;
+    CWaitCursor wc;
+    int pos = 0;
+    switch (type) {
+        case NORMAL:
+        case PROT_PERSON:
+        case ORG_LOCATION:
 
-    // Submit the request to the CDR server.
-	CWaitCursor wc;
-	CString rsp = CdrSocket::sendCommand(cmd.str().c_str());
-	int pos = rsp.Find(_T("<QueryResults"));
-	if (pos == -1) {
-		if (!cdr::showErrors(rsp))
-			::AfxMessageBox(_T("Unknown failure from search"),
-			                MB_ICONEXCLAMATION);
-		EndDialog(IDCANCEL);
-		return;
-	}
+            // Escape characters used as SQL Server wildcards.
+            m_title.Replace(_T("["), _T("[[]"));
+            m_title.Replace(_T("%"), _T("[%]"));
+            m_title.Replace(_T("_"), _T("[_]"));
 
-    // Extract the document information from the response.
-    cdr::DocSet docSet = cdr::extractSearchResults(rsp);
+            // Build the command to request the list of documents.
+            cmd << _T("<CdrSearchLinks MaxDocs='150'><SourceDocType>")
+                << (LPCTSTR)docType
+                << _T("</SourceDocType><SourceElementType>")
+                << (LPCTSTR)element
+                << _T("</SourceElementType><TargetTitlePattern>")
+                << (LPCTSTR)m_title
+                << _T("%</TargetTitlePattern></CdrSearchLinks>");
+
+            // Submit the request to the CDR server.
+            rsp = CdrSocket::sendCommand(cmd.str().c_str());
+            pos = rsp.Find(_T("<QueryResults"));
+            if (pos == -1) {
+                if (!cdr::showErrors(rsp))
+                    ::AfxMessageBox(_T("Unknown failure from search"),
+                                    MB_ICONEXCLAMATION);
+                EndDialog(IDCANCEL);
+                return;
+            }
+
+            // Extract the document information from the response.
+            cdr::extractSearchResults(rsp, docSet);
+            break;
+
+        case LEAD_ORG:
+
+            cmd << _T("<CdrReport>")
+                   _T("<ReportName>Lead Organization Picklist</ReportName>")
+                   _T("<ReportParams><ReportParam Name='SearchTerm' Value=\"")
+                << (LPCTSTR)m_title
+                << _T("\"/></ReportParams></CdrReport>");
+            rsp = CdrSocket::sendCommand(cmd.str().c_str());
+            pos = rsp.Find(_T("<ReportBody"));
+            if (pos == -1) {
+                if (!cdr::showErrors(rsp))
+                    ::AfxMessageBox(_T("Unknown failure from search"),
+                                    MB_ICONEXCLAMATION);
+                EndDialog(IDCANCEL);
+                return;
+            }
+
+            extractLeadOrgs(rsp);
+            break;
+    }
+
     if (cdr::fillListBox(m_linkList, docSet) > 0) {
 		m_linkList.SetCurSel(0);
 		m_linkList.EnableWindow();
@@ -138,8 +186,97 @@ void CEditElement::OnSelectButton()
         CWaitCursor wc;
         CString str;
 		m_linkList.GetText(curSel, str);
-        CCommands::doInsertLink(str);
+        switch (type) {
+            case NORMAL:
+                CCommands::doInsertLink(str);
+                break;
+            case LEAD_ORG:
+                insertLeadOrg(str);
+                break;
+            case PROT_PERSON:
+                if (!insertProtPerson(str))
+                    return;
+				break;
+            case ORG_LOCATION:
+                if (!insertOrgLocation(str))
+                    return;
+				break;
+        }
         EndDialog(IDCANCEL);
+    }
+}
+
+bool CEditElement::insertProtPerson(const CString& str)
+{
+    CdrLinkInfo linkInfo = cdr::extractLinkInfo(str);
+    CString newTarget;
+    CPersonLocs personLocs(linkInfo.target, newTarget);
+    if (personLocs.DoModal() == IDOK) {
+        CCommands::doInsertLink(_T("[") + newTarget + _T("] ")
+            + linkInfo.data);
+        return true;
+    }
+    return false;
+}
+
+bool CEditElement::insertOrgLocation(const CString& str)
+{
+    CdrLinkInfo linkInfo = cdr::extractLinkInfo(str);
+    CString newTarget;
+    COrgLocs orgLocs(linkInfo.target, newTarget);
+    if (orgLocs.DoModal() == IDOK) {
+        CCommands::doInsertLink(_T("[") + newTarget + _T("] ")
+            + linkInfo.data);
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Set LeadOrganizationID under current ProtocolLeadOrg element to match 
+ * user's selection.  Set Group attribute with the proper value (Yes or No).
+ */
+void CEditElement::insertLeadOrg(const CString& str)
+{
+    // Pull the pieces from the picklist string.
+    CdrLinkInfo info = cdr::extractLinkInfo(str);
+
+    // Find the matching record in the docSet list.
+    cdr::DocSet::iterator i = std::find_if(docSet.begin(), docSet.end(),
+            std::bind2nd(std::equal_to<cdr::SearchResult>(), info.target));
+    if (i == docSet.end()) {
+		::AfxMessageBox(_T("Internal error: can't find ") + 
+                info.target + _T(" in result set info"));
+        return;
+    }
+
+    // Find the ProtocolLeadOrg element's position.
+    ::Range leadOrgElemPos = cdr::getElemRange(_T("ProtocolLeadOrg"));
+
+    if (!leadOrgElemPos)
+        return;
+
+    // Set the Group attribute appropriately.
+    ::DOMElement leadOrgElem = leadOrgElemPos.GetContainerNode();
+    leadOrgElem.setAttribute(_T("Group"), i->isGroup() ? _T("Yes") : _T("No"));
+
+    // Find or create the LeadOrganizationID child.
+    ::Range orgIdPos = cdr::findOrCreateChild(leadOrgElemPos, 
+                                              _T("LeadOrganizationID"));
+    if (orgIdPos) {
+        orgIdPos.SetReadOnlyContainer(FALSE);
+        ::DOMElement elem = orgIdPos.GetContainerNode();
+
+        // Plug in the link attribute.
+        elem.setAttribute(_T("cdr:ref"), info.target);
+
+        // Find the text node for the element.
+        ::DOMText textNode = elem.GetFirstChild();
+        while (textNode && textNode.GetNodeType() != 3) // DOMText
+            textNode = textNode.GetNextSibling();
+        if (textNode)
+            textNode.SetData(info.data);
+        orgIdPos.SetReadOnlyContainer(TRUE);
     }
 }
 
@@ -205,4 +342,32 @@ void CEditElement::OnButton2()
     COleVariant dummy;
     ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms, 
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
+}
+
+void CEditElement::extractLeadOrgs(const CString& rsp)
+{
+    docSet.clear();
+    cdr::Element r = cdr::Element::extractElement(rsp, _T("ReportRow"));
+    while (r) {
+        cdr::Element id      = r.extractElement(r.getString(), _T("DocId"));
+        cdr::Element title   = r.extractElement(r.getString(), _T("DocTitle"));
+        cdr::Element group   = r.extractElement(r.getString(), _T("Group"));
+        cdr::SearchResult qr = cdr::SearchResult(
+                id.getString(), _T("Organization"), title.getString(), 
+                group.getString() == _T("Yes"));
+        docSet.push_back(qr);
+        r = r.extractElement(rsp, _T("ReportRow"), r.getEndPos());
+    }
+}
+
+BOOL CEditElement::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+	
+    if (type == LEAD_ORG) {
+        SetWindowText(_T("Lead Organization"));
+        m_label.SetWindowText(_T("Name"));
+    }
+	return TRUE;  // return TRUE unless you set the focus to a control
+	              // EXCEPTION: OCX Property Pages should return FALSE
 }

@@ -18,7 +18,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CValidateDialog)
-	enum { IDD = IDD_DIALOG5 };
+	enum { IDD = IDD_VALIDATE_DIALOG };
 	BOOL	m_schemaValidation;
 	BOOL	m_linkValidation;
 	//}}AFX_DATA

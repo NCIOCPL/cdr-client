@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.3 2001-06-14 01:25:14 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.4 2001-11-27 14:21:01 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/14 01:25:14  bkline
+ * Added missing UpdateData() call.
+ *
  * Revision 1.2  2001/06/09 12:43:36  bkline
  * Switched to Unicode; added code to make search state persistent.
  *
@@ -175,7 +178,7 @@ void CSearchDialog::OnSearchButton()
 
     // Populate the dialog's list box with the results.
 	m_docList.ResetContent();
-    lastSearch.docSet = cdr::extractSearchResults(rsp);
+    cdr::extractSearchResults(rsp, lastSearch.docSet);
     if (cdr::fillListBox(m_docList, lastSearch.docSet) > 0) {
 		m_docList.SetCurSel(0);
 		m_docList.EnableWindow();

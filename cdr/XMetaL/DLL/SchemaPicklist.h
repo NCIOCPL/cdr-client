@@ -23,7 +23,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CSchemaPicklist)
-	enum { IDD = IDD_DIALOG7 };
+	enum { IDD = IDD_SCHEMA_PICKLIST };
 	CListBox	m_listBox;
 	//}}AFX_DATA
 
