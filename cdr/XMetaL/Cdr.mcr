@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.32 2002-02-26 21:38:18 bkline Exp $
+     $Id: Cdr.mcr,v 1.33 2002-03-01 21:29:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.32  2002/02/26 21:38:18  bkline
+     Fixed bug in RevisionLevel default setting.
+
      Revision 1.31  2002/02/21 22:33:12  bkline
      Switched icons for Find Next and Find Previous macros.
 
@@ -317,9 +320,9 @@
             gEditingCdrLink = true;
             var rc  = cdrObj.edit();
             if (!rc) {
+                dumpXmPis();
                 Selection.SelectContainerContents();
                 Selection.MoveRight(0);
-                dumpXmPis();
             }
             gEditingCdrLink = false;
         }
