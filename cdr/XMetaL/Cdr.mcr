@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.88 2002-11-14 13:20:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.89 2002-11-14 14:49:17 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.88  2002/11/14 13:20:40  bkline
+     Fixed icon for mailer response button.
+
      Revision 1.87  2002/10/18 22:19:30  bkline
      Added macros for manipulating Public attribute.
 
@@ -5353,7 +5356,6 @@
 </MACRO>
 
 <MACRO name="Set Public" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function setPublic() {
@@ -5377,6 +5379,30 @@
         Selection.ReadOnlyContainer = holdFlag;
     }
     setPublic();
+  ]]>
+</MACRO>
+
+<MACRO name="Mailer History" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function mailerHistory() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "MailerHistory.py?Session="
+                + CdrSession
+                + "&DocId="
+                + docId;
+        Application.ShowPage(url);
+    }
+    mailerHistory();
   ]]>
 </MACRO>
 
