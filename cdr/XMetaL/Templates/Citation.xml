@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE Citation SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Citation.dtd">
+<!DOCTYPE Citation SYSTEM "Citation.dtd">
 <Citation xmlns:cdr="cips.nci.nih.gov/cdr"> 
   <CdrDocCtl> 
 	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
