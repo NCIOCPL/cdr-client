@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.19 2002-02-05 23:00:50 bkline Exp $
+     $Id: Cdr.mcr,v 1.20 2002-02-08 15:07:16 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.19  2002/02/05 23:00:50  bkline
+     Aligned Insert User ID command with Eileen's requirements.
+
      Revision 1.18  2002/02/05 18:52:52  bkline
      Added toolbar macro and hotkey for Insert User Name.
 
@@ -2966,15 +2969,15 @@
 
     if (!insertAnother("ProtocolAdminInfo", "ProtocolLeadOrg",
         "<ProtocolLeadOrg>" +
-        "<LeadOrganizationID>Lead Org Name Here</LeadOrganizationID>" +
+        "<LeadOrganizationID>Select Organization Here</LeadOrganizationID>" +
         "<LeadOrgRole/>" +
         "<LeadOrgProtocolID/>" +
-        "<OrgStatuses>" +
+        "<LeadOrgProtocolStatuses>" +
         "<CurrentOrgStatus>" +
         "<StatusName/>" +
         "<StatusDate/><EnteredBy/><EntryDate/>" +
         "</CurrentOrgStatus>" +
-        "</OrgStatuses>" +
+        "</LeadOrgProtocolStatuses>" +
         "<LeadOrgPersonnel cdr:id=''>" +
         "<Person cdr:ref=''>Person Name Here</Person>" +
         "<PersonRole/>" +
