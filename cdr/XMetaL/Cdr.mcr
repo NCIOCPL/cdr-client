@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.9 2001-10-23 21:46:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.10 2001-10-25 02:30:06 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.9  2001/10/23 21:46:34  bkline
+     Added code to remove XMetaL placeholder processing instructions.
+     Folded in macros from Eileen.
+
      Revision 1.8  2001/10/23 13:55:01  bkline
      Added Insert Current Date macro.
 
@@ -564,20 +568,73 @@
   <![CDATA[
 
     /*
+     * Constructor for a custom menu or toolbar item.
+     */
+    function CdrCmdItem(label, action, tip, desc, iconSet, row, col, newGroup) 
+    {
+        this.label    = label;
+        this.action   = action;
+        this.tip      = tip;
+        this.desc     = desc;
+        this.row      = row;
+        this.col      = col;
+        this.iconSet  = iconSet;
+        this.newGroup = newGroup;
+    }
+    
+    function addCdrButton(ctrls, item) {
+
+        // Create a new button.
+        var newButton = ctrls.Add();
+
+        // Set the new item's attributes.
+        if (newButton != null) {
+            newButton.OnAction         = item.action;
+            newButton.TooltipText      = item.tip;
+            newButton.Enabled          = true;
+            newButton.DescriptionText  = item.desc;
+            newButton.BeginGroup       = item.newGroup;
+            if (item.iconSet != null) {
+                newButton.FaceId       = Application.MakeFaceId(item.iconSet, 
+                                                                item.row, 
+                                                                item.col);
+            }
+        }
+        else {
+            Application.Alert("Unable to create \""+action+"\" button.");
+        }
+        /*
+        var faceId = Application.MakeFaceId("CDR", row, col);
+        var b = ctrls.add();
+        if (sep) { b.BeginGroup = true; }
+        b.TooltipText = tip;
+        b.DescriptionText = desc;
+        b.FaceId = faceId;
+        b.OnAction = cmd;
+        */
+    }
+
+    /*
      * Adds a single CDR menu choice.  Invoked by addCdrMenu() below.
      */
-    function addCdrMenuItem(menuControls, action, desc, label) {
+     function addCdrMenuItem(menuControls, item) {
 
         // Create a new menu item.
         var newItem = menuControls.Add(sqcbcTypePopup);
 
         // Set the new item's attributes.
         if (newItem != null) {
-            newItem.OnAction        = action;
-            newItem.TooltipText     = desc;
-            newItem.DescriptionText = desc;
-            newItem.Caption         = label;
+            newItem.OnAction        = item.action;
+            newItem.TooltipText     = item.tip;
+            newItem.DescriptionText = item.desc;
+            newItem.Caption         = item.label;
             newItem.Enabled         = true;
+            newItem.BeginGroup      = item.newGroup;
+            if (item.iconSet  != null) {
+                newItem.FaceId      = Application.MakeFaceId(item.iconSet, 
+                                                             item.row, 
+                                                             item.col);
+            }
         }
         else {
             Application.Alert("Unable to create \""+action+"\" menu item.");
@@ -585,47 +642,439 @@
     }
 
     /*
-     * Adds the CDR menu choices if they are not already present.
+     * Drop any old versions of the menus.
      */
-    function addCdrMenu() {
+    function dropOldMenu(menuName) {
+
+        var cmdBars      = Application.CommandBars;
+        var menuBar      = cmdBars.item("Menu bar");
+        var menuControls = menuBar.Controls;
+
+        // Get rid of the old menu.
+        var menu = menuControls.item(menuName);
+        while (menu != null) {
+            Application.Alert("deleting menu [" + menuName + "]");
+            menu.Delete();
+            menu = menuBar.Controls.item(menuName);
+        }
+        Application.Alert("finished deleting all " + menuName + " menus");
+    }
+
+    /*
+     * Add main CDR menu.
+     */
+    function addCdrMenu(menuControls, beforeThis) {
+
+        var menuItems = new Array(
+            new CdrCmdItem("&New CDR Document",         // Label.
+                           "New CDR Document",          // Macro.
+                           "Create New CDR Document",   // Tooltip.
+                           "Create New CDR Document",   // Description.
+                           "CDR", 3, 9,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem("&Retrieve",
+                           "Cdr Retrieve",
+                           "Retrieve",
+                           "Retrieve an existing CDR document by document ID",
+                           "CDR", 4, 7,
+                           false),
+            new CdrCmdItem("S&earch",
+                           "Cdr Search",
+                           "Search for CDR Document",
+                           "Search for CDR Document",
+                           "CDR", 3, 1,
+                           false),
+            new CdrCmdItem("&Advanced Search",
+                           "CDR Advanced Search",
+                           "Advanced Search",
+                           "Launch browser-based CDR search form",
+                           "CDR", 3, 2,
+                           false),
+            new CdrCmdItem("Prin&t",
+                           "Print",
+                           "Print",
+                           "Print the current document",
+                           "CDR", 1, 10,
+                           true),
+            new CdrCmdItem("&Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false),
+            new CdrCmdItem("&Validate",
+                           "Cdr Validate",
+                           "Validate",
+                           "Validate the current CDR document",
+                           "CDR", 4, 1,
+                           true),
+            new CdrCmdItem("&Save",
+                           "Cdr Save",
+                           "Save",
+                           "Save the current CDR document",
+                           "CDR", 3, 10,
+                           false),
+            new CdrCmdItem("Ad&ministrative Subsystem",
+                           "Administrative Subsystem",
+                           "Administrative Subsystem",
+                           "Invoke the web-based CDR Administration menu",
+                           "Databases (Custom)", 2, 10,
+                           true),
+            new CdrCmdItem("CDR &Help",
+                           "CDR Help",
+                           "CDR Help",
+                           "Launch the CDR Help System",
+                           "CDR", 4, 2,
+                           true)
+        );
+
+        var menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
+        menu.Caption = "&CDR";
+
+        // Add the menu items.
+        var controls = menu.Controls;
+        for (var i = 0; i < menuItems.length; ++i) {
+            addCdrMenuItem(controls, menuItems[i]);
+        }
+    }
+
+    /*
+     * Add CDR style menu.
+     */
+    function addCdrStyleMenu(menuControls, beforeThis) {
+
+        var menuItems = new Array(
+            new CdrCmdItem("&Insertion",                // Label.
+                           "Insertion",                 // Macro.
+                           "Insertion",                 // Tooltip.
+                           "Add Insertion markup",      // Description.
+                           "CDR", 1, 6,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem("&Deletion",
+                           "Deletion",
+                           "Deletion",
+                           "Add Deletion markup",
+                           "CDR", 1, 7,
+                           false),
+            new CdrCmdItem("Itemized &List",
+                           "Itemized List",
+                           "Itemized List",
+                           "Insert itemized list",
+                           "CDR", 6, 1,
+                           true),
+            new CdrCmdItem("&Ordered List",
+                           "Ordered List",
+                           "Ordered List",
+                           "Insert ordered list",
+                           "CDR", 6, 2,
+                           false),
+            new CdrCmdItem("XMetaL &Table Wizard",
+                           "Table",
+                           "Table",
+                           "Invoke XMetaL table wizard",
+                           "CDR", 5, 9,
+                           false),
+            new CdrCmdItem("D&ate",
+                           "Insert Current Date",
+                           "Date",
+                           "Insert current date",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("D&rug Name",
+                           "Insert DrugName Element",
+                           "Drug Name",
+                           "Add DrugName element tags to current selection",
+                           null, 0, 0,
+                           true),
+            new CdrCmdItem("&Foreign Word",
+                           "Insert ForeignWord Element",
+                           "Foreign Word",
+                           "Add ForeignWord element tags to current selection",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("&Gene Name",
+                           "Insert GeneName Element",
+                           "Gene Name",
+                           "Add GeneName element tags to current selection",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("S&cientific Name",
+                           "Insert ScientificName Element",
+                           "Scientific Name",
+                           "Add ScientificName tags to current selection",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("&Emphasis",
+                           "Insert Emphasis Element",
+                           "Emphasis",
+                           "Add Emphasis element tags to current selection",
+                           null, 0, 0,
+                           true),
+            new CdrCmdItem("&Strong",
+                           "Insert Strong Element",
+                           "Strong",
+                           "Add Strong element tags to current selection",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("Su&bscript",
+                           "Insert Subscript Element",
+                           "Subscript",
+                           "Add Subscript element tags to current selection",
+                           null, 0, 0,
+                           false),
+            new CdrCmdItem("Su&perscript",
+                           "Insert Superscript Element",
+                           "Superscript",
+                           "Add Superscript element tags to current selection",
+                           null, 0, 0,
+                           false)
+        );
+
+        menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
+        menu.Caption = "CDR &Style";
+
+        // Add the menu items.
+        var controls = menu.Controls;
+        for (var i = 0; i < menuItems.length; ++i) {
+            addCdrMenuItem(controls, menuItems[i]);
+        }
+    }
+
+    /*
+     * Add CDR markup menu.
+     */
+    function addCdrMarkupMenu(menuControls, beforeThis) {
+
+        var menuItems = new Array(
+            new CdrCmdItem("Find &Next Change",         // Label.
+                           "Find Next",                 // Macro.
+                           "Find Next Change",          // Tooltip.
+                           "Find next markup change",   // Description.
+                           "CDR", 1, 9,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem("Find &Previous Change",
+                           "Find Previous",
+                           "Find Previous Change",
+                           "Find previous markup change",
+                           "CDR", 1, 8,
+                           false),
+            new CdrCmdItem("&Accept Change",
+                           "Accept Change",
+                           "Accept Change",
+                           "Accept current markup change",
+                           "CDR", 2, 6,
+                           true),
+            new CdrCmdItem("A&ccept All Changes",
+                           "Accept Changes",
+                           "Accept All Changes",
+                           "Accept all markup changes",
+                           "CDR", 2, 7,
+                           false),
+            new CdrCmdItem("&Reject Change",
+                           "Reject Change",
+                           "Reject Change",
+                           "Reject current markup change",
+                           "CDR", 2, 8,
+                           false),
+            new CdrCmdItem("Re&ject All Changes",
+                           "Reject Changes",
+                           "Reject All Changes",
+                           "Reject all markup changes",
+                           "CDR", 2, 9,
+                           false),
+            new CdrCmdItem("Vie&w Changes With Highlighting",
+                           "Show Changes With Highlighting",
+                           "View Changes With Highlighting",
+                           "View markup changes with highlighting",
+                           "CDR", 2, 1,
+                           true),
+            new CdrCmdItem("View Changes With&out Highlighting",
+                           "Show Changes Without Highlighting",
+                           "View Changes Without Highlighting",
+                           "View markup changes without highlighting",
+                           "CDR", 2, 2,
+                           false),
+            new CdrCmdItem("&View Original",
+                           "View Original",
+                           "View Original",
+                           "View document before markup",
+                           "CDR", 2, 1,
+                           false)
+        );
+
+        menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
+        menu.Caption = "CDR &Markup";
+
+        // Add the menu items.
+        var controls = menu.Controls;
+        for (var i = 0; i < menuItems.length; ++i) {
+            addCdrMenuItem(controls, menuItems[i]);
+        }
+    }
+
+    function dropOldMenus() {
+        // Prepare some local variables.
+        var cmdBars      = Application.CommandBars;
+        var menuBar      = cmdBars.item("Menu bar");
+        var menuControls = menuBar.Controls;
+        var i = 1;
+        while (i <= menuControls.Count) {
+        //  Application.Alert("menu count: " + 
+        //                    menuControls.Count + " i: " + i);
+            var menu = menuControls.item(i);
+            var caption = menu.Caption.toUpperCase();
+            var pos = caption.indexOf("CDR") 
+            if (pos == 0 || pos == 1) {
+                menu.Delete();
+                //Application.Alert("Deleted " + caption);
+            }
+            else {
+                ++i;
+                // Application.Alert("Kept " + caption);
+            }
+        }
+    }
+
+    /*
+     * Adds the CDR menus, first removing any old versions.
+     */
+    function addCdrMenus() {
+
+        // Drop any old versions of the menus.
+        //dropOldMenu("Cdr");
+        //dropOldMenu("CDR");
+        //dropOldMenu("CDR Style");
+        //dropOldMenu("CDR Markup");
+        dropOldMenus();
 
         // Prepare some local variables.
         var cmdBars      = Application.CommandBars;
         var menuBar      = cmdBars.item("Menu bar");
         var menuControls = menuBar.Controls;
-        var cdrMenu      = menuControls.item("Cdr");
 
-        // Don't do this if it's already been done.
-        if (cdrMenu != null) {
-            return;
+        // Find the position of the Window menu
+        var windMenu      = menuControls.item("Window");
+        var windowMenuPos = menuControls.Count;
+        while (windowMenuPos >= 1) {
+            if (menuControls.item(windowMenuPos) == windMenu) {
+                break;
+            }
+            windowMenuPos = windowMenuPos - 1;
+        }
+        if (windowMenuPos == 0) {
+            windowMenuPos = menuControls.Count - 1;
         }
 
-        // Create the new menu.
-        cdrMenu = menuControls.Add(sqcbcTypePopup, null, 2);
-        cdrMenu.Caption = "&Cdr";
-
-        // Add the menu items.
-        var cdrItems = cdrMenu.Controls;
-        //addCdrMenuItem(cdrItems, "Cdr Logon", 
-        //               "Log on to the CDR system", "&Logon");
-        addCdrMenuItem(cdrItems, "Cdr Retrieve", 
-                       "Retrieve document by CDR ID", "&Retrieve");
-        addCdrMenuItem(cdrItems, "Cdr Search", 
-                       "Search for CDR documents by title", "S&earch");
-        addCdrMenuItem(cdrItems, "Cdr Validate", 
-                       "Validate current CDR document", "&Validate");
-        addCdrMenuItem(cdrItems, "Cdr Save", 
-                       "Save current CDR document", "&Save");
-        //addCdrMenuItem(cdrItems, "Cdr Logoff", 
-        //               "Log out from the CDR system", "Log&off");
+        // We have to insert these backwards to get them in the right order.
+        addCdrMarkupMenu(menuControls, windowMenuPos);
+        addCdrStyleMenu(menuControls, windowMenuPos);
+        addCdrMenu(menuControls, windowMenuPos);
     }
 
+    function addCdrToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "New CDR Document",          // Macro.
+                           "New CDR Document",          // Tooltip.
+                           "Create new CDR document",   // Description
+                           "CDR", 3, 9,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Cdr Retrieve",
+                           "Retrieve",
+                           "Retrieve existing CDR document with document ID",
+                           "CDR", 4, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Cdr Search",
+                           "Search",
+                           "Search for an existing CDR document",
+                           "CDR", 3, 1,
+                           false),
+            new CdrCmdItem(null,
+                           "CDR Advanced Search",
+                           "Advanced Search",
+                           "Launch browser-based CDR search form",
+                           "CDR", 3, 2,
+                           false),
+            new CdrCmdItem(null,
+                           "Print",
+                           "Print",
+                           "Print the current document",
+                           "CDR", 1, 10,
+                           true),
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Cdr Validate",
+                           "Validate",
+                           "Validate the current CDR document",
+                           "CDR", 4, 1,
+                           false),
+            new CdrCmdItem(null,
+                           "Cdr Save",
+                           "Save",
+                           "Save the current document",
+                           "CDR", 3, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "Administrative Subsystem",
+                           "Administrative Subsystem",
+                           "Invoke the web-based CDR Administration menu",
+                           "Databases (Custom)", 2, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "CDR Help",
+                           "CDR Help",
+                           "Launch the CDR Help System",
+                           "CDR", 4, 2,
+                           true),
+            new CdrCmdItem(null,
+                           "Insertion",
+                           "Insertion",
+                           "Add Insertion markup",
+                           "CDR", 1, 6,
+                           true),
+            new CdrCmdItem(null,
+                           "Deletion",
+                           "Deletion",
+                           "Add Deletion markup",
+                           "CDR", 1, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Itemized List",
+                           "Itemized List",
+                           "Insert itemized list",
+                           "CDR", 6, 1,
+                           false),
+            new CdrCmdItem(null,
+                           "Ordered List",
+                           "Ordered List",
+                           "Insert ordered list",
+                           "CDR", 6, 2,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar = cmdBars.item("CDR");
+        if (cmdBar) { cmdBar.Delete(); }
+        var cmdBar = cmdBars.add("CDR", 2);
+        var ctrls = cmdBar.Controls;
+        for (var i = 0; i < buttons.length; ++i) {
+            addCdrButton(ctrls, buttons[i]);
+        }
+    }
     /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
      * menu as part of a customized default.tbr.
      */
-    addCdrMenu();
+    addCdrMenus();
+    addCdrToolbar();
 
   ]]>
 </MACRO>
@@ -2245,12 +2694,23 @@
         key="Ctrl+Alt+T" 
         hide="false">
   <![CDATA[
-    var testElem = Selection.ContainerNode;
-    Application.Alert("container name is " + testElem.nodeName
-        + "; container type is " + testElem.nodeType)
-    Selection.ReadOnlyContainer = false;
-    var testNode = ActiveDocument.createTextNode("foobar");
-    testElem.appendChild(testNode);
+    function testMe() {
+
+        Application.Alert("control: " + controls.item(i).TooltipText);
+        Application.Alert("file menu has " + controls.Count + " controls");
+        var printItem    = controls.item("Print...");
+        Application.Alert("printItem is [" + printItem + "]");
+        var printAction  = printItem.OnAction;
+        Application.Alert("Print action name is [" + printAction + "]");
+        return;
+    }
+    testMe();
+    //var testElem = Selection.ContainerNode;
+    //Application.Alert("container name is " + testElem.nodeName
+    //    + "; container type is " + testElem.nodeType)
+    //Selection.ReadOnlyContainer = false;
+    //var testNode = ActiveDocument.createTextNode("foobar");
+    //testElem.appendChild(testNode);
   ]]>
 </MACRO>
 
@@ -2388,52 +2848,141 @@
   ]]>
 </MACRO>
 
-<MACRO name="Toolbar Separator" key="Ctrl+Alt+Shift+T" lang="JScript"><![CDATA[
+<MACRO  name="Insert DrugName Element"
+        lang="JScript" 
+        desc="Wraps the current selection with DrugName tags"
+        hide="false">
+    Selection.InsertElement("DrugName");
+</MACRO>
 
-var cmdBars = Application.CommandBars;
-var cmdBar = cmdBars.item("CDR Stuff");
+<MACRO  name="Insert ForeignWord Element"
+        lang="JScript" 
+        desc="Wraps the current selection with ForeignWord tags"
+        hide="false">
+    Selection.InsertElement("ForeignWord");
+</MACRO>
 
-// get the fifth button
-var cmdBarControl = cmdBar.Controls.item(5);
-// add a separator
-cmdBarControl.BeginGroup = true;
-Application.Alert(cmdBarControl.BeginGroup);
+<MACRO  name="Insert GeneName Element"
+        lang="JScript" 
+        desc="Wraps the current selection with GeneName tags"
+        hide="false">
+    Selection.InsertElement("GeneName");
+</MACRO>
 
-// get the tenth button
-var cmdBarControl = cmdBar.Controls.item(10);
-// add a separator
-cmdBarControl.BeginGroup = true;
-Application.Alert(cmdBarControl.BeginGroup);
+<MACRO  name="Insert ScientificName Element"
+        lang="JScript" 
+        desc="Wraps the current selection with ScientificName tags"
+        hide="false">
+    Selection.InsertElement("ScientificName");
+</MACRO>
 
-// get the fourteenth button
-var cmdBarControl = cmdBar.Controls.item(14);
-// add a separator
-cmdBarControl.BeginGroup = true;
-Application.Alert(cmdBarControl.BeginGroup);
+<MACRO  name="Insert Emphasis Element"
+        lang="JScript" 
+        desc="Wraps the current selection with Emphasis tags"
+        hide="false">
+    Selection.InsertElement("Emphasis");
+</MACRO>
 
-]]></MACRO>
+<MACRO  name="Insert Strong Element"
+        lang="JScript" 
+        desc="Wraps the current selection with Strong tags"
+        hide="false">
+    Selection.InsertElement("Strong");
+</MACRO>
 
-<MACRO name="Administrative Subsystem" lang="JScript" id="1019"><![CDATA[
+<MACRO  name="Insert Subscript Element"
+        lang="JScript" 
+        desc="Wraps the current selection with Subscript tags"
+        hide="false">
+    Selection.InsertElement("Subscript");
+</MACRO>
+
+<MACRO  name="Insert Superscript Element"
+        lang="JScript" 
+        desc="Wraps the current selection with Superscript tags"
+        hide="false">
+    Selection.InsertElement("Superscript");
+</MACRO>
+
+<MACRO name="Toolbar Separator" 
+       key="Ctrl+Alt+Shift+T" 
+       lang="JScript">
+  <![CDATA[
+
+    addCdrToolbar();
+
+  ]]>
+</MACRO>
+
+<MACRO name="Administrative Subsystem" 
+       lang="JScript" 
+       id="1019">
+  <![CDATA[
     Application.Alert("Stub for Administrative Subsystem");
-]]></MACRO>
+  ]]>
+</MACRO>
 
-<MACRO name="New CDR Document" lang="JScript" id="2028"><![CDATA[
-    Application.Alert("Stub for New CDR Document");
-]]></MACRO>
+<MACRO name="New CDR Document" 
+       lang="JScript" 
+       id="2028">
+  <![CDATA[
+    Documents.Add();
+  ]]>
+</MACRO>
 
-<MACRO name="Publish Preview" lang="JScript"><![CDATA[
+<MACRO name="Publish Preview" 
+       lang="JScript">
+  <![CDATA[
     Application.Alert("Stub for Publish Preview");
-]]></MACRO>
+  ]]>
+</MACRO>
 
-<MACRO name="Print" lang="JScript" id="2009"><![CDATA[
-    Application.Alert("Stub for Print");
-]]></MACRO>
+<MACRO name="Print" 
+       lang="JScript" 
+       id="2009">
+  <![CDATA[
+        // This didn't work
+        //Application.RunKeyedMacro("Ctrl+P");
+    function doPrint() {
+        var cmdBars      = Application.CommandBars;
+        var menuBar      = cmdBars.item("Menu bar");
+        var menuControls = menuBar.Controls;
+        var fileMenu     = menuControls.item("File");
+        var controls     = fileMenu.Controls;
+        var printCtrl    = null;
+        for (i = 1; i < controls.Count; ++i) {
+            if (controls.item(i).TooltipText.indexOf("Ctrl+P") != -1) {
+                printCtrl = controls.item(i);
+                break;
+            }
+        }
+        if (printCtrl) {
+            Application.Alert("got a live one!");
+            printCtrl.Execute();
+        }
+        return; 
+    }
+    // This doesn't work, either.  Confirmed by Derek of SoftQuad Technical
+    // Support email 24 Oct 2001.  He has filed a bug report.
+    // doPrint();
+    Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
+        + "Print dialog box from the File menu or using Control+P.");
+  ]]>
+</MACRO>
 
-<MACRO name="PubMed Browse" lang="JScript" id="2022"><![CDATA[
+<MACRO name="PubMed Browse" 
+       lang="JScript" 
+       id="2022">
+  <![CDATA[
     Application.Alert("Stub for PubMed Browse");
-]]></MACRO>
+  ]]>
+</MACRO>
 
-<MACRO name="Itemized List" key="Alt+L" lang="VBScript" id="20404"><![CDATA[
+<MACRO name="Itemized List" 
+       key="Alt+L" 
+       lang="VBScript" 
+       id="20404">
+  <![CDATA[
     Selection.InsertElement "ItemizedList"
     Selection.ElementAttribute("Style", "ItemizedList", 0) = "simple"
     Selection.InsertWithTemplate "ListTitle"
@@ -2443,9 +2992,14 @@ Application.Alert(cmdBarControl.BeginGroup);
     Selection.InsertWithTemplate "ListItem"
     Selection.MoveRight 
     Selection.InsertWithTemplate "ListItem"
-]]></MACRO>
+  ]]>
+</MACRO>
 
-<MACRO name="Ordered List" key="Alt+O" lang="VBScript" id="20412"><![CDATA[
+<MACRO name="Ordered List" 
+       key="Alt+O" 
+       lang="VBScript" 
+       id="20412">
+  <![CDATA[
     Selection.InsertElement "OrderedList"
     Selection.ElementAttribute("Style", "OrderedList", 0) = "Arabic"
     Selection.InsertWithTemplate "ListTitle"
@@ -2455,10 +3009,32 @@ Application.Alert(cmdBarControl.BeginGroup);
     Selection.InsertWithTemplate "ListItem"
     Selection.MoveRight 
     Selection.InsertWithTemplate "ListItem"
-]]></MACRO>
+  ]]>
+</MACRO>
 
-<MACRO name="CDR Help" lang="JScript><![CDATA[
+<MACRO name="Table"
+       lang="JScript">
+  <![CDATA[
+    function doTable() {
+        var cmdBars      = Application.CommandBars;
+        var menuBar      = cmdBars.item("Menu bar");
+        var menuControls = menuBar.Controls;
+        var tableMenu    = menuControls.item("Table");
+        var controls     = tableMenu.Controls;
+        var tableWizard  = controls.item(1);
+        tableWizard.Execute();
+    }
+    //doTable();
+    Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
+        + "Table Wizard from the Table menu.");
+  ]]>
+</MACRO>
+
+<MACRO name="CDR Help" 
+       lang="JScript>
+  <![CDATA[
     Application.Alert("Sorry, we can't help you right now ... :-)");
-]]></MACRO>
+  ]]>
+</MACRO>
 
 </MACROS>
