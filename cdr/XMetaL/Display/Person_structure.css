@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	Person_structure.css                                             */
 /*                                                                       */
+/*      v. 3.5                                                           */
+/*      4/9/02  by ebator                                                */
+/*      Add PrivatePracticeLocation (CIPS Contact info displaying)       */
+/*                                                                       */
+/*      v. 3.4                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.3                                                           */
 /*      02/22/02  by ebator                                              */
 /*      Syntax in Default Properties modified to work with XMetaL 3      */
@@ -67,7 +75,7 @@
 	  margin-left: 10px;
 	  margin-top: 0px;
 	  margin-bottom: 0px;
-	  font-family: Arial, "sans serif";
+	  font-family: Arial, sans-serif;
 	  font-size: 10pt; 
 	  font-style: normal;
 	  font-weight: bold;
@@ -152,6 +160,7 @@ PhysicianSpecialtyInformation,
 PreferredContactMode,
 Prefix,
 PrivatePractice,
+PrivatePracticeLocation,
 ProfessionalInformation,
 ProvidesServices,
 Role,
@@ -233,7 +242,8 @@ PhysicianMembershipInformation:before	{ content: "MEMBERSHIP INFORMATION"; }
 PhysicianSpecialtyInformation:before	{ content: "SPECIALTY INFORMATION"; }
 PreferredContactMode:before		{ content: "Preferred Contact Mode "; }
 Prefix:before				{ content: "Prefix "; }
-PrivatePractice:before			{ content: "PRIVATE PRACTICE LOCATION"; }
+PrivatePractice:before			{ content: "PRIVATE PRACTICE"; }
+PrivatePracticeLocation:before		{ content: "PRIVATE PRACTICE LOCATION"; }
 ProfessionalInformation:before		{ content: "Professional Information"; }
 ProvidesServices:before			{ content: "Provides Services? "; }
 RoleAtAffiliatedOrganization:before	{ content: "Role at Affiliated Org "; }
@@ -285,6 +295,7 @@ PhysicianDetails:before,
 PhysicianMembershipInformation:before,
 PhysicianSpecialtyInformation:before,
 PrivatePractice:before,
+PrivatePracticeLocation:before,
 ProfessionalInformation:before,
 SpecificPostalAddress:before,
 Status:before,
