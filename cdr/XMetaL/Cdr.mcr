@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.10 2001-10-25 02:30:06 bkline Exp $
+     $Id: Cdr.mcr,v 1.11 2001-12-19 14:10:05 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.10  2001/10/25 02:30:06  bkline
+     Moved all custom menu and toolbar building into the macro file.
+
      Revision 1.9  2001/10/23 21:46:34  bkline
      Added code to remove XMetaL placeholder processing instructions.
      Folded in macros from Eileen.
@@ -50,8 +53,23 @@
         lang="JScript">
   <![CDATA[
 
+    //------------------------------------------------------------------
+    // GLOBAL VARIABLES
+    //------------------------------------------------------------------
+    var CdrWebServer = "http://mmdb2.nci.nih.gov";
+    var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
+
     // To be overridden by successful logon.
     var CdrUserName = "";
+    var CdrSession  = "";
+    try {
+        if (cdrObj) {
+            CdrUserName = cdrObj.username;
+            CdrSession  = cdrObj.session;
+        }
+    }
+    catch (ignoreMe) {}
+
 
     // Clipboard for CDR links.
     var CdrDocLinkClipboard = "";
@@ -64,6 +82,19 @@
         return str;
     }
     
+    /*
+     * Extracts the document ID from the current document.
+     */
+    function getDocId() {
+        if (!Application.ActiveDocument) { return null; }
+        var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
+        if (nodes.length < 1) { return null; }
+        var elem = nodes.item(0);
+        var val  = getTextContent(elem);
+        if (val.length < 1) { return null; }
+        return val;
+    }
+
     /*
      * Produce string containing current date as YYYY-MM-DD string.
      */
@@ -114,6 +145,7 @@
         else {
             cdrObj.logon();
             CdrUserName = cdrObj.username;
+            CdrSession  = cdrObj.session;
             //Application.Alert("User Name is " + CdrUserName);
         }
     }
@@ -123,6 +155,7 @@
      */
     function cdrLogoff() {
         CdrUserName = "";
+        CdrSession  = "";
         if (cdrObj == null) {
             Application.Alert("You are not logged on to the CDR");
         }
@@ -218,6 +251,16 @@
     }
 
     /*
+     * Allows the user to abandon changes to the current document.
+     */
+    function cdrCheckIn() {
+        if (cdrObj == null)
+            Application.Alert("You are not logged on to the CDR");
+        else
+            cdrObj.checkIn();
+    }
+
+    /*
      * Remove any XMetaL processing instructions for placeholder data.
      */
     function dumpXmPis() {
@@ -263,8 +306,7 @@
         var style = "color:black;background-color:white";
         if (highlighting == "True") {
             if (element == "Insertion") {
-                style =  "color:red;background-color:white;" +
-                         "text-decoration:underline";
+                style =  "color:red;background-color:white";
             }
             else if (element == "Deletion") {
                 style = "color:red;background-color:white;" +
@@ -311,6 +353,7 @@
   ]]>
 </MACRO>
 
+<!--
 <MACRO  name="Switch to CSS 1" 
         lang="JScript" 
         key="Ctrl+Alt+Shift+A">
@@ -322,6 +365,7 @@
         key="Ctrl+Alt+Shift+B">
     switchCSS("InScopeProtocol-2.css", "InScopeProtocol.css");
 </MACRO>
+-->
 
 <MACRO  name="MakeReplaceText" 
         key="Ctrl+Alt+Z" 
@@ -481,11 +525,14 @@
         docType.addElement("Deletion", "Deletion", true , false);
         docType.addAttribute("Deletion", "UserName", "", 0, 0);
         docType.addAttribute("Deletion", "Time", "", 0, 0);
+        docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "proposed");
 
         // Add the Insertion element.
         docType.addElement("Insertion", "Insertion", true , false);
         docType.addAttribute("Insertion", "UserName", "", 0, 0);
         docType.addAttribute("Insertion", "Time", "", 0, 0);
+        docType.addAttribute("Insertion", "RevisionLevel", "", 0, 0, 
+            "proposed");
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
@@ -714,6 +761,12 @@
                            "Save the current CDR document",
                            "CDR", 3, 10,
                            false),
+            new CdrCmdItem("&Unlock",
+                           "CDR Check In",
+                           "Unlock",
+                           "Unlock the current CDR document",
+                           "CDR", 6, 6,
+                           false),
             new CdrCmdItem("Ad&ministrative Subsystem",
                            "Administrative Subsystem",
                            "Administrative Subsystem",
@@ -768,7 +821,7 @@
                            "Insert ordered list",
                            "CDR", 6, 2,
                            false),
-            new CdrCmdItem("XMetaL &Table Wizard",
+            new CdrCmdItem("&Table",
                            "Table",
                            "Table",
                            "Invoke XMetaL table wizard",
@@ -831,7 +884,7 @@
         );
 
         menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
-        menu.Caption = "CDR &Style";
+        menu.Caption = "CDR &Styles";
 
         // Add the menu items.
         var controls = menu.Controls;
@@ -1029,11 +1082,19 @@
                            "Databases (Custom)", 2, 10,
                            false),
             new CdrCmdItem(null,
-                           "CDR Help",
-                           "CDR Help",
-                           "Launch the CDR Help System",
-                           "CDR", 4, 2,
+                           "Jump Before Element",
+                           "Jump Before Element",
+                           "Position cursor in front of current element's" +
+                           " start tag",
+                           "CDR", 6, 3,
                            true),
+            new CdrCmdItem(null,
+                           "Jump Past Element",
+                           "Jump Past Element",
+                           "Position cursor beyond current element's" +
+                           " start tag",
+                           "CDR", 6, 4,
+                           false),
             new CdrCmdItem(null,
                            "Insertion",
                            "Insertion",
@@ -1057,24 +1118,178 @@
                            "Ordered List",
                            "Insert ordered list",
                            "CDR", 6, 2,
+                           false),
+            new CdrCmdItem(null,
+                           "CDR Help",
+                           "CDR Help",
+                           "Launch the CDR Help System",
+                           "CDR", 4, 2,
+                           true)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        /*
+        var i = 1;
+        //Application.Alert("number of bars: " + cmdBars.count);
+        while (i <= cmdBars.count) {
+            //Application.Alert("looking at bar " + i);
+            var bar = cmdBars.item(i);
+            //Application.Alert("Found command bar: " + bar.name);
+            try {
+                if (bar.name == "CDR") {
+                    bar.Delete();
+                    Application.Alert("Deleted command bar " + bar.name);
+                }
+                else {
+                    i++;
+                }
+            }
+            catch (e) {
+                Application.Alert("Failure deleting CDR bar: " + e);
+                ++i;
+            }
+        }
+        */
+        
+        
+        try { cmdBar = cmdBars.item("CDR"); }
+        catch (e) { 
+            //Application.Alert(e.description);
+            //Application.Alert("Error number: " + (e.number & 0xFFFF));
+            //Application.Alert("Error description: " + e.description);
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR", 2);
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR toolbar: " + e);
+        }
+        if (cmdBar) {
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addSummaryToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "New Summary Section",       // Macro.
+                           "New Summary Section",       // Tooltip.
+                           "Insert new SummarySection", //Description
+                           "General (Custom)", 5, 8,    // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Next Summary Section",
+                           "Next Summary Section",
+                           "Move to next SummarySection",
+                           "CDR", 4, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Previous Summary Section",
+                           "Previous Summary Section",
+                           "Move to previous SummarySection",
+                           "CDR", 4, 5,
+                           false),
+            new CdrCmdItem(null,
+                           "Higher Summary Section",
+                           "Higher Summary Section",
+                           "Move to higher SummarySection",
+                           "CDR", 4, 6,
+                           false),
+            new CdrCmdItem(null,
+                           "Create Summary Markup Report",
+                           "Create Summary Markup Report",
+                           "Create Summary Markup Report",
+                           "CDR", 3, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Generate Summary Mailers",
+                           "Generate Summary Mailers",
+                           "Generate Summary Mailers",
+                           "CDR", 5, 8,
                            false)
         );
         var cmdBars = Application.CommandBars;
-        var cmdBar = cmdBars.item("CDR");
-        if (cmdBar) { cmdBar.Delete(); }
-        var cmdBar = cmdBars.add("CDR", 2);
-        var ctrls = cmdBar.Controls;
-        for (var i = 0; i < buttons.length; ++i) {
-            addCdrButton(ctrls, buttons[i]);
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("Summary"); }
+        catch (e) { 
+            //Application.Alert(e.description);
+            //Application.Alert("Error number: " + (e.number & 0xFFFF));
+            //Application.Alert("Error description: " + e.description);
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("Summary", 2);
+        }
+        catch (e) {
+            Application.Alert("Failure adding Summary toolbar: " + e);
+        }
+        if (cmdBar) {
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
         }
     }
+
+    function bugRepro() {
+        var cmdBars = Application.CommandBars;
+        var i       = 0;
+        if (cmdBars) {
+            Application.Alert("number of bars: " + cmdBars.count);
+            while (i < cmdBars.count) {
+                try {
+                    var bar = cmdBars.item(i);
+                    Application.Alert("Found command bar: " + bar.name);
+                }
+                catch (e) {
+                    Application.Alert("Err number: " + e.number & 0xFFFF);
+                    try {
+                        Application.Alert("Description: " + e.description);
+                    }
+                    catch (e2) {
+                        Application.Alert("e.description error: " + e2);
+                    }
+                }
+                i++;
+            }
+        }
+    }
+
     /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
      * menu as part of a customized default.tbr.
      */
-    addCdrMenus();
-    addCdrToolbar();
+     addCdrToolbar();
+     addSummaryToolbar();
+     addCdrMenus();
+     //bugRepro();
 
   ]]>
 </MACRO>
@@ -1181,9 +1396,6 @@
             if (rc == 0) {
                 Application.Alert("Document stored successfully.");
             }
-            else {
-                Application.Alert("Error return from save is " + rc);
-            }
         }
     }
     cdrSave();
@@ -1216,7 +1428,7 @@
         key="" 
         lang="JScript" 
         tooltip="Store Document in the CDR" >
- <![CDATA[
+  <![CDATA[
     protUpdPerson();
   ]]>
 </MACRO>
@@ -1225,18 +1437,13 @@
         key="" 
         lang="JScript" 
         tooltip="Copy Document Link to CDR Clipboard">
- <![CDATA[
+  <![CDATA[
     function copyDocumentLink() {
-        CdrDocLinkClipboard = "";
-        var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
-        if (nodes.length < 1) {
+        var docId  = getDocId();
+        if (!docId) {
             Application.Alert("This is a new document without a document ID.");
         }
-        else {
-            var elem = nodes.item(0);
-            var val  = getTextContent(elem);
-            CdrDocLinkClipboard = val;
-        }
+        CdrDocLinkClipboard = docId;
     }
     copyDocumentLink();
   ]]>
@@ -1246,7 +1453,7 @@
         key="" 
         lang="JScript" 
         tooltip="Copy Fragment Link to CDR Clipboard">
- <![CDATA[
+  <![CDATA[
     function copyFragmentLink() {
         CdrFragLinkClipboard = "";
         var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
@@ -1440,7 +1647,7 @@
             var rng = ActiveDocument.Range;
             rng.MoveToDocumentStart();
             while(rng.MoveToElement("Insertion")) {
-                rng.ContainerStyle = "color:red; text-decoration:underline";
+                rng.ContainerStyle = "color:red";
             }
             rng.MoveToDocumentStart();
             while (rng.MoveToElement("Deletion")) {
@@ -1601,7 +1808,7 @@
             var rng = ActiveDocument.Range;
             rng.MoveToDocumentStart();
             while (rng.MoveToElement("Insertion")) {
-                rng.ContainerStyle = "color:red; text-decoration:underline";
+                rng.ContainerStyle = "color:red";
             }
             rng.MoveToDocumentStart();
             while (rng.MoveToElement("Deletion")) {
@@ -1660,6 +1867,8 @@
                         Selection.ContainerAttribute("UserName") = CdrUserName;
                         Selection.ContainerAttribute("Time") = 
                             date.toLocaleString();
+                        Selection.ContainerAttribute("RevisionLevel") = 
+                            "proposed";
                         Selection.ContainerStyle = getMarkupStyle("Deletion");
                         Selection.Text = del_txt;
                     }
@@ -1672,6 +1881,8 @@
                     Selection.ContainerAttribute("UserName") = CdrUserName;
                     Selection.ContainerAttribute("Time") =
                                                     date.toLocaleString();
+                    Selection.ContainerAttribute("RevisionLevel") = 
+                        "proposed";
                     var rng = ActiveDocument.Range;
                     rng.SelectContainerContents();
                     var start = rng.Duplicate;
@@ -1766,6 +1977,8 @@
                 Selection.ContainerAttribute("UserName") = CdrUserName;
                 var date = new Date();
                     Selection.ContainerAttribute("Time") = date.toLocaleString();
+                    Selection.ContainerAttribute("RevisionLevel") = 
+                        "proposed";
                     Selection.ContainerStyle = getMarkupStyle("Deletion");
                     Selection.SelectAfterContainer();
                     doInsertion();
@@ -1791,6 +2004,7 @@
                     var date = new Date();
                     Selection.ContainerAttribute("Time") = 
                         date.toLocaleString();
+                    Selection.ContainerAttribute("RevisionLevel") = "proposed";
                     Selection.ContainerStyle = getMarkupStyle("Insertion");
               
                     // Merge if the previous tag name and its user are the
@@ -2247,7 +2461,7 @@
             rng2 = null;
         }
         rng_HL.MoveToDocumentStart();
-        while(rng_HL.MoveToElement("Deletion")) {
+        while (rng_HL.MoveToElement("Deletion")) {
             rng_HL.SelectContainerContents();
             start = rng_HL.Duplicate;
             start.Collapse(1);  // set the starting boundary for the search
@@ -2318,7 +2532,7 @@
             rng2 = null;  // clean up
         }
         rng_HL.MoveToDocumentStart();
-        while(rng_HL.MoveToElement("Deletion")) {
+        while (rng_HL.MoveToElement("Deletion")) {
             rng_HL.SelectContainerContents();
             start = rng_HL.Duplicate;
             start.Collapse(1);  // set the starting boundary for the search
@@ -2629,6 +2843,22 @@
   ]]>
 </MACRO>
 
+<MACRO  name="CDR Check In"
+        lang="JScript" 
+        desc="Releases CDR lock, abandoning any changes to current document."
+        hide="false">
+  <![CDATA[
+
+    if (cdrObj == null) {
+        Application.Alert("You are not logged on to the CDR");
+    }
+    else {
+        cdrCheckIn();
+    }
+
+  ]]>
+</MACRO>
+
 <MACRO  name="CDR Get Person Address"
         lang="JScript" 
         desc="Retrieve address from fragment link"
@@ -2759,9 +2989,7 @@
                 else {
                     var elem = nodes.item(0);
                     var val  = getTextContent(elem);
-                    var url = "http://mmdb2.nci.nih.gov" +
-                              "/cgi-bin/cdr/PersonOrgLocLinks.py?" + 
-                              "FragLink=" +
+                    var url = CdrCgiBin + "PersonOrgLocLinks.py?FragLink=" + 
                               val + "%23" + id;
                     Application.ShowPage(url);
                 }
@@ -2904,21 +3132,16 @@
     Selection.InsertElement("Superscript");
 </MACRO>
 
-<MACRO name="Toolbar Separator" 
-       key="Ctrl+Alt+Shift+T" 
-       lang="JScript">
-  <![CDATA[
-
-    addCdrToolbar();
-
-  ]]>
-</MACRO>
-
 <MACRO name="Administrative Subsystem" 
        lang="JScript" 
        id="1019">
   <![CDATA[
-    Application.Alert("Stub for Administrative Subsystem");
+    function administrativeSubsystem() {
+        
+        var url = CdrCgiBin + "Admin.py?Session=" + CdrSession;
+        Application.ShowPage(url);
+    }
+    administrativeSubsystem();
   ]]>
 </MACRO>
 
@@ -2933,7 +3156,23 @@
 <MACRO name="Publish Preview" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Publish Preview");
+    function publishPreview() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        //Application.Alert("session: " + CdrSession);
+        var url = CdrCgiBin + "PublishPreview.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        //Application.Alert("url: " + url);
+        Application.ShowPage(url);
+    }
+    publishPreview();
   ]]>
 </MACRO>
 
@@ -3024,16 +3263,66 @@
         var tableWizard  = controls.item(1);
         tableWizard.Execute();
     }
-    //doTable();
-    Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
-        + "Table Wizard from the Table menu.");
+    doTable();
+    //Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
+    //    + "Table Wizard from the Table menu.");
   ]]>
 </MACRO>
 
 <MACRO name="CDR Help" 
-       lang="JScript>
+       lang="JScript">
   <![CDATA[
     Application.Alert("Sorry, we can't help you right now ... :-)");
+  ]]>
+</MACRO>
+
+<MACRO name="Jump Past Element" 
+       key="Ctrl+Alt+Shift+P"
+       lang="JScript">
+  <![CDATA[
+    function jumpPastElement() {
+        try {
+            if (ActiveDocument) {
+                var rng = ActiveDocument.Range
+                if (rng) {
+                    rng.SelectAfterContainer();
+                    rng.Select();
+                }
+            }
+        }
+        catch (e) {}
+    }
+    jumpPastElement();
+  ]]>
+</MACRO>
+
+<MACRO name="Jump Before Element" 
+       key="Ctrl+Alt+Shift+B"
+       lang="JScript">
+  <![CDATA[
+    function jumpBeforeElement() {
+        try {
+            if (ActiveDocument) {
+                var rng = ActiveDocument.Range;
+                if (rng) {
+                    rng.SelectBeforeContainer();
+                    rng.Select();
+                }
+            }
+        }
+        catch (e) {}
+    }
+    jumpBeforeElement();
+  ]]>
+</MACRO>
+
+<MACRO name="On_Document_Open_View" 
+       lang="JScript">
+  <![CDATA[
+    // Always open documents in Normal view
+    if (ActiveDocument.ViewType != 0) {
+        ActiveDocument.ViewType = 0;
+    }
   ]]>
 </MACRO>
 
