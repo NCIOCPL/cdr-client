@@ -52,7 +52,7 @@ CCDRLoaderDlg::CCDRLoaderDlg(CWnd* pParent /*=NULL*/)
 	, UserId(_T(""))
 	, UserPwd(_T(""))
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = AfxGetApp()->LoadIcon(IDI_XM_ICON);
 }
 
 void CCDRLoaderDlg::DoDataExchange(CDataExchange* pDX)

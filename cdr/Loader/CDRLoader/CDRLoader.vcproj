@@ -223,6 +223,12 @@
 			<File
 				RelativePath="res\CDRLoader.rc2">
 			</File>
+			<File
+				RelativePath="res\Sxmetal3a0.ico">
+			</File>
+			<File
+				RelativePath="res\xmetal3a0.ico">
+			</File>
 		</Filter>
 		<File
 			RelativePath="ReadMe.txt">

@@ -64,7 +64,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\CDRLoader.ico"
+IDI_XM_ICON             ICON                    "res\\xmetal3a0.ico"
+IDI_XMS_ICON			ICON					"res\\Sxmetal3a0.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -77,7 +78,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "About CDRLoader"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    ICON            IDI_XM_ICON,IDC_STATIC,11,17,20,20
     LTEXT           "CDRLoader Version 1.0",IDC_STATIC,40,10,119,8,
                     SS_NOPREFIX
     LTEXT           "Copyright (C) 2002",IDC_STATIC,40,25,119,8
