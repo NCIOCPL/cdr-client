@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.49 2002-04-24 23:53:00 bkline Exp $
+     $Id: Cdr.mcr,v 1.50 2002-04-26 23:08:32 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.49  2002/04/24 23:53:00  bkline
+     Replaced stub for Generate Mailers macro.
+
      Revision 1.48  2002/04/24 21:18:04  bkline
      Replaced some stubs for Protocol and Organization toolbar buttons.
 
@@ -703,6 +706,7 @@
         hide="true" 
         lang="JScript">
 <![CDATA[
+    //Application.Alert("entering On_Document_Open_Complete");
     Selection.GotoNext(0);
     Selection.GotoNext(0);
     Selection.SelectContainerContents();
@@ -712,6 +716,7 @@
     docProps.Add("InsNextPrev", false);
     docProps.Add("DelNextPrev", false);
     Application.Run("Init_JScript_Macros");
+    //Application.Alert("leaving On_Document_Open_Complete");
 ]]>
 </MACRO>
 
@@ -1835,6 +1840,51 @@
         }
     }
 
+    function addMiscToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Miscellaneous Document"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Miscellaneous " +
+                                  "Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Miscellaneous Document", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Miscellaneous Document " +
+                              "toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["MiscellaneousDocument"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function bugRepro() {
         var cmdBars = Application.CommandBars;
         var i       = 0;
@@ -1911,6 +1961,7 @@
     addTermToolbar();
     addGlossaryToolbar();
     addCitationToolbar();
+    addMiscToolbar();
     addCdrMenus();
     hideToolbars();
     // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
@@ -4065,8 +4116,10 @@
     function adjustToolbars() {
         hideToolbars();
         var docType = ActiveDocument.doctype;
-        if (toolbars[docType.name] != null)
+        if (toolbars[docType.name] != null) {
             toolbars[docType.name].Visible = true;
+            //Application.Alert("Just turned on toolbar for " + docType.name);
+        }
     }
     adjustToolbars();
   ]]>
@@ -4082,10 +4135,12 @@
 <MACRO name="On_Document_Open_View" 
        lang="JScript">
   <![CDATA[
+    //Application.Alert("entering On_Document_Open_View");
     // Always open documents in Normal view
     if (ActiveDocument.ViewType != 0) {
         ActiveDocument.ViewType = 0;
     }
+    //Application.Alert("leaving On_Document_Open_View");
   ]]>
 </MACRO>
 
