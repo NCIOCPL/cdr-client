@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	Term.css                                                         */
 /*                                                                       */
+/*      v. 3.5                                                           */
+/*      7/16/02  by ebator                                               */
+/*      SemanticTypeText is now optional                                 */
+/*                                                                       */
+/*      v. 3.4                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.3                                                           */
 /*      1/22/02  by ebator                                               */
 /*      User-requested changes to tags                                   */
@@ -59,7 +67,7 @@
 
 $DOCUMENT 
 
-     { font-family: "Arial", sans serif;
+     { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
@@ -152,7 +160,7 @@ RelatedTerm:before		{ content: "RELATED TERM * + "; }
 RelationshipType:before		{ content: "Relationship Type *: "; }
 ReviewStatus:before		{ content: "Review Status &: "; }
 SemanticType:before		{ content: "Semantic Type & + @: "; } 
-SemanticTypeText:before		{ content: "Semantic Type Text * +: "; }
+SemanticTypeText:before		{ content: "Semantic Type Text & +: "; }
 SourceCode:before		{ content: "Source Code *: "; }
 SourceTermId:before		{ content: "Source Term ID *: "; }
 SourceTermType:before		{ content: "Source Term Type *: "; }
@@ -322,12 +330,12 @@ Definition > Comment,			{ margin-left: 125pt;
 
 /* Key element for length = SemanticTypeText			 	   */
 
-TermTypeName,				{ margin-left: 140pt; 
+TermTypeName,				{ margin-left: 142pt; 
 					  text-indent: -121.5pt; }
-SemanticType,				{ margin-left: 140pt; 
+SemanticType,				{ margin-left: 142pt; 
 					  text-indent: -129pt; }
-SemanticTypeText,			{ margin-left: 140pt; 
-					  text-indent: -137pt; }
+SemanticTypeText,			{ margin-left: 142pt; 
+					  text-indent: -142pt; }
 
 /* Key element for length = RelationshipType				   */
 

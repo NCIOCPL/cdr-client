@@ -247,7 +247,7 @@
     </Template>
     <Template>
       <Name>SemanticTypeText</Name>
-      <MiniTemplate><![CDATA[<SemanticTypeText><?xm-replace_text {Describe the term's semantic type (required)} ?></SemanticTypeText>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<SemanticTypeText><?xm-replace_text {Optionally describe the term's semantic type} ?></SemanticTypeText>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>OtherTermName</Name>
