@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.81 2002-09-24 20:41:32 bkline Exp $
+     $Id: Cdr.mcr,v 1.82 2002-09-26 15:30:51 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.81  2002/09/24 20:41:32  bkline
+     Added Mailer toolbar/macro.
+
      Revision 1.80  2002/09/24 15:30:47  bkline
      Plugged in toolbar buttons for new macros.
 
@@ -5048,16 +5051,6 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py"
-                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
-                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
-                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
-                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
-                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
-                + "&Filter5=name:Health+Professional+Summary+Report"
-                + "&DocId=" + docId;
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
                             + "&Session="
@@ -5077,14 +5070,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "Filter.py"
-                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
-                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
-                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
-                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
-                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
-                + "&Filter5=name:Health+Professional+Summary+Report"
-                + "&DocId=" + docId;
+        var url = CdrCgiBin + "Filter.py";
         Application.ShowPage(url);
     }
     Application.Alert("Don't have filters for this command yet.");
@@ -5101,17 +5087,6 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py"
-                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
-                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
-                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
-                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
-                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
-                + "&Filter5=name:Health+Professional+Summary+Report"
-                + "-Bold/Underline"
-                + "&DocId=" + docId;
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary:bu&DocId="
                             + docId
                             + "&Session="
@@ -5132,16 +5107,6 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py"
-                + "?Filter=name:Denormalization+Filter+(1/5):+Summary"
-                + "&Filter1=name:Denormalization+Filter+(2/5):+Summary"
-                + "&Filter2=name:Denormalization+Filter+(3/5):+Summary"
-                + "&Filter3=name:Denormalization+Filter+(4/5):+Summary"
-                + "&Filter4=name:Denormalization+Filter+(5/5):+Summary"
-                + "&Filter5=name:Health+Professional+Summary+Report"
-                + "&DocId=" + docId;
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary:rs&DocId="
                             + docId
                             + "&Session="
