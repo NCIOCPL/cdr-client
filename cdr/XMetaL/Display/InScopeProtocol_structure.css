@@ -215,7 +215,7 @@ ExternalSiteAddress:before      { content: "EXTERNAL SITE ADDRESS"; }
 ExternalSiteContact:before      { content: "EXTERNAL SITE CONTACT"; }
 ExternalSiteContactName:before  { content: "EXTERNAL SITE CONTACT NAME"; }
 ExternalSiteContactTitle:before { content: "ES Contact Title"; }
-ExternalSiteContactPhone:before { content: "ES Phone"; }
+ExternalSiteContactPhone:before { content: "ES Contact Phone"; }
 ExternalSiteName:before         { content: "ES Name"; }
 ExternalSiteOrg:before          { content: "EXTERNAL SITE ORG"; }
 ExternalSiteOrgID:before        { content: "ES Org ID"; }
@@ -320,6 +320,7 @@ ExternalSiteAddress:before,
 ExternalSiteContact:before,
 ExternalSiteContactName:before,
 ExternalSiteContactPhone:before,
+ExternalSiteContactTitle:before,
 ExternalSiteName:before,
 ExternalSiteOrg:before,
 ExternalSiteOrgID:before,
@@ -539,6 +540,7 @@ ExternalSiteRegDate:before,
 ExternalSiteRegStatus:before,
 ExternalSites,
 ExternalSiteContactPhone:before,
+ExternalSiteContactTitle:before,
 FDAINDInfo:before,
 FundingInfo, 
 GrantContractNo:before,
@@ -657,6 +659,7 @@ ExternalSitePI,
 ExternalSitePIID,
 ExternalSitePIPhone,
 ExternalSiteContactPhone,
+ExternalSiteContactTitle,
 GrantContractNo,
 INDGrantor,
 INDNumber,

@@ -254,9 +254,9 @@ ExternalSiteContact:before
 ExternalSiteContactName:before
                 { content: "EXTERNAL SITE CONTACT NAME *: "; }
 ExternalSiteContactTitle:before
-                { content: "ES Contact Title *: "; }
+                { content: "ESC Title *: "; }
 ExternalSiteContactPhone:before
-                { content: "ES Phone & +: "; }
+                { content: "ESC Phone & +: "; }
 ExternalSiteName:before
                 { content: "ES Name *: "; }
 ExternalSiteOrg:before
@@ -426,6 +426,7 @@ ExternalSiteAddress:before,
 ExternalSiteContact:before,
 ExternalSiteContactName:before,
 ExternalSiteContactPhone:before,
+ExternalSiteContactTitle:before,
 ExternalSiteName:before,
 ExternalSiteOrg:before,
 ExternalSiteOrgID:before,
@@ -838,7 +839,10 @@ PersonSuffix,
                               text-indent: -107pt; }
 ExternalSiteContactPhone,
                             { margin-left: 100pt; 
-                              text-indent: -87pt; }
+                              text-indent: -96pt; }
+ExternalSiteContactTitle,
+                            { margin-left: 100pt; 
+                              text-indent: -68pt; }
 
 /* Margin-bottom for simulated text boxes                                  */
 ClinicalTrialOffice,
@@ -855,6 +859,7 @@ ExternalSiteAddress,
 ExternalSiteContact,
 ExternalSiteContactName,
 ExternalSiteContactPhone,
+ExternalSiteContactTitle,
 ExternalSiteName,
 ExternalSiteOrg,
 ExternalSiteOrgID,
@@ -958,6 +963,7 @@ ExternalSiteAddress,
 ExternalSiteContact,
 ExternalSiteContactName,
 ExternalSiteContactPhone,
+ExternalSiteContactTitle,
 ExternalSiteName,
 ExternalSiteOrg,
 ExternalSiteOrgID,
@@ -1033,6 +1039,7 @@ ExternalSiteAddress,
 ExternalSiteContact,
 ExternalSiteContactName,
 ExternalSiteContactPhone:before,
+ExternalSiteContactTitle:before,
 ExternalSiteName:before,
 ExternalSiteOrg,
 ExternalSiteOrgID:before,
