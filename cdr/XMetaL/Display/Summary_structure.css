@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	Summary_structure.css                                            */
 /*                                                                       */
+/*      v. 3.5                                                           */
+/*      7/23/02  by ebator                                               */
+/*      Added PatientVersionOf element                                   */
+/*                                                                       */
+/*      v. 3.4                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 3.3                                                           */
 /*      02/22/02  by ebator                                              */
 /*      Syntax in Default Properties modified to work with XMetaL 3      */
@@ -90,7 +98,7 @@
 	  margin-left: 10px;
 	  margin-top: 0px;
 	  margin-bottom: 0px;
-	  font-family: Arial, "sans serif";
+	  font-family: Arial, sans-serif;
 	  font-size: 10pt; 
 	  font-style: normal;
 	  font-weight: bold;
@@ -119,7 +127,8 @@ BoardMember,
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
-MainTopics, 
+MainTopics,
+PatientVersionOf, 
 PDQBoard,
 PdqKey, 
 SecondaryTopics, 
@@ -154,6 +163,7 @@ MainTopics:before		{ content: "Main Topics "; }
 Para:before			{ content: counter(para)". Paragraph "; }
 SummarySection>SummarySection>Para:before
 				{ content: counter(subpara)". Subparagraph "; }
+PatientVersionOf:before		{ content: "Patient Version Of "; }
 PDQBoard:before			{ content: "PDQ Board "; }
 PdqKey:before			{ content: "PDQ Key "; }
 SecondaryTopics:before 		{ content: "Secondary Topics " }
@@ -259,6 +269,7 @@ SummarySection>SummarySection>Title,
 Board:before,
 BoardMember:before,
 Diagnosis:before,
+PatientVersionOf:before,
 PdqKey:before,
 SectionType:before,
 SummaryType:before, 
@@ -279,6 +290,7 @@ TranslationOf:before,
 AltTitle:before,
 DateLastModified:before,
 KeyPoint:before,
+PatientVersionOf:before,
 SummarySection>Para:before,
 SummarySection>SummarySection>Para:before,
 Title:before,
@@ -316,6 +328,7 @@ DateLastModified,
 Diagnosis, 
 KeyPoint, 
 MainTopics,
+PatientVersionOf,
 PDQBoard,
 PdqKey, 
 SecondaryTopics, 
