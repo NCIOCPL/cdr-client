@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.123 2004-06-03 15:21:58 bkline Exp $
+     $Id: Cdr.mcr,v 1.124 2004-06-03 15:24:04 bkline Exp $
 
      $Log: not supported by cvs2svn $
      Revision 1.122  2004/04/19 15:26:38  bkline
@@ -5227,14 +5227,16 @@
             //Application.Alert("Just turned on toolbar for " + docType.name);
         }
     }
-    adjustToolbars();
+    if (Application.VersionNumber < 4.5)
+        adjustToolbars();
   ]]>
 </MACRO>
 
 <MACRO name="On_Document_Close"
        lang="JScript">
   <![CDATA[
-    hideToolbars();
+    if (Application.VersionNumber < 4.5)
+        hideToolbars();
   ]]>
 </MACRO>
 
@@ -6199,6 +6201,29 @@
     }
     previewMailer();
   ]]>
+</MACRO>
+
+<MACRO name="On_CommandBars_Activate"
+       lang="JScript">
+  <![CDATA[
+    function showToolbarForDoctype() {
+        var docType = ActiveDocument.doctype;
+        if (docType && toolbars[docType.name] != null) {
+            if (!toolbars[docType.name].Visible) {
+                // Application.Alert("Turning on " + docType.name);
+                toolbars[docType.name].Visible = true;
+            }
+        }
+    }
+    try { showToolbarForDoctype(); }
+    catch (e) {}
+  ]]>
+</MACRO>
+
+<MACRO name="On_CommandBars_DeActivate"
+       lang="JScript">
+    try { hideToolbars(); }
+    catch (e) {}
 </MACRO>
 
 <MACRO name="SC Up"      lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
