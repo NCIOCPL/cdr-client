@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.6 2001-09-20 14:24:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.7 2001-10-23 13:47:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
      Revision 1.5  2001/08/27 19:09:43  bkline
@@ -32,7 +32,8 @@
     var CdrUserName = "";
 
     // Clipboard for CDR links.
-    var CdrLinkClipboard = "";
+    var CdrDocLinkClipboard = "";
+    var CdrFragLinkClipboard = "";
   
     /*
      * Utility function to extract the text content of an element.
@@ -62,7 +63,7 @@
         else {
             cdrObj.logon();
             CdrUserName = cdrObj.username;
-            Application.Alert("User Name is " + CdrUserName);
+            //Application.Alert("User Name is " + CdrUserName);
         }
     }
 
@@ -196,6 +197,40 @@
             }
         }
         return (style);
+    }
+
+    function getElemRange(elemName) {
+
+        // Find out where we are.
+        var rng = ActiveDocument.Range;
+
+        // Make sure what we find is an ancestor of the current element.
+        if (!rng.IsParentElement(elemName))
+            return null;
+
+        // Move.
+        if (!rng.MoveToElement(elemName, false))
+            return null;
+        else
+            return rng;
+    }
+
+    function insertAnother(parentName, elemName, str) {
+        var rng = getElemRange(parentName);
+        if (!rng) { return false; }
+        rng.SelectElement();
+        rng.Collapse(0);
+        if (!rng.FindInsertLocation(elemName, false)) { return false; }
+        if (!str) {
+            str = "<" + elemName + "/>";
+        }
+        rng.PasteString(str);
+        rng.MoveToElement(elemName, false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+        return true;
     }
 
   ]]>
@@ -435,6 +470,19 @@
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
     Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
     Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
+    Application.AppendMacro("-", "");
+    Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
+    Application.AppendMacro("Prot Update Person", "Protocol Update Person");
+    Application.AppendMacro("Retrieve Person Address", "CDR Get Person Address");
+    Application.AppendMacro("Retrieve Org Address", "CDR Get Org Address");
+    Application.AppendMacro("Add Participating Orgs", "CDR Participating Orgs");
+    var docType = ActiveDocument.doctype;
+    if (docType.name == "Organization") {
+        if (Selection.IsParentElement("Location")) {
+            Application.AppendMacro("Persons Linking to This Location",
+                "CDR Persons Linking to Org Address Fragment");
+        }
+    }
    
   ]]>
 </MACRO>
@@ -659,6 +707,7 @@
         tooltip="Copy Document Link to CDR Clipboard">
  <![CDATA[
     function copyDocumentLink() {
+        CdrDocLinkClipboard = "";
         var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
         if (nodes.length < 1) {
             Application.Alert("This is a new document without a document ID.");
@@ -666,10 +715,49 @@
         else {
             var elem = nodes.item(0);
             var val  = getTextContent(elem);
-            CdrLinkClipboard = val;
+            CdrDocLinkClipboard = val;
         }
     }
     copyDocumentLink();
+  ]]>
+</MACRO>
+
+<MACRO  name="Cdr Copy Fragment Link"
+        key="" 
+        lang="JScript" 
+        tooltip="Copy Fragment Link to CDR Clipboard">
+ <![CDATA[
+    function copyFragmentLink() {
+        CdrFragLinkClipboard = "";
+        var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
+        if (nodes.length < 1) {
+            Application.Alert("This is a new document without a document ID.");
+        }
+        else {
+            var docIdElem = nodes.item(0);
+            var docId     = getTextContent(docIdElem);
+            var node      = Selection.ContainerNode;
+            var depth     = 5;
+            var fragId    = "";
+            while (node && !fragId) {
+                if (depth-- < 1) {
+                    Application.Alert("No fragment ID found");
+                    return;
+                }
+                if (node.nodeType != 1) {
+                    node = node.parentNode;
+                    continue;
+                }
+                fragId = node.getAttribute("cdr:id");
+                if (!fragId) {
+                    node = node.parentNode;
+                }
+            }
+            CdrFragLinkClipboard = docId + "#" + fragId;
+            Application.Alert("CdrFragLinkClipboard=" + CdrFragLinkClipboard);
+        }
+    }
+    copyFragmentLink();
   ]]>
 </MACRO>
 
@@ -679,8 +767,12 @@
         tooltip="Paste Document Link From CDR Clipboard">
  <![CDATA[
     function pasteDocumentLink() {
-        if (CdrLinkClipboard == "") {
-            Application.Alert("CDR Link Clipboard is empty");
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        if (CdrDocLinkClipboard == "") {
+            Application.Alert("CDR Document Link Clipboard is empty");
             return;
         }
         var container = Selection.ContainerNode;
@@ -688,24 +780,56 @@
             Application.Alert("Can't find current element.");
             return;
         }
-        Application.Alert("Element name is " + container.nodeName);
         docType = ActiveDocument.doctype;
         if (!docType.hasAttribute(container.nodeName, "cdr:ref")) {
             Application.Alert("Current element cannot accept links.");
             return;
         }
+        
         Selection.ReadOnlyContainer = false;
-        container.setAttribute("cdr:ref", CdrLinkClipboard);
-        child = container.firstChild;
-        while (child) {
-            nextChild = child.nextSibling;
-            container.removeChild(child);
-            child = nextChild;
-        }
+        gEditingCdrLink = true;
+        cdrObj.pasteDocLink(CdrDocLinkClipboard);
+        gEditingCdrLink = false;
         Selection.ReadOnlyContainer = true;
     }
 
     pasteDocumentLink();
+  ]]>
+</MACRO>
+
+<MACRO  name="Cdr Paste Fragment Link"
+        key="" 
+        lang="JScript" 
+        tooltip="Paste Fragment Link From CDR Clipboard">
+ <![CDATA[
+    function pasteFragmentLink() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        if (CdrFragLinkClipboard == "") {
+            Application.Alert("CDR Fragment Link Clipboard is empty");
+            return;
+        }
+        var container = Selection.ContainerNode;
+        if (!container || container.nodeType != 1) { // Look for element.
+            Application.Alert("Can't find current element.");
+            return;
+        }
+        docType = ActiveDocument.doctype;
+        if (!docType.hasAttribute(container.nodeName, "cdr:ref")) {
+            Application.Alert("Current element cannot accept links.");
+            return;
+        }
+        
+        Selection.ReadOnlyContainer = false;
+        gEditingCdrLink = true;
+        cdrObj.pasteDocLink(CdrFragLinkClipboard);
+        gEditingCdrLink = false;
+        Selection.ReadOnlyContainer = true;
+    }
+
+    pasteFragmentLink();
   ]]>
 </MACRO>
 
@@ -1035,10 +1159,10 @@
                     var end = rng.Duplicate;
                     end.Collapse(0);
                     readtree(start, end);
-                    Application.Alert("Did it!");
+                    //Application.Alert("Did it!");
                 }
                 else {
-                    Application.Alert("Can't do it!");
+                    //Application.Alert("Can't do it!");
                 }
             }
         }
@@ -1736,7 +1860,10 @@
     function doFindNext() {
 
         var docProps = ActiveDocument.CustomDocumentProperties;
-        var parentName = Selection.ContainerNode.parentNode.nodeName;
+        var parentName = "";
+        if (Selection.ContainerNode) {
+            parentName = Selection.ContainerNode.parentNode.nodeName;
+        }
         if (docProps.item("InsNextPrev").value == "True") {
             if (Selection.ContainerNode) {
                 if (parentName == "Insertion") {
@@ -1982,7 +2109,7 @@
   ]]>
 </MACRO>
 
-<MACRO  name="CDR Get Address"
+<MACRO  name="CDR Get Person Address"
         lang="JScript" 
         desc="Retrieve address from fragment link"
         hide="false">
@@ -1992,7 +2119,7 @@
         Application.Alert("You are not logged on to the CDR");
     }
     else {
-        cdrObj.getAddress();
+        cdrObj.getPersonAddress();
     }
 
   ]]>
@@ -2014,5 +2141,162 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Insert Lead Org"
+        lang="JScript" 
+        desc="Insert new Protocol lead organization"
+        hide="false">
+  <![CDATA[
+
+    if (!insertAnother("ProtocolAdminInfo", "ProtocolLeadOrg",
+        "<ProtocolLeadOrg>" +
+        "<LeadOrganizationID>Lead Org Name Here</LeadOrganizationID>" +
+        "<LeadOrgRole/>" +
+        "<LeadOrgProtocolID/>" +
+        "<OrgStatuses>" +
+        "<CurrentOrgStatus>" +
+        "<StatusName/>" +
+        "<StatusDate/><EnteredBy/><EntryDate/>" +
+        "</CurrentOrgStatus>" +
+        "</OrgStatuses>" +
+        "<LeadOrgPersonnel cdr:id=''>" +
+        "<Person cdr:ref=''>Person Name Here</Person>" +
+        "<PersonRole/>" +
+        "</LeadOrgPersonnel>" +
+        "</ProtocolLeadOrg>")) {
+        Application.Alert("Unable to insert ProtocolLeadOrg");
+    }
+  ]]>
+</MACRO>
+
+<MACRO  name="Test Me"
+        lang="JScript" 
+        desc="dummy test macro"
+        key="Ctrl+Alt+T" 
+        hide="false">
+  <![CDATA[
+    var testElem = Selection.ContainerNode;
+    Application.Alert("container name is " + testElem.nodeName
+        + "; container type is " + testElem.nodeType)
+    Selection.ReadOnlyContainer = false;
+    var testNode = ActiveDocument.createTextNode("foobar");
+    testElem.appendChild(testNode);
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Get Org Address"
+        lang="JScript" 
+        desc="Retrieve org address from fragment link"
+        hide="false">
+  <![CDATA[
+
+    if (cdrObj == null) {
+        Application.Alert("You are not logged on to the CDR");
+    }
+    else {
+        cdrObj.getOrgAddress();
+    }
+
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Persons Linking to Org Address Fragment"
+        lang="JScript" 
+        desc="Finds Person documents linking to current Org location."
+        hide="false">
+  <![CDATA[
+
+    function personsLinkingToOrgLoc() {
+        var rng = ActiveDocument.Range
+        var elem = rng.ContainerNode;
+        if (elem) {
+            if (elem.nodeName != "Location") {
+                if (rng.IsParentElement("Location")) {
+                    if (rng.MoveToElement("Location", false)) {
+                        elem = rng.ContainerNode;
+                    }
+                }
+            }
+            if (elem.nodeName == "Location") {
+                var id = elem.getAttribute("cdr:id");
+                var nodes = 
+                    Application.ActiveDocument.getElementsByTagName("DocId");
+                if (nodes.length < 1) {
+                    Application.Alert(
+                        "This is a new document without a document ID.");
+                    return;
+                }
+                else {
+                    var elem = nodes.item(0);
+                    var val  = getTextContent(elem);
+                    var url = "http://mmdb2.nci.nih.gov" +
+                              "/cgi-bin/cdr/PersonOrgLocLinks.py?" + 
+                              "FragLink=" +
+                              val + "%23" + id;
+                    Application.ShowPage(url);
+                }
+            }
+        }
+    }
+
+    personsLinkingToOrgLoc();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Terminology Hierarchy Display"
+        lang="JScript" 
+        desc="Web interface for displaying Term document hierarchies"
+        hide="false">
+  <![CDATA[
+
+    function termHierarchyDisplay() {
+        var url = "http://mmdb2.nci.nih.gov/cgi-bin/cdr/TermHierarchy.py";
+        if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
+            var nodes = 
+                Application.ActiveDocument.getElementsByTagName("DocId");
+            if (nodes.length > 0) {
+                var elem  = nodes.item(0);
+                var docId = getTextContent(elem);
+                url += "?DocId=" + docId;
+            }
+        }
+        Application.ShowPage(url);
+    }
+
+    termHierarchyDisplay();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Terminology Usage Report"
+        lang="JScript" 
+        desc="Report listing documents which are indexed by this term"
+        hide="false">
+  <![CDATA[
+
+    function termUsageReport() {
+        if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
+            var nodes = 
+                Application.ActiveDocument.getElementsByTagName("DocId");
+            if (nodes.length > 0) {
+                var elem  = nodes.item(0);
+                var docId = getTextContent(elem);
+                var url = "http://mmdb2.nci.nih.gov/cgi-bin/cdr/" +
+                          "TermUsage.py?DocId=" + docId;
+                Application.ShowPage(url);
+            }
+            else {
+                Application.Alert("This is a new document.");
+            }
+        }
+        else {
+            Application.Alert("No Term document found.");
+        }
+    }
+
+    termUsageReport();
+
+  ]]>
+</MACRO>
 
 </MACROS>
