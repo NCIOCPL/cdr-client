@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.87 2002-10-18 22:19:30 bkline Exp $
+     $Id: Cdr.mcr,v 1.88 2002-11-14 13:20:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.87  2002/10/18 22:19:30  bkline
+     Added macros for manipulating Public attribute.
+
      Revision 1.86  2002/10/15 13:48:32  bkline
      Renamed some macros (issue #406).
 
@@ -2114,7 +2117,7 @@
                            "Insert Mailer Response",    // Macro.
                            "Response",                  // Tooltip.
                            "Insert Mailer Response",    // Description
-                           "CDR", 5, 8,                 // Icon set, row, col.
+                           "CDR", 6, 5,                 // Icon set, row, col.
                            false)                       // Starts new group?
         );
         var cmdBars = Application.CommandBars;
