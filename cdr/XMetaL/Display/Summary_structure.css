@@ -1,6 +1,12 @@
 /*************************************************************************/
 /* 	Summary_structure.css                                            */
 /*                                                                       */
+/*      v. 3.6                                                           */
+/*      10/10/02  by ebator                                              */
+/*      Added 4th and 5th level subsections                              */
+/*      Removed sub-sub-sub prefix on MetaData, Diagnosis, SectionType   */
+/*        since the sub-prefixes were getting cumbersome                 */
+/*                                                                       */
 /*      v. 3.5                                                           */
 /*      7/23/02  by ebator                                               */
 /*      Added PatientVersionOf element                                   */
@@ -168,18 +174,10 @@ PDQBoard:before			{ content: "PDQ Board "; }
 PdqKey:before			{ content: "PDQ Key "; }
 SecondaryTopics:before 		{ content: "Secondary Topics " }
 SectMetaData:before		{ content: "Section Metadata "; }
-SummarySection>SummarySection>SectMetaData:before	
-				{ content: "Sub-section Metadata "; }
-SummarySection>SummarySection>SummarySection>SectMetaData:before	
-				{ content: "Sub-sub-section Metadata "; }
 SectionType:before		{ content: "Section Type "; }
 Summary:before			{ content: "SUMMARY "; }
 SummaryID:before		{ content: "Summary ID "; }
 SummaryType:before		{ content: "Summary Type "; }
-SummarySection>SummarySection>SectMetaData>SectionType:before   
-				{ content: "Sub-section Type "; }
-SummarySection>SummarySection>SummarySection>SectMetaData>SectionType:before   
-				{ content: "Sub-sub-section Type "; }
 SummaryAudience:before		{ content: "Summary Audience "; }
 SummaryLanguage:before		{ content: "Summary Language "; }
 SummaryMetaData:before		{ content: "SUMMARY METADATA "; }
@@ -188,6 +186,10 @@ SummarySection>SummarySection:before
 				{ content: "Sub-section "; }
 SummarySection>SummarySection>SummarySection:before
 				{ content: "Sub-sub-section "; }
+SummarySection>SummarySection>SummarySection>SummarySection:before
+				{ content: "Sub-sub-sub-section "; }
+SummarySection>SummarySection>SummarySection>SummarySection>SummarySection:before
+				{ content: "Sub-sub-sub-sub-section "; }
 SummaryTitle:before		{ content: "SUMMARY TITLE "; }
 Term:before			{ content: "Term "; }
 SummarySection>Title:before	{ content: "Section Title: "; }
@@ -195,6 +197,10 @@ SummarySection>SummarySection>Title:before
 				{ content: "Sub-section Title: "; }
 SummarySection>SummarySection>SummarySection>Title:before   
 				{ content: "Sub-sub-section Title: "; }
+SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
+				{ content: "Sub-sub-sub-section Title: "; }
+SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
+				{ content: "Sub-sub-sub-sub-section Title: "; }
 TranslationOf:before		{ content: "Translation Of "; }
 
 
