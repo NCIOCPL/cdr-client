@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- $Id: Cdr.mcr,v 1.1 2001-06-11 21:18:41 bkline Exp $
+<!-- $Id: Cdr.mcr,v 1.2 2001-06-11 21:19:40 bkline Exp $
      $Log: not supported by cvs2svn $
 # Revision 1.1  2000/10/17  14:46:55  bobk
 # Initial revision
@@ -40,6 +40,23 @@
                 cdrObj = null;
             }
         }
+    }
+
+    /*
+     * Determine whether the current element should be read-only.
+     */
+    function cdrIsReadOnly() {
+        var i;
+        if (cdrObj == null)                           { return 0; }
+        if (Selection == null)                        { return 0; }
+        if (Selection.ContainerNode == null)          { return 0; }
+        if (Selection.ContainerNode.nodeName == null) { return 0; }
+        if (ActiveDocument == null)                   { return 0; }
+        if (ActiveDocument.doctype == null)           { return 0; }
+        dtName = ActiveDocument.doctype.name;
+        elName = Selection.ContainerNode.nodeName;
+        //Application.Alert("dtName=" + dtName + " elName=" + elName);
+        return cdrObj.isReadOnly(dtName, elName);
     }
 
     function switchCSS(from, to) {
@@ -104,30 +121,40 @@
  
 <MACRO name="On_Update_UI" hide="true" lang="JScript"><![CDATA[
 
-// this will only work if no On_Update_UI macro is defined for the DTD
-if (Selection.IsInsertionPoint && ActiveDocument.ViewType == 1) {
-// this should only apply to the tags-on view, and allow selection of the top-level element
-   if (Selection.ContainerNode == null) {
-      Selection.MoveRight();
-   }
-   if (Selection.ContainerNode == null) {
-      Selection.MoveLeft();
-   }
+    // this will only work if no On_Update_UI macro is defined for the DTD
+    if (Selection.IsInsertionPoint && ActiveDocument.ViewType == 1) {
+        // this should only apply to the tags-on view, and allow selection 
+        // of the top-level element
+       if (Selection.ContainerNode == null) {
+          Selection.MoveRight();
+       }
+       if (Selection.ContainerNode == null) {
+          Selection.MoveLeft();
+       }
+    }
 
-   // Added to Softquad macro to make link elements read-only.
-   if (Selection.hasAttribute("cdr:ref") && !gEditingCdrLink) {
-      Selection.ReadOnlyContainer = true;
-   } 
+    if (Selection) {
+        if (cdrIsReadOnly()) {
+            Selection.ReadOnlyContainer = true;
+        }
+        else {
+            Selection.ReadOnlyContainer = false;
+        }
+        // Added to Softquad macro to make link elements read-only.
+        //if (Selection.hasAttribute("cdr:ref") && !gEditingCdrLink) {
+        //    Selection.ReadOnlyContainer = true;
+        //} 
 
-   // Added to Softquad macro to make CdrDocCtl element read-only.
-   else if (Selection.ContainerNode.nodeName == "CdrDocCtl") {
-       Selection.CollapsedContainerTags = true;
-       Selection.ReadOnlyContainer = true;
-   }
-   else {
-       Selection.ReadOnlyContainer = false;
-   }
-}
+        // Added to Softquad macro to make CdrDocCtl element read-only.
+        //else if (Selection.ContainerNode && 
+        //        Selection.ContainerNode.nodeName == "CdrDocCtl") {
+        //    Selection.CollapsedContainerTags = true;
+        //    Selection.ReadOnlyContainer = true;
+        //}
+        //else {
+        //    Selection.ReadOnlyContainer = false;
+        //}
+    }
 
 ]]></MACRO>
 
