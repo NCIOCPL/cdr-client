@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.31 2002-09-23 22:07:00 bkline Exp $
+ * $Id: Commands.cpp,v 1.32 2002-10-04 16:42:42 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.31  2002/09/23 22:07:00  bkline
+ * Fixed exception catching code to accomodate bug in MFC documentation.
+ *
  * Revision 1.30  2002/08/16 22:03:07  bkline
  * Turned on support for private practice picklist.
  *
@@ -130,6 +133,7 @@
 #include <process.h>
 #include <direct.h>
 #include <wchar.h>
+#include <windows.h>
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -2275,5 +2279,76 @@ STDMETHODIMP CCommands::get_hostname(BSTR *pVal)
     CString hostname = CdrSocket::getHostName();
     hostname.SetSysString(pVal);
 
+    return S_OK;
+}
+
+#if 0
+static HDDEDATA ddeCallback(UINT type, UINT fmt, HCONV conv, 
+                            HSZ str1, HSZ str2,
+                            HDDEDATA data, DWORD data1, DWORD data2)
+{
+    return NULL;
+}
+#endif
+
+STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+#if 0
+    // Initial assumptions about where the browser is.
+    const char* ie  = "c:\\Program Files\\Internet Explorer\\IEXPLORE.EXE";
+    const char* app = ie;
+
+    // Put together the DDE command.
+    CString urlString(*url);
+    CString cmdString;
+    cmdString.Format(_T("\"%s\",,-1,,,,,"), urlString);
+    std::string cmdStdStr = cdr::cStringToUtf8(cmdString);
+    const char* cmd = cmdStrStr.c_str();
+    size_t len = strlen(cmd);
+
+    // Start out pessimistically.
+    *pRet = EXIT_FAILURE;
+
+    // Prepare the DDE variables.
+    DWORD instance = 0;
+    HCONV conv     = 0;
+    DWORD flags    = APPCLASS_STANDARD | APPCMD_CLIENTONLY;
+
+    // Initialize DDE.
+    UINT rc = DdeInitialize(&instance, (PFNCALLBACK)&ddeCallback, flags, 0);
+    if (rc != DMLERR_NO_ERROR) {
+        ::AfxMessageBox(_T("Failure initializing DDE.");
+        return S_OK;
+    }
+
+    // Connect to the service.
+    HSZ service = DdeCreateStringHandle(instance, "IExplore", 0);
+    HSZ topic   = DdeCreateStringHandle(instance, "WWW_OpenURL", 0);
+    conv = DdeConnect(instance, service, topic, NULL);
+    if (!conv) {
+        WinExec(app, SW_SHOWMINNOACTIVE);
+        conv = DdeConnect(instance, service, topic, NULL);
+    }
+
+    // Clean up.
+    DdeFreeStringHandle(instance, service);
+    DdeFreeStringHandle(instance, topic);
+
+    // Bring up the URL.
+    if (conv) {
+        DWORD dummy = 0;
+        LPBYTE vCmd = (LPBYTE)cmd;
+        DdeClientTransaction(vCmd, len, conv, 0, 0, XTYP_EXECUTE, 2000, &dummy);
+        DdeDisconnect(conv);
+        *pRet = 0;
+    }
+    else
+        ::AfxMessageBox(_T("Unable to launch browser.");
+#else
+    CString urlString(*url);
+    *pRet = cdr::showPage(urlString);
+#endif
     return S_OK;
 }

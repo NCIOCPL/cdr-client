@@ -1,9 +1,13 @@
 /*
- * $Id: CdrUtil.cpp,v 1.14 2002-07-30 21:37:36 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.15 2002-10-04 16:42:42 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.14  2002/07/30 21:37:36  bkline
+ * Fixed problem with & in DocTitle; removed hard tabs inserted by Visual
+ * Studio.
+ *
  * Revision 1.13  2002/07/26 20:30:15  bkline
  * Added wait cursor to sendCommand().
  *
@@ -941,4 +945,29 @@ CString cdr::docIdString(int id)
     TCHAR buf[40];
     swprintf(buf, _T("CDR%010d"), id);
     return buf;
+}
+
+int cdr::showPage(const CString& url)
+{
+    COleDispatchDriver ie;
+    if (!ie.CreateDispatch(_T("InternetExplorer.Application"))) {
+        ::AfxMessageBox(_T("Unable to launch Internet Explorer"),
+            MB_ICONEXCLAMATION);
+        return EXIT_FAILURE;
+    }
+    DISPID dispid;
+    OLECHAR* member = _T("Navigate");
+    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL, 
+        &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
+    if (hresult != S_OK) {
+        ::AfxMessageBox(_T("Unable to launch Internet Explorer"),
+            MB_ICONEXCLAMATION);
+        return EXIT_FAILURE;
+    }
+    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR 
+                          VTS_PVARIANT VTS_PVARIANT;
+    COleVariant dummy;
+    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms, 
+        url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
+    return EXIT_SUCCESS;
 }

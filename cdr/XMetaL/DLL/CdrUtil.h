@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.9 2002-08-12 20:19:51 bkline Exp $
+ * $Id: CdrUtil.h,v 1.10 2002-10-04 16:42:42 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2002/08/12 20:19:51  bkline
+ * Added destructor for CdrSocket class to close the socket.
+ *
  * Revision 1.8  2002/07/18 00:52:13  bkline
  * Added decode() and getShortHostName().
  *
@@ -183,6 +186,7 @@ namespace cdr {
     ::Range getElemRange(const CString& elemName);
     ::Range findOrCreateChild(::Range parent, const CString& elemName);
     CString docIdString(int);
+    int showPage(const CString& url);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 
