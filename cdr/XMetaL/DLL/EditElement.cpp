@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.6 2002-01-29 22:55:32 bkline Exp $
+ * $Id: EditElement.cpp,v 1.7 2002-02-01 21:58:37 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2002/01/29 22:55:32  bkline
+ * Modified wildcard handing.
+ *
  * Revision 1.5  2002/01/29 21:53:30  bkline
  * Fixed bug in insertion of lead org name.
  *
@@ -374,10 +377,26 @@ BOOL CEditElement::OnInitDialog()
 {
     CDialog::OnInitDialog();
     
+    // Find the source element for the link.
+    ::Range selection = cdr::getApp().GetSelection();
+    ::DOMElement elem = selection.GetContainerNode();
+    while (elem && elem.GetNodeType() != 1) // DOMElement
+        elem = elem.GetParentNode();
+    if (elem) {
+
+        // Find the text node for the element.
+        ::DOMText textNode = elem.GetFirstChild();
+        while (textNode && textNode.GetNodeType() != 3) // DOMText
+            textNode = textNode.GetNextSibling();
+        if (textNode)
+            m_title = textNode.GetData();
+    }
+
     if (type == LEAD_ORG) {
         SetWindowText(_T("Lead Organization"));
         m_label.SetWindowText(_T("Name"));
     }
+    UpdateData(FALSE);
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
