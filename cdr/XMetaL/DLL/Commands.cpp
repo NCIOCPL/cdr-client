@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.24 2002-06-13 18:48:48 bkline Exp $
+ * $Id: Commands.cpp,v 1.25 2002-07-01 22:49:01 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.24  2002/06/13 18:48:48  bkline
+ * Added hostname property.
+ *
  * Revision 1.23  2002/05/28 22:26:45  bkline
  * Mods for CDR client loader.
  *
@@ -1572,8 +1575,10 @@ STDMETHODIMP CCommands::advancedSearch(int *retVal)
             MB_ICONEXCLAMATION);
         return S_OK;
     }
-    CString url = _T("http://mmdb2.nci.nih.gov/cgi-bin/cdr/AdvancedSearch.py?")
-        _T("Session=") + CdrSocket::getSessionString();
+    CString url = _T("http://") 
+                + CdrSocket::getHostName()
+                + _T("/cgi-bin/cdr/AdvancedSearch.py?Session=")
+                + CdrSocket::getSessionString();
     DISPID dispid;
     OLECHAR* member = _T("Navigate");
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL, 
