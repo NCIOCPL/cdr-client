@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.22 2002-02-14 00:54:18 bkline Exp $
+     $Id: Cdr.mcr,v 1.23 2002-02-14 00:56:15 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.22  2002/02/14 00:54:18  bkline
+     Added Publish Preview macro.  Changed Advanced Search macro to invoke
+     the URL directly, rather than having this done in the DLL.
+
      Revision 1.21  2002/02/12 20:12:50  bkline
      Added remaining toolbars.  Renamed doctype-specific toolbars.
      Added stubs for missing toolbar macros.
@@ -1825,15 +1829,10 @@
      * Saves the currently active document in the CDR repository.
      */
     function cdrSave() {
-        if (cdrObj == null) {
+        if (cdrObj == null)
             Application.Alert("You are not logged on to the CDR");
-        }
-        else {
-            var rc  = cdrObj.save();
-            if (rc == 0) {
-                Application.Alert("Document stored successfully.");
-            }
-        }
+        else
+            cdrObj.save();
     }
     cdrSave();
 
