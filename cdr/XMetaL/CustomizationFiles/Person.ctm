@@ -1,0 +1,1256 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>Person</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AcceptsCalls</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ActionDate</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ActionDescription</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AdministrativeInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BoardCertifiedSpecialty</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BoardCertifiedSpecialtyName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CertificationStatus</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CertificationVerification</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Certified</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CIPSContact</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>City</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CitySuffix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ComplexAffiliation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CurrentStatus</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CustomProfessionalSuffix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DatedAction</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Date</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateLastModified</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Directory</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EligibilityYear</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Email</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FamilialCancerSyndromes</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Fax</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GenerationSuffix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsBoardCertification</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsBoardName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsProfessionalDetails</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsSpecialtyInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsSpecialtyName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneticsTeamServices</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GivenName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Home</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Include</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InterdisciplinaryTeamMember</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfCooperativeGroup</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfGeneticsSociety</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfMedicalSociety</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MiddleInitial</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>NameFormat</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Organization</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationLocation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherPracticeLocation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherSpecialty</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PDQAdvisoryBoard</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PDQBoardMembershipDetails</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PDQEditorialBoard</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PdqKey</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PDQVoluntaryProtocolReviewBoard</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonLocations</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonNameInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonRole</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Phone</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PhysicianDetails</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PhysicianMembershipInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PhysicianSpecialtyInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnit_State</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalAddress</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalCode_ZIP</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreferredContactMode</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Prefix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PrivatePractice</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProfessionalInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProfessionalSuffix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProvidesServices</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RoleAtAffiliatedOrganization</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ServiceLimitations</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StandardProfessionalSuffix</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Status</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Street</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SurName</Name>
+      <LongDescription>This is a required field.</LongDescription>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TollFreePhone</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Verified</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>WebSite</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EnteredBy</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EntryDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PrivatePracticeLocation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CooperativeGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificPostalAddress</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificEmail</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificFax</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificPhone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificTollFreePhone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificWebSite</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>NameFormat</Name>
+      <MiniTemplate><![CDATA[<NameFormat><?xm-replace_text {Optionally select a name format} ?></NameFormat>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Prefix</Name>
+      <MiniTemplate><![CDATA[<Prefix><?xm-replace_text {Optionally select a prefix} ?></Prefix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GenerationSuffix</Name>
+      <MiniTemplate><![CDATA[<GenerationSuffix><?xm-replace_text {Optionally select a generational suffix} ?></GenerationSuffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsBoardName</Name>
+      <MiniTemplate><![CDATA[<GeneticsBoardName><?xm-replace_text {Select a genetics board (required)} ?></GeneticsBoardName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfMedicalSociety</Name>
+      <MiniTemplate><![CDATA[<MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfGeneticsSociety</Name>
+      <MiniTemplate><![CDATA[<MemberOfGeneticsSociety><?xm-replace_text {Select a genetics society (required)} ?></MemberOfGeneticsSociety>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsTeamServices</Name>
+      <MiniTemplate><![CDATA[<GeneticsTeamServices><?xm-replace_text {Select a genetics team service (required)} ?></GeneticsTeamServices>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CurrentStatus</Name>
+      <MiniTemplate><![CDATA[<CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CertificationStatus</Name>
+      <MiniTemplate><![CDATA[<CertificationStatus><?xm-replace_text {Select a certification status (required)} ?></CertificationStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreferredContactMode</Name>
+      <MiniTemplate><![CDATA[<PreferredContactMode><?xm-replace_text {Optionally select a contact mode if this person should be contacted electronically for directory information } ?></PreferredContactMode>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Include</Name>
+      <MiniTemplate><![CDATA[<Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>FamilialCancerSyndromes</Name>
+      <MiniTemplate><![CDATA[<FamilialCancerSyndromes><?xm-replace_text {Optionally select a terminology link} ?></FamilialCancerSyndromes>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfCooperativeGroup</Name>
+      <MiniTemplate><![CDATA[<MemberOfCooperativeGroup>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+</MemberOfCooperativeGroup>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Organization</Name>
+      <MiniTemplate><![CDATA[<Organization><?xm-replace_text {Optionally select an organization link} ?></Organization>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Country</Name>
+      <MiniTemplate><![CDATA[<Country><?xm-replace_text {Optionally select a country link} ?></Country>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PhysicianDetails</Name>
+      <MiniTemplate><![CDATA[<PhysicianDetails>
+<AdministrativeInformation>
+<Directory>
+<Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Directory> 
+<PreferredContactMode><?xm-replace_text {Optionally select a contact mode if this person should be contacted electronically for directory information } ?></PreferredContactMode>
+</AdministrativeInformation>
+<PhysicianSpecialtyInformation>
+<BoardCertifiedSpecialty>
+<BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty} ?></BoardCertifiedSpecialtyName>
+<Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>
+<Verified><?xm-replace_text {Optionally select Yes} ?></Verified>
+</BoardCertifiedSpecialty>
+</PhysicianSpecialtyInformation>
+<PhysicianMembershipInformation>
+<MemberOfCooperativeGroup><?xm-replace_text {Optionally select an organization link} ?></MemberOfCooperativeGroup>
+<MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>
+</PhysicianMembershipInformation>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PhysicianDetails>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsProfessionalDetails</Name>
+      <MiniTemplate><![CDATA[<GeneticsProfessionalDetails>
+<AdministrativeInformation>
+<Directory>
+<Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Directory> 
+<PreferredContactMode><?xm-replace_text {Optionally select a contact mode} ?></PreferredContactMode>
+</AdministrativeInformation>
+<GeneticsSpecialtyInformation>
+<GeneticsSpecialtyName><?xm-replace_text {Select a genetics specialty (required)} ?></GeneticsSpecialtyName>
+<GeneticsBoardCertification>
+<GeneticsBoardName><?xm-replace_text {Select a genetics board (required)} ?></GeneticsBoardName>
+<CertificationVerification><?xm-replace_text {Optionally select Yes or No} ?></CertificationVerification>
+<CertificationStatus><?xm-replace_text {Select a certification status (required)} ?></CertificationStatus>
+<EligibilityYear><?xm-replace_text {Optionally enter the year of certification eligibility} ?></EligibilityYear>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</GeneticsBoardCertification>
+</GeneticsSpecialtyInformation>
+<InterdisciplinaryTeamMember><?xm-replace_text {Select Yes or No (required)} ?></InterdisciplinaryTeamMember>
+<GeneticsTeamServices><?xm-replace_text {Select a genetics team service (required)} ?></GeneticsTeamServices>
+<ProvidesServices><?xm-replace_text {Select Yes or No (required)} ?></ProvidesServices>
+<AcceptsCalls><?xm-replace_text {Select Yes or No (required)} ?></AcceptsCalls>
+<ServiceLimitations><?xm-replace_text {Optionally describe any limitations on the person's services} ?></ServiceLimitations>
+<FamilialCancerSyndromes><?xm-replace_text {Optionally select a terminology link} ?></FamilialCancerSyndromes>
+<MemberOfGeneticsSociety><?xm-replace_text {Select a genetics society (required)} ?></MemberOfGeneticsSociety>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</GeneticsProfessionalDetails>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AdministrativeInformation</Name>
+      <MiniTemplate><![CDATA[<AdministrativeInformation>
+<Directory>
+<Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Directory> 
+<PreferredContactMode><?xm-replace_text {Optionally select a contact mode if this person should be contacted electronically for directory information } ?></PreferredContactMode>
+</AdministrativeInformation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Directory</Name>
+      <MiniTemplate><![CDATA[<Directory>
+<Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Directory> 
+
+ ]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PhysicianSpecialtyInformation</Name>
+      <MiniTemplate><![CDATA[<PhysicianSpecialtyInformation>
+<BoardCertifiedSpecialty>
+<BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty} ?></BoardCertifiedSpecialtyName>
+<Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>
+<Verified><?xm-replace_text {Optionally select Yes} ?></Verified>
+</BoardCertifiedSpecialty>
+</PhysicianSpecialtyInformation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PhysicianMembershipInformation</Name>
+      <MiniTemplate><![CDATA[<PhysicianMembershipInformation>
+<MemberOfCooperativeGroup><?xm-replace_text {Optionally select an organization link} ?></MemberOfCooperativeGroup>
+<MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>
+</PhysicianMembershipInformation>
+
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsSpecialtyInformation</Name>
+      <MiniTemplate><![CDATA[<GeneticsSpecialtyInformation>
+<GeneticsSpecialtyName><?xm-replace_text {Select a genetics specialty (required)} ?></GeneticsSpecialtyName>
+<GeneticsBoardCertification>
+<GeneticsBoardName><?xm-replace_text {Select a genetics board (required)} ?></GeneticsBoardName>
+<CertificationVerification><?xm-replace_text {Optionally select Yes or No} ?></CertificationVerification>
+<CertificationStatus><?xm-replace_text {Select a certification status (required} ?></CertificationStatus>
+<EligibilityYear><?xm-replace_text {Optionally enter the year of certification eligibility} ?></EligibilityYear>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</GeneticsBoardCertification>
+</GeneticsSpecialtyInformation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsBoardCertification</Name>
+      <MiniTemplate><![CDATA[<GeneticsBoardCertification>
+<GeneticsBoardName><?xm-replace_text {Select a genetics board (required)} ?></GeneticsBoardName>
+<CertificationVerification><?xm-replace_text {Optionally select Yes or No} ?></CertificationVerification>
+<CertificationStatus><?xm-replace_text {Select a certification status (required)} ?></CertificationStatus>
+<EligibilityYear><?xm-replace_text {Optionally enter the year of certification eligibility} ?></EligibilityYear>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</GeneticsBoardCertification>
+
+ 
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalAddress</Name>
+      <MiniTemplate><![CDATA[<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Phone</Name>
+      <MiniTemplate><![CDATA[<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Email</Name>
+      <MiniTemplate><![CDATA[<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrivatePractice</Name>
+      <MiniTemplate><![CDATA[<PrivatePractice>
+<PrivatePracticeLocation>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
+<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</PrivatePracticeLocation>
+</PrivatePractice>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherPracticeLocation</Name>
+      <MiniTemplate><![CDATA[<OtherPracticeLocation>
+<OrganizationLocation><?xm-replace_text {Optionally select an organization fragment link} ?></OrganizationLocation>
+<PersonTitle><?xm-replace_text {Optionally enter the person's title at this organization} ?></PersonTitle>
+<PersonRole><?xm-replace_text {Optionally select the person's role at this location} ?></PersonRole>
+<ComplexAffiliation>
+<Organization><?xm-replace_text {Optionally select an organization link} ?></Organization>
+<RoleAtAffiliatedOrganization><?xm-replace_text {Select the person's role at this organization (required)} ?></RoleAtAffiliatedOrganization>
+</ComplexAffiliation>
+</OtherPracticeLocation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StandardProfessionalSuffix</Name>
+      <MiniTemplate><![CDATA[<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CustomProfessionalSuffix</Name>
+      <MiniTemplate><![CDATA[<CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProfessionalSuffix</Name>
+      <MiniTemplate><![CDATA[<ProfessionalSuffix>
+<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>
+<CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>
+</ProfessionalSuffix>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RoleAtAffiliatedOrganization</Name>
+      <MiniTemplate><![CDATA[<RoleAtAffiliatedOrganization><?xm-replace_text {Select the person's role at this organization (required)} ?></RoleAtAffiliatedOrganization>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ComplexAffiliation</Name>
+      <MiniTemplate><![CDATA[<ComplexAffiliation>
+<Organization><?xm-replace_text {Optionally select an organization link} ?></Organization>
+<RoleAtAffiliatedOrganization><?xm-replace_text {Select the person's role at this organization (required)} ?></RoleAtAffiliatedOrganization>
+</ComplexAffiliation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GivenName</Name>
+      <MiniTemplate><![CDATA[<GivenName><?xm-replace_text {Optionally enter the person's given name or initial} ?></GivenName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MiddleInitial</Name>
+      <MiniTemplate><![CDATA[<MiddleInitial><?xm-replace_text {Optionally enter the middle initials} ?></MiddleInitial>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SurName</Name>
+      <MiniTemplate><![CDATA[<SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Home</Name>
+      <MiniTemplate><![CDATA[<Home>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Eenter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
+<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</Home>
+
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDate</Name>
+      <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDescription</Name>
+      <MiniTemplate><![CDATA[<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PDQBoardMembershipDetails</Name>
+      <MiniTemplate><![CDATA[<PDQBoardMembershipDetails><PDQEditorialBoard><?xm-replace_text {Optionally select an organization, or Change to another board type} ?></PDQEditorialBoard></PDQBoardMembershipDetails>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PDQAdvisoryBoard</Name>
+      <MiniTemplate><![CDATA[<PDQAdvisoryBoard><?xm-replace_text {Optionally select an organization/Advisory Board} ?></PDQAdvisoryBoard>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PDQEditorialBoard</Name>
+      <MiniTemplate><![CDATA[<PDQEditorialBoard><?xm-replace_text {Optionally select an organization/Editorial Board} ?></PDQEditorialBoard>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PDQVoluntaryProtocolReviewBoard</Name>
+      <MiniTemplate><![CDATA[<PDQVoluntaryProtocolReviewBoard><?xm-replace_text {Optionally select an organization/Voluntary Protocol Review Board} ?></PDQVoluntaryProtocolReviewBoard>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>WebSite</Name>
+      <MiniTemplate><![CDATA[<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GeneticsSpecialtyName</Name>
+      <MiniTemplate><![CDATA[<GeneticsSpecialtyName><?xm-replace_text {Select a genetics specialty (required)} ?></GeneticsSpecialtyName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CertificationVerification</Name>
+      <MiniTemplate><![CDATA[<CertificationVerification><?xm-replace_text {Optionally select Yes or No} ?></CertificationVerification>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Date</Name>
+      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EligibilityYear</Name>
+      <MiniTemplate><![CDATA[<EligibilityYear><?xm-replace_text {Optionally enter the year of certification eligibility} ?></EligibilityYear>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>InterdisciplinaryTeamMember</Name>
+      <MiniTemplate><![CDATA[<InterdisciplinaryTeamMember><?xm-replace_text {Select Yes or No (required)} ?></InterdisciplinaryTeamMember>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProvidesServices</Name>
+      <MiniTemplate><![CDATA[<ProvidesServices><?xm-replace_text {Select Yes or No (required)} ?></ProvidesServices>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AcceptsCalls</Name>
+      <MiniTemplate><![CDATA[<AcceptsCalls><?xm-replace_text {Select Yes or No (required)} ?></AcceptsCalls>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ServiceLimitations</Name>
+      <MiniTemplate><![CDATA[<ServiceLimitations><?xm-replace_text {Optionally describe any limitations on the person's services} ?></ServiceLimitations>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitySuffix</Name>
+      <MiniTemplate><![CDATA[<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalCode_ZIP</Name>
+      <MiniTemplate><![CDATA[<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TollFreePhone</Name>
+      <MiniTemplate><![CDATA[<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Fax</Name>
+      <MiniTemplate><![CDATA[<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationLocation</Name>
+      <MiniTemplate><![CDATA[<OrganizationLocation><?xm-replace_text {Optionally select an organization fragment link} ?></OrganizationLocation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PersonTitle</Name>
+      <MiniTemplate><![CDATA[<PersonTitle><?xm-replace_text {Optionally enter the person's title at this organization} ?></PersonTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PersonRole</Name>
+      <MiniTemplate><![CDATA[<PersonRole><?xm-replace_text {Optionally select the person's role at this location} ?></PersonRole>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CIPSContact</Name>
+      <MiniTemplate><![CDATA[<CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Home, PrivatePractice, or OtherPracticeLocation to identify this person's CIPS address and phone information} ?></CIPSContact>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Street</Name>
+      <MiniTemplate><![CDATA[<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>City</Name>
+      <MiniTemplate><![CDATA[<City><?xm-replace_text {Enter a city name (required)} ?></City>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CdrDocCtl</Name>
+      <MiniTemplate><![CDATA[<CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PersonNameInformation</Name>
+      <MiniTemplate><![CDATA[<PersonNameInformation>
+<GivenName><?xm-replace_text {Optionally enter the person's given name or initial} ?></GivenName>
+<MiddleInitial><?xm-replace_text {Optionally enter the middle initials} ?></MiddleInitial>
+<SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>
+<Prefix><?xm-replace_text {Optionally select a prefix} ?></Prefix>
+<GenerationSuffix><?xm-replace_text {Optionally select a generational suffix} ?></GenerationSuffix>
+<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>
+<CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>
+<NameFormat><?xm-replace_text {Optionally select a name format} ?></NameFormat>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PersonNameInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DatedAction</Name>
+      <MiniTemplate><![CDATA[<DatedAction>
+<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DatedAction>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Status</Name>
+      <MiniTemplate><![CDATA[<Status>
+<CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Status>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProfessionalInformation</Name>
+      <MiniTemplate><![CDATA[<ProfessionalInformation></ProfessionalInformation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Certified</Name>
+      <MiniTemplate><![CDATA[<Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Verified</Name>
+      <MiniTemplate><![CDATA[<Verified><?xm-replace_text {Optionally select Yes} ?></Verified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>BoardCertifiedSpecialtyName</Name>
+      <MiniTemplate><![CDATA[<BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty)} ?></BoardCertifiedSpecialtyName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherSpecialty</Name>
+      <MiniTemplate><![CDATA[<OtherSpecialty><?xm-replace_text {Optionally select a specialty, or Change to a Board Certified Specialty} ?></OtherSpecialty>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>BoardCertifiedSpecialty</Name>
+      <MiniTemplate><![CDATA[<BoardCertifiedSpecialty>
+<BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty} ?></BoardCertifiedSpecialtyName>
+<Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>
+<Verified><?xm-replace_text {Optionally select Yes} ?></Verified>
+</BoardCertifiedSpecialty>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PoliticalSubUnit_State</Name>
+      <MiniTemplate><![CDATA[<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EnteredBy</Name>
+      <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EntryDate</Name>
+      <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrivatePracticeLocation</Name>
+      <MiniTemplate><![CDATA[<PrivatePracticeLocation>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
+<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</PrivatePracticeLocation>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CooperativeGroup</Name>
+      <MiniTemplate><![CDATA[<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificPostalAddress</Name>
+      <MiniTemplate><![CDATA[<SpecificPostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line specific to this person at this organization} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</SpecificPostalAddress>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificEmail</Name>
+      <MiniTemplate><![CDATA[<SpecificEmail><?xm-replace_text {Optionally enter an e-mail address specific to this person at this organization} ?></SpecificEmail>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificFax</Name>
+      <MiniTemplate><![CDATA[<SpecificFax><?xm-replace_text {Optionally enter a fax number specific to this person at this organization} ?></SpecificFax>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificPhone</Name>
+      <MiniTemplate><![CDATA[<SpecificPhone><?xm-replace_text {Optionally enter a phone number specific to this person at this organization} ?></SpecificPhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificTollFreePhone</Name>
+      <MiniTemplate><![CDATA[<SpecificTollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number specific to this person at this organization} ?></SpecificTollFreePhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificWebSite</Name>
+      <MiniTemplate><![CDATA[<SpecificWebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address specific to this person at this organization} ?></SpecificWebSite>]]></MiniTemplate>
+    </Template>
+  </Templates>
+  <FollowedByList>
+    <FollowedByListItem>
+      <Name>ProfessionalSuffix</Name>
+      <FollowedBy>NameFormat</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PersonNameInformation</Name>
+      <FollowedBy>ProfessionalInformation</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>ProfessionalInformation</Name>
+      <FollowedBy>PersonLocations</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PersonLocations</Name>
+      <FollowedBy>Status</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PhysicianDetails</Name>
+      <FollowedBy>GeneticsProfessionalDetails</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>Directory</Name>
+      <FollowedBy>PreferredContactMode</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PhysicianSpecialtyInformation</Name>
+      <FollowedBy>PhysicianMembershipInformation</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>GeneticsSpecialtyInformation</Name>
+      <FollowedBy>InterdisciplinaryTeamMember</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>GeneticsSpecialtyName</Name>
+      <FollowedBy>GeneticsBoardCertification</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>Home</Name>
+      <FollowedBy>PrivatePractice</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PrivatePractice</Name>
+      <FollowedBy>OtherPracticeLocation</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>OtherPracticeLocation</Name>
+      <FollowedBy>CIPSContact</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PostalAddress</Name>
+      <FollowedBy>Phone</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>CdrDocCtl</Name>
+      <FollowedBy>PersonNameInformation</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>Status</Name>
+      <FollowedBy>DatedAction</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>PhysicianMembershipInformation</Name>
+      <FollowedBy>Comment</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>ActionDescription</Name>
+      <FollowedBy>ActionDate</FollowedBy>
+    </FollowedByListItem>
+  </FollowedByList>
+  <Paragraphs>
+  </Paragraphs>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>PhysicianSpecialtyInformation</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>BoardCertifiedSpecialty</ChangeListElement>
+        <ChangeListElement>OtherSpecialty</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
+</DTDExtensions>

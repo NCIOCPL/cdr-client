@@ -1,0 +1,830 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <ElementProperties>
+      <Name>ADDRESS</Name>
+      <ShortDescription>Address</ShortDescription>
+      <LongDescription>Address</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BLOCKQUOTE</Name>
+      <ShortDescription>Block Quotation</ShortDescription>
+      <LongDescription>Block Quotation</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BODY</Name>
+      <ShortDescription>Document Body</ShortDescription>
+      <LongDescription>Document Body</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CAPTION</Name>
+      <ShortDescription>Caption</ShortDescription>
+      <LongDescription>Caption</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CENTER</Name>
+      <ShortDescription>Center Text</ShortDescription>
+      <LongDescription>Center Text</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>COLGROUP</Name>
+      <ShortDescription>Column Group</ShortDescription>
+      <LongDescription>Column Group</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DD</Name>
+      <ShortDescription>Definition</ShortDescription>
+      <LongDescription>Text of Definition</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DIR</Name>
+      <ShortDescription>Directory Listing</ShortDescription>
+      <LongDescription>Directory Listing</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DIV</Name>
+      <ShortDescription>Document Division</ShortDescription>
+      <LongDescription>Document Division</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DL</Name>
+      <ShortDescription>Definition List</ShortDescription>
+      <LongDescription>Definition List</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DT</Name>
+      <ShortDescription>Term</ShortDescription>
+      <LongDescription>Term in Definition</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FIELDSET</Name>
+      <ShortDescription>Form Controls</ShortDescription>
+      <LongDescription>Form Controls Group</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FORM</Name>
+      <ShortDescription>Form</ShortDescription>
+      <LongDescription>On-line Form</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FRAMESET</Name>
+      <ShortDescription>Set of Frames</ShortDescription>
+      <LongDescription>Contains one or more FRAMES</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H1</Name>
+      <ShortDescription>Heading 1</ShortDescription>
+      <LongDescription>Heading Level 1</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H2</Name>
+      <ShortDescription>Heading 2</ShortDescription>
+      <LongDescription>Heading Level 2</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H3</Name>
+      <ShortDescription>Heading 3</ShortDescription>
+      <LongDescription>Heading Level 3</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H4</Name>
+      <ShortDescription>Heading 4</ShortDescription>
+      <LongDescription>Heading Level 4</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H5</Name>
+      <ShortDescription>Heading 5</ShortDescription>
+      <LongDescription>Heading Level 5</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>H6</Name>
+      <ShortDescription>Heading 6</ShortDescription>
+      <LongDescription>Heading Level 6</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>HEAD</Name>
+      <ShortDescription>Document Header</ShortDescription>
+      <LongDescription>Document Header</LongDescription>
+      <HideInNormalView/>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>HTML</Name>
+      <ShortDescription>HTML Element</ShortDescription>
+      <LongDescription>Top Level Document Element</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LI</Name>
+      <ShortDescription>List Item</ShortDescription>
+      <LongDescription>List Item</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MAP</Name>
+      <ShortDescription>Image Map</ShortDescription>
+      <LongDescription>Client-side Image Map</LongDescription>
+      <HideInNormalView/>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MENU</Name>
+      <ShortDescription>Menu listing</ShortDescription>
+      <LongDescription>Menu listing</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>NOFRAMES</Name>
+      <ShortDescription>Alternate Page to Frames Page</ShortDescription>
+      <LongDescription>Alternate Page to Frames Page</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>NOSCRIPT</Name>
+      <ShortDescription>Alternate text for SCRIPT</ShortDescription>
+      <LongDescription>Alternate text when SCRIPT not available</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OL</Name>
+      <ShortDescription>Ordered List</ShortDescription>
+      <LongDescription>Ordered List</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OPTGROUP</Name>
+      <ShortDescription>Group of Options</ShortDescription>
+      <LongDescription>Group of Options within SELECT</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OPTION</Name>
+      <ShortDescription>Form Option</ShortDescription>
+      <LongDescription>Form Option within SELECT</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>P</Name>
+      <ShortDescription>Paragraph</ShortDescription>
+      <LongDescription>Paragraph</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PRE</Name>
+      <ShortDescription>Preformatted Text</ShortDescription>
+      <LongDescription>Preformatted Fixed Pitch Text</LongDescription>
+      <PreserveSpace/>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SELECT</Name>
+      <ShortDescription>Form Selection List</ShortDescription>
+      <LongDescription>Form Selection List</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TABLE</Name>
+      <ShortDescription>Table</ShortDescription>
+      <LongDescription>Table</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TBODY</Name>
+      <ShortDescription>Table Body</ShortDescription>
+      <LongDescription>Table Body</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TD</Name>
+      <ShortDescription>Data Cell</ShortDescription>
+      <LongDescription>Data Cell</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TFOOT</Name>
+      <ShortDescription>Table Foot</ShortDescription>
+      <LongDescription>Table Foot</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TH</Name>
+      <ShortDescription>Heading Cell</ShortDescription>
+      <LongDescription>Heading Cell</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>THEAD</Name>
+      <ShortDescription>Table Head</ShortDescription>
+      <LongDescription>Table Head</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TITLE</Name>
+      <ShortDescription>Title</ShortDescription>
+      <LongDescription>Document Title</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TR</Name>
+      <ShortDescription>Table Row</ShortDescription>
+      <LongDescription>Table Row</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>UL</Name>
+      <ShortDescription>Unordered List</ShortDescription>
+      <LongDescription>Unordered List</LongDescription>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ABBR</Name>
+      <ShortDescription>Abbreviation</ShortDescription>
+      <LongDescription>Abbreviation</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ACRONYM</Name>
+      <ShortDescription>Acronym</ShortDescription>
+      <LongDescription>Acronym</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>APPLET</Name>
+      <ShortDescription>Java Applet</ShortDescription>
+      <LongDescription>Java Applet</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AREA</Name>
+      <ShortDescription>Image Map Area</ShortDescription>
+      <LongDescription>Client-side Image Map Area</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>B</Name>
+      <ShortDescription>Bold Text</ShortDescription>
+      <LongDescription>Bold Text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BASE</Name>
+      <ShortDescription>Base URL</ShortDescription>
+      <LongDescription>The URL of this document</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BASEFONT</Name>
+      <ShortDescription>Base font</ShortDescription>
+      <LongDescription>Base font size</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BDO</Name>
+      <ShortDescription>Bi-directional Text</ShortDescription>
+      <LongDescription>Bi-directional Text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BIG</Name>
+      <ShortDescription>Large Font</ShortDescription>
+      <LongDescription>Text in a Large Font</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BR</Name>
+      <ShortDescription>Line Break</ShortDescription>
+      <LongDescription>Line Break</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BUTTON</Name>
+      <ShortDescription>Button</ShortDescription>
+      <LongDescription>Button</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CITE</Name>
+      <ShortDescription>Citation</ShortDescription>
+      <LongDescription>Citation</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CODE</Name>
+      <ShortDescription>Code</ShortDescription>
+      <LongDescription>Example of Code</LongDescription>
+      <PreserveSpace/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>COL</Name>
+      <ShortDescription>Column Definition</ShortDescription>
+      <LongDescription>Column Definition</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DEL</Name>
+      <ShortDescription>Deleted Text</ShortDescription>
+      <LongDescription>Deleted Text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DFN</Name>
+      <ShortDescription>Definition</ShortDescription>
+      <LongDescription>Definition</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EM</Name>
+      <ShortDescription>Emphasis</ShortDescription>
+      <LongDescription>Emphasis</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FONT</Name>
+      <ShortDescription>Change Font</ShortDescription>
+      <LongDescription>Set Font Size, Color, and Type</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FRAME</Name>
+      <ShortDescription>Frame</ShortDescription>
+      <LongDescription>Divides Page into Sections</LongDescription>
+      <HideInNormalView/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>HR</Name>
+      <ShortDescription>Horizontal Rule</ShortDescription>
+      <LongDescription>Horizontal Rule</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>I</Name>
+      <ShortDescription>Italic Text</ShortDescription>
+      <LongDescription>Italic Text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IFRAME</Name>
+      <ShortDescription>Inline Frame</ShortDescription>
+      <LongDescription>Inline Frame</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IMG</Name>
+      <ShortDescription>Image</ShortDescription>
+      <LongDescription>Image</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INPUT</Name>
+      <ShortDescription>Input to a Form</ShortDescription>
+      <LongDescription>Input to a Form</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INS</Name>
+      <ShortDescription>Inserted text</ShortDescription>
+      <LongDescription>Inserted text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ISINDEX</Name>
+      <ShortDescription>This document IS Indexed</ShortDescription>
+      <LongDescription>This document IS Indexed</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>KBD</Name>
+      <ShortDescription>Keyboard Input Text</ShortDescription>
+      <LongDescription>Keyboard Input Text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LABEL</Name>
+      <ShortDescription>Label</ShortDescription>
+      <LongDescription>Label</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LEGEND</Name>
+      <ShortDescription>Caption for FIELDSET</ShortDescription>
+      <LongDescription>Caption for FIELDSET</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LINK</Name>
+      <ShortDescription>Relation To Another Document</ShortDescription>
+      <LongDescription>Relation To Another Document</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>META</Name>
+      <ShortDescription>Meta-information</ShortDescription>
+      <LongDescription>Document Meta-information</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OBJECT</Name>
+      <ShortDescription>Object</ShortDescription>
+      <LongDescription>Embedded Object</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PARAM</Name>
+      <ShortDescription>Parameters</ShortDescription>
+      <LongDescription>Parameters for APPLET and OBJECT</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Q</Name>
+      <ShortDescription>Quote</ShortDescription>
+      <LongDescription>Quote</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>S</Name>
+      <ShortDescription>Strike-through Text</ShortDescription>
+      <LongDescription>Text in Strike-through Font</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SAMP</Name>
+      <ShortDescription>Literal Characters</ShortDescription>
+      <LongDescription>Sequence of Literal Characters</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SCRIPT</Name>
+      <ShortDescription>Script</ShortDescription>
+      <LongDescription>Script Definition</LongDescription>
+      <HideInNormalView/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SMALL</Name>
+      <ShortDescription>Small Text</ShortDescription>
+      <LongDescription>Text in a Small Font</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SPAN</Name>
+      <ShortDescription>Span Text</ShortDescription>
+      <LongDescription>Span Text for Formatting</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>STRIKE</Name>
+      <ShortDescription>Strike-through Text</ShortDescription>
+      <LongDescription>Text in Strike-through Font</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>STRONG</Name>
+      <ShortDescription>Strong Emphasis</ShortDescription>
+      <LongDescription>Strong Emphasis</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>STYLE</Name>
+      <ShortDescription>Style</ShortDescription>
+      <LongDescription>Style Hints for Formatting</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SUB</Name>
+      <ShortDescription>Subscript</ShortDescription>
+      <LongDescription>Subscript</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SUP</Name>
+      <ShortDescription>Superscript</ShortDescription>
+      <LongDescription>Superscript</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TEXTAREA</Name>
+      <ShortDescription>Multi-line Text Input Field</ShortDescription>
+      <LongDescription>Multi-line Text Input Field</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TT</Name>
+      <ShortDescription>Fixed Width Font</ShortDescription>
+      <LongDescription>Teletype (fixed width) Font</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>U</Name>
+      <ShortDescription>Underlined text</ShortDescription>
+      <LongDescription>Underlined text</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>VAR</Name>
+      <ShortDescription>Variable Name</ShortDescription>
+      <LongDescription>Variable Name</LongDescription>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>A</Name>
+      <ShortDescription>Anchor</ShortDescription>
+      <LongDescription>Anchor</LongDescription>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <ListElements>
+    <DefinitionList>
+      <Name>DL</Name>
+      <DefinitionTerm>DT</DefinitionTerm>
+      <DefinitionDefinition>DD</DefinitionDefinition>
+    </DefinitionList>
+    <NumberedList>
+      <Name>OL</Name>
+      <ListItem>LI</ListItem>
+    </NumberedList>
+    <BulletedList>
+      <Name>UL</Name>
+      <ListItem>LI</ListItem>
+    </BulletedList>
+    <BulletedList>
+      <Name>MENU</Name>
+      <ListItem>LI</ListItem>
+    </BulletedList>
+    <BulletedList>
+      <Name>DIR</Name>
+      <ListItem>LI</ListItem>
+    </BulletedList>
+  </ListElements>
+  <Images>
+    <Image>
+      <Name>IMG</Name>
+      <Source-Attribute>SRC</Source-Attribute>
+      <Height-Attribute>HEIGHT</Height-Attribute>
+      <Width-Attribute>WIDTH</Width-Attribute>
+      <AltText-Attribute>ALT</AltText-Attribute>
+    </Image>
+  </Images>
+  <Paragraphs>
+    <Paragraph>
+      <Name>P</Name>
+    </Paragraph>
+  </Paragraphs>
+  <FollowedByList>
+    <FollowedByListItem>
+      <Name>H1</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>H2</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>H3</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>H4</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>H5</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>H6</Name>
+      <FollowedBy>P</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>HEAD</Name>
+      <FollowedBy>FRAMESET</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>DT</Name>
+      <FollowedBy>DD</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name>DD</Name>
+      <FollowedBy>DT</FollowedBy>
+    </FollowedByListItem>
+  </FollowedByList>
+  <Templates>
+    <Template>
+      <Name>DL</Name>
+      <MiniTemplate><![CDATA[<DL><DT></DT></DL>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>UL</Name>
+      <MiniTemplate><![CDATA[<UL><LI></LI></UL>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OL</Name>
+      <MiniTemplate><![CDATA[<OL><LI></LI></OL>]]></MiniTemplate>
+    </Template>
+  </Templates>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>BODY</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>ADDRESS</ChangeListElement>
+        <ChangeListElement>BLOCKQUOTE</ChangeListElement>
+        <ChangeListElement>CENTER</ChangeListElement>
+        <ChangeListElement>DIR</ChangeListElement>
+        <ChangeListElement>DIV</ChangeListElement>
+        <ChangeListElement>DL</ChangeListElement>
+        <ChangeListElement>H1</ChangeListElement>
+        <ChangeListElement>H2</ChangeListElement>
+        <ChangeListElement>H3</ChangeListElement>
+        <ChangeListElement>H4</ChangeListElement>
+        <ChangeListElement>H5</ChangeListElement>
+        <ChangeListElement>H6</ChangeListElement>
+        <ChangeListElement>MENU</ChangeListElement>
+        <ChangeListElement>OL</ChangeListElement>
+        <ChangeListElement>P</ChangeListElement>
+        <ChangeListElement>PRE</ChangeListElement>
+        <ChangeListElement>UL</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>P</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>ABBR</ChangeListElement>
+        <ChangeListElement>ACRONYM</ChangeListElement>
+        <ChangeListElement>B</ChangeListElement>
+        <ChangeListElement>BIG</ChangeListElement>
+        <ChangeListElement>CITE</ChangeListElement>
+        <ChangeListElement>CODE</ChangeListElement>
+        <ChangeListElement>DFN</ChangeListElement>
+        <ChangeListElement>EM</ChangeListElement>
+        <ChangeListElement>FONT</ChangeListElement>
+        <ChangeListElement>I</ChangeListElement>
+        <ChangeListElement>Q</ChangeListElement>
+        <ChangeListElement>S</ChangeListElement>
+        <ChangeListElement>SAMP</ChangeListElement>
+        <ChangeListElement>SMALL</ChangeListElement>
+        <ChangeListElement>STRIKE</ChangeListElement>
+        <ChangeListElement>STRONG</ChangeListElement>
+        <ChangeListElement>SUB</ChangeListElement>
+        <ChangeListElement>SUP</ChangeListElement>
+        <ChangeListElement>TT</ChangeListElement>
+        <ChangeListElement>U</ChangeListElement>
+        <ChangeListElement>VAR</ChangeListElement>
+        <ChangeListElement>SPAN</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>FORM</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>BUTTON</ChangeListElement>
+        <ChangeListElement>FIELDSET</ChangeListElement>
+        <ChangeListElement>INPUT</ChangeListElement>
+        <ChangeListElement>LABEL</ChangeListElement>
+        <ChangeListElement>SELECT</ChangeListElement>
+        <ChangeListElement>TEXTAREA</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>DL</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>DD</ChangeListElement>
+        <ChangeListElement>DT</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
+</DTDExtensions>

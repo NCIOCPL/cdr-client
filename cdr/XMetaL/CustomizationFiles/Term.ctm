@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PdqKey</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Term</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreferredName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermTypeName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermType</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SemanticTypeText</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherTermName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ReferenceSource</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ReviewStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Definition</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DefinitionText</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DefinitionSourceName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SemanticType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ParentTerm</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RelatedTerm</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermRelationship</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DefinitionSource</Name>
+      <PrettyPrintOptions>
+        <NewLineAfterEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SourceInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreferredName</Name>
+      <MiniTemplate><![CDATA[<PreferredName><?xm-replace_text {Enter the preferred form of the term name (required)} ?></PreferredName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinitionType</Name>
+      <MiniTemplate><![CDATA[<DefinitionType><?xm-replace_text {Select an audience for the definition (required)} ?></DefinitionType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherNameType</Name>
+      <MiniTemplate><![CDATA[<OtherNameType><?xm-replace_text {Select a category for the term's other name (required)} ?></OtherNameType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ParentType</Name>
+      <MiniTemplate><![CDATA[<ParentType><?xm-replace_text {Select a category for the parent term (required)} ?></ParentType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelationshipType</Name>
+      <MiniTemplate><![CDATA[<RelationshipType><?xm-replace_text {Select a category for the related term (required)} ?></RelationshipType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SemanticType</Name>
+      <MiniTemplate><![CDATA[<SemanticType><?xm-replace_text {Optionally link to a semantic term type} ?></SemanticType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceTermType</Name>
+      <MiniTemplate><![CDATA[<SourceTermType><?xm-replace_text {Select a category for the source term (required)} ?></SourceTermType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceCode</Name>
+      <MiniTemplate><![CDATA[<SourceCode><?xm-replace_text {Select this term's source, or Change to another source type} ?></SourceCode>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ReviewStatus</Name>
+      <MiniTemplate><![CDATA[<ReviewStatus><?xm-replace_text {Optionally select a Reviewed/Unreviewed type} ?></ReviewStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TermTypeName</Name>
+      <MiniTemplate><![CDATA[<TermTypeName><?xm-replace_text {Select a term type (required)} ?></TermTypeName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Para</Name>
+      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TermStatus</Name>
+      <MiniTemplate><![CDATA[<TermStatus><?xm-replace_text {Select a review status (required)} ?></TermStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinedTermId</Name>
+      <MiniTemplate><![CDATA[<DefinedTermId><?xm-replace_text {Optionally enter the ID of the source term definition} ?></DefinedTermId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SemanticTypeText</Name>
+      <MiniTemplate><![CDATA[<SemanticTypeText><?xm-replace_text {Describe the term's semantic type (required)} ?></SemanticTypeText>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherTermName</Name>
+      <MiniTemplate><![CDATA[<OtherTermName><?xm-replace_text {Enter another name for this term (required)} ?></OtherTermName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ReferenceSource</Name>
+      <MiniTemplate><![CDATA[<ReferenceSource><?xm-replace_text {Enter the reference source of the term, or Change to another source type} ?></ReferenceSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceTermId</Name>
+      <MiniTemplate><![CDATA[<SourceTermId><?xm-replace_text {Enter the ID of the source term (required)} ?></SourceTermId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinitionText</Name>
+      <MiniTemplate><![CDATA[<DefinitionText><?xm-replace_text {Enter a definition of this term (required)} ?></DefinitionText>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinitionSourceName</Name>
+      <MiniTemplate><![CDATA[<DefinitionSourceName><?xm-replace_text {Enter the name of the definition's source (required)} ?></DefinitionSourceName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TermId</Name>
+      <MiniTemplate><![CDATA[<TermId><?xm-replace_text {Select a link to the parent/related term (required)} ?></TermId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>VocabularySource</Name>
+      <MiniTemplate><![CDATA[<VocabularySource>
+<SourceCode><?xm-replace_text {Select this term's source, or Change to another source type} ?></SourceCode>
+<SourceTermType><?xm-replace_text {Select a category for the source term (required)} ?></SourceTermType>
+<SourceTermId><?xm-replace_text {Enter the ID of the source term (required)} ?></SourceTermId>
+</VocabularySource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherName</Name>
+      <MiniTemplate><![CDATA[<OtherName>
+<OtherTermName><?xm-replace_text {Enter another name for this term (required)} ?></OtherTermName>
+<OtherNameType><?xm-replace_text {Select a category for the term's other name (required)} ?></OtherNameType>
+<SourceInformation>
+<ReferenceSource><?xm-replace_text {Enter the reference source of the term, or Change to another source type} ?></ReferenceSource>
+</SourceInformation>
+<ReviewStatus><?xm-replace_text {Select a Reviewed/Unreviewed type (required)} ?></ReviewStatus>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceInformation</Name>
+      <MiniTemplate><![CDATA[<SourceInformation>
+<ReferenceSource><?xm-replace_text {Enter the reference source of the term, or Change to another source type} ?></ReferenceSource>
+</SourceInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinitionSource</Name>
+      <MiniTemplate><![CDATA[<DefinitionSource>
+<DefinitionSourceName><?xm-replace_text {Enter the name of the definition's source (required)} ?></DefinitionSourceName>
+<DefinedTermId><?xm-replace_text {Optionally enter the ID of the source term definition} ?></DefinedTermId>
+</DefinitionSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Definition</Name>
+      <MiniTemplate><![CDATA[<Definition>
+<DefinitionText><?xm-replace_text {Enter a definition of this term (required)} ?></DefinitionText>
+<DefinitionType><?xm-replace_text {Select an audience for the definition (required)} ?></DefinitionType>
+<DefinitionSource>
+<DefinitionSourceName><?xm-replace_text {Enter the name of the definition's source (required)} ?></DefinitionSourceName>
+<DefinedTermId><?xm-replace_text {Optionally enter the ID of the source term definition} ?></DefinedTermId>
+</DefinitionSource>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Definition>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TermType</Name>
+      <MiniTemplate><![CDATA[<TermType Legacy="No">
+<TermTypeName><?xm-replace_text {Select a term type (required)} ?></TermTypeName>
+</TermType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ParentTerm</Name>
+      <MiniTemplate><![CDATA[<ParentTerm>
+<TermId><?xm-replace_text {Select a link to the parent term (required)} ?></TermId>
+<ParentPDQKey><?xm-replace_text {Optionally enter the PDQ key for the parent term} ?></ParentPDQKey>
+<ParentType><?xm-replace_text {Select a category for the parent term (required)} ?></ParentType>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ParentTerm>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelatedTerm</Name>
+      <MiniTemplate><![CDATA[<RelatedTerm>
+<TermId><?xm-replace_text {Select a link to the related term (required)} ?></TermId>
+<RelatedPDQKey><?xm-replace_text {Optionally enter the PDQ key for the related term} ?></RelatedPDQKey>
+<RelationshipType><?xm-replace_text {Select a category for the related term (required)} ?></RelationshipType>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</RelatedTerm>]]></MiniTemplate>
+    </Template>
+  </Templates>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>SourceInformation</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>ReferenceSource</ChangeListElement>
+        <ChangeListElement>VocabularySource</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
+</DTDExtensions>

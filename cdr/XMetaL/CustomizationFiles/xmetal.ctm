@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <IndentAmount>2</IndentAmount>
+      <MaxLineLength>80</MaxLineLength>
+    </GlobalPrettyPrintOptions>
+  </ElementPropertiesList>
+</DTDExtensions>

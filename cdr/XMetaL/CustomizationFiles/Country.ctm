@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CountryShortName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PdqKey</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CountryFullName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Continent</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CountryFullName</Name>
+      <MiniTemplate><![CDATA[<CountryFullName><?xm-replace_text {Enter the complete name of the country (required)} ?></CountryFullName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CountryShortName</Name>
+      <MiniTemplate><![CDATA[<CountryShortName><?xm-replace_text {Optionally enter an abbreviation or shortened name} ?></CountryShortName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CountryAlternateName</Name>
+      <MiniTemplate><![CDATA[<CountryAlternateName><?xm-replace_text {Optionally enter an accepted other name} ?></CountryAlternateName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalCodePosition</Name>
+      <MiniTemplate><![CDATA[<PostalCodePosition><?xm-replace_text {Select an address position for the postal code (required)} ?></PostalCodePosition>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Continent</Name>
+      <MiniTemplate><![CDATA[<Continent><?xm-replace_text {Select the continent where this country is located (required)} ?></Continent>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>

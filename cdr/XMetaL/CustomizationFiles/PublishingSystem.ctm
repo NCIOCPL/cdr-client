@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <ElementProperties>
+      <Name>PublishingSystem</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+</DTDExtensions>

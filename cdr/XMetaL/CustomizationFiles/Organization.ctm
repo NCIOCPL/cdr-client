@@ -1,0 +1,689 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>Organization</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateLastModified</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Name</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DatedAction</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ActionDescription</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ActionDate</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ShortName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AlternateName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ParentOrganization</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CIPSContactPerson</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IncludeInDirectory</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Date</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreferredDirectoryContactMode</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreferredProtocolContactMode</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Status</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CurrentStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolIDAcronym</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreferredProtocolOrganization</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Street</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>City</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Location</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CitySuffix</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnit_State</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalCode_ZIP</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Phone</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TollFreePhone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Fax</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Email</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>WebSite</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalAddress</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ResearchBaseFor</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfAdHocGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CCOP</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CooperativeGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MainMember</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolParticipation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MainMemberOf</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AffiliateMemberOf</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfCooperativeGroups</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationAffiliations</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CIPSContact</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationNameInformation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OfficialName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationParent</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationDetails</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationAdministrativeInformation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationLocations</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrganizationLocation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MemberOfCCOP</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CdrDocCtl</Name>
+      <MiniTemplate><![CDATA[<CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DatedAction</Name>
+      <MiniTemplate><![CDATA[<DatedAction>
+<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DatedAction>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDescription</Name>
+      <MiniTemplate><![CDATA[<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDate</Name>
+      <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ShortName</Name>
+      <MiniTemplate><![CDATA[<ShortName>
+<Name><?xm-replace_text {Optionally enter an abbreviation or short name for this organization } ?></Name>
+</ShortName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AlternateName</Name>
+      <MiniTemplate><![CDATA[<AlternateName><?xm-replace_text {Optionally enter another name for this organization } ?></AlternateName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ParentOrganization</Name>
+      <MiniTemplate><![CDATA[<ParentOrganization><?xm-replace_text {Select a link to the parent organization (required)} ?></ParentOrganization>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CIPSContactPerson</Name>
+      <MiniTemplate><![CDATA[<CIPSContactPerson><?xm-replace_text {Optionally select a link to the person designated as the contact for CIPS queries } ?></CIPSContactPerson>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IncludeInDirectory</Name>
+      <MiniTemplate><![CDATA[<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Date</Name>
+      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreferredDirectoryContactMode</Name>
+      <MiniTemplate><![CDATA[<PreferredDirectoryContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for directory information } ?></PreferredDirectoryContactMode>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreferredProtocolContactMode</Name>
+      <MiniTemplate><![CDATA[<PreferredProtocolContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for protocol information } ?></PreferredProtocolContactMode>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Status</Name>
+      <MiniTemplate><![CDATA[<Status>
+<CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</Status>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CurrentStatus</Name>
+      <MiniTemplate><![CDATA[<CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationType</Name>
+      <MiniTemplate><![CDATA[<OrganizationType><?xm-replace_text {Select a type for this organization (required)} ?></OrganizationType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolIDAcronym</Name>
+      <MiniTemplate><![CDATA[<ProtocolIDAcronym><?xm-replace_text {Optionally enter an acronym used to identify this organization in a protocol } ?></ProtocolIDAcronym>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreferredProtocolOrganization</Name>
+      <MiniTemplate><![CDATA[<PreferredProtocolOrganization><?xm-replace_text {Optionally select a link to the protocol partner organization } ?></PreferredProtocolOrganization>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Street</Name>
+      <MiniTemplate><![CDATA[<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>City</Name>
+      <MiniTemplate><![CDATA[<City><?xm-replace_text {Optionally enter a city name} ?></City>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Location</Name>
+      <MiniTemplate><![CDATA[<Location>
+<PostalAddress>
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</Location>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitySuffix</Name>
+      <MiniTemplate><![CDATA[<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PoliticalSubUnit_State</Name>
+      <MiniTemplate><![CDATA[<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Country</Name>
+      <MiniTemplate><![CDATA[<Country><?xm-replace_text {Select a country link (required)} ?></Country>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalCode_ZIP</Name>
+      <MiniTemplate><![CDATA[<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Phone</Name>
+      <MiniTemplate><![CDATA[<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TollFreePhone</Name>
+      <MiniTemplate><![CDATA[<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Fax</Name>
+      <MiniTemplate><![CDATA[<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Email</Name>
+      <MiniTemplate><![CDATA[<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>WebSite</Name>
+      <MiniTemplate><![CDATA[<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalAddress</Name>
+      <MiniTemplate><![CDATA[<PostalAddress>
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ResearchBaseFor</Name>
+      <MiniTemplate><![CDATA[<ResearchBaseFor><?xm-replace_text {Optionally select an organization link} ?></ResearchBaseFor>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfProfessionalOrganization</Name>
+      <MiniTemplate><![CDATA[<MemberOfProfessionalOrganization><?xm-replace_text {Optionally select an organization} ?></MemberOfProfessionalOrganization>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfAdHocGroup</Name>
+      <MiniTemplate><![CDATA[<MemberOfAdHocGroup><?xm-replace_text {Optionally select an organization link} ?></MemberOfAdHocGroup>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CCOP</Name>
+      <MiniTemplate><![CDATA[<CCOP><?xm-replace_text {Optionally select an organization link} ?></CCOP>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CooperativeGroup</Name>
+      <MiniTemplate><![CDATA[<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MainMember</Name>
+      <MiniTemplate><![CDATA[<MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolParticipation</Name>
+      <MiniTemplate><![CDATA[<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfCCOP</Name>
+      <MiniTemplate><![CDATA[<MemberOfCCOP>
+<CCOP><?xm-replace_text {Optionally select an organization link} ?></CCOP>
+</MemberOfCCOP>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MainMemberOf</Name>
+      <MiniTemplate><![CDATA[<MainMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</MainMemberOf>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AffiliateMemberOf</Name>
+      <MiniTemplate><![CDATA[<AffiliateMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</AffiliateMemberOf>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MemberOfCooperativeGroups</Name>
+      <MiniTemplate><![CDATA[<MemberOfCooperativeGroups>
+<MainMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</MainMemberOf>
+<AffiliateMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</AffiliateMemberOf>
+</MemberOfCooperativeGroups>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationAffiliations</Name>
+      <MiniTemplate><![CDATA[<OrganizationAffiliations>
+<ResearchBaseFor><?xm-replace_text {Optionally select an organization link} ?></ResearchBaseFor>
+<MemberOfProfessionalOrganization><?xm-replace_text {Optionally select an organization} ?></MemberOfProfessionalOrganization>
+<MemberOfCooperativeGroups>
+<MainMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</MainMemberOf>
+<AffiliateMemberOf>
+<CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+<MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>
+<ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+</AffiliateMemberOf>
+</MemberOfCooperativeGroups>
+<MemberOfCCOP>
+<CCOP><?xm-replace_text {Optionally select an organization link} ?></CCOP>
+</MemberOfCCOP>
+<MemberOfAdHocGroup><?xm-replace_text {Optionally select an organization link} ?></MemberOfAdHocGroup>
+</OrganizationAffiliations>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CIPSContact</Name>
+      <MiniTemplate><![CDATA[<CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Location to identify this organization's CIPS address and phone information} ?></CIPSContact>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationAdministrativeInformation</Name>
+      <MiniTemplate><![CDATA[<OrganizationAdministrativeInformation Directory="Treatment">
+<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>
+<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+<PreferredDirectoryContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for directory information } ?></PreferredDirectoryContactMode>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OrganizationAdministrativeInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OfficialName</Name>
+      <MiniTemplate><![CDATA[<OfficialName>
+<Name><?xm-replace_text {Enter the official name of this organization (required)} ?></Name>
+</OfficialName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationParent</Name>
+      <MiniTemplate><![CDATA[<OrganizationParent>
+<ParentOrganization><?xm-replace_text {Select a link to the parent organization (required)} ?></ParentOrganization>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OrganizationParent>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrganizationLocation</Name>
+      <MiniTemplate><![CDATA[<OrganizationLocation>
+<Location>
+<PostalAddress>
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</Location>
+</OrganizationLocation>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>

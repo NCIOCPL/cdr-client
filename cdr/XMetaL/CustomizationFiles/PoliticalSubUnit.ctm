@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateLastModified</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PdqKey</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnit</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnitAlternateName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnitFullName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PoliticalSubUnitShortName</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Country</Name>
+      <MiniTemplate><![CDATA[<Country><?xm-replace_text {Select the parent country link (required)} ?></Country>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PoliticalSubUnitFullName</Name>
+      <MiniTemplate><![CDATA[<PoliticalSubUnitFullName><?xm-replace_text {Enter the complete name of the political unit (required)} ?></PoliticalSubUnitFullName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PoliticalSubUnitShortName</Name>
+      <MiniTemplate><![CDATA[<PoliticalSubUnitShortName><?xm-replace_text {Optionally enter an abbreviation or shortened name} ?></PoliticalSubUnitShortName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PoliticalSubUnitAlternateName</Name>
+      <MiniTemplate><![CDATA[<PoliticalSubUnitAlternateName><?xm-replace_text {Optionally enter an accepted other name} ?></PoliticalSubUnitAlternateName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>

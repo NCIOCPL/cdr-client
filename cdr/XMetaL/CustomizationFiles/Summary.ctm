@@ -1,0 +1,583 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>AltTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Answer</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Board</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>BoardMember</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>City</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Contact</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ContactDetail</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ContactName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Diagnosis</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Email</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>entry</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Fax</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ItemizedList</Name>
+      <TagColor>3399FF</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>KeyPoint</Name>
+      <TagColor>FF9900</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ListItem</Name>
+      <TagColor>66FFFF</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ListTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LiteralLayout</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MainTopics</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeEndTag/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MarkedUpTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrderedList</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Para</Name>
+      <TagColor>CC99FF</TagColor>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Phone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalCode_ZIP</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandADiv</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandAEntry</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandASet</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Question</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Quote</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QuotedText</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Row</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SecondaryTopics</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SectMetaData</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Source</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Street</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Summary</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummaryAudience</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummarySection</Name>
+      <TagColor>66FF66</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummaryTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummaryType</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Table</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TBody</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Term</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TFoot</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>THead</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Title</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TitleAbbrev</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TollFreePhone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummaryMetaData</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PDQBoard</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PdqKey</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TranslationOf</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermLink</Name>
+      <TagColor>FF33CC</TagColor>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermRef</Name>
+      <TagColor>FF33CC</TagColor>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SectionType</Name>
+      <TagColor>FFFF33</TagColor>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <FollowedByList>
+    <FollowedByListItem>
+      <Name>SummaryMetaData</Name>
+      <FollowedBy>SummaryTitle</FollowedBy>
+    </FollowedByListItem>
+  </FollowedByList>
+  <Templates>
+    <Template>
+      <Name>SummaryType</Name>
+      <MiniTemplate><![CDATA[<SummaryType><?xm-replace_text {Select a summary type (required)} ?></SummaryType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummaryAudience</Name>
+      <MiniTemplate><![CDATA[<SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummarySection</Name>
+      <MiniTemplate><![CDATA[<SummarySection>
+<SectMetaData>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+<SectionType><?xm-replace_text {Optionally select a section type} ?></SectionType>
+</SectMetaData>
+<Title><?xm-replace_text {Section title}  ?></Title>
+<AltTitle><?xm-replace_text {Optional alternate title} ?></AltTitle>
+<KeyPoint><?xm-replace_text {Optionally enter a Key Point for a patient summary} ?></KeyPoint>
+<Para><?xm-replace_text {Paragraph} ?></Para>
+</SummarySection>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Title</Name>
+      <MiniTemplate><![CDATA[<Title><?xm-replace_text {Section title}  ?></Title>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AltTitle</Name>
+      <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text {Optional alternate title} ?></AltTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>KeyPoint</Name>
+      <MiniTemplate><![CDATA[<KeyPoint><?xm-replace_text {Optionally enter a Key Point for a patient summary} ?></KeyPoint>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Para</Name>
+      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PdqKey</Name>
+      <MiniTemplate><![CDATA[<PdqKey><?xm-replace_text {PDQ Key} ?></PdqKey>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Diagnosis</Name>
+      <MiniTemplate><![CDATA[<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SectionType</Name>
+      <MiniTemplate><![CDATA[<SectionType><?xm-replace_text {Optionally select a section type} ?></SectionType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MainTopics</Name>
+      <MiniTemplate><![CDATA[<MainTopics>
+<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+</MainTopics>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SecondaryTopics</Name>
+      <MiniTemplate><![CDATA[<SecondaryTopics>
+<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+</SecondaryTopics>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Term</Name>
+      <MiniTemplate><![CDATA[<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummaryMetaData</Name>
+      <MiniTemplate><![CDATA[<SummaryMetaData>
+<SummaryType><?xm-replace_text {Select a summary type (required)} ?></SummaryType>
+<SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>
+<SummaryLanguage>English</SummaryLanguage>
+<PDQBoard>
+<Board><?xm-replace_text {Select an organization link} ?></Board>
+<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
+</PDQBoard>
+<MainTopics>
+<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+</MainTopics>
+<SecondaryTopics>
+<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+</SecondaryTopics>
+</SummaryMetaData>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SectMetaData</Name>
+      <MiniTemplate><![CDATA[<SectMetaData>
+<Diagnosis><?xm-replace_text {Double-click to select a diagnosis} ?></Diagnosis>
+<SectionType><?xm-replace_text {Double-click to select a section type} ?></SectionType>
+</SectMetaData>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>BoardMember</Name>
+      <MiniTemplate><![CDATA[<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Board</Name>
+      <MiniTemplate><![CDATA[<Board><?xm-replace_text {Select an organization link (required)} ?></Board>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PDQBoard</Name>
+      <MiniTemplate><![CDATA[<PDQBoard>
+<Board><?xm-replace_text {Select an organization link (required)} ?></Board>
+<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
+</PDQBoard>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TranslationOf</Name>
+      <MiniTemplate><![CDATA[<TranslationOf><?xm-replace_text {Optionally link to the original English summary} ?></TranslationOf>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummaryTitle</Name>
+      <MiniTemplate><![CDATA[<SummaryTitle><?xm-replace_text {Summary title} ?></SummaryTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CdrDocCtl</Name>
+      <MiniTemplate><![CDATA[<CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Table</Name>
+      <MiniTemplate><![CDATA[<Table>
+<Title><?xm-replace_text {Table Title} ?></Title>
+<TGroup></TGroup></Table>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummaryLanguage</Name>
+      <MiniTemplate><![CDATA[<SummaryLanguage>English</SummaryLanguage>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>

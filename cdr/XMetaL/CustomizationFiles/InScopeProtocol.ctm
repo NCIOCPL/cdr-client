@@ -1,0 +1,1516 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>AgeText</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AmendmentDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>AmendmentID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Answer</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ChangeType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>City</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Condition</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Contact</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ContactDetail</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ContactName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Country</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CurrentProtocolStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateCompleted</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateReceived</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Diagnosis</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Eligibility</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EligibilityText</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Email</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EndPoints</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>entry</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EntryCriteria</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ExclusionCriteria</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Fax</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FundingInfo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Gene</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GenericPerson</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GenericPersonContact</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>HealthyVolunteers</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>HighAge</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IDString</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IDType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InScopeProtocol</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Intervention</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InterventionNameLink</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InterventionType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ItemizedList</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ListItem</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ListTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LiteralLayout</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LowAge</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MarkedUpTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Multimedia</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>NIHGrantContractType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Objectives</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrderedList</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Outline</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Para</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Patient</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Person</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonRole</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PersonTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Phone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalCode_ZIP</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PrimaryID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Professional</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolAbstract</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolAdminInfo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolApproval</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolDesign</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolIDs</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolLeadOrg</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolPhase</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolRelatedLinks</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSites</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSource</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSpecialCategory</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSponsors</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolTitle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PublishedResults</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Purpose</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandADiv</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandAEntry</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QandASet</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Question</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Quote</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>QuotedText</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Rationale</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RelatedProtocols</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RelatedWebsites</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ReviewApprovalType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Role</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Row</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Source</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SourceName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecialCategory</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificPerson</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificPhone</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SponsorName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Stratification</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Street</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StudyFocus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Table</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TBody</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TFoot</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>THead</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Title</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TitleAbbrev</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TollFreePhone</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TreatmentIntervention</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSiteContact</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSite</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MailAbstractTo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DatedAction</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ActionDescription</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolProcessingDetails</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProcessingStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateLastModified</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolDetail</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>EnteredBy</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OtherGrantContractInfo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSources</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>NIHGrantContract</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GrantContractNo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DiseaseCharacteristics</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProjectedAccrual</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StudyType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StudyCategoryType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrganizationID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CurrentOrgStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StatusName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreviousOrgStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrgProtocolStatuses</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrgPersonnel</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PostalAddress</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSiteID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CdrDocCtl</Name>
+      <MiniTemplate><![CDATA[<CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IDString</Name>
+      <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolTitle</Name>
+      <MiniTemplate><![CDATA[<ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EnteredBy</Name>
+      <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EntryDate</Name>
+      <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolPhase</Name>
+      <MiniTemplate><![CDATA[<ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StudyType</Name>
+      <MiniTemplate><![CDATA[<StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StudyCategoryType</Name>
+      <MiniTemplate><![CDATA[<StudyCategoryType><?xm-replace_text {Select a study category of primary or secondary (required)} ?></StudyCategoryType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StudyCategoryName</Name>
+      <MiniTemplate><![CDATA[<StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LowAge</Name>
+      <MiniTemplate><![CDATA[<LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>HighAge</Name>
+      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AgeText</Name>
+      <MiniTemplate><![CDATA[<AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceName</Name>
+      <MiniTemplate><![CDATA[<SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateReceived</Name>
+      <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSource</Name>
+      <MiniTemplate><![CDATA[<ProtocolSource>
+<SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
+<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ReviewApprovalType</Name>
+      <MiniTemplate><![CDATA[<ReviewApprovalType><?xm-replace_text {Select the protocol review approval authority (required)} ?></ReviewApprovalType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ReimbursementApprovalType</Name>
+      <MiniTemplate><![CDATA[<ReimbursementApprovalType><?xm-replace_text {Optionally select a reimbursement approval group} ?></ReimbursementApprovalType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolApproval</Name>
+      <MiniTemplate><![CDATA[<ProtocolApproval>
+<ReviewApprovalType><?xm-replace_text {Select the protocol review approval authority (required)} ?></ReviewApprovalType>
+<ReimbursementApprovalType><?xm-replace_text {Optionally select a reimbursement approval group} ?></ReimbursementApprovalType>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolApproval>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SponsorName</Name>
+      <MiniTemplate><![CDATA[<SponsorName><?xm-replace_text {Enter the protocol's sponsoring agency (required)} ?></SponsorName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSponsors</Name>
+      <MiniTemplate><![CDATA[<ProtocolSponsors>
+<SponsorName><?xm-replace_text {Enter the protocol's sponsoring agency (required)} ?></SponsorName>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolSponsors>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GrantContractNo</Name>
+      <MiniTemplate><![CDATA[<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherGrantContractInfo</Name>
+      <MiniTemplate><![CDATA[<OtherGrantContractInfo>
+<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required) } ?></GrantContractNo>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherGrantContractInfo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>NIHGrantContractType</Name>
+      <MiniTemplate><![CDATA[<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>NIHGrantContract</Name>
+      <MiniTemplate><![CDATA[<NIHGrantContract>
+<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>
+<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</NIHGrantContract>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>FundingInfo</Name>
+      <MiniTemplate><![CDATA[<FundingInfo>
+<NIHGrantContract>
+<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>
+<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</NIHGrantContract>
+<OtherGrantContractInfo>
+<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required) } ?></GrantContractNo>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherGrantContractInfo>
+</FundingInfo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProcessingStatus</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required) } ?></ProcessingStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProcessingDate</Name>
+      <MiniTemplate><![CDATA[<ProcessingDate><?xm-replace_text {Enter the effective date of this status (required) } ?></ProcessingDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolProcessingDetails</Name>
+      <MiniTemplate><![CDATA[<ProtocolProcessingDetails>
+<ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required) } ?></ProcessingStatus>
+<ProcessingDate><?xm-replace_text {Enter the effective date of this status (required) } ?></ProcessingDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolProcessingDetails>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecialCategory</Name>
+      <MiniTemplate><![CDATA[<SpecialCategory><?xm-replace_text {Select a specialized trial category, if relevant (required)} ?></SpecialCategory>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSpecialCategory</Name>
+      <MiniTemplate><![CDATA[<ProtocolSpecialCategory>
+<SpecialCategory><?xm-replace_text {Select a specialized trial category, if relevant (required)} ?></SpecialCategory>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolSpecialCategory>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DatedAction</Name>
+      <MiniTemplate><![CDATA[<DatedAction>
+<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DatedAction>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDescription</Name>
+      <MiniTemplate><![CDATA[<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ActionDate</Name>
+      <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CurrentProtocolStatus</Name>
+      <MiniTemplate><![CDATA[<CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated based on organization statuses (required)} ?></CurrentProtocolStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StatusName</Name>
+      <MiniTemplate><![CDATA[<StatusName><?xm-replace_text {Select the lead organization's status on this protocol (required)} ?></StatusName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StatusDate</Name>
+      <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CurrentOrgStatus</Name>
+      <MiniTemplate><![CDATA[<CurrentOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</CurrentOrgStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PreviousOrgStatus</Name>
+      <MiniTemplate><![CDATA[<PreviousOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's former status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</PreviousOrgStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LeadOrgProtocolStatuses</Name>
+      <MiniTemplate><![CDATA[<LeadOrgProtocolStatuses>
+<CurrentOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</CurrentOrgStatus>
+<PreviousOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's former status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</PreviousOrgStatus>
+</LeadOrgProtocolStatuses>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PostalAddress</Name>
+      <MiniTemplate><![CDATA[<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSpecificContact</Name>
+      <MiniTemplate><![CDATA[<ProtocolSpecificContact>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ProtocolSpecificContact>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Phone</Name>
+      <MiniTemplate><![CDATA[<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TollFreePhone</Name>
+      <MiniTemplate><![CDATA[<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Fax</Name>
+      <MiniTemplate><![CDATA[<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Email</Name>
+      <MiniTemplate><![CDATA[<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>WebSite</Name>
+      <MiniTemplate><![CDATA[<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PersonRole</Name>
+      <MiniTemplate><![CDATA[<PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LeadOrgPersonnel</Name>
+      <MiniTemplate><![CDATA[<LeadOrgPersonnel cdr:id="Enter a link">
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+<ProtocolSpecificContact>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ProtocolSpecificContact>
+<PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+</LeadOrgPersonnel>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Person</Name>
+      <MiniTemplate><![CDATA[<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MailAbstractTo</Name>
+      <MiniTemplate><![CDATA[<MailAbstractTo><?xm-replace_text {Enter the cdr:id attribute value of any Person to identify NCI's contact for protocol updates} ?></MailAbstractTo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolLeadOrg</Name>
+      <MiniTemplate><![CDATA[<ProtocolLeadOrg>
+<LeadOrganizationID><?xm-replace_text {Link to the protocol's lead organization (required)?></LeadOrganizationID>
+<LeadOrgRole><?xm-replace_text {Select a Primary or Secondary role for this lead organization (required)} ?></LeadOrgRole>
+<LeadOrgProtocolID><?xm-replace_text {Enter identification information for the lead organization in this protocol (required)} ?></LeadOrgProtocolID>
+<LeadOrgProtocolStatuses>
+<CurrentOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</CurrentOrgStatus>
+<PreviousOrgStatus>
+<StatusName><?xm-replace_text {Select the lead organization's former status on this protocol (required)} ?></StatusName>
+<StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+</PreviousOrgStatus>
+</LeadOrgProtocolStatuses>
+<LeadOrgPersonnel cdr:id="Enter a link">
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required)} ?></Person>
+<ProtocolSpecificContact>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ProtocolSpecificContact>
+<PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+</LeadOrgPersonnel>
+<ProtocolSites>
+<OrgSite>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
+<OrgSiteContact>
+<SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a generic person definition} ?></Person>
+<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson>
+</OrgSiteContact>
+</OrgSite>
+</ProtocolSites>
+<MailAbstractTo><?xm-replace_text {Enter the cdr:id attribute value of any Person to identify NCI's contact for protocol updates} ?></MailAbstractTo>
+</ProtocolLeadOrg>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrivatePracticeSiteID</Name>
+      <MiniTemplate><![CDATA[<PrivatePracticeSiteID><?xm-replace_text {Link to a private practice location (required), or Change to an organization} ?></PrivatePracticeSiteID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrivatePracticeSiteStatus</Name>
+      <MiniTemplate><![CDATA[<PrivatePracticeSiteStatus><?xm-replace_text {Select the protocol status of this private practice location (required)} ?></PrivatePracticeSiteStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrivatePracticeSite</Name>
+      <MiniTemplate><![CDATA[<PrivatePracticeSite>
+<PrivatePracticeSiteID><?xm-replace_text {Link to a private practice location (required), or Change to an organization} ?></PrivatePracticeSiteID>
+<PrivatePracticeSiteStatus><?xm-replace_text {Select the protocol status of this private practice location (required)} ?></PrivatePracticeSiteStatus>
+</PrivatePracticeSite>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrgSiteID</Name>
+      <MiniTemplate><![CDATA[<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrgSiteStatus</Name>
+      <MiniTemplate><![CDATA[<OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificPerson</Name>
+      <MiniTemplate><![CDATA[<SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person><Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Role</Name>
+      <MiniTemplate><![CDATA[<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SpecificPhone</Name>
+      <MiniTemplate><![CDATA[<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PersonTitle</Name>
+      <MiniTemplate><![CDATA[<PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ContactName</Name>
+      <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ContactDetail</Name>
+      <MiniTemplate><![CDATA[<ContactDetail>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ContactDetail>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GenericPersonContact</Name>
+      <MiniTemplate><![CDATA[<GenericPersonContact>
+<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>
+<ContactDetail>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ContactDetail>
+</GenericPersonContact>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>GenericPerson</Name>
+      <MiniTemplate><![CDATA[<GenericPerson>
+<PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>
+<GenericPersonContact>
+<ContactName><?xm-replace_text {Optionally enter the contact person's name } ?></ContactName>
+<ContactDetail>
+<PostalAddress AddressType="US">
+<Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+<PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+</PostalAddress>
+<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
+<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax>
+<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+<WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+</ContactDetail>
+</GenericPersonContact>
+</GenericPerson>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrgSiteContact</Name>
+      <MiniTemplate><![CDATA[<OrgSiteContact>
+<SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person>
+<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson>
+</OrgSiteContact>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OrgSite</Name>
+      <MiniTemplate><![CDATA[<OrgSite>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
+<OrgSiteContact>
+<SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a generic person definition} ?></Person>
+<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson>
+</OrgSiteContact>
+</OrgSite>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSites</Name>
+      <MiniTemplate><![CDATA[<ProtocolSites>
+<OrgSite>
+<OrgSiteID><?xm-replace_text {Link to a participating organization and location (required), or Change to a Private Practice site identification} ?></OrgSiteID>
+<OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
+<OrgSiteContact>
+<SpecificPerson>
+<Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a generic person definition} ?></Person>
+<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
+<SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+</SpecificPerson>
+</OrgSiteContact>
+</OrgSite>
+</ProtocolSites>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LeadOrganizationID</Name>
+      <MiniTemplate><![CDATA[<LeadOrganizationID><?xm-replace_text {Link to the protocol's lead organization (required)?></LeadOrganizationID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LeadOrgRole</Name>
+      <MiniTemplate><![CDATA[<LeadOrgRole><?xm-replace_text {Select a Primary or Secondary role for this lead organization (required)} ?></LeadOrgRole>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LeadOrgProtocolID</Name>
+      <MiniTemplate><![CDATA[<LeadOrgProtocolID><?xm-replace_text {Enter identification information for the lead organization in this protocol (required)} ?></LeadOrgProtocolID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolSources</Name>
+      <MiniTemplate><![CDATA[<ProtocolSources>
+<ProtocolSource>
+<SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
+<DateReceived><?xm-replace_text {Enter the date that NCI received this protocol (required)} ?></DateReceived>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</ProtocolSource>
+</ProtocolSources>]]></MiniTemplate>
+    </Template>
+  </Templates>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>OrgSiteContact</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>GenericPerson</ChangeListElement>
+        <ChangeListElement>SpecificPerson</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>ProtocolSites</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>OrgSite</ChangeListElement>
+        <ChangeListElement>PrivatePracticeSite</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
+</DTDExtensions>

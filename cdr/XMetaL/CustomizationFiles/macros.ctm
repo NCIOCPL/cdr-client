@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <ElementProperties>
+      <Name>MACRO</Name>
+      <TagColor>80FFFF</TagColor>
+      <PreserveSpace/>
+      <PrettyPrintOptions>
+        <BlankLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MACROS</Name>
+      <TagColor>00FFFF</TagColor>
+      <PrettyPrintOptions>
+        <BlankLineBeforeStartTag/>
+        <BlankLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+  </Templates>
+  <OnInsertElementList>
+    <OnInsertElement>
+      <Name>MACRO</Name>
+      <Lang>VBScript</Lang>
+      <InsertElemScript><![CDATA[Selection.InsertElement("MACRO")
+Selection.InsertCDATASection]]></InsertElemScript>
+    </OnInsertElement>
+  </OnInsertElementList>
+  <FollowedByList>
+    <FollowedByListItem>
+      <Name>MACRO</Name>
+      <FollowedBy>MACRO</FollowedBy>
+    </FollowedByListItem>
+  </FollowedByList>
+</DTDExtensions>
