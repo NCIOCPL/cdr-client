@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.23 2004-02-26 01:45:53 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.24 2004-02-26 01:57:25 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.23  2004/02/26 01:45:53  bkline
+ * Added glossifier support.
+ *
  * Revision 1.22  2004/02/26 00:46:33  bkline
  * Added code for suppressing/expanding leading zeros in document IDs.
  *
@@ -137,7 +140,7 @@ CdrSocket::CdrSocket()
 {
     const char* hostEnv = getenv("CDR_HOST");
     const char* portEnv = getenv("CDR_PORT");
-    const char* host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
+    const char* host = hostEnv ? hostEnv : "mahler.nci.nih.gov";
     hostName = host;
     int port = portEnv ? atoi(portEnv) : CDR_SOCK;
 
@@ -1157,7 +1160,6 @@ cdr::GlossaryTree::GlossaryTree() {
                 docId = atoi(word.c_str());
             else if (!word.empty()) {
                 CString w = utf8ToCString(word.c_str());
-                // std::cout << "got word [" << word.c_str() << "]\n";
                 ++numWords;
                 GlossaryNodeMap::iterator iter = currentMap->find(w);
                 if (iter == currentMap->end())
@@ -1169,10 +1171,6 @@ cdr::GlossaryTree::GlossaryTree() {
             start = end;
             if (end != std::string::npos)
                 ++start;
-            //std::cerr << "start=" << start << " end=" << end;
-            //if (start)
-            //    std::cerr << " word=" << word.c_str();
-            //std::cerr << '\n';
         }
         if (currentNode)
             currentNode->docId = docId;
@@ -1187,10 +1185,8 @@ cdr::GlossaryTree::GlossaryTree() {
 }
 
 cdr::GlossaryTree::~GlossaryTree() {
-    // std::cout << "~GlossaryTree\n";
     GlossaryNodeMap::iterator i = nodeMap.begin();
     while (i != nodeMap.end()) {
-        // std::cout << "deleting node for " << i->first << '\n';
         delete i->second;
         ++i;
     }

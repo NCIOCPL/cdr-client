@@ -5,32 +5,6 @@
 #include "CdrUtil.h"
 #include <vector>
 
-#if 0
-struct GlossaryPhraseWord {
-    CString            w;
-    ::Range            r;
-    cdr::GlossaryNode* n;
-    GlossaryPhraseWord(::Range rng) : r(rng), w(r.GetText()), n(0)
-    { w.MakeUpper(); }
-    // int level;
-    // bool leftEdge, rightEdge;
-    // DOMNode node;
-    // int startPos;
-    // int len;
-    /*
-    GlossaryPhraseWord(const CString& wd, int lev, int sp, 
-        DOMNode& n, int ln, bool le = false, bool re = false)
-        : w(wd), level(lev), startPos(sp), node(n), 
-		  len(ln), leftEdge(le), rightEdge(re)
-	      { w.MakeUpper(); }
-    */
-};
-#endif
-
-// typedef std::vector<GlossaryPhraseWord> GlossaryPhraseChain;
-// typedef std::vector<GlossaryPhraseChain> GlossaryPhraseChains;
-// typedef std::vector<DOMNode> DomNodeVector;
-
 // CGlossify dialog
 
 class CGlossify : public CDialog
@@ -49,7 +23,6 @@ private:
         }
     };
     typedef std::vector<Word>    WordVector;
-    //typedef WordVector::iterator WordVectorIter;
     struct WordChain {
         WordVector words;
         int        curWord;
@@ -78,10 +51,6 @@ private:
     int                  curChain;
     void                 findChains(DOMNode& n);
     bool                 findNextMatch();
-    // GlossaryPhraseChains chains;
-    // int                  curWord;
-	// ::Range              endRange;
-    // DomNodeVector        glossifiableSections;
 public:
     afx_msg void OnSkip();
     afx_msg void OnDone();

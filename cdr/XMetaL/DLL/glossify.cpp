@@ -6,81 +6,17 @@
 #include "Glossify.h"
 #include <stack>
 
-#if 0
-static void dumpPhraseChain(const GlossaryPhraseChain& pc, const CString& name)
-{
-    CString msg;
-    msg.Format(_T("size of phrase chain: %d"), pc.size());
-    ::AfxMessageBox(msg);
-    FILE* logFile = fopen("c:/tmp/PhraseChain.log", "a");
-    if (!logFile) {
-        ::AfxMessageBox(_T("Can't open log file"));
-        return;
-    }
-    fprintf(logFile, "*** CHAIN FOR %s ***\n", 
-        cdr::cStringToUtf8(name).c_str());
-    GlossaryPhraseChain::const_iterator i = pc.begin();
-    while (i != pc.end()) {
-        fprintf(logFile, "%d\t%d\t%d\t%s\t%s\t%s\n", i->level, 
-            i->startPos, i->len,
-            (i->leftEdge ? "true" : "false"),
-            (i->rightEdge ? "true" : "false"),
-            cdr::cStringToUtf8(i->w).c_str());
-        ++i;
-    }
-    fclose(logFile);
-}
-
-static void parseNode(DOMNode& n, GlossaryPhraseChain& pc, int level) {
-    CString s;
-    const TCHAR* delims = _T(" \r\n\t.,/<>?'\";:[]{}\\|=+-_)(*&^%$#@!~`");
-    DOMNode c = n.GetFirstChild();
-    while (c) {
-        //if (::AfxMessageBox(c.GetNodeName() + _T(" (keep going??)"), MB_YESNO) == IDNO)
-        //    break;
-        // Text nodes.
-        if (c.GetNodeType() == 3) {
-            CString s = c.GetNodeValue();
-            int nodeLen = s.GetLength();
-            int pos = 0;
-            CString w = s.Tokenize(delims, pos);
-            while (w != _T("")) {
-                int end = pos - 1;
-                int len = w.GetLength();
-                int start = end - len;
-                bool rightEdge = end == nodeLen;
-                bool leftEdge = start == 0;
-                GlossaryPhraseWord pw(w, level, start, c, len, 
-                    leftEdge, rightEdge);
-                pc.push_back(pw);
-                w = s.Tokenize(delims, pos);
-            }
-        }
-
-        // Element nodes.
-        else if (c.GetNodeType() == 1)
-            parseNode(c, pc, level + 1);
-        c = c.GetNextSibling();
-    }
-}
-#endif
-
 // CGlossify dialog
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
 CGlossify::CGlossify(CWnd* pParent /*=NULL*/)
 	: CDialog(CGlossify::IDD, pParent), curChain(0)
 {
-    //::AfxMessageBox(_T("Milestone 2a"));
     _Application app = cdr::getApp();
     doc = app.GetActiveDocument();
-    //::AfxMessageBox(_T("Milestone 2b"));
 	range = doc.GetRange();
     DOMNode docElement = doc.GetDocumentElement();
     docType = docElement.GetNodeName();
-    //::AfxMessageBox(_T("Milestone 2c"));
-    // endRange = doc.GetRange();
-    //::AfxMessageBox(_T("Milestone 2d"));
 }
 
 CGlossify::~CGlossify()
@@ -114,7 +50,6 @@ void CGlossify::OnSkip()
 
 void CGlossify::OnDone()
 {
-    // TODO: Add your control notification handler code here
     OnCancel();
 }
 
@@ -169,14 +104,6 @@ void CGlossify::findChains(DOMNode& docElem)
     }
 }
 
-#if 0
-struct GlossPhraseWord {
-    ::Range range;
-    cdr::GlossaryNode glossaryNode;
-};
-typedef std::stack<GlossaryPhraseWord> GlossaryPhrase;
-#endif
-
 CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
 {
     ::Range range = doc.GetRange();
@@ -189,8 +116,6 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
     {
         if (!range.GetIsLessThan(end, FALSE))
             break;
-        //if (::AfxMessageBox(range.GetText(), MB_YESNO) == IDNO)
-        //    break;
         ::Range r = range.GetDuplicate();
         Word w = Word(r);
         words.push_back(w);
@@ -200,74 +125,6 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
 
 bool CGlossify::findNextMatch()
 {
-    /*
-    if (curChain >= static_cast<int>(chains.size()))
-        return false;
-    DOMNode& n = glossifiableSections[curChain];
-    endRange.SelectAfterNode(n);
-    range.SelectBeforeNode(n);
-    ::Find find = range.GetFind();
-    ::_Application app = cdr::getApp();
-    GlossaryPhrase phrase;
-    std::vector<::Range> words;
-    while (find.Execute(_T("[A-Za-z0-9]+"), _T(""), _T(""), FALSE, TRUE, TRUE, TRUE, FALSE, 0, FALSE)) {
-        if (!range.GetIsLessThan(endRange, FALSE))
-            break;
-        if (::AfxMessageBox(range.GetText(), MB_YESNO) == IDNO)
-            break;
-        words.push_back(range.GetDuplicate());
-    }
-    CString msg;
-    msg.Format(_T("num words: %d"), words.size());
-    ::AfxMessageBox(msg);
-    for (std::vector<::Range>::iterator i = words.begin(); i != words.end(); ++i) {
-        if (i->GetText().Left(2) == _T("<?"))
-            continue;
-        if (i->GetCanSurround(_T("GlossaryTermRef"))) {
-            i->Surround(_T("GlossaryTermRef"));
-            i->SetContainerAttribute(_T("cdr:href"), _T("CDR1234567890"));
-        }
-    }
-    return true;
-
-        CString word = range.GetText();
-        word.MakeUpper();
-        if (range.GetText().Left(2) == _T("<?"))
-            continue;
-        ::Range r = app.GetSelection();
-        CString msg;
-        ::DOMNode container = range.GetContainerNode();
-        msg.Format(_T("range text: %s; range container: %s (%d); selection text: %s; keep going?"), 
-            range.GetText(), container.GetNodeName(), container.GetNodeType(), r.GetText());
-        //::AfxMessageBox(_T("range text: " + range.GetText()));
-        //::AfxMessageBox(_T("selection text: " + r.GetText()));
-        if (::AfxMessageBox(msg, MB_YESNO) == IDNO)
-            return false;
-        if (range.GetCanSurround(_T("GlossaryTermRef"))) {
-            CString w = range.GetText();
-            range.Surround(_T("GlossaryTermRef"));
-            container = range.GetContainerNode();
-            //range.Collapse(1);
-            //range.MoveRight(0);
-            //range.Select();
-            //msg.Format(_T("container: %s"), container.GetNodeName());
-            //::AfxMessageBox(msg);
-            //range.SetContainerAttribute(_T("GlossaryTermRef"), _T("CDR0000123456"));
-            range.SetContainerAttribute(_T("cdr:href"), _T("CDR0000123457"));
-            range.Collapse(0);
-            //range.MoveRight(0);
-            if (w == _T("a")) {
-                range.Select();
-                return true;
-            }
-        }
-    }
-    ::AfxMessageBox(_T("didn't work"));
-    return false;
-    endRange.SelectAfterNode(n);
-    while (!range.GetContains(endRange, FALSE)) {}
-    */
-
 	// We're done if there are no more word chains to look at.
     if (curChain >= static_cast<int>(chains.size()))
         return false;
@@ -356,26 +213,14 @@ BOOL CGlossify::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    // Get the current element and the doc type.
     DOMNode docElement = doc.GetDocumentElement();
     cdr::getGlossaryTree()->clearFlags();
-    ::_Application app = cdr::getApp();
-    ::Selection sel = app.GetSelection();
-    //sel.Collapse(0);
-    sel.SelectBeforeNode(docElement);
-    sel.SetHiddenContainer(TRUE);
     findChains(docElement);
-    //::Range selection = cdr::getApp().GetSelection();
-    //::DOMElement elem = selection.GetContainerNode();
-    //CString elemName  = elem.GetNodeName();
 
-    if (chains.empty()) { // (chains.empty()) {
+    if (chains.empty()) {
         ::AfxMessageBox(_T("No glossifiable sections found"));
         OnCancel();
     }
-    //DOMNode& n = glossifiableSections[0];
-    //range.SelectBeforeNode(n);
-    //range.MoveRight(0);
     if (!findNextMatch()) {
         ::AfxMessageBox(_T("No glossifiable phrases found"));
         OnCancel();
