@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.18 2002-10-16 19:56:26 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.19 2002-12-24 15:04:15 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.18  2002/10/16 19:56:26  bkline
+ * Workaround for XMetaL automation bug.
+ *
  * Revision 1.17  2002/10/15 22:22:05  bkline
  * Adding code for issue #471.
  *
@@ -67,7 +70,7 @@
 #include <set>
 
 // Implement our own command to show an HTML page.
-#define SHOW_PAGE_WITH_DDE
+// #define SHOW_PAGE_WITH_DDE /* Use ActiveX Automation instead. */
 #ifdef SHOW_PAGE_WITH_DDE
 #include <ddeml.h>
 #endif
