@@ -78,7 +78,7 @@
    <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed   under a microscope to check for signs of cancer.  [Tailor full definition to fit the cancer.] </ListItem>
+    <ListItem><StandardWording><GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: The removal of <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef> so they can be viewed under a microscope to check for signs of cancer.  [Tailor full definition to fit the cancer.]</StandardWording></ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
     <ListItem>[test here]</ListItem>
@@ -173,7 +173,7 @@
     <ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000318818">Neuropathologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000318819">Neuroradiologist</GlossaryTermRef>.</ListItem>
-    <ListItem><GlossaryTermRef cdr:href="CDR0000318825">Rehabilitation specialist.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000318825">Rehabilitation specialist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem>
@@ -199,23 +199,23 @@
     <KeyPoint>
      <InterventionName>Radiation therapy</InterventionName>
     </KeyPoint>
-    <Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high-energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a <GlossaryTermRef cdr:href="CDR0000046550">radioactive</GlossaryTermRef> substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the cancer being treated.</Para>
+    <Para><StandardWording><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high-energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a <GlossaryTermRef cdr:href="CDR0000046550">radioactive</GlossaryTermRef> substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the cancer being treated.</StandardWording></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
      <InterventionName>Chemotherapy</InterventionName>
     </KeyPoint>
-    <Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000301626">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an <GlossaryTermRef cdr:href="CDR0000257523">organ</GlossaryTermRef>, the drugs mainly affect cancer cells in those areas.  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</Para>
+    <Para><StandardWording><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000301626">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly into the spinal column, an <GlossaryTermRef cdr:href="CDR0000257523">organ</GlossaryTermRef>, or a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, the drugs mainly affect cancer cells in those areas.  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</StandardWording></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
      <InterventionName>Hormone therapy</InterventionName>
     </KeyPoint>
-    <Para><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that removes <GlossaryTermRef cdr:href="CDR0000045713">hormones</GlossaryTermRef> or blocks their action and stops cancer cells from growing. Hormones are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef>  in the body and circulated in the bloodstream. The presence of some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptor</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</Para>
+    <Para><StandardWording><GlossaryTermRef cdr:href="CDR0000045110">Hormone therapy</GlossaryTermRef> is a cancer treatment that removes <GlossaryTermRef cdr:href="CDR0000045713">hormones</GlossaryTermRef> or blocks their action and stops cancer cells from growing. Hormones are substances produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and circulated in the bloodstream. The presence of some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (<GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef>), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</StandardWording></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Biologic therapy</KeyPoint>
-    <Para><GlossaryTermRef cdr:href="CDR0000045617">Biologic therapy</GlossaryTermRef> is a treatment that uses the patient's <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called <GlossaryTermRef cdr:href="CDR0000044483">biotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045729">immunotherapy</GlossaryTermRef></Para>
+    <Para><StandardWording><GlossaryTermRef cdr:href="CDR0000045617">Biologic therapy</GlossaryTermRef> is a treatment that uses the patient's <GlossaryTermRef cdr:href="CDR0000046356">immune system</GlossaryTermRef> to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called biotherapy or immunotherapy.</StandardWording></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
