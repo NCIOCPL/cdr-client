@@ -90,13 +90,13 @@
     <SectionType>Prognostic factors</SectionType>
    </SectMetaData>
    <KeyPoint>Certain factors affect prognosis (chance of recovery) and treatment options.</KeyPoint>
-   <Para>The prognosis (chance of recovery) depends on: [Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
+   <Para>The prognosis (chance of recovery) depends on the following: [Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
    <ItemizedList Style="bullet">
     <ListItem>[factor here]</ListItem>
     <ListItem>[factor here]</ListItem>
     <ListItem>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects prognosis, i.e., "Whether x cancer has just been diagnosed or has recurred (come back)."]</ListItem>
    </ItemizedList>
-   <Para>Treatment options depend on:</Para>
+   <Para>Treatment options depend on the following:</Para>
    <ItemizedList Style="bullet">
     <ListItem>[factor here]</ListItem>
     <ListItem>[factor here]</ListItem>
@@ -171,9 +171,9 @@
    <ItemizedList Style="bullet">
     <ListItem><GlossaryTermRef cdr:href="CDR0000046269">Neurosurgeon</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046267">Neurologist</GlossaryTermRef>.</ListItem>
-    <ListItem>Neuropathologist.</ListItem>
-    <ListItem>Neuroradiologist.</ListItem>
-    <ListItem>Rehabilitation specialist.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000318818">Neuropathologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000318819">Neuroradiologist</GlossaryTermRef>.</ListItem>
+    <ListItem><GlossaryTermRef cdr:href="CDR0000318825">Rehabilitation specialist.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046546">Radiation oncologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046290">Medical oncologist</GlossaryTermRef>.</ListItem>
     <ListItem><GlossaryTermRef cdr:href="CDR0000046439">Endocrinologist</GlossaryTermRef>.</ListItem>
@@ -343,5 +343,6 @@
   <Para>This summary was completely reformatted and some content was added.</Para>
  </SummarySection>
  <PatientVersionOf><?xm-replace_text {Select a link to the Health Professionals summary} ?></PatientVersionOf>
+ <ReplacementFor><?xm-replace_text {ReplacementFor}?></ReplacementFor>
  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
 </Summary>
