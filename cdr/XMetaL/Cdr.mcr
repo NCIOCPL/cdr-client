@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.124 2004-06-03 15:24:04 bkline Exp $
+     $Id: Cdr.mcr,v 1.125 2004-08-10 18:35:14 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.124  2004/06/03 15:24:04  bkline
+     Plugged in workaround for toolbar visibility bug.
+
      Revision 1.122  2004/04/19 15:26:38  bkline
      Added support for copying/pasting fragment IDs.
 
@@ -1019,6 +1022,9 @@
             }
         }
     }
+    if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
+        docType.name == "ScientificProtocolInfo")
+        Application.AppendMacro("Glossify Document", "Glossify Document");
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
                                 "CDR Get Org Postal Address");
@@ -3302,92 +3308,7 @@
     // Allows the users to track changes while inserting any text in the 
     // document.  If the user selects some text and clicks on insertion 
     // toolbar button the selected text is surrounded by deletion element
-    //
-    // XXX Lakshmi decided she doesn't want the fancier approach used by
-    //     SoftQuad.
     //----------------------------------------------------------------------
-    function getInsertion() {
-        if (Selection.IsInsertionPoint) {
-            doInsertion();  
-        }
-        else {
-            if (Selection.CanSurround("Deletion")) {
-                if (Selection.IsParentElement("Insertion")) {
-                    var temp_text = Selection.Text;
-                    Selection.Delete();
-                    Selection.SplitContainer();
-                    Selection.ContainerStyle = getMarkupStyle("Insertion");
-                    Selection.SelectBeforeContainer();
-                    if (Selection.CanInsert("Deletion")) {
-                        Selection.InsertElement("Deletion");
-                        Selection.ContainerStyle = getMarkupStyle("Deletion");
-                        Selection.Text = temp_text;
-                    }
-                    Selection.MoveToElement("Insertion");
-                }
-                else {  
-                    Selection.Surround("Deletion");
-                    Selection.ContainerAttribute("UserName") = CdrUserName;
-                    var date = new Date();
-                    Selection.ContainerAttribute("Time") = 
-                        date.toLocaleString();
-                    Selection.ContainerAttribute("RevisionLevel") = "approved";
-                    Selection.ContainerStyle = getMarkupStyle("Deletion");
-                    Selection.SelectAfterContainer();
-                    doInsertion();
-                }
-            }
-        }
-    }
-
-    function doInsertion() {
-        if (Selection.ContainerNode) {
-            if (!Selection.isParentElement("Insertion")) {
-                if (Selection.CanInsert("Insertion")) {
-                    if (Selection.isParentElement("Deletion")) {
-                        Selection.SplitContainer();
-                        Selection.ContainerStyle = getMarkupStyle("Deletion");
-                        Selection.SelectBeforeContainer();
-                    }
-
-                    // Insert "Insertion"
-                    Selection.InsertElement("Insertion");
-                    Selection.InsertReplaceableText("Insert text here");
-                    Selection.ContainerAttribute("UserName") = CdrUserName;
-                    var date = new Date();
-                    Selection.ContainerAttribute("Time") = 
-                        date.toLocaleString();
-                    Selection.ContainerAttribute("RevisionLevel") = "approved";
-                    Selection.ContainerStyle = getMarkupStyle("Insertion");
-              
-                    // Merge if the previous tag name and its user are the
-                    // same as this 
-                    if (Selection.ContainerNode) {
-                        var prevSibling =
-                            Selection.ContainerNode.previousSibling;
-                        var nextSibling =
-                            Selection.ContainerNode.nextSibling; 
-                        if (prevSibling &&
-                            prevSibling.nodeName == "Insertion") {
-                                Selection.JoinElementToPreceding();
-                        }
-                        else if (nextSibling &&
-                            nextSibling.nodeName == "Insertion") {
-                                Selection.MoveToElement("Insertion");
-                                Selection.JoinElementToPreceding();
-                        }
-                    }
-                }
-                else {
-                    Application.Alert("Cannot insert 'Insertion' element " +
-                                      "here.");
-                }
-            }
-        }
-    }
-
-    // Replacement function for the above two.  Keep those in case the
-    // users change their minds back.
     function simpleInsertion() {
         var date = new Date();
         if (!Selection.IsInsertionPoint) {
@@ -3581,66 +3502,7 @@
     // Incorporates the current marked change i.e. if the selection is inside
     // an Insertion the contents are merged and if inside an Deletion the
     // contents are deleted.
-    // XXX This SoftQuad is buggy.  Replace it!
     //----------------------------------------------------------------------
-    function doAcceptChange()
-    {
-        if (Selection.isParentElement("Insertion")) {
-            Selection.SelectContainerContents();
-            if (Selection.Text == "<?xm-replace_text Insert text here?>") {
-                Selection.Delete();
-            }
-            if (Selection.ElementName(0) != "Insertion") {
-                if (Selection.MoveToElement("Insertion", false)) {
-                    Selection.SelectContainerContents();
-                    var containerContents = Selection.Text;
-                    Selection.Delete();
-                    Selection.RemoveContainerTags();
-                    Selection.Text = containerContents;
-                    containerContents = "";
-                }
-            }
-            else {
-                Selection.RemoveContainerTags();
-            }
-    
-        }
-        else if (Selection.isParentElement("Deletion")) {
-            if (Selection.ElementName(0) == "Deletion") {
-                Selection.SelectContainerContents();
-                Selection.Delete();
-                Selection.RemoveContainerTags();
-            }
-            else {
-                while (Selection.isParentElement("Deletion")) {
-                    Selection.MoveToElement("Deletion", false);
-                    Selection.SelectContainerContents();
-                    Selection.Delete();
-                    Selection.RemoveContainerTags();
-                }
-            }
-        }
-    }
-
-    // XXX This doesn't make sense.  How does rng_temp get set?
-    function readtree(node, parent) {
-    
-        // If the node represents an "Insertion" element, remove it
-        if (node.nodeName == "Deletion" && !parent) {
-            rng_temp.MoveToElement("Deletion");
-            rng_temp.ReadOnlyContainer = false;
-            rng_temp.RemoveContainerTags();
-            return;
-        } 
-        else if (node.hasChildNodes()) {
-            var children = node.childNodes;
-            for (var i=0; i<children.length; i++) {
-                readtree(children.item(i), false);
-            }
-            return; 
-        }
-    }
-    var rng_temp;
 
     //----------------------------------------------------------------------
     // Replacement for buggy SoftQuad code.
@@ -3663,10 +3525,8 @@
         }
     }
 
-    if (CanRunMacros()) {
-        //doAcceptChange();
+    if (CanRunMacros())
         doAcceptChangeWithoutSoftQuadBugs();
-    }
     
   ]]>
 </MACRO>
@@ -3681,59 +3541,7 @@
     // Rejects the current marked change i.e. if the selection is inside an 
     // Insertion the contents are removed and if the contents are inside an 
     // Deletion they are merged back with the document.
-    // XXX This SoftQuad code is buggy.  Replace it.
     //----------------------------------------------------------------------
-    function doRejectChange() {
-        if (Selection.IsParentElement("Insertion")) {
-            if (Selection.ElementName(0) != "Insertion") {
-                Selection.MoveToElement("Insertion", false);
-            }
-            Selection.SelectContainerContents();
-            Selection.Delete();
-            Selection.RemoveContainerTags();
-            return;
-        } 
-        else if (Selection.IsParentElement("Deletion")) {
-            var rng_reject = ActiveDocument.Range;
-            if (Selection.ElementName(0) != "Deletion") {
-                rng_reject.MoveToElement("Deletion", false);
-            }
-            rng_reject.SelectContainerContents();
-            start = rng_reject.Duplicate;
-            start.Collapse(1);  // set the starting boundary for the search
-            end = rng_reject.Duplicate;
-            end.Collapse(0);  // set the ending boundary for the search
-            rng_reject.RemoveContainerTags();
-            rng_reject = readtree(start, end);
-            rng_reject= null;
-            return;
-        }
-    }
-
-
-    function readtree(startRng, endRng) {
-        while(true) {  // Move to next element
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            } 
-            else {
-                // if it is with in the range of the selected parent
-                if (startRng.IsLessThan(endRng)) {
-                    element = startRng.ContainerNode.nodeName;
-                    startRng.ContainerStyle = getMarkupStyle(element);
-                } 
-                else {
-                    break;
-                }
-            }
-        }
-        startRng = null;
-        return(endRng);
-    }
-
     //----------------------------------------------------------------------
     // Replacement for buggy SoftQuad code.
     //----------------------------------------------------------------------
@@ -3755,10 +3563,8 @@
         }
     }
 
-    if (CanRunMacros()) {
-        //doRejectChange();
+    if (CanRunMacros())
         doRejectChangeCorrectly();
-    }
 
   ]]>
 </MACRO>
@@ -6183,7 +5989,6 @@
 </MACRO>
 
 <MACRO name="Preview Mailer" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
     function previewMailer() {
@@ -6200,6 +6005,15 @@
         cdrObj.showPage(url);
     }
     previewMailer();
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Document" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    cdrObj.glossify();
+    ActiveDocument.FormattingUpdating = true;
   ]]>
 </MACRO>
 
