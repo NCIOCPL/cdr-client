@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.38 2002-03-26 21:48:06 bkline Exp $
+     $Id: Cdr.mcr,v 1.39 2002-04-03 20:44:51 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.38  2002/03/26 21:48:06  bkline
+     Replaced hardwired filter number with filter name for Summary revision
+     markup.
+
      Revision 1.37  2002/03/21 13:20:10  bkline
      Added summary macros.
 
@@ -4310,7 +4314,14 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "Filter.py?Filter=name:Revision+Markup+Filter&DocId=" + docId;
+        var url = CdrCgiBin + "Filter.py"
+                            + "?Filter=name:Summary+Filter1"
+                            + "&Filter1=name:Summary+Filter2"
+                            + "&Filter2=name:Summary+Filter3"
+                            + "&Filter3=name:Summary+Filter4"
+                            + "&Filter4=name:Summary+Filter5"
+                            + "&Filter5=name:Health+Professional+Summary+Report"
+                            + "&DocId=" + docId;
         Application.ShowPage(url);
     }
     createSummaryMarkupReport();
