@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.80 2002-09-24 15:30:47 bkline Exp $
+     $Id: Cdr.mcr,v 1.81 2002-09-24 20:41:32 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.80  2002/09/24 15:30:47  bkline
+     Plugged in toolbar buttons for new macros.
+
      Revision 1.79  2002/09/23 20:17:21  bkline
      Added macro to move to next lead org block.
 
@@ -430,6 +433,7 @@
             var elName = Selection.ContainerNode.nodeName;
             if (elName == "Received" ||
                 elName == "ChangesCategory" ||
+                elName == "Response" ||
                 elName == "Comment")
                 return 0;
             return 1;
@@ -2112,6 +2116,51 @@
         }
     }
 
+    function addMailerToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Insert Mailer Response",    // Macro.
+                           "Response",                  // Tooltip.
+                           "Insert Mailer Response",    // Description
+                           "CDR", 5, 8,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Mailer"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Mailer " +
+                                  "Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Mailer", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Mailer " +
+                              "toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Mailer"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function bugRepro() {
         var cmdBars = Application.CommandBars;
         var i       = 0;
@@ -2189,6 +2238,7 @@
     addGlossaryToolbar();
     addCitationToolbar();
     addMiscToolbar();
+    addMailerToolbar();
     addCdrMenus();
     hideToolbars();
     // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
@@ -4068,7 +4118,6 @@
 
 <MACRO  name="Next Lead Org"
         lang="JScript" 
-        key="Alt+Z"
         desc="Move to the next lead organization in the protocol"
         hide="false">
   <![CDATA[
@@ -5163,6 +5212,7 @@
   ]]>
 </MACRO>
 
+<!--
 <MACRO name="Insert Mailer Response"
        lang="JScript">
   <![CDATA[
@@ -5183,6 +5233,7 @@
     insertMailerResponse();
   ]]>
 </MACRO>
+-->
 
 <MACRO name="Insert DateLastModified" 
        lang="JScript" >
@@ -5324,6 +5375,25 @@
                 " participating organizations.");
     }
     changePOStatus();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Mailer Response" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function insertMailerResponse() {
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("Response", false)) {
+            Application.Alert(
+                    "Can't insert Response element");
+                return; 
+        }
+        rng.InsertWithTemplate("Response");
+        rng.Select();
+    }
+    insertMailerResponse();
   ]]>
 </MACRO>
 
