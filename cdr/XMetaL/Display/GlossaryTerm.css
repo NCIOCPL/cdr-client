@@ -99,6 +99,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+TermDefinition,
 
     { display: block; }
 
@@ -142,6 +143,8 @@ SpanishTermName,
 TermDefinition,
 TermSource,
 TermType,
+Dictionary,
+Audience
 
     { margin-top: 1em }
 
