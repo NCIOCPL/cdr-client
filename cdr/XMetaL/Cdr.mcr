@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.126 2004-08-10 19:45:28 bkline Exp $
+     $Id: Cdr.mcr,v 1.127 2004-08-11 19:52:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.126  2004/08/10 19:45:28  bkline
+     Dropped some more dead code.  Suppressed code to manipulate the
+     ContainerStyle from the macros (leaving this to the CSS, so I can
+     implement request #1213).
+
      Revision 1.125  2004/08/10 18:35:14  bkline
      Dropped dead buggy code from SoftQuad's original macros.  Added hooks
      for Glossify Document command.
@@ -1028,7 +1033,8 @@
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo")
-        Application.AppendMacro("Glossify Document", "Glossify Document");
+        if (!cdrDocReadOnly())
+            Application.AppendMacro("Glossify Document", "Glossify Document");
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
                                 "CDR Get Org Postal Address");
@@ -5854,8 +5860,10 @@
         key="Alt+Z"
        lang="JScript" >
   <![CDATA[
-    cdrObj.glossify();
-    ActiveDocument.FormattingUpdating = true;
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify();
+        ActiveDocument.FormattingUpdating = true;
+    }
   ]]>
 </MACRO>
 
