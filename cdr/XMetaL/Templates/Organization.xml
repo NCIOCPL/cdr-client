@@ -48,6 +48,11 @@
 		  <WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
 		  </Location> 
 	 </OrganizationLocation> 
+   <ClinicalTrialsOfficeContact>
+    <ClinicalTrialsOfficeContactName><?xm-replace_text {Optionally enter a contact name } ?></ClinicalTrialsOfficeContactName>
+    <ClinicalTrialsOfficeContactPhone><?xm-replace_text {Enter a phone number (required) } ?></ClinicalTrialsOfficeContactPhone>
+    <ClinicalTrialsOfficeContactEmail><?xm-replace_text {Optionally enter an email address } ?></ClinicalTrialsOfficeContactEmail>
+   </ClinicalTrialsOfficeContact>
 	 <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Location to identify this organization's CIPS address and phone information} ?></CIPSContact><Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </OrganizationLocations> 
   <OrganizationAffiliations> 
