@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.41 2002-04-05 14:15:05 bkline Exp $
+     $Id: Cdr.mcr,v 1.42 2002-04-12 01:34:09 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.41  2002/04/05 14:15:05  bkline
+     Added toolbar button for Checked Out Docs report.
+
      Revision 1.40  2002/04/05 14:05:38  bkline
      Added separator to Person toolbar between first and second buttons.
 
@@ -4167,7 +4170,21 @@
 <MACRO name="Generate QC Report" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Generate QC Report Macro");
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "PublishPreview.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    qcReport()
   ]]>
 </MACRO>
 
