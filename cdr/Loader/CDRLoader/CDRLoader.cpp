@@ -37,7 +37,7 @@ void DebugWrite( char * msg )
 
 	if ( db_trickle.m_hFile != CFile::hFileNull  )
 	{
-		db_trickle.Write( msg, strlen( msg ) );
+		db_trickle.Write( msg, (UINT)strlen( msg ) );
 		db_trickle.Flush();
 	}
 }
@@ -50,7 +50,7 @@ void DebugWrite( CString msg )
 	if ( db_trickle.m_hFile != CFile::hFileNull  )
 	{
 		CStringA dummy( msg );
-		db_trickle.Write( (CString::PCYSTR)dummy, strlen( (CString::PCYSTR)dummy ) );
+		db_trickle.Write( (CString::PCYSTR)dummy, (UINT)strlen( (CString::PCYSTR)dummy ) );
 		db_trickle.Flush();
 	}
 }

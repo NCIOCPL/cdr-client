@@ -93,7 +93,7 @@ CdrSocket::CdrSocket()
     addr.sin_port = htons(port);
 
     // Create the socket.
-    sock = socket(AF_INET, SOCK_STREAM, 0);
+    sock = (int)socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0)
         throw _T("Failure creating socket");
 
@@ -141,12 +141,12 @@ CString CdrSocket::sendCommand(const CString& cmd)
 
         // Tell the server the size of the coming request buffer.
 		std::string buf = cdr::cStringToUtf8(request);
-        long len = htonl(buf.length());
+        long len = (long)htonl((u_long)buf.length());
         if (send(cdrSocket.sock, (char *)&len, sizeof len, 0) < 0)
             throw _T("Failure sending command length");
 
         // Submit the command to the server.
-        if (send(cdrSocket.sock, buf.c_str(), buf.length(), 0) < 0)
+        if (send(cdrSocket.sock, buf.c_str(), (int)buf.length(), 0) < 0)
             throw _T("Failure sending command");
 
         // Retrieve the server's response.
@@ -168,7 +168,7 @@ std::string CdrSocket::read()
     size_t totalRead = 0;
     char lengthBytes[4];
     while (totalRead < sizeof lengthBytes) {
-        int leftToRead = sizeof lengthBytes - totalRead;
+        int leftToRead = (int)(sizeof lengthBytes - totalRead);
         int bytesRead = recv(sock, lengthBytes + totalRead, leftToRead, 0);
         if (bytesRead < 0)
 			throw _T("Failure reading byte count from server");
