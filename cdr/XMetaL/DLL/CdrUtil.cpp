@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.21 2003-03-05 12:41:50 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.22 2004-02-26 00:46:33 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.21  2003/03/05 12:41:50  bkline
+ * Added workaround for XMetaL entity encoding bugs in attributes.
+ *
  * Revision 1.20  2003/01/23 17:21:43  bkline
  * Eliminated some dead code.
  *
@@ -998,6 +1001,54 @@ CString cdr::docIdString(int id)
     TCHAR buf[40];
     swprintf(buf, _T("CDR%010d"), id);
     return buf;
+}
+
+CString cdr::suppressLeadingZeros(const CString& s)
+{
+    int i = 0;
+    while (i < s.GetLength()) {
+        if (_istdigit(s.GetAt(i))) {
+            if (s.GetAt(i) != '0')
+                return s;
+            break;
+        }
+        ++i;
+    }
+    int keepOnLeft = i++;
+    while (i < s.GetLength()) {
+        if (s.GetAt(i) != '0')
+            break;
+        ++i;
+    }
+    int keepOnRight = s.GetLength() - i;
+    return s.Left(keepOnLeft) + s.Right(keepOnRight);
+}
+
+CString cdr::expandLeadingZeros(const CString& s)
+{
+    CString zeros = _T("0000000000");
+    int i = 0;
+    int firstDigit = 0;
+    int numDigits = 0;
+    while (i < s.GetLength()) {
+        if (_istdigit(s.GetAt(i))) {
+            firstDigit = i++;
+            numDigits = 1;
+            break;
+        }
+        ++i;
+    }
+    while (i < s.GetLength()) {
+        if (!_istdigit(s.GetAt(i)))
+            break;
+        ++i;
+        ++numDigits;
+    }
+    if (numDigits >= 10 || numDigits < 1)
+        return s;
+    int zerosNeeded = 10 - numDigits;
+    return s.Left(firstDigit) + zeros.Left(zerosNeeded) + s.Mid(firstDigit);
+            
 }
 
 // Implement our own command to show an HTML page 

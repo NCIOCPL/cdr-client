@@ -67,7 +67,7 @@ void CPersonLocs::OnOK()
         CString str;
 		m_choiceList.GetText(curSel, str);
         CdrLinkInfo info = cdr::extractLinkInfo(str);
-        newTarget = info.target;
+        newTarget = cdr::expandLeadingZeros(info.target);
         EndDialog(IDOK);
     }
 }
@@ -123,8 +123,10 @@ void CPersonLocs::extractChoices(const CString& rsp)
     while (r) {
         cdr::Element id      = r.extractElement(r.getString(), _T("Link"));
         cdr::Element title   = r.extractElement(r.getString(), _T("Data"));
+        CString idString = id.getString();
         cdr::SearchResult qr = cdr::SearchResult(
-                id.getString(), _T("Person"), title.getString());
+                cdr::suppressLeadingZeros(idString), _T("Person"),
+                title.getString());
         docSet.push_back(qr);
         r = r.extractElement(rsp, _T("ReportRow"), r.getEndPos());
     }

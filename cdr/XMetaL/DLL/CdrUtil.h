@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.11 2002-10-15 22:22:05 bkline Exp $
+ * $Id: CdrUtil.h,v 1.12 2004-02-26 00:46:33 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2002/10/15 22:22:05  bkline
+ * Adding code for issue #471.
+ *
  * Revision 1.10  2002/10/04 16:42:42  bkline
  * Added my own showPage method, to get around the buggy version in XMetaL.
  *
@@ -191,6 +194,8 @@ namespace cdr {
     ::Range findOrCreateChild(::Range parent, const CString& elemName);
     CString docIdString(int);
     int showPage(const CString& url);
+    CString suppressLeadingZeros(const CString&);
+    CString expandLeadingZeros(const CString&);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 
