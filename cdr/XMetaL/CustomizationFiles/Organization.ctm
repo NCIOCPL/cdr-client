@@ -435,7 +435,7 @@
     </Template>
     <Template>
       <Name>ParentOrganization</Name>
-      <MiniTemplate><![CDATA[<ParentOrganization><?xm-replace_text {Select a link to the parent organization (required)} ?></ParentOrganization>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<ParentOrganization><?xm-replace_text {Optionally select a link to the parent organization} ?></ParentOrganization>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CIPSContactPerson</Name>
@@ -447,7 +447,7 @@
     </Template>
     <Template>
       <Name>Date</Name>
-      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Enter the directory inclusion date (required)} ?></Date>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PreferredDirectoryContactMode</Name>
@@ -661,7 +661,7 @@
     <Template>
       <Name>OrganizationParent</Name>
       <MiniTemplate><![CDATA[<OrganizationParent>
-<ParentOrganization><?xm-replace_text {Select a link to the parent organization (required)} ?></ParentOrganization>
+<ParentOrganization><?xm-replace_text {Optionally select a link to the parent organization} ?></ParentOrganization>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </OrganizationParent>]]></MiniTemplate>
     </Template>
