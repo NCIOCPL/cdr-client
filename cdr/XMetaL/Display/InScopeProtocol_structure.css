@@ -267,6 +267,9 @@ Para,
 
 
 
+
+
+
 /***************************************************************************/ 
 /*                     COUNTER DEFINITIONS                                 */ 
 /***************************************************************************/ 
@@ -434,6 +437,7 @@ SpecificEmail,
 SponsorName,
 StatusDate,
 StatusName,
+UpdateMode:after,
 UpdateMode,
 
    {  color: white;

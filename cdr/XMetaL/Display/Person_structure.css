@@ -541,7 +541,9 @@ SpecificTollFreePhone,
 SpecificWebSite,
 StandardProfessionalSuffix,
 SurName,
-UpdateMode,	
+UpdateMode,
+UpdateMode[MailerType="Protocol_SandP"]:after,
+UpdateMode[MailerType="Protocol_Abstract"]:after,	
 Verified,
 
      { color: white;
