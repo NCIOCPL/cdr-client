@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.102 2003-05-27 15:06:44 bkline Exp $
+     $Id: Cdr.mcr,v 1.103 2003-08-06 21:19:29 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.102  2003/05/27 15:06:44  bkline
+     Added dialog box for selecting markup levels in Accept All Changes macro.
+
      Revision 1.101  2003/05/13 15:51:34  bkline
      Modified Summary QC macros to take the user to the page which let's the
      user select revision markup level and document version number.
@@ -1657,12 +1660,14 @@
                            "Redline Strikeout Report",
                            "CDR", 2, 4,
                            false),
+            /* Removed at Margaret's request 2003-06-05 (#755).
             new CdrCmdItem(null,
                            "Published Version Report",
                            "Published Version",
                            "Published Version Report",
                            "CDR", 5, 1,
                            false),
+            */
             new CdrCmdItem(null,
                            "Patient Summary QC Report",
                            "Patient QC",
