@@ -70,6 +70,7 @@ void DebugStart( void )
 			printf( "Debug file broken: %s", errmsg );
 		}
 		DebugWrite( "Started Debugging\n" );
+		DebugWrite( "Version QQQ\n" );
 	}
 }
 
@@ -82,13 +83,16 @@ void DebugResume( void )
 	{
 		CFileException e;
 
-		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeWrite, &e ) )
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeWrite | CFile::modeCreate | CFile::modeNoTruncate , &e ) )
 		{
 			_TCHAR  errmsg[ 1024 ];
 			int len = 1000;
 			e.GetErrorMessage( errmsg, len );
 			printf( "Debug file broken: %s", errmsg );
 		}
+
+		db_trickle.SeekToEnd();
+
 		DebugWrite( "Resumed Debugging\n" );
 	}
 }
@@ -160,7 +164,6 @@ BOOL CCDRLoaderApp::InitInstance()
 
     if (m_lpCmdLine[0] != _T('\0'))
     {
-		// user specified the manifest file to use
 		CString cmd_line = m_lpCmdLine;
 		
 		CString space = _T( " " );
@@ -221,6 +224,14 @@ BOOL CCDRLoaderApp::InitInstance()
 					{
 						SetDebugFlag( cur_token[0] != '0' );
 						DebugStart();
+					}
+					break;
+
+					case 'U':
+					case 'u':
+					{
+						DebugWrite( "Removing CDRLoaderUpdated.cmd\n" );
+						int err = remove( "CDRLoaderUpdated.cmd" );
 					}
 					break;
 				}

@@ -11,6 +11,9 @@
 
 extern void DebugWrite( char *  msg );
 extern void DebugWrite( CString msg );
+extern void DebugResume( void );
+extern void DebugEnd( void );
+
 
 
 
@@ -626,9 +629,11 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 
 	bool success = false;
 
-	CString app_name = AfxGetAppName();
+	CString app_name = CString( _T( ".\\" ) ) + AfxGetAppName() + CString( _T( ".exe" ) );
+	/*
 	CString a_name = theApp.m_pszAppName;
 	CString b_name = theApp.m_pszExeName; 
+
 
 	DebugWrite( "Possible Names\n" );
 	DebugWrite( app_name );
@@ -637,7 +642,7 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 	DebugWrite( "\n" );
 	DebugWrite( b_name );
 	DebugWrite( "\n" );
-
+	*/
 
 	long epos;
 	// yea I know big assumptions about valid sections
@@ -670,8 +675,15 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 					{
 						CString fname = del_list.Mid( fpos, epos - fpos );
 
-						if ( ! fname.CompareNoCase( b_name ) )
+						DebugWrite( "Comparing for self-deletion, does " );
+						DebugWrite( app_name );
+						DebugWrite( " match " );
+						DebugWrite( fname );
+						DebugWrite( " ?\n" );
+
+						if ( ! fname.CompareNoCase( app_name ) )
 						{
+							DebugWrite( "Yes, skipping self-delete.\n" );
 							// we can't delete ourself, don't try
 							continue;
 						}
@@ -785,40 +797,68 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir, CDRProgr
 
 bool CDRTicketStub::LaunchCDR( CString app, CString user, CString session, CString server, CString port )
 {
-	CStringA aapp( app );
-	CStringA uenv = "CDRUser="  + CStringA( user );
-	CStringA senv = "CDRSession="  + CStringA( session );
-	CStringA serv_env = "CDR_HOST=" + CStringA( server );
-	CStringA port_env = "CDR_PORT=" + CStringA( port );
-
-	// these change current environment settings
-	_putenv( (LPCSTR)uenv );
-	_putenv( (LPCSTR)senv );
-	_putenv( (LPCSTR)serv_env );
-	_putenv( (LPCSTR)port_env );
-
-	//char * tprog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
-	//char * tprog = "C:\\WINNT\\system32\\cmd.exe";
-
-	char prog_name[512];
-	strncpy( prog_name, aapp.GetBuffer(), aapp.GetLength() );
-	prog_name[ aapp.GetLength() ] = '\0';
-
-	char * my_args[2];
+	char * my_args[3];
 
 	//my_args[0] = aapp.GetBuffer();
-	my_args[0] = "xmetal3.exe";
+	my_args[0] = "dummy_arg";
 	my_args[1] = NULL;
+	my_args[2] = NULL;
+
+	if ( PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
+	{
+		DebugResume();
+		DebugWrite( "Need to Relaunch self.\n" );
+
+		// we need to relaunch ourselves to handle new options
+		//CStringA reflexive_launch = "C:\\WINNT\\system32\\cmd.exe";
+		CStringA reflexive_launch = "CDRLoaderUpdated.cmd";
+		my_args[0] = reflexive_launch.GetBuffer();
+
+		DebugWrite( "Closing debug prior relaunch.\n" );
+		DebugEnd();
+
+		// null pointer for my_env inhierts current
+		int err = _execve( reflexive_launch.GetBuffer(), my_args, NULL );
+
+		// failed after all
+		ErrorLog += _T("<EXEC_ERR>");
+		ErrorLog += _T("Unable to relaunch self ") + CString( reflexive_launch ) + _T(" : ");
+		ErrorLog += CString( strerror( errno ) );
+		ErrorLog += _T("</EXEC_ERR>\n");
+
+	}
+	else
+	{
+
+		CStringA aapp( app );
+		CStringA uenv = "CDRUser="  + CStringA( user );
+		CStringA senv = "CDRSession="  + CStringA( session );
+		CStringA serv_env = "CDR_HOST=" + CStringA( server );
+		CStringA port_env = "CDR_PORT=" + CStringA( port );
+
+		// these change current environment settings
+		_putenv( (LPCSTR)uenv );
+		_putenv( (LPCSTR)senv );
+		_putenv( (LPCSTR)serv_env );
+		_putenv( (LPCSTR)port_env );
+
+		//char * tprog = "\"C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe\"";
+		//char * tprog = "C:\\WINNT\\system32\\cmd.exe";
+
+		char prog_name[512];
+		strncpy( prog_name, aapp.GetBuffer(), aapp.GetLength() );
+		prog_name[ aapp.GetLength() ] = '\0';
 
 
-	// null pointer for my_env inhierts current
-	int err = _execve( aapp.GetBuffer(), my_args, NULL );
-	//int err = _execve( tprog, my_args, NULL );
+		// null pointer for my_env inhierts current
+		int err = _execve( aapp.GetBuffer(), my_args, NULL );
+		//int err = _execve( tprog, my_args, NULL );
 
-	ErrorLog += _T("<EXEC_ERR>");
-	ErrorLog += _T("Unable to execute ") + CString( my_args[0] ) + _T(" : ");
-	ErrorLog += CString( strerror( errno ) );
-	ErrorLog += _T("</EXEC_ERR>\n");
+		ErrorLog += _T("<EXEC_ERR>");
+		ErrorLog += _T("Unable to execute ") + CString( aapp ) + _T(" : ");
+		ErrorLog += CString( strerror( errno ) );
+		ErrorLog += _T("</EXEC_ERR>\n");
 
+	}
 	return false;
 }
