@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.125 2004-08-10 18:35:14 bkline Exp $
+     $Id: Cdr.mcr,v 1.126 2004-08-10 19:45:28 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.125  2004/08/10 18:35:14  bkline
+     Dropped dead buggy code from SoftQuad's original macros.  Added hooks
+     for Glossify Document command.
+
      Revision 1.124  2004/06/03 15:24:04  bkline
      Plugged in workaround for toolbar visibility bug.
 
@@ -3059,175 +3063,13 @@
 </MACRO>
 -->
 
-<MACRO name="xOn_Update_UI"
-       lang="JScript"
-       hide="true"
-       id="144x">
-         <![CDATA[
-       
-    function refreshStyles() {
-
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        if (docProps.count == 0) return;
-        if (docProps.item("Highlighting").value == "True") {
-            var rng = ActiveDocument.Range;
-            rng.MoveToDocumentStart();
-            while(rng.MoveToElement("Insertion")) {
-                rng.ContainerStyle = "color:red";
-            }
-            rng.MoveToDocumentStart();
-            while (rng.MoveToElement("Deletion")) {
-                rng.ContainerStyle = "color:red; text-decoration:line-through";
-            }
-            rng = null;
-        }
-    }
-
-    // This causes too much flickering since On_Update_UI is called so 
-    // frequently.  However without it, if you press <Enter> while in
-    // an Insertion or Deletion, the styles aren't set correctly.
-    if (ActiveDocument.IsXML &&
-       (ActiveDocument.ViewType == sqViewNormal ||
-        ActiveDocument.ViewType == sqViewTagsOn)) {
-        refreshStyles();
-    }
-
-    // function to disable Version Control Macros
-    function disableVCMacros() {
-
-
-        var insList = ActiveDocument.getElementsByTagName("Insertion");
-        var delList = ActiveDocument.getElementsByTagName("Deletion");
-
-        // if no changes have been made disable some macros
-        if (insList.length == 0 && delList.length == 0) {
-
-            if (Selection.IsInsertionPoint) {
-                Application.DisableMacro("Deletion");
-            }
-            else if (!Selection.CanSurround("Deletion")) {
-                Application.DisableMacro("Deletion");
-            }
-            
-            Application.DisableMacro("Accept Change");
-            Application.DisableMacro("Reject Change");
-            Application.DisableMacro("Reject Changes");
-            Application.DisableMacro("Accept Changes");
-            Application.DisableMacro("Accept or Reject Changes");
-            Application.DisableMacro("Show Original");
-            Application.DisableMacro("Find Prev");
-            Application.DisableMacro("Find Next");
-            Application.DisableMacro("Show Changes With Highlighting");
-            Application.DisableMacro("Show Changes Without Highlighting");
-        }
-        else {
-
-            if (Selection.ContainerNode) {
-                if (!Selection.CanSurround("Deletion") ||
-                    Selection.IsInsertionPoint ||
-                    Selection.IsParentElement("Deletion")) {
-                        Application.DisableMacro("Deletion");
-                }
-                if (!Selection.CanInsert("Insertion") ||
-                    Selection.IsParentElement("Deletion") ||
-                    Selection.IsParentElement("Insertion")) {
-                        Application.DisableMacro("Insertion");
-                }
-        
-                // if the current Selection is neither Insertion nor Deletion
-                if (!Selection.isParentElement("Insertion") &&
-                    !Selection.IsParentElement("Deletion")) {
-                        Application.DisableMacro("Accept Change");
-                        Application.DisableMacro("Reject Change");
-                }
-                
-                var docProps = ActiveDocument.CustomDocumentProperties;
-                var highlight;
-                var showoriginal;
-                if (docProps.count == 0) {
-                    highlight = "True";
-                    showoriginal = "False";
-                }
-                else {
-                    highlight = docProps.item("Highlighting").value;
-                    showoriginal = docProps.item("ShowOriginal").value;
-                }
-                if (highlight == "True") {
-                    Application.DisableMacro("Show Changes With Highlighting");
-                }
-                else if (showoriginal == "True") {
-                    Application.DisableMacro("Show Original");
-                }
-                else {
-                    Application.DisableMacro(
-                        "Show Changes Without Highlighting");
-                }
-            }
-        }
-        else {
-            Application.DisableMacro("Insertion");
-            Application.DisableMacro("Deletion");
-            Application.DisableMacro("Accept Change");
-            Application.DisableMacro("Reject Change");
-            Application.DisableMacro("Reject Changes");
-            Application.DisableMacro("Accept Changes");
-            Application.DisableMacro("Accept or Reject Changes");
-            Application.DisableMacro("Show Original");
-            Application.DisableMacro("Find Prev");
-            Application.DisableMacro("Find Next");
-            Application.DisableMacro("Show Changes With Highlighting");
-            Application.DisableMacro("Show Changes Without Highlighting");
-        } 
-
-        // Check if the view is Tags On and if so, adjust the selection 
-        // out of the top-level
-        if (Selection.IsInsertionPoint &&
-            ActiveDocument.ViewType == sqViewTagsOn) {
-
-            if (Selection.ContainerNode == null) {
-                Selection.MoveRight();
-            }
-            if (Selection.ContainerNode == null) {
-                Selection.MoveLeft();
-            }
-        }
-
-        // Disable most macros if in Plain Text view or if the document is not XML
-        if (!ActiveDocument.IsXML ||
-            (ActiveDocument.ViewType != sqViewNormal &&
-             ActiveDocument.ViewType != sqViewTagsOn)) {
-                Application.DisableMacro("Insertion");
-                Application.DisableMacro("Deletion");
-                Application.DisableMacro("Accept Change");
-                Application.DisableMacro("Reject Change");
-                Application.DisableMacro("Reject Changes");
-                Application.DisableMacro("Accept Changes");
-                Application.DisableMacro("Accept or Reject Changes");
-                Application.DisableMacro("Show Original");
-                Application.DisableMacro("Find Prev");
-                Application.DisableMacro("Find Next");
-                Application.DisableMacro("Show Changes With Highlighting");
-                Application.DisableMacro("Show Changes Without Highlighting");
-        }
-    }
-  
-    // Disable some macros if the view is Normal or Tags On
-    if (ActiveDocument.ViewType == sqViewNormal ||
-        ActiveDocument.ViewType == sqViewTagsOn) {
-
-        // call function to disable Version Control Macros
-        disableVCMacros();
-    }
-
-  ]]>
-</MACRO>
-
 <MACRO name="On_View_Change"
        lang="JScript">
          <![CDATA[
 
     // refreshes the Insertion and Deletion element container styles on 
     // view change fromplain text to Normal or Tags on
+/*
     function refreshStyles() {
         var docProps = ActiveDocument.CustomDocumentProperties;
         if (docProps.item("Highlighting").value == "True") {
@@ -3249,7 +3091,7 @@
         ActiveDocument.PreviousViewType==sqViewPlainText) {
             refreshStyles();
     }
-
+*/
   ]]>
 </MACRO>
 
@@ -3278,7 +3120,7 @@
             if (Selection.CanSurround("Deletion")) {
                 var date = new Date();
                 Selection.Surround("Deletion");
-                Selection.ContainerStyle = getMarkupStyle("Deletion");
+                //Selection.ContainerStyle = getMarkupStyle("Deletion");
                 Selection.ContainerAttribute("UserName") = CdrUserName;
                 Selection.ContainerAttribute("Time") = date.toLocaleString();
                 Selection.ContainerAttribute("RevisionLevel") = "approved";
@@ -3329,7 +3171,7 @@
         Selection.ContainerAttribute("UserName") = CdrUserName;
         Selection.ContainerAttribute("Time") = date.toLocaleString();
         Selection.ContainerAttribute("RevisionLevel") = "approved";
-        Selection.ContainerStyle = getMarkupStyle("Insertion");
+        //Selection.ContainerStyle = getMarkupStyle("Insertion");
     }
 
     if (CanRunMacros()) {
@@ -3626,8 +3468,8 @@
             else {
                 // if it is with in the range of the selected parent
                 if (startRng.IsLessThan(endRng)) {
-                    element = startRng.ContainerNode.nodeName;
-                    startRng.ContainerStyle = getMarkupStyle(element);
+                    // element = startRng.ContainerNode.nodeName;
+                    // startRng.ContainerStyle = getMarkupStyle(element);
                 } 
                 else {
                     break;
@@ -3709,11 +3551,11 @@
         rng_HL.MoveToDocumentStart();
         while (rng_HL.MoveToElement("Insertion")) {
             rng_HL.HiddenContainer = false;
-            rng_HL.ContainerStyle = getMarkupStyle("Insertion");
+            //rng_HL.ContainerStyle = getMarkupStyle("Insertion");
             var rng2 = rng_HL.Duplicate;
             rng2.SelectElement();
-            txt = rng2.ContainerStyle;
-            rng2.ContainerStyle = txt;
+            //txt = rng2.ContainerStyle;
+            //rng2.ContainerStyle = txt;
             rng2 = null;
         }
         rng_HL.MoveToDocumentStart();
@@ -3723,7 +3565,7 @@
             start.Collapse(1);  // set the starting boundary for the search
             end = rng_HL.Duplicate;
             end.Collapse(0);  // set the ending boundary for the search
-            rng_HL.ContainerStyle = getMarkupStyle("Deletion");
+            // rng_HL.ContainerStyle = getMarkupStyle("Deletion");
             rng_HL = readtree(start, end);
         }
         rng_HL= null;
@@ -3745,7 +3587,7 @@
                 if (startRng.IsLessThan(endRng)) {
                     element = startRng.ContainerNode.nodeName;
                     element = "Deletion";
-                    startRng.ContainerStyle = getMarkupStyle(element);
+                    //startRng.ContainerStyle = getMarkupStyle(element);
                 } 
                 else {
                     break;
@@ -3784,7 +3626,7 @@
         rng_HL.MoveToDocumentStart();
         while (rng_HL.MoveToElement("Insertion")) {
             rng_HL.HiddenContainer = false;
-            rng_HL.ContainerStyle = getMarkupStyle("Insertion");
+            // rng_HL.ContainerStyle = getMarkupStyle("Insertion");
             rng2 = null;  // clean up
         }
         rng_HL.MoveToDocumentStart();
@@ -3794,7 +3636,7 @@
             start.Collapse(1);  // set the starting boundary for the search
             end = rng_HL.Duplicate;
             end.Collapse(0);  // set the ending boundary for the search
-            rng_HL.ContainerStyle = getMarkupStyle("Deletion");
+            // rng_HL.ContainerStyle = getMarkupStyle("Deletion");
             rng_HL = readtree(start, end);
         }
         rng_HL= null;
@@ -3815,7 +3657,7 @@
                 if (startRng.IsLessThan(endRng)) {  
                 
                     // if it is with in the range of the selected parent
-                    startRng.ContainerStyle = getMarkupStyle("Deletion");
+                    // startRng.ContainerStyle = getMarkupStyle("Deletion");
                 } 
                 else {
                     break;
