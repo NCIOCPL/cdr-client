@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.23 2002-02-14 00:56:15 bkline Exp $
+     $Id: Cdr.mcr,v 1.24 2002-02-14 19:29:54 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.23  2002/02/14 00:56:15  bkline
+     Removed dialog box display from save function.
+
      Revision 1.22  2002/02/14 00:54:18  bkline
      Added Publish Preview macro.  Changed Advanced Search macro to invoke
      the URL directly, rather than having this done in the DLL.
@@ -654,10 +657,14 @@
                                 "New Current Org Status");
         Application.AppendMacro("Add Participating Orgs", 
                                 "CDR Participating Orgs");
+        Application.AppendMacro("Retrieve Person Address", 
+                                "CDR Get Person Address");
     }
-    Application.AppendMacro("Retrieve Person Address", 
-                            "CDR Get Person Address");
-    Application.AppendMacro("Retrieve Org Address", "CDR Get Org Address");
+    /*
+    if (docType.name == "Person") {
+        Application.AppendMacro("Retrieve Org Address", "CDR Get Org Address");
+    }
+    */
     if (docType.name == "Organization") {
         if (Selection.IsParentElement("Location")) {
             Application.AppendMacro("Persons Linking to This Location",
