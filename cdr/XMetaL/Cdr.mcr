@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.21 2002-02-12 20:12:50 bkline Exp $
+     $Id: Cdr.mcr,v 1.22 2002-02-14 00:54:18 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.21  2002/02/12 20:12:50  bkline
+     Added remaining toolbars.  Renamed doctype-specific toolbars.
+     Added stubs for missing toolbar macros.
+
      Revision 1.20  2002/02/08 15:07:16  bkline
      Fixed protocol tag names in attempt to keep up with schema changes.
 
@@ -3268,15 +3272,42 @@
         hide="false">
   <![CDATA[
 
-    if (cdrObj == null) {
-        Application.Alert("You are not logged on to the CDR");
+    function advancedSearch() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "AdvancedSearch.py?Session=" + CdrSession;
+        Application.ShowPage(url);
     }
-    else {
-        cdrObj.advancedSearch();
-    }
+    advancedSearch();
 
   ]]>
 </MACRO>
+
+<MACRO name="Publish Preview" 
+       lang="JScript">
+  <![CDATA[
+    function publishPreview() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        //Application.Alert("session: " + CdrSession);
+        var url = CdrCgiBin + "PublishPreview.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        //Application.Alert("url: " + url);
+        Application.ShowPage(url);
+    }
+    publishPreview();
+  ]]>
+</MACRO>
+
 
 <MACRO  name="CDR Check In"
         lang="JScript" 
