@@ -102,12 +102,12 @@
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 		</CurrentOrgStatus> 
 		</LeadOrgProtocolStatuses> 
+		
 		<LeadOrgPersonnel>
-         <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required), or Change to a Generic Person definition} ?></Person>
-         <ProtocolSpecificContact></ProtocolSpecificContact>
+         <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
          <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
       </LeadOrgPersonnel>
-		<ProtocolSites> 
+      <ProtocolSites> 
 		  <OrgSite><OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID> 
 		  <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
 		  <OrgSiteContact> 
