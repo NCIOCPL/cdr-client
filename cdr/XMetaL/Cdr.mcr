@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.75 2002-08-27 18:45:56 bkline Exp $
+     $Id: Cdr.mcr,v 1.76 2002-09-23 19:51:21 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.75  2002/08/27 18:45:56  bkline
+     Added patient publish preview.  Moved publish preview commands from menus
+     and from general CDR toolbar to protocol and summary toolbars.  Changed
+     patient publish preview icon at Eileen's request.  Added comment explaining
+     why readonly settings are not imposed on linking elements.
+
      Revision 1.74  2002/08/22 13:12:21  bkline
      Turned on Publish Preview.
 
@@ -355,6 +361,7 @@
             Application.Alert("Unable to find CDR DLL.");
         }
         else {
+            //Application.Alert("Sorry, doing a little debugging here ...");
             cdrObj.logon();
             CdrUserName = cdrObj.username;
             CdrSession  = cdrObj.session;
@@ -5155,7 +5162,6 @@
 </MACRO>
 
 <MACRO name="NHL Text" 
-        key="Alt+Z"
        lang="JScript">
   <![CDATA[
     function nhlText() {
@@ -5178,6 +5184,78 @@
                  + "However, this protocol uses the former terminology.";
     }
     nhlText();
+  ]]>
+</MACRO>
+
+<MACRO name="Change Participating Org Status" 
+        key="Alt+Z"
+       lang="JScript">
+  <![CDATA[
+    function changePOStatus() {
+        var rng = ActiveDocument.Range;
+        if (!rng.IsParentElement("ProtocolLeadOrg")) {
+            Application.Alert("This macro can only be used within a "
+                    + "ProtocolLeadOrg element");
+            return;
+        }
+        if (!rng.MoveToElement("ProtocolLeadOrg", false)) {
+            Application.Alert("Can't find ProtocolLeadOrg element.");
+            return;
+        }
+        var node = rng.ContainerNode;
+        var elemList = node.getElementsByTagName("CurrentOrgStatus");
+        if (!elemList || !elemList.length) {
+            Application.Alert("Can't find CurrentOrgStatus element.");
+            return;
+        }
+        elemList = elemList.item(0).getElementsByTagName("StatusName");
+        if (!elemList || !elemList.length) {
+            Application.Alert("Can't find StatusName element.");
+            return;
+        }
+        var status = getTextContent(elemList.item(0));
+        if (!status) {
+            Application.Alert("Lead org status has not yet been set.");
+            return;
+        }
+        var yes = 6;
+        var no = 7;
+        var response = no;
+        var displayOkNoCancelButtons = 3;
+        var useWarningQueryIcon = 32;
+        var dlgConfig = displayOkNoCancelButtons + useWarningQueryIcon;
+        var dlgMsg = "Set participating org statuses to " + status + "?";
+        var dlgTitle = "Adjust Participating Organization Status";
+        response = Application.MessageBox(dlgMsg, dlgConfig, dlgTitle);
+        if (response != yes)
+            return;
+        elemList = node.getElementsByTagName("ProtocolSites");
+        if (!elemList || !elemList.length) {
+            Application.Alert("Can't find ProtocolSites element.");
+            return;
+        }
+        elemList = elemList.item(0).getElementsByTagName("OrgSite");
+        if (!elemList || !elemList.length) {
+            Application.Alert("No participating organizations found.");
+            return;
+        }
+        for (var i = 0; i < elemList.length; ++i) {
+            var site = elemList.item(i);
+            var statusList = site.getElementsByTagName("OrgSiteStatus");
+            if (statusList && statusList.length) {
+                //var poStatus = getTextContent(statusList.item(0));
+                var statusNode = statusList.item(0);
+                rng.selectNodeContents(statusNode);
+                var oldSetting = rng.WritePermittedContainer;
+                rng.WritePermittedContainer = true;
+                rng.pasteString(status);
+                rng.WritePermittedContainer = oldSetting;
+            }
+        }
+        Application.Alert("Status set for " + elemList.length + 
+                " participating organizations.");
+    }
+    changePOStatus();
   ]]>
 </MACRO>
 
