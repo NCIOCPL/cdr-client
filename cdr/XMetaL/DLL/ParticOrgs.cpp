@@ -164,7 +164,7 @@ void CParticOrgs::OnOK()
             // Find a nice spot for the organization.
             psLoc.SelectElement();
             psLoc.Collapse(0);
-            if (!psLoc.FindInsertLocation(_T("Site"), FALSE)) {
+            if (!psLoc.FindInsertLocation(_T("OrgSite"), FALSE)) {
                 ::AfxMessageBox(_T("Unable to insert Site element"));
                 delete[] indices;
                 EndDialog(IDCANCEL);
@@ -175,13 +175,13 @@ void CParticOrgs::OnOK()
             CString statString = _T("Active");
             if (iter->getCoopMemb() == _T("Affiliate"))
                 statString = _T("Approved-Not Yet Active");
-            dat << _T("<Site><SiteID cdr:ref='")
+            dat << _T("<OrgSite><OrgSiteID cdr:ref='")
                 << (LPCTSTR)info.target
                 << _T("'>")
                 << (LPCTSTR)info.data
-                << _T("</SiteID><SiteStatus>")
+                << _T("</OrgSiteID><OrgSiteStatus>")
                 << (LPCTSTR)statString
-                << _T("</SiteStatus><SiteContact>");
+                << _T("</OrgSiteStatus><OrgSiteContact>");
             cdr::LinkInfoList::const_iterator pi = iter->getPiList().begin();
             while (pi != iter->getPiList().end()) {
                 dat << _T("<SpecificPerson><Person cdr:ref='")
@@ -192,7 +192,7 @@ void CParticOrgs::OnOK()
                        _T("</SpecificPerson>");
                 ++pi;
             }
-            dat << _T("</SiteContact></Site>");
+            dat << _T("</SiteContact></OrgSite>");
             psLoc.PasteString(dat.str().c_str());
         }
         delete[] indices;
