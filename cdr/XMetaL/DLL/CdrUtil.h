@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.12 2004-02-26 00:46:33 bkline Exp $
+ * $Id: CdrUtil.h,v 1.13 2004-02-26 01:47:16 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.12  2004/02/26 00:46:33  bkline
+ * Added code for suppressing/expanding leading zeros in document IDs.
+ *
  * Revision 1.11  2002/10/15 22:22:05  bkline
  * Adding code for issue #471.
  *
@@ -43,13 +46,14 @@
 
 // Local headers.
 #include "stdafx.h"
-#include "xmetal3.h"
+#include "xmetal4.h"
 
 // System headers.
 #include <string>
 #include <map>
 #include <list>
 #include <set>
+#include <vector>
 #include <winsock.h>
 
 // Information used to populate the CdrDocCtl element.
@@ -120,6 +124,51 @@ namespace cdr {
     typedef std::map<CString, StringList> ValidValueSet;
     typedef std::map<CString, ValidValueSet> ValidValueSets;
     typedef std::list<CdrLinkInfo> LinkInfoList;
+
+    struct GlossaryNode;
+    typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
+    struct GlossaryNode {
+        int             docId;
+        bool            markedUp;
+        GlossaryNodeMap nodeMap;
+        GlossaryNode() : docId(0), markedUp(false) {}
+        ~GlossaryNode() {
+            // std::cout << "~GlossaryNode\n";
+            GlossaryNodeMap::iterator i = nodeMap.begin();
+            while (i != nodeMap.end()) {
+                // std::cout << "deleting node for " << i->first << '\n';
+                delete i->second;
+                ++i;
+            }
+        }
+        void clearFlags() {
+            markedUp = false;
+            GlossaryNodeMap::iterator i = nodeMap.begin();
+            while (i != nodeMap.end()) {
+                i->second->clearFlags();
+                ++i;
+            }
+        }
+    };
+    struct GlossaryTree {
+        GlossaryTree();
+        ~GlossaryTree();
+        void clearFlags() {
+            GlossaryNodeMap::iterator i = nodeMap.begin();
+            while (i != nodeMap.end()) {
+                i->second->clearFlags();
+                ++i;
+            }
+        }
+        GlossaryNodeMap nodeMap;
+        std::vector<int> counts;
+        // void showCounts() {
+        //     for (size_t i = 0; i < counts.size(); ++i)
+        //         std::cout << counts[i] << " phrases with " << (i + 1)
+        //                   << " words\n";
+        // }
+    };
+    GlossaryTree* getGlossaryTree();
 
     class SearchResult {
     public:
