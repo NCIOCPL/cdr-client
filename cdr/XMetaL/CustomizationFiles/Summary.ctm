@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.6 2002-07-23 19:50:25 ebator Exp $ -->
+<!-- $Id: Summary.ctm,v 1.7 2002-10-10 17:54:57 ebator Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
@@ -522,8 +522,8 @@
     <Template>
       <Name>SectMetaData</Name>
       <MiniTemplate><![CDATA[<SectMetaData>
-<Diagnosis><?xm-replace_text {Double-click to select a diagnosis} ?></Diagnosis>
-<SectionType><?xm-replace_text {Double-click to select a section type} ?></SectionType>
+<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+<SectionType><?xm-replace_text {Optionally select a section type} ?></SectionType>
 </SectMetaData>
 ]]></MiniTemplate>
     </Template>
