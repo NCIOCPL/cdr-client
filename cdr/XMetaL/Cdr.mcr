@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.11 2001-12-19 14:10:05 bkline Exp $
+     $Id: Cdr.mcr,v 1.12 2002-01-23 19:02:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.11  2001/12/19 14:10:05  bkline
+     Added macros for publish preview, jump before/after element, etc.
+
      Revision 1.10  2001/10/25 02:30:06  bkline
      Moved all custom menu and toolbar building into the macro file.
 
@@ -188,6 +191,7 @@
         if (ActiveDocument.documentElement == null)   { return 0; }
         if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
                                                       { return 1; }
+        return 0; /* XXX */
         if (cdrObj == null)                           { return 0; }
         if (Selection == null)                        { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
@@ -1415,7 +1419,7 @@
 </MACRO>
 
 <MACRO  name="Cdr Edit" 
-        key="" 
+        key="Ctrl+Enter" 
         lang="JScript" 
         tooltip="Store Document in the CDR" 
         id="1912">
@@ -1608,6 +1612,7 @@
   ]]>
 </MACRO>
 
+<!--
 <MACRO  name="On_Double_Click" 
         lang="JScript" 
         key="Ctrl+Shift+E">
@@ -1615,6 +1620,7 @@
     cdrEdit();
   ]]>
 </MACRO>
+ -->
 
 <!--
 <MACRO  name="PersonNameInfo_OnInitialize" 
@@ -3262,6 +3268,13 @@
         var controls     = tableMenu.Controls;
         var tableWizard  = controls.item(1);
         tableWizard.Execute();
+        if (ActiveDocument) {
+            var rng = ActiveDocument.Range;
+            if (rng) {
+                rng.MoveToElement('Title', false);
+                rng.Select();
+            }
+        }
     }
     doTable();
     //Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
@@ -3283,7 +3296,7 @@
     function jumpPastElement() {
         try {
             if (ActiveDocument) {
-                var rng = ActiveDocument.Range
+                var rng = ActiveDocument.Range;
                 if (rng) {
                     rng.SelectAfterContainer();
                     rng.Select();
