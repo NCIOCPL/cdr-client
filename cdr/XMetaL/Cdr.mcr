@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.48 2002-04-24 21:18:04 bkline Exp $
+     $Id: Cdr.mcr,v 1.49 2002-04-24 23:53:00 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.48  2002/04/24 21:18:04  bkline
+     Replaced some stubs for Protocol and Organization toolbar buttons.
+
      Revision 1.47  2002/04/24 19:57:14  bkline
      Plugged in Terminology hierarchy view.
 
@@ -4339,7 +4342,11 @@
 <MACRO name="Generate Mailer" 
        lang="JScript">
   <![CDATA[
-    Application.Alert("Stub for Generate Mailer Macro");
+    function generateMailer() {
+        var url = CdrCgiBin + "Mailers.py?Session=" + CdrSession;
+        Application.ShowPage(url);
+    }
+    generateMailer();
   ]]>
 </MACRO>
 
