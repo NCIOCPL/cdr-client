@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.21 2002-05-15 23:39:24 bkline Exp $
+ * $Id: Commands.cpp,v 1.22 2002-05-17 20:11:42 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.21  2002/05/15 23:39:24  bkline
+ * Modified to work with Jeff's new utility to refresh the client files.
+ *
  * Revision 1.20  2002/05/14 14:22:46  bkline
  * Finished implementation of version retrieval.
  *
@@ -1969,6 +1972,9 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
             return S_OK;
         }
         CString paStr = postalAddressElement.getString();
+        CString aType = postalAddressElement.getAttribute(_T("AddressType"));
+        if (aType.IsEmpty())
+            aType = _T("US");
 
         // Find the proper location for the address.
         ::Range spaLoc = cdr::findOrCreateChild(oplLoc, 
@@ -1983,8 +1989,11 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
         // Plug in our own data.
         spaLoc.SelectElement();
         spaLoc.Select();
-        CString spaData = _T("<SpecificPostalAddress>") + paStr +
-                          _T("</SpecificPostalAddress>");
+        CString spaData = _T("<SpecificPostalAddress AddressType='")
+                        + aType
+                        + _T("'>") 
+                        + paStr 
+                        + _T("</SpecificPostalAddress>");
         //::AfxMessageBox(pscData);
         if (!spaLoc.GetCanPaste(spaData, FALSE))
             ::AfxMessageBox(_T("Unable to insert ") + spaData,
