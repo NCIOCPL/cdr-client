@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.78 2002-09-23 20:10:20 bkline Exp $
+     $Id: Cdr.mcr,v 1.79 2002-09-23 20:17:21 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.78  2002/09/23 20:10:20  bkline
+     Added macro to insert participating org.
+
      Revision 1.77  2002/09/23 19:58:25  bkline
      Added new org status change macro to popup menu.
 
@@ -4027,7 +4030,6 @@
 
 <MACRO  name="Insert Participating Org"
         lang="JScript" 
-        key="Alt+Z"
         desc="Insert new Protocol participating organization"
         hide="false">
   <![CDATA[
@@ -4043,6 +4045,24 @@
         rng.Select();
     }
     insertParticipatingOrg();
+  ]]>
+</MACRO>
+
+<MACRO  name="Next Lead Org"
+        lang="JScript" 
+        key="Alt+Z"
+        desc="Move to the next lead organization in the protocol"
+        hide="false">
+  <![CDATA[
+    function nextLeadOrg() {
+        var rng = ActiveDocument.Range;
+        if (!rng.MoveToElement("ProtocolLeadOrg", true)) {
+            Application.Alert("No more ProtocolLeadOrg elements found.");
+            return;
+        }
+        rng.Select();
+    }
+    nextLeadOrg();
   ]]>
 </MACRO>
 
