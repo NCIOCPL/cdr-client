@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.23 2002-05-28 22:26:45 bkline Exp $
+ * $Id: Commands.cpp,v 1.24 2002-06-13 18:48:48 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.23  2002/05/28 22:26:45  bkline
+ * Mods for CDR client loader.
+ *
  * Revision 1.22  2002/05/17 20:11:42  bkline
  * Added AddressType attribute to top-level element for getOrgAddress().
  *
@@ -2230,6 +2233,16 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
 			MB_ICONEXCLAMATION);
     }
+
+	return S_OK;
+}
+
+STDMETHODIMP CCommands::get_hostname(BSTR *pVal)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+	CString hostname = CdrSocket::getHostName();
+	hostname.SetSysString(pVal);
 
 	return S_OK;
 }

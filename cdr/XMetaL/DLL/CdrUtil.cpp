@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.9 2002-04-29 10:57:30 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.10 2002-06-13 18:48:47 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2002/04/29 10:57:30  bkline
+ * Added code to preserve XML comments.
+ *
  * Revision 1.8  2002/04/12 01:32:25  bkline
  * Fixed bug in PI handling.  Added CDR_HOST and CDR_PORT environment
  * variable overrides.
@@ -50,6 +53,11 @@ static CString errResponse(const CString& err);
 CString CdrSocket::sessionString;
 
 /**
+ * DNS name for CDR server host.
+ */
+CString CdrSocket::hostName;
+
+/**
  * Object to ensure proper cleanup at shutdown time.
  */
 CdrSocket::Init CdrSocket::Init::init;
@@ -83,6 +91,7 @@ CdrSocket::CdrSocket()
     const char* hostEnv = getenv("CDR_HOST");
     const char* portEnv = getenv("CDR_PORT");
     const char* host = hostEnv ? hostEnv : "mmdb2.nci.nih.gov";
+    hostName = host;
     int port = portEnv ? atoi(portEnv) : CDR_SOCK;
 
     // Working variables.

@@ -43,6 +43,7 @@ DECLARE_REGISTRY_RESOURCEID(IDR_Commands)
 
 // ICommands
 public:
+	STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(checkIn)(/*[out, retval]*/ int* pRet);
 	STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);

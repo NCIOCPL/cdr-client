@@ -32,6 +32,7 @@ import "oaidl.idl";import "ocidl.idl";
 		[id(21), helpstring("method pasteDocLink")] HRESULT pasteDocLink(const BSTR*val, [out, retval] int* pRet);
 		[propget, id(22), helpstring("property session")] HRESULT session([out, retval] BSTR *pVal);
 		[id(23), helpstring("method checkIn")] HRESULT checkIn([out, retval] int* pRet);
+		[propget, id(24), helpstring("DNS name for CDR host")] HRESULT hostname([out, retval] BSTR *pVal);
 	};
 
 [

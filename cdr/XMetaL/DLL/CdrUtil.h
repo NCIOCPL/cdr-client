@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.6 2002-04-18 21:47:53 bkline Exp $
+ * $Id: CdrUtil.h,v 1.7 2002-06-13 18:48:48 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2002/04/18 21:47:53  bkline
+ * Replaced include statement for xmetal2.h with xmetal3.h.
+ *
  * Revision 1.5  2001/11/27 14:18:57  bkline
  * New utility methods; modified extraction methods.
  *
@@ -58,6 +61,7 @@ public:
 	static void setSessionString(const CString& s) { sessionString = s; }
 	static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }
+    static const CString getHostName() { return hostName; }
 private:
     int sock;
     enum { CDR_SOCK = 2019 };
@@ -70,6 +74,7 @@ private:
         static Init init;
     };
 	static CString sessionString;
+    static CString hostName;
 };
 
 /**
