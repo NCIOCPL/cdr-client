@@ -28,7 +28,7 @@
 	 <TermTypeName><?xm-replace_text {Select a term type (required)} ?></TermTypeName>
 	 </TermType> 
   <SemanticType><?xm-replace_text {Optionally link to a semantic term type} ?></SemanticType>
-  <TermRelationship> 
+  <SemanticTypeText><?xm-replace_text {Describe the term's semantic type (required)} ?></SemanticTypeText><TermRelationship> 
 	 <ParentTerm> 
 		<TermId><?xm-replace_text {Select a link to the parent term (required)} ?></TermId>
 		<ParentType>ISA</ParentType>
