@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.55 2002-05-13 19:49:07 bkline Exp $
+     $Id: Cdr.mcr,v 1.56 2002-05-16 02:51:28 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.55  2002/05/13 19:49:07  bkline
+     Removed value from StatusName element when adding new org status for
+     protocol.
+
      Revision 1.54  2002/05/11 03:01:05  bkline
      Implemented several newly requested enhancements.
 
@@ -1637,6 +1641,12 @@
                            "Prior Concurrent Therapy",
                            "Prior Concurrent Therapy",
                            "CDR", 1, 3,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert ProtocolAmendmentInformation",
+                           "Amendment",
+                           "Insert ProtocolAmendmentInformation",
+                           "CDR", 5, 4,
                            false),
             new CdrCmdItem(null,
                            "Protocol Merge",
@@ -4025,7 +4035,6 @@
 </MACRO>
 
 <MACRO name="Insert CitationLink" 
-       key="Alt+Z" 
        lang="JScript" >
   <![CDATA[
     Selection.InsertWithTemplate("CitationLink")
@@ -4722,11 +4731,11 @@
                 return; 
             }
         }
-       rng.InsertElement("Response");
-       rng.InsertWithTemplate("Received");
-       rng.Select();
-       rng.SelectAfterContainer();
-       rng.InsertWithTemplate("ChangesCategory");
+        rng.InsertElement("Response");
+        rng.InsertWithTemplate("Received");
+        rng.Select();
+        rng.SelectAfterContainer();
+        rng.InsertWithTemplate("ChangesCategory");
     }
     insertMailerResponse();
   ]]>
@@ -4743,10 +4752,32 @@
                 return; 
             }
         }
-       rng.InsertWithTemplate("DateLastModified");
-       rng.Select();
+        rng.InsertWithTemplate("DateLastModified");
+        rng.Select();
     }
     insertDateLastModified();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert ProtocolAmendmentInformation" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function insertProtocolAmendmentInformation() {
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("ProtocolAmendmentInformation", false)) {
+            Application.Alert(
+                    "Can't insert ProtocolAmendmentInformation element");
+                return; 
+        }
+        rng.InsertElement("ProtocolAmendmentInformation");
+        rng.InsertWithTemplate("ProtocolAmendment");
+        rng.Select();
+        if (rng.FindInsertLocation("DatedAction", true))
+            rng.InsertWithTemplate("DatedAction");
+    }
+    insertProtocolAmendmentInformation();
   ]]>
 </MACRO>
 
