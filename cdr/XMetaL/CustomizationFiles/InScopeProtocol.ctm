@@ -1486,6 +1486,40 @@
 </ProtocolSource>
 </ProtocolSources>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>ProtocolIDs</Name>
+      <MiniTemplate><![CDATA[<ProtocolIDs>
+<PrimaryID>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PrimaryID>
+<OtherID>
+<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherID>
+</ProtocolIDs>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrimaryID</Name>
+      <MiniTemplate><![CDATA[<PrimaryID>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PrimaryID>
+]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherID</Name>
+      <MiniTemplate><![CDATA[<OtherID>
+<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IDType</Name>
+      <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>]]></MiniTemplate>
+    </Template>
   </Templates>
   <ChangeLists>
     <ChangeList>
@@ -1510,6 +1544,18 @@
       <ChangeListElements>
         <ChangeListElement>OrgSite</ChangeListElement>
         <ChangeListElement>PrivatePracticeSite</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>LeadOrgProtocolStatuses</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>CurrentOrgStatus</ChangeListElement>
+        <ChangeListElement>PreviousOrgStatus</ChangeListElement>
       </ChangeListElements>
     </ChangeList>
   </ChangeLists>
