@@ -19,6 +19,8 @@ public:
 
 	CString HttpRoundTrip( CString &data );
 	bool ValidateTicket( CString &ticket );
+    bool CheckManifestFiles( const CString &xmlString );
+    bool CheckManifestFiles( void );
 	bool UpdateFiles( CString &manifest, CString client_dir, CDRProgress * pb );
 
 	bool RecordServerError( CString soap_xml, CString operation );

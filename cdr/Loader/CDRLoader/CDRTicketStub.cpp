@@ -12,12 +12,6 @@
 #include "DRProgress.h"
 #include "CDRGenerics.h"
 
-#ifndef UNICODE
-#define STAT _stat
-#else
-#define STAT _wstat
-#endif
-
 
 extern void DebugWrite( char *  msg );
 extern void DebugWrite( CString msg );
@@ -70,7 +64,7 @@ void CDRTicketStub::InitializeFileLocation( CString manifest_file )
     _tmakepath( base_path, NULL, NULL, file, ext );
     CDR_MANIFEST_FILE = base_path;
 
-    DebugWrite( "Set file location\n" );
+    //DebugWrite( "Set file location\n" );
 }
 
 CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
@@ -80,7 +74,7 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
 
     CString ticket_xml = _T( "<TICKET/>" );
 
-    DebugWrite( "Looking for ticket in manifest.\n" );
+    //DebugWrite( "Looking for ticket in manifest.\n" );
 
     // extract the ticket portion of the manifest
     // locat the begining of the ticket tag
@@ -91,18 +85,20 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
         int e_pos = manifest_xml.Find( tic_end, pos );
         if ( e_pos != -1 )
         {
-            ticket_xml = manifest_xml.Mid( pos, e_pos + tic_end.GetLength() - pos );
+            ticket_xml = manifest_xml.Mid( pos, e_pos +
+                                           tic_end.GetLength() - pos );
         }
         else
         {
-            ErrorLog += _T( "<XML_ERR doc=LOCAL>Local MANIFEST has unbalanced TICKET tag.</XML_ERR>\n" );
-
-            DebugWrite( "Didn't find ticket.\n" );
+            ErrorLog += _T("<XML_ERR doc=LOCAL>Local MANIFEST has ")
+                        _T("unbalanced TICKET tag.</XML_ERR>\n");
+            DebugWrite("CDRTicketStub(): malformed manifest document.\n");
         }
     }
     else
     {
-        ErrorLog += _T( "<XML_ERR doc=LOCAL>Local MANIFEST missing TICKET tag.</XML_ERR>\n" );
+        ErrorLog += _T("<XML_ERR doc=LOCAL>Local MANIFEST missing ")
+                    _T("TICKET tag.</XML_ERR>\n");
 
         DebugWrite( "Didn't find ticket.\n" );
     }
@@ -112,9 +108,9 @@ CString CDRTicketStub::GetLocalTicket( CString manifest_xml )
 
 CString CDRTicketStub::LoadFile( CString fname )
 {
-    DebugWrite( "Loading file, looking for " );
-    DebugWrite( fname );
-    DebugWrite( "\n" );
+    //DebugWrite( "Loading file, looking for " );
+    //DebugWrite( fname );
+    //DebugWrite( "\n" );
 
     CString lt = _T("");
 
@@ -153,29 +149,37 @@ CString CDRTicketStub::LoadFile( CString fname )
     return lt;
 }
 
-CString CDRTicketStub::GetLocalManifest( void )
+bool CDRTicketStub::CheckManifestFiles()
 {
-    DebugWrite( "Looking For Manifest.\n" );
-
-    CString t_name = CDR_CLIENT_PATH + CDR_MANIFEST_FILE;
-    CString result = LoadFile( t_name );
-    if ( result.GetLength() == 0 )
-    {
-        result = "<MANIFEST />";
-        DebugWrite( "Didn't find Manifest.\n" );
+    CString fileName = CDR_CLIENT_PATH + CDR_MANIFEST_FILE;
+    CString xmlString = LoadFile(fileName);
+    if (!xmlString.GetLength()) {
+        DebugWrite("CheckManifestFiles(): didn't find manifest file.\n");
+        return false;
     }
-
-    // Make sure the manifest is still accurate.  If not return an empty
-    // string.  We check by comparing timestamps for the files listed
-    // in the manifest.  Takes less than 1/20 of a second on my workstation.
-    cdr::Element e = cdr::Element::extractElement(result, _T("FILELIST"));
+    return CheckManifestFiles(xmlString);
+}
+    
+bool CDRTicketStub::CheckManifestFiles(const CString &xmlString)
+{
+    //DebugWrite("Checking manifest files.\n");
+    
+    // Make sure the manifest is still accurate.  We check by comparing
+    // timestamps for the files listed in the manifest.  Takes less than
+    // 1/20 of a second on my workstation, so Jeff's concerns about
+    // the impact on performance seem to be groundless.
+    cdr::Element e = cdr::Element::extractElement(xmlString, _T("FILELIST"));
     if (!e) {
-        DebugWrite("Unable to find FILELIST element.\n");
-        return CString();
+        DebugWrite("CheckManifestFiles(): Unable to find FILELIST element.\n");
+        return false;
     }
+
     CString fileList = e.getString();
-    e = cdr::Element::extractElement(fileList, _T("FILE"));
-    while (e) {
+    for (e = cdr::Element::extractElement(fileList, _T("FILE"));
+         e;
+         e = cdr::Element::extractElement(fileList, _T("FILE"),
+                                          e.getEndPos())) {
+            
         CString f = e.getString();
         cdr::Element nameElem = cdr::Element::extractElement(f, _T("NAME"));
         cdr::Element timeElem = cdr::Element::extractElement(f, 
@@ -184,122 +188,158 @@ CString CDRTicketStub::GetLocalManifest( void )
             struct _stat s;
             CString name = nameElem.getString();
             CString when = timeElem.getString();
+            //DebugWrite(_T("Checking manifest file ") + name + _T("\n"));
 
             // The manifest is always off by a few milliseconds, because
             // it's being written with informantion about itself.
-            if (!name.CompareNoCase(_T("CDR_MANIFEST.XML")))
+            CString upperName = name;
+            upperName.MakeUpper();
+            if (upperName.Find(_T("CDR_MANIFEST.XML")) != -1)
                 continue;
 
             // This one doesn't count, either, because we delete it.
-            if (!name.CompareNoCase(_T("CdrLoaderUpdated.cmd")))
+            if (upperName.Find(_T("CDRLOADERUPDATED.CMD")) != -1)
                 continue;
             
-            int ts = _tstoi((LPCTSTR)when);
-            int rc = STAT((LPCTSTR)name, &s);
+            time_t ts = (time_t)_tstol((LPCTSTR)when);
+            int    rc = (int)_tstat((LPCTSTR)name, &s);
             if (rc) {
-                DebugWrite(name + _T(" not found checking manifest.\n"));
-                return CString();
+                DebugWrite(_T("CheckManifestFiles(): ") + name +
+                           _T(" not found.\n"));
+                return false;
             }
 
             // Don't bother with directories.
             else if (s.st_mode & _S_IFREG) {
 
                 if (ts != s.st_mtime) {
-                    DebugWrite(name +
-                               _T(" found but with the wrong timestamp.\n"));
-                    return CString();
+                    char serverTimestamp[80];
+                    char clientTimestamp[80];
+                    strftime(serverTimestamp,
+                             sizeof serverTimestamp,
+                             "\tServer timestamp: %Y-%m-%d %H:%M:%S.\n",
+                             localtime(&ts));
+                    strftime(clientTimestamp,
+                             sizeof clientTimestamp,
+                             "\tClient timestamp: %Y-%m-%d %H:%M:%S.\n",
+                             localtime(&s.st_mtime));
+                    DebugWrite(_T("CheckManifestFiles() checking ") + name +
+                               _T(".\n"));
+                    DebugWrite(serverTimestamp);
+                    DebugWrite(clientTimestamp);
+                    return false;
                 }
             }
         }
-        e = cdr::Element::extractElement(fileList, _T("FILE"),
-                                         e.getEndPos());
     }
+    return true;
+}
+
+CString CDRTicketStub::GetLocalManifest( void )
+{
+    //DebugWrite( "Looking For Manifest.\n" );
+
+    CString emptyManifest = _T("<MANIFEST />");
+    CString t_name = CDR_CLIENT_PATH + CDR_MANIFEST_FILE;
+    CString result = LoadFile( t_name );
+    if ( result.GetLength() == 0 )
+    {
+        result = emptyManifest;
+        DebugWrite("Manifest file not present.\n");
+    }
+    else if (!CheckManifestFiles( result ))
+    {
+        DebugWrite("Manifest mismatch; we will tell the SOAP server we have"
+                   " no manifest.\n");
+        result = emptyManifest;
+    }
+
     return result;
 }
 
 CString CDRTicketStub::HttpRoundTrip( CString &data )
 {
-
-    DebugWrite( "Starting HTTP calls.\n" );
-
+    
+    //DebugWrite( "Starting HTTP calls.\n" );
+    
     CInternetSession inet_session;
     CString http_response_data = _T("");
-
+    
     try
     {
-    DebugWrite( "HTTP top of try.\n" );
+        //DebugWrite( "HTTP top of try.\n" );
         CHttpConnection * http_session = inet_session.GetHttpConnection( http_Server );
-    DebugWrite( "HTTP GotConnection.\n" );
+        //DebugWrite( "HTTP GotConnection.\n" );
         CString select = _T("/cgi-bin/Ticket/TicketCgi.py");
         CHttpFile * http_page = http_session->OpenRequest( _T("POST"), select );
-    DebugWrite( "HTTP Request Open.\n" );
+        //DebugWrite( "HTTP Request Open.\n" );
         CString my_req = REQ_TEMPLATE;
         my_req.Replace( _T("%s"), data );
         // remember to switch out of unicode to talk to TICKET server
         CStringA plain_req = (CStringA )my_req.GetString();
         DWORD rlen = plain_req.GetLength();
-    DebugWrite( "HTTP Request is:\n" );
-    DebugWrite( my_req );
-    DebugWrite( "\n" );
-    CStringA::PCXSTR t;
-    DWORD socket_err = 0;
-    try
-    {
-        t = plain_req.GetString();
-    }
-    catch ( ... )
-    {
-        DebugWrite( "String conversion threw exception. ... \n" );
-    }
-    int retry = 0;
-    int sr_val = 0;
-    while (( sr_val == 0 ) && ( retry++ < 3 ))
-    {
-        DebugWrite( "SendRequest() Retry loop\n" );
-
-        try 
+        //DebugWrite( "HTTP Request is:\n" );
+        //DebugWrite( my_req );
+        //DebugWrite( "\n" );
+        CStringA::PCXSTR t;
+        DWORD socket_err = 0;
+        try
         {
-            sr_val = http_page->SendRequest( _T(""), 0, (void *)t, rlen );
-        }
-        catch ( CInternetException &ee )
-        {
-            _TCHAR  errmsg[ 1024 ];
-            int len = 1000;
-            ee.GetErrorMessage( errmsg, len );
-            ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
-
-            DebugWrite( "Caught at SendRequest() CInternetException\n" );
-            DebugWrite( errmsg );
-        }
-        catch ( CException &ee )
-        {
-            _TCHAR  errmsg[ 1024 ];
-            int len = 1000;
-            ee.GetErrorMessage( errmsg, len );
-            ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
-
-            DebugWrite( "Caught at SendRequest() CException\n" );
-            DebugWrite( errmsg );
-        }
-        catch ( CObject & )
-        {
-            DebugWrite( "Caught at SendRequest() CObject\n" );
+            t = plain_req.GetString();
         }
         catch ( ... )
         {
-            DebugWrite( "Caught at SendRequest() ...\n" );
-            socket_err = GetLastError();
-            char se[32];
-            ltoa( socket_err, se, 10 );
-            ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">Socket Error ") 
-                        + CString( se ) 
-                        + _T("</HTTP_EXCEPTION>");
-            DebugWrite( "Socket Error is " );
-            DebugWrite( se );;
-            DebugWrite( "\n" );
+            DebugWrite("HttpRoundTrip(): exception in string conversion.\n");
         }
-    }
-    DebugWrite( "HTTP Request Sent.\n" );
+        int retry = 0;
+        int sr_val = 0;
+        while (( sr_val == 0 ) && ( retry++ < 3 ))
+        {
+            //DebugWrite( "SendRequest() Retry loop\n" );
+            try 
+            {
+                sr_val = http_page->SendRequest( _T(""), 0, (void *)t, rlen );
+            }
+            catch ( CInternetException &ee )
+            {
+                _TCHAR  errmsg[ 1024 ];
+                int len = 1000;
+                ee.GetErrorMessage( errmsg, len );
+                ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+                
+                DebugWrite( "Caught at SendRequest() CInternetException\n" );
+                DebugWrite( errmsg );
+            }
+            catch ( CException &ee )
+            {
+                _TCHAR  errmsg[ 1024 ];
+                int len = 1000;
+                ee.GetErrorMessage( errmsg, len );
+                ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+                
+                DebugWrite( "Caught at SendRequest() CException\n" );
+                DebugWrite( errmsg );
+            }
+            catch ( CObject & )
+            {
+                DebugWrite( "Caught at SendRequest() CObject\n" );
+            }
+            catch ( ... )
+            {
+                DebugWrite( "Caught at SendRequest() ...\n" );
+                socket_err = GetLastError();
+                char se[32];
+                ltoa( socket_err, se, 10 );
+                ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">")
+                            _T("Socket Error ") 
+                          + CString( se ) 
+                          + _T("</HTTP_EXCEPTION>");
+                DebugWrite( "Socket Error is " );
+                DebugWrite( se );;
+                DebugWrite( "\n" );
+            }
+        }
+        //DebugWrite( "HTTP Request Sent.\n" );
         DWORD result;
         http_page->QueryInfoStatusCode( result );
 
@@ -307,42 +347,42 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         //HttpQueryInfo( http_page->m_hFile, HTTP_QUERY_STATUS_CODE|HTTP_QUERY_FLAG_NUMBER , &dwError, &cbRead, NULL);
 
 
-    DebugWrite( "HTTP look at status.\n" );
+        //DebugWrite( "HTTP look at status.\n" );
         if (result != HTTP_STATUS_OK)
         {
             char num[32];
             ltoa( result, num, 10 );
             ErrorLog += _T("<HTTP_ERR>") + CString( num ) + _T("</HTTP_ERR>");
-    DebugWrite( "HTTP status from QueryInfoStatusCode(): " );
-    DebugWrite( num );
+            DebugWrite( "HTTP status from QueryInfoStatusCode(): " );
+            DebugWrite( num );
 
-    //        ltoa( dwError, num, 10 );
-    //DebugWrite( "HTTP status from HttpQueryInfo()" );
-    //DebugWrite( num );
-    //DebugWrite( "\n" );
+            //        ltoa( dwError, num, 10 );
+            //DebugWrite( "HTTP status from HttpQueryInfo()" );
+            //DebugWrite( num );
+            //DebugWrite( "\n" );
         }
         char buff[ 1024 ];
         UINT nRead = http_page->Read( buff, 1000 );
-    DebugWrite( "HTTP Did first read.\n" );
+        //DebugWrite( "HTTP Did first read.\n" );
         while ( nRead > 0 )
         {
             buff[ nRead ] = '\0';
             http_response_data += buff;
             nRead = http_page->Read( buff, 1000 );
-    DebugWrite( "HTTP Did next read.\n" );
+            //DebugWrite( "HTTP Did next read.\n" );
         }
         
-    DebugWrite( "HTTP Done reading.\n" );
+        //DebugWrite( "HTTP Done reading.\n" );
 
         http_page->Close();
-    DebugWrite( "HTTP closed page.\n" );
+        //DebugWrite( "HTTP closed page.\n" );
         http_session->Close();
-    DebugWrite( "HTTP closed session.\n" );
+        //DebugWrite( "HTTP closed session.\n" );
 
         delete http_page;
-    DebugWrite( "HTTP delete page.\n" );
+        //DebugWrite( "HTTP delete page.\n" );
         delete http_session;
-    DebugWrite( "HTTP delete session.\n" );
+        //DebugWrite( "HTTP delete session.\n" );
 
     }
     catch ( CInternetException &e )
@@ -350,7 +390,8 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         _TCHAR  errmsg[ 1024 ];
         int len = 1000;
         e.GetErrorMessage( errmsg, len );
-        ErrorLog += _T("<HTTP_EXCEPTION type=CInternet>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+        ErrorLog += _T("<HTTP_EXCEPTION type=CInternet>") +
+                     CString( errmsg ) + _T("</HTTP_EXCEPTION>");
 
         DebugWrite( errmsg );
     }
@@ -359,18 +400,18 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
         _TCHAR  errmsg[ 1024 ];
         int len = 1000;
         e.GetErrorMessage( errmsg, len );
-        ErrorLog += _T("<HTTP_EXCEPTION type=CException>") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
-
+        ErrorLog += _T("<HTTP_EXCEPTION type=CException>") +
+            CString( errmsg ) + _T("</HTTP_EXCEPTION>");
         DebugWrite( errmsg );
     }
     catch ( ... )
     {
-        ErrorLog += _T("<HTTP_EXCEPTION type=Unknown>Exception of Unknown variety.</HTTP_EXCEPTION>");
-
+        ErrorLog += _T("<HTTP_EXCEPTION type=Unknown>")
+            _T("Exception of Unknown variety.</HTTP_EXCEPTION>");
         DebugWrite( "Unknown Exception!" );
     }
 
-    DebugWrite( "Finished HTTP calls.\n" );
+    //DebugWrite( "Finished HTTP calls.\n" );
 
     return http_response_data;
 }
@@ -389,13 +430,16 @@ bool CDRTicketStub::RecordServerError( CString soap_xml, CString operation )
         int l_pos = soap_xml.Find( err_end, epos );
         if ( l_pos == -1 )
         {
-            ErrorLog += _T("Unbalanced ERROR tag in soap response.");
+            ErrorLog += _T("Unbalanced ERROR tag in soap response");
+            DebugWrite(_T("Malformed ERROR element for operation ") +
+                       operation + _T(".\n"));
         }
         else
         {
             CString em = soap_xml.Mid( epos, l_pos - epos );
-
-            ErrorLog += em.Trim();
+            DebugWrite(_T("Server error ") + em.Trim() + _T(" for operation ")
+                       + operation + _T(".\n"));
+            ErrorLog += em;
         }
         ErrorLog += _T("\n</SERVER_ERR>\n");
         error = true;
@@ -409,10 +453,15 @@ bool CDRTicketStub::RecordServerError( CString soap_xml, CString operation )
         if ( l_pos == -1 )
         {
             ErrorLog += _T("Unbalanced env:Fault tag in soap response.");
+            DebugWrite(_T("Malformed env:Fault in SOAP response for ")
+                       _T("operation ") + operation + _T(".\n"));
         }
         else
         {
-            ErrorLog += soap_xml.Mid( fpos, l_pos - fpos );
+            CString fault = soap_xml.Mid(fpos, l_pos - fpos);
+            DebugWrite(_T("Server fault ") + fault.Trim() +
+                       _T(" for operation ") + operation + _T(".\n"));
+            ErrorLog += fault;
         }
         ErrorLog += "\n</SERVER_FAULT>\n";
         error = true;
@@ -552,6 +601,8 @@ bool CDRTicketStub::SaveZipFile( CString zip_xml, CString &fname )
 
 bool CDRTicketStub::ExecuteZipFile( CString client_dir, CString fname )
 {
+    DebugWrite("Unpacking updated files from the SOAP server.\n");
+    
     bool success = false;
 
     // we now have a zipfile on the disk in (hopefully)
@@ -561,24 +612,37 @@ bool CDRTicketStub::ExecuteZipFile( CString client_dir, CString fname )
     // _spawn also flickers a command window on screen so effectively no difference
     // between that and system() other than system being easier to debug.
 
-    CString unzip_cmd = _T(".\\unzip -o -d ") + client_dir + _T( " " ) + fname + _T( " > ") + fname + _T(".err"); 
+    CString unzip_cmd = _T(".\\unzip -o -d ") + client_dir + _T( " " ) + fname + _T( " > ") + fname + _T(".out 2> ") + fname + _T(".err"); 
     CStringA temp( unzip_cmd );
     int rc = system( temp.GetString() );
-    if (rc == 0)
+
+    // We're not really looking at the return code from unzip, because
+    // that process will fail when it's trying to replace this program,
+    // which will happen if we tell the server we don't have a valid
+    // manifest.  Instead we'll check to make sure that we really have
+    // what the manifest says we should have.  All the check of rc
+    // does is to make sure we actually launched unzip.
+    if (rc != -1)
     {
         // file unzipped without detected error
         // yea.
-        success = true;
+        DebugWrite("Verifying that the new manifest matches our files.\n");
+        success = CheckManifestFiles();
+        if (!success)
+            DebugWrite("Verification failed; we will bail out.\n");
     }
     else
     {
         ErrorLog += _T("<EXEC_ERR>");
         ErrorLog += _T("Unable to execute ") + unzip_cmd;
+        CString errorString;
         if (rc == -1)
-            ErrorLog += _T(" : ") + CString( strerror( errno ) );
-        ErrorLog += _T("</EXEC_ERR>\n");
+            errorString.Format(_T("%S"), strerror(errno));
+        else
+            errorString.Format(_T("%d"), rc);
+        DebugWrite(_T("Failure invoking unzip: ") + errorString + _T(".\n"));
+        ErrorLog += _T(" : ") + errorString + _T("</EXEC_ERR>\n");
     }
-
 
     return success;
 }
@@ -610,6 +674,7 @@ bool CDRTicketStub::ProcessZipFile( CString client_dir, CString manifest_xml, CD
                 
                 pb->Advance();
 
+                DebugWrite("Requesting package of updated client files.\n");
                 CString zip_response = HttpRoundTrip( zip_req );
 
                 pb->Advance();
@@ -618,6 +683,7 @@ bool CDRTicketStub::ProcessZipFile( CString client_dir, CString manifest_xml, CD
                 {
                     // we got the zip file as base64 encoded data in an xml file
                     CString fname;
+                    // DebugWrite("Saving the package of updated files.\n");
                     if ( SaveZipFile( zip_response, fname ) )
                     {
                         pb->Advance();
@@ -672,7 +738,7 @@ bool CDRTicketStub::ProcessInvarientDeletes( CDRProgress * pb )
         have_more = rlx_hunter.FindNextFile();
         CString found = rlx_hunter.GetFileName();
         bool keeper = false;
-        for ( int i = 0; i < 7; i++  )
+        for ( int i = 0; i < sizeof keeper_files / sizeof *keeper_files; i++  )
         {
             if ( ! found.CompareNoCase( keeper_files[ i ] ) )
             {
@@ -695,10 +761,14 @@ bool CDRTicketStub::ProcessInvarientDeletes( CDRProgress * pb )
             {
                 success = false;
 
+                CString errnoString;
+                errnoString.Format(_T("%S"), strerror(errno));
                 ErrorLog += _T("<FILE_ERR>");
                 ErrorLog += _T("Unable to delete ") + victim + _T(" : ");
-                ErrorLog += CString( strerror( errno ) );
+                ErrorLog += errnoString;
                 ErrorLog += _T("</FILE_ERR>\n");
+                DebugWrite(_T("Failure deleting ") + victim +
+                           _T(": ") + errnoString + _T(".\n"));
             }
         }
     }
@@ -711,8 +781,8 @@ bool CDRTicketStub::ProcessInvarientDeletes( CDRProgress * pb )
 
 bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
 {
-
-    bool success = false;
+    // Start optimistically.
+    bool success = true;
 
     CString app_name = CString( _T( ".\\" ) ) + AfxGetAppName() +
         CString( _T( ".exe" ) );
@@ -736,8 +806,6 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
     if ( pos != -1 )
     {
         // empty delete tag, we're done
-        success = true;
-
         pb->Advance();
     }
     else
@@ -761,17 +829,17 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
                     {
                         CString fname = del_list.Mid( fpos, epos - fpos );
 
-                        DebugWrite( "Comparing for self-deletion, does " );
-                        DebugWrite( app_name );
-                        DebugWrite( " match " );
-                        DebugWrite( fname );
-                        DebugWrite( " ?\n" );
+                        //DebugWrite( "Comparing for self-deletion, does " );
+                        //DebugWrite( app_name );
+                        //DebugWrite( " match " );
+                        //DebugWrite( fname );
+                        //DebugWrite( " ?\n" );
 
                         if ( fname.CompareNoCase( app_name ) )
                         {
-                            DebugWrite( "No, deleting " );
-                            DebugWrite( fname );
-                            DebugWrite( "\n" );
+                            //DebugWrite( "No, deleting " );
+                            //DebugWrite( fname );
+                            //DebugWrite( "\n" );
 
                             // delete the file
                             CStringA t( fname );
@@ -784,27 +852,30 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
                             if ( r && ( errno != ENOENT ) )
                             {
                                 success = false;
-
+                                CString errnoString;
+                                errnoString.Format(_T("%S"), strerror(errno));
                                 ErrorLog += _T("<FILE_ERR>");
                                 ErrorLog += _T("Unable to delete ")
                                          + fname + _T(" : ");
-                                ErrorLog += CString( strerror( errno ) );
+                                ErrorLog += errnoString;
                                 ErrorLog += _T("</FILE_ERR>\n");
+                                DebugWrite(_T("Failure deleting ") + fname +
+                                           _T(": ") + errnoString + _T(".\n"));
                             }
                             else
                             {
                                 // we deleted at least one file, hopefully
                                 // we'll get them all
-                                success = true;
-
+                                // XXX BAD LOGIC! RMK 2003-03-09
+                                // success = true;
                                 pb->Advance();
                             }
                         }
                         else
                         {
-                            DebugWrite( "Yes, skipping self-delete of " );
-                            DebugWrite( fname );
-                            DebugWrite( "\n" );
+                            //DebugWrite( "Yes, skipping self-delete of " );
+                            //DebugWrite( fname );
+                            //DebugWrite( "\n" );
                         }
 
                         // keep looking for more file names
@@ -815,11 +886,14 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
                         ErrorLog += _T("<XML_ERR doc=DELTA>Unbalanced FILE ")
                                     _T("tag. Ending DELETE ")
                                     _T("operation.</XML_ERR>\n");
+                        DebugWrite("Malformed XML for FILE element in "
+                                   "deletion.\n");
                         // this is an exception to the rule,
                         // since we are having success in increments
                         // a failure requires we revert the flag to show
                         // failure
                         success = false;
+                        break;
                     }
                 }
             }
@@ -827,12 +901,16 @@ bool CDRTicketStub::ProcessDeleteList( CString manifest_xml, CDRProgress * pb )
             {
                 ErrorLog += _T("<XML_ERR doc=DELTA>Unbalanced DELETE ")
                             _T("tag.</XML_ERR>\n");
+                DebugWrite("Malformed XML for DELETE element.\n");
+                success = false;
             }
         }
         else
         {
             ErrorLog +=
                 _T("<XML_ERR doc=DELTA>Missing DELETE tag.</XML_ERR>\n");
+            DebugWrite("Missing DELETE tag in manifest.\n");
+            success = false;
         }
     }
 
@@ -862,6 +940,7 @@ bool CDRTicketStub::UpdateFiles( CString &manifest, CString client_dir,
 {
     bool valid = false;
 
+    DebugWrite("Telling the SOAP server which files we have.\n");
     CString manifest_response = HttpRoundTrip( manifest );
     
     pb->Advance();
@@ -937,16 +1016,16 @@ void CDRTicketStub::BequeathEnvironment( CString user, CString session,
     _putenv( (LPCSTR)serv_env );
     _putenv( (LPCSTR)port_env );
 
-    DebugWrite( "-- Setting Environment\n" );
-    DebugWrite( (CString)uenv );
-    DebugWrite( "\n" );
-    DebugWrite( (CString)senv );
-    DebugWrite( "\n" );
-    DebugWrite( (CString)serv_env );
-    DebugWrite( "\n" );
-    DebugWrite( (CString)port_env );
-    DebugWrite( "\n" );
-    DebugWrite( "-- Done Setting Environment\n" );
+    //DebugWrite( "-- Setting Environment\n" );
+    //DebugWrite( (CString)uenv );
+    //DebugWrite( "\n" );
+    //DebugWrite( (CString)senv );
+    //DebugWrite( "\n" );
+    //DebugWrite( (CString)serv_env );
+    //DebugWrite( "\n" );
+    //DebugWrite( (CString)port_env );
+    //DebugWrite( "\n" );
+    //DebugWrite( "-- Done Setting Environment\n" );
 }
 
 bool CDRTicketStub::LaunchCDR( CString app )
@@ -963,7 +1042,8 @@ bool CDRTicketStub::LaunchCDR( CString app )
     if ( PathFileExists( _T( "CDRLoaderUpdated.cmd" ) ) )
     {
         //DebugResume();
-        //DebugWrite( "Need to Relaunch self.\n" );
+        DebugWrite( "Modified CDRLoader installed; "
+                    "invoking CDRLoaderUpdate.cmd.\n" );
 
         // we need to relaunch ourselves to handle new options
         //CStringA reflexive_launch = "C:\\WINNT\\system32\\cmd.exe";
@@ -971,10 +1051,15 @@ bool CDRTicketStub::LaunchCDR( CString app )
         my_args[0] = reflexive_launch.GetBuffer();
 
         //DebugWrite( "Closing debug prior relaunch.\n" );
-        //DebugEnd();
+        DebugEnd();
 
         // null pointer for my_env inhierts current
         int err = (int)_execve( reflexive_launch.GetBuffer(), my_args, NULL );
+        DebugResume();
+        CString errString;
+        errString.Format(_T("Execution failed: %S.\n"),
+                         strerror(errno));
+        DebugWrite(errString);
 
         // failed after all
         ErrorLog += _T("<EXEC_ERR>");
@@ -996,7 +1081,13 @@ bool CDRTicketStub::LaunchCDR( CString app )
 
 
         // null pointer for my_env inhierts current
+        DebugWrite(_T("Executing ") + app + _T(".\n"));
+        DebugEnd();
         int err = (int)_execve( aapp.GetBuffer(), my_args, NULL );
+        DebugResume();
+        CString errString;
+        errString.Format(_T("Execution failed; errno: %d.\n"), errno);
+        DebugWrite(errString);
         //int err = _execve( tprog, my_args, NULL );
 
         ErrorLog += _T("<EXEC_ERR>");

@@ -11,6 +11,7 @@
 #include "CDRLoaderDlg.h"
 #include "CDRTicketStub.h"
 #include "DRProgress.h"
+#include "CdrLoaderVersion.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -19,11 +20,11 @@
 /*
 *	DEBUG Tool
 */
-TCHAR *  DEBUG_FILE = _T( "CDRLoad-Debug.txt" );
+TCHAR *  DEBUG_FILE = _T( "CDRLoader.log" );
 bool	g_debug_flag = false;
 CStdioFile   db_trickle;
 
-CString	VERSION_STR = _T( "Version 20020916 1241\n" );
+// CString	VERSION_STR = _T( "Version 20030309 1836\n" );
 
 void SetDebugFlag( bool f )
 {
@@ -64,18 +65,30 @@ void DebugStart( void )
 	{
 		CFileException e;
 
-		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeCreate | CFile::modeReadWrite | CFile::shareDenyNone, &e ) )
+		if ( ! db_trickle.Open( DEBUG_FILE, CFile::modeCreate |
+                                            CFile::modeNoTruncate |
+                                            CFile::modeReadWrite |
+                                            CFile::shareDenyNone, &e ) )
 		{
 			_TCHAR  errmsg[ 1024 ];
 			int len = 1000;
 			e.GetErrorMessage( errmsg, len );
 			printf( "Debug file broken: %s", errmsg );
 		}
-		DebugWrite( "Started Debugging\n" );
-		DebugWrite( VERSION_STR );
+        db_trickle.SeekToEnd();
+		// DebugWrite( "Started Debugging\n" );
 		time_t t = time(NULL);
+        CString verString = VERSION_STR;
+        verString.TrimRight();
+        DebugWrite("=================================================="
+                   "===========================\n");
+        DebugWrite(AfxGetAppName());
+        DebugWrite(" ");
+        DebugWrite(verString);
+        DebugWrite(" running ");
 		DebugWrite( ctime( &t ) );
-		DebugWrite( "\n" );
+        DebugWrite("=================================================="
+                   "===========================\n");
 	}
 }
 
@@ -257,7 +270,7 @@ BOOL CCDRLoaderApp::InitInstance()
 		}
     }
 
-	DebugWrite( "Processed command line\n" );
+	//DebugWrite( "Processed command line\n" );
 
 
 	/****
@@ -276,7 +289,7 @@ BOOL CCDRLoaderApp::InitInstance()
 	CCDRLoaderDlg dlg;
 	m_pMainWnd = dummy_win;
 
-	DebugWrite( "Created dummy window\n" );
+	//DebugWrite( "Created dummy window\n" );
 
 	dlg.UserId = ini_Data.last_User;
 	dlg.SetInit( &ini_Data );
@@ -289,13 +302,16 @@ BOOL CCDRLoaderApp::InitInstance()
 	TCHAR * cdr_s_id = _wgetenv( _T( "CDRSession" ) );
 	if ( cdr_s_id == NULL )
 	{
+
  		nResponse = dlg.DoModal();
-		DebugWrite( "Returned from modal dialog, setting environment.\n" );
+		//DebugWrite( "Returned from modal dialog, setting environment.\n" );
 
 		CString uid = dlg.UserId;
 		ini_Data.last_User = uid;
-
 		CString key = dlg.SessionId;
+        if (nResponse == IDOK)
+            DebugWrite(_T("Logged into CDR as ") + uid + _T(" with session ") +
+                       key + _T(".\n"));
 
 		cur_server_ndx = ini_Data.GetCurrentServer();
 
@@ -308,10 +324,14 @@ BOOL CCDRLoaderApp::InitInstance()
 	{
 		// we logged in earlier, don't repeat
 		nResponse = IDOK;
-		DebugWrite( "Skipped modal dialog Session Id already set, leaving environment as it was.\n" );
-		DebugWrite( "Session Id was " );
-		DebugWrite( cdr_s_id );
-		DebugWrite( "\n" );
+		//DebugWrite( "Skipped modal dialog Session Id already set, leaving environment as it was.\n" );
+        CString dbgString;
+        dbgString.Format(_T("Already logged into CDR with session %s.\n"),
+                         cdr_s_id);
+        DebugWrite(dbgString);
+		//DebugWrite( "Session Id was " );
+		//DebugWrite( cdr_s_id );
+		//DebugWrite( "\n" );
 	}
 
 	if (nResponse == IDOK)
@@ -320,86 +340,73 @@ BOOL CCDRLoaderApp::InitInstance()
 		CString	err = _T("Unknown error.");
 
 		CString http_server;
-		if ( ini_Data.servers[ cur_server_ndx ].ticket_Server.GetLength() > 0 )
+		if (ini_Data.servers[ cur_server_ndx ].ticket_Server.GetLength() > 0)
 		{
 			http_server = ini_Data.servers[ cur_server_ndx ].ticket_Server;
 
-			if ( ini_Data.servers[ cur_server_ndx ].ticket_Port.GetLength() > 0 )
+			if (ini_Data.servers[ cur_server_ndx ].ticket_Port.GetLength() > 0)
 			{
-				http_server += _T( ":" ) + ini_Data.servers[ cur_server_ndx ].ticket_Port;
+				http_server += _T( ":" ) +
+                    ini_Data.servers[ cur_server_ndx ].ticket_Port;
 			}
 		}
 		else
-		{
 			http_server = default_http_server;
-		}
+
 		CDRTicketStub ticket_stub;
-		DebugWrite( "Http Server is " );
-		DebugWrite( http_server );
-		DebugWrite( "\n" );
+		//DebugWrite( "SOAP Server is " );
+		//DebugWrite( http_server );
+		//DebugWrite( ".\n" );
 		ticket_stub.SetHttpServer( http_server );
 
-		if ( true )
-		{
-			DebugWrite( "Evaluating state.\n" );
+        //DebugWrite( "Evaluating state.\n" );
+        ticket_stub.InitializeFileLocation(manifest_directory +
+                                           manifest_filename );
 
-			ticket_stub.InitializeFileLocation( manifest_directory + manifest_filename );
+        //DebugWrite( "Loading local manifest.\n" );
+        CString local_manifest = ticket_stub.GetLocalManifest();
 
-			DebugWrite( "Loading local manifest.\n" );
+        //DebugWrite( "Extracting ticket from local manifest.\n" );
+        CString	local_ticket = ticket_stub.GetLocalTicket(local_manifest);
 
-			CString local_manifest = ticket_stub.GetLocalManifest();
+        DebugWrite(_T("Asking SOAP server ") + http_server +
+                   _T(" if manifest is up to date.\n"));
+        if (!ticket_stub.ValidateTicket(local_ticket)) {
+            
+            //DebugWrite( "Creating Progress Dialog.\n" );
+            CDRProgress p_dlg;
+            p_dlg.Create( CDRProgress::IDD, m_pMainWnd );
+            p_dlg.Init();
+            p_dlg.ShowWindow( SW_SHOWNORMAL );
+            p_dlg.Advance();
 
-			DebugWrite( "Extracting ticket from local manifest.\n" );
+            DebugWrite( "The SOAP server says it will send us "
+                        "updated files.\n" );
+            // ticket doesn't match, need to update files
+            if ( ticket_stub.UpdateFiles(local_manifest,
+                                         manifest_directory,
+                                         &p_dlg ) )
+            {
+                ok_to_launch = true;
+            }
+            else
+                err = ticket_stub.GetErrorLog();
+            
+            //DebugWrite( "Closing progress dialog.\n" );
+            p_dlg.CloseWindow();
+        }
+        else
+            ok_to_launch = true;
 
-			CString	local_ticket = ticket_stub.GetLocalTicket( local_manifest );
-
-			DebugWrite( "Validating Ticket.\n" );
-
-			if ( ! ticket_stub.ValidateTicket( local_ticket ) )
-			{
-
-				DebugWrite( "Creating Progress Dialog.\n" );
-
-				CDRProgress p_dlg;
-				p_dlg.Create( CDRProgress::IDD, m_pMainWnd );
-				
-				p_dlg.Init();
-
-				p_dlg.ShowWindow( SW_SHOWNORMAL );
-
-				p_dlg.Advance();
-
-				DebugWrite( "Updating Files\n" );
-
-				// ticket doesn't match, need to update files
-				if ( ticket_stub.UpdateFiles( local_manifest, manifest_directory, &p_dlg ) )
-				{
-					ok_to_launch = true;
-				}
-				else
-				{
-					err = ticket_stub.GetErrorLog();
-				}
-
-				DebugWrite( "Closing progress dialog.\n" );
-
-				p_dlg.CloseWindow();
-			}
-			else
-			{
-				ok_to_launch = true;
-			}
-		}
-
-		DebugWrite( "Ready to launch\n" );
+		//DebugWrite( "Ready to launch\n" );
 
 		if ( ok_to_launch )
 		{
-			DebugWrite( "Saving INI options prior launch.\n" );
+			//DebugWrite( "Saving INI options prior launch.\n" );
 			ini_Data.WriteOptions();
 
-			DebugWrite( "Closing debug prior launch.\n" );
-			DebugEnd();
+			//DebugWrite( "Closing debug prior launch.\n" );
+			//DebugEnd();
 
 			if ( ! ticket_stub.LaunchCDR( cdr_application ) )
 			{
@@ -407,24 +414,26 @@ BOOL CCDRLoaderApp::InitInstance()
 				ok_to_launch = false;
 				err = ticket_stub.GetErrorLog();
 
-				DebugResume();
-				DebugWrite( "Launch failed\n" );
+				//DebugResume();
+				//DebugWrite( "Launch failed\n" );
 			}
 		}
 
-		DebugWrite( "Did not launch\n" );
+		DebugWrite( "Exiting.\n" );
 
 		if ( ! ok_to_launch )
 		{
 			/****
 			*	!STUPID WINDOWS!
-			*	This is the message function that depends on the existance of dummy_win
+			*	This is the message function that depends on the existance
+            *   of dummy_win
 			****/
-			CString e_msg = _T("Unable to launch CDR Client\nError Log:\n\n") + err;
+			CString e_msg = _T("Unable to launch CDR Client\nError Log:\n\n")
+                + err;
 			AfxMessageBox( e_msg, MB_ICONERROR );
 		}
 
-		DebugWrite( "User acknowledged failure message\n" );
+		//DebugWrite( "User acknowledged failure message\n" );
 	}
 	else if (nResponse == IDCANCEL)
 	{
@@ -433,18 +442,18 @@ BOOL CCDRLoaderApp::InitInstance()
 		// nothing to do
 	}
 
-	DebugWrite( "Saving INI options.\n" );
+	//DebugWrite( "Saving INI options.\n" );
 
 	ini_Data.WriteOptions();
 
-	DebugWrite( "Finished processing, destroying dummy window.\n" );
+	//DebugWrite( "Finished processing, destroying dummy window.\n" );
 
 	// get rid of our 'main' window
 	delete dummy_win;
 	m_pMainWnd = 0;
 	dummy_win = 0;
 
-	DebugWrite( "Return FALSE when done.\n" );
+	//DebugWrite( "Return FALSE when done.\n" );
 	DebugEnd();
 
 	// Since the dialog has been closed, return FALSE so that we exit the

@@ -1,10 +1,13 @@
 #----------------------------------------------------------------------
 #
-# $Id: Makefile,v 1.4 2002-12-24 17:20:11 bkline Exp $
+# $Id: Makefile,v 1.5 2003-04-16 18:22:08 bkline Exp $
 #
 # Rules for building and packing up CDR client files.
 #
 # $Log: not supported by cvs2svn $
+# Revision 1.4  2002/12/24 17:20:11  bkline
+# Changed CDRLoader.lnk to CDR.lnk.
+#
 # Revision 1.3  2002/12/17 20:50:04  bkline
 # Added DRV variable.
 #
@@ -41,6 +44,7 @@ CDRLoaderSetup.zip: $(ARCHIVE_FILES)
 
 CDRLoader.exe:
 	rm -rf CDRLoader.exe
+	MakeVersion > CdrLoaderVersion.h
 	"$(DEVENV)" CDRLoader.sln /build Release
 	copy Release\CDRLoader.exe
 
