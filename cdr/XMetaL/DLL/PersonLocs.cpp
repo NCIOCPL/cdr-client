@@ -23,8 +23,9 @@ static char THIS_FILE[] = __FILE__;
 
 
 CPersonLocs::CPersonLocs(const CString& id, CString& newTarg,
-                         CWnd* pParent /*=NULL*/)
-	: CDialog(CPersonLocs::IDD, pParent), docId(id), newTarget(newTarg)
+                         bool ppOnly /*=false*/, CWnd* pParent /*=NULL*/)
+	: CDialog(CPersonLocs::IDD, pParent), docId(id), newTarget(newTarg),
+      privatePracticeOnly(ppOnly)
 {
 	//{{AFX_DATA_INIT(CPersonLocs)
 		// NOTE: the ClassWizard will add member initialization here
@@ -78,9 +79,11 @@ BOOL CPersonLocs::OnInitDialog()
     // Create the command.
     std::basic_ostringstream<TCHAR> cmd;
     cmd << _T("<CdrReport><ReportName>Person Locations Picklist")
-           _T("</ReportName><ReportParams><ReportParam Name='DocId'")
-           _T(" Value='")
+           _T("</ReportName><ReportParams>")
+           _T("<ReportParam Name='DocId' Value='")
         << (LPCTSTR)docId
+        << _T("'/><ReportParam Name='PrivatePracticeOnly' Value='")
+        << (privatePracticeOnly ? _T("yes") : _T("no"))
         << _T("'/></ReportParams></CdrReport>");
 
     // Submit the request to the CDR server.
@@ -102,7 +105,10 @@ BOOL CPersonLocs::OnInitDialog()
 		m_choiceList.EnableWindow();
 	}
 	else {
-		::AfxMessageBox(_T("No locations found"));
+        if (privatePracticeOnly)
+    		::AfxMessageBox(_T("No private practice locations found"));
+        else
+    		::AfxMessageBox(_T("No locations found"));
         EndDialog(IDCANCEL);
     }
 	

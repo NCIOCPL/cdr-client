@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.12 2002-07-25 01:40:31 bkline Exp $
+ * $Id: EditElement.cpp,v 1.13 2002-07-26 20:31:56 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.12  2002/07/25 01:40:31  bkline
+ * Added multi-selection support to link editing.
+ *
  * Revision 1.11  2002/07/01 22:49:02  bkline
  * Removed remaining instances of hard-coded mmdb2.
  *
@@ -142,6 +145,7 @@ void CEditElement::OnOK()
     switch (type) {
         case NORMAL:
         case PROT_PERSON:
+        case PRIV_PRACTICE:
         case ORG_LOCATION:
 
             // Build the command to request the list of documents.
@@ -238,6 +242,7 @@ void CEditElement::OnSelectButton()
                 insertLeadOrg(str);
                 break;
             case PROT_PERSON:
+            case PRIV_PRACTICE:
                 if (!insertProtPerson(str))
                     return;
                 break;
@@ -254,7 +259,7 @@ bool CEditElement::insertProtPerson(const CString& str)
 {
     CdrLinkInfo linkInfo = cdr::extractLinkInfo(str);
     CString newTarget;
-    CPersonLocs personLocs(linkInfo.target, newTarget);
+    CPersonLocs personLocs(linkInfo.target, newTarget, type == PRIV_PRACTICE);
     if (personLocs.DoModal() == IDOK) {
         CCommands::doInsertLink(_T("[") + newTarget + _T("] ")
             + linkInfo.data);

@@ -14,7 +14,8 @@ class CPersonLocs : public CDialog
 {
 // Construction
 public:
-	CPersonLocs(const CString& docId, CString& newTarg,
+	CPersonLocs(const CString& docId, CString& newTarg, 
+                bool ppOnly = false,
                 CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
@@ -47,6 +48,7 @@ private:
     cdr::DocSet docSet;
     CString& newTarget;
     void extractChoices(const CString&);
+    bool privatePracticeOnly;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -17,7 +17,7 @@ class CEditElement : public CDialog
 {
 // Construction
 public:
-    enum Type { NORMAL, LEAD_ORG, PROT_PERSON, ORG_LOCATION };
+    enum Type { NORMAL, LEAD_ORG, PROT_PERSON, ORG_LOCATION, PRIV_PRACTICE };
     CEditElement(const CString&, const CString&, Type = NORMAL,
                  CWnd* pParent = NULL);   // standard constructor
 

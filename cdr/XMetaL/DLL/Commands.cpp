@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.26 2002-07-18 00:54:06 bkline Exp $
+ * $Id: Commands.cpp,v 1.27 2002-07-26 20:31:54 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.26  2002/07/18 00:54:06  bkline
+ * Adjusted XML encoding and added host name to title bar.
+ *
  * Revision 1.25  2002/07/01 22:49:01  bkline
  * Removed remaining instances of hard-coded mmdb2.
  *
@@ -997,6 +1000,8 @@ STDMETHODIMP CCommands::edit(int *pRet)
             }
             else if (elemName == _T("Person"))
                 editType = CEditElement::PROT_PERSON;
+            else if (elemName == _T("PrivatePracticeSiteID"))
+                editType = CEditElement::PRIV_PRACTICE;
         }
         else if (docType == _T("Person")) {
             if (elemName  == _T("OrganizationLocation")) {
