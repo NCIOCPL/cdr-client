@@ -21,6 +21,10 @@ private:
             w = r.GetText();
             w.MakeUpper(); 
         }
+        Word(::Range r_, CString s_) {
+            r = r_;
+            w = s_;
+        }
     };
     typedef std::vector<Word>    WordVector;
     struct WordChain {
@@ -49,6 +53,7 @@ private:
     ::Range              range;
     WordChains           chains;
     int                  curChain;
+    cdr::GlossaryNode*   curNode;
     void                 findChains(DOMNode& n);
     bool                 findNextMatch();
 public:
@@ -56,4 +61,5 @@ public:
     afx_msg void OnDone();
     afx_msg void OnMarkup();
     virtual BOOL OnInitDialog();
+    afx_msg void OnBnClickedGlossifySkipFirst();
 };

@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.39 2004-02-26 01:45:53 bkline Exp $
+ * $Id: Commands.cpp,v 1.40 2004-09-09 18:43:03 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.39  2004/02/26 01:45:53  bkline
+ * Added glossifier support.
+ *
  * Revision 1.38  2004/02/26 00:48:10  bkline
  * Fixed code broken by Microsoft in upgrade to Visual Studio 7.10.
  *
@@ -157,6 +160,7 @@
 #include <direct.h>
 #include <wchar.h>
 #include <windows.h>
+#include ".\commands.h"
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -2361,5 +2365,46 @@ STDMETHODIMP CCommands::glossify(void)
     CGlossify glossify;
     glossify.DoModal();
 
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::addGlossaryPhrase(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    // Find the element with the current focus.
+    ::Selection selection = cdr::getApp().GetSelection();
+    ::DOMElement elem = selection.GetContainerNode();
+
+    // Make sure we have a glossary term reference.
+    if (!elem || elem.GetNodeName() != _T("GlossaryTermRef")) {
+        ::AfxMessageBox(_T("No GlossaryTermRef at current location"), 
+            MB_ICONEXCLAMATION);
+        return S_OK;
+    }
+
+    // Extract the document ID (if there is one).
+    CString docIdElem;
+    CString docId = elem.getAttribute(_T("cdr:href"));
+    if (!docId.IsEmpty())
+        docIdElem = _T("<CdrId>") + docId + _T("</CdrId>");
+
+    // Extract the text content of the element.
+    selection.SelectContainerContents();
+    CString value = selection.GetText();
+
+    // Ask the server to add the phrase.
+    CString cmd = _T("<CdrAddExternalMapping>")
+                  _T("<Usage>GlossaryTerm Phrases</Usage>")
+                  _T("<Value>") + value + _T("</Value>")
+                + docIdElem
+                + _T("</CdrAddExternalMapping>");
+    CWaitCursor wc;
+    CString rsp = CdrSocket::sendCommand(cmd);
+    if (rsp.Find(_T("<Error")) != -1)
+        cdr::showErrors(rsp);
+    else
+        ::AfxMessageBox(_T("Glossary phrase added ")
+                        _T("to external mapping table."));
     return S_OK;
 }

@@ -52,6 +52,7 @@
 #define IDC_LINK_TITLE_LABEL            222
 #define IDC_TEXT_MESSAGE                224
 #define IDC_SUCCESS_ICON                225
+#define IDC_GLOSSIFY_SKIP_FIRST         226
 
 // Next default values for new objects
 // 
@@ -59,7 +60,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        220
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         226
+#define _APS_NEXT_CONTROL_VALUE         227
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

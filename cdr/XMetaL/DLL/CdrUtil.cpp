@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.24 2004-02-26 01:57:25 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.25 2004-09-09 18:43:03 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.24  2004/02/26 01:57:25  bkline
+ * Cleared out some experimental/debugging dross.
+ *
  * Revision 1.23  2004/02/26 01:45:53  bkline
  * Added glossifier support.
  *
@@ -174,7 +177,7 @@ CdrSocket::CdrSocket()
  *  @return                 string object containing the server's response.
  *  @exception  const char* if a communications error is encountered.
  */
-CString CdrSocket::sendCommand(const CString& cmd) 
+CString CdrSocket::sendCommand(const CString& cmd, bool guest) 
 {
     try {
 
@@ -184,6 +187,8 @@ CString CdrSocket::sendCommand(const CString& cmd)
         CString request = _T("<CdrCommandSet>");
         if (!sessionString.IsEmpty())
             request += _T("<SessionId>") + sessionString + _T("</SessionId>");
+        else if (guest)
+            request += _T("<SessionId>guest</SessionId>");
         request += _T("<CdrCommand>") + cmd 
             + _T("</CdrCommand></CdrCommandSet>");
 
@@ -1144,43 +1149,80 @@ int cdr::showPage(const CString& url)
 }
 #endif
 
+// For debugging.
+void logWrite(const CString& what) {
+    return;
+    FILE* logFile = fopen("c:/tmp/Phrase.log", "a");
+    static bool warned = false;
+    if (!logFile) {
+        if (!warned) {
+            warned = true;
+            ::AfxMessageBox(_T("Can't open log file"));
+        }
+        return;
+    }
+    fprintf(logFile, "%s\n", cdr::cStringToUtf8(what).c_str());
+    fclose(logFile);
+}
+
 cdr::GlossaryTree::GlossaryTree() {
-    std::string line;
-    std::ifstream is("c:/tmp/GlossaryPhrases.txt");
-    while (std::getline(is, line)) {
-        int numWords = 0;
-        std::string::size_type start = 0;
-        GlossaryNodeMap* currentMap = &nodeMap;
-        GlossaryNode*    currentNode = 0;
-        int docId = 0;
-        while (start < line.size()) {
-            std::string::size_type end = line.find('\t', start);
-            std::string word = line.substr(start, end - start);
-            if (start == 0)
-                docId = atoi(word.c_str());
-            else if (!word.empty()) {
-                CString w = utf8ToCString(word.c_str());
-                ++numWords;
-                GlossaryNodeMap::iterator iter = currentMap->find(w);
-                if (iter == currentMap->end())
-                    currentNode = (*currentMap)[w] = new GlossaryNode;
+    CString response = CdrSocket::sendCommand(_T("<CdrGetGlossaryMap/>"),
+                                              true);
+    // logWrite(response);
+    cdr::Element termElem = cdr::Element::extractElement(response, _T("Term"));
+    while (termElem) {
+        LPCTSTR p = (LPCTSTR)termElem.getAttribute(_T("id"));
+        int docId = _tcstoul(p, 0, 10);
+        CString termString = termElem.getString();
+        cdr::Element nameElem = cdr::Element::extractElement(termString,
+                                                             _T("Name"));
+        CString name = cdr::decode(nameElem.getString());
+        cdr::Element phraseElem = cdr::Element::extractElement(termString,
+                                                               _T("Phrase"));
+        names[docId] = name;
+        while (phraseElem) {
+            int numWords = 0;
+            int start = 0;
+            GlossaryNodeMap* currentMap = &nodeMap;
+            GlossaryNode*    currentNode = 0;
+            CString phrase = cdr::decode(phraseElem.getString());
+            while (start < phrase.GetLength()) {
+                int end = phrase.Find(_T(" "), start);
+                CString word;
+                if (end == -1)
+                    word = phrase.Mid(start);
                 else
-                    currentNode = iter->second;
-                currentMap = &currentNode->nodeMap;
+                    word = phrase.Mid(start, end - start);
+                if (!word.IsEmpty()) {
+                    CString msg;
+                    msg.Format(L"tree word '%s'", word);
+                    // logWrite(msg);
+                    ++numWords;
+                    GlossaryNodeMap::iterator iter = currentMap->find(word);
+                    if (iter == currentMap->end())
+                        currentNode = (*currentMap)[word] = new GlossaryNode;
+                    else
+                        currentNode = iter->second;
+                    currentMap = &currentNode->nodeMap;
+                }
+                if (end == -1)
+                    break;
+                start = ++end;
             }
-            start = end;
-            if (end != std::string::npos)
-                ++start;
-        }
-        if (currentNode)
-            currentNode->docId = docId;
-        if (numWords) {
-            if (numWords > (int)counts.size()) {
-                counts.resize(numWords);
-                counts[numWords - 1] = 0;
+            phraseElem = cdr::Element::extractElement(termString, _T("Phrase"),
+                                                      phraseElem.getEndPos());
+            if (currentNode)
+                currentNode->docId = docId;
+            if (numWords) {
+                if (numWords > (int)counts.size()) {
+                    counts.resize(numWords);
+                    counts[numWords - 1] = 0;
+                }
+                ++counts[numWords - 1];
             }
-            ++counts[numWords - 1];
         }
+        termElem = cdr::Element::extractElement(response, _T("Term"), 
+                                                termElem.getEndPos());
     }
 }
 
@@ -1192,5 +1234,19 @@ cdr::GlossaryTree::~GlossaryTree() {
     }
 }
 
-static cdr::GlossaryTree glossaryTree;
-cdr::GlossaryTree* cdr::getGlossaryTree() { return &glossaryTree; }
+// static cdr::GlossaryTree* glossaryTree;
+cdr::GlossaryTree* cdr::getGlossaryTree() {
+
+    // Make sure the memory gets cleaned up so BoundsChecker is happy.
+    struct GlossaryTreeWrapper {
+        GlossaryTreeWrapper() : tree(0) {}
+        ~GlossaryTreeWrapper() { if (tree) delete tree; }
+        cdr::GlossaryTree* tree;
+    };
+    static GlossaryTreeWrapper wrapper;
+
+    // No need for locking; we'll be called in a single thread.
+    if (!wrapper.tree)
+        wrapper.tree = new cdr::GlossaryTree;
+    return wrapper.tree;
+}

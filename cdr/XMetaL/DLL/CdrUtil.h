@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.14 2004-02-26 01:57:25 bkline Exp $
+ * $Id: CdrUtil.h,v 1.15 2004-09-09 18:43:03 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.14  2004/02/26 01:57:25  bkline
+ * Cleared out some experimental/debugging dross.
+ *
  * Revision 1.13  2004/02/26 01:47:16  bkline
  * Added glossifier support; upgraded to XMetaL 4 APIs.
  *
@@ -80,7 +83,7 @@ struct CdrLinkInfo {
  */
 class CdrSocket {
 public:
-    static CString sendCommand(const CString& command);
+    static CString sendCommand(const CString& command, bool = false);
 	static void setSessionString(const CString& s) { sessionString = s; }
 	static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }
@@ -165,6 +168,7 @@ namespace cdr {
         }
         GlossaryNodeMap nodeMap;
         std::vector<int> counts;
+        std::map<int, CString> names;
     };
     GlossaryTree* getGlossaryTree();
 

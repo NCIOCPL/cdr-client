@@ -5,12 +5,15 @@
 #include "Cdr.h"
 #include "Glossify.h"
 #include <stack>
+#include ".\glossify.h"
 
 // CGlossify dialog
 
+const TCHAR* TAG_NAME = _T("GlossaryTermRef");
+
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
 CGlossify::CGlossify(CWnd* pParent /*=NULL*/)
-	: CDialog(CGlossify::IDD, pParent), curChain(0)
+	: CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0)
 {
     _Application app = cdr::getApp();
     doc = app.GetActiveDocument();
@@ -35,12 +38,23 @@ BEGIN_MESSAGE_MAP(CGlossify, CDialog)
     ON_BN_CLICKED(IDOK2, OnSkip)
     ON_BN_CLICKED(IDCANCEL, OnDone)
     ON_BN_CLICKED(IDOK, OnMarkup)
+    ON_BN_CLICKED(IDC_GLOSSIFY_SKIP_FIRST, OnBnClickedGlossifySkipFirst)
 END_MESSAGE_MAP()
 
 
 // CGlossify message handlers
 
 void CGlossify::OnSkip()
+{
+    if (curNode)
+        curNode->markedUp = true;
+    if (!findNextMatch()) {
+        ::AfxMessageBox(_T("No more glossary phrases found"));
+        OnOK();
+    }
+}
+
+void CGlossify::OnBnClickedGlossifySkipFirst()
 {
     if (!findNextMatch()) {
         ::AfxMessageBox(_T("No more glossary phrases found"));
@@ -55,9 +69,11 @@ void CGlossify::OnDone()
 
 void CGlossify::OnMarkup()
 {
+    if (curNode)
+        curNode->markedUp = true;
     CString val;
     m_markup.GetWindowText(val);
-    range.Surround(_T("GlossaryTermRef"));
+    range.Surround(TAG_NAME);
 
     range.SetContainerAttribute(_T("cdr:href"), val);
     if (!findNextMatch()) {
@@ -68,40 +84,61 @@ void CGlossify::OnMarkup()
 
 void CGlossify::findChains(DOMNode& docElem)
 {
-    if (docType == _T("Summary")) {
-        ::DOMNode c = docElem.GetFirstChild();
-        while (c) {
-            if (c.GetNodeName() == _T("SummarySection"))
-                chains.push_back(WordChain(c, doc));
-            c = c.GetNextSibling();
+    _Document doc = cdr::getApp().GetActiveDocument();
+    doc.SetFormattingUpdating(FALSE);
+    try {
+        if (docType == _T("Summary")) {
+            ::DOMNode c = docElem.GetFirstChild();
+            while (c) {
+                if (c.GetNodeName() == _T("SummarySection"))
+                    chains.push_back(WordChain(c, doc));
+                c = c.GetNextSibling();
+            }
+        }
+        else if (docType == _T("InScopeProtocol") || 
+                 docType == _T("ScientificProtocolInfo")) 
+        {
+            ::DOMNode c = docElem.GetFirstChild();
+            while (c) {
+                if (c.GetNodeName() == _T("ProtocolAbstract")) {
+                    ::DOMNode gc = c.GetFirstChild();
+                    while (gc) {
+                        if (gc.GetNodeName() == _T("Patient")) {
+                            ::DOMNode ggc = gc.GetFirstChild();
+                            while (ggc) {
+                                ::CString name = ggc.GetNodeName();
+                                if (name == _T("Rationale") ||
+                                    name == _T("Purpose") ||
+                                    name == _T("EligibilityText") ||
+                                    name == _T("TreatmentIntervention"))
+                                    chains.push_back(WordChain(ggc, doc));
+                                ggc = ggc.GetNextSibling();
+                            }
+                        }
+                        gc = gc.GetNextSibling();
+                    }
+                }
+                c = c.GetNextSibling();
+            }
         }
     }
-    else if (docType == _T("InScopeProtocol") || 
-             docType == _T("ScientificProtocolInfo")) 
-    {
-         ::DOMNode c = docElem.GetFirstChild();
-         while (c) {
-             if (c.GetNodeName() == _T("ProtocolAbstract")) {
-                 ::DOMNode gc = c.GetFirstChild();
-                 while (gc) {
-                     if (gc.GetNodeName() == _T("Patient")) {
-                         ::DOMNode ggc = gc.GetFirstChild();
-                         while (ggc) {
-                             ::CString name = ggc.GetNodeName();
-                             if (name == _T("Rationale") ||
-                                 name == _T("Purpose") ||
-                                 name == _T("EligibilityText") ||
-                                 name == _T("TreatmentIntervention"))
-                                 chains.push_back(WordChain(ggc, doc));
-                             ggc = ggc.GetNextSibling();
-                         }
-                     }
-                     gc = gc.GetNextSibling();
-                 }
-             }
-             c = c.GetNextSibling();
-         }
-    }
+    catch (...) {}
+    doc.SetFormattingUpdating(TRUE);
+}
+        
+
+// For debugging.
+extern void logWrite(const CString& what);
+
+static CString normalizeWord(const CString& s) {
+    CString w = s;
+    // logWrite(_T("before normalization: '") + w + _T("'"));
+    TCHAR* chars = _T("'\".,?!:;()[]{}<>\x201C\x201D");
+    for (size_t i = 0; chars[i]; ++i)
+        w.Remove(chars[i]);
+    w.MakeUpper();
+    // logWrite(_T("after normalization: '") + w + _T("'"));
+    return w;
 }
 
 CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
@@ -111,14 +148,21 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
     ::Find find = range.GetFind();
     range.SelectBeforeNode(node);
     end.SelectAfterNode(node);
-    while (find.Execute(_T("[A-Za-z0-9]+"), _T(""), _T(""), 
-                        FALSE, TRUE, TRUE, TRUE, FALSE, 0, FALSE)) 
+    while (find.Execute(_T("[^-\n\r\t ]+"), _T(""), _T(""), 
+                        TRUE, FALSE, TRUE, TRUE, FALSE, 0, FALSE)) 
     {
         if (!range.GetIsLessThan(end, FALSE))
             break;
-        ::Range r = range.GetDuplicate();
-        Word w = Word(r);
-        words.push_back(w);
+        CString s = normalizeWord(range.GetText());
+        
+        if (!s.IsEmpty()) {
+            ::Range r = range.GetDuplicate();
+            Word w = Word(r, s);
+            words.push_back(w);
+            CString logMsg;
+            logMsg.Format(L"normalizedWord '%s'", s);
+            // logWrite(logMsg);
+        }
     }
     curWord = 0;
 }
@@ -151,6 +195,8 @@ bool CGlossify::findNextMatch()
 				return false;
 			chain = &chains[curChain];
 			wordsLeft = chains.size();
+            if (docType == _T("Summary"))
+                gt->clearFlags();
 		}
 
 		// Build the longest matching phrase we can from the current position.
@@ -176,25 +222,47 @@ bool CGlossify::findNextMatch()
                 Word& lastWord  = chain->words[chain->curWord + 
                                                phrase.size() - 1];
                 range = firstWord.r.GetDuplicate();
-                if (range.ExtendTo(lastWord.r)) {
+                bool glossifiable = true;
+                if (!range.ExtendTo(lastWord.r))
+                    glossifiable = false;
+                
+                // Make sure the phrase can be marked up.
+                if (glossifiable && !range.GetCanSurround(TAG_NAME))
+                    glossifiable = false;
 
-				    // Make sure the phrase can be marked up.
-				    if (range.GetCanSurround(_T("GlossaryTermRef"))) {
+                // Populate the controls of the dialog box.
+                if (glossifiable) {
+                    CString cdrId;
+                    CString phraseText = range.GetText();
+                    int i = phraseText.GetLength();
+                    const TCHAR* endPunct = _T(".;:,");
 
-					    // Populate the controls of the dialog box.
-					    CString cdrId;
-                        CString phraseText = range.GetText();
-					    cdrId.Format(_T("CDR%010d"), n->docId);
-					    m_phrase.SetWindowText(phraseText);
-					    m_markup.SetWindowText(cdrId);
+                    // Back up in front of trailing punctuation.
+                    if (i > 0 && _tcschr(endPunct, phraseText[i - 1])) {
+                        ::Range endPoint = lastWord.r.GetDuplicate();
+                        endPoint.Collapse(0);
+                        while (i-- > 0 && _tcschr(endPunct, phraseText[i]))
+                            endPoint.MoveLeft(0); // Broken; bug in XMetaL.
+                        phraseText.TrimRight(endPunct);
+                        range = firstWord.r.GetDuplicate();
+                        if (!range.ExtendTo(endPoint))
+                            glossifiable = false;
+                        else if (!range.GetCanSurround(TAG_NAME))
+                            glossifiable = false;
+                    }
+                    if (glossifiable) {
+                        CString name = gt->names[n->docId];
+                        cdrId.Format(_T("CDR%010d; %s"), n->docId, name);
+                        m_phrase.SetWindowText(phraseText);
+                        m_markup.SetWindowText(cdrId);
                         range.Select();
-
-					    // Skip past the current phrase.
-					    chain->curWord += phrase.size();
-                        n->markedUp = true;
-					    return true;
-				    }
-			    }
+                        
+                        // Skip past the current phrase.
+                        chain->curWord += phrase.size();
+                        curNode = n;
+                        return true;
+                    }
+                }
             }
 
 			// Shrink the phrase by one word.

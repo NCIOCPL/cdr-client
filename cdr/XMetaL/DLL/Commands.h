@@ -70,6 +70,7 @@ private:
 public:
     STDMETHOD(showPage)(const BSTR* url,  int* pRet);
     STDMETHOD(glossify)(void);
+    STDMETHOD(addGlossaryPhrase)(void);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)
