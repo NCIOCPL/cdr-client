@@ -102,6 +102,14 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuParent,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -148,6 +156,14 @@ DefinitionSourceName:before	{ content: "Definition Source * +: "; }
 DefinedTermId:before		{ content: "Defined Term ID &: "; }
 DefinitionText:before		{ content: "Definition Text *: "; }
 DefinitionType:before		{ content: "Definition Type *: "; }
+DisplayName:before          { content: "Display Name &: "; }
+EnteredBy:before            { content: "Entered By *: "; }
+EntryDate:before            { content: "Entry Date *: "; }
+/* MenuInformation:before      */
+MenuItem:before             { content: "MENU ITEM & +: "; }
+MenuParent:before           { content: "Menu Parent & +: "; }
+MenuStatus:before           { content: "Menu Status *: "; }
+MenuType:before             { content: "Menu Type *: "; }
 OtherName:before		{ content: "OTHER NAME & + "; }
 OtherNameType:before		{ content: "Other Name Type * +: "; }
 OtherTermName:before		{ content: "Other Term Name *: "; }
@@ -178,6 +194,15 @@ VocabularySource:before		{ content: "Vocabulary Source * +:"; }
 /*                     SECTION TITLES AND BORDERS                          */ 
 /***************************************************************************/ 
 
+
+MenuInformation,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt;
+     background-color: #CCCCFF;  }
 
 ParentTerm:before,
 RelatedTerm:before,
@@ -255,6 +280,14 @@ DefinitionSourceName:before,
 DefinedTermId:before,
 DefinitionText:before,
 OtherTermName:before,
+DisplayName:before,
+EnteredBy:before,
+EntryDate:before,
+MenuInformation:before,
+MenuItem:before,
+MenuParent:before,
+MenuStatus:before,
+MenuType:before,
 PdqKey:before,
 PreferredName:before,
 ReferenceSource:before,
@@ -364,7 +397,15 @@ DateLastModified,			{ margin-left: 100pt;
 PdqKey,					{ margin-left: 100pt;
 					  text-indent: -71pt; }
 
+/* Key element for length = MenuParent */
 
+DisplayName           { margin-left: 100pt; text-indent: -92pt; }
+EnteredBy             { margin-left: 100pt; text-indent: -73pt; }
+EntryDate             { margin-left: 100pt; text-indent: -69pt; }
+MenuParent            { margin-left: 100pt; text-indent: -95pt; }
+MenuStatus            { margin-left: 100pt; text-indent: -80pt; }
+MenuType              { margin-left: 100pt; text-indent: -73pt; }
+MenuItem > Comment    { margin-left: 100pt; text-indent: -75pt; }
 
 /* Margin-bottom to simulate a text box                                    */
 
@@ -376,6 +417,14 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuParent,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -416,6 +465,14 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuParent,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -453,6 +510,16 @@ DefinitionSourceName:before,
 DefinedTermId:before,
 DefinitionText:before,
 DefinitionType:before,
+DisplayName:before,
+EnteredBy:before,
+EntryDate:before,
+MenuInformation:before,
+MenuInformation,
+MenuItem,
+MenuItem:before,
+MenuParent:before,
+MenuStatus:before,
+MenuType:before,
 OtherName,
 OtherName:before,
 OtherNameType:before,
@@ -485,6 +552,3 @@ VocabularySource,
 VocabularySource:before,
 
 	{ background-color: #CCCCFF; }
-
-
-                     

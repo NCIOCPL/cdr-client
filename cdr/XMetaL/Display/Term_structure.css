@@ -99,6 +99,13 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -142,6 +149,14 @@ DefinitionSourceName:before	{ content: "Definition Source "; }
 DefinedTermId:before		{ content: "Defined Term ID "; }
 DefinitionText:before		{ content: "Definition Text "; }
 DefinitionType:before		{ content: "Definition Type "; }
+DisplayName:before          { content: "Display Name "; }
+EnteredBy:before            { content: "Entered By "; }
+EntryDate:before            { content: "Entry Date "; }
+MenuInformation:before      { content: "MENU INFORMATION "; }
+MenuItem:before             { content: "MENU ITEM "; }
+MenuParent:before           { content: "Menu Parent "; }
+MenuStatus:before           { content: "Menu Status "; }
+MenuType:before             { content: "Menu Type "; }
 OtherName:before		{ content: "OTHER NAME  "; }
 OtherNameType:before		{ content: "Other Name Type  "; }
 OtherTermName:before		{ content: "Other Term Name "; }
@@ -199,6 +214,7 @@ Term:before,
 OtherName,
 Definition,
 TermRelationship,
+MenuInformation
 
      { border: none;  }
 
@@ -215,6 +231,14 @@ DefinitionSource:before,
 DefinitionSourceName:before,
 DefinedTermId:before,
 DefinitionText:before,
+DisplayName:before,
+EnteredBy:before,
+EntryDate:before,
+MenuInformation:before,
+MenuItem:before,
+MenuParent:before,
+MenuStatus:before,
+MenuType:before,
 OtherName:before,
 OtherTermName:before,
 ParentTerm:before,
@@ -271,6 +295,14 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuParent,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -313,6 +345,14 @@ DefinitionSourceName,
 DefinedTermId,
 DefinitionText,
 DefinitionType,
+DisplayName,
+EnteredBy,
+EntryDate,
+MenuInformation,
+MenuItem,
+MenuParent,
+MenuStatus,
+MenuType,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -351,6 +391,14 @@ DefinitionSourceName:before,
 DefinedTermId:before,
 DefinitionText:before,
 DefinitionType:before,
+DisplayName:before,
+EnteredBy:before,
+EntryDate:before,
+MenuInformation:before,
+MenuItem:before,
+MenuParent:before,
+MenuStatus:before,
+MenuType:before,
 OtherName:before,
 OtherNameType:before,
 OtherTermName:before,
