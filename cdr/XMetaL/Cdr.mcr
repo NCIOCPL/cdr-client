@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.130 2004-11-02 18:18:11 bkline Exp $
+     $Id: Cdr.mcr,v 1.131 2004-11-03 22:11:35 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.130  2004/11/02 18:18:11  bkline
+     Plugged in fix for toolbar bug (#963).
+
      Revision 1.129  2004/10/29 19:10:15  bkline
      Added macro to insert board manager information in org documents.
 
@@ -5581,24 +5584,24 @@
         }
         var newElems = "<PDQBoardInformation>"
                      + "<BoardManager>"
-                     + "<?xm-replace_text {Enter required manager name} ?>"
+                     + "<?xm-replace_text {Enter Board Manager name} ?>"
                      + "</BoardManager>"
                      + "<BoardManagerPhone>"
-                     + "<?xm-replace_text {Enter required phone number} ?>"
+                     + "<?xm-replace_text {Enter Board Manager phone} ?>"
                      + "</BoardManagerPhone>"
                      + "<BoardManagerEmail>"
-                     + "<?xm-replace_text {Enter required email address} ?>"
+                     + "<?xm-replace_text {Enter Board Manager e-mail} ?>"
                      + "</BoardManagerEmail>"
                      + "<BoardMeetingDate>"
                      + "<Year>"
-                     + "<?xm-replace_text {Enter required year for set} ?>"
-                     + "</Year>"
+                     + "<?xm-replace_text {Enter year for set of meeting "
+                     + "dates} ?></Year>"
                      + "<Date>"
-                     + "<?xm-replace_text {Enter each meeting date"
-                     + " as a separate occurrence} ?>"
+                     + "<?xm-replace_text {Enter each meeting date for the"
+                     + " year as a separate occurrence} ?>"
                      + "</Date>"
                      + "<DayTime>"
-                     + "<?xm-replace_text {Enter required meeting time info}"
+                     + "<?xm-replace_text {Enter meeting day and time}"
                      + " ?></DayTime>"
                      + "</BoardMeetingDate>"
                      + "</PDQBoardInformation>";
