@@ -223,9 +223,6 @@
 			<File
 				RelativePath="res\CDRLoader.rc2">
 			</File>
-			<File
-				RelativePath="..\..\..\..\WIZ\VisualC\Wiz_and_Static_Libraries\Unzip32\Release\Unzip32.lib">
-			</File>
 		</Filter>
 		<File
 			RelativePath="ReadMe.txt">
