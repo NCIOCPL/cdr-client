@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.12 2002-07-18 00:51:37 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.13 2002-07-26 20:30:15 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.12  2002/07/18 00:51:37  bkline
+ * Added cdr::decode().
+ *
  * Revision 1.11  2002/07/05 18:57:59  bkline
  * Masked out 'readonly' attributes.
  *
@@ -133,6 +136,8 @@ CdrSocket::CdrSocket()
 CString CdrSocket::sendCommand(const CString& cmd) 
 {
     try {
+
+        CWaitCursor wc;
 
         // Wrap the command in a CdrCommandSet element.
         CString request = _T("<CdrCommandSet>");
