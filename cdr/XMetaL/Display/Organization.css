@@ -114,6 +114,10 @@ URI, /* First element in the list is not working */
 AffiliateMemberOf,
 AlternateName,
 FormerName,
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+BoardMeetingDate,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -126,6 +130,7 @@ CooperativeGroup,
 CurrentStatus,
 Date,
 DateLastModified,
+DayTime,
 IncludeInDirectory,
 Location,
 MainMember, 
@@ -147,6 +152,7 @@ OrganizationType,
 ParentOrganization, 
 PdqKey,
 PersonAssigned,
+PDQBoardInformation,
 PreferredDirectoryContactMode, 
 PreferredProtocolContactMode,
 PreferredProtocolOrganization,
@@ -157,6 +163,7 @@ ResearchBaseFor,
 ShortName,
 Status,
 Type,
+Year
 
 	{ display: block; }
 
@@ -174,6 +181,11 @@ Type,
 
 AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF & + "; }
 AlternateName:before			{ content: "Alternate Name & +: "; }
+BoardManager:before             { content: "Manager *: "; }
+BoardManagerPhone:before        { content: "Phone * @: "; }
+BoardManagerEmail:before        { content: "Email * @: "; }
+BoardMeetingDate:before         { content: "MEETING DATE(s) * +"; }
+DayTime:before                  { content: "Time *: "; }
 FormerName:before			{ content: "Former Name & +: "; }
 CCOP:before				{ content: "CCOP * @: "; }
 CIPSContact:before			{ content: "CIPS Contact *: "; }
@@ -214,6 +226,7 @@ OrganizationType:before			{ content: "Organization Type * + @: " }
 OrganizationType[Public="No"]:after	{ content: " (Not public) "; }
 OrganizationType:after			{ content: " (Public) "; }
 ParentOrganization:before		{ content: "Parent Org & @: "; }
+PDQBoardInformation:before { content: "PDQ BOARD INFORMATION &"; }
 PdqKey:before				{ content: "PDQ Key &: "; }
 PersonAssigned:before			{ content: "Person Assigned: "; }
 PreferredDirectoryContactMode:before	{ content: "Preferred Dir Contact &: "; }
@@ -224,6 +237,7 @@ ProtocolParticipation:before		{ content: "Protocol Participation? *: "; }
 ResearchBaseFor:before			{ content: "Research Base For & + @: "; }
 ShortName > Name:before			{ content: "Short Name & + @: "; }
 Status:before				{ content: "STATUS *"; }
+Year:before                 { content: "Year *: "; }
 
 
 /***************************************************************************/ 
@@ -232,7 +246,13 @@ Status:before				{ content: "STATUS *"; }
   
 
 AffiliateMemberOf:before,
+BoardManager:before,
+BoardManagerPhone:before,
+BoardManagerEmail:before,
+BoardMeetingDate:before,
 ClinicalTrialsOfficeContact:before,
+Date:before,
+DayTime:before,
 Location:before,
 MainMemberOf:before,
 OrganizationAdministrativeInformation:before,
@@ -241,7 +261,9 @@ OrganizationDetails:before,
 OrganizationLocation:before,
 OrganizationLocations:before,
 OrganizationNameInformation:before,
+PDQBoardInformation:before,
 Status:before,
+Year:before
 
 	{  font-weight: bold;
 	   color: black;        }  
@@ -256,6 +278,12 @@ OrganizationAdministrativeInformation,
 
 	{  margin-top: .5em;  
 	   margin-bottom: .5em;   }
+
+PDQBoardInformation,
+BoardMeetingDate
+
+	{  margin-top: 1em;  
+	   margin-bottom: 1em;   }
 
 CIPSContactPerson,
 ClinicalTrialsOfficeContact,
@@ -293,6 +321,7 @@ ClinicalTrialsOfficeContact,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
+PDQBoardInformation,
 Status,
 
    { border: solid; 
@@ -447,10 +476,21 @@ ClinicalTrialsOfficeContactEmail        { margin-left: 110pt; text-indent: -96pt
 ClinicalTrialsOfficeContactPhone        { margin-left: 110pt; text-indent: -107pt; }
 ClinicalTrialsOfficeContactName         { margin-left: 110pt; text-indent: -82.5pt; }
 
+BoardManager                 { margin-left: 100pt; text-indent: -65pt; }
+BoardManagerPhone            { margin-left: 100pt; text-indent: -68pt; }
+BoardManagerEmail            { margin-left: 100pt; text-indent: -62pt; }
+DayTime                      { margin-left: 100pt; text-indent: -43.5pt; }
+BoardMeetingDate > Year      { margin-left: 100pt; text-indent: -41.5pt; }
+BoardMeetingDate > Date      { margin-left: 100pt; text-indent: -41.5pt; }
+
 /* Margin-bottom to simulate a text box                                    */
 
 AffiliateMemberOf,
 AlternateName,
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+DayTime,
 FormerName,
 CCOP,
 CIPSContact,
@@ -493,6 +533,7 @@ Public,
 ResearchBaseFor,
 ShortName,
 Status,
+Year
 
 	{ margin-bottom: 4pt; }
 
@@ -510,6 +551,10 @@ IncludeInDirectory,
 
 
 AlternateName,
+BoardManager,
+BoardManagerPhone,
+BoardManagerEmail,
+DayTime,
 FormerName,
 CCOP,
 CIPSContact,
@@ -548,12 +593,18 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 Status,
+Year
 
 	{ background-color: white; }
 
 
 AffiliateMemberOf,
 AlternateName:before,
+BoardManager:before,
+BoardManagerPhone:before,
+BoardManagerEmail:before,
+BoardMeetingDate:before,
+DayTime:before,
 FormerName:before,
 CCOP:before,
 CIPSContact:before,
@@ -604,6 +655,7 @@ ResearchBaseFor:before,
 ShortName,
 ShortName:before,
 Status,
+Year:before
 
 	{ background-color: #CCCCFF; }
 
