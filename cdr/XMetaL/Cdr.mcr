@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.99 2003-05-05 22:00:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.100 2003-05-08 18:37:54 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.99  2003/05/05 22:00:40  bkline
+     Added support for Org address clipboard support.
+
      Revision 1.98  2003/03/04 16:47:42  bkline
      Modified macro Insert Participating Org as requested by enhancement #433.
 
@@ -1282,6 +1285,12 @@
                            "Reject all markup changes",
                            "CDR", 2, 9,
                            false),
+            new CdrCmdItem("&Back Out Rejected Changes",
+                           "Back Out Rejected Markup",
+                           "Back Out Rejected Changes",
+                           "Back out rejected tracked changes",
+                           "Design (Custom)", 4, 10,
+                           false),
             new CdrCmdItem("Vie&w Changes With Highlighting",
                            "Show Changes With Highlighting",
                            "View Changes With Highlighting",
@@ -1662,7 +1671,13 @@
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
-                           false)
+                           false),
+            new CdrCmdItem(null,
+                           "Back Out Rejected Markup",
+                           "Back Out Rejected Changes",
+                           "Back out rejected tracked changes",
+                           "Design (Custom)", 4, 10,
+                           true)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -3853,11 +3868,33 @@
         var delElem = ActiveDocument.Range;
         var insElem = ActiveDocument.Range;
         var keepGoing = true;
+        var markupLevel = "";
+        var dlg = Application.CreateFormDlg("Forms/CDR/FindNextMarkup.xft");
+        dlg.MarkupLevel.Value = 2;
+        if (dlg.DoModal() != 1)
+            return;
+        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
+        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
+        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
         while (keepGoing) {
             delElem.Collapse();
             insElem.Collapse();
             var foundDel = delElem.MoveToElement('Deletion', true);
             var foundIns = insElem.MoveToElement('Insertion', true);
+            while (foundDel && markupLevel) {
+                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
+                if (lvl == markupLevel)
+                    break;
+                delElem.Collapse();
+                foundDel = delElem.MoveToElement('Deletion', true);
+            }
+            while (foundIns && markupLevel) {
+                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
+                if (lvl == markupLevel)
+                    break;
+                insElem.Collapse();
+                foundIns = insElem.MoveToElement('Insertion', true);
+            }
             if (!foundDel && !foundIns) {
                 keepGoing = Application.Confirm(
                     "Reached the end of the Document.  " +
@@ -3961,11 +3998,32 @@
         var delElem = ActiveDocument.Range;
         var insElem = ActiveDocument.Range;
         var keepGoing = true;
+        var markupLevel = "";
+        var dlg = Application.CreateFormDlg("Forms/CDR/FindNextMarkup.xft");
+        dlg.MarkupLevel.Value = 2;
+        dlg.TheFrame.Title = "Find Previous Revision Markup";
+        if (dlg.DoModal() != 1)
+            return;
+        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
+        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
+        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
         while (keepGoing) {
             //delElem.Collapse();
             //insElem.Collapse();
             var foundDel = delElem.MoveToElement('Deletion', false);
             var foundIns = insElem.MoveToElement('Insertion', false);
+            while (foundDel && markupLevel) {
+                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
+                if (lvl == markupLevel)
+                    break;
+                foundDel = delElem.MoveToElement('Deletion', false);
+            }
+            while (foundIns && markupLevel) {
+                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
+                if (lvl == markupLevel)
+                    break;
+                foundIns = insElem.MoveToElement('Insertion', false);
+            }
             if (!foundDel && !foundIns) {
                 keepGoing = Application.Confirm(
                     "Reached the beginning of the Document.  " +
@@ -5652,9 +5710,51 @@
 </MACRO>
 
 <MACRO name="Verify Specialties" 
-        key="Alt+Z"
        lang="JScript" >
     cdrObj.showPage("http://www.abms.org/");
+</MACRO>
+
+<MACRO name="Back Out Rejected Markup" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+
+    //----------------------------------------------------------------------
+    // Drop marked changes.
+    //----------------------------------------------------------------------
+    function backOutRejectedMarkup()
+    {
+        var r = ActiveDocument.Range;
+        r.MoveToDocumentStart();
+        while (r.MoveToElement("Deletion")) {
+            var elem = r.ContainerNode;
+            var revLevel = elem.getAttribute("RevisionLevel");
+            if (revLevel == "rejected")
+                r.RemoveContainerTags();
+        }
+        r.MoveToDocumentStart();
+        while (r.MoveToElement("Insertion")) {
+            var elem = r.ContainerNode;
+            var revLevel = elem.getAttribute("RevisionLevel");
+            if (revLevel == "rejected") {
+                r.SelectContainerContents();
+                r.Delete();
+                r.RemoveContainerTags();
+            }
+        }
+        r = null;
+    }
+
+    if (CanRunMacros()) {
+        var confirm = Application.Confirm("Do you want to back out all " +
+                                          "rejected changes without " +
+                                          "reviewing them?");
+        if (confirm) {
+            backOutRejectedMarkup();
+        }
+    }
+
+  ]]>
 </MACRO>
 
 </MACROS>
