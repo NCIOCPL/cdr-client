@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.63 2002-06-11 13:33:11 bkline Exp $
+     $Id: Cdr.mcr,v 1.64 2002-06-13 19:01:16 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.63  2002/06/11 13:33:11  bkline
+     Moved new NHL Text button.
+
      Revision 1.62  2002/06/11 13:26:30  bkline
      Plugged in new icon for NHL Text Macro button.
 
@@ -233,8 +236,12 @@
     var CdrSession  = "";
     try {
         if (cdrObj) {
-            CdrUserName = cdrObj.username;
-            CdrSession  = cdrObj.session;
+            CdrUserName  = cdrObj.username;
+            CdrSession   = cdrObj.session;
+            if (cdrObj.hostname) {
+                CdrWebServer = "http://" + cdrObj.hostname;
+                CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
+            }
         }
     }
     catch (ignoreMe) {}
@@ -315,6 +322,10 @@
             cdrObj.logon();
             CdrUserName = cdrObj.username;
             CdrSession  = cdrObj.session;
+            if (cdrObj.hostname) {
+                CdrWebServer = "http://" + cdrObj.hostname;
+                CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
+            }
             //Application.Alert("User Name is " + CdrUserName);
         }
     }
@@ -3890,7 +3901,7 @@
   <![CDATA[
 
     function termHierarchyDisplay() {
-        var url = "http://mmdb2.nci.nih.gov/cgi-bin/cdr/TermHierarchy.py";
+        var url = CdrCgiBin + "TermHierarchy.py";
         if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
             var nodes = 
                 Application.ActiveDocument.getElementsByTagName("DocId");
@@ -3921,8 +3932,7 @@
             if (nodes.length > 0) {
                 var elem  = nodes.item(0);
                 var docId = getTextContent(elem);
-                var url = "http://mmdb2.nci.nih.gov/cgi-bin/cdr/" +
-                          "TermUsage.py?DocId=" + docId;
+                var url = CdrCgiBin + "TermUsage.py?DocId=" + docId;
                 Application.ShowPage(url);
             }
             else {
