@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.6 2003-08-14 21:57:50 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.7 2004-08-10 19:29:13 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2003/08/14 21:57:50  bkline
+ * Added handling for Compact='No' in ordered lists.
+ *
  * Revision 1.5  2003/02/05 21:02:30  bkline
  * Implemented support for non-compact itemized lists (Bugzilla #544).
  *
@@ -539,10 +542,16 @@ Deletion
      { text-decoration: line-through;
        color: red; }
 
+Deletion[RevisionLevel='approved']
+
+     { text-decoration: line-through;
+       color: #009999; }
+
 Insertion 
 
      { color: red; }
 
+Insertion[RevisionLevel='approved'] { color: #009999 }
 
 /*       Special case style elements                                       */
 
@@ -634,6 +643,79 @@ Insertion>Answer
      { text-indent: 20pt; 
        color: red;        }
 
+Insertion[RevisionLevel='approved']>CitationLink,
+Insertion[RevisionLevel='approved']>CitationLink:before,
+Insertion[RevisionLevel='approved']>CitationRef,
+Insertion[RevisionLevel='approved']>CitationReference:before,
+Insertion[RevisionLevel='approved']>ExternalRef,
+Insertion[RevisionLevel='approved']>GlossaryRef,
+Insertion[RevisionLevel='approved']>GlossaryTerm,
+Insertion[RevisionLevel='approved']>GlossaryTermLink,
+Insertion[RevisionLevel='approved']>GlossaryTermRef,
+Insertion[RevisionLevel='approved']>InterventionName,
+Insertion[RevisionLevel='approved']>LOEFragmentLink, 
+Insertion[RevisionLevel='approved']>LOEFragmentRef,
+Insertion[RevisionLevel='approved']>LOELink,
+Insertion[RevisionLevel='approved']>LOERef,
+Insertion[RevisionLevel='approved']>LOEReference,
+Insertion[RevisionLevel='approved']>SummaryFragmentLink,
+Insertion[RevisionLevel='approved']>SummaryFragmentRef,
+Insertion[RevisionLevel='approved']>SummaryLink,
+Insertion[RevisionLevel='approved']>SummaryRef,
+
+     { text-decoration: underline; 
+       color: #009999; }
+
+Insertion[RevisionLevel='approved']>ProtocolLink,
+Insertion[RevisionLevel='approved']>ProtocolRef,
+Insertion[RevisionLevel='approved']>ProtocolReference,
+
+     { text-decoration: underline; 
+       color: #009999; }
+
+Insertion[RevisionLevel='approved']>DrugName,
+Insertion[RevisionLevel='approved']>Emphasis,
+Insertion[RevisionLevel='approved']>ForeignWord,
+Insertion[RevisionLevel='approved']>GeneName,
+Insertion[RevisionLevel='approved']>Note,
+Insertion[RevisionLevel='approved']>Quote,
+Insertion[RevisionLevel='approved']>ScientificName,
+
+     { font-style: italic; 
+       color: #009999;         }
+
+Insertion[RevisionLevel='approved']>Strong,
+
+     { font-weight: bold;  
+       color: #009999;          }
+
+Insertion[RevisionLevel='approved']>Subscript,
+
+     { vertical-align: sub; 
+       color: #009999;           }
+
+Insertion[RevisionLevel='approved']>Superscript,
+
+     { vertical-align: super; 
+       color: #009999;             }
+
+Insertion[RevisionLevel='approved']>Note,
+Insertion[RevisionLevel='approved']>Note:before,
+Insertion[RevisionLevel='approved']>Note:after,
+
+     { font-size: 10pt;
+       color: #009999;     }
+
+Insertion[RevisionLevel='approved']>Question 
+
+     { font-weight: bold; 
+       color: #009999;         }
+
+Insertion[RevisionLevel='approved']>Answer 
+
+     { text-indent: 20pt; 
+       color: #009999;        }
+
 
 Deletion>CitationLink,
 Deletion>CitationLink:before,
@@ -716,6 +798,89 @@ Deletion>Answer
      { text-indent: 20pt; 
        text-decoration: line-through;
        color: red;        }
+
+
+Deletion[RevisionLevel='approved']>CitationLink,
+Deletion[RevisionLevel='approved']>CitationLink:before,
+Deletion[RevisionLevel='approved']>CitationRef,
+Deletion[RevisionLevel='approved']>CitationReference:before,
+Deletion[RevisionLevel='approved']>ExternalRef,
+Deletion[RevisionLevel='approved']>GlossaryRef,
+Deletion[RevisionLevel='approved']>GlossaryTerm,
+Deletion[RevisionLevel='approved']>GlossaryTermLink,
+Deletion[RevisionLevel='approved']>GlossaryTermRef,
+Deletion[RevisionLevel='approved']>InterventionName,
+Deletion[RevisionLevel='approved']>LOEFragmentLink, 
+Deletion[RevisionLevel='approved']>LOEFragmentRef,
+Deletion[RevisionLevel='approved']>LOELink,
+Deletion[RevisionLevel='approved']>LOERef,
+Deletion[RevisionLevel='approved']>LOEReference,
+Deletion[RevisionLevel='approved']>SummaryFragmentLink,
+Deletion[RevisionLevel='approved']>SummaryFragmentRef,
+Deletion[RevisionLevel='approved']>SummaryLink,
+Deletion[RevisionLevel='approved']>SummaryRef,
+
+     { text-decoration: underline;
+       text-decoration: line-through; 
+       color: #009999; }
+
+Deletion[RevisionLevel='approved']>ProtocolLink,
+Deletion[RevisionLevel='approved']>ProtocolRef,
+Deletion[RevisionLevel='approved']>ProtocolReference,
+
+     { text-decoration: underline; 
+       text-decoration: line-through;
+       color: #009999; }
+
+Deletion[RevisionLevel='approved']>DrugName,
+Deletion[RevisionLevel='approved']>Emphasis,
+Deletion[RevisionLevel='approved']>ForeignWord,
+Deletion[RevisionLevel='approved']>GeneName,
+Deletion[RevisionLevel='approved']>Note,
+Deletion[RevisionLevel='approved']>Quote,
+Deletion[RevisionLevel='approved']>ScientificName,
+
+     { font-style: italic; 
+       text-decoration: line-through;
+       color: #009999;        }
+
+Deletion[RevisionLevel='approved']>Strong,
+
+     { font-weight: bold;  
+       text-decoration: line-through;
+       color: #009999;       }
+
+Deletion[RevisionLevel='approved']>Subscript,
+
+     { vertical-align: sub; 
+       text-decoration: line-through;
+       color: #009999;        }
+
+Deletion[RevisionLevel='approved']>Superscript,
+
+     { vertical-align: super; 
+       text-decoration: line-through;
+       color: #009999;       }
+
+Deletion[RevisionLevel='approved']>Note,
+Deletion[RevisionLevel='approved']>Note:before,
+Deletion[RevisionLevel='approved']>Note:after,
+
+     { font-size: 10pt;
+       text-decoration: line-through;
+       color: #009999;     }
+
+Deletion[RevisionLevel='approved']>Question 
+
+     { font-weight: bold; 
+       text-decoration: line-through;
+       color: #009999;         }
+
+Deletion[RevisionLevel='approved']>Answer 
+
+     { text-indent: 20pt; 
+       text-decoration: line-through;
+       color: #009999;        }
 
 
 /***************************************************************************/ 
