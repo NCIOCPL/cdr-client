@@ -1,10 +1,13 @@
 #----------------------------------------------------------------------
 #
-# $Id: Makefile,v 1.1 2002-12-17 20:11:06 bkline Exp $
+# $Id: Makefile,v 1.2 2002-12-17 20:47:12 bkline Exp $
 #
 # Rules for building and packing up CDR client files.
 #
 # $Log: not supported by cvs2svn $
+# Revision 1.1  2002/12/17 20:11:06  bkline
+# New script for building and packing CDR client files.
+#
 #----------------------------------------------------------------------
 
 #----------------------------------------------------------------------
@@ -24,7 +27,10 @@ CDRLoaderSetup.exe: CDRLoaderSetup.zip unzipsfx.exe
 
 CDRLoaderSetup.zip: $(ARCHIVE_FILES)
 	rm -rf CDRLoaderSetup.zip
-	zip CDRLoaderSetup.zip $(ARCHIVE_FILES)
+	rm -rf CDRLoaderSetup
+	mkdir CDRLoaderSetup
+	cp -p $(ARCHIVE_FILES) CDRLoaderSetup
+	zip -rm CDRLoaderSetup.zip CDRLoaderSetup
 
 CDRLoader.exe:
 	rm -rf CDRLoader.exe
@@ -33,3 +39,4 @@ CDRLoader.exe:
 
 clean:
 	rm -rf CDRLoaderSetup.exe CDRLoaderSetup.zip CDRLoader.exe CDRLoader.ncb
+	rm -rf CDRLoaderSetup
