@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.107 2003-11-20 21:37:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.108 2003-11-29 13:18:48 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.107  2003/11/20 21:37:34  bkline
+     Added toolbar button for CTGovProtocol QC report.
+
      Revision 1.106  2003/11/13 01:42:28  bkline
      Added CTGovProtocol toolbar.  Added macro to diff CWD against
      previous version.
@@ -2282,6 +2285,12 @@
                            // "CDR", 6, 5,                
                            "Databases (Custom)", 2, 9,  // Icon set, row, col.
                            false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false),
             new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
                            "QC Report",                 // Tooltip.
