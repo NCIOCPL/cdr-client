@@ -1123,7 +1123,11 @@
     <Template>
       <Name>Objectives</Name>
       <MiniTemplate><![CDATA[<Objectives>
-<Para><?xm-replace_text {Paragraph} ?></Para>
+<OrderedList Style="URoman">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</OrderedList>
 </Objectives>]]></MiniTemplate>
     </Template>
     <Template>
@@ -1194,9 +1198,12 @@
       <Name>Professional</Name>
       <MiniTemplate><![CDATA[<Professional>
 <Objectives>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</Objectives>
-<Outline>
+<OrderedList Style="URoman">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</OrderedList>
+</Objectives><Outline>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </Outline>
 <EntryCriteria>
@@ -1222,21 +1229,20 @@
       <MiniTemplate><![CDATA[<ProtocolAbstract>
 <Professional>
 <Objectives>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</Objectives>
-<Outline>
+<OrderedList Style="URoman">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</OrderedList>
+</Objectives><Outline>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </Outline>
 <EntryCriteria>
 <DiseaseCharacteristics>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 </DiseaseCharacteristics>
-<PatientCharacteristics>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PatientCharacteristics>
-<PriorConcurrentTherapy>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</PriorConcurrentTherapy>
+<PatientCharacteristics></PatientCharacteristics>
+<PriorConcurrentTherapy></PriorConcurrentTherapy>
 </EntryCriteria>
 <ProjectedAccrual>
 <Para><?xm-replace_text {Paragraph} ?></Para>
