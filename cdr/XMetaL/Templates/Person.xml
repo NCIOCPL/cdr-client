@@ -12,7 +12,7 @@
 	 <Prefix><?xm-replace_text {Optionally select a prefix} ?></Prefix> 
 	 <GenerationSuffix><?xm-replace_text {Optionally select a generational suffix} ?></GenerationSuffix>
 	 <ProfessionalSuffix> 
-		<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>
+		<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional suffix} ?></StandardProfessionalSuffix>
 		<CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>
 		</ProfessionalSuffix> 
 	 <NameFormat><?xm-replace_text {Optionally select a name format} ?></NameFormat>
@@ -54,10 +54,10 @@
 	 <Home> 
 		<PostalAddress AddressType="US"> 
 		  <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-		  <City><?xm-replace_text {Enter a city name (required)} ?></City> 
+		  <City><?xm-replace_text {Optionally enter a city name} ?></City> 
 		  <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 		  <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-		  <Country><?xm-replace_text {Optionally select a country link} ?></Country> 
+		  <Country><?xm-replace_text {Select a country link (required)} ?></Country> 
 		  <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 		  </PostalAddress> 
 		<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
@@ -70,10 +70,10 @@
 		<PrivatePracticeLocation> 
 		<PostalAddress AddressType="US"> 
 		  <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-		  <City><?xm-replace_text {Enter a city name (required)} ?></City> 
+		  <City><?xm-replace_text {Optionally enter a city name} ?></City> 
 		  <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 		  <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-		  <Country><?xm-replace_text {Optionally select a geographic link} ?></Country> 
+		  <Country><?xm-replace_text {Select a country link (required)} ?></Country> 
 		  <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 		  </PostalAddress> 
 		<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
