@@ -174,6 +174,7 @@ MainTopics,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
+ReplacementFor,
 SecondaryTopics, 
 SectMetaData,
 SectionType,
@@ -206,6 +207,7 @@ DateLastModified:before			{ content: "Last Modified &: "; }
 /*KeyPoint:before			{ content: "Key Point & +: "; } */
 MainTopics>Term:before			{ content: "Main Topics * +: "; }
 PdqKey:before				{ content: "PDQ Key &: "; }
+ReplacementFor:before       { content: "Replacement for &: "; }
 SecondaryTopics>Term:before 		{ content: "Secondary Topics & +: " }
 SummaryType:before			{ content: "Summary Type *: "; }
 SummaryAudience:before			{ content: "Summary Audience *: "; }
@@ -283,6 +285,7 @@ KeyPoint,
 KeyPoint:before,
 DateLastModified:before,
 PatientVersionOf:before,
+ReplacementFor:before,
 
      { font-weight: bold;
        font-size: 12pt;
@@ -449,6 +452,7 @@ PatientVersionOf,
 PdqKey,
 SummaryType,
 TranslationOf,
+ReplacementFor,
 
 	{ margin-top: 4pt; }
 

@@ -149,6 +149,7 @@ SummaryType,
 Term, 
 Title, 
 TranslationOf,
+ReplacementFor
 
     { display: block; }
 
@@ -202,6 +203,7 @@ SummarySection>SummarySection>SummarySection>SummarySection>Title:before
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
 				{ content: "Sub-sub-sub-sub-section Title: "; }
 TranslationOf:before		{ content: "Translation Of "; }
+ReplacementFor:before		{ content: "Replacement For "; }
 
 
 /***************************************************************************/ 
@@ -301,6 +303,7 @@ SummarySection>Para:before,
 SummarySection>SummarySection>Para:before,
 Title:before,
 TranslationOf:before,
+ReplacementOf:before
 
      { color: black; 
        font-weight: bold; 
@@ -349,6 +352,7 @@ SummaryType,
 Term, 
 /*Title, */
 TranslationOf,
+ReplacementFor
 
      { color: white;
        background-color: white; }
