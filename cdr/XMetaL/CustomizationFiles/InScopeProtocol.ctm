@@ -1029,12 +1029,12 @@
     </Template>
     <Template>
       <Name>SponsorName</Name>
-      <MiniTemplate><![CDATA[<SponsorName><?xm-replace_text {Enter the protocol's sponsoring agency (required)} ?></SponsorName>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<SponsorName><?xm-replace_text {Select the protocol's sponsoring agency (required)} ?></SponsorName>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ProtocolSponsors</Name>
       <MiniTemplate><![CDATA[<ProtocolSponsors>
-<SponsorName><?xm-replace_text {Enter the protocol's sponsoring agency (required)} ?></SponsorName>
+<SponsorName><?xm-replace_text {Select the protocol's sponsoring agency (required)} ?></SponsorName>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolSponsors>]]></MiniTemplate>
     </Template>
