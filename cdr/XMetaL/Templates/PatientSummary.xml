@@ -174,7 +174,7 @@ appropriate.]</Para>
 </SectMetaData>
 <KeyPoint>There are different types of treatment for  patients with X cancer.</KeyPoint>
 <Para>Different types of treatments are available for  patients with X cancer. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
-<Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
+<Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web Site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
 </SummarySection>
 
 <SummarySection>
@@ -238,7 +238,7 @@ appropriate.]</Para>
 </SummarySection>
 
 <SummarySection>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>.</Para>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web Site</ExternalRef>.</Para>
 </SummarySection>
 </SummarySection>
 
@@ -298,7 +298,7 @@ appropriate.]</Para>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>.</Para>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web Site</ExternalRef>.</Para>
 </SummarySection>
 
 <SummarySection>
@@ -312,7 +312,7 @@ appropriate.]</Para>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>.</Para>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web Site</ExternalRef>.</Para>
 </SummarySection>
 </SummarySection>
 
@@ -329,7 +329,7 @@ appropriate.]</Para>
 	  <ListItem>[treatment here]</ListItem>
 	  <ListItem>A clinical trial of ....</ListItem>
 	  </ItemizedList>
-<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>.</Para>
+<Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web Site</ExternalRef>.</Para>
 </SummarySection>
 
 <PatientVersionOf><?xm-replace_text {Select a link to the Health Professionals summary} ?></PatientVersionOf><DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
