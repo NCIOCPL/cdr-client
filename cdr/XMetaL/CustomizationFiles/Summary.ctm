@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.2 2002-01-24 22:11:50 ebator Exp $ -->
+<!-- $Id: Summary.ctm,v 1.3 2002-02-21 14:05:12 ebator Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
@@ -581,5 +581,35 @@
       <Name>SummaryLanguage</Name>
       <MiniTemplate><![CDATA[<SummaryLanguage>English</SummaryLanguage>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name>Insertion</Name>
+      <MiniTemplate><![CDATA[<Insertion RevisionLevel="approved"></Insertion>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Deletion</Name>
+      <MiniTemplate><![CDATA[<Deletion RevisionLevel="approved"></Deletion>]]></MiniTemplate>
+    </Template>
   </Templates>
+  <ChangeLists>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>SummarySection</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>AltTitle</ChangeListElement>
+        <ChangeListElement>Contact</ChangeListElement>
+        <ChangeListElement>ItemizedList</ChangeListElement>
+        <ChangeListElement>KeyPoint</ChangeListElement>
+        <ChangeListElement>LiteralLayout</ChangeListElement>
+        <ChangeListElement>OrderedList</ChangeListElement>
+        <ChangeListElement>Para</ChangeListElement>
+        <ChangeListElement>QandASet</ChangeListElement>
+        <ChangeListElement>SummarySection</ChangeListElement>
+        <ChangeListElement>Table</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+  </ChangeLists>
 </DTDExtensions>
