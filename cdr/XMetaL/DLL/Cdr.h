@@ -2,9 +2,9 @@
 
 
 /* File created by MIDL compiler version 5.01.0164 */
-/* at Mon Jun 11 16:05:02 2001
+/* at Thu Nov 15 11:30:44 2001
  */
-/* Compiler settings for D:\cdr\src\CdrClient\Cdr.idl:
+/* Compiler settings for C:\cdr\src\CdrClient\Cdr.idl:
     Oicf (OptLev=i2), W1, Zp8, env=Win32, ms_ext, c_ext
     error checks: allocation ref bounds_check enum stub_data 
 */
@@ -103,6 +103,34 @@ EXTERN_C const IID IID_ICommands;
             /* [in] */ const BSTR __RPC_FAR *elemName,
             /* [retval][out] */ BOOL __RPC_FAR *pVal) = 0;
         
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE advancedSearch( 
+            /* [retval][out] */ int __RPC_FAR *retVal) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_username( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE protUpdPerson( 
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE getPersonAddress( 
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE particOrgs( 
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE getOrgAddress( 
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE pasteDocLink( 
+            const BSTR __RPC_FAR *val,
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
+        virtual /* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE get_session( 
+            /* [retval][out] */ BSTR __RPC_FAR *pVal) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE checkIn( 
+            /* [retval][out] */ int __RPC_FAR *pRet) = 0;
+        
     };
     
 #else 	/* C style interface */
@@ -185,6 +213,43 @@ EXTERN_C const IID IID_ICommands;
             /* [in] */ const BSTR __RPC_FAR *elemName,
             /* [retval][out] */ BOOL __RPC_FAR *pVal);
         
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *advancedSearch )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *retVal);
+        
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_username )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *protUpdPerson )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *getPersonAddress )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *particOrgs )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *getOrgAddress )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *pasteDocLink )( 
+            ICommands __RPC_FAR * This,
+            const BSTR __RPC_FAR *val,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
+        /* [helpstring][id][propget] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *get_session )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ BSTR __RPC_FAR *pVal);
+        
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE __RPC_FAR *checkIn )( 
+            ICommands __RPC_FAR * This,
+            /* [retval][out] */ int __RPC_FAR *pRet);
+        
         END_INTERFACE
     } ICommandsVtbl;
 
@@ -244,6 +309,33 @@ EXTERN_C const IID IID_ICommands;
 
 #define ICommands_isReadOnly(This,docType,elemName,pVal)	\
     (This)->lpVtbl -> isReadOnly(This,docType,elemName,pVal)
+
+#define ICommands_advancedSearch(This,retVal)	\
+    (This)->lpVtbl -> advancedSearch(This,retVal)
+
+#define ICommands_get_username(This,pVal)	\
+    (This)->lpVtbl -> get_username(This,pVal)
+
+#define ICommands_protUpdPerson(This,pRet)	\
+    (This)->lpVtbl -> protUpdPerson(This,pRet)
+
+#define ICommands_getPersonAddress(This,pRet)	\
+    (This)->lpVtbl -> getPersonAddress(This,pRet)
+
+#define ICommands_particOrgs(This,pRet)	\
+    (This)->lpVtbl -> particOrgs(This,pRet)
+
+#define ICommands_getOrgAddress(This,pRet)	\
+    (This)->lpVtbl -> getOrgAddress(This,pRet)
+
+#define ICommands_pasteDocLink(This,val,pRet)	\
+    (This)->lpVtbl -> pasteDocLink(This,val,pRet)
+
+#define ICommands_get_session(This,pVal)	\
+    (This)->lpVtbl -> get_session(This,pVal)
+
+#define ICommands_checkIn(This,pRet)	\
+    (This)->lpVtbl -> checkIn(This,pRet)
 
 #endif /* COBJMACROS */
 
@@ -344,6 +436,115 @@ void __RPC_STUB ICommands_edit_Stub(
 
 
 void __RPC_STUB ICommands_isReadOnly_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_advancedSearch_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *retVal);
+
+
+void __RPC_STUB ICommands_advancedSearch_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE ICommands_get_username_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB ICommands_get_username_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_protUpdPerson_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_protUpdPerson_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_getPersonAddress_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_getPersonAddress_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_particOrgs_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_particOrgs_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_getOrgAddress_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_getOrgAddress_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_pasteDocLink_Proxy( 
+    ICommands __RPC_FAR * This,
+    const BSTR __RPC_FAR *val,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_pasteDocLink_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id][propget] */ HRESULT STDMETHODCALLTYPE ICommands_get_session_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ BSTR __RPC_FAR *pVal);
+
+
+void __RPC_STUB ICommands_get_session_Stub(
+    IRpcStubBuffer *This,
+    IRpcChannelBuffer *_pRpcChannelBuffer,
+    PRPC_MESSAGE _pRpcMessage,
+    DWORD *_pdwStubPhase);
+
+
+/* [helpstring][id] */ HRESULT STDMETHODCALLTYPE ICommands_checkIn_Proxy( 
+    ICommands __RPC_FAR * This,
+    /* [retval][out] */ int __RPC_FAR *pRet);
+
+
+void __RPC_STUB ICommands_checkIn_Stub(
     IRpcStubBuffer *This,
     IRpcChannelBuffer *_pRpcChannelBuffer,
     PRPC_MESSAGE _pRpcMessage,
