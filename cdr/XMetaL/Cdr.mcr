@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.29 2002-02-21 02:24:07 bkline Exp $
+     $Id: Cdr.mcr,v 1.30 2002-02-21 22:28:56 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.29  2002/02/21 02:24:07  bkline
+     Added code to modify the standard toolbars.
+
      Revision 1.28  2002/02/20 18:32:27  bkline
      Added new toolbar buttons for Find Next Change, Accept Change, and
      Reject Change.
@@ -597,11 +600,11 @@
         docType.addElement("Deletion", "Deletion", true , false);
         docType.addAttribute("Deletion", "UserName", "", 0, 0);
         docType.addAttribute("Deletion", "Time", "", 0, 0);
-        //docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "proposed");
+        //docType.addAttribute("Deletion", "RevisionLevel", "", 0, 0, "approved");
         docType.addEnumeratedAttribute("Deletion", "RevisionLevel",
             "Indicates status of proposed deletion", 9, // ordinary enumeration
             2, // default value is explicity specified
-            "proposed", "approved", "publish", "rejected");
+            "proposed", "approved", "proposed", "publish", "rejected");
 
         // Add the Insertion element.
         docType.addElement("Insertion", "Insertion", true , false);
@@ -612,7 +615,7 @@
         docType.addEnumeratedAttribute("Insertion", "RevisionLevel",
             "Indicates status of proposed insertion", 9, // ordinary enumeration
             2, // default value is explicity specified
-            "proposed", "approved", "publish", "rejected");
+            "proposed", "approved", "proposed", "publish", "rejected");
 
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
@@ -2377,7 +2380,7 @@
                         Selection.ContainerAttribute("Time") = 
                             date.toLocaleString();
                         Selection.ContainerAttribute("RevisionLevel") = 
-                            "proposed";
+                            "approved";
                         Selection.ContainerStyle = getMarkupStyle("Deletion");
                         Selection.Text = del_txt;
                     }
@@ -2391,7 +2394,7 @@
                     Selection.ContainerAttribute("Time") =
                                                     date.toLocaleString();
                     Selection.ContainerAttribute("RevisionLevel") = 
-                        "proposed";
+                        "approved";
                     var rng = ActiveDocument.Range;
                     rng.SelectContainerContents();
                     var start = rng.Duplicate;
@@ -2487,7 +2490,7 @@
                 var date = new Date();
                     Selection.ContainerAttribute("Time") = date.toLocaleString();
                     Selection.ContainerAttribute("RevisionLevel") = 
-                        "proposed";
+                        "approved";
                     Selection.ContainerStyle = getMarkupStyle("Deletion");
                     Selection.SelectAfterContainer();
                     doInsertion();
@@ -2513,7 +2516,7 @@
                     var date = new Date();
                     Selection.ContainerAttribute("Time") = 
                         date.toLocaleString();
-                    Selection.ContainerAttribute("RevisionLevel") = "proposed";
+                    Selection.ContainerAttribute("RevisionLevel") = "approved";
                     Selection.ContainerStyle = getMarkupStyle("Insertion");
               
                     // Merge if the previous tag name and its user are the
