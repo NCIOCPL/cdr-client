@@ -1,6 +1,10 @@
 /*************************************************************************/
 /* 	Organization.css                                                 */
 /*                                                                       */
+/*      v. 3.8                                                           */
+/*      5/16/02  by ebator                                               */
+/*      Show PreviousLocation attribute on OrganizationLocation.         */
+/*                                                                       */
 /*      v. 3.7                                                           */
 /*      5/14/02  by ebator                                               */
 /*      ParentOrganization is optional; OrganizationLocation is multiply */
@@ -195,6 +199,8 @@ OrganizationAdministrativeInformation:before
 OrganizationAffiliations:before		{ content: "AFFILIATIONS &"; }
 OrganizationDetails:before		{ content: "ORGANIZATION DETAILS *"; }
 OrganizationLocation:before		{ content: "ORGANIZATION LOCATION * + @"; }
+OrganizationLocation[PreviousLocation="Yes"]:before
+					{ content: "ORGANIZATION LOCATION [Previous] * + @ "; }
 OrganizationLocations:before		{ content: "ORGANIZATION LOCATIONS *"; }
 OrganizationNameInformation:before	{ content: "ORGANIZATION NAME INFORMATION *"; }
 OrganizationType:before			{ content: "Organization Type * + @: " }
