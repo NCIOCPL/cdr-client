@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.114 2004-03-10 19:42:04 bkline Exp $
+     $Id: Cdr.mcr,v 1.115 2004-03-10 19:45:25 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.114  2004/03/10 19:42:04  bkline
+     Added "Go to Brief Summary" macro.
+
      Revision 1.113  2003/12/16 13:32:52  bkline
      Added macro to navigate to patient abstract.
 
@@ -977,9 +980,14 @@
         if (rng.IsParentElement("ProtocolLeadOrg"))
             Application.AppendMacro("Change Org Statuses",
                     "Change Participating Org Status");
-        if (rng.IsParentElement("GenericPerson") && CdrOrgAddressClipboard)
-            Application.AppendMacro("Paste Org Address Elements",
-                    "Paste Org Address Elements");
+        if (CdrOrgAddressClipboard) {
+            if (rng.IsParentElement("GenericPerson") ||
+                rng.IsParentElement("OverallContact"))
+            {
+                Application.AppendMacro("Paste Org Address Elements",
+                                        "Paste Org Address Elements");
+            }
+        }
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address", 
