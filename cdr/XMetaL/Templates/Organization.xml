@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE Organization SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Organization.dtd">
+<Organization xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <OrganizationNameInformation> 
+	 <OfficialName> 
+		<Name><?xm-replace_text {Enter the official name of this organization (required)} ?></Name>
+		</OfficialName> 
+	 <ShortName> 
+		<Name><?xm-replace_text {Optionally enter an abbreviation or short name for this organization } ?></Name>
+		</ShortName> 
+	 <AlternateName><?xm-replace_text {Optionally enter another name for this organization } ?></AlternateName>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </OrganizationNameInformation> 
+  <OrganizationParent> 
+	 <ParentOrganization><?xm-replace_text {Select a link to the parent organization (required)} ?></ParentOrganization>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </OrganizationParent> 
+  <OrganizationDetails> 
+	 <CIPSContactPerson><?xm-replace_text {Optionally select a link to the person designated as the contact for CIPS queries } ?></CIPSContactPerson>
+	 <OrganizationAdministrativeInformation Directory="Treatment"> 
+		<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>
+		<Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+		<PreferredDirectoryContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for directory information } ?></PreferredDirectoryContactMode>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </OrganizationAdministrativeInformation> 
+	 <PreferredProtocolContactMode><?xm-replace_text {Select a contact mode if this organization should be contacted electronically for protocol information } ?></PreferredProtocolContactMode>
+
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </OrganizationDetails> 
+  <OrganizationLocations> 
+	 <OrganizationLocation> 
+		<Location> 
+		  <PostalAddress AddressType="US"> 
+			 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+			 <City><?xm-replace_text {Optionally enter a city name} ?></City> 
+			 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+			 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+			 <Country><?xm-replace_text {Select a country link (required)} ?></Country>
+			 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+			 </PostalAddress> 
+		  <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
+		  <TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+		  <Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax> 
+		  <Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
+		  <WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+		  </Location> 
+	 </OrganizationLocation> 
+	 <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Location to identify this organization's CIPS address and phone information} ?></CIPSContact><Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </OrganizationLocations> 
+  <OrganizationAffiliations> 
+	 <ResearchBaseFor><?xm-replace_text {Optionally select an organization link} ?></ResearchBaseFor>
+	 <MemberOfProfessionalOrganization><?xm-replace_text {Optionally select an organization} ?></MemberOfProfessionalOrganization>
+	 <MemberOfCooperativeGroups> 
+		<MainMemberOf> 
+		  <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+		  <ProtocolParticipation>Yes</ProtocolParticipation>
+		  </MainMemberOf> 
+		<AffiliateMemberOf> 
+		  <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+		  <MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>
+		  <ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
+		  </AffiliateMemberOf> 
+	 </MemberOfCooperativeGroups> 
+	 <MemberOfCCOP CCOPMemberType="Component"> 
+	 <CCOP><?xm-replace_text {Optionally select an organization link} ?></CCOP>
+	 </MemberOfCCOP> 
+	 <MemberOfAdHocGroup><?xm-replace_text {Optionally select an organization link} ?></MemberOfAdHocGroup>
+	 </OrganizationAffiliations> 
+  <Status> 
+	 <CurrentStatus>Active</CurrentStatus>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </Status> 
+  <OrganizationType><?xm-replace_text {Select a type for this organization (required)} ?></OrganizationType>
+  <ProtocolIDAcronym><?xm-replace_text {Optionally enter an acronym used to identify this organization in a protocol } ?></ProtocolIDAcronym>
+  <PreferredProtocolOrganization><?xm-replace_text {Optionally select a link to the protocol partner organization } ?></PreferredProtocolOrganization>
+  <DatedAction> 
+	 <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+	 <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </DatedAction> 
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+</Organization>

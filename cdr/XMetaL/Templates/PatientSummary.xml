@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE Summary SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Summary.dtd">
+<Summary><CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl><SummaryMetaData>
+<SummaryType>Treatment</SummaryType>
+<SummaryAudience>Patients</SummaryAudience>
+<SummaryLanguage>English</SummaryLanguage>
+<PDQBoard>
+<Board cdr:ref="CDR0000050355">PDQ Adult Treatment Advisory Board;</Board>
+<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
+</PDQBoard>
+<MainTopics>
+<Term>X cancer</Term>
+</MainTopics>
+<SecondaryTopics>
+<Term><?xm-replace_text {Optionally select a terminology link} ?></Term>
+</SecondaryTopics>
+</SummaryMetaData><SummaryTitle>Cancer Title</SummaryTitle><SummarySection>
+<SectMetaData>
+
+<SectionType>Cancer description</SectionType>
+</SectMetaData>
+<Title>General Information About X Cancer</Title>
+
+<KeyPoint>X cancer is a disease in which malignant (cancer) cells form in
+		  the tissues of the x.</KeyPoint>
+<Para><?xm-replace_text {Paragraph} ?></Para><Para><?xm-replace_text {Paragraph} ?></Para><Para><?xm-replace_text {Paragraph} ?></Para>
+</SummarySection>
+
+
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Risk factors</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>A, B, C can affect the risk of developing x cancer. </KeyPoint>
+<Para><?xm-replace_text {Paragraph} ?></Para><ItemizedList Style="bullet"> 
+		  <ListItem>[risk here]</ListItem> 
+		  <ListItem>[risk here]</ListItem> 
+		  <ListItem>[risk here]</ListItem> 
+		  <ListItem>[risk here]</ListItem> 
+		</ItemizedList>
+</SummarySection>
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Genetic aspects</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>X cancer is sometimes caused by inherited gene mutations.
+		  </KeyPoint>
+<Para><?xm-replace_text {Paragraph} ?></Para>
+<ItemizedList Style="bullet"> 
+		  <ListItem>[gene here]</ListItem> 
+		  <ListItem>[gene here]</ListItem> 
+		  <ListItem>[gene here]</ListItem> 
+		</ItemizedList></SummarySection>
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Symptoms</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>Possible signs of x cancer include A, B, C. </KeyPoint>
+<Para>These and other symptoms may be caused by x cancer or by other
+		  conditions. A doctor should be consulted if any of the following problems
+		  occur:</Para>
+<ItemizedList Style="bullet"> 
+		  <ListItem>[possible sign here]</ListItem> 
+		  <ListItem>[possible sign here]</ListItem> 
+		  <ListItem>[possible sign here]</ListItem> 
+		  <ListItem>[possible sign here]</ListItem> 
+		</ItemizedList></SummarySection>
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Diagnostic tests</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>Tests that examine the A, B, and C are used to help diagnose
+		  (find) x cancer.</KeyPoint>
+<Para>The following tests and procedures can help detect x cancer:</Para>
+<ItemizedList><ListItem> <GlossaryTermLink>Biopsy</GlossaryTermLink>: Cells,
+			 tissues, or fluid are removed for examination under a microscope to see if
+			 cancer cells are present. When only a sample of tissue is removed, the
+			 procedure is called an <GlossaryTermLink>incisional
+			 biopsy</GlossaryTermLink> or <GlossaryTermLink>core
+			 biopsy</GlossaryTermLink>. When an entire tumor or lesion is removed, the procedure
+			 is called an <GlossaryTermLink>excisional biopsy</GlossaryTermLink>. When
+			 a sample of tissue or fluid is removed with a needle, the procedure is called a
+			 <GlossaryTermLink>needle biopsy</GlossaryTermLink> or <GlossaryTermLink>fine-needle
+			 aspiration</GlossaryTermLink>.</ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem><ListItem><?xm-replace_text {ListItem}?></ListItem></ItemizedList></SummarySection>
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Prognostic factors</SectionType>
+</SectMetaData>
+
+
+<KeyPoint>Certain factors affect choice of treatment and prognosis
+		  (chance of recovery).</KeyPoint>
+<Para>The choice of treatment and prognosis (chance of recovery) depend
+		  on the stage of the cancer (whether it affects part of the X, involves the
+		  whole X, or has spread to other places in the body), the type of cancer, the
+		  size of the tumor, and the patient's general health. [Include dramatic
+		  prognosis here, extracting philosophy from WYNTK]</Para>
+</SummarySection>
+<SummarySection>
+<SectMetaData>
+
+<SectionType>Diagnostic tests</SectionType>
+</SectMetaData>
+<Title>Stages of x cancer</Title>
+
+<KeyPoint>After x cancer has been diagnosed (found), tests are done to
+		  find out if cancer cells have spread within the X or to other parts of the
+		  body. </KeyPoint>
+<Para>The process used to find out whether cancer has spread within the X
+		  or to other parts of the body is called staging. It is important to know the
+		  stage of the disease in order to plan the best treatment. The following tests
+		  and procedures are used to determine stage:</Para>
+<ItemizedList Style="bullet"> 
+		  <ListItem> [test here]</ListItem> 
+		  <ListItem> [test here]</ListItem> 
+		  <ListItem> [test here]</ListItem> 
+		</ItemizedList></SummarySection>
+<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified></Summary>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE Term SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Term.dtd">
+<Term xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <PreferredName><?xm-replace_text {Enter the preferred form of the term name (required)} ?></PreferredName>
+  <OtherName> 
+	 <OtherTermName><?xm-replace_text {Enter another name for this term (required)} ?></OtherTermName>
+	 <OtherNameType><?xm-replace_text {Select a category for the term's other name (required)} ?></OtherNameType>
+	 <SourceInformation> 
+		<ReferenceSource><?xm-replace_text {Enter the reference source of the term, or Change to another source type} ?></ReferenceSource>
+		</SourceInformation> 
+	 <ReviewStatus><?xm-replace_text {Optionally select a Reviewed/Unreviewed type} ?></ReviewStatus>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </OtherName> 
+  <Definition> 
+	 <DefinitionText><?xm-replace_text {Enter a definition of this term (required)} ?></DefinitionText>
+	 <DefinitionType><?xm-replace_text {Select an audience for the definition (required)} ?></DefinitionType>
+	 <DefinitionSource> 
+		<DefinitionSourceName><?xm-replace_text {Enter the name of the definition's source (required)} ?></DefinitionSourceName>
+		<DefinedTermId><?xm-replace_text {Optionally enter the ID of the source term definition} ?></DefinedTermId>
+		</DefinitionSource>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </Definition> 
+  <TermType> 
+	 <TermTypeName><?xm-replace_text {Select a term type (required)} ?></TermTypeName>
+	 </TermType> 
+  <SemanticType><?xm-replace_text {Optionally link to a semantic term type} ?></SemanticType>
+  <TermRelationship> 
+	 <ParentTerm> 
+		<TermId><?xm-replace_text {Select a link to the parent term (required)} ?></TermId>
+		<ParentType>ISA</ParentType>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+		</ParentTerm><ParentTerm><TermId><?xm-replace_text {Select a link to the parent/related term (required)} ?></TermId><ParentType>ISA</ParentType><Comment><?xm-replace_text {Optionally enter a comment} ?></Comment></ParentTerm> 
+	 <RelatedTerm> 
+		<TermId><?xm-replace_text {Select a link to the related term (required)} ?></TermId>
+		<RelationshipType><?xm-replace_text {Select a category for the related term (required)} ?></RelationshipType>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+		</RelatedTerm> 
+  </TermRelationship> 
+  <TermStatus><?xm-replace_text {Select a review status (required)} ?></TermStatus>
+  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  </Term>

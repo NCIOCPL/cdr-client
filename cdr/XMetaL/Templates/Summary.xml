@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE Summary SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Summary.dtd">
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <SummaryMetaData> 
+	 <SummaryType><?xm-replace_text {Select a summary type (required)} ?></SummaryType>
+	 <SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>
+	 <SummaryLanguage>English</SummaryLanguage> 
+	 <PDQBoard> 
+		<Board><?xm-replace_text {Select an organization link (required)} ?></Board>
+		<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
+		</PDQBoard> 
+	 <MainTopics> 
+		<Term><?xm-replace_text {Optionally select a terminology link} ?></Term> 
+	 </MainTopics> 
+	 <SecondaryTopics> 
+		<Term><?xm-replace_text {Optionally select a terminology link} ?></Term> 
+	 </SecondaryTopics> 
+  </SummaryMetaData> 
+  <SummaryTitle><?xm-replace_text {Summary title} ?></SummaryTitle> 
+  <SummarySection> 
+	 <SectMetaData> 
+		<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+		<SectionType><?xm-replace_text {Optionally select a section type} ?></SectionType>
+		</SectMetaData> 
+	 <Title><?xm-replace_text {Section title}  ?></Title> 
+	 <AltTitle><?xm-replace_text {Optional alternate title} ?></AltTitle> 
+	 <KeyPoint><?xm-replace_text {Optionally enter a Key Point for a patient summary} ?></KeyPoint>
+	 <Para><?xm-replace_text {Paragraph} ?></Para> 
+  </SummarySection> 
+  <SummarySection> 
+	 <SectMetaData> 
+		<Diagnosis><?xm-replace_text {Optionally select a diagnosis} ?></Diagnosis>
+		<SectionType><?xm-replace_text {Optionally select a section type} ?></SectionType>
+		</SectMetaData> 
+	 <Title><?xm-replace_text {Section title}  ?></Title> 
+	 <AltTitle><?xm-replace_text {Optional alternate title} ?></AltTitle> 
+	 <KeyPoint><?xm-replace_text {Optionally enter a Key Point for a patient summary} ?></KeyPoint>
+	 <Para><?xm-replace_text {Paragraph} ?></Para> 
+  </SummarySection> 
+  <TranslationOf><?xm-replace_text {Optionally link to the original English summary} ?></TranslationOf>
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  </Summary> 

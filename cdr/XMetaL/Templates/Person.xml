@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE Person SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Person.dtd">
+<Person xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <PersonNameInformation> 
+	 <GivenName><?xm-replace_text {Optionally enter the person's given name or initial} ?></GivenName>
+	 <MiddleInitial><?xm-replace_text {Optionally enter the middle initials} ?></MiddleInitial>
+	 <SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>
+	 <Prefix><?xm-replace_text {Optionally select a prefix} ?></Prefix> 
+	 <GenerationSuffix><?xm-replace_text {Optionally select a generational suffix} ?></GenerationSuffix>
+	 <ProfessionalSuffix> 
+		<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>
+		<CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>
+		</ProfessionalSuffix> 
+	 <NameFormat><?xm-replace_text {Optionally select a name format} ?></NameFormat>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </PersonNameInformation> 
+  <ProfessionalInformation> 
+	 <PDQBoardMembershipDetails>
+	 <PDQEditorialBoard><?xm-replace_text {Optionally select an organization/Editorial Board} ?></PDQEditorialBoard> 
+	 <PDQAdvisoryBoard><?xm-replace_text {Optionally select an organization/Advisory Board} ?></PDQAdvisoryBoard>
+	 <PDQVoluntaryProtocolReviewBoard><?xm-replace_text {Optionally select an organization/Voluntary Protocol Review Board} ?></PDQVoluntaryProtocolReviewBoard>
+	</PDQBoardMembershipDetails> 
+	 <PhysicianDetails> 
+		<AdministrativeInformation> 
+		  <Directory> 
+			 <Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+			 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+			 <Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+			 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+			 </Directory> 
+		  <PreferredContactMode><?xm-replace_text {Optionally select a contact mode if this person should be contacted electronically for directory information } ?></PreferredContactMode>
+		  </AdministrativeInformation> 
+		<PhysicianSpecialtyInformation> 
+		  <BoardCertifiedSpecialty> 
+			 <BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty)} ?></BoardCertifiedSpecialtyName>
+			 <Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>		 
+			 <Verified><?xm-replace_text {Optionally select Yes} ?></Verified>
+			 </BoardCertifiedSpecialty> 
+		</PhysicianSpecialtyInformation> 
+		<PhysicianMembershipInformation> 
+		  <MemberOfCooperativeGroup> 
+			 <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+			 </MemberOfCooperativeGroup> 
+			 <MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>
+		  </PhysicianMembershipInformation> 
+		  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+		</PhysicianDetails> 
+  </ProfessionalInformation> 
+  <PersonLocations> 
+	 <Home> 
+		<PostalAddress AddressType="US"> 
+		  <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+		  <City><?xm-replace_text {Enter a city name (required)} ?></City> 
+		  <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+		  <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+		  <Country><?xm-replace_text {Optionally select a country link} ?></Country> 
+		  <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+		  </PostalAddress> 
+		<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
+		<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+		<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax> 
+		<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email> 
+		<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
+		</Home> 
+	 <PrivatePractice> 
+		<PrivatePracticeLocation> 
+		<PostalAddress AddressType="US"> 
+		  <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
+		  <City><?xm-replace_text {Enter a city name (required)} ?></City> 
+		  <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
+		  <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
+		  <Country><?xm-replace_text {Optionally select a geographic link} ?></Country> 
+		  <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+		  </PostalAddress> 
+		<Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
+		<TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
+		<Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax> 
+		<Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email> 
+		<WebSite cdr:xref="Enter a link"><?xm-replace_text {Optionally enter a Web site address} ?></WebSite></PrivatePracticeLocation>
+		</PrivatePractice> 
+	 <OtherPracticeLocation cdr:id="Enter a link"> 
+		<OrganizationLocation><?xm-replace_text {Optionally select an organization fragment link} ?></OrganizationLocation>
+		<PersonTitle><?xm-replace_text {Optionally enter the person's title at this organization} ?></PersonTitle>
+		<PersonRole><?xm-replace_text {Optionally select the person's role at this location} ?></PersonRole>
+		<ComplexAffiliation> 
+		  <Organization><?xm-replace_text {Optionally select an organization link} ?></Organization>
+		  <RoleAtAffiliatedOrganization><?xm-replace_text {Select the person's role at this organization (required)} ?></RoleAtAffiliatedOrganization>
+		  </ComplexAffiliation> 
+	 </OtherPracticeLocation> 
+	 <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Home, PrivatePractice, or OtherPracticeLocation to identify this person's CIPS address and phone information} ?></CIPSContact>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </PersonLocations> 
+  <Status> 
+	 <CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>
+	 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
+	 <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> </Status> 
+  <DatedAction> 
+	 <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+	 <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </DatedAction> 
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  </Person>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE Country SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/Country.dtd">
+<Country xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <CountryFullName><?xm-replace_text {Enter the complete name of the country (required)} ?></CountryFullName>
+  <CountryShortName><?xm-replace_text {Optionally enter an abbreviation or shortened name} ?></CountryShortName>
+  <CountryAlternateName><?xm-replace_text {Optionally enter an accepted other name} ?></CountryAlternateName>
+  <Continent><?xm-replace_text {Select the continent where this country is located (required)} ?></Continent>
+  <PostalCodePosition><?xm-replace_text {Select an address position for the postal code (required)} ?></PostalCodePosition>
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  </Country>

@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!DOCTYPE ScientificProtocolInfo SYSTEM "file:///C|/Program%20Files/SoftQuad/XMetaL%202/Rules/ScientificProtocolInfo.dtd">
+<ScientificProtocolInfo xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <ProtocolIDs> 
+	 <PrimaryID> 
+		<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </PrimaryID> 
+	 <OtherID> 
+		<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType> 
+		<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </OtherID> 
+  </ProtocolIDs> 
+  <ProtocolAmendmentInformation> 
+	 <ProtocolAmendment> 
+		<AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>
+		<AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>
+		<AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>
+		<DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>
+		<DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>
+		<ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </ProtocolAmendment> 
+	 <DatedAction> 
+		<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+		<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </DatedAction> 
+  </ProtocolAmendmentInformation> 
+  <ProtocolTitle Type="Professional"><?xm-replace_text {Enter the appropriate title for professionals} ?></ProtocolTitle>
+  <ProtocolTitle Type="Patient"><?xm-replace_text {Enter the appropriate title for patients} ?></ProtocolTitle>
+  <ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>
+  <ProtocolAbstract> 
+	 <Professional> 
+		<Objectives> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</Objectives> 
+		<Outline> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</Outline> 
+		<EntryCriteria> 
+		  <DiseaseCharacteristics> 
+			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+		  </DiseaseCharacteristics> 
+		  <PatientCharacteristics> 
+			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+		  </PatientCharacteristics> 
+		  <PriorConcurrentTherapy> 
+			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+		  </PriorConcurrentTherapy> 
+		  <GeneralEligibilityCriteria> 
+			 <Para><?xm-replace_text {Paragraph} ?></Para> 
+		  </GeneralEligibilityCriteria> 
+		</EntryCriteria> 
+		<ProjectedAccrual> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</ProjectedAccrual> 
+		<EndPoints> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</EndPoints> 
+		<Stratification> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</Stratification> 
+		<SpecialStudyParameters> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</SpecialStudyParameters> 
+		<DoseSchedule> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</DoseSchedule> 
+		<DosageForm> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</DosageForm> 
+		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
+		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </Professional> 
+	 <Patient> 
+		<Rationale> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</Rationale> 
+		<Purpose> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</Purpose> 
+		<EligibilityText> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</EligibilityText> 
+		<TreatmentIntervention> 
+		  <Para><?xm-replace_text {Paragraph} ?></Para> 
+		</TreatmentIntervention> 
+		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
+		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+	 </Patient> 
+  </ProtocolAbstract> 
+  <ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>
+  <ProtocolDesign><?xm-replace_text {Select this protocol's design type (required)} ?></ProtocolDesign>
+  <ProtocolDetail> 
+  <StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>
+  <StudyCategory> 
+	 <StudyCategoryType><?xm-replace_text {Select a study category of primary or secondary (required)} ?></StudyCategoryType>
+	 <StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>
+	 <StudyFocus><?xm-replace_text {Optionally select a category that describes the protocol's focus} ?></StudyFocus>
+	 <Intervention> 
+		<InterventionType><?xm-replace_text {Optionally link to a term describing the type of intervention} ?></InterventionType>
+		<InterventionNameLink><?xm-replace_text {Optionally link to a term naming the specific intervention} ?></InterventionNameLink>
+		</Intervention> <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+	 </StudyCategory> 
+  <Condition><?xm-replace_text {Optionally link to a term describing the participant's relevant medical condition} ?></Condition>
+  <Gene><?xm-replace_text {Optionally link to the relevant gene term} ?></Gene> 
+  <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
+  <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+  </ProtocolDetail> 
+  <Eligibility> 
+	 <HealthyVolunteers><?xm-replace_text {Optionally select yes or no} ?></HealthyVolunteers>
+	 <LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>
+	 <HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>
+	 <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
+	 <Diagnosis><?xm-replace_text {Optionally link to a diagnosis term} ?></Diagnosis>
+	 <ExclusionCriteria><?xm-replace_text {Optionally link to an exclusion term} ?></ExclusionCriteria>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </Eligibility> 
+  <ProtocolRelatedLinks> 
+	 <RelatedProtocols><?xm-replace_text {Optionally link to a related protocol, or Change to Related Websites} ?></RelatedProtocols>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </ProtocolRelatedLinks> 
+  <PublishedResults> 
+	 <Citation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></Citation>
+	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  </PublishedResults> 
+</ScientificProtocolInfo>
