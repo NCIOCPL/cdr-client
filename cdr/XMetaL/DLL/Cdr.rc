@@ -180,8 +180,8 @@ BEGIN
     CONTROL         "Block Publication of Any Version of This Document",
                     IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,45,
                     176,10
-    CONTROL         "Ready for Pre-Publication Review",IDC_CHECK6,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,27,60,122,10
+    CONTROL         "Ready for Pre-Publication Mailer",IDC_CHECK6,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,60,117,10
 END
 
 IDD_VALIDATE_DIALOG DIALOG DISCARDABLE  0, 0, 186, 95
