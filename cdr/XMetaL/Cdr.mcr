@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.30 2002-02-21 22:28:56 bkline Exp $
+     $Id: Cdr.mcr,v 1.31 2002-02-21 22:33:12 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.30  2002/02/21 22:28:56  bkline
+     Changed RevisionLevel attribute default from proposed to approved.
+
      Revision 1.29  2002/02/21 02:24:07  bkline
      Added code to modify the standard toolbars.
 
@@ -1001,13 +1004,13 @@
                            "Find Next",                 // Macro.
                            "Find Next Change",          // Tooltip.
                            "Find next markup change",   // Description.
-                           "CDR", 1, 9,                 // Icon set, row, col.
+                           "CDR", 1, 8,                 // Icon set, row, col.
                            false),                      // Starts new group?
             new CdrCmdItem("Find &Previous Change",
                            "Find Previous",
                            "Find Previous Change",
                            "Find previous markup change",
-                           "CDR", 1, 8,
+                           "CDR", 1, 9,
                            false),
             new CdrCmdItem("&Accept Change",
                            "Accept Change",
@@ -1209,7 +1212,7 @@
                            "Find Next",
                            "Find Next",
                            "Find Next Change",
-                           "CDR", 1, 9,
+                           "CDR", 1, 8,
                            false),
             new CdrCmdItem(null,
                            "Accept Change",
