@@ -78,6 +78,7 @@ JobId,
 Mailer,
 MailerAddress,
 PostalCode,
+ProtocolOrg,
 Received,
 Recipient,
 RemailerFor,
@@ -110,6 +111,7 @@ Document:before				{ content: "Document * @: "; }
 JobId:before				{ content: "Job ID *: "; }
 MailerAddress:before			{ content: "MAILER ADDRESS & "; }
 PostalCode:before			{ content: "Postal Code &: "; }
+ProtocolOrg:before          { content: "Protocol Org &: "; }
 Received:before				{ content: "Received *: "; }
 Recipient:before			{ content: "Recipient * @: "; }
 RemailerFor:before			{ content: "Remailer For & @: ["attr(cdr\:ref) "]"; }
@@ -180,6 +182,7 @@ Deadline:before,
 Document:before,
 JobId:before,
 PostalCode:before,
+ProtocolOrg:before,
 Received:before,
 Recipient:before,
 RemailerFor:before,
@@ -231,6 +234,8 @@ JobId,					{ margin-left: 115pt;
 					  text-indent: -51.5pt; }
 Recipient,				{ margin-left: 115pt; 
 					  text-indent: -84pt; }				
+ProtocolOrg,			{ margin-left: 115pt; 
+					  text-indent: -92pt; }				
 
 /* Key element for length = AddressLine                                    */
 
@@ -308,6 +313,7 @@ Deadline,
 Document,
 JobId,
 PostalCode,
+ProtocolOrg,
 Received,
 Recipient,
 /*RemailerFor,*/
@@ -333,6 +339,7 @@ PostalAddress,
 PostalAddress:before,
 PostalCode:before,
 PostalCode_ZIP:before,
+ProtocolOrg:before,
 Received:before,
 Recipient:before,
 RemailerFor:before,
