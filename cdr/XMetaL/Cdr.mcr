@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.44 2002-04-20 02:44:05 bkline Exp $
+     $Id: Cdr.mcr,v 1.45 2002-04-22 13:42:18 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.44  2002/04/20 02:44:05  bkline
+     Added readonly protection for selected Mailer document elements.
+
      Revision 1.43  2002/04/15 02:37:41  bkline
      Added code to switch from text-only view when validating.
 
@@ -1383,15 +1386,27 @@
                            "CDR", 4, 6,
                            false),
             new CdrCmdItem(null,
-                           "Create Summary Markup Report",
-                           "Create Summary Markup Report",
-                           "Create Summary Markup Report",
-                           "CDR", 3, 4,
+                           "Create HTML for Board",
+                           "HTML",
+                           "Create HTML for Board",
+                           "Integration (Custom)", 1, 9, 
                            true),
             new CdrCmdItem(null,
-                           "Generate Mailers",
-                           "Mailers",
-                           "Generate Mailers",
+                           "Bold Underline Report",
+                           "Bold Underline",
+                           "Bold Underline Report",
+                           "CDR", 2, 3,
+                           false),
+            new CdrCmdItem(null,
+                           "Redline Strikeout Report",
+                           "Redline Strikeout",
+                           "Redline Strikeout Report",
+                           "CDR", 2, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Generate Mailer",
+                           "Mailer",
+                           "Generate Mailer",
                            "CDR", 5, 8,
                            false)
         );
@@ -1592,15 +1607,39 @@
                            false),
             new CdrCmdItem(null,
                            "Generate QC Report",
-                           "QC Report",
-                           "Generate QC Report",
-                           "CDR", 3, 4,
+                           "Full QC",
+                           "Full QC Report",
+                           "CDR", 4, 3,
                            true),
+            new CdrCmdItem(null,
+                           "Protocol HP QC Report",
+                           "Health Professional QC",
+                           "Health Professional QC Report",
+                           "CDR", 3, 6,
+                           false),
             new CdrCmdItem(null,
                            "Generate Mailer",
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Protocol Patient QC Report",
+                           "Patient QC",
+                           "Patient QC Report",
+                           "CDR", 3, 5,
+                           false),
+            new CdrCmdItem(null,
+                           "Protocol Admin QC Report",
+                           "Administrative QC",
+                           "Administrative QC Report",
+                           "CDR", 3, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Protocol Citations QC Report",
+                           "Citations QC",
+                           "Citations QC Report",
+                           "CDR", 3, 8,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -3460,13 +3499,14 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        //Application.Alert("session: " + CdrSession);
         var url = CdrCgiBin + "PublishPreview.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        //Application.Alert("url: " + url);
         Application.ShowPage(url);
     }
-    publishPreview();
+    Application.Alert("The Publish Preview command will hook directly to " +
+                      "Cancer.Gov\nDid you mean to use one of the QC " +
+                      "commands?");
+    //publishPreview();
   ]]>
 </MACRO>
 
@@ -3848,29 +3888,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Publish Preview" 
-       lang="JScript">
-  <![CDATA[
-    function publishPreview() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        //Application.Alert("session: " + CdrSession);
-        var url = CdrCgiBin + "PublishPreview.py?Session="
-                + CdrSession + "&DocId=" + docId;
-        //Application.Alert("url: " + url);
-        Application.ShowPage(url);
-    }
-    publishPreview();
-  ]]>
-</MACRO>
-
 <MACRO name="Print" 
        lang="JScript" 
        id="2009">
@@ -4210,11 +4227,96 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        var url = CdrCgiBin + "PublishPreview.py?Session="
+        var url = CdrCgiBin + "QcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
         Application.ShowPage(url);
     }
-    qcReport()
+    qcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Protocol HP QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function protocolHpQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "ProtocolHpQcReport.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    protocolHpQcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Protocol Patient QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function protocolPatientQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "ProtocolPatientQcReport.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    protocolPatientQcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Protocol Admin QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function protocolAdminQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "ProtocolAdminQcReport.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    Application.Alert("Don't have the filters yet for this report.");
+    //protocolAdminQcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Protocol Citations QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function protocolCitationsQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "ProtocolCitationsQcReport.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    protocolCitationsQcReport();
   ]]>
 </MACRO>
 
@@ -4384,6 +4486,78 @@
         Application.ShowPage(url);
     }
     createSummaryMarkupReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Create HTML for Board" 
+       lang="JScript">
+  <![CDATA[
+    function createHtmlForBoard() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Current document ID not found");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py"
+                            + "?Filter=name:Summary+Filter1"
+                            + "&Filter1=name:Summary+Filter2"
+                            + "&Filter2=name:Summary+Filter3"
+                            + "&Filter3=name:Summary+Filter4"
+                            + "&Filter4=name:Summary+Filter5"
+                            + "&Filter5=name:Health+Professional+Summary+Report"
+                            + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    Application.Alert("Don't have filters for this command yet.");
+    //createHtmlForBoard();
+  ]]>
+</MACRO>
+
+<MACRO name="Bold Underline Report" 
+       lang="JScript">
+  <![CDATA[
+    function boldUnderlineReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Current document ID not found");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py"
+                            + "?Filter=name:Summary+Filter1"
+                            + "&Filter1=name:Summary+Filter2"
+                            + "&Filter2=name:Summary+Filter3"
+                            + "&Filter3=name:Summary+Filter4"
+                            + "&Filter4=name:Summary+Filter5"
+                            + "&Filter5=name:Health+Professional+Summary+Report"
+                            + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    Application.Alert("Don't have filters for this command yet.");
+    //boldUnderlineReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Redline Strikeout Report" 
+       lang="JScript">
+  <![CDATA[
+    function redlineStrikeoutReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Current document ID not found");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py"
+                            + "?Filter=name:Summary+Filter1"
+                            + "&Filter1=name:Summary+Filter2"
+                            + "&Filter2=name:Summary+Filter3"
+                            + "&Filter3=name:Summary+Filter4"
+                            + "&Filter4=name:Summary+Filter5"
+                            + "&Filter5=name:Health+Professional+Summary+Report"
+                            + "&DocId=" + docId;
+        Application.ShowPage(url);
+    }
+    Application.Alert("Don't have filters for this command yet.");
+    //redlineStrikeoutReport();
   ]]>
 </MACRO>
 
