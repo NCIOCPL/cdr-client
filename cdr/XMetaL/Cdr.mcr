@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.37 2002-03-21 13:20:10 bkline Exp $
+     $Id: Cdr.mcr,v 1.38 2002-03-26 21:48:06 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.37  2002/03/21 13:20:10  bkline
+     Added summary macros.
+
      Revision 1.36  2002/03/07 22:29:55  bkline
      Added macros for PatientCharacteristics and PriorConcurrentTherapy.
 
@@ -4307,7 +4310,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "Filter.py?Filter=CDR266308&DocId=" + docId;
+        var url = CdrCgiBin + "Filter.py?Filter=name:Revision+Markup+Filter&DocId=" + docId;
         Application.ShowPage(url);
     }
     createSummaryMarkupReport();
