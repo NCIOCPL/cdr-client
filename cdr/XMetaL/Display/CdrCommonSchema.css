@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.5 2003-02-05 21:02:30 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.6 2003-08-14 21:57:50 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2003/02/05 21:02:30  bkline
+ * Implemented support for non-compact itemized lists (Bugzilla #544).
+ *
  */
 
 /*************************************************************************/
@@ -784,7 +787,7 @@ OrderedList[Style="LRoman"]
 
      { list-style-type: lower-roman; }   
 
-
+OrderedList[Compact="No"]>ListItem { margin-top: 17pt; }
 
 
 /***************************************************************************/ 
