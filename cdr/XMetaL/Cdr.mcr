@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.112 2003-12-03 20:26:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.113 2003-12-16 13:32:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.112  2003/12/03 20:26:52  bkline
+     Plugged in Unicode for TM symbol.
+
      Revision 1.111  2003/12/01 21:17:04  bkline
      Added macro and toolbar buttons for Linked Docs Report.
 
@@ -1992,6 +1995,12 @@
                            "Scientific Info",
                            "Go To Scientific Info Section",
                            "CDR", 6, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Go To Patient Abstract",
+                           "Patient Abstract",
+                           "Navigate to Patient Abstract",
+                           "CDR2", 1, 9,
                            false),
             new CdrCmdItem(null,
                            "Next Lead Org",
@@ -5407,6 +5416,17 @@
     if (Selection != null) {
         Selection.MoveToDocumentStart();
         Selection.MoveToElement("CurrentProtocolStatus");
+        Selection.SelectContainerContents();
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Go To Patient Abstract"
+       lang="JScript">
+  <![CDATA[
+    if (Selection != null) {
+        Selection.MoveToDocumentStart();
+        Selection.MoveToElement("Patient");
         Selection.SelectContainerContents();
     }
   ]]>
