@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	Documentation.css                                                */
 /*                                                                       */
+/*      v 1.2                                                            */
+/*      02/13/02    by ebator                                            */
+/*      TopicRelationship tags updated                                   */
+/*                                                                       */
+/*      v 1.1                                                            */
+/*      02/12/02    by ebator                                            */
+/*      Margin-top for ListItem                                          */
+/*                                                                       */
 /*      v 1.0                                                            */
 /*      02/11/02    by ebator                                            */
 /*      Based on Summary.css                                             */
@@ -56,12 +64,12 @@ Function,
 Metadata,
 RelatedTopic,
 RelatedTopicID,
-RelationshipType,
 Subject,
 Tip,
+TopicRelationship,
 TopicSection,
 TopicText,
-TopicTitle,
+TopicSectionTitle,
 
 
     { display: block; }
@@ -80,9 +88,14 @@ DocType:before				{ content: "Doc Type: "; }
 Example:before				{ content: "Example: "; }
 Function:before				{ content: "Function: "; }
 Metadata:before				{ content: "METADATA "; }
-RelatedTopic:before			{ content: "Related Topics: "; }
-RelatedTopicID:before			{ content: "Related Topic: "; }
-RelationshipType:before			{ content: "Relationship: "; }
+RelatedTopic[RelationshipType="See Also"]:before	
+					{ content: "See Also: "; }
+RelatedTopic[RelationshipType="See"]:before	
+					{ content: "See: "; }
+RelatedTopic[RelationshipType="Broader"]:before	
+					{ content: "Broader Topic: "; }
+RelatedTopic[RelationshipType="Narrower"]:before	
+					{ content: "Narrower Topic: "; }
 Subject:before				{ content: "Keywords: "; }
 Tip:before				{ content: "Tip: "; }
 
@@ -112,10 +125,6 @@ Subject:before,
        font-size: 12pt;
        color: black; }
 
-/*SecondaryTopics>Term,
-
-     { prefix-format: "[ %attribute-list; ]"; } *./
-
 
 /***************************************************************************/ 
 /*                      DOCUMENTATION TITLE                                */ 
@@ -141,7 +150,7 @@ DateLastModified:before,
        margin-top: 15pt;
        margin-bottom: 10pt; }
 
-TopicTitle,
+TopicSectionTitle,
 
      { font-weight: bold;
        font-size: 14pt;
@@ -161,12 +170,18 @@ Tip:before,
        color: blue; }
 
 Metadata:before,
-RelatedTopicID:before,
-RelationshipType:before,
 
      { font-weight: bold; }
 
+RelatedTopicID,
 
+     { margin-left: 10pt; }
+
+OrderedList>ListTitle,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: blue; }
 
 /***************************************************************************/ 
 /*                               TABLES                                    */ 
@@ -217,8 +232,7 @@ DocType,
 Example,
 Function,
 Subject,
-RelatedTOpicID,
-RelationshipType,
+RelatedTopicID,
 Tip,
 
 	{ margin-bottom: 4pt; }
@@ -228,3 +242,6 @@ DocType,
 
 	{ margin-top: 4pt; }
 
+ListItem,
+
+	{ margin-top: .5em; }
