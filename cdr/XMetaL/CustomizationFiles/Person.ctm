@@ -669,7 +669,7 @@
     </Template>
     <Template>
       <Name>Country</Name>
-      <MiniTemplate><![CDATA[<Country><?xm-replace_text {Optionally select a country link} ?></Country>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Country><?xm-replace_text {Select a country link (required)} ?></Country>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>PhysicianDetails</Name>
@@ -805,10 +805,10 @@
       <Name>PostalAddress</Name>
       <MiniTemplate><![CDATA[<PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-<Country><?xm-replace_text {Optionally select a geographic link} ?></Country>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 </PostalAddress>
 ]]></MiniTemplate>
@@ -829,10 +829,10 @@
 <PrivatePracticeLocation>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
-<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 </PostalAddress>
 <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
@@ -859,7 +859,7 @@
     </Template>
     <Template>
       <Name>StandardProfessionalSuffix</Name>
-      <MiniTemplate><![CDATA[<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional suffix} ?></StandardProfessionalSuffix>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CustomProfessionalSuffix</Name>
@@ -906,10 +906,10 @@
       <MiniTemplate><![CDATA[<Home>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Eenter a city name (required)} ?></City>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
-<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 </PostalAddress>
 <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
@@ -1027,7 +1027,7 @@
     </Template>
     <Template>
       <Name>City</Name>
-      <MiniTemplate><![CDATA[<City><?xm-replace_text {Enter a city name (required)} ?></City>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<City><?xm-replace_text {Optionally enter a city name} ?></City>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CdrDocCtl</Name>
@@ -1044,7 +1044,7 @@
 <SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>
 <Prefix><?xm-replace_text {Optionally select a prefix} ?></Prefix>
 <GenerationSuffix><?xm-replace_text {Optionally select a generational suffix} ?></GenerationSuffix>
-<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional prefix} ?></StandardProfessionalSuffix>
+<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional suffix} ?></StandardProfessionalSuffix>
 <CustomProfessionalSuffix><?xm-replace_text {Optionally enter a non-standard professional suffix} ?></CustomProfessionalSuffix>
 <NameFormat><?xm-replace_text {Optionally select a name format} ?></NameFormat>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
@@ -1117,10 +1117,10 @@
       <MiniTemplate><![CDATA[<PrivatePracticeLocation>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-<City><?xm-replace_text {Enter a city name (required)} ?></City>
+<City><?xm-replace_text {Optionally enter a city name} ?></City>
 <CitySuffix><?xm-replace_text {Optionally enter a city suffix} ?></CitySuffix>
 <PoliticalUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalUnit_State>
-<Country><?xm-replace_text {Optionally select a country link} ?></Country>
+<Country><?xm-replace_text {Select a country link (required)} ?></Country>
 <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
 </PostalAddress>
 <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone>
