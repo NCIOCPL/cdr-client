@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.57 2002-05-20 15:41:00 bkline Exp $
+     $Id: Cdr.mcr,v 1.58 2002-05-31 13:00:45 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.57  2002/05/20 15:41:00  bkline
+     Replaced SoftQuad macros for inserting lists with code that works all
+     the time.  New macros and buttons for inserting various elements.
+
      Revision 1.56  2002/05/16 02:51:28  bkline
      Added macro for inserting protocol amendment elements.
 
@@ -1466,6 +1470,12 @@
                            "Redline Strikeout",
                            "Redline Strikeout Report",
                            "CDR", 2, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Published Version Report",
+                           "Published Version",
+                           "Published Version Report",
+                           "CDR", 5, 1,
                            false),
             new CdrCmdItem(null,
                            "Patient Summary QC Report",
@@ -3605,6 +3615,14 @@
     }
     checkedOutDocs();
 
+  ]]>
+</MACRO>
+
+<MACRO name="Published Version Report" 
+       lang="JScript">
+  <![CDATA[
+    Application.Alert("This report depends on the Publish Preview interface" +
+                      "\nwith Cancer.Gov, which is still under development");
   ]]>
 </MACRO>
 
