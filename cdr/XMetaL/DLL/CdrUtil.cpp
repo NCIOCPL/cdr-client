@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.6 2002-02-08 18:53:27 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.7 2002-02-12 21:44:05 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2002/02/08 18:53:27  bkline
+ * Fixed typos in last change.
+ *
  * Revision 1.5  2002/02/08 14:28:32  bkline
  * Added code to handle empty element tags.
  *
@@ -72,7 +75,7 @@ CdrSocket::CdrSocket()
 {
     // Working variables.
     struct sockaddr_in  addr;
-    struct hostent *    ph = gethostbyname("mmdb2");
+    struct hostent *    ph = gethostbyname("mmdb2.nci.nih.gov");
     if (!ph)
         throw _T("Failure resolving host name");
 
