@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 7.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CDRLoader", "CDRLoader.vcproj", "{2A5E0315-303C-4D64-BB2C-EC7906E4470F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CDRLoadInstall", "..\CDRLoadInstall\CDRLoadInstall.vdproj", "{6850FBFE-B58D-42E0-85AA-9C32CE569829}"
-EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		ConfigName.0 = Debug
@@ -18,13 +16,12 @@ Global
 		{2A5E0315-303C-4D64-BB2C-EC7906E4470F}.Release.Build.0 = Release|Win32
 		{2A5E0315-303C-4D64-BB2C-EC7906E4470F}.Unicode Debug.ActiveCfg = Unicode|Win32
 		{2A5E0315-303C-4D64-BB2C-EC7906E4470F}.Unicode Debug.Build.0 = Unicode|Win32
-		{6850FBFE-B58D-42E0-85AA-9C32CE569829}.Debug.ActiveCfg = Debug
-		{6850FBFE-B58D-42E0-85AA-9C32CE569829}.Release.ActiveCfg = Release
-		{6850FBFE-B58D-42E0-85AA-9C32CE569829}.Release.Build.0 = Release
-		{6850FBFE-B58D-42E0-85AA-9C32CE569829}.Unicode Debug.ActiveCfg = Debug
 	EndGlobalSection
 	GlobalSection(SolutionItems) = postSolution
-		Item:1 = CDRLoaderInst.txt
+		Item:1 = CDRLoader.cmd
+		Item:2 = CDRLoader.ini
+		Item:3 = SetupCDRLoader.cmd
+		Item:4 = unzip.exe
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection
