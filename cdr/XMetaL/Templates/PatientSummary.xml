@@ -43,7 +43,7 @@
 <SectionType>Risk factors</SectionType>
 </SectMetaData>
 <KeyPoint>A, B, C can affect the risk of developing x cancer. </KeyPoint>
-<Para>Risk factors include the following:</Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045873">Risk factors</GlossaryTermRef> include the following:</Para>
 <ItemizedList Style="bullet"> 
 		  <ListItem>[risk here]</ListItem> 
 		  <ListItem>[risk here]</ListItem> 
@@ -70,7 +70,7 @@
 <SectionType>Symptoms</SectionType>
 </SectMetaData>
 <KeyPoint>Possible signs of x cancer include A, B, C. </KeyPoint>
-<Para>These and other symptoms may be caused by x cancer or by other conditions. A doctor should be consulted if any of the following problems occur:</Para>
+<Para>These and other <GlossaryTermRef cdr:href="CDR0000045022">symptoms</GlossaryTermRef> may be caused by x cancer or by other conditions. A doctor should be consulted if any of the following problems occur:</Para>
 <ItemizedList Style="bullet"> 
 		  <ListItem>[possible sign here]</ListItem> 
 		  <ListItem>[possible sign here]</ListItem> 
@@ -86,7 +86,7 @@
 <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
 <Para>The following tests and procedures may be used:</Para>
 <ItemizedList Style="bullet">
-			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: Cells, tissues, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046698">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045657">core biopsy</GlossaryTermRef>. When an entire tumor or lesion is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046411">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000045798">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045691">fine-needle aspiration</GlossaryTermRef>.</ListItem>
+			 <ListItem> <GlossaryTermRef cdr:href="CDR0000045164">Biopsy</GlossaryTermRef>: <GlossaryTermRef cdr:href="CDR0000046476">Cells</GlossaryTermRef>, <GlossaryTermRef cdr:href="CDR0000046683">tissues</GlossaryTermRef>, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046698">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045657">core biopsy</GlossaryTermRef>. When an entire <GlossaryTermRef cdr:href="CDR0000046634">tumor</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046324">lesion</GlossaryTermRef> is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000046411">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000045798">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000045691">fine-needle aspiration</GlossaryTermRef>.</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
 			 <ListItem>[test here]</ListItem>
@@ -99,7 +99,7 @@
 <SectionType>Prognostic factors</SectionType>
 </SectMetaData>
 <KeyPoint>Certain factors affect treatment options and prognosis (chance of recovery).</KeyPoint>
-<Para>The treatment options and prognosis (chance of recovery) depend on the stage of the cancer (whether it affects part of the x, involves the whole x, or has spread to other places in the body), the type of cancer, the size of the tumor, and the patient's general health. [Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
+<Para>The treatment options and <GlossaryTermRef cdr:href="CDR0000045849">prognosis</GlossaryTermRef> (chance of recovery) depend on the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the cancer (whether it affects part of the x, involves the whole x, or has spread to other places in the body), the type of cancer, the size of the <GlossaryTermRef cdr:href="CDR0000046634">tumor</GlossaryTermRef>, and the patient's general health. [Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
 </SummarySection>
 </SummarySection>
 
@@ -111,9 +111,9 @@
 <SectionType>Diagnostic tests</SectionType>
 </SectMetaData>
 <KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the X or to other parts of the body. </KeyPoint>
-<Para>The process used to find out if cancer has spread within the x or to other
-parts of the body is called staging. The information gathered from the
-staging process determines the stage of the disease. It is important to know
+<Para>The process used to find out if <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> has spread within the x or to other
+parts of the body is called <GlossaryTermRef cdr:href="CDR0000046597">staging</GlossaryTermRef>. The information gathered from the
+staging process determines the <GlossaryTermRef cdr:href="CDR0000045885">stage</GlossaryTermRef> of the disease. It is important to know
 the stage in order to plan the best treatment. The following tests and
 procedures may be used in the staging process:
 
@@ -162,7 +162,7 @@ appropriate.]</Para>
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para>Recurrent X cancer is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045862">Recurrent X cancer</GlossaryTermRef> is cancer that has recurred (come back) after it has been treated. The cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -173,7 +173,7 @@ appropriate.]</Para>
 <SectionType>Standard treatment</SectionType>
 </SectMetaData>
 <KeyPoint>There are different types of treatment for  patients with X cancer.</KeyPoint>
-<Para>Different types of treatments are available for  patients with X cancer. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
+<Para>Different types of treatments are available for  patients with X <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000044930">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
 <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
 </SummarySection>
 
@@ -186,22 +186,22 @@ appropriate.]</Para>
 <SummarySection>
 <KeyPoint><InterventionName>Surgery</InterventionName></KeyPoint>
 <Para>[describe surgery here]</Para>
-<Para>Even if the doctor removes all the cancer that can be seen at the time of the surgery, some patients may be given chemotherapy or radiation therapy after surgery to kill any cancer cells that are left. Treatment given after the surgery, to increase the chances of a cure, is called adjuvant therapy.</Para>
+<Para>Even if the doctor removes all the cancer that can be seen at the time of the <GlossaryTermRef cdr:href="CDR0000045570">surgery</GlossaryTermRef>, some patients may be given <GlossaryTermRef cdr:href="CDR0000045214">chemotherapy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000044971">radiation therapy</GlossaryTermRef> after surgery to kill any cancer cells that are left. Treatment given after the surgery, to increase the chances of a cure, is called <GlossaryTermRef cdr:href="CDR0000045587">adjuvant therapy</GlossaryTermRef>.</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>Radiation therapy</InterventionName></KeyPoint>
-<Para>Radiation therapy is a cancer treatment that uses high energy x-rays or other types of radiation to kill cancer cells. There are two types of radiation therapy.  External radiation therapy uses a machine outside the body to send radiation toward the cancer.  Internal radiation therapy uses a radioactive substance sealed in needles, seeds, wires, or catheters that are placed directly into or near the cancer. X cancer is treated with _____radiation.</Para>
+<Para><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef> is a cancer treatment that uses high energy <GlossaryTermRef cdr:href="CDR0000045944">x-rays</GlossaryTermRef> or other types of <GlossaryTermRef cdr:href="CDR0000045072">radiation</GlossaryTermRef> to kill cancer <GlossaryTermRef cdr:href="CDR0000046476">cells</GlossaryTermRef>. There are two types of radiation therapy.  <GlossaryTermRef cdr:href="CDR0000046686">External radiation therapy</GlossaryTermRef> uses a machine outside the body to send radiation toward the cancer.  <GlossaryTermRef cdr:href="CDR0000046345">Internal radiation therapy</GlossaryTermRef> uses a radioactive substance sealed in needles, <GlossaryTermRef cdr:href="CDR0000257219">seeds</GlossaryTermRef>, wires, or <GlossaryTermRef cdr:href="CDR0000045637">catheters</GlossaryTermRef> that are placed directly into or near the cancer. X cancer is treated with _____radiation.</Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>Chemotherapy</InterventionName></KeyPoint>
-<Para>Chemotherapy is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   Because some normal cells such as blood and hair can be affected, side effects can occur.  When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can affect cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000045922">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the abdomen, or an organ, the drugs mainly affect cancer cells in those areas.   </Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef> is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   Because some normal cells such as blood and hair can be affected, <GlossaryTermRef cdr:href="CDR0000046580">side effects</GlossaryTermRef> can occur.  When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can affect cancer cells throughout the body (<GlossaryTermRef cdr:href="CDR0000045922">systemic chemotherapy</GlossaryTermRef>). When chemotherapy is placed directly in the spinal column, a body cavity such as the <GlossaryTermRef cdr:href="CDR0000045070">abdomen</GlossaryTermRef>, or an organ, the drugs mainly affect cancer cells in those areas.   </Para>
 </SummarySection>
 
 <SummarySection>
 <KeyPoint><InterventionName>Hormone therapy</InterventionName></KeyPoint>
-<Para>Hormones are chemicals produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and are circulated in the bloodstream.  <GlossaryTermRef cdr:href="CDR0000046076">Estrogen</GlossaryTermRef> and <GlossaryTermRef cdr:href="CDR0000045158">progesterone</GlossaryTermRef> are hormones that affect the way some cancers grow. If tests show that the cancer cells have estrogen and progesterone receptors (molecules found in some cancer cells to which estrogen and progesterone will attach), hormone therapy is used to block the way these hormones help the cancer grow. This may be done by using drugs that block the way hormones work or by surgically removing organs that make hormones, such as the [ovaries or testicles].</Para>
+<Para><GlossaryTermRef cdr:href="CDR0000045713">Hormones</GlossaryTermRef> are chemicals produced by <GlossaryTermRef cdr:href="CDR0000046386">glands</GlossaryTermRef> in the body and are circulated in the bloodstream.  <GlossaryTermRef cdr:href="CDR0000046076">Estrogen</GlossaryTermRef> and <GlossaryTermRef cdr:href="CDR0000045158">progesterone</GlossaryTermRef> are hormones that affect the way some cancers grow. If tests show that the cancer cells have estrogen and progesterone <GlossaryTermRef cdr:href="CDR0000044958">receptors</GlossaryTermRef> (molecules found in some cancer cells to which estrogen and progesterone will attach), <GlossaryTermRef cdr:href="CDR0000045110">hormone therapy</GlossaryTermRef> is used to block the way these hormones help the cancer grow. This may be done by using drugs that block the way hormones work or by surgically removing organs that make hormones, such as the [<GlossaryTermRef cdr:href="CDR0000046687">ovaries</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000046611">testicles</GlossaryTermRef>].</Para>
 </SummarySection>
 
 <SummarySection>
@@ -257,7 +257,7 @@ appropriate.]</Para>
 <ItemizedList Style="bullet">
      <ListItem>[treatment here]</ListItem>
      <ListItem>[treatment here]</ListItem>
-     <ListItem>A clinical trial of ....</ListItem>
+     <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
 </ItemizedList>
 </SummarySection>
 
@@ -321,13 +321,13 @@ appropriate.]</Para>
 <SectionType>Treatment options by stage</SectionType>
 </SectMetaData>
 <Title>Treatment Options for Recurrent X Cancer</Title>
-<Para>Treatment of recurrent x cancer may include the following:</Para>
+<Para>Treatment of <GlossaryTermRef cdr:href="CDR0000045862">recurrent x cancer</GlossaryTermRef> may include the following:</Para>
 <ItemizedList Style="bullet">
      <ListItem><GlossaryTermRef cdr:href="CDR0000045570">Surgery</GlossaryTermRef></ListItem>
 	  <ListItem><GlossaryTermRef cdr:href="CDR0000044971">Radiation therapy</GlossaryTermRef></ListItem>
 	  <ListItem><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef></ListItem>
 	  <ListItem>[treatment here]</ListItem>
-	  <ListItem>A clinical trial of ....</ListItem>
+	  <ListItem>A <GlossaryTermRef cdr:href="CDR0000045961">clinical trial</GlossaryTermRef> of ....</ListItem>
 	  </ItemizedList>
 <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Cancer.gov Web site</ExternalRef>.</Para>
 </SummarySection>
