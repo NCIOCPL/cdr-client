@@ -447,6 +447,12 @@
     </Template>
     <Template>
       <Name>Date</Name>
+      <Parent>BoardMeetingDate</Parent>
+      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Enter each meeting date for the year as a separate occurrence} ?></Date>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Date</Name>
+      <Parent>OrganizationAdministrativeInformation</Parent>
       <MiniTemplate><![CDATA[<Date><?xm-replace_text {Enter the directory inclusion date (required)} ?></Date>]]></MiniTemplate>
     </Template>
     <Template>
