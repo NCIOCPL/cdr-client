@@ -109,6 +109,7 @@ Organization,
 URI, /* First element in the list is not working */
 AffiliateMemberOf,
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -165,6 +166,7 @@ Type,
 
 AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF & + "; }
 AlternateName:before			{ content: "Alternate Name & +: "; }
+FormerName:before			{ content: "Former Name & +: "; }
 CCOP:before				{ content: "CCOP * @: "; }
 CIPSContact:before			{ content: "CIPS Contact *: "; }
 CIPSContactPerson:before		{ content: "CIPS Contact Person & @: "; }
@@ -290,6 +292,7 @@ Status,
 
 
 AlternateName:before,
+FormerName:before,
 CIPSContact:before,
 Comment:before,
 Date:before,
@@ -346,6 +349,8 @@ ShortName > Name,			{ margin-left: 120pt;
 					  text-indent: -112pt; }
 AlternateName,				{ margin-left: 120pt; 
 					  text-indent: -116pt; }
+FormerName,				{ margin-left: 120pt; 
+					  text-indent: -107pt; }
 OrganizationNameInformation>Comment,	{ margin-left: 120pt; 
 					  text-indent: -82pt; }
 ParentOrganization,			{ margin-left: 120pt; 
@@ -423,6 +428,7 @@ PdqKey,					{ margin-left: 100pt;
 
 AffiliateMemberOf,
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -478,6 +484,7 @@ IncludeInDirectory,
 
 
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -517,6 +524,7 @@ Status,
 
 AffiliateMemberOf,
 AlternateName:before,
+FormerName:before,
 CCOP:before,
 CIPSContact:before,
 CIPSContactPerson:before,

@@ -95,6 +95,7 @@ Organization,
 
 AffiliateMemberOf,
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson, 
@@ -147,6 +148,7 @@ Status,
 
 AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF"; }
 AlternateName:before			{ content: "Alternate Name "; }
+FormerName:before               { content: "Former Name "; }
 CCOP:before				{ content: "CCOP"; }
 CIPSContact:before			{ content: "CIPS Contact "; }
 CIPSContactPerson:before		{ content: "CIPS Contact Person "; }
@@ -269,6 +271,7 @@ Type:before,
 
 
 AlternateName:before,
+FormerName:before,
 CIPSContact:before,
 Comment:before,
 Date:before,
@@ -306,6 +309,7 @@ Status,
 
 AffiliateMemberOf,
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -355,6 +359,7 @@ Type,
 
 AffiliateMemberOf,
 AlternateName,
+FormerName,
 CCOP,
 CIPSContact,
 CIPSContactPerson, 
@@ -403,6 +408,7 @@ Type,
 
 AffiliateMemberOf,
 AlternateName:before,
+FormerName:before,
 CCOP:before,
 CIPSContact:before,
 CIPSContactPerson:before,

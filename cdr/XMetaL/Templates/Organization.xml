@@ -13,6 +13,7 @@
 		<Name><?xm-replace_text {Optionally enter an abbreviation or short name for this organization } ?></Name>
 		</ShortName> 
 	 <AlternateName><?xm-replace_text {Optionally enter another name for this organization } ?></AlternateName>
+	 <FormerName><?xm-replace_text {Optionally enter a previous name for this organization } ?></FormerName>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </OrganizationNameInformation> 
   <OrganizationParent>
