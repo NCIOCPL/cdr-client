@@ -34,7 +34,7 @@
   </SummarySection>
   <SummarySection>
    <KeyPoint>Entre los signos que pueden indicar que hay cáncer del x está el A, B, C.</KeyPoint>
-   <Para>Estos y otros síntomas pueden ser debido al cáncer x o a otras enfermedades. Se debe acudir a un médico si se presenta cualquiera de los problemas siguientes:</Para>
+   <Para>Estos y otros síntomas pueden ser debido al cáncer x. Existe la posibilidad de que otras enfermedades ocasionen los mismos síntomas.Se debe acudir a un médico si se presenta cualquiera de los problemas siguientes:</Para>
    <ItemizedList Style="bullet">
     <ListItem>[posible síntoma]</ListItem> 
     <ListItem>[posible síntoma]</ListItem> 
@@ -46,7 +46,7 @@
    <KeyPoint>Para detectar (encontrar) y diagnosticar el cáncer del x se utilizan pruebas que examinan el A, B, y C.</KeyPoint>
    <Para>Se puede utilizar las siguientes pruebas y procedimientos:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording>Biopsia: La extracción de células o tejidos con el propósito de verlos bajo un microscopio en busca de signos de cáncer.</StandardWording></ListItem>
+    <ListItem><StandardWording>Biopsia: La extracción de células o tejidos con el fin de que un patólogo los observe en el microscopio y determine la presencia de signos de cáncer.</StandardWording></ListItem>
     <ListItem>[prueba]</ListItem>
     <ListItem>[prueba]</ListItem>
     <ListItem>[prueba]</ListItem>
@@ -113,7 +113,7 @@
   <SummarySection>
    <KeyPoint>Hay tres diferentes tipos de tratamiento para los pacientes con cáncer del x.</KeyPoint>
    <Para>Se cuenta con diferentes tipos de tratamiento disponibles para los pacientes con cáncer de x. Algunos tratamientos son estándar (el tratamiento actualmente en uso) y otros están siendo probados en ensayos clínicos. Antes de iniciar el tratamiento, el paciente debería pensar en la posibilidad de participar en un ensayo clínico. Un ensayo clínico de tratamiento es un estudio de investigación con el propósito de ayudar a mejorar los tratamientos actuales u obtener información sobre nuevos tratamientos para pacientes de cáncer. Cuando un ensayo clínico muestra que un tratamiento nuevo es mejor que el tratamiento estándar, el nuevo tratamiento se convierte en el tratamiento estándar.</Para>
-   <Para>Los ensayos clínicos se están llevando acabo en muchas partes del país. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés). La selección del tratamiento más apropiado contra el cáncer es una decisión que, de forma ideal, involucra al paciente, la familia y el equipo de atención médica.</Para>
+   <Para>Los ensayos clínicos se están llevando acabo en muchas partes del país. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés). La selección del tratamiento más apropiado contra el cáncer es una decisión que, de forma ideal, involucra al paciente, la familia y el equipo de atención médica.</Para>
   </SummarySection>
   <SummarySection>
    <KeyPoint>El tratamiento de niños con cáncer x debe ser planificado por un equipo de médicos con experiencia en el tratamiento de cánceres infantiles.</KeyPoint>
@@ -187,7 +187,7 @@
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran bajo estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran bajo estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
  </SummarySection>
  <SummarySection>
@@ -200,7 +200,7 @@
     <ListItem>[tratamiento]</ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio I</Title>
@@ -210,7 +210,7 @@
     <ListItem>[tratamiento]</ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio II</Title>
@@ -220,7 +220,7 @@
     <ListItem>[tratamiento]</ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio III</Title>
@@ -230,7 +230,7 @@
     <ListItem>[tratamiento]</ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI,  <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio IV</Title>
@@ -240,7 +240,7 @@
     <ListItem>[tratamiento]</ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
  </SummarySection>
  <SummarySection>
@@ -253,7 +253,7 @@
    <ListItem>[tratamiento]</ListItem>
    <ListItem>Participación en un ensayo clínico de ....</ListItem>
   </ItemizedList>
-  <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el portal de Internet del NCI, <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">Cancer.gov</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+  <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
  </SummarySection>
  <SummarySection>
   <SectMetaData>
