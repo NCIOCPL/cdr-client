@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.74 2002-08-22 13:12:21 bkline Exp $
+     $Id: Cdr.mcr,v 1.75 2002-08-27 18:45:56 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.74  2002/08/22 13:12:21  bkline
+     Turned on Publish Preview.
+
      Revision 1.73  2002/07/26 16:29:09  bkline
      Removed DatedAction from Insert ProtocolAmendmentInformation (Issue #346).
 
@@ -412,7 +415,15 @@
                 return 0;
             return 1;
         }
-        return 0; /* XXX */
+        /*
+         * XXX We cannot use the rest of this function to block
+         *     editing of linking elements without disabling the
+         *     feature of inserting a new occurrence of a repeating
+         *     element by pressing the Enter key.  Lakshmi has
+         *     agreed that it is preferable to keep the latter
+         *     feature.
+         */
+        // return 0;
         if (cdrObj == null)                           { return 0; }
         if (Selection == null)                        { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
@@ -467,12 +478,15 @@
 
             // Prevent On_Update_UI macro from blocking our editing.
             gEditingCdrLink = true;
+            oldFlag = Selection.ReadOnlyContainer;
+            Selection.ReadOnlyContainer = false;
             var rc  = cdrObj.edit();
             if (!rc) {
                 dumpXmPis();
                 Selection.SelectContainerContents();
                 Selection.MoveRight(0);
             }
+            Selection.ReadOnlyContainer = oldFlag;
             gEditingCdrLink = false;
         }
     }
@@ -575,6 +589,27 @@
         rng.MoveRight();
         rng.Select();
         return true;
+    }
+
+    function publishPreview(flavor) {
+        Application.Alert("*** WARNING ***\n" +
+                          "This service is still under development.\n" +
+                          "Formatting and content may be significantly\n" +
+                          "different in final version of software.");
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "PublishPreview.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        if (flavor)
+            url += "&Flavor=" + flavor;
+        Application.ShowPage(url);
     }
 
   ]]>
@@ -983,12 +1018,14 @@
                            "Print the current document",
                            "CDR", 1, 10,
                            true),
+            /*
             new CdrCmdItem("&Publish Preview",
                            "Publish Preview",
                            "Publish Preview",
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
                            false),
+            */
             new CdrCmdItem("&Validate",
                            "Cdr Validate",
                            "Validate",
@@ -1315,12 +1352,14 @@
                            "Print the current document",
                            "CDR", 1, 10,
                            false),
+            /*
             new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
                            false),
+            */
             new CdrCmdItem(null,
                            "Cdr Validate",
                            "Validate",
@@ -1541,6 +1580,12 @@
                            "Patient QC",
                            "Patient Summary QC Report",
                            "CDR", 3, 5,
+                           false),
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
                            false),
             new CdrCmdItem(null,
                            "Generate Mailer",
@@ -1785,6 +1830,18 @@
                            "Citations QC",
                            "Citations QC Report",
                            "CDR", 3, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Patient Publish Preview",
+                           "Patient Publish Preview",
+                           "Patient Publish Preview",
+                           "Structure (Custom)", 1, 9,
                            false),
             new CdrCmdItem(null,
                            "Generate Mailer",
@@ -3865,33 +3922,16 @@
 <MACRO name="Publish Preview" 
        lang="JScript">
   <![CDATA[
-    function publishPreview() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "PublishPreview.py?Session="
-                + CdrSession + "&DocId=" + docId;
-        Application.ShowPage(url);
-    }
-    /*
-    Application.Alert("The Publish Preview command will hook directly to " +
-                      "Cancer.Gov\nDid you mean to use one of the QC " +
-                      "commands?");
-     */
-    Application.Alert("*** WARNING ***\n" +
-                      "This service is still under development.\n" +
-                      "Formatting and content may be significantly\n" +
-                      "different in final version of software.");
-    publishPreview();
+    publishPreview("");
   ]]>
 </MACRO>
 
+<MACRO name="Patient Publish Preview" 
+       lang="JScript">
+  <![CDATA[
+    publishPreview("protocol_patient");
+  ]]>
+</MACRO>
 
 <MACRO  name="CDR Check In"
         lang="JScript" 
