@@ -73,10 +73,14 @@
 		<Purpose> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</Purpose> 
-		<EligibilityText> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</EligibilityText> 
-		<TreatmentIntervention> 
+		 
+		<EligibilityText>
+<ItemizedList Style="bullet">
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+<ListItem><?xm-replace_text {ListItem} ?></ListItem>
+</ItemizedList>
+</EligibilityText><TreatmentIntervention> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</TreatmentIntervention> 
 		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
