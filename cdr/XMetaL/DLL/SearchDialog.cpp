@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.6 2002-05-08 21:19:50 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.7 2002-05-13 12:39:42 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2002/05/08 21:19:50  bkline
+ * Turned off check out button by default (requested by Lakshmi).
+ *
  * Revision 1.5  2002/04/20 19:20:00  bkline
  * Removed version string from search and retrieve dialogs.  Will replace
  * soon with more sophisticated picklist for most recent versions.
@@ -88,6 +91,7 @@ BEGIN_MESSAGE_MAP(CSearchDialog, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1, OnRetrieveButton)
 	ON_BN_CLICKED(IDOK, OnSearchButton)
 	ON_LBN_DBLCLK(IDC_LIST1, OnDblclkDocument)
+	ON_BN_CLICKED(IDC_BUTTON3, OnVersionsButton)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -253,4 +257,23 @@ BOOL CSearchDialog::OnInitDialog()
 void CSearchDialog::OnDblclkDocument() 
 {
 	OnRetrieveButton();	
+}
+
+void CSearchDialog::OnVersionsButton() 
+{
+    UpdateData(true);
+	int curSel = m_docList.GetCurSel();
+	if (curSel >= 0) {
+		CString str;
+		m_docList.GetText(curSel, str);
+        unsigned int docNo = cdr::getDocNo(str);
+#if 0
+        // Make canonical document ID.
+        CString docId = cdr::docIdString(docNo);
+        CVersionList versionList(docId);
+        if (versionList.DoModal() == IDOK) {
+        if (CCommands::doRetrieve(str, m_checkOut))
+    		EndDialog(IDCANCEL);	
+#endif
+    }
 }
