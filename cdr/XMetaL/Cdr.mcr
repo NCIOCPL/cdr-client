@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.101 2003-05-13 15:51:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.102 2003-05-27 15:06:44 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.101  2003/05/13 15:51:34  bkline
+     Modified Summary QC macros to take the user to the page which let's the
+     user select revision markup level and document version number.
+
      Revision 1.100  2003/05/08 18:37:54  bkline
      Added macro to back out rejected change markup.  Modified Find Next and
      Find Prev macros to let the user specify the revision level of the
@@ -1678,6 +1682,12 @@
                            "CDR", 5, 8,
                            false),
             new CdrCmdItem(null,
+                           "Preview Mailer",
+                           "Preview Mailer",
+                           "Preview Mailer",
+                           "General (Custom)", 3, 3,
+                           false),
+            new CdrCmdItem(null,
                            "Back Out Rejected Markup",
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
@@ -3141,27 +3151,52 @@
     //----------------------------------------------------------------------
     function mergeChanges()
     {
+        var frm = Application.Path + "/Forms/CDR/AcceptAllChanges.xft";
+        var dlg = Application.CreateFormDlg(frm);
+        dlg.ApprovedButton.Value = true;
+        var rc = dlg.DoModal();
+        if (rc != 1)
+            return; // User cancelled.
+        var levels = "";
+        if (dlg.PublishButton.Value)
+            levels = "[publish]";
+        if (dlg.ApprovedButton.Value)
+            levels += "[approved]";
+        if (dlg.ProposedButton.Value)
+            levels += "[proposed]";
+        if (!levels) {
+            Application.Alert("No levels selected.");
+            return;
+        }
         var r = Selection.Duplicate;
         r.MoveToDocumentStart();
         while (r.MoveToElement("Deletion")) {
-            r.SelectContainerContents();
-            r.Delete();
-            r.RemoveContainerTags();
+            var lvl = r.ContainerNode.getAttribute("RevisionLevel");
+            //Application.Alert("revision level = " + lvl);
+            if (levels.indexOf(lvl) != -1) {
+                r.SelectContainerContents();
+                r.Delete();
+                r.RemoveContainerTags();
+            }
         }
         r.MoveToDocumentStart();
         while (r.MoveToElement("Insertion")) {
-            r.SelectContainerContents();
-            if (r.Text == "<?xm-replace_text Insert text here?>") {
-                r.Delete();
+            var lvl = r.ContainerNode.getAttribute("RevisionLevel");
+            //Application.Alert("revision level = " + lvl);
+            if (levels.indexOf(lvl) != -1) {
+                r.SelectContainerContents();
+                if (r.Text == "<?xm-replace_text Insert text here?>") {
+                    r.Delete();
+                }
+                r.RemoveContainerTags();
             }
-            r.RemoveContainerTags();
         }
     }
 
     if (CanRunMacros()) {
-        var confirm =
+        var confirm = true;/*
             Application.Confirm("Do you want to merge all changes " +
-                                "without reviewing them?");
+                                "without reviewing them?");*/
         if (confirm) {
             mergeChanges();
         }
@@ -3874,7 +3909,8 @@
         var insElem = ActiveDocument.Range;
         var keepGoing = true;
         var markupLevel = "";
-        var dlg = Application.CreateFormDlg("Forms/CDR/FindNextMarkup.xft");
+        var dlg = Application.CreateFormDlg(Application.Path +
+                                            "/Forms/CDR/FindNextMarkup.xft");
         dlg.MarkupLevel.Value = 2;
         if (dlg.DoModal() != 1)
             return;
@@ -5726,7 +5762,6 @@
 </MACRO>
 
 <MACRO name="Back Out Rejected Markup" 
-        key="Alt+Z"
        lang="JScript" >
   <![CDATA[
 
@@ -5765,6 +5800,27 @@
         }
     }
 
+  ]]>
+</MACRO>
+
+<MACRO name="Preview Mailer" 
+        key="Alt+Z"
+       lang="JScript" >
+  <![CDATA[
+    function previewMailer() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
+        cdrObj.showPage(url);
+    }
+    previewMailer();
   ]]>
 </MACRO>
 
