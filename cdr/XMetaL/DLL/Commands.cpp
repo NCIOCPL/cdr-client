@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.30 2002-08-16 22:03:07 bkline Exp $
+ * $Id: Commands.cpp,v 1.31 2002-09-23 22:07:00 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.30  2002/08/16 22:03:07  bkline
+ * Turned on support for private practice picklist.
+ *
  * Revision 1.29  2002/08/03 12:13:59  bkline
  * Backed out private practice picklist support temporarily [per LG].
  *
@@ -1118,6 +1121,8 @@ void removeDoc(const CString& docId)
         CFile::Remove((LPCTSTR)docPath);
     }
     catch (CFileException&) { /* ignore */ }
+    catch (...) { /* ignore this, too; MFC docs are incorrect about which
+                  exception will be thrown. */ }
 }
 
 bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
