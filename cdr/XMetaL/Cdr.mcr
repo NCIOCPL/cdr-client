@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.115 2004-03-10 19:45:25 bkline Exp $
+     $Id: Cdr.mcr,v 1.116 2004-03-22 21:51:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.115  2004/03/10 19:45:25  bkline
+     Plugged in macro for pasting org address elements into new
+     OverallContact element.
+
      Revision 1.114  2004/03/10 19:42:04  bkline
      Added "Go to Brief Summary" macro.
 
@@ -4755,9 +4759,12 @@
             return;
         }
         var rng = getElemRange("GenericPerson");
+        if (!rng)
+            rng = getElemRange("OverallContact");
         if (!rng) {
             Application.Alert(
-                "Current position is not within a GenericPerson element.");
+                "Current position is not within a GenericPerson " +
+                " or OverallContact element.");
             return;
         }
 
