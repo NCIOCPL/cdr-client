@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.26 2002-02-19 23:15:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.27 2002-02-20 04:12:21 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.26  2002/02/19 23:15:41  bkline
+     Enabled code to pull down Org postal address into person document.
+
      Revision 1.25  2002/02/19 13:36:01  bkline
      Disabled code to move to newly inserted table's Title element.  Fixed
      typo in macro name Show Original.
@@ -1211,12 +1214,6 @@
                            "CDR", 5, 10,
                            false),
             new CdrCmdItem(null,
-                           "New Current Org Status",
-                           "Change Org Status",
-                           "Add new org status for protocol",
-                           "CDR", 6, 10,
-                           false),
-            new CdrCmdItem(null,
                            "CDR Help",
                            "CDR Help",
                            "Launch the CDR Help System",
@@ -1499,7 +1496,7 @@
                            "Change Organization Status",
                            "Org Status",
                            "Change Organization Status",
-                           "CDR", 6, 7,
+                           "CDR", 6, 10,
                            false),
             new CdrCmdItem(null,
                            "Generate QC Report",
@@ -1865,10 +1862,10 @@
 </MACRO>
 
 <MACRO  name="Cdr Edit" 
-        key="Ctrl+Enter" 
+        key="Ctrl+Enter"
         lang="JScript" 
         tooltip="Store Document in the CDR" 
-        id="1912">
+        id="1919">
  <![CDATA[
     cdrEdit();
   ]]>
