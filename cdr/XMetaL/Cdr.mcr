@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.42 2002-04-12 01:34:09 bkline Exp $
+     $Id: Cdr.mcr,v 1.43 2002-04-15 02:37:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.42  2002/04/12 01:34:09  bkline
+     Replaced stub for QC button.
+
      Revision 1.41  2002/04/05 14:15:05  bkline
      Added toolbar button for Checked Out Docs report.
 
@@ -1430,12 +1433,14 @@
     function addPersonToolbar() {
 
         var buttons = new Array(
+            /*
             new CdrCmdItem(null,                        // Label.
                            "Reset Contact Information", // Macro.
                            "Reset Contact",             // Tooltip.
                            "Reset Contact Information", // Description
                            "CDR", 4, 9,                 // Icon set, row, col.
                            true),                       // Starts new group?
+            */
             new CdrCmdItem(null,
                            "Generate QC Report",
                            "QC Report",
@@ -1918,6 +1923,17 @@
      * document.
      */
     function cdrValidate() {
+        if (ActiveDocument.ViewType != sqViewNormal &&
+            ActiveDocument.ViewType != sqViewTagsOn) {
+            try {
+                ActiveDocument.ViewType = sqViewNormal;
+            }
+            catch (e) { 
+                Application.Alert("Switch to normal or tags-on view " +
+                                  "to validate documents.");
+                return;
+            }
+        }
         if (cdrObj == null) {
             Application.Alert("You are not logged on to the CDR");
         }
