@@ -1,9 +1,12 @@
 /*
- * $Id: EditElement.cpp,v 1.9 2002-03-09 03:25:22 bkline Exp $
+ * $Id: EditElement.cpp,v 1.10 2002-06-01 00:47:06 bkline Exp $
  *
  * Implementation of dialog object for editing inter-document links.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.9  2002/03/09 03:25:22  bkline
+ * Cleaned up commented-out section.
+ *
  * Revision 1.8  2002/03/04 11:58:23  bkline
  * Enlarged link edit dialog window and picklist font.
  *
@@ -340,8 +343,9 @@ void CEditElement::OnButton2()
         ::AfxMessageBox(_T("Unable to find document ID end delimiter."));
         return;
     }
-    CString url = _T("http://mmdb2.nci.nih.gov/cgi-bin/cdr/ShowDocXml.py?")
-                  _T("DocId=") + info.Mid(pos, endPos - pos);
+    CString url = _T("http://mmdb2.nci.nih.gov/cgi-bin/cdr/QcReport.py?")
+                  _T("Session=") + CdrSocket::getSessionString() +
+                  _T("&DocId=") + info.Mid(pos, endPos - pos);
 #else // just proof-of-concept demo
     CString url = m_title;
     if (url.IsEmpty())
