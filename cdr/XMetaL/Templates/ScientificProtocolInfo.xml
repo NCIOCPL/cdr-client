@@ -53,9 +53,7 @@
 		  <PriorConcurrentTherapy> 
 			 <Para><?xm-replace_text {Paragraph} ?></Para> 
 		  </PriorConcurrentTherapy> 
-		  <GeneralEligibilityCriteria> 
-			 <Para><?xm-replace_text {Paragraph} ?></Para> 
-		  </GeneralEligibilityCriteria> 
+		   
 		</EntryCriteria> 
 		<ProjectedAccrual> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
@@ -63,18 +61,7 @@
 		<EndPoints> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</EndPoints> 
-		<Stratification> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</Stratification> 
-		<SpecialStudyParameters> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</SpecialStudyParameters> 
-		<DoseSchedule> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</DoseSchedule> 
-		<DosageForm> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</DosageForm> 
+		 
 		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 		<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
@@ -116,7 +103,7 @@
   <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
   </ProtocolDetail> 
   <Eligibility> 
-	 <HealthyVolunteers><?xm-replace_text {Optionally select yes or no} ?></HealthyVolunteers>
+	 <HealthyVolunteers>No</HealthyVolunteers>
 	 <LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>
 	 <HighAge><?xm-replace_text {Select the maximum eligible age (required)} ?></HighAge>
 	 <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>
