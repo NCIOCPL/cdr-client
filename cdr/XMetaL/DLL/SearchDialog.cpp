@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.8 2002-05-14 14:22:48 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.9 2002-07-18 00:52:43 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.8  2002/05/14 14:22:48  bkline
+ * Finished implementation of version retrieval.
+ *
  * Revision 1.7  2002/05/13 12:39:42  bkline
  * Adding version button to search dialog window.
  *
@@ -164,7 +167,8 @@ void CSearchDialog::OnSearchButton()
         }
         else
             lastSearch.stringType = LastSearch::ALL;
-        cmd += _T("CdrCtl/Title ") + op + _T(" '") + m_searchString + _T("'");
+        cmd += _T("CdrCtl/Title ") + op + _T(" '") + 
+            cdr::encode(m_searchString) + _T("'");
     }
     if (curType > 0) {
         CString val;
