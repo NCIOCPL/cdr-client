@@ -21,7 +21,6 @@ CLogonProgress::CLogonProgress(CWnd* pParent /*=NULL*/)
 : CDialog(CLogonProgress::IDD, pParent), userCancelled(false), created(false)
 {
 	//{{AFX_DATA_INIT(CLogonProgress)
-		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
@@ -30,7 +29,6 @@ void CLogonProgress::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CLogonProgress)
-	DDX_Control(pDX, ID_GENERAL_PROGRESS_TEXT, m_generalProgressText);
 	DDX_Control(pDX, ID_CURRENT_ACTIVITY_TEXT, m_currentActivityText);
 	DDX_Control(pDX, IDC_PROGRESS1, m_progressBar);
 	//}}AFX_DATA_MAP
@@ -49,7 +47,7 @@ END_MESSAGE_MAP()
 void CLogonProgress::OnCancel() 
 {
     userCancelled = true;
-    m_generalProgressText.SetWindowText(_T("Cancelling CDR Logon ..."));
+    //m_generalProgressText.SetWindowText(_T("Cancelling CDR Logon ..."));
 	//CDialog::OnCancel();
 }
 

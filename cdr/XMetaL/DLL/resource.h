@@ -28,9 +28,7 @@
 #define IDC_CHECK5                      215
 #define IDC_BUTTON2                     216
 #define IDC_PROGRESS1                   217
-#define ID_GENERAL_PROGRESS_TEXT        218
 #define ID_CURRENT_ACTIVITY_TEXT        219
-#define IDC_LOGON_PROGRESS_TEXT         220
 #define ID_LOGON_OK                     221
 
 // Next default values for new objects

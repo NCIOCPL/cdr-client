@@ -22,8 +22,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(LogonDialog)
 	enum { IDD = IDD_DIALOG1 };
-	CProgressCtrl	m_progressBar;
-	CStatic	m_progressText;
 	CButton	m_okButton;
 	CString	m_UserId;
 	CString	m_Password;
@@ -49,6 +47,7 @@ protected:
 
 private:
     bool userCancelled;
+    bool loggingOn;
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.3 2001-06-09 12:29:47 bkline Exp $
+ * $Id: CdrUtil.h,v 1.4 2001-06-11 18:26:43 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/09 12:29:47  bkline
+ * Switched to Unicode strings; added more sophisticated XML parsing.
+ *
  * Revision 1.2  2001/04/18 14:44:19  bkline
  * Added insertion operator for DOM node.
  *
@@ -22,6 +25,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include <set>
 #include <winsock.h>
 
 // Information used to populate the CdrDocCtl element.
@@ -68,8 +72,10 @@ namespace cdr {
 
     // Useful types.
     typedef std::list<CString> StringList;
-    typedef std::map<CString, StringList*> ValidValueSet;
-    typedef std::map<CString, ValidValueSet*> ValidValueSets;
+    typedef std::set<CString> StringSet;
+    typedef std::map<CString, StringSet> ElementSets;
+    typedef std::map<CString, StringList> ValidValueSet;
+    typedef std::map<CString, ValidValueSet> ValidValueSets;
 
     class SearchResult {
     public:

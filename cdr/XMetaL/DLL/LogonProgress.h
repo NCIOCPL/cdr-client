@@ -27,7 +27,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CLogonProgress)
 	enum { IDD = IDD_DIALOG8 };
-	CStatic	m_generalProgressText;
 	CStatic	m_currentActivityText;
 	CProgressCtrl	m_progressBar;
 	//}}AFX_DATA

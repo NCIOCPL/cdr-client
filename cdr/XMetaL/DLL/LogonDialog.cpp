@@ -18,7 +18,8 @@ static char THIS_FILE[] = __FILE__;
 
 
 LogonDialog::LogonDialog(CWnd* pParent /*=NULL*/)
-	: CDialog(LogonDialog::IDD, pParent), userCancelled(false)
+	: CDialog(LogonDialog::IDD, pParent), userCancelled(false),
+                                          loggingOn(false)
 {
 	//{{AFX_DATA_INIT(LogonDialog)
 	m_UserId = _T("");
@@ -31,8 +32,6 @@ void LogonDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(LogonDialog)
-	DDX_Control(pDX, IDC_PROGRESS1, m_progressBar);
-	DDX_Control(pDX, IDC_LOGON_PROGRESS_TEXT, m_progressText);
 	DDX_Control(pDX, ID_LOGON_OK, m_okButton);
 	DDX_Text(pDX, IDC_EDIT1, m_UserId);
 	DDX_Text(pDX, IDC_EDIT2, m_Password);
@@ -51,15 +50,23 @@ END_MESSAGE_MAP()
 
 void LogonDialog::OnCancel() 
 {
-    userCancelled = true;	
-	CDialog::OnCancel();
+    if (loggingOn) {
+        userCancelled = true;	
+        loggingOn = false;
+    }
+    else
+        CDialog::OnCancel();
 }
 
 void LogonDialog::OnLogonOk() 
 {
+    userCancelled = false;
+    loggingOn = true;
     UpdateData(true);
-    CWaitCursor wc;
+    //CWaitCursor wc;
+    m_okButton.EnableWindow(FALSE);
     if (CCommands::doLogon(*this))
         EndDialog(IDOK);
     m_okButton.EnableWindow(TRUE);
+    loggingOn = false;
 }

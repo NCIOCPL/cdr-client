@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.3 2001-06-09 12:33:45 bkline Exp $
+ * $Id: Commands.cpp,v 1.4 2001-06-11 18:27:18 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/09 12:33:45  bkline
+ * Switched to Unicode; added code to sync client with server.
+ *
  * Revision 1.2  2001/04/18 14:46:24  bkline
  * Switched to extracting document types from Type attribute (instead of
  * inferring it from first tag).  Removed some dead code.
@@ -41,50 +44,68 @@
 
 // Local functions.
 static void     getDocTypeStrings(CString& err);
+static void     messageLoop();
 static CString& fixDoc(CString& doc, const CString& ctl, 
                        const CString& docType);
 
 // Local data.
 static cdr::StringList      docTypeStrings;
 static cdr::ValidValueSets  validValueSets;
+static cdr::ElementSets     linkingElements;
 
-static cdr::ValidValueSet* extractValidValueSet(const CString& resp)
+/**
+ * Converts a reference to an OLE VARIANT object to an MFC
+ * string.  Recurses if necessary to handle additional levels
+ * of indirection.
+ *
+ *  @param  v                   reference to OLE VARIANT object.
+ *  @return                     newly created MFC CString object.
+ */
+static CString stringFromVariant(const VARIANT FAR& v)
 {
-    cdr::ValidValueSet* vvSet = new cdr::ValidValueSet;
-    try {
-        cdr::Element enumSet = 
-            cdr::Element::extractElement(resp, _T("EnumSet"));
-        while (enumSet) {
-            CString path = enumSet.getAttribute(_T("Node"));
-            if (vvSet->find(path) == vvSet->end()) {
-                cdr::StringList* vvList = new cdr::StringList;
-                (*vvSet)[path] = vvList;
-                CString eString = enumSet.getString();
-                cdr::Element validValue = 
-                    cdr::Element::extractElement(eString, _T("ValidValue"));
-                while (validValue) {
-                    vvList->push_back(validValue.getString());
-                    validValue = 
-                        cdr::Element::extractElement(eString, _T("ValidValue"), 
-                                                     validValue.getEndPos());
-                }
+    switch (v.vt) {
+    case VT_BYREF | VT_VARIANT:
+        return stringFromVariant(*v.pvarVal);
+    case VT_BSTR:
+        return CString(v.bstrVal);
+    case VT_BYREF | VT_BSTR:
+        return CString(*v.pbstrVal);
+    default:
+        return "";
+    }
+}
+
+static void extractValidValueSet(const CString& resp, 
+                                 cdr::ValidValueSet& vvSet)
+{
+    cdr::Element enumSetElem = 
+        cdr::Element::extractElement(resp, _T("EnumSet"));
+    while (enumSetElem) {
+        CString path = enumSetElem.getAttribute(_T("Node"));
+        if (vvSet.find(path) == vvSet.end()) {
+            cdr::StringList& vvList = vvSet[path] = cdr::StringList();
+            CString eString = enumSetElem.getString();
+            cdr::Element vvElement = 
+                cdr::Element::extractElement(eString, _T("ValidValue"));
+            while (vvElement) {
+                vvList.push_back(vvElement.getString());
+                vvElement = 
+                    cdr::Element::extractElement(eString, _T("ValidValue"), 
+                                                 vvElement.getEndPos());
             }
-            enumSet = cdr::Element::extractElement(resp, _T("EnumSet"), 
-                                                   enumSet.getEndPos());
         }
+        enumSetElem = cdr::Element::extractElement(resp, _T("EnumSet"), 
+                                                   enumSetElem.getEndPos());
     }
-    catch (LPCTSTR ex) {
-        ::AfxMessageBox(ex, MB_ICONEXCLAMATION);
-        delete vvSet;
-        vvSet = 0;
+}
+
+static void messageLoop()
+{
+    MSG msg;
+    while (::PeekMessage(&msg, 0, 0, 0, PM_REMOVE)) {
+        ::TranslateMessage(&msg);
+        ::DispatchMessage(&msg);
     }
-    catch (...) { 
-        ::AfxMessageBox(_T("Unexpected exception encountered"),
-                        MB_ICONEXCLAMATION);
-        delete vvSet; 
-        return vvSet = 0; 
-    }
-    return vvSet;
 }
 
 static bool syncDtd(const CString& dtd, const CString& docType)
@@ -112,7 +133,25 @@ static bool syncDtd(const CString& dtd, const CString& docType)
     return true;
 }
 
-static void getDocType(const CString docType, LogonDialog& dialog)
+static void extractLinkingElements(const CString resp, cdr::StringSet& set)
+{
+    cdr::Element wrapperElem = cdr::Element::extractElement(resp,
+            _T("LinkingElements"));
+    if (wrapperElem) {
+        CString elems = wrapperElem.getString();
+        cdr::Element linkingElem = cdr::Element::extractElement(elems,
+                _T("LinkingElement"));
+        while (linkingElem) {
+            CString elemName = linkingElem.getString();
+            if (!elemName.IsEmpty())
+                set.insert(elemName);
+            linkingElem = cdr::Element::extractElement(elems,
+                    _T("LinkingElement"), linkingElem.getEndPos());
+        }
+    }
+}
+
+static void getDocType(const CString docType, CLogonProgress& dialog)
 {
     // Get the document type information from the CDR Server.
     CString cmd;
@@ -135,7 +174,7 @@ static void getDocType(const CString docType, LogonDialog& dialog)
         return;
 
     // Keep the user from getting impatient.
-    dialog.m_progressText.SetWindowText(
+    dialog.m_currentActivityText.SetWindowText(
         _T("Synchronizing information for document type ")
         + docType);
 
@@ -143,9 +182,14 @@ static void getDocType(const CString docType, LogonDialog& dialog)
     docTypeStrings.push_back(docType);
 
     // Extract the valid value sets from the response.
-    cdr::ValidValueSet* vvSet = extractValidValueSet(resp);
-    if (vvSet)
-        validValueSets[docType] = vvSet;
+    cdr::ValidValueSet vvSet;
+    extractValidValueSet(resp, vvSet);
+    validValueSets[docType] = vvSet;
+
+    // Extract list of elements for which the server has vvlists.
+    cdr::StringSet elemSet;
+    extractLinkingElements(resp, elemSet);
+    linkingElements[docType] = elemSet;
 
     // Synchronize the client's copy of the DTD.
     cdr::Element dtd = cdr::Element::extractElement(resp, _T("DocDtd"));
@@ -156,12 +200,14 @@ static void getDocType(const CString docType, LogonDialog& dialog)
                 MB_ICONEXCLAMATION);
 }
 
-bool getDocTypes(LogonDialog& dialog)
+bool getDocTypes(LogonDialog& dialog, CLogonProgress& progressDialog)
 {
     docTypeStrings.clear();
     validValueSets.clear();
     _Application app = cdr::getApp();
+    messageLoop();
     CString resp = CdrSocket::sendCommand(_T("<CdrListDocTypes/>"));
+    messageLoop();
     cdr::Element err = cdr::Element::extractElement(resp, _T("Err"));
     if (err) {
         ::AfxMessageBox(err.getString(), MB_ICONEXCLAMATION);
@@ -174,7 +220,10 @@ bool getDocTypes(LogonDialog& dialog)
     cdr::StringList tempList;
     cdr::Element docType = cdr::Element::extractElement(resp, _T("DocType"));
     while (docType) {
-        tempList.push_back(docType.getString());
+        messageLoop();
+        CString name = docType.getString();
+        if (!name.IsEmpty())
+            tempList.push_back(docType.getString());
         docType = cdr::Element::extractElement(resp, _T("DocType"),
                                                docType.getEndPos());
     }
@@ -186,18 +235,17 @@ bool getDocTypes(LogonDialog& dialog)
     while (iter != tempList.end()) {
         if (!dialog.keepGoing()) {
             app.SetStatusText(_T("Logon cancelled."));
-            dialog.m_progressBar.SetPos(0);
-            dialog.m_progressText.SetWindowText(_T("Logon cancelled."));
-            dialog.UpdateData(FALSE);
+            progressDialog.m_progressBar.SetPos(0);
+            progressDialog.UpdateData(FALSE);
             return false;
         }
+        messageLoop();
         CString name = *iter++;
         app.SetStatusText(_T("Retrieving information for document type ")
                 + name);
-        getDocType(name, dialog);
-        MSG msg;
-        ::PeekMessage(&msg, 0, 0, 0, PM_REMOVE);
-        dialog.m_progressBar.SetPos((100 * ++i) / nameCount);
+        getDocType(name, progressDialog);
+        //dialog.m_progressBar.SetPos((100 * ++i) / nameCount);
+        progressDialog.m_progressBar.SetPos((100 * ++i) / nameCount);
     }
     app.SetStatusText(_T("Document type information loaded."));
     return true;
@@ -212,7 +260,6 @@ static void getDocTypes()
         &progressDialog);
     progressDialog.DoModal();
 }
-#endif
 
 static cdr::ValidValueSet* getValidValueSet(const CString docType)
 {
@@ -227,21 +274,17 @@ static cdr::ValidValueSet* getValidValueSet(const CString docType)
     }
     return extractValidValueSet(resp);
 }
-
+#endif
 
 static cdr::StringList* getSchemaValidValues(const CString docType,
                                              const CString path)
 {
-    if (validValueSets.find(docType) == validValueSets.end()) {
-        cdr::ValidValueSet* vvSet = getValidValueSet(docType);
-        if (!vvSet)
-            return 0;
-        validValueSets[docType] = vvSet;
-    }
-    cdr::ValidValueSet* vvSet = validValueSets[docType];
-    if (vvSet->find(path) == vvSet->end())
+    if (validValueSets.find(docType) == validValueSets.end())
         return 0;
-    return (*vvSet)[path];
+    cdr::ValidValueSet& vvSet = validValueSets[docType];
+    if (vvSet.find(path) == vvSet.end())
+        return 0;
+    return &vvSet[path];
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -936,7 +979,16 @@ bool CCommands::doLogon(LogonDialog& logonDialog)
 			::AfxMessageBox(err, MB_ICONEXCLAMATION);
 			return false;
 		}
-        return getDocTypes(logonDialog);
+        CLogonProgress progressDialog;
+        progressDialog.Create(progressDialog.IDD /*, &logonDialog*/);
+        //CRect dim;
+        //dim.Height();
+        //dim.Width();
+        progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
+        progressDialog.ShowWindow(SW_SHOW);
+        bool gotDocTypes = getDocTypes(logonDialog, progressDialog);
+        progressDialog.DestroyWindow();
+        return gotDocTypes;
     }
     return false;
 }
@@ -1008,4 +1060,31 @@ bool CCommands::doInsertLink(const CString& info)
     // The user cannot edit the element directly.
     selection.SetReadOnlyContainer(TRUE);
     return true;
+}
+
+#if 0
+STDMETHODIMP CCommands::xisReadOnly(BOOL *pRet, 
+                                    VARIANT docType, 
+                                    VARIANT elemName)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+
+	return S_OK;
+}
+#endif
+
+STDMETHODIMP CCommands::isReadOnly(BOOL *pRet, 
+                                   const VARIANT& docType, 
+                                   const VARIANT& elemName)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+	// Initial assumption: the element is not read-only.
+    CString dt = stringFromVariant(docType);
+    CString el = stringFromVariant(elemName);
+    ::AfxMessageBox(_T("doc type is ") + dt + _T(" and element name is ") + el);
+    *pRet = FALSE;
+
+	return S_OK;
 }

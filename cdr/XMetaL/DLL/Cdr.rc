@@ -102,21 +102,17 @@ IDR_Commands            REGISTRY DISCARDABLE    "Commands.rgs"
 // Dialog
 //
 
-IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 254, 93
+IDD_DIALOG1 DIALOG DISCARDABLE  0, 0, 205, 50
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "CDR Logon"
 FONT 8, "MS Sans Serif"
 BEGIN
-    EDITTEXT        IDC_EDIT1,55,9,125,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EDIT2,55,27,125,14,ES_PASSWORD | ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",ID_LOGON_OK,197,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,197,24,50,14
+    EDITTEXT        IDC_EDIT1,55,9,72,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT2,55,27,72,14,ES_PASSWORD | ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",ID_LOGON_OK,148,8,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,148,25,50,14
     LTEXT           "User ID:",IDC_STATIC,22,14,27,8
     LTEXT           "Password:",IDC_STATIC,15,29,34,8
-    CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,
-                    24,60,203,14
-    LTEXT           "Enter CDR account information and press OK to logon.",
-                    IDC_LOGON_PROGRESS_TEXT,25,48,201,8
 END
 
 IDD_DIALOG2 DIALOG DISCARDABLE  0, 0, 252, 95
@@ -224,18 +220,15 @@ BEGIN
                     WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_DIALOG8 DIALOG DISCARDABLE  0, 0, 230, 78
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "CDR Client Logon"
+IDD_DIALOG8 DIALOG DISCARDABLE  0, 0, 230, 39
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "CDR Client Logon Progress"
 FONT 8, "MS Sans Serif"
 BEGIN
-    PUSHBUTTON      "Cancel",IDCANCEL,166,10,50,14
     CONTROL         "Progress1",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,
-                    13,30,202,14
-    LTEXT           "Refreshing CDR Information",ID_GENERAL_PROGRESS_TEXT,18,
-                    14,95,8
+                    7,18,216,14
     LTEXT           "Retrieving document type information ...",
-                    ID_CURRENT_ACTIVITY_TEXT,18,52,195,8
+                    ID_CURRENT_ACTIVITY_TEXT,9,7,214,8
 END
 
 
@@ -250,9 +243,9 @@ BEGIN
     IDD_DIALOG1, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 247
+        RIGHTMARGIN, 198
         TOPMARGIN, 7
-        BOTTOMMARGIN, 86
+        BOTTOMMARGIN, 43
     END
 
     IDD_DIALOG2, DIALOG
@@ -308,7 +301,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 223
         TOPMARGIN, 7
-        BOTTOMMARGIN, 71
+        BOTTOMMARGIN, 32
     END
 END
 #endif    // APSTUDIO_INVOKED
