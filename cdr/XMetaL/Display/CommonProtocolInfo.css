@@ -1,6 +1,14 @@
 /*************************************************************************/
 /* 	CommonProtocolInfo.css                                           */
 /* 	                                                                 */
+/*      v. 1.6                                                           */
+/*      8/29/02  by ebator                                               */
+/*      ChangeType is multiply-occurring                                 */
+/*                                                                       */
+/*      v. 1.5                                                           */
+/*      3/19/02  by ebator                                               */
+/*      Changed "sans serif" to sans-serif                               */
+/*                                                                       */
 /*      v. 1.4                                                           */
 /*      2/11/02  by ebator                                               */
 /*      Set background-color:white for List entries, Table entries,      */
@@ -34,7 +42,7 @@
  
 $DOCUMENT
 
-  {  font-family: Arial, "sans serif";       
+  {  font-family: Arial, sans-serif;       
      font-size: 12pt;
      margin-top: 5px;
      margin-left: 5px;  
@@ -141,7 +149,7 @@ AgeText:before			{ content: "Age Criteria (Text) *: "; }
 AmendmentDate:before		{ content: "Amendment Date *: ";  }
 AmendmentID:before		{ content: "Amendment ID &: ";  }
 AmendmentSource:before		{ content: "Source *: "; }
-ChangeType:before		{ content: "Change Type *: ";  }
+ChangeType:before		{ content: "Change Type * +: ";  }
 Citation:before			{ content: "Published Citation * @: ";  }
 Comment:before			{ content: "Comments &: "; } 
 Condition:before		{ content: "Condition & + @: ";  }
@@ -406,7 +414,7 @@ ProtocolAmendment>DateReceived,		{ margin-left: 115pt;
 ProtocolAmendment>DateCompleted,	{ margin-left: 115pt; 
 					  text-indent: -106.5pt; }
 ChangeType,				{ margin-left: 115pt; 
-					  text-indent: -91.5pt; }
+					  text-indent: -101.5pt; }
 ProtocolAmendment>Comment,		{ margin-left: 115pt; 
 					  text-indent: -82pt; }
 ProtocolAmendmentInformation>DatedAction>ActionDescription,	
