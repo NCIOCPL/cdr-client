@@ -23,15 +23,20 @@
 <SummaryTitle>Cancer Title</SummaryTitle>
 
 <SummarySection>
+
+<Title>General Information About X Cancer</Title>
+
+<SummarySection>
 <SectMetaData>
 <SectionType>Cancer description</SectionType>
 <SectionType>Organ description</SectionType>
 </SectMetaData>
-<Title>General Information About X Cancer</Title>
-<KeyPoint>X cancer is a disease in which malignant (cancer) cells form in the tissues of the x.</KeyPoint>
+<KeyPoint>X cancer is a disease in which malignant (cancer) cells form in
+		  the tissues of the x.</KeyPoint>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 <Para><?xm-replace_text {Paragraph} ?></Para>
 <Para><?xm-replace_text {Paragraph} ?></Para>
+</SummarySection>
 
 <SummarySection>
 <SectMetaData>
@@ -320,4 +325,5 @@
 <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>.</Para>
 </SummarySection>
 
-<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified></Summary>
+<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+</Summary>
