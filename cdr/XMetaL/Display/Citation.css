@@ -152,6 +152,7 @@ DateCompleted,
 DateCreated, 
 DateLastModified,
 DateRevised,
+ElectronicPubDate,
 PDQCitation>AuthorList>Author>FirstName,
 PDQCitation>AuthorList>Author>ForeName,
 GrantList,
@@ -263,6 +264,7 @@ DateLastModified:before			{ content: "Last Modified &: "; }
 DateRevised:before			{ content: "Date Revised: "; }
 Day:before				{ content: "/"; }
 DescriptorName[MajorTopicYN="Y"]:after	{ content: " (major) "; }
+ElectronicPubDate:before    { content: "Elec. Pub. Date &: "; }
 MedlineCitation>Article>AuthorList>Author>FirstName:after
 					{ content: " "; }
 PDQCitation>AuthorList>Author>FirstName:before
@@ -284,7 +286,7 @@ PDQCitation>AuthorList>Author>Initials:before
 ISSN:before				{ content: "ISSN: "; }
 Issue:before				{ content: "Issue: "; }
 Journal:before				{ content: "JOURNAL INFORMATION"; }
-Language:before				{ content: "Language: "; }
+Language:before				{ content: "Language *: "; }
 MedlineCitation>Article>AuthorList>Author>LastName:after
 					{ content: ", "; }
 PDQCitation>AuthorList>Author>LastName:before
@@ -310,7 +312,7 @@ OtherPublicationInformation:before	{ content: "Oth Pub Info *: "; }
 PDQCitation:before			{ content: "PDQ CITATION *"; }
 PdqKey:before				{ content: "PDQ Key: "; }
 PMID:before				{ content: "PMID: "; }
-PubDate:before				{ content: "Pub Date: "; }
+PubDate:before				{ content: "Pub Date &: "; }
 PubMedArticle:before			{ content: "PUBMED ARTICLE"; }
 PubMedData:before			{ content: "PUBMED DATA "; }
 PublicationDetails:before		{ content: "PUBLICATION DETAILS &"; }
@@ -459,6 +461,7 @@ DateCreated:before,
 DateCompleted:before,
 DateRevised:before,
 DescriptorName:after,
+ElectronicPubDate:before,
 MedlineCitation>Article>AuthorList>Author>FirstName:after,
 PDQCitation>AuthorList>Author>FirstName:before,
 ForeName:after,
@@ -594,7 +597,7 @@ Volume,					{ margin-left: 110pt;
 Issue,					{ margin-left: 110pt;
 					  text-indent: -38pt; }
 PubDate,				{ margin-left: 110pt;
-					  text-indent: -60pt; }
+					  text-indent: -73pt; }
 MedlineDate,				{ text-indent: -81pt; }
 
 /* Key element for length = MedlinePgn					   */
@@ -616,7 +619,7 @@ MedlineCitation>Article>AuthorList>Author,	{ margin-left: 45pt;
 						  text-indent: -0pt; }
 
 Language, 				{ margin-left: 110pt;
-					  text-indent: -65pt; }
+					  text-indent: -73pt; }
 Grant,					{ margin-left: 45pt;
 					  text-indent: -0pt; }
 PublicationType,			{ margin-left: 110pt;
@@ -646,6 +649,8 @@ NlmUniqueID,				{ margin-left: 110pt;
 					  text-indent: -67.5pt; }
 MedlineCitation>Comment,		{ margin-left: 110pt;
 					  text-indent: -63pt; }
+ElectronicPubDate 				{ margin-left: 110pt;
+					  text-indent: -106pt; }
 
 /* Key element for length = PubMedPubDate				   */
 
