@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.72 2002-07-26 16:20:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.73 2002-07-26 16:29:09 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.72  2002/07/26 16:20:01  bkline
+     Removed dead code.  Added code to disable CDR Save macro for readonly
+     documents.  Disabled extra On_Update_UI macro.  Added hotkey for CDR
+     Save.
+
      Revision 1.71  2002/07/19 22:07:14  bkline
      Replaced buggy SoftQuad code for Accept/Reject Change macros.  Added
      hotkey for macro to insert current date.
@@ -4764,7 +4769,7 @@
 </MACRO>
 
 <MACRO name="New Summary Section" 
-       key ="Alt+S" 
+       key ="" 
        lang="JScript" 
        id  ="1247">
   <![CDATA[
@@ -5087,8 +5092,6 @@
         rng.InsertElement("ProtocolAmendmentInformation");
         rng.InsertWithTemplate("ProtocolAmendment");
         rng.Select();
-        if (rng.FindInsertLocation("DatedAction", true))
-            rng.InsertWithTemplate("DatedAction");
     }
     insertProtocolAmendmentInformation();
   ]]>
