@@ -182,6 +182,7 @@ SummaryAudience,
 SummaryLanguage, 
 SummaryMetaData, 
 SummarySection, 
+SummarySection>Comment,
 SummaryTitle, 
 SummaryType, 
 Term,
@@ -432,6 +433,16 @@ Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion>SummarySection:before,
 
 	{ text-decoration: line-through; color: red; }
+
+Comment {font-style: italic; color: #EE11EE; }
+Comment:before { font-style: italic: color: #EE11EE; font-size: 10pt;
+                 content: "Comment: "; }
+SummarySection>Comment
+     { font-style: italic;
+       font-size: 10pt;
+       color: #EE11EE;  
+       margin-top: 15pt;
+       margin-bottom: 10pt; }
 
 /***************************************************************************/ 
 /*                         SECTION META DATA                               */ 
