@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.122 2004-04-19 15:26:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.123 2004-06-03 15:21:58 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.122  2004/04/19 15:26:38  bkline
+     Added support for copying/pasting fragment IDs.
+
      Revision 1.121  2004/04/09 17:05:15  bkline
      Adjusted the cdrIsReadOnly() function further, making sure that we prevent
      direct editing of the DocId and DocType elements.
@@ -2244,7 +2247,13 @@
                            "QC Report",                 // Tooltip.
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Glossary Phrase Search",
+                           "Glossary Phrase Search",
+                           "Report on matching GlossaryTerm phrases",
+                           "CDR", 5, 3,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -6146,6 +6155,28 @@
         cdrObj.showPage(url);
     }
     ctGovDiff();
+  ]]>
+</MACRO>
+
+<MACRO name="Glossary Phrase Search"
+       lang="JScript" >
+  <![CDATA[
+    function glossaryPhraseSearch() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "GlossaryTermPhrases.py?Session="
+                + CdrSession
+                + "&Id=" + docId;
+        cdrObj.showPage(url);
+    }
+    glossaryPhraseSearch();
   ]]>
 </MACRO>
 
