@@ -1,0 +1,407 @@
+/*************************************************************************/
+/* 	Summary.css                                                      */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      12/18/01  by ebator                                              */
+/*      Italicize subsection titles per users' request                   */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01  by ebator                                           */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.9                                                           */
+/*      12/05/01  by ebator                                              */
+/*      Fixed TT display: block                                          */
+/*                                                                       */
+/*      v. 2.8                                                           */
+/*      11/18/01  by bkline                                              */
+/*      Added before and after text for Note                             */
+/*                                                                       */
+/*      v. 2.7                                                           */
+/*      11/09/01  by ebator                                              */
+/*      Template-related cosmetic changes                                */
+/*      Fixed Table>Title style, Table indent                            */
+/*                                                                       */
+/*      v. 2.6                                                           */
+/*      11/02/01  by ebator                                              */
+/*      Changed TranslationOf colors                                     */
+/*                                                                       */
+/*      v. 2.5                                                           */
+/*      10/31/01  by ebator                                              */
+/*      Added margin-left for SummarySection>SummarySection and          */
+/*      SummarySection>SummarySection>SummarySection                     */
+/*                                                                       */
+/*      v. 2.4                                                           */
+/*      10/26/01  by ebator                                              */
+/*      Changed to match schema changes                                  */
+/*                                                                       */
+/*      v. 2.3                                                           */
+/*      10/17/01  by ebator                                              */
+/*      Changed to 12pt. for metadata tags, data (not titles, tables)    */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      10/10/01  by ebator                                              */
+/*      Changed styles on TranslationOf                                  */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/09/01  by ebator                                              */
+/*      Indented subsequent lines for form data                          */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/04/01  by ebator                                              */
+/*      Form changes per LG and AD                                       */
+/*      Added CitationLink:before                                        */
+/*      Changed Procins to navy on white to distinguish from user text   */
+/*                                                                       */
+/*      v. 1.7                                                           */
+/*      9/21/01  by ebator                                               */
+/*      Indented metadata information; removed AltTitle after text;      */
+/*      reverted Itemized list style=dash to square (image not working); */
+/*      fixed Diagnosis and SectionType block display                    */
+/*                                                                       */
+/*      9/18/01 by ebator                                                */
+/*      Updated styles per conversation with Lakshmi, Ark, Jean, Ann     */
+/*                                                                       */
+/*      v. 1.6                                                           */
+/*      9/14/01   by ebator                                              */
+/*      Special handling for TFoot added (doesn't work)                  */
+/*                                                                       */
+/*      v. 1.5                                                           */
+/*      9/7/01   by ebator                                               */
+/*      Fixed Secondary and Main Topics before tags for template.        */
+/*      Cleaned up commented out text.                                   */
+/*      SummaryMetaData elements should be purple tags.                  */
+/*      Required and multiply-occurring elements; thin gray borders;     */
+/*      DocID and DocTitle before tags; no tagged elements have          */
+/*      attributes for the @ indicator                                   */
+/*                                                                       */
+/*      v. 1.4                                                           */
+/*      8/24/01    by ebator                                             */
+/*      Edited a few margins and before tags for template.               */
+/*                                                                       */
+/*      v. 1.3                                                           */
+/*      8/23/01   by ebator                                              */
+/*      Added styles and miscellaneous fixes after texting a template.   */
+/*                                                                       */
+/*      v 1.2                                                            */
+/*      8/21/01    by ebator                                             */
+/*      Updated to match latest schema; with SummaryMetaData,            */
+/*      SecondaryTopics, TranslationOf, SectMetaData, KeyPoint,          */
+/*      correct links, removed old elements.                             */
+/*                                                                       */
+/*      v 1.1                                                            */
+/*      7/17/01    by ebator                                             */
+/*      Checked data elements against latest schema; added elements      */
+/*      Added TT table handling, using Courier and preserving whitespace */
+/*      Removed display:list-type from ListItem (numbered in text)       */
+/*      Added CitationReference:before                                   */
+/*                                                                       */
+/*      6/27/01   by ebator                                              */
+/*      Organized stylesheet                                             */
+/*                                                                       */
+/*      6/26/01   by ebator                                              */
+/*      Based on PatientSummary.css                                      */
+/*                                                                       */
+/*      CSS based on PatientSummary.css written by RTubby and revised    */
+/*      by EBator for data entry purposes.                               */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";  
+
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: navy;
+       font-weight: normal;
+       background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+AltTitle,
+Board, 
+BoardMember, 
+DateLastModified,
+Diagnosis, 
+KeyPoint, 
+MainTopics, 
+PDQBoard,
+PdqKey /* in both Summary and SummarySection */, 
+SecondaryTopics, 
+SectMetaData,
+SectionType,
+SummaryAudience, 
+SummaryLanguage, 
+SummaryMetaData, 
+SummarySection, 
+SummaryTitle, 
+SummaryType, 
+Term,
+Title, 
+TranslationOf,
+
+    { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Board:before				{ content: "Summary Board * @: "; }
+BoardMember:before			{ content: "Board Member & + @: "; }
+DateLastModified:before			{ content: "Last Modified &: "; }
+KeyPoint:before				{ content: "Key Point & +: "; }
+MainTopics>Term:before			{ content: "Main Topics * +: "; }
+PdqKey:before				{ content: "PDQ Key &: "; }
+SecondaryTopics>Term:before 		{ content: "Secondary Topics & +: " }
+SummaryType:before			{ content: "Summary Type *: "; }
+SummaryAudience:before			{ content: "Summary Audience *: "; }
+SummaryLanguage:before			{ content: "Summary Language *: "; }
+TranslationOf:before			{ content: "Translation of &: "; }
+
+
+/***************************************************************************/ 
+/*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
+/***************************************************************************/ 
+
+
+SummaryMetaData,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+SummaryMetaData,
+
+     { font-size: 12pt; }
+
+SummaryType:before, 
+SummaryAudience:before, 
+SummaryLanguage:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black; }
+
+Board:before,
+BoardMember:before,
+MainTopics>Term:before,
+SecondaryTopics>Term:before,
+
+     { font-weight: bold;
+       font-size: 12pt; 
+       color: black; }
+
+BoardMember,
+
+     { margin-left: 1em; }
+
+PDQBoard,
+
+     { margin-top: 1em; 
+       margin-bottom: 1em;  }
+
+
+SecondaryTopics>Term,
+
+     { prefix-format: "[ %attribute-list; ]"; }
+
+
+/***************************************************************************/ 
+/*                            SUMMARY TITLE                                */ 
+/***************************************************************************/ 
+
+SummaryTitle,
+
+     { font-size: 20pt;
+       font-weight: bold;
+       margin-top: 12pt; }
+
+
+/***************************************************************************/ 
+/*                 SUMMARY SECTION TITLES, INDENTS, SUBSECTIONS            */ 
+/***************************************************************************/ 
+
+
+KeyPoint, 
+KeyPoint:before,
+DateLastModified:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  
+       margin-top: 15pt;
+       margin-bottom: 10pt; }
+
+PdqKey:before,
+TranslationOf:before,
+    
+     { font-weight: bold;
+       color: purple; } 
+
+PdqKey,
+
+     { margin-bottom: 10pt;  }
+
+SummarySection>AltTitle,
+
+     { font-weight: bold;
+       font-size: 14pt;
+       color: blue; }
+
+SummarySection>Para, 
+
+     { margin-left: 20pt;
+       margin-bottom: .5em; }
+
+SummarySection>Title, 
+
+     { font-weight: bold;
+       font-size: 16pt;
+       color: blue; }
+
+Title, 
+
+     { font-size: 14pt;
+       font-weight: bold;
+       text-align: left; }
+
+SummarySection>SummarySection,
+
+	{ margin-left: 20pt; }
+
+SummarySection>SummarySection>SummarySection,
+
+	{ margin-left: 40pt; }
+
+SummarySection>SummarySection>Title:before,
+SummarySection>SummarySection>Title,
+
+	{ font-style: italic; }
+
+/***************************************************************************/ 
+/*                         SECTION META DATA                               */ 
+/***************************************************************************/ 
+
+SectMetaData, 
+
+     { text-align: right;
+       font-weight: lighter;
+       font-style: oblique;
+       color: blue; }
+
+
+/***************************************************************************/ 
+/*                               TABLES                                    */ 
+/***************************************************************************/ 
+
+
+SummarySection>Table, 
+
+     { margin-left: 20pt;
+       margin-bottom: .5em; }
+
+
+
+/***************************************************************************/ 
+/*                               FORM DATA                                 */ 
+/***************************************************************************/ 
+
+
+Board:before,
+BoardMember:before,
+SummaryMetaData,
+SummaryType:before,
+SummaryAudience:before,
+SummaryLanguage:before,
+PDQBoard,
+MainTopics,
+MainTopics>Term:before,
+SecondaryTopics,
+SecondaryTopics>Term:before,
+
+	{ background-color: #CCCCFF; }
+
+
+SummaryType,
+SummaryAudience,
+SummaryLanguage,
+Board,
+BoardMember,
+MainTopics>Term,
+SecondaryTopics>Term,
+
+	{ background-color: white; }
+
+
+/* Key element for length = SummaryLanguage                               */
+
+SummaryType,				{ margin-left: 135pt;
+					  text-indent: -101.5pt; }
+SummaryAudience,			{ margin-left: 135pt; 
+					  text-indent: -126.5pt;}
+SummaryLanguage,			{ margin-left: 135pt; 
+					  text-indent: -130.5pt;}
+Board,					{ margin-left: 135pt; 
+					  text-indent: -123pt;}
+BoardMember,				{ margin-left: 135pt; 
+					  text-indent: -128pt;}
+MainTopics>Term,			{ margin-left: 135pt;
+					  text-indent: -94pt; }
+SecondaryTopics>Term,			{ margin-left: 135pt; 
+					  text-indent: -133.5pt; }
+
+SummaryType,
+SummaryAudience,
+SummaryLanguage,
+Board,
+BoardMember,
+MainTopics>Term,
+SecondaryTopics>Term,
+
+	{ margin-bottom: 4pt; }
+
+DateLastModified,
+PdqKey,
+SummaryType,
+TranslationOf,
+
+	{ margin-top: 4pt; }
+

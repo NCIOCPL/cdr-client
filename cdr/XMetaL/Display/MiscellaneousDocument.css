@@ -1,0 +1,194 @@
+/*************************************************************************/
+/* 	MiscellaneousDocument.css                                        */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      1/2/02   by ebator                                               */
+/*      Edited for schema changes 12/14/01 (frozen)                      */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      12/05/01   by ebator                                             */
+/*      Edited for 11/03/01 schema changes                               */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/19/01  by ebator                                              */
+/*      Changes for Form model                                           */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      9/24/01  by ebator                                               */
+/*      Common element styles added                                      */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      9/18/01  by ebator                                               */
+/*      CSS based on 6/27/01 schema                                      */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";  
+
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: navy;
+       font-weight: normal;
+       background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+Audience,
+DateLastModified,
+Language,
+MiscellaneousDocument,
+MiscellaneousDocumentTitle,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+MiscellaneousDocumentText,
+PdqKey,
+
+    { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Audience:before				{ content: "Audience *: "; }
+DateLastModified:before			{ content: "Last Modified &: "; }
+Language:before				{ content: "Language *: "; }
+MiscellaneousDocumentType:before	{ content: "Type *: "; }
+Note:before 				{ content: " [Note: "; }
+Note:after 				{ content: "]"; }
+PdqKey:before				{ content: "PDQ Key &: "; }
+
+
+/***************************************************************************/ 
+/*                      DOCUMENT, ID, AND META DATA                        */ 
+/***************************************************************************/ 
+
+
+MiscellaneousDocumentMetadata,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+DateLastModified:before,
+
+     { font-weight: bold;
+       color: black;  }
+
+MiscellaneousDocumentMetaData,
+
+     { font-size: 12pt; }
+
+Audience:before, 
+Language:before,
+MiscellaneousDocumentType:before, 
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black; }
+
+PdqKey:before,
+    
+     { font-weight: bold;
+       color: purple; } 
+
+PdqKey,
+
+     { margin-top: 4pt;  }
+
+
+/***************************************************************************/ 
+/*                            DOCUMENT TITLE                               */ 
+/***************************************************************************/ 
+
+MiscellaneousDocumentTitle 
+
+     { font-size: 20pt;
+       font-weight: bold;
+       margin-top: 12pt; }
+
+
+
+/***************************************************************************/ 
+/*                               FORM DATA                                 */ 
+/***************************************************************************/ 
+
+Audience,
+Language,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+
+	{ background-color: white; }
+
+Audience:before,
+Language:before,
+MiscellaneousDocumentType:before,
+MiscellaneousDocumentMetadata,
+
+	{ background-color: #CCCCFF; }
+
+
+
+/* Key element for length = Language             	                  */
+
+MiscellaneousDocumentType,		{ margin-left: 80pt;
+					  text-indent: -43.5pt; }
+Audience,				{ margin-left: 80pt; 
+					  text-indent: -69pt;}
+Language,				{ margin-left: 80pt; 
+					  text-indent: -72.5pt;}
+					  
+Audience,
+Language,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+
+	{ margin-bottom: 4pt; }
+
+DateLastModified,
+MiscellaneousDocumentType,
+
+	{ margin-top: 4pt; }
+
+                                

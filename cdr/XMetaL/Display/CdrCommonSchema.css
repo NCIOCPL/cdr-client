@@ -1,0 +1,630 @@
+/*************************************************************************/
+/* 	CdrCommonSchema.css                                              */
+/*                                                                       */
+/*      v. 1.7                                                           */
+/*      1/15-16-17/02  by ebator                                         */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 1.6                                                           */
+/*      1/10/02  by ebator                                               */
+/*      Country required; city optional                                  */
+/*                                                                       */
+/*      v. 1.5                                                           */
+/*      1/9/02  by ebator                                                */
+/*      Added ContactName                                                */
+/*                                                                       */
+/*      v. 1.4                                                           */
+/*      1/8/02  by ebator                                                */
+/*      Added style for ProtocolLink                                     */
+/*                                                                       */
+/*      v. 1.3                                                           */
+/*      1/2/02  by ebator                                                */
+/*      Changed Glossary links from fuschia to blue                      */
+/*                                                                       */
+/*      v. 1.2                                                           */
+/*      12/19/01  by ebator                                              */
+/*      Added style for ListTitle                                        */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      12/12/01  by ebator                                              */
+/*      Qualified PostalAddress>Country vs. Country doctype              */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      12/06-11/01  by ebator                                           */
+/*      CSS based on 12/05/01 schema; imported in each doctype.css       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: navy;
+       font-weight: normal;
+       background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+ActionDate,
+ActionDescription,
+CdrDocCtl,
+City,
+CitySuffix,
+ContactName,
+PostalAddress>Country,
+DatedAction,
+DocId, 
+DocTitle,
+Email,
+entry,
+Fax,
+Head, 
+ItemizedList, 
+ListItem, 
+ListTitle, 
+LiteralLayout,
+OrderedList, 
+Para, 
+Phone,
+PoliticalSubUnit_State,
+PostalAddress,
+PostalCode_ZIP,
+Row, 
+Street,
+Table, 
+TBody, 
+TFoot, 
+TGroup, 
+Title,
+TollFreePhone,
+TT,
+WebSite,
+
+
+    { display: block; }
+
+/***************************************************************************/ 
+/*                           INLINE ELEMENTS                               */ 
+/***************************************************************************/ 
+  
+CitationLink,
+CitationRef,
+CitationReference,
+Comment,
+Deletion,
+DrugName,
+Emphasis,
+ExternalLink,
+ExternalRef,
+ForeignWord,
+GeneName,
+GlossaryTerm,
+GlossaryTermLink,
+GlossaryTermRef,
+Insertion,
+InterventionName,
+LOEFragmentLink, 
+LOEFragmentRef,
+LOELink,
+LOERef,
+LOEReference,
+Note,
+ProtocolLink,
+ProtocolRef,
+ProtocolReference,
+Quote,
+ScientificName,
+Strong,
+Subscript,
+SummaryFragmentLink,
+SummaryFragmentRef,
+SummaryLink,
+SummaryRef,
+Superscript,
+
+    { display: inline;  }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+/* CDR Doc Control  */
+
+DocId:before				{ content: "Doc ID: "; }
+DocTitle:before				{ content: "Doc Title: "; }
+
+/* Contact Detail  */
+
+City:before				{ content: "City &: "; }
+CitySuffix:before			{ content: "Suffix &: "; }
+ContactName:before			{ content: "Name & +: "; }
+PostalAddress>Country:before		{ content: "Country * @: "; }
+Email:before				{ content: "Email & @: "; }
+Email[Public="No"]:after		{ content: " (Not public) "; }
+Email:after				{ content: " (Public) "; }
+Fax:before				{ content: "Fax &: "; }
+Phone:before				{ content: "Phone & @: "; }
+Phone[Public="No"]:after		{ content: " (Not public) "; }
+Phone:after				{ content: " (Public) "; }
+PoliticalSubUnit_State:before		{ content: "Pol Unit/St & @: "; }
+PostalAddress:before			{ content: "POSTAL ADDRESS & @"; }
+PostalAddress[Public="No"]:before	{ content: "POSTAL ADDRESS (Not Public) & @"; }
+PostalAddress:before			{ content: "POSTAL ADDRESS (Public) & @"; }
+PostalCode_ZIP:before			{ content: "Postal Code &: "; }
+Street:before				{ content: "Street & +: "; }
+TollFreePhone:before			{ content: "Toll Free &: "; }
+WebSite:before				{ content: "Web Site & @: "; }
+
+/*DatedAction   */
+
+ActionDate:before			{ content: "Date* : "; }
+ActionDescription:before		{ content: "Action * : "; }
+DatedAction:before			{ content: "DATED ACTION & +"; }
+DatedAction>Comment:before		{ content: "Comments &: "; }
+
+/* Misc styles    */
+
+CitationLink:before			{ content: " [Citation] "; }
+CitationReference:before		{ content: " [Citation] ";}
+Note:before 				{ content: " [Note: "; }
+Note:after 				{ content: "] "; }
+ProtocolLink:before			{ content: " [Protocol] "; }
+
+
+
+/***************************************************************************/ 
+/*                BORDERS, SECTIONS, AND FORM ALIGNMENT                    */ 
+/***************************************************************************/ 
+
+
+/* CDR Doc Control  */
+
+CdrDocCtl,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt;
+     background-color: #CCCCFF;  }
+
+DocId:before,
+DocTitle:before,
+
+     { font-weight: bold;
+       font-size: 12pt;  
+       color: black; 
+       background-color: #CCCCFF; }
+
+DocId,
+DocTitle, 
+
+     { font-weight: bold;
+       color: blue;
+       background-color: white;  } 
+
+DocId,	
+				
+	{ margin-left: 58pt; 
+	  text-indent: -46pt; 
+	  margin-bottom: 4pt;  
+	  margin-top: 4pt;    }
+
+DocTitle,
+				
+	{ margin-left: 58pt;
+          text-indent: -58pt; 
+	  margin-bottom: 4pt; }
+
+/* Contact Detail Form Definition  */
+
+/* Key element for length = PoliticalSubUnit_State   */
+
+ContactName,				{ margin-left: 100pt;
+					  text-indent: -62pt;}
+Street,					{ margin-left: 100pt;  
+					  text-indent: -63pt; }
+City,					{ margin-left: 100pt;  
+					  text-indent: -42pt; }
+CitySuffix,				{ margin-left: 100pt;  
+					  text-indent: -52.5pt; }
+PoliticalSubUnit_State,			{ margin-left: 100pt;  
+					  text-indent: -94.5pt; }
+PostalAddress>Country,			{ margin-left: 100pt; 
+					  text-indent: -76.5pt; }
+PostalCode_ZIP,				{ margin-left: 100pt; 
+					  text-indent: -89pt; }
+Phone,					{ margin-left: 100pt;  
+					  text-indent: -72pt; }
+TollFreePhone,				{ margin-left: 100pt;  
+					  text-indent: -69pt; }
+Fax,					{ margin-left: 100pt;  
+					  text-indent: -40.5pt; }
+Email,					{ margin-left: 100pt;  
+					  text-indent: -66pt; }
+WebSite,				{ margin-left: 100pt;  
+					  text-indent: -85pt; }
+
+ContactName,
+Street,
+
+	{ margin-top: 4pt; }
+
+City, 
+CitySuffix, 
+ContactName,
+PostalAddress>Country,
+Email, 
+Fax,
+Phone, 
+PoliticalSubUnit_State, 
+PostalCode_ZIP, 
+Street,
+TollFreePhone,
+WebSite,
+
+	{ margin-bottom: 4pt; 
+	  background-color: white; }
+
+City:before,
+CitySuffix:before,
+ContactName:before,
+PostalAddress>Country:before,
+Email:before,
+Fax:before,
+Phone:before,
+PoliticalSubUnit_State:before,
+PostalCode_ZIP:before,
+Street:before,
+TollFreePhone:before,
+WebSite:before,
+
+	{ background-color: #CCCCFF; }  /*light blue*/
+
+
+/* Paragraphs       */
+
+Para,
+
+     { margin-left: 20pt;
+       display: block; 
+       margin-top: .5em; }
+
+
+/* Dated Actions Form Control   */
+
+DatedAction,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+DatedAction:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  }
+
+ActionDescription,
+
+	{ margin-top: .5em;  }
+
+/* Key element for length = Comment   */
+
+ActionDescription,			{ margin-left: 100pt;  
+					  text-indent: -54.5pt; }
+ActionDate,				{ margin-left: 100pt;  
+					  text-indent: -41.5pt; }
+DatedAction>Comment,			{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+
+DatedAction>ActionDate,
+DatedAction>ActionDescription,
+DatedAction>Comment,
+
+	{ margin-bottom: 4pt; 
+	  background-color: white; }
+
+DatedAction>ActionDate:before,
+DatedAction>ActionDescription:before,
+DatedAction>Comment:before,
+DatedAction,
+
+	{ background-color: #CCCCFF; }  /*light blue*/
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+PostalAddress:before,
+ 
+	{  font-weight: bold;
+	   font-size: 12pt;
+           color: black;        }  
+
+PostalAddress,
+
+	{  margin-top: .5em;  
+	   margin-bottom: .5em;   }
+
+Phone,
+
+	{ margin-top: 1.5em; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+ActionDate:before,  
+ActionDescription:before,
+City:before,
+CitySuffix:before,
+DatedAction>Comment:before,
+ContactName:before,
+Email:before,
+Email:after,
+Fax:before,
+Phone:before,
+Phone:after,
+PostalCode_ZIP:before,
+Street:before,
+TollFreePhone:before,
+WebSite:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
+/***************************************************************************/ 
+
+
+PostalAddress>Country:before,
+PoliticalSubUnit_State:before,
+
+	{ font-weight: bold;
+	  color: black;      }
+
+
+/***************************************************************************/ 
+/*                                LINKS                                    */ 
+/***************************************************************************/ 
+
+
+CitationLink,
+CitationLink:before,
+CitationRef,
+CitationReference:before,
+ExternalRef,
+GlossaryRef,
+GlossaryTerm,
+GlossaryTermLink,
+GlossaryTermRef,
+InterventionName,
+LOEFragmentLink, 
+LOEFragmentRef,
+LOELink,
+LOERef,
+LOEReference,
+ProtocolLink,
+ProtocolRef,
+ProtocolReference,
+SummaryFragmentLink,
+SummaryFragmentRef,
+SummaryLink,
+SummaryRef,
+
+     { text-decoration: underline; 
+       color: blue; }
+
+
+
+/***************************************************************************/ 
+/*                            OTHER STYLE ELEMENTS                         */ 
+/***************************************************************************/ 
+
+/*       Inline style elements                                             */
+
+DrugName,
+Emphasis,
+ForeignWord,
+GeneName,
+Note,
+Quote,
+ScientificName,
+
+     { font-style: italic; }
+
+Strong,
+
+     { font-weight: bold;  }
+
+Subscript,
+
+     { vertical-align: sub; }
+
+Superscript,
+
+     { vertical-align: super; }
+
+Note,
+Note:before,
+Note:after,
+
+     { font-size: 10pt;
+       color: green;     }
+
+
+/*       Markup elements                                                   */
+
+
+Deletion 
+
+     { text-decoration: line-through;
+       color: red; }
+
+Insertion 
+
+     { color: red; }
+
+
+/*       Special case style elements                                       */
+
+
+Question 
+
+     { font-weight: bold; }
+
+Answer 
+
+     { text-indent: 20pt; }
+
+
+
+/***************************************************************************/ 
+/*                       ITEMIZED LIST STYLES                              */ 
+/***************************************************************************/ 
+
+
+ItemizedList, 
+
+     { margin-bottom: 10pt;
+       margin-top: 5pt;
+       text-align: left;
+       list-style-type: none;
+       list-style-position: outside; }
+
+ItemizedList[Style="simple"], 
+
+     { list-style-type: none; }
+
+ItemizedList[Style="bullet"], 
+
+     { list-style-type: disc; }
+
+ItemizedList[Style="dash"], 
+
+     { list-style-type: square; }
+
+ListItem,
+  
+     { display: list-item;
+       margin-left: 40pt;  }
+
+ListTitle,
+
+     { margin-left: 20pt;  }
+
+
+/***************************************************************************/ 
+/*                       ORDERED LIST STYLES                               */ 
+/***************************************************************************/ 
+
+OrderedList 
+
+     { list-style-type: decimal;
+       margin-bottom: 10pt;
+       margin-top: 5pt;
+       text-align: left; 
+       list-style-position: outside; }
+
+OrderedList[Style="Arabic"] 
+
+     { list-style-type: decimal; }
+
+OrderedList[Style="UAlpha"] 
+
+     { list-style-type: upper-alpha; }
+
+OrderedList[Style="URoman"] 
+
+     { list-style-type: upper-roman; }
+
+OrderedList[Style="LAlpha"] 
+
+     { list-style-type: lower-alpha; }
+
+OrderedList[Style="LRoman"] 
+
+     { list-style-type: lower-roman; }   
+
+
+
+
+/***************************************************************************/ 
+/*                               TABLES                                    */ 
+/***************************************************************************/ 
+
+LiteralLayout,
+TT,
+
+/*    78 character lines in sample data                                    */
+
+     { font-family: "Courier"; 
+       font-size: 10pt;
+       white-space: pre;
+       margin-top: .5em;
+       margin-left: 5px; }
+
+THead,
+
+     { font-weight: bold; }
+
+THead>Row>entry,
+
+     { font-weight: bold; }
+
+Table,
+ 
+     {border-collapse: collapse; }
+
+TFoot>Row>entry,
+
+  {color: black; 
+   text-align: left;
+   /*bordercolor:white; */
+   border: hidden;
+   vertical-align: bottom;   }  
+
+Table>Title,
+
+	{ color: black;
+	  font-size: 12pt; 
+	  font-weight: bold; }
+

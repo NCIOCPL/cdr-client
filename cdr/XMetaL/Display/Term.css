@@ -1,0 +1,482 @@
+/*************************************************************************/
+/* 	Term.css                                                         */
+/*                                                                       */
+/*      v. 3.3                                                           */
+/*      1/22/02  by ebator                                               */
+/*      User-requested changes to tags                                   */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      12/20/01   by ebator                                             */
+/*      Edited to match 12/18/01 schema changes; frozen                  */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.4                                                           */
+/*      12/06/01   by ebator                                             */
+/*      Cosmetic changes                                                 */
+/*                                                                       */
+/*      v. 2.3                                                           */
+/*      11/02/01   by ebator                                             */
+/*      Changed CSS for SourceInformation choices                        */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      10/26/01   by ebator                                             */
+/*      Added schema changes from 10/24/01                               */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/24/01   by ebator                                             */
+/*      Added schema changes from 10/12/01                               */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/18,19/01   by ebator                                          */
+/*      Changes for Form model                                           */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      9/24/01   by ebator                                              */
+/*      Common element styles added                                      */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      9/14/01   by ebator                                              */
+/*      Based on 9/13/01 schema                                          */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+
+@import "CdrCommonSchema.css";
+
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       font-weight: normal;
+       background-color: white; }
+
+Term,
+
+     { background-color: #CCCCFF; }
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+Comment, 
+DateLastModified,
+Definition,
+DefinitionSource,
+DefinitionSourceName,
+DefinedTermId,
+DefinitionText,
+DefinitionType,
+OtherName,
+OtherNameType,
+OtherTermName,
+ParentTerm,
+ParentType,
+PdqKey,
+PreferredName,
+ReferenceSource, 
+RelatedTerm,
+RelationshipType,
+ReviewStatus,
+SemanticType,
+SemanticTypeText,
+SourceCode,
+SourceTermId,
+SourceTermType,
+SourceInformation,
+TermId,
+TermRelationship,
+TermStatus,
+TermType,
+TermTypeName,  
+VocabularySource,
+
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Comment:before			{ content: "Comments &: "; } 
+DateLastModified:before		{ content: "Last Modified &: "; }
+Definition:before		{ content: "DEFINITION & +"; }
+DefinitionSourceName:before	{ content: "Definition Source * +: "; }
+DefinedTermId:before		{ content: "Defined Term ID &: "; }
+DefinitionText:before		{ content: "Definition Text *: "; }
+DefinitionType:before		{ content: "Definition Type *: "; }
+OtherName:before		{ content: "OTHER NAME & + "; }
+OtherNameType:before		{ content: "Other Name Type * +: "; }
+OtherTermName:before		{ content: "Other Term Name *: "; }
+ParentTerm:before		{ content: "PARENT TERM * + "; }
+ParentType:before		{ content: "Parent Type *: "; }
+PdqKey:before			{ content: "PDQ Key &: "; }
+PreferredName:before		{ content: "PREFERRED NAME *: "; }
+ReferenceSource:before		{ content: "Reference Source *: "; }
+RelatedTerm:before		{ content: "RELATED TERM * + "; }
+RelationshipType:before		{ content: "Relationship Type *: "; }
+ReviewStatus:before		{ content: "Review Status &: "; }
+SemanticType:before		{ content: "Semantic Type & + @: "; } 
+SemanticTypeText:before		{ content: "Semantic Type Text * +: "; }
+SourceCode:before		{ content: "Source Code *: "; }
+SourceTermId:before		{ content: "Source Term ID *: "; }
+SourceTermType:before		{ content: "Source Term Type *: "; }
+SourceInformation:before	{ content: "Source Information &:"; }
+TermId:before			{ content: "Term ID * @: "; } 
+TermRelationship:before		{ content: "TERM RELATIONSHIPS &"; }
+TermStatus:before		{ content: "Term Status *: "; }
+TermType:before			{ content: "TERM TYPE *"; }
+TermTypeName:before		{ content: "Term Type Name * +: "; } 
+VocabularySource:before		{ content: "Vocabulary Source * +:"; }
+
+
+
+/***************************************************************************/ 
+/*                     SECTION TITLES AND BORDERS                          */ 
+/***************************************************************************/ 
+
+
+ParentTerm:before,
+RelatedTerm:before,
+
+     { font-weight: bold;
+       color: black;  }
+
+OtherName,
+Definition,
+TermRelationship,
+
+   { border: solid; 
+     border-width: thin;
+     border-color: black;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+Definition,
+OtherName,
+SourceInformation,
+TermRelationship,
+TermStatus,
+TermType,
+
+    { margin-top: 1em }
+
+ParentTerm,
+RelatedTerm,
+VocabularySource,
+
+    { margin-top: .5em }
+
+Definition:before,
+OtherName:before,
+SourceInformation:before,
+TermRelationship:before,
+TermType:before,
+VocabularySource:before,
+
+    { font-weight: bold;
+      color: black; }
+    
+  
+/* Section Heading Margins						   */
+
+PreferredName,
+SemanticType,
+SemanticTypeText,
+
+	{ margin-top: 1em; }
+
+ReviewStatus,
+
+	{ margin-top: 1.5em; }
+
+OtherTermName,
+ReferenceSource,
+SourceCode,
+DefinitionText,
+TermId,
+TermType > TermTypeName:first-child,
+
+	{ margin-top: .5em; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+  
+
+Comment:before,
+DateLastModified:before,
+DefinitionSource:before,
+DefinitionSourceName:before,
+DefinedTermId:before,
+DefinitionText:before,
+OtherTermName:before,
+PdqKey:before,
+PreferredName:before,
+ReferenceSource:before,
+SemanticType:before,
+SemanticTypeText:before,
+SourceTermId:before,
+TermId:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+  
+
+DefinitionType:before,
+OtherNameType:before,
+ParentType:before,
+RelationshipType:before,
+ReviewStatus:before,
+SourceCode:before,
+SourceTermType:before,
+TermStatus:before,
+TermTypeName:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+
+
+
+/* Key element for length = Preferred Name				   */
+
+PreferredName,				{ margin-left: 130pt; 
+					  text-indent: -129.5pt; }
+OtherTermName,				{ margin-left: 130pt; 
+					  text-indent: -114.5pt; }
+OtherNameType,				{ margin-left: 130pt; 
+					  text-indent: -124pt; }
+ReferenceSource,			{ margin-left: 130pt; 
+					  text-indent: -118pt; }
+SourceCode,				{ margin-left: 130pt; 
+					  text-indent: -90pt; }
+SourceTermType,				{ margin-left: 130pt; 
+					  text-indent: -120pt; }
+SourceTermId,				{ margin-left: 130pt; 
+					  text-indent: -103.5pt; }
+ReviewStatus,				{ margin-left: 130pt; 
+					  text-indent: -101pt; }
+OtherName > Comment,			{ margin-left: 130pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = DefinitionSourceName			   */
+
+DefinitionText,				{ margin-left: 125pt; 
+					  text-indent: -97.5pt; }
+DefinitionType,				{ margin-left: 125pt; 
+					  text-indent: -101.5pt; }
+DefinitionSourceName,			{ margin-left: 125pt; 
+					  text-indent: -124pt; }
+DefinedTermId,				{ margin-left: 125pt; 
+					  text-indent: -111pt; }
+Definition > Comment,			{ margin-left: 125pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = SemanticTypeText			 	   */
+
+TermTypeName,				{ margin-left: 140pt; 
+					  text-indent: -121.5pt; }
+SemanticType,				{ margin-left: 140pt; 
+					  text-indent: -129pt; }
+SemanticTypeText,			{ margin-left: 140pt; 
+					  text-indent: -137pt; }
+
+/* Key element for length = RelationshipType				   */
+
+ParentTerm > TermId,			{ margin-left: 120pt; 
+					  text-indent: -74pt; }
+ParentType,				{ margin-left: 120pt; 
+					  text-indent: -84pt; }
+ParentTerm > Comment,			{ margin-left: 120pt; 
+					  text-indent: -82pt; }
+
+RelatedTerm > TermId,			{ margin-left: 120pt; 
+					  text-indent: -74pt; }
+RelationshipType,			{ margin-left: 120pt; 
+					  text-indent: -118.5pt; }
+RelatedTerm > Comment,			{ margin-left: 120pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = DateLastModified				   */
+
+TermStatus,				{ margin-left: 100pt; 
+					  text-indent: -84pt; }
+Term > Comment,				{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+DateLastModified,			{ margin-left: 100pt;
+					  text-indent: -96pt; }
+PdqKey,					{ margin-left: 100pt;
+					  text-indent: -71pt; }
+
+
+
+/* Margin-bottom to simulate a text box                                    */
+
+Comment, 
+DateLastModified,
+Definition,
+DefinitionSource,
+DefinitionSourceName,
+DefinedTermId,
+DefinitionText,
+DefinitionType,
+OtherName,
+OtherNameType,
+OtherTermName,
+ParentTerm,
+ParentType,
+PdqKey,
+PreferredName,
+ReferenceSource, 
+RelatedTerm,
+RelationshipType,
+ReviewStatus,
+SemanticType,
+SemanticTypeText,
+SourceCode,
+SourceTermId,
+SourceTermType,
+SourceInformation,
+TermId,
+TermRelationship,
+TermStatus,
+TermType,
+TermTypeName,  
+VocabularySource,
+
+	{ margin-bottom: 4pt; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+Comment, 
+DateLastModified,
+Definition,
+DefinitionSource,
+DefinitionSourceName,
+DefinedTermId,
+DefinitionText,
+DefinitionType,
+OtherName,
+OtherNameType,
+OtherTermName,
+ParentTerm,
+ParentType,
+PdqKey,
+PreferredName,
+ReferenceSource, 
+RelatedTerm,
+RelationshipType,
+ReviewStatus,
+SemanticType,
+SemanticTypeText,
+SourceCode,
+SourceTermId,
+SourceTermType,
+SourceInformation,
+TermId,
+TermRelationship,
+TermStatus,
+TermType,
+TermTypeName,  
+VocabularySource,
+
+	{ background-color: white; }
+
+
+Comment:before, 
+DateLastModified:before,
+Definition,
+Definition:before,
+DefinitionSource,
+DefinitionSource:before,
+DefinitionSourceName:before,
+DefinedTermId:before,
+DefinitionText:before,
+DefinitionType:before,
+OtherName,
+OtherName:before,
+OtherNameType:before,
+OtherTermName:before,
+ParentTerm,
+ParentTerm:before,
+ParentType:before,
+PdqKey:before,
+PreferredName:before,
+ReferenceSource:before, 
+RelatedTerm,
+RelatedTerm:before,
+RelationshipType:before,
+ReviewStatus:before,
+SemanticType:before,
+SemanticTypeText:before,
+SourceCode:before,
+SourceTermId:before,
+SourceTermType:before,
+SourceInformation,
+SourceInformation:before,
+TermId:before,
+TermRelationship,
+TermRelationship:before,
+TermStatus:before,
+TermType,
+TermType:before,
+TermTypeName:before,  
+VocabularySource,
+VocabularySource:before,
+
+	{ background-color: #CCCCFF; }
+
+
+                     

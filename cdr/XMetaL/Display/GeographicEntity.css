@@ -1,0 +1,366 @@
+/*************************************************************************/
+/* 	GeographicEntity.css                                             */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      10/26/01  by ebator                                              */
+/*      Schema changes from 10/22,24/01                                  */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/19/01  by ebator                                              */
+/*      CDR Doc control = blue; section heads capped                     */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/17/01  by ebator                                              */
+/*      Changed to the aligned forms format                              */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      9/24/01  by ebator                                               */
+/*      Changed "Alternative" to "Alternate"                             */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      8/1/01 by ebator                                                 */
+/*      This draft is based on the schema created on 06/27/01.           */
+/*      Unaddressed: CdrCallingID,                                       */
+/*      required * and multiple + elements                               */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+GeographicEntity,
+
+     { background-color: #CCCCFF; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+CdrDocCtl,
+CountryAlternateName,
+CountryFullName,
+CountryShortName,
+DateLastModified,
+DocId,
+DocTitle,
+PdqKey,
+PoliticalUnit,
+PoliticalUnitAlternateName,
+PoliticalUnitFullName,
+PoliticalUnitShortName,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                           INLINE ELEMENTS                               */ 
+/***************************************************************************/ 
+  
+CitationFragmentLink,
+CitationFragmentRef,
+CitationLink,
+CitationRef,
+CitationReference,
+Deletion,
+DrugName,
+Emphasis,
+ExternalLink,
+ExternalRef,
+ForeignWord,
+GeneName,
+GlossaryTerm,
+GlossaryTermLink,
+GlossaryTermRef,
+Insertion,
+InterventionName,
+LOEFragmentLink, 
+LOEFragmentRef,
+LOELink,
+LOERef,
+LOEReference,
+Note,
+ProtocolRef,
+ProtocolReference,
+Quote,
+ScientificName,
+Strong,
+Subscript,
+SummaryFragmentLink,
+SummaryFragmentRef,
+SummaryLink,
+SummaryRef,
+Superscript,
+
+    { display: inline;  }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+
+
+CountryAlternateName:before		{ content: "Alternate Name: "; }
+CountryFullName:before			{ content: "Country Full Name: "; }
+CountryShortName:before			{ content: "Short Name: "; }
+DateLastModified:before			{ content: "Last Modified: "; }
+DocId:before				{ content: "Doc ID: "; }
+DocTitle:before				{ content: "Doc Title: "; }
+PdqKey:before				{ content: "PDQ Key: "; }
+PoliticalUnit:before			{ content: "POLITICAL UNIT"; }
+PoliticalUnitAlternateName:before	{ content: "Alternate Name: "; }
+PoliticalUnitFullName:before		{ content: "Full Name: "; }
+PoliticalUnitShortName:before		{ content: "Short Name: "; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+PoliticalUnit:before,
+
+	{  font-weight: bold;
+	   color: black;      }
+	 
+PoliticalUnit,
+
+	{  margin-top: 1em;   }
+
+PoliticalUnitFullName,
+
+	{ margin-top: .5em;  }
+
+
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+  
+
+DocId,
+DocTitle,
+
+     { font-weight: bold;
+       color: blue; }
+
+DocId:before,
+DocTitle:before,
+
+     { font-weight: bold;
+       color: black;  }
+
+CdrDocCtl,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+CountryAlternateName:before,
+CountryFullName:before,
+CountryShortName:before,
+DateLastModified:before,
+PdqKey:before,
+PoliticalUnitAlternateName:before,
+PoliticalUnitFullName:before,
+PoliticalUnitShortName:before,
+
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                            COMMON ELEMENT STYLES                        */ 
+/***************************************************************************/ 
+
+/*       Inline style elements                                             */
+
+DrugName,
+Emphasis,
+ForeignWord,
+GeneName,
+Note,
+Quote,
+ScientificName,
+
+     { font-style: italic; }
+
+Strong,
+
+     { font-weight: bold;  }
+
+Subscript,
+
+     { vertical-align: sub; }
+
+Superscript,
+
+     { vertical-align: super; }
+
+
+/*       Markup elements                                                   */
+
+
+Deletion, 
+
+     { text-decoration: line-through;
+       color: red; }
+
+Insertion, 
+
+     { color: red; }
+
+
+     
+/*   Links								   */
+  
+ExternalLink 
+
+     { text-decoration: underline;
+       color: green;}
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+
+
+/* Key element for length = DocTitle					   */
+
+DocId,					{ margin-left: 60pt; 
+					  text-indent: -46pt; }
+DocTitle,				{ margin-left: 60pt;
+					  text-indent: -58pt; }
+
+/* Key element for length = CountryFullName				   */
+
+CountryFullName,			{ margin-left: 115pt; 
+					  text-indent: -114pt; }
+CountryAlternateName,			{ margin-left: 115pt; 
+					  text-indent: -94.5pt; }
+CountryShortName,			{ margin-left: 115pt; 
+					  text-indent: -75pt; }
+
+/* Key element for length = PoliticalUnitAlternateName                     */
+
+PoliticalUnitAlternateName,		{ margin-left: 100pt; 
+					  text-indent: -94.5pt; }
+PoliticalUnitFullName,			{ margin-left: 100pt; 
+					  text-indent: -64.5pt; }
+PoliticalUnitShortName,			{ margin-left: 100pt; 
+					  text-indent: -75pt; }
+
+/* Key element for length = DateLastModified				   */
+
+DateLastModified,			{ margin-left: 85pt;
+					  text-indent: -84pt; }
+PdqKey,					{ margin-left: 85pt;
+					  text-indent: -59pt; }
+
+
+
+DateLastModified,
+DocId,
+DocTitle,
+CountryFullName,
+CountryAlternateName,
+CountryShortName,
+PdqKey,
+PoliticalUnit,
+PoliticalUnitAlternateName,
+PoliticalUnitFullName,
+PoliticalUnitShortName,
+
+	{ margin-bottom: 4pt; }
+
+
+DocId,
+	{ margin-top: 4pt; }
+
+PoliticalUnitFullName,
+
+	{ margin-top: 8pt; }
+
+CountryFullName,
+
+	{ margin-top: 10pt; }
+
+DateLastModified,
+
+	{ margin-top: 2em; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+DateLastModified,
+DocId,
+DocTitle,
+CountryFullName,
+CountryAlternateName,
+CountryShortName,
+PdqKey,
+PoliticalUnitAlternateName,
+PoliticalUnitFullName,
+PoliticalUnitShortName,
+
+	{ background-color: white; }
+
+
+DateLastModified:before,
+DocId:before,
+DocTitle:before,
+CountryFullName:before,
+CountryAlternateName:before,
+CountryShortName:before,
+PdqKey:before,
+PoliticalUnit:before,
+PoliticalUnitAlternateName:before,
+PoliticalUnitFullName:before,
+PoliticalUnitShortName:before,
+
+	{ background-color: #CCCCFF; }

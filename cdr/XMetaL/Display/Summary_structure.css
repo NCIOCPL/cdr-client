@@ -1,0 +1,359 @@
+/*************************************************************************/
+/* 	Summary_structure.css                                            */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      12/20/01  by ebator                                              */
+/*      Fix paragraph numbering for new SummarySection placement         */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      12/18/01  by ebator                                              */
+/*      Italicize subsection titles per users' request                   */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01  by ebator                                           */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.7                                                           */
+/*      12/05/01  by ebator                                              */
+/*      Added TT to before text                                          */
+/*                                                                       */
+/*      v. 2.6                                                           */
+/*      11/09/01  by ebator                                              */
+/*      Template-related cosmetic changes                                */
+/*      Fixed Table Title style, Table indent                            */
+/*                                                                       */
+/*      v. 2.5                                                           */
+/*      10/31/01  by ebator                                              */
+/*      Added counter support for paras; remove for sections             */
+/*                                                                       */
+/*      v. 2.4                                                           */
+/*      10/26/01  by ebator                                              */
+/*      Edited to match schema changes                                   */
+/*                                                                       */
+/*      v. 2.3                                                           */
+/*      10/17/01  by ebator                                              */
+/*      Adjusted pt. size on metadata elements                           */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      10/10/01  by ebator                                              */
+/*      Changed style of TranslationOf:before                            */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/09/01  by ebator                                              */
+/*      Removed indented subsequent lines on form elements               */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/04/01  by ebator                                              */
+/*      Form changes per LG and AD                                       */
+/*                                                                       */
+/*      v. 1.4                                                           */
+/*      10/02/01 by ebator                                               */
+/*      Counter resets and increments must be in a certain order to      */
+/*      work properly                                                    */
+/*                                                                       */
+/*      v. 1.3                                                           */
+/*      9/18/01 by ebator                                                */
+/*      Updated styles per conversation with Lakshmi, Ark, Jean, Ann     */
+/*                                                                       */
+/*      V 1.2                                                            */
+/*      9/14/01    by ebator                                             */
+/*      Changed Common Elements to Display:none, except for Para         */
+/*      (tables, links, etc. don't appear on blank lines in structure)   */
+/*                                                                       */
+/*      v 1.1                                                            */
+/*      2001/09/08 10:00 am  by ebator                                   */
+/*      Based on the 9/7/2001 version of the summary.css                 */
+/*      Added all common elements and $PROCINS to Hide Text list         */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_Structure.css";  
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+AltTitle,
+Board, 
+BoardMember, 
+DateLastModified,
+Diagnosis, 
+KeyPoint, 
+MainTopics, 
+PDQBoard,
+PdqKey, 
+SecondaryTopics, 
+SectMetaData,
+SectionType,
+SummaryAudience, 
+SummaryLanguage, 
+SummaryMetaData, 
+SummarySection, 
+SummaryTitle, 
+SummaryType, 
+Term, 
+Title, 
+TranslationOf,
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+AltTitle:before			{ content: "Alternate Title "; }
+Board:before			{ content: "Summary Board "; }
+BoardMember:before		{ content: "Board Member "; }
+DateLastModified:before		{ content: "Last Modified"; }
+Diagnosis:before		{ content: "Diagnosis "; }
+KeyPoint:before			{ content: "Key Point "; }
+MainTopics:before		{ content: "Main Topics "; }
+Para:before			{ content: counter(para)". Paragraph "; }
+SummarySection>SummarySection>Para:before
+				{ content: counter(subpara)". Subparagraph "; }
+PDQBoard:before			{ content: "PDQ Board "; }
+PdqKey:before			{ content: "PDQ Key "; }
+SecondaryTopics:before 		{ content: "Secondary Topics " }
+SectMetaData:before		{ content: "Section Metadata "; }
+SummarySection>SummarySection>SectMetaData:before	
+				{ content: "Sub-section Metadata "; }
+SummarySection>SummarySection>SummarySection>SectMetaData:before	
+				{ content: "Sub-sub-section Metadata "; }
+SectionType:before		{ content: "Section Type "; }
+Summary:before			{ content: "SUMMARY "; }
+SummaryID:before		{ content: "Summary ID "; }
+SummaryType:before		{ content: "Summary Type "; }
+SummarySection>SummarySection>SectMetaData>SectionType:before   
+				{ content: "Sub-section Type "; }
+SummarySection>SummarySection>SummarySection>SectMetaData>SectionType:before   
+				{ content: "Sub-sub-section Type "; }
+SummaryAudience:before		{ content: "Summary Audience "; }
+SummaryLanguage:before		{ content: "Summary Language "; }
+SummaryMetaData:before		{ content: "SUMMARY METADATA "; }
+SummarySection:before		{ content: "Section "; }
+SummarySection>SummarySection:before
+				{ content: "Sub-section "; }
+SummarySection>SummarySection>SummarySection:before
+				{ content: "Sub-sub-section "; }
+SummaryTitle:before		{ content: "SUMMARY TITLE "; }
+Term:before			{ content: "Term "; }
+SummarySection>Title:before	{ content: "Section Title: "; }
+SummarySection>SummarySection>Title:before   
+				{ content: "Sub-section Title: "; }
+SummarySection>SummarySection>SummarySection>Title:before   
+				{ content: "Sub-sub-section Title: "; }
+TranslationOf:before		{ content: "Translation Of "; }
+
+
+/***************************************************************************/ 
+/*                     COUNTER DEFINITIONS                                 */ 
+/***************************************************************************/ 
+  
+
+SummarySection,
+
+	{ counter-reset: para; }
+
+Para,
+
+	{ counter-increment: para; }
+
+
+SummarySection>SummarySection,
+
+	{ counter-reset: subpara; }
+
+SummarySection>SummarySection>Para,
+
+	{ counter-increment: subpara; }
+
+
+
+/***************************************************************************/ 
+/*                             HEADINGS                                    */ 
+/***************************************************************************/ 
+
+
+MainTopics:before,
+PDQBoard:before,
+SecondaryTopics:before,
+SectMetaData:before,
+Summary:before,
+SummaryMetaData:before,
+SummaryTitle:before,
+
+     { color: black; 
+       font-weight: bold; }
+
+SummarySection:before,
+
+     { color: navy;
+       font-weight: bold; }
+
+Board:before,
+BoardMember:before,
+MainTopics:before,
+PDQBoard:before,
+SecondaryTopics:before,
+SummaryAudience:before,
+SummaryLanguage:before,
+SummaryType:before,
+Term:before,
+
+	{ font-size: 10pt; }
+
+SummarySection>SummarySection>Title:before,
+SummarySection>SummarySection>Title,
+
+	{ font-style: italic; }
+
+
+/***************************************************************************/ 
+/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
+/***************************************************************************/ 
+
+
+Board:before,
+BoardMember:before,
+Diagnosis:before,
+PdqKey:before,
+SectionType:before,
+SummaryType:before, 
+SummaryAudience:before, 
+SummaryLanguage:before,
+Term:before,
+TranslationOf:before,
+
+     { color: black; 
+       font-weight: bold; }
+
+
+/***************************************************************************/ 
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
+/***************************************************************************/ 
+
+
+AltTitle:before,
+DateLastModified:before,
+KeyPoint:before,
+SummarySection>Para:before,
+SummarySection>SummarySection>Para:before,
+Title:before,
+TranslationOf:before,
+
+     { color: black; 
+       font-weight: bold; 
+       font-size: 10pt; }
+
+Title,
+
+     { color: black;  
+       font-weight: normal;  }
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+SummaryMetaData,
+
+     { border: none; }
+
+
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+AltTitle,
+Board, 
+BoardMember, 
+DateLastModified,
+Diagnosis, 
+KeyPoint, 
+MainTopics,
+PDQBoard,
+PdqKey, 
+SecondaryTopics, 
+SectMetaData,
+SectionType,
+SummaryAudience, 
+SummaryLanguage, 
+SummaryMetaData, 
+SummarySection, 
+SummaryTitle, 
+SummaryType,
+Term, 
+/*Title, */
+TranslationOf,
+
+     { color: white;
+       background-color: white; }
+
+
+
+/***************************************************************************/ 
+/*                            FORM CONTROL                                 */ 
+/***************************************************************************/ 
+
+Board:before,
+BoardMember:before,
+SummaryType:before,
+SummaryAudience:before,
+SummaryLanguage:before,
+MainTopics>Term:before,
+SecondaryTopics>Term:before,
+
+	{ background-color: white; }
+
+
+Board,
+BoardMember,
+MainTopics>Term,
+SecondaryTopics>Term,				
+SummaryAudience,
+SummaryLanguage,
+SummaryType,
+
+	{ text-indent: 0pt; }
+

@@ -1,0 +1,552 @@
+/*************************************************************************/
+/* 	Organization.css                                                 */
+/*                                                                       */
+/*      v. 3.4                                                           */
+/*      1/22/02  by ebator                                               */
+/*      User requests for tag and template changes                       */
+/*                                                                       */
+/*      v. 3.3                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      1/10/02   by ebator                                              */
+/*      Changes based on user feedback to template and css               */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      12/17/01   by ebator                                             */
+/*      Changes for a better template                                    */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/07-11/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.3                                                           */
+/*      12/06/01   by ebator                                             */
+/*      Cosmetic changes and common schema changes                       */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      10/26/01   by ebator                                             */
+/*      Schema changes from 10/22,14/01                                  */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/19/01   by ebator                                             */
+/*      CDR Doc Control = blue                                           */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/17,18/01   by ebator                                          */
+/*      Changes for Form model                                           */
+/*                                                                       */
+/*      v. 1.2                                                           */
+/*      9/24/01   by ebator                                              */
+/*      Common element styles added                                      */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      9/8/01   by ebator                                               */
+/*      Schema changes; +, *, @; borders                                 */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      8/1/01 2:30 PM   by ebator                                       */
+/*      This draft is based on the DTD generated 7/31/01.                */
+/*      Unaddressed: CdrCallingID, CIPSContact NMTOKEN,                  */
+/*      "hidden" attributes that don't appear in the CSS,                */
+/*      org links filled in with dummy data,                             */
+/*      required * and multiple + elements                               */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT 
+
+     { font-family: Arial, "sans serif";
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+Organization,
+
+     { background-color: #CCCCFF; }
+
+
+//***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+URI, /* First element in the list is not working */
+AffiliateMemberOf,
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson,
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date,
+DateLastModified,
+IncludeInDirectory,
+Location,
+MainMember, 
+MainMemberOf,
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OfficialName,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+OrganizationLocations,
+OrganizationNameInformation,
+OrganizationParent,
+OrganizationType,
+ParentOrganization, 
+PdqKey,
+PersonAssigned,
+PreferredDirectoryContactMode, 
+PreferredProtocolContactMode,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+ShortName,
+Status,
+Type,
+
+	{ display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF & + "; }
+AlternateName:before			{ content: "Alternate Name & +: "; }
+CCOP:before				{ content: "CCOP * @: "; }
+CIPSContact:before			{ content: "CIPS Contact *: "; }
+CIPSContactPerson:before		{ content: "CIPS Contact Person & @: "; }
+Comment:before				{ content: "Comments &: "; } 
+CooperativeGroup:before			{ content: "Cooperative Group * @: "; }
+CurrentStatus:before			{ content: "Current Status *: "; }
+Date:before				{ content: "Date *: "; }
+DateLastModified:before			{ content: "Last Modified &: "; }
+IncludeInDirectory:before		{ content: "Include in Directory? *: "; } 
+MainMember:before			{ content: "Main Member & @: "; } 
+MainMemberOf:before			{ content: "MAIN MEMBER OF & + "; }
+MemberOfAdHocGroup:before		{ content: "Member Ad-Hoc Grp & + @: "; }
+MemberOfCCOP[CCOPMemberType="Component"]:before	
+					{ content: "MEMBER OF CCOP [COMPONENT] & @"; }
+MemberOfCCOP[CCOPMemberType="Affiliate"]:before	
+					{ content: "MEMBER OF CCOP [AFFILIATE] & @"; }
+MemberOfCCOP:before	
+					{ content: "MEMBER OF CCOP & @"; }
+MemberOfCooperativeGroups		{ content: "Member of Cooperative Groups & +: "; }
+MemberOfProfessionalOrganization:before	{ content: "Member Prof Org & +: "; }
+OfficialName > Name:before		{ content: "Official Name * @: "; }
+OrganizationAdministrativeInformation:before
+					{ content: "ADMINISTRATIVE INFORMATION * + @"; }
+OrganizationAffiliations:before		{ content: "AFFILIATIONS &"; }
+OrganizationDetails:before		{ content: "ORGANIZATION DETAILS *"; }
+OrganizationLocation:before		{ content: "ORGANIZATION LOCATION * @"; }
+OrganizationLocations:before		{ content: "ORGANIZATION LOCATIONS *"; }
+OrganizationNameInformation:before	{ content: "ORGANIZATION NAME INFORMATION *"; }
+OrganizationType:before			{ content: "Organization Type * + @: " }
+OrganizationType[Public="No"]:after	{ content: " (Not public) "; }
+OrganizationType:after			{ content: " (Public) "; }
+ParentOrganization:before		{ content: "Parent Org * @: "; }
+PdqKey:before				{ content: "PDQ Key &: "; }
+PersonAssigned:before			{ content: "Person Assigned: "; }
+PreferredDirectoryContactMode:before	{ content: "Preferred Dir Contact &: "; }
+PreferredProtocolContactMode:before	{ content: "Preferred Prot Contact &: "; }
+PreferredProtocolOrganization:before	{ content: "Preferd Protocol Org & @: "; }
+ProtocolIDAcronym:before		{ content: "Protocol ID Acronym & +: "; }
+ProtocolParticipation:before		{ content: "Protocol Participation? *: "; } 
+ResearchBaseFor:before			{ content: "Research Base For & + @: "; }
+ShortName > Name:before			{ content: "Short Name & + @: "; }
+Status:before				{ content: "STATUS *"; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+AffiliateMemberOf:before,
+MainMemberOf:before,
+OrganizationAdministrativeInformation:before,
+OrganizationAffiliations:before,
+OrganizationDetails:before,
+OrganizationLocation:before,
+OrganizationLocations:before,
+OrganizationNameInformation:before,
+Status:before,
+
+	{  font-weight: bold;
+	   color: black;        }  
+
+OrganizationNameInformation:before,
+
+	{ margin-bottom: 1em;  }
+
+AffiliateMemberOf,
+MainMemberOf,
+OrganizationAdministrativeInformation,
+
+	{  margin-top: .5em;  
+	   margin-bottom: .5em;   }
+
+CIPSContactPerson,
+CurrentStatus,
+MemberOfCCOP,
+OfficialName,
+OrganizationDetails > Comment,
+OrganizationLocation,
+OrganizationParent,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ResearchBaseFor,
+
+	{ margin-top: .5em;  }
+
+MemberOfAdHocGroup,
+ParentOrganization,
+PreferredProtocolContactMode,
+
+	{ margin-top: 1em;   }
+
+CIPSContact,
+DateLastModified,
+OrganizationType,
+
+	{ margin-top: 1.5em; }
+
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+  
+
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+Status,
+
+   { border: solid; 
+     border-width: thin;
+     border-color: black;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+AlternateName:before,
+CIPSContact:before,
+Comment:before,
+Date:before,
+DateLastModified:before,
+PersonAssigned:before,
+OfficialName > Name:before,
+ParentOrganization:before,
+ProtocolIDAcronym:before,
+ShortName > Name:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+ 
+CCOP:before,
+CIPSContactPerson:before,
+CooperativeGroup:before,
+CurrentStatus:before,
+IncludeInDirectory:before, 
+MainMember:before,
+MemberOfAdHocGroup:before,
+MemberOfCCOP:before,
+MemberOfProfessionalOrganization:before,
+OrganizationType:before,
+OrganizationType[Public="No"]:after,
+OrganizationType:after,
+PdqKey:before,
+PreferredDirectoryContactMode:before,
+PreferredProtocolContactMode:before,
+PreferredProtocolOrganization:before,
+ProtocolParticipation:before,
+ResearchBaseFor:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+
+
+/* Key element for length = AlternateName				   */
+
+OfficialName > Name,			{ margin-left: 120pt; 
+					  text-indent: -105pt; }
+ShortName > Name,			{ margin-left: 120pt; 
+					  text-indent: -112pt; }
+AlternateName,				{ margin-left: 120pt; 
+					  text-indent: -116pt; }
+OrganizationNameInformation>Comment,	{ margin-left: 120pt; 
+					  text-indent: -82pt; }
+ParentOrganization,			{ margin-left: 120pt; 
+					  text-indent: -91.5pt; }
+OrganizationParent>Comment,		{ margin-left: 120pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = CIPSContactPerson 				   */
+
+CIPSContactPerson,			{ margin-left: 160pt;
+					  text-indent: -155pt; }
+IncludeInDirectory,			{ margin-left: 160pt;
+					  text-indent: -133.5pt; }
+OrganizationAdministrativeInformation > Date,	
+					{ margin-left: 160pt;
+					  text-indent: -41.5pt; }
+PreferredDirectoryContactMode,		{ margin-left: 160pt;
+					  text-indent: -140pt; }
+PreferredProtocolContactMode,		{ margin-left: 160pt;
+					  text-indent: -147.5pt; }
+OrganizationAdministrativeInformation > Comment,
+					{ margin-left: 160pt;
+					  text-indent: -82pt; }
+OrganizationDetails > Comment,		{ margin-left: 160pt;
+					  text-indent: -82pt; }
+
+/* Key element for length = PoliticalSubUnit_State				   */
+
+CIPSContact,				{ margin-left: 100pt; 
+					  text-indent: -91.5pt; }
+OrganizationLocations > Comment,	{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = MemberOfAdHocGroup				   */
+
+ResearchBaseFor,			{ margin-left: 160pt;
+					  text-indent: -154pt; }
+MemberOfProfessionalOrganization,	{ margin-left: 160pt;
+					  text-indent: -126pt; }
+CCOP,					{ margin-left: 160pt; 
+					  text-indent: -65pt; }
+MemberOfAdHocGroup,			{ margin-left: 160pt;
+					  text-indent: -160pt; }
+CooperativeGroup,			{ margin-left: 160pt;
+					  text-indent: -139pt; }
+ProtocolParticipation,			{ margin-left: 160pt;
+					  text-indent: -146pt; }
+MainMember,				{ margin-left: 160pt;
+					  text-indent: -110pt; }
+
+/* Key element for length = PreferredProtocolOrganization		   */
+
+ProtocolIDAcronym,			{ margin-left: 160pt;
+					  text-indent: -148pt; }
+
+PreferredProtocolOrganization,		{ margin-left: 160pt; 
+					  text-indent: -152pt; }
+OrganizationType,			{ margin-left: 160pt; 
+					  text-indent: -145pt; }
+
+CurrentStatus,				{ margin-left: 100pt;  
+					  text-indent: -98.5pt; }
+Status>Comment,				{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+	
+/* Key element for length = DateLastModified				   */
+
+DateLastModified,			{ margin-left: 100pt;
+					  text-indent: -96pt; }
+PdqKey,					{ margin-left: 100pt;
+					  text-indent: -71pt; }
+
+
+/* Margin-bottom to simulate a text box                                    */
+
+AffiliateMemberOf,
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson,
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date,
+DateLastModified,
+IncludeInDirectory,
+Location,
+MainMember, 
+MainMemberOf,
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OfficialName,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+OrganizationLocations,
+OrganizationNameInformation,
+OrganizationParent,
+OrganizationType,
+ParentOrganization, 
+PdqKey,
+PersonAssigned,
+PreferredDirectoryContactMode, 
+PreferredProtocolContactMode,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+ShortName,
+Status,
+
+	{ margin-bottom: 4pt; }
+
+CCOP,
+CooperativeGroup,
+IncludeInDirectory,
+
+	{ margin-top: 4pt; }
+
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson,
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date,
+DateLastModified,
+IncludeInDirectory,
+Location,
+MainMember, 
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocations,
+OrganizationParent,
+OrganizationType,
+ParentOrganization, 
+PdqKey,
+PersonAssigned,
+PreferredDirectoryContactMode, 
+PreferredProtocolContactMode,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+Status,
+
+	{ background-color: white; }
+
+
+AffiliateMemberOf,
+AlternateName:before,
+CCOP:before,
+CIPSContact:before,
+CIPSContactPerson:before,
+Comment:before,
+CooperativeGroup:before, 
+CurrentStatus:before,
+Date:before,
+DateLastModified:before,
+IncludeInDirectory:before,
+Location,
+Location:before,
+MainMember:before, 
+MainMemberOf,
+MemberOfAdHocGroup:before,
+MemberOfCCOP,
+MemberOfCCOP:before,
+MemberOfCooperativeGroups,
+MemberOfCooperativeGroups:before,
+MemberOfProfessionalOrganization:before,
+Name:before,
+OfficialName,
+OfficialName:before,
+OrganizationAdministrativeInformation,
+OrganizationAdministrativeInformation:before,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganzationLocation,
+OrganizationLocation:before,
+OrganizationLocations,
+OrganizationNameInformation:before,
+OrganizationParent,
+OrganizationType:before,
+ParentOrganization:before, 
+PdqKey:before,
+PersonAssigned:before,
+PreferredDirectoryContactMode:before, 
+PreferredProtocolContactMode:before,
+PreferredProtocolOrganization:before,
+ProtocolIDAcronym:before,
+ProtocolParticipation:before,
+Public:before,
+ResearchBaseFor:before,
+ShortName,
+ShortName:before,
+Status,
+
+	{ background-color: #CCCCFF; }
+
+

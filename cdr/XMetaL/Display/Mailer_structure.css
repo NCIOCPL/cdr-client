@@ -1,0 +1,225 @@
+/*************************************************************************/
+/* 	Mailer_structure.css                                             */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      12/06-11/01  by ebator                                           */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      12/04-05/01 by ebator                                            */
+/*      Based on the Mailer schema dated 10/05/01.                       */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css"; 
+
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+Mailer,
+
+     { background-color: white; }
+
+
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Address,
+ChangesCategory,
+Comment,
+Deadline,
+Document,
+JobId,
+Mailer,
+MailerResponse,
+Received,
+Recipient,
+Response,
+Sent,
+Type,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+Address:before				{ content: "ADDRESS "; }
+ChangesCategory:before			{ content: "Changes Category "; }
+Comment:before				{ content: "Comments "; }
+Deadline:before				{ content: "Deadline "; }
+Document:before				{ content: "Document "; }
+JobId:before				{ content: "Job ID "; }
+Mailer:before				{ content: "MAILER "; }
+MailerResponse:before			{ content: "Mailer Response "; }
+Received:before				{ content: "Received "; }
+Recipient:before			{ content: "Recipient "; }
+Response:before				{ content: "RESPONSE "; }
+Sent:before				{ content: "Sent "; }
+Type:before				{ content: "Type "; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+Address:before,
+
+   {  color: black;  
+      font-family: Arial, "sans serif";
+      font-size: 10pt;
+      font-weight: bold;    }  
+
+
+/***************************************************************************/ 
+/*                         BORDER CONTROL                                  */
+/***************************************************************************/
+  
+
+Address,
+Response,
+
+     { border: none;  }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+Comment:before,
+Deadline:before,
+Document:before,
+JobId:before,
+Received:before,
+Recipient:before,
+Response:before,
+Sent:before,
+
+   {  color:  black; 
+      font-family: Arial, "sans serif";
+      font-size: 10pt;
+      font-weight: bold;    }  
+
+
+/***************************************************************************/ 
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
+/***************************************************************************/ 
+
+
+ChangesCategory:before,
+Type:before,
+
+	{ font-weight: bold;
+	  font-family: Arial, "sans serif";
+      	  font-size: 10pt;
+	  color: black;      }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+Address,
+ChangesCategory,
+Comment,
+Country,
+Deadline,
+Document,
+JobId,
+MailerResponse,
+Received,
+Recipient,
+Response,
+Sent,
+Type,
+
+	{ text-indent: 0pt; }
+
+
+/***************************************************************************/ 
+/*                              HIDE TEXT                                  */ 
+/***************************************************************************/ 
+  
+
+Address,
+ChangesCategory,
+Comment,
+Deadline,
+Document,
+JobId,
+MailerResponse,
+Received,
+Recipient,
+Response,
+Sent,
+Type,
+
+     { color: white;
+       background-color: white; }
+
+Address,
+Address:before,
+ChangesCategory:before,
+Comment:before,
+Country:before,
+Deadline:before,
+Document:before,
+JobId:before,
+MailerResponse:before,
+PostalAddress,
+PostalAddress:before,
+Received:before,
+Recipient:before,
+Response:before,
+Sent:before,
+Type:before,
+
+     { background-color: white; }
+
+
+

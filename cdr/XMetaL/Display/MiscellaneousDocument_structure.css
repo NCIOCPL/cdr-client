@@ -1,0 +1,194 @@
+/*************************************************************************/
+/* 	MiscellaneousDocument_structure.css                              */
+/*                                                                       */
+/*      v. 3.1                                                           */
+/*      1/2/02   by ebator                                               */
+/*      Edited for schema changes 12/14/01 (frozen)                      */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      12/05   by ebator                                                */
+/*      Edited for 11/03/01 schema changes                               */
+/*                                                                       */
+/*      v 2.1  11/07/01  by eabtor                                       */
+/*      Common elements                                                  */
+/*                                                                       */
+/*      v 2.0  10/19/01  by ebtor                                        */
+/*      Changes for Form model                                           */
+/*                                                                       */
+/*      v 1.0  9/18/01  by ebator                                        */
+/*                                                                       */
+/*      Based on the 6/27/01 schema and the 9/18/01 CSS                  */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";  
+
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Audience,
+DateLastModified,
+Language,
+MiscellaneousDocument,
+MiscellaneousDocumentTitle,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+MiscellaneousDocumentText,
+PdqKey,
+Term, 
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Element includes attributes */
+
+
+Audience:before				{ content: "Audience "; }
+DateLastModified:before			{ content: "Last Modified "; }
+Language:before				{ content: "Language "; }
+MiscellaneousDocument:before		{ content: "MISCELLANEOUS DOCUMENT "; }
+MiscellaneousDocumentMetadata:before	{ content: "METADATA "; }
+MiscellaneousDocumentText:before	{ content: "Text "; }
+MiscellaneousDocumentTitle:before	{ content: "TITLE "; }
+MiscellaneousDocumentType:before	{ content: "Type "; }
+Para:before				{ content: counter(para)". Paragraph "; }
+PdqKey:before				{ content: "PDQ Key "; }
+
+
+/***************************************************************************/ 
+/*                             HEADINGS                                    */ 
+/***************************************************************************/ 
+
+
+Audience:before,
+DateLastModified:before,
+Language:before,
+MiscellaneousDocument:before,
+MiscellaneousDocumentMetadata:before,
+MiscellaneousDocumentText:before,
+MiscellaneousDocumentTitle:before,
+MiscellaneousDocumentType:before,
+Para:before,
+PdqKey:before,
+
+     { color: black; 
+       font-weight: bold;
+       font-size: 10pt; }
+
+
+/***************************************************************************/ 
+/*                     COUNTER DEFINITIONS                                 */ 
+/***************************************************************************/ 
+  
+
+Para,
+
+     {  counter-increment: para;  }
+
+
+
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+MiscellaneousDocumentMetadata,
+
+     { border: none; }
+
+
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+Audience,
+DateLastModified,
+Language,
+MiscellaneousDocument,
+MiscellaneousDocumentTitle,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+MiscellaneousDocumentText,
+PdqKey,
+
+     { color: white;
+       background-color: white; }
+
+
+
+/***************************************************************************/ 
+/*                            FORM CONTROL                                 */ 
+/***************************************************************************/ 
+
+
+Audience,
+Audience:before,
+Language,
+Language:before,
+MiscellaneousDocumentType,
+MiscellaneousDocumentType:before,
+MiscellaneousDocumentMetadata,
+MiscellaneousDocumentMetadata,
+PdqKey:before,
+
+	{ background-color: white; }
+
+
+Audience,
+Language,
+MiscellaneousDocumentType,
+MiscellaneousDocumentMetadata,
+
+	{ text-indent: 0pt; }

@@ -1,0 +1,786 @@
+/*************************************************************************/
+/* 	Person.css                                                       */
+/* 	                                                                 */
+/* 	v. 3.3                                                           */
+/*      1/16/02  by ebator                                               */
+/* 	Updated with schema changes from 1/9/02                          */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/* 	v. 3.2                                                           */
+/*      1/2-3/02  by ebator                                              */
+/* 	Updated with freeze changes from 12/21/01                        */
+/*                                                                       */
+/* 	v. 3.1                                                           */
+/*      12/13/01  by ebator                                              */
+/* 	Std. Prof. Suffix tag                                            */
+/*                                                                       */
+/* 	v. 3.0                                                           */
+/*      12/07-11/01  by ebator                                           */
+/* 	Edited to import common schema elements                          */
+/*                                                                       */
+/* 	v. 2.6                                                           */
+/*      10/30/01  by ebator                                              */
+/* 	Remove Y/N from tags                                             */
+/*                                                                       */
+/* 	v. 2.5                                                           */
+/*      10/26/01  by ebator                                              */
+/* 	Schema changes from 10/23,24/01                                  */
+/*                                                                       */
+/* 	v. 2.4                                                           */
+/*      10/19/01  by ebator                                              */
+/* 	Capped some section heads; CDR Doc Control=blue                  */
+/*                                                                       */
+/* 	v. 2.3                                                           */
+/*      10/17/01  by ebator                                              */
+/* 	Postal Address, Phone, Email: public=""                          */
+/*                                                                       */
+/* 	v. 2.2                                                           */
+/*      10/10/01  by ebator                                              */
+/* 	Web Site has a required attribute                                */
+/*                                                                       */
+/* 	v. 2.1                                                           */
+/*      10/09/01  by ebator                                              */
+/* 	Added text-indent for all subsequent lines in form               */
+/*                                                                       */
+/* 	v. 2.0                                                           */
+/*      10/04/01  by ebator                                              */
+/* 	Form-like changes requested by LG and AD                         */
+/*      Removed PersonAssigned, URI                                      */
+/* 	Changed Procins to blue on white to distinguish from user text   */
+/* 	                                                                 */
+/* 	v. 1.6                                                           */
+/*      9/27/01  by ebator                                               */
+/* 	Added WebSite                                                    */
+/* 	                                                                 */
+/* 	v. 1.5                                                           */
+/*      9/24/01  by ebator                                               */
+/* 	Common element styles added                                      */
+/* 	                                                                 */
+/* 	v. 1.4                                                           */
+/*      9/18/01  by ebator                                               */
+/* 	Added dot leaders to keep tags the same character width;         */
+/* 	removed preserve whitespace so the template will word wrap       */
+/* 	                                                                 */
+/* 	v. 1.3                                                           */
+/*      9/4/2001 by ebator                                               */
+/* 	Organization is now OrganizationLocation with attributes,        */
+/* 	PDQBoardMembershipDetails added under ProfessionalInformation    */
+/* 	  and before PhysicianDetails                                    */
+/*      Added @ to Phone/Email by removing the ...String:before tags     */
+/*                                                                       */
+/*      Unaddressed: CdrCallingID, CIPSContact NMTOKEN,                  */
+/*      "hidden" attributes that don't appear in the CSS,                */
+/*      term and org links copied from Protocol,                         */
+/*      required * and multiple + elements                               */
+/* 	                                                                 */
+/* 	v. 1.2                                                           */
+/*      08/29/2001  by ebator                                            */
+/* 	Redesigned per LG and AD with tags and data aligned on a column  */
+/* 	Table only works with properly structured elements               */
+/* 	Text-align doesn't work                                          */
+/* 	Compact box doesn't apply -                                      */
+/* 	Can't align on a string outside a table                          */
+/* 	                                                                 */
+/*      v. 1.1                                                           */
+/*      08/02/2001 2:30 PM ebator                                        */
+/*      Minor edits to syntax                                            */
+/* 	                                                                 */
+/*      v 1.0                                                            */
+/*      07/27/2001 4:30 PM   by ebator                                   */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color: black;          }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+Person,
+
+     { background-color: #CCCCFF;  }
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+AcceptsCalls,
+AdministrativeInformation, /* not titled here; use in structure css */
+BoardCertifiedSpecialty,
+BoardCertifiedSpecialtyName,
+Certified,
+CertificationStatus, 
+CertificationVerification,
+CIPSContact,
+Comment,
+ComplexAffiliation,
+CooperativeGroup,
+SpecificPostalAddress>Country,
+CurrentStatus,
+CustomProfessionalSuffix,
+DateLastModified,
+Date,
+Directory,
+EligibilityYear,
+EnteredBy,
+EntryDate,
+FamilialCancerSyndromes,
+GenerationSuffix,
+GeneticsBoardCertification,
+GeneticsBoardName,
+GeneticsProfessionalDetails,
+GeneticsSpecialtyInformation, /* not titled here; use in structure css */
+GeneticsSpecialtyName,
+GeneticsTeamServices,
+GivenName,
+Home,
+Include,
+InterdisciplinaryTeamMember, 
+MemberOfCooperativeGroup,
+MemberOfGeneticsSociety,
+MemberOfMedicalSociety,
+MiddleInitial,
+NameFormat,
+Organization,
+OrganizationLocation,
+OtherPracticeLocation,
+OtherSpecialty,
+PDQAdvisoryBoard,
+PDQBoardMembershipDetails,
+PDQEditorialBoard,
+PdqKey,
+PDQVoluntaryProtocolReviewBoard,
+PersonLocations, 
+PersonNameInformation, 
+PersonRole,
+PersonTitle,
+PhysicianDetails,
+PhysicianMembershipInformation, 
+PhysicianSpecialtyInformation, /* not titled here; use in structure css */
+PreferredContactMode,
+Prefix,
+PrivatePractice,
+ProfessionalInformation,
+ProvidesServices,
+Role,
+RoleAtAffiliatedOrganization,
+ServiceLimitations,
+SpecificEmail,
+SpecificFax,
+SpecificPhone,
+SpecificPostalAddress,
+SpecificTollFreePhone,
+SpecificWebSite,
+StandardProfessionalSuffix,
+Status,
+SurName,
+Verified,
+
+	{ display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+
+AcceptsCalls:before			{ content: "Accepts Calls? *: "; }
+BoardCertifiedSpecialtyName:before	{ content: "Specialty Name *: "; }
+Certified:before			{ content: "Certified? *: "; }
+CertificationStatus:before		{ content: "Status *: "; }
+CertificationVerification:before	{ content: "Verified? &: "; }
+CIPSContact:before			{ content: "CIPS Contact *: "; }
+Comment:before				{ content: "Comments &: "; }
+PersonNameInformation > Comment:before	{ content: "Comments &: "; }
+ComplexAffiliation:before		{ content: "COMPLEX AFFILIATION & +"; }
+CooperativeGroup:before			{ content: "Cooperative Group * @: "; }
+SpecificPostalAddress>Country:before	{ content: "Country * @: ";}
+CurrentStatus:before			{ content: "Current Status *: "; }
+CustomProfessionalSuffix:before		{ content: "Custom Suffix & +: "; }
+Date:before				{ content: "Date *: "; }
+DateLastModified:before			{ content: "Last Modified &: "; }
+EligibilityYear:before			{ content: "Eligibility Year &: "; }
+EnteredBy:before			{ content: "Entered By *: "; }
+EntryDate:before			{ content: "Entry Date *: "; }
+FamilialCancerSyndromes:before		{ content: "Famil C Syndrome * + @: "; }
+GeneticsSpecialtyName:before		{ content: "Genetics Specialty *: "; }
+GeneticsTeamServices:before		{ content: "Genetics Team Srvcs * +: "; }
+GenerationSuffix:before			{ content: "Generatn Suffix &: "; }
+GeneticsBoardCertification:before	{ content: "BOARD CERTIFICATION & +"; }
+GeneticsBoardName:before		{ content: "Board *: "; }
+GeneticsProfessionalDetails:before	{ content: "GENETICS PROFESSIONAL DETAILS &";}
+GivenName:before			{ content: "Given Name &: "; }
+Home:before				{ content: "HOME LOCATION & @"; }
+Include:before				{ content: "Include in Dir? *: "; }
+InterdisciplinaryTeamMember:before	{ content: "Interdisciplinary Team? *: "; }
+MemberOfCooperativeGroup:before		{ content: "Member of Cooperative Group & + @: "; }
+MemberOfGeneticsSociety:before		{ content: "Mmbr Gen Society *: "; }
+MemberOfMedicalSociety:before		{ content: "Member Med Society & +: "; }
+MiddleInitial:before			{ content: "Middle Initial &: "; }
+NameFormat:before			{ content: "Name Format &: "; }
+Organization:before			{ content: "Organizatn * @: "; }
+OrganizationLocation:before		{ content: "Org Locatn * @: "; }
+OtherPracticeLocation:before		{ content: "OTHER PRACTICE LOCATION @ & +"; }
+OtherSpecialty:before			{ content: "Other Specialty * +: "; }
+PDQAdvisoryBoard:before			{ content: "PDQ Advisory Brd & + @: "; }
+PDQBoardMembershipDetails:before	{ content: "PDQ BOARD MEMBERSHIP &"; }
+PDQEditorialBoard:before		{ content: "PDQ Editorial Brd & + @: "; }
+PDQVoluntaryProtocolReviewBoard:before	{ content: "PDQ Vol Rev Brd & @: "; }
+PdqKey:before				{ content: "PDQ Key &: "; }
+PersonLocations:before			{ content: "LOCATIONS *"; }
+PersonNameInformation:before		{ content: "NAME INFORMATION *"; }
+PersonRole:before			{ content: "Person Role & +: "; }
+PersonTitle:before			{ content: "Person Title &: "; }
+PhysicianDetails:before			{ content: "PHYSICIAN DETAILS &"; }
+PhysicianMembershipInformation:before	{ content: "MEMBERSHIP INFORMATION &"; }
+PhysicianSpecialtyInformation:before	{ content: "SPECIALTY INFORMATION & +" ; }
+PreferredContactMode:before		{ content: "Preferred Contact &: "; }
+Prefix:before				{ content: "Prefix &: "; }
+PrivatePractice:before			{ content: "PRIVATE PRACTICE LOCATION & + @"; }
+ProfessionalInformaton:before		{ content: "Professional Information &"; }
+ProvidesServices:before			{ content: "Provides Services? *: "; }
+RoleAtAffiliatedOrganization:before	{ content: "Role at Aff Org *: "; }
+ServiceLimitations:before		{ content: "Service Limits &: "; }
+SpecificEmail:before			{ content: "Sp Email & @: "; }
+SpecificEmail[Public="No"]:after	{ content: " (Not public) "; }
+SpecificEmail:after			{ content: " (Public) "; }
+SpecificFax:before			{ content: "Sp Fax &: "; }
+SpecificPhone:before			{ content: "Sp Phone & @: "; }
+SpecificPhone[Public="No"]:after	{ content: " (Not public) "; }
+SpecificPhone:after			{ content: " (Public) "; }
+SpecificPostalAddress:before		{ content: "SPECIFIC POSTAL ADDRESS & @"; }
+SpecficPostalAddress[Public="No"]:before{ content: "SPECIFIC POSTAL ADDRESS (Not Public) & @"; }
+SpecificPostalAddress:before		{ content: "SPECIFIC POSTAL ADDRESS (Public) & @"; }
+SpecificTollFreePhone:before		{ content: "Sp Toll Free &: "; }
+SpecificWebSite:before			{ content: "Sp WebSite & @: "; }
+StandardProfessionalSuffix:before	{ content: "Std Prof Suffix & +: "; }
+Status:before				{ content: "STATUS *"; }
+SurName:before				{ content: "Surname *: "; }
+Verified:before				{ content: "Verified? &: "; }
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+BoardCertifiedSpecialty:before,
+ComplexAffiliation:before,
+Directory:before,
+GeneticsBoardCertification:before,
+OtherPracticeLocation:before,
+MemberOfCooperativeGroup:before, 
+PDQBoardMembershipDetails:before,
+PersonLocations:before, 
+PersonNameInformation:before,
+PhysicianMembershipInformation:before,
+PhysicianSpecialtyInformation:before,
+SpecificPostalAddress:before,
+Status:before,
+ 
+	{  font-weight: bold;
+	   font-size: 12pt;
+           color: black;        }  
+
+GeneticsBoardCertification,
+OtherPracticeLocation, 
+PDQBoardMembershipDetails,
+PersonLocations,
+PersonNameInformation,
+PersonNameInformation:before,
+
+	{ margin-bottom: 1em;  }
+
+Directory,
+GeneticsBoardCertification,
+PhysicianSpecialtyInformation,
+
+	{  margin-top: .5em;  
+	   margin-bottom: .5em;   }
+
+BoardCertifiedSpecialtyName,
+CooperativeGroup,
+CurrentStatus,
+GeneticsBoardName,
+GivenName,
+PDQEditorialBoard,
+PDQAdvisoryBoard,
+PDQVoluntaryProtocolReviewBoard,
+
+Organization,
+OrganizationLocation,
+
+	{ margin-top: .5em;  }
+
+CIPSContact,
+DateLastModified,
+InterdisciplinaryTeamMember, 
+
+	{ margin-top: 1.5em; }
+
+MemberOfCooperativeGroup,
+
+	{ margin-top: .5em;
+	  margin-bottom: 1em; }
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+  
+
+GeneticsProfessionalDetails:before,
+Home:before,
+PDQBoardMembershipDetails:before,
+PhysicianDetails:before,
+PrivatePractice:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  }
+
+GeneticsProfessionalDetails,
+Home,
+OtherPracticeLocation,
+PDQBoardMembershipDetails,
+PhysicianDetails,
+PrivatePractice,
+Status,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+CIPSContact:before,
+Comment:before,
+CustomProfessionalSuffix:before,
+Date:before,
+DateLastModified:before,
+EligibilityYear:before,
+EnteredBy:before,
+EntryDate:before,
+GenerationSuffix:before,
+GivenName:before,
+MiddleInitial:before,
+PersonTitle:before,
+Prefix:before,	
+ServiceLimitations:before,
+SpecificEmail:before,
+SpecificEmail:after,
+SpecificFax:before,
+SpecificPhone:before,
+SpecificPhone:after,
+SpecificTollFreePhone:before,
+SpecificWebSite:before,
+SurName:before,	
+
+   {  font-weight: bold;
+      color: black;       }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+
+/* some properties don't get applied on the first element in a list        */
+
+AcceptsCalls:before,
+BoardCertifiedSpecialtyName:before,
+Certified:before,
+CertificationStatus:before,
+CertificationVerification:before,
+CodePosition:before,
+CooperativeGroup:before,
+SpecificPostalAddress>Country:before,
+CurrentStatus:before,
+FamilialCancerSyndromes:before,
+GeneticsBoardName:before,
+GeneticsSpecialtyName:before,	
+GeneticsTeamServices:before,
+Include:before, 
+InterdisciplinaryTeamMember:before,
+MemberOfCooperativeGroup:before,
+MemberOfGeneticsSociety:before,
+MemberOfMedicalSociety:before,
+NameFormat:before,
+Organization:before,
+OrganizationLocation:before,
+OtherSpecialty:before,
+PDQAdvisoryBoard:before,
+PDQEditorialBoard:before,
+PdqKey:before,
+PDQVoluntaryProtocolReviewBoard:before,
+PersonRole:before,
+PreferredContactMode:before,
+ProvidesServices:before,
+RoleAtAffiliatedOrganization:before,
+StandardProfessionalSuffix:before,
+Verified:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+
+
+/* Key element for length = GenerationSuffix				   */
+
+GivenName,				{ margin-left: 110pt; 
+					  text-indent: -88.5pt; }
+MiddleInitial,				{ margin-left: 110pt; 
+					  text-indent: -90pt; }
+SurName,				{ margin-left: 110pt; 
+					  text-indent: -67pt; }
+Prefix,					{ margin-left: 110pt; 
+					  text-indent: -52.5pt; }
+GenerationSuffix,			{ margin-left: 110pt; 
+					  text-indent: -108pt; }
+StandardProfessionalSuffix,		{ margin-left: 110pt;  
+					  text-indent: -112pt; }
+CustomProfessionalSuffix,		{ margin-left: 110pt; 
+					  text-indent: -110pt; }
+NameFormat,				{ margin-left: 110pt; 
+					  text-indent: -96pt; }
+PersonNameInformation>Comment,		{ margin-left: 110pt; 
+					  text-indent: -82pt; }
+
+
+/* Key element for length = PDQAdvisoryBoard    			   */
+
+PDQAdvisoryBoard,			{ margin-left: 150pt;  
+					  text-indent: -148.5pt; }
+PDQEditorialBoard,			{ margin-left: 150pt;  
+					  text-indent: -144.5pt; }
+PDQVoluntaryProtocolReviewBoard,	{ margin-left: 150pt;  
+					  text-indent: -132pt; }
+
+
+/* Key element for length = MemberOfMedicalSociety			   */
+
+BoardCertifiedSpecialtyName,		{ margin-left: 150pt;
+					  text-indent: -103.5pt; }
+Certified,				{ margin-left: 150pt;
+					  text-indent: -70.5pt; }
+CertificationVerification,		{ margin-left: 150pt;  
+					  text-indent: -70.5pt; }
+Directory>Comment, 			{ margin-left: 150pt; 
+					  text-indent: -82pt; }
+PhysicianDetails>Comment,		{ margin-left: 150pt; 
+					  text-indent: -82pt; }
+Directory>Date,				{ margin-left: 150pt;  
+					  text-indent: -41pt; }
+Include,				{ margin-left: 150pt; 
+					  text-indent: -97.5pt; }
+EnteredBy,				{ margin-left: 150pt;
+					  text-indent: -78.5pt; }
+CooperativeGroup,			{ margin-left: 150pt;  
+					  text-indent: -139pt; }
+MemberOfMedicalSociety,			{ margin-left: 150pt; 
+					  text-indent: -147.5pt; }
+OtherSpecialty,				{ margin-left: 150pt;
+					  text-indent: -112pt; }
+PreferredContactMode,			{ margin-left: 150pt;  
+					  text-indent: -121pt; }
+Verified,				{ margin-left: 150pt;
+					  text-indent: -70.5pt; }
+
+/* Key element for length = GeneticsTeamServices				   */
+
+Date,					{ margin-left: 150pt;
+					  text-indent: -41pt; }
+GeneticsSpecialtyName,			{ margin-left: 150pt;  
+					  text-indent: -120.5pt; }
+GeneticsBoardName,			{ margin-left: 150pt;  
+					  text-indent: -50.5pt; }
+CertificationStatus,			{ margin-left: 150pt;  
+					  text-indent: -51.5pt; }
+EligibilityYear,			{ margin-left: 150pt;  
+					  text-indent: -100pt; }
+GeneticsBoardCertification>Comment,	{ margin-left: 150pt; 
+					  text-indent: -82pt; }
+InterdisciplinaryTeamMember,		{ margin-left: 150pt;  
+					  text-indent: -148.5pt; }
+GeneticsTeamServices,			{ margin-left: 150pt; 
+					  text-indent: -145.5pt; }
+ProvidesServices,			{ margin-left: 150pt;  
+					  text-indent: -126pt; }
+AcceptsCalls,				{ margin-left: 150pt;  
+					  text-indent: -100.5pt; }
+ServiceLimitations,			{ margin-left: 150pt;  
+					  text-indent: -100pt; }
+FamilialCancerSyndromes,		{ margin-left: 150pt;  
+					  text-indent: -145pt; }
+MemberOfGeneticsSociety,		{ margin-left: 150pt;  
+					  text-indent: -119pt; }
+GeneticsProfessionalDetails>Comment,	{ margin-left: 150pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = PoliticalSubUnit_State				*/
+
+OrganizationLocation,			{ margin-left: 100pt;  
+					  text-indent: -94pt; }
+PersonTitle,				{ margin-left: 100pt;  
+					  text-indent: -88pt; }
+PersonRole,				{ margin-left: 100pt;  
+					  text-indent: -100pt; }
+SpecificPostalAddress>Country,		{ margin-left: 100pt;
+					  text-indent: -76.5pt; }
+SpecificEmail,				{ margin-left: 100pt;  
+					  text-indent: -85pt; }
+SpecificFax,				{ margin-left: 100pt;  
+					  text-indent: -59pt; }
+SpecificPhone,				{ margin-left: 100pt;  
+					  text-indent: -91pt; }
+SpecificTollFreePhone,			{ margin-left: 100pt;  
+					  text-indent: -88pt; }
+SpecificWebSite,			{ margin-left: 100pt;  
+					  text-indent: -100.5pt; }
+
+Organization,				{ margin-left: 100pt;  
+					  text-indent: -93pt; }
+RoleAtAffiliatedOrganization,		{ margin-left: 100pt;  
+					  text-indent: -97.5pt; }
+
+CIPSContact,				{ margin-left: 100pt;  
+					  text-indent: -91.5pt; }
+PersonLocations>Comment,		{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+
+CurrentStatus,				{ margin-left: 100pt;  
+					  text-indent: -98pt; }
+Status>EnteredBy,			{ margin-left: 100pt;  
+					  text-indent: -78.5pt; }
+Status>EntryDate,			{ margin-left: 100pt;  
+					  text-indent: -75pt; }
+Status>Comment,				{ margin-left: 100pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = DateLastModified					   */
+
+DateLastModified,			{ margin-left: 100pt;
+					  text-indent: -96pt; }
+PdqKey,					{ margin-left: 100pt;
+					  text-indent: -71pt; }
+
+
+/* Separate each line to make it look like a text box  */
+
+AcceptsCalls,
+BoardCertifiedSpecialtyName,
+Certified,
+CertificationStatus, 
+CertificationVerification,
+CIPSContact,
+Comment,
+CooperativeGroup,
+SpecificPostalAddress>Country,
+CurrentStatus,
+CustomProfessionalSuffix,
+Date,
+DateLastModified,
+Directory,
+EligibilityYear,
+EnteredBy,
+EntryDate,
+FamilialCancerSyndromes,
+GenerationSuffix,
+GeneticsBoardName,
+GeneticsSpecialtyName,
+GeneticsTeamServices,
+GivenName,
+Include,
+InterdisciplinaryTeamMember, 
+MemberOfGeneticsSociety,
+MemberOfMedicalSociety,
+MiddleInitial,
+NameFormat,
+Organization,
+OrganizationLocation,
+OtherSpecialty,
+PDQAdvisoryBoard,
+PDQEditorialBoard,
+PdqKey,
+PDQVoluntaryProtocolReviewBoard,
+PersonRole,
+PersonTitle,
+PreferredContactMode,
+Prefix,
+ProvidesServices,
+Role,
+RoleAtAffiliatedOrganization,
+ServiceLimitations,
+SpecificEmail,
+SpecificFax,
+SpecificPhone,
+SpecificTollFreePhone,
+SpecificWebSite,
+StandardProfessionalSuffix,
+SurName,
+Verified,
+
+	{ margin-bottom: 4pt; }
+
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+AcceptsCalls,
+BoardCertifiedSpecialtyName,
+Certified,
+CertificationStatus, 
+CertificationVerification,
+CIPSContact,
+Comment,
+CooperativeGroup,
+SpecificPostalAddress>Country,
+CurrentStatus,
+CustomProfessionalSuffix,
+Date,
+DateLastModified,
+Directory,
+EligibilityYear,
+EnteredBy,
+EntryDate,
+FamilialCancerSyndromes,
+GenerationSuffix,
+GeneticsBoardName,
+GeneticsSpecialtyName,
+GeneticsTeamServices,
+GivenName,
+Include,
+InterdisciplinaryTeamMember, 
+MemberOfGeneticsSociety,
+MemberOfMedicalSociety,
+MiddleInitial,
+NameFormat,
+Organization,
+OrganizationLocation,
+OtherSpecialty,
+PDQAdvisoryBoard,
+PDQEditorialBoard,
+PdqKey,
+PDQVoluntaryProtocolReviewBoard,
+PersonRole,
+PersonTitle,
+PreferredContactMode,
+Prefix,
+ProvidesServices,
+Role,
+RoleAtAffiliatedOrganization,
+ServiceLimitations,
+SpecificEmail,
+SpecificFax,
+SpecificPhone,
+SpecificTollFreePhone,
+SpecificWebSite,
+StandardProfessionalSuffix,
+SurName,
+Verified,
+
+	{ background-color: white; }
+
+AcceptsCalls:before,
+BoardCertifiedSpecialty,
+BoardCertifiedSpecialtyName:before,
+Certified:before,
+CertificationStatus:before, 
+CertificationVerification:before,
+CIPSContact:before,
+Comment:before,
+CooperativeGroup:before,
+SpecificPostalAddress>Country:before,
+CurrentStatus:before,
+CustomProfessionalSuffix:before,
+Date:before,
+DateLastModified:before,
+Directory,
+Directory:before,
+EligibilityYear:before,
+EnteredBy:before,
+EntryDate:before,
+FamilialCancerSyndromes:before,
+GenerationSuffix:before,
+GeneticsBoardName:before,
+GeneticsSpecialtyName:before,
+GeneticsTeamServices:before,
+GivenName:before,
+Include:before,
+InterdisciplinaryTeamMember:before, 
+MemberOfCooperativeGroup:before,
+MemberOfGeneticsSociety:before,
+MemberOfMedicalSociety:before,
+MiddleInitial:before,
+NameFormat:before,
+Organization:before,
+OrganizationLocation:before,
+OtherSpecialty:before,
+PDQAdvisoryBoard:before,
+PDQEditorialBoard:before,
+PdqKey:before,
+PDQVoluntaryProtocolReviewBoard:before,
+PersonRole:before,
+PersonTitle:before,
+PhysicianSpecialtyInformation,
+PreferredContactMode:before,
+Prefix:before,
+ProvidesServices:before,
+Role:before,
+RoleAtAffiliatedOrganization:before,
+ServiceLimitations:before,
+SpecificEmail:before,
+SpecificFax:before,
+SpecificPhone:before,
+SpecificPostalAddress:before,
+SpecificTollFreePhone:before,
+SpecificWebSite:before,
+StandardProfessionalSuffix:before,
+SurName:before,
+Verified:before,
+
+	{ background-color: #CCCCFF; }

@@ -1,0 +1,522 @@
+/**************************************************************************/
+/*     InScopeProtocol_structure.css                                      */
+/*                                                                        */
+/* 	v. 3.2                                                            */ 
+/*      1/16/02   by ebator                                               */
+/* 	Minor changes to match Normal View *&+@ heading additions         */
+/* 	                                                                  */
+/* 	v. 3.1                                                            */ 
+/*      1/7/02   by ebator                                                */
+/* 	Added schema changes from 12/21/01; frozen                        */
+/* 	                                                                  */
+/* 	v. 3.0                                                            */ 
+/*      12/10-11/01   by ebator                                           */
+/* 	Edited to import CommonProtocolInfo_structure.css and             */
+/*          CdrCommonSchema_strucutre.css                                 */
+/* 	                                                                  */
+/* 	v. 2.1                                                            */ 
+/*      12/05/01   by ebator                                              */
+/* 	Edits for schema changes from 11/13/01 and 12/03/01               */
+/* 	                                                                  */
+/*     v. 2.0                                                             */ 
+/*     11/02-07/01  by ebator                                             */
+/*     Changes for the Forms model; schema changes 8/31-11/2              */
+/* 	                                                                  */
+/*     v. 1.3                                                             */
+/*     9/24/01  by ebator                                                 */
+/*     Added para, table, and lists to structure                          */
+/*                                                                        */
+/*     v. 1.2                                                             */
+/*     9/21/01  by ebator                                                 */
+/*     All elements black; common elements hidden                         */
+/*     Numbered Organization: TextName                                    */
+/*                                                                        */
+/*     v 1.1 		                        			  */
+/*     9/10/01  by ebator                                                 */
+/*     Hide text, fix indent, hide PROCINS, edit tags                     */
+/*     Current to schema 8/31/01                                          */
+/*                                                                        */
+/*     v 1.0 	                 					  */
+/*     6/18/01  by ebator                                                 */
+/*                                                                        */
+/*     Revision A 2:40 PM 6/21/2001 clean-up                              */
+/*     Revision B 4:10 PM 6/28/2001 PDQID, marginbottoms                  */
+/*     Revision C 3:15 PM 8/2/2001 Typos                                  */
+/*                                                                        */
+/**************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*              XMETAL-GENERATED PROPERTIES AND DEFAULTS                  */ 
+/**************************************************************************/ 
+ 
+@import "CdrCommonSchema_structure.css"; 
+@import "CommonProtocolInfo_structure.css"; 
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     font-weight: normal;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+InScopeProtocol,
+
+	{ background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+Comment,
+ContactInformation,
+CurrentOrgStatus, 
+CurrentProtocolStatus,
+DateLastModified, 
+EnteredBy, 
+EntryDate, 
+FundingInfo, 
+GenericPerson, 
+GenericPersonContact, 
+GrantContractNo,
+InScopeProtocol, 
+LeadOrganizationID, 
+LeadOrgProtocolID, 
+LeadOrgRole, 
+LeadOrgPersonnel,
+LeadOrgProtocolID, 
+LeadOrgProtocolStatuses,
+MailAbstractTo, 
+NIHGrantContract, 
+NIHGrantContractType,  
+OrgSite, 
+OrgSiteContact, 
+OrgSiteID, 
+OrgSiteStatus, 
+OtherGrantContractInfo, 
+PdqKey, 
+Person, 
+PersonRole, 
+PersonTitle,  
+PreviousOrgStatus, 
+PrivatePracticeSite, 
+PrivatePracticeSiteID, 
+PrivatePracticeSiteStatus,
+ProtocolAdminInfo, 
+ProcessingDate, 
+ProcessingStatus, 
+ProtocolApproval, 
+ProtocolLeadOrg, 
+ProtocolProcessingDetails, 
+ProtocolSites,
+ProtocolSource, 
+ProtocolSources, 
+ProtocolSpecialCategory, 
+ProtocolSpecificContact, 
+ProtocolSponsors, 
+ReimbursementApprovalType, 
+ReviewApprovalType, 
+Role, 
+SourceName, 
+SpecialCategory, 
+SpecificPerson, 
+SpecificPhone,  
+SponsorName, 
+StatusDate, 
+StatusName, 
+
+   { display: block; }
+
+
+/***************************************************************************/ 
+/*                      BEFORE AND AFTER TAGS                              */ 
+/***************************************************************************/ 
+ 
+
+CurrentOrgStatus:before		{ content: "Current Org Status "; }
+CurrentProtocolStatus:before	{ content: "Current Protocol Status";  }
+DateLastModified:before		{ content: "Last Modified "; }
+EnteredBy:before		{ content: "Entered By "; }
+EntryDate:before		{ content: "Entry Date "; }
+FundingInfo:before		{ content: "FUNDING INFORMATION";  }
+GenericPerson:before		{ content: "Generic Contact ";  }
+GenericPersonContact:before	{ content: "Generic Person Contact Information";  }
+GrantContractNo:before		{ content: "Grant Contract Number "; }
+InScopeProtocol:before		{ content: "IN-SCOPE PROTOCOL DOCUMENT";  }
+LeadOrganizationID:before	{ content: "Organization Name "; }
+LeadOrgProtocolID:before	{ content: "Protocol ID "; }
+LeadOrgRole:before		{ content: "Role "; }
+LeadOrgPersonnel:before		{ content: "LEAD ORGANIZATION PERSONNEL "; }
+LeadOrgProtocolID:before	{ content: "Lead Org Protocol ID "; }
+LeadOrgProtocolStatuses:before	{ content: "LEAD ORGANIZATION PROTOCOL STATUSES "; }
+MailAbstractTo:before		{ content: "Mail Abstract To "; }
+NIHGrantContract:before		{ content: "NIH GRANT CONTRACT "; }
+NIHGrantContractType:before	{ content: "NIH Grant Contract Type ";  }
+OrgSite:before			{ content: counter(Site)
+				  ". PARTICIPATING ORGANIZATION "; }
+OrgSiteContact:before		{ content: "Site Contact ";  }
+OrgSiteID:before		{ content: "Organization Name: "; }
+OrgSiteStatus:before		{ content: "Status "; }
+OtherGrantContractInfo:before	{ content: "OTHER GRANT CONTRACT INFORMATION"; }
+PdqKey:before			{ content: "PDQ Key "; }
+Person:before			{ content: "Person "; }
+PersonID:before			{ content: "Person "; }
+PersonRole:before		{ content: "Role "; }
+PersonTitle:before		{ content: "Title ";  }
+PreviousOrgStatus:before	{ content: "Previous Org Status "; }
+PrivatePracticeSite:before	{ content: "PRIVATE PRACTICE SITE "; } 
+PrivatePracticeSiteID:before	{ content: "Site ID "; }
+PrivatePracticeSiteStatus:before
+				{ content: "Site Status "; }
+ProcessingDate:before		{ content: "ProcessingDate "; }
+ProcessingStatus:before		{ content: "ProcessingStatus "; }
+ProtocolAdminInfo:before	{ content: "ADMINISTRATIVE INFORMATION"; }
+ProtocolApproval:before		{ content: "PROTOCOL APPROVAL";  }
+ProtocolLeadOrg:before		{ content: "LEAD/SECONDARY LEAD ORGANIZATION"; }
+ProtocolProcessingDetails:before	
+				{ content: "PROTOCOL PROCESSING DETAILS "; }
+ProtocolSites:before		{ content: "PROTOCOL SITES ";  }
+ProtocolSource:before		{ content: "Protocol Source "; }
+ProtocolSources:before		{ content: "PROTOCOL SOURCES";  }
+ProtocolSpecificContact:before	{ content: "PROTOCOL SPECIFIC CONTACT "; }
+ProtocolSponsors:before		{ content: "PROTOCOL SPONSORS";  }
+ProtocolSpecialCategory:before	{ content: "PROTOCOL SPECIAL CATEGORY"; }
+ReimbursementApprovalType:before  { content: "Reimbursement Approval Type "; }
+ReviewApprovalType:before	{ content: "Review Approval Type "; }
+Role:before			{ content: "Role "; }
+SourceName:before		{ content: "Source "; }
+SpecialCategory:before		{ content: "Category "; }
+SpecificPerson:before		{ content: "Specific Contact";  }
+SpecificPhone:before		{ content: "Phone "; }
+SponsorName:before		{ content: "Sponsor Name ";  }
+StatusDate:before		{ content: "Status Date "; }
+StatusName:before		{ content: "Status "; }
+
+
+/***************************************************************************/ 
+/*                     NON-DISPLAY ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Para,
+
+     { display:  none;   }
+
+
+
+/***************************************************************************/ 
+/*                     COUNTER DEFINITIONS                                 */ 
+/***************************************************************************/ 
+  
+
+OrgSite,
+  
+     { counter-increment: Site;  }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+CurrentOrgStatus:before,
+CurrentProtocolStatus:before,
+FundingInfo:before,
+GenericPerson:before,
+GenericPersonContact:before,
+InScopeProtocol:before,
+LeadOrgPersonnel:before,
+LeadOrgProtocolStatuses:before,
+NIHGrantContract:before,
+OrgSite:before,
+OrgSiteContact:before,
+OtherGrantContractInfo:before,
+PreviousOrgStatus:before,
+PrivatePracticeSite:before,
+ProtocolAdminInfo:before,
+ProtocolApproval:before,
+ProtocolLeadOrg:before,
+ProtocolPersonnel:before,
+ProtocolProcessingDetails:before,
+ProtocolSites:before,
+ProtocolSource:before,
+ProtocolSources:before,
+ProtocolSpecificContact:before,
+ProtocolSponsors:before,
+ProtocolSpecialCategory:before,
+SpecificPerson:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+  
+
+DateLastModified:before,
+EnteredBy:before,
+EntryDate:before,
+GrantContractNo:before,
+LeadOrgProtocolID:before,
+PersonTitle:before,
+ProcessingDate:before,
+SourceName:before,
+SpecificPhone:before,
+SponsorName:before,
+StatusDate:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+  
+
+CurrentProtocolStatus:before,
+LeadOrganizationID:before,
+LeadOrgRole:before,
+MailAbstractTo:before,
+NIHGrantContractType:before,
+OrgSiteID:before,
+OrgSiteStatus:before,
+PdqKey:before,
+Person:before,
+PersonID:before,
+PersonRole:before,
+PrivatePracticeSiteID:before, 
+PrivatePracticeSiteStatus:before,
+ProcessingStatus:before,
+ReimbursementApprovalType:before,
+ReviewApprovalType:before,
+Role:before,
+SpecialCategory:before,
+StatusName:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                             HIDE TEXT                                   */ 
+/***************************************************************************/ 
+  
+
+ProtocolSource>Comment,
+CurrentProtocolStatus,
+DateLastModified,
+EnteredBy,
+EntryDate,
+FundingInfo,
+GenericPerson,
+GenericPersonContact,
+GrantContractNo,
+InScopeProtocol,
+LeadOrganizationID,
+LeadOrgRole,
+LeadOrgPersonnel,
+LeadOrgProtocolID,
+LeadOrgProtocolStatuses,
+MailAbstractTo,
+NIHGrantContract,
+NIHGrantContractType,
+OrgSite,
+OrgSiteContact,
+/*OrgSiteID,*/
+OrgSiteStatus,
+OtherGrantContractInfo,
+PdqKey,
+Person,
+PersonRole,
+PersonTitle,
+PrivatePracticeSiteID, 
+PrivatePracticeSiteStatus,
+ProcessingDate,
+ProcessingStatus,
+ProtocolAdminInfo,
+ProtocolApproval,
+ProtocolLeadOrg,
+ProtocolPersonnel,
+ProtocolSites,
+ProtocolSource,
+ProtocolSources,
+ProtocolSponsors,
+ProtocolSpecialCategory,
+ReimbursementApprovalType,
+ReviewApprovalType,
+Role,
+SourceName,
+SpecialCategory,
+SpecificPerson,
+SpecificPhone,
+SponsorName,
+StatusDate,
+StatusName,
+
+   {  color: white;
+      background-color: white;  }
+
+  
+/* Administrative Information						   */
+
+FundingInfo>NIHGrantContract>Comment:before,
+FundingInfo>OtherGrantContractInfo>Comment:before,
+LeadOrgProtocolStatuses>CurrentOrgStatus>Comment:before,
+LeadOrgProtocolStatuses>PreviousOrgStatus>Comment:before,
+ProtocolAdminInfo>DatedAction>Comment:before,
+ProtocolApproval>Comment:before,
+ProtocolProcessingDetails>Comment:before,
+ProtocolSource>Comment:before,
+ProtocolSpecialCategory>Comment:before,
+ProtocolSponsors>Comment:before,
+CurrentProtocolStatus,
+ProtocolSource>DateReceived:before,
+EnteredBy:before,
+EntryDate:before,
+FundingInfo, 
+GrantContractNo:before,
+LeadOrganizationID:before,
+LeadOrgProtocolID:before,
+LeadOrgRole:before,
+MailAbstractTo:before,
+NIHGrantContractType:before,
+OrgSiteContact>SpecificPerson>Person:before,
+OrgSiteContact>SpecificPerson>Role:before,
+OrgSiteID:before,
+OrgSiteStatus:before,
+Person:before,
+PersonRole:before,
+PersonTitle:before,
+PreviousProtocolStatus,
+PrivatePracticeSiteID:before, 
+PrivatePracticeSiteStatus:before,
+ProcessingDate:before,
+ProcessingStatus:before,
+ProtocolAdminInfo,
+ProtocolApproval,
+ProtocolLeadOrg,
+ProtocolProcessingDetails,
+ProtocolSource,
+ProtocolSources,
+ProtocolSpecialCategory,
+ProtocolSponsors,
+ReimbursementApprovalType:before,
+ReviewApprovalType:before,
+SourceName:before,
+SpecialCategory:before,
+SpecificPhone:before,
+SponsorName:before,
+StatusDate:before,
+StatusName:before,
+
+	{ background-color: white }  
+
+
+/* Scientific Information						   */
+
+CurrentProtocolStatus:before,
+ProtocolSpecificContact,
+ProtocolSpecificContact:before,
+
+	{ background-color: white; } 
+
+
+/***************************************************************************/ 
+/*                             BORDER CONTROL                              */
+/***************************************************************************/
+  
+
+FundingInfo, 
+ProtocolAdminInfo,
+ProtocolApproval,
+ProtocolProcessingDetails,
+ProtocolRelatedLinks,
+ProtocolSources,
+ProtocolSpecialCategory,
+ProtocolSponsors,
+
+   {  border: none;  }
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+
+NIHGrantContract>Comment,
+LeadOrgProtocolStatuses>CurrentOrgStatus>Comment,
+LeadOrgProtocolStatuses>PreviousOrgStatus>Comment,
+OtherGrantContractInfo>Comment,
+Patient>Comment,
+Professional>Comment,
+ProtocolApproval>Comment,
+ProtocolProcessingDetails>Comment,
+ProtocolSource>Comment,
+ProtocolSpecialCategory>Comment,
+ProtocolSponsors>Comment,
+CurrentProtocolStatus,
+DateLastModified,
+ProtocolSource>DateReceived,
+EnteredBy,
+EntryDate,
+GrantContractNo,
+LeadOrganizationID,
+LeadOrgProtocolID,
+LeadOrgRole,
+MailAbstractTo,
+NIHGrantContractType,
+OrgSiteID,			
+OrgSiteStatus,
+PdqKey,
+Person,
+PersonRole,
+PersonTitle,
+PrivatePracticeSiteID, 
+PrivatePracticeSiteStatus,
+ProcessingDate,
+ProcessingStatus,
+ProtocolAdminInfo,
+ReviewApprovalType,
+ReimbursementApprovalType,
+Role,
+SourceName,
+SpecialCategory,
+SpecificPhone,
+SponsorName,
+StatusDate,
+StatusName,
+
+	{ text-indent: 0pt; }

@@ -1,0 +1,186 @@
+/*************************************************************************/
+/* 	Country_structure.css                                            */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      12/17/01  by ebator                                              */
+/*      Added Continent                                                  */
+/*      Schema frozen                                                    */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      12/12/01  by ebator                                              */
+/*      Based on the new Country schema dated 12/04/01                   */
+/*      Imports common schema elements                                   */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+Country,
+
+     { background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Continent,
+CountryAlternateName,
+CountryFullName,
+Country,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+
+
+Continent:before			{ content: "Continent "; }
+CountryAlternateName:before		{ content: "Alternate Name "; }
+CountryFullName:before			{ content: "Country Full Name "; }
+Country:before				{ content: "COUNTRY "; }
+CountryShortName:before			{ content: "Short Name "; }
+DateLastModified:before			{ content: "Last Modified "; }
+PdqKey:before				{ content: "PDQ Key "; }
+PostalCodePosition:before		{ content: "Postal Code Position "; }
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+Country:before,
+
+	{     color: black;      }
+	 
+
+
+/***************************************************************************/ 
+/*                         BORDER CONTROL                                  */
+/***************************************************************************/
+  
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+CountryAlternateName:before,
+CountryFullName:before,
+CountryShortName:before,
+DateLastModified:before,
+PdqKey:before,
+
+   {  color: black;  }
+
+
+
+/***************************************************************************/ 
+/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */ 
+/***************************************************************************/ 
+
+
+Continent:before,
+PostalCodePosition:before,
+
+	{ color: black;      }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+Continent,
+CountryAlternateName,
+CountryFullName,
+Country,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+	{ text-indent: 0pt; }
+
+
+/***************************************************************************/ 
+/*                              HIDE TEXT                                  */ 
+/***************************************************************************/ 
+  
+
+Continent,
+CountryAlternateName,
+CountryFullName,
+Country,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+     { color: white;
+       background-color: white; }
+
+Continent:before,
+CountryAlternateName:before,
+CountryFullName:before,
+Country:before,
+CountryShortName:before,
+DateLastModified:before,
+PdqKey:before,
+PostalCodePosition:before,
+
+     { background-color: white; }
+
+

@@ -1,0 +1,196 @@
+/*************************************************************************/
+/* 	Country.css                                                      */
+/*                                                                       */
+/*      v. 1.2                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      12/17/01  by ebator                                              */
+/*      Added Continent                                                  */
+/*      Schema frozen                                                    */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      12/12/01  by ebator                                              */
+/*      Based on the new Country schema dated 12/04/01                   */
+/*      Imports common schema elements                                   */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+Country,
+
+     { background-color: #CCCCFF; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Continent,
+Country,
+CountryAlternateName,
+CountryFullName,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Continent:before			{ content: "Continent *: "; }
+CountryAlternateName:before		{ content: "Alternate Name & +: "; }
+CountryFullName:before			{ content: "Country Full Name *: "; }
+CountryShortName:before			{ content: "Short Name &: "; }
+DateLastModified:before			{ content: "Last Modified &: "; }
+PdqKey:before				{ content: "PDQ Key &: "; }
+PostalCodePosition:before		{ content: "Postal Code Position *: "; }
+
+
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+CountryAlternateName:before,
+CountryFullName:before,
+CountryShortName:before,
+DateLastModified:before,
+PdqKey:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */ 
+/***************************************************************************/ 
+
+
+Continent:before,
+PostalCodePosition:before,
+
+	{ font-weight: bold;
+ 	  color: black;      }
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+
+
+/* Key element for length = PostalCodePosition				   */
+
+Continent,				{ margin-left: 130pt; 
+					  text-indent: -71pt; }
+CountryFullName,			{ margin-left: 130pt; 
+					  text-indent: -121.5pt; }
+CountryAlternateName,			{ margin-left: 130pt; 
+					  text-indent: -116pt; }
+CountryShortName,			{ margin-left: 130pt; 
+					  text-indent: -87pt; }
+PostalCodePosition,			{ margin-left: 130pt; 
+					  text-indent: -135pt; }
+
+/* Key element for length = DateLastModified				   */
+
+DateLastModified,			{ margin-left: 100pt;
+					  text-indent: -96pt; }
+PdqKey,					{ margin-left: 100pt;
+					  text-indent: -71pt; }
+
+
+Continent,
+CountryFullName,
+CountryAlternateName,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+	{ margin-bottom: 4pt; }
+
+CountryFullName,
+
+	{ margin-top: 10pt; }
+
+DateLastModified,
+
+	{ margin-top: 2em; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+Continent,
+CountryFullName,
+CountryAlternateName,
+CountryShortName,
+DateLastModified,
+PdqKey,
+PostalCodePosition,
+
+	{ background-color: white; }
+
+
+Continent:before,
+CountryFullName:before,
+CountryAlternateName:before,
+CountryShortName:before,
+DateLastModified:before,
+PdqKey:before,
+PostalCodePosition:before,
+
+	{ background-color: #CCCCFF; }

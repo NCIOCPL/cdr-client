@@ -1,0 +1,339 @@
+/*
+ * $Id: schema.css,v 1.1.1.1 2002-01-24 21:10:26 ebator Exp $
+ *
+ * CSS stylesheet for schema documents.  Used as guinea pig to see what 
+ * sorts of customization we can perform using this tool.
+ *
+ * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/13 20:18:47  bkline
+ * Fixed RCS Id keyword.
+ *
+ * Revision 1.2  2001/04/19 00:50:12  bkline
+ * First version ready to show to Lakshmi and Margaret.
+ *
+ * Revision 1.1  2001/04/01 22:16:40  bkline
+ * Initial revision
+ *
+ */
+
+/* Use Times New Roman for default font */
+$DOCUMENT {
+  font-family: "Times New Roman";
+  font-size: 13pt;
+  margin-top: 5px;
+  margin-left: 1em;
+  /*margin-left: 5px;*/
+}
+
+$COMMENT {
+  display: block;
+  color: purple;
+  white-space: pre;
+  font-style: italic;
+}
+
+$PROCINS {
+  color: black;
+  background-color: #c0c0c0;
+}
+
+/*
+ * Everthing in this list is treated as a block, and indented recursively
+ * to help make it visually clear (without the outline view) what the 
+ * relationships are.
+ */
+annotation,       attribute,        choice,           complexType,
+element,          enumeration,      extension,        field,
+fractionDigits,   group,            include,          key,
+keyref,           length,           maxInclusive,     maxLength, 
+minInclusive,     minLength,        pattern,          restriction, 
+selector,         sequence,         simpleType,       totalDigits {
+    display: block;
+    margin-left: 1em;
+}
+
+/*
+ * These elements are also treated as block elements (in fact, everything in
+ * this document type is), but no additional indentation is given for them.
+ */
+schema, CdrDocCtl, DocId, DocTitle, simpleContent {
+    display: block;
+}
+
+/*
+ * Namespaces for schema document.
+ */
+schema[xmlns\:cdr]:before {
+    content: "\ANamespace for schema: [" attr(xmlns) "]  \ANamespace for CDR: [" attr(xmlns\:cdr) "]";
+    color: fuchsia;
+    font-size: 13pt;
+}
+schema:before {
+    content: "Namespace for schema: [" attr(xmlns) "]";
+    color: fuchsia;
+    font-size: 13pt;
+}
+
+/*
+ * Control elements.
+ */
+DocId { color: gray; }
+
+/*
+ * Document title.
+ */
+DocTitle { 
+    color: blue; 
+    font-size: 20pt; 
+    border: solid; 
+    text-align: center; 
+    font-family: sans-serif;
+}
+
+
+/*
+ * Top-level element for document type.
+ */
+schema > element:before { 
+    content: "Top-level Element [" attr(name) "] of type [" attr(type) "]"; 
+    color: purple; 
+    font-size: 18pt;  
+}
+
+/*
+ * Complex type expansions.
+ */
+complexType[mixed='true']:before { 
+    content: "Complex type [" attr(name) "] (mixed content model)"; 
+    color: purple; 
+    font-size: 18pt; 
+    border-top: solid ;
+}
+complexType:before { 
+    content: "Complex type [" attr(name) "]";
+    color: purple; 
+    font-size: 18pt; 
+    border-top: solid ;
+}
+
+/*
+ * Simple type header.
+ */
+simpleType:before { 
+    content: "Simple type [" attr(name) "]";
+    color: purple; 
+    font-size: 18pt; 
+}
+
+/*
+ * Sequences.
+ */
+sequence[minOccurs][maxOccurs]:before { 
+    content: "Sequence (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
+    color: green; 
+    font-size: 16pt; 
+}
+sequence[minOccurs]:before { 
+    content: "Sequence (min: " attr(minOccurs) ")";
+    color: green; 
+    font-size: 16pt; 
+}
+sequence[maxOccurs]:before { 
+    content: "Sequence (max: " attr(maxOccurs) ")"; 
+    color: green; 
+    font-size: 16pt; 
+}
+sequence:before { 
+    content: "Sequence"; 
+    color: green; 
+    font-size: 16pt; 
+}
+
+/*
+ * Choices.
+ */
+choice[minOccurs][maxOccurs]:before { 
+    content: "Choice (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
+    color: green; 
+    font-size: 16pt; 
+}
+choice[minOccurs]:before { 
+    content: "Choice (min: " attr(minOccurs) ")";
+    color: green; 
+    font-size: 16pt; 
+}
+choice[maxOccurs]:before { 
+    content: "Choice (max: " attr(maxOccurs) ")"; 
+    color: green; 
+    font-size: 16pt; 
+}
+choice:before { 
+    content: "Choice"; 
+    color: green; 
+    font-size: 16pt; 
+}
+
+/*
+ * Groups.
+ */
+schema > group[ref]:before {
+    content: "NO! STOP! You're supposed to use 'ref' when you're referencing a group, not when you're creating it!!!";
+    color: red;
+    font-size: 18pt;
+}
+schema > group[name]:before {
+    content: "Group [" attr(name) "]";
+    color: purple;
+    font-size: 18pt;
+}
+schema > * group[ref]:before {
+    content: "Use group [" attr(name) "]";
+    color: green;
+    font-size: 16pt;
+}
+schema > * group[name]:before {
+    content: "NO! STOP! You're supposed to use 'name' when you're creating a group, not when you're referring to it!!!";
+    color: red;
+    font-size: 18pt;
+}
+
+/*
+ * Content for simple type definitions.
+ */
+restriction:before {
+    content: "Restriction of base type [" attr(base) "]";
+    color: maroon;
+    font-size: 15pt;
+}
+enumeration:before {
+    content: "Enumerated value: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+fractionDigits:before {
+    content: "Scale: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+totalDigits:before {
+    content: "Precision: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+length:before {
+    content: "Length: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+maxInclusive:before {
+    content: "Maximum value allowed: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+minInclusive:before {
+    content: "Minimum value allowed: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+minLength:before {
+    content: "Minimum length allowed: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+maxLength:before {
+    content: "Maximum length allowed: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+maxInclusive:before {
+    content: "Maximum value allowed: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+pattern:before {
+    content: "Pattern: " attr(value);
+    color: blue;
+    font-size: 14pt;
+}
+extension:before {
+    content: "Simple content extending type [" attr(base) "]";
+    color: blue;
+    font-size: 14pt;
+}
+include:before {
+    content: "Include Schema document [" attr(schemaLocation) "]";
+    color: navy;
+    font-size: 14pt;
+}
+key:before {
+    content: "Key identification [" attr(name) "]";
+    color: olive;
+    font-size: 14pt;
+}
+keyref:before {
+    content: "Reference [" attr(name) "] to key [" attr(refer) "]";
+    color: olive;
+    font-size: 14pt;
+}
+key > selector:before {
+    content: "Element in which key appears: ";
+    color: green;
+    font-size: 12pt;
+}
+keyref > selector:before {
+    content: "Element in which key reference appears: ";
+    color: green;
+    font-size: 12pt;
+}
+key > field:before {
+    content: "Attribute containing key: ";
+    color: green;
+    font-size: 12pt;
+}
+keyref > field:before {
+    content: "Attribute containing key reference: ";
+    color: green;
+    font-size: 12pt;
+}
+selector, field {
+    color: blue;
+    font-size: 14pt;
+}
+
+/*
+ * Element expansions.
+ */
+element[minOccurs][maxOccurs]:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
+}
+element[minOccurs]:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) ")"; 
+}
+element[maxOccurs]:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Element [" attr(name) "] of type [" attr(type) "] (max: " attr(maxOccurs) ")"; 
+}
+element:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Element [" attr(name) "] of type [" attr(type) "]";
+}
+
+/*
+ * Attribute expansions.
+ */
+attribute[minOccurs='0']:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Optional attribute [" attr(name) "] of type [" attr(type) "]";
+}
+attribute:before { 
+    font-size: 14pt; 
+    color: teal;
+    content: "Attribute [" attr(name) "] of type [" attr(type) "]";
+}

@@ -1,0 +1,252 @@
+/*************************************************************************/
+/*                                                                       */
+/*     OutofScopeProtocol.css                                            */
+/*                                                                       */
+/*     v. 3.2                                                            */
+/*     1/15/02  by ebator                                                */
+/*     Added notations for required *, optional &, multiple +            */
+/*                                                                       */
+/*     v. 3.1                                                            */ 
+/*     1/15/02  by ebator                                                */
+/*     Edited for template creation                                      */
+/* 	                                                                 */
+/*     v. 3.0                                                            */ 
+/*     12/10-11/01  by ebator                                            */
+/*     Edited to import CommonProtocolInfo.css and                       */
+/*        CdrCommonSchema.css                                            */
+/* 	                                                                 */
+/*     v. 2.1                                                            */ 
+/*     12/05-06/01  by ebator                                            */
+/*     Edited for schema changes from 11/08,13/01                        */
+/* 	                                                                 */
+/*     v. 2.0                                                            */ 
+/*     11/02-08/01  by ebator                                            */
+/*     Changes for the Forms model; schema changes 8/31-11/2             */
+/* 	                                                                 */
+/*     v 1.2                                                             */
+/*     9/24/01   by ebator                                               */
+/*     Common element styles added                                       */
+/*                                                                       */
+/*     v 1.1                                                             */
+/*     9/12/01   by ebator                                               */
+/*     Updated to 8/23/01 schema                                         */
+/*                                                                       */
+/*     v 1.0                                                             */
+/*     7/24/01 by ebator                                                 */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+ 
+@import "CdrCommonSchema.css";
+@import "CommonProtocolInfo.css";
+
+$DOCUMENT
+
+  {  font-family: Arial, "sans serif";       
+     font-size: 12pt;
+     margin-top: 5px;
+     margin-left: 5px; 
+     color: black          }
+
+$COMMENT 
+
+  {  display: block;
+     color: purple;
+     white-space: pre;  }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+Comment, 
+DateLastModified,
+OutOfScopeProtocol, 
+PdqKey,
+ProtocolSource,
+ProtocolSources,
+ProtocolTitle,
+Source, 
+SourceName, 
+TitleText,
+TitleType,
+
+   { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+  
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Comment:before			{ content: "Comments &: "; }
+DateLastModified:before		{ content: "Last Modified &: "; }
+PdqKey:before			{ content: "PDQ Key &: "; }
+ProtocolSources:before		{ content: "PROTOCOL SOURCES * "; }
+ProtocolTitle:before		{ content: "PROTOCOL TITLE *"; }
+SourceName:before		{ content: "Source * +: "; }
+TitleText:before		{ content: "TITLE *: "; }
+TitleType:before		{ content: "Title Type *: "; }
+
+
+
+/***************************************************************************/ 
+/*            TAG PROPERTIES FOR TEXT INPUT FIELDS, SECTIONS               */ 
+/***************************************************************************/ 
+  
+
+Comment:before,
+DateLastModified:before,
+PdqKey:before,
+ProtocolSources:before,
+ProtocolTitle:before,
+SourceName:before,
+TitleText:before,
+TitleType:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+  
+
+
+/***************************************************************************/ 
+/*                   FONT PROPERTIES FOR TEXT INPUT FIELDS                 */ 
+/***************************************************************************/ 
+  
+
+Comment, 
+DateLastModified,
+SourceName,
+TitleText,
+TitleType,
+
+   {  color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                    BORDERED ELEMENTS AND SECTIONS                       */
+/***************************************************************************/
+  
+
+ProtocolSources,
+ProtocolTitle,
+
+   { border: solid; 
+     border-width: thin;
+     border-color: gray;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+DateLastModified,
+
+	{ margin-top: 1em; }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+
+/* Each tag is manually positioned to right-align                          */
+
+
+SourceName,				{ margin-left: 90pt; 
+					  text-indent: -66pt; }
+
+/* Key element for length = DateLastModified					   */
+
+TitleType,				{ margin-left: 90pt;
+				    	  text-indent: -70.5pt; }	
+TitleText,				{ margin-left: 90pt;
+				    	  text-indent: -48.5pt; }
+DateLastModified,			{ margin-left: 100pt;
+					  text-indent: -96pt; }
+PdqKey,					{ margin-left: 100pt;
+					  text-indent: -71pt; }
+
+
+/* Margin-bottom for simulated text boxes                                  */
+
+Comment, 
+DateLastModified,
+PdqKey,
+ProtocolSource,
+ProtocolSources,
+Source, 
+SourceName, 
+TitleText,
+TitleType,
+
+	{ margin-bottom: 4pt; }
+
+SourceName,
+TitleType,
+
+	{ margin-top: 4pt; }
+	
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+Comment, 
+PdqKey,
+ProtocolSource,
+ProtocolSources,
+Source, 
+SourceName, 
+TitleText,
+TitleType,
+
+	{ background-color: white; }
+
+/* Blue = Administrative Information                                       */
+
+ProtocolSource>DateReceived:before,
+ProtocolSource,
+ProtocolSources,
+SourceName:before,
+
+	{ background-color: #CCCCFF; }  /*light blue*/
+
+DateLastModified:before,
+PdqKey:before,
+
+	{ font-weight: bold;
+	  color: navy;         }
+
+/* Green = Scientific Information                                   	   */
+
+ProtocolTitle,
+TitleText:before,
+TitleType:before,
+
+	{ background-color: #CCFFCC; }  /*light green*/
+

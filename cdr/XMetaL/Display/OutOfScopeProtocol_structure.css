@@ -1,0 +1,205 @@
+/*************************************************************************/
+/*                                                                       */
+/*     OutofScopeProtocol_structure.css                                  */
+/*                                                                       */
+/*     v. 3.1                                                            */ 
+/*     1/15/02  by ebator                                                */
+/*     Edited for template creation                                      */
+/* 	                                                                 */
+/*     v. 3.0                                                            */ 
+/*     12/10-11/01  by ebator                                            */
+/*     Edited to import CommonProtocolInfo_structure.css and             */
+/*       CdrCommonSchema_structure.css                                   */
+/* 	                                                                 */
+/*     v. 2.1                                                            */ 
+/*     12/05/01  by ebator                                               */
+/*     Edited for schema changes from 11/08,13/01                        */
+/* 	                                                                 */
+/*     v. 2.0                                                            */ 
+/*     11/02-08/01  by ebator                                            */
+/*     Changes for the Forms model; schema changes 8/31-11/2             */
+/* 	                                                                 */
+/*     v. 1.1                                                            */
+/*     9/24/01  by ebator                                                */
+/*     Make all tags black; display:none common elements;                */
+/*     added para, table, lists to structure                             */
+/*                                                                       */
+/*     v 1.0                                                             */       
+/*     9/12/01  by ebator                                                */
+/*     Created to match 8/23/01 schema                                   */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css"; 
+@import "CommonProtocolInfo_structure.css"; 
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     font-weight: normal;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+OutOfScopeProtocol,
+
+	{ background-color: white; }
+
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+Comment, 
+DateLastModified,
+OutOfScopeProtocol, 
+PdqKey,
+ProtocolSource,
+ProtocolSources,
+ProtocolTitle, 
+Source, 
+SourceName, 
+TitleText,
+TitleType, 
+
+   { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+  
+
+Comment:before			{ content: "Comments "; }
+DateLastModified:before		{ content: "Last Modified "; }
+OutOfScopeProtocol:before	{ content: "OUT OF SCOPE PROTOCOL "; }
+PdqKey:before			{ content: "PDQ Key "; }
+ProtocolSource:before		{ content: "Protocol Source "; }
+ProtocolSources:before		{ content: "PROTOCOL SOURCES";  }
+ProtocolTitle:before 
+				{ content: "PROTOCOL TITLE"; }
+SourceName:before		{ content: "Source "; }
+TitleText:before		{ content: "Title "; }
+TitleType:before		{ content: "Title Type "; }
+
+
+
+/***************************************************************************/ 
+/*            TAG PROPERTIES FOR TEXT INPUT FIELDS, SECTIONS               */ 
+/***************************************************************************/ 
+  
+
+Comment:before,
+DateLastModified:before,
+OutOfScopeProtocol:before,
+PdqKey:before,
+ProtocolSource:before,
+ProtocolSources:before,
+ProtocolTitle:before,
+SourceName:before,
+TitleText:before,
+TitleType:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                           BORDER CONTROL                                */
+/***************************************************************************/
+  
+ProtocolSources,
+ProtocolTitle,
+
+   { border: none;  }
+
+
+/***************************************************************************/ 
+/*                             HIDE TEXT                                   */ 
+/***************************************************************************/ 
+
+Comment, 
+DateLastModified,
+OutOfScopeProtocol, 
+PdqKey,
+ProtocolSource,
+ProtocolSources,
+ProtocolTitle, 
+SourceName, 
+TitleText,
+TitleType, 
+
+   {  color: white;
+      background-color: white;  }
+
+
+/* Blue = Administrative Information                                       */
+
+ProtocolSource>DateReceived:before,
+ProtocolSources,
+SourceName:before,
+
+	{ background-color: white; }  
+
+DateLastModified:before,
+PdqKey:before,
+
+	{ font-weight: bold;
+	  color: black;         }
+
+/* Green = Scientific Information                                   	   */
+
+TitleText:before,
+TitleType:before,
+
+	{ background-color: white; } 
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+
+SourceName,
+ProtocolSource>DateReceived,
+DateLastModified,
+PdqKey,	
+TitleText,
+TitleType,
+
+	{ text-indent: 0pt; }
+
+

@@ -1,0 +1,743 @@
+/*************************************************************************/
+/* 	CommonProtocolInfo.css                                           */
+/* 	                                                                 */
+/*      v. 1.3                                                           */
+/*      1/15-16/02  by ebator                                            */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/* 	v. 1.2                                                           */ 
+/*      1/7/02   by ebator                                               */
+/* 	Schema changes from 12/21/01 added                               */
+/*                                                                       */
+/* 	v. 1.1                                                           */ 
+/*      12/20/01   by ebator                                             */
+/* 	Schema changes from 12/18/01 added                               */
+/*                                                                       */
+/* 	v. 1.0                                                           */ 
+/*      12/10-11/01   by ebator                                          */
+/* 	Based on the 11/13/01 CommonProtocolInfo schema                  */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+ 
+ 
+$DOCUMENT
+
+  {  font-family: Arial, "sans serif";       
+     font-size: 12pt;
+     margin-top: 5px;
+     margin-left: 5px;  
+     color: black;        }
+
+$COMMENT 
+
+  {  display: block;
+     color: purple;
+     white-space: pre;  }
+
+$PROCINS 
+
+  {  color: blue;
+     background-color: white;  }
+
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+AgeText, 
+AmendmentDate, 
+AmendmentID, 
+AmendmentSource, 
+ChangeType, 
+Citation, 
+Comment, 
+Condition,
+DateCompleted, 
+DatedAction, 
+DateReceived, 
+Diagnosis, 
+DiseaseCharacteristics, 
+DosageForm, 
+DoseSchedule, 
+Eligibility, 
+EligibilityText, 
+EndPoints, 
+EnteredBy,
+EntryDate,
+EntryCriteria, 
+ExclusionCriteria,
+GeneralEligibilityCriteria, 
+Gene, 
+HealthyVolunteers, 
+HighAge, 
+IDType, 
+IDString, 
+Intervention, 
+InterventionNameLink, 
+InterventionType,
+LowAge,  
+Objectives, 
+OtherID, 
+Outline, 
+Patient, 
+PatientCharacteristics,  
+PrimaryID, 
+PriorConcurrentTherapy, 
+Professional, 
+ProtocolAmendment,
+ProtocolAmendmentInformation, 
+ProjectedAccrual, 
+ProtocolAbstract, 
+ProtocolDesign, 
+ProtocolDetail, 
+ProtocolIDs, 
+ProtocolPhase, 
+ProtocolRelatedLinks, 
+ProtocolTitle, 
+PublishedResults, 
+Purpose, 
+Rationale, 
+RelatedProtocols, 
+RelatedWebsites,
+SpecialStudyParameters, 
+Stratification, 
+StudyFocus, 
+StudyCategoryName, 
+StudyCategoryType, 
+StudyCategory, 
+StudyType, 
+TitleType, 
+TreatmentIntervention, 
+
+   { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+  
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+AgeText:before			{ content: "Age Criteria (Text) *: "; }
+AmendmentDate:before		{ content: "Amendment Date *: ";  }
+AmendmentID:before		{ content: "Amendment ID &: ";  }
+AmendmentSource:before		{ content: "Source *: "; }
+ChangeType:before		{ content: "Change Type *: ";  }
+Citation:before			{ content: "Published Citation * @: ";  }
+Comment:before			{ content: "Comments &: "; } 
+Condition:before		{ content: "Condition & + @: ";  }
+DateCompleted:before		{ content: "Date Completed *: ";  }
+DatedAction:before		{ content: "DATED ACTION *"; }
+DateReceived:before		{ content: "Date Received *: "; }
+Diagnosis:before		{ content: "Diagnosis & + @: "; }
+DiseaseCharacteristics:before	{ content: "Disease Characteristics *: "; } 
+DosageForm:before		{ content: "Dosage Form &: "; }
+DoseSchedule:before		{ content: "Dose Schedule &: ";  }
+Eligibility:before		{ content: "ELIGIBILITY CRITERIA *"; }
+EligibilityText:before		{ content: "Eligibility *: "; }
+EndPoints:before		{ content: "End Points &: ";  }
+Professional>EnteredBy:before	{ content: "Entered By *: "; }
+Professional>EntryDate:before	{ content: "Entry Date *: "; }
+Patient>EnteredBy:before	{ content: "Entered By *: "; }
+Patient>EntryDate:before	{ content: "Entry Date *: "; }
+ProtocolDetail>EnteredBy:before { content: "Entered By *: "; }
+ProtocolDetail>EntryDate:before { content: "Entry Date *: "; }
+EntryCriteria:before		{ content: "Entry Criteria *: "; }
+ExclusionCriteria:before	{ content: "Exclusion Criteria & + @: "; }
+Gene:before			{ content: "Gene & + @: ";  }
+GeneralEligibilityCriteria:before	
+				{ content: "General Eligibility Criteria &: "; }
+HealthyVolunteers:before	{ content: "Healthy Volunteers? &: "; }
+HighAge:before			{ content: "Upper Age Limit *: "; }
+IDString:before			{ content: "ID Number *: "; }
+IDType:before			{ content: "Other ID Type *: "; }
+Intervention:before		{ content: "INTERVENTION & +"; }
+InterventionNameLink:before	{ content: "Intervention Name & + @: "; }
+InterventionType:before		{ content: "Intervention Type * @: "; }
+LowAge:before			{ content: "Lower Age Limit *: "; }
+Objectives:before		{ content: "Objectives *: "; }
+OtherID:before			{ content: "OTHER ID & + "; }
+Outline:before			{ content: "Outline *: "; }
+Patient:before			{ content: "PATIENT ABSTRACT *"; }
+Patient>Comment:before		{ content: "Comments &: "; }
+PatientCharacteristics:before	{ content: "Patient Characteristics *: "; }
+PrimaryID:before		{ content: "PRIMARY ID *"; }
+PrimaryID > IDString:before	{ content: "Primary ID *: "; }
+PrimaryID > Comment:before      { content: "Comments &: ";  }
+PriorConcurrentTherapy:before	{ content: "Prior Concurrent Therapy &: "; }
+Professional:before		{ content: "PROFESSIONAL ABSTRACT * "; }
+Professional>Comment:before	{ content: "Comments &: "; }
+ProjectedAccrual:before		{ content: "Projected Accrual *: "; }
+ProtocolAmendmentInformation:before
+				{ content: "PROTOCOL AMENDMENTS *"; }
+ProtocolDesign:before		{ content: "Protocol Design *: "; }
+ProtocolDetail:before		{ content: "PROTOCOL DETAIL * +"; }
+ProtocolIDs:before		{ content: "PROTOCOL IDS * "; }
+ProtocolPhase:before		{ content: "Protocol Phase * +: "; }
+ProtocolRelatedLinks:before	{ content: "PROTOCOL RELATED LINKS &"; }
+ProtocolTitle[Type="Original"]:before 
+				{ content: "ORIGINAL TITLE * @: \A"; }
+ProtocolTitle[Type="Professional"]:before 
+				{ content: "PROFESSIONAL TITLE * @: \A"; }
+ProtocolTitle[Type="Patient"]:before 
+				{ content: "PATIENT TITLE * @: \A"; }
+PublishedResults:before		{ content: "PUBLISHED RESULTS & + "; }
+Purpose:before			{ content: "Purpose *: "; }
+Rationale:before		{ content: "Rationale *: "; }
+RelatedProtocols:before		{ content: "Related Protocols * + @: ";  }
+RelatedWebsites:before		{ content: "Related Web Sites * + @: ";   }
+SpecialStudyParameters:before	{ content: "Special Study Parameters &: "; }
+Stratification:before		{ content: "Stratification &: ";  }
+StudyCategory:before		{ content: "STUDY CATEGORY * + "; }
+StudyCategoryName:before	{ content: "Study Category Name *: "; }
+StudyCategoryType:before	{ content: "Study Category Type *: "; }
+StudyFocus:before		{ content: "Study Focus & +: ";  }
+StudyType:before		{ content: "Study Type *: "; }
+TreatmentIntervention:before	{ content: "Treatment Intervention *: "; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+DatedAction:before,
+Eligibility:before,
+Intervention:before,
+OtherID:before,
+Patient:before,
+PrimaryID:before,
+Professional:before,
+ProtocolAmendmentInformation:before,
+ProtocolDetail:before,
+ProtocolIDs:before,
+ProtocolRelatedLinks:before,
+PublishedResults:before,
+StudyCategory:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+  
+
+AgeText:before,
+AmendmentDate:before,
+AmendmentID:before,
+AmendmentSource:before,
+Comment:before,
+DateCompleted:before,
+DateReceived:before,
+DiseaseCharacteristics:before,
+DosageForm:before,
+DoseSchedule:before,
+EligibilityText:before,
+EndPoints:before,
+EnteredBy:before,
+EntryDate:before,
+EntryCriteria:before,
+GeneralEligibilityCriteria:before,
+HighAge:before,
+IDString:before,
+LowAge:before,
+Objectives:before,
+Outline:before,
+PatientCharacteristics:before,
+PrimaryID > IDString:before,
+PriorConcurrentTherapy:before,
+ProjectedAccrual:before,
+ProtocolTitle:before,
+Purpose:before,
+Rationale:before,
+RelatedWebsites:before,
+SpecialStudyParameters:before,
+Stratification:before,
+StudyFocus:before,
+StudyCategoryName:before,
+TreatmentIntervention:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+  
+
+ChangeType:before,
+Citation:before,
+Condition:before,
+DatedAction:before,
+Diagnosis:before,
+ExclusionCriteria:before,
+Gene:before,
+HealthyVolunteers:before,
+IDType:before,
+InterventionNameLink:before,
+InterventionType:before,
+ProtocolDesign:before,
+ProtocolPhase:before,
+PublishedResults:before,
+RelatedProtocols:before,
+StudyCategoryType:before,
+StudyCategoryName:before,
+StudyType:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                           INDENTED ELEMENTS                             */ 
+/***************************************************************************/ 
+  
+
+DiseaseCharacteristics,
+GeneralEligibilityCriteria,
+PatientCharacteristics,
+PriorConcurrentTherapy,
+
+   {  margin-left: 1em;  }
+
+
+
+/***************************************************************************/ 
+/*                    BORDERED ELEMENTS AND SECTIONS                       */
+/***************************************************************************/
+  
+
+Eligibility,
+Professional, 
+ProtocolAbstract>Patient,
+ProtocolAbstract>Professional,
+ProtocolAmendmentInformation,
+ProtocolDetail, 
+ProtocolIDs,
+ProtocolRelatedLinks,
+PublishedResults,
+
+   {  border: solid; 
+      border-color: gray;
+      border-width: thin;
+      margin-top: 1em;  }
+
+AmendmentID,
+DatedAction,
+ProtocolPhase,
+
+   {  margin-top: 1em;    }
+
+StudyCategory>Comment,
+Eligibility,
+ 
+   {  margin-bottom: 1em;  }
+
+ProtocolAmendmentInformation,
+
+   {  margin-bottom: .5em;  }
+
+Intervention,
+ProtocolTitle,
+StudyCategory,
+	
+   { margin-top: 1em;
+     margin-bottom: 1em;  } 
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+
+/* Each tag is manually positioned to right-align                          */
+
+/* Key element for length = IDType					   */
+
+IDstring,				{ margin-left: 95pt; 
+					  text-indent: -74.5pt; }
+ProtocolIDs>PrimaryID>Comment,		{ margin-left: 95pt; 
+					  text-indent: -82pt; }
+IDType,					{ margin-left: 95pt; 
+					  text-indent: -93pt; }
+IDString,				{ margin-left: 95pt; 
+					  text-indent: -74.5pt; }
+ProtocolIDs>OtherID>IDString,		{ margin-left: 95pt; 
+				 	  text-indent: -75.5pt; }
+ProtocolIDs>OtherID>Comment,		{ margin-left: 95pt; 
+					  text-indent: -82pt; }
+
+/* Key element for length = AmendmentDate 				   */
+
+AmendmentID,				{ margin-left: 115pt; 
+					  text-indent: -103.5pt; }
+AmendmentDate,				{ margin-left: 115pt; 
+					  text-indent: -113.5pt; }
+AmendmentSource,			{ margin-left: 115pt;
+					  text-indent: -56pt; }
+ProtocolAmendment>DateReceived,		{ margin-left: 115pt; 
+					  text-indent: -97.5pt; }
+ProtocolAmendment>DateCompleted,	{ margin-left: 115pt; 
+					  text-indent: -106.5pt; }
+ChangeType,				{ margin-left: 115pt; 
+					  text-indent: -91.5pt; }
+ProtocolAmendment>Comment,		{ margin-left: 115pt; 
+					  text-indent: -82pt; }
+ProtocolAmendmentInformation>DatedAction>ActionDescription,	
+					{ margin-left: 115pt; 
+					  text-indent: -54.5pt; }
+ProtocolAmendmentInformation>DatedAction>ActionDate,		
+					{ margin-left: 115pt; 
+					  text-indent: -41.5pt; }
+ProtocolAmendmentInformation>DatedAction>Comment,		
+					{ margin-left: 115pt; 
+					  text-indent: -82pt; }
+
+Professional>EnteredBy,			{ margin-left: 90pt;  
+					  text-indent: -78.5pt; }
+Professional>EntryDate,			{ margin-left: 90pt;  
+					  text-indent: -75pt; }
+Professional>Comment,			{ margin-left: 90pt;
+					  text-indent: -82pt; }
+Patient>EnteredBy,			{ margin-left: 90pt;  
+					  text-indent: -78.5pt; }
+Patient>EntryDate,			{ margin-left: 90pt;  
+					  text-indent: -75pt; }
+Patient>Comment,			{ margin-left: 90pt;
+					  text-indent: -82pt; }
+
+/* Key element for length = StudyCategoryName				   */
+
+StudyType,				{ margin-left: 150pt; 
+					  text-indent: -80.5pt; }
+StudyCategoryType,			{ margin-left: 150pt; 
+					  text-indent: -135.5pt; }
+StudyCategoryName,			{ margin-left: 150pt; 
+					  text-indent: -140.5pt; }
+StudyCategory>Comment,			{ margin-left: 150pt;
+					  text-indent: -82pt; }
+StudyFocus,				{ margin-left: 150pt; 
+					  text-indent: -102pt; }
+InterventionType,			{ margin-left: 150pt; 
+					  text-indent: -129.5pt; }
+InterventionNameLink,			{ margin-left: 150pt; 
+					  text-indent: -148.5pt; }
+Condition,				{ margin-left: 150pt; 
+					  text-indent: -100.5pt; }
+Gene,					{ margin-left: 150pt; 
+					  text-indent: -74pt; }
+ProtocolDetail>EnteredBy,		{ margin-left: 150pt;  
+					  text-indent: -78.5pt; }
+ProtocolDetail>EntryDate,		{ margin-left: 150pt;  
+					  text-indent: -75pt; }
+
+/* Key element for length = ExclusionCriteria				   */
+
+HealthyVolunteers,			{ margin-left: 150pt;
+					  text-indent: -136pt; }
+LowAge,					{ margin-left: 150pt;
+					  text-indent: -107.5pt; }
+HighAge,				{ margin-left: 150pt;
+					  text-indent: -106.5pt; }
+AgeText,				{ margin-left: 150pt;
+					  text-indent: -117pt; }
+Diagnosis,				{ margin-left: 150pt;
+					  text-indent: -102pt; }
+ExclusionCriteria,			{ margin-left: 150pt;
+					  text-indent: -145.5pt; }
+Eligibility>Comment,			{ margin-left: 150pt;
+					  text-indent: -82pt; }
+
+/* Key element for length = Citation					   */
+
+RelatedProtocols,			{ margin-left: 150pt;
+					  text-indent: -142pt; }
+RelatedWebsites,			{ margin-left: 150pt;
+					  text-indent: -143pt; }
+ProtocolRelatedLinks>Comment,		{ margin-left: 150pt;
+					  text-indent: -82pt; }
+Citation,				{ margin-left: 150pt;
+					  text-indent: -135pt; }
+PublishedResults>Comment,		{ margin-left: 150pt;
+					  text-indent: -82pt; }
+
+/* Key element for length = ProtocolDesign				   */
+
+ProtocolPhase,				{ margin-left: 120pt;
+					  text-indent: -112.5pt; }
+ProtocolDesign,				{ margin-left: 120pt;
+					  text-indent: -107pt; }
+
+ActionDescription,			{ margin-left: 100pt;
+					  text-indent: -54.5pt; }	
+ActionDate,				{ margin-left: 100pt;
+					  text-indent: -41.5pt; }
+DatedAction>Comment,			{ margin-left: 100pt;
+					  text-indent: -82pt; }
+
+
+/* Margin-bottom for simulated text boxes                                  */
+
+
+ActionDate, 
+ActionDescription, 
+AgeText, 
+AmendmentDate, 
+AmendmentID, 
+AmendmentSource,  
+ChangeType, 
+Citation,
+Comment, 
+Condition, 
+DateCompleted, 
+DatedAction, 
+DateReceived, 
+Diagnosis, 
+DiseaseCharacteristics, 
+DosageForm, 
+DoseSchedule, 
+Eligibility, 
+EligibilityText, 
+EndPoints, 
+EnteredBy,
+EntryDate,
+EntryCriteria, 
+ExclusionCriteria,
+GeneralEligibilityCriteria, 
+Gene, 
+HealthyVolunteers, 
+HighAge, 
+IDString, 
+ProtocolIDs>OtherID>IDType, 
+InterventionNameLink, 
+InterventionType, 
+LowAge,  
+Objectives, 
+OtherID, 
+OtherID>IDType, 
+Outline, 
+Patient, 
+PatientCharacteristics, 
+PrimaryID,
+PriorConcurrentTherapy, 
+Professional, 
+ProtocolAmendmentInformation, 
+ProjectedAccrual, 
+ProtocolDesign, 
+ProtocolDetail, 
+ProtocolIDs, 
+ProtocolPhase, ProtocolRelatedLinks, 
+ProtocolTitle, 
+PublishedResults, 
+Purpose, 
+Rationale, 
+RelatedProtocols, 
+RelatedWebsites, 
+SpecialStudyParameters, 
+Stratification, 
+StudyFocus, 
+StudyCategoryName, 
+StudyCategoryType, 
+StudyCategory, 
+StudyType, 
+TitleType, 
+TreatmentIntervention, 
+
+	{ margin-bottom: 4pt; }
+
+
+Citation,
+DiseaseCharacteristics,
+HealthyVolunteers,
+IDType,
+InterventionType,
+Objectives,
+PrimaryID,
+PrimaryID>IDString,
+Rationale,
+RelatedProtocols,
+RelatedWebsites,
+StudyCategoryType,
+StudyType,
+
+	{ margin-top: 4pt; }
+
+Patient>EnteredBy,
+Professional>EnteredBy,
+ProtocolDetail>EnteredBy,
+
+	{ margin-top: 1em; }
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+
+ActionDate, 
+ActionDescription, 
+AgeText, 
+AmendmentDate, 
+AmendmentID, 
+AmendmentSource,  
+ChangeType, 
+Citation, 
+Comment, 
+Condition, 
+DateCompleted, 
+DatedAction, 
+DateReceived, 
+Diagnosis,  
+DiseaseCharacteristics,
+Eligibility,
+EnteredBy,
+EntryDate,
+EndPoints,
+ExclusionCriteria,
+Gene, 
+GeneralEligibilityCriteria,
+HealthyVolunteers, 
+HighAge, 
+IDString, 
+IDType, 
+InterventionNameLink, 
+InterventionType, 
+LowAge, 
+Objectives,
+Outline,
+Para,
+PatientCharacteristics,
+ProjectedAccrual,
+ProtocolAmendmentInformation, 
+ProtocolDesign, 
+ProtocolPhase, 
+ProtocolTitle,
+Purpose, 
+Rationale,
+RelatedProtocols, 
+RelatedWebsites,
+Stratification,
+StudyFocus, 
+StudyCategoryName, 
+StudyCategoryType, 
+StudyType, 
+TitleType, 
+TreatmentIntervention,
+
+	{ background-color: white; }
+
+
+/* Blue = Administrative Information                                       */
+
+DatedAction,
+Professional, 
+
+	{ background-color: #CCCCFF; }  /*light blue*/
+
+/* Green = Scientific Information                                   	   */
+
+
+ProtocolAmendmentInformation>DatedAction>ActionDescription:before,
+ProtocolAmendmentInformation>DatedAction>ActionDate:before,
+AgeText:before,
+AmendmentDate:before,
+AmendmentID:before,
+AmendmentSource:before,
+ChangeType:before,
+Citation:before,
+Eligibility>Comment:before,
+Patient>Comment:before,
+Professional>Comment:before,
+ProtocolAmendment>Comment:before,
+ProtocolAmendmentInformation>DatedAction>Comment:before,
+ProtocolIDs>OtherID>Comment:before,
+ProtocolIDs>PrimaryID>Comment:before,
+ProtocolRelatedLinks>Comment:before,
+PublishedResults>Comment:before,
+StudyCategory>Comment:before,
+Condition:before,
+ProtocolAmendmentInformation>DatedAction,
+ProtocolAmendment>DateCompleted:before,
+ProtocolAmendment>DateReceived:before,
+Diagnosis:before,
+DiseaseCharacteristics,
+DosageForm:before,
+DoseSchedule:before,
+Eligibility,
+EligibilityText,
+EndPoints,
+Professional>EnteredBy:before,
+Professional>EntryDate:before,
+Patient>EnteredBy:before,
+Patient>EntryDate:before,
+ProtocolDetail>EnteredBy:before,
+ProtocolDetail>EntryDate:before,
+EntryCriteria,
+ExclusionCriteria:before,
+Form,
+Gene:before,
+GeneralEligibilityCriteria,
+HealthyVolunteers:before,
+HighAge:before,
+IDString:before,
+IDType:before,
+Intervention,
+InterventionType:before,
+InterventionNameLink:before,
+LowAge:before,
+Objectives,
+OtherID,
+Outline,
+ProtocolAbstract>Patient,
+PatientCharacteristics,
+PrimaryID,
+PriorConcurrentTherapy,
+ProjectedAccrual,
+ProtocolAbstract>Professional,
+ProtocolAmendment,
+ProtocolAmendmentInformation,
+ProtocolDetail, 
+ProtocolIDs,
+ProtocolRelatedLinks,
+ProtocolRelatedLinks:before,
+PublishedResults,
+PublishedResults:before,
+Purpose,
+Rationale,
+RelatedProtocols:before,
+RelatedWebsites:before,
+SpecialStudyParameters:before,
+Stratification,
+StudyCategory,
+StudyCategoryName:before,
+StudyCategoryType:before,
+StudyFocus:before,
+StudyType:before,
+TreatmentIntervention,
+
+	{ background-color: #CCFFCC; }  /*light green*/
+
+ProtocolDesign:before,
+ProtocolPhase:before,
+ProtocolTitle:before,
+
+	{ font-weight: bold;
+	  color: green;      }
+
+

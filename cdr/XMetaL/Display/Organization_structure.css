@@ -1,0 +1,437 @@
+/*************************************************************************/
+/* 	Organization_structure.css                                       */
+/*                                                                       */
+/*      v. 3.3                                                           */
+/*      1/22/02  by ebator                                               */
+/*      User requests for tag and template changes                       */
+/*                                                                       */
+/*      v. 3.2                                                           */
+/*      1/10/02   by ebator                                              */
+/*      Changes based on user feedback to template and css               */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/07-11/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      12/06/01   by ebator                                             */
+/*      Cosmetic changes and common schema changes                       */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/18/01  by ebator                                              */
+/*      Changes for Forms model                                          */
+/*                                                                       */
+/*      v. 1.2                                                           */
+/*      9/24/01  by ebator                                               */
+/*      Make all tags black; display:none common elements;               */
+/*      added counter to Location                                        */
+/*                                                                       */
+/*      v 1.1                                                            */
+/*                                                                       */
+/*      9/8/01  5:00 pm  by ebator                                       */
+/*      Based on the 9/8/01 update of the organization.css               */
+/*      Added all common elements and $PROCINS to Hide Text list         */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     font-weight: normal;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+Organization,
+
+     { background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+AffiliateMemberOf,
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson, 
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date
+DateLastModified,
+Directory,
+IncludeInDirectory,
+Location,
+MainMember, 
+MainMemberOf,
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OfficialName,
+Organization,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+OrganizationLocations,
+OrganizationNameInformation,
+OrganizationParent,
+OrganizationType,
+ParentOrganization,
+PdqKey,
+PersonAssigned, 
+PreferredDirectoryContactMode,
+PreferredProtocolContactMode, 
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+ShortName,
+Status,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+AffiliateMemberOf:before		{ content: "AFFILIATE MEMBER OF"; }
+AlternateName:before			{ content: "Alternate Name "; }
+CCOP:before				{ content: "CCOP"; }
+CIPSContact:before			{ content: "CIPS Contact "; }
+CIPSContactPerson:before		{ content: "CIPS Contact Person "; }
+Comment:before				{ content: "Comments "; } 
+CooperativeGroup:before			{ content: "Cooperative Group "; }
+CurrentStatus:before			{ content: "Current Status "; }
+Date:before				{ content: "Date "; }
+DateLastModified:before			{ content: "Last Modified"; }
+IncludeInDirectory:before		{ content: "Include in Directory? "; } 
+Location:before				{ content: "Location Details "; }
+MainMember:before			{ content: "Main Member "; } 
+MainMemberOf:before			{ content: "MAIN MEMBER OF "; }
+MemberOfAdHocGroup:before		{ content: "Member Ad-Hoc Group "; }
+MemberOfCCOP[CCOPMemberType="Component"]:before	
+					{ content: "MEMBER OF CCOP [COMPONENT] "; }
+MemberOfCCOP[CCOPMemberType="Affiliate"]:before	
+					{ content: "MEMBER OF CCOP [AFFILIATE] "; }
+MemberOfCCOP:before	
+					{ content: "MEMBER OF CCOP "; }
+MemberOfCooperativeGroups:before   	{ content: "Member of Cooperative Groups "; }
+MemberOfProfessionalOrganization:before	{ content: "Member Prof Org" ; } 
+Name:before				{ content: "Name " ; }
+OfficialName:before			{ content: "Official Name" ; }
+Organization:before			{ content: "ORGANIZATION "; }
+OrganizationNameInformation > OfficialName:before  { content: "Official Name "; }
+OrganizationAdministrativeInformation:before
+OrganizationType[Public="No"]:after	{ content: " (Not public) "; }
+OrganizationType:after			{ content: " (Public) "; }
+					{ content: "ADMINISTRATIVE INFORMATION"; }
+OrganizationAffiliations:before		{ content: "AFFILIATIONS"; }
+OrganizationDetails:before		{ content: "ORGANIZATION DETAILS"; }
+OrganizationLocation:before		{ content: counter(Loc)". ORGANIZATION LOCATION"; }
+OrganizationLocations:before		{ content: "ORGANIZATION LOCATIONS"; }
+OrganizationNameInformation:before	{ content: "ORGANIZATION NAME INFORMATION"; }
+OrganizationParent:before		{ content: "Organization Parent"; }
+OrganizationType:before			{ content: "Organization Type"; }
+
+ParentOrganization:before		{ content: "Parent Org "; }
+PdqKey:before				{ content: "PDQ Key"; }
+PersonAssigned:before			{ content: "Person Assigned "; }
+PreferredDirectoryContactMode:before	{ content: "Preferred Dir Contact"; }
+PreferredProtocolContactMode:before	{ content: "Preferred Prot Contact"; }
+PreferredProtocolOrganization:before	{ content: "Preferred Protocol Org"; }
+ProtocolParticipation:before		{ content: "Protocol Participation? "; } 
+ProtocolIDAcronym:before		{ content: "Protocol ID Acronym"; }
+ResearchBaseFor:before			{ content: "Research Base For "; }
+ShortName:before			{ content: "Short Name "; }
+Status:before				{ content: "STATUS"; }
+Type:before				{ content: "Type " }
+
+
+
+/***************************************************************************/ 
+/*                     COUNTER DEFINITIONS                                 */ 
+/***************************************************************************/ 
+  
+
+OrganizationLocation,
+
+     {  counter-increment: Loc;  }
+
+
+
+/***************************************************************************/ 
+/*                             HEADINGS                                    */ 
+/***************************************************************************/ 
+
+
+AffiliateMemberOf:before,
+MainMemberOf:before,
+Location:before,
+MemberOfCCOP:before,
+MemberOfCooperativeGroups:before,
+OrganizationNameInformation > OfficialName:before,
+Organization:before,
+OrganizationAdministrativeInformation:before,
+OrganizationAffiliations:before,
+OrganizationDetails:before,
+OrganizationLocation:before,
+OrganizationLocations:before,
+OrganizationNameInformation:before,
+OrganizationParent:before,
+OrganizationType:before,
+ShortName:before,
+Status:before,
+
+	{  font-weight: bold;
+	   color: black;        }  
+
+
+/***************************************************************************/ 
+/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
+/***************************************************************************/ 
+
+
+CCOP:before,
+CIPSContactPerson:before,
+CooperativeGroup:before,
+CurrentStatus:before,
+IncludeInDirectory:before, 
+MainMember:before,
+MemberOfAdHocGroup:before,
+MemberOfProfessionalOrganization:before,
+PdqKey:before,
+PreferredDirectoryContactMode:before,
+PreferredProtocolContactMode:before,
+PreferredProtocolOrganization:before,
+ProtocolParticipation:before,
+ResearchBaseFor:before,
+Type:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
+/***************************************************************************/ 
+
+
+AlternateName:before,
+CIPSContact:before,
+Comment:before,
+Date:before,
+DateLastModified:before,
+PersonAssigned:before,
+OfficialName > Name:before,
+ShortName > Name:before,
+ParentOrganization:before,
+ProtocolIDAcronym:before,
+ShortName > Name:before,
+
+   {  font-weight: bold;
+        color: black;  }
+
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+Status,
+
+   { border: none;  }
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+AffiliateMemberOf,
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson,
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date,
+DateLastModified,
+IncludeInDirectory,
+Location,
+MainMember, 
+MainMemberOf,
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OfficialName,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocations,
+OrganizationNameInformation,
+OrganizationParent,
+OrganizationType,
+ParentOrganization, 
+PdqKey,
+PersonAssigned,
+PreferredDirectoryContactMode, 
+PreferredProtocolContactMode,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+ShortName,
+Status,
+Type,
+
+	{ text-indent: 0pt; }
+
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+AffiliateMemberOf,
+AlternateName,
+CCOP,
+CIPSContact,
+CIPSContactPerson, 
+Comment,
+CooperativeGroup, 
+CurrentStatus,
+Date,
+DateLastModified,
+Directory,
+IncludeInDirectory,
+Location,
+MainMember, 
+MainMemberOf,
+MemberOfAdHocGroup,
+MemberOfCCOP,
+MemberOfCooperativeGroups,
+MemberOfProfessionalOrganization,
+Name,
+OfficialName,
+OrganizationAdministrativeInformation,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocations,
+OrganizationNameInformation,
+OrganizationParent,
+OrganizationType,
+OrganizationType[Public="No"]:after,
+OrganizationType:after,
+ParentOrganization, 
+PdqKey,
+PersonAssigned,
+PreferredDirectoryContactMode, 
+PreferredProtocolContactMode,
+PreferredProtocolOrganization,
+ProtocolIDAcronym,
+ProtocolParticipation,
+Public,
+ResearchBaseFor,
+ShortName,
+Status,
+Type,
+
+     { color: white;
+       background-color: white; }
+
+
+AffiliateMemberOf,
+AlternateName:before,
+CCOP:before,
+CIPSContact:before,
+CIPSContactPerson:before,
+Comment:before,
+CooperativeGroup:before, 
+CurrentStatus:before,
+Date:before,
+DateLastModified:before,
+IncludeInDirectory:before,
+Location:before,
+MainMember:before, 
+MainMemberOf,
+MemberOfAdHocGroup:before,
+MemberOfCCOP,
+MemberOfCCOP:before,
+MemberOfCooperativeGroups:before,
+MemberOfProfessionalOrganization:before,
+Name:before,
+OfficialName:before,
+OrganizationAdministrativeInformation:before,
+OrganizationAffiliations,
+OrganizationDetails,
+OrganizationLocation,
+OrganizationLocation:before,
+OrganizationLocations,
+OrganizationNameInformation:before,
+OrganizationParent,
+OrganizationType:before,
+ParentOrganization:before, 
+PdqKey:before,
+PersonAssigned:before,
+PreferredDirectoryContactMode:before, 
+PreferredProtocolContactMode:before,
+PreferredProtocolOrganization:before,
+ProtocolIDAcronym:before,
+ProtocolParticipation:before,
+Public:before,
+ResearchBaseFor:before,
+ShortName:before,
+Status,
+Type:before,
+
+	{ background-color: white; }

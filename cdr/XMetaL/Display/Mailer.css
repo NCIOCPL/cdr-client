@@ -1,0 +1,277 @@
+/*************************************************************************/
+/* 	Mailer.css                                                       */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      1/15/02  by ebator                                               */
+/*      Added notations for required *, optional &, multiple +           */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      12/06-11/01  by ebator                                           */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      12/04-05/01 by ebator                                            */
+/*      Based on the Mailer schema dated 10/05/01.                       */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+
+@import "CdrCommonSchema.css"; 
+
+
+$DOCUMENT 
+
+     { font-family: "Arial", sans serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: blue;
+       background-color: white; }
+
+Mailer,
+
+     { background-color: #CCCCFF; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+Address,
+ChangesCategory,
+Comment,
+Deadline,
+Document,
+JobId,
+Mailer,
+Received,
+Recipient,
+Response,
+Sent,
+Type,
+
+	{ display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+
+Address:before				{ content: "ADDRESS * @"; }
+ChangesCategory:before			{ content: "Changes Category *: "; }
+Comment:before				{ content: "Comments &: "; }
+Deadline:before				{ content: "Deadline &: "; }
+Document:before				{ content: "Document * @: "; }
+JobId:before				{ content: "Job ID *: "; }
+Received:before				{ content: "Received *: "; }
+Recipient:before			{ content: "Recipient * @: "; }
+Response:before				{ content: "RESPONSE & "; }
+Sent:before				{ content: "Sent *: "; }
+Type:before				{ content: "Type *: "; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+Address:before,
+ 
+	{  font-weight: bold;
+	   font-size: 12pt;
+           color: black;        }  
+
+Address,
+
+	{  margin-top: .5em;  
+	   margin-bottom: .5em;   }
+
+Document,
+Response,
+Type,
+
+	{ margin-top: 1em;  }
+
+
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+  
+
+Address,
+Response,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+Address:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+
+
+Comment:before,
+Deadline:before,
+Document:before,
+JobId:before,
+Received:before,
+Recipient:before,
+Response:before,
+Sent:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
+/***************************************************************************/ 
+
+
+ChangesCategory:before,
+Type:before,
+
+	{ font-weight: bold;
+	  color: black;      }
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Each tag is manually positioned to right-align                          */
+/* Common elements that are part of the form are defined here              */
+
+
+/* Key element for length = Recipient					   */
+
+Type,					{ margin-left: 85pt; 
+					  text-indent: -43.5pt; }
+JobId,					{ margin-left: 85pt; 
+					  text-indent: -51.5pt; }
+Recipient,				{ margin-left: 85pt; 
+					  text-indent: -84pt; }				
+
+/* Key element for length = Document					   */
+
+Document,				{ margin-left: 95pt; 
+					  text-indent: -89pt; }
+Sent,					{ margin-left: 95pt; 
+					  text-indent: -41.5pt; }
+Deadline,				{ margin-left: 95pt; 
+					  text-indent: -70pt; }
+
+/* Key element for length = ChangesCategory                                */
+
+Received,				{ margin-left: 125pt; 
+					  text-indent: -68.5pt; }
+ChangesCategory,			{ margin-left: 125pt; 
+					  text-indent: -122.5pt; }
+Comment,				{ margin-left: 125pt; 
+					  text-indent: -82pt; }
+
+
+Address,
+ChangesCategory,
+Comment,
+Country,
+Deadline,
+Document,
+JobId,
+Received,
+Recipient,
+Response,
+Sent,
+Type,
+
+	{ margin-bottom: 4pt; }
+
+
+Received,
+
+	{ margin-top: 4pt; }
+
+
+PostalAddress,
+
+	{ margin-top: 8pt; }
+
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+
+/* Common elements that are part of the form are defined here              */
+
+
+ChangesCategory,
+Comment,
+Deadline,
+Document,
+JobId,
+Received,
+Recipient,
+Sent,
+Type,
+
+	{ background-color: white; }
+
+
+Address,
+Address:before,
+ChangesCategory:before,
+Comment:before,
+Country:before,
+Deadline:before,
+Document:before,
+JobId:before,
+PostalAddress,
+PostalAddress:before,
+PostalCode_ZIP:before,
+Received:before,
+Recipient:before,
+Response,
+Response:before,
+Sent:before,
+Type:before,
+
+	{ background-color: #CCCCFF; }

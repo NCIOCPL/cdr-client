@@ -1,0 +1,224 @@
+/*************************************************************************/
+/* 	GlossaryTerm_structure.css                                       */
+/*                                                                       */
+/*      v. 3.0                                                           */
+/*      12/06-07/01   by ebator                                          */
+/*      Edited to import common schema elements                          */
+/*                                                                       */
+/*      v. 2.2                                                           */
+/*      12/05/01   by ebator                                             */
+/*      Schema changes from 2001/12/03                                   */
+/*                                                                       */
+/*      v. 2.1                                                           */
+/*      10/26/01 by ebator                                               */
+/*      Schema changes from 10/22,24/01                                  */
+/*                                                                       */
+/*      v. 2.0                                                           */
+/*      10/19/01 by ebator                                               */
+/*      Changes for Form model                                           */
+/*                                                                       */
+/*      v. 1.1                                                           */
+/*      9/24/01  by ebator                                               */
+/*      Make all tags black; display:none common elements,               */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*                                                                       */
+/*      9/14/01   by ebator                                              */
+/*      Based on 9/5/01 schema                                           */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, "sans serif";
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black;        }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+GlossaryTerm,
+
+     { background-color: white; 
+       text-decoration: none;
+       color: black;  }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+
+
+DateLastModified,
+GlossaryTerm,
+PdqKey,
+SpanishTermDefinition,
+SpanishTermName,
+StatusDate,
+TermDefinition,
+TermName,
+TermPronunciation,
+TermSource,
+TermStatus,
+TermType,
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+DateLastModified:before		{ content: "Last Modified"; }
+GlossaryTerm:before		{ content: "GLOSSARY TERM"; }
+PdqKey:before			{ content: "PDQ Key"; }
+SpanishTermDefinition:before	{ content: "Spanish Definition  "; }
+SpanishTermName:before		{ content: "Spanish Term Name "; }
+StatusDate:before		{ content: "Status Date "; }
+TermDefinition:before		{ content: "Term Definition "; }
+TermName:before			{ content: "Term Name "; }
+TermPronunciation:before	{ content: "Term Pronunciation "; }
+TermSource:before		{ content: "Term Source "; }
+TermStatus:before		{ content: "Term Status "; }
+TermType:before			{ content: "Term Type  "; }
+
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+  
+
+GlossaryTerm:before,
+
+	{ color: black; }
+	 
+
+
+/***************************************************************************/ 
+/*                         BORDER CONTROL                                  */
+/***************************************************************************/
+ 
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+  
+
+SpanishTermDefinition:before,
+SpanishTermName:before,
+StatusDate:before,
+TermDefinition:before,
+TermName:before,
+TermPronunciation:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
+/***************************************************************************/ 
+  
+
+TermSource:before,
+TermStatus:before,
+TermType:before,
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+DateLastModified,
+GlossaryTerm,
+PdqKey,
+SpanishTermDefinition,
+SpanishTermName,
+StatusDate,
+TermDefinition,
+TermName,
+TermPronunciation,
+TermSource,
+TermStatus,
+TermType,
+
+	{ text-indent: 0pt; }
+
+
+
+/***************************************************************************/ 
+/*                              HIDE TEXT                                  */ 
+/***************************************************************************/ 
+  
+
+DateLastModified,
+GlossaryTerm,
+PdqKey,
+SpanishTermDefinition,
+SpanishTermName,
+StatusDate,
+TermDefinition,
+TermName,
+TermPronunciation,
+TermSource,
+TermStatus,
+TermType,
+
+     { color: white;
+       background-color: white; }
+
+
+DateLastModified:before,
+GlossaryTerm:before,
+PdqKey:before,
+SpanishTermDefinition:before,
+SpanishTermName:before,
+StatusDate:before,
+TermDefinition:before,
+TermName:before,
+TermPronunciation:before,
+TermSource:before,
+TermStatus:before,
+TermType:before,
+
+	{ background-color: white; }
+
+
+
