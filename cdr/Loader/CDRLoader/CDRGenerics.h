@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include <string>
 #include <map>
+#include <cwchar>
+#include <string>
 
 namespace cdr 
 {
@@ -28,6 +30,8 @@ namespace cdr
 
     CString utf8ToCString(const char* s);
     std::string cStringToUtf8(const CString& str);
+    std::wstring encodeBase64String(const std::string& s);
+    std::string decodeBase64String(const CString& base64);
 };
 
 /**

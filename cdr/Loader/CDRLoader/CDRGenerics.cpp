@@ -1,6 +1,205 @@
 #include <stdafx.h>
 #include "CDRGenerics.h"
 
+// #include <sstream>
+/// #include <iostream>
+
+static const size_t  DECODING_TABLE_SIZE = 128;
+static const wchar_t PAD_CHAR = L'=';
+static const wchar_t INVALID_BITS = L'\xFFC0';
+
+static const wchar_t* getEncodingTable()
+{
+    return L"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+           L"abcdefghijklmnopqrstuvwxyz"
+           L"0123456789+/";
+}
+
+static const wchar_t* getDecodingTable()
+{
+    static std::wstring tableString;
+    static const wchar_t* decodingTable = 0;
+    if (!decodingTable) {
+        const wchar_t* codes = getEncodingTable();
+        tableString.resize(DECODING_TABLE_SIZE, INVALID_BITS);
+        for (wchar_t i = 0; codes[i]; ++i)
+            tableString[codes[i]] = i;
+        decodingTable = tableString.data();
+    }
+    return decodingTable;
+}
+
+std::string cdr::decodeBase64String(const CString& base64)
+{
+    // Keep this outside the try block so we can delete it in the catch.
+    unsigned char* buf = 0;
+
+    try {
+
+        // This will give us a buffer (not too much) larger than necessary.
+        size_t nBytes = base64.GetLength();
+        unsigned char* p = buf = new unsigned char[nBytes];
+
+        // Walk through the encoded string.
+        const wchar_t* table = getDecodingTable();
+        int i = 0;
+        wchar_t c = 0;
+        int state = 0;
+        while ((size_t)i < nBytes) {
+            c = base64.GetAt(i++);
+            if (iswspace(c))
+                continue;
+            else if (c == PAD_CHAR)
+                break;
+            else if (c < 0 || c >= DECODING_TABLE_SIZE) {
+                wchar_t err[80];
+                swprintf(err, L"Invalid base-64 character: %u", c);
+                throw err;
+            }
+            wchar_t bits = table[c];
+            if (bits == INVALID_BITS) {
+                wchar_t err[80];
+                swprintf(err, L"Invalid base-64 character: %u", c);
+                throw err;
+            }
+            switch (state) {
+                case 0:
+                    *p    =  bits << 2;
+                    ++state;
+                    break;
+                case 1:
+                    *p++ |=  bits >> 4;
+                    *p    = (bits & 0x0F) << 4;
+                    ++state;
+                    break;
+                case 2:
+                    *p++ |=  bits >> 2;
+                    *p    = (bits & 0x03) << 6;
+                    ++state;
+                    break;
+                case 3:
+                    *p++ |=  bits;
+                    state = 0;
+                    break;
+            }
+        }
+
+        // Verify that we have no invalid trailing garbage.
+        if (c == PAD_CHAR) {
+
+            // States 0 and 1 are invalid if we got a padding character.
+            if (state < 2)
+                throw L"Invalid number of significant "
+                      L"characters in base-64 encoding";
+  
+            // For state 2 there should be two padding characters; get the
+            // other one.
+            if (state == 2) {
+                c = 0;
+                while ((size_t)i < nBytes) {
+                    c = base64.GetAt(i++);
+                    if (c == PAD_CHAR)
+                        break;
+                    if (iswspace(c))
+                        continue;
+                    throw L"Invalid character following "
+                          L"padding character in base-64 encoding";
+                }
+                if (c != PAD_CHAR)
+                    throw L"Invalid number of significant "
+                          L"characters in base-64 encoding";
+            }
+
+            // Everything else should be whitespace.
+            while ((size_t)i < nBytes) {
+                c = base64.GetAt(i++);
+                if (!iswspace(c))
+                    throw L"Invalid character following "
+                          L"padding character in base-64 encoding";
+            }
+
+            // Check for invalid trailing bits.
+            if (*p)
+                throw L"Some hacker is trying to slip in "
+                      L"some extra bits at the end of a base-64 encoded "
+                      L"value";
+        }
+
+        // No padding: we should have come out on an even 4-character boundary.
+        else if (state != 0)
+            throw L"Invalid number of significant "
+                  L"characters in base-64 encoding";
+
+        // All done.
+        std::string result((const char*)buf, p - buf);
+        delete [] buf;
+        return result;
+    }
+    catch (...) {
+        delete [] buf;
+        throw;
+    }
+}
+
+std::wstring cdr::encodeBase64String(const std::string& s)
+{
+    wchar_t *buf = 0;
+    try {
+        size_t nBytes = s.size();
+        size_t nChars = (nBytes /  3 + 1) * 4   // encoding bloat
+                      + (nBytes / 57 + 1) * 2;  // line breaks
+        buf = new wchar_t[nChars];
+        size_t i = 0;
+        wchar_t* p = buf;
+        size_t charsInLine = 0;
+        const unsigned char* bits = (const unsigned char*)s.data();
+        const wchar_t* codes = getEncodingTable();
+        while (i < nBytes) {
+            switch (nBytes - i) {
+            case 1:
+                p[0] = codes[(bits[i + 0] >> 2)                    & 0x3F];
+                p[1] = codes[(bits[i + 0] << 4)                    & 0x3F];
+                p[2] = PAD_CHAR;
+                p[3] = PAD_CHAR;
+                break;
+            case 2:
+                p[0] = codes[(bits[i + 0] >> 2)                    & 0x3F];
+                p[1] = codes[(bits[i + 0] << 4 | bits[i + 1] >> 4) & 0x3F];
+                p[2] = codes[(bits[i + 1] << 2)                    & 0x3F];
+                p[3] = PAD_CHAR;
+                break;
+            default:
+                p[0] = codes[(bits[i + 0] >> 2)                    & 0x3F];
+                p[1] = codes[(bits[i + 0] << 4 | bits[i + 1] >> 4) & 0x3F];
+                p[2] = codes[(bits[i + 1] << 2 | bits[i + 2] >> 6) & 0x3F];
+                p[3] = codes[(bits[i + 2])                         & 0x3F];
+                break;
+            }
+            i += 3;
+            p += 4;
+            charsInLine += 4;
+            if (charsInLine >= 76) {
+                *p++ = L'\r';
+                *p++ = L'\n';
+                charsInLine = 0;
+            }
+        }
+        if (charsInLine) {
+            *p++ = L'\r';
+            *p++ = L'\n';
+        }
+
+        // Release buffer and return as string
+        std::wstring retval = std::wstring(buf, p - buf);
+        delete [] buf;
+        return retval;
+    }
+    catch (...) {
+        delete [] buf;
+        throw;
+    }
+}
+
 /**
  * Creates UTF-8 version of CString.  Ignores UCS code points beyond 0xFFFF.
  * If _UNICODE is not defined, we let the server catch any characters we're
