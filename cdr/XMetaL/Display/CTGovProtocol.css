@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol.css,v 1.3 2003-11-19 16:27:05 bkline Exp $
+ * $Id: CTGovProtocol.css,v 1.4 2003-12-03 16:05:55 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2003/11/19 16:27:05  bkline
+ * Added support for PDQPerson display.
+ *
  * Revision 1.2  2003/11/12 21:21:16  bkline
  * Added support for newly added elements EnteredBy, EntryDate, and
  * ProtocolDesign.
@@ -195,6 +198,7 @@ CTMaximumAge        :before { content: "Maximum Age *: "; }
 Contact             :before { content: "CONTACT & + @"; }
 ContactBackup       :before { content: "CONTACT BACKUP & @"; }
 Investigator        :before { content: "INVESTIGATOR & + @"; }
+Affiliation         :before { content: "Affiliation &: "; }
 Role                :before { content: "Role &: "; }
 PDQPerson           :before { content: "PDQ Person & @: "; }
 PDQIndexing         :before { content: "PDQ INDEXING * "; }
@@ -280,6 +284,7 @@ Contact             :before,
 ContactBackup       :before,
 Investigator        :before,
 Role                :before,
+Affiliation         :before,
 PDQPerson           :before,
 
 PDQIndexing         :before,
@@ -394,6 +399,8 @@ Sponsors ProfessionalSuffix      { margin-left: 130pt; text-indent: -128.0pt; }
 Sponsors Phone                   { margin-left: 130pt; text-indent:  -73.0pt; }
 Sponsors PhoneExt                { margin-left: 130pt; text-indent: -118.5pt; }
 Sponsors Email                   { margin-left: 130pt; text-indent:  -67.0pt; }
+Sponsors Role                    { margin-left: 130pt; text-indent:  -46.5pt; }
+Sponsors Affiliation             { margin-left: 130pt; text-indent:  -73.5pt; }
 
 OverallStatus                    { margin-left: 135pt; text-indent:  -95.0pt; }
 StartDate                        { margin-left: 135pt; text-indent:  -76.5pt; }
@@ -653,7 +660,8 @@ PostalAddress,
 Contact,
 ContactBackup,
 Investigator,
-Role
+Role:before,
+Affiliation:before
 
 { background-color: #CCCCFF; }  /*light blue*/
 
