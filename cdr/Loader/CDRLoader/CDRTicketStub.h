@@ -9,6 +9,7 @@ public:
 	virtual ~CDRTicketStub(void);
 
 	void SetHttpServer( CString serv );
+    void SetHttpPort( int port );
 
 	void InitializeFileLocation( CString manifest_file );
 
@@ -41,6 +42,7 @@ public:
 	CString CDR_MANIFEST_FILE;
 	CString ErrorLog;
 	CString http_Server;
+    int     http_Port;
 
 	static const CString REQ_TEMPLATE;
 };

@@ -361,25 +361,30 @@ BOOL CCDRLoaderApp::InitInstance()
 		bool	ok_to_launch = false;
 		CString	err = _T("Unknown error.");
 
-		CString http_server;
+		CString http_server = default_http_server;
+        int http_port = 80;
 		if (ini_Data.servers[ cur_server_ndx ].ticket_Server.GetLength() > 0)
 		{
 			http_server = ini_Data.servers[ cur_server_ndx ].ticket_Server;
 
 			if (ini_Data.servers[ cur_server_ndx ].ticket_Port.GetLength() > 0)
-			{
-				http_server += _T( ":" ) +
-                    ini_Data.servers[ cur_server_ndx ].ticket_Port;
+            {
+                CStringA port = CStringA(ini_Data.servers[ cur_server_ndx ].ticket_Port);
+                char buf[32];
+                memset(buf, '\0', sizeof buf);
+			    strncpy(buf, port.GetString(), sizeof buf - 1);
+                http_port = atoi(buf);
+                if (!http_port)
+                    http_port = 80;
 			}
 		}
-		else
-			http_server = default_http_server;
 
 		CDRTicketStub ticket_stub;
 		//DebugWrite( "SOAP Server is " );
 		//DebugWrite( http_server );
 		//DebugWrite( ".\n" );
 		ticket_stub.SetHttpServer( http_server );
+        ticket_stub.SetHttpPort( http_port );
 
         //DebugWrite( "Evaluating state.\n" );
         ticket_stub.InitializeFileLocation(manifest_directory +
