@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.33 2002-03-01 21:29:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.34 2002-03-02 14:08:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.33  2002/03/01 21:29:38  bkline
+     Adjusted CdrEdit function to remove XMetaL PIs earlier.
+
      Revision 1.32  2002/02/26 21:38:18  bkline
      Fixed bug in RevisionLevel default setting.
 
@@ -3347,6 +3350,26 @@
         Application.ShowPage(url);
     }
     advancedSearch();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Show Checked Out Docs"
+        lang="JScript" 
+        desc="Bring up report showing documents checked out by this user."
+        hide="false">
+  <![CDATA[
+
+    function checkedOutDocs() {
+        if (!CdrSession || !CdrUserName) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "CheckedOutDocs.py?Session=" + CdrSession
+                            + "&User=" + CdrUserName;
+        Application.ShowPage(url);
+    }
+    checkedOutDocs();
 
   ]]>
 </MACRO>
