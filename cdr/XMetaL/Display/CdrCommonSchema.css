@@ -1,6 +1,11 @@
 /*************************************************************************/
 /* 	CdrCommonSchema.css                                              */
 /*                                                                       */
+/*      v. 1.8                                                           */
+/*      2/11/02  by ebator                                               */
+/*      Set Table margin-left to match Para                              */
+/*      Set display:block for Section, Title, AltTitle, KeyPoint         */
+/*                                                                       */
 /*      v. 1.7                                                           */
 /*      1/15-16-17/02  by ebator                                         */
 /*      Added notations for required *, optional &, multiple +           */
@@ -69,6 +74,7 @@ $PROCINS
 
 ActionDate,
 ActionDescription,
+AltTitle,
 CdrDocCtl,
 City,
 CitySuffix,
@@ -82,9 +88,11 @@ entry,
 Fax,
 Head, 
 ItemizedList, 
+KeyPoint,
 ListItem, 
 ListTitle, 
 LiteralLayout,
+Multimedia,
 OrderedList, 
 Para, 
 Phone,
@@ -92,6 +100,8 @@ PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
 Row, 
+Section,
+Section>Title,
 Street,
 Table, 
 TBody, 
@@ -612,7 +622,9 @@ THead>Row>entry,
 
 Table,
  
-     {border-collapse: collapse; }
+     { border-collapse: collapse; 
+       margin-left: 20pt;
+       margin-top: .5em;  }
 
 TFoot>Row>entry,
 
