@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.36 2003-01-29 18:48:26 bkline Exp $
+ * $Id: Commands.cpp,v 1.37 2003-05-13 19:23:39 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.36  2003/01/29 18:48:26  bkline
+ * Added ability to paste cdr:href links.
+ *
  * Revision 1.35  2003/01/10 15:16:22  bkline
  * Blocked sending instruction to change document status to Active.
  *
@@ -880,7 +883,13 @@ STDMETHODIMP CCommands::validate(int *pRet)
             }
             if (validateDialog.m_linkValidation)
                 os << separator << _T("Links");
+			int filterLevel = 3;
+			if (validateDialog.m_includeProposedAndApprovedMarkup)
+				filterLevel = 1;
+			else if (validateDialog.m_includeApprovedMarkup)
+				filterLevel = 2;
             os << _T("'><CdrDoc Type='") << (LPCTSTR)docType 
+			   << _T("' RevisionFilterLevel='") << filterLevel
                << _T("'><CdrDocCtl>");
             if (!ctrlInfo.docId.IsEmpty())
                 os << _T("<DocId>") << (LPCTSTR)ctrlInfo.docId 

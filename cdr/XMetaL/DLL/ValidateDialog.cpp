@@ -1,10 +1,13 @@
 /*
- * $Id: ValidateDialog.cpp,v 1.2 2001-06-09 12:44:24 bkline Exp $
+ * $Id: ValidateDialog.cpp,v 1.3 2003-05-13 19:23:39 bkline Exp $
  *
  * Implementation of dialog object for validating the currently active 
  * document.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.2  2001/06/09 12:44:24  bkline
+ * Switched to Unicode.
+ *
  * Revision 1.1  2000/10/16 22:29:27  bkline
  * Initial revision
  *
@@ -27,6 +30,8 @@ static char THIS_FILE[] = __FILE__;
 
 CValidateDialog::CValidateDialog(CWnd* pParent /*=NULL*/)
 	: CDialog(CValidateDialog::IDD, pParent)
+	, m_includeApprovedMarkup(FALSE)
+	, m_includeProposedAndApprovedMarkup(FALSE)
 {
 	//{{AFX_DATA_INIT(CValidateDialog)
 	m_schemaValidation = TRUE;
@@ -42,6 +47,8 @@ void CValidateDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_CHECK1, m_schemaValidation);
 	DDX_Check(pDX, IDC_CHECK2, m_linkValidation);
 	//}}AFX_DATA_MAP
+	DDX_Check(pDX, IDC_CHECK3, m_includeApprovedMarkup);
+	DDX_Check(pDX, IDC_CHECK4, m_includeProposedAndApprovedMarkup);
 }
 
 

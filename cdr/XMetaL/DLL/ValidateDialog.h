@@ -39,6 +39,9 @@ protected:
 	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	BOOL m_includeApprovedMarkup;
+	BOOL m_includeProposedAndApprovedMarkup;
 };
 
 //{{AFX_INSERT_LOCATION}}
