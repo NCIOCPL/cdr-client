@@ -330,7 +330,7 @@ StandardProfessionalSuffix:before	{ content: "Std Prof Suffix & +: "; }
 Status:before				{ content: "STATUS *"; }
 SurName:before				{ content: "Surname *: "; }
 UpdateMode:before                       { content: "Updt Mode &+@: ";}
-UpdateMode[MailerType="Protocol_SAndP"]:after { content:" (Protocol_SAndP) ";} 
+UpdateMode[MailerType="Protocol_SandP"]:after { content:" (Protocol_SandP) ";} 
 UpdateMode[MailerType="Protocol_Abstract"]:after { content: " (Protocol_Abstract) ";}       
 Verified:before				{ content: "Verified? &: "; }
 
