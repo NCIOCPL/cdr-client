@@ -1,10 +1,13 @@
 /*
- * $Id: ValidateDialog.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: ValidateDialog.cpp,v 1.2 2001-06-09 12:44:24 bkline Exp $
  *
  * Implementation of dialog object for validating the currently active 
  * document.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
+ *
  */
 
 // Local headers.
@@ -60,5 +63,5 @@ void CValidateDialog::OnOK()
     if (m_linkValidation || m_schemaValidation)
     	CDialog::OnOK();
     else
-        ::AfxMessageBox("No validation type selected");
+        ::AfxMessageBox(_T("No validation type selected"));
 }
