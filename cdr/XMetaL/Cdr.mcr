@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.24 2002-02-14 19:29:54 bkline Exp $
+     $Id: Cdr.mcr,v 1.25 2002-02-19 13:36:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.24  2002/02/14 19:29:54  bkline
+     Made macro for getting person address conditional on popup menu.
+     Commented out macro for getting org address.
+
      Revision 1.23  2002/02/14 00:56:15  bkline
      Removed dialog box display from save function.
 
@@ -1020,7 +1024,7 @@
                            "CDR", 2, 2,
                            false),
             new CdrCmdItem("&View Original",
-                           "View Original",
+                           "Show Original",
                            "View Original",
                            "View document before markup",
                            "CDR", 2, 1,
@@ -3751,13 +3755,20 @@
         var controls     = tableMenu.Controls;
         var tableWizard  = controls.item(1);
         tableWizard.Execute();
-        if (ActiveDocument) {
-            var rng = ActiveDocument.Range;
-            if (rng) {
-                rng.MoveToElement('Title', false);
-                rng.Select();
-            }
-        }
+        /*
+         * Don't do this, because the Execute() method above happens
+         * asynchronously, which means that if there's already a Title
+         * element somewhere above, the cursor will jump to it before
+         * the table insertion has finished.
+         *
+         * if (ActiveDocument) {
+         *     var rng = ActiveDocument.Range;
+         *     if (rng) {
+         *         rng.MoveToElement('Title', false);
+         *         rng.Select();
+         *     }
+         * }
+         */
     }
     doTable();
     //Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
