@@ -9,6 +9,10 @@
   <TermPronunciation><?xm-replace_text {Optionally enter pronunciation guidelines} ?></TermPronunciation>
   <TermDefinition>
     <DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText>
+    <MediaLink>
+      <MediaID><?xm-replace_text {Enter the Media ID (required)} ?></MediaID>
+      <Caption><?xm-replace_text {Optionally enter the caption of the image} ?></Caption>
+    </MediaLink>
     <Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>
     <Audience><?xm-replace_text {Select a target audience (required)} ?></Audience>
   </TermDefinition>
