@@ -17,7 +17,7 @@ class CSearchDialog : public CDialog
 {
 // Construction
 public:
-	CSearchDialog(const std::list<std::string>& docTypes,
+	CSearchDialog(const std::list<CString>& docTypes,
 		          CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
@@ -32,6 +32,8 @@ public:
 	CButton	m_titleContains;
 	CButton	m_titleStart;
 	CString	m_searchString;
+	CString	m_version;
+	BOOL	m_checkOut;
 	//}}AFX_DATA
 
 
@@ -57,7 +59,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	const std::list<std::string>& docTypes;
+	const std::list<CString>& docTypes;
 };
 
 //{{AFX_INSERT_LOCATION}}

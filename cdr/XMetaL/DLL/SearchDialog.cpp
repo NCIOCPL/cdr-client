@@ -1,9 +1,12 @@
 /*
- * $Id: SearchDialog.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: SearchDialog.cpp,v 1.2 2001-06-09 12:43:36 bkline Exp $
  *
  * Implementation of dialog object for performing a CDR document search.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
+ *
  */
 
 // Local headers.
@@ -20,16 +23,34 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Remember the previous search.
+struct LastSearch {
+    enum StringType { BEGINS, CONTAINS, ALL };
+    StringType stringType;
+    cdr::DocSet docSet;
+    CString searchString;
+    CString version;
+    BOOL checkOut;
+    int docType;
+    int selection;
+    bool empty;
+    LastSearch() : docType(-1), selection(-1), empty(true),
+                   checkOut(false){}
+};
+static LastSearch lastSearch;
+
 /////////////////////////////////////////////////////////////////////////////
 // CSearchDialog dialog
 
 
-CSearchDialog::CSearchDialog(const std::list<std::string>& typeList,
+CSearchDialog::CSearchDialog(const std::list<CString>& typeList,
 							 CWnd* pParent /*=NULL*/)
 	: CDialog(CSearchDialog::IDD, pParent), docTypes(typeList)
 {
 	//{{AFX_DATA_INIT(CSearchDialog)
 	m_searchString = _T("");
+	m_version = _T("");
+	m_checkOut = TRUE;
 	//}}AFX_DATA_INIT
 }
 
@@ -46,6 +67,8 @@ void CSearchDialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_RADIO2, m_titleContains);
 	DDX_Control(pDX, IDC_RADIO1, m_titleStart);
 	DDX_Text(pDX, IDC_EDIT1, m_searchString);
+	DDX_Text(pDX, IDC_EDIT2, m_version);
+	DDX_Check(pDX, IDC_CHECK1, m_checkOut);
 	//}}AFX_DATA_MAP
 }
 
@@ -76,9 +99,11 @@ void CSearchDialog::OnRetrieveButton()
 	if (curSel >= 0) {
 		CString str;
 		m_docList.GetText(curSel, str);
-		std::string s = str;
-        if (CCommands::doRetrieve(s))
+        if (CCommands::doRetrieve(str, m_checkOut, m_version))
     		EndDialog(IDCANCEL);	
+        lastSearch.selection = curSel;
+        lastSearch.checkOut  = m_checkOut;
+        lastSearch.version   = m_version;
     }
 }
 
@@ -88,12 +113,16 @@ void CSearchDialog::OnRetrieveButton()
  */
 void CSearchDialog::OnSearchButton() 
 {
+    // In case we blow up, don't leave a live LastSearch object around.
+    lastSearch.empty = true;
+
     // Transfer the dialog's data to this object.
 	UpdateData(true);
 
     // Build the search request.
-	std::string cmd = "<CdrSearch><Query MaxDocs='100'>//CdrDoc[";
+	CString cmd = _T("<CdrSearch><Query MaxDocs='100'>//CdrDoc[");
 	int curType = m_docTypes.GetCurSel();
+    lastSearch.docType = curType;
 
     // Don't do anything unless we have at least a search string or a doc 
     // type.
@@ -102,35 +131,39 @@ void CSearchDialog::OnSearchButton()
 			return;
 	}
 	else {
-		m_searchString.Replace("'", "\\'");
-		std::string str = m_searchString;
-		std::string op = "=";
+        lastSearch.searchString = m_searchString;
+		m_searchString.Replace(_T("'"), _T("\\'"));
+		CString op = _T("=");
 		if (m_titleContains.GetCheck() == 1) {
-			op = "contains";
-			str = std::string("%") + str + "%";
+			op = _T("contains");
+			m_searchString = _T("%") + m_searchString + _T("%");
+            lastSearch.stringType = LastSearch::CONTAINS;
 		}
 		else if (m_titleStart.GetCheck() == 1) {
-			op = "begins";
-			str += "%";
+			op = _T("begins");
+			m_searchString += _T("%");
+            lastSearch.stringType = LastSearch::BEGINS;
 		}
-		cmd += "CdrCtl/Title " + op + " '" + str + "'";
+        else
+            lastSearch.stringType = LastSearch::ALL;
+		cmd += _T("CdrCtl/Title ") + op + _T(" '") + m_searchString + _T("'");
 	}
 	if (curType > 0) {
 		CString val;
 		m_docTypes.GetLBText(curType, val);
 		if (!m_searchString.IsEmpty())
-			cmd += " and ";
-		cmd += "CdrCtl/DocType = '" + (std::string)val + "'";
+			cmd += _T(" and ");
+		cmd += _T("CdrCtl/DocType = '") + val + _T("'");
 	}
 	cmd += "]/CdrCtl/DocId</Query></CdrSearch>";
 
     // Submit the request to the CDR server.
 	CWaitCursor wc;
-	std::string rsp = CdrSocket::sendCommand(cmd);
-	size_t pos = rsp.find("<QueryResults");
-	if (pos == rsp.npos) {
+	CString rsp = CdrSocket::sendCommand(cmd);
+	int pos = rsp.Find(_T("<QueryResults"));
+	if (pos == -1) {
 		if (!cdr::showErrors(rsp))
-			::AfxMessageBox("Unknown failure from search", 
+			::AfxMessageBox(_T("Unknown failure from search"),
 			MB_ICONEXCLAMATION);
 		EndDialog(IDCANCEL);
 		return;
@@ -138,12 +171,21 @@ void CSearchDialog::OnSearchButton()
 
     // Populate the dialog's list box with the results.
 	m_docList.ResetContent();
-    if (cdr::fillListBox(m_docList, rsp) > 0) {
+    lastSearch.docSet = cdr::extractSearchResults(rsp);
+    if (cdr::fillListBox(m_docList, lastSearch.docSet) > 0) {
 		m_docList.SetCurSel(0);
 		m_docList.EnableWindow();
+        lastSearch.selection = 0;
 	}
-	else
-		::AfxMessageBox("No documents match this query");
+	else {
+		::AfxMessageBox(_T("No documents match this query"));
+        lastSearch.selection = -1;
+    }
+
+    // Remember this search.
+    lastSearch.version      = m_version;
+    lastSearch.checkOut     = m_checkOut;
+    lastSearch.empty        = false;
 }
 
 /**
@@ -161,10 +203,36 @@ BOOL CSearchDialog::OnInitDialog()
 	m_titleContains.SetButtonStyle(BS_AUTORADIOBUTTON);
 	m_titleEquals.SetButtonStyle(BS_AUTORADIOBUTTON);
     m_titleStart.SetCheck(1);
-	std::list<std::string>::const_iterator i = docTypes.begin();
+	std::list<CString>::const_iterator i = docTypes.begin();
 	while (i != docTypes.end())
-		m_docTypes.AddString((*i++).c_str());
+		m_docTypes.AddString((*i++));
 	m_docTypes.SetCurSel(0);
+    if (!lastSearch.empty) {
+        m_searchString = lastSearch.searchString;
+        m_version      = lastSearch.version;
+        m_checkOut     = lastSearch.checkOut;
+        m_docTypes.SetCurSel(lastSearch.docType);
+        m_titleStart.SetCheck(0);
+        m_titleContains.SetCheck(0);
+        m_titleEquals.SetCheck(0);
+        switch (lastSearch.stringType) {
+        case LastSearch::BEGINS:
+        default:
+            m_titleStart.SetCheck(1);
+            break;
+        case LastSearch::CONTAINS:
+            m_titleContains.SetCheck(1);
+            break;
+        case LastSearch::ALL:
+            m_titleEquals.SetCheck(1);
+            break;
+        }
+        int num = cdr::fillListBox(m_docList, lastSearch.docSet);
+        if (lastSearch.selection >= 0 && lastSearch.selection < num)
+            m_docList.SetCurSel(lastSearch.selection);
+		m_docList.EnableWindow();
+        UpdateData(FALSE);
+    }
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
