@@ -159,12 +159,16 @@ CCDRLoaderApp theApp;
 static CString lookupXmetalApp()
 {
     CString choices[] = {
-        _T("xmetal31.exe"),
-        _T("xmetal3.exe")
+        _T(".\\xmetal4.exe"),
+        _T(".\\xmetal31.exe"),
+        _T(".\\xmetal3.exe"),
+        _T("C:\\Program Files\\Corel\\XMetaL 4\\Author\\xmetal4.exe"),
+        _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal31.exe"),
+        _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\xmetal3.exe")
     };
-    CString base = _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\");
+    // CString base = _T("C:\\Program Files\\SoftQuad\\Xmetal 3\\");
     for (size_t i = 0; i < sizeof choices / sizeof *choices; ++i) {
-        CString s = base + choices[i];
+        CString s = /* base + */ choices[i];
         CPath p(s);
         if (p.FileExists())
             return s;
