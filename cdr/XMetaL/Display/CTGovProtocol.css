@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol.css,v 1.6 2004-08-05 22:53:57 ameyer Exp $
+ * $Id: CTGovProtocol.css,v 1.7 2004-10-08 02:33:27 ameyer Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2004/08/05 22:53:57  ameyer
+ * Changed InterventionName to InterventionNameLink, mirroring schema change.
+ *
  * Revision 1.5  2003/12/04 16:02:32  bkline
  * Fixed typo in ELIGIBILITY prompt.
  *
@@ -214,7 +217,7 @@ StudyCategoryType   :before { content: "Study Category Type *: "; }
 StudyCategoryName   :before { content: "Study Category Name *: "; }
 Intervention        :before { content: "INTERVENTION & +"; }
 InterventionType    :before { content: "Intervention Type * @: "; }
-InterventionName    :before { content: "Intervention Name & + @: "; }
+InterventionNameLink:before { content: "Intervention Name & + @: "; }
 ProtocolDesign      :before { content: "Protocol Design & +: "; }
 Condition           :before { content: "Condition & + @: "; }
 Gene                :before { content: "Gene & + @: "; }
@@ -300,7 +303,7 @@ StudyCategoryType   :before,
 StudyCategoryName   :before,
 Intervention        :before,
 InterventionType    :before,
-InterventionName    :before,
+InterventionNameLink:before,
 ProtocolDesign      :before,
 Condition           :before,
 
@@ -446,7 +449,7 @@ StudyType                        { margin-left: 150pt; text-indent:  -81.0pt; }
 StudyCategoryType                { margin-left: 150pt; text-indent: -136.5pt; }
 StudyCategoryName                { margin-left: 150pt; text-indent: -141.2pt; }
 InterventionType                 { margin-left: 150pt; text-indent: -130.5pt; }
-InterventionName                 { margin-left: 150pt; text-indent: -149.0pt; }
+InterventionNameLink             { margin-left: 150pt; text-indent: -149.0pt; }
 ProtocolDesign                   { margin-left: 150pt; text-indent: -122.0pt; }
 Condition                        { margin-left: 150pt; text-indent: -101.0pt; }
 Gene                             { margin-left: 150pt; text-indent:  -75.0pt; }
@@ -506,7 +509,7 @@ StudyType,
 StudyCategoryType,
 StudyCategoryName,
 InterventionType,
-InterventionName,
+InterventionNameLink,
 ProtocolDesign,
 Condition,
 Gene,
@@ -571,7 +574,7 @@ HealthyVolunteers,
 HighAge,
 IDInfo,
 Intervention,
-InterventionName,
+InterventionNameLink,
 InterventionType,
 Investigator,
 ItemizedList,
@@ -708,7 +711,7 @@ StudyCategoryType      :before,
 StudyCategoryName      :before,
 Intervention           :before,
 InterventionType       :before,
-InterventionName       :before,
+InterventionNameLink   :before,
 ProtocolDesign         :before,
 Condition              :before,
 Gene                   :before,
@@ -730,7 +733,7 @@ EntryDate              :before,
 Foobar    { font-weight: bold; color: green; }
 
 /* Override common css, which formats elements of this name as inline markup */
-InterventionName { text-decoration: none; color: black; }
+InterventionNameLink { text-decoration: none; color: black; }
 
 ItemizedList      { margin-left: 50pt; }
 ListItem { display: list-item; list-style-type: disc; margin-left: 0pt; }
