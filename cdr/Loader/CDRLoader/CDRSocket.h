@@ -33,7 +33,9 @@
 			int sock;
 			enum { CDR_SOCK = 2019 };
 			CdrSocket();
+		    ~CdrSocket() { closesocket(sock); };
 			std::string read();
+
 			struct Init 
 			{
 				Init();

@@ -70,7 +70,7 @@ void DebugStart( void )
 			printf( "Debug file broken: %s", errmsg );
 		}
 		DebugWrite( "Started Debugging\n" );
-		DebugWrite( "Version QQQ\n" );
+		DebugWrite( "Version 20020813 1407\n" );
 	}
 }
 

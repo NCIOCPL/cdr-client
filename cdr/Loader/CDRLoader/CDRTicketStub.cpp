@@ -177,61 +177,91 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 	DebugWrite( "HTTP Request Open.\n" );
 		CString my_req = REQ_TEMPLATE;
 		my_req.Replace( _T("%s"), data );
-		//DWORD l = my_req.GetLength();
-		/***
-			// !DEBUG!
-			CFile junk4( "REQ-DUMP.txt", CFile::modeCreate | CFile::modeWrite );
-			junk4.Write( my_req.GetString(), my_req.GetLength() );
-			junk4.Close();
-		***/
 		// remember to switch out of unicode to talk to TICKET server
 		CStringA plain_req = (CStringA )my_req.GetString();
 		DWORD rlen = plain_req.GetLength();
 	DebugWrite( "HTTP Request is:\n" );
 	DebugWrite( my_req );
-	try 
+	DebugWrite( "\n" );
+	CStringA::PCXSTR t;
+	DWORD socket_err = 0;
+	try
 	{
-		CStringA::PCXSTR t = plain_req.GetString();
-		http_page->SendRequest( _T(""), 0, (void *)t, rlen );
-	}
-	catch ( CInternetException &ee )
-	{
-		_TCHAR  errmsg[ 1024 ];
-		int len = 1000;
-		ee.GetErrorMessage( errmsg, len );
-		ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
-
-		DebugWrite( "Caught at SendRequest() CInternetException" );
-		DebugWrite( errmsg );
-	}
-	catch ( CException &ee )
-	{
-		_TCHAR  errmsg[ 1024 ];
-		int len = 1000;
-		ee.GetErrorMessage( errmsg, len );
-		ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
-
-		DebugWrite( "Caught at SendRequest() CException" );
-		DebugWrite( errmsg );
-	}
-	catch ( CObject &co )
-	{
-		DebugWrite( "Caught at SendRequest() CObject" );
+		t = plain_req.GetString();
 	}
 	catch ( ... )
 	{
-		DebugWrite( "Caught at SendRequest() ..." );
+		DebugWrite( "String conversion threw exception. ... \n" );
+	}
+	int retry = 0;
+	int sr_val = 0;
+	while (( sr_val == 0 ) && ( retry++ < 3 ))
+	{
+		DebugWrite( "SendRequest() Retry loop\n" );
+
+		try 
+		{
+			sr_val = http_page->SendRequest( _T(""), 0, (void *)t, rlen );
+		}
+		catch ( CInternetException &ee )
+		{
+			_TCHAR  errmsg[ 1024 ];
+			int len = 1000;
+			ee.GetErrorMessage( errmsg, len );
+			ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CIE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+			DebugWrite( "Caught at SendRequest() CInternetException\n" );
+			DebugWrite( errmsg );
+		}
+		catch ( CException &ee )
+		{
+			_TCHAR  errmsg[ 1024 ];
+			int len = 1000;
+			ee.GetErrorMessage( errmsg, len );
+			ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">") + CString( errmsg ) + _T("</HTTP_EXCEPTION>");
+
+			DebugWrite( "Caught at SendRequest() CException\n" );
+			DebugWrite( errmsg );
+		}
+		catch ( CObject &co )
+		{
+			DebugWrite( "Caught at SendRequest() CObject\n" );
+		}
+		catch ( ... )
+		{
+			DebugWrite( "Caught at SendRequest() ...\n" );
+			socket_err = GetLastError();
+			char se[32];
+			ltoa( socket_err, se, 10 );
+			ErrorLog += _T("<HTTP_EXCEPTION type=\"SendRequest CE\">Socket Error ") 
+						+ CString( se ) 
+						+ _T("</HTTP_EXCEPTION>");
+			DebugWrite( "Socket Error is " );
+			DebugWrite( se );;
+			DebugWrite( "\n" );
+		}
 	}
 	DebugWrite( "HTTP Request Sent.\n" );
 		DWORD result;
 		http_page->QueryInfoStatusCode( result );
+
+		//DWORD dwError, cbRead = sizeof(dwError);
+		//HttpQueryInfo( http_page->m_hFile, HTTP_QUERY_STATUS_CODE|HTTP_QUERY_FLAG_NUMBER , &dwError, &cbRead, NULL);
+
+
 	DebugWrite( "HTTP look at status.\n" );
 		if (result != HTTP_STATUS_OK)
 		{
 			char num[32];
 			ltoa( result, num, 10 );
 			ErrorLog += _T("<HTTP_ERR>") + CString( num ) + _T("</HTTP_ERR>");
-	DebugWrite( "HTTP status not OK.\n" );
+	DebugWrite( "HTTP status from QueryInfoStatusCode(): " );
+	DebugWrite( num );
+
+	//		ltoa( dwError, num, 10 );
+	//DebugWrite( "HTTP status from HttpQueryInfo()" );
+	//DebugWrite( num );
+	//DebugWrite( "\n" );
 		}
 		char buff[ 1024 ];
 		UINT nRead = http_page->Read( buff, 1000 );
@@ -246,12 +276,6 @@ CString CDRTicketStub::HttpRoundTrip( CString &data )
 		
 	DebugWrite( "HTTP Done reading.\n" );
 
-		/*** 
-			//!DEBUG!
-			CFile junk5( _T("RESP-DUMP.txt"), CFile::modeCreate | CFile::modeWrite );
-			junk5.Write( http_response_data.GetString(), http_response_data.GetLength() );
-			junk5.Close();
-		***/
 		http_page->Close();
 	DebugWrite( "HTTP closed page.\n" );
 		http_session->Close();
