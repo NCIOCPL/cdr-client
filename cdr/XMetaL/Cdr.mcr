@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.39 2002-04-03 20:44:51 bkline Exp $
+     $Id: Cdr.mcr,v 1.40 2002-04-05 14:05:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.39  2002/04/03 20:44:51  bkline
+     Plugged in the filters for the Summary Markup report.
+
      Revision 1.38  2002/03/26 21:48:06  bkline
      Replaced hardwired filter number with filter name for Summary revision
      markup.
@@ -1420,7 +1423,7 @@
                            "Reset Contact",             // Tooltip.
                            "Reset Contact Information", // Description
                            "CDR", 4, 9,                 // Icon set, row, col.
-                           false),                      // Starts new group?
+                           true),                       // Starts new group?
             new CdrCmdItem(null,
                            "Generate QC Report",
                            "QC Report",
