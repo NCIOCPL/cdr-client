@@ -83,24 +83,25 @@ GlossaryTerm,
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-
-
+Audience,
+Caption,
 Comment,
 DateLastModified,
-GlossaryTerm,
-PdqKey,
 DefinitionText,
-Audience,
 Dictionary,
+GlossaryTerm,
+MediaID,
+MediaLink,
+PdqKey,
+SpanishTermDefinition,
 SpanishTermName,
 StatusDate,
+TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-TermDefinition,
-SpanishTermDefinition
 
     { display: block; }
 
@@ -109,22 +110,28 @@ SpanishTermDefinition
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
 
+Audience:before                 { content: "Audience * +: "; }
+Caption:before                  { content: "Caption & +: "; }
 Comment:before			{ content: "Comments &: "; } 
 DateLastModified:before		{ content: "Last Modified &: "; }
+Dictionary:before               { content: "Dictionary & +: "; }
+MediaID:before                  { content: "Media ID * @: "; }
+MediaLink:before                { content: "MEDIA LINK & + @:"; }
 PdqKey:before			{ content: "PDQ Key &: "; }
-SpanishTermDefinition>DefinitionText:before	{ content: "Span Definition *: "; }
-Audience:before         { content: "Audience * +: "; }
-Dictionary:before       { content: "Dictionary & +: "; }
+SpanishTermDefinition:before    { content: "SPANISH DEFINITION & +:"; }
+SpanishTermDefinition>DefinitionText:before	
+                                { content: "Span Definition *: "; }
 SpanishTermName:before		{ content: "Spanish Name &: "; }
 StatusDate:before		{ content: "Status Date *: "; }
-TermDefinition>DefinitionText:before { content: "Term Definition *: "; }
+TermDefinition:before           { content: "TERM DEFINITION * +:"; }
+TermDefinition>DefinitionText:before 
+                                { content: "Term Definition *: "; }
 TermName:before			{ content: "Term Name *: "; }
 TermPronunciation:before	{ content: "Pronunciation &: "; }
 TermSource:before		{ content: "Term Source *: "; }
@@ -136,16 +143,15 @@ TermType:before			{ content: "Term Type * +: "; }
 /***************************************************************************/ 
 /*                     SECTION TITLES AND BORDERS                          */ 
 /***************************************************************************/ 
-
-
+Audience,
 DateLastModified,
+Dictionary,
+MediaLink,
 SpanishTermDefinition,
 SpanishTermName,
 TermDefinition,
 TermSource,
 TermType,
-Dictionary,
-Audience
 
     { margin-top: 1em }
 
@@ -153,15 +159,18 @@ Audience
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
 /***************************************************************************/ 
-  
-
+Audience:before,
+Caption:before,
 Comment:before,
 DateLastModified:before,
 DefinitionText:before,
-Audience:before,
 Dictionary:before,
+MediaID:before,
+MediaLink:before,
+SpanishTermDefinition:before,
 SpanishTermName:before,
 StatusDate:before,
+TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
 
@@ -170,10 +179,21 @@ TermPronunciation:before,
 
 
 /***************************************************************************/ 
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
+/***************************************************************************/ 
+TermDefinition,
+SpanishTermDefinition,
+
+   { border: solid; 
+     border-color: black;
+     border-width: thin;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+
+/***************************************************************************/ 
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
 /***************************************************************************/ 
-  
-
 PdqKey:before,
 TermSource:before,
 TermStatus:before,
@@ -186,24 +206,28 @@ TermType:before,
 /***************************************************************************/ 
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
 /***************************************************************************/ 
-
 /* Each tag is manually positioned to right-align                          */
-
 
 /* Key element for length = SpanishTermName				   */
 
+Audience                                { margin-left: 125pt; 
+	                                  text-indent: -79pt; }
+Dictionary                              { margin-left: 125pt; 
+	                                  text-indent: -88pt; }
+Caption                                 { margin-left: 125pt;
+	                                  text-indent: -75pt; }
+MediaID,                                { margin-left: 125pt;
+	                                  text-indent: -79.5pt; }
 TermName,				{ margin-left: 125pt; 
 					  text-indent: -80.5pt; }
 TermPronunciation,			{ margin-left: 125pt; 
 					  text-indent: -100.5pt; }
-TermDefinition>DefinitionText,				{ margin-left: 125pt; 
+TermDefinition>DefinitionText,		{ margin-left: 125pt; 
 					  text-indent: -102pt; }
 SpanishTermName,			{ margin-left: 125pt; 
 					  text-indent: -103pt; }
-SpanishTermDefinition>DefinitionText,			{ margin-left: 125pt; 
+SpanishTermDefinition>DefinitionText,	{ margin-left: 125pt; 
 					  text-indent: -103pt; }
-Dictionary            { margin-left: 125pt; text-indent: -88pt; }
-Audience              { margin-left: 125pt; text-indent: -79pt; }
 
 /* Key element for length = TermSource					   */
 
@@ -235,9 +259,12 @@ TermName,
 
 /* Margin-bottom to simulate a text box                                    */
 
+Audience,
 Comment,
 DateLastModified,
+Dictionary,
 PdqKey,
+MediaID,
 SpanishTermDefinition,
 SpanishTermName,
 StatusDate,
@@ -254,14 +281,14 @@ TermType,
 /***************************************************************************/ 
 /*                               COLOR                                     */ 
 /***************************************************************************/ 
-
-
+Audience,
+Caption,
 Comment,
 DateLastModified,
-PdqKey,
 DefinitionText,
-Audience,
 Dictionary,
+MediaID,
+PdqKey,
 SpanishTermName,
 StatusDate,
 TermName,
@@ -273,12 +300,15 @@ TermType,
 	{ background-color: white; }
 
 
+Audience:before,
+Caption:before,
 Comment:before,
 DateLastModified:before,
-PdqKey:before,
 DefinitionText:before,
-Audience:before,
 Dictionary:before,
+MediaID:before,
+PdqKey:before,
+SpanishTermDefinition:before,
 SpanishTermName:before,
 StatusDate:before,
 TermName:before,
@@ -287,4 +317,4 @@ TermSource:before,
 TermStatus:before,
 TermType:before,
 
-	{ background-color: #CCCCFF; }
+	{ background-color: #CCCCFF; }  /* light blue */
