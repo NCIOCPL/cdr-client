@@ -7,9 +7,17 @@
 	 </CdrDocCtl> 
   <TermName><?xm-replace_text {Enter the term (required)} ?></TermName> 
   <TermPronunciation><?xm-replace_text {Optionally enter pronunciation guidelines} ?></TermPronunciation>
-  <TermDefinition><?xm-replace_text {Enter a definition of the term (required)} ?></TermDefinition>
+  <TermDefinition>
+    <DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText>
+    <Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>
+    <Audience><?xm-replace_text {Select a target audience (required)} ?></Audience>
+  </TermDefinition>
   <SpanishTermName><?xm-replace_text {Optionally enter the equivalent Spanish term} ?></SpanishTermName>
-  <SpanishTermDefinition><?xm-replace_text {Optionally enter a definition in Spanish} ?></SpanishTermDefinition>
+  <SpanishTermDefinition>
+    <DefinitionText><?xm-replace_text {Enter a Spanish definition of the term (required)} ?></DefinitionText>
+    <Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>
+    <Audience><?xm-replace_text {Select a target audience (required)} ?></Audience>
+  </SpanishTermDefinition>
   <TermSource><?xm-replace_text {Select a source (required)} ?></TermSource> 
   <TermType><?xm-replace_text {Select a type (required)} ?></TermType> 
   <TermStatus><?xm-replace_text {Select a status (required)} ?></TermStatus> 

@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.105 2003-09-24 22:26:31 bkline Exp $
+     $Id: Cdr.mcr,v 1.106 2003-11-13 01:42:28 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.105  2003/09/24 22:26:31  bkline
+     Plugged in named filter set for Protocol Admin QC report.
+
      Revision 1.104  2003/08/14 21:27:15  bkline
      Changed Style attribute from 'simple' to 'bullet' for Itemized List
      macro.
@@ -356,7 +359,7 @@
     //------------------------------------------------------------------
     // GLOBAL VARIABLES
     //------------------------------------------------------------------
-    var CdrWebServer = "http://mmdb2.nci.nih.gov";
+    var CdrWebServer = "http://mahler.nci.nih.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     
     //"Summary", "Person", "Organization",
@@ -2265,6 +2268,51 @@
         }
     }
 
+    function addCTGovToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "CTGovProtocol Diff",        // Macro.
+                           "Diff ",                     // Tooltip.
+                           "Diff against prior version",// Description
+                           "CDR", 6, 5,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR CTGovProtocol"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR CTGovProtocol " +
+                                  "Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR CTGovProtocol", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR CTGovProtocol " +
+                              "toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["CTGovProtocol"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function bugRepro() {
         var cmdBars = Application.CommandBars;
         var i       = 0;
@@ -2343,6 +2391,7 @@
     addCitationToolbar();
     addMiscToolbar();
     addMailerToolbar();
+    addCTGovToolbar();
     addCdrMenus();
     hideToolbars();
     // turnOffStandardToolbars(); Doesn't work here!!!  SoftQuad Bug!
@@ -5808,6 +5857,26 @@
         }
     }
 
+  ]]>
+</MACRO>
+
+<MACRO name="CTGovProtocol Diff"
+       lang="JScript" >
+  <![CDATA[
+    function ctGovDiff() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "DiffCTGovProtocol.py?DocId=" + docId;
+        cdrObj.showPage(url);
+    }
+    ctGovDiff();
   ]]>
 </MACRO>
 
