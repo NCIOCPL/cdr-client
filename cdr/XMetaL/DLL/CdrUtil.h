@@ -1,9 +1,11 @@
 /*
- * $Id: CdrUtil.h,v 1.1 2000-10-16 22:31:48 bkline Exp $
+ * $Id: CdrUtil.h,v 1.2 2001-04-18 14:44:19 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:31:48  bkline
+ * CDR client header
  */
 
 #ifndef CDR_UTIL_H_
@@ -69,4 +71,7 @@ namespace cdr {
     std::string trim(const std::string& s);
     void extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info);
 }
+
+std::ostream& operator<<(std::ostream& os, DOMNode& node);
+
 #endif

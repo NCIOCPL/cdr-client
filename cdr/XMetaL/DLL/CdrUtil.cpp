@@ -1,9 +1,11 @@
 /*
- * $Id: CdrUtil.cpp,v 1.1 2000-10-16 22:29:27 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.2 2001-04-18 14:43:55 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1  2000/10/16 22:29:27  bkline
+ * Initial revision
  */
 
 // Local headers.
@@ -496,4 +498,70 @@ std::string errResponse(const char* err)
 	return std::string("<CdrResponseSet><CdrResponse Status='failure'>"
 			           "<Errors><Err>") + err + "</Err></Errors>"
 					   "</CdrResponse></CdrResponseSet>";
+}
+
+/**
+ * Writes the string equivalent of the XML tree represented by the caller's
+ * DOM node.
+ *
+ *  @param  os              reference to output stream on which to write
+ *                          the XML string.
+ *  @param  node            reference to the DOM node to be written out.
+ *  @return                 reference to output stream.
+ */
+std::ostream& operator<<(std::ostream& os, DOMNode& node)
+{
+	// Obtain some local copies of the node's "attributes" (not in the XML 
+    // sense).
+	int nodeType = node.GetNodeType();
+	std::string name = node.GetNodeName();
+
+    // Swallow the CdrDocCtl element.
+	if (nodeType == 1 && name != "CdrDocCtl") {
+
+		// Element node.  Output the start tag.
+		os << '<' << name;
+		DOMNamedNodeMap attrs = node.GetAttributes();
+		int n = attrs.GetLength();
+		for (int i = 0; i < n; ++i) {
+			DOMNode attr = attrs.item(i);
+			std::string attrName = attr.GetNodeName();
+			std::string val = attr.GetNodeValue();
+			os << ' ' << attrName << "='"
+               << cdr::encode(val, true) << '\'';
+		}
+		if (!node.hasChildNodes())
+			os << '/';
+		os << '>';
+    }
+
+    // If this is a text node (type 3) pump out the characters.
+	else if (nodeType == 3) {
+
+		std::string val = node.GetNodeValue();
+        os << cdr::encode(val);
+	}
+
+    // Handle processing instructions.
+	else if (nodeType == 9) {
+
+		std::string val = node.GetNodeValue();
+		os << "<?" << name << " " << val << "?>";
+	}
+
+	// Process any children of the node.
+	if (node.hasChildNodes() && name != "CdrDocCtl") {
+		DOMNode n = node.GetFirstChild();
+		os << n;
+
+		// If this is an element node, write the closing tag.
+		if (nodeType == 1)
+			os << "</" << name << '>';
+	}
+
+	// Continue with this node's siblings
+	DOMNode sibling = node.GetNextSibling();
+	if (sibling)
+		os << sibling;
+	return os;
 }
