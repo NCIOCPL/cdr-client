@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.53 2002-05-08 20:28:19 bkline Exp $
+     $Id: Cdr.mcr,v 1.54 2002-05-11 03:01:05 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.53  2002/05/08 20:28:19  bkline
+     Removed HTML Summary button.
+
      Revision 1.52  2002/05/08 20:04:38  bkline
      Renamed filters; rearranged buttons on Protocol toolbar.
 
@@ -545,6 +548,18 @@
         hide="true" 
         lang="JScript">
   <![CDATA[
+
+    // This workaround is being used because SoftQuad is unable or 
+    // unwilling to fix the bug which is wiping out our setting of
+    // the Visible property of the document-specific toolbar in the
+    // On_Document_Activate event.
+    function adjustToolbars2() {
+        var docType = ActiveDocument.doctype;
+        if (toolbars[docType.name] != null) {
+            toolbars[docType.name].Visible = true;
+        }
+    }
+    adjustToolbars2();
 
     // this will only work if no On_Update_UI macro is defined for the DTD
     if (Selection.IsInsertionPoint && ActiveDocument.ViewType == 1) {
@@ -1423,6 +1438,12 @@
                            "Redline Strikeout",
                            "Redline Strikeout Report",
                            "CDR", 2, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Patient Summary QC Report",
+                           "Patient Summary QC",
+                           "Patient Summary QC Report",
+                           "CDR", 3, 4,
                            false),
             new CdrCmdItem(null,
                            "Generate Mailer",
@@ -4000,6 +4021,14 @@
   ]]>
 </MACRO>
 
+<MACRO name="Insert CitationLink" 
+       key="Alt+Z" 
+       lang="JScript" >
+  <![CDATA[
+    Selection.InsertWithTemplate("CitationLink")
+  ]]>
+</MACRO>
+
 <MACRO name="Itemized List" 
        key="Alt+L" 
        lang="VBScript" 
@@ -4658,8 +4687,8 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Summary-Copy XML for Patient Summary Report" +
-                "&Filter1=name:Patient Summary QC Report Filter";
+                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
+                "&Filter1=name:Patient+Summary+QC+Report+Filter";
         Application.ShowPage(url);
     }
     //Application.Alert("Don't have the filters yet for this report.");
@@ -4676,6 +4705,45 @@
         Application.ShowPage(url);
     }
     generateSummaryMailers();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Mailer Response"
+       lang="JScript">
+  <![CDATA[
+    function insertMailerResponse() {
+        var rng = ActiveDocument.Range;
+        if (!rng.FindInsertLocation("Response", true)) {
+            if (!rng.FindInsertLocation("Response", false)) {
+                Application.Alert("Can't insert Response element");
+                return; 
+            }
+        }
+       rng.InsertElement("Response");
+       rng.InsertWithTemplate("Received");
+       rng.Select();
+       rng.SelectAfterContainer();
+       rng.InsertWithTemplate("ChangesCategory");
+    }
+    insertMailerResponse();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert DateLastModified" 
+       lang="JScript" >
+  <![CDATA[
+    function insertDateLastModified() {
+        var rng = ActiveDocument.Range;
+        if (!rng.FindInsertLocation("DateLastModified", true)) {
+            if (!rng.FindInsertLocation("DateLastModified", false)) {
+                Application.Alert("Can't insert DateLastModified element");
+                return; 
+            }
+        }
+       rng.InsertWithTemplate("DateLastModified");
+       rng.Select();
+    }
+    insertDateLastModified();
   ]]>
 </MACRO>
 
