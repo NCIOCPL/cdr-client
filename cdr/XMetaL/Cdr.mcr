@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.4 2001-08-17 14:27:03 bkline Exp $
+     $Id: Cdr.mcr,v 1.5 2001-08-27 19:09:43 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.4  2001/08/17 14:27:03  bkline
+     Added test for HTML data entry form; added Insertion/Deletion macros.
+
      Revision 1.3  2001/06/12 02:21:44  bkline
      Added code to check readonly status for entire document.
 
@@ -1844,6 +1847,22 @@
             return false;
         }
         return true;
+    }
+
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Advanced Search"
+        lang="JScript" 
+        desc="Launch browser menu for advanced CDR searching" 
+        hide="false">
+  <![CDATA[
+
+    if (cdrObj == null) {
+        Application.Alert("You are not logged on to the CDR");
+    }
+    else {
+        cdrObj.advancedSearch();
     }
 
   ]]>
