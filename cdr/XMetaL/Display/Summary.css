@@ -1,11 +1,14 @@
 /*************************************************************************/
 /* 	Summary.css                                                      */
 /*                                                                       */
+/*      v. 3.6                                                           */
+/*      10/08/02  by ebator                                              */
+/*      SummarySection/SummarySection/SummarySection/Insertion/Title     */
+/*         is now in italics                                             */
+/*                                                                       */
 /*      v. 3.5                                                           */
 /*      7/23/02  by ebator                                               */
-/*      Added PatientVersionOf element;                                  */
-/*      rendered in black without & (optional in Summaries; required     */
-/*      in PatientSummaries)                                             */
+/*      Added PatientVersionOf element                                   */
 /*                                                                       */
 /*      v. 3.4                                                           */
 /*      3/19/02  by ebator                                               */
@@ -330,8 +333,15 @@ SummarySection>SummarySection>SummarySection,
 
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
+SummarySection>SummarySection>Insertion>Title:before,
+SummarySection>SummarySection>Insertion>Title,
 
 	{ font-style: italic; }
+
+Insertion>SummarySection,
+Insertion>SummarySection:before,
+
+	{ color: red; }
 
 /***************************************************************************/ 
 /*                         SECTION META DATA                               */ 

@@ -174,9 +174,9 @@ Name:before				{ content: "Name " ; }
 OfficialName:before			{ content: "Official Name" ; }
 Organization:before			{ content: "ORGANIZATION "; }
 OrganizationNameInformation > OfficialName:before  { content: "Official Name "; }
-OrganizationAdministrativeInformation:before
 OrganizationType[Public="No"]:after	{ content: " (Not public) "; }
 OrganizationType:after			{ content: " (Public) "; }
+OrganizationAdministrativeInformation:before
 					{ content: "ADMINISTRATIVE INFORMATION"; }
 OrganizationAffiliations:before		{ content: "AFFILIATIONS"; }
 OrganizationDetails:before		{ content: "ORGANIZATION DETAILS"; }
