@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.16 2002-04-20 19:19:58 bkline Exp $
+ * $Id: Commands.cpp,v 1.17 2002-04-29 11:01:31 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.16  2002/04/20 19:19:58  bkline
+ * Removed version string from search and retrieve dialogs.  Will replace
+ * soon with more sophisticated picklist for most recent versions.
+ *
  * Revision 1.15  2002/04/18 21:49:04  bkline
  * Added more sophisticated exception handling.
  *
@@ -751,7 +755,8 @@ STDMETHODIMP CCommands::save(int *pRet)
         CString msg;
         msg.Format(_T("Dispatch Exception; error code: %lu\n")
                    _T("From application: %s\n")
-                   _T("Description: %s"), ode.m_wCode, ode.m_strSource, ode.m_strDescription);
+                   _T("Description: %s"), ode.m_wCode, ode.m_strSource, 
+                                          ode.m_strDescription);
         ::AfxMessageBox(msg);
         *pRet = 6;
     }
@@ -1133,11 +1138,11 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
             err.Format(_T("Can't write xml document at %s"), (LPCTSTR)docPath);
         else {
             CString fixedDoc;
-            CString ctl = _T("\n  <CdrDocCtl>\n    <DocId>")
+            CString ctl = _T("\n <CdrDocCtl>\n  <DocId>")
                             + docId
-                            + _T("</DocId>\n    <DocTitle>")
+                            + _T("</DocId>\n  <DocTitle>")
                             + cdr::encode(docTitle, true)
-                            + _T("</DocTitle>\n  </CdrDocCtl>\n");
+                            + _T("</DocTitle>\n </CdrDocCtl>\n ");
             try {
                 fixedDoc = fixDoc(docXml, ctl, docType, !checkOut);
             }
@@ -1170,7 +1175,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
             CString msg;
             msg.Format(_T("Dispatch Exception; error code: %lu\n")
                        _T("From application: %s\n")
-                       _T("Description: %s"), ode.m_wCode, ode.m_strSource, ode.m_strDescription);
+                       _T("Description: %s"), ode.m_wCode, ode.m_strSource, 
+                                              ode.m_strDescription);
             ::AfxMessageBox(msg);
             return false;
         }
@@ -1179,7 +1185,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut)
             return false;
         }
         catch (...) {
-            ::AfxMessageBox(_T("Unexpected exception encountered retrieving document"));
+            ::AfxMessageBox(_T("Unexpected exception encountered ")
+                            _T("retrieving document"));
         }
     }
 }
@@ -1267,7 +1274,14 @@ CString& fixDoc(CString& doc, const CString& ctl,
     pos = doc.Find(_T(">"), pos + dtd.GetLength() + 1);
     if (pos == -1)
         return doc;
-    doc.Insert(pos + 1, ctl);
+    int ctlPos    = pos + 1;
+    int wsCount   = 0;
+    int docLength = doc.GetLength();
+    while (ctlPos + wsCount < docLength && iswspace(doc[ctlPos + wsCount]))
+        wsCount++;
+    if (wsCount)
+        doc.Delete(ctlPos, wsCount);
+    doc.Insert(ctlPos, ctl);
 
     // Add the 'cdr' namespace declaration if it's not already present.
     if (doc.Find(_T(" xmlns:cdr")) == -1) {
@@ -1489,7 +1503,8 @@ STDMETHODIMP CCommands::isReadOnly(const BSTR *docType,
         *pVal = TRUE;
 #if 0
     if (*pVal)
-        ::AfxMessageBox(_T("doc type is ") + dt + _T(" and READONLY element name is ") + el);
+        ::AfxMessageBox(_T("doc type is ") + dt + 
+                        _T(" and READONLY element name is ") + el);
 #endif
     return S_OK;
 }
@@ -1822,7 +1837,6 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-	// TODO: Add your implementation code here
     // Initial pessimism.
 	*pRet = 1;
 
