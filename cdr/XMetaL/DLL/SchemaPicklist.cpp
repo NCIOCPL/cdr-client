@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "afxtempl.h"
 #include "resource.h"
 #include "SchemaPicklist.h"
 
@@ -53,14 +54,21 @@ void CSchemaPicklist::OnDblclkList1()
 
 void CSchemaPicklist::OnOK() 
 {
-    int curSel = m_listBox.GetCurSel();
-    if (curSel >= 0) {
+    int selCount = m_listBox.GetSelCount();
+    if (selCount > 0) {
         CWaitCursor wc;
+        CArray<int, int> selections;
+        selections.SetSize(selCount);
+        m_listBox.GetSelItems(selCount, selections.GetData());
+        int i = 0;
+        int curSel = selections[i];
         CString str;
         m_listBox.GetText(curSel, str);
         ::Selection selection = cdr::getApp().GetSelection();
         selection.SetReadOnlyContainer(FALSE);
+		selection.SelectContainerContents();
         ::DOMElement elem = selection.GetContainerNode();
+		selection.Delete();
         while (elem && elem.GetNodeType() != 1) // DOMElement
             elem = elem.GetParentNode();
         if (elem) {
@@ -75,25 +83,35 @@ void CSchemaPicklist::OnOK()
                     str = L"";
                     found = true;
                 }
-#if 0           // Try this in the macro file; it isn't working here
-                // (problem turned out to be a SoftQuad bug, fixed in 2.1
-                else if (textNode.GetNodeType() == 7) { // PI
-                    ::DOMProcessingInstruction pi(textNode);
-                    ::AfxMessageBox(L"got PI" + pi.GetTarget());
-                    if (pi.GetTarget() == _T("xm-replace_text")) {
-                        elem.removeChild(pi);
-                    }
-                    else
-                        pi.m_bAutoRelease = 0;
-                }
-#endif
                 textNode = nextNode;
             }
             if (!found) {
                 ::_Document curDoc = cdr::getApp().GetActiveDocument();
                 ::DOMText newNode = curDoc.createTextNode(str);
                 elem.appendChild(newNode);
-                newNode.m_lpDispatch->Release(); // XXX Surprise!  We need this!
+                newNode.m_lpDispatch->Release(); // XXX Surprise! We need this!
+            }
+
+            // Added in response to request for issue #529.
+            if (elemName == _T("ProtocolPhase") ||
+                elemName == _T("ProtocolDesign"))
+            {
+                while (++i < selCount) {
+                    ::Selection sel = cdr::getApp().GetSelection();
+                    if (!sel.FindInsertLocation(elemName, TRUE)) {
+                        ::AfxMessageBox(_T("You selected more items than ")
+                                        _T("are allowed at this position."));
+                        break;
+                    }
+                    sel.InsertElement(elemName);
+                    sel.MoveToElement(elemName, TRUE);
+                    curSel = selections[i];
+                    m_listBox.GetText(curSel, str);
+                    sel.SelectContainerContents();
+					sel.SetReadOnlyContainer(FALSE);
+                    sel.SetText(str);
+					sel.SetReadOnlyContainer(TRUE);
+                }
             }
         }
         selection.SetReadOnlyContainer(TRUE);
