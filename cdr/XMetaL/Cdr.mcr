@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.84 2002-10-09 14:11:54 bkline Exp $
+     $Id: Cdr.mcr,v 1.85 2002-10-10 16:34:18 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.84  2002/10/09 14:11:54  bkline
+     Lifted read-only block for PUP.
+
      Revision 1.83  2002/10/07 11:45:17  bkline
      Eliminated more dead code.
 
@@ -4058,7 +4061,7 @@
         "<StatusDate/><EnteredBy/><EntryDate/>" +
         "</CurrentOrgStatus>" +
         "</LeadOrgProtocolStatuses>" +
-        "<LeadOrgPersonnel cdr:id=''>" +
+        "<LeadOrgPersonnel>" +
         "<Person cdr:ref=''>Person Name Here</Person>" +
         "<PersonRole/>" +
         "</LeadOrgPersonnel>" +
