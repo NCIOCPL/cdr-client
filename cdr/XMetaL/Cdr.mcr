@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.100 2003-05-08 18:37:54 bkline Exp $
+     $Id: Cdr.mcr,v 1.101 2003-05-13 15:51:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.100  2003/05/08 18:37:54  bkline
+     Added macro to back out rejected change markup.  Modified Find Next and
+     Find Prev macros to let the user specify the revision level of the
+     markup to move to.
+
      Revision 1.99  2003/05/05 22:00:40  bkline
      Added support for Org address clipboard support.
 
@@ -5363,9 +5368,9 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "QcReport.py?DocType=Summary:bu&DocId="
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
-                            + "&Session="
+                            + "&ReportType=bu&Session="
                             + CdrSession;
         cdrObj.showPage(url);
     }
@@ -5382,9 +5387,9 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "QcReport.py?DocType=Summary:rs&DocId="
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
-                            + "&Session="
+                            + "&ReportType=rs&Session="
                             + CdrSession;
         cdrObj.showPage(url);
     }
@@ -5405,10 +5410,16 @@
             Application.Alert("Not logged into CDR");
             return;
         }
+        /*
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId +
                 "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
                 "&Filter1=name:Patient+Summary+QC+Report+Filter";
+        */
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
+                            + docId
+                            + "&ReportType=pat&Session="
+                            + CdrSession;
         cdrObj.showPage(url);
     }
     patientSummaryQcReport();
