@@ -45,10 +45,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -119,9 +125,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -129,8 +142,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -158,7 +170,7 @@ INTDIR=.\DebugU
 OutDir=.\DebugU
 # End Custom Macros
 
-ALL : "$(OUTDIR)\Cdr.dll" ".\DebugU\regsvr32.trg"
+ALL : "$(OUTDIR)\Cdr.dll" ".\Cdr.tlb" ".\Cdr.h" ".\Cdr_i.c" ".\DebugU\regsvr32.trg"
 
 
 CLEAN :
@@ -166,10 +178,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -240,9 +258,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -250,8 +275,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -293,10 +317,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -364,9 +394,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -374,8 +411,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -411,10 +447,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -482,9 +524,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -492,8 +541,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -529,10 +577,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -600,9 +654,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -610,8 +671,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -653,10 +713,16 @@ CLEAN :
 	-@erase "$(INTDIR)\Cdr.pch"
 	-@erase "$(INTDIR)\Cdr.res"
 	-@erase "$(INTDIR)\CdrUtil.obj"
+	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\LogonDialog.obj"
 	-@erase "$(INTDIR)\LogonProgress.obj"
+	-@erase "$(INTDIR)\OrgLocs.obj"
+	-@erase "$(INTDIR)\ParticOrgs.obj"
+	-@erase "$(INTDIR)\PassedValidation.obj"
+	-@erase "$(INTDIR)\PersonLocs.obj"
+	-@erase "$(INTDIR)\ProtUpdPerson.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -724,9 +790,16 @@ DEF_FILE= \
 LINK32_OBJS= \
 	"$(INTDIR)\Cdr.obj" \
 	"$(INTDIR)\CdrUtil.obj" \
+	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\LogonDialog.obj" \
+	"$(INTDIR)\LogonProgress.obj" \
+	"$(INTDIR)\OrgLocs.obj" \
+	"$(INTDIR)\ParticOrgs.obj" \
+	"$(INTDIR)\PassedValidation.obj" \
+	"$(INTDIR)\PersonLocs.obj" \
+	"$(INTDIR)\ProtUpdPerson.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -734,8 +807,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\StdAfx.obj" \
 	"$(INTDIR)\ValidateDialog.obj" \
 	"$(INTDIR)\xmetal2.obj" \
-	"$(INTDIR)\Cdr.res" \
-	"$(INTDIR)\LogonProgress.obj"
+	"$(INTDIR)\Cdr.res"
 
 "$(OUTDIR)\Cdr.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -854,6 +926,11 @@ SOURCE=.\CdrUtil.cpp
 "$(INTDIR)\CdrUtil.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
 
 
+SOURCE=.\CheckIn.cpp
+
+"$(INTDIR)\CheckIn.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
 SOURCE=.\Commands.cpp
 
 "$(INTDIR)\Commands.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
@@ -872,6 +949,31 @@ SOURCE=.\LogonDialog.cpp
 SOURCE=.\LogonProgress.cpp
 
 "$(INTDIR)\LogonProgress.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
+SOURCE=.\OrgLocs.cpp
+
+"$(INTDIR)\OrgLocs.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
+SOURCE=.\ParticOrgs.cpp
+
+"$(INTDIR)\ParticOrgs.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
+SOURCE=.\PassedValidation.cpp
+
+"$(INTDIR)\PassedValidation.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
+SOURCE=.\PersonLocs.cpp
+
+"$(INTDIR)\PersonLocs.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
+
+
+SOURCE=.\ProtUpdPerson.cpp
+
+"$(INTDIR)\ProtUpdPerson.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
 
 
 SOURCE=.\RetrieveDialog.cpp
