@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.4 2001-06-11 18:26:43 bkline Exp $
+ * $Id: CdrUtil.h,v 1.5 2001-11-27 14:18:57 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.4  2001/06/11 18:26:43  bkline
+ * Snapshot prior to re-working automation support using CCmdTarget.
+ *
  * Revision 1.3  2001/06/09 12:29:47  bkline
  * Switched to Unicode strings; added more sophisticated XML parsing.
  *
@@ -35,6 +38,14 @@ struct CdrDocCtrlInfo {
 	CString docTitle;
 };
 
+// Link ID, title, etc.
+struct CdrLinkInfo {
+    CdrLinkInfo(const CString& t, const CString& d) : target(t), data(d) {}
+    CdrLinkInfo() {}
+    CString target;
+    CString data;
+};
+
 /**
  * Wrapper for socket communication between the CDR client and server.
  */
@@ -43,6 +54,7 @@ public:
     static CString sendCommand(const CString& command);
 	static void setSessionString(const CString& s) { sessionString = s; }
 	static bool loggedOn() { return !sessionString.IsEmpty(); }
+    static const CString getSessionString() { return sessionString; }
 private:
     int sock;
     enum { CDR_SOCK = 2019 };
@@ -76,21 +88,38 @@ namespace cdr {
     typedef std::map<CString, StringSet> ElementSets;
     typedef std::map<CString, StringList> ValidValueSet;
     typedef std::map<CString, ValidValueSet> ValidValueSets;
+    typedef std::list<CdrLinkInfo> LinkInfoList;
 
     class SearchResult {
     public:
         SearchResult(const CString& id, 
-                     const CString& type, 
-                     const CString& title) : docId(id),
-                                             docType(type),
-                                             docTitle(title) {}
+                     const CString& type = _T(""), 
+                     const CString& title = _T(""),
+                     bool           grp = false,
+                     const CString& cMemb = _T(""),
+                     const LinkInfoList& piList = LinkInfoList()) : 
+                        docId(id),
+                        docType(type),
+                        docTitle(title),
+                        group(grp),
+                        coopMembership(cMemb),
+                        principalInvestigators(piList) {}
         CString getDocId()    const { return docId; }
         CString getDocType()  const { return docType; }
         CString getDocTitle() const { return docTitle; }
+        bool    isGroup()     const { return group; }
+        CString getCoopMemb() const { return coopMembership; }
+        const LinkInfoList& getPiList() const { return principalInvestigators; }
+        bool    operator==(const SearchResult& sr)  const 
+            { return sr.docId == docId; }
     private:
-        CString docId;
-        CString docType;
-        CString docTitle;
+        CString         docId;
+        CString         docType;
+        CString         docTitle;
+        bool            group;
+        CString         coopMembership;
+        LinkInfoList    principalInvestigators;
+
     };
     typedef std::list<SearchResult> DocSet;
 
@@ -117,7 +146,7 @@ namespace cdr {
 
     // Common utility functions.
     int fillListBox(CListBox& listBox, const DocSet& docSet);
-    DocSet extractSearchResults(const CString& xml);
+    void extractSearchResults(const CString& xml, DocSet& docSet);
 	bool showErrors(const CString& msg);
     _Application getApp();
     CString getXmetalPath();
@@ -128,6 +157,10 @@ namespace cdr {
     void extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info);
     CString utf8ToCString(const char* s);
     std::string cStringToUtf8(const CString& str);
+    CdrLinkInfo extractLinkInfo(const CString& str);
+    ::Range getElemRange(const CString& elemName);
+    ::Range findOrCreateChild(::Range parent, const CString& elemName);
+    CString docIdString(int);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 

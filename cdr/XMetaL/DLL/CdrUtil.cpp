@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.3 2001-06-09 12:31:51 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.4 2001-11-27 14:18:57 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.3  2001/06/09 12:31:51  bkline
+ * Switched to Unicode strings; added more sophisticated XML parsing.
+ *
  * Revision 1.2  2001/04/18 14:43:55  bkline
  * Added insertion operator for DOM node.
  *
@@ -247,13 +250,13 @@ bool cdr::showErrors(const CString& msg)
  *                          link targets.
  *  @return                 list of SearchResult objects.
  */
-cdr::DocSet cdr::extractSearchResults(const CString& xml)
+void cdr::extractSearchResults(const CString& xml, DocSet& docSet)
 {
     // Extract the first query result.
+    docSet.clear();
     Element r = Element::extractElement(xml, _T("QueryResult"));
 
     // Loop through each QueryResult element.
-    DocSet docSet;
     while (r) {
         Element id    = r.extractElement(r.getString(), _T("DocId"));
         Element type  = r.extractElement(r.getString(), _T("DocType"));
@@ -264,7 +267,6 @@ cdr::DocSet cdr::extractSearchResults(const CString& xml)
         docSet.push_back(qr);
         r = r.extractElement(xml, _T("QueryResult"), r.getEndPos());
     }
-    return docSet;
 }
 
 /**
@@ -282,21 +284,43 @@ int cdr::fillListBox(CListBox& listBox, const DocSet& docSet)
 {
     // Start with a clean slate.
     listBox.ResetContent();
-    int n = 0;
+    int n        = 0;
+    int maxWidth = 0;
+    CDC*   dc    = 0;
+    CFont* font  = listBox.GetFont();
+    ASSERT(font);
 
-    // Loop through the elements of the document set.
-    DocSet::const_iterator iter = docSet.begin();
-    while (iter != docSet.end()) {
+    // Wrap this in a try block so we're sure to release the device context.
+    try {
 
-        // Build a string in the form "[doc-id] doc-title"
-		CString id = (*iter).getDocId();
-		CString title = (*iter).getDocTitle();
-        ++iter;
-        ++n;
+        dc = listBox.GetDC();
 
-        // Append the new string to the list box object.
-		listBox.AddString(_T("[") + id + _T("] ") + title);
-	}
+        // Loop through the elements of the document set.
+        DocSet::const_iterator iter = docSet.begin();
+        while (iter != docSet.end()) {
+
+            // Build a string in the form "[doc-id] doc-title"
+            CString id    = (*iter).getDocId();
+            CString title = (*iter).getDocTitle();
+            ++iter;
+            ++n;
+
+            // Append the new string to the list box object.
+            CString str = _T("[") + id + _T("] ") + title;
+            CSize size  = dc->GetTextExtent(str);
+            if (maxWidth < size.cx)
+                maxWidth = size.cx;
+            listBox.AddString(str);
+        }
+
+        // Make sure horizontal scrolling works properly.
+        listBox.SetHorizontalExtent(maxWidth + 6);
+    }
+    catch (...) {
+        if (dc) {
+            listBox.ReleaseDC(dc);
+        }
+    }
 
     // Tell the caller how many items we added to the list box.
     return n;
@@ -738,6 +762,10 @@ cdr::Element cdr::Element::extractElement(const CString& s,
     }
 
     // We now have all the attributes and startPos points just past closing >.
+    // XXX Note that this approach fails with nested elements of the same
+    // name.  Should not pos a problem for the uses the client DLL makes of
+    // this method, but watch out for future uses.  At that point we may need
+    // to link in a real XML parser.
     int endPos = s.Find(_T("</") + name + _T(">"), startPos);
     if (endPos == -1)
         return e;
@@ -758,4 +786,79 @@ CString cdr::Element::getCdataSection() const
     if (end == -1)
         return CString();
     return str.Mid(pos, end - pos);
+}
+
+CdrLinkInfo cdr::extractLinkInfo(const CString& str)
+{
+    CdrLinkInfo info;
+
+    // Parse out the document ID and text content.
+    int pos = str.Find(_T("["));
+    if (pos == -1) {
+        ::AfxMessageBox(_T("Unable to find link target start delimiter."));
+        return info;
+    }
+    int endPos = str.Find(_T("]"), ++pos);
+    if (endPos == -1) {
+        ::AfxMessageBox(_T("Unable to find link target end delimiter."));
+        return info;
+    }
+    info.target = str.Mid(pos, endPos - pos);
+    pos = endPos + 1;
+    while (pos < str.GetLength() && str[pos] == _T(' '))
+        ++pos;
+    info.data = str.Mid(pos);
+    return info;
+}
+
+::Range cdr::getElemRange(const CString& elemName)
+{
+    // Find out where we are.
+    ::_Document activeDoc = getApp().GetActiveDocument();
+    ::Range rng = activeDoc.GetRange();
+
+    // Make sure what we find is an ancestor of the current element.
+    if (!rng.GetIsParentElement(elemName))
+        return ::Range();
+
+    // Move.
+    if (!rng.MoveToElement(elemName, FALSE))
+        return ::Range();
+    /*
+    while (rng && rng.GetElementName(0) != elemName) {
+        rng.SelectContainerContents();
+        rng.Collapse(1);
+        rng.MoveLeft(0);
+    }
+    */
+    return rng;
+}
+
+::Range cdr::findOrCreateChild(::Range parent, const CString& elemName)
+{
+    // Try to find an existing occurrence first.
+    parent.SelectContainerContents();
+    ::Range child = parent.GetDuplicate();
+    child.Collapse(1);
+    if (child.MoveToElement(elemName, TRUE)) {
+        if (parent.GetContains(child, FALSE))
+            return child;
+    }
+
+    // Didn't find one; try to create a new one.
+    parent.Collapse(1);
+    if (parent.FindInsertLocation(elemName, TRUE)) {
+        parent.InsertElement(elemName);
+        return parent;
+    }
+
+    // Bust.  Can't find *or* create the element!
+    return ::Range();
+}
+
+CString cdr::docIdString(int id)
+{
+    TCHAR buf[40];
+    swprintf(buf, _T("CDR%010d"), id);
+    return buf;
 }
