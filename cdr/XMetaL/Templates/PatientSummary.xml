@@ -83,8 +83,8 @@
 <SectMetaData>
 <SectionType>Diagnostic tests</SectionType>
 </SectMetaData>
-<KeyPoint>Tests that examine the A, B, and C are used to help diagnose (find) x cancer.</KeyPoint>
-<Para>The following tests and procedures can help detect x cancer:</Para>
+<KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
+<Para>The following tests and procedures may be used:</Para>
 <ItemizedList>
 			 <ListItem> <GlossaryTermRef cdr:href="CDR0000075597">Biopsy</GlossaryTermRef>: Cells, tissues, or fluid are removed for examination under a microscope to see if cancer cells are present. When only a sample of tissue is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000077129">incisional biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000076088">core biopsy</GlossaryTermRef>. When an entire tumor or lesion is removed, the procedure is called an <GlossaryTermRef cdr:href="CDR0000076841">excisional biopsy</GlossaryTermRef>. When a sample of tissue or fluid is removed with a needle, the procedure is called a <GlossaryTermRef cdr:href="CDR0000076229">needle biopsy</GlossaryTermRef> or <GlossaryTermRef cdr:href="CDR0000076122">fine-needle aspiration</GlossaryTermRef>.</ListItem>
 			 <ListItem>[test here]</ListItem>
@@ -98,8 +98,8 @@
 <SectMetaData>
 <SectionType>Prognostic factors</SectionType>
 </SectMetaData>
-<KeyPoint>Certain factors affect prognosis (chance of recovery) and choice of treatment.</KeyPoint>
-<Para>The prognosis (chance of recovery) and choice of treatment depend on the stage of the cancer (whether it affects part of the x, involves the whole x, or has spread to other places in the body), the type of cancer, the size of the tumor, and the patient's general health. [Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
+<KeyPoint>Certain factors affect treatment options and prognosis (chance of recovery).</KeyPoint>
+<Para>The treatment options and prognosis (chance of recovery) depend on the stage of the cancer (whether it affects part of the x, involves the whole x, or has spread to other places in the body), the type of cancer, the size of the tumor, and the patient's general health. [Include dramatic prognosis here, extracting philosophy from WYNTK]</Para>
 </SummarySection>
 </SummarySection>
 
@@ -110,8 +110,8 @@
 <SectMetaData>
 <SectionType>Diagnostic tests</SectionType>
 </SectMetaData>
-<KeyPoint>After x cancer has been diagnosed (found), tests are done to find out if cancer cells have spread within the x or to other parts of the body. </KeyPoint>
-<Para>The process used to find out whether cancer has spread within the X or to other parts of the body is called staging. It is important to know the stage of the disease in order to plan the best treatment. The following tests and procedures are used to determine stage:</Para>
+<KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the X or to other parts of the body. </KeyPoint>
+<Para>The process used to find out the type of cancer and if cancer cells have spread within the X or to other parts of the body is called staging. The information gathered from the staging process determines the stage of the disease.  It is important to know the stage  in order to plan the best treatment. The following tests and procedures may be used in the staging process:</Para>
 <ItemizedList Style="bullet"> 
 		  <ListItem> [test here]</ListItem> 
 		  <ListItem> [test here]</ListItem> 
@@ -155,7 +155,7 @@
 <SectionType>Classification by stage</SectionType>
 </SectMetaData>
 <Title>Recurrent X Cancer</Title>
-<Para>Recurrent x cancer is cancer that has recurred (come back) after it has been treated. Recurrent x cancer may come back in the xx or in another part of the body.  <!--[if true]--> </Para>
+<Para>Recurrent X cancer is cancer that has recurred (come back) after it has been treated. Recurrent X cancer may come back in the XX or in other parts of the body.  <!--[if true]--> </Para>
 </SummarySection>
 
 <SummarySection>
@@ -165,8 +165,8 @@
 <SectMetaData>
 <SectionType>Standard treatment</SectionType>
 </SectMetaData>
-<KeyPoint>There are treatments for all patients with x cancer.</KeyPoint>
-<Para>Treatments are available for all patients with x cancer. Some treatments are standard, and some are being tested in <GlossaryTermRef cdr:href="CDR0000076392">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the treatment currently used as <GlossaryTermRef cdr:href="CDR0000075410">"standard" therapy</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
+<KeyPoint>There are different types of treatment for  patients with X cancer.</KeyPoint>
+<Para>Different types of treatments are available for  patients with X cancer. Some treatments are standard (the currently used treatment), and some are being tested in <GlossaryTermRef cdr:href="CDR0000076392">clinical trials</GlossaryTermRef>. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  <GlossaryTermRef cdr:href="CDR0000075410">"standard" treatment</GlossaryTermRef>, the new treatment may become the standard treatment.</Para>
 <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://156.40.56.107/clinical_trials/">NCI cancer.gov Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
 </SummarySection>
 
