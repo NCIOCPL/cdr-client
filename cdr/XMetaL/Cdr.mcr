@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.68 2002-07-02 20:47:02 bkline Exp $
+     $Id: Cdr.mcr,v 1.69 2002-07-15 22:39:22 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.68  2002/07/02 20:47:02  bkline
+     Fixed icon number for doc version history report button.
+
      Revision 1.67  2002/07/02 19:52:06  bkline
      Added document history report macro.
 
@@ -2195,6 +2198,17 @@
      * Saves the currently active document in the CDR repository.
      */
     function cdrSave() {
+        if (ActiveDocument.ViewType != sqViewNormal &&
+            ActiveDocument.ViewType != sqViewTagsOn) {
+            try {
+                ActiveDocument.ViewType = sqViewNormal;
+            }
+            catch (e) { 
+                Application.Alert("Switch to normal or tags-on view " +
+                                  "to save documents.");
+                return;
+            }
+        }
         if (cdrObj == null)
             Application.Alert("You are not logged on to the CDR");
         else
