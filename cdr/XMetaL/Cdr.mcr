@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.82 2002-09-26 15:30:51 bkline Exp $
+     $Id: Cdr.mcr,v 1.83 2002-10-07 11:45:17 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.82  2002/09/26 15:30:51  bkline
+     Eliminated dead code.
+
      Revision 1.81  2002/09/24 20:41:32  bkline
      Added Mailer toolbar/macro.
 
@@ -640,45 +643,6 @@
 
   ]]>
 </MACRO>
-
-<!--
-<MACRO  name="Switch to CSS 1" 
-        lang="JScript" 
-        key="Ctrl+Alt+Shift+A">
-    switchCSS("InScopeProtocol-1.css", "InScopeProtocol.css");
-</MACRO>
-
-<MACRO  name="Switch to CSS 2" 
-        lang="JScript" 
-        key="Ctrl+Alt+Shift+B">
-    switchCSS("InScopeProtocol-2.css", "InScopeProtocol.css");
-</MACRO>
--->
-
-<!--
-<MACRO  name="MakeReplaceText" 
-        key="Ctrl+Alt+Z" 
-        lang="VBScript" 
-        id="1127">
-  <![CDATA[
- ' SoftQuad Script Language VBSCRIPT:
- if Application.Documents.Count = 0 Then
-   Application.Alert("No Open Document")
- 
- Else 
-
-   If Application.ActiveDocument.ViewType = 2 Then
-     Application.Alert("This macro doesn't work in Plain Text mode")
-   Else 
-     txt = Selection.Text
-     Selection.Delete
-     Selection.InsertReplaceableText(txt)
-   End If
- End If
- 
-  ]]>
-</MACRO>
--->
 
 <MACRO  name="On_Update_UI" 
         hide="true" 
@@ -4865,7 +4829,6 @@
                 "&Filter1=name:InScope+Protocol+Administrative+Report+Filter";
         Application.ShowPage(url);
     }
-    //Application.Alert("Don't have the filters yet for this report.");
     protocolAdminQcReport();
   ]]>
 </MACRO>
@@ -5070,7 +5033,7 @@
             Application.Alert("Current document ID not found");
             return;
         }
-        var url = CdrCgiBin + "Filter.py";
+        var url = CdrCgiBin + "Filter.py?DocId=" + docId;
         Application.ShowPage(url);
     }
     Application.Alert("Don't have filters for this command yet.");
@@ -5093,7 +5056,6 @@
                             + CdrSession;
         Application.ShowPage(url);
     }
-    //Application.Alert("Don't have filters for this command yet.");
     boldUnderlineReport();
   ]]>
 </MACRO>
@@ -5113,7 +5075,6 @@
                             + CdrSession;
         Application.ShowPage(url);
     }
-    //Application.Alert("Don't have filters for this command yet.");
     redlineStrikeoutReport();
   ]]>
 </MACRO>
@@ -5137,7 +5098,6 @@
                 "&Filter1=name:Patient+Summary+QC+Report+Filter";
         Application.ShowPage(url);
     }
-    //Application.Alert("Don't have the filters yet for this report.");
     patientSummaryQcReport();
   ]]>
 </MACRO>
@@ -5176,29 +5136,6 @@
     documentHistoryReport();
   ]]>
 </MACRO>
-
-<!--
-<MACRO name="Insert Mailer Response"
-       lang="JScript">
-  <![CDATA[
-    function insertMailerResponse() {
-        var rng = ActiveDocument.Range;
-        if (!rng.FindInsertLocation("Response", true)) {
-            if (!rng.FindInsertLocation("Response", false)) {
-                Application.Alert("Can't insert Response element");
-                return; 
-            }
-        }
-        rng.InsertElement("Response");
-        rng.InsertWithTemplate("Received");
-        rng.Select();
-        rng.SelectAfterContainer();
-        rng.InsertWithTemplate("ChangesCategory");
-    }
-    insertMailerResponse();
-  ]]>
-</MACRO>
--->
 
 <MACRO name="Insert DateLastModified" 
        lang="JScript" >
