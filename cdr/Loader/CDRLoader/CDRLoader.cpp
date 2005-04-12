@@ -182,6 +182,43 @@ static CString lookupXmetalApp()
     return _T("");
 }
 
+static void clearMediaCache()
+{
+    // Enhancement #1557: clear out temporary media files.
+    // Log errors, but continue.
+    TCHAR curDir[_MAX_PATH];
+    DWORD nBytes = ::GetCurrentDirectory(_MAX_PATH, curDir);
+    if (!nBytes)
+        DebugWrite("Unable to determine current directory.\n");
+    else if (nBytes > _MAX_PATH)
+        DebugWrite("Current directory longer than _MAX_PATH.\n");
+    else {
+        CString logMsg;
+        logMsg.Format(_T("Current directory: %s\n"), curDir);
+        DebugWrite(logMsg);
+    }
+        
+    CFileFind imageFiles;
+    BOOL moreFiles = imageFiles.FindFile(_T(".\\Cdr\\Media\\*"));
+    while (moreFiles) {
+
+        moreFiles = imageFiles.FindNextFile();
+        CString fileName = imageFiles.GetFileName();
+        CString filePath = imageFiles.GetFilePath();
+        CStringA filePathA(filePath);
+        if (fileName == _T(".") || fileName == _T(".."))
+            continue;
+        DebugWrite(_T("Removing ") + filePath + _T(".\n"));
+        int result = remove(filePathA.GetString());
+        if (result) { // && errno != ENOENT) {
+            CString errnoString;
+            errnoString.Format(_T("%S"), strerror(errno));
+            DebugWrite(_T("Failure deleting ") + filePath +
+                       _T(": ") + errnoString + _T(".\n"));
+        }
+    }
+}
+
 BOOL CCDRLoaderApp::InitInstance()
 {
 	// InitCommonControls() is required on Windows XP if an application
@@ -372,6 +409,9 @@ BOOL CCDRLoaderApp::InitInstance()
 
 	if (nResponse == IDOK)
 	{
+        // Enhancement #1557: clear out temporary media files.
+        clearMediaCache();
+        
 		bool	ok_to_launch = false;
 		CString	err = _T("Unknown error.");
 
