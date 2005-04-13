@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.15 2004-09-09 18:43:03 bkline Exp $
+ * $Id: CdrUtil.h,v 1.16 2005-04-13 13:20:51 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.15  2004/09/09 18:43:03  bkline
+ * Glossifier implemented.
+ *
  * Revision 1.14  2004/02/26 01:57:25  bkline
  * Cleared out some experimental/debugging dross.
  *
@@ -226,6 +229,12 @@ namespace cdr {
         int     endPos;
     };
 
+    // Used to find size of image.
+    struct ImageDimensions {
+        unsigned long height;
+        unsigned long width;
+    };
+
     // Common utility functions.
     int fillListBox(CListBox& listBox, const DocSet& docSet);
     void extractSearchResults(const CString& xml, DocSet& docSet);
@@ -247,6 +256,9 @@ namespace cdr {
     int showPage(const CString& url);
     CString suppressLeadingZeros(const CString&);
     CString expandLeadingZeros(const CString&);
+    bool replaceElementContent(::DOMElement&, const CString&);
+    bool getImageDimensions(const unsigned char* buf, int len,
+                            ImageDimensions& dim);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 

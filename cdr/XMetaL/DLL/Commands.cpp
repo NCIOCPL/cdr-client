@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.44 2005-03-18 17:17:50 bkline Exp $
+ * $Id: Commands.cpp,v 1.45 2005-04-13 13:20:51 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.44  2005/03/18 17:17:50  bkline
+ * Added client-side support for working with image blobs.
+ *
  * Revision 1.43  2005/03/03 15:02:09  bkline
  * Added new interface for reviewing all of the change markup at once.
  *
@@ -714,10 +717,9 @@ STDMETHODIMP CCommands::search(int *pRet)
 }
 
 /**
- * Load bytes for a document BLOB from the specified file and
- * encode it.
+ * Load bytes for a document BLOB from the specified file.
  */
-static CString getBlobFromFile(const CString& path) {
+static std::string getBlobFromFile(const CString& path) {
     CFile file;
     file.Open((LPCTSTR)path, CFile::modeRead);
     int srcLen = (int)file.GetLength();
@@ -735,13 +737,26 @@ static CString getBlobFromFile(const CString& path) {
         int bytesRead = file.Read(src.buf + totalRead, srcLen - totalRead);
         if (bytesRead < 1) {
             ::AfxMessageBox(_T("Failure reading blob file"));
-            throw _T("Zero bytes read from blob file");
+            throw _T("Failure reading from blob file");
         }
         totalRead += bytesRead;
     }
+    return std::string(src.buf, srcLen);
+}
+
+/*
+ * Encode BLOB bytes.
+ */
+static CString encodeBlob(const std::string& src) {
+    int srcLen = (int)src.size();
     int dstLen = srcLen * 2; // more than enough
+    struct Buf {
+        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
+        ~Buf() { delete [] buf; }
+        char* buf;
+    };
     Buf dst((size_t)dstLen);
-    if (!::Base64Encode((const BYTE*)src.buf, srcLen, 
+    if (!::Base64Encode((const BYTE*)src.c_str(), srcLen, 
                         (LPSTR)dst.buf, &dstLen)) {
         ::AfxMessageBox(_T("Failure encoding blob file"));
         throw _T("Failure encoding Blob file");
@@ -749,8 +764,34 @@ static CString getBlobFromFile(const CString& path) {
 
     CString msg;
     // msg.Format(_T("encoded %d-byte %s as %d bytes"), srcLen, path, dstLen);
-    ::AfxMessageBox(msg);
+    // ::AfxMessageBox(msg);
     return CString(dst.buf, dstLen);
+}
+
+static void insertImageDimensions(::DOMNode& docElement, 
+                                  const std::string& bytes) {
+    cdr::ImageDimensions dim;
+    if (cdr::getImageDimensions((const unsigned char*)bytes.c_str(),
+                                bytes.size(),
+                                dim)) {
+        CString height, width;
+        height.Format(_T("%ld"), dim.height);
+        width.Format(_T("%ld"), dim.width);
+        ::DOMElement& elem = (::DOMElement&)docElement;
+        ::DOMNodeList nodeList = 
+            elem.getElementsByTagName(_T("ImageDimensions"));
+        if (nodeList == 0)
+            return;
+        ::DOMElement dimElem = nodeList.item(0);
+        ::DOMElement child = dimElem.GetFirstChild();
+        while (child != 0) {
+            if (child.GetNodeName() == _T("HeightPixels"))
+                cdr::replaceElementContent(child, height);
+            else if (child.GetNodeName() == _T("WidthPixels"))
+                cdr::replaceElementContent(child, width);
+            child = child.GetNextSibling();
+        }
+    }
 }
 
 /**
@@ -842,14 +883,23 @@ STDMETHODIMP CCommands::save(int *pRet)
                    << (LPCTSTR)cdr::encode(saveDialog.m_comment)
                    << _T("</DocComment>");
             os << _T("</CdrDocCtl>");
-            os << _T("<CdrDocXml><![CDATA[") << docElement 
-               << _T("]]></CdrDocXml>");
+
+            CString encodedBlob;
             CString blobFilename = saveDialog.m_blobFilenameString;
             if (!blobFilename.IsEmpty()) {
                 try {
-                    os << _T("<CdrDocBlob>") 
-                       << (LPCTSTR)getBlobFromFile(blobFilename)
-                       << _T("</CdrDocBlob>");
+                    std::string blobBytes = getBlobFromFile(blobFilename);
+                    encodedBlob = encodeBlob(blobBytes);
+                    if (ctrlInfo.docType == _T("Media")) {
+                        try {
+                            // ::AfxMessageBox(_T("calling insertImageDimensions"));
+                            insertImageDimensions(docElement, blobBytes);
+                        }
+                        catch (...) {
+                            TCHAR* msg = _T("Unable to set image dimensions");
+                            ::AfxMessageBox(msg);
+                        }
+                    }
                 }
                 catch (...) {
                     CString msg;
@@ -859,6 +909,13 @@ STDMETHODIMP CCommands::save(int *pRet)
                     *pRet = 7;
                     return S_OK;
                 }
+            }
+            os << _T("<CdrDocXml><![CDATA[") << docElement 
+               << _T("]]></CdrDocXml>");
+            if (!blobFilename.IsEmpty()) {
+                os << _T("<CdrDocBlob>") 
+                   << (LPCTSTR)encodedBlob
+                   << _T("</CdrDocBlob>");
             }
             os << _T("</CdrDoc></") << (LPCTSTR)cmdTag << _T(">");
 
