@@ -165,7 +165,34 @@ bool CDRTicketStub::CheckManifestFiles()
     }
     return CheckManifestFiles(xmlString);
 }
-    
+static CString getFileTimestamp(const CString& name) {
+    HANDLE h = ::CreateFile((LPCTSTR)name, GENERIC_READ, 0, NULL,
+                            OPEN_EXISTING, 0, 0);
+    if (!h) {
+        CString err;
+        err.Format(_T("failure getting timestamp for %s"), name);
+        return err;
+    }
+    FILETIME cre, acc, wri;
+    if (!::GetFileTime(h, &cre, &acc, &wri)) {
+        CString err;
+        err.Format(_T("unable to get timestamp for %s"), name);
+        return err;
+    }
+    SYSTEMTIME s;
+    if (!::FileTimeToSystemTime(&wri, &s)) {
+        CString err;
+        err.Format(_T("failure converting filetime to system time for %s"),
+                   name);
+        return err;
+    }
+    CString result;
+    result.Format(_T("%04d%02d%02d%02d%02d%02d"), 
+                  s.wYear, s.wMonth, s.wDay, 
+                  s.wHour, s.wMinute, s.wSecond);
+    return result;
+}
+
 bool CDRTicketStub::CheckManifestFiles(const CString &xmlString)
 {
     //DebugWrite("Checking manifest files.\n");
@@ -193,22 +220,17 @@ bool CDRTicketStub::CheckManifestFiles(const CString &xmlString)
         if (nameElem && timeElem) {
             struct _stat s;
             CString name = nameElem.getString();
-            CString when = timeElem.getString();
+            CString serverTimestamp = timeElem.getString();
             //DebugWrite(_T("Checking manifest file ") + name + _T("\n"));
 
-            // The manifest is always off by a few milliseconds, because
-            // it's being written with informantion about itself.
             CString upperName = name;
             upperName.MakeUpper();
-            if (upperName.Find(_T("CDR_MANIFEST.XML")) != -1)
-                continue;
 
-            // This one doesn't count, either, because we delete it.
+            // This one doesn't count, because we delete it.
             if (upperName.Find(_T("CDRLOADERUPDATED.CMD")) != -1)
                 continue;
             
-            time_t ts = (time_t)_tstol((LPCTSTR)when);
-            int    rc = (int)_tstat((LPCTSTR)name, &s);
+            int rc = (int)_tstat((LPCTSTR)name, &s);
             if (rc) {
                 DebugWrite(_T("CheckManifestFiles(): ") + name +
                            _T(" not found.\n"));
@@ -218,21 +240,13 @@ bool CDRTicketStub::CheckManifestFiles(const CString &xmlString)
             // Don't bother with directories.
             else if (s.st_mode & _S_IFREG) {
 
-                if (ts != s.st_mtime) {
-                    char serverTimestamp[80];
-                    char clientTimestamp[80];
-                    strftime(serverTimestamp,
-                             sizeof serverTimestamp,
-                             "\tServer timestamp: %Y-%m-%d %H:%M:%S.\n",
-                             localtime(&ts));
-                    strftime(clientTimestamp,
-                             sizeof clientTimestamp,
-                             "\tClient timestamp: %Y-%m-%d %H:%M:%S.\n",
-                             localtime(&s.st_mtime));
+                CString clientTimestamp = getFileTimestamp(name);
+                if (serverTimestamp != clientTimestamp) {
+
                     DebugWrite(_T("CheckManifestFiles() checking ") + name +
                                _T(".\n"));
-                    DebugWrite(serverTimestamp);
-                    DebugWrite(clientTimestamp);
+                    DebugWrite(_T("Server: ") + serverTimestamp);
+                    DebugWrite(_T("Client: ") + clientTimestamp);
                     return false;
                 }
             }
