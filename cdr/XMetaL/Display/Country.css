@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Country.css                                                      */
+/*  Country.css                                                          */
 /*                                                                       */
 /*      v. 1.3                                                           */
 /*      3/19/02  by ebator                                               */
@@ -21,137 +21,145 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
+/*************************************************************************/
+/*                    DEFAULT PROPERTIES                                 */
+/*************************************************************************/
 @import "CdrCommonSchema.css";
 
 $DOCUMENT 
-
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
        margin-left: 5px;
        color:black;         }
 
-$COMMENT 
-
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
+$PROCINS
      { color: blue;
        background-color: white; }
 
-Country,
-
+Country
      { background-color: #CCCCFF; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Continent,
 Country,
 CountryAlternateName,
 CountryFullName,
 CountryShortName,
 DateLastModified,
+InternationalDialingCode,
+ISOShortCountryName,
+ISOAlpha2CountryCode,
 PdqKey,
 PostalCodePosition,
-
-	{ display: block; }
-
+     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+Continent:before                { content: "Continent *: "; }
+CountryAlternateName:before     { content: "Alternate Name & +: "; }
+CountryFullName:before          { content: "Country Full Name *: "; }
+CountryShortName:before         { content: "Short Name &: "; }
+DateLastModified:before         { content: "Last Modified &: "; }
+InternationalDialingCode:before { content: "Int'l Dialing Code & +: "; }
+ISOShortCountryName:before      { content: "Short Ctry Name &: "; }
+ISOAlpha2CountryCode:before     { content: "Alpha2 Ctry Code &: "; }
+PdqKey:before                   { content: "PDQ Key &: "; }
+PostalCodePosition:before       { content: "Postal Code Position *: "; }
 
-Continent:before			{ content: "Continent *: "; }
-CountryAlternateName:before		{ content: "Alternate Name & +: "; }
-CountryFullName:before			{ content: "Country Full Name *: "; }
-CountryShortName:before			{ content: "Short Name &: "; }
-DateLastModified:before			{ content: "Last Modified &: "; }
-PdqKey:before				{ content: "PDQ Key &: "; }
-PostalCodePosition:before		{ content: "Postal Code Position *: "; }
 
-
-
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
 
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 CountryAlternateName:before,
 CountryFullName:before,
 CountryShortName:before,
 DateLastModified:before,
+InternationalDialingCode:before,
+ISOShortCountryName:before,
+ISOAlpha2CountryCode:before,
 PdqKey:before,
-
-   {  font-weight: bold;
-      color: black;  }
-
+     { font-weight: bold;
+       color: black;  }
 
 
-/***************************************************************************/ 
-/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
+/***************************************************************************/
 Continent:before,
 PostalCodePosition:before,
-
-	{ font-weight: bold;
- 	  color: black;      }
-
+     { font-weight: bold;
+       color: black;      }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 
+/* Key element for length = PostalCodePosition    */
 
-/* Key element for length = PostalCodePosition				   */
+Continent,    
+     { margin-left: 130pt; 
+       text-indent: -71pt; }
 
-Continent,				{ margin-left: 130pt; 
-					  text-indent: -71pt; }
-CountryFullName,			{ margin-left: 130pt; 
-					  text-indent: -121.5pt; }
-CountryAlternateName,			{ margin-left: 130pt; 
-					  text-indent: -116pt; }
-CountryShortName,			{ margin-left: 130pt; 
-					  text-indent: -87pt; }
-PostalCodePosition,			{ margin-left: 130pt; 
-					  text-indent: -135pt; }
+CountryFullName,    
+     { margin-left: 130pt;
+       text-indent: -121.5pt; }
 
-/* Key element for length = DateLastModified				   */
+CountryAlternateName,    
+     { margin-left: 130pt;
+       text-indent: -116pt; }
 
-DateLastModified,			{ margin-left: 100pt;
-					  text-indent: -96pt; }
-PdqKey,					{ margin-left: 100pt;
-					  text-indent: -71pt; }
+CountryShortName,    
+     { margin-left: 130pt;
+       text-indent: -87pt; }
+
+InternationalDialingCode
+     { margin-left: 130pt;
+       text-indent: -127pt; }
+
+ISOShortCountryName
+     { margin-left: 130pt;
+       text-indent: -115pt; }
+
+ISOAlpha2CountryCode
+     { margin-left: 130pt;
+       text-indent: -121pt; }
+
+PostalCodePosition,    
+     { margin-left: 130pt;
+       text-indent: -135pt; }
+
+/* Key element for length = DateLastModified    */
+
+DateLastModified,    
+     { margin-left: 100pt;
+       text-indent: -96pt; }
+
+PdqKey,    
+     { margin-left: 100pt;
+       text-indent: -71pt; }
 
 
 Continent,
@@ -159,42 +167,42 @@ CountryFullName,
 CountryAlternateName,
 CountryShortName,
 DateLastModified,
+ISOShortCountryName,
+ISOAlpha2CountryCode,
 PdqKey,
 PostalCodePosition,
-
-	{ margin-bottom: 4pt; }
+     { margin-bottom: 4pt; }
 
 CountryFullName,
-
-	{ margin-top: 10pt; }
+     { margin-top: 10pt; }
 
 DateLastModified,
-
-	{ margin-top: 2em; }
-
-
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+     { margin-top: 2em; }
 
 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 Continent,
 CountryFullName,
 CountryAlternateName,
 CountryShortName,
 DateLastModified,
+InternationalDialingCode,
+ISOShortCountryName,
+ISOAlpha2CountryCode,
 PdqKey,
 PostalCodePosition,
-
-	{ background-color: white; }
-
+     { background-color: white; }
 
 Continent:before,
 CountryFullName:before,
 CountryAlternateName:before,
 CountryShortName:before,
 DateLastModified:before,
+InternationalDialingCode:before,
+ISOShortCountryName:before,
+ISOAlpha2CountryCode:before,
 PdqKey:before,
 PostalCodePosition:before,
-
-	{ background-color: #CCCCFF; }
+     { background-color: #CCCCFF; }
