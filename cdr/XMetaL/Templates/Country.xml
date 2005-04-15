@@ -10,5 +10,8 @@
   <CountryAlternateName><?xm-replace_text {Optionally enter an accepted other name} ?></CountryAlternateName>
   <Continent><?xm-replace_text {Select the continent where this country is located (required)} ?></Continent>
   <PostalCodePosition><?xm-replace_text {Select an address position for the postal code (required)} ?></PostalCodePosition>
+  <ISOShortCountryName><?xm-replace_text {Optionally enter the ISO short country name} ?></ISOShortCountryName>
+  <ISOAlpha2CountryCode><?xm-replace_text {Optionally enter the ISO alpha2 country code} ?></ISOAlpha2CountryCode>
+  <InternationalDialingCode><?xm-replace_text {Optionally enter the international dialing code} ?></InternationalDialingCode>
   <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
   </Country>
