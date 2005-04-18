@@ -76,7 +76,7 @@ CountryAlternateName:before     { content: "Alternate Name & +: "; }
 CountryFullName:before          { content: "Country Full Name *: "; }
 CountryShortName:before         { content: "Short Name &: "; }
 DateLastModified:before         { content: "Last Modified &: "; }
-InternationalDialingCode:before { content: "Int'l Dialing Code & +: "; }
+InternationalDialingCode:before { content: "Int'l Dial Code & + @: "; }
 ISOShortCountryName:before      { content: "Short Ctry Name &: "; }
 ISOAlpha2CountryCode:before     { content: "Alpha2 Ctry Code &: "; }
 PdqKey:before                   { content: "PDQ Key &: "; }
@@ -137,7 +137,7 @@ CountryShortName,
 
 InternationalDialingCode
      { margin-left: 130pt;
-       text-indent: -127pt; }
+       text-indent: -124pt; }
 
 ISOShortCountryName
      { margin-left: 130pt;
