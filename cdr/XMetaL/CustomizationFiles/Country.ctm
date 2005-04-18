@@ -86,7 +86,7 @@
     </Template>
     <Template>
       <Name>InternationalDialingCode</Name>
-      <MiniTemplate><![CDATA[<InternationalDialingCode><?xm-replace_text {Optionally enter the international dialing code} ?></InternationalDialingCode>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<InternationalDialingCode Type="Land"><?xm-replace_text {Optionally enter the international dialing code} ?></InternationalDialingCode>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ISOShortCountryName</Name>
