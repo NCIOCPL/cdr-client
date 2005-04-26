@@ -86,8 +86,6 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
 /*************************************************************************/
 /*                     DEFAULT PROPERTIES                                */
 /*************************************************************************/
@@ -96,7 +94,6 @@
 @import "CommonProtocolInfo.css"; 
 
 $DOCUMENT
-
   {  font-family: Arial, sans-serif;       
      font-size: 12pt;
      margin-top: 5px;
@@ -104,13 +101,11 @@ $DOCUMENT
      color: black;        }
 
 $COMMENT 
-
   {  display: block;
      color: purple;
      white-space: pre;  }
 
 $PROCINS 
-
   {  color: blue;
      background-color: white;  }
 
@@ -194,10 +189,12 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+RelatedDocuments,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
 Role, 
 SourceName, 
+SourceWebsite,
 SpecialCategory, 
 SpecificEmail,
 SpecificPerson, 
@@ -205,9 +202,11 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+SupplementaryInfoLink,
 UpdateMode,
+WarehouseBoxNumber,
 
-   { display: block; }
+    { display: block; }
 
 
 /***************************************************************************/
@@ -379,6 +378,8 @@ ProtocolSpecificContact:before
                 { content: "Protocol Specific Contact & @ "; }
 ProtocolSponsors:before
                 { content: "PROTOCOL SPONSORS &"; }
+RelatedDocuments:before
+                { content: "RELATED DOCUMENTS &"; }
 ReimbursementApprovalType:before 
                 { content: "Reimbursmnt Approval Type & +: "; }
 ReviewApprovalType:before
@@ -387,6 +388,8 @@ Role:before
                 { content: "Role *: "; }
 SourceName:before
                 { content: "Source *: "; }
+SourceWebsite:before
+                { content: "Source Website & @: "; }
 SpecialCategory:before
                 { content: "Category *: "; }
 OrgSiteContact>SpecificPerson:before
@@ -405,8 +408,12 @@ StatusDate:before
                 { content: "Status Date *: "; }
 StatusName:before
                 { content: "Status *: "; }
+SupplementaryInfoLink:before
+                { content: "Supp Info Link & * @: "; }
 UpdateMode:before               
                 { content: "Updt Mode &+@: ";}
+WarehouseBoxNumber:before
+                { content: "Warehouse Bx No &: "; }
 UpdateMode[MailerType="Protocol_SandP"]:after  
                 { content: " (Protocol_SandP) ";}
 UpdateMode[MailerType="Protocol_Abstract"]:after 
@@ -491,8 +498,10 @@ SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
+SupplementaryInfoLink:before,
 UpdateMode:before,
 UpdateMode:after,
+WarehouseBoxNumber:before,
 
    {  font-weight: bold;
       color: black;  }
@@ -514,6 +523,7 @@ PersonRole:before,
 PrivatePracticeSiteID:before, 
 PrivatePracticeSiteStatus:before,
 ProcessingStatus:before,
+RelatedDocuments:before,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
 Role:before,
@@ -540,6 +550,7 @@ ProtocolProcessingDetails,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
+RelatedDocuments,
 
    {  border: solid; 
       border-color: gray;
@@ -563,6 +574,7 @@ ProtocolSites,
 OrgSite,
 OverallContact,
 PrivatePracticeSite,
+RelatedDocuments,
 
    {  margin-top: 1em;    }
 
@@ -591,6 +603,7 @@ PreviousOrgStatus,
 ProtocolApproval, 
 ProtocolProcessingDetails,
 ProtocolSponsors,
+RelatedDocuments,
 
    {  margin-bottom: .5em;  }
 
@@ -766,6 +779,12 @@ DateLastModified,
 PdqKey,
                             { margin-left: 100pt;
                               text-indent: -71pt; }
+SupplementaryInfoLink,
+                            { margin-left: 125pt;
+                              text-indent: -126pt; }
+WarehouseBoxNumber,
+                            { margin-left: 125pt;
+                              text-indent: -124pt; }
 
 /* Key element for length = DateLastModified  */
 ExternalSite,
@@ -913,6 +932,7 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+RelatedDocuments,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
 Role, 
@@ -924,7 +944,9 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+SupplementaryInfoLink,
 UpdateMode,
+WarehouseBoxNumber,
 
     { margin-bottom: 4pt; }
 
@@ -938,11 +960,13 @@ Person,
 PersonTitle,
 PrivatePracticeSiteID,
 ProcessingStatus,
+RelatedDocuments,
 ReviewApprovalType,
 SpecialCategory,
 SponsorName,
 SourceName,
 StatusName,
+SupplementaryInfoLink,
 
     { margin-top: 4pt; }
 
@@ -1008,7 +1032,9 @@ SpecificPhone,
 SponsorName, 
 StatusDate, 
 StatusName, 
+SupplementaryInfoLink,
 UpdateMode,
+WarehouseBoxNumber,
 
     { background-color: white; }
 
@@ -1084,6 +1110,7 @@ ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSpecificContact,
 ProtocolSponsors,
+RelatedDocuments,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
 Role:before,
@@ -1094,7 +1121,9 @@ SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
 StatusName:before,
+SupplementaryInfoLink:before,
 UpdateMode:before,
+WarehouseBoxNumber:before,
 
     { background-color: #CCCCFF; }  /*light blue*/
 

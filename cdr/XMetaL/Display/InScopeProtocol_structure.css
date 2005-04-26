@@ -278,6 +278,7 @@ ProtocolSources:before          { content: "PROTOCOL SOURCES";  }
 ProtocolSpecificContact:before  { content: "Protocol Specific Contact"; }
 ProtocolSponsors:before         { content: "PROTOCOL SPONSORS";  }
 ProtocolSpecialCategory:before  { content: "PROTOCOL SPECIAL CATEGORY"; }
+RelatedDocuments:before         { content: "RELATED DOCUMENTS"; }
 ReimbursementApprovalType:before{ content: "Reimbursement Approval Type"; }
 ReviewApprovalType:before       { content: "Review Approval Type"; }
 Role:before                     { content: "Role"; }
@@ -287,9 +288,11 @@ SpecificPerson:before           { content: "Specific Contact";  }
 SpecificEmail:before            { content: "Email"; }
 SpecificPhone:before            { content: "Phone"; }
 SponsorName:before              { content: "Sponsor Name";  }
+SupplementaryInfoLink:before    { content: "Supplementary Info Link"; }
 StatusDate:before               { content: "Status Date"; }
 StatusName:before               { content: "Status"; }
 UpdateMode:before               { content: "Update Mode"; }
+WarehouseBoxNumber:before       { content: "Warehouse Box Number"; }
 
 
 /***************************************************************************/ 
@@ -500,8 +503,10 @@ SpecificEmail,
 SponsorName,
 StatusDate,
 StatusName,
+SupplementaryInfoLink,
 UpdateMode:after,
 UpdateMode,
+WarehouseBoxNumber,
 
    {  color: white;
       background-color: white;  }
@@ -576,6 +581,7 @@ ProtocolSource,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
+RelatedDocuments,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
 Role:before,
@@ -586,7 +592,9 @@ SpecificPhone:before,
 SponsorName:before,
 StatusDate:before,
 StatusName:before,
+SupplementaryInfoLink:before,
 UpdateMode:before,
+WarehouseBoxNumber:before,
 
      { background-color: white }  
 
@@ -614,6 +622,7 @@ ProtocolSpecialCategory,
 ProtocolSponsors,
 ProtocolLeadOrg,
 ProtocolAdminInfo>DatedAction,
+RelatedDocuments,
 
    {  border: none;  }
 
@@ -697,6 +706,8 @@ SponsorName,
 StatusDate,
 StatusName,
 ExternalSiteAddress > Street,
+SupplementaryInfoLink,
 UpdateMode,
+WarehouseBoxNumber,
 
     { text-indent: 0pt; }
