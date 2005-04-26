@@ -1128,12 +1128,46 @@
 </ProtocolSpecialCategory>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>PublishedResults</Name>
+      <MiniTemplate><![CDATA[<PublishedResults>
+<Citation><?xm-replace_text {Enter a citation (required)} ?></Citation><CitationSource><?xm-replace_text {Enter the citation source (required)} ?></CitationSource><EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy><EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PublishedResults>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Citation</Name>
+      <MiniTemplate><![CDATA[<Citation><?xm-replace_text {Enter a citation (required)} ?></Citation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitationSource</Name>
+      <MiniTemplate><![CDATA[<CitationSource><?xm-replace_text {Enter the citation source (required)} ?></CitationSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceWebsite</Name>
+      <MiniTemplate><![CDATA[<SourceWebsite><?xm-replace_text {Optionally enter the citation source website} ?></SourceWebsite>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>DatedAction</Name>
       <MiniTemplate><![CDATA[<DatedAction>
 <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
 <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </DatedAction>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelatedDocuments</Name>
+      <MiniTemplate><![CDATA[<RelatedDocuments>
+<SupplementaryInfoLink><?xm-replace_text {Optionally link to supplementary info} ?></SupplementaryInfoLink>
+<WarehouseBoxNumber><?xm-replace_text {Optionally enter a warehouse box number} ?></WarehouseBoxNumber>
+</RelatedDocuments>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SupplementaryInfoLink</Name>
+      <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {Optionally link to supplementary info} ?></SupplementaryInfoLink>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>WarehouseBoxNumber</Name>
+      <MiniTemplate><![CDATA[<WarehouseBoxNumber><?xm-replace_text {Optionally enter a warehouse box number} ?></WarehouseBoxNumber>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ActionDescription</Name>
@@ -1315,6 +1349,7 @@
       <Name>PrivatePracticeSite</Name>
       <MiniTemplate><![CDATA[<PrivatePracticeSite>
 <PrivatePracticeSiteID><?xm-replace_text {Link to a private practice location (required), or Change to an organization} ?></PrivatePracticeSiteID>
+<Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
 <PrivatePracticeSiteStatus><?xm-replace_text {Select the protocol status of this private practice location (required)} ?></PrivatePracticeSiteStatus>
 </PrivatePracticeSite>]]></MiniTemplate>
     </Template>
