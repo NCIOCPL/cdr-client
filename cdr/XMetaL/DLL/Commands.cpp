@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.45 2005-04-13 13:20:51 bkline Exp $
+ * $Id: Commands.cpp,v 1.46 2005-05-05 17:51:56 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.45  2005/04/13 13:20:51  bkline
+ * Completed BLOB support, including calculating of image dimensions.
+ *
  * Revision 1.44  2005/03/18 17:17:50  bkline
  * Added client-side support for working with image blobs.
  *
@@ -2583,7 +2586,7 @@ CString getBlobExtension(const CString& docXml, const CString& docType) {
         if (elem)
             extension = _T(".") + elem.getString();
     }
-    else if (docType == _T("SupplementalInfo")) {
+    else if (docType == _T("SupplementaryInfo")) {
         cdr::Element elem = cdr::Element::extractElement(docXml, 
                                                          _T("MimeType"));
         CString elemText = elem.getString();
