@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.133 2005-03-18 17:24:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.134 2005-05-05 15:49:58 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.133  2005/03/18 17:24:01  bkline
+     Added Media toolbar; modified site status adjustment macro for Sheri.
+
      Revision 1.132  2005/02/16 19:09:03  bkline
      Added code to set the title bar of the application.  Added new attribute
      ("Source") for Insertion and Deletion elements.  Added support for
@@ -2637,8 +2640,8 @@
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
                            "Show Doc Blob",             // Macro.
-                           "Launch Object File",        // Tooltip.
-                           "Launch Object File",        // Description
+                           "Launch Media File",         // Tooltip.
+                           "Launch Media File",         // Description
                            "Design (Custom)", 2, 3,     // Icon set, row, col.
                            false)                       // Starts new group?
         );
@@ -2670,6 +2673,51 @@
         }
         if (cmdBar) {
             toolbars["Media"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addSupplementaryInfoToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Show Doc Blob",             // Macro.
+                           "Launch Object File",        // Tooltip.
+                           "Launch Object File",        // Description
+                           "Databases (Custom)", 2, 6,  // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Supplementary Info Document"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Supplementary " +
+                                  "Info Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Supplementary Info Document", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Supplementary Info " +
+                              "Document toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["SupplementaryInfo"] = cmdBar;
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2759,6 +2807,7 @@
     addCTGovToolbar();
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
+    addSupplementaryInfoToolbar();
     addCdrMenus();
     hideToolbars();
 
