@@ -1,0 +1,172 @@
+/*************************************************************************/
+/* 	DocumentationToC                                                */
+/*                                                                       */
+/*      v 1.0                                                            */
+/*      05/23/02    by ebator                                            */
+/*      Based on Documentation.css                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";  
+
+
+$DOCUMENT 
+
+     { font-family: Arial, sans-serif;
+       font-size: 12pt;
+       color: black;
+       margin-top: 5px;
+       margin-left: 5px; }
+
+$COMMENT 
+
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+
+     { color: navy;
+       font-weight: normal;
+       background-color: white; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+ActionDate,
+ActionDescription, 
+CdrDocCtl,
+Comment,
+ConstructedTopic,
+DatedAction,
+DateLastModified,
+DocId,
+DocTitle,
+DocumentationRef,
+DocumentationToC, 
+TableOfContents,
+ToCEntry,
+ToCLevel,
+ToCSection,
+ToCTitle,
+
+    { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+ActionDate:before			{ content: "Date: "; }
+ActionDescription:before		{ content: "Action: "; }
+Comment:before				{ content: "Comment: "; }
+DatedAction:before			{ content: "DATED ACTION "; }
+DateLastModified:before			{ content: "Last Modified: "; }
+
+
+/***************************************************************************/ 
+/*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
+/***************************************************************************/ 
+
+
+
+/***************************************************************************/ 
+/*                      DOCUMENTATION TITLE                                */ 
+/***************************************************************************/ 
+
+ToCTitle,
+
+     { font-size: 20pt;
+       font-weight: bold;
+       margin-top: 12pt; }
+
+
+/***************************************************************************/ 
+/*                                LEVELS                                   */ 
+/***************************************************************************/ 
+
+ToCLevel,
+
+	{ margin-left: 10pt; }
+
+ToCLevel>ToCLevel,
+
+	{ margin-left: 20pt; }
+
+ToCLevel>ToCLevel>ToCLevel,
+
+	{ margin-left: 30pt; }
+
+ToCLevel>ToCLevel>ToCLevel>ToCLevel,
+
+	{ margin-left: 40pt; }
+
+
+/***************************************************************************/ 
+/*                                ENTRIES                                  */ 
+/***************************************************************************/ 
+
+DocumentationRef,
+
+     { text-decoration: underline; 
+       color: blue; }
+
+ConstructedTopic,
+
+	{ color: blue; }
+	  
+/***************************************************************************/ 
+/*                                SECTIONS                                 */ 
+/***************************************************************************/ 
+
+
+DateLastModified:before,
+
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black;  
+       margin-top: 15pt;
+       margin-bottom: 10pt; }
+
+
+
+/***************************************************************************/ 
+/*                               FORM DATA                                 */ 
+/***************************************************************************/ 
+
+
+ActionDate,
+ActionDescription, 
+Comment,
+ConstructedTopic,
+DatedAction,
+DateLastModified,
+DocumentationRef,
+DocumentationToC, 
+TableOfContents,
+ToCEntry,
+ToCLevel,
+ToCSection,
+ToCTitle,
+
+	{ background-color: white; }
+
+
+ActionDescription,			{ margin-left: 80pt; 
+					  text-indent: -44pt;}
+ActionDate,				{ margin-left: 80pt; 
+					  text-indent: -34pt;}
+
+DateLastModified,
+
+	{ margin-top: 4pt; }
+

@@ -1,0 +1,170 @@
+/*************************************************************************/
+/* 	DocumentationToC_structure.css                                   */
+/*                                                                       */
+/*      v 1.0                                                            */
+/*      05/29/02  by ebator                                              */
+/*      Based on Documentation_structure.css and DocumentationToC.css    */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_Structure.css";  
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+*	{ white-space: nowrap;
+	  text-align: left;
+	  margin-left: 10px;
+	  margin-top: 0px;
+	  margin-bottom: 0px;
+	  font-family: Arial, sans-serif;
+	  font-size: 10pt; 
+	  font-style: normal;
+	  font-weight: bold;
+	  color: black; }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+
+     { margin-left: 0px;  }
+
+$PROCINS 
+
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+  
+
+ActionDate,
+ActionDescription, 
+CdrDocCtl,
+Comment,
+ConstructedTopic,
+DatedAction,
+DateLastModified,
+DocId,
+DocTitle,
+DocumentationRef,
+DocumentationToC, 
+TableOfContents,
+ToCEntry,
+ToCLevel,
+ToCSection,
+ToCTitle,
+
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+
+
+ActionDate:before			{ content: "Date: "; }
+ActionDescription:before		{ content: "Action: "; }
+Comment:before				{ content: "Comment: "; }
+DatedAction:before			{ content: "DATED ACTION "; }
+DateLastModified:before			{ content: "Last Modified: "; }
+DocumentationToC:before			{ content: "DOCUMENTATION TOC "; } 
+TableOfContents:before			{ content: "Table of Contents "; }
+ToCEntry:before				{ content: "ToC Entry "; }
+ToCLevel:before				{ content: "Level 1 "; }
+ToCLevel>ToCLevel:before		{ content: "Level 2 "; }
+ToCLevel>ToCLevel>ToCLevel:before	{ content: "Level 3 "; }
+ToCLevel>ToCLevel>ToCLevel>ToCLevel:before	
+					{ content: "Level 4 "; }
+ToCSection:before			{ content: "ToC Section "; }
+ToCTitle:before				{ content: "TOC TITLE: "; }
+
+
+
+/***************************************************************************/ 
+/*                             HEADINGS                                    */ 
+/***************************************************************************/ 
+
+
+DocumentationToC:before,
+
+     { color: black; 
+       font-weight: bold;
+       font-size: 10pt; }
+
+
+
+
+/***************************************************************************/ 
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
+/***************************************************************************/ 
+
+
+DateLastModified:before,
+
+     { color: black; 
+       font-weight: bold; 
+       font-size: 10pt; }
+
+
+
+/***************************************************************************/ 
+/*                            BORDER CONTROL                               */ 
+/***************************************************************************/ 
+
+
+
+/***************************************************************************/ 
+/*                            HIDE TEXT                                    */ 
+/***************************************************************************/ 
+
+
+ActionDate,
+ActionDescription,
+Comment,
+DatedAction,
+DateLastModified,
+
+     { color: white;
+       background-color: white; }
+
+ActionDate,
+ActionDescription,
+
+     { display: none; }
+
+
+
+/***************************************************************************/ 
+/*                            DISPLAY TEXT                                 */ 
+/***************************************************************************/ 
+
+ConstructedTopic,
+ToCTitle,
+
+     { color: navy;
+       font-weight: bold; }
+
+DocumentationRef,
+
+     { color: navy;
+       font-weight: bold; 
+       text-decoration: underline;}
+
+
+/***************************************************************************/ 
+/*                            FORM CONTROL                                 */ 
+/***************************************************************************/ 
+
