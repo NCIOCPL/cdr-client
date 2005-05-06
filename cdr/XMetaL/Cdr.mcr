@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.134 2005-05-05 15:49:58 bkline Exp $
+     $Id: Cdr.mcr,v 1.135 2005-05-06 14:34:07 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.134  2005/05/05 15:49:58  bkline
+     Added Supplementary Info Document toolbar.
+
      Revision 1.133  2005/03/18 17:24:01  bkline
      Added Media toolbar; modified site status adjustment macro for Sheri.
 
@@ -2794,6 +2797,7 @@
      */
     var toolbars = new Object();
     addCdrToolbar();
+    addSupplementaryInfoToolbar();
     addSymbolToolbar();
     addSummaryToolbar();
     addPersonToolbar();
@@ -2807,7 +2811,6 @@
     addCTGovToolbar();
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
-    addSupplementaryInfoToolbar();
     addCdrMenus();
     hideToolbars();
 
