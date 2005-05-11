@@ -259,7 +259,7 @@
     </Template>
     <Template>
       <Name>SourceTermId</Name>
-      <MiniTemplate><![CDATA[<SourceTermId><?xm-replace_text {Enter the ID of the source term (required)} ?></SourceTermId>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<SourceTermId><?xm-replace_text {Optionally enter the ID of the source term} ?></SourceTermId>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>DefinitionText</Name>
@@ -278,7 +278,7 @@
       <MiniTemplate><![CDATA[<VocabularySource>
 <SourceCode><?xm-replace_text {Select this term's source, or Change to another source type} ?></SourceCode>
 <SourceTermType><?xm-replace_text {Select a category for the source term (required)} ?></SourceTermType>
-<SourceTermId><?xm-replace_text {Enter the ID of the source term (required)} ?></SourceTermId>
+<SourceTermId><?xm-replace_text {Optionally enter the ID of the source term} ?></SourceTermId>
 </VocabularySource>]]></MiniTemplate>
     </Template>
     <Template>
