@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.135 2005-05-06 14:34:07 bkline Exp $
+     $Id: Cdr.mcr,v 1.136 2005-05-12 19:53:05 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.135  2005/05/06 14:34:07  bkline
+     Shifted newest toolbar to be created earlier, trying to work around
+     bug in XMetaL which suppresses the ability to enable/disable more
+     than a limited number of the toolbars.
+
      Revision 1.134  2005/05/05 15:49:58  bkline
      Added Supplementary Info Document toolbar.
 
@@ -2350,6 +2355,12 @@
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false),
             new CdrCmdItem(null,
                            "Glossary Phrase Search",
                            "Glossary Phrase Search",
