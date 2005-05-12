@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.136 2005-05-12 19:53:05 venglisc Exp $
+     $Id: Cdr.mcr,v 1.137 2005-05-12 21:30:56 venglisc Exp $
 
      $Log: not supported by cvs2svn $
      Revision 1.135  2005/05/06 14:34:07  bkline
@@ -2657,7 +2657,13 @@
                            "Launch Media File",         // Tooltip.
                            "Launch Media File",         // Description
                            "Design (Custom)", 2, 3,     // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Generate QC Report",
+                           "Media QC Report",
+                           "Generate QC Report",
+                           "CDR2", 1, 10,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
