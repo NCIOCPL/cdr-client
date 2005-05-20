@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Term_structure.css                                               */
+/*      Term_structure.css                                               */
 /*                                                                       */
 /*      v. 3.4                                                           */
 /*      3/19/02  by ebator                                               */
@@ -45,9 +45,9 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
 
@@ -58,16 +58,16 @@
 
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*  { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, sans-serif;
+     font-size: 10pt; 
+     font-style: normal;
+     font-weight: bold;
+     color: black; }
 
 /* top-level elements */
 
@@ -86,11 +86,9 @@ Term,
      { background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Comment, 
 DateLastModified,
 Definition,
@@ -136,19 +134,17 @@ VocabularySource,
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-
-
-Comment:before			{ content: "Comments "; } 
-DateLastModified:before		{ content: "Last Modified"; }
-Definition:before		{ content: "DEFINITION "; }
-DefinitionSource:before		{ content: "Definition Source  "; }
-DefinitionSourceName:before	{ content: "Definition Source "; }
-DefinedTermId:before		{ content: "Defined Term ID "; }
-DefinitionText:before		{ content: "Definition Text "; }
-DefinitionType:before		{ content: "Definition Type "; }
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Comment:before              { content: "Comments "; } 
+DateLastModified:before     { content: "Last Modified"; }
+Definition:before           { content: "DEFINITION "; }
+DefinitionSource:before     { content: "Definition Source  "; }
+DefinitionSourceName:before { content: "Definition Source "; }
+DefinedTermId:before        { content: "Defined Term ID "; }
+DefinitionText:before       { content: "Definition Text "; }
+DefinitionType:before       { content: "Definition Type "; }
 DisplayName:before          { content: "Display Name "; }
 EnteredBy:before            { content: "Entered By "; }
 EntryDate:before            { content: "Entry Date "; }
@@ -157,73 +153,65 @@ MenuItem:before             { content: "MENU ITEM "; }
 MenuParent:before           { content: "Menu Parent "; }
 MenuStatus:before           { content: "Menu Status "; }
 MenuType:before             { content: "Menu Type "; }
-OtherName:before		{ content: "OTHER NAME  "; }
-OtherNameType:before		{ content: "Other Name Type  "; }
-OtherTermName:before		{ content: "Other Term Name "; }
-ParentTerm:before		{ content: "PARENT TERM  "; }
-ParentType:before		{ content: "Parent Type "; }
-PdqKey:before			{ content: "PDQ Key "; }
-PreferredName:before		{ content: "PREFERRED NAME "; }
-ReferenceSource:before		{ content: "Reference Source "; }
-RelatedTerm:before		{ content: counter(RT)". RELATED TERM "; }
-RelationshipType:before		{ content: "Relationship Type "; }
-ReviewStatus:before		{ content: "Review Status "; }
-SemanticType:before		{ content: "Semantic Type  "; } 
-SemanticTypeText:before		{ content: "Semantic Type Text "; }
-SourceCode:before		{ content: "Source Code "; }
-SourceTermId:before		{ content: "Source Term ID "; }
-SourceTermType:before		{ content: "Source Term Type "; }
-SourceInformation:before	{ content: "Source Information "; }
-Term:before			{ content: "TERM  "; }   
-TermId:before			{ content: "Term ID  "; } 
-TermRelationship:before		{ content: "TERM RELATIONSHIP "; }
-TermStatus:before		{ content: "Term Status "; }
-TermType:before			{ content: "TERM TYPE  "; } 
-TermTypeName:before		{ content: "Term Type Name "; } 
-VocabularySource:before		{ content: "Vocabulary Source  "; }
+OtherName:before            { content: "OTHER NAME  "; }
+OtherNameType:before        { content: "Other Name Type  "; }
+OtherTermName:before        { content: "Other Term Name "; }
+ParentTerm:before           { content: "PARENT TERM  "; }
+ParentType:before           { content: "Parent Type "; }
+PdqKey:before               { content: "PDQ Key "; }
+PreferredName:before        { content: "PREFERRED NAME "; }
+ReferenceSource:before      { content: "Reference Source "; }
+RelatedTerm:before          { content: counter(RT)". RELATED TERM "; }
+RelationshipType:before     { content: "Relationship Type "; }
+ReviewStatus:before         { content: "Review Status "; }
+SemanticType:before         { content: "Semantic Type  "; } 
+SemanticTypeText:before     { content: "Semantic Type Text "; }
+SourceCode:before           { content: "Source Code "; }
+SourceTermId:before         { content: "Source Term ID "; }
+SourceTermType:before       { content: "Source Term Type "; }
+SourceInformation:before    { content: "Source Information "; }
+Term:before                 { content: "TERM  "; }   
+TermId:before               { content: "Term ID  "; } 
+TermRelationship:before     { content: "TERM RELATIONSHIP "; }
+TermStatus:before           { content: "Term Status "; }
+TermType:before             { content: "TERM TYPE  "; } 
+TermTypeName:before         { content: "Term Type Name "; } 
+VocabularySource:before     { content: "Vocabulary Source  "; }
 
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     COUNTER DEFINITIONS                                 */
+/***************************************************************************/
 RelatedTerm,
 
-     {  counter-increment: RT;  }
+    { counter-increment: RT;  }
 
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 Term:before,
 
-	{     color: black;      }
-	 
+     { color: black;      }
 
 
-/***************************************************************************/ 
+
+/***************************************************************************/
 /*                         BORDER CONTROL                                  */
 /***************************************************************************/
-  
-
 OtherName,
 Definition,
 TermRelationship,
 MenuInformation
 
-     { border: none;  }
+    { border: none;  }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 Comment:before,
 DateLastModified:before,
 Definition:before,
@@ -252,21 +240,18 @@ SourceTermId:before,
 SourceInformation:before,
 TermId:before,
 TermRelationship:before,
-TermType:before,	
-VocabularySource:before,	
+TermType:before,
+VocabularySource:before,
 
 
-   {  font-weight: bold;
+    { font-weight: bold;
       color: black;  }
 
 
 
-/***************************************************************************/ 
-/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
-/***************************************************************************/ 
-  
-
-
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
 DefinitionType:before,
 OtherNameType:before,
 ParentType:before,
@@ -277,13 +262,13 @@ SourceTermType:before,
 TermStatus:before,
 TermTypeName:before,
 
-   {  font-weight: bold;
-      color: black;  }
+    {  font-weight: bold;
+       color: black;  }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 
 /* Remove negative text-indent settings  */
 
@@ -328,15 +313,13 @@ TermType,
 TermTypeName,  
 VocabularySource,
 
-	{ text-indent: 0pt; }
+     { text-indent: 0pt; }
 
 
 
-/***************************************************************************/ 
-/*                              HIDE TEXT                                  */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
 Comment, 
 DateLastModified,
 Definition,
@@ -379,8 +362,8 @@ TermTypeName,
 VocabularySource,
 
 
-     { color: white;
-       background-color: white; }
+    { color: white;
+      background-color: white; }
 
 
 Comment:before, 
@@ -424,6 +407,5 @@ TermType:before,
 TermTypeName:before,  
 VocabularySource:before,
 
-     { background-color: white; }
-
+    { background-color: white; }
 
