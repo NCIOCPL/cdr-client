@@ -1023,8 +1023,8 @@
    <Color><?xm-replace_text {Select the color for this image (required)} ?></Color>
    <Labeled><?xm-replace_text {Select Yes or No (required)} ?></Labeled>
    <ImageDimensions>
-    <HeightPixels><?xm-replace_text {Enter an integer number (required)} ?></HeightPixels>
-    <WidthPixels><?xm-replace_text {Enter an integer number (required)} ?></WidthPixels>
+    <HeightPixels><?xm-replace_text {System generated when linked to source file} ?></HeightPixels>
+    <WidthPixels><?xm-replace_text {System generated when linked to source file} ?></WidthPixels>
     <MinWidthPixels><?xm-replace_text {Optionally enter an integer number} ?></MinWidthPixels>
    </ImageDimensions>
   </ImageData>]]></MiniTemplate>
@@ -1074,7 +1074,7 @@
    <Creator><?xm-replace_text {Optionally enter the creator} ?></Creator>
    <SourcePublication><?xm-replace_text {Optionally enter the publication source} ?></SourcePublication>
    <DateCreated><?xm-replace_text {Optionally enter the date the document got created} ?></DateCreated>
-   <TextDateCreated><?xm-replace_text {Optionally enter the date the text got created} ?></TextDateCreated>
+   <TextDateCreated><?xm-replace_text {Optionally enter the date created in text form} ?></TextDateCreated>
    <Acknowledgement><?xm-replace_text {Optionally enter an acknowledgment text} ?></Acknowledgement>
    <SourceFilename><?xm-replace_text {Optionally enter the source filename} ?></SourceFilename>
    <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
@@ -1134,10 +1134,10 @@
    <Category><?xm-replace_text {Select the category (required)} ?></Category>
   </Categories>
   <Diagnoses>
-   <Diagnosis><?xm-replace_text {Select a diagnosis link (required)} ?></Diagnosis>
+   <Diagnosis><?xm-replace_text {Select a diagnosis link (optional)} ?></Diagnosis>
   </Diagnoses>
   <Topics>
-   <Topic><?xm-replace_text {Select a terminology link (required)} ?></Topic>
+   <Topic><?xm-replace_text {Select a terminology link (optional)} ?></Topic>
   </Topics>
   <ContentDescriptions>
    <ContentDescription><?xm-replace_text {Enter the content description (required)} ?></ContentDescription>
