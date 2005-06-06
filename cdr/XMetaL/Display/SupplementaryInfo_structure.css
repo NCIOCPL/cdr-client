@@ -1,0 +1,130 @@
+/*************************************************************************/
+/*      SupplementaryInfo_structure.css                                  */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+*    { white-space: nowrap;
+       text-align: left;
+       margin-left: 10px;
+       margin-top: 0px;
+       margin-bottom: 0px;
+       font-family: Arial, sans-serif;
+       font-size: 10pt; 
+       font-style: normal;
+       font-weight: bold;
+       color: black; }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+     { margin-left: 0px;  }
+
+$PROCINS 
+     { color: white;
+       font-weight: normal;
+       background-color: white;}
+
+SupplementaryInfo,
+     { background-color: white; }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Category,
+Description,
+MimeType,   
+OriginalFilename,
+Source,
+SupplementaryInfo,
+Title,
+     { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Category:before                   { content: "Category "; }
+Description:before                { content: "Description "; }
+MimeType:before                   { content: "Mime Type "; }
+OriginalFilename:before           { content: "Original Filename "; }
+Source:before                     { content: "Source "; }
+SupplementaryInfo:before          { content: "SUPPLEMENTARYINFO "; }
+Title:before                      { content: "Title "; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+SupplementatyInfo:before,
+     { color: black; }
+
+
+/***************************************************************************/
+/*                         BORDER CONTROL                                  */
+/***************************************************************************/
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+Category:before,
+Description:before,
+MimeType:before,
+OriginalFilename:before,
+Source:before,
+Title:before,
+     { color: black; }
+
+
+/***************************************************************************/
+/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
+/***************************************************************************/
+dummy:before,
+     { color: black; }
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
+
+Category,
+Description,
+MimeType,   
+OriginalFilename,
+Source,
+Title,
+     { text-indent: 0pt; }
+
+
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
+Category,
+Description,
+MimeType,   
+OriginalFilename,
+Source,
+Title,
+     { color: white;
+       background-color: white; }
+
+Category:before,
+Description:before,
+MimeType:before,
+OriginalFilename:before,
+Source:before,
+Title:before,
+     { background-color: white; }

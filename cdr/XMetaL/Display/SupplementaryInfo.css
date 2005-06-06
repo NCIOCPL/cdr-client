@@ -1,0 +1,150 @@
+/*************************************************************************/
+/*  SupplementaryInfo.css                                                */
+/*                                                                       */
+/*  $Log: not supported by cvs2svn $                                                              */
+/*************************************************************************/
+
+/*************************************************************************/
+/*                    DEFAULT PROPERTIES                                 */
+/*************************************************************************/
+@import "CdrCommonSchema.css";
+
+$DOCUMENT 
+     { font-family: Arial, sans-serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS
+     { color: blue;
+       background-color: white; }
+
+SupplementaryInfo
+     { background-color: #CCCCFF; }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Category,
+Description,
+MimeType,
+OriginalFilename,
+Source,
+Title,
+     { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+Category:before                   { content: "Category *: "; }
+Description:before                { content: "Description *: "; }
+MimeType:before                   { content: "Mime Type *: "; }
+OriginalFilename:before           { content: "Original Filename &: "; }
+Source:before                     { content: "Source &: "; }
+
+Title:before                      { content: "Title *: "; }
+
+
+/***************************************************************************/
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+Category:before,
+Description:before,
+MimeType:before,
+OriginalFilename:before,
+Source:before,
+Title:before,
+     { font-weight: bold;
+       color: black;  }
+
+
+/***************************************************************************/
+/*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
+/***************************************************************************/
+dummy:before,
+     { font-weight: bold;
+       color: black;      }
+
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Key element for length = PostalCodePosition    */
+
+Category,
+     { margin-left: 120pt; 
+       text-indent: -68pt; }
+
+Description,
+     { margin-left: 120pt; 
+       text-indent: -82pt; }
+
+MimeType,
+     { margin-left: 120pt; 
+       text-indent: -77pt; }
+
+OriginalFilename,
+     { margin-left: 120pt; 
+       text-indent: -119pt; }
+
+Source,
+     { margin-left: 120pt; 
+       text-indent: -61.5pt; }
+
+Title,
+     { margin-left: 120pt; 
+       text-indent: -40pt; }
+
+
+/***************************************************************************/
+/*                              MARGINS                                    */
+/***************************************************************************/
+Category,
+Description,
+MimeType,
+OriginalFilename,
+Source,
+Title,
+     { margin-bottom: 4pt; }
+
+dummy,
+     { margin-top: 10pt; }
+
+
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+Category,
+Description,
+MimeType,
+OriginalFilename,
+Source,
+Title,
+     { background-color: white; }
+
+
+Category:before,
+Description:before,
+MimeType:before,
+OriginalFilename:before,
+Source:before,
+Title:before,
+     { background-color: #CCCCFF; }
