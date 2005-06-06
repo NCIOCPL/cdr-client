@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE SupplementaryInfo SYSTEM "SupplementaryInfo.dtd">
+<SupplementaryInfo xmlns:cdr="cips.nci.nih.gov/cdr"> 
+  <CdrDocCtl> 
+	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+	 </CdrDocCtl> 
+  <Title><?xm-replace_text {Enter the title of the document (required)} ?></Title>
+  <MimeType><?xm-replace_text {Select the mime type of the document (required)} ?></MimeType>
+  <Category><?xm-replace_text {Select a category for the document (required)} ?></Category>
+  <Description><?xm-replace_text {Enter a description for the document (required)} ?></Description>
+  <Source><?xm-replace_text {Optionally enter the source of the document} ?></Source>
+  <OriginalFilename><?xm-replace_text {Optionally enter the original filename of the document} ?></OriginalFilename>
+  </SupplementaryInfo>
