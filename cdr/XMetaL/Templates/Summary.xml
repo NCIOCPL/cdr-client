@@ -9,6 +9,8 @@
 	 <SummaryType><?xm-replace_text {Select a summary type (required)} ?></SummaryType>
 	 <SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>
 	 <SummaryLanguage>English</SummaryLanguage> 
+	 <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
+	 <SummaryURL><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
 	 <PDQBoard> 
 		<Board><?xm-replace_text {Select an organization link (required)} ?></Board>
 		<BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>

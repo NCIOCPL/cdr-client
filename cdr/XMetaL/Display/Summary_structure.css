@@ -85,12 +85,9 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
 /**************************************************************************/ 
 /*                     DEFAULT PROPERTIES                                 */ 
 /**************************************************************************/ 
-
 @import "CdrCommonSchema_Structure.css";  
 
 @sq-plus-minus;
@@ -113,14 +110,13 @@
 /* top-level elements */
 
 $DOCUMENT > * 
-
      { margin-left: 0px;  }
 
 $PROCINS 
-
      { color: white;
        font-weight: normal;
        background-color: white;}
+
 
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
@@ -142,12 +138,14 @@ SecondaryTopics,
 SectMetaData,
 SectionType,
 SummaryAudience, 
+SummaryDescription,
 SummaryLanguage, 
 SummaryMetaData, 
 SummarySection,
 SummarySection>Comment,
 SummaryTitle, 
 SummaryType, 
+SummaryURL,
 Term, 
 Title, 
 TranslationOf,
@@ -180,10 +178,12 @@ SectMetaData:before		{ content: "Section Metadata "; }
 SectionType:before		{ content: "Section Type "; }
 Summary:before			{ content: "SUMMARY "; }
 SummaryID:before		{ content: "Summary ID "; }
-SummaryType:before		{ content: "Summary Type "; }
 SummaryAudience:before	{ content: "Summary Audience "; }
+SummaryDescription:before { content: "Summary Description "; }
 SummaryLanguage:before	{ content: "Summary Language "; }
 SummaryMetaData:before	{ content: "SUMMARY METADATA "; }
+SummaryType:before		{ content: "Summary Type "; }
+SummaryURL:before		{ content: "Summary URL "; }
 SummarySection:before	{ content: "Section "; }
 SummarySection>Comment:before 
                         { content: "Comment "; }
@@ -214,20 +214,16 @@ ReplacementFor:before	{ content: "Replacement For "; }
 /*                     COUNTER DEFINITIONS                                 */ 
 /***************************************************************************/ 
 SummarySection,
-
 	{ counter-reset: para; }
 
 Para,
-
 	{ counter-increment: para; }
 
 
 SummarySection>SummarySection,
-
 	{ counter-reset: subpara; }
 
 SummarySection>SummarySection>Para,
-
 	{ counter-increment: subpara; }
 
 
@@ -242,12 +238,10 @@ SectMetaData:before,
 Summary:before,
 SummaryMetaData:before,
 SummaryTitle:before,
-
      { color: black; 
        font-weight: bold; }
 
 SummarySection:before,
-
      { color: navy;
        font-weight: bold; }
 
@@ -257,10 +251,11 @@ MainTopics:before,
 PDQBoard:before,
 SecondaryTopics:before,
 SummaryAudience:before,
+SummaryDescription:before,
 SummaryLanguage:before,
 SummaryType:before,
+SummaryURL:before,
 Term:before,
-
 	{ font-size: 10pt; }
 
 SummarySection>Comment:before 
@@ -269,27 +264,25 @@ SummarySection>Comment:before
 
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
-
 	{ font-style: italic; }
 
 
 /***************************************************************************/ 
 /*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
 /***************************************************************************/ 
-
-
 Board:before,
 BoardMember:before,
 Diagnosis:before,
 PatientVersionOf:before,
 PdqKey:before,
 SectionType:before,
-SummaryType:before, 
 SummaryAudience:before, 
+SummaryDescription:before, 
 SummaryLanguage:before,
+SummaryType:before, 
+SummaryURL:before, 
 Term:before,
 TranslationOf:before,
-
      { color: black; 
        font-weight: bold; }
 
@@ -297,8 +290,6 @@ TranslationOf:before,
 /***************************************************************************/ 
 /*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
 /***************************************************************************/ 
-
-
 AltTitle:before,
 Caption:before,
 DateLastModified:before,
@@ -310,24 +301,21 @@ SummarySection>SummarySection>Para:before,
 Title:before,
 TranslationOf:before,
 ReplacementFor:before
-
      { color: black; 
        font-weight: bold; 
        font-size: 10pt; }
 
 Title,
-
      { color: black;  
        font-weight: normal;  }
+
 
 /***************************************************************************/ 
 /*                            BORDER CONTROL                               */ 
 /***************************************************************************/ 
 MediaLink,
 SummaryMetaData,
-
      { border: none; }
-
 
 
 /***************************************************************************/ 
@@ -350,11 +338,13 @@ SecondaryTopics,
 SectMetaData,
 SectionType,
 SummaryAudience, 
+SummaryDescription,
 SummaryLanguage, 
 SummaryMetaData, 
 SummarySection, 
 SummaryTitle, 
 SummaryType,
+SummaryURL,
 Term, 
 /*Title, */
 TranslationOf,
@@ -368,15 +358,15 @@ ReplacementFor
 /***************************************************************************/ 
 /*                            FORM CONTROL                                 */ 
 /***************************************************************************/ 
-
 Board:before,
 BoardMember:before,
-SummaryType:before,
 SummaryAudience:before,
+SummaryDescription:before,
 SummaryLanguage:before,
+SummaryType:before,
+SummaryURL:before,
 MainTopics>Term:before,
 SecondaryTopics>Term:before,
-
 	{ background-color: white; }
 
 
@@ -387,8 +377,9 @@ MainTopics>Term,
 MediaID,
 SecondaryTopics>Term,				
 SummaryAudience,
+SummaryDescription,
 SummaryLanguage,
 SummaryType,
-
+SummaryURL,
 	{ text-indent: 0pt; }
 

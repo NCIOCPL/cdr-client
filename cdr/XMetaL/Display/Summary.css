@@ -178,12 +178,14 @@ SecondaryTopics,
 SectMetaData,
 SectionType,
 SummaryAudience, 
+SummaryDescription,
 SummaryLanguage, 
 SummaryMetaData, 
 SummarySection, 
 SummarySection>Comment,
 SummaryTitle, 
 SummaryType, 
+SummaryURL,
 Term,
 Title, 
 TranslationOf,
@@ -200,19 +202,21 @@ TranslationOf,
 
 Board:before                { content: "Summary Board * @: "; }
 BoardMember:before          { content: "Board Member & + @: "; }
+Caption:before              { content: "Caption: "; }
 DateLastModified:before     { content: "Last Modified &: "; }
 /*KeyPoint:before           { content: "Key Point & +: "; } */
 MainTopics>Term:before      { content: "Main Topics * +: "; }
 MediaID:before              { content: "Media ID: "; }
-Caption:before              { content: "Caption: "; }
+PatientVersionOf:before     { content: "Patient Version of: "; }
 PdqKey:before               { content: "PDQ Key &: "; }
 ReplacementFor:before       { content: "Replacement for &: "; }
 SecondaryTopics>Term:before { content: "Secondary Topics & +: " }
-SummaryType:before          { content: "Summary Type *: "; }
 SummaryAudience:before      { content: "Summary Audience *: "; }
+SummaryDescription:before   { content: "Summary Descr *: "; }
 SummaryLanguage:before      { content: "Summary Language *: "; }
+SummaryType:before          { content: "Summary Type *: "; }
+SummaryURL:before           { content: "Summary URL *: "; }
 TranslationOf:before        { content: "Translation of &: "; }
-PatientVersionOf:before     { content: "Patient Version of: "; }
 
 
 /***************************************************************************/ 
@@ -229,9 +233,11 @@ SummaryMetaData,
 
     { font-size: 12pt; }
 
-SummaryType:before, 
 SummaryAudience:before, 
+SummaryDescription:before,
 SummaryLanguage:before,
+SummaryType:before, 
+SummaryURL:before,
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
@@ -541,9 +547,11 @@ SummarySection>Table,
 Board:before,
 BoardMember:before,
 SummaryMetaData,
-SummaryType:before,
 SummaryAudience:before,
+SummaryDescription:before,
 SummaryLanguage:before,
+SummaryType:before,
+SummaryURL:before,
 PDQBoard,
 MainTopics,
 MainTopics>Term:before,
@@ -552,9 +560,11 @@ SecondaryTopics>Term:before,
     { background-color: #CCCCFF; }
 
 
-SummaryType,
 SummaryAudience,
+SummaryDescription,
 SummaryLanguage,
+SummaryType,
+SummaryURL,
 Board,
 BoardMember,
 MainTopics>Term,
@@ -566,25 +576,31 @@ SecondaryTopics>Term,
 
 Board,    
                   { margin-left: 135pt; 
-                    text-indent: -123pt;}
+                    text-indent: -123.5pt;}
 BoardMember,    
                   { margin-left: 135pt; 
-                    text-indent: -128pt;}
-SummaryType,    
-                  { margin-left: 135pt;
-                    text-indent: -101.5pt; }
+                    text-indent: -129pt;}
 SummaryAudience,    
                   { margin-left: 135pt; 
-                    text-indent: -126.5pt;}
+                    text-indent: -127.5pt;}
+SummaryDescription,    
+                  { margin-left: 135pt;
+                    text-indent: -107pt; }
 SummaryLanguage,    
                   { margin-left: 135pt; 
-                    text-indent: -130.5pt;}
+                    text-indent: -131pt;}
+SummaryType,    
+                  { margin-left: 135pt;
+                    text-indent: -102pt; }
+SummaryURL,    
+                  { margin-left: 135pt;
+                    text-indent: -99pt; }
 MainTopics>Term,    
                   { margin-left: 135pt;
-                    text-indent: -94pt; }
+                    text-indent: -94.5pt; }
 SecondaryTopics>Term,    
                   { margin-left: 135pt; 
-                    text-indent: -133.5pt; }
+                    text-indent: -134pt; }
 
 Caption,
                   { margin-left: 70pt; 
@@ -604,9 +620,11 @@ Board,
 BoardMember,
 Caption,
 MediaID,
-SummaryType,
 SummaryAudience,
+SummaryDescription,
 SummaryLanguage,
+SummaryType,
+SummaryURL,
 MainTopics>Term,
 SecondaryTopics>Term,
     { margin-bottom: 4pt; }

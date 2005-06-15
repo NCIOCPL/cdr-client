@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.11 2004-12-29 16:59:23 venglisc Exp $ -->
+<!-- $Id: Summary.ctm,v 1.12 2005-06-15 17:00:18 venglisc Exp $ -->
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
@@ -297,6 +297,18 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>SummaryDescription</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SummaryURL</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>SummarySection</Name>
       <TagColor>66FF66</TagColor>
       <PrettyPrintOptions>
@@ -455,6 +467,14 @@
       <MiniTemplate><![CDATA[<SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>SummaryDescription</Name>
+      <MiniTemplate><![CDATA[<SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SummaryURL</Name>
+      <MiniTemplate><![CDATA[<SummaryURL><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>SummarySection</Name>
       <MiniTemplate><![CDATA[<SummarySection>
 <SectMetaData>
@@ -518,6 +538,8 @@
 <SummaryType><?xm-replace_text {Select a summary type (required)} ?></SummaryType>
 <SummaryAudience><?xm-replace_text {Select a summary audience (required)} ?></SummaryAudience>
 <SummaryLanguage>English</SummaryLanguage>
+<SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
+<SummaryURL><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
 <PDQBoard>
 <Board><?xm-replace_text {Select an organization link} ?></Board>
 <BoardMember><?xm-replace_text {Optionally select a person link} ?></BoardMember>
