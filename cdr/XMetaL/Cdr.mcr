@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.137 2005-05-12 21:30:56 venglisc Exp $
+     $Id: Cdr.mcr,v 1.138 2005-06-30 18:36:23 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.137  2005/05/12 21:30:56  venglisc
+     Added Media QC Report icon to media toolbar. (Bug 1659)
+
      Revision 1.135  2005/05/06 14:34:07  bkline
      Shifted newest toolbar to be created earlier, trying to work around
      bug in XMetaL which suppresses the ability to enable/disable more
@@ -2161,6 +2164,12 @@
                            "Next Lead Org",
                            "Go To Next Lead Org",
                            "Go To Next Lead Org",
+                           "CDR", 1, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Next External Site",
+                           "Go To Next External Site",
+                           "Go To Next External Site",
                            "CDR", 1, 4,
                            false),
             new CdrCmdItem(null,
@@ -4469,6 +4478,23 @@
         rng.Select();
     }
     nextLeadOrg();
+  ]]>
+</MACRO>
+
+<MACRO  name="Next External Site"
+        lang="JScript" 
+        desc="Move to the next external site in the protocol"
+        hide="false">
+  <![CDATA[
+    function nextExternalSite() {
+        var rng = ActiveDocument.Range;
+        if (!rng.MoveToElement("ExternalSite", true)) {
+            Application.Alert("No more ExternalSite elements found.");
+            return;
+        }
+        rng.Select();
+    }
+    nextExternalSite();
   ]]>
 </MACRO>
 
