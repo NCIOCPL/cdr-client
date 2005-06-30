@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.138 2005-06-30 18:36:23 bkline Exp $
+     $Id: Cdr.mcr,v 1.139 2005-06-30 20:49:42 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.138  2005/06/30 18:36:23  bkline
+     New macro ("Next External Site") added.
+
      Revision 1.137  2005/05/12 21:30:56  venglisc
      Added Media QC Report icon to media toolbar. (Bug 1659)
 
@@ -1917,9 +1920,15 @@
                            false),
             */
             new CdrCmdItem(null,
-                           "Patient Summary QC Report",
-                           "Patient QC",
-                           "Patient Summary QC Report",
+                           "Patient Summary BU QC Report",
+                           "Patient BU QC",
+                           "Patient Summary BU QC Report",
+                           "CDR2", 2, 1,
+                           false),
+            new CdrCmdItem(null,
+                           "Patient Summary RS QC Report",
+                           "Patient RS QC",
+                           "Patient Summary RS QC Report",
                            "CDR", 3, 5,
                            false),
             new CdrCmdItem(null,
@@ -5556,10 +5565,10 @@
   ]]>
 </MACRO>
 
-<MACRO name="Patient Summary QC Report" 
+<MACRO name="Patient Summary RS QC Report" 
        lang="JScript">
   <![CDATA[
-    function patientSummaryQcReport() {
+    function patientSummaryRsQcReport() {
         var docId = getDocId();
         if (!docId) {
             Application.Alert("Document has not yet been saved in the CDR");
@@ -5581,7 +5590,36 @@
                             + CdrSession;
         cdrObj.showPage(url);
     }
-    patientSummaryQcReport();
+    patientSummaryRsQcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Patient Summary BU QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function patientSummaryBuQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        /*
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId +
+                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
+                "&Filter1=name:Patient+Summary+QC+Report+Filter";
+        */
+        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
+                            + docId
+                            + "&ReportType=patbu&Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    patientSummaryBuQcReport();
   ]]>
 </MACRO>
 
