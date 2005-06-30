@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.139 2005-06-30 20:49:42 venglisc Exp $
+     $Id: Cdr.mcr,v 1.140 2005-06-30 20:54:47 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.139  2005/06/30 20:49:42  venglisc
+     Adding new macro to add toolbar icon for Summary Patient BU Report.
+     (Bug 1744)
+
      Revision 1.138  2005/06/30 18:36:23  bkline
      New macro ("Next External Site") added.
 
@@ -2179,7 +2183,7 @@
                            "Next External Site",
                            "Go To Next External Site",
                            "Go To Next External Site",
-                           "CDR", 1, 4,
+                           "CDR2", 2, 2,
                            false),
             new CdrCmdItem(null,
                            "Insert PatientCharacteristics",
