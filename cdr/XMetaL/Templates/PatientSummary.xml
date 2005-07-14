@@ -196,7 +196,7 @@
    </SummarySection>
    <SummarySection>
     <KeyPoint>Hormone therapy</KeyPoint>
-    <Para><StandardWording>Hormone therapy is a cancer treatment that removes hormones or blocks their action and stops cancer cells from growing. Hormones are substances produced by glands in the body and circulated in the bloodstream. The presence of some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (receptors), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</StandardWording></Para>
+    <Para><StandardWording>Hormone therapy is a cancer treatment that removes hormones or blocks their action and stops cancer cells from growing. Hormones are substances produced by glands in the body and circulated in the bloodstream. Some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (receptors), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</StandardWording></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Biologic therapy</KeyPoint>
@@ -215,7 +215,7 @@
    <SectMetaData>
     <SectionType>Treatment in clinical trials</SectionType>
    </SectMetaData>
-   <KeyPoint>Other types of treatment are being tested in clinical trials. These include the following:</KeyPoint>
+   <KeyPoint>New types of treatment are being tested in clinical trials. These include the following:</KeyPoint>
    <SummarySection>
     <KeyPoint>Clinical trial here</KeyPoint>
     <Para>[para here]</Para>
