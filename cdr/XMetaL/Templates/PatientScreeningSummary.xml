@@ -9,8 +9,10 @@
   <SummaryType>Treatment</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>English</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
   <PDQBoard>
-   <Board cdr:ref="CDR0000035049">PDQ Adult Treatment Advisory Board</Board>
+   <Board cdr:ref="CDR0000028327">PDQ Adult Treatment Editorial Board</Board>
   </PDQBoard>
   <MainTopics>
    <Term>Screening for X cancer</Term>

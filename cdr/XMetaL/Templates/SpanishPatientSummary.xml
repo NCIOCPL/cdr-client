@@ -9,6 +9,8 @@
   <SummaryType>Treatment</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>Spanish</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
   <PDQBoard>
    <Board cdr:ref="CDR0000256088">Inactive</Board>
   </PDQBoard>
