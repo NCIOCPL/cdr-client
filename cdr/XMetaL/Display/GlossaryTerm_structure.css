@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	GlossaryTerm_structure.css                                       */
+/*      GlossaryTerm_structure.css                                       */
 /*                                                                       */
 /*      v. 3.3                                                           */
 /*      6/11/02  by ebator                                               */
@@ -40,14 +40,11 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
-
 
 @sq-plus-minus;
 
@@ -55,43 +52,41 @@
 
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
+    { margin-left: 0px;  }
 
-     { margin-left: 0px;  }
-
-$PROCINS 
-
-     { color: white;
-       font-weight: normal;
-       background-color: white;}
+$PROCINS
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
 
 GlossaryTerm,
+    { background-color: white;
+      text-decoration: none;
+      color: black;  }
 
-     { background-color: white; 
-       text-decoration: none;
-       color: black;  }
 
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Audience,
 Caption,
 Comment,
 DateLastModified,
+DateLastReviewed,
 GlossaryTerm,
 DefinitionText,
 Dictionary,
@@ -105,59 +100,55 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-
     { display: block; }
 
 
-
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 Audience:before                 { content: "Audience"; }
 Caption:before                  { content: "Caption"; }
 Dictionary:before               { content: "Dictionary"; }
-Comment:before			{ content: "Comments"; }
-DateLastModified:before		{ content: "Last Modified"; }
-GlossaryTerm:before		{ content: "GLOSSARY TERM"; }
+Comment:before                  { content: "Comments"; }
+DateLastModified:before         { content: "Last Modified"; }
+DateLastReviewed:before         { content: "Last Reviewed"; }
+GlossaryTerm:before             { content: "GLOSSARY TERM"; }
 MediaID:before                  { content: "Media ID"; }
 MediaLink:before                { content: "Media Link"; }
-PdqKey:before			{ content: "PDQ Key"; }
+PdqKey:before                   { content: "PDQ Key"; }
 SpanishTermDefinition:before    { content: "SPANISH DEFINITION"; }
-SpanishTermDefinition>DefinitionText:before	
+SpanishTermDefinition>DefinitionText:before     
                                 { content: "Spanish Definition  "; }
-SpanishTermName:before		{ content: "Spanish Term Name "; }
-StatusDate:before		{ content: "Status Date "; }
+SpanishTermName:before          { content: "Spanish Term Name "; }
+StatusDate:before               { content: "Status Date "; }
 TermDefinition:before           { content: "TERM DEFINITION"; }
-TermDefinition>DefinitionText:before		
+TermDefinition>DefinitionText:before          
                                 { content: "Term Definition "; }
-TermName:before			{ content: "Term Name "; }
-TermPronunciation:before	{ content: "Term Pronunciation "; }
-TermSource:before		{ content: "Term Source "; }
-TermStatus:before		{ content: "Term Status "; }
-TermType:before			{ content: "Term Type  "; }
+TermName:before                 { content: "Term Name "; }
+TermPronunciation:before        { content: "Term Pronunciation "; }
+TermSource:before               { content: "Term Source "; }
+TermStatus:before               { content: "Term Status "; }
+TermType:before                 { content: "Term Type  "; }
 
 
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 GlossaryTerm:before,
+    { color: black; }
+     
 
-	{ color: black; }
-	 
-
-
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDER CONTROL                                  */
 /***************************************************************************/
 TermDefinition,
 SpanishTermDefinition,
+    { border: none; }
 
-   { border: none; }
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 Comment:before,
 DefinitionText:before,
 Audience:before,
@@ -166,33 +157,30 @@ SpanishTermName:before,
 StatusDate:before,
 TermName:before,
 TermPronunciation:before,
-
-   {  font-weight: bold;
+    { font-weight: bold;
       color: black;  }
 
 
-/***************************************************************************/ 
-/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
 TermSource:before,
 TermStatus:before,
 TermType:before,
-
-   {  font-weight: bold;
+    { font-weight: bold;
       color: black;  }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Remove negative text-indent settings  */
 
 Audience,
 Caption,
 Comment,
 DateLastModified,
+DateLastReviewed,
 GlossaryTerm,
 DefinitionText,
 Dictionary,
@@ -205,22 +193,21 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-
-	{ text-indent: 0pt; }
-
+    { text-indent: 0pt; }
 
 
-/***************************************************************************/ 
-/*                              HIDE TEXT                                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
 Audience,
 Caption,
 Comment,
 DateLastModified,
+DateLastReviewed,
 GlossaryTerm,
 DefinitionText,
 Dictionary,
-MediaID, 
+MediaID,
 MediaLink,
 PdqKey,
 SpanishTermName,
@@ -230,15 +217,15 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-
-     { color: white;
-       background-color: white; }
+    { color: white;
+      background-color: white; }
 
 
 Audience:before,
 Caption:before,
 Comment:before,
 DateLastModified:before,
+DateLastReviewed:before,
 GlossaryTerm:before,
 DefinitionText:before,
 Dictionary:before,
@@ -253,8 +240,4 @@ TermPronunciation:before,
 TermSource:before,
 TermStatus:before,
 TermType:before,
-
-	{ background-color: white; }
-
-
-
+    { background-color: white; }

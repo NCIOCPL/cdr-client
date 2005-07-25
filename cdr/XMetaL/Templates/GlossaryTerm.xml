@@ -27,5 +27,7 @@
   <TermStatus><?xm-replace_text {Select a status (required)} ?></TermStatus> 
   <StatusDate><?xm-replace_text {Enter the status assignment date (required)} ?></StatusDate>
   
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment><DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+  <DateLastReviewed><?xm-replace_text {Optionally enter the date the record was last reviewed} ?></DateLastReviewed>
   </GlossaryTerm>

@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	GlossaryTerm.css                                                 */
+/*      GlossaryTerm.css                                                 */
 /*                                                                       */
 /*      v. 3.4                                                           */
 /*      6/11/02  by ebator                                               */
@@ -43,50 +43,43 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema.css";
 
+$DOCUMENT
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      color: black;
+      margin-top: 5px;
+      margin-left: 5px; }
 
-$DOCUMENT 
+$COMMENT
+    { display: block;
+      color: purple;
+      white-space: pre; }
 
-     { font-family: Arial, sans-serif;
-       font-size: 12pt;
-       color: black;
-       margin-top: 5px;
-       margin-left: 5px; }
-
-$COMMENT 
-
-     { display: block;
-       color: purple;
-       white-space: pre; }
-
-$PROCINS 
-
-     { color: blue;
-       font-weight: normal;
-       background-color: white; }
+$PROCINS
+    { color: blue;
+      font-weight: normal;
+      background-color: white; }
 
 GlossaryTerm,
+    { background-color: #CCCCFF;
+      text-decoration: none;
+      color: black; }
 
-     { background-color: #CCCCFF; 
-       text-decoration: none;
-       color: black;              }
 
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Audience,
 Caption,
 Comment,
 DateLastModified,
+DateLastReviewed,
 DefinitionText,
 Dictionary,
 GlossaryTerm,
@@ -102,49 +95,48 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-
-    { display: block; }
-
+     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-
 Audience:before                 { content: "Audience * +: "; }
 Caption:before                  { content: "Caption & +: "; }
-Comment:before			{ content: "Comments &: "; } 
-DateLastModified:before		{ content: "Last Modified &: "; }
+Comment:before               { content: "Comments &: "; }
+DateLastModified:before          { content: "Last Modified &: "; }
+DateLastReviewed:before          { content: "Last Reviewed &: "; }
 Dictionary:before               { content: "Dictionary & +: "; }
 MediaID:before                  { content: "Media ID * @: "; }
 MediaLink:before                { content: "MEDIA LINK & + @:"; }
-PdqKey:before			{ content: "PDQ Key &: "; }
+PdqKey:before               { content: "PDQ Key &: "; }
 SpanishTermDefinition:before    { content: "SPANISH DEFINITION & +:"; }
-SpanishTermDefinition>DefinitionText:before	
+SpanishTermDefinition>DefinitionText:before
                                 { content: "Span Definition *: "; }
-SpanishTermName:before		{ content: "Spanish Name &: "; }
-StatusDate:before		{ content: "Status Date *: "; }
+SpanishTermName:before          { content: "Spanish Name &: "; }
+StatusDate:before          { content: "Status Date *: "; }
 TermDefinition:before           { content: "TERM DEFINITION * +:"; }
-TermDefinition>DefinitionText:before 
+TermDefinition>DefinitionText:before
                                 { content: "Term Definition *: "; }
-TermName:before			{ content: "Term Name *: "; }
-TermPronunciation:before	{ content: "Pronunciation &: "; }
-TermSource:before		{ content: "Term Source *: "; }
-TermStatus:before		{ content: "Term Status *: "; }
-TermType:before			{ content: "Term Type * +: "; }
+TermName:before               { content: "Term Name *: "; }
+TermPronunciation:before     { content: "Pronunciation &: "; }
+TermSource:before          { content: "Term Source *: "; }
+TermStatus:before          { content: "Term Status *: "; }
+TermType:before               { content: "Term Type * +: "; }
 
 
 
-/***************************************************************************/ 
-/*                     SECTION TITLES AND BORDERS                          */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     SECTION TITLES AND BORDERS                          */
+/***************************************************************************/
 Audience,
 DateLastModified,
+DateLastReviewed,
 Dictionary,
 MediaLink,
 SpanishTermDefinition,
@@ -152,17 +144,17 @@ SpanishTermName,
 TermDefinition,
 TermSource,
 TermType,
+     { margin-top: 1em }
 
-    { margin-top: 1em }
 
-      
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 Audience:before,
 Caption:before,
 Comment:before,
 DateLastModified:before,
+DateLastReviewed:before,
 DefinitionText:before,
 Dictionary:before,
 MediaID:before,
@@ -173,88 +165,86 @@ StatusDate:before,
 TermDefinition:before,
 TermName:before,
 TermPronunciation:before,
+     { font-weight: bold;
+       color: black; }
 
-   {  font-weight: bold;
-      color: black;  }
 
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 TermDefinition,
 SpanishTermDefinition,
+    { border: solid;
+      border-color: black;
+      border-width: thin;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
 
-   { border: solid; 
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
 
-
-/***************************************************************************/ 
-/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
 PdqKey:before,
 TermSource:before,
 TermStatus:before,
 TermType:before,
+     {  font-weight: bold;
+        color: black; }
 
-   {  font-weight: bold;
-      color: black;  }
 
-
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 
-/* Key element for length = SpanishTermName				   */
+/* Key element for length = SpanishTermName                       */
 
-Audience                                { margin-left: 125pt; 
-	                                  text-indent: -79pt; }
-Dictionary                              { margin-left: 125pt; 
-	                                  text-indent: -88pt; }
+Audience                                { margin-left: 125pt;
+                                          text-indent: -79pt; }
+Dictionary                              { margin-left: 125pt;
+                                          text-indent: -88pt; }
 Caption                                 { margin-left: 125pt;
-	                                  text-indent: -75pt; }
+                                          text-indent: -75pt; }
 MediaID,                                { margin-left: 125pt;
-	                                  text-indent: -79.5pt; }
-TermName,				{ margin-left: 125pt; 
-					  text-indent: -80.5pt; }
-TermPronunciation,			{ margin-left: 125pt; 
-					  text-indent: -100.5pt; }
-TermDefinition>DefinitionText,		{ margin-left: 125pt; 
-					  text-indent: -102pt; }
-SpanishTermName,			{ margin-left: 125pt; 
-					  text-indent: -103pt; }
-SpanishTermDefinition>DefinitionText,	{ margin-left: 125pt; 
-					  text-indent: -103pt; }
+                                          text-indent: -79.5pt; }
+TermName,                               { margin-left: 125pt;
+                                          text-indent: -80.5pt; }
+TermPronunciation,                      { margin-left: 125pt;
+                                          text-indent: -100.5pt; }
+TermDefinition>DefinitionText,          { margin-left: 125pt;
+                                          text-indent: -102pt; }
+SpanishTermName,                        { margin-left: 125pt;
+                                          text-indent: -103pt; }
+SpanishTermDefinition>DefinitionText,   { margin-left: 125pt;
+                                          text-indent: -103pt; }
 
-/* Key element for length = TermSource					   */
+/* Key element for length = TermSource                            */
 
-TermSource,				{ margin-left: 85pt; 
-					  text-indent: -88.5pt; }
-TermType,				{ margin-left: 85pt; 
-					  text-indent: -85.5pt; }
-TermStatus,				{ margin-left: 85pt; 
-					  text-indent: -84pt; }
-StatusDate,				{ margin-left: 85pt; 
-					  text-indent: -81pt; }
+TermSource,                             { margin-left: 85pt;
+                                          text-indent: -88.5pt; }
+TermType,                               { margin-left: 85pt;
+                                          text-indent: -85.5pt; }
+TermStatus,                             { margin-left: 85pt;
+                                          text-indent: -84pt; }
+StatusDate,                             { margin-left: 85pt;
+                                          text-indent: -81pt; }
 
-/* Key element for length = DateLastModified				   */
+/* Key element for length = DateLastModified                       */
 
-Comment,				{ margin-left: 100pt;
-					  text-indent: -82pt;  }
-DateLastModified,			{ margin-left: 100pt;
-					  text-indent: -96pt; }
-PdqKey,					{ margin-left: 100pt;
-					  text-indent: -71pt; }
+Comment,                                { margin-left: 100pt;
+                                          text-indent: -82pt; }
+DateLastModified,                       { margin-left: 100pt;
+                                          text-indent: -96pt; }
+DateLastReviewed,                       { margin-left: 100pt;
+                                          text-indent: -103.5pt; }
+PdqKey,                                 { margin-left: 100pt;
+                                          text-indent: -71pt; }
 
 
-/* Section Heading Margins						   */
+/* Section Heading Margins                                 */
 
 TermName,
-
-	{ margin-top: 1em; }
+     { margin-top: 1em; }
 
 
 /* Margin-bottom to simulate a text box                                    */
@@ -262,6 +252,7 @@ TermName,
 Audience,
 Comment,
 DateLastModified,
+DateLastReviewed,
 Dictionary,
 PdqKey,
 MediaID,
@@ -274,17 +265,17 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+     { margin-bottom: 4pt; }
 
-	{ margin-bottom: 4pt; }
 
-
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 Audience,
 Caption,
 Comment,
 DateLastModified,
+DateLastReviewed,
 DefinitionText,
 Dictionary,
 MediaID,
@@ -296,14 +287,14 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-
-	{ background-color: white; }
+     { background-color: white; }
 
 
 Audience:before,
 Caption:before,
 Comment:before,
 DateLastModified:before,
+DateLastReviewed:before,
 DefinitionText:before,
 Dictionary:before,
 MediaID:before,
@@ -316,5 +307,4 @@ TermPronunciation:before,
 TermSource:before,
 TermStatus:before,
 TermType:before,
-
-	{ background-color: #CCCCFF; }  /* light blue */
+     { background-color: #CCCCFF; }  /* light blue */
