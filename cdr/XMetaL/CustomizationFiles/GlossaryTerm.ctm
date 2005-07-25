@@ -429,6 +429,10 @@
       <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>DateLastReviewed</Name>
+      <MiniTemplate><![CDATA[<DateLastReviewed><?xm-replace_text {Optionally enter the date the record was last reviewed} ?></DateLastReviewed>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>Para</Name>
       <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
     </Template>
