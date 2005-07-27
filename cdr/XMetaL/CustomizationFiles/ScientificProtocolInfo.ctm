@@ -71,6 +71,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>RelatedCitation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>City</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -540,6 +547,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>RelatedPublications</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Purpose</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -994,15 +1009,34 @@
 </ProtocolRelatedLinks>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>Citation</Name>
-      <MiniTemplate><![CDATA[<Citation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></Citation>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name>PublishedResults</Name>
       <MiniTemplate><![CDATA[<PublishedResults>
 <Citation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></Citation>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </PublishedResults>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelatedPublications</Name>
+      <MiniTemplate><![CDATA[<RelatedPublications>
+<RelatedCitation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></RelatedCitation>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</RelatedPublications>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Citation</Name>
+      <MiniTemplate><![CDATA[<Citation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></Citation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelatedCitation</Name>
+      <MiniTemplate><![CDATA[<RelatedCitation><?xm-replace_text {Optionally link to a citation of published protocol results} ?></RelatedCitation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitationSource</Name>
+      <MiniTemplate><![CDATA[<CitationSource><?xm-replace_text {Enter the citation source (required)} ?></CitationSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>SourceWebsite</Name>
+      <MiniTemplate><![CDATA[<SourceWebsite><?xm-replace_text {Optionally enter the citation source website} ?></SourceWebsite>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>HealthyVolunteers</Name>

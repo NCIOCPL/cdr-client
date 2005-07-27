@@ -546,6 +546,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>RelatedPublications</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Purpose</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -1135,8 +1143,19 @@
 </PublishedResults>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>RelatedPublications</Name>
+      <MiniTemplate><![CDATA[<RelatedPublications>
+<RelatedCitation><?xm-replace_text {Enter a citation (required)} ?></RelatedCitation><CitationSource><?xm-replace_text {Enter the citation source (required)} ?></CitationSource><EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy><EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</RelatedPublications>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>Citation</Name>
       <MiniTemplate><![CDATA[<Citation><?xm-replace_text {Enter a citation (required)} ?></Citation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RelatedCitation</Name>
+      <MiniTemplate><![CDATA[<RelatedCitation><?xm-replace_text {Enter a citation (required)} ?></RelatedCitation>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CitationSource</Name>
