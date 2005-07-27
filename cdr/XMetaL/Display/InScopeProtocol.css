@@ -205,7 +205,6 @@ StatusName,
 SupplementaryInfoLink,
 UpdateMode,
 WarehouseBoxNumber,
-
     { display: block; }
 
 
@@ -380,6 +379,8 @@ ProtocolSponsors:before
                 { content: "PROTOCOL SPONSORS &"; }
 RelatedDocuments:before
                 { content: "RELATED DOCUMENTS &"; }
+RelatedPublications:before
+                { content: "RELATED PUBLICATIONS & +"; }
 ReimbursementApprovalType:before 
                 { content: "Reimbursmnt Approval Type & +: "; }
 ReviewApprovalType:before
@@ -551,7 +552,6 @@ ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
 RelatedDocuments,
-
    {  border: solid; 
       border-color: gray;
       border-width: thin;
@@ -575,7 +575,6 @@ OrgSite,
 OverallContact,
 PrivatePracticeSite,
 RelatedDocuments,
-
    {  margin-top: 1em;    }
 
 CurrentOrgStatus,
@@ -604,7 +603,6 @@ ProtocolApproval,
 ProtocolProcessingDetails,
 ProtocolSponsors,
 RelatedDocuments,
-
    {  margin-bottom: .5em;  }
 
 
@@ -967,7 +965,6 @@ SponsorName,
 SourceName,
 StatusName,
 SupplementaryInfoLink,
-
     { margin-top: 4pt; }
 
 

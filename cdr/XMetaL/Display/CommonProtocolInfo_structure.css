@@ -121,7 +121,9 @@ ProtocolTitle,
 PublishedResults,
 Purpose,
 Rationale,
+RelatedCitation,
 RelatedProtocols,
+RelatedPublications,
 RelatedWebsites,
 SourceWebsite,
 SpecialStudyParameters,
@@ -203,7 +205,9 @@ ProtocolTitle:before              { content: "PROTOCOL TITLE"; }
 PublishedResults:before           { content: "PUBLISHED RESULTS ";}
 Purpose:before                    { content: "Purpose "; }
 Rationale:before                  { content: "Rationale "; }
+RelatedCitation:before            { content: "Related Citation ";  }
 RelatedProtocols:before           { content: "Related Protocols ";  }
+RelatedPublications:before        { content: "RELATED PUBLICATIONS "; }
 RelatedWebsites:before            { content: "Related Websites ";   }
 SourceWebsite:before              { content: "Source Website "; }
 SpecialStudyParameters:before     { content: "Special Study Parameters "; }
@@ -236,9 +240,9 @@ ProtocolIDString:before,
 ProtocolRelatedLinks:before,
 ProtocolSpecialCategory:before,
 PublishedResults:before,
+RelatedPublications:before,
 StudyCategory:before,
 TitleType:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -305,13 +309,14 @@ InterventionType:before,
 ProtocolDesign:before,
 ProtocolPhase:before,
 PublishedResults:before,
+RelatedCitation:before,
 RelatedProtocols:before,
+RelatedPublications:before,
 SourceWebsite:before,
 SpecialCategory:before,
 StudyCategoryType:before,
 StudyCategoryName:before,
 StudyType:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -329,8 +334,8 @@ ProtocolIDs,
 ProtocolRelatedLinks,
 ProtocolSpecialCategory,
 PublishedResults,
+RelatedPublications,
 ProtocolTitle,
-
    { border: none;  }
 
 
@@ -390,8 +395,10 @@ ProtocolTitle,
 PublishedResults,
 Purpose,
 Rationale,
+RelatedCitation,
 RelatedProtocols,
 RelatedWebsites,
+RelatedPublications,
 SourceWebsite,
 SpecialStudyParameters,
 Stratification,
@@ -402,7 +409,6 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-
    {  color: white;
       background-color: white;  }
 
@@ -434,6 +440,7 @@ ProtocolIDs>OtherID>Comment:before,
 ProtocolIDs>PrimaryID>Comment:before,
 ProtocolRelatedLinks>Comment:before,
 PublishedResults>Comment:before,
+RelatedPublications>Comment:before,
 Condition:before,
 DatedAction,
 ProtocolAmendment>DateCompleted:before,
@@ -483,7 +490,10 @@ PublishedResults,
 PublishedResults:before,
 Purpose,
 Rationale,
+RelatedCitation:before,
 RelatedProtocols:before,
+RelatedPublications,
+RelatedPublications:before,
 RelatedWebsites:before,
 SourceWebsite:before,
 SpecialStudyParameters:before,
@@ -496,7 +506,6 @@ StudyType:before,
 TreatmentIntervention,
 ProtocolIDs:before,
 TitleType:before,
-
      { background-color: white; }
 
 
@@ -524,6 +533,7 @@ ProtocolIDs>PrimaryID>Comment,
 ProtocolRelatedLinks>Comment,
 ProtocolSpecialCategory>Comment,
 PublishedResults>Comment,
+RelatedPublications>Comment,
 Condition,
 Date,
 ProtocolAmendmentInformation>DatedAction>ActionDescription,
@@ -551,6 +561,7 @@ PdqKey,
 ProtocolAmendment,
 ProtocolDesign,
 ProtocolPhase,
+RelatedCitation,
 RelatedProtocols,
 RelatedWebsites,
 SourceWebsite,
@@ -560,7 +571,6 @@ StudyCategoryName,
 StudyFocus,
 StudyType,
 TitleType,
-
      { text-indent: 0pt; }
 
 

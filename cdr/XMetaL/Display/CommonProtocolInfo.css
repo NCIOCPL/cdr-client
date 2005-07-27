@@ -64,7 +64,6 @@ $PROCINS
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
-
 AgeText,
 AmendmentDate,
 AmendmentID,
@@ -119,6 +118,8 @@ ProtocolTitle,
 PublishedResults,
 Purpose,
 Rationale,
+RelatedCitation,
+RelatedPublications,
 RelatedProtocols,
 RelatedWebsites,
 SourceWebsite,
@@ -131,7 +132,6 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-
    { display: block; }
 
 
@@ -139,8 +139,6 @@ TreatmentIntervention,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-
-
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
@@ -207,7 +205,9 @@ ProtocolTitle[Type="Patient"]:before
 PublishedResults:before         { content: "PUBLISHED RESULTS & + "; }
 Purpose:before                  { content: "Purpose *: "; }
 Rationale:before                { content: "Rationale *: "; }
+RelatedCitation:before          { content: "Related Citation * @: ";  }
 RelatedProtocols:before         { content: "Related Protocols * + @: "; }
+RelatedPublications:before      { content: "RELATED PUBLICATIONS & + "; }
 RelatedWebsites:before          { content: "Related Web Sites * + @: "; }
 SourceWebsite:before            { content: "Source Website & @: "; }
 SpecialStudyParameters:before   { content: "Special Study Parameters &: "; }
@@ -223,8 +223,6 @@ TreatmentIntervention:before    { content: "Treatment Intervention *: "; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-
-
 DatedAction:before,
 Eligibility:before,
 Intervention:before,
@@ -237,8 +235,8 @@ ProtocolDetail:before,
 ProtocolIDs:before,
 ProtocolRelatedLinks:before,
 PublishedResults:before,
+RelatedPublications:before,
 StudyCategory:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -246,8 +244,6 @@ StudyCategory:before,
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
-
-
 AgeText:before,
 AmendmentDate:before,
 AmendmentID:before,
@@ -277,6 +273,7 @@ ProjectedAccrual:before,
 ProtocolTitle:before,
 Purpose:before,
 Rationale:before,
+RelatedCitation:before,
 RelatedWebsites:before,
 SourceWebsite:before,
 SpecialStudyParameters:before,
@@ -284,7 +281,6 @@ Stratification:before,
 StudyFocus:before,
 StudyCategoryName:before,
 TreatmentIntervention:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -292,8 +288,6 @@ TreatmentIntervention:before,
 /***************************************************************************/
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
 /***************************************************************************/
-
-
 ChangeType:before,
 Citation:before,
 Condition:before,
@@ -309,13 +303,12 @@ ProtocolDesign:before,
 ProtocolPhase:before,
 PublishedResults:before,
 RelatedProtocols:before,
+RelatedPublications:before,
 StudyCategoryType:before,
 StudyCategoryName:before,
 StudyType:before,
-
    {  font-weight: bold;
       color: black;  }
-
 
 
 /***************************************************************************/
@@ -325,11 +318,9 @@ DiseaseCharacteristics,
 GeneralEligibilityCriteria,
 PatientCharacteristics,
 PriorConcurrentTherapy,
-
    {  margin-left: 1em;  }
 
 Section,
-
    { margin-left: 20pt;  }
 
 
@@ -345,7 +336,7 @@ ProtocolDetail,
 ProtocolIDs,
 ProtocolRelatedLinks,
 PublishedResults,
-
+RelatedPublications,
    {  border: solid;
       border-color: gray;
       border-width: thin;
@@ -354,22 +345,18 @@ PublishedResults,
 AmendmentID,
 DatedAction,
 ProtocolPhase,
-
    {  margin-top: 1em;    }
 
 StudyCategory>Comment,
 Eligibility,
-
    {  margin-bottom: 1em;  }
 
 ProtocolAmendmentInformation,
-
    {  margin-bottom: .5em;  }
 
 Intervention,
 ProtocolTitle,
 StudyCategory,
-
    { margin-top: 1em;
      margin-bottom: 1em;  }
 
@@ -469,6 +456,8 @@ CitationSource,                 { margin-left: 150pt;
                                   text-indent: -109pt; }
 SourceWebsite,                  { margin-left: 150pt;
                                   text-indent: -125pt; }
+RelatedCitation,                { margin-left: 150pt;
+                                  text-indent: -121.5pt; }
 
 /* Key element for length = ProtocolDesign           */
 
@@ -547,7 +536,9 @@ ProtocolTitle,
 PublishedResults,
 Purpose,
 Rationale,
+RelatedCitation,
 RelatedProtocols,
+RelatedPublications,
 RelatedWebsites,
 SourceWebsite,
 SpecialStudyParameters,
@@ -559,7 +550,6 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-
            { margin-bottom: 4pt; }
 
 
@@ -582,14 +572,12 @@ StudyType,
 Patient>EnteredBy,
 Professional>EnteredBy,
 ProtocolDetail>EnteredBy,
-
            { margin-top: 1em; }
+
 
 /***************************************************************************/
 /*                               COLOR                                     */
 /***************************************************************************/
-
-
 ActionDate,
 ActionDescription,
 AgeText,
@@ -636,6 +624,7 @@ ProtocolPhase,
 ProtocolTitle,
 Purpose,
 Rationale,
+RelatedCitation,
 RelatedProtocols,
 RelatedWebsites,
 Section,
@@ -656,7 +645,6 @@ THead,
 THead>Row>entry,
 TitleType,
 TreatmentIntervention,
-
            { background-color: white; }
 
 
@@ -688,6 +676,7 @@ ProtocolIDs>OtherID>Comment:before,
 ProtocolIDs>PrimaryID>Comment:before,
 ProtocolRelatedLinks>Comment:before,
 PublishedResults>Comment:before,
+RelatedPublications>Comment:before,
 StudyCategory>Comment:before,
 Condition:before,
 ProtocolAmendmentInformation>DatedAction,
@@ -734,7 +723,9 @@ PublishedResults,
 PublishedResults:before,
 Purpose,
 Rationale,
+RelatedCitation:before,
 RelatedProtocols:before,
+RelatedPublications,
 RelatedWebsites:before,
 SourceWebsite:before,
 SpecialStudyParameters:before,
