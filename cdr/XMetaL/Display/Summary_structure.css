@@ -134,6 +134,9 @@ MediaLink,
 PatientVersionOf, 
 PDQBoard,
 PdqKey, 
+QandADiv,
+QandAEntry,
+QandASet,
 SecondaryTopics, 
 SectMetaData,
 SectionType,
@@ -173,6 +176,9 @@ SummarySection>SummarySection>Para:before
 PatientVersionOf:before	{ content: "Patient Version Of "; }
 PDQBoard:before			{ content: "PDQ Board "; }
 PdqKey:before			{ content: "PDQ Key "; }
+QandASet:before         { content: "Q&A Section "; }
+QandADiv:before         { content: "Q&A Sub-Section "; }
+QandAEntry:before       { content: counter(qanda)". Q&A Entry "; }
 SecondaryTopics:before 	{ content: "Secondary Topics " }
 SectMetaData:before		{ content: "Section Metadata "; }
 SectionType:before		{ content: "Section Type "; }
@@ -226,7 +232,11 @@ SummarySection>SummarySection,
 SummarySection>SummarySection>Para,
 	{ counter-increment: subpara; }
 
+QandADiv,
+    { counter-reset: qanda; }
 
+QandAEntry,
+    { counter-increment: qanda; }
 
 /***************************************************************************/ 
 /*                             HEADINGS                                    */ 
@@ -342,14 +352,15 @@ SummaryDescription,
 SummaryLanguage, 
 SummaryMetaData, 
 SummarySection, 
+SummarySection>SummarySection, 
+SummarySection>SummarySection>Para, 
 SummaryTitle, 
 SummaryType,
 SummaryURL,
 Term, 
 /*Title, */
 TranslationOf,
-ReplacementFor
-
+ReplacementFor,
      { color: white;
        background-color: white; }
 

@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.11 2005-01-05 00:17:16 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.12 2005-07-28 14:24:46 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.11  2005/01/05 00:17:16  venglisc
+ * Updated CSS to handle new MediaLink, MediaRef and Caption elements.
+ *
  * Revision 1.10  2004/09/09 17:25:25  bkline
  * Switched Comment colors back to white on green (request #1213).
  *
@@ -82,83 +85,81 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
-$DOCUMENT 
-
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
 
-$COMMENT 
-
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
+$PROCINS
      { color: navy;
        font-weight: normal;
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 ActionDate,
 ActionDescription,
 AltTitle,
+Answer,
 CdrDocCtl,
 City,
 CitySuffix,
 ContactName,
 PostalAddress>Country,
 DatedAction,
-DocId, 
+DocId,
 DocTitle,
 Email,
 entry,
 Fax,
-Head, 
-ItemizedList, 
+Head,
+ItemizedList,
 KeyPoint,
-ListItem, 
-ListTitle, 
+ListItem,
+ListTitle,
 LiteralLayout,
+MarkedUpTitle,
 Multimedia,
-OrderedList, 
-Para, 
+OrderedList,
+Para,
 Phone,
 PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
-Row, 
+QandADiv,
+QandAEntry,
+QandASet,
+Question,
+Row,
 Section,
 Section>Title,
 Street,
-Table, 
-TBody, 
-TFoot, 
-TGroup, 
+Table,
+TBody,
+TFoot,
+TGroup,
 Title,
 TollFreePhone,
 TT,
 WebSite,
+     { display: block; }
 
 
-    { display: block; }
-
-/***************************************************************************/ 
-/*                           INLINE ELEMENTS                               */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           INLINE ELEMENTS                               */
+/***************************************************************************/
 CitationLink,
 CitationRef,
 CitationReference,
@@ -175,7 +176,7 @@ GlossaryTermLink,
 GlossaryTermRef,
 Insertion,
 InterventionName,
-LOEFragmentLink, 
+LOEFragmentLink,
 LOEFragmentRef,
 LOELink,
 LOERef,
@@ -194,14 +195,12 @@ SummaryFragmentRef,
 SummaryLink,
 SummaryRef,
 Superscript,
+     { display: inline; }
 
-    { display: inline;  }
 
-
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
@@ -210,141 +209,153 @@ Superscript,
 
 /* CDR Doc Control  */
 
-DocId:before				{ content: "Doc ID: "; }
-DocTitle:before				{ content: "Doc Title: "; }
+DocId:before                    { content: "Doc ID: "; }
+DocTitle:before                 { content: "Doc Title: "; }
 
 /* Contact Detail  */
 
-City:before				{ content: "City &: "; }
-CitySuffix:before			{ content: "Suffix &: "; }
-ContactName:before			{ content: "Name & +: "; }
-PostalAddress>Country:before		{ content: "Country * @: "; }
-Email:before				{ content: "Email & @: "; }
-Email[Public="No"]:after		{ content: " (Not public) "; }
-Email:after				{ content: " (Public) "; }
-Fax:before				{ content: "Fax &: "; }
-Phone:before				{ content: "Phone & @: "; }
-Phone[Public="No"]:after		{ content: " (Not public) "; }
-Phone:after				{ content: " (Public) "; }
-PoliticalSubUnit_State:before		{ content: "Pol Unit/St & @: "; }
-PostalAddress:before			{ content: "POSTAL ADDRESS & @"; }
-PostalAddress[Public="No"]:before	{ content: "POSTAL ADDRESS (Not Public) & @"; }
-PostalAddress:before			{ content: "POSTAL ADDRESS (Public) & @"; }
-PostalCode_ZIP:before			{ content: "Postal Code &: "; }
-Street:before				{ content: "Street & +: "; }
-TollFreePhone:before			{ content: "Toll Free &: "; }
-WebSite:before				{ content: "Web Site & @: "; }
+City:before                     { content: "City &: "; }
+CitySuffix:before               { content: "Suffix &: "; }
+ContactName:before              { content: "Name & +: "; }
+PostalAddress>Country:before    { content: "Country * @: "; }
+Email:before                    { content: "Email & @: "; }
+Email[Public="No"]:after        { content: " (Not public) "; }
+Email:after                     { content: " (Public) "; }
+Fax:before                      { content: "Fax &: "; }
+Phone:before                    { content: "Phone & @: "; }
+Phone[Public="No"]:after        { content: " (Not public) "; }
+Phone:after                     { content: " (Public) "; }
+PoliticalSubUnit_State:before   { content: "Pol Unit/St & @: "; }
+PostalAddress:before            { content: "POSTAL ADDRESS & @"; }
+PostalAddress[Public="No"]:before 
+                                { content: "POSTAL ADDRESS (Not Public) & @"; }
+PostalAddress:before            { content: "POSTAL ADDRESS (Public) & @"; }
+PostalCode_ZIP:before           { content: "Postal Code &: "; }
+Street:before                   { content: "Street & +: "; }
+TollFreePhone:before            { content: "Toll Free &: "; }
+WebSite:before                  { content: "Web Site & @: "; }
 
 /*DatedAction   */
 
-ActionDate:before			{ content: "Date* : "; }
-ActionDescription:before		{ content: "Action * : "; }
-DatedAction:before			{ content: "DATED ACTION & +"; }
-DatedAction>Comment:before		{ content: "Comments &: "; }
+ActionDate:before               { content: "Date* : "; }
+ActionDescription:before        { content: "Action * : "; }
+DatedAction:before              { content: "DATED ACTION & +"; }
+DatedAction>Comment:before      { content: "Comments &: "; }
 
 /* Misc styles    */
 
-CitationLink:before			{ content: " [Citation] "; }
-CitationReference:before		{ content: " [Citation] ";}
-Note:before 				{ content: " [Note: "; }
-Note:after 				{ content: "] "; }
-ProtocolLink:before			{ content: " [Protocol] "; }
+CitationLink:before             { content: " [Citation] "; }
+CitationReference:before        { content: " [Citation] ";}
+Note:before                     { content: " [Note: "; }
+Note:after                      { content: "] "; }
+ProtocolLink:before             { content: " [Protocol] "; }
 
 
-
-/***************************************************************************/ 
-/*                BORDERS, SECTIONS, AND FORM ALIGNMENT                    */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                BORDERS, SECTIONS, AND FORM ALIGNMENT                    */
+/***************************************************************************/
 /* CDR Doc Control  */
 
 CdrDocCtl,
-
-   { border: solid; 
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt;
-     background-color: #CCCCFF;  }
+     { border: solid;
+       border-color: black;
+       border-width: thin;
+       margin-top: 1em;
+       margin-bottom: 6pt;
+       background-color: #CCCCFF; }
 
 DocId:before,
 DocTitle:before,
-
      { font-weight: bold;
-       font-size: 12pt;  
-       color: black; 
+       font-size: 12pt;
+       color: black;
        background-color: #CCCCFF; }
 
 DocId,
-DocTitle, 
-
+DocTitle,
      { font-weight: bold;
        color: blue;
-       background-color: white;  } 
+       background-color: white; }
 
-DocId,	
-				
-	{ margin-left: 58pt; 
-	  text-indent: -46pt; 
-	  margin-bottom: 4pt;  
-	  margin-top: 4pt;    }
+DocId,
+     { margin-left: 58pt;
+       text-indent: -46pt;
+       margin-bottom: 4pt;
+       margin-top: 4pt; }
 
 DocTitle,
-				
-	{ margin-left: 58pt;
-          text-indent: -58pt; 
-	  margin-bottom: 4pt; }
+     { margin-left: 58pt;
+       text-indent: -58pt;
+       margin-bottom: 4pt; }
 
 /* Contact Detail Form Definition  */
 
 /* Key element for length = PoliticalSubUnit_State   */
 
-ContactName,				{ margin-left: 100pt;
-					  text-indent: -62pt;}
-Street,					{ margin-left: 100pt;  
-					  text-indent: -63pt; }
-City,					{ margin-left: 100pt;  
-					  text-indent: -42pt; }
-CitySuffix,				{ margin-left: 100pt;  
-					  text-indent: -52.5pt; }
-PoliticalSubUnit_State,			{ margin-left: 100pt;  
-					  text-indent: -94.5pt; }
-PostalAddress>Country,			{ margin-left: 100pt; 
-					  text-indent: -76.5pt; }
-PostalCode_ZIP,				{ margin-left: 100pt; 
-					  text-indent: -89pt; }
-Phone,					{ margin-left: 100pt;  
-					  text-indent: -72pt; }
-TollFreePhone,				{ margin-left: 100pt;  
-					  text-indent: -69pt; }
-Fax,					{ margin-left: 100pt;  
-					  text-indent: -40.5pt; }
-Email,					{ margin-left: 100pt;  
-					  text-indent: -66pt; }
-WebSite,				{ margin-left: 100pt;  
-					  text-indent: -85pt; }
+ContactName,                    
+     { margin-left: 100pt;
+       text-indent: -62pt;}
+Street,                    
+     { margin-left: 100pt;
+       text-indent: -63pt; }
+City,                    
+     { margin-left: 100pt;
+       text-indent: -42pt; }
+CitySuffix,                    
+     { margin-left: 100pt;
+       text-indent: -52.5pt; }
+PoliticalSubUnit_State,                    
+     { margin-left: 100pt;
+       text-indent: -94.5pt; }
+PostalAddress>Country,                    
+     { margin-left: 100pt;
+       text-indent: -76.5pt; }
+PostalCode_ZIP,                    
+     { margin-left: 100pt;
+       text-indent: -89pt; }
+Phone,                    
+     { margin-left: 100pt;
+       text-indent: -72pt; }
+TollFreePhone,                    
+     { margin-left: 100pt;
+       text-indent: -69pt; }
+Fax,                    
+     { margin-left: 100pt;
+       text-indent: -40.5pt; }
+Email,                    
+     { margin-left: 100pt;
+       text-indent: -66pt; }
+WebSite,                    
+     { margin-left: 100pt;
+       text-indent: -85pt; }
+
+Question,
+     { font-weight: bold;
+       margin-top: .5em; }
+
+Answer,
+     { font-weight: normal;
+       margin-top: .5em; }
 
 ContactName,
 Street,
+     { margin-top: 4pt; }
 
-	{ margin-top: 4pt; }
-
-City, 
-CitySuffix, 
+City,
+CitySuffix,
 ContactName,
 PostalAddress>Country,
-Email, 
+Email,
 Fax,
-Phone, 
-PoliticalSubUnit_State, 
-PostalCode_ZIP, 
+Phone,
+PoliticalSubUnit_State,
+PostalCode_ZIP,
+QandAEntry,
 Street,
 TollFreePhone,
 WebSite,
-
-	{ margin-bottom: 4pt; 
-	  background-color: white; }
+     { margin-bottom: 4pt;
+       background-color: white; }
 
 City:before,
 CitySuffix:before,
@@ -358,90 +369,78 @@ PostalCode_ZIP:before,
 Street:before,
 TollFreePhone:before,
 WebSite:before,
-
-	{ background-color: #CCCCFF; }  /*light blue*/
+     { background-color: #CCCCFF; }  /*light blue*/
 
 
 /* Paragraphs       */
 
 Para,
-
      { margin-left: 20pt;
-       display: block; 
+       display: block;
        margin-top: .5em; }
-
 
 /* Dated Actions Form Control   */
 
 DatedAction,
-
-   { border: solid; 
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
+     { border: solid;
+       border-color: black;
+       border-width: thin;
+       margin-top: 1em;
+       margin-bottom: 6pt; }
 
 DatedAction:before,
-
      { font-weight: bold;
        font-size: 12pt;
-       color: black;  }
+       color: black; }
 
 ActionDescription,
-
-	{ margin-top: .5em;  }
+     { margin-top: .5em; }
 
 /* Key element for length = Comment   */
 
-ActionDescription,			{ margin-left: 100pt;  
-					  text-indent: -54.5pt; }
-ActionDate,				{ margin-left: 100pt;  
-					  text-indent: -41.5pt; }
-DatedAction>Comment,			{ margin-left: 100pt; 
-					  text-indent: -82pt; }
+ActionDescription,                    
+     { margin-left: 100pt;
+       text-indent: -54.5pt; }
+ActionDate,                    
+     { margin-left: 100pt;
+       text-indent: -41.5pt; }
+DatedAction>Comment,                    
+     { margin-left: 100pt;
+       text-indent: -82pt; }
 
 DatedAction>ActionDate,
 DatedAction>ActionDescription,
 DatedAction>Comment,
-
-	{ margin-bottom: 4pt; 
-	  background-color: white; }
+     { margin-bottom: 4pt;
+                    background-color: white; }
 
 DatedAction>ActionDate:before,
 DatedAction>ActionDescription:before,
 DatedAction>Comment:before,
 DatedAction,
+     { background-color: #CCCCFF; }  /*light blue*/
 
-	{ background-color: #CCCCFF; }  /*light blue*/
 
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 PostalAddress:before,
- 
-	{  font-weight: bold;
-	   font-size: 12pt;
-           color: black;        }  
+     { font-weight: bold;
+       font-size: 12pt;
+       color: black; }
 
 PostalAddress,
-
-	{  margin-top: .5em;  
-	   margin-bottom: .5em;   }
+     { margin-top: .5em;
+       margin-bottom: .5em; }
 
 Phone,
-
-	{ margin-top: 1.5em; }
-
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+     { margin-top: 1.5em; }
 
 
-ActionDate:before,  
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+ActionDate:before,
 ActionDescription:before,
 City:before,
 CitySuffix:before,
@@ -456,28 +455,22 @@ PostalCode_ZIP:before,
 Street:before,
 TollFreePhone:before,
 WebSite:before,
-
-   {  font-weight: bold;
-      color: black;  }
-
-
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
-/***************************************************************************/ 
+     { font-weight: bold;
+       color: black; }
 
 
+/***************************************************************************/
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */
+/***************************************************************************/
 PostalAddress>Country:before,
 PoliticalSubUnit_State:before,
-
-	{ font-weight: bold;
-	  color: black;      }
-
-
-/***************************************************************************/ 
-/*                                LINKS                                    */ 
-/***************************************************************************/ 
+     { font-weight: bold;
+       color: black; }
 
 
+/***************************************************************************/
+/*                                LINKS                                    */
+/***************************************************************************/
 CitationLink,
 CitationLink:before,
 CitationRef,
@@ -488,7 +481,7 @@ GlossaryTerm,
 GlossaryTermLink,
 GlossaryTermRef,
 InterventionName,
-LOEFragmentLink, 
+LOEFragmentLink,
 LOEFragmentRef,
 LOELink,
 LOERef,
@@ -498,24 +491,20 @@ SummaryFragmentLink,
 SummaryFragmentRef,
 SummaryLink,
 SummaryRef,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: blue; }
 
 ProtocolLink,
 ProtocolRef,
 ProtocolReference,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: purple; }
 
 
-/***************************************************************************/ 
-/*                            OTHER STYLE ELEMENTS                         */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                            OTHER STYLE ELEMENTS                         */
+/***************************************************************************/
 /*       Inline style elements                                             */
-
 DrugName,
 Emphasis,
 ForeignWord,
@@ -523,44 +512,34 @@ GeneName,
 Note,
 Quote,
 ScientificName,
-
      { font-style: italic; }
 
 Strong,
-
-     { font-weight: bold;  }
+     { font-weight: bold; }
 
 Subscript,
-
      { vertical-align: sub; }
 
 Superscript,
-
      { vertical-align: super; }
 
 Note,
 Note:before,
 Note:after,
-
      { font-size: 10pt;
-       color: green;     }
+       color: green; }
 
 
 /*       Markup elements                                                   */
-
-
-Deletion 
-
+Deletion
      { text-decoration: line-through;
        color: red; }
 
 Deletion[RevisionLevel='proposed']
-
      { text-decoration: line-through;
        color: green; }
 
-Insertion 
-
+Insertion
      { color: red; }
 
 Insertion[RevisionLevel='proposed'] { color: green }
@@ -568,20 +547,9 @@ Insertion[RevisionLevel='proposed'] { color: green }
 /*       Special case style elements                                       */
 
 
-Question 
-
-     { font-weight: bold; }
-
-Answer 
-
-     { text-indent: 20pt; }
-
-
-
-/***************************************************************************/ 
-/*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */
+/***************************************************************************/
 Insertion>Caption,
 Insertion>CitationLink,
 Insertion>CitationLink:before,
@@ -593,7 +561,7 @@ Insertion>GlossaryTerm,
 Insertion>GlossaryTermLink,
 Insertion>GlossaryTermRef,
 Insertion>InterventionName,
-Insertion>LOEFragmentLink, 
+Insertion>LOEFragmentLink,
 Insertion>LOEFragmentRef,
 Insertion>LOELink,
 Insertion>LOERef,
@@ -605,15 +573,13 @@ Insertion>SummaryFragmentLink,
 Insertion>SummaryFragmentRef,
 Insertion>SummaryLink,
 Insertion>SummaryRef,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: red; }
 
 Insertion>ProtocolLink,
 Insertion>ProtocolRef,
 Insertion>ProtocolReference,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: red; }
 
 Insertion>DrugName,
@@ -623,41 +589,34 @@ Insertion>GeneName,
 Insertion>Note,
 Insertion>Quote,
 Insertion>ScientificName,
-
-     { font-style: italic; 
-       color: red;         }
+     { font-style: italic;
+       color: red; }
 
 Insertion>Strong,
-
-     { font-weight: bold;  
-       color: red;          }
+     { font-weight: bold;
+       color: red; }
 
 Insertion>Subscript,
-
-     { vertical-align: sub; 
-       color: red;           }
+     { vertical-align: sub;
+       color: red; }
 
 Insertion>Superscript,
-
-     { vertical-align: super; 
-       color: red;             }
+     { vertical-align: super;
+       color: red; }
 
 Insertion>Note,
 Insertion>Note:before,
 Insertion>Note:after,
-
      { font-size: 10pt;
-       color: red;     }
+       color: red; }
 
-Insertion>Question 
+Insertion>Question
+     { font-weight: bold;
+       color: red; }
 
-     { font-weight: bold; 
-       color: red;         }
-
-Insertion>Answer 
-
-     { text-indent: 20pt; 
-       color: red;        }
+Insertion>Answer
+     { text-indent: 20pt;
+       color: red; }
 
 Insertion[RevisionLevel='proposed']>Caption,
 Insertion[RevisionLevel='proposed']>CitationLink,
@@ -670,7 +629,7 @@ Insertion[RevisionLevel='proposed']>GlossaryTerm,
 Insertion[RevisionLevel='proposed']>GlossaryTermLink,
 Insertion[RevisionLevel='proposed']>GlossaryTermRef,
 Insertion[RevisionLevel='proposed']>InterventionName,
-Insertion[RevisionLevel='proposed']>LOEFragmentLink, 
+Insertion[RevisionLevel='proposed']>LOEFragmentLink,
 Insertion[RevisionLevel='proposed']>LOEFragmentRef,
 Insertion[RevisionLevel='proposed']>LOELink,
 Insertion[RevisionLevel='proposed']>LOERef,
@@ -682,15 +641,13 @@ Insertion[RevisionLevel='proposed']>SummaryFragmentLink,
 Insertion[RevisionLevel='proposed']>SummaryFragmentRef,
 Insertion[RevisionLevel='proposed']>SummaryLink,
 Insertion[RevisionLevel='proposed']>SummaryRef,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: green; }
 
 Insertion[RevisionLevel='proposed']>ProtocolLink,
 Insertion[RevisionLevel='proposed']>ProtocolRef,
 Insertion[RevisionLevel='proposed']>ProtocolReference,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        color: green; }
 
 Insertion[RevisionLevel='proposed']>DrugName,
@@ -700,42 +657,34 @@ Insertion[RevisionLevel='proposed']>GeneName,
 Insertion[RevisionLevel='proposed']>Note,
 Insertion[RevisionLevel='proposed']>Quote,
 Insertion[RevisionLevel='proposed']>ScientificName,
-
-     { font-style: italic; 
-       color: green;         }
+     { font-style: italic;
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>Strong,
-
-     { font-weight: bold;  
-       color: green;          }
+     { font-weight: bold;
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>Subscript,
-
-     { vertical-align: sub; 
-       color: green;           }
+     { vertical-align: sub;
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>Superscript,
-
-     { vertical-align: super; 
-       color: green;             }
+     { vertical-align: super;
+       color: green; }
 
 Insertion[RevisionLevel='proposed']>Note,
 Insertion[RevisionLevel='proposed']>Note:before,
 Insertion[RevisionLevel='proposed']>Note:after,
-
      { font-size: 10pt;
-       color: green;     }
+       color: green; }
 
-Insertion[RevisionLevel='proposed']>Question 
+Insertion[RevisionLevel='proposed']>Question
+     { font-weight: bold;
+       color: green; }
 
-     { font-weight: bold; 
-       color: green;         }
-
-Insertion[RevisionLevel='proposed']>Answer 
-
-     { text-indent: 20pt; 
-       color: green;        }
-
+Insertion[RevisionLevel='proposed']>Answer
+     { text-indent: 20pt;
+       color: green; }
 
 Deletion>Caption,
 Deletion>CitationLink,
@@ -748,7 +697,7 @@ Deletion>GlossaryTerm,
 Deletion>GlossaryTermLink,
 Deletion>GlossaryTermRef,
 Deletion>InterventionName,
-Deletion>LOEFragmentLink, 
+Deletion>LOEFragmentLink,
 Deletion>LOEFragmentRef,
 Deletion>LOELink,
 Deletion>LOERef,
@@ -760,16 +709,14 @@ Deletion>SummaryFragmentLink,
 Deletion>SummaryFragmentRef,
 Deletion>SummaryLink,
 Deletion>SummaryRef,
-
      { text-decoration: underline;
-       text-decoration: line-through; 
+       text-decoration: line-through;
        color: red; }
 
 Deletion>ProtocolLink,
 Deletion>ProtocolRef,
 Deletion>ProtocolReference,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        text-decoration: line-through;
        color: red; }
 
@@ -780,49 +727,41 @@ Deletion>GeneName,
 Deletion>Note,
 Deletion>Quote,
 Deletion>ScientificName,
-
-     { font-style: italic; 
+     { font-style: italic;
        text-decoration: line-through;
-       color: red;        }
+       color: red; }
 
 Deletion>Strong,
-
-     { font-weight: bold;  
+     { font-weight: bold;
        text-decoration: line-through;
-       color: red;       }
+       color: red; }
 
 Deletion>Subscript,
-
-     { vertical-align: sub; 
+     { vertical-align: sub;
        text-decoration: line-through;
-       color: red;        }
+       color: red; }
 
 Deletion>Superscript,
-
-     { vertical-align: super; 
+     { vertical-align: super;
        text-decoration: line-through;
-       color: red;       }
+       color: red; }
 
 Deletion>Note,
 Deletion>Note:before,
 Deletion>Note:after,
-
      { font-size: 10pt;
        text-decoration: line-through;
-       color: red;     }
+       color: red; }
 
-Deletion>Question 
-
-     { font-weight: bold; 
+Deletion>Question
+     { font-weight: bold;
        text-decoration: line-through;
-       color: red;         }
+       color: red; }
 
-Deletion>Answer 
-
-     { text-indent: 20pt; 
+Deletion>Answer
+     { text-indent: 20pt;
        text-decoration: line-through;
-       color: red;        }
-
+       color: red; }
 
 Deletion[RevisionLevel='proposed']>Caption,
 Deletion[RevisionLevel='proposed']>CitationLink,
@@ -835,7 +774,7 @@ Deletion[RevisionLevel='proposed']>GlossaryTerm,
 Deletion[RevisionLevel='proposed']>GlossaryTermLink,
 Deletion[RevisionLevel='proposed']>GlossaryTermRef,
 Deletion[RevisionLevel='proposed']>InterventionName,
-Deletion[RevisionLevel='proposed']>LOEFragmentLink, 
+Deletion[RevisionLevel='proposed']>LOEFragmentLink,
 Deletion[RevisionLevel='proposed']>LOEFragmentRef,
 Deletion[RevisionLevel='proposed']>LOELink,
 Deletion[RevisionLevel='proposed']>LOERef,
@@ -847,16 +786,14 @@ Deletion[RevisionLevel='proposed']>SummaryFragmentLink,
 Deletion[RevisionLevel='proposed']>SummaryFragmentRef,
 Deletion[RevisionLevel='proposed']>SummaryLink,
 Deletion[RevisionLevel='proposed']>SummaryRef,
-
      { text-decoration: underline;
-       text-decoration: line-through; 
+       text-decoration: line-through;
        color: green; }
 
 Deletion[RevisionLevel='proposed']>ProtocolLink,
 Deletion[RevisionLevel='proposed']>ProtocolRef,
 Deletion[RevisionLevel='proposed']>ProtocolReference,
-
-     { text-decoration: underline; 
+     { text-decoration: underline;
        text-decoration: line-through;
        color: green; }
 
@@ -867,164 +804,162 @@ Deletion[RevisionLevel='proposed']>GeneName,
 Deletion[RevisionLevel='proposed']>Note,
 Deletion[RevisionLevel='proposed']>Quote,
 Deletion[RevisionLevel='proposed']>ScientificName,
-
-     { font-style: italic; 
+     { font-style: italic;
        text-decoration: line-through;
-       color: green;        }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>Strong,
-
-     { font-weight: bold;  
+     { font-weight: bold;
        text-decoration: line-through;
-       color: green;       }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>Subscript,
-
-     { vertical-align: sub; 
+     { vertical-align: sub;
        text-decoration: line-through;
-       color: green;        }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>Superscript,
-
-     { vertical-align: super; 
+     { vertical-align: super;
        text-decoration: line-through;
-       color: green;       }
+       color: green; }
 
 Deletion[RevisionLevel='proposed']>Note,
 Deletion[RevisionLevel='proposed']>Note:before,
 Deletion[RevisionLevel='proposed']>Note:after,
-
      { font-size: 10pt;
        text-decoration: line-through;
-       color: green;     }
+       color: green; }
 
-Deletion[RevisionLevel='proposed']>Question 
-
-     { font-weight: bold; 
+Deletion[RevisionLevel='proposed']>Question
+     { font-weight: bold;
        text-decoration: line-through;
-       color: green;         }
+       color: green; }
 
-Deletion[RevisionLevel='proposed']>Answer 
-
-     { text-indent: 20pt; 
+Deletion[RevisionLevel='proposed']>Answer
+     { text-indent: 20pt;
        text-decoration: line-through;
-       color: green;        }
+       color: green; }
 
 
-/***************************************************************************/ 
-/*                       ITEMIZED LIST STYLES                              */ 
-/***************************************************************************/ 
-
-
-ItemizedList, 
-
+/***************************************************************************/
+/*                       ITEMIZED LIST STYLES                              */
+/***************************************************************************/
+ItemizedList,
      { margin-bottom: 10pt;
        margin-top: 5pt;
        text-align: left;
        list-style-type: none;
        list-style-position: outside; }
 
-ItemizedList[Compact="No"] > ListItem { margin-top: 17pt; }
+ItemizedList[Compact="No"] > ListItem 
+     { margin-top: 17pt; }
 
-ItemizedList[Style="simple"], 
-
+ItemizedList[Style="simple"],
      { list-style-type: none; }
 
-ItemizedList[Style="bullet"], 
-
+ItemizedList[Style="bullet"],
      { list-style-type: disc; }
 
-ItemizedList[Style="dash"], 
-
+ItemizedList[Style="dash"],
      { list-style-type: square; }
 
 ListItem,
-  
      { display: list-item;
-       margin-left: 40pt;  }
+       margin-left: 40pt; }
 
 ListTitle,
+     { margin-left: 20pt; }
 
-     { margin-left: 20pt;  }
-
-
-/***************************************************************************/ 
-/*                       ORDERED LIST STYLES                               */ 
-/***************************************************************************/ 
-
-OrderedList 
-
+/***************************************************************************/
+/*                       ORDERED LIST STYLES                               */
+/***************************************************************************/
+OrderedList,
      { list-style-type: decimal;
        margin-bottom: 10pt;
        margin-top: 5pt;
-       text-align: left; 
+       text-align: left;
        list-style-position: outside; }
 
-OrderedList[Style="Arabic"] 
-
+OrderedList[Style="Arabic"]
      { list-style-type: decimal; }
 
-OrderedList[Style="UAlpha"] 
-
+OrderedList[Style="UAlpha"]
      { list-style-type: upper-alpha; }
 
-OrderedList[Style="URoman"] 
-
+OrderedList[Style="URoman"]
      { list-style-type: upper-roman; }
 
-OrderedList[Style="LAlpha"] 
-
+OrderedList[Style="LAlpha"]
      { list-style-type: lower-alpha; }
 
-OrderedList[Style="LRoman"] 
+OrderedList[Style="LRoman"]
+     { list-style-type: lower-roman; }
 
-     { list-style-type: lower-roman; }   
+OrderedList[Compact="No"]>ListItem 
+     { margin-top: 17pt; }
 
-OrderedList[Compact="No"]>ListItem { margin-top: 17pt; }
+
+/***************************************************************************/
+/*                       Q&A LIST STYLES                               */
+/***************************************************************************/
+QandADiv
+     { margin-bottom:       10pt;
+       margin-top:          5pt;
+       text-align:          left; }
+
+MarkedUpTitle
+     { font-weight:         bold; 
+       font-size:           12pt;
+       color:               black;
+       margin-top:          15pt;
+       margin-bottom:       10pt; }
+
+QandAEntry,
+     { font-weight:         bold;
+       list-style-type:     decimal;
+       list-style-position: outside;
+       display:             list-item;
+       margin-left:         40pt; }
 
 
-/***************************************************************************/ 
-/*                               TABLES                                    */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                               TABLES                                    */
+/***************************************************************************/
 LiteralLayout,
 TT,
 
 /*    78 character lines in sample data                                    */
 
-     { font-family: "Courier"; 
+     { font-family: "Courier";
        font-size: 10pt;
        white-space: pre;
        margin-top: .5em;
        margin-left: 5px; }
 
 THead,
-
      { font-weight: bold; }
 
 THead>Row>entry,
-
      { font-weight: bold; }
 
 Table,
- 
-     { border-collapse: collapse; 
+     { border-collapse: collapse;
        margin-left: 20pt;
-       margin-top: .5em;  }
+       margin-top: .5em; }
 
 TFoot>Row>entry,
-
-  {color: blue; 
-   text-align: left;
-   vertical-align: bottom;   }  
+     { color: blue;
+       text-align: left;
+       vertical-align: bottom; }
 
 Table>Title,
-
-	{ color: black;
-	  font-size: 12pt; 
-	  font-weight: bold; }
+     { color: black;
+       font-size: 12pt;
+       font-weight: bold; }
 
 /* Added 2004-09-09 RMK at Sheri's request (#1213) */
 Insertion[RevisionLevel='proposed'] Comment,
 Deletion[RevisionLevel='proposed'] Comment
-{font-style: italic; background-color: green; color: white; }
+     { font-style: italic; 
+       background-color: green; 
+       color: white; }

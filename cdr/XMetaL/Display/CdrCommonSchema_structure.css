@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	CdrCommonSchema_structure.css                                    */
+/*      CdrCommonSchema_structure.css                                    */
 /*                                                                       */
 /*      v. 1.5                                                           */
 /*      3/19/02  by ebator                                               */
@@ -30,9 +30,9 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @sq-plus-minus;
 
@@ -40,43 +40,41 @@
 
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*     { white-space: nowrap;
+     text-align: left;
+     margin-left: 10px;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     font-family: Arial, sans-serif;
+     font-size: 10pt;
+     font-style: normal;
+     font-weight: bold;
+     color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 ActionDate,
 ActionDescription,
+Answer,
 CdrDocCtl,
 City,
 CitySuffix,
 ContactName,
 PostalAddress>Country,
 DatedAction,
-DocId, 
+DocId,
 DocTitle,
 Email,
 Fax,
@@ -84,26 +82,28 @@ Head,
 ItemizedList,
 ListTitle,
 LiteralLayout,
+MarkedUpTitle,
 OrderedList,
 Para,
 Phone,
 PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
+QandAEntry,
+QandADiv,
+QandASet,
+Question,
 Street,
 Table,
 TollFreePhone,
 TT,
 WebSite,
-
     { display: block; }
 
 
-/***************************************************************************/ 
-/*                           INLINE ELEMENTS                               */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                           INLINE ELEMENTS                               */
+/***************************************************************************/
 CitationLink,
 CitationRef,
 CitationReference,
@@ -121,7 +121,7 @@ GlossaryTermLink,
 GlossaryTermRef,
 Insertion,
 InterventionName,
-LOEFragmentLink, 
+LOEFragmentLink,
 LOEFragmentRef,
 LOELink,
 LOERef,
@@ -139,57 +139,51 @@ SummaryFragmentRef,
 SummaryLink,
 SummaryRef,
 Superscript,
-
     { display: inline;  }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 
 /* CDR Doc Control   */
-
-CdrDocCtl:before			{ content: "CDR Doc Control "; }
-DocId:before				{ content: "Doc ID "; }
-DocTitle:before				{ content: "Doc Title "; }
+CdrDocCtl:before               { content: "CDR Doc Control "; }
+DocId:before                   { content: "Doc ID "; }
+DocTitle:before                { content: "Doc Title "; }
 
 /* Contact Detail   */
-
-City:before				{ content: "City "; }
-CitySuffix:before			{ content: "Suffix "; }
-ContactName:before			{ content: "Contact Name "; }
-PostalAddress>Country:before		{ content: "Country "; }
-Email:before				{ content: "Email "; }
-Fax:before				{ content: "Fax "; }
-Phone:before				{ content: "Phone "; }
-PoliticalSubUnit_State:before		{ content: "Polit Unit/State "; }
-PostalAddress:before			{ content: "POSTAL ADDRESS "; }
-PostalCode_ZIP:before			{ content: "Postal Code "; }
-Street:before				{ content: "Street "; }
-TollFreePhone:before			{ content: "Toll Free "; }
-WebSite:before				{ content: "Web Site "; }
+City:before                    { content: "City "; }
+CitySuffix:before              { content: "Suffix "; }
+ContactName:before             { content: "Contact Name "; }
+PostalAddress>Country:before   { content: "Country "; }
+Email:before                   { content: "Email "; }
+Fax:before                     { content: "Fax "; }
+Phone:before                   { content: "Phone "; }
+PoliticalSubUnit_State:before  { content: "Polit Unit/State "; }
+PostalAddress:before           { content: "POSTAL ADDRESS "; }
+PostalCode_ZIP:before          { content: "Postal Code "; }
+Street:before                  { content: "Street "; }
+TollFreePhone:before           { content: "Toll Free "; }
+WebSite:before                 { content: "Web Site "; }
 
 /* DatedAction   */
-
-ActionDate:before			{ content: "Action Date "; }
-ActionDescription:before		{ content: "Action "; }
-DatedAction:before			{ content: "DATED ACTION"; }
-DatedAction>Comment:before		{ content: "Comments "; }
+ActionDate:before              { content: "Action Date "; }
+ActionDescription:before       { content: "Action "; }
+DatedAction:before             { content: "DATED ACTION"; }
+DatedAction>Comment:before     { content: "Comments "; }
 
 /* Tables and Lists   */
 
-ItemizedList:before			{ content: "..Itemized List "; }
-OrderedList:before			{ content: "..Ordered List "; }
-Table:before				{ content: "..Table "; }
-Table>Title:before			{ content: "Title "; }
-TT:before				{ content: "..Table "; }
+ItemizedList:before            { content: "..Itemized List "; }
+OrderedList:before             { content: "..Ordered List "; }
+Table:before                   { content: "..Table "; }
+Table>Title:before             { content: "Title "; }
+TT:before                      { content: "..Table "; }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR HEADINGS                         */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR HEADINGS                         */
+/***************************************************************************/
 CdrDocCtl:before,
 DatedAction:before,
 DocId:before,
@@ -197,20 +191,19 @@ DocTitle:before,
 ItemizedList:before,
 OrderedList:before,
 PostalAddress:before,
+QandAEntry:before,
+QandADiv:before,
 Table:before,
 TT:before,
-
      { color: black;
-       font-size: 10pt; 
+       font-size: 10pt;
        font-weight: bold; }
 
 
-/***************************************************************************/ 
-/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
-/***************************************************************************/ 
-
-
-ActionDate:before,  
+/***************************************************************************/
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */
+/***************************************************************************/
+ActionDate:before,
 ActionDescription:before,
 City:before,
 CitySuffix:before,
@@ -223,52 +216,41 @@ PostalCode_ZIP:before,
 Street:before,
 TollFreePhone:before,
 WebSite:before,
-
-   {  color:  black; 
-      font-weight: bold;    }  
-
-
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
-/***************************************************************************/ 
+     { color:  black;
+       font-weight: bold;    }
 
 
+/***************************************************************************/
+/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */
+/***************************************************************************/
 PostalAddress>Country:before,
 PoliticalSubUnit_State:before,
-
-	{ font-weight: bold;
-	  color: black;      }
-
+     { font-weight: bold;
+       color: black;      }
 
 
-/***************************************************************************/ 
-/*                            BORDER AND FORM CONTROL                      */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                            BORDER AND FORM CONTROL                      */
+/***************************************************************************/
 /* CDR Doc Control  */
-
 CdrDocCtl,
 DatedAction,
 PostalAddress,
-
      { border: none;  }
 
 CdrDocCtl,
 DocId,
-DocId:before, 
+DocId:before,
 DocTitle,
 DocTitle:before,
-
-	{ background-color: white; }
+     { background-color: white; }
 
 CdrDocCtl,
-DocId, 
+DocId,
 DocTitle,
-
-	{ text-indent: 0pt; }
+     { text-indent: 0pt; }
 
 /* Contact Detail  */
-
 City:before,
 CitySuffix:before,
 ContactName:before,
@@ -281,8 +263,7 @@ PostalCode_ZIP:before,
 Street:before,
 TollFreePhone:before,
 WebSite:before,
-
-	{ background-color: white }  
+     { background-color: white }
 
 City,
 CitySuffix,
@@ -296,28 +277,24 @@ PostalCode_ZIP,
 Street,
 TollFreePhone,
 WebSite,
-
-	{ text-indent: 0pt; }
+     { text-indent: 0pt; }
 
 /* Dated Actions  */
 
 ActionDate:before,
 ActionDescription:before,
 DatedAction,
-
-	{ background-color: white }
+     { background-color: white }
 
 ActionDate,
 ActionDescription,
 DatedAction>Comment,
+     { text-indent: 0pt; }
 
-	{ text-indent: 0pt; }
 
-
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
 /* Special Handling  */
 
 ActionDate,
@@ -329,16 +306,16 @@ CitySuffix,
 DatedAction>Comment,
 ContactName,
 PostalAddress>Country,
-DocId, 
+DocId,
 DocTitle,
 Email,
 Email:after,
 Email[Public="No"]:after,
 Fax,
-ItemizedList, 
+ItemizedList,
 LiteralLayout,
-OrderedList, 
-Para, 
+OrderedList,
+Para,
 Phone,
 Phone:after,
 Phone[Public="No"]:after,
@@ -350,12 +327,10 @@ Table,
 TollFreePhone,
 TT,
 WebSite,
-
      { color: white;
        background-color: white; }
 
 /* All other Common Elements  */
-
 Deletion,
 Insertion,
 
@@ -389,15 +364,21 @@ OtherPhraseElements,
   GlossaryTermLink,
   GlossaryTermRef,
   InterventionName,
-  LOEFragmentLink, 
+  LOEFragmentLink,
   LOEFragmentRef,
   LOELink,
   LOERef,
-  LOEReference, 
+  LOEReference,
   Note,
   ProtocolLink,
   ProtocolRef,
   ProtocolReference,
+  QandASet,
+    QandADiv,
+    QandAEntry,
+    Question,
+    Answer,
+    MarkedUpTitle,
   Quote,
     QuoteAuthor,
     QuotedText,
@@ -411,7 +392,7 @@ OtherPhraseElements,
 
 ParaLevelElements,
   Contact,
-    ListItem, 
+    ListItem,
     ListTitle,
   LiteralLayout,
   QandQSet,
@@ -424,12 +405,12 @@ ParaLevelElements,
     entry,
     Entry,
     InformalTable,
-    Row, 
+    Row,
     SpanSpec,
-    TBody, 
-    TFoot, 
-    TGroup, 
-    THead, 
+    TBody,
+    TFoot,
+    TGroup,
+    THead,
     THeadOrFoot,
     TitleAbbrev,
 
@@ -443,7 +424,6 @@ TitleMarkupElements,
   Superscript,
 
 Table>Title,
-
    {display: none; }
 
 
