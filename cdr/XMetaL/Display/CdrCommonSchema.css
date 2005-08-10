@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.12 2005-07-28 14:24:46 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.13 2005-08-10 18:33:43 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.12  2005/07/28 14:24:46  venglisc
+ * Added CSS for QandASet node plus some minor formatting changes. (Bug 1774)
+ *
  * Revision 1.11  2005/01/05 00:17:16  venglisc
  * Updated CSS to handle new MediaLink, MediaRef and Caption elements.
  *
@@ -848,7 +851,7 @@ ItemizedList,
      { margin-bottom: 10pt;
        margin-top: 5pt;
        text-align: left;
-       list-style-type: none;
+       list-style-type: disc;
        list-style-position: outside; }
 
 ItemizedList[Compact="No"] > ListItem 
