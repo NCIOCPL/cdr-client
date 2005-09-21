@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.141 2005-09-19 21:57:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.142 2005-09-21 15:41:46 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.141  2005/09/19 21:57:38  bkline
+     Added BMT macro.
+
      Revision 1.140  2005/06/30 20:54:47  bkline
      Plugged in new icon for Next External Site macro.
 
@@ -2290,7 +2293,19 @@
                            "Insert Diagnoses Eligible for Bone Marrow " +
                            "Transplants",
                            "Databases (Custom)", 4, 10,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Insert AL Diagnoses",
+                           "AL",
+                           "Insert Advanced Lymphoma Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert ALK Diagnoses",
+                           "ALK",
+                           "Insert Advanced Leukemia Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2605,9 +2620,22 @@
             new CdrCmdItem(null,
                            "Insert BMT Diagnoses",
                            "BMT",
-                           "Insert BMT Diagnoses",
+                           "Insert Diagnoses Eligible for Bone Marrow " +
+                           "Transplants",
                            "Databases (Custom)", 4, 10,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Insert AL Diagnoses",
+                           "AL",
+                           "Insert Advanced Lymphoma Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert ALK Diagnoses",
+                           "ALK",
+                           "Insert Advanced Leukemia Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -6249,7 +6277,6 @@
         }
 
         // Insert the new Dianosis terms.
-        // var elemString = "<Diagnosis cdr:ref='CDR0000012345'/>\n";
         var elemString = "\n" +
             "<Diagnosis cdr:ref='CDR0000377661'/>\n" +
             "<Diagnosis cdr:ref='CDR0000377660'/>\n" +
@@ -6318,6 +6345,7 @@
             "<Diagnosis cdr:ref='CDR0000040292'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040550'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038791'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037763'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038728'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040080'/>\n" +
             "<Diagnosis cdr:ref='CDR0000041876'/>\n" +
@@ -6371,6 +6399,177 @@
     }
 
     insertBmtDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert ALK Diagnoses" 
+       lang="JScript" >
+  <![CDATA[
+    function insertAlkDiagnoses() {
+
+
+        // Move to the desired location.
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.MoveToElement('Diagnosis', false)) {
+            if (!rng.MoveToElement('AgeText', false)) {
+                Application.Alert('Unable to find location for insertion.');
+                return false;
+            }
+        }
+        rng.SelectElement();
+        rng.Collapse(0);
+        if (!rng.FindInsertLocation("Diagnosis", true)) {
+            Application.Alert("Unable to insert Diagnosis terms here.");
+            return false;
+        }
+
+        // Insert the new Dianosis terms.
+        var elemString = "\n" +
+            "<Diagnosis cdr:ref='CDR0000039070'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040510'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000377661'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000377660'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000377664'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000377659'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000377655'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000335175'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039071'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000276487'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039357'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040361'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000276485'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039069'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040812'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039361'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041865'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038439'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039072'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000335177'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039350'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041144'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041926'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040079'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041618'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038716'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038678'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040781'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038728'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040080'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041876'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038720'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040808'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041145'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040779'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038490'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037811'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040780'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038501'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040442'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039077'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039078'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040078'/>\n";
+        rng.PasteString(elemString);
+        rng.Select();
+
+        return true;
+    }
+
+    insertAlkDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert AL Diagnoses" 
+       lang="JScript" >
+  <![CDATA[
+    function insertAlDiagnoses() {
+
+
+        // Move to the desired location.
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.MoveToElement('Diagnosis', false)) {
+            if (!rng.MoveToElement('AgeText', false)) {
+                Application.Alert('Unable to find location for insertion.');
+                return false;
+            }
+        }
+        rng.SelectElement();
+        rng.Collapse(0);
+        if (!rng.FindInsertLocation("Diagnosis", true)) {
+            Application.Alert("Unable to insert Diagnosis terms here.");
+            return false;
+        }
+
+        // Insert the new Dianosis terms.
+        var elemString = "\n" +
+            "<Diagnosis cdr:ref='CDR0000041629'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041630'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042785'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042765'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000372812'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042137'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000372811'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042673'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000041199'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040561'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040557'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040556'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040555'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042968'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040559'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040560'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040781'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038380'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040551'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040552'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040554'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042755'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000371961'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038228'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040550'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038745'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000372809'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040535'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040531'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040530'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040529'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042483'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040533'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040534'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040779'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037770'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040525'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040526'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040528'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042744'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000371902'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038226'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040524'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040548'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040544'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040543'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040542'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042945'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040546'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040547'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040780'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037813'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040538'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040539'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040541'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000042751'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000371903'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038227'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040537'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037790'/>\n" +
+        rng.PasteString(elemString);
+        rng.Select();
+
+        return true;
+    }
+
+    insertAlDiagnoses();
   ]]>
 </MACRO>
 
