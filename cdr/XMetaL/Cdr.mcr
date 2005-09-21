@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.142 2005-09-21 15:41:46 bkline Exp $
+     $Id: Cdr.mcr,v 1.143 2005-09-21 21:30:42 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.142  2005/09/21 15:41:46  bkline
+     Finished all three diagnosis insertion macros.
+
      Revision 1.141  2005/09/19 21:57:38  bkline
      Added BMT macro.
 
@@ -6562,7 +6565,7 @@
             "<Diagnosis cdr:ref='CDR0000371903'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038227'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040537'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037790'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000037790'/>\n";
         rng.PasteString(elemString);
         rng.Select();
 
