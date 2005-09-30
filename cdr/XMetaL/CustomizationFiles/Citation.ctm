@@ -397,6 +397,20 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>InternetInformation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PublicationInformation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>OtherPublicationInformation</Name>
       <PrettyPrintOptions>
         <NewLineBeforeEndTag/>
@@ -787,8 +801,12 @@
       <MiniTemplate><![CDATA[<CancerLitID><?xm-replace_text {Optionally enter the CancerLit ID number for this citation} ?></CancerLitID>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>OtherPublicationInformation</Name>
-      <MiniTemplate><![CDATA[<OtherPublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></OtherPublicationInformation>]]></MiniTemplate>
+      <Name>PublicationInformation</Name>
+      <MiniTemplate><![CDATA[<PublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></PublicationInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>InternetInformation</Name>
+      <MiniTemplate><![CDATA[<InternetInformation><?xm-replace_text {Optionally enter available Internet information} ?></InternetInformation>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CopyrightInformation</Name>
