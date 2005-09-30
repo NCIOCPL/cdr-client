@@ -56,9 +56,9 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
 
@@ -68,63 +68,61 @@
 
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
 
-     { margin-left: 0px;  }
+    { margin-left: 0px;  }
 
-$PROCINS 
+$PROCINS
 
-     { color: white;
-       font-weight: normal;
-       background-color: white;}
-
-
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
 
 
-Abstract, 
-AbstractText, 
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Abstract,
+AbstractText,
 Acronym,
 Agency,
 Affiliation,
-Article, 
-ArticleId, 
-ArticleIdList, 
-ArticleTitle, 
-Author, 
-AuthorList, 
-CancerLitAbstract, 
-CancerLitID, 
+Article,
+ArticleId,
+ArticleIdList,
+ArticleTitle,
+Author,
+AuthorList,
+CancerLitAbstract,
+CancerLitID,
 Chemical,
 ChemicalList,
 Citation,
 CitationSubset,
-CitationTitle, 
-CitationType, 
-CollectiveName, 
-Comment, 
-CopyrightInformation, 
+CitationTitle,
+CitationType,
+CollectiveName,
+Comment,
+CopyrightInformation,
 Country,
-DateCompleted, 
-DateCreated, 
+DateCompleted,
+DateCreated,
 DateLastModified,
-DateRevised, 
+DateRevised,
 Day,
 DescriptorName,
 FirstName,
@@ -132,21 +130,22 @@ ForeName,
 Grant,
 GrantID,
 GrantList,
-History, 
+History,
 Initials,
-ISSN, 
-Issue, 
-Journal, 
+InternetInformation,
+ISSN,
+Issue,
+Journal,
 JournalIssue,
 Language,
 LastName,
-MedlineCitation, 
+MedlineCitation,
 MedlineCode,
 MedlineDate,
 MedlineID,
 MedlineJournalInfo,
 MedlineJournalInformation,
-MedlinePgn, 
+MedlinePgn,
 MedlineTA,
 MeshHeading,
 MeshHeadingList,
@@ -155,177 +154,176 @@ Month,
 NameOfSubstance,
 NlmUniqueID,
 NumberOfReferences,
-OtherPublicationInformation, 
+PublicationInformation,
+OtherPublicationInformation,
 Pagination,
 Para,
-PDQCitation, 
-PdqKey, 
-PersonalName, 
+PDQCitation,
+PdqKey,
+PersonalName,
 PMID,
 PubDate,
-PublicationDetails, 
+PublicationDetails,
 PublicationStatus,
 PublicationYear,
-PublishedIn, 
-PubMedArticle, 
+PublishedIn,
+PubMedArticle,
 PubmedData,
-PubMedPubDate, 
+PubMedPubDate,
 PubStatus,
 QualifierName,
 RefSource,
 RegistryNumber,
 Season,
-Suffix, 
+Suffix,
 URL,
 URLstring,
 VerificationDetails,
-Verified, 
+Verified,
 VerifiedIn,
 VernacularTitle,
-Volume, 
-Year, 
+Volume,
+Year,
 
-	{ display: block; }
-
-
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-  
+    { display: block; }
 
 
-Abstract:before				{ content: "ABSTRACT "; }
-AbstractText:before			{ content: "Abstract Text"; }
-Acronym:before				{ content: "Acronym "; }
-Agency:before				{ content: "Agency "; }
-Affiliation:before			{ content: "Affiliation"; }
-Article:before				{ content: "ARTICLE "; }
-ArticleIdList:before			{ content: "Article ID List"; }
-ArticleId[IdType="pubmed"]:before	
-					{ content: "PubMed Article ID "; }
-ArticleId[IdType="medline"]:before	
-					{ content: "Medline Article ID"; }
-ArticleIdList>ArticleId[IdType="pii"]:before		
-					{ content: "PII Article ID "; }
-ArticleIdList>ArticleId[IdType="doi"]:before		
-					{ content: "DOI Article ID "; }
-ArticleIdList>ArticleId[IdType="sici"]:before		
-					{ content: "SICI Article ID "; }
-ArticleIdList>ArticleId[IdType="pmcpid"]:before		
-					{ content: "PMCPID Article ID "; }
-ArticleIdList>ArticleId[IdType="pmpid"]:before		
-					{ content: "PMPID Article ID "; }
-ArticleIdList>ArticleId[IdType="pmcid"]:before		
-					{ content: "PMCID Article ID "; }
-ArticleTitle:before			{ content: "TITLE "; }
-Author:before				{ content: "Author "; }
-Citation>PDQCitation>AuthorList:before	{ content: "AUTHORS"; }
-AuthorList:before			{ content: "AUTHORS "; }
-CancerLitAbstract:before		{ content: "CANCERLIT ABSTRACT "; }
-CancerLitID:before			{ content: "CancerLit ID "; }
-CdrDocCtl:before			{ content: "CDR Doc Control"; }
-Chemical:before				{ content: "Chemical "; }
-ChemicalList:before			{ content: "CHEMICAL LIST "; }
-Citation:before				{ content: "CITATION "; }
-CitationSubset:before			{ content: "Citation Subset"; }
-CitationTitle:before			{ content: "TITLE "; }
-CitationType:before			{ content: "Citation Type "; }
-CollectiveName:before			{ content: "Collective Name "; }
-Comment:before				{ content: "Comment "; }
-CopyrightInformation:before		{ content: "Copyright "; }
-Country:before				{ content: "Country "; }
-DateCreated:before			{ content: "Date Created "; }
-DateCompleted:before			{ content: "Date Completed "; }
-DateLastModified:before			{ content: "Last Modified"; }
-DateRevised:before			{ content: "Date Revised "; }
-Day:before				{ content: "Day"; }
-DescriptorName:before			{ content: "Descriptor "; }
-FirstName:before			{ content: "First Name "; }
-ForeName:before				{ content: "Forename "; }
-Grant:before				{ content: "Grant "; }
-GrantID:before				{ content: "Grant ID "; }
-GrantList:before			{ content: "GRANT LIST "; }
-History:before				{ content: "HISTORY "; }
-Hour:before				{ content: "Hour "; }
-Initials:before				{ content: "Initials "; }
-ISSN:before				{ content: "ISSN "; }
-Issue:before				{ content: "Issue "; }
-Journal:before				{ content: "JOURNAL INFORMATION "; }
-JournalIssue:before			{ content: "Journal Issue "; }
-Language:before				{ content: "Language "; }
-LastName:before				{ content: "Last Name "; }
-MedlineCitation:before			{ content: "MEDLINE CITATION "; }
-MedlineCode:before			{ content: "Medline Code "; }
-MedlineDate:before			{ content: "Medline Date "; }
-MedlineID:before			{ content: "Medline ID "; }
-MedlineJournalInfo:before		{ content: "MEDLINE JOURNAL INFORMATION"; }
-MedlineJournalInformation:before	{ content: "MEDLINE JOURNAL INFORMATION"; }
-Pagination > MedlinePgn:before		{ content: "Pages "; }
-MedlineTA:before			{ content: "Journal Abbrev "; }
-MeshHeading:before			{ content: "Mesh Heading "; }
-MeshHeadingList:before			{ content: "MESH HEADINGS "; }
-MiddleName:before			{ content: "Middle Name "; }
-Month:before				{ content: "Month"; }
-NameOfSubstance:before			{ content: "Substance "; }
-NlmUniqueID:before			{ content: "NLM Code "; }
-NumberOfReferences:before		{ content: "References "; }
-OtherPublicationInformation:before	{ content: "Other Pub Info "; }
-Pagination:before			{ content: "Pagination "; }
-Para:before				{ content: "Paragraph "; }
-PDQCitation:before			{ content: "PDQ CITATION"; }
-PdqKey:before				{ content: "PDQ Key "; }
-PersonalName:before			{ content: "Personal Name "; }
-PMID:before				{ content: "PMID "; }
-PubDate:before				{ content: "Pub Date "; }
-PubMedArticle:before			{ content: "PUBMED ARTICLE"; }
-PubmedData:before			{ content: "PUBMED DATA"; }
-PublicationDetails:before		{ content: "PUBLICATION DETAILS "; }
-PublicationStatus:before		{ content: "Publication Status "; }
-PublicationType:before			{ content: "Pub Type "; }
-PublicatonTypeList:before		{ content: "Pub Types "; }
-PublicationYear:before			{ content: "Publication Year "; }
-PublishedIn:before			{ content: "Published In "; }
-PubMedPubDate[PubStatus="medline"]:before  
-					{ content: "Medline Pub Date "; }
-PubMedPubDate[PubStatus="pubmed"]:before   
-					{ content: "PubMed Pub Date "; }
-PubStatus:before			{ content: "Publication Status "; }
-QualifierName:before			{ content: "Qualifier "; }
-RefSource:before			{ content: "Reference Source "; }
-RegistryNumber:before			{ content: "Registry Number "; }
-Season:before				{ content: "Season"; }
-Suffix:before				{ content: "Suffix "; }
-URL[URLType="Full_Text"]:before		{ content: "Full Text At "; }
-URL[URLType="Summary"]:before		{ content: "Text Summary At "; }
-URL:before				{ content: "URL "; }
-URLstring:before			{ content: "URL"; }
-VerificationDetails:before		{ content: "VERIFICATION DETAILS "; }
-Verified:before				{ content: "Verified? "; }
-VerifiedIn:before			{ content: "Verified In "; }
-VernacularTitle:before			{ content: "Vernacular Title "; }
-Volume:before				{ content: "Volume "; }
-Year:before				{ content: "Year "; }
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Abstract:before                   { content: "ABSTRACT "; }
+AbstractText:before               { content: "Abstract Text"; }
+Acronym:before                    { content: "Acronym "; }
+Agency:before                     { content: "Agency "; }
+Affiliation:before                { content: "Affiliation"; }
+Article:before                    { content: "ARTICLE "; }
+ArticleIdList:before              { content: "Article ID List"; }
+ArticleId[IdType="pubmed"]:before
+                                  { content: "PubMed Article ID "; }
+ArticleId[IdType="medline"]:before
+                                  { content: "Medline Article ID"; }
+ArticleIdList>ArticleId[IdType="pii"]:before
+                                  { content: "PII Article ID "; }
+ArticleIdList>ArticleId[IdType="doi"]:before
+                                  { content: "DOI Article ID "; }
+ArticleIdList>ArticleId[IdType="sici"]:before
+                                  { content: "SICI Article ID "; }
+ArticleIdList>ArticleId[IdType="pmcpid"]:before
+                                  { content: "PMCPID Article ID "; }
+ArticleIdList>ArticleId[IdType="pmpid"]:before
+                                  { content: "PMPID Article ID "; }
+ArticleIdList>ArticleId[IdType="pmcid"]:before
+                                  { content: "PMCID Article ID "; }
+ArticleTitle:before               { content: "TITLE "; }
+Author:before                     { content: "Author "; }
+Citation>PDQCitation>AuthorList:before    
+                                  { content: "AUTHORS"; }
+AuthorList:before                 { content: "AUTHORS "; }
+CancerLitAbstract:before          { content: "CANCERLIT ABSTRACT "; }
+CancerLitID:before                { content: "CancerLit ID "; }
+CdrDocCtl:before                  { content: "CDR Doc Control"; }
+Chemical:before                   { content: "Chemical "; }
+ChemicalList:before               { content: "CHEMICAL LIST "; }
+Citation:before                   { content: "CITATION "; }
+CitationSubset:before             { content: "Citation Subset"; }
+CitationTitle:before              { content: "TITLE "; }
+CitationType:before               { content: "Citation Type "; }
+CollectiveName:before             { content: "Collective Name "; }
+Comment:before                    { content: "Comment "; }
+CopyrightInformation:before       { content: "Copyright "; }
+Country:before                    { content: "Country "; }
+DateCreated:before                { content: "Date Created "; }
+DateCompleted:before              { content: "Date Completed "; }
+DateLastModified:before           { content: "Last Modified"; }
+DateRevised:before                { content: "Date Revised "; }
+Day:before                        { content: "Day"; }
+DescriptorName:before             { content: "Descriptor "; }
+FirstName:before                  { content: "First Name "; }
+ForeName:before                   { content: "Forename "; }
+Grant:before                      { content: "Grant "; }
+GrantID:before                    { content: "Grant ID "; }
+GrantList:before                  { content: "GRANT LIST "; }
+History:before                    { content: "HISTORY "; }
+Hour:before                       { content: "Hour "; }
+Initials:before                   { content: "Initials "; }
+InternetInformation:before        { content: "Internet Information"; }
+ISSN:before                       { content: "ISSN "; }
+Issue:before                      { content: "Issue "; }
+Journal:before                    { content: "JOURNAL INFORMATION "; }
+JournalIssue:before               { content: "Journal Issue "; }
+Language:before                   { content: "Language "; }
+LastName:before                   { content: "Last Name "; }
+MedlineCitation:before            { content: "MEDLINE CITATION "; }
+MedlineCode:before                { content: "Medline Code "; }
+MedlineDate:before                { content: "Medline Date "; }
+MedlineID:before                  { content: "Medline ID "; }
+MedlineJournalInfo:before         { content: "MEDLINE JOURNAL INFORMATION"; }
+MedlineJournalInformation:before  { content: "MEDLINE JOURNAL INFORMATION"; }
+Pagination > MedlinePgn:before    { content: "Pages "; }
+MedlineTA:before                  { content: "Journal Abbrev "; }
+MeshHeading:before                { content: "Mesh Heading "; }
+MeshHeadingList:before            { content: "MESH HEADINGS "; }
+MiddleName:before                 { content: "Middle Name "; }
+Month:before                      { content: "Month"; }
+NameOfSubstance:before            { content: "Substance "; }
+NlmUniqueID:before                { content: "NLM Code "; }
+NumberOfReferences:before         { content: "References "; }
+PublicationInformation:before     { content: "Publication Information"; }
+OtherPublicationInformation:before
+                                  { content: "OTHER PUB INFO"; }
+Pagination:before                 { content: "Pagination "; }
+Para:before                       { content: "Paragraph "; }
+PDQCitation:before                { content: "PDQ CITATION"; }
+PdqKey:before                     { content: "PDQ Key "; }
+PersonalName:before               { content: "Personal Name "; }
+PMID:before                       { content: "PMID "; }
+PubDate:before                    { content: "Pub Date "; }
+PubMedArticle:before              { content: "PUBMED ARTICLE"; }
+PubmedData:before                 { content: "PUBMED DATA"; }
+PublicationDetails:before         { content: "PUBLICATION DETAILS "; }
+PublicationStatus:before          { content: "Publication Status "; }
+PublicationType:before            { content: "Pub Type "; }
+PublicatonTypeList:before         { content: "Pub Types "; }
+PublicationYear:before            { content: "Publication Year "; }
+PublishedIn:before                { content: "Published In "; }
+PubMedPubDate[PubStatus="medline"]:before
+                                  { content: "Medline Pub Date "; }
+PubMedPubDate[PubStatus="pubmed"]:before
+                                  { content: "PubMed Pub Date "; }
+PubStatus:before                  { content: "Publication Status "; }
+QualifierName:before              { content: "Qualifier "; }
+RefSource:before                  { content: "Reference Source "; }
+RegistryNumber:before             { content: "Registry Number "; }
+Season:before                     { content: "Season"; }
+Suffix:before                     { content: "Suffix "; }
+URL[URLType="Full_Text"]:before   { content: "Full Text At "; }
+URL[URLType="Summary"]:before     { content: "Text Summary At "; }
+URL:before                        { content: "URL "; }
+URLstring:before                  { content: "URL"; }
+VerificationDetails:before        { content: "VERIFICATION DETAILS "; }
+Verified:before                   { content: "Verified? "; }
+VerifiedIn:before                 { content: "Verified In "; }
+VernacularTitle:before            { content: "Vernacular Title "; }
+Volume:before                     { content: "Volume "; }
+Year:before                       { content: "Year "; }
 
 
 
-/***************************************************************************/ 
-/*                      DOCUMENT TITLE AND ID                              */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                      DOCUMENT TITLE AND ID                              */
+/***************************************************************************/
 History,
 VerificationDetails,
 MedlineCitation,
 PDQCitation,
 PubMedData,
 
-   { border: none;   }
+    { border: none;   }
 
 
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 Abstract:before,
 Article:before,
 Author:before,
@@ -340,13 +338,14 @@ GrantList:before,
 History:before,
 Journal:before,
 JournalIssue:before,
-PubDate:before, 
+PubDate:before,
 PubmedData:before,
 MedlineCitation:before,
 MedlineJournalInfo:before,
 MedlineJournalInformation:before,
 MeshHeading:before,
 MeshHeadingList:before,
+OtherPublicationInformation:before,
 Pagination:before,
 PDQCitation:before,
 PublicationTypeList:before,
@@ -358,15 +357,13 @@ URL[URLType="Full_Text"]:before,
 URL[URLType="Summary"]:before,
 VerificationDetails:before,
 
-   {  color: black; 
-      font-size: 10pt; }
+    {  color: black;
+       font-size: 10pt; }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 AbstractText:before,
 Acronym:before,
 Agency:before,
@@ -374,13 +371,13 @@ Affiliation:before,
 ArticleIdList:before,
 ArticleId:before,
 ArticleTitle:before,
-CancerLitAbstract>AbstractText:before, 
+CancerLitAbstract>AbstractText:before,
 CancerLitID:before,
 Chemical:before,
 CitationSubset:before,
-CitationTitle:before, 
-CollectiveName:before, 
-Comment:before, 
+CitationTitle:before,
+CollectiveName:before,
+Comment:before,
 CopyrightInformation:before,
 Country:before,
 Date:before,
@@ -398,6 +395,7 @@ GrantID:before,
 Hour:before,
 Initials:before,
 Initials:after,
+InternetInformation,
 ISSN:before,
 Issue:before,
 Language:before,
@@ -410,12 +408,12 @@ MiddleName:before,
 Month:before,
 NameOfSubstance:before,
 NumberOfReferences:before,
-OtherPublicationInformation:before, 
-Pagination > MedlinePgn:before, 
+PublicationInformation:before,
+Pagination > MedlinePgn:before,
 Para:before,
 PersonalName:before,
 PublicationStatus:before,
-PublicationDetails:before, 
+PublicationDetails:before,
 PublicationYear:before,
 NlmUniqueID:before,
 PdqKey:before,
@@ -436,27 +434,25 @@ VernacularTitle:before,
 Volume:before,
 Year:before,
 
-   { color: black;     }
+    { color: black;     }
 
 
-/***************************************************************************/ 
-/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
 CitationType:before,
 PdqKey:before,
 PublishedIn:before,
 PubStatus:before,
-Verified:before, 
+Verified:before,
 VerifiedIn:before,
 
-   {  color: black;  }
+    {  color: black;  }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Remove negative text-indent settings  */
 
 AbstractText,
@@ -465,7 +461,7 @@ Agency,
 Affiliation,
 ArticleId,
 ArticleTitle,
-Author,	
+Author,
 Citation>PDQCitation>AuthorList,
 CancerLitID,
 Chemical,
@@ -483,9 +479,10 @@ ForeName,
 Grant,
 GrantID,
 Initials,
+InternetInformation,
 ISSN,
 Issue,
-Language,	
+Language,
 MedlineCode,
 MedlineDate,
 MedlineID,
@@ -494,8 +491,9 @@ MedlineTA,
 MeshHeading,
 NlmUniqueID,
 NumberOfReferences,
+PublicationInformation,
 OtherPublicationInformation,
-PdqKey,	
+PdqKey,
 PMID,
 PubDate,
 PublicationStatus,
@@ -510,84 +508,83 @@ URLstring,
 Verified,
 VerifiedIn,
 VernacularTitle,
-Volume,	
+Volume,
 
-	{ text-indent: 0pt; }
+    { text-indent: 0pt; }
 
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
-
-
-
-Abstract, 
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
+Abstract,
 AbstractText,
 Acronym,
 Agency,
 Affiliation,
-Article, 
-ArticleId, 
-ArticleIdList, 
-ArticleTitle, 
-Author, 
-AuthorList, 
-CancerLitAbstract, 
-CancerLitID, 
+Article,
+ArticleId,
+ArticleIdList,
+ArticleTitle,
+Author,
+AuthorList,
+CancerLitAbstract,
+CancerLitID,
 Chemical,
 CitationSubset,
-CitationTitle, 
-CitationType, 
-CollectiveName, 
-Comment, 
-CopyrightInformation, 
-Country, 
-DateCompleted, 
-DateCreated, 
+CitationTitle,
+CitationType,
+CollectiveName,
+Comment,
+CopyrightInformation,
+Country,
+DateCompleted,
+DateCreated,
 DateLastModified,
-DateRevised, 
+DateRevised,
 ForeName,
 GrantID,
-History, 
+History
 Initials,
-ISSN, 
-Issue, 
-Journal, 
+InternetInformation,
+ISSN,
+Issue,
+Journal,
 JournalIssue,
 Language,
-MedlineCitation, 
+MedlineCitation,
 MedlineCode,
 MedlineDate,
 MedlineID,
 MedlineJournalInformation,
-MedlinePgn, 
+MedlinePgn,
 MedlineTA,
 MeshHeading,
 MeshHeadingList,
 NlmUniqueID,
 NumberOfReferences,
-OtherPublicationInformation, 
-CancerLitAbstract>AbsractText>Para, 
-PDQCitation, 
-PdqKey, 
-PersonalName, 
+PublicationInformation,
+OtherPublicationInformation,
+CancerLitAbstract>AbsractText>Para,
+PDQCitation,
+PdqKey,
+PersonalName,
 PMID,
 PubDate,
-PublicationDetails, 
+PublicationDetails,
 PublicationStatus,
 PublicationType,
 PublicationYear,
-PublishedIn, 
-PubMedArticle, 
-PubMedPubDate, 
+PublishedIn,
+PubMedArticle,
+PubMedPubDate,
 PubStatus,
 RefSource,
-Suffix, 
+Suffix,
 URL,
 URLstring,
-Verified, 
+Verified,
 VerifiedIn,
 VernacularTitle,
-Volume, 
+Volume,
 
 
 /* AFTER tags defined in the citation.css  */
@@ -602,8 +599,8 @@ PublishedIn:after,
 QualifierName:after,
 RegistryNumber:after,
 
-     { color: white;
-       background-color: white; }
+    { color: white;
+      background-color: white; }
 
 /* Inline elements that don't need a one line display */
 
@@ -627,9 +624,9 @@ QualifierName,
 RegistryNumber,
 Season,
 Suffix,
-Year, 
+Year,
 
-     { display: none; }
+    { display: none; }
 
 Abstract,
 AbstractText:before,
@@ -656,6 +653,7 @@ DateCreated:before,
 DateRevised:before,
 GrantList:before,
 History,
+InternetInformation:before,
 ISSN:before,
 Issue:before,
 Journal,
@@ -677,7 +675,7 @@ MeshHeadingList,
 MeshHeadingList:before,
 NlmUniqueID:before,
 NumberOfReferences:before,
-OtherPublicationInformation:before,
+PublicationInformation:before,
 PDQCitation,
 PersonalName:before,
 PMID:before,
@@ -701,4 +699,4 @@ VerificationDetails:before,
 VernacularTitle:before,
 Volume:before,
 
-	{ background-color: white; }
+    { background-color: white; }
