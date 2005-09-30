@@ -26,7 +26,7 @@
 	 <PublicationDetails> 
 		<PublishedIn><?xm-replace_text {Optionally link to a parent citation} ?></PublishedIn>
 		 
-		<OtherPublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></OtherPublicationInformation><PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>
+		<OtherPublicationInformation><PublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></PublicationInformation><InternetInformation><?xm-replace_text {Optionally enter available Internet information}?></InternetInformation></OtherPublicationInformation><PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>
 	 </PublicationDetails> 
 	 <CancerLitID><?xm-replace_text {Optionally enter the CancerLit ID number for this citation} ?></CancerLitID>
 	 <CancerLitAbstract> 
