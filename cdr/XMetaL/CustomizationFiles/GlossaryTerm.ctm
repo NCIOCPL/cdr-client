@@ -405,6 +405,19 @@
       <MiniTemplate><![CDATA[<Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>DefinitionStatus</Name>
+      <MiniTemplate><![CDATA[<DefinitionStatus><?xm-replace_text {Optionally select the definition status} ?></DefinitionStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DefinitionStatus</Name>
+      <Parent>SpanishTermDefinition</Parent>
+      <MiniTemplate><![CDATA[<DefinitionStatus><?xm-replace_text {Optionally select the translantion status} ?></DefinitionStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TranslationResource</Name>
+      <MiniTemplate><![CDATA[<TranslationResource><?xm-replace_text {Optionally select the translation resource} ?></TranslationResource>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>TermDefinition</Name>
       <MiniTemplate><![CDATA[<TermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary><Audience><?xm-replace_text {Select an target audience (required)} ?></Audience></TermDefinition>]]></MiniTemplate>
     </Template>
@@ -418,11 +431,33 @@
     </Template>
     <Template>
       <Name>SpanishTermDefinition</Name>
-      <MiniTemplate><![CDATA[<SpanishTermDefinition><DefinitionText><?xm-replace_text {Enter a definition of the term in Spanish (required)} ?></DefinitionText><Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary><Audience><?xm-replace_text {Select an target audience (required)} ?></Audience></SpanishTermDefinition>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<SpanishTermDefinition><DefinitionText><?xm-replace_text {Enter a Spanish translation of the term definition (required)} ?></DefinitionText>
+        <MediaLink>
+          <MediaID><?xm-replace_text {Enter the Media ID (required)} ?></MediaID>
+          <Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption>
+        </MediaLink>
+        <Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>
+        <Audience><?xm-replace_text {Select an target audience (required)} ?></Audience>
+        <DefinitionStatus><?xm-replace_text {Optionally select the translation status} ?></DefinitionStatus>
+        <TranslationResource><?xm-replace_text {Optionally select the translation resource} ?></TranslationResource>
+        <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+        <StatusDate><?xm-replace_text {Optionally enter the status assignment date} ?></StatusDate>
+        <DateLastModified><?xm-replace_text {Optionally entere the date of the last record modification} ?></DateLastModified>
+      </SpanishTermDefinition>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>StatusDate</Name>
       <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {Enter the status assignment date (required)} ?></StatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StatusDate</Name>
+      <Parent>SpanishTermDefinition</Parent>
+      <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {Optionally enter the status assignment date} ?></StatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StatusDate</Name>
+      <Parent>TermDefinition</Parent>
+      <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {Optionally enter the status assignment date} ?></StatusDate>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>DateLastModified</Name>
