@@ -88,6 +88,7 @@ Comment,
 DateLastModified,
 DateLastReviewed,
 GlossaryTerm,
+DefinitionStatus,
 DefinitionText,
 Dictionary,
 MediaID,
@@ -100,6 +101,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+TranslationResource,
     { display: block; }
 
 
@@ -112,6 +114,7 @@ Dictionary:before               { content: "Dictionary"; }
 Comment:before                  { content: "Comments"; }
 DateLastModified:before         { content: "Last Modified"; }
 DateLastReviewed:before         { content: "Last Reviewed"; }
+DefinitionStatus:before         { content: "Definition Status"; }
 GlossaryTerm:before             { content: "GLOSSARY TERM"; }
 MediaID:before                  { content: "Media ID"; }
 MediaLink:before                { content: "Media Link"; }
@@ -129,6 +132,7 @@ TermPronunciation:before        { content: "Term Pronunciation "; }
 TermSource:before               { content: "Term Source "; }
 TermStatus:before               { content: "Term Status "; }
 TermType:before                 { content: "Term Type  "; }
+TranslationResource:before      { content: "Translation Resource"; }
 
 
 /***************************************************************************/
@@ -150,6 +154,7 @@ SpanishTermDefinition,
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
 Comment:before,
+DefinitionStatus:before,
 DefinitionText:before,
 Audience:before,
 Dictionary:before,
@@ -157,6 +162,7 @@ SpanishTermName:before,
 StatusDate:before,
 TermName:before,
 TermPronunciation:before,
+TranslationRecourse:before,
     { font-weight: bold;
       color: black;  }
 
@@ -182,6 +188,7 @@ Comment,
 DateLastModified,
 DateLastReviewed,
 GlossaryTerm,
+DefinitionStatus,
 DefinitionText,
 Dictionary,
 MediaID,
@@ -193,6 +200,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+TranslationResource,
     { text-indent: 0pt; }
 
 
@@ -204,6 +212,7 @@ Caption,
 Comment,
 DateLastModified,
 DateLastReviewed,
+DefinitionStatus,
 GlossaryTerm,
 DefinitionText,
 Dictionary,
@@ -217,6 +226,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+TranslationResource,
     { color: white;
       background-color: white; }
 
@@ -226,6 +236,7 @@ Caption:before,
 Comment:before,
 DateLastModified:before,
 DateLastReviewed:before,
+DefinitionStatus:before,
 GlossaryTerm:before,
 DefinitionText:before,
 Dictionary:before,
@@ -240,4 +251,5 @@ TermPronunciation:before,
 TermSource:before,
 TermStatus:before,
 TermType:before,
+TranslationResource:before,
     { background-color: white; }
