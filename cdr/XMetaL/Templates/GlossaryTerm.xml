@@ -18,9 +18,15 @@
   </TermDefinition>
   <SpanishTermName><?xm-replace_text {Optionally enter the equivalent Spanish term} ?></SpanishTermName>
   <SpanishTermDefinition>
-    <DefinitionText><?xm-replace_text {Enter a Spanish definition of the term (required)} ?></DefinitionText>
+    <DefinitionText><?xm-replace_text {Enter a Spanish translation of the term definition (required)} ?></DefinitionText>
+    <MediaLink>
+      <MediaID><?xm-replace_text {Enter the Media ID (required)} ?></MediaID>
+      <Caption><?xm-replace_text {Optionally enter a caption for the image} ?></Caption>
+    </MediaLink>
     <Dictionary><?xm-replace_text {Optionally select a dictionary} ?></Dictionary>
     <Audience><?xm-replace_text {Select a target audience (required)} ?></Audience>
+    <DefinitionStatus><?xm-replace_text {Optionally select the translation status} ?></DefinitionStatus>
+    <StatusDate><?xm-replace_text {Optionally enter the status assignment date} ?></StatusDate>
   </SpanishTermDefinition>
   <TermSource><?xm-replace_text {Select a source (required)} ?></TermSource> 
   <TermType><?xm-replace_text {Select a type (required)} ?></TermType> 
