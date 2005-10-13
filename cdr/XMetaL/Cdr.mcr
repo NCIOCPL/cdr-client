@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.143 2005-09-21 21:30:42 bkline Exp $
+     $Id: Cdr.mcr,v 1.144 2005-10-13 22:44:17 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.143  2005/09/21 21:30:42  bkline
+     Fixed typo in one of the new diagnosis insertion macros.
+
      Revision 1.142  2005/09/21 15:41:46  bkline
      Finished all three diagnosis insertion macros.
 
@@ -2405,6 +2408,12 @@
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Glossary RS Report",
+                           "Redline Strikeout",
+                           "Glossary Redline Strikeout Report",
+                           "CDR", 2, 4,
+                           false),
             new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
@@ -5616,6 +5625,24 @@
   ]]>
 </MACRO>
 
+<MACRO name="Glossary RS Report" 
+       lang="JScript">
+  <![CDATA[
+    function glossaryRSReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Current document ID not found");
+            return;
+        }
+        var url = CdrCgiBin + "QcReport.py?DocType=GlossaryTerm&DocId="
+                            + docId
+                            + "&ReportType=rs&Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    glossaryRSReport();
+  ]]>
+</MACRO>
 <MACRO name="Patient Summary RS QC Report" 
        lang="JScript">
   <![CDATA[
