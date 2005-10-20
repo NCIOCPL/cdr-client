@@ -26,6 +26,7 @@
 <ListItem><?xm-replace_text {ListItem} ?></ListItem>
 </OrderedList>
 </Objectives> 
+		<Outcome><?xm-replace_text {Optionally enter the outcome result} ?></Outcome> 
 		<Outline> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</Outline> 
@@ -38,9 +39,6 @@
 		  <PriorConcurrentTherapy> 
 		  </PriorConcurrentTherapy> 
 		</EntryCriteria> 
-		<ProjectedAccrual> 
-		  <Para><?xm-replace_text {Paragraph} ?></Para> 
-		</ProjectedAccrual> 
 		<EndPoints> 
 		  <Para><?xm-replace_text {Paragraph} ?></Para> 
 		</EndPoints> 
@@ -73,6 +71,7 @@
 	 </Patient> 
   </ProtocolAbstract> 
   <ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>
+  <ExpectedEnrollment><?xm-replace_text {Enter the expected accrual number (required)} ?></ExpectedEnrollment>
   <ProtocolDesign><?xm-replace_text {Select this protocol's design type (required)} ?></ProtocolDesign>
   <ProtocolDetail> 
   <StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>
@@ -102,5 +101,11 @@
 	 <RelatedProtocols><?xm-replace_text {Optionally link to a related protocol, or Change to Related Websites} ?></RelatedProtocols>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </ProtocolRelatedLinks> 
-   
+  <ProtocolProcessingDetails>
+    <ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required)} ?></ProcessingStatus>
+    <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+    <ProcessingDate><?xm-replace_text {Enter the effective date of this status (required)} ?></ProcessingDate>
+    <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+  </ProtocolProcessingDetails>
+  <InScopeDocID><?xm-replace_text {Optionally enter the InScopeDocID} ?></InScopeDocID> 
 </ScientificProtocolInfo>

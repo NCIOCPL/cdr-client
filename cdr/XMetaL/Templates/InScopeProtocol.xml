@@ -20,6 +20,8 @@
   <ProtocolSource> 
 	 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
 	 <DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
+     <DateSubmissionComplete><?xm-replace_text {Optionally enter the date protocol submission is complete} ?></DateSubmissionComplete>
+     <MergeByDate><?xm-replace_text {Optionally enter the date to be merged} ?></MergeByDate>
 	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
   </ProtocolSource> 
   </ProtocolSources> 
@@ -55,7 +57,6 @@
 		  <DiseaseCharacteristics></DiseaseCharacteristics> 
 		  <PatientCharacteristics></PatientCharacteristics> 
 		</EntryCriteria> 
-		<ProjectedAccrual></ProjectedAccrual> 
 		<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
 		<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate> 
 	 </Professional> 
@@ -69,6 +70,7 @@
 	 </Patient> 
   </ProtocolAbstract> 
   <ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>
+  <ExpectedEnrollment><?xm-replace_text {Enter the expected accrual number (required)} ?></ExpectedEnrollment>
   <ProtocolDetail> 
   <StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>
   <StudyCategory> 
@@ -129,6 +131,7 @@
   </ProtocolAdminInfo> 
   <ProtocolProcessingDetails> 
   <ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required) } ?></ProcessingStatus>
+  <EnteredBy><?xm-replace_text {Enter your name} ?></EnteredBy>
   <ProcessingDate><?xm-replace_text {Enter the effective date of this status (required) } ?></ProcessingDate>
   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
   </ProtocolProcessingDetails> 
