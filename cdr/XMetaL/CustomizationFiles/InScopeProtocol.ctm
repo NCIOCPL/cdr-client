@@ -26,6 +26,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>AmendmentStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Answer</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -54,6 +61,24 @@
     </ElementProperties>
     <ElementProperties>
       <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IRBApproved</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IRBApprovalForm</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RegulatoryAuthority</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
@@ -111,6 +136,12 @@
     </ElementProperties>
     <ElementProperties>
       <Name>DateReceived</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateSubmissionComplete</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
@@ -326,6 +357,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>MerdeByDate</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Multimedia</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -366,6 +403,14 @@
     </ElementProperties>
     <ElementProperties>
       <Name>Outline</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Outcome</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
@@ -960,14 +1005,13 @@
       <TagColor>FFCC00</TagColor>
     </ElementProperties>
   </ElementPropertiesList>
+  <!-- 
+  Templates are sorted alphabetically (up to ===)
+  ================================================ -->
   <Templates>
     <Template>
-      <Name>DocId</Name>
-      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>DocTitle</Name>
-      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+      <Name>AgeText</Name>
+      <MiniTemplate><![CDATA[<AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>CdrDocCtl</Name>
@@ -977,12 +1021,20 @@
 </CdrDocCtl>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>IDString</Name>
-      <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
+      <Name>DateReceived</Name>
+      <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ProtocolTitle</Name>
-      <MiniTemplate><![CDATA[<ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>]]></MiniTemplate>
+      <Name>DateSubmissionComplete</Name>
+      <MiniTemplate><![CDATA[<DateSubmissionComplete><?xm-replace_text {Optionally enter the date protocol submission is complete} ?></DateSubmissionComplete>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>EnteredBy</Name>
@@ -993,8 +1045,49 @@
       <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ProtocolPhase</Name>
-      <MiniTemplate><![CDATA[<ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>]]></MiniTemplate>
+      <Name>IDString</Name>
+      <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IRBApproved</Name>
+      <MiniTemplate><![CDATA[<IRBApproved><?xm-replace_text {Enter the IRB approval date (required)} ?></IRBApproved>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IRBApprovalForm</Name>
+      <MiniTemplate><![CDATA[<IRBApprovalForm><?xm-replace_text {Optionally enter the IRB approval form} ?></IRBApprovalForm>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IRBInfo</Name>
+      <MiniTemplate><![CDATA[<IRBInfo>
+        <IRBApproved><?xm-replace_text {Enter the IRB approval date (required)} ?></IRBApproved>
+        <IRBApprovalForm><?xm-replace_text {Optionally enter the IRB approval form)} ?></IRBApprovalForm>
+      </IRBInfo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Outcome</Name>
+      <MiniTemplate><![CDATA[<Outcome> </Outcome>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OversightInfo</Name>
+      <MiniTemplate><![CDATA[<OversightInfo>
+        <RegulatoryAuthority><?xm-replace_text {Enter the regulatory authority (required)} ?></RegulatoryAuthority>
+        <IRBInfo>
+          <IRBApproved><?xm-replace_text {Select Yes if IRB approved, No otherwise (required)} ?></IRBApproved>
+          <IRBApprovalForm><?xm-replace_text {Optionally enter the IRB approval form} ?></IRBApprovalForm>
+        </IRBInfo>
+      </OversightInfo>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolTitle</Name>
+      <MiniTemplate><![CDATA[<ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>RegulatoryAuthority</Name>
+      <MiniTemplate><![CDATA[<RegulatoryAuthority><?xm-replace_text {Enter the regulatory authority (required)} ?></RegulatoryAuthority>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StartDate</Name>
+      <MiniTemplate><![CDATA[<StartDate><?xm-replace_text {Optionally enter the start date} ?></StartDate>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>StudyType</Name>
@@ -1009,6 +1102,29 @@
       <MiniTemplate><![CDATA[<StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>VerificationDate</Name>
+      <MiniTemplate><![CDATA[<VerificationDate><?xm-replace_text {Enter the verification date (required)} ?></VerificationDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>VoluntaryReview</Name>
+      <MiniTemplate>
+        <![CDATA[<VoluntaryReview>
+          <ReviewStatus><?xm-replace_text {Select the review status (required)} ?></ReviewStatus>
+          <ReviewStatusDate><?xm-replace_text {Enter the review status date (required)} ?></ReviewStatusDate>
+          <Reviewer><?xm-replace_text {Link to the review person (required)} ?></Reviewer>
+          <DateSentForReview><?xm-replace_text {Enter the date it was sent for review (required)} ?></DateSentForReview>
+          <DueDate><?xm-replace_text {Enter the due date (required)} ?></DueDate>
+          <Comment><?xm-replace_text {Enter a comment (required)} ?></Comment>
+          <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+        </VoluntaryReview>]]>
+      </MiniTemplate>
+    </Template>
+  <!-- =========================================== -->
+    <Template>
+      <Name>ProtocolPhase</Name>
+      <MiniTemplate><![CDATA[<ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>LowAge</Name>
       <MiniTemplate><![CDATA[<LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>]]></MiniTemplate>
     </Template>
@@ -1017,16 +1133,12 @@
       <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>AgeText</Name>
-      <MiniTemplate><![CDATA[<AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name>SourceName</Name>
       <MiniTemplate><![CDATA[<SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>DateReceived</Name>
-      <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>]]></MiniTemplate>
+      <Name>MergeByDate</Name>
+      <MiniTemplate><![CDATA[<MergeByDate><?xm-replace_text {Optionally enter the date to be merged} ?></MergeByDate>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Comment</Name>
@@ -1037,6 +1149,8 @@
       <MiniTemplate><![CDATA[<ProtocolSource>
 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
 <DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
+<DateSubmissionComplete><?xm-replace_text {Optionally enter the date protocol submission is complete} ?></DateSubmissionComplete>
+<MergeByDate><?xm-replace_text {Optionally enter the date to be merged} ?></MergeByDate>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolSource>]]></MiniTemplate>
     </Template>
@@ -1053,7 +1167,7 @@
       <MiniTemplate><![CDATA[<ProtocolApproval>
 <ReviewApprovalType><?xm-replace_text {Select the protocol review approval authority (required)} ?></ReviewApprovalType>
 <ReimbursementApprovalType><?xm-replace_text {Optionally select a reimbursement approval group} ?></ReimbursementApprovalType>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+<Comment><?xm-replace_text {XXX Optionally enter a comment} ?></Comment>
 </ProtocolApproval>]]></MiniTemplate>
     </Template>
     <Template>
@@ -1127,6 +1241,14 @@
     <Template>
       <Name>SpecialCategory</Name>
       <MiniTemplate><![CDATA[<SpecialCategory><?xm-replace_text {Select a specialized trial category, if relevant (required)} ?></SpecialCategory>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>VerificationInfo</Name>
+      <MiniTemplate><![CDATA[<VerificationInfo>
+        <VerificationDate><?xm-replace_text {Enter the verification date (required)} ?></VerificationDate>
+        <Comment><?xm-replace_text {Enter a comment (required)} ?></Comment>
+        <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+      </VerificationInfo>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ProtocolSpecialCategory</Name>
@@ -1548,6 +1670,8 @@
 <ProtocolSource>
 <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
 <DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
+<DateSubmissionComplete><?xm-replace_text {Optionally enter the date protocol submission is complete} ?></DateSubmissionComplete>
+<MergeByDate><?xm-replace_text {Optionally enter the date to be merged} ?></MergeByDate>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </ProtocolSource>
 </ProtocolSources>]]></MiniTemplate>
@@ -1587,12 +1711,21 @@
       <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>AmendmentID</Name>
+      <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally enter an amendment number or ID information} ?></IDType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AmendmentStatus</Name>
+      <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an amendment status} ?></IDType>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>ProtocolAmendment</Name>
       <MiniTemplate><![CDATA[<ProtocolAmendment>
 <AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>
 <AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>
 <AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>
 <DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>
+<AmendmentStatus><?xm-replace_text {Optionally select the status of the amendment} ?></AmendmentStatus>
 <DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>
 <ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
@@ -1606,6 +1739,7 @@
 <AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>
 <AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>
 <DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>
+<AmendmentStatus><?xm-replace_text {Optionally select the status of the amendment} ?></AmendmentStatus>
 <DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>
 <ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>

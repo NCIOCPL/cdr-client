@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
+  <!-- Elements sorted alphabetically 
+       ============================== -->
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
       <NoPrettyPrinting/>
@@ -65,13 +67,6 @@
     </ElementProperties>
     <ElementProperties>
       <Name>Citation</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>RelatedCitation</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -229,7 +224,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
-      <Name>entry</Name>
+      <Name>EnteredBy</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Entry</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -244,10 +245,26 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>EntryDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ExclusionCriteria</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ExpectedEnrollment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ExternalRef</Name>
+      <TagColor>FFCC00</TagColor>
     </ElementProperties>
     <ElementProperties>
       <Name>Fax</Name>
@@ -269,6 +286,14 @@
         <NewLineBeforeEndTag/>
         <IndentContent/>
       </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermLink</Name>
+      <TagColor>FF33CC</TagColor>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermRef</Name>
+      <TagColor>FF33CC</TagColor>
     </ElementProperties>
     <ElementProperties>
       <Name>HealthyVolunteers</Name>
@@ -294,6 +319,12 @@
       <Name>IDType</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InScopeDocID</Name>
+      <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -394,6 +425,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>Outcome</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Outline</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -464,6 +503,22 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProcessingDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProcessingStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Professional</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -517,9 +572,21 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProtocolLink</Name>
+      <TagColor>66FF66</TagColor>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ProtocolPhase</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolProcessingDetails</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -532,6 +599,10 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProtocolRef</Name>
+      <TagColor>66FF66</TagColor>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ProtocolTitle</Name>
       <PrettyPrintOptions>
         <IndentContent/>
@@ -540,14 +611,6 @@
     </ElementProperties>
     <ElementProperties>
       <Name>PublishedResults</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>RelatedPublications</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
@@ -612,6 +675,21 @@
       <Name>QuotedText</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RelatedCitation</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RelatedPublications</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -791,49 +869,40 @@
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
-    <ElementProperties>
-      <Name>EnteredBy</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>EntryDate</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolRef</Name>
-      <TagColor>66FF66</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolLink</Name>
-      <TagColor>66FF66</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>GlossaryTermRef</Name>
-      <TagColor>FF33CC</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>GlossaryTermLink</Name>
-      <TagColor>FF33CC</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ExternalRef</Name>
-      <TagColor>FFCC00</TagColor>
-    </ElementProperties>
   </ElementPropertiesList>
   <Templates>
+    <!-- 
+    Adding each wrapper element first followed by the child wrapper 
+    elements followed by the individual children
+    ================================================================ -->
     <Template>
-      <Name>DocId</Name>
-      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+      <Name>ActionDate</Name>
+      <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>DocTitle</Name>
-      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+      <Name>ActionDescription</Name>
+      <MiniTemplate><![CDATA[<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>AgeText</Name>
+      <MiniTemplate><![CDATA[<AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AmendmentDate</Name>
+      <MiniTemplate><![CDATA[<AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AmendmentID</Name>
+      <MiniTemplate><![CDATA[<AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>AmendmentSource</Name>
+      <MiniTemplate><![CDATA[<AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ChangeType</Name>
+      <MiniTemplate><![CDATA[<ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>]]></MiniTemplate>
+    </Template>
       <Name>CdrDocCtl</Name>
       <MiniTemplate><![CDATA[<CdrDocCtl>
 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
@@ -841,99 +910,12 @@
 </CdrDocCtl>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ProtocolTitle</Name>
-      <MiniTemplate><![CDATA[<ProtocolTitle Type="Professional"><?xm-replace_text {Enter the appropriate title for professionals} ?></ProtocolTitle>
-<ProtocolTitle Type="Patient"><?xm-replace_text {Enter the appropriate title for patients} ?></ProtocolTitle>
-<ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>IDString</Name>
-      <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>EnteredBy</Name>
-      <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>EntryDate</Name>
-      <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ProtocolPhase</Name>
-      <MiniTemplate><![CDATA[<ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ProtocolDesign</Name>
-      <MiniTemplate><![CDATA[<ProtocolDesign><?xm-replace_text {Select this protocol's design type (required)} ?></ProtocolDesign>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>StudyType</Name>
-      <MiniTemplate><![CDATA[<StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>StudyCategoryType</Name>
-      <MiniTemplate><![CDATA[<StudyCategoryType><?xm-replace_text {Select a study category of primary or secondary (required)} ?></StudyCategoryType>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>StudyCategoryName</Name>
-      <MiniTemplate><![CDATA[<StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>LowAge</Name>
-      <MiniTemplate><![CDATA[<LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>HighAge</Name>
-      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>AgeText</Name>
-      <MiniTemplate><![CDATA[<AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)} ?></AgeText>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name>Comment</Name>
       <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>IDType</Name>
-      <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>PrimaryID</Name>
-      <MiniTemplate><![CDATA[<PrimaryID>
-<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</PrimaryID>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>OtherID</Name>
-      <MiniTemplate><![CDATA[<OtherID>
-<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
-<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</OtherID>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ProtocolIDs</Name>
-      <MiniTemplate><![CDATA[<ProtocolIDs>
-<PrimaryID>
-<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</PrimaryID>
-<OtherID>
-<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
-<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</OtherID>
-</ProtocolIDs>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ActionDescription</Name>
-      <MiniTemplate><![CDATA[<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ActionDate</Name>
-      <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>]]></MiniTemplate>
+      <Name>DateCompleted</Name>
+      <MiniTemplate><![CDATA[<DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>DatedAction</Name>
@@ -944,28 +926,56 @@
 </DatedAction>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>AmendmentID</Name>
-      <MiniTemplate><![CDATA[<AmendmentID><?xm-replace_text {Optionally enter an amendment number or ID information} ?></AmendmentID>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>AmendmentDate</Name>
-      <MiniTemplate><![CDATA[<AmendmentDate><?xm-replace_text {Enter the amendment's creation date (required)} ?></AmendmentDate>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>AmendmentSource</Name>
-      <MiniTemplate><![CDATA[<AmendmentSource><?xm-replace_text {Select the original source of the amendment} ?></AmendmentSource>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name>DateReceived</Name>
       <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {Enter the date that NCI received this amendment (required)} ?></DateReceived>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>DateCompleted</Name>
-      <MiniTemplate><![CDATA[<DateCompleted><?xm-replace_text {Enter the completion date for this amendment (required)} ?></DateCompleted>]]></MiniTemplate>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ChangeType</Name>
-      <MiniTemplate><![CDATA[<ChangeType><?xm-replace_text {Select the type of change represented by this amendment (required)} ?></ChangeType>]]></MiniTemplate>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EnteredBy</Name>
+      <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>EntryDate</Name>
+      <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IDString</Name>
+      <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>IDType</Name>
+      <MiniTemplate><![CDATA[<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LowAge</Name>
+      <MiniTemplate><![CDATA[<LowAge><?xm-replace_text {Enter the minimum eligible age (required)} ?></LowAge>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>HighAge</Name>
+      <MiniTemplate><![CDATA[<HighAge><?xm-replace_text {Enter the maximum eligible age (required)} ?></HighAge>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>OtherID</Name>
+      <MiniTemplate><![CDATA[<OtherID>
+<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PrimaryID</Name>
+      <MiniTemplate><![CDATA[<PrimaryID>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PrimaryID>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ProtocolAmendment</Name>
@@ -994,6 +1004,34 @@
 </ProtocolAmendmentInformation>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>ProtocolDesign</Name>
+      <MiniTemplate><![CDATA[<ProtocolDesign><?xm-replace_text {Select this protocol's design type (required)} ?></ProtocolDesign>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolIDs</Name>
+      <MiniTemplate><![CDATA[<ProtocolIDs>
+<PrimaryID>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</PrimaryID>
+<OtherID>
+<IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
+<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</OtherID>
+</ProtocolIDs>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolPhase</Name>
+      <MiniTemplate><![CDATA[<ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ProtocolTitle</Name>
+      <MiniTemplate><![CDATA[<ProtocolTitle Type="Professional"><?xm-replace_text {Enter the appropriate title for professionals} ?></ProtocolTitle>
+<ProtocolTitle Type="Patient"><?xm-replace_text {Enter the appropriate title for patients} ?></ProtocolTitle>
+<ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>RelatedProtocols</Name>
       <MiniTemplate><![CDATA[<RelatedProtocols><?xm-replace_text {Optionally link to a related protocol, or Change to Related Websites} ?></RelatedProtocols>]]></MiniTemplate>
     </Template>
@@ -1002,6 +1040,18 @@
       <MiniTemplate><![CDATA[<RelatedWebsites><?xm-replace_text {Optionally reference a related Web site, or Change to Related Protocols} ?></RelatedWebsites>]]></MiniTemplate>
     </Template>
     <Template>
+    <Template>
+      <Name>StudyType</Name>
+      <MiniTemplate><![CDATA[<StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StudyCategoryType</Name>
+      <MiniTemplate><![CDATA[<StudyCategoryType><?xm-replace_text {Select a study category of primary or secondary (required)} ?></StudyCategoryType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>StudyCategoryName</Name>
+      <MiniTemplate><![CDATA[<StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>]]></MiniTemplate>
+    </Template>
       <Name>ProtocolRelatedLinks</Name>
       <MiniTemplate><![CDATA[<ProtocolRelatedLinks>
 <RelatedProtocols><?xm-replace_text {Optionally link to a related protocol, or Change to Related Websites} ?></RelatedProtocols>
@@ -1185,6 +1235,10 @@
 </Objectives>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>Outcome</Name>
+      <MiniTemplate><![CDATA[<Outcome><?xm-replace_text {Optionally enter the outcome result} ?></Outcome>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>Outline</Name>
       <MiniTemplate><![CDATA[<Outline>
 <Para><?xm-replace_text {Paragraph} ?></Para>
@@ -1257,22 +1311,16 @@
 <ListItem><?xm-replace_text {ListItem} ?></ListItem>
 <ListItem><?xm-replace_text {ListItem} ?></ListItem>
 </OrderedList>
-</Objectives><Outline>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</Outline>
+</Objectives>
+<Outcome><Para><?xm-replace_text {Paragraph} ?></Para></Outcome>
+<Outline><Para><?xm-replace_text {Paragraph} ?></Para></Outline>
 <EntryCriteria>
-<DiseaseCharacteristics>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</DiseaseCharacteristics>
+<DiseaseCharacteristics><Para><?xm-replace_text {Paragraph} ?></Para></DiseaseCharacteristics>
 <PatientCharacteristics></PatientCharacteristics>
 <PriorConcurrentTherapy></PriorConcurrentTherapy>
 </EntryCriteria>
-<ProjectedAccrual>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</ProjectedAccrual>
-<EndPoints>
-<Para><?xm-replace_text {Paragraph} ?></Para>
-</EndPoints>
+<ProjectedAccrual><Para><?xm-replace_text {Paragraph} ?></Para></ProjectedAccrual>
+<EndPoints><Para><?xm-replace_text {Paragraph} ?></Para></EndPoints>
 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
 <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
