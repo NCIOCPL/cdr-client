@@ -9,23 +9,23 @@
 /*      1/15-16/02  by ebator                                            */
 /*      Added notations for required *, optional &, multiple +           */
 /*                                                                       */
-/* 	v. 3.1                                                           */ 
+/*      v. 3.1                                                           */
 /*      1/7/02  by ebator                                                */
-/* 	Changed Procins style                                            */
-/* 	                                                                 */
-/* 	v. 3.0                                                           */ 
+/*      Changed Procins style                                            */
+/*                                                                       */
+/*      v. 3.0                                                           */
 /*      12/10-11/01  by ebator                                           */
-/* 	Edited to import CommonProtocolInfo.css and                      */
-/* 	   CdrCommonSchema.css                                           */
-/* 	                                                                 */
-/* 	v. 2.1                                                           */ 
+/*      Edited to import CommonProtocolInfo.css and                      */
+/*      CdrCommonSchema.css                                              */
+/*                                                                       */
+/*      v. 2.1                                                           */
 /*      12/05-06/01  by ebator                                           */
-/* 	Edited for schema changes from 11/13/01                          */
-/* 	                                                                 */
-/* 	v. 2.0                                                           */ 
+/*      Edited for schema changes from 11/13/01                          */
+/*                                                                       */
+/*      v. 2.0                                                           */
 /*      11/02-07/01  by ebator                                           */
-/* 	Changes for the Forms model; schema changes 8/31-11/2            */
-/* 	                                                                 */
+/*      Changes for the Forms model; schema changes 8/31-11/2            */
+/*                                                                       */
 /*      v. 1.2                                                           */
 /*      9/24/01  by ebator                                               */
 /*      Common styles added                                              */
@@ -35,174 +35,198 @@
 /*      Upgraded to latest schema                                        */
 /*                                                                       */
 /*      v 1.0                                                            */
-/*      7/24/01 by ebator                                                */ 
+/*      7/24/01 by ebator                                                */
 /*      Based on the InScope Protocol.css                                */
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
-@import "CdrCommonSchema.css"; 
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
+@import "CdrCommonSchema.css";
 @import "CommonProtocolInfo.css";
- 
+
 $DOCUMENT
 
-  {  font-family: Arial, sans-serif;       
+  {  font-family: Arial, sans-serif;
      font-size: 12pt;
      margin-top: 5px;
-     margin-left: 5px;  
+     margin-left: 5px;
      color: black;        }
 
-$COMMENT 
+$COMMENT
 
   {  display: block;
      color: purple;
      white-space: pre;  }
 
-$PROCINS 
+$PROCINS
 
-     { color: blue;
-       background-color: white; }
+  {  color: blue;
+     background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-
-ProtocolAmendmentInformation>DatedAction, /* differs from CommonProtocolInfo */ 
+/*************************************************************************/
+/*                           BLOCK ELEMENTS                              */
+/*************************************************************************/
+ProtocolAmendmentInformation>DatedAction, /* differs from CommonProtocolInfo */
 DateLastModified,
+InScopeDocID,
 PdqKey,
-ProtocolAmendmentInformation, /* differs from CommonProtocolInfo */ 
+ProcessingDate,
+ProcessingStatus,
+ProtocolAmendmentInformation, /* differs from CommonProtocolInfo */
 ProtocolDesign, /* differs from CommonProtocolInfo */
+ProtocolProcessingDetails,
 ScientificProtocolInfo,
+  {  display: block; }
 
-   { display: block; }
 
-
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-  
-
-/* * = Required field */
-/* + = Multiply-occurring field */
+/*************************************************************************/
+/*                       BEFORE AND AFTER TAGS                           */
+/*************************************************************************/
+/* * = Required field                */
+/* & = Optional element              */
+/* + = Multiply-occurring field      */
 /* @ = Attribute assigned to element */
-/* & = Optional element */
 
-
+InScopeDocID:before         { content: "InScopeDoc ID + @: "; }
 ProtocolAmendmentInformation>DatedAction:before,
-				{ content: "Dated Action & + "; }
-DateLastModified:before		{ content: "Last Modified &: "; }
-PdqKey:before			{ content: "PDQ Key &: "; }
-ProtocolAmendmentInformation:before
-				{ content: "PROTOCOL AMENDMENTS & +"; }
-ProtocolDesign:before		{ content: "Protocol Design * +: "; }
+                            { content: "DATED ACTION & + "; }
+DateLastModified:before     { content: "Last Modified &: "; }
+PdqKey:before               { content: "PDQ Key &: "; }
+ProcessingDate:before       { content: "Processing Date *:"; }
+ProcessingStatus:before     { content: "Processing Status * +:"; }
+ProtocolAmendmentInformation:before  
+                            { content: "PROTOCOL AMENDMENTS & +"; }
+ProtocolDesign:before       { content: "Protocol Design * +: "; }
+ProtocolProcessingDetails:before     
+                            { content: "PROTOCOL PROCESSING DETAILS &: "; }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
+/*************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS               */
+/*************************************************************************/
 ProtocolAmendmentInformation>DatedAction,
+  {  border: none; }
 
-	{ border: none; }
+ProtocolProcessingDetails:before
+  {  font-weight: bold;
+     color: black; }
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
-  
 
+/*************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS              */
+/*************************************************************************/
+InScopeDocID:before,
+ProcessingDate:before,
+ProcessingStatus:before,
 ProtocolAmendmentInformation>DatedAction:before,
 DateLastModified:before,
 ProtocolAmendmentInformation:before,
-
-   {  font-weight: bold;
-      color: black;  }
+  {  font-weight: bold;
+     color: black;  }
 
 
 ProtocolDesign:before,
+  {  font-weight: bold;
+     color: green;      }
 
-	{ font-weight: bold;
-	  color: green;      }
 
-/***************************************************************************/ 
-/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
-/***************************************************************************/ 
-  
-
+/*************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS      */
+/*************************************************************************/
 PdqKey:before,
-
-   {  font-weight: bold;
-      color: black;  }
-
+  {  font-weight: bold;
+     color: black;  }
 
 
+/*************************************************************************/
+/*                    BORDERED ELEMENTS AND SECTIONS                     */
+/*************************************************************************/
+ProtocolProcessingDetails, 
+  {  border: solid;                                                            
+     border-color: gray;                                                       
+     border-width: thin;                                                       
+     margin-top: 1em;  } 
 
-/***************************************************************************/ 
-/*                    BORDERED ELEMENTS AND SECTIONS                       */
-/***************************************************************************/
-  
 
 DateLastModified,
-
-   {  margin-top: 1em;    }
-
+  {  margin-top: 1em;    }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                */
+/*************************************************************************/
+/* Each tag is manually positioned to right-align                        */
+
+/* Key element for length = DateLastModified     */
+
+DateLastModified,     { margin-left: 100pt;
+                        text-indent: -96pt; }
+PdqKey,               { margin-left: 100pt;
+                        text-indent: -71pt; }
+
+ProtocolProcessingDetails>Comment,
+                      { margin-left: 150pt;
+                        text-indent: -82.5pt; }
+ProtocolProcessinDetails>EnteredBy,
+                      { margin-left: 150pt;
+                        text-indent: -70pt; }
+ProcessingDate,
+                      { margin-left: 150pt;
+                        text-indent: -107pt; }
+ProcessingStatus,
+                      { margin-left: 150pt;
+                        text-indent: -127.5pt; }
+
+InScopeDocID,
+                      { margin-left: 150pt;
+                        text-indent: -118.5pt;
+                        background-color: white; }
+
+/* Margin-bottom for simulated text boxes                                */
+
+DateLastModified,
+PdqKey,
+ProcessingDate,
+ProcessingStatus,
+ScientificProtocolInfo,
+  {  margin-bottom: 4pt; }
+
+InScopeDocID,
+  {  margin-top: 4pt; }
+
+/*************************************************************************/
+/*                               COLOR                                   */
+/*************************************************************************/
+DateLastModified,
+PdqKey,
+ProcessingDate,
+ProcessingStatus,
+ScientificProtocolInfo,
+  {  background-color: white; }
 
 
-/* Each tag is manually positioned to right-align                          */
-
-
-ProtocolDesign,				{ margin-left: 120pt;
-					  text-indent: -114pt; }
-
-/* Key element for length = DateLastModified					   */
-
-DateLastModified,			{ margin-left: 100pt;
-					  text-indent: -96pt; }
-PdqKey,					{ margin-left: 100pt;
-					  text-indent: -71pt; }
-
-/* Margin-bottom for simulated text boxes                                  */
-
-
-DateLastModified, 
-PdqKey, 
-ScientificProtocolInfo, 
-
-	{ margin-bottom: 4pt; }
-
-
-
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
-
-
-DateLastModified, 
-PdqKey, 
-ScientificProtocolInfo, 
-
-	{ background-color: white; }
-
-
-/* Blue = Administrative Information                                       */
-
+/* Blue = Administrative Information                                       */   
+/* *************************************************************************/ 
 DateLastModified:before,
 PdqKey:before,
+  {  font-weight: bold;
+     color: navy;         }
 
-	{ font-weight: bold;
-	  color: navy;         }
+/* Green = Scientific Information                                          */   
+/* *************************************************************************/  
+ProtocolProcessingDetails>Comment:before,
+ProcessingDate:before,
+ProcessingStatus:before,
+ProtocolProcessingDetails,
+  {  background-color: #CCFFCC; }  /*light green*/
 
-/* Green = Scientific Information                                   	   */
 
-
-
+/* Sample for testing when we need to adjust elements on white background       
+InScopeDocID:before,
+  {  background-color: yellow; }
+InScopeDocID,
+  {  background-color: red; }
+*/

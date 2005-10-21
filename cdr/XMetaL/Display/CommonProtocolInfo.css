@@ -68,6 +68,7 @@ AgeText,
 AmendmentDate,
 AmendmentID,
 AmendmentSource,
+AmendmentStatus,
 ChangeType,
 Citation,
 CitationSource,
@@ -87,6 +88,7 @@ EnteredBy,
 EntryDate,
 EntryCriteria,
 ExclusionCriteria,
+ExpectedEnrollment,
 GeneralEligibilityCriteria,
 Gene,
 HealthyVolunteers,
@@ -99,6 +101,7 @@ InterventionType,
 LowAge,
 Objectives,
 OtherID,
+Outcome,
 Outline,
 Patient,
 PatientCharacteristics,
@@ -149,6 +152,7 @@ AgeText:before                  { content: "Age Criteria (Text) *: "; }
 AmendmentDate:before            { content: "Amendment Date *: ";  }
 AmendmentID:before              { content: "Amendment ID &: ";  }
 AmendmentSource:before          { content: "Source *: "; }
+AmendmentStatus:before          { content: "Amendment Status &: "; }
 ChangeType:before               { content: "Change Type * +: ";  }
 Citation:before                 { content: "Published Citation * @: ";  }
 CitationSource:before           { content: "Citation Source &: ";  }
@@ -165,9 +169,18 @@ Eligibility:before              { content: "ELIGIBILITY CRITERIA *"; }
 EligibilityText:before          { content: "Eligibility *: "; }
 EndPoints:before                { content: "End Points &: ";  }
 EnteredBy:before                { content: "Entered By *: "; }
-EntryDate:before                { content: "Entry Date *: "; }
+PublishedResults>EnteredBy:before
+                                { content: "Entered By &: "; }
+RelatedPublications>EnteredBy:before
+                                { content: "Entered By &: "; }
 EntryCriteria:before            { content: "Entry Criteria *: "; }
+EntryDate:before                { content: "Entry Date *: "; }
+PublishedResults>EntryDate:before                
+                                { content: "Entry Date &: "; }
+RelatedPublications>EntryDate:before                
+                                { content: "Entry Date &: "; }
 ExclusionCriteria:before        { content: "Exclusion Criteria & + @: "; }
+ExpectedEnrollment:before       { content: "Expected Enrollment &: "; }
 Gene:before                     { content: "Gene & + @: ";  }
 GeneralEligibilityCriteria:before
                                 { content: "General Eligibility Criteria &: "; }
@@ -181,6 +194,7 @@ InterventionType:before         { content: "Intervention Type * @: "; }
 LowAge:before                   { content: "Lower Age Limit *: "; }
 Objectives:before               { content: "Objectives *: "; }
 OtherID:before                  { content: "OTHER ID & + "; }
+Outcome:before                  { content: "Outcome & + @: "; }
 Outline:before                  { content: "Outline *: "; }
 Patient:before                  { content: "PATIENT ABSTRACT *"; }
 PatientCharacteristics:before   { content: "Patient Characteristics *: "; }
@@ -197,11 +211,11 @@ ProtocolIDs:before              { content: "PROTOCOL IDS * "; }
 ProtocolPhase:before            { content: "Protocol Phase * +: "; }
 ProtocolRelatedLinks:before     { content: "PROTOCOL RELATED LINKS &"; }
 ProtocolTitle[Type="Original"]:before
-                                { content: "ORIGINAL TITLE * @: \A"; }
+                                { content: "ORIGINAL TITLE * + @: \A"; }
 ProtocolTitle[Type="Professional"]:before
-                                { content: "PROFESSIONAL TITLE * @: \A"; }
+                                { content: "PROFESSIONAL TITLE * + @: \A"; }
 ProtocolTitle[Type="Patient"]:before
-                                { content: "PATIENT TITLE * @: \A"; }
+                                { content: "PATIENT TITLE * + @: \A"; }
 PublishedResults:before         { content: "PUBLISHED RESULTS & + "; }
 Purpose:before                  { content: "Purpose *: "; }
 Rationale:before                { content: "Rationale *: "; }
@@ -248,6 +262,7 @@ AgeText:before,
 AmendmentDate:before,
 AmendmentID:before,
 AmendmentSource:before,
+AmendmentStatus:before,
 CitationSource:before,
 Comment:before,
 DateCompleted:before,
@@ -265,6 +280,7 @@ HighAge:before,
 IDString:before,
 LowAge:before,
 Objectives:before,
+Outcome:before,
 Outline:before,
 PatientCharacteristics:before,
 PrimaryID > IDString:before,
@@ -299,8 +315,6 @@ HealthyVolunteers:before,
 IDType:before,
 InterventionNameLink:before,
 InterventionType:before,
-ProtocolDesign:before,
-ProtocolPhase:before,
 PublishedResults:before,
 RelatedProtocols:before,
 RelatedPublications:before,
@@ -342,6 +356,7 @@ RelatedPublications,
       border-width: thin;
       margin-top: 1em;  }
 
+
 AmendmentID,
 DatedAction,
 ProtocolPhase,
@@ -371,41 +386,46 @@ StudyCategory,
 IDstring,                       { margin-left: 95pt;
                                   text-indent: -74.5pt; }
 ProtocolIDs>PrimaryID>Comment,  { margin-left: 95pt;
-                                  text-indent: -82pt; }
+                                  text-indent: -82.5pt; }
 IDType,                         { margin-left: 95pt;
-                                  text-indent: -93pt; }
+                                  text-indent: -93.5pt; }
 IDString,                       { margin-left: 95pt;
-                                  text-indent: -74.5pt; }
+                                  text-indent: -75pt; }
 ProtocolIDs>OtherID>IDString,   { margin-left: 95pt;
-                                  text-indent: -75.5pt; }
+                                  text-indent: -76.5pt; }
 ProtocolIDs>OtherID>Comment,    { margin-left: 95pt;
-                                  text-indent: -82pt; }
+                                  text-indent: -82.5pt; }
 
 /* Key element for length = AmendmentDate            */
 
-AmendmentID,                    { margin-left: 115pt;
-                                  text-indent: -103.5pt; }
-AmendmentDate,                  { margin-left: 115pt;
-                                  text-indent: -113.5pt; }
-AmendmentSource,                { margin-left: 115pt;
-                                  text-indent: -56pt; }
-ProtocolAmendment>DateReceived, { margin-left: 115pt;
-                                  text-indent: -97.5pt; }
-ProtocolAmendment>DateCompleted,{ margin-left: 115pt;
-                                  text-indent: -106.5pt; }
-ChangeType,                     { margin-left: 115pt;
-                                  text-indent: -101.5pt; }
-ProtocolAmendment>Comment,      { margin-left: 115pt;
-                                  text-indent: -82pt; }
+AmendmentID,                    { margin-left: 130pt;
+                                  text-indent: -104pt; }
+AmendmentDate,                  { margin-left: 130pt;
+                                  text-indent: -114pt; }
+AmendmentSource,                { margin-left: 130pt;
+                                  text-indent: -57pt; }
+AmendmentStatus,                { margin-left: 130pt;
+                                  text-indent: -129pt; }
+ProtocolAmendment>DateReceived, { margin-left: 130pt;
+                                  text-indent: -98pt; }
+ProtocolAmendment>DateCompleted,{ margin-left: 130pt;
+                                  text-indent: -107pt; }
+ChangeType,                     { margin-left: 130pt;
+                                  text-indent: -102pt; }
+ProtocolAmendment>Comment,      { margin-left: 130pt;
+                                  text-indent: -82.5pt; }
+ProtocolAmendmentInformation>DatedAction,
+                                { margin-left:  20pt; }
 ProtocolAmendmentInformation>DatedAction>ActionDescription,
-                                { margin-left: 115pt;
-                                  text-indent: -54.5pt; }
+                                { margin-left: 110pt;
+                                  text-indent: -55.5pt; }
 ProtocolAmendmentInformation>DatedAction>ActionDate,
-                                { margin-left: 115pt;
-                                  text-indent: -41.5pt; }
+                                { margin-left: 110pt;
+                                  text-indent: -42pt; }
 ProtocolAmendmentInformation>DatedAction>Comment,
-                                { margin-left: 115pt;
-                                  text-indent: -82pt; }
+                                { margin-left: 110pt;
+                                  text-indent: -82.5pt; }
+
 Professional Comment, Patient Comment          
                                 { margin-left: 90pt;
                                   text-indent: -82.5pt; }
@@ -413,43 +433,43 @@ Professional Comment, Patient Comment
 /* Key element for length = StudyCategoryName           */
 
 StudyType,                      { margin-left: 150pt;
-                                  text-indent: -80.5pt; }
+                                  text-indent: -81pt; }
 StudyCategoryType,              { margin-left: 150pt;
-                                  text-indent: -135.5pt; }
+                                  text-indent: -136.5pt; }
 StudyCategoryName,              { margin-left: 150pt;
-                                  text-indent: -140.5pt; }
+                                  text-indent: -141pt; }
 StudyFocus,                     { margin-left: 150pt;
-                                  text-indent: -102pt; }
+                                  text-indent: -103pt; }
 InterventionType,               { margin-left: 150pt;
-                                  text-indent: -129.5pt; }
+                                  text-indent: -130.5pt; }
 InterventionNameLink,           { margin-left: 150pt;
-                                  text-indent: -148.5pt; }
+                                  text-indent: -149pt; }
 Condition,                      { margin-left: 150pt;
-                                  text-indent: -100.5pt; }
+                                  text-indent: -101pt; }
 Gene,                           { margin-left: 150pt;
-                                  text-indent: -74pt; }
+                                  text-indent: -75pt; }
 
 /* Key element for length = ExclusionCriteria           */
 
 HealthyVolunteers,              { margin-left: 150pt;
-                                  text-indent: -136pt; }
+                                  text-indent: -136.5pt; }
 LowAge,                         { margin-left: 150pt;
-                                  text-indent: -107.5pt; }
+                                  text-indent: -108pt; }
 HighAge,                        { margin-left: 150pt;
-                                  text-indent: -106.5pt; }
+                                  text-indent: -107pt; }
 AgeText,                        { margin-left: 150pt;
-                                  text-indent: -117pt; }
+                                  text-indent: -118pt; }
 Diagnosis,                      { margin-left: 150pt;
-                                  text-indent: -102pt; }
+                                  text-indent: -103pt; }
 ExclusionCriteria,              { margin-left: 150pt;
-                                  text-indent: -145.5pt; }
+                                  text-indent: -146pt; }
 
 /* Key element for length = Citation           */
 
 RelatedProtocols,               { margin-left: 150pt;
-                                  text-indent: -142pt; }
+                                  text-indent: -142.5pt; }
 RelatedWebsites,                { margin-left: 150pt;
-                                  text-indent: -143pt; }
+                                  text-indent: -144pt; }
 Citation,                       { margin-left: 150pt;
                                   text-indent: -136pt; }
 CitationSource,                 { margin-left: 150pt;
@@ -461,16 +481,20 @@ RelatedCitation,                { margin-left: 150pt;
 
 /* Key element for length = ProtocolDesign           */
 
-ProtocolPhase,                  { margin-left: 120pt;
-                                  text-indent: -112.5pt; }
-ProtocolDesign,                 { margin-left: 120pt;
-                                  text-indent: -107pt; }
+ProtocolPhase,                  { margin-left: 150pt;
+                                  text-indent: -113.5pt; }
+ExpectedEnrollment,             { margin-left: 150pt;
+                                  text-indent: -139.5pt; }
+ProtocolDesign,                 { margin-left: 150pt;
+                                  text-indent: -117.5pt; }
+
+
 ActionDescription,              { margin-left: 100pt;
-                                  text-indent: -54.5pt; }
+                                  text-indent: -55.5pt; }
 ActionDate,                     { margin-left: 100pt;
-                                  text-indent: -41.5pt; }
+                                  text-indent: -42pt; }
 DatedAction>Comment,            { margin-left: 100pt;
-                                  text-indent: -82pt; }
+                                  text-indent: -82.5pt; }
 
 /* Elements valid for multiple sections              */
 
@@ -489,6 +513,7 @@ AgeText,
 AmendmentDate,
 AmendmentID,
 AmendmentSource,
+AmendmentStatus,
 ChangeType,
 Citation,
 CitationSource,
@@ -508,6 +533,7 @@ EnteredBy,
 EntryDate,
 EntryCriteria,
 ExclusionCriteria,
+ExpectedEnrollment,
 GeneralEligibilityCriteria,
 Gene,
 HealthyVolunteers,
@@ -520,6 +546,7 @@ LowAge,
 Objectives,
 OtherID,
 OtherID>IDType,
+Outcome,
 Outline,
 Patient,
 PatientCharacteristics,
@@ -531,7 +558,8 @@ ProjectedAccrual,
 ProtocolDesign,
 ProtocolDetail,
 ProtocolIDs,
-ProtocolPhase, ProtocolRelatedLinks,
+ProtocolPhase, 
+ProtocolRelatedLinks,
 ProtocolTitle,
 PublishedResults,
 Purpose,
@@ -566,8 +594,8 @@ RelatedProtocols,
 RelatedWebsites,
 StudyCategoryType,
 StudyType,
-
            { margin-top: 4pt; }
+
 
 Patient>EnteredBy,
 Professional>EnteredBy,
@@ -584,6 +612,7 @@ AgeText,
 AmendmentDate,
 AmendmentID,
 AmendmentSource,
+AmendmentStatus,
 ChangeType,
 Citation,
 CitationSource,
@@ -600,6 +629,7 @@ EnteredBy,
 EntryDate,
 EndPoints,
 ExclusionCriteria,
+ExpectedEnrollment,
 Gene,
 GeneralEligibilityCriteria,
 HealthyVolunteers,
@@ -614,6 +644,7 @@ LiteralLayout,
 LowAge,
 Multimedia,
 Objectives,
+Outcome,
 Outline,
 Para,
 PatientCharacteristics,
@@ -645,25 +676,23 @@ THead,
 THead>Row>entry,
 TitleType,
 TreatmentIntervention,
-           { background-color: white; }
-
+  {  background-color: white; }
 
 /* Blue = Administrative Information                                       */
-
+/* *************************************************************************/
 DatedAction,
 Professional,
+  {  background-color: #CCCCFF; }  /*light blue*/
 
-           { background-color: #CCCCFF; }  /*light blue*/
-
-/* Green = Scientific Information                                              */
-
-
+/* Green = Scientific Information                                          */
+/* *************************************************************************/
 ProtocolAmendmentInformation>DatedAction>ActionDescription:before,
 ProtocolAmendmentInformation>DatedAction>ActionDate:before,
 AgeText:before,
 AmendmentDate:before,
 AmendmentID:before,
 AmendmentSource:before,
+AmendmentStatus:before,
 ChangeType:before,
 Citation:before,
 CitationSource:before,
@@ -706,6 +735,7 @@ InterventionNameLink:before,
 LowAge:before,
 Objectives,
 OtherID,
+Outcome,
 Outline,
 ProtocolAbstract>Patient,
 PatientCharacteristics,
@@ -736,14 +766,13 @@ StudyCategoryType:before,
 StudyFocus:before,
 StudyType:before,
 TreatmentIntervention,
+  {  background-color: #CCFFCC; }  /*light green*/
 
-           { background-color: #CCFFCC; }  /*light green*/
 
+ExpectedEnrollment:before,
 ProtocolDesign:before,
 ProtocolPhase:before,
 ProtocolTitle:before,
-
-           { font-weight: bold;
-           color: green;      }
-
+  {  font-weight: bold;
+     color: green;      }
 

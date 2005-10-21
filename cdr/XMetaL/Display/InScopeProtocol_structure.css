@@ -67,8 +67,6 @@
 /*                                                                        */
 /**************************************************************************/
 
-
-
 /**************************************************************************/ 
 /*              XMETAL-GENERATED PROPERTIES AND DEFAULTS                  */ 
 /**************************************************************************/ 
@@ -119,8 +117,12 @@ ContactInformation,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
+DateSendForReview,
+DateSubmissionComplete,
+DueDate,
 EnteredBy, 
 EntryDate, 
+ExpectedEnrollment,
 ExternalID,
 ExternalSite,
 ExternalSiteAddress,
@@ -147,6 +149,8 @@ INDGrantor,
 INDNumber,
 INDSerialNumber,
 InScopeProtocol, 
+IRBApproved,
+IRBApprovalForm,
 LeadOrganizationID, 
 LeadOrgProtocolID, 
 LeadOrgRole, 
@@ -154,6 +158,7 @@ LeadOrgPersonnel,
 LeadOrgProtocolID, 
 LeadOrgProtocolStatuses,
 MailAbstractTo, 
+MergeByDate,
 NIHGrantContract, 
 NIHGrantContractType,  
 OrgSite, 
@@ -182,8 +187,12 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+RegulatoryAuthority,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 Role, 
 SourceName, 
 SpecialCategory,
@@ -191,10 +200,11 @@ SpecificEmail,
 SpecificPerson, 
 SpecificPhone,  
 SponsorName, 
+StartDate,
 StatusDate, 
 StatusName, 
 UpdateMode,
-
+VerificationDate,
    { display: block; }
 
 
@@ -202,10 +212,13 @@ UpdateMode,
 /*                      BEFORE AND AFTER TAGS                              */ 
 /***************************************************************************/ 
 ClinicalTrialOffice:before      { content: "Clinical Trial Office"; }
+DateSubmissionComplete:before   { content: "Date Submission Complete"; }
 Country:before                  { content: "Country"; }
 CurrentOrgStatus:before         { content: "Current Org Status"; }
 CurrentProtocolStatus:before    { content: "Current Protocol Status";  }
 DateLastModified:before         { content: "Last Modified"; }
+DateSentForReview:before        { content: "Date Sent for Review"; }
+DueDate:before                  { content: "Due Date"; }  
 EnteredBy:before                { content: "Entered By"; }
 EntryDate:before                { content: "Entry Date"; }
 ExternalID:before               { content: "Ext ID"; }
@@ -235,6 +248,9 @@ INDGrantor:before               { content: "IND Grantor"; }
 INDNumber:before                { content: "IND Number"; }
 INDSerialNumber:before          { content: "IND Serial Number"; }
 InScopeProtocol:before          { content: "IN-SCOPE PROTOCOL DOCUMENT";  }
+IRBInfo:before                  { content: "IRB INFO"; }
+IRBApproved:before              { content: "IRB Approved"; }
+IRBApprovalForm:before          { content: "IRB Approval Form"; }
 LeadOrganizationID:before       { content: "Organization Name"; }
 LeadOrgProtocolID:before        { content: "Protocol ID"; }
 LeadOrgRole:before              { content: "Role"; }
@@ -242,6 +258,7 @@ LeadOrgPersonnel:before         { content: "LEAD ORGANIZATION PERSONNEL"; }
 LeadOrgProtocolID:before        { content: "Lead Org Protocol ID"; }
 LeadOrgProtocolStatuses:before  { content: "LEAD ORGANIZATION PROTOCOL STATUSES"; }
 MailAbstractTo:before           { content: "Mail Abstract To"; }
+MergeByDate:before              { content: "Merge by Date"; }
 NIHGrantContract:before         { content: "NIH GRANT CONTRACT"; }
 NIHGrantContractType:before     { content: "NIH Grant Contract Type";  }
 OrgSite:before                  { content: counter(Site)
@@ -251,6 +268,7 @@ OrgSiteID:before                { content: "Organization Name"; }
 OrgSiteStatus:before            { content: "Status"; }
 OtherGrantContractInfo:before   { content: "OTHER GRANT CONTRACT INFORMATION"; }
 OverallContact                  { content: "Overall Contact"; }
+OversightInfo:before            { content: "OVERSIGHT INFO"; }
 PdqKey:before                   { content: "PDQ Key"; }
 Person:before                   { content: "Person"; }
 PersonFirstName:before          { content: "First Name"; }
@@ -278,9 +296,13 @@ ProtocolSources:before          { content: "PROTOCOL SOURCES";  }
 ProtocolSpecificContact:before  { content: "Protocol Specific Contact"; }
 ProtocolSponsors:before         { content: "PROTOCOL SPONSORS";  }
 ProtocolSpecialCategory:before  { content: "PROTOCOL SPECIAL CATEGORY"; }
+RegulatoryAuthority:before      { content: "Regulatory Authority"; }
 RelatedDocuments:before         { content: "RELATED DOCUMENTS"; }
 ReimbursementApprovalType:before{ content: "Reimbursement Approval Type"; }
 ReviewApprovalType:before       { content: "Review Approval Type"; }
+ReviewStatus:before             { content: "Review Status"; }
+ReviewStatusDate:before         { content: "Review Status Date"; }
+Reviewer:before                 { content: "Reviewer"; }
 Role:before                     { content: "Role"; }
 SourceName:before               { content: "Source"; }
 SpecialCategory:before          { content: "Category"; }
@@ -289,9 +311,13 @@ SpecificEmail:before            { content: "Email"; }
 SpecificPhone:before            { content: "Phone"; }
 SponsorName:before              { content: "Sponsor Name";  }
 SupplementaryInfoLink:before    { content: "Supplementary Info Link"; }
+StartDate:before                { content: "Start Date"; }
 StatusDate:before               { content: "Status Date"; }
 StatusName:before               { content: "Status"; }
 UpdateMode:before               { content: "Update Mode"; }
+VerificationInfo:before         { content: "VERIFICATION INFO"; }
+VerificationDate:before         { content: "Verification Date"; }
+VoluntaryReview:before          { content: "VOLUNTARY REVIEW"; }
 WarehouseBoxNumber:before       { content: "Warehouse Box Number"; }
 
 
@@ -299,16 +325,13 @@ WarehouseBoxNumber:before       { content: "Warehouse Box Number"; }
 /*                     NON-DISPLAY ELEMENTS                                */ 
 /***************************************************************************/ 
 Para,
-
      { display:  none;   }
-
 
 
 /***************************************************************************/ 
 /*                     COUNTER DEFINITIONS                                 */ 
 /***************************************************************************/ 
 OrgSite,
-  
      { counter-increment: Site;  }
 
 
@@ -363,7 +386,6 @@ ProtocolSpecificContact:before,
 ProtocolSponsors:before,
 ProtocolSpecialCategory:before,
 SpecificPerson:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -385,9 +407,9 @@ SourceName:before,
 SpecificEmail:before,
 SpecificPhone:before,
 SponsorName:before,
+StartDate:before,
 StatusDate:before,
 UpdateMode:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -415,7 +437,6 @@ ReviewApprovalType:before,
 Role:before,
 SpecialCategory:before,
 StatusName:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -429,8 +450,12 @@ Country,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
 DateLastModified,
+DateSentForReview,
+DateSubmissionComplete,
+DueDate,
 EnteredBy,
 EntryDate,
+ExpectedEnrollment,
 ExternalID,
 ExternalSite,
 ExternalSiteAddress,
@@ -457,12 +482,15 @@ INDGrantor,
 INDNumber,
 INDSerialNumber,
 InScopeProtocol,
+IRBApproved,
+IRBApprovalForm,
 LeadOrganizationID,
 LeadOrgRole,
 LeadOrgPersonnel,
 LeadOrgProtocolID,
 LeadOrgProtocolStatuses,
 MailAbstractTo,
+MergeByDate,
 NIHGrantContract,
 NIHGrantContractType,
 OrgSite,
@@ -491,7 +519,11 @@ ProtocolSource,
 ProtocolSources,
 ProtocolSponsors,
 ProtocolSpecialCategory,
+RegulatoryAuthority,
 ReimbursementApprovalType,
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 ReviewApprovalType,
 Role,
 SourceName,
@@ -501,13 +533,14 @@ SpecificPhone,
 SpecificEmail:after,
 SpecificEmail,
 SponsorName,
+StartDate,
 StatusDate,
 StatusName,
 SupplementaryInfoLink,
 UpdateMode:after,
 UpdateMode,
+VerificationDate,
 WarehouseBoxNumber,
-
    {  color: white;
       background-color: white;  }
 
@@ -525,9 +558,14 @@ ProtocolProcessingDetails>Comment:before,
 ProtocolSource>Comment:before,
 ProtocolSpecialCategory>Comment:before,
 ProtocolSponsors>Comment:before,
+VerificationInfo>Comment:before,
+VoluntaryReview>Comment:before,
 ExternalSiteAddress > Country:before,
 CurrentProtocolStatus,
 ProtocolSource>DateReceived:before,
+DateSentForReview:before,
+DateSubmissionComplete:before,
+DueDate:before,
 EnteredBy:before,
 EntryDate:before,
 ExternalID:before,
@@ -552,15 +590,20 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+IRBInfo,
+IRBApproved:before,
+IRBApprovalForm:before,
 LeadOrganizationID:before,
 LeadOrgProtocolID:before,
 LeadOrgRole:before,
 MailAbstractTo:before,
+MergeByDate:before,
 NIHGrantContractType:before,
 OrgSiteContact>SpecificPerson>Person:before,
 OrgSiteContact>SpecificPerson>Role:before,
 OrgSiteID:before,
 OrgSiteStatus:before,
+OversightInfo,
 Person:before,
 PersonFirstName:before,
 PersonLastName:before,
@@ -581,9 +624,13 @@ ProtocolSource,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
+RegulatoryAuthority:before,
 RelatedDocuments,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
+Reviewer:before,
+ReviewStatus:before,
+ReviewStatusDate:before,
 Role:before,
 SourceName:before,
 SpecialCategory:before,
@@ -594,9 +641,10 @@ StatusDate:before,
 StatusName:before,
 SupplementaryInfoLink:before,
 UpdateMode:before,
+VerificationInfo,
+VerificationDate:before,
 WarehouseBoxNumber:before,
-
-     { background-color: white }  
+  {  background-color: white }  
 
 
 /* Scientific Information                                                 */
@@ -604,15 +652,16 @@ WarehouseBoxNumber:before,
 CurrentProtocolStatus:before,
 ProtocolSpecificContact,
 ProtocolSpecificContact:before,
-
-    { background-color: white; } 
+  {  background-color: white; } 
 
 
 /***************************************************************************/
 /*                             BORDER CONTROL                              */
 /***************************************************************************/
 ExternalSites,
+FDAINDInfo,
 FundingInfo, 
+OversightInfo,
 ProtocolAdminInfo,
 ProtocolApproval,
 ProtocolProcessingDetails,
@@ -623,9 +672,9 @@ ProtocolSponsors,
 ProtocolLeadOrg,
 ProtocolAdminInfo>DatedAction,
 RelatedDocuments,
-
+VerificationInfo,
+VoluntaryReview,
    {  border: none;  }
-
 
 
 /***************************************************************************/ 
@@ -648,11 +697,18 @@ ProtocolProcessingDetails>Comment,
 ProtocolSource>Comment,
 ProtocolSpecialCategory>Comment,
 ProtocolSponsors>Comment,
+VerificationInfo>Comment,
+VoluntaryReview>Comment,
 ExternalSiteAddress > Country,
 CurrentProtocolStatus,
 DateLastModified,
 ProtocolSource>DateReceived,
+DateSentForReview,
+DateSubmissionComplete,
+DueDate,
 EnteredBy,
+VoluntaryReview>EnteredBy,
+ExpectedEnrollment,
 EntryDate,
 ExternalID,
 ExternalSite,
@@ -673,10 +729,13 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+IRBApproved,
+IRBApprovalForm,
 LeadOrganizationID,
 LeadOrgProtocolID,
 LeadOrgRole,
 MailAbstractTo,
+MergeByDate,
 NIHGrantContractType,
 OrgSiteID,
 OrgSiteStatus,
@@ -695,7 +754,11 @@ PrivatePracticeSiteStatus,
 ProcessingDate,
 ProcessingStatus,
 ProtocolAdminInfo,
+RegulatoryAuthority,
 ReviewApprovalType,
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 ReimbursementApprovalType,
 Role,
 SourceName,
@@ -703,11 +766,12 @@ SpecialCategory,
 SpecificEmail,
 SpecificPhone,
 SponsorName,
+StartDate,
 StatusDate,
 StatusName,
 ExternalSiteAddress > Street,
 SupplementaryInfoLink,
 UpdateMode,
+VerificationDate,
 WarehouseBoxNumber,
-
     { text-indent: 0pt; }

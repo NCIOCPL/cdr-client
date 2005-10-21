@@ -121,6 +121,9 @@ ExternalSiteAddress > Country,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
+DateSentForReview,
+DateSubmissionComplete,
+DueDate,
 ProtocolSource>DateReceived,
 EnteredBy, 
 EntryDate, 
@@ -150,11 +153,15 @@ INDGrantor,
 INDNumber,
 INDSerialNumber,
 InScopeProtocol, 
+IRBInfo,
+IRBApproved,
+IRBApprovalForm,
 LeadOrganizationID, 
 LeadOrgPersonnel,
 LeadOrgProtocolID, 
 LeadOrgProtocolStatuses, 
 LeadOrgRole, 
+MergeByDate,
 MailAbstractTo,   
 NIHGrantContract, 
 NIHGrantContractType,  
@@ -165,6 +172,7 @@ OrgSiteStatus,
 OrgStatus, 
 OtherGrantContractInfo,  
 OverallContact,
+OversightInfo,
 PdqKey, 
 Person, 
 PersonFirstName,
@@ -189,9 +197,13 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+RegulatoryAuthority,
 RelatedDocuments,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 Role, 
 SourceName, 
 SourceWebsite,
@@ -200,10 +212,14 @@ SpecificEmail,
 SpecificPerson, 
 SpecificPhone,  
 SponsorName, 
+StartDate,
 StatusDate, 
 StatusName, 
 SupplementaryInfoLink,
 UpdateMode,
+VerificationDate,
+VerificationInfo,
+VoluntaryReview,
 WarehouseBoxNumber,
     { display: block; }
 
@@ -211,18 +227,19 @@ WarehouseBoxNumber,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-/* * = Required field */
-/* + = Multiply-occurring field */
+/* * = Required element              */
+/* & = Optional element              */
+/* + = Multiply-occurring element    */
 /* @ = Attribute assigned to element */
-/* & = Optional element */
 
-
-/*
+/* Template
 :before
                 { content: " : "; }
 */
 ClinicalTrialOffice:before 
                 { content: "Trial Office & @: "; }
+DateSubmissionComplete:before
+                { content: "Date Submission Cmpl &: "; }
 LeadOrgProtocolStatuses>Comment:before
                 { content: "Comments &: "; }
 ExternalSiteAddress > Country:before
@@ -234,7 +251,7 @@ CurrentProtocolStatus:before
 DateLastModified:before
                 { content: "Last Modified &: "; }
 ProtocolSource>DateReceived:before
-                { content: "Date Rec'd *: "; }
+                { content: "Date Received *: "; }
 EnteredBy:before
                 { content: "Entered By *: "; }
 EntryDate:before
@@ -294,9 +311,9 @@ INDNumber:before
 INDSerialNumber:before      
                 { content: "IND Serial Number &: "; }
 LeadOrganizationID:before
-                { content: "Org Name *: "; }
+                { content: "Org Name * @: "; }
 LeadOrgProtocolID:before
-                { content: "Org Prot ID * + @: "; }
+                { content: "Org Prot ID * +: "; }
 LeadOrgRole:before
                 { content: "Role *: "; }
 LeadOrgPersonnel[Public="No"]:before
@@ -305,6 +322,8 @@ LeadOrgPersonnel:before
                 { content: "LEAD ORGANIZATION PERSONNEL (Public) ["attr(cdr\:id) "] "; }
 LeadOrgProtocolStatuses:before
                 { content: "LEAD ORGANIZATION PROTOCOL STATUSES *"; }
+MergeByDate:before
+                { content: "Merge by Date &: "; }
 MailAbstractTo:before
                 { content: "Mail Abstr To &: "; }
 NIHGrantContract:before
@@ -354,7 +373,7 @@ PrivatePracticeSiteStatus:before
 ProcessingDate:before
                 { content: "Processing Date *: "; }
 ProcessingStatus:before
-                { content: "Processing Status *: "; }
+                { content: "Processing Status * +: "; }
 ProtocolAdminInfo:before
                 { content: "ADMINISTRATIVE INFORMATION *"; }
 ProtocolApproval:before
@@ -419,14 +438,54 @@ UpdateMode[MailerType="Protocol_SandP"]:after
                 { content: " (Protocol_SandP) ";}
 UpdateMode[MailerType="Protocol_Abstract"]:after 
                 { content: " (Protocol_Abstract) ";}
-
+VoluntaryReview:before
+                { content: "VOLUNTARY REVIEW & +"; }
+ReviewStatus:before
+                { content: "Review Status *: "; }
+ReviewStatusDate:before
+                { content: "Review Status Date *: "; }
+Reviewer:before
+                { content: "Reviewer * @: "; }
+DateSentForReview:before
+                { content: "Date Sent *: "; }
+DueDate:before
+                { content: "Due Date *: "; }
+VoluntaryReview>Comment:before
+                { content: "Comments *: "; }
+VoluntaryReview>EnteredBy:before
+                { content: "Entered By *: "; }
+OversightInfo:before
+                { content: "OVERSIGHT INFO &"; }
+RegulatoryAuthority:before
+                { content: "Regulatory Authority * +: "; }
+IRBInfo:before
+                { content: "IRB INFO *"; }
+IRBApproved:before
+                { content: "IRB Approved *: "; }
+IRBApprovalForm:before
+                { content: "IRB Approval Form &: "; }
+Outcome:before
+                { content: "Outcome & + @: "; }
+StartDate:before
+                { content: "Start Date & +: "; }
+VerificationInfo:before
+                { content: "VERIFICATION INFO &"; }
+VerificationDate:before
+                { content: "Verification Date *: "; }
+VerificationInfo>Comment:before
+                { content: "Comments *: "; }
+VerificationInfo>EnteredBy:before
+                { content: "Entered By *: "; }
 
 
 /***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/*       TAG PROPERTIES FOR SECTION HEADINGS AND TEXT INPUT Fields         */ 
 /***************************************************************************/ 
 CurrentOrgStatus:before,
 /* CurrentProtocolStatus:before, */
+DateSentForReview:before,
+DateSubmissionComplete:before,
+DueDate:before,
 ExternalSiteAddress > Country:before,
 ExternalID:before,
 ExternalSite:before,
@@ -449,14 +508,20 @@ FDAINDInfo:before,
 FundingInfo:before,
 GenericPerson:before,
 GenericPersonContact:before,
+IRBApprovalForm:before,
+IRBApproved:before,
+IRBInfo:before,
 LeadOrgPersonnel:before,
 LeadOrgProtocolStatuses:before,
+MergeByDate:before,
 NIHGrantContract:before,
 OrgSite:before,
 OrgSiteContact:before,
 OrgSiteContact>SpecificPerson:before,
 OtherGrantContractInfo:before,
+Outcome:before,
 OverallContact:before,
+OversightInfo:before,
 PersonFirstName:before,
 PersonMiddleName:before,
 PersonLastName:before,
@@ -473,14 +538,18 @@ ProtocolSources:before,
 ProtocolSpecialCategory:before,
 ProtocolSpecificContact:before,
 ProtocolSponsors:before,
+RegulatoryAuthority:before,
+Reviewer:before,
+ReviewStatus:before,
+ReviewStatusDate:before,
+StartDate:before,
+VerificationDate:before,
+VerificationInfo:before,
+VoluntaryReview:before,
+  {  font-weight: bold;
+     color: black;  }
 
-   {  font-weight: bold;
-      color: black;  }
 
-
-/***************************************************************************/
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
-/***************************************************************************/
 LeadOrgProtocolStatuses > Comment:before,
 DateLastModified:before,
 ProtocolSource>DateReceived:before,
@@ -504,8 +573,8 @@ UpdateMode:before,
 UpdateMode:after,
 WarehouseBoxNumber:before,
 
-   {  font-weight: bold;
-      color: black;  }
+  {  font-weight: bold;
+     color: black;  }
 
 
 /***************************************************************************/
@@ -530,20 +599,19 @@ ReviewApprovalType:before,
 Role:before,
 SpecialCategory:before,
 StatusName:before,
-
-   {  font-weight: bold;
-      color: black;  }
+  {  font-weight: bold;
+     color: black;  }
 
 
 
 /***************************************************************************/
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
-  
 ExternalSites,
 FDAINDInfo,
 FundingInfo, 
 /* ProtocolAdminInfo, */
+OversightInfo,
 ProtocolAdminInfo>DatedAction,
 ProtocolApproval,
 ProtocolLeadOrg,
@@ -552,15 +620,16 @@ ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
 RelatedDocuments,
-   {  border: solid; 
-      border-color: gray;
-      border-width: thin;
-      margin-top: 1em;  }
+VerificationInfo,
+VoluntaryReview,
+  {  border: solid; 
+     border-color: gray;
+     border-width: thin;
+     margin-top: 1em;  }
 
 ProtocolAmendmentInformation>DatedAction,
 /* ProtocolAdminInfo>DatedAction, */
-
-   { border: none;     }
+  {  border: none;     }
 
 ClinicalTrialOffice,
 CurrentProtocolStatus,
@@ -575,7 +644,7 @@ OrgSite,
 OverallContact,
 PrivatePracticeSite,
 RelatedDocuments,
-   {  margin-top: 1em;    }
+  {  margin-top: 1em;    }
 
 CurrentOrgStatus,
 ExternalSiteAddress,
@@ -591,8 +660,7 @@ OrgSiteContact,
 ProtocolSource,
 ProtocolSpecificContact,
 SpecificPerson,
-
-   {  margin-top: .5em;    }
+  {  margin-top: .5em;    }
 
 ExternalSiteAddress,
 ExternalSiteContact,
@@ -603,17 +671,15 @@ ProtocolApproval,
 ProtocolProcessingDetails,
 ProtocolSponsors,
 RelatedDocuments,
-   {  margin-bottom: .5em;  }
+  {  margin-bottom: .5em;  }
 
 
 ProtocolAdminInfo,
-
-   { margin-top: 1em;
+  {  margin-top: 1em;
      margin-bottom: 1em;  } 
 
 ProtocolLeadOrg + ProtocolLeadOrg,
-
-{ margin-top: 3em; }
+  {  margin-top: 3em; }
 
 
 /***************************************************************************/
@@ -624,114 +690,165 @@ ProtocolLeadOrg + ProtocolLeadOrg,
 /* Key element for length = NIHGrantContractType                           */
 GrantContractNo,
                             { margin-left: 155pt; 
-                              text-indent: -147.5pt; }
+                              text-indent: -148.5pt; }
 NIHGrantContractType,
                             { margin-left: 155pt; 
-                              text-indent: -154.5pt; }
+                              text-indent: -155pt; }
 NIHGrantContract>Comment,
                             { margin-left: 155pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
 OtherGrantContractInfo>Comment,
                             { margin-left: 155pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
+
+/* Block for ProtocolSource elements                   */
+ProtocolSource,
+                            { margin-left:  40pt; }
 SourceName,
-                            { margin-left: 90pt; 
-                              text-indent: -56.5pt; }
+                            { margin-left: 160pt; 
+                              text-indent: -57pt; }
 ProtocolSource>DateReceived,
-                            { margin-left: 90pt; 
-                              text-indent: -77pt; }
+                            { margin-left: 160pt; 
+                              text-indent: -98pt; }
+DateSubmissionComplete,
+                            { margin-left: 160pt; 
+                              text-indent: -150.5pt; }
+MergeByDate,
+                            { margin-left: 160pt; 
+                              text-indent: -102pt; }
 ProtocolSource>Comment,
-                            { margin-left: 90pt;
-                              text-indent: -82pt; }
+                            { margin-left: 160pt;
+                              text-indent: -82.5pt; }
 
 /* Key element for length = ReimbursementApprovalType   */
 ReviewApprovalType,
                             { margin-left: 200pt; 
-                              text-indent: -143.5pt; }
+                              text-indent: -144pt; }
 ReimbursementApprovalType,
                             { margin-left: 200pt; 
-                              text-indent: -193pt; }
+                              text-indent: -193.5pt; }
 ProtocolApproval>Comment,
                             { margin-left: 200pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
+
+/* Block for VoluntaryReview elements                   */
+VoluntaryReview,
+                            { margin-left:  40pt; }
+ReviewStatus,
+                            { margin-left: 160pt; 
+                              text-indent: -97.5pt; }
+ReviewStatusDate,
+                            { margin-left: 160pt; 
+                              text-indent: -127pt; }
+Reviewer,
+                            { margin-left: 160pt; 
+                              text-indent: -84pt; }
+DateSentForReview,
+                            { margin-left: 160pt; 
+                              text-indent: -71.5pt; }
+DueDate,
+                            { margin-left: 160pt; 
+                              text-indent: -68pt; }
+VoluntaryReview>Comment,
+                            { margin-left: 160pt; 
+                              text-indent: -78pt; }
+VoluntaryReview>EnteredBy,
+                            { margin-left: 160pt; 
+                              text-indent: -79.5pt; }
+
+/* Block for OversightInfo elements                   */
+RegulatoryAuthority,
+                            { margin-left:  200pt; 
+                              text-indent: -144pt; }
+IRBInfo,
+                            { margin-left:  40pt; }
+IRBApproved,
+                            { margin-left:  160pt; 
+                              text-indent:  -96pt; }
+IRBApprovalForm,
+                            { margin-left:  160pt; 
+                              text-indent: -129pt; }
 
 /* Key element for length = AmendmentDate   */
 SponsorName,
                             { margin-left: 90pt; 
-                              text-indent: -74pt; }
+                              text-indent: -75pt; }
 ProtocolSponsors>Comment,
                             { margin-left: 90pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
 SpecialCategory,
                             { margin-left: 100pt;
-                              text-indent: -67.5pt; }
+                              text-indent: -68pt; }
 ProtocolSpecialCategory>Comment,
                             { margin-left: 100pt;
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
 
 /* Key element for length = CurrentProtocolStatus */
 CurrentProtocolStatus,
                             { margin-left: 150pt;
-                              text-indent: -150pt; } 
+                              text-indent: -151pt; } 
+StartDate,
+                            { margin-left: 150pt;
+                              text-indent: -85pt; } 
 LeadOrganizationID,
                             { margin-left: 100pt; 
-                              text-indent: -72pt; }
+                              text-indent: -88pt; }
 LeadOrgRole,
                             { margin-left: 100pt; 
-                              text-indent: -41.5pt; }
+                              text-indent: -42pt; }
 LeadOrgProtocolID,
                             { margin-left: 100pt; 
-                              text-indent: -102.5pt; }
+                              text-indent: -88.5pt; }
 StatusName,
                             { margin-left: 100pt; 
-                              text-indent: -51.5pt; }
+                              text-indent: -52.5pt; }
 StatusDate,
                             { margin-left: 100pt; 
-                              text-indent: -81pt; }
+                              text-indent: -82pt; }
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment,
                               { margin-left: 100pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
 LeadOrgProtocolStatuses>PreviousOrgStatus>Comment,
                               { margin-left: 100pt; 
-                              text-indent: -82pt; }
+                              text-indent: -82.5pt; }
 LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy,
                               { margin-left: 100pt; 
-                              text-indent: -78.5pt; }
+                              text-indent: -79.5pt; }
 LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate,
                               { margin-left: 100pt; 
-                              text-indent: -75pt; }
+                              text-indent: -76pt; }
 LeadOrgProtocolStatuses>PreviousOrgStatus>EnteredBy,
                               { margin-left: 100pt; 
-                              text-indent: -78.5pt; }
+                              text-indent: -79.5pt; }
 LeadOrgProtocolStatuses>PreviousOrgStatus>EntryDate,
                               { margin-left: 100pt; 
-                              text-indent: -75pt; }
+                              text-indent: -76pt; }
 PersonRole,
                             { margin-left: 100pt; 
-                              text-indent: -51pt; }
+                              text-indent: -52pt; }
 
 /* Key element for length = OrgSiteID (130)  */
 OrgSiteID,
                             { margin-left: 100pt;
-                              text-indent: -87pt; }
+                              text-indent: -88pt; }
 OrgSiteStatus,
                             { margin-left: 100pt;
-                              text-indent: -51.5pt;}
+                              text-indent: -52.5pt;}
 ClinicalTrialOffice   
                             { margin-left: 100pt; 
                               text-indent:  -96.0pt; }
 Person                
                             { margin-left: 100pt; 
-                              text-indent:  -71.5pt; }
+                              text-indent:  -72pt; }
 Role                  
                             { margin-left: 100pt; 
-                              text-indent:  -41.5pt; }
+                              text-indent:  -42pt; }
 SpecificPhone         
                             { margin-left: 100pt; 
-                              text-indent:  -57.0pt; }
+                              text-indent:  -58pt; }
 SpecificEmail         
                             { margin-left: 100pt; 
-                              text-indent:  -69.0pt; }
+                              text-indent:  -70pt; }
 INDGrantor            
                             { margin-left: 130pt; 
                               text-indent:  -83.5pt; }
@@ -754,29 +871,43 @@ PrivatePracticeSiteStatus,
                               text-indent: -76.5pt; }
 MailAbstractTo,
                             { margin-left: 100pt;
-                              text-indent: -94pt; }
+                              text-indent: -94.5pt; }
 UpdateMode,
                             { margin-left: 100pt;
                               text-indent: -100pt; }
 
 /* Key element for length = ProcessingStatus */
 ProcessingStatus,
-                            { margin-left: 120pt; 
-                              text-indent: -120pt; }
+                            { margin-left: 140pt; 
+                              text-indent: -130.5pt; }
 ProcessingDate,
-                            { margin-left: 120pt; 
-                              text-indent: -109.5pt; }
+                            { margin-left: 140pt; 
+                              text-indent: -110pt; }
 ProtocolProcessingDetails>Comment,
-                            { margin-left: 120pt; 
-                              text-indent: -82pt; }
+                            { margin-left: 140pt; 
+                              text-indent: -82.5pt; }
+ProtocolProcessingDetails>EnteredBy,
+                            { margin-left: 140pt; 
+                              text-indent: -79.5pt; }
+
+/* Elements for block VerificationInfo */
+VerificationDate,
+                            { margin-left: 140pt; 
+                              text-indent: -109.5pt; }
+VerificationInfo>Comment,
+                            { margin-left: 140pt; 
+                              text-indent: -78pt; }
+VerificationInfo>EnteredBy,
+                            { margin-left: 140pt; 
+                              text-indent: -79.5pt; }
 
 /* Key element for length = DateLastModified   */
 DateLastModified,
                             { margin-left: 100pt;
-                              text-indent: -96pt; }
+                              text-indent: -96.5pt; }
 PdqKey,
                             { margin-left: 100pt;
-                              text-indent: -71pt; }
+                              text-indent: -72pt; }
 SupplementaryInfoLink,
                             { margin-left: 125pt;
                               text-indent: -126pt; }
@@ -865,10 +996,17 @@ ExternalSiteContactTitle,
 ClinicalTrialOffice,
 ExternalSiteAddress > Country,
 LeadOrgProtocolStatuses > Comment, 
+VerificationInfo > Comment, 
+VoluntaryReview > Comment, 
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
+DateSentForReview,
+DateSubmissionComplete,
+DueDate,
 EnteredBy, 
+VerificationInfo > EnteredBy, 
+VoluntaryReview > EnteredBy, 
 EntryDate, 
 ExternalID,
 ExternalSite,
@@ -894,12 +1032,16 @@ INDGrantor,
 INDNumber,
 INDSerialNumber,
 InScopeProtocol,  
+IRBApprovalForm,
+IRBApproved,
+IRBInfo,
 LeadOrganizationID, 
 LeadOrgPersonnel,
 LeadOrgProtocolID, 
 LeadOrgProtocolStatuses, 
 LeadOrgRole, 
 MailAbstractTo, 
+MergeByDate,
 NIHGrantContract, 
 NIHGrantContractType,  
 OrgSite, 
@@ -930,9 +1072,13 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+RegulartoryAuthority,
 RelatedDocuments,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 Role, 
 SourceName, 
 SpecialCategory, 
@@ -944,10 +1090,12 @@ StatusDate,
 StatusName, 
 SupplementaryInfoLink,
 UpdateMode,
+VerificationDate,
 WarehouseBoxNumber,
+  {  margin-bottom: 4pt; }
 
-    { margin-bottom: 4pt; }
 
+ProtocolApproval>Comment,
 CurrentProtocolStatus,
 GrantContractNo,
 INDGrantor,
@@ -963,9 +1111,10 @@ ReviewApprovalType,
 SpecialCategory,
 SponsorName,
 SourceName,
+StartDate,
 StatusName,
 SupplementaryInfoLink,
-    { margin-top: 4pt; }
+  {  margin-top: 4pt; }
 
 
 
@@ -976,6 +1125,9 @@ ExternalSiteAddress > Country,
 ClinicalTrialOffice,
 CurrentProtocolStatus,
 DateLastModified, 
+DateSentForReview,
+DateSubmissionComplete,
+DueDate,
 EnteredBy, 
 EntryDate, 
 ExternalID,
@@ -998,11 +1150,15 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+IRBApproved,
+IRBApprovalForm,
+IRBInfo,
 InScopeProtocol,
 LeadOrganizationID, 
 LeadOrgProtocolID, 
 LeadOrgRole,
 MailAbstractTo,  
+MergeByDate,
 NIHGrantContractType,  
 OrgSiteID, 
 OrgSiteStatus,
@@ -1019,8 +1175,12 @@ PrivatePracticeSiteStatus,
 ProcessingDate, 
 ProcessingStatus,
 ProtocolSpecificContact,
+RegulatoryAuthority,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
+Reviewer,
+ReviewStatus,
+ReviewStatusDate,
 Role, 
 SourceName, 
 SpecialCategory,
@@ -1031,14 +1191,18 @@ StatusDate,
 StatusName, 
 SupplementaryInfoLink,
 UpdateMode,
+VerificationDate,
 WarehouseBoxNumber,
+  {  background-color: white; }
 
-    { background-color: white; }
 
-
-/* Blue = Administrative Information                                       */
-
+/* **********************************************************************/
+/* Blue = Administrative Information                                    */
+/* **********************************************************************/
 ClinicalTrialOffice:before,
+DateSentForReview:before,
+DateSubmissionComplete:before,
+DueDate:before,
 FundingInfo>NIHGrantContract>Comment:before,
 FundingInfo>OtherGrantContractInfo>Comment:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment:before,
@@ -1049,12 +1213,17 @@ ProtocolProcessingDetails>Comment:before,
 ProtocolSource>Comment:before,
 ProtocolSpecialCategory>Comment:before,
 ProtocolSponsors>Comment:before,
+VerificationInfo>Comment:before,
+VoluntaryReview>Comment:before,
 /* CurrentProtocolStatus:before, */
 ExternalSiteAddress > Country:before,
 ProtocolSource>DateReceived:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy:before,
-LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate:before,
 LeadOrgProtocolStatuses>PreviousOrgStatus>EnteredBy:before,
+ProtocolProcessingDetails>EnteredBy:before,
+VerificationInfo>EnteredBy:before,
+VoluntaryReview>EnteredBy:before,
+LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate:before,
 LeadOrgProtocolStatuses>PreviousOrgStatus>EntryDate:before,
 ExternalID:before,
 ExternalSite,
@@ -1079,15 +1248,20 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+IRBApproved:before,
+IRBApprovalForm:before,
+IRBInfo,
 LeadOrganizationID:before,
 LeadOrgProtocolID:before,
 LeadOrgRole:before,
 MailAbstractTo:before,
+MergeByDate:before,
 NIHGrantContractType:before,
 OrgSiteContact>SpecificPerson>Person:before,
 OrgSiteContact>SpecificPerson>Role:before,
 OrgSiteID:before,
 OrgSiteStatus:before,
+OversightInfo,
 Person:before,
 PersonFirstName:before,
 PersonLastName:before,
@@ -1108,8 +1282,12 @@ ProtocolSpecialCategory,
 ProtocolSpecificContact,
 ProtocolSponsors,
 RelatedDocuments,
+RegulatoryAuthority:before,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
+Reviewer:before,
+ReviewStatus:before,
+ReviewStatusDate:before,
 Role:before,
 SourceName:before,
 SpecialCategory:before,
@@ -1120,26 +1298,36 @@ StatusDate:before,
 StatusName:before,
 SupplementaryInfoLink:before,
 UpdateMode:before,
+VerificationDate:before,
+VerificationInfo,
 WarehouseBoxNumber:before,
+  {  background-color: #CCCCFF; }  /*light blue*/
 
-    { background-color: #CCCCFF; }  /*light blue*/
 
 CurrentProtocolStatus:before,
 DateLastModified:before,
 PdqKey:before,
 ProtocolAdminInfo:before,
+StartDate:before,
+  {  font-weight: bold;
+     color: navy;         }
 
-    { font-weight: bold;
-    color: navy;         }
 
 /* Green = Scientific Information                                       */
-
+/* **********************************************************************/
 ProtocolAmendmentInformation>DatedAction>ActionDescription:before,
 ProtocolAmendmentInformation>DatedAction>ActionDate:before,
 ProtocolAmendment>Comment:before,
 ProtocolAmendmentInformation>DatedAction,
 ProtocolAmendmentInformation>DatedAction>Comment:before,
 
-    { background-color: #CCFFCC; }  /*light green*/
+  {  background-color: #CCFFCC; }  /*light green*/
 
-
+/* Sample for testing when we need to adjust elements on white background
+DateLastModified:before,
+PdqKey:before,
+  {  background-color: yellow; }
+DateLastModified,
+PdqKey,
+  {  background-color: red; }
+*/
