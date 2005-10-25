@@ -1065,7 +1065,7 @@
     </Template>
     <Template>
       <Name>Outcome</Name>
-      <MiniTemplate><![CDATA[<Outcome> </Outcome>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<Outcome><?xm-replace_text {Optionally enter the Outcome} ?></Outcome>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>OversightInfo</Name>
