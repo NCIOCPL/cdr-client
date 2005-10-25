@@ -464,8 +464,6 @@ IRBApproved:before
                 { content: "IRB Approved *: "; }
 IRBApprovalForm:before
                 { content: "IRB Approval Form &: "; }
-Outcome:before
-                { content: "Outcome & + @: "; }
 StartDate:before
                 { content: "Start Date & +: "; }
 VerificationInfo:before
@@ -519,7 +517,6 @@ OrgSite:before,
 OrgSiteContact:before,
 OrgSiteContact>SpecificPerson:before,
 OtherGrantContractInfo:before,
-Outcome:before,
 OverallContact:before,
 OversightInfo:before,
 PersonFirstName:before,
@@ -621,7 +618,7 @@ ProtocolSpecialCategory,
 ProtocolSponsors,
 RelatedDocuments,
 VerificationInfo,
-VoluntaryReview,
+#VoluntaryReview,
   {  border: solid; 
      border-color: gray;
      border-width: thin;
@@ -645,6 +642,9 @@ OverallContact,
 PrivatePracticeSite,
 RelatedDocuments,
   {  margin-top: 1em;    }
+
+ProtocolApproval>Comment,
+  {  margin-top: 2em;    }
 
 CurrentOrgStatus,
 ExternalSiteAddress,
@@ -1095,7 +1095,6 @@ WarehouseBoxNumber,
   {  margin-bottom: 4pt; }
 
 
-ProtocolApproval>Comment,
 CurrentProtocolStatus,
 GrantContractNo,
 INDGrantor,
