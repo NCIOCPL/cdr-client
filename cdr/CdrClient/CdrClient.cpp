@@ -1,5 +1,5 @@
 /*
- * $Id: CdrClient.cpp,v 1.1.1.1 2005-11-08 21:30:20 bkline Exp $
+ * $Id: CdrClient.cpp,v 1.2 2005-11-08 22:11:02 bkline Exp $
  *
  * Ensures that the CDR client files are up-to-date, then launches XMetaL
  * with custom CDR DLL.  See documentation of the InitInstance method
@@ -7,6 +7,8 @@
  * of the processing logic.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1.1.1  2005/11/08 21:30:20  bkline
+ * Rewrite of CDR loader.
  */
 #include "stdafx.h"
 #include "CdrClient.h"

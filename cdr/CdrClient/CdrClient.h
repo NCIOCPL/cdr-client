@@ -1,9 +1,11 @@
 /*
- * $Id: CdrClient.h,v 1.1.1.1 2005-11-08 21:30:20 bkline Exp $
+ * $Id: CdrClient.h,v 1.2 2005-11-08 22:11:02 bkline Exp $
  *
  * Interface file for CDR loader application.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1.1.1  2005/11/08 21:30:20  bkline
+ * Rewrite of CDR loader.
  */
 
 /*

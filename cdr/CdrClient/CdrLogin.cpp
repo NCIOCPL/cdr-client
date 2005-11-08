@@ -1,5 +1,5 @@
 /*
- * $Id: CdrLogin.cpp,v 1.1.1.1 2005-11-08 21:30:21 bkline Exp $
+ * $Id: CdrLogin.cpp,v 1.2 2005-11-08 22:11:02 bkline Exp $
  *
  * Implementation for dialog window object used to connect to the
  * CDR server and obtain a session ID.  Collects user ID and password,
@@ -8,6 +8,8 @@
  * ports) can be modified before connecting.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1.1.1  2005/11/08 21:30:21  bkline
+ * Rewrite of CDR loader.
  */
 #include "stdafx.h"
 #include "CdrClient.h"

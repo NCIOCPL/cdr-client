@@ -1,10 +1,12 @@
 /*
- * $Id: ServerSettingsDlg.h,v 1.1.1.1 2005-11-08 21:30:22 bkline Exp $
+ * $Id: ServerSettingsDlg.h,v 1.2 2005-11-08 22:11:02 bkline Exp $
  *
  * Interface for object used to track and manipulate values for
  * connecting with the CDR servers.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1.1.1  2005/11/08 21:30:22  bkline
+ * Rewrite of CDR loader.
  */
 #pragma once
 #include "afxwin.h"

@@ -1,9 +1,11 @@
 /*
- * $Id: stdafx.h,v 1.1.1.1 2005-11-08 21:30:22 bkline Exp $
+ * $Id: stdafx.h,v 1.2 2005-11-08 22:11:02 bkline Exp $
  *
  * Include file for MFC features.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.1.1.1  2005/11/08 21:30:22  bkline
+ * Rewrite of CDR loader.
  */
 #pragma once
 
