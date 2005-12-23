@@ -148,6 +148,7 @@ DateCreated,
 DateLastModified,
 DateRevised,
 ElectronicPubDate,
+FullTextArticle,
 PDQCitation>AuthorList>Author>FirstName,
 PDQCitation>AuthorList>Author>ForeName,
 GrantList,
@@ -261,6 +262,7 @@ Day:before                   { content: "/"; }
 DescriptorName[MajorTopicYN="Y"]:after    
                              { content: " (major) "; }
 ElectronicPubDate:before     { content: "Elec. Pub. Date &: "; }
+FullTextArticle:before       { content: "Full Text Article & @: ";}
 MedlineCitation>Article>AuthorList>Author>FirstName:after
                              { content: " "; }
 PDQCitation>AuthorList>Author>FirstName:before
@@ -381,6 +383,7 @@ VerificationDetails,
 Article,
 CancerLitAbstract,
 ChemicalList,
+FullTextArticle,
 GrantList,
 MedlineJournalInfo,
 MeshHeadingList,
@@ -456,6 +459,7 @@ DateCompleted:before,
 DateRevised:before,
 DescriptorName:after,
 ElectronicPubDate:before,
+FullTextArticle:before,
 MedlineCitation>Article>AuthorList>Author>FirstName:after,
 PDQCitation>AuthorList>Author>FirstName:before,
 ForeName:after,
@@ -503,6 +507,7 @@ Volume:before,
 ArticleIdList>ArticleId:before,
 Comment:before,
 DateLastModified:before,
+FullTextArticle:before,
 PdqKey:before,
 PublicationStatus:before,
 URL[URLType="Full_Text"]>URLstring:before,
@@ -790,6 +795,9 @@ CancerLitID,
     { margin-left: 100pt;
       text-indent: -87pt; }
 
+FullTextArticle,
+    { margin-left: 125pt;
+      text-indent: -123pt; }
 
 /* Margin-bottom to simulate a text box                                    */
 
@@ -948,6 +956,7 @@ DateRevised,
 Day,
 Day:before,
 DescriptorName,
+FullTextArticle,
 GrantID,
 History,
 Hour,

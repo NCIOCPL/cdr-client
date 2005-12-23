@@ -127,6 +127,7 @@ Day,
 DescriptorName,
 FirstName,
 ForeName,
+FullTextArticle,
 Grant,
 GrantID,
 GrantList,
@@ -240,6 +241,7 @@ Day:before                        { content: "Day"; }
 DescriptorName:before             { content: "Descriptor "; }
 FirstName:before                  { content: "First Name "; }
 ForeName:before                   { content: "Forename "; }
+FullTextArticle:before            { content: "Full Text Article ";}
 Grant:before                      { content: "Grant "; }
 GrantID:before                    { content: "Grant ID "; }
 GrantList:before                  { content: "GRANT LIST "; }
@@ -390,6 +392,7 @@ Descriptor:after,
 Descriptor:before,
 FirstName:before,
 ForeName:before,
+FullTextArticle:before,
 Grant:before,
 GrantID:before,
 Hour:before,
@@ -476,6 +479,7 @@ DateCompleted,
 DateLastModified,
 DateRevised,
 ForeName,
+FullTextArticle,
 Grant,
 GrantID,
 Initials,
@@ -541,6 +545,7 @@ DateCreated,
 DateLastModified,
 DateRevised,
 ForeName,
+FullTextArticle,
 GrantID,
 History
 Initials,
