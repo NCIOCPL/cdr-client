@@ -222,6 +222,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>FullTextArticle</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>History</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -738,23 +745,8 @@
   </ElementPropertiesList>
   <Templates>
     <Template>
-      <Name>CdrDocCtl</Name>
-      <MiniTemplate><![CDATA[<CdrDocCtl>
-<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-</CdrDocCtl>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>DocId</Name>
-      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>DocTitle</Name>
-      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>DateLastModified</Name>
-      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+      <Name>AbstractText</Name>
+      <MiniTemplate><![CDATA[<AbstractText><?xm-replace_text {Enter the abstract (required)} ?></AbstractText>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ActionDescription</Name>
@@ -765,99 +757,8 @@
       <MiniTemplate><![CDATA[<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>Comment</Name>
-      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>DatedAction</Name>
-      <MiniTemplate><![CDATA[<DatedAction>
-<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
-<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</DatedAction>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>Para</Name>
-      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>Verified</Name>
-      <MiniTemplate><![CDATA[<Verified><?xm-replace_text {Select Yes or No (required)}?></Verified>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>CitationType</Name>
-      <MiniTemplate><![CDATA[<CitationType><?xm-replace_text {Select a citation type (required)} ?></CitationType>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>CitationTitle</Name>
-      <MiniTemplate><![CDATA[<CitationTitle><?xm-replace_text {Enter the title (required)} ?></CitationTitle>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>PublicationYear</Name>
-      <MiniTemplate><![CDATA[<PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>CancerLitID</Name>
-      <MiniTemplate><![CDATA[<CancerLitID><?xm-replace_text {Optionally enter the CancerLit ID number for this citation} ?></CancerLitID>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>PublicationInformation</Name>
-      <MiniTemplate><![CDATA[<PublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></PublicationInformation>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>InternetInformation</Name>
-      <MiniTemplate><![CDATA[<InternetInformation><?xm-replace_text {Optionally enter available Internet information} ?></InternetInformation>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>CopyrightInformation</Name>
-      <MiniTemplate><![CDATA[<CopyrightInformation><?xm-replace_text {Optionally enter relevant copyright data} ?></CopyrightInformation>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>PublishedIn</Name>
-      <MiniTemplate><![CDATA[<PublishedIn><?xm-replace_text {Optionally link to a parent citation} ?></PublishedIn>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>AuthorList</Name>
-      <MiniTemplate><![CDATA[<AuthorList Complete="Yes"></AuthorList>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>LastName</Name>
-      <MiniTemplate><![CDATA[<LastName><?xm-replace_text {Enter the author's last name (required)} ?></LastName>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>FirstName</Name>
-      <MiniTemplate><![CDATA[<FirstName><?xm-replace_text {Enter the author's initials (required)} ?></FirstName>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>Initials</Name>
-      <MiniTemplate><![CDATA[<Initials><?xm-replace_text {Optionally enter the author's initials} ?></Initials>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>Suffix</Name>
-      <MiniTemplate><![CDATA[<Suffix><?xm-replace_text {Optionally enter the author's suffix} ?></Suffix>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>CollectiveName</Name>
-      <MiniTemplate><![CDATA[<CollectiveName><?xm-replace_text {Enter a collective name author, or Change to a personal name author (required)} ?></CollectiveName>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>VerifiedIn</Name>
-      <MiniTemplate><![CDATA[<VerifiedIn><?xm-replace_text {Optionally select a verification source}?></VerifiedIn>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>VerificationDetails</Name>
-      <MiniTemplate><![CDATA[<VerificationDetails>
-<Verified><?xm-replace_text {Select Yes or No (required)}?></Verified>
-<VerifiedIn><?xm-replace_text {Optionally select a verification source}?></VerifiedIn>
-</VerificationDetails>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>ForeName</Name>
-      <MiniTemplate><![CDATA[<ForeName><?xm-replace_text {Enter the author's forename, or Change to a First Name (required)} ?></ForeName>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>MiddleName</Name>
-      <MiniTemplate><![CDATA[<MiddleName><?xm-replace_text {Optionally enter the author's middle name} ?></MiddleName>]]></MiniTemplate>
+      <Name>Affiliation</Name>
+      <MiniTemplate><![CDATA[<Affiliation><?xm-replace_text {Optionally enter the author's affiliation} ?></Affiliation>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Author</Name>
@@ -869,12 +770,122 @@
 </Author>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>Affiliation</Name>
-      <MiniTemplate><![CDATA[<Affiliation><?xm-replace_text {Optionally enter the author's affiliation} ?></Affiliation>]]></MiniTemplate>
+      <Name>AuthorList</Name>
+      <MiniTemplate><![CDATA[<AuthorList Complete="Yes"></AuthorList>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>AbstractText</Name>
-      <MiniTemplate><![CDATA[<AbstractText><?xm-replace_text {Enter the abstract (required)} ?></AbstractText>]]></MiniTemplate>
+      <Name>CancerLitID</Name>
+      <MiniTemplate><![CDATA[<CancerLitID><?xm-replace_text {Optionally enter the CancerLit ID number for this citation} ?></CancerLitID>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CdrDocCtl</Name>
+      <MiniTemplate><![CDATA[<CdrDocCtl>
+<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+</CdrDocCtl>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitationType</Name>
+      <MiniTemplate><![CDATA[<CitationType><?xm-replace_text {Select a citation type (required)} ?></CitationType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CitationTitle</Name>
+      <MiniTemplate><![CDATA[<CitationTitle><?xm-replace_text {Enter the title (required)} ?></CitationTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CollectiveName</Name>
+      <MiniTemplate><![CDATA[<CollectiveName><?xm-replace_text {Enter a collective name author, or Change to a personal name author (required)} ?></CollectiveName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>CopyrightInformation</Name>
+      <MiniTemplate><![CDATA[<CopyrightInformation><?xm-replace_text {Optionally enter relevant copyright data} ?></CopyrightInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DatedAction</Name>
+      <MiniTemplate><![CDATA[<DatedAction>
+<ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
+<ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
+<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DatedAction>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocId</Name>
+      <MiniTemplate><![CDATA[<DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>FullTextArticle</Name>
+      <MiniTemplate><![CDATA[<FullTextArticle><?xm-replace_text {Optionally link to supplementary info} ?></FullTextArticle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>FirstName</Name>
+      <MiniTemplate><![CDATA[<FirstName><?xm-replace_text {Enter the author's initials (required)} ?></FirstName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>ForeName</Name>
+      <MiniTemplate><![CDATA[<ForeName><?xm-replace_text {Enter the author's forename, or Change to a First Name (required)} ?></ForeName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Initials</Name>
+      <MiniTemplate><![CDATA[<Initials><?xm-replace_text {Optionally enter the author's initials} ?></Initials>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>InternetInformation</Name>
+      <MiniTemplate><![CDATA[<InternetInformation><?xm-replace_text {Optionally enter available Internet information} ?></InternetInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>LastName</Name>
+      <MiniTemplate><![CDATA[<LastName><?xm-replace_text {Enter the author's last name (required)} ?></LastName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MiddleName</Name>
+      <MiniTemplate><![CDATA[<MiddleName><?xm-replace_text {Optionally enter the author's middle name} ?></MiddleName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Para</Name>
+      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Paragraph} ?></Para>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PublicationInformation</Name>
+      <MiniTemplate><![CDATA[<PublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></PublicationInformation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PublicationYear</Name>
+      <MiniTemplate><![CDATA[<PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>PublishedIn</Name>
+      <MiniTemplate><![CDATA[<PublishedIn><?xm-replace_text {Optionally link to a parent citation} ?></PublishedIn>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Suffix</Name>
+      <MiniTemplate><![CDATA[<Suffix><?xm-replace_text {Optionally enter the author's suffix} ?></Suffix>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Verified</Name>
+      <MiniTemplate><![CDATA[<Verified><?xm-replace_text {Select Yes or No (required)}?></Verified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>VerifiedIn</Name>
+      <MiniTemplate><![CDATA[<VerifiedIn><?xm-replace_text {Optionally select a verification source}?></VerifiedIn>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>VerificationDetails</Name>
+      <MiniTemplate><![CDATA[<VerificationDetails>
+<Verified><?xm-replace_text {Select Yes or No (required)}?></Verified>
+<VerifiedIn><?xm-replace_text {Optionally select a verification source}?></VerifiedIn>
+</VerificationDetails>]]></MiniTemplate>
     </Template>
   </Templates>
   <ChangeLists>
