@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.46 2005-05-05 17:51:56 bkline Exp $
+ * $Id: Commands.cpp,v 1.47 2005-12-30 15:50:48 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.46  2005/05/05 17:51:56  bkline
+ * Corrected SupplementalInfo to SupplementaryInfo.
+ *
  * Revision 1.45  2005/04/13 13:20:51  bkline
  * Completed BLOB support, including calculating of image dimensions.
  *
@@ -560,10 +563,12 @@ STDMETHODIMP CCommands::logon(int *pRet)
         }
 
         // See if the client machine has the refresh utility installed.
-        CString manifestName = cdr::getXmetalPath() + _T("\\CDR_MANIFEST.XML");
+        CString oldManifest  = cdr::getXmetalPath() + _T("\\CDR_MANIFEST.XML");
+        CString manifestName = cdr::getXmetalPath() + _T("\\CdrManifest.xml");
         invokedFromClientRefreshTool = false;
         //::AfxMessageBox(_T("Looking for ") + manifestName);
-        if (!_waccess((LPCTSTR)manifestName, 0)) {
+        if (!_waccess((LPCTSTR)manifestName, 0) ||
+            !_waccess((LPCTSTR)oldManifest, 0)) {
             //::AfxMessageBox(_T("Found it!"));
             invokedFromClientRefreshTool = true;
             doLogon(NULL);
