@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.144 2005-10-13 22:44:17 venglisc Exp $
+     $Id: Cdr.mcr,v 1.145 2005-12-30 19:31:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.144  2005/10/13 22:44:17  venglisc
+     Added Redline/Strikeout toolbar button to GlossaryTerm toolbar.
+     (Bug 1868)
+
      Revision 1.143  2005/09/21 21:30:42  bkline
      Fixed typo in one of the new diagnosis insertion macros.
 
@@ -567,7 +571,7 @@
                 + padNumber(d.getDate(), 2, '0');
         return str;
     }
-        
+
     /*
      * Produce string containing current time as hh:mm:ss string.
      */
@@ -863,6 +867,11 @@
                 + CdrSession + "&DocId=" + docId;
         if (flavor)
             url += "&Flavor=" + flavor;
+        var ver = getDocVersion();
+        if (ver)
+            url += "&Version=" + ver;
+        else
+            url += "&Version=cwd";
         cdrObj.showPage(url);
     }
 
@@ -1970,7 +1979,20 @@
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
                            "Design (Custom)", 4, 10,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Open Original English Summary",
+                           "English",
+                           "Open original English summary of which this " +
+                           "is a translation",
+                           "CDR2", 2, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Open Translated Summary",
+                           "Spanish",
+                           "Open Spanish translation of this summary",
+                           "CDR2", 2, 3,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -6600,6 +6622,57 @@
     }
 
     insertAlDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Translated Summary" 
+       lang="JScript" >
+  <![CDATA[
+    function openTranslatedSummary() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        //Application.Alert("My ID: " + docId);
+        var translatedSummaryId = cdrObj.getTranslatedDocId(docId);
+        if (!translatedSummaryId)
+            return;
+        //Application.Alert("translation ID: " + translatedSummaryId);
+        cdrObj.openCdrDoc(translatedSummaryId, "Current", false);
+    }
+    openTranslatedSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Original English Summary" 
+       lang="JScript" >
+  <![CDATA[
+    function openOriginalEnglishSummary() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = "TranslationOf";
+        var nodes = Application.ActiveDocument.getElementsByTagName(name);
+        if (nodes.length < 1) {
+            Application.Alert("TranslationOf element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var originalId = elem.getAttribute("cdr:ref");
+        if (!originalId) {
+            Application.Alert("ID of original summary not found");
+            return;
+        }
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.openCdrDoc(originalId, "Current", false);
+    }
+    openOriginalEnglishSummary();
   ]]>
 </MACRO>
 
