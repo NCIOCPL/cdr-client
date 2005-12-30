@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.47 2005-12-30 15:50:48 bkline Exp $
+ * $Id: Commands.cpp,v 1.48 2005-12-30 19:36:11 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.47  2005/12/30 15:50:48  bkline
+ * Modified check for manifest to look for new file name.
+ *
  * Revision 1.46  2005/05/05 17:51:56  bkline
  * Corrected SupplementalInfo to SupplementaryInfo.
  *
@@ -2701,5 +2704,43 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer)
 
     // Invoke the application registered by the user for this file type.
     ::ShellExecute(NULL, _T("open"), path, NULL, NULL, SW_SHOWNORMAL);
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::openCdrDoc(const BSTR* docId, const BSTR* docVer, 
+                                   VARIANT_BOOL checkOut)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*docId);
+    CString ver(*docVer);
+    BOOL co(checkOut);
+    doRetrieve(id, co, ver);
+    
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId, 
+                                           BSTR* translatedDocId)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*originalId);
+    CString cmd = _T("<CdrReport>")
+                  _T("<ReportName>Translated Summary</ReportName>")
+                  _T("<ReportParams><ReportParam Name='EnglishSummary' ")
+                  _T("Value='") + id + _T("'/></ReportParams>")
+                  _T("</CdrReport>");
+    CString r = CdrSocket::sendCommand(cmd);
+    //::AfxMessageBox(r);
+    cdr::Element e = cdr::Element::extractElement(r, _T("TranslatedSummary"));
+    CString translationId;
+    if (e)
+        translationId = e.getString();
+    else
+        cdr::showErrors(r);
+    //::AfxMessageBox(_T("translationId: ") + translationId);
+    translationId.SetSysString(translatedDocId);
+
     return S_OK;
 }

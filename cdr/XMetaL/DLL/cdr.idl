@@ -39,6 +39,8 @@ import "oaidl.idl";import "ocidl.idl";
         [id(28), helpstring("method setTitleBar")] HRESULT setTitleBar(void);
         [id(29), helpstring("method acceptOrRejectMarkup")] HRESULT acceptOrRejectMarkup(void);
         [id(30), helpstring("method launchBlob")] HRESULT launchBlob([in] const BSTR* docId, [in] const BSTR* docVer);
+		[id(31), helpstring("method openCdrDoc")] HRESULT openCdrDoc([in] const BSTR* docId, [in] const BSTR* docVer, [in] VARIANT_BOOL checkOut);
+        [id(32), helpstring("method getTranslatedDocId")] HRESULT getTranslatedDocId([in] const BSTR* originalId, [out, retval] BSTR* translatedDocId);
     };
 
 [

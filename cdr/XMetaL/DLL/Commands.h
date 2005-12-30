@@ -74,6 +74,8 @@ public:
     STDMETHOD(setTitleBar)(void);
     STDMETHOD(acceptOrRejectMarkup)(void);
     STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
+	STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
+    STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)
