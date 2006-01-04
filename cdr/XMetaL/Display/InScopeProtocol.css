@@ -115,7 +115,6 @@ $PROCINS
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
 ClinicalTrialOffice,
-Comment,
 ContactInformation, 
 ExternalSiteAddress > Country,
 CurrentOrgStatus, 
@@ -186,11 +185,8 @@ PrivatePracticeSite,
 PrivatePracticeSiteID, 
 PrivatePracticeSiteStatus,
 ProtocolAdminInfo, 
-ProcessingDate, 
-ProcessingStatus, 
 ProtocolApproval, 
 ProtocolLeadOrg, 
-ProtocolProcessingDetails, 
 ProtocolSites,
 ProtocolSource, 
 ProtocolSources, 
@@ -370,18 +366,12 @@ PrivatePracticeSiteID:before
                 { content: "Site ID * @: "; }
 PrivatePracticeSiteStatus:before
                 { content: "Site Status *: "; }
-ProcessingDate:before
-                { content: "Processing Date *: "; }
-ProcessingStatus:before
-                { content: "Processing Status * +: "; }
 ProtocolAdminInfo:before
                 { content: "ADMINISTRATIVE INFORMATION *"; }
 ProtocolApproval:before
                 { content: "PROTOCOL APPROVAL *"; }
 ProtocolLeadOrg:before
                 { content: "LEAD/SECONDARY LEAD ORGANIZATION * + @"; }
-ProtocolProcessingDetails:before
-                { content: "PROTOCOL PROCESSING DETAILS &"; }
 ProtocolSites[SuppressContactInformation='Yes']:before
                 { content: "PROTOCOL SITES (suppress contact information) & "; }
 ProtocolSites:before
@@ -528,7 +518,6 @@ PrivatePracticeSite:before,
 ProtocolAdminInfo:before,
 ProtocolApproval:before,
 ProtocolLeadOrg:before,
-ProtocolProcessingDetails:before,
 ProtocolSites:before,
 ProtocolSource:before,
 ProtocolSources:before,
@@ -558,7 +547,6 @@ INDNumber:before,
 INDSerialNumber:before,
 LeadOrgProtocolID:before,
 PersonTitle:before,
-ProcessingDate:before,
 SourceName:before,
 SpecificEmail:after,
 SpecificEmail:before,
@@ -589,7 +577,6 @@ Person:before,
 PersonRole:before,
 PrivatePracticeSiteID:before, 
 PrivatePracticeSiteStatus:before,
-ProcessingStatus:before,
 RelatedDocuments:before,
 ReimbursementApprovalType:before,
 ReviewApprovalType:before,
@@ -612,7 +599,6 @@ OversightInfo,
 ProtocolAdminInfo>DatedAction,
 ProtocolApproval,
 ProtocolLeadOrg,
-ProtocolProcessingDetails,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
@@ -668,7 +654,6 @@ ExternalSitePI,
 FundingInfo,
 PreviousOrgStatus, 
 ProtocolApproval, 
-ProtocolProcessingDetails,
 ProtocolSponsors,
 RelatedDocuments,
   {  margin-bottom: .5em;  }
@@ -876,19 +861,6 @@ UpdateMode,
                             { margin-left: 100pt;
                               text-indent: -100pt; }
 
-/* Key element for length = ProcessingStatus */
-ProcessingStatus,
-                            { margin-left: 140pt; 
-                              text-indent: -130.5pt; }
-ProcessingDate,
-                            { margin-left: 140pt; 
-                              text-indent: -110pt; }
-ProtocolProcessingDetails>Comment,
-                            { margin-left: 140pt; 
-                              text-indent: -82.5pt; }
-ProtocolProcessingDetails>EnteredBy,
-                            { margin-left: 140pt; 
-                              text-indent: -79.5pt; }
 
 /* Elements for block VerificationInfo */
 VerificationDate,
@@ -1061,12 +1033,9 @@ PreviousOrgStatus,
 PrivatePracticeSiteID, 
 PrivatePracticeSiteStatus,
 ProtocolAdminInfo, 
-ProcessingDate, 
-ProcessingStatus, 
 ProtocolApproval, 
 ProtocolLeadOrg, 
 ProtocolPersonnel, 
-ProtocolProcessingDetails, 
 ProtocolSites,
 ProtocolSources, 
 ProtocolSpecialCategory, 
@@ -1104,7 +1073,6 @@ OrgSiteID,
 Person,
 PersonTitle,
 PrivatePracticeSiteID,
-ProcessingStatus,
 RelatedDocuments,
 ReviewApprovalType,
 SpecialCategory,
@@ -1171,8 +1139,6 @@ PersonSuffix,
 PersonTitle, 
 PrivatePracticeSiteID, 
 PrivatePracticeSiteStatus,
-ProcessingDate, 
-ProcessingStatus,
 ProtocolSpecificContact,
 RegulatoryAuthority,
 ReimbursementApprovalType, 
@@ -1208,7 +1174,6 @@ LeadOrgProtocolStatuses>CurrentOrgStatus>Comment:before,
 LeadOrgProtocolStatuses>PreviousOrgStatus>Comment:before,
 ProtocolAdminInfo>Comment:before,
 ProtocolApproval>Comment:before,
-ProtocolProcessingDetails>Comment:before,
 ProtocolSource>Comment:before,
 ProtocolSpecialCategory>Comment:before,
 ProtocolSponsors>Comment:before,
@@ -1219,7 +1184,6 @@ ExternalSiteAddress > Country:before,
 ProtocolSource>DateReceived:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy:before,
 LeadOrgProtocolStatuses>PreviousOrgStatus>EnteredBy:before,
-ProtocolProcessingDetails>EnteredBy:before,
 VerificationInfo>EnteredBy:before,
 VoluntaryReview>EnteredBy:before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate:before,
@@ -1270,12 +1234,9 @@ PersonSuffix:before,
 PersonTitle:before,
 PrivatePracticeSiteID:before,
 PrivatePracticeSiteStatus:before,
-ProcessingDate:before,
-ProcessingStatus:before,
 /* ProtocolAdminInfo, */
 ProtocolApproval,
 ProtocolLeadOrg,
-ProtocolProcessingDetails,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSpecificContact,

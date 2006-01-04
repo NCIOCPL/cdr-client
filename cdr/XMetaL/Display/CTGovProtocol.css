@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol.css,v 1.7 2004-10-08 02:33:27 ameyer Exp $
+ * $Id: CTGovProtocol.css,v 1.8 2006-01-04 23:24:43 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2004/10/08 02:33:27  ameyer
+ * Missed some InterventionName->...Link changes.  Now done.
+ *
  * Revision 1.6  2004/08/05 22:53:57  ameyer
  * Changed InterventionName to InterventionNameLink, mirroring schema change.
  *
@@ -28,6 +31,7 @@
 /**************************************************************************/ 
   
 @import "CdrCommonSchema.css";
+@import "CommonProtocolInfo.css";
 
 $DOCUMENT
 
@@ -73,7 +77,6 @@ CTMinimumAge,
 CTStudyDesign,
 City,
 Collaborator,
-Comment,
 Condition,
 Contact,
 ContactBackup,
@@ -152,87 +155,87 @@ VerificationDate
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-RequiredHeader      :before { content: "REQUIRED HEADER * "; }
-DownloadDate        :before { content: "Download Date *: "; }
-LinkText            :before { content: "Link Text *: "; }
-URL                 :before { content: "URL *: "; }
-IDInfo              :before { content: "ID INFORMATION * "; }
-OrgStudyID          :before { content: "Org Study ID *: "; }
-SecondaryID         :before { content: "Secondary ID & +: "; }
-NCTID               :before { content: "NCTID *: "; }
-BriefTitle          :before { content: "BRIEF TITLE *: \A"; }
-OfficialTitle       :before { content: "OFFICIAL TITLE &: \A"; }
+BriefTitle             :before { content: "BRIEF TITLE *: \A"; }
+PDQEligibility>Comment :before { content: "Comments &: "; }
+DownloadDate           :before { content: "Download Date *: "; }
+IDInfo                 :before { content: "ID INFORMATION * "; }
+LinkText               :before { content: "Link Text *: "; }
+NCTID                  :before { content: "NCTID *: "; }
+OrgStudyID             :before { content: "Org Study ID *: "; }
+SecondaryID            :before { content: "Secondary ID & +: "; }
+URL                    :before { content: "URL *: "; }
+OfficialTitle          :before { content: "OFFICIAL TITLE &: \A"; }
+RequiredHeader         :before { content: "REQUIRED HEADER * "; }
 
-Sponsors            :before { content: "SPONSORS *"; }
-PDQSponsorship      :before { content: "PDQ Sponsorship &: "; }
-LeadSponsor         :before { content: "Lead Sponsor & @: "; }
-Collaborator        :before { content: "Collaborator & + @: "; }
+Sponsors               :before { content: "SPONSORS *"; }
+PDQSponsorship         :before { content: "PDQ Sponsorship &: "; }
+LeadSponsor            :before { content: "Lead Sponsor & @: "; }
+Collaborator           :before { content: "Collaborator & + @: "; }
 
-OverallOfficial     :before { content: "OVERALL OFFICIAL & +"; }
-OverallContact      :before { content: "OVERALL CONTACT &"; }
-OverallContactBackup:before { content: "OV. CONT. BACKUP &"; }
-GivenName           :before { content: "Given Name &: "; }
-MiddleInitial       :before { content: "Middle Initial &: "; }
-Surname             :before { content: "Surname *: "; }
-ProfessionalSuffix  :before { content: "Professional Suffix &: "; }
-PhoneExt            :before { content: "Phone Extension &: "; }
+OverallOfficial        :before { content: "OVERALL OFFICIAL & +"; }
+OverallContact         :before { content: "OVERALL CONTACT &"; }
+OverallContactBackup   :before { content: "OV. CONT. BACKUP &"; }
+GivenName              :before { content: "Given Name &: "; }
+MiddleInitial          :before { content: "Middle Initial &: "; }
+Surname                :before { content: "Surname *: "; }
+ProfessionalSuffix     :before { content: "Professional Suffix &: "; }
+PhoneExt               :before { content: "Phone Extension &: "; }
 
-OverallStatus       :before { content: "Overall Status *: "; }
-StartDate           :before { content: "Start Date &: "; }
-EndDate             :before { content: "End Date &: "; }
-Phase               :before { content: "Phase * +: "; }
+OverallStatus          :before { content: "Overall Status *: "; }
+StartDate              :before { content: "Start Date &: "; }
+EndDate                :before { content: "End Date &: "; }
+Phase                  :before { content: "Phase * +: "; }
 
-Location            :before { content: "LOCATION * +"; }
-Facility>Name       :before { content: "Facility Name * @: "; }
-PostalAddress       :before { content: "ADDRESS *"; }
-Status              :before { content: "Status *: "; }
+Location               :before { content: "LOCATION * +"; }
+Facility>Name          :before { content: "Facility Name * @: "; }
+PostalAddress          :before { content: "ADDRESS *"; }
+Status                 :before { content: "Status *: "; }
 
-BriefSummary        :before { content: "BRIEF SUMMARY *"; }
-DetailedDescription :before { content: "DETAILED DESCRIPTION &"; }
+BriefSummary           :before { content: "BRIEF SUMMARY *"; }
+DetailedDescription    :before { content: "DETAILED DESCRIPTION &"; }
 
-CTGovIndexing       :before { content: "CTGOV INDEXING *"; }
-CTStudyDesign       :before { content: "Study Design *: "; }
-CTCondition         :before { content: "Condition & +: "; }
-CTIntervention      :before { content: "INTERVENTION & +"; }
-CTInterventionType  :before { content: "Type *: "; }
-CTInterventionName  :before { content: "Name *: "; }
+CTGovIndexing          :before { content: "CTGOV INDEXING *"; }
+CTStudyDesign          :before { content: "Study Design *: "; }
+CTCondition            :before { content: "Condition & +: "; }
+CTIntervention         :before { content: "INTERVENTION & +"; }
+CTInterventionType     :before { content: "Type *: "; }
+CTInterventionName     :before { content: "Name *: "; }
 
-CTEligibility       :before { content: "CTGOV ELIGIBILITY &"; }
-CTCriteria          :before { content: "CRITERIA *"; }
-CTExpectedEnrollment:before { content: "Expected Enrollment &: "; }
-CTGender            :before { content: "Gender *: "; }
-CTMinimumAge        :before { content: "Minimum Age *: "; }
-CTMaximumAge        :before { content: "Maximum Age *: "; }
+CTEligibility          :before { content: "CTGOV ELIGIBILITY &"; }
+CTCriteria             :before { content: "CRITERIA *"; }
+CTExpectedEnrollment   :before { content: "Expected Enrollment &: "; }
+CTGender               :before { content: "Gender *: "; }
+CTMinimumAge           :before { content: "Minimum Age *: "; }
+CTMaximumAge           :before { content: "Maximum Age *: "; }
 
-Contact             :before { content: "CONTACT & + @"; }
-ContactBackup       :before { content: "CONTACT BACKUP & @"; }
-Investigator        :before { content: "INVESTIGATOR & + @"; }
-Affiliation         :before { content: "Affiliation &: "; }
-Role                :before { content: "Role &: "; }
-PDQPerson           :before { content: "PDQ Person & @: "; }
-PDQIndexing         :before { content: "PDQ INDEXING * "; }
-StudyType           :before { content: "Study Type *: "; }
-StudyCategory       :before { content: "STUDY CATEGORY * +"; }
-StudyCategoryType   :before { content: "Study Category Type *: "; }
-StudyCategoryName   :before { content: "Study Category Name *: "; }
-Intervention        :before { content: "INTERVENTION & +"; }
-InterventionType    :before { content: "Intervention Type * @: "; }
-InterventionNameLink:before { content: "Intervention Name & + @: "; }
-ProtocolDesign      :before { content: "Protocol Design & +: "; }
-Condition           :before { content: "Condition & + @: "; }
-Gene                :before { content: "Gene & + @: "; }
-Eligibility         :before { content: "ELIGIBILITY CRITERIA * "; }
-HealthyVolunteers   :before { content: "Healthy Volunteers? &: "; }
-LowAge              :before { content: "Low Age &: "; }
-HighAge             :before { content: "High Age &: "; }
-AgeText             :before { content: "Age Criteria (Text) &: "; }
-Diagnosis           :before { content: "Diagnosis & + @: "; }
-ExclusionCriteria   :before { content: "Exclusion Criteria & + @: "; }
-Comment             :before { content: "Comment &: "; }
-EnteredBy           :before { content: "Entered By *: "; }
-EntryDate           :before { content: "Entry Date *: "; }
-VerificationDate    :before { content: "Verification Date *: "; }
-LastChangedDate     :before { content: "Last Changed Date &: "; }
+Contact                :before { content: "CONTACT & + @"; }
+ContactBackup          :before { content: "CONTACT BACKUP & @"; }
+Investigator           :before { content: "INVESTIGATOR & + @"; }
+Affiliation            :before { content: "Affiliation &: "; }
+Role                   :before { content: "Role &: "; }
+PDQPerson              :before { content: "PDQ Person & @: "; }
+PDQIndexing            :before { content: "PDQ INDEXING * "; }
+StudyType              :before { content: "Study Type *: "; }
+StudyCategory          :before { content: "STUDY CATEGORY * +"; }
+StudyCategoryType      :before { content: "Study Category Type *: "; }
+StudyCategoryName      :before { content: "Study Category Name *: "; }
+Intervention           :before { content: "INTERVENTION & +"; }
+InterventionType       :before { content: "Intervention Type * @: "; }
+InterventionNameLink   :before { content: "Intervention Name & + @: "; }
+ProtocolDesign         :before { content: "Protocol Design & +: "; }
+Condition              :before { content: "Condition & + @: "; }
+Gene                   :before { content: "Gene & + @: "; }
+Eligibility            :before { content: "ELIGIBILITY CRITERIA * "; }
+HealthyVolunteers      :before { content: "Healthy Volunteers? &: "; }
+LowAge                 :before { content: "Low Age &: "; }
+HighAge                :before { content: "High Age &: "; }
+AgeText                :before { content: "Age Criteria (Text) &: "; }
+Diagnosis              :before { content: "Diagnosis & + @: "; }
+ExclusionCriteria      :before { content: "Exclusion Criteria & + @: "; }
+EnteredBy              :before { content: "Entered By *: "; }
+EntryDate              :before { content: "Entry Date *: "; }
+VerificationDate       :before { content: "Verification Date *: "; }
+LastChangedDate        :before { content: "Last Changed Date &: "; }
 
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
@@ -327,20 +330,19 @@ LastChangedDate     :before,
 /***************************************************************************/ 
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
-
 Phone { margin-top: 0em; }
 Para  { margin-bottom: 1em; }
 
 RequiredHeader,
 IDInfo,
 PDQIndexing,
-
  { margin-bottom: 4pt; }
+
 
 BriefTitle,
 OfficialTitle,
-
  { margin-top: 1em; margin-bottom: 1em; }
+
 
 OverallOfficial,
 OverallContact,
@@ -363,8 +365,8 @@ Intervention,
 Eligibility,
 VerificationDate,
 LastChangedDate
-
  { margin-top: 1em; }
+
 
 RequiredHeader,
 IDInfo,
@@ -375,21 +377,19 @@ DetailedDescription,
 CTGovIndexing,
 CTEligibility,
 Location
-
    {  border: solid; 
       border-color: gray;
       border-width: thin;
       margin-top: 1em;  }
 
-ProtocolLeadOrg + ProtocolLeadOrg,
 
+ProtocolLeadOrg + ProtocolLeadOrg,
 	{ margin-top: 3em; }
 
 
 /***************************************************************************/
 /*                  MARGINS FOR ALIGNING TAGS AND TEXT                     */
 /***************************************************************************/
-
 DownloadDate                     { margin-left: 110pt; text-indent: -103.5pt; }
 LinkText                         { margin-left: 110pt; text-indent:  -68.0pt; }
 URL                              { margin-left: 110pt; text-indent:  -41.0pt; }

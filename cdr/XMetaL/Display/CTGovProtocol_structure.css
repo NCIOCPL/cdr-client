@@ -1,7 +1,11 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.5 2004-10-08 02:19:27 ameyer Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.6 2006-01-04 23:24:43 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.5  2004/10/08 02:19:27  ameyer
+ * Missed some spots in previous change of InterventionName -> ...Link.
+ * Fixed them this time.
+ *
  * Revision 1.4  2004/08/05 22:54:12  ameyer
  * Changed InterventionName to InterventionNameLink, mirroring schema change.
  *
@@ -19,6 +23,7 @@
 
 
 @import "CdrCommonSchema_structure.css"; 
+@import "CommonProtocolInfo_structure.css";
 
 @sq-plus-minus;
 

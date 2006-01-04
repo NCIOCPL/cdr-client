@@ -297,8 +297,7 @@ Outline:before,
 PatientCharacteristics:before,
 PrimaryID > IDString:before,
 PriorConcurrentTherapy:before,
-ProcessingDate,
-ProcessingStatus,
+ProcessingDate:before,
 ProjectedAccrual:before,
 ProtocolTitle:before,
 Purpose:before,
@@ -333,6 +332,7 @@ InterventionNameLink:before,
 InterventionType:before,
 ProtocolDesign:before,
 ProtocolPhase:before,
+ProcessingStatus:before,
 PublishedResults:before,
 RelatedCitation:before,
 RelatedProtocols:before,
@@ -449,8 +449,11 @@ TreatmentIntervention,
 
 /* Blue = Administrative Information                                       */
 
+ProtocolProcessingDetails>Comment:before,
 DatedAction,
-
+ProcessingDate:before,
+ProcessingStatus:before,
+ProtocolProcessingDetails,
      { background-color: white; }
 
 /* Green = Scientific Information                                        */
