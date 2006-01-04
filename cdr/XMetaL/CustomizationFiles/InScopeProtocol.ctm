@@ -357,7 +357,7 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
-      <Name>MerdeByDate</Name>
+      <Name>MergeByDate</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
@@ -862,6 +862,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProcessingDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ProcessingStatus</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -1187,24 +1193,24 @@
     </Template>
     <Template>
       <Name>GrantContractNo</Name>
-      <MiniTemplate><![CDATA[<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required)} ?></GrantContractNo>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>OtherGrantContractInfo</Name>
       <MiniTemplate><![CDATA[<OtherGrantContractInfo>
-<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required) } ?></GrantContractNo>
+<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required)} ?></GrantContractNo>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </OtherGrantContractInfo>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>NIHGrantContractType</Name>
-      <MiniTemplate><![CDATA[<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required)} ?></NIHGrantContractType>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>NIHGrantContract</Name>
       <MiniTemplate><![CDATA[<NIHGrantContract>
-<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>
-<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>
+<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required)} ?></NIHGrantContractType>
+<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required)} ?></GrantContractNo>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </NIHGrantContract>]]></MiniTemplate>
     </Template>
@@ -1212,31 +1218,33 @@
       <Name>FundingInfo</Name>
       <MiniTemplate><![CDATA[<FundingInfo>
 <NIHGrantContract>
-<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required) } ?></NIHGrantContractType>
-<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required) } ?></GrantContractNo>
+<NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required)} ?></NIHGrantContractType>
+<GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required)} ?></GrantContractNo>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </NIHGrantContract>
 <OtherGrantContractInfo>
-<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required) } ?></GrantContractNo>
+<GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required)} ?></GrantContractNo>
 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </OtherGrantContractInfo>
 </FundingInfo>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ProcessingStatus</Name>
-      <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required) } ?></ProcessingStatus>]]></MiniTemplate>
+      <Name>ProcessingDate</Name>
+      <MiniTemplate><![CDATA[<ProcessingDate><?xm-replace_text {Enter the effective date of this status} ?></ProcessingDate>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>ProcessingDate</Name>
-      <MiniTemplate><![CDATA[<ProcessingDate><?xm-replace_text {Enter the effective date of this status (required) } ?></ProcessingDate>]]></MiniTemplate>
+      <Name>ProcessingStatus</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required)} ?></ProcessingStatus>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ProtocolProcessingDetails</Name>
       <MiniTemplate><![CDATA[<ProtocolProcessingDetails>
-<ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required) } ?></ProcessingStatus>
-<ProcessingDate><?xm-replace_text {Enter the effective date of this status (required) } ?></ProcessingDate>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</ProtocolProcessingDetails>]]></MiniTemplate>
+          <ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required)} ?></ProcessingStatus>
+          <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+          <ProcessingDate><?xm-replace_text {Enter the effective date of this status} ?></ProcessingDate>
+          <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+        </ProtocolProcessingDetails>]]>
+      </MiniTemplate>
     </Template>
     <Template>
       <Name>SpecialCategory</Name>
@@ -1523,7 +1531,7 @@
     </Template>
     <Template>
       <Name>ContactName</Name>
-      <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {Optionally enter differentiating information} ?></ContactName>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>ContactDetail</Name>
@@ -1546,7 +1554,7 @@
     <Template>
       <Name>GenericPersonContact</Name>
       <MiniTemplate><![CDATA[<GenericPersonContact>
-<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
+<ContactName><?xm-replace_text {Optionally enter differentiating information} ?></ContactName>
 <ContactDetail>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -1569,7 +1577,7 @@
       <MiniTemplate><![CDATA[<GenericPerson>
 <PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>
 <GenericPersonContact>
-<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
+<ContactName><?xm-replace_text {Optionally enter differentiating information} ?></ContactName>
 <ContactDetail>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -1593,7 +1601,7 @@
       <MiniTemplate><![CDATA[<OverallContact>
 <PersonTitle><?xm-replace_text {Enter a generic title for the contact person (required), or Change to a Specific Person definition} ?></PersonTitle>
 <GenericPersonContact>
-<ContactName><?xm-replace_text {Optionally enter differentiating information } ?></ContactName>
+<ContactName><?xm-replace_text {Optionally enter differentiating information} ?></ContactName>
 <ContactDetail>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
