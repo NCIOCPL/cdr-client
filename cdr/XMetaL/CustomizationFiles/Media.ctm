@@ -266,6 +266,13 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">EnteredBy</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">ExternalRef</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -316,6 +323,13 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">GeneName</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Glossary</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -574,6 +588,41 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">ProcessingStatus</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatusDate</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatuses</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatusValue</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProposedUse</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">ProtocolLink</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -736,6 +785,13 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">Subscript</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Summary</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -1293,6 +1349,56 @@
     <Template>
       <Name ns="">VideoEncoding</Name>
       <MiniTemplate><![CDATA[<VideoEncoding><?xm-replace_text {Select the video encoding (required)} ?></VideoEncoding>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProposedUse</Name>
+      <MiniTemplate><![CDATA[<ProposedUse>
+       <Summary><?xm-replace_text {Select a summary link (required)} ?></Summary>
+       <Glossary><?xm-replace_text {Select a glossary link (required)} ?></Glossary></ProposedUse>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">Summary</Name>
+      <MiniTemplate><![CDATA[<Summary><?xm-replace_text {Select a summary link (required)} ?></Summary>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">Glossary</Name>
+      <MiniTemplate><![CDATA[<Glossary><?xm-replace_text {Select a glossary link (required)} ?></Glossary>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProcessingStatuses</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatuses>
+       <ProcessingStatus>
+        <ProcessingStatusValue><?xm-replace_text {Select a processing status value (required)} ?></ProcessingStatusValue>
+        <ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>
+        <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+        <Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>
+       </ProcessingStatus></ProcessingStatuses>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProcessingStatus</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatus>
+        <ProcessingStatusValue><?xm-replace_text {New ProcessingStatus to be added at the top of the ProcessingStatuses block -- Select a processing status value (required)} ?></ProcessingStatusValue>
+        <ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>
+        <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+        <Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>
+       </ProcessingStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProcessingStatusValue</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatusValue><?xm-replace_text {Select a processing status value (required)} ?></ProcessingStatusValue>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProcessingStatusDate</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">EnteredBy</Name>
+      <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">Comment</Name>
+      <Parent>ProcessingStatus</Parent>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>]]></MiniTemplate>
     </Template>
   </Templates>
   <ChangeLists>
