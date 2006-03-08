@@ -60,10 +60,12 @@ DerivedFrom,
 Diagnoses,
 Diagnosis,
 DocTitle,
+ProcessingStatus>EnteredBy,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 FromObject,
+Glossary,
 HeightPixels,
 ImageData,
 ImageDimensions,
@@ -71,6 +73,7 @@ ImageType,
 ImageEncoding,
 Inlined,
 Labeled,
+LabelName,
 Language,
 Media,
 MediaCaption,
@@ -80,12 +83,18 @@ MediaSource,
 MediaTitle,
 MinWidthPixels,
 OriginalSource,
+ProposedUse,
+ProcessingStatus,
+ProcessingStatusDate,
+ProcessingStatuses,
+ProcessingStatusValue,
 PhysicalMedia,
 RunSeconds,
 SoundData,
 SoundEncoding,
 SoundType,
 SourceFilename,
+Summary,
 SourcePublication,
 TextDateCreated,
 Topic,
@@ -94,8 +103,6 @@ VideoData,
 VideoEncoding,
 VideoType,
 WidthPixels,
-    
-
     { display: block; }
 
 
@@ -114,48 +121,57 @@ Acknowledgement:before,     { content: "Acknowledgemnt &: ";}
 AlternativeText:before,     { content: "Alternative Text *: "; }
 Audience:before,            { content: "Audience *: ";}
 Color:before,               { content: "Color *: ";}
-Captions:before,            { content: "CAPTIONS &: ";}
-Categories:before,          { content: "CATEGORIES *: ";}
+Captions:before,            { content: "CAPTIONS & ";}
+Categories:before,          { content: "CATEGORIES * ";}
 Category:before,            { content: "Category * +: ";}
-Comment:before,             { content: "Comment: "; }
-ContentDescriptions:before, { content: "CONTENT DESCRIPTIONS *: ";}
+Comment:before,             { content: "Comments &: "; }
+ContentDescriptions:before, { content: "CONTENT DESCRIPTIONS * ";}
 ContentDescription:before,  { content: "Cont. Descr. * + @: ";}
 Creator:before,             { content: "Creator &: ";}
 DateCreated:before,         { content: "Date Created &: ";}
-DerivedFrom:before,         { content: "DERIVED FROM * +: ";}
-Diagnoses:before,           { content: "DIAGNOSES &: ";}
+DerivedFrom:before,         { content: "DERIVED FROM * + ";}
+Diagnoses:before,           { content: "DIAGNOSES & ";}
 Diagnosis:before,           { content: "Diagnosis * +: ";}
 DocTitle:before,            { content: "Doc Title: "; }
+EnteredBy:before,           { content: "Entered By *: ";}
 FromCdrMedia:before,        { content: "From CDR Media *: ";}
 FromExternalFile:before,    { content: "From External File *: ";}
 FromMethod:before,          { content: "From Method & @: ";}
-FromObject:before,          { content: "FROM OBJECT *: ";}
+FromObject:before,          { content: "FROM OBJECT * ";}
+Glossary:before,            { content: "Glossary * @: ";}
 HeightPixels:before,        { content: "Height (Pixels) *: ";}
-ImageData:before,           { content: "IMAGE DATA *: ";}
-ImageDimensions:before,     { content: "IMAGE DIMENSIONS &: ";}
+ImageData:before,           { content: "IMAGE DATA * ";}
+ImageDimensions:before,     { content: "IMAGE DIMENSIONS & ";}
 ImageType:before,           { content: "Image Type *: ";}
 ImageEncoding:before,       { content: "Image Encoding *: ";}
 Inlined:before,             { content: "Inlined &: ";}
 Labeled:before,             { content: "Labeled *: ";}
+LabelName:before,           { content: "Label Name & +: ";}
 Language:before,            { content: "Language *: ";}
 MediaCaption:before,        { content: "Caption * + @: "; }
-MediaContent:before,        { content: "MEDIA CONTENT *:"; }
+MediaContent:before,        { content: "MEDIA CONTENT * "; }
 MediaLanguage:before,       { content: "Media Language &: ";}
-MediaSource:before,         { content: "MEDIA SOURCE &:"; }
+MediaSource:before,         { content: "MEDIA SOURCE & "; }
 MediaTitle:before,          { content: "MediaTitle *: "; }
 MinWidthPixels:before,      { content: "MinWidth (Pixels) &: ";}
-OriginalSource:before,      { content: "ORIGINAL SOURCE *: ";}
-PhysicalMedia:before,       { content: "PHYSICAL MEDIA *:"; }
+OriginalSource:before,      { content: "ORIGINAL SOURCE * ";}
+PhysicalMedia:before,       { content: "PHYSICAL MEDIA * "; }
+ProcessingStatus:before,      { content: "PROCESSING STATUS * + ";}
+ProcessingStatusDate:before,  { content: "Status Date *: ";}
+ProcessingStatuses:before,    { content: "PROCESSING STATUSES & ";}
+ProcessingStatusValue:before, { content: "Status Value *: ";}
+ProposedUse:before,         { content: "PROPOSED USE & + ";}
 RunSeconds:before,          { content: "Run (sec) &: ";}
-SoundData:before,           { content: "SOUND DATA *: ";}
+SoundData:before,           { content: "SOUND DATA * ";}
 SoundEncoding:before,       { content: "Sound Encoding *: ";}
 SoundType:before,           { content: "Sound Type *: ";}
 SourceFilename:before,      { content: "Source Filename &: ";}
 SourcePublication:before,   { content: "Src Publication &: ";}
+Summary:before,             { content: "Summary * @: ";}
 TextDateCreated:before,     { content: "Txt Date Created &: ";}
 Topic:before,               { content: "Topic * +: ";}
-Topics:before,              { content: "TOPICS &: ";}
-VideoData:before,           { content: "VIDEO DATA *: ";}
+Topics:before,              { content: "TOPICS & ";}
+VideoData:before,           { content: "VIDEO DATA * ";}
 VideoEncoding:before,       { content: "Video Encoding *: ";}
 VideoType:before,           { content: "Video Type *: ";}
 WidthPixels:before,         { content: "Width (Pixels) *: ";}
@@ -164,10 +180,10 @@ WidthPixels:before,         { content: "Width (Pixels) *: ";}
 /***************************************************************************/ 
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
-PhysicalMedia,
 MediaContent, 
 MediaSource, 
-
+PhysicalMedia,
+ProcessingStatuses,
    { border: solid;
      border-width: thin; 
      border-color: black;
@@ -196,10 +212,12 @@ DerivedFrom:before,
 Diagnoses:before,
 Diagnosis:before,
 DocTitle:before,
+EnteredBy:before,
 FromCdrMedia:before,
 FromExternalFile:before,
 FromMethod:before,
 FromObject:before,
+Glossary:before,
 HeightPixels:before,
 ImageData:before,
 ImageDimensions:before,
@@ -207,6 +225,7 @@ ImageType:before,
 ImageEncoding:before,
 Inlined:before,
 Labeled:before,
+LabelName:before,
 Language:before,
 Media:before,
 MediaCaption:before,
@@ -217,12 +236,18 @@ MediaTitle:before,
 MinWidthPixels:before,
 OriginalSource:before,
 PhysicalMedia:before,
+ProcessingStatus:before,
+ProcessingStatusDate:before,
+ProcessingStatuses:before,
+ProcessingStatusValue:before,
+ProposedUse:before,
 RunSeconds:before,
 SoundData:before,
 SoundEncoding:before,
 SoundType:before,
 SourceFilename:before,
 SourcePublication:before,
+Summary:before,
 TextDateCreated:before,
 Topic:before,
 Topics:before,
@@ -230,7 +255,6 @@ VideoData:before,
 VideoEncoding:before,
 VideoType:before,
 WidthPixels:before,
-
    {  font-weight: bold;
       color: black;  }
 
@@ -260,7 +284,10 @@ Category,
                           text-indent: -78pt; }
 Comment,        
                         { margin-left: 120pt; 
-                          text-indent: -64pt; }
+                          text-indent: -82.5pt; }
+ProcessingStatus>Comment,        
+                        { margin-left: 110pt; 
+                          text-indent: -82.5pt; }
 ContentDescription,
                         { margin-left: 120pt;
                           text-indent: -111pt; }
@@ -279,6 +306,9 @@ Diagnosis,
 DocTitle,
                         { margin-left: 120pt; 
                           text-indent: -100pt; }
+ProcessingStatus>EnteredBy,
+                        { margin-left: 110pt;
+                          text-indent: -79.5pt; }
 FromCdrMedia,
                         { margin-left: 120pt;
                           text-indent: -112.5pt; }
@@ -288,6 +318,9 @@ FromExternalFile,
 FromMethod,
                         { margin-left: 120pt;
                           text-indent: -111pt; }
+Glossary,
+                        { margin-left: 120pt;
+                          text-indent: -82pt; }
 HeightPixels,
                         { margin-left: 120pt;
                           text-indent: -98pt; }
@@ -303,6 +336,9 @@ Inlined,
 Labeled,
                         { margin-left: 120pt;
                           text-indent: -61.5pt; }
+LabelName,
+                        { margin-left: 120pt;
+                          text-indent: -97.5pt; }
 Language,
                         { margin-left: 120pt;
                           text-indent: 0pt; }
@@ -318,6 +354,14 @@ MediaTitle,
 MinWidthPixels,
                         { margin-left: 120pt;
                           text-indent: -118.5pt; }
+ProcessingStatus,
+                        { margin-left: 10pt; }
+ProcessingStatusDate,
+                        { margin-left: 110pt;
+                          text-indent: -82pt; }
+ProcessingStatusValue,
+                        { margin-left: 110pt;
+                          text-indent: -88pt; }
 RunSeconds,
                         { margin-left: 120pt;
                           text-indent: -75pt; }
@@ -333,6 +377,9 @@ SourceFilename,
 SourcePublication,
                         { margin-left: 120pt;
                           text-indent: -107.5pt; }
+Summary,
+                        { margin-left: 120pt;
+                          text-indent: -85.5pt; }
 TextDateCreated,
                         { margin-left: 120pt;
                           text-indent: -115.5pt; }
@@ -358,31 +405,35 @@ AlternativeText,
 Category,
 Color,
 Comment,
+ProcessingStatus>Comment,
 ContentDescription,
 Creator,
 DateCreated,
 DocTitle,
+ProcessingStatus>EnteredBy,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
+Glossary,
 HeightPixels,
 ImageType,
 ImageEncoding, 
+Labeled,
+LabelName,
 MediaCaption,
-MediaContent,
 MediaLanguage,
-MediaSource,
 MediaTitle,
 MinWidthPixels,
-PhysicalMedia,
+ProcessingStatusDate,
+ProcessingStatusValue,
 RunSeconds,
 SoundEncoding,
 SoundType,
 SourceFilename,
 SourcePublication,
+Summary,
 TextDateCreated,
 WidthPixels,
-
 	{ margin-bottom: 4pt; }
 
 
@@ -390,13 +441,17 @@ Captions,
 Categories,
 ContentDescriptions,
 Diagnoses,
-Labeled,
 MediaContent,
 MediaSource,
 PhysicalMedia,
+ProcessingStatus,
+ProcessingStatuses,
+ProposedUse,
 Topics,
-
 	{ margin-bottom: 10pt; }
+
+ImageDimensions,
+    { margin-top: 10pt; }
 
 
 /***************************************************************************/ 
@@ -415,30 +470,35 @@ DateCreated,
 DerivationMethod,
 Diagnosis,
 DocTitle,
+EnteredBy,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
+Glossary,
 HeightPixels,
 ImageType,
 ImageEncoding,
 Inlined,
 Labeled,
+LabelName,
 Language,
 MediaCaption,
 MediaLanguage,
 MediaTitle,
 MinWidthPixels,
+ProcessingStatusDate,
+ProcessingStatusValue,
 RunSeconds,
 SoundEncoding,
 SoundType,
 SourceFilename,
 SourcePublication,
+Summary,
 TextDateCreated,
 Topic,
 VideoEncoding,
 VideoType,
 WidthPixels,
-
    { background-color: white; }
 
 
@@ -460,10 +520,12 @@ DerivedFrom:before,
 Diagnoses:before,
 Diagnosis:before,
 DocTitle:before,
+EnteredBy:before,
 FromCdrMedia:before,
 FromExternalFile:before,
 FromMethod:before,
 FromObject:before,
+Glossary:before,
 HeightPixels:before,
 ImageData:before,
 ImageDimensions:before,
@@ -471,6 +533,7 @@ ImageType:before,
 ImageEncoding:before,
 Inlined:before,
 Labeled:before,
+LabelName:before,
 Language:before,
 Media:before,
 MediaCaption:before,
@@ -481,12 +544,15 @@ MediaTitle:before,
 MinWidthPixels:before,
 OriginalSource:before,
 PhysicalMedia:before,
+ProcessingStatusDate:before,
+ProcessingStatusValue:before,
 RunSeconds:before,
 SoundData:before,
 SoundEncoding:before,
 SoundType:before,
 SourceFilename:before,
 SourcePublication:before,
+Summary:before,
 TextDateCreated:before,
 Topic:before,
 Topics:before,
