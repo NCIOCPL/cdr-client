@@ -1,7 +1,11 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.13 2005-08-10 18:33:43 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.14 2006-04-03 20:29:44 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.13  2005/08/10 18:33:43  venglisc
+ * Modified the list to display as bulleted list if no Style attribute has
+ * been entered. (Bug 1789)
+ *
  * Revision 1.12  2005/07/28 14:24:46  venglisc
  * Added CSS for QandASet node plus some minor formatting changes. (Bug 1774)
  *
@@ -240,7 +244,7 @@ WebSite:before                  { content: "Web Site & @: "; }
 
 /*DatedAction   */
 
-ActionDate:before               { content: "Date* : "; }
+ActionDate:before               { content: "Date * : "; }
 ActionDescription:before        { content: "Action * : "; }
 DatedAction:before              { content: "DATED ACTION & +"; }
 DatedAction>Comment:before      { content: "Comments &: "; }
@@ -406,7 +410,7 @@ ActionDescription,
        text-indent: -54.5pt; }
 ActionDate,                    
      { margin-left: 100pt;
-       text-indent: -41.5pt; }
+       text-indent: -45pt; }
 DatedAction>Comment,                    
      { margin-left: 100pt;
        text-indent: -82pt; }
