@@ -1,0 +1,30 @@
+/*************************************************************************/
+/*  CitationSupplementaryInfo.css                                        */
+/*                                                                       */
+/*  $Log: not supported by cvs2svn $                                  */
+/*                                                                       */
+/*************************************************************************/
+/*************************************************************************/
+/*                    DEFAULT PROPERTIES                                 */
+/*************************************************************************/
+@import "SupplementaryInfo.css";
+
+$DOCUMENT 
+     { font-family: Arial, sans-serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS
+     { color: blue;
+       background-color: white; }
+
+SupplementaryInfo
+     { background-color: #CCCCFF; }
+
