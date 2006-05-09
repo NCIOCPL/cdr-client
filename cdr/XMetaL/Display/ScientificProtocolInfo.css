@@ -218,6 +218,7 @@ PdqKey:before,
 /* Green = Scientific Information                                          */   
 /* *************************************************************************/  
 ProtocolProcessingDetails>Comment:before,
+ProtocolProcessingDetails>EnteredBy:before,
 ProcessingDate:before,
 ProcessingStatus:before,
 ProtocolProcessingDetails,
