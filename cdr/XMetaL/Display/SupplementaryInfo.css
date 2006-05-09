@@ -1,7 +1,10 @@
 /*************************************************************************/
 /*  SupplementaryInfo.css                                                */
 /*                                                                       */
-/*  $Log: not supported by cvs2svn $                                                              */
+/*  $Log: not supported by cvs2svn $
+/*  Revision 1.1  2005/06/06 23:43:49  venglisc
+/*  Initial version for Supplementary Info documents. (Bug 1661)
+/*                                                              */
 /*************************************************************************/
 
 /*************************************************************************/
@@ -50,7 +53,7 @@ Title,
 /* & = Optional element */
 
 Category:before                   { content: "Category *: "; }
-Description:before                { content: "Description *: "; }
+Description:before                { content: "Description &: "; }
 MimeType:before                   { content: "Mime Type *: "; }
 OriginalFilename:before           { content: "Original Filename &: "; }
 Source:before                     { content: "Source &: "; }
@@ -95,7 +98,7 @@ Category,
 
 Description,
      { margin-left: 120pt; 
-       text-indent: -82pt; }
+       text-indent: -86pt; }
 
 MimeType,
      { margin-left: 120pt; 
