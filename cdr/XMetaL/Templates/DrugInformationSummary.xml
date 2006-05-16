@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE DrugInformationSummary SYSTEM "DrugInformationSummary.dtd">
+<DrugInformationSummary xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+ </CdrDocCtl> 
+ <DrugInfoMetaData>
+  <Description><?xm-replace_text {Enter the drug information document description (required)} ?></Description>
+  <URL><?xm-replace_text {Enter the link title here and enter the pretty URL into the attribute inspector (required)} ?></URL>
+  <Audience>Patients</Audience>
+  <DrugInfoType>Brief</DrugInfoType>
+  <FDAApproved>Yes</FDAApproved>
+  <TerminologyLink><?xm-replace_text {Select a terminology link (required)} ?></TerminologyLink>
+  <GlossaryLink><?xm-replace_text {Select a glossary link (required)} ?></GlossaryLink>
+ </DrugInfoMetaData>
+ <Title><?xm-replace_text {Enter the drug Preferred Name (required)} ?></Title>
+ <SummarySection>                                                              
+  <Para><?xm-replace_text {Enter summary of information about specific drug (required)} ?></Para>                          
+ </SummarySection>
+ <DrugReference>
+  <DrugReferenceType>FDA</DrugReferenceType>
+  <DrugReferenceLink><?xm-replace_text {Enter the link title here and copy/paste the URL into the attribute inspector (required)} ?></DrugReferenceLink>
+  <DrugReferenceDescription><?xm-replace_text {Link to Miscellaneous Document (right click and copy/paste fragment link from Misc. Doc. (required)} ?></DrugReferenceDescription>
+ </DrugReference>
+ <DrugReference>
+  <DrugReferenceType>NCI</DrugReferenceType>
+  <DrugReferenceLink><?xm-replace_text {Enter the link title here and copy/paste the URL into the attribute inspector (required)} ?></DrugReferenceLink>
+  <DrugReferenceDescription><?xm-replace_text {Link to Miscellaneous Document (right click and copy/paste fragment link from Misc. Doc. (required)} ?></DrugReferenceDescription>
+ </DrugReference>
+ <DrugReference>
+  <DrugReferenceType>NLM</DrugReferenceType>
+  <DrugReferenceLink><?xm-replace_text {Enter the link title here and copy/paste the URL into the attribute inspector (required)} ?></DrugReferenceLink>
+  <DrugReferenceDescription><?xm-replace_text {Link to Miscellaneous Document (right click and copy/paste fragment link from Misc. Doc. (required)} ?></DrugReferenceDescription>
+ </DrugReference>
+ <EnteredBy><?xm-replace_text {Use the tool bar icon to enter your user name (required)} ?></EnteredBy>
+ <EntryDate><?xm-replace_text {Use the tool bar icon to enter today's date (required)} ?></EntryDate>
+ <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+ <ProcessingStatus><?xm-replace_text {Optionally select a processing status} ?></ProcessingStatus>
+ <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</DrugInformationSummary>
