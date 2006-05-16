@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.145 2005-12-30 19:31:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.146 2006-05-16 20:41:41 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.145  2005/12/30 19:31:01  bkline
+     Added macros/toolbar buttons for opening translated summaries and
+     original English summaries (request #1918).
+
      Revision 1.144  2005/10/13 22:44:17  venglisc
      Added Redline/Strikeout toolbar button to GlossaryTerm toolbar.
      (Bug 1868)
@@ -2483,6 +2487,50 @@
         }
     }
 
+    function addDrugInfoToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "QC Report",                 // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Drug Info"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Drug Info toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        try {
+            cmdBar = cmdBars.add("CDR Drug Info", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Drug Info toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["DrugInformationSummary"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+
     function addCitationToolbar() {
 
         var buttons = new Array(
@@ -2922,6 +2970,7 @@
     addProtocolToolbar();
     addTermToolbar();
     addGlossaryToolbar();
+    addDrugInfoToolbar();
     addCitationToolbar();
     addMiscToolbar();
     addMailerToolbar();
