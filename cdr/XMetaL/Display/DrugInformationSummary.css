@@ -1,0 +1,307 @@
+/*************************************************************************/
+/* 	DrugInformationSummary.css                                           */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      2004-11-10 by Volker Englisch                                    */
+/*      Based on the new Media schema                                    */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT 
+     { font-family: Arial, sans-serif;
+       font-size: 12pt;
+       margin-top: 5px;
+       margin-left: 5px;
+       color:black;         }
+
+$COMMENT 
+     { display: block;
+       color: purple;
+       white-space: pre; }
+
+$PROCINS 
+     { color: blue;
+       background-color: white; }
+
+DrugInformationSummary,
+     { background-color: #CCCCFF; 
+       text-decoration: none;    
+       color: black; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+Audience,
+Comment,
+DateLastModified,
+Description,
+DrugInfoMetaData,
+DrugInfoType,
+DrugReference,
+DrugReferenceDescription,
+DrugReferenceLink,
+DrugReferenceType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+GlossaryLink,
+Title,
+SummarySection,
+SummarySection>Para,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+TerminologyLink,
+URL,
+    { display: block; }
+
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+/* Container elements are displayed in ALL CAPS */
+/* * = Required field */
+/* & = Optional element */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+
+
+Audience                 :before, { content: "Audience *: "; }
+Comment                  :before, { content: "Comments &: "; }
+DateLastModified         :before, { content: "Date Last Modified &: "; }
+Description              :before, { content: "Description *: "; }
+DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
+DrugInfoType             :before, { content: "Drug Info Type *: "; }
+DrugReference            :before, { content: "DRUG REFERENCE & +"; }
+DrugReferenceDescription :before, { content: "Description * @: "; }
+DrugReferenceLink        :before, { content: "Link * @: "; }
+DrugReferenceType        :before, { content: "Type *: "; }
+EnteredBy                :before, { content: "Entered By *: "; }
+EntryDate                :before, { content: "Entry Date *: "; }
+FDAApproved              :before, { content: "FDA Approved *: "; }
+GlossaryLink             :before, { content: "Glossary Link * @: "; }
+SummarySection           :before, { content: "Drug Info Summary *: "; }
+DrugInformationSummary>Title             
+                         :before, { content: "Title *: "; }
+ProcessingStatus         :before, { content: "Processing Status &: "; }
+RefDescription           :before, { content: "Ref Description *: "; }
+RefLink                  :before, { content: "Ref Link *: "; }
+ReviewStatus             :before, { content: "Review Status &: "; }
+TerminologyLink          :before, { content: "Term Link * @: "; }
+URL                      :before, { content: "URL * @: "; }
+
+
+/***************************************************************************/ 
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+MediaContent, 
+   { border: solid;
+     border-width: thin; 
+     border-color: black;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+
+ 
+
+/***************************************************************************/ 
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
+/***************************************************************************/ 
+Audience                 :before,
+Comment                  :before,
+DateLastModified         :before,
+Description              :before,
+DrugInfoMetaData         :before,
+DrugInfoType             :before,
+DrugReference            :before,
+DrugReferenceDescription :before,
+DrugReferenceLink        :before,
+DrugReferenceType        :before,
+EnteredBy                :before,
+EntryDate                :before,
+FDAApproved              :before,
+GlossaryLink             :before,
+Title                    :before,
+ProcessingStatus         :before,
+ReviewStatus             :before,
+RefDescription           :before,
+RefLink                  :before,
+SummarySection           :before,
+TerminologyLink          :before,
+URL                      :before,
+   {  font-weight: bold;
+      color: black;  }
+
+
+
+/***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+/* Each tag is manually positioned to right-align                          */
+
+FDAApproved,
+                        { margin-left: 130pt;
+                          text-indent: -100pt; }
+RefDescription,
+                        { margin-left: 70pt;
+                          text-indent: -104pt; }
+RefLink,
+                        { margin-left: 70pt;
+                          text-indent: -63pt; }
+Description,
+                        { margin-left: 130pt;
+                          text-indent: -82pt; }
+URL,
+                        { margin-left: 130pt;
+                          text-indent: -56pt; }
+Audience,
+                        { margin-left: 130pt;
+                          text-indent: -70pt; }
+DrugInfoType,
+                        { margin-left: 130pt;
+                          text-indent: -100.5pt; }
+TerminologyLink,
+                        { margin-left: 130pt;
+                          text-indent: -88pt; }
+GlossaryLink,
+                        { margin-left: 130pt;
+                          text-indent: -109.5pt; }
+DrugInformationSummary>Title,
+                        { margin-left: 130pt;
+                          text-indent: -40pt; }
+DrugReferenceDescription,
+                        { margin-left: 130pt;
+                          text-indent: -97pt; }
+DrugReferenceLink,
+                        { margin-left: 130pt;
+                          text-indent: -55.5pt; }
+DrugReferenceType,
+                        { margin-left: 130pt;
+                          text-indent: -44pt; }
+
+EnteredBy,
+                        { margin-left: 130pt;
+                          text-indent: -79.5pt; }
+EntryDate,
+                        { margin-left: 130pt;
+                          text-indent: -76pt; }
+DateLastModified,
+                        { margin-left: 130pt;
+                          text-indent: -126pt; }
+ProcessingStatus,
+                        { margin-left: 130pt;
+                          text-indent: -125.5pt; }
+ReviewStatus,
+                        { margin-left: 130pt;
+                          text-indent: -103pt; }
+
+SummarySection>Para,
+                        { margin-left: 130pt; }
+
+DrugInformationSummary>Comment,
+                        { margin-left: 130pt; 
+                          text-indent: -82.5pt; }
+
+/***************************************************************************/ 
+/*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
+/***************************************************************************/ 
+Audience,
+DateLastModified,
+Description,
+DrugInfoType,
+DrugReferenceDescription,
+DrugReferenceLink,
+DrugReferenceType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+GlossaryLink,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+TerminologyLink,
+URL,
+	{ margin-bottom: 4pt; }
+
+
+DrugReferenceLink,
+    { margin-top: 4pt; }
+
+
+EnteredBy,
+    { margin-top: 20pt; }
+
+
+DrugInfoMetaData,
+DrugReference,
+DrugInformationSummary>SummarySection,
+Title,
+	{ margin-bottom: 10pt; }
+
+
+SummarySection>Title,
+    { font-size  : 16pt; 
+      font-weight: bold;
+      margin-top : 10pt; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+/* Background color for Fields (Do not include Container Elements here */
+Audience,
+Comment,
+DateLastModified,
+Description,
+DrugInfoType,
+DrugReferenceDescription,
+DrugReferenceLink,
+DrugReferenceType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+GlossaryLink,
+Title,
+Para,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+TerminologyLink,
+URL,
+   { background-color: white; }
+
+
+/* Background color for Text Labels */
+Audience                 :before,
+Comment                  :before,
+DateLastModified         :before,
+Description              :before,
+DrugInfoMetaData         :before,
+DrugInfoType             :before,
+DrugReferenceDescription :before,
+DrugReferenceLink        :before,
+DrugReferenceType        :before,
+EnteredBy                :before,
+EntryDate                :before,
+FDAApproved              :before,
+GlossaryLink             :before,
+Title                    :before,
+ProcessingStatus         :before,
+RefDescription           :before,
+RefLink                  :before,
+ReviewStatus             :before,
+SummarySection           :before,
+TerminologyLink          :before,
+URL                      :before,
+   { background-color: #CCCCFF; }

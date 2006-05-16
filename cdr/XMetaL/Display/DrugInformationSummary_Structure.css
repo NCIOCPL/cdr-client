@@ -1,0 +1,314 @@
+/*************************************************************************/
+/* 	DrugInformationSummary_structure.css                                 */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      2006-03-01 by Volker Englisch                                    */
+/*      Based on the new Media schema                                    */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+
+@import "CdrCommonSchema_structure.css";
+ 
+@sq-plus-minus;
+ 
+/* @sq-structure-view-icons; */
+ 
+/* @sq-start-only-tags;      */
+ 
+*   { white-space: nowrap;
+      text-align: left;   
+      margin-left: 10px;  
+      margin-top: 0px;    
+      margin-bottom: 0px; 
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold; 
+      color: black; }    
+                                                                 
+      /* top-level elements */
+      
+$DOCUMENT > *
+                                                           
+     { margin-left: 0px;  }
+                                                                     
+$PROCINS,
+DrugInformationSummary,
+     { color: white;
+       font-weight: normal;
+       background-color: white;} 
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+Audience,
+Comment,
+DateLastModified,
+Description,
+Diagnosis,
+DrugInfoMetaData,
+DrugInfoType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+FDAInformation,
+FDARef,
+GlossaryLink,
+Title,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+SectionType,
+SummarySection,
+TerminologyLink,
+URL,
+    { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+AltTitle                 :before, { content: "Alternate Title"; }
+Audience                 :before, { content: "Audience"; }
+Comment                  :before, { content: "Comments"; }
+DateLastModified         :before, { content: "Date Last Modified"; }
+Description              :before, { content: "Description"; }
+DrugInfoMetaData         :before, { content: "DRUG INFO META DATA"; }
+DrugInfoType             :before, { content: "Drug Info Type"; }
+DrugReference            :before, { content: "DRUG REFERENCE"; }
+DrugReferenceDescription :before, { content: "Description"; }
+DrugReferenceLink        :before, { content: "Link"; }
+DrugReferenceType        :before, { content: "Type"; }
+EnteredBy                :before, { content: "Entered By"; }
+EntryDate                :before, { content: "Entry Date"; }
+FDAApproved              :before, { content: "FDA Approved"; }
+GlossaryLink             :before, { content: "Glossary Link"; }
+DrugInformationSummary>Title             
+                         :before, { content: "Title"; }
+Para                     :before, { content: counter(para)". Paragraph"; }
+ProcessingStatus         :before, { content: "Processing Status"; }
+RefDescription           :before, { content: "Ref Description"; }
+RefLink                  :before, { content: "Ref Link"; }
+ReviewStatus             :before, { content: "Review Status"; }
+SectionType              :before, { content: "Section Type"; }
+SectMetaData             :before, { content: "Section Metadata"; }
+TerminologyLink          :before, { content: "Term Link"; }
+SummarySection           :before, { content: "Drug Info Summary"; }
+SummarySection>Title     :before, { content: "Section Title"; }
+URL                      :before, { content: "URL"; }
+
+
+/***************************************************************************/ 
+/*                     COUNTER DEFINITIONS                                 */ 
+/***************************************************************************/ 
+Para,
+    { counter-increment: para; }
+
+
+/***************************************************************************/
+/*                      DOCUMENT TITLE AND ID                              */
+/***************************************************************************/
+ProcessingStatuses,
+       { border: none;   }
+        
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+
+   { color: black;
+     font-size: 10pt; }
+
+
+
+/***************************************************************************/ 
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
+/***************************************************************************/ 
+Audience                 :before,
+DateLastModified         :before,
+Description              :before,
+DrugInfoMetaData         :before,
+DrugInfoType             :before,
+DrugReference            :before,
+DrugReferenceDescription :before,
+DrugReferenceLink        :before,
+DrugReferenceType        :before,
+EnteredBy                :before,
+EntryDate                :before,
+FDAApproved              :before,
+GlossaryLink             :before,
+Title                    :before,
+Para                     :before,
+ProcessingStatus         :before,
+RefDescription           :before,
+RefLink                  :before,
+ReviewStatus             :before,
+SummarySection           :before,
+TerminologyLink          :before,
+URL                      :before,
+     { color: black;  
+       background-color: white; }
+
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
+Audience,
+Comment,
+DateLastModified,
+Description,
+DrugInfoType,
+DrugReferenceDescription,
+DrugReferenceLink,
+DrugReferenceType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+GlossaryLink,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+TerminologyLink,
+DrugInformationSummary>Title,
+URL,
+    { text-indent: 0pt; }
+
+
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
+Audience,
+DateLastModified,
+Description,
+DrugInfoType,
+DrugReferenceDescription,
+DrugReferenceLink,
+DrugReferenceType,
+EnteredBy,
+EntryDate,
+FDAApproved,
+GlossaryLink,
+Title,
+ProcessingStatus,
+RefDescription,
+RefLink,
+ReviewStatus,
+SummarySection,
+TerminologyLink,
+URL,
+     { color: white;
+       background-color: white; }
+/*       background-color: green; } */
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+/* Background color for Fields (Do not include Container Elements here */
+AlternativeText:before,
+Audience:before,
+Color:before,
+Category:before,
+Comment:before,
+ContentDescription:before,
+Creator:before,
+DateCreated:before,
+DerivationMethod:before,
+Diagnosis:before,
+DocTitle:before,
+FromCdrMedia:before,
+FromExternalFile:before,
+FromMethod:before,
+Glossary,
+ProcessingStatusDate,
+ProcessingStatusValue,
+Summary,
+HeightPixels:before,
+ImageType:before,
+ImageEncoding:before,
+Inlined:before,
+Labeled:before,
+Language:before,
+MediaCaption:before,
+MediaLanguage:before,
+MediaTitle:before,
+MinWidthPixels:before,
+OriginalSource:before,
+PhysicalMedia:before,
+RunSeconds:before,
+SoundData:before,
+SoundEncoding:before,
+SoundType:before,
+SourceFilename:before,
+SourcePublication:before,
+TextDateCreated:before,
+Topic:before,
+VideoData:before,
+VideaEncoding:before,
+VideaType:before,
+WidthPixels:before,
+   { background-color: white; }
+
+
+Acknowledgement,
+AlternativeText,
+Audience,
+Color,
+Captions,
+Categories,
+Category,
+Comment,
+ContentDescriptions,
+ContentDescription,
+Creator,
+DateCreated,
+DerivationMethod,
+DerivedFrom,
+Diagnoses,
+Diagnosis,
+DocTitle,
+FromCdrMedia,
+FromExternalFile,
+FromMethod,
+FromObject,
+HeightPixels,
+ImageData,
+ImageDimensions,
+ImageType,
+ImageEncoding,
+Inlined,
+Labeled,
+Language,
+Media,
+MediaCaption,
+MediaContent,
+MediaLanguage,
+MediaSource,
+MediaTitle,
+MinWidthPixels,
+OriginalSource,
+PhysicalMedia,
+RunSeconds,
+SoundData,
+SoundEncoding,
+SoundType,
+SourceFilename,
+SourcePublication,
+TextDateCreated,
+Topic,
+Topics,
+VideoData,
+VideaEncoding,
+VideaType,
+WidthPixels,
+   { background-color: white; }
+
