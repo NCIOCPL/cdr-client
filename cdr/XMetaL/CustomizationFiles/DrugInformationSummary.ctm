@@ -1,0 +1,236 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions Version="2.0">
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name ns="">CdrDocCtl</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Comment</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DateCreated</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DocId</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DocTitle</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Emphasis</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">EnteredBy</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ExternalRef</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Glossary</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">GlossaryTermLink</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">GlossaryTermRef</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Para</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Title</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Images>
+    <Image>
+      <Name ns="">Multimedia</Name>
+      <Source-Attribute>ref</Source-Attribute>
+    </Image>
+  </Images>
+  <ListElements>
+    <BulletedList>
+      <Name ns="">Captions</Name>
+      <ListItem ns="">Caption</ListItem>
+    </BulletedList>
+    <BulletedList>
+      <Name ns="">ContentDescriptions</Name>
+      <ListItem ns="">ContentDescription</ListItem>
+    </BulletedList>
+    <BulletedList>
+      <Name ns="">ItemizedList</Name>
+      <ListItem ns="">ListItem</ListItem>
+    </BulletedList>
+    <NumberedList>
+      <Name ns="">OrderedList</Name>
+      <ListItem ns="">ListItem</ListItem>
+    </NumberedList>
+    <BulletedList>
+      <Name ns="">Topics</Name>
+      <ListItem ns="">Topic</ListItem>
+    </BulletedList>
+  </ListElements>
+  <TogglingInlines>
+    <Italic>
+      <Name ns="">Emphasis</Name>
+    </Italic>
+    <Bold>
+      <Name ns="">Strong</Name>
+    </Bold>
+  </TogglingInlines>
+  <Paragraphs>
+    <Paragraph>
+      <Name ns="">Para</Name>
+    </Paragraph>
+  </Paragraphs>
+  <FollowedByList>
+    <FollowedByListItem>
+      <Name ns="">Para</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">ItemizedList</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">OrderedList</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">AltTitle</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">ListTitle</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">Title</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+    <FollowedByListItem>
+      <Name ns="">TitleAbbrev</Name>
+      <FollowedBy ns="">Para</FollowedBy>
+    </FollowedByListItem>
+  </FollowedByList>
+  <Templates>
+    <Template>
+      <Name ns="">SummarySection</Name>
+      <MiniTemplate><![CDATA[<SummarySection>
+        <Para><?xm-replace_text {Enter summary of information about 
+              specific drug information (required)} ?></Para>
+        </SummarySection>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DrugReference</Name>
+      <MiniTemplate><![CDATA[<DrugReference>
+        <DrugReferenceType><?xm-replace_text {Select a drug reference type
+                           (required)} ?></DrugReferenceType>
+        <DrugReferenceLink><?xm-replace_text {Enter the link title here and
+                           copy/paste the URL into the attribute inspector
+                           (required)} ?></DrugReferenceLink>
+        <DrugReferenceDescription><?xm-replace_text {Link to Miscellaneous 
+                           Document (right click and copy/paste fragment link
+                           from Misc. Doc.
+                           (required)} ?></DrugReferenceDescription>
+        </DrugReference>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DrugReferenceType</Name>
+      <MiniTemplate><![CDATA[<DrugReferenceType><?xm-replace_text {Select a 
+                           drug reference type 
+                           (required)} ?></DrugReferenceType>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DrugReferenceLink</Name>
+      <MiniTemplate><![CDATA[<DrugReferenceLink><?xm-replace_text {Enter the
+                           link title here and copy/paste the URL into the 
+                           attribute inspector
+                           (required)} ?></DrugReferenceLink>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DrugReferenceDescription</Name>
+      <MiniTemplate><![CDATA[<DrugReferenceDescription><?xm-replace_text {Link
+                           to Miscellaneous Document (right click and 
+                           copy/paste fragment link from Misc. Doc.
+                           (required)} ?></DrugReferenceDescription>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">GlossaryLink</Name>
+      <MiniTemplate><![CDATA[<GlossaryLink><?xm-replace_text {Select a glossary 
+                           link (required)} ?></GlossaryLink>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">Para</Name>
+      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Optionally enter a new 
+                           paragraph} ?></Para>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally 
+                           enter the date of the last record 
+                           modification} ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ProcessingStatus</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {Optionally 
+                           select a processing 
+                           status} ?></ProcessingStatus>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>
