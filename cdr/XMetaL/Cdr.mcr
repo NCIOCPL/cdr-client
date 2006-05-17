@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.146 2006-05-16 20:41:41 venglisc Exp $
+     $Id: Cdr.mcr,v 1.147 2006-05-17 02:02:08 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.146  2006/05/16 20:41:41  venglisc
+     Adding DrugInfoSummary toolbar (Bug 2053).
+
      Revision 1.145  2005/12/30 19:31:01  bkline
      Added macros/toolbar buttons for opening translated summaries and
      original English summaries (request #1918).
@@ -6427,6 +6430,7 @@
             "<Diagnosis cdr:ref='CDR0000040555'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040559'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040560'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039738'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040232'/>\n" +
             "<Diagnosis cdr:ref='CDR0000042458'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038643'/>\n" +
