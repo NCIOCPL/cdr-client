@@ -53,6 +53,7 @@ EnteredBy,
 EntryDate,
 FDAApproved,
 GlossaryLink,
+Manufacturer,
 Title,
 SummarySection,
 SummarySection>Para,
@@ -90,6 +91,7 @@ EnteredBy                :before, { content: "Entered By *: "; }
 EntryDate                :before, { content: "Entry Date *: "; }
 FDAApproved              :before, { content: "FDA Approved *: "; }
 GlossaryLink             :before, { content: "Glossary Link * @: "; }
+Manufacturer             :before, { content: "Manufacturer & @: "; }
 SummarySection           :before, { content: "Drug Info Summary *: "; }
 DrugInformationSummary>Title             
                          :before, { content: "Title *: "; }
@@ -130,6 +132,7 @@ EnteredBy                :before,
 EntryDate                :before,
 FDAApproved              :before,
 GlossaryLink             :before,
+Manufacturer             :before,
 Title                    :before,
 ProcessingStatus         :before,
 ReviewStatus             :before,
@@ -148,33 +151,21 @@ URL                      :before,
 /***************************************************************************/ 
 /* Each tag is manually positioned to right-align                          */
 
-FDAApproved,
-                        { margin-left: 130pt;
-                          text-indent: -100pt; }
-RefDescription,
-                        { margin-left: 70pt;
-                          text-indent: -104pt; }
-RefLink,
-                        { margin-left: 70pt;
-                          text-indent: -63pt; }
-Description,
-                        { margin-left: 130pt;
-                          text-indent: -82pt; }
-URL,
-                        { margin-left: 130pt;
-                          text-indent: -56pt; }
 Audience,
                         { margin-left: 130pt;
                           text-indent: -70pt; }
+DateLastModified,
+                        { margin-left: 130pt;
+                          text-indent: -126pt; }
+DrugInformationSummary>Comment,
+                        { margin-left: 130pt; 
+                          text-indent: -82.5pt; }
+Description,
+                        { margin-left: 130pt;
+                          text-indent: -82pt; }
 DrugInfoType,
                         { margin-left: 130pt;
                           text-indent: -100.5pt; }
-TerminologyLink,
-                        { margin-left: 130pt;
-                          text-indent: -88pt; }
-GlossaryLink,
-                        { margin-left: 130pt;
-                          text-indent: -109.5pt; }
 DrugInformationSummary>Title,
                         { margin-left: 130pt;
                           text-indent: -40pt; }
@@ -187,29 +178,44 @@ DrugReferenceLink,
 DrugReferenceType,
                         { margin-left: 130pt;
                           text-indent: -44pt; }
-
 EnteredBy,
                         { margin-left: 130pt;
                           text-indent: -79.5pt; }
 EntryDate,
                         { margin-left: 130pt;
                           text-indent: -76pt; }
-DateLastModified,
+FDAApproved,
                         { margin-left: 130pt;
-                          text-indent: -126pt; }
-ProcessingStatus,
+                          text-indent: -100pt; }
+GlossaryLink,
                         { margin-left: 130pt;
-                          text-indent: -125.5pt; }
-ReviewStatus,
+                          text-indent: -109.5pt; }
+Manufacturer,
                         { margin-left: 130pt;
-                          text-indent: -103pt; }
-
+                          text-indent: -111pt; }
 SummarySection>Para,
                         { margin-left: 130pt; }
 
-DrugInformationSummary>Comment,
-                        { margin-left: 130pt; 
-                          text-indent: -82.5pt; }
+ProcessingStatus,
+                        { margin-left: 130pt;
+                          text-indent: -125.5pt; }
+RefDescription,
+                        { margin-left: 70pt;
+                          text-indent: -104pt; }
+RefLink,
+                        { margin-left: 70pt;
+                          text-indent: -63pt; }
+ReviewStatus,
+                        { margin-left: 130pt;
+                          text-indent: -103pt; }
+TerminologyLink,
+                        { margin-left: 130pt;
+                          text-indent: -88pt; }
+URL,
+                        { margin-left: 130pt;
+                          text-indent: -56pt; }
+
+
 
 /***************************************************************************/ 
 /*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
@@ -225,6 +231,7 @@ EnteredBy,
 EntryDate,
 FDAApproved,
 GlossaryLink,
+Manufacturer,
 ProcessingStatus,
 RefDescription,
 RefLink,
@@ -271,6 +278,7 @@ EnteredBy,
 EntryDate,
 FDAApproved,
 GlossaryLink,
+Manufacturer,
 Title,
 Para,
 ProcessingStatus,
@@ -296,6 +304,7 @@ EnteredBy                :before,
 EntryDate                :before,
 FDAApproved              :before,
 GlossaryLink             :before,
+Manufacturer             :before,
 Title                    :before,
 ProcessingStatus         :before,
 RefDescription           :before,
