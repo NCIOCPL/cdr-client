@@ -83,6 +83,13 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">Manufacturer</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">Para</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -169,6 +176,12 @@
     </FollowedByListItem>
   </FollowedByList>
   <Templates>
+    <Template>
+      <Name ns="">Manufacturer</Name>
+      <MiniTemplate><![CDATA[<Manufacturer><?xm-replace_text {Optionally 
+          select an organization link} ?>
+        </Manufacturer>]]></MiniTemplate>
+    </Template>
     <Template>
       <Name ns="">SummarySection</Name>
       <MiniTemplate><![CDATA[<SummarySection>
