@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE ClinicalTrialSearchString SYSTEM "ClinicalTrialSearchString.dtd">
+<ClinicalTrialSearchString xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+ </CdrDocCtl> 
+ <SearchString><?xm-replace_text {Enter the search string (required)} ?></SearchString>
+ <Description><?xm-replace_text {Enter a description (required)} ?></Description>
+ <Use><?xm-replace_text {Optionally enter a use description} ?></Use>
+ <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+ <EntryDate><?xm-replace_text {Enter today's date(required)} ?></EntryDate>
+</ClinicalTrialSearchString>
