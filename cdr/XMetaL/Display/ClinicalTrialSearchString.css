@@ -1,0 +1,136 @@
+/*
+ * $Id: ClinicalTrialSearchString.css,v 1.1 2006-06-16 19:59:59 venglisc Exp $
+ *
+ * $Log: not supported by cvs2svn $
+ *
+ */
+
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
+@import "CdrCommonSchema.css";
+
+$DOCUMENT
+   { font-family: Arial, sans-serif;       
+     font-size: 12pt;
+     margin-top: 5px;
+     margin-left: 5px;  
+     color: black;        }
+
+$COMMENT 
+   { display: block;
+     color: purple;
+     white-space: pre;  }
+
+$PROCINS 
+   { color: blue;
+     background-color: white;  }
+
+ClinicalTrialSearchString,
+   { background-color: white;
+     text-decoration: none;
+     color: black; }
+
+
+/***************************************************************************/ 
+/*                           BLOCK ELEMENTS                                */ 
+/***************************************************************************/ 
+ClinicalTrialSearchString,
+CdrDocCtl,
+DocId,
+Description,
+EnteredBy,
+EntryDate,
+SearchString,
+Use
+   { display: block; }
+
+
+/***************************************************************************/ 
+/*                       BEFORE AND AFTER TAGS                             */ 
+/***************************************************************************/ 
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+Description            :before { content: "Description *: "; }
+EnteredBy              :before { content: "Entered By *: "; }
+EntryDate              :before { content: "Entry Date *: "; }
+SearchString           :before { content: "Search String * @: "; }
+Use                    :before { content: "Use & +: "; }
+
+
+/***************************************************************************/ 
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
+/***************************************************************************/ 
+Description         :before,
+EnteredBy           :before,
+EntryDate           :before,
+SearchString        :before,
+Use                 :before,
+   {  font-weight: bold; color: black;  }
+
+
+/***************************************************************************/ 
+/*                    BORDERED ELEMENTS AND SECTIONS                       */
+/***************************************************************************/
+LastChangedDate
+ { margin-top: 1em; }
+
+
+/***************************************************************************/
+/*                  MARGINS FOR ALIGNING TAGS AND TEXT                     */
+/***************************************************************************/
+Description                      { margin-left: 110pt; 
+                                   text-indent: -82.0pt; }
+
+SearchString                     { margin-left: 110pt; 
+                                   text-indent: -109.0pt; }
+
+Use                              { margin-left: 110pt; 
+                                   text-indent:  -52.5pt; }
+
+EnteredBy                        { margin-left: 110pt; 
+                                   text-indent:  -79.5pt; }
+
+EntryDate                        { margin-left: 110pt; 
+                                   text-indent:  -75.5pt; }
+
+
+/* Margin-bottom for simulated text boxes                                  */
+
+Description,
+EnteredBy,
+EntryDate,
+SearchString,
+Use,
+	{ margin-bottom: 4pt; }
+
+
+/***************************************************************************/ 
+/*                               COLOR                                     */ 
+/***************************************************************************/ 
+Description,
+EnteredBy,
+EntryDate,
+SearchString,
+Use
+  { background-color: white; }
+
+
+/* Blue = Administrative Information                                       */
+
+ClinicalTrialSearchString,
+Description  :before,
+EnteredBy    :before,
+EntryDate    :before,
+SearchString :before,
+Use          :before
+{ background-color: #CCCCFF; }  /*light blue*/
+
+
+/* Green = Scientific Information                                   	   */
+
+/* Override common css, which formats elements of this name as inline markup */
+InterventionNameLink { text-decoration: none; color: black; }
