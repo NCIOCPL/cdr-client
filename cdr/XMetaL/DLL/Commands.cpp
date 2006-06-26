@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.48 2005-12-30 19:36:11 bkline Exp $
+ * $Id: Commands.cpp,v 1.49 2006-06-26 20:29:40 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.48  2005/12/30 19:36:11  bkline
+ * Added support for opening a CDR document directly, and for finding
+ * the translation of a summary document.
+ *
  * Revision 1.47  2005/12/30 15:50:48  bkline
  * Modified check for manifest to look for new file name.
  *
@@ -513,6 +517,32 @@ bool getDocTypes(LogonDialog* dialog, CLogonProgress& progressDialog)
                 + name);
         getDocType(name, progressDialog);
         progressDialog.m_progressBar.SetPos((100 * ++i) / nameCount);
+    }
+    return true;
+}
+
+static bool getDocTypesLocal(CString info) {
+
+    // Populate these maps.
+    docTypeStrings.clear();
+    validValueSets.clear();
+    docTypeStrings.push_back(_T("Any Type"));
+
+    // Loop through the document types.
+    CString name = _T("CdrGetDocTypeResp");
+    cdr::Element elem = cdr::Element::extractElement(info, name);
+    while (elem) {
+        if (elem.getAttribute(_T("Format")) == _T("xml")) {
+            CString docType = elem.getAttribute(_T("Type"));
+            docTypeStrings.push_back(docType);
+            cdr::ValidValueSet vvSet;
+            extractValidValueSet(elem.getString(), vvSet);
+            validValueSets[docType] = vvSet;
+            cdr::StringSet elemSet;
+            extractLinkingElements(elem.getString(), elemSet);
+            linkingElements[docType] = elemSet;
+            elem = cdr::Element::extractElement(info, name, elem.getEndPos());
+        }
     }
     return true;
 }
@@ -1571,6 +1601,37 @@ CString& fixDoc(CString& doc, const CString& ctl,
     return doc;
 }
 
+static CString getLocalDocTypeInfo() {
+    // Use a local buffer type to ensure memory release even if an
+    // exception occurs.
+    struct Buf {
+        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
+        ~Buf() { delete [] buf; }
+        char* buf;
+    };
+    try {
+        CFile file;
+        CString path = cdr::getXmetalPath() + _T("\\CdrDocTypes.xml");
+        file.Open((LPCTSTR)path, CFile::modeRead);
+        int nBytes = (int)file.GetLength();
+
+        Buf b((size_t)nBytes);
+        int totalRead = 0;
+        while (totalRead < nBytes) {
+            int bytesRead = file.Read(b.buf + totalRead, nBytes - totalRead);
+            if (bytesRead < 1) {
+                ::AfxMessageBox(_T("Failure reading CdrDocTypes.xml"));
+                throw _T("Failure reading from CdrDocTypes.xml");
+            }
+            totalRead += bytesRead;
+        }
+        CString fileContents = cdr::utf8ToCString(b.buf);
+        return fileContents;
+    }
+    catch(...) {}
+    return _T("");
+}
+
 bool CCommands::doLogon(LogonDialog* logonDialog)
 {
     // Make the document directories if they aren't already there.
@@ -1628,14 +1689,20 @@ bool CCommands::doLogon(LogonDialog* logonDialog)
     }
 
     // Get the document type information we need.
-    CLogonProgress progressDialog;
-    progressDialog.Create(progressDialog.IDD);
-    progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
-    progressDialog.ShowWindow(SW_SHOW);
-    bool gotDocTypes = getDocTypes(logonDialog, progressDialog);
-    if (!invokedFromClientRefreshTool)
-        getCssFiles(logonDialog, progressDialog);
-    progressDialog.DestroyWindow();
+    CString localDocTypeInfo = getLocalDocTypeInfo();
+    bool gotDocTypes = false;
+    if (!localDocTypeInfo.IsEmpty())
+        gotDocTypes = getDocTypesLocal(localDocTypeInfo);
+    else {
+        CLogonProgress progressDialog;
+        progressDialog.Create(progressDialog.IDD);
+        progressDialog.SetWindowPos(&CWnd::wndTop, 10, 10, 0, 0, SWP_NOSIZE);
+        progressDialog.ShowWindow(SW_SHOW);
+        gotDocTypes = getDocTypes(logonDialog, progressDialog);
+        if (!invokedFromClientRefreshTool)
+            getCssFiles(logonDialog, progressDialog);
+        progressDialog.DestroyWindow();
+    }
     return gotDocTypes;
 }
 
@@ -2604,7 +2671,7 @@ CString getBlobExtension(const CString& docXml, const CString& docType) {
             extension = _T(".doc");
         else if (elemText == _T("application/vnd.ms-excel"))
             extension = _T(".xls");
-        else if (elemText == _T("application/vnd.ms-wordperfect"))
+        else if (elemText == _T("application/vnd.wordperfect"))
             extension = _T(".wpd");
         else if (elemText == _T("text/html"))
             extension = _T(".html");

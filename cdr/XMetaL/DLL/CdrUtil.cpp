@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.26 2005-04-13 13:20:51 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.27 2006-06-26 20:29:40 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.26  2005/04/13 13:20:51  bkline
+ * Completed BLOB support, including calculating of image dimensions.
+ *
  * Revision 1.25  2004/09/09 18:43:03  bkline
  * Glossifier implemented.
  *
@@ -127,6 +130,8 @@ CdrSocket::Init::Init()
         ::AfxMessageBox(_T("Unable to initialize Windows socket library"));
         throw _T("Failure initializing Windows socket library");
     }
+    const char* hostEnv = getenv("CDR_HOST");
+    hostName = hostEnv ? hostEnv : "mahler.nci.nih.gov";
 }
 
 /**
@@ -147,7 +152,6 @@ CdrSocket::CdrSocket()
     const char* hostEnv = getenv("CDR_HOST");
     const char* portEnv = getenv("CDR_PORT");
     const char* host = hostEnv ? hostEnv : "mahler.nci.nih.gov";
-    hostName = host;
     int port = portEnv ? atoi(portEnv) : CDR_SOCK;
 
     // Working variables.
