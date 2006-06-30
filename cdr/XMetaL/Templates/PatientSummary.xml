@@ -35,8 +35,8 @@
    <SectMetaData>
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
-   <KeyPoint>A, B, C can affect the risk of developing x cancer.</KeyPoint>
-   <Para>Risk factors include the following:</Para>
+   <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] the risk of developing x cancer.</KeyPoint>
+   <Para>Anything that increases your risk of getting a disease is called a risk factor.  Risk factors for x cancer include the following:</Para>
    <ItemizedList Style="bullet"> 
     <ListItem>[risk here]</ListItem> 
     <ListItem>[risk here]</ListItem> 
