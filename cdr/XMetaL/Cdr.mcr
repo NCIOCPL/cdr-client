@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.147 2006-05-17 02:02:08 bkline Exp $
+     $Id: Cdr.mcr,v 1.148 2006-07-01 14:19:24 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.147  2006/05/17 02:02:08  bkline
+     Added 'recurrent breast cancer' to BMT macro.
+
      Revision 1.146  2006/05/16 20:41:41  venglisc
      Adding DrugInfoSummary toolbar (Bug 2053).
 
@@ -1113,6 +1116,13 @@
                 Application.AppendMacro("Remove Public=No", "Set Public");
             else
                 Application.AppendMacro("Make Public=No", "Set Non-Public");
+        }
+        var linkId = container.getAttribute("cdr:ref");
+        if (linkId && linkId.indexOf("CDR") >= 0) {
+            Application.AppendMacro("Open &Link For Editing",
+                                    "Open Linked Doc Edit Mode");
+            Application.AppendMacro("Open Link &Readonly",
+                                    "Open Linked Doc View Mode");
         }
     }
     if (docType.name == "InScopeProtocol") {
@@ -6726,6 +6736,30 @@
         cdrObj.openCdrDoc(originalId, "Current", false);
     }
     openOriginalEnglishSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Linked Doc Edit Mode"
+       lang="JScript" >
+  <![CDATA[
+    function openLinkedDocEditMode() {
+        var container = Selection.ContainerNode;
+        var linkedDocId = container.getAttribute("cdr:ref");
+        cdrObj.openCdrDoc(linkedDocId, "Current", true);
+    }
+    openLinkedDocEditMode();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Linked Doc View Mode"
+       lang="JScript" >
+  <![CDATA[
+    function openLinkedDocViewMode() {
+        var container = Selection.ContainerNode;
+        var linkedDocId = container.getAttribute("cdr:ref");
+        cdrObj.openCdrDoc(linkedDocId, "Current", false);
+    }
+    openLinkedDocViewMode();
   ]]>
 </MACRO>
 
