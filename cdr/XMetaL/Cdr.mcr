@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.148 2006-07-01 14:19:24 bkline Exp $
+     $Id: Cdr.mcr,v 1.149 2006-07-06 20:30:55 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.148  2006/07/01 14:19:24  bkline
+     Added macros for opening linked documents.
+
      Revision 1.147  2006/05/17 02:02:08  bkline
      Added 'recurrent breast cancer' to BMT macro.
 
@@ -2558,6 +2561,12 @@
                            "QC Report",
                            "Generate QC Report",
                            "CDR", 3, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Make Citation Supplementary Info Doc",
+                           "Create SupplementaryInfo doc",
+                           "Create SupplementaryInfo document",
+                           "CDR2", 2, 6,
                            true)
         );
         var cmdBars = Application.CommandBars;
@@ -2869,7 +2878,13 @@
                            "Launch Object File",        // Tooltip.
                            "Launch Object File",        // Description
                            "Databases (Custom)", 2, 6,  // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                       // Starts new group?
+            new CdrCmdItem(null,
+                           "Clone Doc",
+                           "Clone Document",
+                           "Clone SupplementaryInfo Document",
+                           "CDR2", 2, 5,
+                           true)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -6310,7 +6325,6 @@
 </MACRO>
 
 <MACRO name="ShowCDRServer"
-        key="Alt+Z"
        lang="JScript">
     if (cdrObj)
         cdrObj.setTitleBar();
@@ -6760,6 +6774,134 @@
         cdrObj.openCdrDoc(linkedDocId, "Current", false);
     }
     openLinkedDocViewMode();
+  ]]>
+</MACRO>
+
+<MACRO name="Clone Doc"
+       lang="JScript">
+  <![CDATA[
+    function stripCdrIdAttrs(elemNode) {
+        if (elemNode.hasAttribute("cdr:id"))
+            elemNode.removeAttribute("cdr:id");
+        var child = elemNode.firstChild;
+        while (child) {
+            if (child.nodeType == 1) // DOMElement
+                stripCdrIdAttrs(child);
+            child = child.nextSibling;
+        }
+    }
+    function stripDocId(docElem) {
+        var target = "xm-replace_text";
+        var data   = "{The document ID will be assigned automatically} ";
+        var newPI  = ActiveDocument.createProcessingInstruction(target, data);
+        var node   = docElem.firstChild;
+        while (node) {
+            if (node.nodeName == 'CdrDocCtl') {
+                var child = node.firstChild;
+                while (child) {
+                    if (child.nodeName == 'DocId') {
+                        gEditingCdrLink = true;
+                        var grandchild = child.firstChild;
+                        while (grandchild) {
+                            var nextGrandchild = grandchild.nextSibling;
+                            child.removeChild(grandchild);
+                            grandchild = nextGrandchild;
+                        }
+                        grandchild.appendChild(newPI);
+                        gEditingCdrLink = false;
+                    }
+                    child = child.nextSibling;
+                }
+            }
+            node = node.nextSibling;
+        }
+    }
+    function fixDocId(docText) {
+        var docId = "<DocId><?xm-replace_text {The document ID will be "
+                  + "assigned automatically} ?></DocId>";
+        return docText.replace(/<DocId[^>]*>CDR\d+<\/DocId>/, docId);
+    }
+    function cloneDoc() {
+        var docType = ActiveDocument.doctype;
+        if (docType) {
+            var rng = ActiveDocument.Range;
+            rng.SelectAll();
+            rng.Copy();
+            var docText = fixDocId(Application.Clipboard.Text);
+            var xmlText = "<?xml version='1.0'?>\n<!DOCTYPE "
+                        + docType.name
+                        + " SYSTEM '"
+                        + docType.name
+                        + ".dtd'>\n"
+                        + docText;
+            var doc = Application.Documents.OpenString(xmlText, 0,
+                                                       "newdoc.xml",
+                                                       true, true, false);
+            var docElem = doc.documentElement;
+            if (docElem.hasAttribute("readonly"))
+                docElem.removeAttribute("readonly");
+            stripCdrIdAttrs(docElem);
+            // stripDocId(docElem);
+        }
+    }
+    cloneDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Make Citation Supplementary Info Doc"
+       lang="JScript"
+       key="Alt+Z">
+  <![CDATA[
+    function stripCdrIdAttrs(elemNode) {
+        if (elemNode.hasAttribute("cdr:id"))
+            elemNode.removeAttribute("cdr:id");
+        var child = elemNode.firstChild;
+        while (child) {
+            if (child.nodeType == 1) // DOMElement
+                stripCdrIdAttrs(child);
+            child = child.nextSibling;
+        }
+    }
+    function getDocTitle() {
+        var node = ActiveDocument.documentElement.firstChild;
+        while (node) {
+            if (node.nodeName == 'CdrDocCtl') {
+                var child = node.firstChild;
+                while (child) {
+                    if (child.nodeName == 'DocTitle')
+                        return getTextContent(child);
+                    child = child.nextSibling;
+                }
+            }
+            node = node.nextSibling;
+        }
+        return "*** DocTitle not found ***";
+    }
+    function insertCitationTitle(doc, title) {
+        var nodes = doc.getElementsByTagName('Title');
+        if (nodes.length < 1) {
+            Application.Alert("Title element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var child = elem.firstChild;
+        while (child) {
+            var nextChild = child.nextSibling;
+            elem.removeChild(child);
+            child = nextChild;
+        }
+        var textNode = doc.createTextNode(title);
+        elem.appendChild(textNode);
+    }
+    function makeCitationSupplementaryInfoDoc() {
+
+        var title = getDocTitle();
+        var template = Application.Path
+              + "\\Template\\Cdr\\CitationSupplementaryInfo.xml";
+        var doc = Application.Documents.OpenTemplate(template);
+        insertCitationTitle(doc, title);
+    }
+    makeCitationSupplementaryInfoDoc();
   ]]>
 </MACRO>
 
