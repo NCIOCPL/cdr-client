@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.149 2006-07-06 20:30:55 bkline Exp $
+     $Id: Cdr.mcr,v 1.150 2006-07-11 20:46:25 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.149  2006/07/06 20:30:55  bkline
+     Installed new cloning macros on the appropriate toolbars.
+
      Revision 1.148  2006/07/01 14:19:24  bkline
      Added macros for opening linked documents.
 
@@ -2511,7 +2514,13 @@
                            "QC Report",                 // Tooltip.
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
