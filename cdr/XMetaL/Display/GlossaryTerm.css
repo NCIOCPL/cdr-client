@@ -80,6 +80,7 @@ Caption,
 Comment,
 DateLastModified,
 DateLastReviewed,
+DefinitionResource,
 DefinitionStatus,
 DefinitionText,
 Dictionary,
@@ -87,6 +88,7 @@ GlossaryTerm,
 MediaID,
 MediaLink,
 PdqKey,
+PronunciationResource,
 SpanishTermDefinition,
 SpanishTermName,
 StatusDate,
@@ -113,11 +115,13 @@ Caption:before                  { content: "Caption & +: "; }
 Comment:before                  { content: "Comments &: "; }
 DateLastModified:before         { content: "Last Modified &: "; }
 DateLastReviewed:before         { content: "Last Reviewed &: "; }
+DefinitionResource      :before { content: "Def Resource & +: "; }
 DefinitionStatus:before         { content: "Def Status &: "; }
 Dictionary:before               { content: "Dictionary & +: "; }
 MediaID:before                  { content: "Media ID * @: "; }
 MediaLink:before                { content: "MEDIA LINK & + @:"; }
 PdqKey:before                   { content: "PDQ Key &: "; }
+PronunciationResource   :before { content: "Pron Resource &: "; }
 SpanishTermDefinition:before    { content: "SPANISH DEFINITION & +:"; }
 SpanishTermDefinition>DefinitionText:before
                                 { content: "Span Definition *: "; }
@@ -163,11 +167,13 @@ Caption:before,
 Comment:before,
 DateLastModified:before,
 DateLastReviewed:before,
+DefinitionResource:before,
 DefinitionStatus:before,
 DefinitionText:before,
 Dictionary:before,
 MediaID:before,
 MediaLink:before,
+PronunciationResource:before,
 SpanishTermDefinition:before,
 SpanishTermName:before,
 StatusDate:before,
@@ -213,12 +219,16 @@ Audience                                { margin-left: 125pt;
                                           text-indent: -79.5pt; }
 Caption                                 { margin-left: 125pt;
                                           text-indent: -75pt; }
+DefinitionResource                      { margin-left: 125pt;
+                                          text-indent: -108pt; }
 DefinitionStatus                        { margin-left: 125pt;
                                           text-indent: -79.5pt; }
 Dictionary                              { margin-left: 125pt;
                                           text-indent: -88.5pt; }
 MediaID,                                { margin-left: 125pt;
                                           text-indent: -79.5pt; }
+PronunciationResource,                  { margin-left: 125pt;
+                                          text-indent: -106.5pt; }
 TermName,                               { margin-left: 125pt;
                                           text-indent: -81pt; }
 TermPronunciation,                      { margin-left: 125pt;
@@ -277,9 +287,12 @@ Audience,
 Comment,
 DateLastModified,
 DateLastReviewed,
+DefinitionResource,
 DefinitionStatus,
+DefinitionText,
 Dictionary,
-PdqKey,
+PdqKey, 
+PronunciationResource,
 MediaID,
 SpanishTermDefinition,
 SpanishTermName,
@@ -302,11 +315,13 @@ Caption,
 Comment,
 DateLastModified,
 DateLastReviewed,
+DefinitionResource,
 DefinitionStatus,
 DefinitionText,
 Dictionary,
 MediaID,
-PdqKey,
+PdqKey, 
+PronunciationResource,
 SpanishTermName,
 StatusDate,
 TermName,
@@ -323,11 +338,13 @@ Caption:before,
 Comment:before,
 DateLastModified:before,
 DateLastReviewed:before,
+DefinitionResource:before,
 DefinitionStatus:before,
 DefinitionText:before,
 Dictionary:before,
 MediaID:before,
-PdqKey:before,
+PdqKey:before, 
+PronunciationResource:before,
 SpanishTermDefinition:before,
 SpanishTermName:before,
 StatusDate:before,

@@ -7,8 +7,10 @@
 	 </CdrDocCtl> 
   <TermName><?xm-replace_text {Enter the term (required)} ?></TermName> 
   <TermPronunciation><?xm-replace_text {Optionally enter pronunciation guidelines} ?></TermPronunciation>
+  <PronunciationResource><?xm-replace_text {Optionally enter the authoritative source for the pronunciation} ?></PronunciationResource>
   <TermDefinition>
     <DefinitionText><?xm-replace_text {Enter a definition of the term (required)} ?></DefinitionText>
+    <DefinitionResource><?xm-replace_text {Optionally enter the authoritative source for the definition} ?></DefinitionResource>
     <MediaLink>
       <MediaID><?xm-replace_text {Enter the Media ID (required)} ?></MediaID>
       <Caption><?xm-replace_text {Optionally enter the caption of the image} ?></Caption>
