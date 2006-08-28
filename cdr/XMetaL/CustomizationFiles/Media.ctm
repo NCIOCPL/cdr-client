@@ -686,6 +686,13 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">RelatedDocuments</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">Row</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -827,6 +834,13 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">Superscript</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">SupplementaryInfoLink</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -1390,6 +1404,16 @@
     <Template>
       <Name ns="">ProcessingStatusDate</Name>
       <MiniTemplate><![CDATA[<ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">RelatedDocuments</Name>
+      <MiniTemplate><![CDATA[<RelatedDocuments>
+        <SupplementaryInfoLink><?xm-replace_text {Enter the supplementary info source (required)} ?></SupplementaryInfoLink>
+       </RelatedDocuments>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">SupplementaryInfoLink</Name>
+      <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {Enter the supplementary info source (required)} ?></SupplementaryInfoLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">EnteredBy</Name>
