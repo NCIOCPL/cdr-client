@@ -59,11 +59,5 @@
    <Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>
   </ProcessingStatus>
  </ProcessingStatuses>
- <!-- 
- Taking this section out again as requested 
- <RelatedDocuments>
-  <SupplementaryInfoLink><?xm-replace_text {Enter the supplementary info source (required)} ?></SupplementaryInfoLink>
- </RelatedDocuments>
- -->
  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </Media>
