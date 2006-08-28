@@ -88,6 +88,7 @@ MinWidthPixels,
 OriginalSource,
 PhysicalMedia,
 RunSeconds,
+RelatedDocuments,
 ProcessingStatus,
 ProcessingStatusDate,
 ProcessingStatuses,
@@ -99,6 +100,7 @@ SoundType,
 SourceFilename,
 SourcePublication,
 Summary,
+SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 Topics,
@@ -113,66 +115,68 @@ WidthPixels,
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-Acknowledgement:before,     { content: "Acknowledgement "; }
-AlternativeText:before,     { content: "Alternative Text "; }
-Audience:before,            { content: "Audience "; }
-Color:before,               { content: "Color "; }
-Captions:before,            { content: "CAPTIONS "; }
-Categories:before,          { content: "CATEGORIES "; }
-Category:before,            { content: "Category "; }
-Comment:before,             { content: "Comments "; }
-ContentDescriptions:before, { content: "CONTENT DESCRIPTIONS "; }
-ContentDescription:before,  { content: "Content Description "; }
-Creator:before,             { content: "Creator "; }
-DateCreated:before,         { content: "Date Created "; }
-DerivedFrom:before,         { content: "DERIVED FROM "; }
-Diagnoses:before,           { content: "DIAGNOSES "; }
-Diagnosis:before,           { content: "Diagnosis "; }
-DocTitle:before,            { content: "Doc Title "; }
+Acknowledgement:before,           { content: "Acknowledgement "; }
+AlternativeText:before,           { content: "Alternative Text "; }
+Audience:before,                  { content: "Audience "; }
+Color:before,                     { content: "Color "; }
+Captions:before,                  { content: "CAPTIONS "; }
+Categories:before,                { content: "CATEGORIES "; }
+Category:before,                  { content: "Category "; }
+Comment:before,                   { content: "Comments "; }
+ContentDescriptions:before,       { content: "CONTENT DESCRIPTIONS "; }
+ContentDescription:before,        { content: "Content Description "; }
+Creator:before,                   { content: "Creator "; }
+DateCreated:before,               { content: "Date Created "; }
+DerivedFrom:before,               { content: "DERIVED FROM "; }
+Diagnoses:before,                 { content: "DIAGNOSES "; }
+Diagnosis:before,                 { content: "Diagnosis "; }
+DocTitle:before,                  { content: "Doc Title "; }
 ProcessingStatus>EnteredBy:before,
-                            { content: "Entered By "; }
-FromCdrMedia:before,        { content: "From CDR Media "; }
-FromExternalFile:before,    { content: "From External File "; }
-FromMethod:before,          { content: "From Method "; }
-FromObject:before,          { content: "FROM OBJECT "; }
-Glossary:before,            { content: "Glossary "; }
-HeightPixels:before,        { content: "Height (Pixels) "; }
-ImageData:before,           { content: "IMAGE DATA ";}
-ImageDimensions:before,     { content: "IMAGE DIMENSIONS "; }
-ImageType:before,           { content: "Image Type "; }
-ImageEncoding:before,       { content: "Image Encoding "; }
-Inlined:before,             { content: "Inlined "; }
-Labeled:before,             { content: "Labeled "; }
-LabelName:before,           { content: "Label Name "; }
-Language:before,            { content: "Language "; }
-Media:before,               { content: "Media "; }
-MediaCaption:before,        { content: "Caption "; }
-MediaContent:before,        { content: "MEDIA CONTENT "; }
-MediaLanguage:before,       { content: "Media Language "; }
-MediaSource:before,         { content: "MEDIA SOURCE "; }
-MediaTitle:before,          { content: "MediaTitle "; }
-MinWidthPixels:before,      { content: "MinWidth (Pixels) "; }
-OriginalSource:before,      { content: "ORIGINAL SOURCE "; }
-PhysicalMedia:before,       { content: "PHYSICAL MEDIA "; }
-ProcessingStatus:before,      { content: "PROCESSING STATUS "; }
-ProcessingStatusDate:before,  { content: "Status Date"; }
-ProcessingStatuses:before,    { content: "PROCESSING STATUSES "; }
-ProcessingStatusValue:before, { content: "Status Value"; }
-ProposedUse:before,         { content: "PROPOSED USE "; }
-RunSeconds:before,          { content: "Run (sec) "; }
-SoundData:before,           { content: "Sound Data "; }
-SoundEncoding:before,       { content: "Sound Encoding "; }
-SoundType:before,           { content: "Sound Type "; }
-SourceFilename:before,      { content: "Source Filename "; }
-SourcePublication:before,   { content: "Source Publication "; }
-Summary:before,             { content: "Summary "; }
-TextDateCreated:before,     { content: "Text Date Created "; }
-Topic:before,               { content: "Topic "; }
-Topics:before,              { content: "TOPICS "; }
-VideoData:before,           { content: "Video Data "; }
-VideaEncoding:before,       { content: "Video Encoding "; }
-VideaType:before,           { content: "Video Type "; }
-WidthPixels:before,         { content: "Width (Pixels) "; }
+                                  { content: "Entered By "; }
+FromCdrMedia:before,              { content: "From CDR Media "; }
+FromExternalFile:before,          { content: "From External File "; }
+FromMethod:before,                { content: "From Method "; }
+FromObject:before,                { content: "FROM OBJECT "; }
+Glossary:before,                  { content: "Glossary "; }
+HeightPixels:before,              { content: "Height (Pixels) "; }
+ImageData:before,                 { content: "IMAGE DATA ";}
+ImageDimensions:before,           { content: "IMAGE DIMENSIONS "; }
+ImageType:before,                 { content: "Image Type "; }
+ImageEncoding:before,             { content: "Image Encoding "; }
+Inlined:before,                   { content: "Inlined "; }
+Labeled:before,                   { content: "Labeled "; }
+LabelName:before,                 { content: "Label Name "; }
+Language:before,                  { content: "Language "; }
+Media:before,                     { content: "Media "; }
+MediaCaption:before,              { content: "Caption "; }
+MediaContent:before,              { content: "MEDIA CONTENT "; }
+MediaLanguage:before,             { content: "Media Language "; }
+MediaSource:before,               { content: "MEDIA SOURCE "; }
+MediaTitle:before,                { content: "MediaTitle "; }
+MinWidthPixels:before,            { content: "MinWidth (Pixels) "; }
+OriginalSource:before,            { content: "ORIGINAL SOURCE "; }
+PhysicalMedia:before,             { content: "PHYSICAL MEDIA "; }
+ProcessingStatus:before,          { content: "PROCESSING STATUS "; }
+ProcessingStatusDate:before,      { content: "Status Date"; }
+ProcessingStatuses:before,        { content: "PROCESSING STATUSES "; }
+ProcessingStatusValue:before,     { content: "Status Value"; }
+ProposedUse:before,               { content: "PROPOSED USE "; }
+RelatedDocuments         :before, { content: "RELATED DOCUMENTS"; }
+RunSeconds               :before, { content: "Run (sec) "; }
+SoundData                :before, { content: "Sound Data "; }
+SoundEncoding            :before, { content: "Sound Encoding "; }
+SoundType                :before, { content: "Sound Type "; }
+SourceFilename           :before, { content: "Source Filename "; }
+SourcePublication        :before, { content: "Source Publication "; }
+Summary                  :before, { content: "Summary "; }
+SupplementaryInfoLink    :before, { content: "Supplementary Info Link "; }
+TextDateCreated:before,           { content: "Text Date Created "; }
+Topic:before,                     { content: "Topic "; }
+Topics:before,                    { content: "TOPICS "; }
+VideoData:before,                 { content: "Video Data "; }
+VideaEncoding:before,             { content: "Video Encoding "; }
+VideaType:before,                 { content: "Video Type "; }
+WidthPixels:before,               { content: "Width (Pixels) "; }
 
 
 
@@ -183,6 +187,7 @@ MediaSource,
 MediaContent,
 PhysicalMedia, 
 ProcessingStatuses,
+RelatedDocuments,
        { border: none;   }
         
 
@@ -257,6 +262,7 @@ OriginalSource:before,
 PhysicalMedia:before,
 ProcessingStatusDate:before,
 ProcessingStatusValue:before,
+RelatedDocuments:before,
 RunSeconds:before,
 SoundData:before,
 SoundEncoding:before,
@@ -264,6 +270,7 @@ SoundType:before,
 SourceFilename:before,
 SourcePublication:before,
 Summary:before,
+SupplementaryInfoLink:before,
 TextDateCreated:before,
 Topic:before,
 Topics:before,
@@ -318,6 +325,7 @@ SoundType,
 SourceFilename,
 SourcePublication,
 Summary,
+SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 VideoData,
@@ -368,6 +376,7 @@ SoundType,
 SourceFilename,
 SourcePublication,
 Summary,
+SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 VideoData,
