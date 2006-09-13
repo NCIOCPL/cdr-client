@@ -111,6 +111,7 @@ InScopeProtocol,
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
+BlockedFromCTGov,
 ClinicalTrialOffice,
 Comment,
 ContactInformation,
@@ -208,28 +209,29 @@ VerificationDate,
 /***************************************************************************/ 
 /*                      BEFORE AND AFTER TAGS                              */ 
 /***************************************************************************/ 
-ClinicalTrialOffice:before      { content: "Clinical Trial Office"; }
-DateSubmissionComplete:before   { content: "Date Submission Complete"; }
-Country:before                  { content: "Country"; }
-CurrentOrgStatus:before         { content: "Current Org Status"; }
-CurrentProtocolStatus:before    { content: "Current Protocol Status";  }
-DateLastModified:before         { content: "Last Modified"; }
-DateSentForReview:before        { content: "Date Sent for Review"; }
-DueDate:before                  { content: "Due Date"; }  
-EnteredBy:before                { content: "Entered By"; }
-EntryDate:before                { content: "Entry Date"; }
-ExternalID:before               { content: "Ext ID"; }
-ExternalPersonName:before       { content: "EXTERNAL PERSON NAME"; }
-ExternalSite:before             { content: "EXTERNAL SITE (ES)"; }
-ExternalSiteAddress:before      { content: "EXTERNAL SITE ADDRESS"; }
-ExternalSiteContact:before      { content: "EXTERNAL SITE CONTACT"; }
-ExternalSiteContactName:before  { content: "EXTERNAL SITE CONTACT NAME"; }
+BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
+ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
+DateSubmissionComplete  :before { content: "Date Submission Complete"; }
+Country                 :before { content: "Country"; }
+CurrentOrgStatus        :before { content: "Current Org Status"; }
+CurrentProtocolStatus   :before { content: "Current Protocol Status";  }
+DateLastModified        :before { content: "Last Modified"; }
+DateSentForReview       :before { content: "Date Sent for Review"; }
+DueDate                 :before { content: "Due Date"; }  
+EnteredBy               :before { content: "Entered By"; }
+EntryDate               :before { content: "Entry Date"; }
+ExternalID              :before { content: "Ext ID"; }
+ExternalPersonName      :before { content: "EXTERNAL PERSON NAME"; }
+ExternalSite            :before { content: "EXTERNAL SITE (ES)"; }
+ExternalSiteAddress     :before { content: "EXTERNAL SITE ADDRESS"; }
+ExternalSiteContact     :before { content: "EXTERNAL SITE CONTACT"; }
+ExternalSiteContactName :before { content: "EXTERNAL SITE CONTACT NAME"; }
 ExternalSiteContactTitle:before { content: "ES Contact Title"; }
 ExternalSiteContactPhone:before { content: "ES Contact Phone"; }
-ExternalSiteName:before         { content: "ES Name"; }
-ExternalSiteOrg:before          { content: "EXTERNAL SITE ORG"; }
-ExternalSiteOrgID:before        { content: "ES Org ID"; }
-ExternalSitePI:before           { content: "EXTERNAL SITE PI"; }
+ExternalSiteName        :before { content: "ES Name"; }
+ExternalSiteOrg         :before { content: "EXTERNAL SITE ORG"; }
+ExternalSiteOrgID       :before { content: "ES Org ID"; }
+ExternalSitePI          :before { content: "EXTERNAL SITE PI"; }
 ExternalSitePIID:before         { content: "ES PI ID"; }
 ExternalSitePIName:before       { content: "ES PI Name"; }
 ExternalSitePIPhone:before      { content: "ES PI Phone"; }
@@ -331,6 +333,7 @@ OrgSite,
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
 /***************************************************************************/ 
+BlockedFromCTGov:before,
 CurrentOrgStatus:before,
 CurrentProtocolStatus:before,
 ExternalID:before,

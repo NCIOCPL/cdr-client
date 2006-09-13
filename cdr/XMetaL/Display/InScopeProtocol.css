@@ -114,6 +114,7 @@ $PROCINS
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
+BlockedFromCTGov,
 ClinicalTrialOffice,
 ContactInformation, 
 ExternalSiteAddress > Country,
@@ -232,22 +233,16 @@ WarehouseBoxNumber,
 :before
                 { content: " : "; }
 */
-ClinicalTrialOffice:before 
-                { content: "Trial Office & @: "; }
-DateSubmissionComplete:before
-                { content: "Date Submission Cmpl &: "; }
+BlockedFromCTGov             :before { content: "Blocked From CTGov &"; }
+ClinicalTrialOffice          :before { content: "Trial Office & @: "; }
+DateSubmissionComplete       :before { content: "Date Submission Cmpl &: "; }
 LeadOrgProtocolStatuses>Comment:before
                 { content: "Comments &: "; }
-ExternalSiteAddress > Country:before
-                { content: "Country : "; }
-CurrentOrgStatus:before
-                { content: "Current Org Status *"; }
-CurrentProtocolStatus:before
-                { content: "Current Protocol Status *: "; } 
-DateLastModified:before
-                { content: "Last Modified &: "; }
-ProtocolSource>DateReceived:before
-                { content: "Date Received *: "; }
+ExternalSiteAddress > Country:before { content: "Country : "; }
+CurrentOrgStatus             :before { content: "Current Org Status *"; }
+CurrentProtocolStatus        :before { content: "Current Protocol Status *: "; }
+DateLastModified             :before { content: "Last Modified &: "; }
+ProtocolSource>DateReceived  :before { content: "Date Received *: "; }
 EnteredBy:before
                 { content: "Entered By *: "; }
 EntryDate:before
@@ -535,6 +530,9 @@ VoluntaryReview:before,
   {  font-weight: bold;
      color: black;  }
 
+BlockedFromCTGov:before,
+  {  font-weight: bold;
+     color: red;  }
 
 LeadOrgProtocolStatuses > Comment:before,
 DateLastModified:before,
