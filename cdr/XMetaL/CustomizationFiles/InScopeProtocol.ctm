@@ -40,6 +40,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>BlockedFromCTGov</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>CdrDocCtl</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
