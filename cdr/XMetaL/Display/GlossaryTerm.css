@@ -121,7 +121,7 @@ Dictionary:before               { content: "Dictionary & +: "; }
 MediaID:before                  { content: "Media ID * @: "; }
 MediaLink:before                { content: "MEDIA LINK & + @:"; }
 PdqKey:before                   { content: "PDQ Key &: "; }
-PronunciationResource   :before { content: "Pron Resource &: "; }
+PronunciationResource   :before { content: "Pron Resource & +: "; }
 SpanishTermDefinition:before    { content: "SPANISH DEFINITION & +:"; }
 SpanishTermDefinition>DefinitionText:before
                                 { content: "Span Definition *: "; }
@@ -228,7 +228,7 @@ Dictionary                              { margin-left: 125pt;
 MediaID,                                { margin-left: 125pt;
                                           text-indent: -79.5pt; }
 PronunciationResource,                  { margin-left: 125pt;
-                                          text-indent: -106.5pt; }
+                                          text-indent: -116.5pt; }
 TermName,                               { margin-left: 125pt;
                                           text-indent: -81pt; }
 TermPronunciation,                      { margin-left: 125pt;
