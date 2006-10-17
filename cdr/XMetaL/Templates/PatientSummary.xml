@@ -164,19 +164,27 @@
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
    <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. <Comment>[Use for childhood treatment summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
-   <Para>Your child's treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer.  The pediatric oncologist may refer you to other pediatric doctors who have experience and expertise in treating children with x cancer and who specialize in certain areas of medicine.  These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
+   <Para>Treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer. The pediatric oncologist works with other pediatric doctors who are experts in treating children with x cancer and who specialize in certain areas of medicine. These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
    <ItemizedList Style="bullet">
-    <ListItem>Neurosurgeon.</ListItem>
-    <ListItem>Neurologist.</ListItem>
-    <ListItem>Neuropathologist.</ListItem>
-    <ListItem>Neuroradiologist.</ListItem>
-    <ListItem>Rehabilitation specialist.</ListItem>
+    <ListItem>Pediatric surgeon.</ListItem>
+    <ListItem>Pediatric hematologist.</ListItem>
     <ListItem>Radiation oncologist.</ListItem>
-    <ListItem>Medical oncologist.</ListItem>
+    <ListItem>Neurologist.</ListItem>
     <ListItem>Endocrinologist.</ListItem>
+    <ListItem>Pediatric nurse specialist.</ListItem>
+    <ListItem>Rehabilitation specialist.</ListItem>
     <ListItem>Psychologist.</ListItem>
     <ListItem>Social Worker.</ListItem>
+    <ListItem>Geneticist.</ListItem>
    </ItemizedList>
+  </SummarySection>
+  <SummarySection>
+   <KeyPoint>Some cancer treatments cause side effects months or years 
+             after treatment has ended. 
+    <Comment>[Use for childhood treatment summaries.]</Comment>
+   </KeyPoint>
+   <Para>Some cancer treatments cause side effects that continue or appear months or years after cancer treatment has ended. These are called late effects. Late effects of cancer treatment may include physical problems; changes in mood, feelings, thinking, learning or memory; and second cancers (new types of cancer.) Some late effects may be treated or controlled. It is important to talk with your child's doctors about the possible late effects caused by some treatments.  (See the PDQ summary on <SummaryRef cdr:href="CDR0000373791">Late Effects of Treatment for Childhood Cancer</SummaryRef> for more information).
+   </Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -190,11 +198,15 @@
    </SummarySection>
    <SummarySection>
     <KeyPoint>Radiation therapy</KeyPoint>
-    <Para><StandardWording>Radiation therapy is a cancer treatment that uses high-energy x-rays or other types of radiation to kill cancer cells. There are two types of radiation therapy.  External radiation therapy uses a machine outside the body to send radiation toward the cancer.  Internal radiation therapy uses a radioactive substance sealed in needles, seeds, wires, or catheters that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and stage of the cancer being treated.</StandardWording></Para>
+    <Para>
+     <StandardWording>Radiation therapy is a cancer treatment that uses high-energy x-rays or other types of radiation to kill cancer cells or keep them from growing. There are two types of radiation therapy.  External radiation therapy uses a machine outside the body to send radiation toward the cancer.  Internal radiation therapy uses a radioactive substance sealed in needles, seeds, wires, or catheters that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and stage of the cancer being treated.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Chemotherapy</KeyPoint>
-    <Para><StandardWording>Chemotherapy is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping the cells from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (systemic chemotherapy). When chemotherapy is placed directly into the spinal column, an organ, or a body cavity such as the abdomen, the drugs mainly affect cancer cells in those areas (regional chemotherapy).  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</StandardWording></Para>
+    <Para>
+     <StandardWording>Chemotherapy is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping them from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (systemic chemotherapy).  When chemotherapy is placed directly into the spinal column, an organ, or a body cavity such as the abdomen, the drugs mainly affect cancer cells in those areas (regional chemotherapy).  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Hormone therapy</KeyPoint>
