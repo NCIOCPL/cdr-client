@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.14 2006-04-03 20:29:44 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.15 2006-11-27 14:59:08 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.14  2006/04/03 20:29:44  venglisc
+ * Added missing space between Date element and flag. (Bug 2033)
+ *
  * Revision 1.13  2005/08/10 18:33:43  venglisc
  * Modified the list to display as bulleted list if no Style attribute has
  * been entered. (Bug 1789)
@@ -218,6 +221,11 @@ Superscript,
 
 DocId:before                    { content: "Doc ID: "; }
 DocTitle:before                 { content: "Doc Title: "; }
+
+/* Added at Lakshmi's request (#2730) */
+CdrDocCtl[blocked='Y'] DocId:after { content: " [BLOCKED]"; }
+CdrDocCtl[blocked='Y'] DocId       { color: red; }
+
 
 /* Contact Detail  */
 
