@@ -239,6 +239,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>Gender</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Gene</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -1056,6 +1062,10 @@
     <Template>
       <Name>EntryDate</Name>
       <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>Gender</Name>
+      <MiniTemplate><![CDATA[<Gender><?xm-replace_text {Optionally select a specified study gender}?></Gender>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>IDString</Name>
