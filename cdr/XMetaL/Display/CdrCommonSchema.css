@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.15 2006-11-27 14:59:08 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.16 2007-01-11 22:52:36 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.15  2006/11/27 14:59:08  bkline
+ * Added visible indication of blocked document (request #2730).
+ *
  * Revision 1.14  2006/04/03 20:29:44  venglisc
  * Added missing space between Date element and flag. (Bug 2033)
  *
@@ -561,6 +564,10 @@ Insertion[RevisionLevel='proposed'] { color: green }
 
 /*       Special case style elements                                       */
 
+ListTitle,
+     { font-weight: bold; 
+       font-style:  italic; }
+      
 
 /***************************************************************************/
 /*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */
