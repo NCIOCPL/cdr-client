@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.150 2006-07-11 20:46:25 venglisc Exp $
+     $Id: Cdr.mcr,v 1.151 2007-01-23 18:58:27 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.150  2006/07/11 20:46:25  venglisc
+     Added Publish Preview button for DrugInfoSummary document type.
+     (Bug 2310)
+
      Revision 1.149  2006/07/06 20:30:55  bkline
      Installed new cloning macros on the appropriate toolbars.
 
@@ -578,6 +582,20 @@
     }
 
     /*
+     * Returns boolean flag indicating whether document has been blocked.
+     */
+    function docIsBlocked() {
+        var doc = Application.ActiveDocument;
+        if (!doc)
+            return false;
+        var nodes = doc.getElementsByTagName("CdrDocCtl");
+        if (nodes.length < 1)
+            return false;
+        var elem = nodes.item(0);
+        return elem.getAttribute('blocked') == 'Y';
+    }
+
+    /*
      * Produce string containing current date as YYYY-MM-DD string.
      */
      function getCurDateString() {
@@ -1037,13 +1055,19 @@
         docType  = Application.NewDocumentType;
         rootElem = docType.name;
 
+        // Add a new attribute for CDR issue #2730.
+        docType.addEnumeratedAttribute("CdrDocCtl", "blocked",
+            "Indicates whether the document has been marked 'Inactive'",
+            9, // ordinary enumeration
+            2, // default value is explicitly specified
+            "N", "N", "Y");
         // Add the Deletion element.
         docType.addElement("Deletion", "Deletion", true , false);
         docType.addAttribute("Deletion", "UserName", "", 0, 0);
         docType.addAttribute("Deletion", "Time", "", 0, 0);
         docType.addEnumeratedAttribute("Deletion", "RevisionLevel",
             "Indicates status of proposed deletion", 9, // ordinary enumeration
-            2, // default value is explicity specified
+            2, // default value is explicitly specified
             "approved", "approved", "proposed", "publish", "rejected");
         docType.addEnumeratedAttribute("Deletion", "Source",
             "Used to tag deletions submitted by an Advisory Board member",
@@ -1086,9 +1110,18 @@
         lang="JScript">
 <![CDATA[
     //Application.Alert("entering On_Document_Open_Complete");
+
+    /* Request #2730
+     */
+    if (!docIsBlocked()) {
+
     Selection.GotoNext(0);
     Selection.GotoNext(0);
     Selection.SelectContainerContents();
+
+    /* } */
+    }
+
     var docProps = ActiveDocument.CustomDocumentProperties;
     docProps.Add("Highlighting", true);
     docProps.Add("ShowOriginal", false);
