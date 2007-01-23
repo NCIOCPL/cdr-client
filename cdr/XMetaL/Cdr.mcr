@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.151 2007-01-23 18:58:27 bkline Exp $
+     $Id: Cdr.mcr,v 1.152 2007-01-23 20:05:41 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.151  2007/01/23 18:58:27  bkline
+     Added support for issue #2730 (show blocked status in XMetaL).
+
      Revision 1.150  2006/07/11 20:46:25  venglisc
      Added Publish Preview button for DrugInfoSummary document type.
      (Bug 2310)
@@ -3171,8 +3174,28 @@
         }
         if (cdrObj == null)
             Application.Alert("You are not logged on to the CDR");
-        else
-            cdrObj.save();
+        else {
+            var answer = true;
+            var docType = ActiveDocument.doctype;
+            // Application.Alert(docType.name);
+            if (docType && docType.name == "InScopeProtocol") {
+                var doc = Application.ActiveDocument;
+                var nodes = doc.getElementsByTagName("Outcome");
+                // for (var node in nodes) {
+                if (nodes.length > 0) {
+                    var elem = nodes.item(0);
+                    var val = getTextContent(elem);
+                    //Application.Alert(val.length);
+                    if (val.length > 255) {
+                        var msg = "Outcome text has " + val.length
+                                + " characters.\nSave anyway?"
+                        answer = Application.Confirm(msg);
+                   }
+                }
+            }
+            if (answer)
+                cdrObj.save();
+        }
     }
     cdrSave();
 
