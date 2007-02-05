@@ -231,6 +231,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>FDAINDInfo</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>FundingInfo</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -289,6 +295,34 @@
     </ElementProperties>
     <ElementProperties>
       <Name>IDType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INDGrantor</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INDNumber</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INDSerialNumber</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>INDSubmissionDate</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -1064,12 +1098,36 @@
       <MiniTemplate><![CDATA[<EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>]]></MiniTemplate>
     </Template>
     <Template>
+      <Name>FDAINDInfo</Name>
+      <MiniTemplate><![CDATA[<FDAINDInfo>
+        <INDGrantor><?xm-replace_text {Enter the INDGrantor (required)}?></INDGrantor>
+        <INDNumber><?xm-replace_text {Enter the INDNumber (required)}?></INDNumber>
+        <INDSubmissionDate><?xm-replace_text {Optionally enter the IND submission date}?></INDSubmissionDate>
+        <INDSerialNumber><?xm-replace_text {Optionally enter the IND serial number}?></INDSerialNumber></FDAINDInfo>]]></MiniTemplate>
+    </Template>
+    <Template>
       <Name>Gender</Name>
       <MiniTemplate><![CDATA[<Gender><?xm-replace_text {Optionally select a specified study gender}?></Gender>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>IDString</Name>
       <MiniTemplate><![CDATA[<IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>INDGrantor</Name>
+      <MiniTemplate><![CDATA[<INDGrantor><?xm-replace_text {Enter the INDGrantor (required)}?></INDGrantor>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>INDNumber</Name>
+      <MiniTemplate><![CDATA[<INDNumber><?xm-replace_text {Enter the INDNumber (required)}?></INDNumber>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>INDSubmissionDate</Name>
+      <MiniTemplate><![CDATA[<INDSubmissionDate><?xm-replace_text {Optionally enter the IND submission date}?></INDSubmissionDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>INDSerialNumber</Name>
+      <MiniTemplate><![CDATA[<INDSerialNumber><?xm-replace_text {Optionally enter the IND serial number}?></INDSerialNumber></FDAINDInfo>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>IRBApproved</Name>
