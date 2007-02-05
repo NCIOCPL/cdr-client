@@ -149,6 +149,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 InScopeProtocol, 
 IRBApproved,
 IRBApprovalForm,
@@ -245,7 +246,8 @@ GenericPersonContact:before     { content: "Generic Person Contact Information";
 GrantContractNo:before          { content: "Grant Contract Number"; }
 INDGrantor:before               { content: "IND Grantor"; }
 INDNumber:before                { content: "IND Number"; }
-INDSerialNumber:before          { content: "IND Serial Number"; }
+INDSerialNumber:before          { content: "IND Serial No"; }
+INDSubmissionDate       :before ( content: "Submission Date"; }
 InScopeProtocol:before          { content: "IN-SCOPE PROTOCOL DOCUMENT";  }
 IRBInfo:before                  { content: "IRB INFO"; }
 IRBApproved:before              { content: "IRB Approved"; }
@@ -395,6 +397,7 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+INDSubmissionDate   :before,
 LeadOrgProtocolID:before,
 PersonTitle:before,
 SourceName:before,
@@ -474,6 +477,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 InScopeProtocol,
 IRBApproved,
 IRBApprovalForm,
@@ -580,6 +584,7 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+INDSubmissionDate           :before,
 IRBInfo,
 IRBApproved:before,
 IRBApprovalForm:before,
@@ -714,6 +719,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 IRBApproved,
 IRBApprovalForm,
 LeadOrganizationID,

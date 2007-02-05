@@ -152,6 +152,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 InScopeProtocol, 
 IRBInfo,
 IRBApproved,
@@ -286,7 +287,7 @@ ExternalSitePIPhone:before
 ExternalSiteContact:before
                 { content: "EXTERNAL SITE CONTACT &: "; }
 FDAINDInfo:before       
-                { content: "FDA IND INFO &"; }
+                { content: "FDA IND INFO & +"; }
 FundingInfo:before
                 { content: "FUNDING INFORMATION &"; }
 GenericPerson:before
@@ -300,7 +301,9 @@ INDGrantor:before
 INDNumber:before            
                 { content: "IND Number *: "; }
 INDSerialNumber:before      
-                { content: "IND Serial Number &: "; }
+                { content: "IND Serial No &: "; }
+INDSubmissionDate:before      
+                { content: "Submission Date &: "; }
 LeadOrganizationID:before
                 { content: "Org Name * @: "; }
 LeadOrgProtocolID:before
@@ -543,6 +546,7 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+INDSubmissionDate:before,
 LeadOrgProtocolID:before,
 PersonTitle:before,
 SourceName:before,
@@ -840,7 +844,10 @@ INDNumber
                               text-indent:  -85.5pt; }
 INDSerialNumber       
                             { margin-left: 130pt; 
-                              text-indent: -125.0pt; }
+                              text-indent: -96.0pt; }
+INDSubmissionDate    
+                            { margin-left: 130pt; 
+                              text-indent: -118.0pt; }
 
 /* Key element for length = PoliticalSubUnit_State */
 PersonTitle,
@@ -1001,6 +1008,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 InScopeProtocol,  
 IRBApprovalForm,
 IRBApproved,
@@ -1115,6 +1123,7 @@ GrantContractNo,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
+INDSubmissionDate,
 IRBApproved,
 IRBApprovalForm,
 IRBInfo,
@@ -1210,6 +1219,7 @@ GrantContractNo:before,
 INDGrantor:before,
 INDNumber:before,
 INDSerialNumber:before,
+INDSubmissionDate:before,
 IRBApproved:before,
 IRBApprovalForm:before,
 IRBInfo,
