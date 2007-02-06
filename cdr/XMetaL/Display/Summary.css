@@ -506,14 +506,21 @@ Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after
 Deletion[RevisionLevel='proposed']>SummarySection:before,
     { text-decoration: line-through; color: green; }
 
-Comment 
+Comment,  
+ResponseToComment, 
     { font-style: italic; 
       background-color: green; 
       color: white; }
+
 Comment:before 
     { color: white; 
       background-color: green; 
       content: "Comment: "; }
+
+ResponseToComment:before 
+    { color: white; 
+      background-color: green; 
+      content: "Response: "; }
 
 SummarySection>Comment
     { color: white; 
