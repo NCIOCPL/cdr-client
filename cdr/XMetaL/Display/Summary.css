@@ -507,6 +507,10 @@ Deletion[RevisionLevel='proposed']>SummarySection:before,
     { text-decoration: line-through; color: green; }
 
 Comment,  
+    { font-style: italic; 
+      background-color: green; 
+      color: white; }
+
 ResponseToComment, 
     { font-style: italic; 
       background-color: green; 
@@ -644,7 +648,11 @@ TranslationOf,
 ReplacementFor,
     { margin-top: 4pt; }
 
-Insertion[RevisionLevel='proposed'] { color: green; }
-Deletion[RevisionLevel='proposed'] { color: green; }
-Insertion[RevisionLevel='proposed'] > * { color: green; }
-Deletion[RevisionLevel='proposed'] > * { color: green; }
+Insertion[RevisionLevel='proposed']                     { color: green; }
+Deletion[RevisionLevel='proposed']                      { color: green; }
+Insertion[RevisionLevel='proposed'] > Comment           { color: white; }
+Insertion[RevisionLevel='proposed'] > ResponseToComment { color: white; }
+Deletion[RevisionLevel='proposed']  > Comment           { color: white; }
+Deletion[RevisionLevel='proposed']  > ResponseToComment { color: white; }
+Insertion[RevisionLevel='proposed'] > *                 { color: green; }
+Deletion[RevisionLevel='proposed']  > *                 { color: green; }
