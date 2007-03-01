@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.152 2007-01-23 20:05:41 bkline Exp $
+     $Id: Cdr.mcr,v 1.153 2007-03-01 18:52:46 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.152  2007/01/23 20:05:41  bkline
+     Added macro to check (and warn) for over-long Outcome elements.
+
      Revision 1.151  2007/01/23 18:58:27  bkline
      Added support for issue #2730 (show blocked status in XMetaL).
 
@@ -6239,7 +6242,7 @@
 
 <MACRO name="Verify Specialties" 
        lang="JScript" >
-    cdrObj.showPage("http://www.abms.org/");
+    cdrObj.showPage("https://specialistsonline.abms.org/");
 </MACRO>
 
 <MACRO name="Back Out Rejected Markup" 
