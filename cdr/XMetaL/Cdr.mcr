@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.153 2007-03-01 18:52:46 bkline Exp $
+     $Id: Cdr.mcr,v 1.154 2007-03-06 18:01:44 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.153  2007/03/01 18:52:46  bkline
+     Changed link from http://www.abms.org to
+     https://specialistsonline.abms.org/.
+
      Revision 1.152  2007/01/23 20:05:41  bkline
      Added macro to check (and warn) for over-long Outcome elements.
 
@@ -915,6 +919,31 @@
         cdrObj.showPage(url);
     }
 
+    function insertDiagnoses(elemString) {
+
+        // Move to the desired location.
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.MoveToElement('Diagnosis', false)) {
+            if (!rng.MoveToElement('Gender', false)) {
+                if (!rng.MoveToElement('AgeText', false)) {
+                    Application.Alert('Unable to find location for ' +
+                                      'insertion.');
+                    return false;
+                }
+            }
+        }
+        rng.SelectElement();
+        rng.Collapse(0);
+        if (!rng.FindInsertLocation("Diagnosis", true)) {
+            Application.Alert("Unable to insert Diagnosis terms here.");
+            return false;
+        }
+        rng.PasteString(elemString);
+        rng.Select();
+        return true;
+    }
+
   ]]>
 </MACRO>
 
@@ -1226,6 +1255,12 @@
             break;
         }
     }
+    //Application.AppendMacro("submenu test", "Test Submenu");
+    if (docType.name == "InScopeProtocol" || docType.name == "CTGovProtocol" ||
+        docType.name == "ScientificProtocolInfo") {
+        if (!cdrDocReadOnly())
+            addCdrSubmenu();
+    }
    
   ]]>
 </MACRO>
@@ -1280,6 +1315,46 @@
         b.FaceId = faceId;
         b.OnAction = cmd;
         */
+    }
+
+    function addCdrSubmenu() {
+        var acmControls = Application.ActiveContextMenu.Controls;
+        var submenu = acmControls.Add(sqcbcTypePopup);
+        submenu.Caption = "Insert Canned Diagnosis Set";
+        submenu.BeginGroup = false;
+        submenu.FaceId  = Application.MakeFaceId("Databases (Custom)", 4, 10);
+        var menuItems = new Array(
+            new CdrCmdItem("&Head and Neck",
+                           "Insert Head And Neck Diagnoses",
+                           "Head and Neck",
+                           "Add canned list of Head and Neck diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("&Squamous Cell Carcinoma of the Head and Neck",
+                           "Insert Squamous Cell Carcinoma Head And Neck " +
+                           "Diagnoses",
+                           "Squamous Cell Carcinoma of the Head and Neck",
+                           "Add canned list of diagnoses for Squamous Cell " +
+                           "Carcinoma of the Head and Neck",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("&Advanced Head and Neck",
+                           "Insert Advanced Head And Neck Diagnoses",
+                           "Advanced Head and Neck",
+                           "Add canned list of diagnoses for " +
+                           "Advanced Head and Neck",
+                           "Databases (Custom)", 4, 10,
+                           false)
+        );
+
+        //menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
+        //menu.Caption = "Test Submenu";
+
+        // Add the menu items.
+        var controls = submenu.Controls;
+        for (var i = 0; i < menuItems.length; ++i) {
+            addCdrMenuItem(controls, menuItems[i]);
+        }
     }
 
     /*
@@ -7000,5 +7075,262 @@
 <MACRO name="SC half"    lang="JScript">Selection.TypeText("&amp;#x00BD;");</MACRO>
 <MACRO name="SC 3quart"  lang="JScript">Selection.TypeText("&amp;#x00BE;");</MACRO>
 <MACRO name="SC nbsp"    lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
+
+<MACRO name="Insert Head And Neck Diagnoses" 
+       lang="JScript" >
+  <![CDATA[
+    function insertHeadAndNeckDiagnoses() {
+
+        // Create a string for the diagnosis link elements.
+        var elemString = "\n" +
+            "<Diagnosis cdr:ref='CDR0000038936'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040741'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040742'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038935'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040746'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040747'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040748'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040749'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039407'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040699'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040696'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040698'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040695'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040697'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040704'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040701'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040703'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040700'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040702'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040709'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040706'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040708'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040714'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040711'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040713'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040719'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040716'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040718'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038933'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040732'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040731'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040734'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040733'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040736'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040738'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040740'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038934'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040722'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040720'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040724'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040723'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040726'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038932'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040760'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040758'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040759'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040757'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040764'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040762'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040763'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040761'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040768'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040766'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040767'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040772'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040770'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040771'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040776'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000004077'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040775'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040042'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040043'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040048'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040046'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040047'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040044'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040040'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040038'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038947'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038948'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
+            "";
+        insertDiagnoses(elemString);
+    }
+    insertHeadAndNeckDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Squamous Cell Carcinoma Head And Neck Diagnoses" 
+       lang="JScript" >
+  <![CDATA[
+    function insertSquamousCellCarcinomaHeadAndNeckDiagnoses() {
+
+        // Create a string for the diagnosis link elements.
+        var elemString = "\n" +
+            "<Diagnosis cdr:ref='CDR0000040741'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040742'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040746'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040747'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040748'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040749'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040695'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040700'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040697'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040702'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040731'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040733'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040720'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040723'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040757'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040761'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038947'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038948'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
+            "";
+        insertDiagnoses(elemString);
+    }
+    insertSquamousCellCarcinomaHeadAndNeckDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Advanced Head And Neck Diagnoses" 
+       lang="JScript" >
+  <![CDATA[
+    function insertAdvancedHeadAndNeckDiagnoses() {
+
+        // Create a string for the diagnosis link elements.
+        var elemString = "\n" +
+            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040709'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040706'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040708'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040714'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040711'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040713'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040719'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040716'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040718'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040736'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040738'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040740'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040726'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040768'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040766'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040767'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040772'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040770'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040771'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040776'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040774'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040775'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040042'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040043'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040048'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040046'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040047'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040044'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040040'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040038'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
+            "";
+        insertDiagnoses(elemString);
+    }
+    insertAdvancedHeadAndNeckDiagnoses();
+  ]]>
+</MACRO>
 
 </MACROS>
