@@ -93,6 +93,7 @@
   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
  </ProtocolSpecialCategory> 
  <ProtocolAdminInfo>
+  <StartDate><?xm-replace_text {Optionally enter the protocol start date}?></StartDate>
   <CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated during validation, based on organization statuses (required)} ?></CurrentProtocolStatus> 
   <ProtocolLeadOrg Group="Yes"> 
    <LeadOrganizationID><?xm-replace_text {Link to the protocol's lead organization (required)?></LeadOrganizationID>
@@ -108,6 +109,10 @@
     </CurrentOrgStatus> 
    </LeadOrgProtocolStatuses> 
 		
+   <LeadOrgPersonnel>
+    <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
+    <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+   </LeadOrgPersonnel>
    <LeadOrgPersonnel>
     <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
     <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
@@ -128,11 +133,6 @@
    </ProtocolSites> 
    <MailAbstractTo><?xm-replace_text {Enter the cdr:id attribute value of any Person to identify NCI's contact for protocol updates} ?></MailAbstractTo>
   </ProtocolLeadOrg> 
-  <DatedAction> 
-   <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
-   <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-  </DatedAction> 
  </ProtocolAdminInfo> 
  <ProtocolProcessingDetails> 
   <ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required)} ?></ProcessingStatus>
@@ -140,5 +140,4 @@
   <ProcessingDate><?xm-replace_text {Enter the effective date of this status} ?></ProcessingDate>
   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
  </ProtocolProcessingDetails> 
- <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
 </InScopeProtocol>
