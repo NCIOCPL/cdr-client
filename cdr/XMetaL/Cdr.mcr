@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.154 2007-03-06 18:01:44 bkline Exp $
+     $Id: Cdr.mcr,v 1.155 2007-04-24 21:04:48 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.154  2007/03/06 18:01:44  bkline
+     Added new Diagnosis insertion macros.
+
      Revision 1.153  2007/03/01 18:52:46  bkline
      Changed link from http://www.abms.org to
      https://specialistsonline.abms.org/.
@@ -1171,6 +1174,65 @@
         lang="JScript">
   <![CDATA[
  
+    function addCdrSubmenu() {
+        var acmControls = Application.ActiveContextMenu.Controls;
+        var submenu = acmControls.Add(sqcbcTypePopup);
+        submenu.Caption = "Insert Canned Diagnosis Set";
+        submenu.BeginGroup = true;
+        submenu.FaceId  = Application.MakeFaceId("Databases (Custom)", 4, 10);
+        var menuItems = new Array(
+            new CdrCmdItem("&Advanced Head and Neck",
+                           "Insert Advanced Head And Neck Diagnoses",
+                           "Advanced Head and Neck",
+                           "Add canned list of diagnoses for " +
+                           "Advanced Head and Neck",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("Advanced &Leukemia",
+                           "Insert ALK Diagnoses",
+                           "ALK",
+                           "Insert Advanced Leukemia Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("Advanced L&ymphomas",
+                           "Insert AL Diagnoses",
+                           "AL",
+                           "Insert Advanced Lymphoma Diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("All &Head and Neck",
+                           "Insert Head And Neck Diagnoses",
+                           "Head and Neck",
+                           "Add canned list of Head and Neck diagnoses",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("&Bone Marrow Transplant",
+                           "Insert BMT Diagnoses",
+                           "BMT",
+                           "Insert Diagnoses Eligible for Bone Marrow " +
+                           "Transplants",
+                           "Databases (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem("&Squamous Cell Carcinoma of the Head and Neck",
+                           "Insert Squamous Cell Carcinoma Head And Neck " +
+                           "Diagnoses",
+                           "Squamous Cell Carcinoma of the Head and Neck",
+                           "Add canned list of diagnoses for Squamous Cell " +
+                           "Carcinoma of the Head and Neck",
+                           "Databases (Custom)", 4, 10,
+                           false)
+        );
+
+        //menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
+        //menu.Caption = "Test Submenu";
+
+        // Add the menu items.
+        var controls = submenu.Controls;
+        for (var i = 0; i < menuItems.length; ++i) {
+            addCdrMenuItem(controls, menuItems[i]);
+        }
+    }
+
     /*
      * Adds a menu option to the popup context menu for custom editing
      * of a link element.
@@ -1259,6 +1321,7 @@
     if (docType.name == "InScopeProtocol" || docType.name == "CTGovProtocol" ||
         docType.name == "ScientificProtocolInfo") {
         if (!cdrDocReadOnly())
+            Application.AppendMacro("-", "");
             addCdrSubmenu();
     }
    
@@ -1315,46 +1378,6 @@
         b.FaceId = faceId;
         b.OnAction = cmd;
         */
-    }
-
-    function addCdrSubmenu() {
-        var acmControls = Application.ActiveContextMenu.Controls;
-        var submenu = acmControls.Add(sqcbcTypePopup);
-        submenu.Caption = "Insert Canned Diagnosis Set";
-        submenu.BeginGroup = false;
-        submenu.FaceId  = Application.MakeFaceId("Databases (Custom)", 4, 10);
-        var menuItems = new Array(
-            new CdrCmdItem("&Head and Neck",
-                           "Insert Head And Neck Diagnoses",
-                           "Head and Neck",
-                           "Add canned list of Head and Neck diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("&Squamous Cell Carcinoma of the Head and Neck",
-                           "Insert Squamous Cell Carcinoma Head And Neck " +
-                           "Diagnoses",
-                           "Squamous Cell Carcinoma of the Head and Neck",
-                           "Add canned list of diagnoses for Squamous Cell " +
-                           "Carcinoma of the Head and Neck",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("&Advanced Head and Neck",
-                           "Insert Advanced Head And Neck Diagnoses",
-                           "Advanced Head and Neck",
-                           "Add canned list of diagnoses for " +
-                           "Advanced Head and Neck",
-                           "Databases (Custom)", 4, 10,
-                           false)
-        );
-
-        //menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
-        //menu.Caption = "Test Submenu";
-
-        // Add the menu items.
-        var controls = submenu.Controls;
-        for (var i = 0; i < menuItems.length; ++i) {
-            addCdrMenuItem(controls, menuItems[i]);
-        }
     }
 
     /*
@@ -2451,25 +2474,6 @@
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert BMT Diagnoses",
-                           "BMT",
-                           "Insert Diagnoses Eligible for Bone Marrow " +
-                           "Transplants",
-                           "Databases (Custom)", 4, 10,
-                           true),
-            new CdrCmdItem(null,
-                           "Insert AL Diagnoses",
-                           "AL",
-                           "Insert Advanced Lymphoma Diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert ALK Diagnoses",
-                           "ALK",
-                           "Insert Advanced Leukemia Diagnoses",
-                           "Databases (Custom)", 4, 10,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -7169,7 +7173,7 @@
             "<Diagnosis cdr:ref='CDR0000040771'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040776'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000004077'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040774'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040775'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040042'/>\n" +
