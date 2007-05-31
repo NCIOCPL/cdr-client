@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.155 2007-04-24 21:04:48 bkline Exp $
+     $Id: Cdr.mcr,v 1.156 2007-05-31 19:35:59 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.155  2007/04/24 21:04:48  bkline
+     Reordered diagnosis macros; fixed typo in one of the macros.
+
      Revision 1.154  2007/03/06 18:01:44  bkline
      Added new Diagnosis insertion macros.
 
@@ -1324,7 +1327,9 @@
             Application.AppendMacro("-", "");
             addCdrSubmenu();
     }
-   
+    if (rng.FindInsertLocation("Comment")) {
+        Application.AppendMacro("Insert Comment", "Insert Comment");
+    }
   ]]>
 </MACRO>
 
@@ -6111,7 +6116,7 @@
                 rng.selectNodeContents(statusNode);
                 var oldSetting = rng.WritePermittedContainer;
                 rng.WritePermittedContainer = true;
-                rng.pasteString(status);
+                rng.PasteString(status);
                 rng.WritePermittedContainer = oldSetting;
                 numStatuses += 1;
             }
@@ -6127,7 +6132,7 @@
                 rng.selectNodeContents(statusNode);
                 var oldSetting = rng.WritePermittedContainer;
                 rng.WritePermittedContainer = true;
-                rng.pasteString(status);
+                rng.PasteString(status);
                 rng.WritePermittedContainer = oldSetting;
                 numStatuses += 1;
             }
@@ -6996,8 +7001,7 @@
 </MACRO>
 
 <MACRO name="Make Citation Supplementary Info Doc"
-       lang="JScript"
-       key="Alt+Z">
+       lang="JScript">
   <![CDATA[
     function stripCdrIdAttrs(elemNode) {
         if (elemNode.hasAttribute("cdr:id"))
@@ -7049,6 +7053,34 @@
         insertCitationTitle(doc, title);
     }
     makeCitationSupplementaryInfoDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Comment"
+       lang="JScript"
+       key="Alt+Z">
+  <![CDATA[
+    function insertComment() {
+        var rng = ActiveDocument.Range;
+        // rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("Comment")) {
+            Application.Alert("Can't insert Comment element " +
+                              "under current position.");
+            return; 
+        }
+        var newElem = "<Comment user='"
+                    + CdrUserName
+                    + "' date='"
+                    + getCurDateString()
+                    + "'><?xm-replace_text {Your comment here} ?></Comment>";
+        rng.PasteString(newElem);
+        rng.MoveToElement("Comment", false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+    }
+    insertComment();
   ]]>
 </MACRO>
 
