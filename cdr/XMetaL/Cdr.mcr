@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.156 2007-05-31 19:35:59 bkline Exp $
+     $Id: Cdr.mcr,v 1.157 2007-05-31 20:43:35 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.156  2007/05/31 19:35:59  bkline
+     Added new "Insert Comment" macro (request #3138).
+
      Revision 1.155  2007/04/24 21:04:48  bkline
      Reordered diagnosis macros; fixed typo in one of the macros.
 
@@ -7070,7 +7073,7 @@
         }
         var newElem = "<Comment user='"
                     + CdrUserName
-                    + "' date='"
+                    + "' audience='Internal' date='"
                     + getCurDateString()
                     + "'><?xm-replace_text {Your comment here} ?></Comment>";
         rng.PasteString(newElem);
