@@ -1,0 +1,137 @@
+/*************************************************************************/
+/*      GlossaryTerm_structure.css                                       */
+/*                                                                       */
+/*      9/14/01   by ebator                                              */
+/*      Based on 9/5/01 schema                                           */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
+
+/* top-level elements */
+
+$DOCUMENT > *
+    { margin-left: 0px;  }
+
+$PROCINS
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
+
+GlossaryTermName,
+    { background-color: white;
+      text-decoration: none;
+      color: black;  }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Comment,
+DateLastModified,
+GlossaryTerm,
+PronunciationResource,
+TermName,
+TermPronunciation,
+    { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Comment                    :before { content: "Comments"; }
+DateLastModified           :before { content: "Last Modified"; }
+GlossaryTermConcept        :before { content: "Glossary Concept"; }
+PronunciationResource      :before { content: "Pronunciation Resource"; }
+TermName                   :before { content: "TERM NAME"; }
+TermNameString             :before { content: "Term String "; }
+TermNameSourceVerification :before { content: "Source Verification"; }
+TermPronunciation          :before { content: "Term Pronunciation "; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+GlossaryTerm:before,
+    { color: black; }
+     
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+Comment:before,
+TermName:before,
+TermPronunciation:before,
+    { font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
+TermSource:before,
+TermStatus:before,
+TermType:before,
+    { font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
+
+Comment,
+DateLastModified,
+GlossaryTermConcept,
+PronunciationResource,
+TermNameString,
+TermNameSourceVerification,
+TermPronunciation,
+    { text-indent: 0pt; }
+
+
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
+Comment,
+DateLastModified,
+GlossaryTermConcept,
+PronunciationResource,
+TermNameString,
+TermNameSourceVerification,
+TermPronunciation,
+    { color: white;
+      background-color: white; }
+
+
+Comment                    :before,
+DateLastModified           :before,
+GlossaryTermConcept        :before,
+PronunciationResource      :before,
+TermName                   :before,
+TermNameString             :before,
+TermNameSourceVerification :before,
+TermPronunciation          :before,
+    { background-color: white; }

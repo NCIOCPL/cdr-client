@@ -1,0 +1,164 @@
+/*************************************************************************/
+/*      GlossaryTermName.css                                             */
+/*                                                                       */
+/*      v. 1.0                                                           */
+/*      9/14/01   by ebator                                              */
+/*      Based on 9/5/01 schema                                           */
+/*                                                                       */
+/*************************************************************************/
+
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      color: black;
+      margin-top: 5px;
+      margin-left: 5px; }
+
+$COMMENT
+    { display: block;
+      color: purple;
+      white-space: pre; }
+
+$PROCINS
+    { color: blue;
+      font-weight: normal;
+      background-color: white; }
+
+GlossaryTermName,
+    { background-color: #CCCCFF;
+      text-decoration: none;
+      color: black; }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Comment,
+DateLastModified,
+GlossaryTermConcept,
+PronunciationResource,
+TermName,
+TermNameString,
+TermNameSourceVerification,
+TermPronunciation,
+     { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+Comment                    :before { content: "Comments & +: "; }
+DateLastModified           :before { content: "Last Modified &: "; }
+GlossaryTermConcept        :before { content: "Glossary Concept * @:"; }
+PronunciationResource      :before { content: "Pron Resource & +: "; }
+TermName                   :before { content: "TERM NAME * + @"; }
+TermNameString             :before { content: "Term String *: "; }
+TermNameSourceVerification :before { content: "Source Verification &: "; }
+TermPronunciation          :before { content: "Pronunciation &: "; }
+
+
+/***************************************************************************/
+/*                     SECTION TITLES AND BORDERS                          */
+/***************************************************************************/
+DateLastModified,
+DateLastReviewed,
+     { margin-top: 1em }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+Comment                    :before,
+DateLastModified           :before,
+GlossaryTermConcept        :before,
+PronunciationResource      :before,
+TermName                   :before,
+TermNameString             :before,
+TermNameSourceVerification :before,
+TermPronunciation          :before,
+     { font-weight: bold;
+       color: black; }
+
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Each tag is manually positioned to right-align                          */
+
+/* Key element for length = SpanishTermName                       */
+
+Comment,                                { margin-left: 130pt;
+                                          text-indent: -92pt; }
+GlossaryTermConcept,                    { margin-left: 130pt;
+                                          text-indent: -130.5pt; }
+PronunciationResource,                  { margin-left: 130pt;
+                                          text-indent: -116.5pt; }
+TermNameString,                         { margin-left: 130pt;
+                                          text-indent: -82.5pt; }
+TermNameSourceVerification,             { margin-left: 130pt;
+                                          text-indent: -129pt; }
+TermPronunciation,                      { margin-left: 130pt;
+                                          text-indent: -101pt; }
+TermSource,                             { margin-left: 130pt;
+                                          text-indent: -89pt; }
+TermType,                               { margin-left: 130pt;
+                                          text-indent: -86pt; }
+DateLastModified,                       { margin-left: 130pt;
+                                          text-indent: -97pt; }
+
+
+/* Section Heading Margins                                 */
+/***************************************************************************/
+/*                              MARGINS                                    */
+/***************************************************************************/
+GlossaryTermConcept,
+TermName,
+     { margin-top: 1em; }
+
+
+/* Margin-bottom to simulate a text box                                    */
+
+Comment,
+DateLastModified,
+GlossaryTermConcept,
+PronunciationResource,
+TermNameString,
+TermNameSourceVerification,
+TermPronunciation,
+     { margin-bottom: 4pt; }
+
+
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+Comment,
+DateLastModified,
+GlossaryTermConcept,
+PronunciationResource,
+TermPronunciation,
+TermNameSourceVerification,
+TermNameString,
+     { background-color: white; }
+
+
+Comment                    :before,
+DateLastModified           :before,
+GlossaryTermConcept        :before,
+PronunciationResource      :before,
+TermName                   :before,
+TermPronunciation          :before,
+TermNameSourceVerification :before,
+TermNameString             :before,
+     { background-color: #CCCCFF; }  /* light blue */
