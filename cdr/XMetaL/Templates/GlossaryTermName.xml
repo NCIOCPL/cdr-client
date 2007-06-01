@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE GlossaryTermName SYSTEM "GlossaryTermName.dtd">
+<GlossaryTermName xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId>
+   <?xm-replace_text {The document ID will be assigned automatically} ?>
+  </DocId>
+  <DocTitle>
+   <?xm-replace_text {The document title will be constructed automatically} ?>
+  </DocTitle>
+ </CdrDocCtl> 
+ <TermName>
+  <TermNameString>
+   <?xm-replace_text {Enter a term name (required)}?>
+  </TermNameString>
+  <TermPronunciation>
+   <?xm-replace_text {Optionally enter the pronunciation}?>
+  </TermPronunciation>
+  <PronunciationResource>
+   <?xm-replace_text {Optionally enter the pronunciation resource}?>
+  </PronunciationResource>
+  <TermNameSourceVerification>
+   <?xm-replace_text {Optionally enter the term name source verification}?>
+  </TermNameSourceVerification>
+  <Comment>
+   <?xm-replace_text {Optionally enter a comment}?>
+  </Comment>
+  <DateLastModified>
+   <?xm-replace_text {Optionally enter the modification date}?>
+  </DateLastModified>
+  <GlossaryTermConcept>
+   <?xm-replace_text {Enter a glossary Term concept (required)}?>
+  </GlossaryTermConcept>
+ </TermName>
+</GlossaryTermName>
