@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.157 2007-05-31 20:43:35 bkline Exp $
+     $Id: Cdr.mcr,v 1.158 2007-06-15 23:07:36 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.157  2007/05/31 20:43:35  bkline
+     Added audience attribute for new Comment macro.
+
      Revision 1.156  2007/05/31 19:35:59  bkline
      Added new "Insert Comment" macro (request #3138).
 
@@ -6749,7 +6752,6 @@
             "<Diagnosis cdr:ref='CDR0000037811'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040780'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038501'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040442'/>\n" +
             "<Diagnosis cdr:ref='CDR0000039077'/>\n" +
             "<Diagnosis cdr:ref='CDR0000039078'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040078'/>\n";
@@ -7188,7 +7190,7 @@
             "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
             "<Diagnosis cdr:ref='CDR0000038932'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040760'/>\n" +
@@ -7339,7 +7341,7 @@
             "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
+            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040768'/>\n" +
             "<Diagnosis cdr:ref='CDR0000040766'/>\n" +
