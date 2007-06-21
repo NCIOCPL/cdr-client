@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.158 2007-06-15 23:07:36 bkline Exp $
+     $Id: Cdr.mcr,v 1.159 2007-06-21 23:46:08 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.158  2007/06/15 23:07:36  bkline
+     Tweaks to diagnosis macros at Sheri's request (#3333).
+
      Revision 1.157  2007/05/31 20:43:35  bkline
      Added audience attribute for new Comment macro.
 
@@ -2685,6 +2688,50 @@
     }
 
 
+    function addCountryToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                      // Label.
+                           "Country QC Report",       // Macro.
+                           "QC Report",               // Tooltip.
+                           "Country QC Report",       // Description
+                           "CDR", 3, 4,               // Icon set, row, col.
+                           false)                     // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Country"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Drug Info toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        try {
+            cmdBar = cmdBars.add("CDR Country", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Country toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Country"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+
     function addCitationToolbar() {
 
         var buttons = new Array(
@@ -3139,6 +3186,7 @@
     addDrugInfoToolbar();
     addCitationToolbar();
     addMiscToolbar();
+    addCountryToolbar();
     addMailerToolbar();
     addCTGovToolbar();
     addPDQBoardMemberInfoToolbar();
@@ -5527,6 +5575,28 @@
        lang="JScript">
   <![CDATA[
     Application.Alert("Stub for Reset Contact Information Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Country QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId
+                + "&Filter=name:Country QC Report Filter";
+        cdrObj.showPage(url);
+    }
+    qcReport();
   ]]>
 </MACRO>
 
