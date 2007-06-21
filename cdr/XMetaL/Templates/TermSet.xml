@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE TermSet SYSTEM "TermSet.dtd">
+<Citation xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+ </CdrDocCtl> 
+ <TermSetName><?xm-replace_text {Enter set name (required)} ?></TermSetName>
+ <TermSetType><?xm-replace_text {Select set type (required)} ?></TermSetType>
+ <TermSetMember><?xm-replace_text {Link to Term document (optional)} ?></TermSetMember>
+ <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+</TermSet>
