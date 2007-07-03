@@ -57,6 +57,8 @@ Manufacturer,
 Title,
 SummarySection,
 SummarySection>Para,
+SummarySection>ItemizedList,
+SummarySection>OrderedList,
 ProcessingStatus,
 RefDescription,
 RefLink,
@@ -196,6 +198,12 @@ Manufacturer,
 SummarySection>Para,
                         { margin-left: 130pt; }
 
+SummarySection>ItemizedList,
+                        { margin-left: 130pt; }
+
+SummarySection>OrderedList,
+                        { margin-left: 130pt; }
+
 ProcessingStatus,
                         { margin-left: 130pt;
                           text-indent: -125.5pt; }
@@ -281,6 +289,8 @@ GlossaryLink,
 Manufacturer,
 Title,
 Para,
+ItemizedList,
+OrderedList,
 ProcessingStatus,
 RefDescription,
 RefLink,
