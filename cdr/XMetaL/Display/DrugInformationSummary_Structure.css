@@ -47,7 +47,7 @@ DrugInformationSummary,
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 Audience,
-Comment,
+DrugInformationSummary>Comment,
 DateLastModified,
 Description,
 Diagnosis,
@@ -77,7 +77,7 @@ URL,
 /***************************************************************************/ 
 AltTitle                 :before, { content: "Alternate Title"; }
 Audience                 :before, { content: "Audience"; }
-Comment                  :before, { content: "Comments"; }
+DrugInformationSummary>Comment :before, { content: "Comments"; }
 DateLastModified         :before, { content: "Date Last Modified"; }
 Description              :before, { content: "Description"; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA"; }
