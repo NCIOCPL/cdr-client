@@ -40,7 +40,7 @@ DrugInformationSummary,
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 Audience,
-Comment,
+DrugInformationSummary>Comment,
 DateLastModified,
 Description,
 DrugInfoMetaData,
@@ -80,7 +80,7 @@ URL,
 
 
 Audience                 :before, { content: "Audience *: "; }
-Comment                  :before, { content: "Comments &: "; }
+DrugInformationSummary>Comment :before, { content: "Comments &: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
@@ -147,6 +147,14 @@ URL                      :before,
       color: black;  }
 
 
+Para>Comment             :before 
+   { color: white; 
+     background-color: green; 
+     content: "Comment: "; }
+Para>Comment,  
+    { font-style: italic; 
+      background-color: green; 
+      color: white; }
 
 /***************************************************************************/ 
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
