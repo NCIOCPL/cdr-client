@@ -1,0 +1,150 @@
+﻿<?xml version="1.0"?>
+<!-- Created by XMetaL style generator. (c)2004 Blast Radius. All rights reserved. -->
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions Version="2.0">
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name ns="">CdrDocCtl</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">Comment</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DateLastModified</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DocId</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">DocTitle</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">GlossaryTermConcept</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">GlossaryTermName</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">PronunciationResource</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermName</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermNameSourceVerification</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermNameStatus</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermNameStatusDate</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermNameString</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TermPronunciation</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+  </ElementPropertiesList>
+  <Templates>
+    <Template>
+      <Name ns="">DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text Type new DocTitle here ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermPronunciation</Name>
+      <MiniTemplate><![CDATA[<TermPronunciation><?xm-replace_text {
+           Optionally enter the pronunciation
+           ?></TermPronunciation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">PronunciationResource</Name>
+      <MiniTemplate><![CDATA[<PronunciationResource><?xm-replace_text {
+           Optionally enter the pronunciation resource
+           ?></PronunciationResource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermNameSourceVerification</Name>
+      <MiniTemplate><![CDATA[<TermNameSourceVerification><?xm-replace_text {
+           Optionally enter the term name source verification
+           ?></TermNameSourceVerification>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">Comment</Name>
+      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+           Optionally enter a comment
+           ?></Comment>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DateLastModified</Name>
+      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
+           Optionally enter the last modification date
+           ?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">GlossaryTermConcept</Name>
+      <MiniTemplate><![CDATA[<GlossaryTermConcept><?xm-replace_text {
+           Enter a glossary Term concept (required)
+           ?></GlossaryTermConcept>]]></MiniTemplate>
+    </Template>
+  </Templates>
+</DTDExtensions>
