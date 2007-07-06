@@ -2,95 +2,51 @@
 <!DOCTYPE GlossaryTermConcept SYSTEM "GlossaryTermConcept.dtd">
 <GlossaryTermConcept xmlns:cdr="cips.nci.nih.gov/cdr"> 
  <CdrDocCtl> 
-  <DocId>
-   <?xm-replace_text {The document ID will be assigned automatically} ?>
-  </DocId>
-  <DocTitle>
-   <?xm-replace_text {The document title will be constructed automatically} ?>
-  </DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl> 
  <TermDefinition>
-  <DefinitionText>
-   <?xm-replace_text {PhraseElements or CommonTextElements} ?>
-  </DefinitionText>
-  <DefinitionResource>
-   <?xm-replace_text {Optionally enter DefinitionResource} ?>
-  </DefinitionResource>
-  <Dictionary>
-   <?xm-replace_text {Optionally select a dictionary} ?>
-  </Dictionary>
-  <Audience>
-   <?xm-replace_text {Select HP or patient (required)} ?>
-  </Audience>
-  <DefinitionStatus>
-   <?xm-replace_text {Optionally select the DefinitionStatus} ?>
-  </DefinitionStatus>
-  <Comment>
-   <?xm-replace_text {Optionally enter a Comment} ?>
-  </Comment>
-  <StatusDate>
-   <?xm-replace_text {Optionally enter a Status date} ?>
-  </StatusDate>
-  <DateLastModified>
-   <?xm-replace_text {Optionally enter the last modification date} ?>
-  </DateLastModified>
-  <DateLastReviewed>
-   <?xm-replace_text {Optionally enter the last review date} ?>
-  </DateLastReviewed>
+  <DefinitionText><?xm-replace_text {
+         Enter a definition for the concept (required)
+         }?></DefinitionText>
+  <DefinitionResource><?xm-replace_text {
+         Optionally enter DefinitionResource
+         }?></DefinitionResource>
+  <Dictionary><?xm-replace_text {
+         Optionally select a dictionary
+         }?></Dictionary>
+  <Audience><?xm-replace_text {
+         Select HP or patient (required)
+         }?></Audience>
+  <DefinitionStatus><?xm-replace_text {
+         Optionally select the DefinitionStatus
+         }?></DefinitionStatus>
+  <StatusDate><?xm-replace_text {
+         Optionally enter a Status date
+         }?></StatusDate>
  </TermDefinition> 
- <SpanishTermDefinition>
-  <DefinitionText>
-   <?xm-replace_text {PhraseElements or CommonTextElements} ?>
-  </DefinitionText>
-  <Dictionary>
-   <?xm-replace_text {Optionally select a dictionary} ?>
-  </Dictionary>
-  <Audience>
-   <?xm-replace_text {Select HP or patient (required)} ?>
-  </Audience>
-  <DefinitionStatus>
-   <?xm-replace_text {Optionally select the DefinitionStatus} ?>
-  </DefinitionStatus>
-  <TranslationResource>
-   <?xm-replace_text {Optionally select the TranslationResource} ?>
-  </TranslationResource>
-  <Comment>
-   <?xm-replace_text {Optionally enter a Comment} ?>
-  </Comment>
-  <StatusDate>
-   <?xm-replace_text {Optionally enter a Status date} ?>
-  </StatusDate>
-  <DateLastModified>
-   <?xm-replace_text {Optionally enter the last modifiecation date} ?>
-  </DateLastModified>
-  <DateLastReviewed>
-   <?xm-replace_text {Optionally enter the last review date} ?>
-  </DateLastReviewed>
- </SpanishTermDefinition>
- <TermSource>
-   <?xm-replace_text {Select the TermSource (required)} ?>
- </TermSource>
- <TermType>
-   <?xm-replace_text {Select the TermType (required)} ?>
- </TermType>
+ <TermSource><?xm-replace_text {
+         Select the TermSource (required)
+         }?></TermSource>
+ <TermType><?xm-replace_text {
+         Select the TermType (required)
+         }?></TermType>
  <RelatedInformation>
-  <RelatedExternalRef>
-   <?xm-replace_text {Enter RelatedExternalRef information} ?>
-  </RelatedExternalRef>
-  <RelatedSummaryRef>
-   <?xm-replace_text {Enter RelatedSummaryRef information} ?>
-  </RelatedSummaryRef>
-  <RelatedDrugSummaryRef>
-   <?xm-replace_text {Enter RelatedDrugSummaryRef information} ?>
-  </RelatedDrugSummaryRef>
+  <RelatedSummaryRef><?xm-replace_text {
+         Optionally enter RelatedSummaryRef information
+         }?></RelatedSummaryRef>
  </RelatedInformation>
- <PDQTerm>
-   <?xm-replace_text {Optionally enter a term link} ?>
- </PDQTerm>
- <NCIThesaurusID>
-   <?xm-replace_text {Optionally enter an NCIThesaurusID} ?>
- </NCIThesaurusID>
- <Comment>
-   <?xm-replace_text {Optionally enter a comment} ?>
- </Comment>
+ <PDQTerm><?xm-replace_text {
+         Optionally enter a term link
+         }?></PDQTerm>
+ <NCIThesaurusID><?xm-replace_text {
+         Optionally enter an NCIThesaurusID
+         }?></NCIThesaurusID>
+ <Comment><?xm-replace_text {
+         Optionally enter a comment
+         }?></Comment>
 </GlossaryTermConcept>
