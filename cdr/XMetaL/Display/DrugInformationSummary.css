@@ -137,6 +137,7 @@ GlossaryLink             :before,
 Manufacturer             :before,
 Title                    :before,
 ProcessingStatus         :before,
+ResponseToComment        :before,
 ReviewStatus             :before,
 RefDescription           :before,
 RefLink                  :before,
@@ -147,14 +148,25 @@ URL                      :before,
       color: black;  }
 
 
+Para>ResponseToComment, 
+   { font-style: italic; 
+     background-color: green; 
+     color: white; }
+
+Para>Comment,  
+   { font-style: italic; 
+     background-color: green; 
+     color: white; }
+
 Para>Comment             :before 
    { color: white; 
      background-color: green; 
      content: "Comment: "; }
-Para>Comment,  
-    { font-style: italic; 
-      background-color: green; 
-      color: white; }
+
+Para>ResponseToComment   :before 
+   { color: white; 
+     background-color: green; 
+     content: "Response: "; }
 
 /***************************************************************************/ 
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
