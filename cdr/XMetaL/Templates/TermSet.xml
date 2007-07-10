@@ -16,7 +16,7 @@
          Select set type (required)
          }?></TermSetType>
  <TermSetMember><?xm-replace_text {
-         Link to Term document (optional)
+         Optionally link to term document
          }?></TermSetMember>
  <Comment><?xm-replace_text {
          Optionally enter a comment
