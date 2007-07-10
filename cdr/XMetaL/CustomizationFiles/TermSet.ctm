@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+  <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
+    <ElementProperties>
+      <Name>CdrDocCtl</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocId</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DocTitle</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Comment</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GeneratedFrom</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermSet</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermSetMember</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermSetName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermSetType</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+  </ElementPropertiesList>
+ <Templates>
+  <Template>
+   <Name>DocId</Name>
+   <MiniTemplate><![CDATA[<DocId><?xm-replace_text {
+    The document ID will be assigned automatically
+    }?></DocId>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>DocTitle</Name>
+   <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {
+    The document title will be constructed automatically
+    }?></DocTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Comment</Name>
+   <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+    Optionally enter a comment
+    }?></Comment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>TermSetMember</Name>
+   <MiniTemplate><![CDATA[<TermSetMember><?xm-replace_text {
+    Optionally link to term document
+    }?></TermSetMember>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>GeneratedFrom</Name>
+   <MiniTemplate><![CDATA[<GeneratedFrom><?xm-replace_text {
+    Optionally enter the source the term was generated from
+    }?></GeneratedFrom>]]></MiniTemplate>
+  </Template>
+ </Templates>
+</DTDExtensions>
