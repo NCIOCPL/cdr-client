@@ -1,0 +1,126 @@
+/*************************************************************************/
+/*      TermSet.css                                                      */
+/*      -----------                                                      */
+/*************************************************************************/
+
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
+
+@import "CdrCommonSchema.css";
+
+$DOCUMENT
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      color: black;
+      margin-top: 5px;
+      margin-left: 5px; }
+
+$COMMENT
+    { display: block;
+      color: purple;
+      white-space: pre; }
+
+$PROCINS
+    { color: blue;
+      font-weight: normal;
+      background-color: white; }
+
+TermSet,
+    { background-color: #CCCCFF; }
+
+
+/*************************************************************************/
+/*                           BLOCK ELEMENTS                              */
+/*************************************************************************/
+Comment,
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { display: block; }
+
+
+/*************************************************************************/
+/*                       BEFORE AND AFTER TAGS                           */
+/*                                                                       */
+/* * = Required field                                                    */
+/* + = Multiply-occurring field                                          */
+/* @ = Attribute assigned to element                                     */
+/* & = Optional element                                                  */
+/*************************************************************************/
+Comment              :before { content: "Comments & +: "; }
+GeneratedFrom        :before { content: "Generated From & @: "; }
+TermSetMember        :before { content: "TS Member & + @: "; }
+TermSetName          :before { content: "TS Name *: "; }
+TermSetType          :before { content: "TS Type *: "; }
+
+
+/*************************************************************************/
+/*                     SECTION TITLES AND BORDERS                        */
+/*************************************************************************/
+/* Section Heading Margins   */
+Comment,
+TermSetName,
+    { margin-top: 1em; }
+
+
+/*************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS              */
+/*************************************************************************/
+Comment             :before,
+GeneratedFrom       :before,
+TermSetMember       :before,
+TermSetName         :before,
+TermSetType         :before,
+    { font-weight: bold;
+      color: black;  }
+
+
+/*************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                */
+/*                                                                       */
+/* Each tag is manually positioned to right-align                        */
+/* Key element for length = Preferred Name                               */
+/*************************************************************************/
+Comment,               { margin-left: 130pt;
+                         text-indent: -92pt; }
+GeneratedFrom,         { margin-left: 130pt;
+                         text-indent: -127.5pt; }
+TermSetMember,         { margin-left: 130pt;
+                         text-indent: -109.5pt; }
+TermSetName,           { margin-left: 130pt;
+                         text-indent: -67.5pt; }
+TermSetType,           { margin-left: 130pt;
+                         text-indent: -63pt; }
+
+
+
+/* *************************************************************************/
+/* Margin-bottom to simulate a text box                                    */
+/* *************************************************************************/
+Comment,
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { margin-bottom: 4pt; }
+
+
+/*************************************************************************/
+/*                               COLOR                                   */
+/*************************************************************************/
+Comment,
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { background-color: white; }
+
+
+Comment                 :before,
+GeneratedFrom           :before,
+TermSetMember           :before,
+TermSetName             :before,
+TermSetType             :before,
+    { background-color: #CCCCFF; }

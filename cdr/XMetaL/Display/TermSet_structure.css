@@ -1,0 +1,116 @@
+/*************************************************************************/
+/*      Term_structure.css                                               */
+/*      ------------------                                               */
+/*************************************************************************/
+
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+
+@import "CdrCommonSchema_structure.css";
+
+
+@sq-plus-minus;
+
+/* @sq-structure-view-icons; */
+
+/* @sq-start-only-tags;      */
+
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt; 
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
+
+/* top-level elements */
+
+$DOCUMENT > * 
+    { margin-left: 0px;  }
+
+$PROCINS 
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
+
+TermSet,
+    { background-color: white; }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+Comment, 
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Comment              :before { content: "Comments"; }
+GeneratedFrom        :before { content: "Generated From"; }
+TermSet              :before { content: "TERMSET"; }
+TermSetMember        :before { content: "Term Set Member"; }
+TermSetName          :before { content: "Term Set Member"; }
+TermSetType          :before { content: "Term Set Type"; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+TermSet:before,
+    { color: black;      }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+Comment             :before,
+GeneratedFrom       :before,
+TermSetMember       :before,
+TermSetName         :before,
+TermSetType         :before,
+    { font-weight: bold;
+      color: black;  }
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/*                                                                         */
+/* Remove negative text-indent settings                                    */
+/***************************************************************************/
+Comment, 
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { text-indent: 0pt; }
+
+
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
+Comment, 
+GeneratedFrom,
+TermSetMember,
+TermSetName,
+TermSetType,
+    { color: white;
+      background-color: white; }
+
+
+Comment                 :before,
+GeneratedFrom           :before,
+TermSetMember           :before,
+TermSetName             :before,
+TermSetType             :before,
+    { background-color: white; }
+
