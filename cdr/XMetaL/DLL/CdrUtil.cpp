@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.27 2006-06-26 20:29:40 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.28 2007-07-11 00:43:18 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.27  2006/06/26 20:29:40  bkline
+ * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
+ *
  * Revision 1.26  2005/04/13 13:20:51  bkline
  * Completed BLOB support, including calculating of image dimensions.
  *
@@ -561,6 +564,7 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
 {
     // Initialize flags to defaults.
     info.readyForReview = false;
+    info.blocked        = false;
 
     // Get type from doc element name
     info.docType = node.GetNodeName();
@@ -604,6 +608,10 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info)
                         else if (name == _T("ReadyForReview")) {
                             if (extractElementText(node) == _T("Y"))
                                 info.readyForReview = true;
+                        }
+                        else if (name == _T("DocActiveStatus")) {
+                            if (extractElementText(node) == _T("I"))
+                                info.blocked = true;
                         }
                     }
                     node = node.GetNextSibling();

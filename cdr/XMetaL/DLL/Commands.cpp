@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.49 2006-06-26 20:29:40 bkline Exp $
+ * $Id: Commands.cpp,v 1.50 2007-07-11 00:43:18 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.49  2006/06/26 20:29:40  bkline
+ * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
+ *
  * Revision 1.48  2005/12/30 19:36:11  bkline
  * Added support for opening a CDR document directly, and for finding
  * the translation of a summary document.
@@ -179,6 +182,7 @@
 #include "Glossify.h"
 #include "ReviewMarkup.h"
 #include "resource.h"
+#include "DiagnosisSets.h"
 
 // System headers
 #include <list>
@@ -213,6 +217,8 @@ static cdr::ValidValueSets  validValueSets;
 static cdr::ElementSets     linkingElements;
 CString CCommands::username;
 bool    CCommands::invokedFromClientRefreshTool = false;
+static std::map<CString, CString> diagnosisTermSets;
+static cdr::StringList diagnosisTermSetNames;
 
 /**
  * Determines whether a given element in a particular document type can
@@ -1353,6 +1359,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
     Documents docs = app.GetDocuments();
     unsigned int docNo = cdr::getDocNo(docId);
     CString err;
+    CString blocked = _T("N");
     CString docType;
     CString docPath;
     CString retrievedDocTitle;
@@ -1401,13 +1408,18 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
                                      checkOut ? _T("") : _T(" [READ ONLY]"),
                                      (LPCTSTR)cdr::decode(docTitle));
         }
+        cdr::Element statusElem = cdr::Element::extractElement(cdrDoc,
+                                                 _T("DocActiveStatus"));
+        if (statusElem && statusElem.getString() == _T("I")) {
+            blocked = _T("Y");
+        }
     }
 
     // Extract the DocXml.
     CString docXml;
     if (err.IsEmpty() && docType.IsEmpty())
         err = _T("Missing Type attribute in CdrDoc element");
-    else {
+    if (err.IsEmpty()) {
         cdr::Element xmlElem = cdr::Element::extractElement(cdrDoc,
                                                             _T("CdrDocXml"));
         if (xmlElem)
@@ -1424,6 +1436,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
             CString fixedDoc;
             CString ctl = _T("\n <CdrDocCtl readyForReview='")
                             + readyForReview
+                            + _T("' blocked='")
+                            + blocked
                             + _T("'>\n  <DocId>")
                             + docId
                             + _T("</DocId>\n  <DocTitle>")
@@ -1702,6 +1716,28 @@ bool CCommands::doLogon(LogonDialog* logonDialog)
         if (!invokedFromClientRefreshTool)
             getCssFiles(logonDialog, progressDialog);
         progressDialog.DestroyWindow();
+    }
+
+    // Populate the strings for creating diagnosis macros.
+    CString termSetRequest = 
+        _T("<CdrReport><ReportName>Term Sets</ReportName>")
+        _T("<ReportParams>")
+        _T("<ReportParam Name='SetType' Value='diagnosis macro'/>")
+        _T("</ReportParams></CdrReport>");
+    CString tsResponse = CdrSocket::sendCommand(termSetRequest);
+    cdr::Element tsElem = 
+        cdr::Element::extractElement(tsResponse, _T("TermSet"));
+    while (tsElem) {
+        cdr::Element nameElem = cdr::Element::extractElement(
+            tsElem.getString(), _T("Name"));
+        cdr::Element membersElem = cdr::Element::extractElement(
+            tsElem.getString(), _T("Members"));
+        CString name = nameElem.getString();
+        CString members = membersElem.getString();
+        diagnosisTermSetNames.push_back(nameElem.getString());
+        diagnosisTermSets[name] = members;
+        tsElem = cdr::Element::extractElement(tsResponse,
+            _T("TermSet"), tsElem.getEndPos());
     }
     return gotDocTypes;
 }
@@ -2809,5 +2845,32 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
     //::AfxMessageBox(_T("translationId: ") + translationId);
     translationId.SetSysString(translatedDocId);
 
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getDiagnosisSetTerms(BSTR* termIds)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+    CDiagnosisSets dialog(diagnosisTermSetNames);
+    int rc = dialog.DoModal();
+    CString result = _T("");
+    switch (rc) {
+    case IDOK:
+        //::AfxMessageBox(_T("CDR Logon Successful"));
+        if (!dialog.chosenSetName.IsEmpty())
+            try {
+                diagnosisTermSets[dialog.chosenSetName].SetSysString(termIds);
+            }
+            catch (...) {
+                ::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
+            }
+        break;
+    case IDCANCEL:
+        break;
+    case -1:
+    default:
+        ::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
+        break;
+    }
     return S_OK;
 }

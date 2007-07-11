@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.h,v 1.16 2005-04-13 13:20:51 bkline Exp $
+ * $Id: CdrUtil.h,v 1.17 2007-07-11 00:43:18 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.16  2005/04/13 13:20:51  bkline
+ * Completed BLOB support, including calculating of image dimensions.
+ *
  * Revision 1.15  2004/09/09 18:43:03  bkline
  * Glossifier implemented.
  *
@@ -70,6 +73,7 @@ struct CdrDocCtrlInfo {
 	CString docType;
 	CString docId;
 	CString docTitle;
+    bool    blocked;
     bool    readyForReview;
 };
 
