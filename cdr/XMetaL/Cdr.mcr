@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.159 2007-06-21 23:46:08 venglisc Exp $
+     $Id: Cdr.mcr,v 1.160 2007-07-13 19:19:18 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.159  2007/06/21 23:46:08  venglisc
+     Added toolbar icon for Country QC Report. (Bug 3308)
+
      Revision 1.158  2007/06/15 23:07:36  bkline
      Tweaks to diagnosis macros at Sheri's request (#3333).
 
@@ -1332,9 +1335,12 @@
     //Application.AppendMacro("submenu test", "Test Submenu");
     if (docType.name == "InScopeProtocol" || docType.name == "CTGovProtocol" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!cdrDocReadOnly())
+        if (!cdrDocReadOnly()) {
             Application.AppendMacro("-", "");
-            addCdrSubmenu();
+            // addCdrSubmenu();
+            Application.AppendMacro("Insert Diagnosis Links",
+                                    "Insert Diagnosis Links");
+        }
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
@@ -2961,6 +2967,51 @@
         }
     }
 
+    function addTermSetToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Insert Term Set Members",   // Macro.
+                           "Insert Terms",              // Tooltip.
+                           "Insert Term Set Members",   // Description
+                           "Databases (Custom)", 4, 10, // Icon set, row, col.
+                           false)                       // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR TermSet"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR TermSet " +
+                                  "Document toolbar: " + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR TermSet", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR TermSet " +
+                              "toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["TermSet"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
     function addPDQBoardMemberInfoToolbar() {
 
         var buttons = new Array(
@@ -3189,6 +3240,7 @@
     addCountryToolbar();
     addMailerToolbar();
     addCTGovToolbar();
+    addTermSetToolbar();
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
     addCdrMenus();
@@ -6610,6 +6662,83 @@
   ]]>
 </MACRO>
 
+<MACRO name="Insert Term Set Members" 
+       lang="JScript" >
+  <![CDATA[
+    function makeCdrIdString(cdrId) {
+        var padding = "0000000000".substring(0, 10 - cdrId.length);
+        return "CDR" + padding + cdrId;
+    }
+    function insertTermSetMembers() {
+
+        // Get the term IDs from the system clipboard.
+        var pieces = Application.Clipboard.Text.split(':');
+        if (pieces.length != 2) {
+            Application.Alert('Clipboard not ready.');
+            return false;
+        }
+        var generatedFrom = pieces[0];
+        if (isNaN(generatedFrom)) {
+            Application.Alert('Malformed clipboard contents.');
+            return false;
+        }
+        var termIds = pieces[1].split(' ');
+        if (!termIds) {
+            Application.Alert('No term IDs in clipboard.');
+            return false;
+        }
+
+        // Sanity check.
+        for (var i in termIds) {
+            if (isNaN(termIds[i])) {
+                Application.Alert('Clipboard does not contain document IDs.'
+                                  + ': ' + termIds[i]);
+                return false;
+            }
+        }
+
+        // Move to the desired location.
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentStart();
+        if (!rng.FindInsertLocation("GeneratedFrom")) {
+            Application.Alert("Unable to insert GeneratedFrom element.");
+            return false;
+        }
+        rng.PasteString("<GeneratedFrom cdr:ref='" +
+                        makeCdrIdString(generatedFrom) +
+                        "'/>");
+        rng.MoveToDocumentEnd();
+        if (!rng.MoveToElement('TermSetMember', false)) {
+            if (!rng.MoveToElement('TermSetType', false)) {
+                Application.Alert('Unable to find location for insertion.');
+                return false;
+            }
+        }
+        rng.SelectElement();
+        rng.Collapse(0);
+        if (!rng.FindInsertLocation("TermSetMember", true)) {
+            Application.Alert("Unable to insert TermSetMember terms here.");
+            return false;
+        }
+
+        // Insert the new TermSetMember terms.
+        var elemString = "\n";
+        for (var i in termIds) {
+            var termId = termIds[i];
+            var padding = "0000000000".substring(0, 10 - termId.length);
+            var idString = "CDR" + padding + termId;
+            elemString += "<TermSetMember cdr:ref='" + idString + "'/>\n";
+        }
+        rng.PasteString(elemString);
+        rng.Select();
+
+        return true;
+    }
+
+    insertTermSetMembers();
+  ]]>
+</MACRO>
+
 <MACRO name="Insert BMT Diagnoses" 
        lang="JScript" >
   <![CDATA[
@@ -7187,10 +7316,32 @@
 <MACRO name="SC 3quart"  lang="JScript">Selection.TypeText("&amp;#x00BE;");</MACRO>
 <MACRO name="SC nbsp"    lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
 
+<MACRO name="Insert Diagnosis Links" 
+       lang="JScript" >
+  <![CDATA[
+    function insertDiagnosisLinks() {
+        var diagString = cdrObj.getDiagnosisSetTerms();
+        if (!diagString)
+            return;
+        // Application.Alert(diagString);
+        var elemString = "\n";
+        var diags = diagString.split(' ');
+        for (var i in diags) {
+            elemString += "<Diagnosis cdr:ref='" + diags[i] + "'/>\n";
+        }
+        insertDiagnoses(elemString);
+    }
+    insertDiagnosisLinks();
+  ]]>
+</MACRO>
+
 <MACRO name="Insert Head And Neck Diagnoses" 
        lang="JScript" >
   <![CDATA[
     function insertHeadAndNeckDiagnoses() {
+        var diagString = cdrObj.getDiagnosisSetTerms();
+        Application.Alert(diagString);
+        return;
 
         // Create a string for the diagnosis link elements.
         var elemString = "\n" +
