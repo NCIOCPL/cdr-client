@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.160 2007-07-13 19:19:18 bkline Exp $
+     $Id: Cdr.mcr,v 1.161 2007-07-24 14:21:11 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.160  2007/07/13 19:19:18  bkline
+     Added dynamic macro for inserting Diagnosis terms into protocol
+     documents (see request #3140).
+
      Revision 1.159  2007/06/21 23:46:08  venglisc
      Added toolbar icon for Country QC Report. (Bug 3308)
 
@@ -2494,6 +2498,12 @@
                            "Mailer",
                            "Generate Mailer",
                            "CDR", 5, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Make Scientific Protocol Doc",
+                           "Create Scientific Doc",
+                           "Make Scientific Protocol Info Document",
+                           "CDR2", 2, 5,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -7260,9 +7270,212 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Comment"
+<MACRO name="Make Scientific Protocol Doc"
        lang="JScript"
        key="Alt+Z">
+  <![CDATA[
+    function OriginalProtocolDoc(doc) {
+        if (!doc)        { return; }
+        this.docId       = null;
+        this.primaryId   = null;
+        this.title       = null;
+        this.phases      = new Array();
+        this.suppInfo    = new Array();
+        this.missingInfo = new Array();
+        var node         = doc.documentElement.firstChild;
+        while (node) {
+            if (node.nodeName == 'CdrDocCtl') {
+                var idNodes = node.getElementsByTagName('DocId');
+                if (idNodes.length > 0) {
+                    this.docId = getTextContent(idNodes.item(0));
+}
+            }
+            else if (node.nodeName == 'ProtocolIDs') {
+                var kids = node.getElementsByTagName('PrimaryID');
+                if (kids.length > 0) {
+                    var elem = kids.item(0);
+                    var idNodes = elem.getElementsByTagName('IDString');
+                    if (idNodes.length > 0)
+                        this.primaryId = getTextContent(idNodes.item(0));
+                }
+            }
+            else if (node.nodeName == 'ProtocolTitle') {
+                if (node.getAttribute('Type') == 'Original')
+                    this.title = getTextContent(node);
+            }
+            else if (node.nodeName == 'RelatedDocuments') {
+                var kids = node.getElementsByTagName('SupplementaryInfoLink');
+                for (var i = 0; i < kids.length; ++i) {
+                    var docId = kids.item(i).getAttribute('cdr:ref');
+                    if (docId)
+                        this.suppInfo.push(docId);
+                }
+            }
+            else if (node.nodeName == 'ProtocolPhase') {
+                var phase = getTextContent(node);
+                if (phase)
+                    this.phases.push(phase);
+            }
+            else if (node.nodeName == 'ProtocolProcessingDetails') {
+                var child = node.firstChild;
+                while (child) {
+                    if (child.nodeName == 'MissingRequiredInformation') {
+                        var grandChild = child.firstChild;
+                        while (grandChild) {
+                            if (grandChild.nodeName == 'MissingInformation') {
+                                var mi = getTextContent(grandChild);
+                                if (mi)
+                                    this.missingInfo.push(mi);
+                            }
+                            grandChild = grandChild.nextSibling;
+                        }
+                    }
+                    child = child.nextSibling;
+                }
+            }
+            node = node.nextSibling;
+        }
+    }
+    OriginalProtocolDoc.prototype.toString = function() {
+        var s = "docId=" + this.docId + "\ntitle=" + this.title
+              + "\nprimaryId=" + this.primaryId + "\n";
+        for (var i = 0; i < this.phases.length; ++i)
+            s += "phase=" + this.phases[i] + "\n";
+        for (var i = 0; i < this.suppInfo.length; ++i)
+            s += "suppInfo=" + this.suppInfo[i] + "\n";
+        for (var i = 0; i < this.missingInfo.length; ++i)
+            s += "missingInfo=" + this.missingInfo[i] + "\n";
+        return s;
+    }
+    function makeScientificProtocolDoc() {
+        var oDoc = new OriginalProtocolDoc(Application.ActiveDocument);
+        // Application.Alert(oDoc.toString());
+        var template = Application.Path
+                     + "\\Template\\Cdr\\ScientificProtocolInfo.xml";
+        var doc = Application.Documents.OpenTemplate(template);
+        var pidElems = doc.getElementsByTagName('PrimaryID');
+        if (pidElems.length < 1) {
+            Application.Alert("PrimaryID element not found");
+        }
+        else {
+            var pidElem = pidElems.item(0);
+            var idStringElems = pidElem.getElementsByTagName('IDString');
+            if (!idStringElems.length) {
+                Application.Alert("PrimaryID/IDString element not found");
+            }
+            else {
+                var idStringElem = idStringElems.item(0);
+                var child = idStringElem.firstChild;
+                while (child) {
+                    var nextChild = child.nextSibling;
+                    idStringElem.removeChild(child);
+                    child = nextChild;
+                }
+                var textNode = doc.createTextNode(oDoc.primaryId);
+                idStringElem.appendChild(textNode);
+            }
+        }
+        var inScopeDocIdElems = doc.getElementsByTagName('InScopeDocID');
+        if (!inScopeDocIdElems.length) {
+            Application.Alert("InScopeDocID element not found");
+        }
+        else {
+            var inScopeDocIdElem = inScopeDocIdElems.item(0);
+            var child = inScopeDocIdElem.firstChild;
+            while (child) {
+                var nextChild = child.nextSibling;
+                inScopeDocIdElem.removeChild(child);
+                child = nextChild;
+            }
+            inScopeDocIdElem.setAttribute("cdr:ref", oDoc.docId);
+        }
+        var rng = doc.Range;
+        if (oDoc.phases.length) {
+            var phaseElems = doc.getElementsByTagName("ProtocolPhase");
+            var i = 0;
+            if (phaseElems.length) {
+                var phaseElem = phaseElems.item(0);
+                var child = phaseElem.firstChild;
+                while (child) {
+                    var nextChild = child.nextSibling;
+                    phaseElem.removeChild(child);
+                    child = nextChild;
+                }
+                var textNode = doc.createTextNode(oDoc.phases[0]);
+                phaseElem.appendChild(textNode);
+                i = 1;
+            }
+            while (i < oDoc.phases.length) {
+                rng.MoveToDocumentEnd();
+                if (!rng.FindInsertLocation("ProtocolPhase", false)) {
+                    Application.Alert("Can't insert ProtocolPhase elements");
+                    break;
+                }
+                else {
+                    var phase = oDoc.phases[i];
+                    var elem = "<ProtocolPhase>" + phase + "</ProtocolPhase>";
+                    rng.PasteString(elem);
+                    ++i;
+                }
+            }
+        }
+        if (oDoc.suppInfo.length) {
+            rng.MoveToDocumentStart();
+            if (!rng.FindInsertLocation("RelatedDocuments")) {
+                Application.Alert("Unable to insert RelatedDocuments element");
+            }
+            else {
+                var elem = "<RelatedDocuments>";
+                for (var i = 0; i < oDoc.suppInfo.length; ++i) {
+                    var id = oDoc.suppInfo[i];
+                    elem += "<SupplementaryInfoLink cdr:ref='" + id + "'/>";
+                }
+                elem += "</RelatedDocuments>";
+                if (rng.CanPaste(elem)) {
+                    rng.PasteString(elem);
+                }
+                else {
+                    Application.Alert("Unable to paste in '" + elem + "'.");
+                }
+            }
+        }
+        if (oDoc.missingInfo.length) {
+            rng.MoveToDocumentStart();
+            if (!rng.FindInsertLocation("MissingRequiredInformation"))
+                Application.Alert("Can't insert MissingRequiredInformation");
+            else {
+                var elem = "<MissingRequiredInformation>";
+                for (var i = 0; i < oDoc.missingInfo.length; ++i) {
+                    elem += "<MissingInformation>" + oDoc.missingInfo[i] +
+                            "</MissingInformation>";
+                }
+                elem += "</MissingRequiredInformation>";
+                rng.PasteString(elem);
+            }
+        }
+        rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("ProtocolTitle", false)) {
+            Application.Alert("Unable to insert ProtocolTitle element");
+        }
+        else {
+            rng.PasteString("<ProtocolTitle Type='Original'/>");
+            var elems = doc.getElementsByTagName("ProtocolTitle");
+            for (var i = elems.length - 1; i >= 0; --i) {
+                var elem = elems.item(i);
+                if (elem.getAttribute("Type") == "Original") {
+                    var textNode = doc.createTextNode(oDoc.title);
+                    elem.appendChild(textNode);
+                    break;
+                }
+            }
+        }
+    }
+    makeScientificProtocolDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Comment"
+       lang="JScript">
   <![CDATA[
     function insertComment() {
         var rng = ActiveDocument.Range;
