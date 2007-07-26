@@ -42,6 +42,8 @@ import "oaidl.idl";import "ocidl.idl";
 		[id(31), helpstring("method openCdrDoc")] HRESULT openCdrDoc([in] const BSTR* docId, [in] const BSTR* docVer, [in] VARIANT_BOOL checkOut);
         [id(32), helpstring("method getTranslatedDocId")] HRESULT getTranslatedDocId([in] const BSTR* originalId, [out, retval] BSTR* translatedDocId);
         [id(34), helpstring("method getDiagnosisSetTerms")] HRESULT getDiagnosisSetTerms([out,retval] BSTR* termIds);
+        [id(35), helpstring("method getGlossaryTermNames")] HRESULT getGlossaryTermNames([in] const BSTR* conceptId, [out,retval] BSTR* termNames);
+        [id(36), helpstring("method getGlossaryTermNameIds")] HRESULT getGlossaryTermNameIds([in] const BSTR* conceptId, [out,retval] BSTR* termNameIds);
     };
 
 [

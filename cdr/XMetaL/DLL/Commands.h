@@ -77,6 +77,8 @@ public:
 	STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
     STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
     STDMETHOD(getDiagnosisSetTerms)(BSTR* termIds);
+    STDMETHOD(getGlossaryTermNames)(const BSTR* conceptId, BSTR* termNames);
+    STDMETHOD(getGlossaryTermNameIds)(const BSTR* conceptId, BSTR* termNameIds);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

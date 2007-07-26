@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.50 2007-07-11 00:43:18 bkline Exp $
+ * $Id: Commands.cpp,v 1.51 2007-07-26 21:25:33 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.50  2007/07/11 00:43:18  bkline
+ * Added support for dynamic diagnosis set insertion and for displaying
+ * blocked document status.
+ *
  * Revision 1.49  2006/06/26 20:29:40  bkline
  * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
  *
@@ -2872,5 +2876,69 @@ STDMETHODIMP CCommands::getDiagnosisSetTerms(BSTR* termIds)
         ::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
         break;
     }
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId, BSTR* termNames)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*conceptId);
+    CString cmd = _T("<CdrReport>")
+                  _T("<ReportName>Glossary Term Names</ReportName>")
+                  _T("<ReportParams><ReportParam Name='ConceptId' ")
+                  _T("Value='") + id + _T("'/></ReportParams>")
+                  _T("</CdrReport>");
+    CString rsp = CdrSocket::sendCommand(cmd);
+    CString names = _T("");
+    if (rsp.Find(_T("<Error")) != -1) {
+        names = _T("ERROR");
+        cdr::showErrors(rsp);
+    }
+    else {
+        CString ename  = _T("GlossaryTermName");
+        CString sep    = _T("    ");
+        cdr::Element e = cdr::Element::extractElement(rsp, ename);
+        while (e) {
+            CString name = e.getString();
+            names += sep + name;
+            e = cdr::Element::extractElement(rsp, ename, e.getEndPos());
+            sep = _T("\n    ");
+        }
+    }
+    names.SetSysString(termNames);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId, 
+                                               BSTR* termNameIds)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*conceptId);
+    CString cmd = _T("<CdrReport>")
+                  _T("<ReportName>Glossary Term Names</ReportName>")
+                  _T("<ReportParams><ReportParam Name='ConceptId' ")
+                  _T("Value='") + id + _T("'/></ReportParams>")
+                  _T("</CdrReport>");
+    CString rsp = CdrSocket::sendCommand(cmd);
+    CString termIds = _T("");
+    if (rsp.Find(_T("<Error")) != -1) {
+        termIds = _T("ERROR");
+        cdr::showErrors(rsp);
+    }
+    else {
+        CString ename  = _T("GlossaryTermName");
+        CString sep    = _T("");
+        cdr::Element e = cdr::Element::extractElement(rsp, ename);
+        while (e) {
+            CString termId = e.getAttribute(_T("ref"));
+            termIds += sep + termId;
+            e = cdr::Element::extractElement(rsp, ename, e.getEndPos());
+            sep = _T(" ");
+        }
+    }
+    termIds.SetSysString(termNameIds);
     return S_OK;
 }
