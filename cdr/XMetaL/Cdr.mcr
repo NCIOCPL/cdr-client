@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.161 2007-07-24 14:21:11 bkline Exp $
+     $Id: Cdr.mcr,v 1.162 2007-07-26 21:23:31 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.161  2007/07/24 14:21:11  bkline
+     Added new macro for creating a ScientificProtocolInfo document
+     based on information in the active InScopeProtocol document.
+
      Revision 1.160  2007/07/13 19:19:18  bkline
      Added dynamic macro for inserting Diagnosis terms into protocol
      documents (see request #3140).
@@ -2504,6 +2508,12 @@
                            "Create Scientific Doc",
                            "Make Scientific Protocol Info Document",
                            "CDR2", 2, 5,
+                           false),
+            new CdrCmdItem(null,
+                           "Send Missing Protocol Info Mailer",
+                           "Missing Info Mailer",
+                           "Send Mailer for Missing Protocol Information",
+                           "Misc 1 (Custom)", 7, 1,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -2647,6 +2657,122 @@
         }
         if (cmdBar) {
             toolbars["GlossaryTerm"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addGlossaryTermConceptToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+                           "Show Glossary Term Names",  //  Macro.
+                           "Term Names",                // Tooltip.
+                           "Show Glossary Term Names",  // Description
+                           "Integration (Custom)", 7, 1,// Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Make Glossary Term Name Doc",
+                           "Glossary Term",
+                           "Create Term Name Document",
+                           "CDR", 3, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "View Glossary Term Name Docs",
+                           "View Name Docs",
+                           "View Term Name Documents",
+                           "Databases (Custom)", 6, 3,
+                           false),
+            new CdrCmdItem(null,
+                           "Edit Glossary Term Name Docs",
+                           "Edit Name Docs",
+                           "Edit Term Name Documents",
+                           "Databases (Custom)", 6, 3,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Glossary Term Concept"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert(
+                   "Failure deleting old CDR Glossary Term Concept toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Glossary Term Concept", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert(
+                "Failure adding CDR Glossary Term Concept toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["GlossaryTermConcept"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+    function addGlossaryTermNameToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                        // Label.
+               "View Linked Glossary Term Concept Doc", // Macro.
+                           "View Concept",              // Tooltip.
+                           "View Concept Document",     // Description
+                           "Integration (Custom)", 3, 9,// Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Edit Linked Glossary Term Concept Doc",
+                           "Edit Concept",     
+                           "Edit Concept Document",
+                           "CDR", 5, 3,
+                           false)
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Glossary Term Name"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert(
+                    "Failure deleting old CDR Glossary Term Name toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        
+        try {
+            cmdBar = cmdBars.add("CDR Glossary Term Name", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert(
+                "Failure adding CDR Glossary Term Name toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["GlossaryTermName"] = cmdBar;
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3244,6 +3370,8 @@
     addProtocolToolbar();
     addTermToolbar();
     addGlossaryToolbar();
+    addGlossaryTermConceptToolbar();
+    addGlossaryTermNameToolbar();
     addDrugInfoToolbar();
     addCitationToolbar();
     addMiscToolbar();
@@ -6574,6 +6702,27 @@
   ]]>
 </MACRO>
 
+<MACRO name="Send Missing Protocol Info Mailer" 
+       lang="JScript" >
+  <![CDATA[
+    function sendMissingProtocolInfoMailer() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "MissingInfoMailer.py?id=" + docId
+                + "&Session=" + CdrSession;
+        cdrObj.showPage(url);
+    }
+    sendMissingProtocolInfoMailer();
+  ]]>
+</MACRO>
+
 <MACRO name="Glossify Document" 
        lang="JScript" >
   <![CDATA[
@@ -7143,6 +7292,121 @@
   ]]>
 </MACRO>
 
+<MACRO name="View Linked Glossary Term Concept Doc"
+       lang="JScript" >
+  <![CDATA[
+    function viewLinkedGlossaryTermConceptDoc() {
+        var doc = Application.ActiveDocument;
+        var conceptElems = doc.getElementsByTagName("GlossaryTermConcept");
+        if (!conceptElems.length)
+            Application.Alert("Can't find GlossaryTermConcept element");
+        else {
+            var conceptElem = conceptElems.item(0);
+            var docId = conceptElem.getAttribute("cdr:ref");
+            cdrObj.openCdrDoc(docId, "Current", false);
+        }
+    }
+    viewLinkedGlossaryTermConceptDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Edit Linked Glossary Term Concept Doc"
+       lang="JScript" >
+  <![CDATA[
+    function editLinkedGlossaryTermConceptDoc() {
+        var doc = Application.ActiveDocument;
+        var conceptElems = doc.getElementsByTagName("GlossaryTermConcept");
+        if (!conceptElems.length)
+            Application.Alert("Can't find GlossaryTermConcept element");
+        else {
+            var conceptElem = conceptElems.item(0);
+            var docId = conceptElem.getAttribute("cdr:ref");
+            cdrObj.openCdrDoc(docId, "Current", true);
+        }
+    }
+    editLinkedGlossaryTermConceptDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Show Glossary Term Names" 
+       lang="JScript" >
+  <![CDATA[
+    function showGlossaryTermNames() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var termNames = cdrObj.getGlossaryTermNames(docId);
+        if (!termNames)
+            Application.Alert("No term name documents found");
+        else
+            Application.Alert("Term names:\n" + termNames);
+    }
+    showGlossaryTermNames();
+  ]]>
+</MACRO>
+
+<MACRO name="View Glossary Term Name Docs" 
+       lang="JScript" >
+  <![CDATA[
+    function viewGlossaryTermNameDocs() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var termIds = cdrObj.getGlossaryTermNameIds(docId);
+        if (!termIds)
+            Application.Alert("No term name documents found");
+        else {
+            var pieces = termIds.split(' ');
+            for (var i in pieces) {
+                var termId = pieces[i];
+                cdrObj.openCdrDoc(termId, "Current", false);
+            }
+        }
+    }
+    viewGlossaryTermNameDocs();
+  ]]>
+</MACRO>
+
+<MACRO name="Edit Glossary Term Name Docs" 
+       lang="JScript" >
+  <![CDATA[
+    function editGlossaryTermNameDocs() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var termIds = cdrObj.getGlossaryTermNameIds(docId);
+        if (!termIds)
+            Application.Alert("No term name documents found");
+        else {
+            var pieces = termIds.split(' ');
+            for (var i in pieces) {
+                var termId = pieces[i];
+                cdrObj.openCdrDoc(termId, "Current", true);
+            }
+        }
+    }
+    editGlossaryTermNameDocs();
+  ]]>
+</MACRO>
+
 <MACRO name="Clone Doc"
        lang="JScript">
   <![CDATA[
@@ -7271,17 +7535,16 @@
 </MACRO>
 
 <MACRO name="Make Scientific Protocol Doc"
-       lang="JScript"
-       key="Alt+Z">
+       lang="JScript">
   <![CDATA[
     function OriginalProtocolDoc(doc) {
-        if (!doc)        { return; }
         this.docId       = null;
         this.primaryId   = null;
         this.title       = null;
         this.phases      = new Array();
         this.suppInfo    = new Array();
         this.missingInfo = new Array();
+        if (!doc)        { return; }
         var node         = doc.documentElement.firstChild;
         while (node) {
             if (node.nodeName == 'CdrDocCtl') {
@@ -7471,6 +7734,37 @@
         }
     }
     makeScientificProtocolDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Make Glossary Term Name Doc"
+       lang="JScript"
+       key="Alt+Z">
+  <![CDATA[
+    function makeGlossaryTermNameDoc() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var template = Application.Path
+                     + "\\Template\\Cdr\\GlossaryTermName.xml";
+        var doc = Application.Documents.OpenTemplate(template);
+        var docIdElems = doc.getElementsByTagName('GlossaryTermConcept');
+        if (!docIdElems.length) {
+            Application.Alert("InScopeDocID element not found");
+            return;
+        }
+        var docIdElem = docIdElems.item(0);
+        var child = docIdElem.firstChild;
+        while (child) {
+            var nextChild = child.nextSibling;
+            docIdElem.removeChild(child);
+            child = nextChild;
+        }
+        docIdElem.setAttribute("cdr:ref", docId);
+    }
+    makeGlossaryTermNameDoc();
   ]]>
 </MACRO>
 
