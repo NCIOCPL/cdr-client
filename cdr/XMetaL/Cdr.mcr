@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.162 2007-07-26 21:23:31 bkline Exp $
+     $Id: Cdr.mcr,v 1.163 2007-08-13 16:23:39 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.162  2007/07/26 21:23:31  bkline
+     Added new macros for Margaret (request #2861).
+
      Revision 1.161  2007/07/24 14:21:11  bkline
      Added new macro for creating a ScientificProtocolInfo document
      based on information in the active InScopeProtocol document.
@@ -648,6 +651,20 @@
     function getCurTimeString() {
         var d = new Date();
         var str = padNumber(d.getHours(), 2, '0') + ':'
+                + padNumber(d.getMinutes(), 2, '0') + ':'
+                + padNumber(d.getSeconds(), 2, '0');
+        return str;
+    }
+        
+    /*
+     * Produce string containing current date/time in XSD format.
+     */
+    function getCurDateTimeString() {
+        var d = new Date();
+        var str = padNumber(d.getFullYear(), 4, '0') + '-'
+                + padNumber(d.getMonth() + 1, 2, '0') + '-'
+                + padNumber(d.getDate(), 2, '0') + 'T'
+                + padNumber(d.getHours(), 2, '0') + ':'
                 + padNumber(d.getMinutes(), 2, '0') + ':'
                 + padNumber(d.getSeconds(), 2, '0');
         return str;
@@ -1352,6 +1369,12 @@
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
+    }
+    if (docType.name == 'ScientificProtocolInfo') {
+        if (!cdrDocReadOnly()) {
+            Application.AppendMacro("Insert Current Date and Time",
+                                    "Insert Current Date and Time");
+        }
     }
   ]]>
 </MACRO>
@@ -5327,7 +5350,25 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Insert User ID"
+<MACRO  name="Insert Current Date and Time"
+        lang="JScript" 
+        desc="Inserts the current date/time as text content of current elem"
+        hide="false">
+  <![CDATA[
+
+    function insCurrentDateTime() {
+        if (Selection != null) {
+            // Selection.SelectContainerContents();
+            str = getCurDateTimeString();
+            Selection.Text = str;
+        }
+    }
+    insCurrentDateTime();
+
+  ]]>
+</MACRO>
+
+y<MACRO  name="Insert User ID"
         lang="JScript" 
         desc="Inserts the login name as text content of current elem"
         key="Alt+U" 
