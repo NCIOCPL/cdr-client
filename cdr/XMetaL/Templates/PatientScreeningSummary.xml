@@ -55,7 +55,7 @@
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
    <KeyPoint>A, B, and C can affect the risk of developing x cancer.</KeyPoint>
-   <Para>Anything that increases the chance of getting a disease is called a risk factor. Risk factors for x cancer include the following: <Comment>Take from treatment summary</Comment></Para>
+   <Para>Anything that increases the chance of getting a disease is called a risk factor. Having a risk factor does not mean that you will get cancer; not having risk factors doesn't mean that you will not get cancer. People who think they may be at risk should discuss this with their doctor. Risk factors for x cancer include the following: <Comment>Take from treatment summary</Comment></Para>
    <ItemizedList Compact="No" Style="bullet">
     <ListItem>[risk factor]</ListItem>
     <ListItem>[risk factor]</ListItem>
@@ -70,7 +70,7 @@
    </SectMetaData>
    <KeyPoint>Tests are used to screen for different types of cancer.</KeyPoint>
    <Para>Some screening tests are used because they have been shown to be helpful both in finding cancers early and in decreasing the chance of dying from these cancers. Other tests are used because they have been shown to find cancer in some people; however, it has not been proven in clinical trials that use of these tests will decrease the risk of dying from cancer.</Para>
-   <Para>Scientists study screening tests to find those with the fewest risks and most benefits. Cancer screening trials also are meant to show whether early detection (finding cancer before it causes symptoms) decreases a person's chance of dying from the disease. For some types of cancer, finding and treating the disease at an early stage may result in a better chance of recovery.</Para>
+   <Para>Scientists study screening tests to find those with the fewest risks and most benefits. Cancer screening trials also are meant to show whether early detection (finding cancer before it causes symptoms) decreases a person's chance of dying from the disease. For some types of cancer, the chance of recovery is better if the disease is found and treated at an early stage.</Para>
    <Para>Clinical trials that study cancer screening methods are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
