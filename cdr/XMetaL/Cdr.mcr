@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.163 2007-08-13 16:23:39 bkline Exp $
+     $Id: Cdr.mcr,v 1.164 2007-09-12 20:51:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.163  2007/08/13 16:23:39  bkline
+     Implemented macro to insert date/time (request #3493).
+
      Revision 1.162  2007/07/26 21:23:31  bkline
      Added new macros for Margaret (request #2861).
 
@@ -3540,7 +3543,7 @@
                     var elem = nodes.item(0);
                     var val = getTextContent(elem);
                     //Application.Alert(val.length);
-                    if (val.length > 255) {
+                    if (val.length > 254) {
                         var msg = "Outcome text has " + val.length
                                 + " characters.\nSave anyway?"
                         answer = Application.Confirm(msg);
