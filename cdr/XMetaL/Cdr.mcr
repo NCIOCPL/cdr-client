@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.164 2007-09-12 20:51:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.165 2007-09-20 20:55:17 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.164  2007/09/12 20:51:52  bkline
+     Macro modified to warn when Outcome is longer than 254 characters.
+
      Revision 1.163  2007/08/13 16:23:39  bkline
      Implemented macro to insert date/time (request #3493).
 
@@ -7747,6 +7750,12 @@ y<MACRO  name="Insert User ID"
             }
         }
         if (oDoc.missingInfo.length) {
+            rng.MoveToDocumentStart();
+            while (rng.MoveToElement("MissingRequiredInformation")) {
+                rng.SelectContainerContents();
+                rng.Delete();
+                rng.RemoveContainerTags();
+            }
             rng.MoveToDocumentStart();
             if (!rng.FindInsertLocation("MissingRequiredInformation"))
                 Application.Alert("Can't insert MissingRequiredInformation");
