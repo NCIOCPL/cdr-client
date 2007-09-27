@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.165 2007-09-20 20:55:17 bkline Exp $
+     $Id: Cdr.mcr,v 1.166 2007-09-27 12:08:57 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.165  2007/09/20 20:55:17  bkline
+     Modified code which creates a new ScientificProtocolInfo doc from an
+     InScopeProtocol doc to copy the missing information block.
+
      Revision 1.164  2007/09/12 20:51:52  bkline
      Macro modified to warn when Outcome is longer than 254 characters.
 
@@ -597,18 +601,76 @@
             str = padChar + str;
         return str;
     }
-    
+
+    /*
+     * Find a singly-occurring element under a specified node.
+     * Can also be used for multiply-occurring elements by
+     * specifying a target value for one of the element's attributes.
+     */
+    function getSingleElement(node, name, attrName, attrValue) {
+        var elems = node.getElementsByTagName(name);
+        for (var i = 0; i < elems.length; ++i) {
+            var elem = elems.item(0);
+            if (!attrName || elem.getAttribute(attrName) == attrValue)
+                return elem;
+        }
+        return null;
+    }
+
     /*
      * Extracts the document ID from the current document.
      */
     function getDocId() {
-        if (!Application.ActiveDocument) { return null; }
-        var nodes = Application.ActiveDocument.getElementsByTagName("DocId");
-        if (nodes.length < 1) { return null; }
-        var elem = nodes.item(0);
+        elem = getSingleElement(Application.ActiveDocument, 'DocId');
+        if (!elem) return null;
         var val  = getTextContent(elem);
         if (val.length < 1) { return null; }
         return val;
+    }
+
+    /*
+     * Clone an node from one document for use in another.
+     * Typically you have to turn off validation checking to use the
+     * results of this function (for examle, if only one instance of
+     * a given element is allowed by the DTD/schema at a certain
+     * location, and you're replacing the existing instance with
+     * one cloned from another document using this function,
+     * XMetaL's implementation of replaceChild() isn't intelligent
+     * enough to know that the result of replacing one element node with
+     * another element node of the same type will still be valid.
+     */
+    function cloneFor(newDoc, node) {
+
+        // Clone element (recursively).
+        var e = newDoc.createElement(node.nodeName);
+
+        // Pop in the attributes from the source element.
+        for (var i = 0; i < node.attributes.length; ++i) {
+           var attr = node.attributes.item(i);
+           if (attr.name != 'cdr:id')
+               e.setAttribute(attr.name, attr.value)
+        }
+
+        // Copy in clones of the child nodes.
+        var child = node.firstChild;
+        while (child) {
+            var clone = null;
+            if (child.nodeType == 1)
+                clone = cloneFor(newDoc, child)
+            else if (child.nodeType == 3)
+                clone = newDoc.createTextNode(child.nodeValue);
+            else if (child.nodeType == 4)
+                clone = newDoc.createCDATASection(child.nodeValue);
+            else if (child.nodeType == 7)
+                clone = newDoc.createProcessingInstruction(child.target,
+                                                           child.data);
+            else if (child.nodeType == 8)
+                clone = newDoc.createComment(node.nodeValue);
+            if (clone)
+                e.appendChild(clone);
+            child = child.nextSibling;
+        }
+        return e;
     }
 
     /*
@@ -5208,7 +5270,7 @@
                 var newChild = cloneElementAcrossDocs(newDoc, child);
                 newElem.appendChild(newChild);
             }
-            else if (child.nodeType == 2) { // DOMText
+            else if (child.nodeType == 3) { // DOMText
                 var textNode = newDoc.createTextNode(child.nodeValue);
                 newElem.appendChild(textNode);
             }
@@ -7584,207 +7646,123 @@ y<MACRO  name="Insert User ID"
 <MACRO name="Make Scientific Protocol Doc"
        lang="JScript">
   <![CDATA[
-    function OriginalProtocolDoc(doc) {
+    function OriginalProtocolDoc(doc, newDoc) {
+
+        // Initialize object properties.
         this.docId       = null;
         this.primaryId   = null;
         this.title       = null;
+        this.procInfo    = null;
+        this.relDocs     = null;
         this.phases      = new Array();
-        this.suppInfo    = new Array();
-        this.missingInfo = new Array();
         if (!doc)        { return; }
-        var node         = doc.documentElement.firstChild;
-        while (node) {
-            if (node.nodeName == 'CdrDocCtl') {
-                var idNodes = node.getElementsByTagName('DocId');
-                if (idNodes.length > 0) {
-                    this.docId = getTextContent(idNodes.item(0));
-}
-            }
-            else if (node.nodeName == 'ProtocolIDs') {
-                var kids = node.getElementsByTagName('PrimaryID');
-                if (kids.length > 0) {
-                    var elem = kids.item(0);
-                    var idNodes = elem.getElementsByTagName('IDString');
-                    if (idNodes.length > 0)
-                        this.primaryId = getTextContent(idNodes.item(0));
-                }
-            }
-            else if (node.nodeName == 'ProtocolTitle') {
-                if (node.getAttribute('Type') == 'Original')
-                    this.title = getTextContent(node);
-            }
-            else if (node.nodeName == 'RelatedDocuments') {
-                var kids = node.getElementsByTagName('SupplementaryInfoLink');
-                for (var i = 0; i < kids.length; ++i) {
-                    var docId = kids.item(i).getAttribute('cdr:ref');
-                    if (docId)
-                        this.suppInfo.push(docId);
-                }
-            }
-            else if (node.nodeName == 'ProtocolPhase') {
-                var phase = getTextContent(node);
-                if (phase)
-                    this.phases.push(phase);
-            }
-            else if (node.nodeName == 'ProtocolProcessingDetails') {
-                var child = node.firstChild;
-                while (child) {
-                    if (child.nodeName == 'MissingRequiredInformation') {
-                        var grandChild = child.firstChild;
-                        while (grandChild) {
-                            if (grandChild.nodeName == 'MissingInformation') {
-                                var mi = getTextContent(grandChild);
-                                if (mi)
-                                    this.missingInfo.push(mi);
-                            }
-                            grandChild = grandChild.nextSibling;
-                        }
-                    }
-                    child = child.nextSibling;
-                }
-            }
-            node = node.nextSibling;
-        }
+
+        // Get the CDR ID for the InScopeProtocol document.
+        var docId = getSingleElement(doc, 'DocId');
+        if (docId)
+            this.docId = getTextContent(docId);
+
+        // Extract a copy of the primary protocol ID element.
+        var primaryId = getSingleElement(doc, 'PrimaryID');
+        if (primaryId)
+            this.primaryId = cloneFor(newDoc, primaryId);
+
+        // Copy the original title element.
+        var title = getSingleElement(doc, 'ProtocolTitle', 'Type', 'Original');
+        if (title)
+            this.title = cloneFor(newDoc, title);
+
+        // Get the related documents block.
+        var relDocs = getSingleElement(doc, 'RelatedDocuments');
+        if (relDocs)
+            this.relDocs = cloneFor(newDoc, relDocs);
+
+        // Collect all the phase elements from the source document.
+        var phases = doc.getElementsByTagName('ProtocolPhase');
+        for (var i = 0; i < phases.length; ++i)
+            this.phases.push(cloneFor(newDoc, phases.item(i)));
+
+        // Clone the processing details block.
+        var procInfo = getSingleElement(doc, 'ProtocolProcessingDetails');
+        if (procInfo)
+            this.procInfo = cloneFor(newDoc, procInfo);
     }
-    OriginalProtocolDoc.prototype.toString = function() {
-        var s = "docId=" + this.docId + "\ntitle=" + this.title
-              + "\nprimaryId=" + this.primaryId + "\n";
-        for (var i = 0; i < this.phases.length; ++i)
-            s += "phase=" + this.phases[i] + "\n";
-        for (var i = 0; i < this.suppInfo.length; ++i)
-            s += "suppInfo=" + this.suppInfo[i] + "\n";
-        for (var i = 0; i < this.missingInfo.length; ++i)
-            s += "missingInfo=" + this.missingInfo[i] + "\n";
-        return s;
-    }
+
     function makeScientificProtocolDoc() {
-        var oDoc = new OriginalProtocolDoc(Application.ActiveDocument);
-        // Application.Alert(oDoc.toString());
-        var template = Application.Path
-                     + "\\Template\\Cdr\\ScientificProtocolInfo.xml";
-        var doc = Application.Documents.OpenTemplate(template);
-        var pidElems = doc.getElementsByTagName('PrimaryID');
-        if (pidElems.length < 1) {
-            Application.Alert("PrimaryID element not found");
+
+        // Get a reference to the source document.
+        var inScopeDoc = Application.ActiveDocument;
+
+        // Create a new ScientificProtocolInfo document from the template.
+        var templateLocation = "\\Template\\Cdr\\ScientificProtocolInfo.xml";
+        var templatePath = Application.Path + templateLocation;
+        var doc = Application.Documents.OpenTemplate(templatePath);
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+
+        // Extract the interesting bits from the source document.
+        var oDoc = new OriginalProtocolDoc(inScopeDoc, doc);
+
+        // Replace the empty primary ID element with the one from the source.
+        if (oDoc.primaryId) {
+            var primaryId = getSingleElement(doc, 'PrimaryID');
+            if (!primaryId)
+                Application.Alert("PrimaryID element missing from template");
+            else
+                primaryId.parentNode.replaceChild(oDoc.primaryId, primaryId);
         }
+
+        // Replace the empty InScopeDocID element.
+        var docId = getSingleElement(doc, 'InScopeDocID');
+        if (!docId)
+            Application.Alert("InScopeDocID element not found in template");
         else {
-            var pidElem = pidElems.item(0);
-            var idStringElems = pidElem.getElementsByTagName('IDString');
-            if (!idStringElems.length) {
-                Application.Alert("PrimaryID/IDString element not found");
-            }
-            else {
-                var idStringElem = idStringElems.item(0);
-                var child = idStringElem.firstChild;
-                while (child) {
-                    var nextChild = child.nextSibling;
-                    idStringElem.removeChild(child);
-                    child = nextChild;
-                }
-                var textNode = doc.createTextNode(oDoc.primaryId);
-                idStringElem.appendChild(textNode);
-            }
+            var newElem = doc.createElement('InScopeDocID')
+            newElem.setAttribute('cdr:ref', oDoc.docId);
+            docId.parentNode.replaceChild(newElem, docId);
         }
-        var inScopeDocIdElems = doc.getElementsByTagName('InScopeDocID');
-        if (!inScopeDocIdElems.length) {
-            Application.Alert("InScopeDocID element not found");
-        }
+
+        // Replace the single empty phase node with the in-scope phases.
+        var phase = getSingleElement(doc, "ProtocolPhase");
+        if (!phase)
+            Application.Alert('ProtocolPhase element missing from template');
         else {
-            var inScopeDocIdElem = inScopeDocIdElems.item(0);
-            var child = inScopeDocIdElem.firstChild;
-            while (child) {
-                var nextChild = child.nextSibling;
-                inScopeDocIdElem.removeChild(child);
-                child = nextChild;
-            }
-            inScopeDocIdElem.setAttribute("cdr:ref", oDoc.docId);
-        }
-        var rng = doc.Range;
-        if (oDoc.phases.length) {
-            var phaseElems = doc.getElementsByTagName("ProtocolPhase");
-            var i = 0;
-            if (phaseElems.length) {
-                var phaseElem = phaseElems.item(0);
-                var child = phaseElem.firstChild;
-                while (child) {
-                    var nextChild = child.nextSibling;
-                    phaseElem.removeChild(child);
-                    child = nextChild;
-                }
-                var textNode = doc.createTextNode(oDoc.phases[0]);
-                phaseElem.appendChild(textNode);
-                i = 1;
-            }
-            while (i < oDoc.phases.length) {
-                rng.MoveToDocumentEnd();
-                if (!rng.FindInsertLocation("ProtocolPhase", false)) {
-                    Application.Alert("Can't insert ProtocolPhase elements");
-                    break;
-                }
-                else {
-                    var phase = oDoc.phases[i];
-                    var elem = "<ProtocolPhase>" + phase + "</ProtocolPhase>";
-                    rng.PasteString(elem);
-                    ++i;
-                }
+            for (var i = 0; i < oDoc.phases.length; ++i) {
+                 var newElem = oDoc.phases[i];
+                 if (i == oDoc.phases.length - 1)
+                     phase.parentNode.replaceChild(newElem, phase);
+                 else
+                     phase.parentNode.insertBefore(newElem, phase);
             }
         }
-        if (oDoc.suppInfo.length) {
-            rng.MoveToDocumentStart();
-            if (!rng.FindInsertLocation("RelatedDocuments")) {
-                Application.Alert("Unable to insert RelatedDocuments element");
-            }
-            else {
-                var elem = "<RelatedDocuments>";
-                for (var i = 0; i < oDoc.suppInfo.length; ++i) {
-                    var id = oDoc.suppInfo[i];
-                    elem += "<SupplementaryInfoLink cdr:ref='" + id + "'/>";
-                }
-                elem += "</RelatedDocuments>";
-                if (rng.CanPaste(elem)) {
-                    rng.PasteString(elem);
-                }
-                else {
-                    Application.Alert("Unable to paste in '" + elem + "'.");
-                }
-            }
+
+        // Pop in the new RelatedDocuments block.
+        if (oDoc.relDocs) {
+            var relDocs = getSingleElement(doc, "RelatedDocuments");
+            if (!relDocs)
+                Application.Alert("RelatedDocuments missing from template");
+            else
+                relDocs.parentNode.replaceChild(oDoc.relDocs, relDocs);
         }
-        if (oDoc.missingInfo.length) {
-            rng.MoveToDocumentStart();
-            while (rng.MoveToElement("MissingRequiredInformation")) {
-                rng.SelectContainerContents();
-                rng.Delete();
-                rng.RemoveContainerTags();
-            }
-            rng.MoveToDocumentStart();
-            if (!rng.FindInsertLocation("MissingRequiredInformation"))
-                Application.Alert("Can't insert MissingRequiredInformation");
-            else {
-                var elem = "<MissingRequiredInformation>";
-                for (var i = 0; i < oDoc.missingInfo.length; ++i) {
-                    elem += "<MissingInformation>" + oDoc.missingInfo[i] +
-                            "</MissingInformation>";
-                }
-                elem += "</MissingRequiredInformation>";
-                rng.PasteString(elem);
-            }
+
+        // Insert the original title in front of the professional title.
+        if (oDoc.title) {
+            var title = getSingleElement(doc, 'ProtocolTitle');
+            if (!title)
+                Application.Alert("ProtocolTitle element not in template");
+            else
+                title.parentNode.insertBefore(oDoc.title, title);
         }
-        rng.MoveToDocumentEnd();
-        if (!rng.FindInsertLocation("ProtocolTitle", false)) {
-            Application.Alert("Unable to insert ProtocolTitle element");
+
+        // Last step: insert the processing information block.
+        if (oDoc.procInfo) {
+            var procInfo = getSingleElement(doc, "ProtocolProcessingDetails");
+            if (!procInfo)
+                Application.Alert("Template missing ProtocolProcessingDetails");
+            else
+                procInfo.parentNode.replaceChild(oDoc.procInfo, procInfo);
         }
-        else {
-            rng.PasteString("<ProtocolTitle Type='Original'/>");
-            var elems = doc.getElementsByTagName("ProtocolTitle");
-            for (var i = elems.length - 1; i >= 0; --i) {
-                var elem = elems.item(i);
-                if (elem.getAttribute("Type") == "Original") {
-                    var textNode = doc.createTextNode(oDoc.title);
-                    elem.appendChild(textNode);
-                    break;
-                }
-            }
-        }
+        ActiveDocument.RulesChecking = rulesChecking;
     }
     makeScientificProtocolDoc();
   ]]>
@@ -7818,6 +7796,21 @@ y<MACRO  name="Insert User ID"
         docIdElem.setAttribute("cdr:ref", docId);
     }
     makeGlossaryTermNameDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Bug Repro" lang="JScript">
+  <![CDATA[
+    function bugRepro() {
+        var elemName = Application.Prompt("Element to replace?");
+        var doc      = Application.ActiveDocument;
+        var newElem  = doc.createElement(elemName);
+        var textNode = doc.createTextNode("foo");
+        var oldElem  = doc.getElementsByTagName(elemName).item(0);
+        newElem.appendChild(textNode);
+        oldElem.parentNode.replaceChild(newElem, oldElem);
+    }
+    bugRepro();
   ]]>
 </MACRO>
 
