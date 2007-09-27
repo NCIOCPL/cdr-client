@@ -203,15 +203,15 @@ SummarySection>SummarySection>SummarySection>SummarySection>SummarySection:befor
 				        { content: "Sub-sub-sub-sub-section "; }
 SummaryTitle:before		{ content: "SUMMARY TITLE "; }
 Term:before	            { content: "Term "; }
-SummarySection>Title:before	{ content: "Section Title: "; }
+SummarySection>Title:before	{ content: "Section Title "; }
 SummarySection>SummarySection>Title:before   
-				        { content: "Sub-section Title: "; }
+				        { content: "Sub-section Title "; }
 SummarySection>SummarySection>SummarySection>Title:before   
-				        { content: "Sub-sub-section Title: "; }
+				        { content: "Sub-sub-section Title "; }
 SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-				        { content: "Sub-sub-sub-section Title: "; }
+				        { content: "Sub-sub-sub-section Title "; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-	        			{ content: "Sub-sub-sub-sub-section Title: "; }
+	        			{ content: "Sub-sub-sub-sub-section Title "; }
 TranslationOf:before	{ content: "Translation Of "; }
 ReplacementFor:before	{ content: "Replacement For "; }
 
