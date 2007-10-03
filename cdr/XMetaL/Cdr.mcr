@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.166 2007-09-27 12:08:57 bkline Exp $
+     $Id: Cdr.mcr,v 1.167 2007-10-03 16:32:33 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.166  2007/09/27 12:08:57  bkline
+     Rewrote code to clone InScopeProtocol information as Scientific doc.
+     Added new cloneFor() function.  Reported bug with using that function's
+     results to XMetaL (you have to turn off validation checking).
+
      Revision 1.165  2007/09/20 20:55:17  bkline
      Modified code which creates a new ScientificProtocolInfo doc from an
      InScopeProtocol doc to copy the missing information block.
@@ -7765,6 +7770,29 @@ y<MACRO  name="Insert User ID"
         ActiveDocument.RulesChecking = rulesChecking;
     }
     makeScientificProtocolDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="PI Bug Repro"
+       lang="JScript"
+       key="Ctrl+Alt+O">
+  <![CDATA[
+    function piBugRepro() {
+
+        // Create a new document.
+        var xml = "<?xml version='1.0' ?>\n"
+                + "<!DOCTYPE Article SYSTEM 'journalist.dtd'>\n"
+                + "<Article>\n <Title>PI Bug Repro</Title>\n"
+                + " <Para><?xm-replace_text { Riveting prose here }?></Para>\n"
+                + "</Article>";
+        var doc = Application.Documents.OpenString(xml);
+        var elem = doc.createElement('Para');
+        var prompt = '{ Boring stuff here }';
+        var pi = doc.createProcessingInstruction('xm-replace_text', prompt);
+        elem.appendChild(pi);
+        doc.documentElement.appendChild(elem);
+    }
+    piBugRepro();
   ]]>
 </MACRO>
 
