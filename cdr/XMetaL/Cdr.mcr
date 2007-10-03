@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.167 2007-10-03 16:32:33 bkline Exp $
+     $Id: Cdr.mcr,v 1.168 2007-10-03 21:06:30 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.167  2007/10/03 16:32:33  bkline
+     Added repro case for PI display bug.
+
      Revision 1.166  2007/09/27 12:08:57  bkline
      Rewrote code to clone InScopeProtocol information as Scientific doc.
      Added new cloneFor() function.  Reported bug with using that function's
@@ -7767,6 +7770,11 @@ y<MACRO  name="Insert User ID"
             else
                 procInfo.parentNode.replaceChild(oDoc.procInfo, procInfo);
         }
+        var rng = ActiveDocument.Range;
+        rng.SelectAll();
+        var docAsString = rng.Text;
+        rng.Delete();
+        rng.PasteString(docAsString);
         ActiveDocument.RulesChecking = rulesChecking;
     }
     makeScientificProtocolDoc();
