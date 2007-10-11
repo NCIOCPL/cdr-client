@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.168 2007-10-03 21:06:30 bkline Exp $
+     $Id: Cdr.mcr,v 1.169 2007-10-11 14:23:52 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.168  2007/10/03 21:06:30  bkline
+     Workaround for another XMetaL bug (see comments #12 and #13 on
+     issue #3397).
+
      Revision 1.167  2007/10/03 16:32:33  bkline
      Added repro case for PI display bug.
 
@@ -1446,7 +1450,8 @@
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
     }
-    if (docType.name == 'ScientificProtocolInfo') {
+    if (docType.name == 'ScientificProtocolInfo' ||
+        docType.name == 'InScopeProtocol') {
         if (!cdrDocReadOnly()) {
             Application.AppendMacro("Insert Current Date and Time",
                                     "Insert Current Date and Time");
