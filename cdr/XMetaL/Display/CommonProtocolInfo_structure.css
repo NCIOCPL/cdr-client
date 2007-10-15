@@ -87,6 +87,7 @@ DosageForm,
 DoseSchedule,
 Eligibility,
 EligibilityText,
+EndDateTime,
 EndPoints,
 EnteredBy,
 EntryDate,
@@ -136,6 +137,7 @@ RelatedPublications,
 RelatedWebsites,
 SourceWebsite,
 SpecialStudyParameters,
+StartDateTime,
 Stratification,
 StudyFocus,
 StudyCategoryName,
@@ -144,7 +146,7 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-
+User,
    { display: block; }
 
 
@@ -172,6 +174,7 @@ DosageForm                :before { content: "Dosage Form "; }
 DoseSchedule              :before { content: "Dose Schedule";  }
 Eligibility               :before { content: "ELIGIBILITY CRITERIA"; }
 EligibilityText           :before { content: "Eligibility "; }
+EndDateTime               :before { content: "End Date";  }
 EndPoints                 :before { content: "End Points ";  }
 EnteredBy                 :before { content: "Entered By "; }
 EntryDate                 :before { content: "Entry Date "; }
@@ -194,6 +197,9 @@ Objectives                :before { content: "Objectives "; }
 OtherID                   :before { content: "OTHER ID"; }
 Outcome                   :before { content: "Outcome "; }
 Outline                   :before { content: "Outline "; }
+MissingRequiredInformation
+                          :before { content: "MISSING REQUIRED INFORMATION"; }
+MissingInformation        :before { content: "Missing Info"; }
 Patient                   :before { content: "PATIENT ABSTRACT"; }
 PatientCharacteristics    :before { content: "Patient Characteristics "; }
 PrimaryID                 :before { content: "PRIMARY ID "; }
@@ -202,6 +208,8 @@ PrimaryID > Comment       :before { content: "Comments ";  }
 PriorConcurrentTherapy    :before { content: "Prior Concurrent Therapy "; }
 ProcessingDate            :before { content: "Processing Status "; }
 ProcessingStatus          :before { content: "Processing Date "; }
+ProcessingStatuses        :before { content: "STATUSES"; }
+ProcessingStatusInfo      :before { content: "STATUS INFO"; }
 Professional              :before { content: "PROFESSIONAL ABSTRACT"; }
 ProjectedAccrual          :before { content: "Projected Accrual "; }
 ProtocolAbstract          :before { content: "Protocol Abstracts "; }
@@ -225,19 +233,23 @@ PublishedResults          :before { content: "PUBLISHED RESULTS ";}
 Purpose                   :before { content: "Purpose "; }
 Rationale                 :before { content: "Rationale "; }
 RelatedCitation           :before { content: "Related Citation ";  }
+RelatedDocuments          :before { content: "RELATED DOCUMENTS"; }
 RelatedProtocols          :before { content: "Related Protocols ";  }
 RelatedPublications       :before { content: "RELATED PUBLICATIONS "; }
 RelatedWebsites           :before { content: "Related Websites ";   }
 SourceWebsite             :before { content: "Source Website "; }
 SpecialStudyParameters    :before { content: "Special Study Parameters "; }
+StartDateTime             :before { content: "Start Date";  }
 Stratification            :before { content: "Stratification ";  }
 StudyFocus                :before { content: "Study Focus ";  }
 StudyCategory             :before { content: "STUDY CATEGORY "; }
 StudyCategoryName         :before { content: "Study Category Name "; }
 StudyCategoryType         :before { content: "Study Category Type "; }
 StudyType                 :before { content: "Study Type "; }
+SupplementaryInfoLink     :before { content: "Supplementary Info Link"; }
 TitleType                 :before { content: "Title Type "; }
 TreatmentIntervention     :before { content: "Treatment Intervention "; }
+User                      :before { content: "User Name"; }
 
 
 /***************************************************************************/
@@ -285,6 +297,7 @@ DiseaseCharacteristics            :before,
 DosageForm                        :before,
 DoseSchedule                      :before,
 EligibilityText                   :before,
+EndDateTime                       :before,
 EndPoints                         :before,
 EnteredBy                         :before,
 EntryDate                         :before,
@@ -307,11 +320,12 @@ Purpose                           :before,
 Rationale                         :before,
 RelatedWebsites                   :before,
 SpecialStudyParameters            :before,
+StartDateTime                     :before,
 Stratification                    :before,
 StudyCategoryName                 :before,
 StudyFocus                        :before,
 TreatmentIntervention             :before,
-
+User                              :before,
    {  font-weight: bold;
       color: black;  }
 
@@ -363,6 +377,7 @@ ProtocolProcessingDetails,
 ProtocolRelatedLinks,
 ProtocolSpecialCategory,
 PublishedResults,
+RelatedDocuments,
 RelatedPublications,
 ProtocolTitle,
    { border: none;  }
@@ -392,6 +407,7 @@ DosageForm,
 Dose,
 Eligibility,
 EligibilityText,
+EndDateTime,
 EndPoints,
 EnteredBy,
 EntryDate,
@@ -439,6 +455,7 @@ RelatedWebsites,
 RelatedPublications,
 SourceWebsite,
 SpecialStudyParameters,
+StartDateTime,
 Stratification,
 StudyFocus,
 StudyCategoryName,
@@ -447,6 +464,7 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
+User,
    {  color: white;
       background-color: white;  }
 
@@ -475,6 +493,7 @@ CitationSource                    :before,
 Eligibility>Comment               :before,
 Patient>Comment                   :before,
 Professional>Comment              :before,
+ProcessingStatusInfo>Comment      :before,
 ProtocolAmendment>Comment         :before,
 ProtocolAmendmentInformation>DatedAction>Comment:before,
 ProtocolDetail>StudyCategory>Comment:before,
@@ -497,6 +516,7 @@ DosageForm                        :before,
 DoseSchedule                      :before,
 Eligibility,
 EligibilityText,
+EndDateTime                       :before,
 EndPoints,
 Enteredby                         :before,
 EntryDate                         :before,
@@ -514,6 +534,7 @@ Intervention,
 InterventionType                  :before,
 InterventionNameLink              :before,
 LowAge                            :before,
+MissingInformation                :before,
 Objectives,
 Outcome                           :before,
 Outline,
@@ -539,6 +560,7 @@ PublishedResults                  :before,
 Purpose,
 Rationale,
 RelatedCitation                   :before,
+RelatedDocuments,
 RelatedProtocols                  :before,
 RelatedPublications,
 RelatedPublications               :before,
@@ -546,15 +568,18 @@ RelatedWebsites                   :before,
 SourceWebsite                     :before,
 SpecialStudyParameters            :before,
 StartDate                         :before,
+StartDateTime                     :before,
 Stratification,
 StudyCategory,
 StudyCategoryName                 :before,
 StudyCategoryType                 :before,
 StudyFocus                        :before,
 StudyType                         :before,
+SupplementaryInfoLink             :before,
 TreatmentIntervention,
 ProtocolIDs                       :before,
 TitleType                         :before,
+User                              :before,
      { background-color: white; }
 
 
@@ -575,6 +600,7 @@ ChangeType,
 Citation,
 CitationSource,
 ProtocolProcessingDetails>Comment,  
+ProcessingStatusInfo>Comment,
 DatedAction>Comment,
 Eligibility>Comment,
 ProtocolAmendment>Comment,
@@ -597,6 +623,7 @@ Diagnosis,
 DocId,
 DocTitle,
 DoseSchedule,
+EndDateTime,
 EnteredBy,
 EntryDate,
 ExclusionCriteria,
@@ -611,6 +638,7 @@ InScopeDocID,
 InterventionNameLink,
 InterventionType,
 LowAge,
+MissingInformation,
 PdqKey,
 ProcessingDate,
 ProcessingStatus,
@@ -622,11 +650,14 @@ RelatedProtocols,
 RelatedWebsites,
 SourceWebsite,
 SpecialCategory,
+StartDateTime,
 StudyCategoryType,
 StudyCategoryName,
 StudyFocus,
 StudyType,
+SupplementaryInfoLink,
 TitleType,
+User,
      { text-indent: 0pt; }
 
 
