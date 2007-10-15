@@ -40,12 +40,9 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
 /**************************************************************************/ 
 /*                     DEFAULT PROPERTIES                                 */ 
 /**************************************************************************/ 
-  
 @import "CdrCommonSchema_structure.css"; 
 @import "CommonProtocolInfo_structure.css";
 
@@ -90,27 +87,21 @@ ScientificProtocolInfo,
 DateLastModified,
 PdqKey,
 ScientificProtocolInfo,
-
    { display: block; }
-
 
 
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-  
-
-DateLastModified:before		{ content: "Last Modified "; }
-PdqKey:before			{ content: "PDQ Key "; }
-ScientificProtocolInfo:before	{ content: "SCIENTIFIC PROTOCOL INFORMATION "; }
+DateLastModified       :before { content: "Last Modified "; }
+PdqKey                 :before { content: "PDQ Key "; }
+ScientificProtocolInfo :before { content: "SCIENTIFIC PROTOCOL INFORMATION "; }
 
 
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
 /***************************************************************************/ 
-  
 ScientificProtocolInfo:before	
-
    { font-weight: bold;
      color: black;      }
 
@@ -118,79 +109,54 @@ ScientificProtocolInfo:before
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
 /***************************************************************************/ 
-  
-
 DateLastModified:before,
-
    {  font-weight: bold;
       color: black;  }
-
-
 
 
 /***************************************************************************/ 
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */ 
 /***************************************************************************/ 
-  
-
 PdqKey:before,
-
    {  font-weight: bold;
       color: black;  }
-
 
 
 /***************************************************************************/ 
 /*                           BORDER CONTROL                                */
 /***************************************************************************/
-  
-
 ProtocolAmendmentInformation>DatedAction,
-
    {  border: none;  }
-
 
 
 /***************************************************************************/ 
 /*                     NON-DISPLAY ELEMENTS                                */ 
 /***************************************************************************/ 
-  
-
 Para,
-
      { display:  none;   }
-
 
 
 /***************************************************************************/ 
 /*                             HIDE TEXT                                   */ 
 /***************************************************************************/ 
-
-
 DateLastModified,
 PdqKey,
-
    {  color: white;
       background-color: white;  }
   
 
 EnteredBy:before,
 EntryDate:before,
-
 	{ background-color: white }  
-
 
 
 /***************************************************************************/ 
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
 /***************************************************************************/ 
-
 /* Remove negative text-indent settings  */
-
 
 Patient>Comment,
 Professional>Comment,
 DateLastModified,
 PdqKey,
-
 	{ text-indent: 0pt; }

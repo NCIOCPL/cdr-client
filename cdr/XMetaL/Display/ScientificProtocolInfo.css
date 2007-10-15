@@ -177,7 +177,7 @@ ProcessingDate,
                       { margin-left: 150pt;
                         text-indent: -107pt; }
 ProcessingStatus,
-                      { margin-left: 150pt;
+                      { margin-left: 110pt;
                         text-indent: -127.5pt; }
 
 InScopeDocID,
@@ -188,14 +188,18 @@ InScopeDocID,
 /* Margin-bottom for simulated text boxes                                */
 
 DateLastModified,
+InScopeDocID,
 PdqKey,
 ProcessingDate,
 ProcessingStatus,
 ScientificProtocolInfo,
-  {  margin-bottom: 4pt; }
+  { margin-bottom: 4pt; }
 
 InScopeDocID,
-  {  margin-top: 4pt; }
+  { margin-top: 4pt; }
+
+ProcessingStatusInfo,
+  { margin-bottom: 1em; }
 
 /*************************************************************************/
 /*                               COLOR                                   */
@@ -205,29 +209,30 @@ PdqKey,
 ProcessingDate,
 ProcessingStatus,
 ScientificProtocolInfo,
-  {  background-color: white; }
+  { background-color: white; }
 
 
 /* Blue = Administrative Information                                       */   
 /* *************************************************************************/ 
 DateLastModified:before,
 PdqKey:before,
-  {  font-weight: bold;
+  { font-weight: bold;
      color: navy;         }
 
 /* Green = Scientific Information                                          */   
 /* *************************************************************************/  
+ProcessingStatusInfo>Comment :before,
 ProtocolProcessingDetails>Comment:before,
 ProtocolProcessingDetails>EnteredBy:before,
-ProcessingDate:before,
-ProcessingStatus:before,
+ProcessingDate               :before,
+ProcessingStatus             :before,
 ProtocolProcessingDetails,
-  {  background-color: #CCFFCC; }  /*light green*/
+  { background-color: #CCFFCC; }  /*light green*/
 
 
 /* Sample for testing when we need to adjust elements on white background       
 InScopeDocID:before,
-  {  background-color: yellow; }
+    background-color: yellow; }
 InScopeDocID,
-  {  background-color: red; }
+  { background-color: red; }
 */
