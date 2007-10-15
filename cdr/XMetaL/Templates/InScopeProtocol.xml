@@ -2,55 +2,108 @@
 <!DOCTYPE InScopeProtocol SYSTEM "InScopeProtocol.dtd">
 <InScopeProtocol xmlns:cdr="cips.nci.nih.gov/cdr"> 
  <CdrDocCtl> 
-  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+  <DocId><?xm-replace_text {
+          The document ID will be assigned automatically
+          }?></DocId>
+  <DocTitle><?xm-replace_text {
+          The document title will be constructed automatically
+          }?></DocTitle>
  </CdrDocCtl> 
  <ProtocolIDs>
   <PrimaryID>
-   <IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+   <IDString><?xm-replace_text {
+          Enter the protocol number or ID information (required)
+          }?></IDString>
+   <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment>
   </PrimaryID>
   <OtherID>
-   <IDType><?xm-replace_text {Optionally select an ID type} ?></IDType>
-   <IDString><?xm-replace_text {Enter the protocol number or ID information (required)} ?></IDString>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+   <IDType><?xm-replace_text {
+          Optionally select an ID type
+          }?></IDType>
+   <IDString><?xm-replace_text {
+          Enter the protocol number or ID information (required)
+          }?></IDString>
+   <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment>
   </OtherID>
  </ProtocolIDs>
  <ProtocolSources> 
   <ProtocolSource> 
-   <SourceName><?xm-replace_text {Select the protocol submission source (required)} ?></SourceName>
-   <DateReceived><?xm-replace_text {Enter the date that the protocol was received (required)} ?></DateReceived>
-   <DateSubmissionComplete><?xm-replace_text {Optionally enter the date protocol submission is complete} ?></DateSubmissionComplete>
-   <MergeByDate><?xm-replace_text {Optionally enter the date to be merged} ?></MergeByDate>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+   <SourceName><?xm-replace_text {
+          Select the protocol submission source (required)
+          }?></SourceName>
+   <DateReceived><?xm-replace_text {
+          Enter the date that the protocol was received (required)
+          }?></DateReceived>
+   <DateSubmissionComplete><?xm-replace_text {
+          Optionally enter the date protocol submission is complete
+          }?></DateSubmissionComplete>
+   <MergeByDate><?xm-replace_text {
+          Optionally enter the date to be merged
+          }?></MergeByDate>
+   <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
   </ProtocolSource> 
  </ProtocolSources> 
  <ProtocolApproval> 
-  <ReviewApprovalType><?xm-replace_text {Select the protocol review approval authority (required)} ?></ReviewApprovalType>
-  <ReimbursementApprovalType><?xm-replace_text {Optionally select a reimbursement approval group} ?></ReimbursementApprovalType>
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  <ReviewApprovalType><?xm-replace_text {
+          Select the protocol review approval authority (required)
+          }?></ReviewApprovalType>
+  <ReimbursementApprovalType><?xm-replace_text {
+          Optionally select a reimbursement approval group
+          }?></ReimbursementApprovalType>
+  <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
  </ProtocolApproval> 
  <ProtocolSponsors>
-  <SponsorName><?xm-replace_text {Select the protocol's sponsoring agency (required)} ?></SponsorName> 
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  <SponsorName><?xm-replace_text {
+          Select the protocol's sponsoring agency (required)
+          }?></SponsorName> 
+  <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
  </ProtocolSponsors> 
  <FundingInfo> 
   <NIHGrantContract> 
-   <NIHGrantContractType><?xm-replace_text {Select the type of NIH grant or contract that funds this protocol (required)} ?></NIHGrantContractType> 
-   <GrantContractNo><?xm-replace_text {Enter the number of the NIH funding grant or contract (required)} ?></GrantContractNo>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+   <NIHGrantContractType><?xm-replace_text {
+          Select the type of NIH grant or contract that funds 
+          this protocol (required)
+          }?></NIHGrantContractType> 
+   <GrantContractNo><?xm-replace_text {
+          Enter the number of the NIH funding grant or contract (required)
+          }?></GrantContractNo>
+   <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
   </NIHGrantContract> 
   <OtherGrantContractInfo> 
-   <GrantContractNo><?xm-replace_text {Enter an additional grant/contract number (required)} ?></GrantContractNo>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+   <GrantContractNo><?xm-replace_text {
+          Enter an additional grant/contract number (required)
+          }?></GrantContractNo>
+   <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
   </OtherGrantContractInfo> 
  </FundingInfo> 
  <FDAINDInfo>
-  <INDGrantor><?xm-replace_text {Enter the INDGrantor (required)}?></INDGrantor>
-  <INDNumber><?xm-replace_text {Enter the INDNumber (required)}?></INDNumber>
-  <INDSubmissionDate><?xm-replace_text {Optionally enter the IND submission date}?></INDSubmissionDate>
+  <INDGrantor><?xm-replace_text {
+          Enter the INDGrantor (required)
+          }?></INDGrantor>
+  <INDNumber><?xm-replace_text {
+          Enter the INDNumber (required)
+          }?></INDNumber>
+  <INDSubmissionDate><?xm-replace_text {
+          Optionally enter the IND submission date
+          }?></INDSubmissionDate>
  </FDAINDInfo>
- <ProtocolTitle Type="Original"><?xm-replace_text {Enter the original title of this protocol} ?></ProtocolTitle>
+ <ProtocolTitle Type="Original"><?xm-replace_text {
+          Enter the original title of this protocol
+          }?></ProtocolTitle>
  <ProtocolAbstract> 
   <Professional> 
    <Objectives></Objectives> 
@@ -59,85 +112,197 @@
     <DiseaseCharacteristics></DiseaseCharacteristics> 
     <PatientCharacteristics></PatientCharacteristics> 
    </EntryCriteria> 
-   <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
-   <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate> 
+   <EnteredBy><?xm-replace_text {
+          Enter your name (required)
+          }?></EnteredBy> 
+   <EntryDate><?xm-replace_text {
+          Enter today's date (required)
+          }?></EntryDate> 
   </Professional> 
   <Patient> 
    <Rationale></Rationale> 
    <Purpose></Purpose> 
    <EligibilityText></EligibilityText> 
    <TreatmentIntervention></TreatmentIntervention> 
-   <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
-   <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate> 
+   <EnteredBy><?xm-replace_text {
+          Enter your name (required)
+          }?></EnteredBy> 
+   <EntryDate><?xm-replace_text {
+          Enter today's date (required)
+          }?></EntryDate> 
   </Patient> 
  </ProtocolAbstract> 
- <ProtocolPhase><?xm-replace_text {Select this protocol's current phase (required)} ?></ProtocolPhase>
- <ExpectedEnrollment><?xm-replace_text {Enter the expected accrual number (required)} ?></ExpectedEnrollment>
+ <ProtocolPhase><?xm-replace_text {
+          Select this protocol's current phase (required)
+          }?></ProtocolPhase>
+ <ExpectedEnrollment><?xm-replace_text {
+          Enter the expected accrual number (required)
+          }?></ExpectedEnrollment>
  <ProtocolDetail> 
-  <StudyType><?xm-replace_text {Select a type of protocol (required)} ?></StudyType>
+  <StudyType><?xm-replace_text {
+          Select a type of protocol (required)
+          }?></StudyType>
   <StudyCategory> 
-   <StudyCategoryType><?xm-replace_text {Select a study category of primary or secondary (required)} ?></StudyCategoryType>
-   <StudyCategoryName><?xm-replace_text {Select a descriptive study category (required)} ?></StudyCategoryName>
+   <StudyCategoryType><?xm-replace_text {
+          Select a study category of primary or secondary (required)
+          }?></StudyCategoryType>
+   <StudyCategoryName><?xm-replace_text {
+          Select a descriptive study category (required)
+          }?></StudyCategoryName>
   </StudyCategory> 
-  <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
-  <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate> 
+  <EnteredBy><?xm-replace_text {
+          Enter your name (required)
+          }?></EnteredBy> 
+  <EntryDate><?xm-replace_text {
+          Enter today's date (required)
+          }?></EntryDate> 
  </ProtocolDetail> 
  <Eligibility> 
-  <LowAge><?xm-replace_text {Enter the minimum eligible age (required)}?></LowAge>
-  <HighAge><?xm-replace_text {Enter the maximum eligible age (required)}?></HighAge>
-  <AgeText><?xm-replace_text {Enter a description of the age eligibility criteria (required)}?></AgeText>
-  <Gender><?xm-replace_text {Optionally select a specified study gender}?></Gender>
+  <LowAge><?xm-replace_text {
+          Enter the minimum eligible age (required)
+          }?></LowAge>
+  <HighAge><?xm-replace_text {
+          Enter the maximum eligible age (required)
+          }?></HighAge>
+  <AgeText><?xm-replace_text {
+          Enter a description of the age eligibility criteria (required)
+          }?></AgeText>
+  <Gender><?xm-replace_text {
+          Optionally select a specified study gender
+          }?></Gender>
  </Eligibility> 
  <ProtocolSpecialCategory> 
-  <SpecialCategory><?xm-replace_text {Select a specialized trial category, if relevant (required)} ?></SpecialCategory>
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
+  <SpecialCategory><?xm-replace_text {
+          Select a specialized trial category, if relevant (required)
+          }?></SpecialCategory>
+  <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
  </ProtocolSpecialCategory> 
  <ProtocolAdminInfo>
-  <StartDate><?xm-replace_text {Optionally enter the protocol start date}?></StartDate>
-  <CurrentProtocolStatus><?xm-replace_text {The current status of this protocol will be calculated during validation, based on organization statuses (required)} ?></CurrentProtocolStatus> 
+  <StartDate><?xm-replace_text {
+          Optionally enter the protocol start date
+          }?></StartDate>
+  <CurrentProtocolStatus><?xm-replace_text {
+          The current status of this protocol will be calculated 
+          during validation, based on organization statuses (required)
+          }?></CurrentProtocolStatus> 
   <ProtocolLeadOrg Group="Yes"> 
-   <LeadOrganizationID><?xm-replace_text {Link to the protocol's lead organization (required)?></LeadOrganizationID>
-   <LeadOrgRole><?xm-replace_text {Select a Primary or Secondary role for this lead organization (required)} ?></LeadOrgRole>
-   <LeadOrgProtocolID><?xm-replace_text {Enter identification information for the lead organization in this protocol (required)} ?></LeadOrgProtocolID>
+   <LeadOrganizationID><?xm-replace_text {
+          Link to the protocol's lead organization (required)
+          }?></LeadOrganizationID>
+   <LeadOrgRole><?xm-replace_text {
+          Select a Primary or Secondary role for this lead 
+          organization (required)
+          }?></LeadOrgRole>
+   <LeadOrgProtocolID><?xm-replace_text {
+          Enter identification information for the lead organization 
+          in this protocol (required)
+          }?></LeadOrgProtocolID>
    <LeadOrgProtocolStatuses> 
     <CurrentOrgStatus> 
-     <StatusName><?xm-replace_text {Select the lead organization's status on this protocol (required)} ?></StatusName>
-     <StatusDate><?xm-replace_text {Enter the effective date of this status (required)} ?></StatusDate>
-     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
-     <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
-     <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+     <StatusName><?xm-replace_text {
+          Select the lead organization's status on this protocol (required)
+          }?></StatusName>
+     <StatusDate><?xm-replace_text {
+          Enter the effective date of this status (required)
+          }?></StatusDate>
+     <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment> 
+     <EnteredBy><?xm-replace_text {
+          Enter your name (required)
+          }?></EnteredBy> 
+     <EntryDate><?xm-replace_text {
+          Enter today's date (required)
+          }?></EntryDate>
     </CurrentOrgStatus> 
    </LeadOrgProtocolStatuses> 
 		
    <LeadOrgPersonnel>
-    <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
-    <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+    <Person><?xm-replace_text {
+          Link to the specific person in this organzation who is 
+          the contact on this protocol (right-click and choose Prot 
+          Update Person) (required)
+          }?></Person>
+    <PersonRole><?xm-replace_text {
+          Select the person's role on this protocol (required)
+          }?></PersonRole>
    </LeadOrgPersonnel>
    <LeadOrgPersonnel>
-    <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (right-click and choose Prot Update Person) (required)} ?></Person>
-    <PersonRole><?xm-replace_text {Select the person's role on this protocol (required)} ?></PersonRole>
+    <Person><?xm-replace_text {
+          Link to the specific person in this organzation who is 
+          the contact on this protocol (right-click and choose 
+          Prot Update Person) (required)
+          }?></Person>
+    <PersonRole><?xm-replace_text {
+          Select the person's role on this protocol (required)
+          }?></PersonRole>
    </LeadOrgPersonnel>
    <ProtocolSites> 
     <OrgSite>
-     <OrgSiteID><?xm-replace_text {Link to a participating organization and location (right-click and choose Add Participating Orgs) (required), or Change to a Private Practice site identification} ?></OrgSiteID> 
-     <OrgSiteStatus><?xm-replace_text {Select the protocol status of this participating organization (required)} ?></OrgSiteStatus>
+     <OrgSiteID><?xm-replace_text {
+          Link to a participating organization and location 
+          (right-click and choose Add Participating Orgs) (required), 
+          or Change to a Private Practice site identification
+          }?></OrgSiteID> 
+     <OrgSiteStatus><?xm-replace_text {
+          Select the protocol status of this participating 
+          organization (required)
+          }?></OrgSiteStatus>
      <OrgSiteContact> 
       <SpecificPerson>
-       <Person><?xm-replace_text {Link to the specific person in this organzation who is the contact on this protocol (required), or Change to a Generic Person definition} ?></Person>
-       <Role><?xm-replace_text {Select the person's role on this protocol (required)} ?></Role>
-       <SpecificPhone><?xm-replace_text {Optionally enter the person's phone number} ?></SpecificPhone>
+       <Person><?xm-replace_text {
+          Link to the specific person in this organzation who is 
+          the contact on this protocol (required), or Change to a 
+          Generic Person definition
+          }?></Person>
+       <Role><?xm-replace_text {
+          Select the person's role on this protocol (required)
+          }?></Role>
+       <SpecificPhone><?xm-replace_text {
+          Optionally enter the person's phone number
+          }?></SpecificPhone>
       </SpecificPerson>
-      <ClinicalTrialOffice><?xm-replace_text {Optionally link to a clinical trial office} ?></ClinicalTrialOffice>
+      <ClinicalTrialOffice><?xm-replace_text {
+          Optionally link to a clinical trial office
+          }?></ClinicalTrialOffice>
      </OrgSiteContact> 
     </OrgSite> 
    </ProtocolSites> 
-   <MailAbstractTo><?xm-replace_text {Enter the cdr:id attribute value of any Person to identify NCI's contact for protocol updates} ?></MailAbstractTo>
+   <MailAbstractTo><?xm-replace_text {
+          Enter the cdr:id attribute value of any Person to identify 
+          NCI's contact for protocol updates
+          }?></MailAbstractTo>
   </ProtocolLeadOrg> 
  </ProtocolAdminInfo> 
  <ProtocolProcessingDetails> 
-  <ProcessingStatus><?xm-replace_text {Select a PDQ review/approval status (required)} ?></ProcessingStatus>
-  <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
-  <ProcessingDate><?xm-replace_text {Enter the effective date of this status} ?></ProcessingDate>
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+  <ProcessingStatuses>
+   <ProcessingStatusInfo>
+    <ProcessingStatus><?xm-replace_text {
+          Select a PDQ review/approval status (required)
+          }?></ProcessingStatus>
+    <ProcessingPriority><?xm-replace_text {
+          Optionally select a processing priority value
+          }?></ProcessingPriority>
+    <StartDateTime><?xm-replace_text {
+          Optionally enter the status start time
+          }?></StartDateTime>
+    <EndDateTime><?xm-replace_text {
+          Optionally enter the status end time
+          }?></EndDateTime>
+    <User><?xm-replace_text {
+          Enter your name (required)
+          }?></User>
+    <Comment><?xm-replace_text {
+          Optionally enter a comment
+          }?></Comment>
+   </ProcessingStatusInfo>
+  </ProcessingStatuses>
+  <MissingRequiredInformation>
+   <MissingInformation><?xm-replace_text {
+          Select any missing required information (required)
+          }?></MissingInformation>
+  </MissingRequiredInformation>
  </ProtocolProcessingDetails> 
 </InScopeProtocol>
