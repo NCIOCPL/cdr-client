@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!DOCTYPE Summary SYSTEM "Summary.dtd">
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr">
+ <CdrDocCtl>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl>
+ <SummaryMetaData>
+  <SummaryType>Prevention</SummaryType>
+  <SummaryAudience>Patients</SummaryAudience>
+  <SummaryLanguage>English</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {
+         Expert-reviewed information summary about factors that may 
+         increase the risk of developing X cancer and about research 
+         aimed at the prevention of this disease.
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov's pretty URL (required)
+         }?></SummaryURL>
+  <PDQBoard>
+   <Board cdr:ref="CDR0000028536">PDQ Screening and Prevention Editorial Board</Board>
+  </PDQBoard>
+  <MainTopics>
+   <Term cdr:ref="CDR0000038832">breast cancer</Term>
+  </MainTopics>
+ </SummaryMetaData>
+
+ <SummaryTitle>Template: Prevention of X Cancer</SummaryTitle>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Rationale for prevention</SectionType>
+  </SectMetaData>
+
+  <Title>What is prevention?</Title>
+   <Para>Cancer prevention is action taken to lower the chance of getting 
+         cancer. By preventing cancer, the number of new cases of cancer 
+         in a group or population is lowered. Hopefully, this will lower 
+         the number of deaths caused by cancer.</Para>
+   <Para>To prevent new cancers from starting, scientists look at risk 
+         factors and protective factors. Anything that increases your 
+         chance of developing cancer is called a cancer risk factor; 
+         anything that decreases your chance of developing cancer is 
+         called a cancer protective factor.</Para>
+   <Para>Some risk factors for cancer can be avoided, but many cannot. 
+         For example, both smoking and inheriting certain genes are 
+         risk factors for some types of cancer, but only smoking can be 
+         avoided. Regular exercise and a healthy diet may be protective 
+         factors for some types of cancer. Avoiding risk factors and 
+         increasing protective factors may lower your risk but it does 
+         not mean that you will not get cancer.</Para>
+   <Para>Different ways to prevent cancer are being studied, including:</Para>
+   <ItemizedList Style="bullet">
+    <ListItem>Changing lifestyle or eating habits.</ListItem>
+    <ListItem>Avoiding things known to cause cancer.</ListItem>
+    <ListItem>Taking medicines to treat a precancerous condition or to 
+         keep cancer from starting.</ListItem>
+  </ItemizedList>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>General Information About X Cancer</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Cancer description</SectionType>
+    <SectionType>Organ description</SectionType>
+   </SectMetaData>
+   <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
+         form in the x.</KeyPoint>
+   <Para>[compose from treatment summary]</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Incidence</SectionType>
+   </SectMetaData>
+   <KeyPoint>[Incidence key point]</KeyPoint>
+   <Para>[Text]</Para>
+  </SummarySection>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>X Cancer Prevention</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Prevention methods</SectionType>
+   </SectMetaData>
+   <KeyPoint>Avoiding risk factors and increasing protective factors may 
+         help prevent x cancer.</KeyPoint>
+   <Para>Most people with a certain risk factor for cancer do not actually 
+         get the disease. Doctors cannot always explain why one person 
+         gets cancer and another does not. Talk to your doctor or other 
+         health care professional about cancer prevention methods that 
+         might help you.</Para>
+  </SummarySection>
+
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>The following <Emphasis>risk</Emphasis> factors may increase 
+         the risk of x cancer:</KeyPoint>
+   <SummarySection>
+    <KeyPoint>[factor]</KeyPoint>
+    <Para>[describe factor here]</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>[factor]</KeyPoint>
+    <Para>[describe factor here]</Para>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint>[factor]</KeyPoint>
+    <Para>[describe factor here]</Para>
+   </SummarySection></SummarySection>
+   <SummarySection>
+    <SectMetaData>
+     <SectionType>Risk factors</SectionType>
+    </SectMetaData>
+    <KeyPoint>The following <Emphasis>protective</Emphasis> factors may 
+         decrease the risk of x cancer:</KeyPoint>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection></SummarySection>
+    <SummarySection>
+    <SectMetaData>
+     <SectionType>Risk factors</SectionType>
+    </SectMetaData>
+    <KeyPoint>
+     <Comment>Include and tailor to each summary, if applicable: </Comment>
+     The following have been proven not to be risk factors for x cancer or 
+     their effects on x cancer risk are not known:</KeyPoint>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection>
+    <SummarySection>
+     <KeyPoint>[factor]</KeyPoint>
+     <Para>[describe factor here]</Para>
+    </SummarySection>
+   </SummarySection>
+   
+   <SummarySection>
+    <KeyPoint>Cancer prevention clinical trials are used to study ways 
+    to prevent cancer.</KeyPoint>
+    <SummarySection>
+     <Para>Cancer prevention clinical trials are used to study ways to 
+         lower the risk of developing certain types of cancer. Some 
+         cancer prevention trials are conducted with healthy people who 
+         have not had cancer but who have an increased risk for cancer. 
+         Other prevention trials are conducted with people who have had 
+         cancer and are trying to prevent another cancer of the same type 
+         or to lower their chance of developing a new type of cancer. 
+         Other trials are done with healthy volunteers who are not known 
+         to have any risk factors for cancer.</Para>
+     <Para>The purpose of some cancer prevention clinical trials is to 
+         find out whether actions people take can prevent cancer. These 
+         may include exercising more or quitting smoking or taking 
+         certain medicines, vitamins, minerals, or food supplements.</Para>
+    </SummarySection>
+   </SummarySection>
+ 
+   <SummarySection>
+    <SectMetaData>
+     <SectionType>Current clinical trials</SectionType>
+    </SectMetaData>
+    <KeyPoint>
+     <Comment>Clinical trial key point if applicable:</Comment> 
+     New ways to prevent x cancer are being studied in clinical 
+     trials. </KeyPoint>
+    <Para>Clinical trials are taking place in many parts of the country. 
+         Information about clinical trials can be found in the Clinical 
+         Trials section of the 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web 
+         site</ExternalRef>. 
+         Check for clinical trials in NCI's PDQ Cancer Clinical Trials 
+         Registry 
+         <Comment>Link to x cancer prevention trials</Comment>
+         that are accepting patients for studies in x cancer prevention.</Para>
+   </SummarySection>
+  </SummarySection>
+ 
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Changes to summary</SectionType>
+   </SectMetaData>
+   <Title>Changes to This Summary (MM/DD/YYYY)</Title>
+   <Para>The PDQ cancer information summaries are reviewed regularly 
+         and updated as new information becomes available.  This 
+         section describes the latest changes made to this summary as 
+         of the date above.</Para>
+   <Para>
+    <StandardWording>This summary was completely reformatted and some 
+         content was added.</StandardWording>
+   </Para>
+  </SummarySection>
+  <PatientVersionOf>[Select title of HP version]</PatientVersionOf>
+  <ReplacementFor>[Select title of unreformatted version being 
+         replaced]</ReplacementFor>
+  <DateLastModified>[Enter the date of the last record 
+         modification]</DateLastModified>
+</Summary>
