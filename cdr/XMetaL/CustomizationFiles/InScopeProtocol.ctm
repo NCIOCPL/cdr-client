@@ -1092,6 +1092,12 @@
         </CdrDocCtl>]]></MiniTemplate>
    </Template>
    <Template>
+      <Name>CompletionDate</Name>
+      <MiniTemplate><![CDATA[<CompletionDate><?xm-replace_text {
+          Optionally enter the protocol completion date
+          }?></CompletionDate>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>DateReceived</Name>
       <MiniTemplate><![CDATA[<DateReceived><?xm-replace_text {
           Enter the date that the protocol was received (required)

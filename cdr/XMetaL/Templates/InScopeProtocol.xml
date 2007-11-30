@@ -183,6 +183,9 @@
   <StartDate><?xm-replace_text {
           Optionally enter the protocol start date
           }?></StartDate>
+  <CompletionDate><?xm-replace_text {
+          Optionally enter the protocol completion date
+          }?></CompletionDate>
   <CurrentProtocolStatus><?xm-replace_text {
           The current status of this protocol will be calculated 
           during validation, based on organization statuses (required)
