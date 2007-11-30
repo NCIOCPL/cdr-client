@@ -116,6 +116,7 @@ $PROCINS
 /***************************************************************************/
 BlockedFromCTGov,
 ClinicalTrialOffice,
+CompletionDate,
 ContactInformation, 
 ExternalSiteAddress > Country,
 CurrentOrgStatus, 
@@ -240,89 +241,91 @@ DateSubmissionComplete       :before { content: "Date Submission Cmpl &: "; }
 LeadOrgProtocolStatuses>Comment:before
                 { content: "Comments &: "; }
 ExternalSiteAddress > Country:before { content: "Country : "; }
+CompletionDate               :before
+                { content: "Compl Date &: "; }
 CurrentOrgStatus             :before { content: "Current Org Status *"; }
 CurrentProtocolStatus        :before { content: "Current Protocol Status *: "; }
 DateLastModified             :before { content: "Last Modified &: "; }
 ProtocolSource>DateReceived  :before { content: "Date Received *: "; }
-EnteredBy:before
+EnteredBy                    :before
                 { content: "Entered By *: "; }
-EntryDate:before
+EntryDate                    :before
                 { content: "Entry Date *: "; }
-ExternalID:before
+ExternalID                   :before
                 { content: "Ext ID & + @: "; }
-ExternalPersonName:before
+ExternalPersonName           :before
                 { content: "EXTERNAL PERSON NAME *: "; }
-ExternalSites:before
+ExternalSites                :before
                 { content: "EXTERNAL SITES & + @: "; }
-ExternalSite:before
+ExternalSite                 :before
                 { content: "EXTERNAL SITE (ES) * +: "; }
-ExternalSiteContact:before
+ExternalSiteContact          :before
                 { content: "EXTERNAL SITE CONTACT &: "; }
-ExternalSiteContactName:before
+ExternalSiteContactName      :before
                 { content: "EXTERNAL SITE CONTACT NAME *: "; }
-ExternalSiteContactTitle:before
+ExternalSiteContactTitle     :before
                 { content: "ESC Title *: "; }
-ExternalSiteContactPhone:before
+ExternalSiteContactPhone     :before
                 { content: "ESC Phone & +: "; }
-ExternalSiteName:before
+ExternalSiteName             :before
                 { content: "ES Name *: "; }
-ExternalSiteOrg:before
+ExternalSiteOrg              :before
                 { content: "EXTERNAL SITE ORG *: "; }
-ExternalSiteOrgID:before
+ExternalSiteOrgID            :before
                 { content: "ES Org ID & @: "; }
-ExternalSiteRegDate:before
+ExternalSiteRegDate          :before
                 { content: "ES RegDate *: "; }
-ExternalSiteRegStatus:before
+ExternalSiteRegStatus        :before
                 { content: "ES Reg Status &: "; }
-ExternalSiteAddress:before
+ExternalSiteAddress          :before
                 { content: "EXTERNAL SITE ADDRESS *: "; }
-ExternalSitePI:before
+ExternalSitePI               :before
                 { content: "EXTERNAL SITE PI *: "; }
-ExternalSitePIID:before
+ExternalSitePIID             :before
                 { content: "ES PI ID & @: "; }
-ExternalSitePIName:before
+ExternalSitePIName           :before
                 { content: "ES PI Name *: "; }
-ExternalSitePIPhone:before
+ExternalSitePIPhone          :before
                 { content: "ES PI Phone & +: "; }
-ExternalSiteContact:before
+ExternalSiteContact          :before
                 { content: "EXTERNAL SITE CONTACT &: "; }
-FDAINDInfo:before       
+FDAINDInfo                   :before       
                 { content: "FDA IND INFO & +"; }
-FundingInfo:before
+FundingInfo                  :before
                 { content: "FUNDING INFORMATION &"; }
-GenericPerson:before
+GenericPerson                :before
                 { content: "Generic Contact * +";  }
-GenericPersonContact:before
+GenericPersonContact         :before
                 { content: "Generic Person Contact Information *: "; }
-GrantContractNo:before
+GrantContractNo              :before
                 { content: "Grant Contract Number *: "; }
-INDGrantor:before           
+INDGrantor                   :before           
                 { content: "IND Grantor *: "; }
-INDNumber:before            
+INDNumber                    :before            
                 { content: "IND Number *: "; }
-INDSerialNumber:before      
+INDSerialNumber              :before      
                 { content: "IND Serial No &: "; }
-INDSubmissionDate:before      
+INDSubmissionDate            :before      
                 { content: "Submission Date &: "; }
-LeadOrganizationID:before
+LeadOrganizationID           :before
                 { content: "Org Name * @: "; }
-LeadOrgProtocolID:before
+LeadOrgProtocolID            :before
                 { content: "Org Prot ID * +: "; }
-LeadOrgRole:before
+LeadOrgRole                  :before
                 { content: "Role *: "; }
 LeadOrgPersonnel[Public="No"]:before
                 { content: "LEAD ORGANIZATION PERSONNEL (Not public) [" attr(cdr\:id) "] "; }
-LeadOrgPersonnel:before
+LeadOrgPersonnel             :before
                 { content: "LEAD ORGANIZATION PERSONNEL (Public) ["attr(cdr\:id) "] "; }
-LeadOrgProtocolStatuses:before
+LeadOrgProtocolStatuses      :before
                 { content: "LEAD ORGANIZATION PROTOCOL STATUSES *"; }
-MergeByDate:before
+MergeByDate                  :before
                 { content: "Merge by Date &: "; }
-MailAbstractTo:before
+MailAbstractTo               :before
                 { content: "Mail Abstr To &: "; }
-NIHGrantContract:before
+NIHGrantContract             :before
                 { content: "NIH GRANT CONTRACT & +"; }
-NIHGrantContractType:before
+NIHGrantContractType         :before
                 { content: "NIH Grant Contract Type *: ";  }
 OrgSite[SuppressContactInformation='Yes']:before
                 { content: "PARTICIPATING ORGANIZATION (suppress contact information) * + @"; } 
@@ -457,6 +460,7 @@ VerificationInfo>EnteredBy:before
 /***************************************************************************/ 
 /*       TAG PROPERTIES FOR SECTION HEADINGS AND TEXT INPUT Fields         */ 
 /***************************************************************************/ 
+CompletionDate                    :before,
 CurrentOrgStatus                  :before,
 /* CurrentProtocolStatus:before, */
 DateSentForReview                 :before,
@@ -755,12 +759,15 @@ ProtocolSpecialCategory>Comment,
                               text-indent: -82.5pt; }
 
 /* Key element for length = CurrentProtocolStatus */
+CompletionDate,
+                            { margin-left: 150pt;
+                              text-indent: -87pt; } 
 CurrentProtocolStatus,
                             { margin-left: 150pt;
                               text-indent: -151pt; } 
 StartDate,
                             { margin-left: 150pt;
-                              text-indent: -85pt; } 
+                              text-indent: -86.5pt; } 
 LeadOrganizationID,
                             { margin-left: 100pt; 
                               text-indent: -88pt; }
@@ -1053,6 +1060,7 @@ VerificationDate,
   {  margin-bottom: 4pt; }
 
 
+CompletionDate,
 CurrentProtocolStatus,
 GrantContractNo,
 INDGrantor,
@@ -1255,11 +1263,12 @@ VerificationInfo,
   {  background-color: #CCCCFF; }  /*light blue*/
 
 
-CurrentProtocolStatus:before,
-DateLastModified:before,
-PdqKey:before,
-ProtocolAdminInfo:before,
-StartDate:before,
+CompletionDate               :before,
+CurrentProtocolStatus        :before,
+DateLastModified             :before,
+PdqKey                       :before,
+ProtocolAdminInfo            :before,
+StartDate                    :before,
   {  font-weight: bold;
      color: navy;         }
 

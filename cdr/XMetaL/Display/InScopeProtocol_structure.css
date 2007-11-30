@@ -111,6 +111,7 @@ InScopeProtocol,
 BlockedFromCTGov,
 ClinicalTrialOffice,
 Comment,
+CompletionDate,
 ContactInformation,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
@@ -210,6 +211,7 @@ VerificationDate,
 /***************************************************************************/ 
 BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
 ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
+CompletionDate          :before { content: "Completion Date"; }
 DateSubmissionComplete  :before { content: "Date Submission Complete"; }
 Country                 :before { content: "Country"; }
 CurrentOrgStatus        :before { content: "Current Org Status"; }
@@ -393,6 +395,7 @@ SpecificPerson          :before,
 /***************************************************************************/ 
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
 /***************************************************************************/ 
+CompletionDate          :before,
 DateLastModified        :before,
 EnteredBy               :before,
 EntryDate               :before,
@@ -445,6 +448,7 @@ StatusName              :before,
 /*                             HIDE TEXT                                   */ 
 /***************************************************************************/ 
 ClinicalTrialOffice,
+CompletionDate,
 Country,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
@@ -690,6 +694,7 @@ VoluntaryReview,
 /* Remove negative text-indent settings  */
 
 ClinicalTrialOffice,
+CompletionDate,
 ExternalSiteAddress > City,
 ExternalSiteAddress > CitySuffix,
 NIHGrantContract > Comment,
