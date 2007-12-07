@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.169 2007-10-11 14:23:52 bkline Exp $
+     $Id: Cdr.mcr,v 1.170 2007-12-07 19:28:00 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.169  2007/10/11 14:23:52  bkline
+     Made macro for inserting current date/time available for InScopeProtocol
+     documents.
+
      Revision 1.168  2007/10/03 21:06:30  bkline
      Workaround for another XMetaL bug (see comments #12 and #13 on
      issue #3397).
@@ -2772,6 +2776,12 @@
 
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "GT Concept QC Report",      // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
                            "Show Glossary Term Names",  //  Macro.
                            "Term Names",                // Tooltip.
                            "Show Glossary Term Names",  // Description
@@ -2781,19 +2791,19 @@
                            "Make Glossary Term Name Doc",
                            "Glossary Term",
                            "Create Term Name Document",
-                           "CDR", 3, 4,
+                           "CDR2", 2, 8,
                            false),
             new CdrCmdItem(null,
                            "View Glossary Term Name Docs",
-                           "View Name Docs",
+                           "View GT Name Docs",
                            "View Term Name Documents",
-                           "Databases (Custom)", 6, 3,
+                           "Integration (Custom)", 3, 9,
                            false),
             new CdrCmdItem(null,
                            "Edit Glossary Term Name Docs",
-                           "Edit Name Docs",
+                           "Edit GT Name Docs",
                            "Edit Term Name Documents",
-                           "Databases (Custom)", 6, 3,
+                           "CDR", 5, 3,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -2836,14 +2846,20 @@
 
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
+                           "Generate QC Report",        // Macro.
+                           "GT Name QC Report",   // Tooltip.
+                           "Generate QC Report",        // Description
+                           "CDR", 3, 4,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
                "View Linked Glossary Term Concept Doc", // Macro.
-                           "View Concept",              // Tooltip.
+                           "View GT Concept",           // Tooltip.
                            "View Concept Document",     // Description
                            "Integration (Custom)", 3, 9,// Icon set, row, col.
                            false),                      // Starts new group?
             new CdrCmdItem(null,
                            "Edit Linked Glossary Term Concept Doc",
-                           "Edit Concept",     
+                           "Edit GT Concept",     
                            "Edit Concept Document",
                            "CDR", 5, 3,
                            false)
