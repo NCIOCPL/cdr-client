@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.51 2007-07-26 21:25:33 bkline Exp $
+ * $Id: Commands.cpp,v 1.52 2007-12-27 19:58:47 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.51  2007/07/26 21:25:33  bkline
+ * Added new methods for retrieving glossary term names and IDs.
+ *
  * Revision 1.50  2007/07/11 00:43:18  bkline
  * Added support for dynamic diagnosis set insertion and for displaying
  * blocked document status.
@@ -2715,10 +2718,14 @@ CString getBlobExtension(const CString& docXml, const CString& docType) {
             extension = _T(".wpd");
         else if (elemText == _T("text/html"))
             extension = _T(".html");
+        else if (elemText == _T("text/rtf"))
+            extension = _T(".rtf");
         else if (elemText == _T("text/plain"))
             extension = _T(".txt");
         else if (elemText == _T("message/rfc822"))
             extension = _T(".txt");
+        else if (elemText == _T("image/jpeg"))
+            extension = _T(".jpg");
     }
     return extension.MakeLower();
 }
