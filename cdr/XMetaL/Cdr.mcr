@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.170 2007-12-07 19:28:00 venglisc Exp $
+     $Id: Cdr.mcr,v 1.171 2008-01-07 23:22:46 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.170  2007/12/07 19:28:00  venglisc
+     Modified GlossaryTerm Concept and GlossaryTerm Name icons. (Bug 3699)
+
      Revision 1.169  2007/10/11 14:23:52  bkline
      Made macro for inserting current date/time available for InScopeProtocol
      documents.
@@ -5016,14 +5019,14 @@
 <MACRO name="Patient Publish Preview" 
        lang="JScript">
   <![CDATA[
-    publishPreview("protocol_patient");
+    publishPreview("Protocol_Patient");
   ]]>
 </MACRO>
 
 <MACRO name="Patient Summary Publish Preview" 
        lang="JScript">
   <![CDATA[
-    publishPreview("summary_patient");
+    publishPreview("Summary_Patient");
   ]]>
 </MACRO>
 
