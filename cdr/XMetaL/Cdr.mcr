@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.171 2008-01-07 23:22:46 venglisc Exp $
+     $Id: Cdr.mcr,v 1.172 2008-01-23 22:46:22 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.171  2008/01/07 23:22:46  venglisc
+     Modifying values passed for flavor in publishPreview to be consistant.
+     (Bug 2002)
+
      Revision 1.170  2007/12/07 19:28:00  venglisc
      Modified GlossaryTerm Concept and GlossaryTerm Name icons. (Bug 3699)
 
@@ -2794,7 +2798,7 @@
                            "Make Glossary Term Name Doc",
                            "Glossary Term",
                            "Create Term Name Document",
-                           "CDR2", 2, 8,
+                           "CDR2", 2, 10,
                            false),
             new CdrCmdItem(null,
                            "View Glossary Term Name Docs",
