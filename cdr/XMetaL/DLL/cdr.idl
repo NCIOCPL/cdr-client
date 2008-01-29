@@ -44,6 +44,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(34), helpstring("method getDiagnosisSetTerms")] HRESULT getDiagnosisSetTerms([out,retval] BSTR* termIds);
         [id(35), helpstring("method getGlossaryTermNames")] HRESULT getGlossaryTermNames([in] const BSTR* conceptId, [out,retval] BSTR* termNames);
         [id(36), helpstring("method getGlossaryTermNameIds")] HRESULT getGlossaryTermNameIds([in] const BSTR* conceptId, [out,retval] BSTR* termNameIds);
+        [id(37), helpstring("method getPatientDocId")] HRESULT getPatientDocId([in] const BSTR* hpDocId, [out, retval] BSTR* patientDocId);
     };
 
 [

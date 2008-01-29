@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.52 2007-12-27 19:58:47 bkline Exp $
+ * $Id: Commands.cpp,v 1.53 2008-01-29 15:14:21 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.52  2007/12/27 19:58:47  bkline
+ * Added support for two more MIME types (rtf and jpeg).
+ *
  * Revision 1.51  2007/07/26 21:25:33  bkline
  * Added new methods for retrieving glossary term names and IDs.
  *
@@ -2947,5 +2950,27 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
         }
     }
     termIds.SetSysString(termNameIds);
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId, BSTR* patientDocId)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*hpDocId);
+    CString cmd = _T("<CdrReport>")
+                  _T("<ReportName>Patient Summary</ReportName>")
+                  _T("<ReportParams><ReportParam Name='HPSummary' ")
+                  _T("Value='") + id + _T("'/></ReportParams>")
+                  _T("</CdrReport>");
+    CString r = CdrSocket::sendCommand(cmd);
+    cdr::Element e = cdr::Element::extractElement(r, _T("PatientSummary"));
+    CString patientId;
+    if (e)
+        patientId = e.getString();
+    else
+        cdr::showErrors(r);
+    patientId.SetSysString(patientDocId);
+
     return S_OK;
 }
