@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.172 2008-01-23 22:46:22 venglisc Exp $
+     $Id: Cdr.mcr,v 1.173 2008-01-29 15:13:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.172  2008/01/23 22:46:22  venglisc
+     Added new icon for dictionary/glossary term documents. (Bug 3699)
+
      Revision 1.171  2008/01/07 23:22:46  venglisc
      Modifying values passed for flavor in publishPreview to be consistant.
      (Bug 2002)
@@ -2283,6 +2286,18 @@
                            "Back out rejected tracked changes",
                            "Design (Custom)", 4, 10,
                            true),
+            new CdrCmdItem(null,
+                           "Open Patient Summary",
+                           "Patient",
+                           "Open patient version of this summary",
+                           "CDR2", 3, 1,
+                           true),
+            new CdrCmdItem(null,
+                           "Open HP Summary",
+                           "HP",
+                           "Open health professional version of this summary",
+                           "CDR2", 3, 2,
+                           false),
             new CdrCmdItem(null,
                            "Open Original English Summary",
                            "English",
@@ -7410,6 +7425,55 @@ y<MACRO  name="Insert User ID"
         cdrObj.openCdrDoc(originalId, "Current", false);
     }
     openOriginalEnglishSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Patient Summary" 
+       lang="JScript" >
+  <![CDATA[
+    function openPatientSummary() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var patientSummaryId = cdrObj.getPatientDocId(docId);
+        if (!patientSummaryId)
+            return;
+        cdrObj.openCdrDoc(patientSummaryId, "Current", false);
+    }
+    openPatientSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open HP Summary" 
+       lang="JScript" >
+  <![CDATA[
+    function openHPSummary() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = "PatientVersionOf";
+        var nodes = Application.ActiveDocument.getElementsByTagName(name);
+        if (nodes.length < 1) {
+            Application.Alert("PatientVersionOf element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var hpId = elem.getAttribute("cdr:ref");
+        if (!hpId) {
+            Application.Alert("ID of health professional summary not found");
+            return;
+        }
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.openCdrDoc(hpId, "Current", false);
+    }
+    openHPSummary();
   ]]>
 </MACRO>
 
