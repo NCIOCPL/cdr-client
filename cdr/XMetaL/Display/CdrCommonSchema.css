@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.16 2007-01-11 22:52:36 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.17 2008-02-21 21:13:34 bkline Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.16  2007/01/11 22:52:36  venglisc
+ * Adding formatting for ListTitle (bold, italic). (Bug 2849)
+ *
  * Revision 1.15  2006/11/27 14:59:08  bkline
  * Added visible indication of blocked document (request #2730).
  *
@@ -208,6 +211,7 @@ SummaryFragmentRef,
 SummaryLink,
 SummaryRef,
 Superscript,
+cdr\:PrivateUseCharacter
      { display: inline; }
 
 
@@ -568,6 +572,7 @@ ListTitle,
      { font-weight: bold; 
        font-style:  italic; }
       
+cdr\:PrivateUseCharacter { color: red; font-weight: bold; }
 
 /***************************************************************************/
 /*              STYLED ELEMENTS WITHIN INSERTION OR DELETION               */
