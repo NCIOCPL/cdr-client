@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.173 2008-01-29 15:13:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.174 2008-02-21 21:15:40 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.173  2008/01/29 15:13:38  bkline
+     New macros for opening HP/Patient summaries.
+
      Revision 1.172  2008/01/23 22:46:22  venglisc
      Added new icon for dictionary/glossary term documents. (Bug 3699)
 
@@ -1261,6 +1264,10 @@
             "advisory-board", // this is ignored because attr-type is 0
             "advisory-board", "editorial-board");
 
+        // Add the element to markup up unwanted private use characters.
+        docType.addElement("cdr:PrivateUseCharacter", "cdr:PrivateUseCharacter",
+                           true, false);
+
         // Allow these elements anywhere.
         if (docType.hasElementType(rootElem)) {
             if (docType.hasElementType("Deletion")) {
@@ -1268,6 +1275,10 @@
             }
             if (docType.hasElementType("Insertion")) {
                 docType.addElementToInclusions("Insertion", rootElem);
+            }
+            if (docType.hasElementType("cdr:PrivateUseCharacter")) {
+                docType.addElementToInclusions("cdr:PrivateUseCharacter",
+                                               rootElem);
             }
         }
     }
@@ -7897,8 +7908,7 @@ y<MACRO  name="Insert User ID"
 </MACRO>
 
 <MACRO name="Make Glossary Term Name Doc"
-       lang="JScript"
-       key="Alt+Z">
+       lang="JScript">
   <![CDATA[
     function makeGlossaryTermNameDoc() {
         var docId = getDocId();
@@ -7939,6 +7949,53 @@ y<MACRO  name="Insert User ID"
         oldElem.parentNode.replaceChild(newElem, oldElem);
     }
     bugRepro();
+  ]]>
+</MACRO>
+
+<MACRO name="Find Private Use Chars" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    /*
+     * We can't just use rng.MoveRight() repeatedly to check for private
+     * use characters one at a time, because the XMetaL API skips over
+     * the private use characters.  Shelving work on this, since it's a
+     * lower-priority task than some of the other issues I'm working on
+     * right now.  When we proceed with implementing this, use the new
+     * 
+     */
+    function findPrivateUseChars() {
+        var rng = ActiveDocument.Range;
+        var found = false;
+        rng.SelectAll()
+        var text = rng.Text;
+        var pos = text.search(/[\uE000-\uF8FF]/);
+        while (pos != -1) {
+            text = text.substring(0, pos)
+                 + "<cdr:PrivateUseCharacter>U+"
+                 + text.charCodeAt(pos).toString(16)
+                 + "</cdr:PrivateUseCharacter>"
+                 + text.substring(pos + 1);
+            found = true;
+            pos = text.search(/[\uE000-\uF8FF]/);
+        }
+        if (found) {
+            Application.Alert("Replaced private use characters; text is now " +
+                              text.length + " characters long");
+            var rulesChecking = ActiveDocument.RulesChecking;
+            ActiveDocument.RulesChecking = false;
+            rng.Delete();
+            ActiveDocument.RulesChecking = false;
+            rng.PasteString(text);
+            ActiveDocument.RulesChecking = rulesChecking;
+            rng.MoveToDocumentStart();
+            if (rng.MoveToElement("cdr:PrivateUseCharacter")) {
+                rng.Select();
+                rng.SelectElement();
+            }
+        }
+        if (!found)
+            Application.Alert("No private use characters found");
+    }
+    findPrivateUseChars();
   ]]>
 </MACRO>
 
