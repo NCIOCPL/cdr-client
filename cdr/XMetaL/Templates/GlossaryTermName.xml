@@ -22,6 +22,12 @@
   <TermNameSourceVerification><?xm-replace_text {
          Optionally enter the term name source verification
          }?></TermNameSourceVerification>
+  <TermNameStatus><?xm-replace_text {
+         Optionally enter the term status
+         }?></TermNameStatus>
+  <TermNameStatusDate><?xm-replace_text {
+         Optionally enter the term status date
+         }?></TermNameStatusDate>
  </TermName>
  <GlossaryTermConcept><?xm-replace_text {
          Enter a glossary Term concept (required)
