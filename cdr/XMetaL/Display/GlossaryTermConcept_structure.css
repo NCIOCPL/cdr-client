@@ -61,6 +61,7 @@ Dictionary,
 MediaID,
 MediaLink,
 PdqKey,
+ReplacementText,
 PronunciationResource,
 SpanishTermName,
 StatusDate,
@@ -90,6 +91,7 @@ MediaLink               :before { content: "Media Link"; }
 NCIThesaurusID          :before { content: "NCI Thesaurus ID"; }
 PdqKey                  :before { content: "PDQ Key"; }
 PDQTerm                 :before { content: "PDQ Term"; }
+ReplacementText         :before { content: "Replacement Text"; }
 PronunciationResource   :before { content: "Pronunciation Resource"; }
 RelatedInformation      :before { content: "RELATED INFORMATION"; }
 RelatedDrugSummaryRef   :before { content: "Rel Drug Summary Ref"; }
@@ -173,6 +175,7 @@ MediaID,
 NCIThesaurusID,
 PdqKey,
 PDQTerm,
+ReplacementText,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
@@ -206,6 +209,7 @@ MediaLink,
 NCIThesaurusID,
 PdqKey,
 PDQTerm,
+ReplacementText,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
@@ -237,6 +241,7 @@ MediaLink             :before,
 NCIThesaurusID        :before,
 PdqKey                :before,
 PDQTerm               :before,
+ReplacementText       :before,
 PronunciationResource :before,
 RelatedDrugSummaryRef :before,
 RelatedExternalRef    :before,

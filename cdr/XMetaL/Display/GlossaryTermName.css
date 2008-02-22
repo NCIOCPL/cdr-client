@@ -44,9 +44,12 @@ DateLastModified,
 GlossaryTermConcept,
 PronunciationResource,
 TermName,
+TermNameStatus,
+TermNameStatusDate,
 TermNameString,
 TermNameSourceVerification,
 TermPronunciation,
+TranslationResource,
      { display: block; }
 
 
@@ -58,14 +61,17 @@ TermPronunciation,
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-Comment                    :before { content: "Comments & +: "; }
+Comment                    :before { content: "Comments & + @: "; }
 DateLastModified           :before { content: "Last Modified &: "; }
 GlossaryTermConcept        :before { content: "Glossary Concept * @:"; }
 PronunciationResource      :before { content: "Pron Resource & +: "; }
 TermName                   :before { content: "TERM NAME * + @"; }
-TermNameString             :before { content: "Term String *: "; }
-TermNameSourceVerification :before { content: "Source Verification &: "; }
+TermNameStatus             :before { content: "Term Status &:"; }
+TermNameStatusDate         :before { content: "Status Date &:"; }
+TermNameString             :before { content: "Term String * @: "; }
+TermNameSourceVerification :before { content: "Source Verificatn & +: "; }
 TermPronunciation          :before { content: "Pronunciation &: "; }
+TranslationResource        :before { content: "Translation Resrc & +:"; }
 
 
 /***************************************************************************/
@@ -84,9 +90,12 @@ DateLastModified           :before,
 GlossaryTermConcept        :before,
 PronunciationResource      :before,
 TermName                   :before,
+TermNameStatus             :before,
+TermNameStatusDate         :before,
 TermNameString             :before,
 TermNameSourceVerification :before,
 TermPronunciation          :before,
+TranslationResource        :before,
      { font-weight: bold;
        color: black; }
 
@@ -100,21 +109,29 @@ TermPronunciation          :before,
 /* Key element for length = SpanishTermName                       */
 
 Comment,                                { margin-left: 130pt;
-                                          text-indent: -92pt; }
+                                          text-indent: -107pt; }
 GlossaryTermConcept,                    { margin-left: 130pt;
                                           text-indent: -130.5pt; }
+ReplacementText,                        { margin-left: 130pt;
+                                          text-indent: -99pt; }
 PronunciationResource,                  { margin-left: 130pt;
                                           text-indent: -116.5pt; }
+TermNameStatus,                         { margin-left: 130pt;
+                                          text-indent: -86pt; }
+TermNameStatusDate,                     { margin-left: 130pt;
+                                          text-indent: -83pt; }
 TermNameString,                         { margin-left: 130pt;
-                                          text-indent: -82.5pt; }
+                                          text-indent: -97.5pt; }
 TermNameSourceVerification,             { margin-left: 130pt;
-                                          text-indent: -129pt; }
+                                          text-indent: -128.5pt; }
 TermPronunciation,                      { margin-left: 130pt;
                                           text-indent: -101pt; }
 TermSource,                             { margin-left: 130pt;
                                           text-indent: -89pt; }
 TermType,                               { margin-left: 130pt;
                                           text-indent: -86pt; }
+TranslationResource,                    { margin-left: 130pt;
+                                          text-indent: -128pt; }
 DateLastModified,                       { margin-left: 130pt;
                                           text-indent: -97pt; }
 
@@ -134,9 +151,12 @@ Comment,
 DateLastModified,
 GlossaryTermConcept,
 PronunciationResource,
+TermNameStatus,
+TermNameStatusDate,
 TermNameString,
 TermNameSourceVerification,
 TermPronunciation,
+TranslationResource,
      { margin-bottom: 4pt; }
 
 
@@ -147,9 +167,12 @@ Comment,
 DateLastModified,
 GlossaryTermConcept,
 PronunciationResource,
+TermNameStatus,
+TermNameStatusDate,
 TermPronunciation,
 TermNameSourceVerification,
 TermNameString,
+TranslationResource,
      { background-color: white; }
 
 
@@ -158,7 +181,10 @@ DateLastModified           :before,
 GlossaryTermConcept        :before,
 PronunciationResource      :before,
 TermName                   :before,
+TermNameStatus             :before,
+TermNameStatusDate         :before,
 TermPronunciation          :before,
 TermNameSourceVerification :before,
 TermNameString             :before,
+TranslationResource        :before,
      { background-color: #CCCCFF; }  /* light blue */

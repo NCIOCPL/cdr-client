@@ -65,9 +65,12 @@ DateLastModified           :before { content: "Last Modified"; }
 GlossaryTermConcept        :before { content: "Glossary Concept"; }
 PronunciationResource      :before { content: "Pronunciation Resource"; }
 TermName                   :before { content: "TERM NAME"; }
+TermNameStatus             :before { content: "Term Status"; }
+TermNameStatusDate         :before { content: "Term Status Date"; }
 TermNameString             :before { content: "Term String "; }
 TermNameSourceVerification :before { content: "Source Verification"; }
-TermPronunciation          :before { content: "Term Pronunciation "; }
+TermPronunciation          :before { content: "Term Pronunciation"; }
+TranslationResource        :before { content: "Translation Resource"; }
 
 
 /***************************************************************************/
@@ -105,10 +108,14 @@ TermType:before,
 Comment,
 DateLastModified,
 GlossaryTermConcept,
+ReplacementText,
 PronunciationResource,
+TermNameStatus,
+TermNameStatusDate,
 TermNameString,
 TermNameSourceVerification,
 TermPronunciation,
+TranslationResource,
     { text-indent: 0pt; }
 
 
@@ -119,9 +126,12 @@ Comment,
 DateLastModified,
 GlossaryTermConcept,
 PronunciationResource,
+TermNameStatus,
+TermNameStatusDate,
 TermNameString,
 TermNameSourceVerification,
 TermPronunciation,
+TranslationResource,
     { color: white;
       background-color: white; }
 
@@ -131,7 +141,10 @@ DateLastModified           :before,
 GlossaryTermConcept        :before,
 PronunciationResource      :before,
 TermName                   :before,
+TermNameStatus             :before,
+TermNameStatusDate         :before,
 TermNameString             :before,
 TermNameSourceVerification :before,
 TermPronunciation          :before,
+TranslationResource        :before,
     { background-color: white; }
