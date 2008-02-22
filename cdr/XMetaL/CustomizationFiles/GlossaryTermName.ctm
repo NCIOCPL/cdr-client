@@ -107,44 +107,99 @@
   </ElementPropertiesList>
   <Templates>
     <Template>
-      <Name ns="">DocTitle</Name>
-      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text Type new DocTitle here ?></DocTitle>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">TermPronunciation</Name>
-      <MiniTemplate><![CDATA[<TermPronunciation><?xm-replace_text {
-           Optionally enter the pronunciation
-           ?></TermPronunciation>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">PronunciationResource</Name>
-      <MiniTemplate><![CDATA[<PronunciationResource><?xm-replace_text {
-           Optionally enter the pronunciation resource
-           ?></PronunciationResource>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">TermNameSourceVerification</Name>
-      <MiniTemplate><![CDATA[<TermNameSourceVerification><?xm-replace_text {
-           Optionally enter the term name source verification
-           ?></TermNameSourceVerification>]]></MiniTemplate>
-    </Template>
-    <Template>
       <Name ns="">Comment</Name>
       <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
            Optionally enter a comment
-           ?></Comment>]]></MiniTemplate>
+           }?></Comment>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">DateLastModified</Name>
       <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
            Optionally enter the last modification date
-           ?></DateLastModified>]]></MiniTemplate>
+           }?></DateLastModified>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">DocTitle</Name>
+      <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {
+           Type new DocTitle here
+           }?></DocTitle>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">GlossaryTermConcept</Name>
       <MiniTemplate><![CDATA[<GlossaryTermConcept><?xm-replace_text {
            Enter a glossary Term concept (required)
-           ?></GlossaryTermConcept>]]></MiniTemplate>
+           }?></GlossaryTermConcept>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">PlaceHolder</Name>
+      <MiniTemplate><![CDATA[<PlaceHolder><?xm-replace_text {
+           Optionally enter place holder
+           }?></PlaceHolder>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">PronunciationResource</Name>
+      <MiniTemplate><![CDATA[<PronunciationResource><?xm-replace_text {
+           Optionally enter the pronunciation resource
+           }?></PronunciationResource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermName</Name>
+      <MiniTemplate><![CDATA[<TermName>
+       <TermNameString><?xm-replace_text {
+           Enter a term name (required)
+           }?></TermNameString>
+       <TermPronunciation><?xm-replace_text {
+           Optionally enter the pronunciation
+           }?></TermPronunciation>
+       <PronunciationResource><?xm-replace_text {
+           Optionally enter the pronunciation resource
+           }?></PronunciationResource>
+       <TermNameSourceVerification><?xm-replace_text {
+           Optionally enter the term name source verification
+           }?></TermNameSourceVerification>
+       <TermNameStatus><?xm-replace_text {
+           Optionally enter the term status
+           }?></TermNameStatus>
+       <TermNameStatusDate><?xm-replace_text {
+           Optionally enter the term status date
+           }?></TermNameStatusDate>
+           </TermName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermNameSourceVerification</Name>
+      <MiniTemplate><![CDATA[<TermNameSourceVerification><?xm-replace_text {
+           Optionally enter the term name source verification
+           }?></TermNameSourceVerification>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermNameStatus</Name>
+      <MiniTemplate><![CDATA[<TermNameStatus><?xm-replace_text {
+           Optionally enter the term name status
+           }?></TermNameStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermNameStatusDate</Name>
+      <MiniTemplate><![CDATA[<TermNameStatusDate><?xm-replace_text {
+           Optionally enter the term name status date
+           }?></TermNameStatusDate>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermNameString</Name>
+      <MiniTemplate><![CDATA[<TermNameString><?xm-replace_text {
+           Optionally enter the term name string
+           }?></TermNameString>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TermPronunciation</Name>
+      <MiniTemplate><![CDATA[<TermPronunciation><?xm-replace_text {
+           Optionally enter the pronunciation
+           }?></TermPronunciation>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TranslationResource</Name>
+      <MiniTemplate><![CDATA[<TranslationResource><?xm-replace_text {
+           Optionally enter the translation resource
+           }?></TranslationResource>]]></MiniTemplate>
     </Template>
   </Templates>
 </DTDExtensions>
