@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.174 2008-02-21 21:15:40 bkline Exp $
+     $Id: Cdr.mcr,v 1.175 2008-02-26 20:07:02 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.174  2008/02/21 21:15:40  bkline
+     Worked on macro to deal with private use Unicode characters.
+
      Revision 1.173  2008/01/29 15:13:38  bkline
      New macros for opening HP/Patient summaries.
 
@@ -3264,7 +3267,13 @@
                            "Insert Terms",              // Tooltip.
                            "Insert Term Set Members",   // Description
                            "Databases (Custom)", 4, 10, // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "TermSet QC Report",
+                           "QC Report",
+                           "Generate QC Report",
+                           "CDR", 3, 4,
+                           true)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -5955,6 +5964,28 @@ y<MACRO  name="Insert User ID"
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId
                 + "&Filter=name:Country QC Report Filter";
+        cdrObj.showPage(url);
+    }
+    qcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="TermSet QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId
+                + "&Filter=name:TermSet QC Report Filter";
         cdrObj.showPage(url);
     }
     qcReport();
