@@ -13,7 +13,7 @@
   <DefinitionText><?xm-replace_text {
          Enter a definition for the concept (required)
          }?></DefinitionText>
-  <ReplacementText><?xm-replace_text {
+  <ReplacementText name="TERMNAME"><?xm-replace_text {
          Optionally enter the replacement text and its attribute
          }?></ReplacementText>
   <DefinitionResource><?xm-replace_text {
