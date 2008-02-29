@@ -63,6 +63,14 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">ReplacementText</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+      <TagColor>teal</TagColor>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">TermName</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -141,6 +149,12 @@
       <MiniTemplate><![CDATA[<PronunciationResource><?xm-replace_text {
            Optionally enter the pronunciation resource
            }?></PronunciationResource>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">ReplacementText</Name>
+      <MiniTemplate><![CDATA[<ReplacementText name="TERMNAME"><?xm-replace_text {
+           Optionally enter the global replacement text and its name attribute
+           }?></ReplacementText>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">TermName</Name>
