@@ -59,6 +59,7 @@ RelatedInformation,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
 RelatedSummaryRef,
+ReplacementText,
 SpanishTermDefinition,
 SpanishTermName,
 StatusDate,
@@ -90,15 +91,18 @@ DefinitionStatus             :before { content: "Def Status &: "; }
 Dictionary                   :before { content: "Dictionary & +: "; }
 MediaID                      :before { content: "Media ID * @: "; }
 MediaLink                    :before { content: "MEDIA LINK & + @"; }
-NCIThesaurusID               :before { content: "NCI Thesaurus ID &:"; }
+NCIThesaurusID               :before { content: "NCI Thesaurus ID &: "; }
 PdqKey                       :before { content: "PDQ Key &: "; }
 PDQTerm                      :before { content: "PDQ Term &: "; }
+PlaceHolder                  :before { content: "["attr(name)"]"; }
 PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
-RelatedDrugSummaryRef        :before { content: "Rel DrgSum Ref & + @:"; }
-RelatedExternalRef           :before { content: "Rel Ext Ref & + @:"; }
-RelatedSummaryRef            :before { content: "Rel Sum Ref & + @:"; }
-SpanishTermDefinition        :before { content: "SPANISH DEFINITION & + @"; }
+RelatedDrugSummaryRef        :before { content: "Rel DrgSum Ref & + @: "; }
+RelatedExternalRef           :before { content: "Rel Ext Ref & + @: "; }
+RelatedSummaryRef            :before { content: "Rel Sum Ref & + @: "; }
+ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
+ReplacementText              :after  { content: " ["attr(name)"]"; }
+SpanishTermDefinition        :before { content: "SPANISH DEFINITION & +"; }
 SpanishTermDefinition>DefinitionText       
                              :before { content: "Span Definition *: "; }
 SpanishTermName              :before { content: "Spanish Name &: "; }
@@ -107,7 +111,7 @@ TermDefinition>StatusDate
                              :before { content: "Status Date &: "; }
 SpanishTermDefinition>StatusDate                      
                              :before { content: "Status Date &: "; }
-TermDefinition               :before { content: "TERM DEFINITION * + @"; }
+TermDefinition               :before { content: "TERM DEFINITION * +"; }
 TermDefinition>DefinitionText       
                              :before { content: "Term Definition *: "; }
 TermName                     :before { content: "Term Name *: "; }
@@ -153,6 +157,7 @@ RelatedInformation           :before,
 RelatedDrugSummaryRef        :before,
 RelatedExternalRef           :before,
 RelatedSummaryRef            :before,
+ReplacementText              :before,
 SpanishTermDefinition        :before,
 SpanishTermName              :before,
 StatusDate                   :before,
@@ -163,6 +168,12 @@ TranslationResource          :before,
     { font-weight: bold;
       color: black; }
 
+PlaceHolder                  :before,
+    { font-weight: bold;
+      color: teal; }
+ReplacementText              :after,
+    { font-weight: bold;
+      color: teal; }
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
@@ -195,69 +206,69 @@ TermType:before,
 
 /* Key element for length = SpanishTermName                       */
 
-Audience                     { margin-left: 125pt;
+Audience                     { margin-left: 135pt;
                                text-indent: -79.5pt; }
-Caption                      { margin-left: 125pt;
+Caption                      { margin-left: 135pt;
                                text-indent: -75pt; }
-Comment,                     { margin-left: 125pt;
+Comment,                     { margin-left: 135pt;
                                text-indent: -107pt; }
-DateLastModified,            { margin-left: 125pt;
+DateLastModified,            { margin-left: 135pt;
                                text-indent: -97pt; }
-DateLastReviewed,            { margin-left: 125pt;
+DateLastReviewed,            { margin-left: 135pt;
                                text-indent: -104pt; }
-DefinitionResource           { margin-left: 125pt;
+DefinitionResource           { margin-left: 135pt;
                                text-indent: -108pt; }
-DefinitionStatus             { margin-left: 125pt;
+DefinitionStatus             { margin-left: 135pt;
                                text-indent: -79.5pt; }
-Dictionary                   { margin-left: 125pt;
+Dictionary                   { margin-left: 135pt;
                                text-indent: -88.5pt; }
-MediaID,                     { margin-left: 125pt;
+MediaID,                     { margin-left: 135pt;
                                text-indent: -79.5pt; }
-NCIThesaurusID,              { margin-left: 125pt;
+NCIThesaurusID,              { margin-left: 135pt;
                                text-indent: -118pt; }
-PronunciationResource,       { margin-left: 125pt;
+PronunciationResource,       { margin-left: 135pt;
                                text-indent: -116.5pt; }
-PdqKey,                      { margin-left: 125pt;
+PdqKey,                      { margin-left: 135pt;
                                text-indent: -71pt; }
-PDQTerm,                     { margin-left: 125pt;
+PDQTerm,                     { margin-left: 135pt;
                                text-indent: -79pt; }
-ReplacementText,             { margin-left: 125pt;
-                               text-indent: -99pt; }
+ReplacementText,             { margin-left: 135pt;
+                               text-indent: -134pt; }
 RelatedDrugSummaryRef,       { margin-left: 135pt;
                                text-indent: -133.5pt; }
 RelatedExternalRef,          { margin-left: 135pt;
                                text-indent: -105pt; }
 RelatedSummaryRef,           { margin-left: 135pt;
                                text-indent: -112.5pt; }
-TermName,                    { margin-left: 125pt;
+TermName,                    { margin-left: 135pt;
                                text-indent: -81pt; }
-TermPronunciation,           { margin-left: 125pt;
+TermPronunciation,           { margin-left: 135pt;
                                text-indent: -101pt; }
-TermSource,                  { margin-left: 125pt;
+TermSource,                  { margin-left: 135pt;
                                text-indent: -89pt; }
-TermType,                    { margin-left: 125pt;
+TermType,                    { margin-left: 135pt;
                                text-indent: -86pt; }
-TermStatus,                  { margin-left: 125pt;
+TermStatus,                  { margin-left: 135pt;
                                text-indent: -85pt; }
 TermDefinition>DefinitionText,          
-                             { margin-left: 125pt;
+                             { margin-left: 135pt;
                                text-indent: -102.5pt; }
-TermDefinition>StatusDate,   { margin-left: 125pt;
+TermDefinition>StatusDate,   { margin-left: 135pt;
                                text-indent: -86pt; }
-TranslationResource          { margin-left: 125pt;
+TranslationResource          { margin-left: 135pt;
                                text-indent: -121.5pt; }
-SpanishTermName,             { margin-left: 125pt;
+SpanishTermName,             { margin-left: 135pt;
                                text-indent: -103.5pt; }
 SpanishTermDefinition>DateLastModified, 
-                             { margin-left: 125pt;
+                             { margin-left: 135pt;
                                text-indent: -97pt; }
 SpanishTermDefinition>DefinitionText,   
-                             { margin-left: 125pt;
+                             { margin-left: 135pt;
                                text-indent: -103.5pt; }
 SpanishTermDefinition>StatusDate,       
-                             { margin-left: 125pt;
+                             { margin-left: 135pt;
                                text-indent: -86pt; }
-StatusDate,                  { margin-left: 125pt;
+StatusDate,                  { margin-left: 135pt;
                                text-indent: -82pt; }
 
 
@@ -287,6 +298,7 @@ PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef, 
 RelatedSummaryRef,
+ReplacementText,
 SpanishTermDefinition,
 SpanishTermName,
 StatusDate,
@@ -320,6 +332,7 @@ PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
 RelatedSummaryRef,
+ReplacementText,
 SpanishTermName,
 StatusDate,
 TermName,
@@ -348,6 +361,7 @@ PronunciationResource        :before,
 RelatedDrugSummaryRef        :before,
 RelatedExternalRef           :before,
 RelatedSummaryRef            :before,
+ReplacementText              :before,
 SpanishTermDefinition        :before,
 SpanishTermName              :before,
 StatusDate                   :before,
