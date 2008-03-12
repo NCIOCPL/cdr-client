@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.175 2008-02-26 20:07:02 venglisc Exp $
+     $Id: Cdr.mcr,v 1.176 2008-03-12 22:31:27 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.175  2008/02/26 20:07:02  venglisc
+     Added TermSet QC Report icon to the TermSet documents. (Bug 3945)
+
      Revision 1.174  2008/02/21 21:15:40  bkline
      Worked on macro to deal with private use Unicode characters.
 
@@ -1485,6 +1488,8 @@
                                     "Insert Current Date and Time");
         }
     }
+    Application.AppendMacro("Find Private Use Unicode Characters",
+                            "Find Private Use Chars");
   ]]>
 </MACRO>
 
