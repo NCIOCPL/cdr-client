@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.176 2008-03-12 22:31:27 bkline Exp $
+     $Id: Cdr.mcr,v 1.177 2008-03-28 20:45:19 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.176  2008/03/12 22:31:27  bkline
+     Plugged the new macro for finding private use characters into the
+     popup context menu.
+
      Revision 1.175  2008/02/26 20:07:02  venglisc
      Added TermSet QC Report icon to the TermSet documents. (Bug 3945)
 
@@ -2817,6 +2821,12 @@
 
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
+                           "Full Concept QC Report",    // Macro.
+                           "Full Concept QC Report",    // Tooltip.
+                           "Generate Full QC Report",   // Description
+                           "CDR", 4, 3,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
                            "GT Concept QC Report",      // Tooltip.
                            "Generate QC Report",        // Description
@@ -2888,7 +2898,7 @@
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
-                           "GT Name QC Report",   // Tooltip.
+                           "GT Name QC Report",         // Tooltip.
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
@@ -5512,7 +5522,7 @@
   ]]>
 </MACRO>
 
-y<MACRO  name="Insert User ID"
+<MACRO  name="Insert User ID"
         lang="JScript" 
         desc="Inserts the login name as text content of current elem"
         key="Alt+U" 
@@ -6367,6 +6377,28 @@ y<MACRO  name="Insert User ID"
     glossaryRSReport();
   ]]>
 </MACRO>
+
+<MACRO name="Full Concept QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function qcFullReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "GlossaryConceptFull.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        cdrObj.showPage(url);
+    }
+    qcFullReport();
+  ]]>
+</MACRO>
+
 <MACRO name="Patient Summary RS QC Report" 
        lang="JScript">
   <![CDATA[
