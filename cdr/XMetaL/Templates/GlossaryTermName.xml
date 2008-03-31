@@ -19,6 +19,9 @@
   <PronunciationResource><?xm-replace_text {
          Optionally enter the pronunciation resource
          }?></PronunciationResource>
+  <TermNameSource><?xm-replace_text {
+         Optionally select the TermNameSource
+         }?></TermNameSource>
   <TermNameSourceVerification><?xm-replace_text {
          Optionally enter the term name source verification
          }?></TermNameSourceVerification>
