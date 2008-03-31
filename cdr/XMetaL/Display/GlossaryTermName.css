@@ -48,6 +48,7 @@ TermName,
 TermNameStatus,
 TermNameStatusDate,
 TermNameString,
+TermNameSource,
 TermNameSourceVerification,
 TermPronunciation,
 TranslationResource,
@@ -68,10 +69,11 @@ GlossaryTermConcept          :before { content: "Glossary Concept * @: "; }
 PronunciationResource        :before { content: "Pron Resource & +: "; }
 ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
 ReplacementText              :after  { content: " ["attr(name)"]"; }
-TermName                     :before { content: "TERM NAME * + @"; }
+TermName                     :before { content: "TERM NAME ["attr(language)"] * + @"; }
 TermNameStatus               :before { content: "Term Status &: "; }
 TermNameStatusDate           :before { content: "Status Date &: "; }
 TermNameString               :before { content: "Term String * @: "; }
+TermNameSource               :before { content: "Source &: "; }
 TermNameSourceVerification   :before { content: "Source Verificatn & +: "; }
 TermPronunciation            :before { content: "Pronunciation &: "; }
 TranslationResource          :before { content: "Translation Resrc & +: "; }
@@ -97,6 +99,7 @@ TermName                     :before,
 TermNameStatus               :before,
 TermNameStatusDate           :before,
 TermNameString               :before,
+TermNameSource               :before,
 TermNameSourceVerification   :before,
 TermPronunciation            :before,
 TranslationResource          :before,
@@ -130,6 +133,8 @@ TermNameStatusDate,                     { margin-left: 130pt;
                                           text-indent: -86pt; }
 TermNameString,                         { margin-left: 130pt;
                                           text-indent: -97.5pt; }
+TermNameSource,                         { margin-left: 130pt;
+                                          text-indent: -61.5pt; }
 TermNameSourceVerification,             { margin-left: 130pt;
                                           text-indent: -128.5pt; }
 TermPronunciation,                      { margin-left: 130pt;
@@ -152,17 +157,20 @@ GlossaryTermConcept,
 TermName,
      { margin-top: 1em; }
 
+GlossaryTermConcept,
+     { margin-bottom: 1em; }
+
 
 /* Margin-bottom to simulate a text box                                    */
 
 Comment,
 DateLastModified,
-GlossaryTermConcept,
 PronunciationResource,
 ReplacementText,
 TermNameStatus,
 TermNameStatusDate,
 TermNameString,
+TermNameSource,
 TermNameSourceVerification,
 TermPronunciation,
 TranslationResource,
@@ -180,6 +188,7 @@ ReplacementText,
 TermNameStatus,
 TermNameStatusDate,
 TermPronunciation,
+TermNameSource,
 TermNameSourceVerification,
 TermNameString,
 TranslationResource,
@@ -195,6 +204,7 @@ TermName                   :before,
 TermNameStatus             :before,
 TermNameStatusDate         :before,
 TermPronunciation          :before,
+TermNameSource             :before,
 TermNameSourceVerification :before,
 TermNameString             :before,
 TranslationResource        :before,
