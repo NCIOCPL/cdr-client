@@ -32,9 +32,6 @@
          Optionally enter a Status date
          }?></StatusDate>
  </TermDefinition> 
- <TermSource><?xm-replace_text {
-         Select the TermSource (required)
-         }?></TermSource>
  <TermType><?xm-replace_text {
          Select the TermType (required)
          }?></TermType>
