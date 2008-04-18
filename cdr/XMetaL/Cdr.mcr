@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.177 2008-03-28 20:45:19 venglisc Exp $
+     $Id: Cdr.mcr,v 1.178 2008-04-18 16:55:38 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.177  2008/03/28 20:45:19  venglisc
+     Added icon and new macro to run the Full Glossary Concept QC report.
+     (Bug 3699)
+
      Revision 1.176  2008/03/12 22:31:27  bkline
      Plugged the new macro for finding private use characters into the
      popup context menu.
@@ -1290,6 +1294,17 @@
                 docType.addElementToInclusions("cdr:PrivateUseCharacter",
                                                rootElem);
             }
+        }
+
+        // Allow the cdr:eid attribute everywhere.
+//Application.Alert("getting length");
+var nn = docType.elementTypes.ubound();
+//Application.Alert("length is " + nn);
+//var n = docType.elementType.length;
+//Application.Alert("length is " + n);
+
+        for (var i = 0; i < nn; ++i) {
+            docType.addAttribute(docType.elementType(i), "cdr-eid", "", 1, 0);
         }
     }
 
@@ -3649,7 +3664,10 @@
             Application.Alert("You are not logged on to the CDR");
         }
         else {
-            cdrObj.validate();
+            var result = cdrObj.validate();
+            if (result > 0) {
+                Application.Alert("Found " + result + " validation errors");
+            }
         }
     }
     cdrValidate();
@@ -3701,8 +3719,12 @@
                    }
                 }
             }
-            if (answer)
-                cdrObj.save();
+            if (answer) {
+                var result = cdrObj.save();
+                if (result > 0) {
+                    Application.Alert("Found " + result + " validation errors");
+                }
+            }
         }
     }
     cdrSave();
@@ -8017,6 +8039,70 @@
         oldElem.parentNode.replaceChild(newElem, oldElem);
     }
     bugRepro();
+  ]]>
+</MACRO>
+
+<MACRO name="Show Next Validation Error" lang="JScript" key="Alt+E">
+  <![CDATA[
+    function showNextValidationError() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var result = cdrObj.getNextValidationError();
+        //var p = "foo|bar|bum".split('|', 1);
+        //Application.Alert(p[1]);
+        var pieces = result.split('|');
+        var eid = pieces.shift();
+        var message = pieces.join('|');
+        Application.Alert(message);
+        if (eid != "0") {
+            var xpath = '//*[@cdr-eid="' + eid + '"]';
+            var nodes;
+            try {
+                //var nodes = ActiveDocument.getNodesByXPath(xpath);
+                nodes = ActiveDocument.getNodesByXPath(xpath);
+            }
+            catch (e) {
+                Application.Alert("internal error with XPath " + xpath + ": "
+                                  + e);
+                //xpath = Application.Prompt("xpath: ");
+                //if (xpath) {
+                //    nodes = ActiveDocument.getNodesByXPath(xpath);
+                return;
+            }
+            if (nodes.length) {
+                Selection.SelectNodeContents(nodes.item(0));
+                //Selection.MoveRight();
+                Selection.MoveLeft(0);
+            }
+            else {
+                Application.Alert("can't find node '" + eid + "'");
+            }
+        }
+    }
+    showNextValidationError();
+  ]]>
+</MACRO>
+
+/*
+ * XMetaL can't find this.  Reported to Derek 2008-04-10.
+ */
+<MACRO name="xpath bug repro" lang="JScript">
+  <![CDATA[
+    function xpathBugRepro() {
+        var xpath = "//*[@*[namespace-uri()='cips.nci.nih.gov/cdr' " +
+                    "and local-name()='eid']='62']";
+        var nodes = ActiveDocument.getNodesByXPath(xpath);
+        if (nodes.length) {
+            Selection.SelectNodeContents(nodes.item(0));
+            Selection.MoveLeft(0);
+        }
+        else {
+            Application.Alert("can't find '" + xpath + "'");
+        }
+    }
+    xpathBugRepro();
   ]]>
 </MACRO>
 
