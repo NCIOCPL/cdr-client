@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.178 2008-04-18 16:55:38 bkline Exp $
+     $Id: Cdr.mcr,v 1.179 2008-04-22 12:15:43 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.178  2008/04/18 16:55:38  bkline
+     Enhanced support for validation error message navigation (request #3637).
+
      Revision 1.177  2008/03/28 20:45:19  venglisc
      Added icon and new macro to run the Full Glossary Concept QC report.
      (Bug 3699)
@@ -1296,15 +1299,10 @@
             }
         }
 
-        // Allow the cdr:eid attribute everywhere.
-//Application.Alert("getting length");
-var nn = docType.elementTypes.ubound();
-//Application.Alert("length is " + nn);
-//var n = docType.elementType.length;
-//Application.Alert("length is " + n);
-
-        for (var i = 0; i < nn; ++i) {
-            docType.addAttribute(docType.elementType(i), "cdr-eid", "", 1, 0);
+        // Allow the cdr-eid attribute everywhere.
+        var n = docType.elementTypes.ubound();
+        for (var i = 0; i < n; ++i) {
+            docType.addAttribute(docType.elementType(i), "cdr-eid", "", 0, 0);
         }
     }
 
