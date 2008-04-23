@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.179 2008-04-22 12:15:43 bkline Exp $
+     $Id: Cdr.mcr,v 1.180 2008-04-23 12:02:33 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.179  2008/04/22 12:15:43  bkline
+     Changed cdr-eid attribute type to CDATA, since the server isn't
+     generating valid ID values.
+
      Revision 1.178  2008/04/18 16:55:38  bkline
      Enhanced support for validation error message navigation (request #3637).
 
@@ -1302,7 +1306,7 @@
         // Allow the cdr-eid attribute everywhere.
         var n = docType.elementTypes.ubound();
         for (var i = 0; i < n; ++i) {
-            docType.addAttribute(docType.elementType(i), "cdr-eid", "", 0, 0);
+            docType.addAttribute(docType.elementType(i), "cdr-eid", "", 1, 0);
         }
     }
 
@@ -8048,35 +8052,24 @@
             return;
         }
         var result = cdrObj.getNextValidationError();
-        //var p = "foo|bar|bum".split('|', 1);
-        //Application.Alert(p[1]);
         var pieces = result.split('|');
         var eid = pieces.shift();
         var message = pieces.join('|');
         Application.Alert(message);
         if (eid != "0") {
             var xpath = '//*[@cdr-eid="' + eid + '"]';
-            var nodes;
-            try {
-                //var nodes = ActiveDocument.getNodesByXPath(xpath);
-                nodes = ActiveDocument.getNodesByXPath(xpath);
-            }
-            catch (e) {
-                Application.Alert("internal error with XPath " + xpath + ": "
-                                  + e);
-                //xpath = Application.Prompt("xpath: ");
-                //if (xpath) {
-                //    nodes = ActiveDocument.getNodesByXPath(xpath);
-                return;
-            }
-            if (nodes.length) {
-                Selection.SelectNodeContents(nodes.item(0));
-                //Selection.MoveRight();
+            var node = null;
+            // Alternate approach
+            // var nodes = ActiveDocument.getNodesByXPath(xpath);
+            // if (nodes.length)
+            //     node = nodes.item(0);
+            node = ActiveDocument.getElementById(eid);
+            if (node) {
+                Selection.SelectNodeContents(node);
                 Selection.MoveLeft(0);
             }
-            else {
-                Application.Alert("can't find node '" + eid + "'");
-            }
+            else
+                Application.Alert("unable to find node '" + eid + "'");
         }
     }
     showNextValidationError();
