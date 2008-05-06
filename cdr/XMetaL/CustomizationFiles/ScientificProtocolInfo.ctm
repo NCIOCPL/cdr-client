@@ -53,6 +53,41 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>ArmsOrGroups</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ArmOrGroup</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ArmOrGroupDescription</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ArmOrGroupLabel</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ArmOrGroupType</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>CdrDocCtl</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -987,6 +1022,54 @@
    <MiniTemplate><![CDATA[<AmendmentSource><?xm-replace_text {
     Select the original source of the amendment
     }?></AmendmentSource>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ArmsOrGroups</Name>
+   <MiniTemplate><![CDATA[<ArmsOrGroups>
+    <ArmOrGroup>
+     <ArmOrGroupLabel><?xm-replace_text {
+      Enter a label for the arm or group (required)
+      }?></ArmOrGroupLabel>
+     <ArmOrGroupType><?xm-replace_text {
+      Select an arm or group type (required)
+      }?></ArmOrGroupType>
+     <ArmOrGroupDescription><?xm-replace_text {
+      Enter the arm or group description (required)
+      }?></ArmOrGroupDescription>
+     </ArmOrGroup>
+    </ArmsOrGroups>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ArmOrGroup</Name>
+   <MiniTemplate><![CDATA[<ArmOrGroup>
+    <ArmOrGroupLabel><?xm-replace_text {
+     Enter a label for the arm or group (required)
+     }?></ArmOrGroupLabel>
+    <ArmOrGroupType><?xm-replace_text {
+     Select an arm or group type (required)
+     }?></ArmOrGroupType>
+    <ArmOrGroupDescription><?xm-replace_text {
+     Enter the arm or group description (required)
+     }?></ArmOrGroupDescription>
+    </ArmOrGroup>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ArmOrGroupLabel</Name>
+   <MiniTemplate><![CDATA[<ArmOrGroupLabel><?xm-replace_text {
+     Enter a label for the arm or group (required)
+     }?></ArmOrGroupLabel>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ArmOrGroupType</Name>
+   <MiniTemplate><![CDATA[<ArmOrGroupType><?xm-replace_text {
+     Select an arm or group type (required)
+     }?></ArmOrGroupType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ArmOrGroupDescription</Name>
+   <MiniTemplate><![CDATA[<ArmOrGroupDescription><?xm-replace_text {
+     Enter the arm or group description (required)
+     }?></ArmOrGroupDescription>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>ChangeType</Name>

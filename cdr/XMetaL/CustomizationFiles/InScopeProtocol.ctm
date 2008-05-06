@@ -40,6 +40,41 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ArmsOrGroups</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ArmOrGroup</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ArmOrGroupDescription</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ArmOrGroupLabel</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ArmOrGroupType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>BlockedFromCTGov</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -810,6 +845,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>SubmissionMethod</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Table</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -1081,6 +1123,54 @@
           }?></AgeText>]]></MiniTemplate>
    </Template>
    <Template>
+    <Name>ArmsOrGroups</Name>
+    <MiniTemplate><![CDATA[<ArmsOrGroups>
+       <ArmOrGroup>
+        <ArmOrGroupLabel><?xm-replace_text {
+          Enter a label for the arm or group (required)
+          }?></ArmOrGroupLabel>
+        <ArmOrGroupType><?xm-replace_text {
+          Select an arm or group type (required)
+          }?></ArmOrGroupType>
+        <ArmOrGroupDescription><?xm-replace_text {
+          Enter the arm or group description (required)
+          }?></ArmOrGroupDescription>
+       </ArmOrGroup>
+      </ArmsOrGroups>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>ArmOrGroup</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroup>
+        <ArmOrGroupLabel><?xm-replace_text {
+          Enter a label for the arm or group (required)
+          }?></ArmOrGroupLabel>
+        <ArmOrGroupType><?xm-replace_text {
+          Select an arm or group type (required)
+          }?></ArmOrGroupType>
+        <ArmOrGroupDescription><?xm-replace_text {
+          Enter the arm or group description (required)
+          }?></ArmOrGroupDescription>
+       </ArmOrGroup>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>ArmOrGroupLabel</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupLabel><?xm-replace_text {
+          Enter a label for the arm or group (required)
+          }?></ArmOrGroupLabel>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>ArmOrGroupType</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupType><?xm-replace_text {
+          Select an arm or group type (required)
+          }?></ArmOrGroupType>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>ArmOrGroupDescription</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupDescription><?xm-replace_text {
+          Enter the arm or group description (required)
+          }?></ArmOrGroupDescription>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>CdrDocCtl</Name>
       <MiniTemplate><![CDATA[<CdrDocCtl>
         <DocId><?xm-replace_text {
@@ -1108,6 +1198,13 @@
       <MiniTemplate><![CDATA[<DateSubmissionComplete><?xm-replace_text {
           Optionally enter the date protocol submission is complete
           }?></DateSubmissionComplete>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>DelayedPosting</Name>
+      <MiniTemplate><![CDATA[
+       <DelayedPosting><?xm-replace_text {
+          Optionally select Yes/No
+          }?></DelayedPosting>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>DocId</Name>
@@ -1154,6 +1251,12 @@
         <INDSerialNumber><?xm-replace_text {
           Optionally enter the IND serial number
           }?></INDSerialNumber></FDAINDInfo>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>FDARegulated</Name>
+      <MiniTemplate><![CDATA[<FDARegulated><?xm-replace_text {
+          Select Yes/No (required)
+          }?></FDARegulated>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>Gender</Name>
@@ -1263,6 +1366,35 @@
           }?></RegulatoryAuthority>]]></MiniTemplate>
    </Template>
    <Template>
+      <Name>RegulatoryInformation</Name>
+      <MiniTemplate><![CDATA[<RegulatoryInformation>
+       <FDARegulated><?xm-replace_text {
+          Select Yes/No (required)
+          }?></FDARegulated>
+       <Section801><?xm-replace_text {
+          Optionally select Yes/No
+          }?></Section801>
+       <DelayedPosting><?xm-replace_text {
+          Optionally select Yes/No
+          }?></DelayedPosting>
+       <ResponsibleParty><?xm-replace_text {
+          Enter the responsible party (required)
+          }?></ResponsibleParty>
+      </RegulatoryInformation>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>ResponsibleParty</Name>
+      <MiniTemplate><![CDATA[<ResponsibleParty><?xm-replace_text {
+          Enter the responsible party (required)
+          }?></ResponsibleParty>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>Section801</Name>
+      <MiniTemplate><![CDATA[<Section801><?xm-replace_text {
+          Optionally select Yes/No
+          }?></Section801>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>StartDate</Name>
       <MiniTemplate><![CDATA[<StartDate><?xm-replace_text {
           Optionally enter the start date
@@ -1285,6 +1417,12 @@
       <MiniTemplate><![CDATA[<StudyCategoryName><?xm-replace_text {
           Select a descriptive study category (required)
           }?></StudyCategoryName>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>SubmissionMethod</Name>
+      <MiniTemplate><![CDATA[<SubmissionMethod><?xm-replace_text {
+          Optionally select the protocol submission method
+          }?></SubmissionMethod>]]></MiniTemplate>
    </Template>
    <Template>
     <Name>User</Name>
@@ -1369,6 +1507,9 @@
           <SourceName><?xm-replace_text {
           Select the protocol submission source (required)
           }?></SourceName>
+        <SubmissionMethod><?xm-replace_text {
+          Optionally select the protocol submission method
+          }?></SubmissionMethod>
         <DateReceived><?xm-replace_text {
           Enter the date that the protocol was received (required)
           }?></DateReceived>
@@ -2430,6 +2571,9 @@
         <SourceName><?xm-replace_text {
           Select the protocol submission source (required)
           }?></SourceName>
+        <SubmissionMethod><?xm-replace_text {
+          Optionally select the protocol submission method
+          }?></SubmissionMethod>
         <DateReceived><?xm-replace_text {
           Enter the date that the protocol was received (required)
           }?></DateReceived>

@@ -82,6 +82,19 @@
           Paragraph
           }?></Para>
    </Outline>
+   <ArmsOrGroups>
+    <ArmOrGroup>
+     <ArmOrGroupLabel><?xm-replace_text {
+          Enter a label for the arm or group (required)
+          }?></ArmOrGroupLabel>
+     <ArmOrGroupType><?xm-replace_text {
+          Select an arm or group type (required)
+          }?></ArmOrGroupType>
+     <ArmOrGroupDescription><?xm-replace_text {
+          Enter the arm or group description (required)
+          }?></ArmOrGroupDescription>
+    </ArmOrGroup>
+   </ArmsOrGroups>
    <EntryCriteria>
     <DiseaseCharacteristics>
      <Para><?xm-replace_text {
