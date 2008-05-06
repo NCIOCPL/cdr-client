@@ -108,11 +108,17 @@ InScopeProtocol,
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
+ArmOrGroup,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
+ArmsOrGroups,
 BlockedFromCTGov,
 ClinicalTrialOffice,
 Comment,
 CompletionDate,
 ContactInformation,
+CTGovDuplicate,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -140,6 +146,7 @@ ExternalSiteRegDate,
 ExternalSiteRegStatus,
 ExternalSites,
 FDAINDInfo,
+FDARegulated,
 FundingInfo, 
 GenericPerson, 
 GenericPersonContact, 
@@ -209,15 +216,22 @@ VerificationDate,
 /***************************************************************************/ 
 /*                      BEFORE AND AFTER TAGS                              */ 
 /***************************************************************************/ 
+ArmOrGroup              :before { content: "Arm or Group"; }
+ArmOrGroupDescription   :before { content: "Description"; }
+ArmOrGroupLabel         :before { content: "Label"; }
+ArmOrGroupType          :before { content: "Type"; }
+ArmsOrGroups            :before { content: "ARMS OR GROUPS"; }
 BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
 ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
 CompletionDate          :before { content: "Completion Date"; }
 DateSubmissionComplete  :before { content: "Date Submission Complete"; }
 Country                 :before { content: "Country"; }
+CTGovDuplicate          :before { content: "CTGov Duplicate"; }
 CurrentOrgStatus        :before { content: "Current Org Status"; }
 CurrentProtocolStatus   :before { content: "Current Protocol Status";  }
 DateLastModified        :before { content: "Last Modified"; }
 DateSentForReview       :before { content: "Date Sent for Review"; }
+DelayedPosting          :before { content: "Delayed Posting"; }
 DueDate                 :before { content: "Due Date"; }  
 EnteredBy               :before { content: "Entered By"; }
 EntryDate               :before { content: "Entry Date"; }
@@ -240,6 +254,7 @@ ExternalSiteRegDate     :before { content: "ES RegDate"; }
 ExternalSiteRegStatus   :before { content: "ES Reg Status"; }
 ExternalSites           :before { content: "EXTERNAL SITES"; }
 FDAINDInfo              :before { content: "FDA IND Info"; }
+FDARegulated            :before { content: "FDA Regulated"; }
 FundingInfo             :before { content: "FUNDING INFORMATION";  }
 GenericPerson           :before { content: "Generic Contact";  }
 GenericPersonContact    :before { content: "Generic Person Contact Information";  }
@@ -297,14 +312,17 @@ ProtocolSpecificContact :before { content: "Protocol Specific Contact"; }
 ProtocolSponsors        :before { content: "PROTOCOL SPONSORS";  }
 ProtocolSpecialCategory :before { content: "PROTOCOL SPECIAL CATEGORY"; }
 RegulatoryAuthority     :before { content: "Regulatory Authority"; }
+RegulatoryInformation   :before { content: "REGULATORY INFO"; }
 RelatedDocuments                { content: "RELATED DOCUMENTS"; }
 ReimbursementApprovalType:before 
                                 { content: "Reimbursement Approval Type"; }
+ResponsibleParty        :before { content: "Responsible Party"; }
 ReviewApprovalType      :before { content: "Review Approval Type"; }
 ReviewStatus            :before { content: "Review Status"; }
 ReviewStatusDate        :before { content: "Review Status Date"; }
 Reviewer                :before { content: "Reviewer"; }
 Role                    :before { content: "Role"; }
+Section801              :before { content: "Section 801"; }
 SourceName              :before { content: "Source"; }
 SpecialCategory         :before { content: "Category"; }
 SpecificPerson          :before { content: "Specific Contact";  }
@@ -315,6 +333,7 @@ SupplementaryInfoLink   :before { content: "Supplementary Info Link"; }
 StartDate               :before { content: "Start Date"; }
 StatusDate              :before { content: "Status Date"; }
 StatusName              :before { content: "Status"; }
+SubmissionMethod        :before { content: "Submission Method"; }
 UpdateMode              :before { content: "Update Mode"; }
 VerificationInfo        :before { content: "VERIFICATION INFO"; }
 VerificationDate        :before { content: "Verification Date"; }
@@ -447,14 +466,19 @@ StatusName              :before,
 /***************************************************************************/ 
 /*                             HIDE TEXT                                   */ 
 /***************************************************************************/ 
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ClinicalTrialOffice,
 CompletionDate,
 Country,
+CTGovDuplicate,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
 DateLastModified,
 DateSentForReview,
 DateSubmissionComplete,
+DelayedPosting,
 DueDate,
 EnteredBy,
 EntryDate,
@@ -477,6 +501,7 @@ ExternalSiteRegDate,
 ExternalSiteRegStatus,
 ExternalSites,
 FDAINDInfo,
+FDARegulated,
 FundingInfo,
 GenericPerson,
 GenericPersonContact,
@@ -524,11 +549,13 @@ ProtocolSponsors,
 ProtocolSpecialCategory,
 RegulatoryAuthority,
 ReimbursementApprovalType,
+ResponsibleParty,
 Reviewer,
 ReviewStatus,
 ReviewStatusDate,
 ReviewApprovalType,
 Role,
+Section801,
 SourceName,
 SpecialCategory,
 SpecificPerson,
@@ -539,6 +566,7 @@ SponsorName,
 StartDate,
 StatusDate,
 StatusName,
+SubmissionMethod,
 SupplementaryInfoLink,
 UpdateMode:after,
 UpdateMode,
@@ -550,6 +578,9 @@ WarehouseBoxNumber,
   
 /* Administrative Information                          */
 
+ArmOrGroupDescription     :before,
+ArmOrGroupLabel           :before,
+ArmOrGroupType            :before,
 ClinicalTrialOffice       :before,
 FundingInfo > NIHGrantContract > Comment 
                           :before,
@@ -575,6 +606,7 @@ ProtocolSource > DateReceived
                           :before,
 DateSentForReview         :before,
 DateSubmissionComplete    :before,
+DelayedPosting            :before,
 DueDate                   :before,
 EnteredBy                 :before,
 EntryDate                 :before,
@@ -595,6 +627,7 @@ ExternalSites,
 ExternalSiteContactPhone  :before,
 ExternalSiteContactTitle  :before,
 FDAINDInfo                :before,
+FDARegulated              :before,
 FundingInfo, 
 GrantContractNo           :before,
 INDGrantor                :before,
@@ -636,13 +669,16 @@ ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
 RegulatoryAuthority       :before,
+RegulatoryInformation,
 RelatedDocuments,
 ReimbursementApprovalType :before,
+ResponsibleParty          :before,
 ReviewApprovalType        :before,
 Reviewer                  :before,
 ReviewStatus              :before,
 ReviewStatusDate          :before,
 Role                      :before,
+Section801                :before,
 SourceName                :before,
 SpecialCategory           :before,
 SpecificEmail             :before,
@@ -650,6 +686,7 @@ SpecificPhone             :before,
 SponsorName               :before,
 StatusDate                :before,
 StatusName                :before,
+SubmissionMethod          :before,
 SupplementaryInfoLink     :before,
 UpdateMode                :before,
 VerificationInfo,
@@ -681,6 +718,7 @@ ProtocolSpecialCategory,
 ProtocolSponsors,
 ProtocolLeadOrg,
 ProtocolAdminInfo > DatedAction,
+RegulatoryInformation,
 RelatedDocuments,
 VerificationInfo,
 VoluntaryReview,
@@ -693,6 +731,9 @@ VoluntaryReview,
 
 /* Remove negative text-indent settings  */
 
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ClinicalTrialOffice,
 CompletionDate,
 ExternalSiteAddress > City,
@@ -715,6 +756,7 @@ DateLastModified,
 ProtocolSource > DateReceived,
 DateSentForReview,
 DateSubmissionComplete,
+DelayedPosting,
 DueDate,
 EnteredBy,
 VoluntaryReview > EnteredBy,
@@ -735,6 +777,7 @@ ExternalSitePIID,
 ExternalSitePIPhone,
 ExternalSiteContactPhone,
 ExternalSiteContactTitle,
+FDARegulated,
 GrantContractNo,
 INDGrantor,
 INDNumber,
@@ -765,12 +808,14 @@ PrivatePracticeSiteStatus,
 ProcessingPriority,
 ProtocolAdminInfo,
 RegulatoryAuthority,
+ResponsibleParty,
 ReviewApprovalType,
 Reviewer,
 ReviewStatus,
 ReviewStatusDate,
 ReimbursementApprovalType,
 Role,
+Section801,
 SourceName,
 SpecialCategory,
 SpecificEmail,
@@ -779,6 +824,7 @@ SponsorName,
 StartDate,
 StatusDate,
 StatusName,
+SubmissionMethod,
 ExternalSiteAddress > Street,
 SupplementaryInfoLink,
 UpdateMode,
