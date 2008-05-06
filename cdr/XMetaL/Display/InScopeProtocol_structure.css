@@ -108,11 +108,6 @@ InScopeProtocol,
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-ArmOrGroup,
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
-ArmsOrGroups,
 BlockedFromCTGov,
 ClinicalTrialOffice,
 Comment,
@@ -216,11 +211,6 @@ VerificationDate,
 /***************************************************************************/ 
 /*                      BEFORE AND AFTER TAGS                              */ 
 /***************************************************************************/ 
-ArmOrGroup              :before { content: "Arm or Group"; }
-ArmOrGroupDescription   :before { content: "Description"; }
-ArmOrGroupLabel         :before { content: "Label"; }
-ArmOrGroupType          :before { content: "Type"; }
-ArmsOrGroups            :before { content: "ARMS OR GROUPS"; }
 BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
 ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
 CompletionDate          :before { content: "Completion Date"; }
@@ -466,9 +456,6 @@ StatusName              :before,
 /***************************************************************************/ 
 /*                             HIDE TEXT                                   */ 
 /***************************************************************************/ 
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
 ClinicalTrialOffice,
 CompletionDate,
 Country,
@@ -578,9 +565,6 @@ WarehouseBoxNumber,
   
 /* Administrative Information                          */
 
-ArmOrGroupDescription     :before,
-ArmOrGroupLabel           :before,
-ArmOrGroupType            :before,
 ClinicalTrialOffice       :before,
 FundingInfo > NIHGrantContract > Comment 
                           :before,
@@ -731,9 +715,6 @@ VoluntaryReview,
 
 /* Remove negative text-indent settings  */
 
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
 ClinicalTrialOffice,
 CompletionDate,
 ExternalSiteAddress > City,

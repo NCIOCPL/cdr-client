@@ -72,6 +72,11 @@ AmendmentDate,
 AmendmentID,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroup,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
+ArmsOrGroups,
 ChangeType,
 Citation,
 CitationSource,
@@ -158,6 +163,11 @@ AmendmentID               :before { content: "Amendment ID ";  }
 AmendmentDate             :before { content: "Amendment Date ";  }
 AmendmentSource           :before { content: "Source "; }
 AmendmentStatus           :before { content: "Amendment Status "; }
+ArmOrGroup                :before { content: "Arm or Group"; }
+ArmOrGroupDescription     :before { content: "Description"; }
+ArmOrGroupLabel           :before { content: "Label"; }
+ArmOrGroupType            :before { content: "Type"; }
+ArmsOrGroups              :before { content: "ARMS OR GROUPS"; }
 ChangeType                :before { content: "Change Type ";  }
 Citation                  :before { content: "Published Citation ";  }
 CitationSource            :before { content: "Citation Source";  }
@@ -393,6 +403,9 @@ AmendmentDate,
 AmendmentID,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ChangeType,
 Citation,
 CitationSource,
@@ -471,6 +484,9 @@ User,
 
 /* Blue = Administrative Information                                       */
 
+ArmOrGroupDescription             :before,
+ArmOrGroupLabel                   :before,
+ArmOrGroupType                    :before,
 ProtocolProcessingDetails>Comment :before,
 DatedAction,
 ProcessingDate                    :before,
@@ -596,6 +612,9 @@ AmendmentID,
 AmendmentDate,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ChangeType,
 Citation,
 CitationSource,

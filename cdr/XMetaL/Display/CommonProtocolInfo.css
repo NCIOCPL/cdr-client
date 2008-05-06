@@ -61,6 +61,11 @@ AmendmentDate,
 AmendmentID,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroup,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
+ArmsOrGroups,
 ChangeType,
 Citation,
 CitationSource,
@@ -158,6 +163,11 @@ AmendmentDate           :before { content: "Amendment Date *: ";  }
 AmendmentID             :before { content: "Amendment ID &: ";  }
 AmendmentSource         :before { content: "Source *: "; }
 AmendmentStatus         :before { content: "Amendment Status &: "; }
+ArmOrGroup              :before { content: "Arm or Group * +: "; }
+ArmOrGroupDescription   :before { content: "Description *: "; }
+ArmOrGroupLabel         :before { content: "Label *: "; }
+ArmOrGroupType          :before { content: "Type *: "; }
+ArmsOrGroups            :before { content: "ARMS OR GROUPS &"; }
 ChangeType              :before { content: "Change Type * +: ";  }
 Citation                :before { content: "Published Citation * @: ";  }
 CitationSource          :before { content: "Citation Source &: ";  }
@@ -259,6 +269,11 @@ WarehouseBoxNumber      :before { content: "Warehouse Bx No &: "; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
+ArmOrGroup              :before,
+ArmOrGroupDescription   :before,
+ArmOrGroupLabel         :before,
+ArmOrGroupType          :before,
+ArmsOrGroups            :before,
 DatedAction             :before,
 Eligibility             :before,
 Intervention            :before,
@@ -412,11 +427,15 @@ ProtocolProcessingDetails,
 RelatedDocuments,
    {  margin-bottom: .5em;  }
 
+ArmsOrGroups,
 Intervention,
 ProtocolTitle,
 StudyCategory,
    { margin-top: 1em;
      margin-bottom: 1em;  }
+
+ArmOrGroup,
+  {  margin-bottom: 1em;  } 
 
 
 /***************************************************************************/
@@ -591,6 +610,12 @@ WarehouseBoxNumber,
                                 { margin-left: 125pt;
                                   text-indent: -124pt; }
 
+ArmOrGroupDescription           { margin-left: 110pt;
+                                  text-indent: -82pt; }
+ArmOrGroupLabel                 { margin-left: 110pt; 
+                                  text-indent: -47pt; }
+ArmOrGroupType                  { margin-left: 110pt;
+                                  text-indent: -44pt; }
 
 /* Margin-bottom for simulated text boxes                                  */
 ActionDate,
@@ -600,6 +625,9 @@ AmendmentDate,
 AmendmentID,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ChangeType,
 Citation,
 CitationSource,
@@ -714,6 +742,9 @@ AmendmentDate,
 AmendmentID,
 AmendmentSource,
 AmendmentStatus,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
 ChangeType,
 Citation,
 CitationSource,
@@ -815,6 +846,9 @@ AmendmentDate                   :before,
 AmendmentID                     :before,
 AmendmentSource                 :before,
 AmendmentStatus                 :before,
+ArmOrGroupDescription           :before,
+ArmOrGroupLabel                 :before,
+ArmOrGroupType                  :before,
 ChangeType                      :before,
 Citation                        :before,
 CitationSource                  :before,

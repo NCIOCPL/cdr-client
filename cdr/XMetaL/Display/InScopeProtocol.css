@@ -114,11 +114,6 @@ $PROCINS
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
-ArmOrGroup,
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
-ArmsOrGroups,
 BlockedFromCTGov,
 ClinicalTrialOffice,
 CompletionDate,
@@ -247,11 +242,6 @@ WarehouseBoxNumber,
 :before
                 { content: " : "; }
 */
-ArmOrGroup                        :before { content: "Arm or Group * +: "; }
-ArmOrGroupDescription             :before { content: "Description *: "; }
-ArmOrGroupLabel                   :before { content: "Label *: "; }
-ArmOrGroupType                    :before { content: "Type *: "; }
-ArmsOrGroups                      :before { content: "ARMS OR GROUPS &"; }
 BlockedFromCTGov                  :before { content: "Blocked From CTGov &"; }
 ClinicalTrialOffice               :before { content: "Trial Office & @: "; }
 DateSubmissionComplete            :before 
@@ -382,7 +372,7 @@ SpecificEmail:after { content: " (Public) "; }
 SponsorName                       :before { content: "Sponsor * +: ";  }
 StatusDate                        :before { content: "Status Date *: "; }
 StatusName                        :before { content: "Status *: "; }
-SubmissionMethod                  :before { content: "Submission Method &:"; }
+SubmissionMethod                  :before { content: "Submission Method &: "; }
 UpdateMode                        :before { content: "Updt Mode &+@: ";}
 UpdateMode[MailerType="Protocol_SandP"]:after  
     { content: " (Protocol_SandP) ";}
@@ -413,11 +403,6 @@ VerificationInfo>EnteredBy        :before { content: "Entered By *: "; }
 /***************************************************************************/ 
 /*       TAG PROPERTIES FOR SECTION HEADINGS AND TEXT INPUT Fields         */ 
 /***************************************************************************/ 
-ArmOrGroup                        :before,
-ArmOrGroupDescription             :before,
-ArmOrGroupLabel                   :before,
-ArmOrGroupType                    :before,
-ArmsOrGroups                      :before,
 CompletionDate                    :before,
 CTGovDuplicate                    :before,
 CurrentOrgStatus                  :before,
@@ -615,14 +600,9 @@ ProtocolApproval,
 ProtocolSponsors,
   {  margin-bottom: .5em;  }
 
-
-ArmsOrGroups,
 ProtocolAdminInfo,
   {  margin-top: 1em;
      margin-bottom: 1em;  } 
-
-ArmOrGroup,
-  {  margin-bottom: 1em;  } 
 
 ProtocolLeadOrg + ProtocolLeadOrg,
   {  margin-top: 3em; }
@@ -655,7 +635,7 @@ SourceName,
                               text-indent: -57pt; }
 SubmissionMethod,
                             { margin-left: 160pt;
-                              text-indent: -131pt; }
+                              text-indent: -134pt; }
 ProtocolSource>DateReceived,
                             { margin-left: 160pt; 
                               text-indent: -98pt; }
@@ -935,13 +915,6 @@ ProcessingStatus,
                             { margin-left: 110pt;
                               text-indent: -130.5pt; }
 
-ArmOrGroupDescription       { margin-left: 110pt;
-                              text-indent: -82pt; }
-ArmOrGroupLabel             { margin-left: 110pt; 
-                              text-indent: -47pt; }
-ArmOrGroupType              { margin-left: 110pt;
-                              text-indent: -44pt; }
-
 DelayedPosting              { margin-left: 160pt;
                               text-indent: -114pt; }
 FDARegulated                { margin-left: 160pt;
@@ -952,9 +925,6 @@ Section801                  { margin-left: 160pt;
                               text-indent: -87pt; }
 
 /* Margin-bottom for simulated text boxes                                  */
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
 ClinicalTrialOffice,
 ExternalSiteAddress > Country,
 LeadOrgProtocolStatuses > Comment, 
@@ -1082,9 +1052,6 @@ SubmissionMethod,
 /***************************************************************************/ 
 /*                               COLOR                                     */ 
 /***************************************************************************/ 
-ArmOrGroupDescription,
-ArmOrGroupLabel,
-ArmOrGroupType,
 ExternalSiteAddress > Country,
 ClinicalTrialOffice,
 CurrentProtocolStatus,
@@ -1289,9 +1256,6 @@ StartDate                    :before,
 
 /* Green = Scientific Information                                       */
 /* **********************************************************************/
-ArmOrGroupDescription        :before,
-ArmOrGroupLabel              :before,
-ArmOrGroupType               :before,
 ProtocolAmendmentInformation>DatedAction>ActionDescription:before,
 ProtocolAmendmentInformation>DatedAction>ActionDate:before,
 ProtocolAmendment>Comment:before,

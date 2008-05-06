@@ -9,23 +9,23 @@
 /*      02/22/02  by ebator                                              */
 /*      Syntax in Default Properties modified to work with XMetaL 3      */
 /*                                                                       */
-/* 	v. 3.1                                                           */ 
+/* 	    v. 3.1                                                           */
 /*      1/7/02  by ebator                                                */
-/* 	Edited to accommodate 12/21/01 schema changes (Common)           */
-/* 	                                                                 */
-/* 	v. 3.0                                                           */ 
+/* 	    Edited to accommodate 12/21/01 schema changes (Common)           */
+/* 	                                                                     */
+/* 	    v. 3.0                                                           */
 /*      12/10-11/01  by ebator                                           */
-/* 	Edited to import CommonProtocolInfo_structure.css and            */
+/* 	    Edited to import CommonProtocolInfo_structure.css and            */
 /*          CdrCommonSchema_structure.css                                */
-/* 	                                                                 */
-/* 	v. 2.1                                                           */ 
+/* 	                                                                     */
+/* 	    v. 2.1                                                           */
 /*      12/05/01  by ebator                                              */
-/* 	Edited for schema changes from 11/13/01                          */
-/* 	                                                                 */
-/* 	v. 2.0                                                           */ 
+/* 	    Edited for schema changes from 11/13/01                          */
+/* 	                                                                     */
+/* 	    v. 2.0                                                           */
 /*      11/02-08/01  by ebator                                           */
-/* 	Changes for the Forms model; schema changes 8/31-11/2            */
-/* 	                                                                 */
+/* 	    Changes for the Forms model; schema changes 8/31-11/2            */
+/* 	                                                                     */
 /*      v. 1.1                                                           */
 /*      9/24/01  by ebator                                               */
 /*      Make all tags black; display:none common elements ;              */
@@ -35,15 +35,15 @@
 /*      9/10/01  by ebator                                               */
 /*      Based on the 9/10/01 ScientificProtocolInfo.css,                 */
 /*      Elements matched to the 8/31/01 InScopeProtocol.css (assuming    */
-/*      that the ScientificProtocolInfo schema will eventually be        */ 
+/*      that the ScientificProtocolInfo schema will eventually be        */
 /*      updated)                                                         */
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-@import "CdrCommonSchema_structure.css"; 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema_structure.css";
 @import "CommonProtocolInfo_structure.css";
 
 @sq-plus-minus;
@@ -93,6 +93,7 @@ ScientificProtocolInfo,
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
+
 DateLastModified       :before { content: "Last Modified "; }
 PdqKey                 :before { content: "PDQ Key "; }
 ScientificProtocolInfo :before { content: "SCIENTIFIC PROTOCOL INFORMATION "; }
