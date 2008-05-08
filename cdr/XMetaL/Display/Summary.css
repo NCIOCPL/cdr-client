@@ -371,6 +371,100 @@ Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Insertion>SummarySection:before,
     { color: red; }
 
+
+Insertion[RevisionLevel='publish']>SummarySection,
+Insertion[RevisionLevel='publish']>SummarySection>Para>CitationLink,
+Insertion[RevisionLevel='publish']>SummarySection>Para>CitationLink:before,
+Insertion[RevisionLevel='publish']>SummarySection>Title,
+Insertion[RevisionLevel='publish']>SummarySection>Table>Title,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry:after,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='publish']>Table>Title,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note:after,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry:after,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='publish']>SummarySection:before,
+    { color:            #8B0000; 
+      background-color: #FFEBCD; }
+
+
+Insertion[RevisionLevel='rejected']>SummarySection,
+Insertion[RevisionLevel='rejected']>SummarySection>Para>CitationLink,
+Insertion[RevisionLevel='rejected']>SummarySection>Para>CitationLink:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Title,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>Title,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry:after,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='rejected']>Table>Title,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note:after,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry:after,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Insertion[RevisionLevel='rejected']>SummarySection:before,
+    { color:            #8B0000; }
+
+
 Insertion[RevisionLevel='proposed']>SummarySection,
 Insertion[RevisionLevel='proposed']>SummarySection>Para>CitationLink,
 Insertion[RevisionLevel='proposed']>SummarySection>Para>CitationLink:before,
@@ -416,6 +510,7 @@ Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:afte
 Insertion[RevisionLevel='proposed']>SummarySection:before,
     { color: green; }
 
+
 Deletion>SummarySection,
 Deletion>SummarySection>Para>CitationLink,
 Deletion>SummarySection>Para>CitationLink:before,
@@ -459,7 +554,104 @@ Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion>SummarySection:before,
-    { text-decoration: line-through; color: red; }
+    { text-decoration: 
+      line-through; color: red; }
+
+
+Deletion[RevisionLevel='publish']>SummarySection,
+Deletion[RevisionLevel='publish']>SummarySection>Para>CitationLink,
+Deletion[RevisionLevel='publish']>SummarySection>Para>CitationLink:before,
+Deletion[RevisionLevel='publish']>SummarySection>Title,
+Deletion[RevisionLevel='publish']>SummarySection>Table>Title,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry:after,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='publish']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='publish']>Table>Title,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>Note:after,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry:after,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='publish']>SummarySection:before,
+    { text-decoration: line-through; 
+      color:            #8B0000; 
+      background-color: #FFEBCD; }
+
+
+Deletion[RevisionLevel='rejected']>SummarySection,
+Deletion[RevisionLevel='rejected']>SummarySection>Para>CitationLink,
+Deletion[RevisionLevel='rejected']>SummarySection>Para>CitationLink:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Title,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>Title,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>Note:after,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry:after,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='rejected']>SummarySection>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='rejected']>Table>Title,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>Note:after,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TBody>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry:after,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:after,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
+Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
+Deletion[RevisionLevel='rejected']>SummarySection:before,
+    { text-decoration: line-through; 
+      color:            #8B0000; }
+
 
 Deletion[RevisionLevel='proposed']>SummarySection,
 Deletion[RevisionLevel='proposed']>SummarySection>Para>CitationLink,
@@ -505,6 +697,7 @@ Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:befor
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion[RevisionLevel='proposed']>SummarySection:before,
     { text-decoration: line-through; color: green; }
+
 
 Comment,  
     { font-style: italic; 
@@ -647,6 +840,43 @@ SummaryType,
 TranslationOf,
 ReplacementFor,
     { margin-top: 4pt; }
+
+
+/* Colors are                                              */
+/* brown with background - for publish mark-up             */
+/* brown                 - for rejected mark-up            */
+/* green                 - for proposed mark-up            */
+/* red                   - for approved mark-up            */
+/* --------------------------------------------------------*/
+Insertion[RevisionLevel='publish']               { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Deletion[RevisionLevel='publish']                { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Insertion[RevisionLevel='publish'] > Comment     { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Insertion[RevisionLevel='publish'] > ResponseToComment 
+                                                 { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Deletion[RevisionLevel='publish']  > Comment     { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Deletion[RevisionLevel='publish']  > ResponseToComment 
+                                                 { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Insertion[RevisionLevel='publish'] > *           { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+Deletion[RevisionLevel='publish']  > *           { color:            #8B0000; 
+                                                   background-color: #FFEBCD; }
+
+
+Insertion[RevisionLevel='rejected']                     { color: #8B0000; }
+Deletion[RevisionLevel='rejected']                      { color: #8B0000; }
+Insertion[RevisionLevel='rejected'] > Comment           { color: #8B0000; }
+Insertion[RevisionLevel='rejected'] > ResponseToComment { color: #8B0000; }
+Deletion[RevisionLevel='rejected']  > Comment           { color: #8B0000; }
+Deletion[RevisionLevel='rejected']  > ResponseToComment { color: #8B0000; }
+Insertion[RevisionLevel='rejected'] > *                 { color: #8B0000; }
+Deletion[RevisionLevel='rejected']  > *                 { color: #8B0000; }
+
 
 Insertion[RevisionLevel='proposed']                     { color: green; }
 Deletion[RevisionLevel='proposed']                      { color: green; }
