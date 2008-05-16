@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.180 2008-04-23 12:02:33 bkline Exp $
+     $Id: Cdr.mcr,v 1.181 2008-05-16 13:48:34 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.180  2008/04/23 12:02:33  bkline
+     Switched back to using cdr-eid ID attributes.
+
      Revision 1.179  2008/04/22 12:15:43  bkline
      Changed cdr-eid attribute type to CDATA, since the server isn't
      generating valid ID values.
@@ -1511,6 +1514,15 @@
     }
     Application.AppendMacro("Find Private Use Unicode Characters",
                             "Find Private Use Chars");
+    if (docType.name == "InScopeProtocol" ||
+        docType.name == "ScientificProtocolInfo") {
+        if (!cdrDocReadOnly()) {
+            if (ActiveDocument.Range.IsParentElement("Intervention")) {
+                Application.AppendMacro("Split Intervention Block",
+                                        "Split Intervention Block");
+            }
+        }
+    }
   ]]>
 </MACRO>
 
@@ -2366,7 +2378,8 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR Summary Toolbar: " + e);
+                Application.Alert("Failure deleting old CDR Summary Toolbar: "
+                                  + e);
             }
             cmdBar = null; 
         }
@@ -2454,7 +2467,8 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR Person toolbar: " + e);
+                Application.Alert("Failure deleting old CDR Person toolbar: "
+                                  + e);
             }
             cmdBar = null; 
         }
@@ -2521,8 +2535,8 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR Organization toolbar: "
-                                + e);
+                Application.Alert("Failure deleting old CDR Organization " +
+                                  "toolbar: " + e);
             }
             cmdBar = null; 
         }
@@ -2811,8 +2825,8 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR Glossary Term toolbar: "
-                                + e);
+                Application.Alert("Failure deleting old CDR Glossary Term " +
+                                  "toolbar: " + e);
             }
             cmdBar = null; 
         }
@@ -3363,7 +3377,8 @@
                 cmdBar.Delete(); 
             }
             catch (e) {
-                Application.Alert("Failure deleting old CDR PDQBoardMemberInfo toolbar: " + e);
+                Application.Alert("Failure deleting old CDR " +
+                                  "PDQBoardMemberInfo toolbar: " + e);
             }
             cmdBar = null; 
         }
@@ -3374,7 +3389,8 @@
             //cmdBar.Visible = false;
         }
         catch (e) {
-            Application.Alert("Failure adding CDR PDQBoardMemberInfo toolbar: " + e);
+            Application.Alert("Failure adding CDR PDQBoardMemberInfo " +
+                              "toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["PDQBoardMemberInfo"] = cmdBar;
@@ -8097,7 +8113,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Find Private Use Chars" lang="JScript" key="Alt+Z">
+<MACRO name="Find Private Use Chars" lang="JScript">
   <![CDATA[
     /*
      * We can't just use rng.MoveRight() repeatedly to check for private
@@ -8171,33 +8187,60 @@
   ]]>
 </MACRO>
 
-<MACRO name="SC Up"      lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
-<MACRO name="SC Down"    lang="JScript">Selection.TypeText("&amp;#x2193;");</MACRO>
-<MACRO name="SC Right"   lang="JScript">Selection.TypeText("&amp;#x2192;");</MACRO>
-<MACRO name="SC Left"    lang="JScript">Selection.TypeText("&amp;#x2190;");</MACRO>
-<MACRO name="SC alpha"   lang="JScript">Selection.TypeText("&amp;#x03B1;");</MACRO>
-<MACRO name="SC beta"    lang="JScript">Selection.TypeText("&amp;#x03B2;");</MACRO>
-<MACRO name="SC gamma"   lang="JScript">Selection.TypeText("&amp;#x03B3;");</MACRO>
-<MACRO name="SC delta"   lang="JScript">Selection.TypeText("&amp;#x03B4;");</MACRO>
-<MACRO name="SC mu"      lang="JScript">Selection.TypeText("&amp;#x03BC;");</MACRO>
-<MACRO name="SC le"      lang="JScript">Selection.TypeText("&amp;#x2264;");</MACRO>
-<MACRO name="SC ge"      lang="JScript">Selection.TypeText("&amp;#x2265;");</MACRO>
-<MACRO name="SC copy"    lang="JScript">Selection.TypeText("&amp;#x00A9;");</MACRO>
-<MACRO name="SC reg"     lang="JScript">Selection.TypeText("&amp;#x00AE;");</MACRO>
-<MACRO name="SC TM"      lang="JScript">Selection.TypeText("&amp;#x2122;");</MACRO>
-<MACRO name="SC deg"     lang="JScript">Selection.TypeText("&amp;#x00B0;");</MACRO>
-<MACRO name="SC cross"   lang="JScript">Selection.TypeText("&amp;#x2020;");</MACRO>
-<MACRO name="SC dblx"    lang="JScript">Selection.TypeText("&amp;#x2021;");</MACRO>
-<MACRO name="SC mdash"   lang="JScript">Selection.TypeText("&amp;#x2014;");</MACRO>
-<MACRO name="SC plusmin" lang="JScript">Selection.TypeText("&amp;#x00B1;");</MACRO>
-<MACRO name="SC lquot"   lang="JScript">Selection.TypeText("&amp;#x201C;");</MACRO>
-<MACRO name="SC rquot"   lang="JScript">Selection.TypeText("&amp;#x201D;");</MACRO>
-<MACRO name="SC lapos"   lang="JScript">Selection.TypeText("&amp;#x2018;");</MACRO>
-<MACRO name="SC rapos"   lang="JScript">Selection.TypeText("&amp;#x2019;");</MACRO>
-<MACRO name="SC quarter" lang="JScript">Selection.TypeText("&amp;#x00BC;");</MACRO>
-<MACRO name="SC half"    lang="JScript">Selection.TypeText("&amp;#x00BD;");</MACRO>
-<MACRO name="SC 3quart"  lang="JScript">Selection.TypeText("&amp;#x00BE;");</MACRO>
-<MACRO name="SC nbsp"    lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
+<MACRO name="SC Up"
+       lang="JScript">Selection.TypeText("&amp;#x2191;");</MACRO>
+<MACRO name="SC Down"
+       lang="JScript">Selection.TypeText("&amp;#x2193;");</MACRO>
+<MACRO name="SC Right"
+       lang="JScript">Selection.TypeText("&amp;#x2192;");</MACRO>
+<MACRO name="SC Left"
+       lang="JScript">Selection.TypeText("&amp;#x2190;");</MACRO>
+<MACRO name="SC alpha"
+       lang="JScript">Selection.TypeText("&amp;#x03B1;");</MACRO>
+<MACRO name="SC beta"
+       lang="JScript">Selection.TypeText("&amp;#x03B2;");</MACRO>
+<MACRO name="SC gamma"
+       lang="JScript">Selection.TypeText("&amp;#x03B3;");</MACRO>
+<MACRO name="SC delta"
+       lang="JScript">Selection.TypeText("&amp;#x03B4;");</MACRO>
+<MACRO name="SC mu"
+       lang="JScript">Selection.TypeText("&amp;#x03BC;");</MACRO>
+<MACRO name="SC le"
+       lang="JScript">Selection.TypeText("&amp;#x2264;");</MACRO>
+<MACRO name="SC ge"
+       lang="JScript">Selection.TypeText("&amp;#x2265;");</MACRO>
+<MACRO name="SC copy"
+       lang="JScript">Selection.TypeText("&amp;#x00A9;");</MACRO>
+<MACRO name="SC reg"
+       lang="JScript">Selection.TypeText("&amp;#x00AE;");</MACRO>
+<MACRO name="SC TM"
+       lang="JScript">Selection.TypeText("&amp;#x2122;");</MACRO>
+<MACRO name="SC deg"
+       lang="JScript">Selection.TypeText("&amp;#x00B0;");</MACRO>
+<MACRO name="SC cross"
+       lang="JScript">Selection.TypeText("&amp;#x2020;");</MACRO>
+<MACRO name="SC dblx"
+       lang="JScript">Selection.TypeText("&amp;#x2021;");</MACRO>
+<MACRO name="SC mdash"
+       lang="JScript">Selection.TypeText("&amp;#x2014;");</MACRO>
+<MACRO name="SC plusmin"
+       lang="JScript">Selection.TypeText("&amp;#x00B1;");</MACRO>
+<MACRO name="SC lquot"
+       lang="JScript">Selection.TypeText("&amp;#x201C;");</MACRO>
+<MACRO name="SC rquot"
+       lang="JScript">Selection.TypeText("&amp;#x201D;");</MACRO>
+<MACRO name="SC lapos"
+       lang="JScript">Selection.TypeText("&amp;#x2018;");</MACRO>
+<MACRO name="SC rapos"
+       lang="JScript">Selection.TypeText("&amp;#x2019;");</MACRO>
+<MACRO name="SC quarter"
+       lang="JScript">Selection.TypeText("&amp;#x00BC;");</MACRO>
+<MACRO name="SC half"
+       lang="JScript">Selection.TypeText("&amp;#x00BD;");</MACRO>
+<MACRO name="SC 3quart"
+       lang="JScript">Selection.TypeText("&amp;#x00BE;");</MACRO>
+<MACRO name="SC nbsp"
+       lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
 
 <MACRO name="Insert Diagnosis Links" 
        lang="JScript" >
@@ -8475,6 +8518,50 @@
         insertDiagnoses(elemString);
     }
     insertAdvancedHeadAndNeckDiagnoses();
+  ]]>
+</MACRO>
+
+<MACRO name="Split Intervention Block" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function splitInterventionBlock() {
+        var node    = Selection.ContainerNode;
+        var depth   = 5;
+        var oldElem = null;
+        while (node && !oldElem) {
+            if (depth-- < 1) {
+                Application.Alert("This macro can only be used in an " +
+                                  "Intervention block.");
+                return;
+            }
+            if (node.nodeName == 'Intervention')
+                oldElem = node;
+            else
+                node = node.parentNode;
+        }
+        if (!oldElem) {
+            Application.Alert("No Intervention element at this location.");
+            return;
+        }
+
+        // Collect all the phase elements from the source document.
+        var nameNodes = oldElem.getElementsByTagName('InterventionNameLink');
+        if (nameNodes.length < 2) {
+            Application.Alert("Didn't find multiple name link nodes here.");
+            return;
+        }
+        var typeNodes = oldElem.getElementsByTagName('InterventionType');
+        var typeNode = typeNodes.length ? typeNodes.item(0) : null;
+        var parent = oldElem.parentNode;
+        while (nameNodes.length > 1) {
+            var newElem = ActiveDocument.createElement("Intervention");
+            if (typeNode)
+                newElem.appendChild(cloneFor(ActiveDocument, typeNode));
+            newElem.appendChild(nameNodes.item(0));
+            parent.insertBefore(newElem, oldElem);
+            nameNodes = oldElem.getElementsByTagName('InterventionNameLink');
+        }
+    }
+    splitInterventionBlock();
   ]]>
 </MACRO>
 
