@@ -54,6 +54,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>ArmsOrGroups</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -61,6 +62,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>ArmOrGroup</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -68,6 +70,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>ArmOrGroupDescription</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -75,6 +78,15 @@
   </ElementProperties>
   <ElementProperties>
    <Name>ArmOrGroupLabel</Name>
+   <TagColor>EEC591</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ArmOrGroupLink</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -82,6 +94,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>ArmOrGroupType</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -373,6 +386,13 @@
   </ElementProperties>
   <ElementProperties>
    <Name>Intervention</Name>
+   <PrettyPrintOptions>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>InterventionDescription</Name>
+   <TagColor>EEC591</TagColor>
    <PrettyPrintOptions>
     <IndentContent/>
    </PrettyPrintOptions>
@@ -1059,6 +1079,15 @@
      Enter a label for the arm or group (required)
      }?></ArmOrGroupLabel>]]></MiniTemplate>
   </Template>
+   <Template>
+    <Name>ArmOrGroupLink</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupLink><?xm-replace_text {
+          Optionally enter the link for the arm or group
+          }?></ArmOrGroupLink>
+        <InterventionDescription><?xm-replace_text {
+          Enter a description (must be under 1,000 characters)
+          }?></InterventionDescription>]]></MiniTemplate>
+   </Template>
   <Template>
    <Name>ArmOrGroupType</Name>
    <MiniTemplate><![CDATA[<ArmOrGroupType><?xm-replace_text {
@@ -1573,6 +1602,12 @@
     }?></InterventionType>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name>InterventionDescription</Name>
+   <MiniTemplate><![CDATA[<InterventionDescription><?xm-replace_text {
+    Enter a description (must be under 1,000 characters)
+    }?></InterventionDescription>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>InterventionNameLink</Name>
    <MiniTemplate><![CDATA[<InterventionNameLink><?xm-replace_text {
     Optionally link to a term naming the specific intervention
@@ -1587,6 +1622,12 @@
     <InterventionNameLink><?xm-replace_text {
      Optionally link to a term naming the specific intervention
      }?></InterventionNameLink>
+    <ArmOrGroupLink><?xm-replace_text {
+     Optionally enter the link for the arm or group
+     }?></ArmOrGroupLink>
+    <InterventionDescription><?xm-replace_text {
+     Enter a description (must be under 1,000 characters)
+     }?></InterventionDescription>
     </Intervention>]]></MiniTemplate>
   </Template>
   <Template>

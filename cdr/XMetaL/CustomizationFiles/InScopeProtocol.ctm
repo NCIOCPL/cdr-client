@@ -41,6 +41,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ArmsOrGroups</Name>
+      <TagColor>EEC591</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -48,6 +49,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ArmOrGroup</Name>
+      <TagColor>EEC591</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -55,6 +57,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ArmOrGroupDescription</Name>
+      <TagColor>EEC591</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -62,6 +65,15 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ArmOrGroupLabel</Name>
+      <TagColor>EEC591</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ArmOrGroupLink</Name>
+      <TagColor>EEC591</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -69,6 +81,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ArmOrGroupType</Name>
+      <TagColor>EEC591</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -375,6 +388,14 @@
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>InterventionDescription</Name>
+      <TagColor>EEC591</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -1159,16 +1180,25 @@
           }?></ArmOrGroupLabel>]]></MiniTemplate>
    </Template>
    <Template>
-    <Name>ArmOrGroupType</Name>
-    <MiniTemplate><![CDATA[<ArmOrGroupType><?xm-replace_text {
-          Select an arm or group type (required)
-          }?></ArmOrGroupType>]]></MiniTemplate>
+    <Name>ArmOrGroupLink</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupLink><?xm-replace_text {
+          Optionally enter the link for the arm or group
+          }?></ArmOrGroupLink>
+        <InterventionDescription><?xm-replace_text {
+          Enter a description (must be under 1,000 characters)
+          }?></InterventionDescription>]]></MiniTemplate>
    </Template>
    <Template>
     <Name>ArmOrGroupDescription</Name>
     <MiniTemplate><![CDATA[<ArmOrGroupDescription><?xm-replace_text {
           Enter the arm or group description (required)
           }?></ArmOrGroupDescription>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>ArmOrGroupType</Name>
+    <MiniTemplate><![CDATA[<ArmOrGroupType><?xm-replace_text {
+          Select an arm or group type (required)
+          }?></ArmOrGroupType>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>CdrDocCtl</Name>
@@ -1293,6 +1323,41 @@
       <MiniTemplate><![CDATA[<INDSerialNumber><?xm-replace_text {
           Optionally enter the IND serial number
           }?></INDSerialNumber></FDAINDInfo>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>Intervention</Name>
+    <MiniTemplate><![CDATA[<Intervention>
+     <InterventionType><?xm-replace_text {
+      Optionally link to a term describing the type of intervention
+      }?></InterventionType>
+     <InterventionNameLink><?xm-replace_text {
+      Optionally link to a term naming the specific intervention
+      }?></InterventionNameLink>
+     <ArmOrGroupLink><?xm-replace_text {
+      Optionally enter the link for the arm or group
+      }?></ArmOrGroupLink>
+     <InterventionDescription><?xm-replace_text {
+      Enter a description (must be under 1,000 characters)
+      }?></InterventionDescription>
+     </Intervention>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>InterventionDescription</Name>
+    <MiniTemplate><![CDATA[<InterventionDescription><?xm-replace_text {
+     Enter a description (must be under 1,000 characters)
+     }?></InterventionDescription>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>InterventionType</Name>
+    <MiniTemplate><![CDATA[<InterventionType><?xm-replace_text {
+     Optionally link to a term describing the type of intervention
+     }?></InterventionType>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>InterventionNameLink</Name>
+    <MiniTemplate><![CDATA[<InterventionNameLink><?xm-replace_text {
+     Optionally link to a term naming the specific intervention
+     }?></InterventionNameLink>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>IRBApproved</Name>
