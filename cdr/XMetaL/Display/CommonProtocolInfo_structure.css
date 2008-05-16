@@ -75,6 +75,7 @@ AmendmentStatus,
 ArmOrGroup,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ArmsOrGroups,
 ChangeType,
@@ -108,6 +109,7 @@ IDType,
 IDString,
 InScopeDocID,
 Intervention,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 LowAge,
@@ -166,6 +168,7 @@ AmendmentStatus           :before { content: "Amendment Status "; }
 ArmOrGroup                :before { content: "Arm or Group"; }
 ArmOrGroupDescription     :before { content: "Description"; }
 ArmOrGroupLabel           :before { content: "Label"; }
+ArmOrGroupLink            :before { content: "Arm or Group Label"; }
 ArmOrGroupType            :before { content: "Type"; }
 ArmsOrGroups              :before { content: "ARMS OR GROUPS"; }
 ChangeType                :before { content: "Change Type ";  }
@@ -200,6 +203,7 @@ IDString                  :before { content: "ID Number "; }
 IDType                    :before { content: "Other ID Type "; }
 InScopeDocID              :before { content: "InScopeDoc ID "; }
 Intervention              :before { content: "INTERVENTION "; }
+InterventionDescription   :before { content: "Intervention Description"; }
 InterventionNameLink      :before { content: "Intervention Name "; }
 InterventionType          :before { content: "Intervention Type "; }
 LowAge                    :before { content: "Lower Age Limit "; }
@@ -405,6 +409,7 @@ AmendmentSource,
 AmendmentStatus,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ChangeType,
 Citation,
@@ -436,6 +441,7 @@ IDString,
 IDType,
 InScopeDocID,
 Intervention,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 LowAge,
@@ -486,6 +492,7 @@ User,
 
 ArmOrGroupDescription             :before,
 ArmOrGroupLabel                   :before,
+ArmOrGroupLink                    :before,
 ArmOrGroupType                    :before,
 ProtocolProcessingDetails>Comment :before,
 DatedAction,
@@ -547,6 +554,7 @@ HighAge                           :before,
 IDString                          :before,
 IDType                            :before,
 Intervention,
+InterventionDescription           :before,
 InterventionType                  :before,
 InterventionNameLink              :before,
 LowAge                            :before,
@@ -614,6 +622,7 @@ AmendmentSource,
 AmendmentStatus,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ChangeType,
 Citation,
@@ -654,6 +663,7 @@ HighAge,
 IDString,
 IDType,     
 InScopeDocID,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 LowAge,

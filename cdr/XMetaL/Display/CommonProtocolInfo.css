@@ -64,6 +64,7 @@ AmendmentStatus,
 ArmOrGroup,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ArmsOrGroups,
 ChangeType,
@@ -95,6 +96,7 @@ HighAge,
 IDType,
 IDString,
 Intervention,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 LowAge,
@@ -164,6 +166,7 @@ AmendmentID             :before { content: "Amendment ID &: ";  }
 AmendmentSource         :before { content: "Source *: "; }
 AmendmentStatus         :before { content: "Amendment Status &: "; }
 ArmOrGroup              :before { content: "Arm or Group * +: "; }
+ArmOrGroupLink          :before { content: "Arm or Group Link & +: "; }
 ArmOrGroupDescription   :before { content: "Description *: "; }
 ArmOrGroupLabel         :before { content: "Label *: "; }
 ArmOrGroupType          :before { content: "Type *: "; }
@@ -206,6 +209,7 @@ HighAge                 :before { content: "Upper Age Limit *: "; }
 IDString                :before { content: "ID Number *: "; }
 IDType                  :before { content: "Other ID Type *: "; }
 Intervention            :before { content: "INTERVENTION & +"; }
+InterventionDescription :before { content: "Intervention Desc &: "; }
 InterventionNameLink    :before { content: "Intervention Name & + @: "; }
 InterventionType        :before { content: "Intervention Type * @: "; }
 LowAge                  :before { content: "Lower Age Limit *: "; }
@@ -270,6 +274,7 @@ WarehouseBoxNumber      :before { content: "Warehouse Bx No &: "; }
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
 ArmOrGroup              :before,
+ArmOrGroupLink          :before,
 ArmOrGroupDescription   :before,
 ArmOrGroupLabel         :before,
 ArmOrGroupType          :before,
@@ -277,6 +282,7 @@ ArmsOrGroups            :before,
 DatedAction             :before,
 Eligibility             :before,
 Intervention            :before,
+InterventionDescription :before,
 OtherID                 :before,
 MissingRequiredInformation:before,
 Patient                 :before,
@@ -506,6 +512,10 @@ InterventionType,               { margin-left: 150pt;
                                   text-indent: -130.5pt; }
 InterventionNameLink,           { margin-left: 150pt;
                                   text-indent: -149pt; }
+ArmOrGroupLink                  { margin-left: 150pt; 
+                                  text-indent: -135pt; }
+InterventionDescription         { margin-left: 150pt;
+                                  text-indent: -121pt; }
 Condition,                      { margin-left: 150pt;
                                   text-indent: -101pt; }
 Gene,                           { margin-left: 150pt;
@@ -627,6 +637,7 @@ AmendmentSource,
 AmendmentStatus,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ChangeType,
 Citation,
@@ -660,6 +671,7 @@ ProcessingPriority,
 ProcessingStatus,
 ProtocolIDs>OtherID>IDType,
 ProtocolProcessingDetails,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 LowAge,
@@ -744,6 +756,7 @@ AmendmentSource,
 AmendmentStatus,
 ArmOrGroupDescription,
 ArmOrGroupLabel,
+ArmOrGroupLink,
 ArmOrGroupType,
 ChangeType,
 Citation,
@@ -770,6 +783,7 @@ HealthyVolunteers,
 HighAge,
 IDString,
 IDType,
+InterventionDescription,
 InterventionNameLink,
 InterventionType,
 ListItem,
@@ -848,6 +862,7 @@ AmendmentSource                 :before,
 AmendmentStatus                 :before,
 ArmOrGroupDescription           :before,
 ArmOrGroupLabel                 :before,
+ArmOrGroupLink                  :before,
 ArmOrGroupType                  :before,
 ChangeType                      :before,
 Citation                        :before,
@@ -888,6 +903,7 @@ HighAge                         :before,
 IDString                        :before,
 IDType                          :before,
 Intervention,
+InterventionDescription         :before,
 InterventionType                :before,
 InterventionNameLink            :before,
 LowAge                          :before,
