@@ -195,7 +195,14 @@
     <InterventionNameLink><?xm-replace_text {
           Optionally link to a term naming the specific intervention
           }?></InterventionNameLink>
-   </Intervention> <Comment><?xm-replace_text {
+    <ArmOrGroupLink><?xm-replace_text {
+          Optionally enter the link for the arm or group
+          }?></ArmOrGroupLink>
+    <InterventionDescription><?xm-replace_text {
+          Enter a description (must be under 1,000 characters)
+          }?></InterventionDescription>
+   </Intervention> 
+   <Comment><?xm-replace_text {
           Optionally enter a comment
           }?></Comment>
   </StudyCategory>
