@@ -1,9 +1,13 @@
 /*
- * $Id: CdrUtil.cpp,v 1.28 2007-07-11 00:43:18 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.29 2008-05-29 20:26:04 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.28  2007/07/11 00:43:18  bkline
+ * Added support for dynamic diagnosis set insertion and for displaying
+ * blocked document status.
+ *
  * Revision 1.27  2006/06/26 20:29:40  bkline
  * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
  *
@@ -123,6 +127,11 @@ CString CdrSocket::hostName;
  * Object to ensure proper cleanup at shutdown time.
  */
 CdrSocket::Init CdrSocket::Init::init;
+
+/*
+ * Map of open document to validation errors (mapped by doc path).
+ */
+cdr::ValidationErrorSets cdr::validationErrorSets;
 
 /**
  * Initializes the Winsock package.
@@ -332,6 +341,28 @@ bool cdr::showErrors(const CString& msg)
 
         // Find the next Err element.
         pos = msg.Find(_T("<Err>"), endPos);
+    }
+
+    // Tell the caller if we displayed any error messages.
+    return n > 0;
+}
+
+bool cdr::showValidationErrors(cdr::ValidationErrors& errors)
+{
+    // Walk through the errors.
+    const cdr::ValidationError* error = errors.getNextError();
+    int n = 0;
+    while (error) {
+        CString msg = _T("[") + error->eid + _T("] ") + error->message;
+        int rc = ::AfxMessageBox(msg, MB_OKCANCEL);
+        ++n;
+
+        // Let the user bail out to avoid seeing cascading error messages.
+        if (rc == IDCANCEL) {
+            errors.currentError--;
+            break;
+        }
+        error = errors.getNextError();
     }
 
     // Tell the caller if we displayed any error messages.
@@ -1246,6 +1277,24 @@ cdr::GlossaryTree::~GlossaryTree() {
     while (i != nodeMap.end()) {
         delete i->second;
         ++i;
+    }
+}
+
+// Constructor for set of validation error messages.
+cdr::ValidationErrors::ValidationErrors(const Element& e) {
+    currentError = 0;
+    Element err = Element::extractElement(e.getString(), _T("Err"), 0);
+    while (err) {
+        CString message = err.getString();
+        CString eid = err.getAttribute(_T("cdr:eref"));
+        CString etype = err.getAttribute(_T("cdr:etype"));
+        CString elevel = err.getAttribute(_T("cdr:elevel"));
+        if (etype == _T("validation"))
+            errors.push_back(cdr::ValidationError(message, eid, elevel));
+        else
+            ::AfxMessageBox(message + _T(" (") + elevel + _T(")"));
+        err = Element::extractElement(e.getString(), _T("Err"), 
+                                      err.getEndPos());
     }
 }
 

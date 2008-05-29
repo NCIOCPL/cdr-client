@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.53 2008-01-29 15:14:21 bkline Exp $
+ * $Id: Commands.cpp,v 1.54 2008-05-29 20:26:04 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.53  2008/01/29 15:14:21  bkline
+ * New command to retrieve document ID for patient equivalent of a health
+ * professional summary.
+ *
  * Revision 1.52  2007/12/27 19:58:47  bkline
  * Added support for two more MIME types (rtf and jpeg).
  *
@@ -220,6 +224,7 @@ static bool     openDoc(const CString& resp, const CString& docId,
 static CString& fixDoc(CString& doc, const CString& ctl, 
                        const CString& docType, bool readOnly);
 static CString getBlobExtension(const CString& doc, const CString& type);
+static void     clearErrorList();
 
 // Local data.
 static cdr::StringList      docTypeStrings;
@@ -867,7 +872,7 @@ STDMETHODIMP CCommands::save(int *pRet)
         if (!CdrSocket::loggedOn()) {
             ::AfxMessageBox(_T("This session is not logged into the CDR"), 
                 MB_ICONEXCLAMATION);
-            *pRet = 6;
+            *pRet = -6;
             return S_OK;
         }
 
@@ -876,7 +881,7 @@ STDMETHODIMP CCommands::save(int *pRet)
         if (!doc) {
             ::AfxMessageBox(_T("There is no active document."), 
                 MB_ICONEXCLAMATION);
-            *pRet = 3;
+            *pRet = -3;
             return S_OK;
         }
 
@@ -898,6 +903,8 @@ STDMETHODIMP CCommands::save(int *pRet)
         case IDOK:
         {
             CWaitCursor wc;
+            clearErrorList();
+            cdr::ValidationErrors* valErrors = NULL;
 
             // Build the save command.
             std::basic_ostringstream<TCHAR> os;
@@ -912,7 +919,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                    << _T("'>Y</Version>");
             else
                 os << _T("<Version>N</Version>");
-            os << _T("<Validate>")
+            os << _T("<Validate ErrorLocators='Y'>")
                << (saveDialog.m_validate ? _T("Y") : _T("N"))
                << _T("</Validate><Echo>Y</Echo>");
             if (!saveDialog.m_comment.IsEmpty())
@@ -963,7 +970,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                     msg.Format(_T("Failure loading %s"), 
                                saveDialog.m_blobFilename);
                     ::AfxMessageBox(msg);
-                    *pRet = 7;
+                    *pRet = -7;
                     return S_OK;
                 }
             }
@@ -981,19 +988,37 @@ STDMETHODIMP CCommands::save(int *pRet)
             cdr::Element responseElem = 
                 cdr::Element::extractElement(rsp, _T("CdrResponse"));
             CString status = responseElem.getAttribute(_T("Status"));
-            if (status != _T("success"))
-                *pRet = 2;
-
-            if (rsp.Find(_T("<Error")) != -1) {
-                cdr::showErrors(rsp);
+            if (status != _T("success")) {
+                *pRet = -2;
+                if (rsp.Find(_T("<Error")) != -1)
+                    cdr::showErrors(rsp);
+                else
+                    ::AfxMessageBox(_T("Failure without explanation"),
+                                    MB_ICONEXCLAMATION);
             }
-            else if (*pRet == 2)
-                ::AfxMessageBox(_T("Failure without explanation"), 
-                    MB_ICONEXCLAMATION);
+
             if (!*pRet) {
+
+                // Show the user any validation errors.
+                cdr::Element errors = 
+                    cdr::Element::extractElement(rsp, _T("Errors"));
+                if (errors) {
+                    valErrors = new cdr::ValidationErrors(errors);
+                    CString version = _T("Current");
+                    if (valErrors->errors.size() > 0) {
+                        // Right now we're doing this just from the Javascript.
+                        //cdr::showValidationErrors(*valErrors);
+                        *pRet = (int)valErrors->errors.size();
+                    }
+                    else if (saveDialog.m_validate) {
+                        CPassedValidation dlg(ctrlInfo.docId);
+                        dlg.DoModal();
+                    }
+                }
                 cdr::Element docId = 
                     cdr::Element::extractElement(rsp, _T("DocId"));
                 if (!docId) {
+                    delete valErrors;
                     ::AfxMessageBox(_T("Unable to find document ID"), 
                         MB_ICONEXCLAMATION);
                 }
@@ -1004,16 +1029,24 @@ STDMETHODIMP CCommands::save(int *pRet)
                         msg += _T("\nIt is now checked out to you.\n")
                            _T("Please check in when processing is complete.");
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
-                    if (!saveDialog.m_checkIn)
+                    if (!saveDialog.m_checkIn) {
                         openDoc(rsp, docId.getString(), true);
-                    else
+                        if (valErrors) {
+                            doc = cdr::getApp().GetActiveDocument();
+                            CString path = doc.GetPath();
+                            cdr::validationErrorSets[path] = valErrors;
+                        }
+                    }
+                    else {
+                        delete valErrors;
                         removeDoc(docId.getString());
+                    }
                 }
             }
             break;
         }
         case IDCANCEL:
-            *pRet = 1;
+            *pRet = -1;
             break;
         }
     }
@@ -1025,17 +1058,17 @@ STDMETHODIMP CCommands::save(int *pRet)
                                           ode->m_strDescription);
         ::AfxMessageBox(msg);
         ode->Delete();
-        *pRet = 6;
+        *pRet = -6;
     }
     catch (::CException* e) {
         e->ReportError();
         e->Delete();
-        *pRet = 6;
+        *pRet = -6;
     }
     catch (...) {
         ::AfxMessageBox(_T("Unexpected exception encountered."), 
             MB_ICONEXCLAMATION);
-        *pRet = 6;
+        *pRet = -6;
     }
     return S_OK;
 }
@@ -1050,6 +1083,20 @@ STDMETHODIMP CCommands::validate(int *pRet)
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     *pRet = 0;
+
+    // Find the currently active document.
+    _Document doc = cdr::getApp().GetActiveDocument();
+
+    // Extract the document's control information.
+    DOMNode docElement = doc.GetDocumentElement();
+    CdrDocCtrlInfo ctrlInfo;
+    cdr::extractCtlInfo(docElement, ctrlInfo);
+    if (ctrlInfo.docId.IsEmpty()) {
+        *pRet = -8;
+        ::AfxMessageBox(_T("Document has never been saved"),
+            MB_ICONEXCLAMATION);
+        return S_OK;
+    }
     
     try {
 
@@ -1057,7 +1104,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
         if (!CdrSocket::loggedOn()) {
             ::AfxMessageBox(_T("This session is not logged into the CDR"), 
                 MB_ICONEXCLAMATION);
-            *pRet = 6;
+            *pRet = -6;
             return S_OK;
         }
 
@@ -1068,19 +1115,14 @@ STDMETHODIMP CCommands::validate(int *pRet)
         {
             CWaitCursor wc;
 
-            // Find the currently active document.
-            _Document doc = cdr::getApp().GetActiveDocument();
+            clearErrorList();
 
-            // Extract the document's control information.
-            DOMNode docElement = doc.GetDocumentElement();
-            CdrDocCtrlInfo ctrlInfo;
-            cdr::extractCtlInfo(docElement, ctrlInfo);
             CString docType = docElement.GetNodeName();
 
             // Build the validate command.
             std::basic_ostringstream<TCHAR> os;
             os << _T("<CdrValidateDoc DocType='") << (LPCTSTR)docType 
-               << _T("' ValidationTypes='");
+               << _T("' ErrorLocators='Y' ValidationTypes='");
 
             // Dialog box ensures that at least one is true.
             LPCTSTR separator = _T("");
@@ -1095,7 +1137,6 @@ STDMETHODIMP CCommands::validate(int *pRet)
                 filterLevel = 1;
             else if (validateDialog.m_includeApprovedMarkup)
                 filterLevel = 2;
-            if (!ctrlInfo.docId.IsEmpty())
                 os << _T("' Id='") << (LPCTSTR)ctrlInfo.docId;
             os << _T("'><CdrDoc Type='") << (LPCTSTR)docType 
                << _T("' RevisionFilterLevel='") << filterLevel
@@ -1112,9 +1153,33 @@ STDMETHODIMP CCommands::validate(int *pRet)
             // Submit the validate command to the server.
             //::AfxMessageBox(cmd.c_str());
             CString rsp = CdrSocket::sendCommand(cmd);
-            if (rsp.Find(_T("<Error")) != -1) {
-                cdr::showErrors(rsp);
-                *pRet = 1;
+            cdr::Element errors = 
+                cdr::Element::extractElement(rsp, _T("Errors"));
+            if (errors) {
+                cdr::ValidationErrors *valErrs = 
+                    new cdr::ValidationErrors(errors);
+                CString path = doc.GetPath();
+                cdr::validationErrorSets[path] = valErrs;
+                CString version = _T("Current");
+                if (valErrs->errors.size() > 0) {
+                    bool checkOut = path.Find(_T("Checkout")) != -1;
+                    int verPos = path.Find(_T("-V"));
+                    if (verPos != -1) {
+                        version = path.Mid(verPos + 2);
+                        version = version.Left(version.GetLength() - 4);
+                    }
+                    doc.Close(2); // 2=don't save changes.
+                    openDoc(rsp, ctrlInfo.docId, checkOut, version);
+
+                    // Right now we're doing this just from the Javascript.
+                    //cdr::showValidationErrors(*valErrs);
+
+                    *pRet = (int)valErrs->errors.size();
+                }
+                else {
+                    CPassedValidation dlg(ctrlInfo.docId);
+                    dlg.DoModal();
+                }
             }
             else {
                 CPassedValidation dlg(ctrlInfo.docId);
@@ -1123,19 +1188,19 @@ STDMETHODIMP CCommands::validate(int *pRet)
             break;
         }
         case IDCANCEL:
-            *pRet = 1;
+            *pRet = -1;
             break;
         }
     }
     catch (::CException* e) {
         e->ReportError();
         e->Delete();
-        *pRet = 2;
+        *pRet = -2;
     }
     catch (...) { 
         ::AfxMessageBox(_T("Unexpected error from validation command."), 
             MB_ICONEXCLAMATION);
-        *pRet = 2; 
+        *pRet = -2; 
     }
     return S_OK;
 }
@@ -1362,7 +1427,7 @@ void removeDoc(const CString& docId)
 }
 
 bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
-             const CString& version)
+                const CString& version)
 {
     // Extract the CdrDoc element.
     _Application app = cdr::getApp();
@@ -2972,5 +3037,71 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId, BSTR* patientDocId)
         cdr::showErrors(r);
     patientId.SetSysString(patientDocId);
 
+    return S_OK;
+}
+
+void clearErrorList() {
+    _Document doc = cdr::getApp().GetActiveDocument();
+    if (doc) {
+        CString path = doc.GetPath();
+        if (!path.IsEmpty()) {
+            cdr::ValidationErrorSets::iterator iter = 
+                cdr::validationErrorSets.find(path);
+            if (iter != cdr::validationErrorSets.end()) {
+                delete iter->second;
+                cdr::validationErrorSets.erase(iter);
+            }
+        }
+    }
+}
+
+STDMETHODIMP CCommands::getNextValidationError(BSTR* valError)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString result;
+    _Document doc = cdr::getApp().GetActiveDocument();
+    if (!doc) {
+        result = _T("0|No document is currently active");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    CString path = doc.GetPath();
+    if (path.IsEmpty()) {
+        result = _T("0|No validation results available");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    cdr::ValidationErrorSets::iterator iter = 
+        cdr::validationErrorSets.find(path);
+    if (iter == cdr::validationErrorSets.end()) {
+        result = _T("0|No validation results available");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    cdr::ValidationErrors* errors = iter->second;
+    if (errors->errors.size() < 1) {
+        result = _T("0|No validation errors found");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    if (errors->currentError >= errors->errors.size()) {
+        result = _T("0|No more validation errors found");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    const cdr::ValidationError* error = errors->getNextError();
+    if (!error) {
+        result = _T("0|No more validation errors found");
+        result.SetSysString(valError);
+        return S_OK;
+    }
+    CString eid = error->eid;
+    if (eid.IsEmpty())
+        eid = _T("0");
+    result = eid + _T("|") + error->message;
+    if (!error->elevel.IsEmpty())
+        result += _T(" (") + error->elevel + _T(")");
+    result.SetSysString(valError);
     return S_OK;
 }

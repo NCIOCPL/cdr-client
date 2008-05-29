@@ -162,8 +162,8 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
             ::Range r = range.GetDuplicate();
             Word w = Word(r, s);
             words.push_back(w);
-            CString logMsg;
-            logMsg.Format(L"normalizedWord '%s'", s);
+            //CString logMsg;
+            //logMsg.Format(L"normalizedWord '%s'", s);
             // logWrite(logMsg);
         }
     }
@@ -197,7 +197,7 @@ bool CGlossify::findNextMatch()
 			if (++curChain >= static_cast<int>(chains.size()))
 				return false;
 			chain = &chains[curChain];
-			wordsLeft = chains.size();
+			wordsLeft = chain->words.size();
             if (docType == _T("Summary"))
                 gt->clearFlags();
 		}
