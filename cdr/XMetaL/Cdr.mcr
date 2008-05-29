@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.181 2008-05-16 13:48:34 bkline Exp $
+     $Id: Cdr.mcr,v 1.182 2008-05-29 20:21:42 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.181  2008/05/16 13:48:34  bkline
+     Added macro to split Intervention blocks.
+
      Revision 1.180  2008/04/23 12:02:33  bkline
      Switched back to using cdr-eid ID attributes.
 
@@ -3684,7 +3687,8 @@
         else {
             var result = cdrObj.validate();
             if (result > 0) {
-                Application.Alert("Found " + result + " validation errors");
+                Application.Alert("Found " + result +
+                                  " validation errors/warnings");
             }
         }
     }
@@ -3740,7 +3744,8 @@
             if (answer) {
                 var result = cdrObj.save();
                 if (result > 0) {
-                    Application.Alert("Found " + result + " validation errors");
+                    Application.Alert("Found " + result +
+                                      " validation errors/warnings");
                 }
             }
         }
@@ -8072,7 +8077,7 @@
         var eid = pieces.shift();
         var message = pieces.join('|');
         Application.Alert(message);
-        if (eid != "0") {
+        if (!eid || eid != "0") {
             var xpath = '//*[@cdr-eid="' + eid + '"]';
             var node = null;
             // Alternate approach
