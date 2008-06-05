@@ -1,9 +1,13 @@
 /*
- * $Id: CdrUtil.cpp,v 1.29 2008-05-29 20:26:04 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.30 2008-06-05 13:49:03 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.29  2008/05/29 20:26:04  bkline
+ * Added support for navigation to the location of specific validation
+ * errors in the current document.
+ *
  * Revision 1.28  2007/07/11 00:43:18  bkline
  * Added support for dynamic diagnosis set insertion and for displaying
  * blocked document status.
@@ -1286,9 +1290,9 @@ cdr::ValidationErrors::ValidationErrors(const Element& e) {
     Element err = Element::extractElement(e.getString(), _T("Err"), 0);
     while (err) {
         CString message = err.getString();
-        CString eid = err.getAttribute(_T("cdr:eref"));
-        CString etype = err.getAttribute(_T("cdr:etype"));
-        CString elevel = err.getAttribute(_T("cdr:elevel"));
+        CString eid = err.getAttribute(_T("eref"));
+        CString etype = err.getAttribute(_T("etype"));
+        CString elevel = err.getAttribute(_T("elevel"));
         if (etype == _T("validation"))
             errors.push_back(cdr::ValidationError(message, eid, elevel));
         else
