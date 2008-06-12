@@ -36,7 +36,7 @@
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
    <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] the risk of developing x cancer.</KeyPoint>
-   <Para>Anything that increases your risk of getting a disease is called a risk factor.  Risk factors for x cancer include the following:</Para>
+   <Para>Anything that increases your risk of getting a disease is called a risk factor.  Having a risk factor does not mean that you will get cancer; not having risk factors doesn’t mean that you will not get cancer. People who think they may be at risk should discuss this with their doctor.  Risk factors for x cancer include the following:</Para>
    <ItemizedList Style="bullet"> 
     <ListItem>[risk here]</ListItem> 
     <ListItem>[risk here]</ListItem> 
@@ -117,16 +117,23 @@
   </SummarySection>
   <SummarySection>
    <SectMetaData>
+    <SectionType>Clinical description</SectionType>
+   </SectMetaData>
+   <KeyPoint>There are three ways that cancer spreads in the body.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_22">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
     <SectionType>Classification by stage</SectionType>
    </SectMetaData>
    <KeyPoint>The following stages are used for x cancer: <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment></KeyPoint>
    <SummarySection>
     <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
-    <Para>In stage 0, cancer is found in .... Stage 0 cancer is also called carcinoma in situ.</Para>
+    <Para>In stage 0, abnormal cells are found in .... Abnormal cells may become cancer and spread into nearby normal tissue.  Stage 0 is also called carcinoma in situ.</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Stage I</KeyPoint>
-    <Para>In stage I, cancer has spread .....</Para>
+    <Para>In stage I, cancer has formed and spread .....</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Stage II</KeyPoint>
@@ -156,15 +163,16 @@
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
    <KeyPoint>There are different types of treatment for patients with x cancer.</KeyPoint>
-   <Para>Different types of treatments are available for patients with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials. Before starting treatment, patients may want to think about taking part in a clinical trial. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  standard treatment, the new treatment may become the standard treatment.</Para>
-   <Para>Clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>. Choosing the most appropriate cancer treatment is a decision that ideally involves the patient, family, and health care team.</Para>
+   <Para><Comment>For Adult summaries:</Comment> Different types of treatments are available for patients with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials.  A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  standard treatment, the new treatment may become the standard treatment. Patients may want to think about taking part in a clinical trial. Some clinical trials are open only to patients who have not started treatment.</Para>
+   <Para><Comment>For Childhood summaries:</Comment> Different types of treatment are available for children with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the standard treatment, the new treatment may become the standard treatment.</Para>
+   <Para>Because cancer in children is rare, taking part in a clinical trial should be considered. Some clinical trials are open only to patients who have not started treatment.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
-   <KeyPoint>Children with x cancer should have their treatment planned by a team of doctors with expertise in treating cancer in children. <Comment>[Use for childhood treatment summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
-   <Para>Treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer. The pediatric oncologist works with other pediatric doctors who are experts in treating children with x cancer and who specialize in certain areas of medicine. These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
+   <KeyPoint>Children with x cancer should have their treatment planned by a team of health care providers who are experts in treating cancer in children. <Comment>[Use for childhood treatment summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
+   <Para>Treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer. The pediatric oncologist works with other pediatric health care providers who are experts in treating children with x cancer and who specialize in certain areas of medicine. These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
    <ItemizedList Style="bullet">
     <ListItem>Pediatric surgeon.</ListItem>
     <ListItem>Pediatric hematologist.</ListItem>
@@ -183,7 +191,13 @@
              after treatment has ended. 
     <Comment>[Use for childhood treatment summaries.]</Comment>
    </KeyPoint>
-   <Para>Some cancer treatments cause side effects that continue or appear months or years after cancer treatment has ended. These are called late effects. Late effects of cancer treatment may include physical problems; changes in mood, feelings, thinking, learning or memory; and second cancers (new types of cancer.) Some late effects may be treated or controlled. It is important to talk with your child's doctors about the possible late effects caused by some treatments.  (See the PDQ summary on <SummaryRef cdr:href="CDR0000373791">Late Effects of Treatment for Childhood Cancer</SummaryRef> for more information).
+   <Para>Some cancer treatments cause side effects that continue or appear months or years after cancer treatment has ended. These are called late effects. Late effects of cancer treatment may include:</Para>
+   <ItemizedList>
+    <ListItem>Physical problems.</ListItem>
+    <ListItem>Changes in mood, feelings, thinking, learning, or memory.</ListItem>
+    <ListItem>Second cancers (new types of cancer).</ListItem>
+   </ItemizedList>
+   <Para>Some late effects may be treated or controlled. It is important to talk with your child's doctors about the possible late effects caused by some treatments. (See the PDQ summary on <SummaryRef cdr:href="CDR0000373791">Late Effects of Treatment for Childhood Cancer</SummaryRef> for more information).
    </Para>
   </SummarySection>
   <SummarySection>
@@ -209,14 +223,6 @@
     </Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>Hormone therapy</KeyPoint>
-    <Para><StandardWording>Hormone therapy is a cancer treatment that removes hormones or blocks their action and stops cancer cells from growing. Hormones are substances produced by glands in the body and circulated in the bloodstream. Some hormones can cause certain cancers to grow. If tests show that the cancer cells have places where hormones can attach (receptors), drugs, surgery, or radiation therapy are used to reduce the production of hormones or block them from working.</StandardWording></Para>
-   </SummarySection>
-   <SummarySection>
-    <KeyPoint>Biologic therapy</KeyPoint>
-    <Para><StandardWording>Biologic therapy is a treatment that uses the patient's immune system to fight cancer.  Substances made by the body or made in a laboratory are used to boost, direct, or restore the body's natural defenses against cancer.  This type of cancer treatment is also called biotherapy or immunotherapy.</StandardWording></Para>
-   </SummarySection>
-   <SummarySection>
     <KeyPoint>[Therapy here]</KeyPoint>
     <Para>[describe therapy here]</Para>
    </SummarySection>
@@ -229,7 +235,8 @@
    <SectMetaData>
     <SectionType>Treatment in clinical trials</SectionType>
    </SectMetaData>
-   <KeyPoint>New types of treatment are being tested in clinical trials. These include the following:</KeyPoint>
+   <KeyPoint>New types of treatment are being tested in clinical trials.</KeyPoint>
+   <Para>This summary section describes treatments that are being studied in <GlossaryTermRef PdqKey="GlossaryTerm:7224" cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>.  It may not mention every new treatment being studied. Information about clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
    <SummarySection>
     <KeyPoint>Clinical trial here</KeyPoint>
     <Para>[para here]</Para>
@@ -240,7 +247,25 @@
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
+   <SectMetaData>
+    <SectionType>Treatment in clinical trials</SectionType>
+   </SectMetaData>
+   <KeyPoint>Patients may want to think about taking part in a clinical trial.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_13">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Treatment in clinical trials</SectionType>
+   </SectMetaData>
+   <KeyPoint>Patients can enter clinical trials before, during, or after starting their cancer treatment.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_28">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Post-treatment considerations</SectionType>
+   </SectMetaData>
+   <KeyPoint>Follow-up tests may be needed.</KeyPoint>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_32">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
  </SummarySection>
  <SummarySection>
@@ -248,18 +273,18 @@
    <SectionType>Treatment options by stage</SectionType>
   </SectMetaData>
   <Title>Treatment Options by Stage</Title>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_36">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
   <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment>
   <SummarySection>
    <SectMetaData>
    </SectMetaData>
-   <Title>Stage 0 X Cancer (Carcinoma in Situ)</Title>
-   <Para>Treatment of stage 0 x cancer may include the following:</Para>
+   <Title>Stage 0 (Carcinoma in Situ)</Title>
+   <Para>Treatment of stage 0 (carcinoma in situ) may include the following:</Para>
    <ItemizedList Style="bullet">
     <ListItem>[treatment here]</ListItem>
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -271,7 +296,6 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -283,7 +307,6 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -295,7 +318,6 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -307,7 +329,6 @@
     <ListItem>[treatment here]</ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
-   <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
   </SummarySection>
  </SummarySection>
  <SummarySection>
@@ -323,7 +344,22 @@
    <ListItem>[treatment here]</ListItem>
    <ListItem>A clinical trial of ....</ListItem>
   </ItemizedList>
-  <Para>This summary section refers to specific treatments under study in clinical trials, but it may not mention every new treatment being studied. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
+ </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Resources</SectionType>
+  </SectMetaData>
+  <Title>To Learn More About X Cancer</Title>
+  <Para>For more information from the National Cancer Institute about x cancer, see the following:</Para>
+  <ItemizedList>
+   <ListItem>[link resource here]</ListItem>
+   <ListItem>[link resource here]</ListItem>
+   <ListItem>[link resource here]</ListItem>
+  </ItemizedList>
+  <Comment>For adult summary</Comment>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_39">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  <Comment>For childhood summary</Comment>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_43">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
  </SummarySection>
  <SummarySection>
   <SectMetaData>
