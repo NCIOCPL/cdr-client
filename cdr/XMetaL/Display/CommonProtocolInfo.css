@@ -556,9 +556,9 @@ RelatedCitation,                { margin-left: 150pt;
 /* Key element for length = ProtocolDesign           */
 
 ProtocolPhase,                  { margin-left: 150pt;
-                                  text-indent: -113.5pt; }
+                                  text-indent: -122.0pt; }
 ExpectedEnrollment,             { margin-left: 150pt;
-                                  text-indent: -139.5pt; }
+                                  text-indent: -149.0pt; }
 ProtocolDesign,                 { margin-left: 150pt;
                                   text-indent: -117.5pt; }
 
@@ -620,6 +620,8 @@ WarehouseBoxNumber,
                                 { margin-left: 125pt;
                                   text-indent: -124pt; }
 
+Outcome                         { margin-left:  96pt;
+                                  text-indent: -96.5pt; }
 ArmOrGroupDescription           { margin-left: 110pt;
                                   text-indent: -82pt; }
 ArmOrGroupLabel                 { margin-left: 110pt; 
