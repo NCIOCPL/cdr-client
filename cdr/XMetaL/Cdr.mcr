@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.182 2008-05-29 20:21:42 bkline Exp $
+     $Id: Cdr.mcr,v 1.183 2008-07-21 16:14:57 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.182  2008/05/29 20:21:42  bkline
+     Tweaks to dialog text for validation messages.
+
      Revision 1.181  2008/05/16 13:48:34  bkline
      Added macro to split Intervention blocks.
 
@@ -619,6 +622,7 @@
     //------------------------------------------------------------------
     var CdrWebServer = "http://mahler.nci.nih.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
+    var lastMarkupLevel = '';
     
     var blobLinkElementNames = [
         "MediaLink",
@@ -4682,6 +4686,17 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Jump To Next Markup"
+        key="Ctrl+Alt+Shift+J" 
+        lang="JScript" 
+        id="2911" 
+        desc="Moves the selection to the next marked change if any" >
+  <![CDATA[
+    if (lastMarkupLevel)
+        findMarkupOfSpecifiedLevel(lastMarkupLevel);
+  ]]>
+</MACRO>
+
 <MACRO  name="Find Next" 
         key="" 
         lang="JScript" 
@@ -4841,9 +4856,6 @@
     // report #330.
     //----------------------------------------------------------------------
     function findNextInsertionOrDeletion() {
-        var delElem = ActiveDocument.Range;
-        var insElem = ActiveDocument.Range;
-        var keepGoing = true;
         var markupLevel = "";
         var dlg = Application.CreateFormDlg(Application.Path +
                                             "/Forms/CDR/FindNextMarkup.xft");
@@ -4853,6 +4865,13 @@
         if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
         else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
         else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
+        lastMarkupLevel = markupLevel;
+        findMarkupOfSpecifiedLevel(markupLevel);
+    }
+    function findMarkupOfSpecifiedLevel(markupLevel) {
+        var delElem = ActiveDocument.Range;
+        var insElem = ActiveDocument.Range;
+        var keepGoing = true;
         while (keepGoing) {
             delElem.Collapse();
             insElem.Collapse();
