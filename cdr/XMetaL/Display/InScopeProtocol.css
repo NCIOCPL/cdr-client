@@ -170,6 +170,7 @@ MergeByDate,
 MailAbstractTo,   
 NIHGrantContract, 
 NIHGrantContractType,  
+Organization,
 OrgSite, 
 OrgSiteContact, 
 OrgSiteID, 
@@ -203,7 +204,9 @@ ProtocolSponsors,
 RegulatoryAuthority,
 RegulatoryInformation,
 ReimbursementApprovalType, 
+ResponsibleOrganization,
 ResponsibleParty,
+ResponsiblePerson,
 ReviewApprovalType, 
 Reviewer,
 ReviewStatus,
@@ -309,6 +312,7 @@ MailAbstractTo                    :before { content: "Mail Abstr To &: "; }
 NIHGrantContract                  :before { content: "NIH GRANT CONTRACT & +"; }
 NIHGrantContractType              :before 
     { content: "NIH Grant Contract Type *: ";  }
+Organization                      :before { content: "Org Name * @: "; }
 OrgSite[SuppressContactInformation='Yes']:before
     { content: "PARTICIPATING ORGANIZATION (suppress contact information) * + @"; } 
 OrgSite                           :before
@@ -327,6 +331,7 @@ PersonMiddleName                  :before { content: "Middle Name &: "; }
 PersonRole                        :before { content: "Role * +: "; }
 PersonSuffix                      :before { content: "Person Suffix & +: "; }
 PersonTitle                       :before { content: "Title *: ";  }
+ResponsibleParty > PersonTitle    :before { content: "Person Title *: ";  }
 PreviousOrgStatus                 :before 
     { content: "Previous Org Status & +"; }
 PrivatePracticeSite[SuppressContactInformation='Yes'] :before
@@ -356,7 +361,11 @@ RelatedPublications               :before
     { content: "RELATED PUBLICATIONS & +"; }
 ReimbursementApprovalType         :before 
     { content: "Reimbursmnt Approval Type & +: "; }
-ResponsibleParty                  :before { content: "Responsible Party *: "; }
+ResponsibleOrganization
+                                  :before { content: "RESPONSIBLE ORGANIZATION *: "; }
+ResponsibleParty                  :before { content: "RESPONSIBLE PARTY *"; }
+ResponsiblePerson
+                                  :before { content: "RESPONSIBLE PERSON *: "; }
 ReviewApprovalType                :before 
     { content: "Review Approval Type *: "; }
 Role                              :before { content: "Role *: "; }
@@ -441,12 +450,14 @@ LeadOrgPersonnel                  :before,
 LeadOrgProtocolStatuses           :before,
 MergeByDate                       :before,
 NIHGrantContract                  :before,
+Organization                      :before,
 OrgSite                           :before,
 OrgSiteContact                    :before,
 OrgSiteContact>SpecificPerson     :before,
 OtherGrantContractInfo            :before,
 OverallContact                    :before,
 OversightInfo                     :before,
+Person                            :before,
 PersonFirstName                   :before,
 PersonMiddleName                  :before,
 PersonLastName                    :before,
@@ -465,7 +476,9 @@ ProtocolSpecificContact           :before,
 ProtocolSponsors                  :before,
 RegulatoryAuthority               :before,
 RegulatoryInformation             :before,
+ResponsibleOrganization           :before,
 ResponsibleParty                  :before,
+ResponsiblePerson                 :before,
 Reviewer                          :before,
 ReviewStatus                      :before,
 ReviewStatusDate                  :before,
@@ -492,6 +505,7 @@ INDNumber                         :before,
 INDSerialNumber                   :before,
 INDSubmissionDate                 :before,
 LeadOrgProtocolID                 :before,
+Organization                      :before,
 PersonTitle                       :before,
 SourceName                        :before,
 SpecificEmail                     :after,
@@ -588,6 +602,7 @@ OtherGrantContractInfo,
 OrgSiteContact,
 ProtocolSource,
 ProtocolSpecificContact,
+ResponsibleParty,
 SpecificPerson,
   {  margin-top: .5em;    }
 
@@ -915,14 +930,35 @@ ProcessingStatus,
                             { margin-left: 110pt;
                               text-indent: -130.5pt; }
 
-DelayedPosting              { margin-left: 160pt;
+DelayedPosting              { margin-left:  160pt;
                               text-indent: -114pt; }
-FDARegulated                { margin-left: 160pt;
+FDARegulated                { margin-left:  160pt;
                               text-indent: -102pt; }
-ResponsibleParty            { margin-left: 160pt;
+ResponsibleParty            { margin-left:  160pt;
                               text-indent: -121pt; }
-Section801                  { margin-left: 160pt;
-                              text-indent: -87pt; }
+ResponsiblePerson           { margin-left:    0pt;
+                              text-indent: -100pt; }
+ResponsiblePerson       > Person,
+                            { margin-left:    0pt;
+                              text-indent:  -72pt; }
+ResponsibleOrganization     { margin-left:    0pt;
+                              text-indent: -100pt; }
+ResponsibleOrganization > Organization,
+                            { margin-left:    0pt;
+                              text-indent:  -88pt; }
+ResponsibleOrganization > PersonTitle,
+                            { margin-left:    0pt;
+                              text-indent:  -40pt; }
+ResponsibleOrganization > SpecificPhone,
+ResponsiblePerson       > SpecificPhone,
+                            { margin-left:    0pt; 
+                              text-indent:  -58pt; }
+ResponsibleOrganization > SpecificEmail,
+ResponsiblePerson       > SpecificEmail,
+                            { margin-left:    0pt; 
+                              text-indent:  -70pt; }
+Section801                  { margin-left:  160pt;
+                              text-indent:  -87pt; }
 
 /* Margin-bottom for simulated text boxes                                  */
 ClinicalTrialOffice,
@@ -979,6 +1015,7 @@ MailAbstractTo,
 MergeByDate,
 NIHGrantContract, 
 NIHGrantContractType,  
+Organization,
 OrgSite, 
 OrgSiteContact, 
 OrgSiteID, 
@@ -1007,7 +1044,9 @@ ProtocolSpecificContact,
 ProtocolSponsors, 
 RegulartoryAuthority,
 ReimbursementApprovalType, 
+ResponsibleOrganization,
 ResponsibleParty,
+ResponsiblePerson,
 ReviewApprovalType, 
 Reviewer,
 ReviewStatus,
@@ -1034,6 +1073,7 @@ GrantContractNo,
 INDGrantor,
 LeadOrganizationID,
 NIHGrantContractType,
+Organization,
 OrgSiteID,
 Person,
 PersonTitle,
@@ -1094,6 +1134,7 @@ LeadOrgRole,
 MailAbstractTo,  
 MergeByDate,
 NIHGrantContractType,  
+Organization,
 OrgSiteID, 
 OrgSiteStatus,
 PdqKey, 
@@ -1111,7 +1152,9 @@ ProtocolSpecificContact,
 RegulatoryAuthority,
 RegulatoryInformation,
 ReimbursementApprovalType, 
+ResponsibleOrganization,
 ResponsibleParty,
+ResponsiblePerson,
 ReviewApprovalType, 
 Reviewer,
 ReviewStatus,
@@ -1196,12 +1239,12 @@ MailAbstractTo               :before,
 MergeByDate                  :before,
 MissingInformation           :before,
 NIHGrantContractType         :before,
-OrgSiteContact>SpecificPerson>Person :before,
-OrgSiteContact>SpecificPerson>Role   :before,
+Organization                 :before,
 OrgSiteID                    :before,
 OrgSiteStatus                :before,
 OversightInfo,
 Person                       :before,
+OrgSiteContact>SpecificPerson>Person :before,
 PersonFirstName              :before,
 PersonLastName               :before,
 PersonMiddleName             :before,
@@ -1221,12 +1264,16 @@ ProtocolSponsors,
 RegulatoryAuthority          :before,
 RegulatoryInformation,
 ReimbursementApprovalType    :before,
-ResponsibleParty             :before,
+ResponsibleOrganization      :before,
+ResponsibleOrganization,
+ResponsibleParty,
+ResponsiblePerson,
 ReviewApprovalType           :before,
 Reviewer                     :before,
 ReviewStatus                 :before,
 ReviewStatusDate             :before,
 Role                         :before,
+OrgSiteContact>SpecificPerson>Role   :before,
 Section801                   :before,
 SourceName                   :before,
 SpecialCategory              :before,

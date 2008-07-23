@@ -163,6 +163,7 @@ MailAbstractTo,
 MergeByDate,
 NIHGrantContract, 
 NIHGrantContractType,  
+Organization,
 OrgSite, 
 OrgSiteContact, 
 OrgSiteID, 
@@ -267,6 +268,7 @@ MailAbstractTo          :before { content: "Mail Abstract To"; }
 MergeByDate             :before { content: "Merge by Date"; }
 NIHGrantContract        :before { content: "NIH GRANT CONTRACT"; }
 NIHGrantContractType    :before { content: "NIH Grant Contract Type";  }
+Organization            :before { content: "Organization"; }
 OrgSite                 :before { content: counter(Site)
                                   ". PARTICIPATING ORGANIZATION"; }
 OrgSiteContact          :before { content: "Site Contact";  }
@@ -306,7 +308,9 @@ RegulatoryInformation   :before { content: "REGULATORY INFO"; }
 RelatedDocuments                { content: "RELATED DOCUMENTS"; }
 ReimbursementApprovalType:before 
                                 { content: "Reimbursement Approval Type"; }
-ResponsibleParty        :before { content: "Responsible Party"; }
+ResponsibleOrganization :before { content: "RESPONSIBLE ORGANIZATION"; }
+ResponsibleParty        :before { content: "RESPONSIBLE PARTY"; }
+ResponsiblePerson       :before { content: "RESPONSIBLE PERSON"; }
 ReviewApprovalType      :before { content: "Review Approval Type"; }
 ReviewStatus            :before { content: "Review Status"; }
 ReviewStatusDate        :before { content: "Review Status Date"; }
@@ -435,6 +439,7 @@ LeadOrganizationID      :before,
 LeadOrgRole             :before,
 MailAbstractTo          :before,
 NIHGrantContractType    :before,
+Organization            :before,
 OrgSiteID               :before,
 OrgSiteStatus           :before,
 PdqKey                  :before,
@@ -509,6 +514,7 @@ MailAbstractTo,
 MergeByDate,
 NIHGrantContract,
 NIHGrantContractType,
+Organization,
 OrgSite,
 OrgSiteContact,
 /*OrgSiteID,*/
@@ -536,7 +542,9 @@ ProtocolSponsors,
 ProtocolSpecialCategory,
 RegulatoryAuthority,
 ReimbursementApprovalType,
+ResponsibleOrganization,
 ResponsibleParty,
+ResponsiblePerson,
 Reviewer,
 ReviewStatus,
 ReviewStatusDate,
@@ -627,6 +635,7 @@ LeadOrgRole               :before,
 MailAbstractTo            :before,
 MergeByDate               :before,
 NIHGrantContractType      :before,
+Organization              :before,
 OrgSiteContact > SpecificPerson > Person 
                           :before,
 OrgSiteContact > SpecificPerson > Role   
@@ -656,7 +665,9 @@ RegulatoryAuthority       :before,
 RegulatoryInformation,
 RelatedDocuments,
 ReimbursementApprovalType :before,
+ResponsibleOrganization   :before,
 ResponsibleParty          :before,
+ResponsiblePerson         :before,
 ReviewApprovalType        :before,
 Reviewer                  :before,
 ReviewStatus              :before,
@@ -772,6 +783,7 @@ LeadOrgRole,
 MailAbstractTo,
 MergeByDate,
 NIHGrantContractType,
+Organization,
 OrgSiteID,
 OrgSiteStatus,
 PdqKey,
@@ -789,7 +801,9 @@ PrivatePracticeSiteStatus,
 ProcessingPriority,
 ProtocolAdminInfo,
 RegulatoryAuthority,
+ResponsibleOrganization,
 ResponsibleParty,
+ResponsiblePerson,
 ReviewApprovalType,
 Reviewer,
 ReviewStatus,
