@@ -6,6 +6,12 @@
       <NoPrettyPrinting/>
     </GlobalPrettyPrintOptions>
     <ElementProperties>
+      <Name>ActionDescription</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>AgeText</Name>
       <PrettyPrintOptions>
         <IndentContent/>
@@ -121,24 +127,6 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
-      <Name>IRBApproved</Name>
-      <PrettyPrintOptions>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>IRBApprovalForm</Name>
-      <PrettyPrintOptions>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>RegulatoryAuthority</Name>
-      <PrettyPrintOptions>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
       <Name>Condition</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -175,6 +163,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>CurrentOrgStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>CurrentProtocolStatus</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -190,6 +184,18 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>DatedAction</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DateLastModified</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>DateReceived</Name>
       <PrettyPrintOptions>
         <IndentContent/>
@@ -202,10 +208,22 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>DelayedPosting</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Diagnosis</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DiseaseCharacteristics</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -251,6 +269,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>EnteredBy</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>entry</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -273,6 +297,10 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ExternalRef</Name>
+      <TagColor>FFCC00</TagColor>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Fax</Name>
       <PrettyPrintOptions>
         <IndentContent/>
@@ -280,6 +308,12 @@
     </ElementProperties>
     <ElementProperties>
       <Name>FDAINDInfo</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>FDARegulated</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
@@ -319,6 +353,20 @@
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermLink</Name>
+      <TagColor>FF33CC</TagColor>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GlossaryTermRef</Name>
+      <TagColor>FF33CC</TagColor>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>GrantContractNo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -414,12 +462,42 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>IRBApproved</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>IRBApprovalForm</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ItemizedList</Name>
       <TagColor>3399FF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrganizationID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrgPersonnel</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>LeadOrgProtocolStatuses</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -453,6 +531,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>MailAbstractTo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>MarkedUpTitle</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -479,6 +563,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>NIHGrantContract</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>NIHGrantContractType</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -494,12 +585,38 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>OtherGrantContractInfo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>OrderedList</Name>
       <TagColor>3399FF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSiteContact</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSite</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>OrgSiteID</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -571,10 +688,22 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>PostalAddress</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>PostalCode_ZIP</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PreviousOrgStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -585,11 +714,35 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProcessingDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProcessingPriority</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProcessingStatus</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Professional</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProjectedAccrual</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -623,6 +776,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProtocolDetail</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeEndTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ProtocolIDs</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -638,11 +797,25 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ProtocolLink</Name>
+      <TagColor>66FF66</TagColor>
+    </ElementProperties>
+    <ElementProperties>
       <Name>ProtocolPhase</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
       </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolProcessingDetails</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolRef</Name>
+      <TagColor>66FF66</TagColor>
     </ElementProperties>
     <ElementProperties>
       <Name>ProtocolRelatedLinks</Name>
@@ -666,6 +839,13 @@
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ProtocolSources</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -693,14 +873,6 @@
     </ElementProperties>
     <ElementProperties>
       <Name>PublishedResults</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>RelatedPublications</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
@@ -768,6 +940,18 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>RegulatoryAuthority</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>RegulatoryInformation</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>RelatedProtocols</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -775,7 +959,36 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>RelatedPublications</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>RelatedWebsites</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ResponsibleOrganization</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ResponsibleParty</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>ResponsiblePerson</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -803,6 +1016,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>Section801</Name>
+      <PrettyPrintOptions>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Source</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -820,6 +1039,12 @@
       <Name>SpecialCategory</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>SpecificEmail</Name>
+      <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -844,6 +1069,12 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>StatusName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Stratification</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -859,10 +1090,22 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>StudyCategoryType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>StudyFocus</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>StudyType</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
@@ -939,198 +1182,6 @@
         <NewLineBeforeStartTag/>
         <IndentContent/>
       </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>OrgSiteContact</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>OrgSite</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeEndTag/>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>MailAbstractTo</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>DatedAction</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ActionDescription</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolProcessingDetails</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProcessingDate</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProcessingPriority</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProcessingStatus</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>DateLastModified</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolDetail</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>EnteredBy</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>OtherGrantContractInfo</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolSources</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>NIHGrantContract</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>GrantContractNo</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>DiseaseCharacteristics</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProjectedAccrual</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>StudyType</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>StudyCategoryType</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LeadOrganizationID</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>CurrentOrgStatus</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>StatusName</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>PreviousOrgStatus</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LeadOrgProtocolStatuses</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeEndTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>LeadOrgPersonnel</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>PostalAddress</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>OrgSiteID</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>GlossaryTermLink</Name>
-      <TagColor>FF33CC</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>GlossaryTermRef</Name>
-      <TagColor>FF33CC</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolRef</Name>
-      <TagColor>66FF66</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ProtocolLink</Name>
-      <TagColor>66FF66</TagColor>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>ExternalRef</Name>
-      <TagColor>FFCC00</TagColor>
     </ElementProperties>
   </ElementPropertiesList>
   <!-- 
@@ -1442,22 +1493,79 @@
        <DelayedPosting><?xm-replace_text {
           Optionally select Yes/No
           }?></DelayedPosting>
-       <ResponsibleParty><?xm-replace_text {
-          Enter the responsible party (required)
-          }?></ResponsibleParty>
+       <ResponsibleParty>
+        <ResponsiblePerson>
+         <Person><?xm-replace_text {
+          Select the responsible person (required)
+          }?></Person>
+         <SpecificPhone><?xm-replace_text {
+          Optionally enter the person's phone number
+          }?></SpecificPhone>
+         <SpecificEmail><?xm-replace_text {
+          Optionally enter the person's email address
+          }?></SpecificEmail>
+        </ResponsiblePerson>
+       </ResponsibleParty>
       </RegulatoryInformation>]]></MiniTemplate>
    </Template>
    <Template>
+      <Name>ResponsibleOrganization</Name>
+      <MiniTemplate><![CDATA[<ResponsibleOrganization>
+        <Organization><?xm-replace_text {
+          Select the responsible organization (required)
+          }?></Organization>
+        <PersonTitle><?xm-replace_text {
+          Enter the title for the contact person (required)
+          }?></PersonTitle>
+        <SpecificPhone><?xm-replace_text {
+          Optionally enter the phone number
+          }?></SpecificPhone>
+        <SpecificEmail><?xm-replace_text {
+          Optionally enter the email address
+          }?></SpecificEmail>
+       </ResponsibleOrganization>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>ResponsibleParty</Name>
-      <MiniTemplate><![CDATA[<ResponsibleParty><?xm-replace_text {
-          Enter the responsible party (required)
-          }?></ResponsibleParty>]]></MiniTemplate>
+      <MiniTemplate><![CDATA[<ResponsibleParty>
+        <ResponsiblePerson>
+         <Person><?xm-replace_text {
+          Select the responsible person (required)
+          }?></Person>
+         <SpecificPhone><?xm-replace_text {
+          Optionally enter the person's phone number
+          }?></SpecificPhone>
+         <SpecificEmail><?xm-replace_text {
+          Optionally enter the person's email address
+          }?></SpecificEmail>
+        </ResponsiblePerson>
+       </ResponsibleParty>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>ResponsiblePerson</Name>
+      <MiniTemplate><![CDATA[<ResponsiblePerson>
+        <Person><?xm-replace_text {
+          Select the responsible person (required)
+          }?></Person>
+        <SpecificPhone><?xm-replace_text {
+          Optionally enter the phone number
+          }?></SpecificPhone>
+        <SpecificEmail><?xm-replace_text {
+          Optionally enter the email address
+          }?></SpecificEmail>
+       </ResponsiblePerson>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>Section801</Name>
       <MiniTemplate><![CDATA[<Section801><?xm-replace_text {
           Optionally select Yes/No
           }?></Section801>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>SpecificEmail</Name>
+    <MiniTemplate><![CDATA[<SpecificEmail><?xm-replace_text {
+          Optionally enter the email address
+          }?></SpecificEmail>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>StartDate</Name>
@@ -2175,6 +2283,13 @@
           }?></Person>]]></MiniTemplate>
    </Template>
    <Template>
+      <Name>Person</Name>
+      <Parent>ResponsiblePerson</Parent>
+      <MiniTemplate><![CDATA[<Person><?xm-replace_text {
+          Select the responsible person (required)
+          }?></Person>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>MailAbstractTo</Name>
       <MiniTemplate><![CDATA[<MailAbstractTo><?xm-replace_text {
           Enter the cdr:id attribute value of any Person to identify 
@@ -2823,6 +2938,18 @@
       <ChangeListElements>
         <ChangeListElement>CurrentOrgStatus</ChangeListElement>
         <ChangeListElement>PreviousOrgStatus</ChangeListElement>
+      </ChangeListElements>
+    </ChangeList>
+    <ChangeList>
+      <Selectors>
+        <Selector>
+          <Name>#DEFAULT</Name>
+          <Parent>ResponsibleParty</Parent>
+        </Selector>
+      </Selectors>
+      <ChangeListElements>
+        <ChangeListElement>ResponsibleOrganization</ChangeListElement>
+        <ChangeListElement>ResponsiblePerson</ChangeListElement>
       </ChangeListElements>
     </ChangeList>
   </ChangeLists>
