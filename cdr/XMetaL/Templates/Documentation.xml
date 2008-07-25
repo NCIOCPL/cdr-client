@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Documentation SYSTEM "Documentation.dtd">
+<Documentation xmlns:cdr="cips.nci.nih.gov/cdr"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {
+          The document ID will be assigned automatically
+          }?></DocId>
+  <DocTitle><?xm-replace_text {
+          The document title will be constructed automatically
+          }?></DocTitle>
+ </CdrDocCtl> 
+ <Body>
+  <DocumentationTitle><?xm-replace_text {
+          Enter title for this document
+          }?></DocumentationTitle>
+  <TopicSection>
+   <TopicSectionTitle><?xm-replace_text {
+          Optionally enter a section title
+          }?></TopicSectionTitle>
+   <TopicText>
+    <Section><?xm-replace_text {
+          Optionally enter a section (containing a title/alt-title)
+          }?></Section>
+    <Para><?xm-replace_text {
+          Optionally enter a para element
+          }?></Para>
+    <OrderedList Style="Arabic">
+     <ListTitle><?xm-replace_text {
+          Optionally enter a list title
+          }?></ListTitle>
+     <ListItem><?xm-replace_text {
+          Optionally enter a list item
+          }?></ListItem>
+     <ListItem><?xm-replace_text {
+          Optionally enter a list item
+          }?></ListItem>
+    </OrderedList>
+   </TopicText>
+   <TopicText>
+    <Section><?xm-replace_text {
+          Optionally enter a section (containing a title/alt-title)
+          }?></Section>
+    <Para><?xm-replace_text {
+          Optionally enter a para element
+          }?></Para>
+    <OrderedList Style="Arabic">
+     <ListTitle><?xm-replace_text {
+          Optionally enter a list title
+          }?></ListTitle>
+     <ListItem><?xm-replace_text {
+          Optionally enter a list item
+          }?></ListItem>
+     <ListItem><?xm-replace_text {
+          Optionally enter a list item
+          }?></ListItem>
+    </OrderedList>
+   </TopicText>
+  </TopicSection>
+  <TopicRelationship>
+   <RelatedTopic RelationshipType="Broader">
+    <RelatedTopicID><?xm-replace_text {
+          Select a broader related topic
+          }?></RelatedTopicID>
+   </RelatedTopic>
+   <RelatedTopic RelationshipType="See Also"> 
+    <RelatedTopicID><?xm-replace_text {
+          Select a "see also" related topic
+          }?></RelatedTopicID>
+   </RelatedTopic>
+  </TopicRelationship> 
+ </Body> 
+ <Metadata> 
+  <DocType><?xm-replace_text {
+          Select a document type
+          }?></DocType> 
+   <Function><?xm-replace_text {
+          Select a function
+          }?></Function> 
+   <Subject><?xm-replace_text {
+          Enter a keyword
+          }?></Subject>
+ </Metadata>
+ <DateLastModified><?xm-replace_text {
+          Enter the date of the last modification
+          }?></DateLastModified>
+</Documentation>
