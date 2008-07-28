@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.13 2007-09-14 20:38:33 venglisc Exp $ -->
+<!-- $Id: Summary.ctm,v 1.14 2008-07-28 18:00:42 venglisc Exp $ -->
 <DTDExtensions>
  <ElementPropertiesList>
   <GlobalPrettyPrintOptions>
@@ -44,6 +44,14 @@
    <Name>City</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ComprehensiveReviewDate</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <NewLineBeforeEndTag/>
     <IndentContent/>
    </PrettyPrintOptions>
   </ElementProperties>
@@ -688,6 +696,12 @@
                    The document title will be constructed automatically
                    }?></DocTitle>
     </CdrDocCtl>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ComprehensiveReviewDate</Name>
+   <MiniTemplate><![CDATA[<ComprehensiveReviewDate><?xm-replace_text {
+                   Optionally enter the date of the last full review
+                   }?></ComprehensiveReviewDate>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>DateLastModified</Name>
