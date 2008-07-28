@@ -125,6 +125,7 @@ AltTitle,
 Board, 
 BoardMember, 
 Caption,
+ComprehensiveReviewDate,
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
@@ -164,6 +165,8 @@ AltTitle:before			{ content: "Alternate Title "; }
 Board:before			{ content: "Summary Board "; }
 BoardMember:before		{ content: "Board Member "; }
 Caption:before          { content: "Caption "; }
+ComprehensiveReviewDate:before
+                        { content: "Last Reviewed"; }
 DateLastModified:before	{ content: "Last Modified"; }
 Diagnosis:before		{ content: "Diagnosis "; }
 KeyPoint:before			{ content: "Key Point "; }
@@ -302,6 +305,7 @@ TranslationOf:before,
 /***************************************************************************/ 
 AltTitle:before,
 Caption:before,
+ComprehensiveReviewDate:before,
 DateLastModified:before,
 KeyPoint:before,
 MediaID:before,
@@ -336,6 +340,7 @@ Board,
 BoardMember,
 Caption,
 Comment,
+ComprehensiveReviewDate,
 DateLastModified,
 Diagnosis, 
 KeyPoint, 
@@ -367,6 +372,14 @@ ReplacementFor,
 
 
 /***************************************************************************/ 
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
+/***************************************************************************/ 
+
+/* Remove negative text-indent settings  */
+
+
+
+/***************************************************************************/ 
 /*                            FORM CONTROL                                 */ 
 /***************************************************************************/ 
 Board:before,
@@ -384,13 +397,18 @@ SecondaryTopics>Term:before,
 Board,
 BoardMember,
 Caption,
+ComprehensiveReviewDate
+DateLastModified,
 MainTopics>Term,
 MediaID,
+PatientVersionOf,
+ReplacementFor,
 SecondaryTopics>Term,				
 SummaryAudience,
 SummaryDescription,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
+TranslationOf,
 	{ text-indent: 0pt; }
 
