@@ -1,7 +1,12 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.6 2006-01-04 23:24:43 venglisc Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.7 2008-08-13 19:07:09 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.6  2006/01/04 23:24:43  venglisc
+ * Moved ProtocolProcessingDetails section from InScopeProtocol to
+ * CommonProtocolInfo style.
+ * Included ProtocolProcessingDetails to CTGovProtocol style. (Bug 1937)
+ *
  * Revision 1.5  2004/10/08 02:19:27  ameyer
  * Missed some spots in previous change of InterventionName -> ...Link.
  * Fixed them this time.
@@ -114,6 +119,7 @@ ListItem,
 Location,
 LowAge,
 MiddleInitial,
+NCT_Alias,
 NCTID,
 Name,
 OfficialTitle,
@@ -202,6 +208,7 @@ ListItem                     :before,
 Location                     :before,
 LowAge                       :before,
 MiddleInitial                :before,
+NCT_Alias                    :before,
 NCTID                        :before,
 Name                         :before,
 OfficialTitle                :before,
@@ -297,6 +304,7 @@ LinkText                     :before { content: "Link Text "; }
 Location                     :before { content: counter(Loc) ". LOCATION "; }
 LowAge                       :before { content: "Low Age "; }
 MiddleInitial                :before { content: "Middle Initial "; }
+NCT_Alias                    :before { content: "NCT_Alias "; }
 NCTID                        :before { content: "NCTID "; }
 Name                         :before { content: "Name "; }
 OfficialTitle                :before { content: "Official Title "; }
