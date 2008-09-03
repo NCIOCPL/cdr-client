@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.183 2008-07-21 16:14:57 bkline Exp $
+     $Id: Cdr.mcr,v 1.184 2008-09-03 15:04:11 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.183  2008/07/21 16:14:57  bkline
+     Added new macro to jump to the next markup of the most recently specified
+     level (request #4201).
+
      Revision 1.182  2008/05/29 20:21:42  bkline
      Tweaks to dialog text for validation messages.
 
@@ -4687,7 +4691,7 @@
 </MACRO>
 
 <MACRO  name="Jump To Next Markup"
-        key="Ctrl+Alt+Shift+J" 
+        key="Ctrl+Alt+J" 
         lang="JScript" 
         id="2911" 
         desc="Moves the selection to the next marked change if any" >
