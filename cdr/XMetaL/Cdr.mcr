@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.184 2008-09-03 15:04:11 bkline Exp $
+     $Id: Cdr.mcr,v 1.185 2008-09-04 14:02:41 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.184  2008/09/03 15:04:11  bkline
+     Changed hotkey for new macro at Sheri's request.
+
      Revision 1.183  2008/07/21 16:14:57  bkline
      Added new macro to jump to the next markup of the most recently specified
      level (request #4201).
@@ -892,7 +895,9 @@
             if (elName == "Received" ||
                 elName == "ChangesCategory" ||
                 elName == "Response" ||
-                elName == "Comment")
+                elName == "Comment"  ||
+                elName == "CallLog"  ||
+                elName == "Resolution")
                 return 0;
             return 1;
         }
@@ -3196,6 +3201,12 @@
                            "Response",                  // Tooltip.
                            "Insert Mailer Response",    // Description
                            "CDR", 6, 5,                 // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
+                           "Insert Mailer CallLog",     // Macro.
+                           "CallLog",                   // Tooltip.
+                           "Insert Mailer CallLog",     // Description
+                           "Integration (Custom)", 2, 7, // Icon set, row, col.
                            false)                       // Starts new group?
         );
         var cmdBars = Application.CommandBars;
@@ -6735,6 +6746,53 @@
   ]]>
 </MACRO>
 
+<MACRO name="Insert Mailer CallLog" 
+       lang="JScript" >
+  <![CDATA[
+    function insertMailerCallLog() {
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("CallLog", false)) {
+            Application.Alert(
+                    "Can't insert CallLog element");
+                return; 
+        }
+        var newElem = "<CallLog CallLogType='initial'><Comment user='"
+                    + CdrUserName
+                    + "' audience='Internal' date='"
+                    + getCurDateString()
+                    + "'><?xm-replace_text { "
+                    + "Enter a comment (required) }?></Comment>"
+                    + "<Resolution><?xm-replace_text { "
+                    + "Please select a resolution (required) }?>"
+                    + "</Resolution></CallLog>";
+        rng.PasteString(newElem);
+        rng.MoveToElement("Comment", false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+    }
+    insertMailerCallLog();
+  ]]>
+</MACRO>
+<MACRO name="Insert Mailer CallLog Backup" 
+       lang="JScript" >
+  <![CDATA[
+    function insertMailerCallLog() {
+        var rng = ActiveDocument.Range;
+        rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("CallLog", false)) {
+            Application.Alert(
+                    "Can't insert CallLog element");
+                return; 
+        }
+        rng.InsertWithTemplate("CallLog");
+        rng.Select();
+    }
+    insertMailerCallLog();
+  ]]>
+</MACRO>
 <MACRO name="Insert PDQ Board Info" 
        lang="JScript" >
   <![CDATA[
@@ -8203,7 +8261,7 @@
                     + CdrUserName
                     + "' audience='Internal' date='"
                     + getCurDateString()
-                    + "'><?xm-replace_text {Your comment here} ?></Comment>";
+                    + "'><?xm-replace_text { Your comment here }?></Comment>";
         rng.PasteString(newElem);
         rng.MoveToElement("Comment", false);
         rng.SelectElement();
