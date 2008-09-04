@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Mailer_structure.css                                             */
+/*      Mailer_structure.css                                             */
 /*                                                                       */
 /*      v. 2.4                                                           */
 /*      10/31/02  by ebator                                              */
@@ -28,58 +28,46 @@
 /*                                                                       */
 /*************************************************************************/
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
-@import "CdrCommonSchema_structure.css"; 
-
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema_structure.css";
 
 @sq-plus-minus;
-
 /* @sq-structure-view-icons; */
-
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
+    { margin-left: 0px;  }
 
-     { margin-left: 0px;  }
-
-$PROCINS 
-
-     { color: white;
-       font-weight: normal;
-       background-color: white;}
+$PROCINS
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
 
 Mailer,
-
-     { background-color: white; }
-
+    { background-color: white; }
 
 
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Address,
 AddressLine,
+CallLog,
 ChangesCategory,
 Comment,
 MailerAddress>Country,
@@ -94,111 +82,97 @@ ProtocolOrg,
 Received,
 Recipient,
 RemailerFor,
+Resolution,
 Response,
 Sent,
 Type,
-
-	{ display: block; }
-
+    { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+Address                  :before { content: "ADDRESS "; }
+AddressLine              :before { content: "Address Line "; }
+ChangesCategory          :before { content: "Changes Category "; }
+CallLog                  :before { content: "CALL LOG"; }
+Comment                  :before { content: "Comments "; }
+MailerAddress>Country    :before { content: "Country "; }
+Deadline                 :before { content: "Deadline "; }
+Document                 :before { content: "Document "; }
+JobId                    :before { content: "Job ID "; }
+Mailer                   :before { content: "MAILER "; }
+MailerAddress            :before { content: "MAILER ADDRESS "; }
+MailerResponse           :before { content: "Mailer Response "; }
+PostalCode               :before { content: "Postal Code "; }
+ProtocolOrg              :before { content: "Protocol Org "; }
+Received                 :before { content: "Received "; }
+Recipient                :before { content: "Recipient "; }
+RemailerFor              :before { content: "Remailer For "; }
+Resolution               :before { content: "Resolution"; }
+Response                 :before { content: "RESPONSE "; }
+Sent                     :before { content: "Sent "; }
+Type                     :before { content: "Type "; }
 
 
-Address:before				{ content: "ADDRESS "; }
-AddressLine:before			{ content: "Address Line "; }
-ChangesCategory:before			{ content: "Changes Category "; }
-Comment:before				{ content: "Comments "; }
-MailerAddress>Country:before		{ content: "Country "; }
-Deadline:before				{ content: "Deadline "; }
-Document:before				{ content: "Document "; }
-JobId:before				{ content: "Job ID "; }
-Mailer:before				{ content: "MAILER "; }
-MailerAddress:before			{ content: "MAILER ADDRESS "; }
-MailerResponse:before			{ content: "Mailer Response "; }
-PostalCode:before			{ content: "Postal Code "; }
-ProtocolOrg:before          { content: "Protocol Org "; }
-Received:before				{ content: "Received "; }
-Recipient:before			{ content: "Recipient "; }
-RemailerFor:before			{ content: "Remailer For "; }
-Response:before				{ content: "RESPONSE "; }
-Sent:before				{ content: "Sent "; }
-Type:before				{ content: "Type "; }
-
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
-
-Address:before,
-MailerAddress:before,
-
-   {  color: black;  
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+Address                  :before,
+MailerAddress            :before,
+    { color: black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
-      font-weight: bold;    }  
+      font-weight: bold;    }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDER CONTROL                                  */
 /***************************************************************************/
-  
-
 Address,
 MailerAddress,
 Response,
-
-     { border: none;  }
-
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+    { border: none;  }
 
 
-AddressLine:before,
-Comment:before,
-MailerAddress>Country:before,
-Deadline:before,
-Document:before,
-JobId:before,
-PostalCode:before,
-ProtocolOrg:before,
-Received:before,
-Recipient:before,
-RemailerFor:before,
-Response:before,
-Sent:before,
-
-   {  color:  black; 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+AddressLine              :before,
+Comment                  :before,
+MailerAddress>Country    :before,
+Deadline                 :before,
+Document                 :before,
+JobId                    :before,
+PostalCode               :before,
+ProtocolOrg              :before,
+Received                 :before,
+Recipient                :before,
+RemailerFor              :before,
+Resolution               :before,
+Response                 :before,
+Sent                     :before,
+    { color:  black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
-      font-weight: bold;    }  
+      font-weight: bold;    }
 
 
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */
+/***************************************************************************/
+ChangesCategory          :before,
+Type                     :before,
+    { font-weight: bold;
+      font-family: Arial, "sans serif";
+      font-size: 10pt;
+      color: black;      }
 
 
-ChangesCategory:before,
-Type:before,
-
-	{ font-weight: bold;
-	  font-family: Arial, "sans serif";
-      	  font-size: 10pt;
-	  color: black;      }
-
-
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Remove negative text-indent settings  */
-
 Address,
 AddressLine,
 ChangesCategory,
@@ -214,18 +188,16 @@ ProtocolOrg,
 Received,
 Recipient,
 RemailerFor,
+Resolution,
 Response,
 Sent,
 Type,
+    { text-indent: 0pt; }
 
-	{ text-indent: 0pt; }
 
-
-/***************************************************************************/ 
-/*                              HIDE TEXT                                  */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
 Address,
 AddressLine,
 ChangesCategory,
@@ -240,39 +212,36 @@ ProtocolOrg,
 Received,
 Recipient,
 RemailerFor,
+Resolution,
 Response,
 Sent,
 Type,
-
-     { color: white;
-       background-color: white; }
+    { color: white;
+      background-color: white; }
 
 Address,
-Address:before,
+Address                  :before,
 AddressLine,
-AddressLine:before,
-ChangesCategory:before,
-Comment:before,
-Country:before,
-MailerAddress:Country:before,
-Deadline:before,
-Document:before,
-JobId:before,
+AddressLine              :before,
+ChangesCategory          :before,
+Comment                  :before,
+Country                  :before,
+MailerAddress>Country    :before,
+Deadline                 :before,
+Document                 :before,
+JobId                    :before,
 MailerAddress,
-MailerAddress:before,
-MailerResponse:before,
+MailerAddress            :before,
+MailerResponse           :before,
 PostalAddress,
-ProtocolOrg:before,
-PostalAddress:before,
-PostalCode:before,
-Received:before,
-Recipient:before,
-RemailerFor:before,
-Response:before,
-Sent:before,
-Type:before,
-
-     { background-color: white; }
-
-
-
+ProtocolOrg              :before,
+PostalAddress            :before,
+PostalCode               :before,
+Received                 :before,
+Recipient                :before,
+RemailerFor              :before,
+Resolution               :before,
+Response                 :before,
+Sent                     :before,
+Type                     :before,
+    { background-color: white; }

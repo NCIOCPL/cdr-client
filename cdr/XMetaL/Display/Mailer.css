@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Mailer.css                                                       */
+/*      Mailer.css                                                       */
 /*                                                                       */
 /*      v. 2.4                                                           */
 /*      10/31/02  by ebator                                              */
@@ -28,47 +28,40 @@
 /*                                                                       */
 /*************************************************************************/
 
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
 
+@import "CdrCommonSchema.css";
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+$DOCUMENT
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      margin-top: 5px;
+      margin-left: 5px;
+      color:black;         }
 
+$COMMENT
+    { display: block;
+      color: purple;
+      white-space: pre; }
 
-@import "CdrCommonSchema.css"; 
-
-
-$DOCUMENT 
-
-     { font-family: Arial, sans-serif;
-       font-size: 12pt;
-       margin-top: 5px;
-       margin-left: 5px;
-       color:black;         }
-
-$COMMENT 
-
-     { display: block;
-       color: purple;
-       white-space: pre; }
-
-$PROCINS 
-
-     { color: blue;
-       background-color: white; }
+$PROCINS
+    { color: blue;
+      background-color: white; }
 
 Mailer,
+    { background-color: #CCCCFF;
+      text-decoration: none;
+      color: black; }
 
-     { background-color: #CCCCFF; }
 
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Address,
 AddressLine,
+CallLog,
 ChangesCategory,
 Comment,
 MailerAddress>Country,
@@ -82,189 +75,173 @@ ProtocolOrg,
 Received,
 Recipient,
 RemailerFor,
+Resolution,
 Response,
 Sent,
 Type,
-
 	{ display: block; }
 
 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+/* Container elements are displayed in ALL CAPS */
+/* * = Required field                           */
+/* + = Multiply-occurring field                 */
+/* @ = Attribute assigned to element            */
+/* & = Optional element                         */
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+Address                  :before { content: "ADDRESS * @"; }
+AddressLine              :before { content: "Address Line * +: "; }
+ChangesCategory          :before { content: "Changes Category *: "; }
+CallLog                  :before { content: "CALL Log & +"; }
+Comment                  :before { content: "Comments &: "; }
+CallLog>Comment          :before { content: "Comments * +: "; }
+CallLog>Resolution+Comment :before { content: "Comments & +: "; }
+MailerAddress>Country    :before { content: "Country *: "; }
+Deadline                 :before { content: "Deadline &: "; }
+Document                 :before { content: "Document * @: "; }
+JobId                    :before { content: "Job ID *: "; }
+MailerAddress            :before { content: "MAILER ADDRESS & "; }
+PostalCode               :before { content: "Postal Code &: "; }
+ProtocolOrg              :before { content: "Protocol Org &: "; }
+Received                 :before { content: "Received *: "; }
+Recipient                :before { content: "Recipient * @: "; }
+RemailerFor              :before { content: "Remailer For & @: ["attr(cdr\:ref) "]"; }
+Resolution               :before { content: "Resolution *: "; }
+Response                 :before { content: "RESPONSE & "; }
+Sent                     :before { content: "Sent *: "; }
+Type                     :before { content: "Type *: "; }
 
 
-/* * = Required field */
-/* + = Multiply-occurring field */
-/* @ = Attribute assigned to element */
-/* & = Optional element */
-
-
-Address:before				{ content: "ADDRESS * @"; }
-AddressLine:before			{ content: "Address Line * +: "; }
-ChangesCategory:before			{ content: "Changes Category *: "; }
-Comment:before				{ content: "Comments &: "; }
-MailerAddress>Country:before		{ content: "Country *: "; }
-Deadline:before				{ content: "Deadline &: "; }
-Document:before				{ content: "Document * @: "; }
-JobId:before				{ content: "Job ID *: "; }
-MailerAddress:before			{ content: "MAILER ADDRESS & "; }
-PostalCode:before			{ content: "Postal Code &: "; }
-ProtocolOrg:before          { content: "Protocol Org &: "; }
-Received:before				{ content: "Received *: "; }
-Recipient:before			{ content: "Recipient * @: "; }
-RemailerFor:before			{ content: "Remailer For & @: ["attr(cdr\:ref) "]"; }
-Response:before				{ content: "RESPONSE & "; }
-Sent:before				{ content: "Sent *: "; }
-Type:before				{ content: "Type *: "; }
-
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 Address:before,
 MailerAddress:before,
- 
-	{  font-weight: bold;
-	   font-size: 12pt;
-           color: black;        }  
+    { font-weight: bold;
+      font-size: 12pt;
+      color: black;        }
 
 Address,
 MailerAddress,
+    { margin-top: .5em;
+      margin-bottom: .5em;   }
 
-	{  margin-top: .5em;  
-	   margin-bottom: .5em;   }
-
+CallLog,
 Document,
 Response,
 Type,
-
-	{ margin-top: 1em;  }
-
+    { margin-top: 1em;  }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
-  
-
 Address,
 MailerAddress,
 Response,
-
-   { border: solid; 
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
+    { border: solid;
+      border-color: black;
+      border-width: thin;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
 
 Address:before,
 MailerAddress:before,
-
-     { font-weight: bold;
-       font-size: 12pt;
-       color: black;  }
-
-
-
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
-
-
-AddressLine:before,
-Comment:before,
-MailerAddress>Country:before,
-Deadline:before,
-Document:before,
-JobId:before,
-PostalCode:before,
-ProtocolOrg:before,
-Received:before,
-Recipient:before,
-RemailerFor:before,
-Response:before,
-Sent:before,
-
-   {  font-weight: bold;
+    { font-weight: bold;
+      font-size: 12pt;
       color: black;  }
 
 
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+AddressLine              :before,
+CallLog                  :before,
+Comment                  :before,
+MailerAddress>Country    :before,
+Deadline                 :before,
+Document                 :before,
+JobId                    :before,
+PostalCode               :before,
+ProtocolOrg              :before,
+Received                 :before,
+Recipient                :before,
+RemailerFor              :before,
+Resolution               :before,
+Response                 :before,
+Sent                     :before,
+    { font-weight: bold;
+      color: black;  }
 
 
-ChangesCategory:before,
-Type:before,
+/***************************************************************************/
+/*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */
+/***************************************************************************/
+ChangesCategory          :before,
+Type                     :before,
+    { font-weight: bold;
+      color: black;      }
 
-	{ font-weight: bold;
-	  color: black;      }
 
-
-/***************************************************************************/ 
-/*        SUPPRESS REMAILERFOR TEXT, DISPLAY ONLY THE ATTRIBUTE            */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*        SUPPRESS REMAILERFOR TEXT, DISPLAY ONLY THE ATTRIBUTE            */
+/***************************************************************************/
 RemailerFor,
+    { color:  #CCCCFF;}
 
-	{ color:  #CCCCFF;}
 
-
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 /* Common elements that are part of the form are defined here              */
-
 
 /* Key element for length = RemailerFor (line up other elements with the   */
 /* colon in the RemailerFor before text (can't display:none the text)	   */
 /* Otherwise, the elements should have a left margin of 95pt               */
-
-Type,					{ margin-left: 115pt; 
-					  text-indent: -43.5pt; }
-RemailerFor,				{ margin-left: 220pt; 
-					  text-indent: -212pt; }
-JobId,					{ margin-left: 115pt; 
-					  text-indent: -51.5pt; }
-Recipient,				{ margin-left: 115pt; 
-					  text-indent: -84pt; }				
-ProtocolOrg,			{ margin-left: 115pt; 
-					  text-indent: -92pt; }				
+Type,                             { margin-left: 115pt;
+                                    text-indent: -43.5pt; }
+RemailerFor,                      { margin-left: 220pt;
+                                    text-indent: -212pt; }
+JobId,                            { margin-left: 115pt;
+                                    text-indent: -51.5pt; }
+Recipient,                        { margin-left: 115pt;
+                                    text-indent: -84pt; }
+ProtocolOrg,                      { margin-left: 115pt;
+                                    text-indent: -92pt; }
 
 /* Key element for length = AddressLine                                    */
+MailerAddress>Country,            { margin-left: 125pt;
+                                    text-indent: -61.5pt; }
+PostalCode,                       { margin-left: 125pt;
+                                    text-indent: -89.5pt; }
+AddressLine,                      { margin-left: 125pt;
+                                    text-indent: -100.5pt; }
 
-MailerAddress>Country,			{ margin-left: 125pt; 
-					  text-indent: -61.5pt; }
-PostalCode,				{ margin-left: 125pt; 
-					  text-indent: -89.5pt; }
-AddressLine,				{ margin-left: 125pt; 
-					  text-indent: -100.5pt; }
 
-
-/* Key element for length = Document					   */
-
-Document,				{ margin-left: 95pt; 
-					  text-indent: -89pt; }
-Sent,					{ margin-left: 95pt; 
-					  text-indent: -41.5pt; }
-Deadline,				{ margin-left: 95pt; 
-					  text-indent: -70pt; }
+/* Key element for length = Document   */
+Document,                         { margin-left: 95pt;
+                                    text-indent: -89pt; }
+Sent,                             { margin-left: 95pt;
+                                    text-indent: -41.5pt; }
+Deadline,                         { margin-left: 95pt;
+                                    text-indent: -70pt; }
 
 /* Key element for length = ChangesCategory                                */
-
-Received,				{ margin-left: 125pt; 
-					  text-indent: -68.5pt; }
-ChangesCategory,			{ margin-left: 125pt; 
-					  text-indent: -122.5pt; }
-Comment,				{ margin-left: 125pt; 
-					  text-indent: -82pt; }
-
+Received,                         { margin-left: 125pt;
+                                    text-indent: -68.5pt; }
+ChangesCategory,                  { margin-left: 125pt;
+                                    text-indent: -122.5pt; }
+Comment,                          { margin-left: 125pt;
+                                    text-indent: -82.5pt; }
+CallLog>Comment,                  { margin-left: 125pt;
+                                    text-indent: -88pt; }
+CallLog>Resolution+Comment,       { margin-left: 125pt;
+                                    text-indent: -92pt; }
+Resolution,                       { margin-left: 125pt;
+                                    text-indent: -78pt; }
 
 Address,
 AddressLine,
@@ -277,33 +254,27 @@ Document,
 JobId,
 MailerAddress,
 PostalCode,
+Resolution,
 Received,
 Recipient,
 RemailerFor,
 Response,
 Sent,
 Type,
+    { margin-bottom: 4pt; }
 
-	{ margin-bottom: 4pt; }
-
-
+CallLog>Comment,
 Received,
-
-	{ margin-top: 4pt; }
-
+    { margin-top: 4pt; }
 
 PostalAddress,
-
-	{ margin-top: 8pt; }
-
+    { margin-top: 8pt; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 /* Common elements that are part of the form are defined here              */
-
 
 AddressLine,
 ChangesCategory,
@@ -314,38 +285,38 @@ Document,
 JobId,
 PostalCode,
 ProtocolOrg,
+Resolution,
 Received,
 Recipient,
 /*RemailerFor,*/
 Sent,
 Type,
-
-	{ background-color: white; }
+    { background-color: white; }
 
 
 Address,
-Address:before,
-AddressLine:before,
-ChangesCategory:before,
-Comment:before,
-Country:before,
-MailerAddress>Country:before,
-Deadline:before,
-Document:before,
-JobId:before,
+Address                  :before,
+AddressLine              :before,
+ChangesCategory          :before,
+Comment                  :before,
+Country                  :before,
+MailerAddress>Country    :before,
+Deadline                 :before,
+Document                 :before,
+JobId                    :before,
 MailerAddress,
-MailerAddress:before,
+MailerAddress            :before,
 PostalAddress,
-PostalAddress:before,
-PostalCode:before,
-PostalCode_ZIP:before,
-ProtocolOrg:before,
-Received:before,
-Recipient:before,
-RemailerFor:before,
+PostalAddress            :before,
+PostalCode               :before,
+PostalCode_ZIP           :before,
+ProtocolOrg              :before,
+Received                 :before,
+Recipient                :before,
+RemailerFor              :before,
+Resolution               :before,
 Response,
-Response:before,
-Sent:before,
-Type:before,
-
-	{ background-color: #CCCCFF; }
+Response                 :before,
+Sent                     :before,
+Type                     :before,
+    { background-color: #CCCCFF; }
