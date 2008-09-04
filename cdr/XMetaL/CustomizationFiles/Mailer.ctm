@@ -1,9 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
-  <ElementPropertiesList>
-    <GlobalPrettyPrintOptions>
-      <NoPrettyPrinting/>
-    </GlobalPrettyPrintOptions>
-  </ElementPropertiesList>
+ <ElementPropertiesList>
+  <GlobalPrettyPrintOptions>
+   <NoPrettyPrinting/>
+  </GlobalPrettyPrintOptions>
+ </ElementPropertiesList>
+ <Templates>
+  <Template>
+   <Name>Response</Name>
+   <MiniTemplate><![CDATA[<Response>
+     <Received><?xm-replace_text {
+         Enter response received date (required)
+         }?></Received>
+      <ChangesCategory><?xm-replace_text {
+         Select the changes category (required)
+         }?></ChangesCategory>
+    </Response>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CallLog</Name>
+   <MiniTemplate><![CDATA[<CallLog CallLogType="initial">
+     <Comment><?xm-replace_text {
+         Enter a comment (required)
+         }?></Comment>
+     <Resolution><?xm-replace_text {
+         Please select resolution (required)
+         }?></Resolution>
+     </CallLog>]]></MiniTemplate>
+  </Template>
+ </Templates>
 </DTDExtensions>
