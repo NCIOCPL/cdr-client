@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.185 2008-09-04 14:02:41 venglisc Exp $
+     $Id: Cdr.mcr,v 1.186 2008-09-17 20:14:59 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.185  2008/09/04 14:02:41  venglisc
+     Added new macros to add CallLog block to mailer document. (Bug 4256)
+
      Revision 1.184  2008/09/03 15:04:11  bkline
      Changed hotkey for new macro at Sheri's request.
 
@@ -892,6 +895,7 @@
         var elName = Selection.ContainerNode.nodeName;
         if (elName == "DocId" || elName == "DocType") { return 1; }
         if (dtName == "Mailer") {
+            //Application.Alert('[' + elName + ']');
             if (elName == "Received" ||
                 elName == "ChangesCategory" ||
                 elName == "Response" ||
@@ -1165,6 +1169,7 @@
             Selection.ReadOnlyContainer = false;
         }
     }
+
 
     if (ActiveDocument == null
     ||  ActiveDocument.documentElement == null
@@ -3207,6 +3212,12 @@
                            "CallLog",                   // Tooltip.
                            "Insert Mailer CallLog",     // Description
                            "Integration (Custom)", 2, 7, // Icon set, row, col.
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,                        // Label.
+                           "Delete Mailer CallLog",     // Macro.
+                           "Delete CallLog",            // Tooltip.
+                           "Delete Mailer CallLog",     // Description
+                           "Integration (Custom)", 5, 7, // Icon set, row, col.
                            false)                       // Starts new group?
         );
         var cmdBars = Application.CommandBars;
@@ -6750,6 +6761,7 @@
        lang="JScript" >
   <![CDATA[
     function insertMailerCallLog() {
+        Application.Alert("XXX In insert CallLog");
         var rng = ActiveDocument.Range;
         rng.MoveToDocumentEnd();
         if (!rng.FindInsertLocation("CallLog", false)) {
@@ -6776,23 +6788,45 @@
     insertMailerCallLog();
   ]]>
 </MACRO>
-<MACRO name="Insert Mailer CallLog Backup" 
+
+<MACRO name="Delete Mailer CallLog" 
        lang="JScript" >
   <![CDATA[
-    function insertMailerCallLog() {
+    function deleteMailerCallLog() {
         var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.FindInsertLocation("CallLog", false)) {
-            Application.Alert(
-                    "Can't insert CallLog element");
-                return; 
+        var sel = Application.Selection;
+        var container = rng.ContainerName;
+        //Application.Alert('Selection delete: ' + rng.CanDelete)
+
+        if (container == 'Mailer') {
+            Application.Alert("Deletion of block in tags-on view is not supported");
+            sel.Collapse(1);
+            return 0;
+            //sel.MoveToElement("Resolution", true);
+            //sel.SelectContainerContents();
+            //sel.Delete();
+            //var rng2 = ActiveDocument.Range;
+            //rng2.MoveToElement("Resolution", true);
+            //rng2.MoveToElement("CallLog", false);
+            //rng2.SelectContainerContents();
+            //rng2.Delete();
+            //rng2.RemoveContainerTags();
         }
-        rng.InsertWithTemplate("CallLog");
-        rng.Select();
+        else if (container == 'Response') {
+            rng.MoveToElement("Response", false);
+        }
+        else {
+            rng.MoveToElement("CallLog", false);
+        }
+        rng.SelectContainerContents();
+        rng.Delete();
+        rng.RemoveContainerTags();
+        return 0;
     }
-    insertMailerCallLog();
+    deleteMailerCallLog();
   ]]>
 </MACRO>
+
 <MACRO name="Insert PDQ Board Info" 
        lang="JScript" >
   <![CDATA[
