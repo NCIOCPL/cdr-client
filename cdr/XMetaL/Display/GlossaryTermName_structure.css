@@ -6,9 +6,9 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/
-/*                     DEFAULT PROPERTIES                                 */
-/**************************************************************************/
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
 
@@ -60,32 +60,37 @@ TermPronunciation,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-Comment                    :before { content: "Comments"; }
-DateLastModified           :before { content: "Last Modified"; }
-GlossaryTermConcept        :before { content: "Glossary Concept"; }
-PronunciationResource      :before { content: "Pronunciation Resource"; }
-TermName                   :before { content: "TERM NAME"; }
-TermNameStatus             :before { content: "Term Status"; }
-TermNameStatusDate         :before { content: "Term Status Date"; }
-TermNameString             :before { content: "Term String "; }
-TermNameSourceVerification :before { content: "Source Verification"; }
-TermPronunciation          :before { content: "Term Pronunciation"; }
-TranslationResource        :before { content: "Translation Resource"; }
-
+Comment                      :before { content: "Comments"; }
+DateLastModified             :before { content: "Last Modified"; }
+GlossaryTermConcept          :before { content: "Glossary Concept"; }
+PronunciationResource        :before { content: "Pronunciation Resource"; }
+ReplacementText              :before { content: "Replacement Text"; }
+TermName                     :before { content: "TERM NAME"; }
+TermNameStatus               :before { content: "Term Status"; }
+TermNameStatusDate           :before { content: "Term Status Date"; }
+TermNameString               :before { content: "Term String "; }
+TermNameSource               :before { content: "Source"; }
+TermNameSourceVerification   :before { content: "Source Verification"; }
+TermNameVerificationResource :before { content: "Verification Resource"; }
+TermPronunciation            :before { content: "Term Pronunciation"; }
+TranslatedName               :before { content: "TRANSLATED NAME ["attr(language)"]"; }
+TranslationResource          :before { content: "Translation Resource"; }
+TranslatedNameStatus         :before { content: "Translated Name Status"; }
+TranslatedNameStatusDate     :before { content: "Translated Name Status Date"; }
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-GlossaryTerm:before,
+GlossaryTerm                 :before,
     { color: black; }
      
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
-Comment:before,
-TermName:before,
-TermPronunciation:before,
+Comment                      :before,
+TermName                     :before,
+TermPronunciation            :before,
     { font-weight: bold;
       color: black;  }
 
@@ -93,9 +98,9 @@ TermPronunciation:before,
 /***************************************************************************/
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
 /***************************************************************************/
-TermSource:before,
-TermStatus:before,
-TermType:before,
+TermSource                   :before,
+TermStatus                   :before,
+TermType                     :before,
     { font-weight: bold;
       color: black;  }
 
@@ -113,9 +118,13 @@ PronunciationResource,
 TermNameStatus,
 TermNameStatusDate,
 TermNameString,
+TermNameSource,
 TermNameSourceVerification,
+TermNameVerificationResource,
 TermPronunciation,
 TranslationResource,
+TranslatedNameStatus,
+TranslatedNameStatusDate,
     { text-indent: 0pt; }
 
 
@@ -126,25 +135,35 @@ Comment,
 DateLastModified,
 GlossaryTermConcept,
 PronunciationResource,
+ReplacementText,
 TermNameStatus,
 TermNameStatusDate,
 TermNameString,
+TermNameSource,
 TermNameSourceVerification,
+TermNameVerificationResource,
 TermPronunciation,
 TranslationResource,
+TranslatedNameStatus,
+TranslatedNameStatusDate,
     { color: white;
       background-color: white; }
 
 
-Comment                    :before,
-DateLastModified           :before,
-GlossaryTermConcept        :before,
-PronunciationResource      :before,
-TermName                   :before,
-TermNameStatus             :before,
-TermNameStatusDate         :before,
-TermNameString             :before,
-TermNameSourceVerification :before,
-TermPronunciation          :before,
-TranslationResource        :before,
+Comment                      :before,
+DateLastModified             :before,
+GlossaryTermConcept          :before,
+PronunciationResource        :before,
+ReplacementText              :before,
+TermName                     :before,
+TermNameStatus               :before,
+TermNameStatusDate           :before,
+TermNameString               :before,
+TermNameSource               :before,
+TermNameSourceVerification   :before,
+TermNameVerificationResource :before,
+TermPronunciation            :before,
+TranslationResource          :before,
+TranslatedNameStatus         :before,
+TranslatedNameStatusDate     :before,
     { background-color: white; }
