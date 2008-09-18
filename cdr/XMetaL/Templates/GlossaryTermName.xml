@@ -22,16 +22,33 @@
   <TermNameSource><?xm-replace_text {
          Optionally select the TermNameSource
          }?></TermNameSource>
-  <TermNameSourceVerification><?xm-replace_text {
+  <TermNameVerificationResource><?xm-replace_text {
          Optionally enter the term name source verification
-         }?></TermNameSourceVerification>
-  <TermNameStatus><?xm-replace_text {
+         }?></TermNameVerificationResource>
+ </TermName>
+ <TermNameStatus><?xm-replace_text {
          Optionally enter the term status
          }?></TermNameStatus>
-  <TermNameStatusDate><?xm-replace_text {
+ <TermNameStatusDate><?xm-replace_text {
          Optionally enter the term status date
          }?></TermNameStatusDate>
- </TermName>
+ <TranslatedName language='es'>
+  <TermNameString><?xm-replace_text {
+         Enter the Spanish term name (required)
+         }?></TermNameString>
+  <TranslationResource><?xm-replace_text {
+         Optionally enter the translation resource
+         }?></TranslationResource>
+  <TranslatedNameStatus><?xm-replace_text {
+         Enter the translated name status (required)
+         }?></TranslatedNameStatus>
+  <TranslatedNameStatusDate><?xm-replace_text {
+         Optionally enter the translated name status date
+         }?></TranslatedNameStatusDate>
+  <DateLastModified><?xm-replace_text {
+         Optionally enter the last modification date
+         }?></DateLastModified>
+ </TranslatedName>
  <GlossaryTermConcept><?xm-replace_text {
          Enter a glossary Term concept (required)
          }?></GlossaryTermConcept>
