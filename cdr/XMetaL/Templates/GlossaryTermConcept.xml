@@ -13,9 +13,6 @@
   <DefinitionText><?xm-replace_text {
          Enter a definition for the concept (required)
          }?></DefinitionText>
-  <ReplacementText name="TERMNAME"><?xm-replace_text {
-         Optionally enter the replacement text and its attribute
-         }?></ReplacementText>
   <DefinitionResource><?xm-replace_text {
          Optionally enter DefinitionResource
          }?></DefinitionResource>
@@ -32,6 +29,23 @@
          Optionally enter a Status date
          }?></StatusDate>
  </TermDefinition> 
+ <TranslatedTermDefinition language="es">
+  <DefinitionText><?xm-replace_text {
+         Enter a definition for the concept (required)
+         }?></DefinitionText>
+  <Dictionary><?xm-replace_text {
+         Optionally select a dictionary
+         }?></Dictionary>
+  <Audience><?xm-replace_text {
+         Select HP or patient (required)
+         }?></Audience>
+  <TranslatedStatus><?xm-replace_text {
+         Optionally select the DefinitionStatus
+         }?></TranslatedStatus>
+  <TranslatedStatusDate><?xm-replace_text {
+         Optionally enter a Status date
+         }?></TranslatedStatusDate>
+ </TranslatedTermDefinition>
  <TermType><?xm-replace_text {
          Select the TermType (required)
          }?></TermType>

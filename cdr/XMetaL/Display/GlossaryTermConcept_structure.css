@@ -56,6 +56,7 @@ DateLastReviewed,
 GlossaryTerm,
 DefinitionResource,
 DefinitionStatus,
+TranslatedStatus,
 DefinitionText,
 Dictionary,
 MediaID,
@@ -63,8 +64,8 @@ MediaLink,
 PdqKey,
 ReplacementText,
 PronunciationResource,
-SpanishTermName,
 StatusDate,
+TranslatedStatusDate,
 TermName,
 TermPronunciation,
 TermSource,
@@ -97,11 +98,10 @@ RelatedInformation      :before { content: "RELATED INFORMATION"; }
 RelatedDrugSummaryRef   :before { content: "Rel Drug Summary Ref"; }
 RelatedExternalRef      :before { content: "Rel External Ref"; }
 RelatedSummaryRef       :before { content: "Rel Summary Ref"; }
-SpanishTermDefinition   :before { content: "SPANISH DEFINITION"; }
-SpanishTermDefinition>DefinitionText            
-                        :before { content: "Spanish Definition  "; }
-SpanishTermName         :before { content: "Spanish Term Name "; }
-StatusDate              :before { content: "Status Date "; }
+StatusDate              :before { content: "Status Date"; }
+TranslatedTermDefinition:before { content: "TRANSLATED DEFINITION"; }
+TranslatedTermDefinition>DefinitionText            
+                        :before { content: "Translated Definition"; }
 TermDefinition          :before { content: "TERM DEFINITION"; }
 TermDefinition>DefinitionText                 
                         :before { content: "Term Definition "; }
@@ -110,6 +110,8 @@ TermPronunciation       :before { content: "Term Pronunciation "; }
 TermSource              :before { content: "Term Source "; }
 TermStatus              :before { content: "Term Status "; }
 TermType                :before { content: "Term Type  "; }
+TranslatedStatus        :before { content: "Translated Status"; }
+TranslatedStatusDate    :before { content: "Translated Status Date"; }
 TranslationResource     :before { content: "Translation Resource"; }
 
 
@@ -125,7 +127,7 @@ GlossaryTerm:before,
 /***************************************************************************/
 TermDefinition,
 RelatedInformation,
-SpanishTermDefinition,
+TranslatedTermDefinition,
     { border: none; }
 
 
@@ -133,12 +135,11 @@ SpanishTermDefinition,
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
 Comment             :before,
-DefinitionStatus    :before,
+TranslatedStatus    :before,
 DefinitionText      :before,
 Audience            :before,
 Dictionary          :before,
-SpanishTermName     :before,
-StatusDate          :before,
+TranslatedStatusDate:before,
 TermName            :before,
 TermPronunciation   :before,
 TranslationRecourse :before,
@@ -149,9 +150,9 @@ TranslationRecourse :before,
 /***************************************************************************/
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
 /***************************************************************************/
-TermSource :before,
-TermStatus :before,
-TermType   :before,
+TermSource          :before,
+TermStatus          :before,
+TermType            :before,
     { font-weight: bold;
       color: black;  }
 
@@ -169,6 +170,7 @@ DateLastReviewed,
 GlossaryTerm,
 DefinitionResource,
 DefinitionStatus,
+TranslatedStatus,
 DefinitionText,
 Dictionary,
 MediaID,
@@ -180,8 +182,8 @@ PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
 RelatedSummaryRef,
-SpanishTermName,
 StatusDate,
+TranslatedStatusDate,
 TermName,
 TermPronunciation,
 TermSource,
@@ -201,6 +203,7 @@ DateLastModified,
 DateLastReviewed,
 DefinitionResource,
 DefinitionStatus,
+TranslatedStatus,
 GlossaryTerm,
 DefinitionText,
 Dictionary,
@@ -214,8 +217,8 @@ PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
 RelatedSummaryRef,
-SpanishTermName,
 StatusDate,
+TranslatedStatusDate,
 TermName,
 TermPronunciation,
 TermSource,
@@ -226,33 +229,34 @@ TranslationResource,
       background-color: white; }
 
 
-Audience              :before,   
-Caption               :before,
-Comment               :before,
-DateLastModified      :before,
-DateLastReviewed      :before,
-DefinitionResource    :before,
-DefinitionStatus      :before,
-GlossaryTerm          :before,
-DefinitionText        :before,
-Dictionary            :before,
-MediaID               :before,
-MediaLink             :before,
-NCIThesaurusID        :before,
-PdqKey                :before,
-PDQTerm               :before,
-ReplacementText       :before,
-PronunciationResource :before,
-RelatedDrugSummaryRef :before,
-RelatedExternalRef    :before,
-RelatedSummaryRef     :before,
-SpanishTermDefinition :before,
-SpanishTermName       :before,
-StatusDate            :before,
-TermName              :before,
-TermPronunciation     :before,
-TermSource            :before,
-TermStatus            :before,
-TermType              :before,
-TranslationResource   :before,
+Audience                :before,   
+Caption                 :before,
+Comment                 :before,
+DateLastModified        :before,
+DateLastReviewed        :before,
+DefinitionResource      :before,
+DefinitionStatus        :before,
+TranslatedStatus        :before,
+GlossaryTerm            :before,
+DefinitionText          :before,
+Dictionary              :before,
+MediaID                 :before,
+MediaLink               :before,
+NCIThesaurusID          :before,
+PdqKey                  :before,
+PDQTerm                 :before,
+ReplacementText         :before,
+PronunciationResource   :before,
+RelatedDrugSummaryRef   :before,
+RelatedExternalRef      :before,
+RelatedSummaryRef       :before,
+StatusDate              :before,
+TranslatedTermDefinition:before,
+TranslatedStatusDate    :before,
+TermName                :before,
+TermPronunciation       :before,
+TermSource              :before,
+TermStatus              :before,
+TermType                :before,
+TranslationResource     :before,
     { background-color: white; }
