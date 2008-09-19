@@ -40,6 +40,7 @@ DrugInformationSummary,
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 Audience,
+ApprovedIndication,
 DrugInformationSummary>Comment,
 DateLastModified,
 Description,
@@ -80,6 +81,7 @@ URL,
 
 
 Audience                 :before, { content: "Audience *: "; }
+ApprovedIndication       :before, { content: "Appr Indication & +: "; }
 DrugInformationSummary>Comment :before, { content: "Comments &: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
@@ -121,6 +123,7 @@ MediaContent,
 /*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
 /***************************************************************************/ 
 Audience                 :before,
+ApprovedIndication       :before,
 Comment                  :before,
 DateLastModified         :before,
 Description              :before,
@@ -176,6 +179,9 @@ Para>ResponseToComment   :before
 Audience,
                         { margin-left: 130pt;
                           text-indent: -70pt; }
+ApprovedIndication,
+                        { margin-left: 130pt;
+                          text-indent: -117pt; }
 DateLastModified,
                         { margin-left: 130pt;
                           text-indent: -126pt; }
@@ -249,6 +255,7 @@ URL,
 /*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
 /***************************************************************************/ 
 Audience,
+ApprovedIndication,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -295,6 +302,7 @@ SummarySection>Title,
 /***************************************************************************/ 
 /* Background color for Fields (Do not include Container Elements here */
 Audience,
+ApprovedIndication,
 Comment,
 DateLastModified,
 Description,
@@ -322,6 +330,7 @@ URL,
 
 /* Background color for Text Labels */
 Audience                 :before,
+ApprovedIndication       :before,
 Comment                  :before,
 DateLastModified         :before,
 Description              :before,
