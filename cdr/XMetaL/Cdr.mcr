@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.186 2008-09-17 20:14:59 venglisc Exp $
+     $Id: Cdr.mcr,v 1.187 2008-09-23 19:14:26 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.186  2008/09/17 20:14:59  venglisc
+     Added macro to allow deleting a CallLog block. (Bug 4256)
+
      Revision 1.185  2008/09/04 14:02:41  venglisc
      Added new macros to add CallLog block to mailer document. (Bug 4256)
 
@@ -6761,7 +6764,7 @@
        lang="JScript" >
   <![CDATA[
     function insertMailerCallLog() {
-        Application.Alert("XXX In insert CallLog");
+        // Application.Alert("XXX In insert CallLog");
         var rng = ActiveDocument.Range;
         rng.MoveToDocumentEnd();
         if (!rng.FindInsertLocation("CallLog", false)) {
