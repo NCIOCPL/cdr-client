@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.187 2008-09-23 19:14:26 venglisc Exp $
+     $Id: Cdr.mcr,v 1.188 2008-09-26 16:48:52 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.187  2008/09/23 19:14:26  venglisc
+     Removed one alert box that I missed (Bug 4256)
+
      Revision 1.186  2008/09/17 20:14:59  venglisc
      Added macro to allow deleting a CallLog block. (Bug 4256)
 
@@ -2969,6 +2972,12 @@
                            "Edit Concept Document",
                            "CDR", 5, 3,
                            false)
+            new CdrCmdItem(null,
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Publish Preview",
+                           "Structure (Custom)", 1, 8,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -3010,7 +3019,7 @@
 
         var buttons = new Array(
             new CdrCmdItem(null,                        // Label.
-                           "Generate QC Report",        // Macro.
+                           "DrugInfo QC Report",        // Macro.
                            "QC Report",                 // Tooltip.
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
@@ -6094,6 +6103,29 @@
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId
                 + "&Filter=name:TermSet QC Report Filter";
+        cdrObj.showPage(url);
+    }
+    qcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="DrugInfo QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "QcReport.py?DocType=DIS&DocId="
+                            + docId
+                            + "&Session="
+                            + CdrSession;
         cdrObj.showPage(url);
     }
     qcReport();
