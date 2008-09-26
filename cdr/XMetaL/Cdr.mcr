@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.189 2008-09-26 16:51:37 venglisc Exp $
+     $Id: Cdr.mcr,v 1.190 2008-09-26 16:57:58 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.189  2008/09/26 16:51:37  venglisc
+     Missed a comma in previous commit.
+
      Revision 1.188  2008/09/26 16:48:52  venglisc
      Adding Publish Preview icon to Glossary Term Name toolbar. (Bug 3491)
 
@@ -1176,6 +1179,7 @@
         }
         else {
             Selection.ReadOnlyContainer = false;
+            Selection.WritePermittedContainer = true;
         }
     }
 
@@ -6802,10 +6806,11 @@
         // Application.Alert("XXX In insert CallLog");
         var rng = ActiveDocument.Range;
         rng.MoveToDocumentEnd();
+        var roFlag = Selection.ReadOnlyContainer;
+        Selection.ReadOnlyContainer = false;
         if (!rng.FindInsertLocation("CallLog", false)) {
-            Application.Alert(
-                    "Can't insert CallLog element");
-                return; 
+            Application.Alert("Can't insert CallLog element");
+            return; 
         }
         var newElem = "<CallLog CallLogType='initial'><Comment user='"
                     + CdrUserName
@@ -6822,6 +6827,7 @@
         rng.Collapse(1);
         rng.MoveRight();
         rng.Select();
+        Selection.ReadOnlyContainer = roFlag;
     }
     insertMailerCallLog();
   ]]>
@@ -6831,35 +6837,21 @@
        lang="JScript" >
   <![CDATA[
     function deleteMailerCallLog() {
-        var rng = ActiveDocument.Range;
-        var sel = Application.Selection;
-        var container = rng.ContainerName;
-        //Application.Alert('Selection delete: ' + rng.CanDelete)
-
-        if (container == 'Mailer') {
-            Application.Alert("Deletion of block in tags-on view is not supported");
-            sel.Collapse(1);
-            return 0;
-            //sel.MoveToElement("Resolution", true);
-            //sel.SelectContainerContents();
-            //sel.Delete();
-            //var rng2 = ActiveDocument.Range;
-            //rng2.MoveToElement("Resolution", true);
-            //rng2.MoveToElement("CallLog", false);
-            //rng2.SelectContainerContents();
-            //rng2.Delete();
-            //rng2.RemoveContainerTags();
+        Selection.MoveRight(0);
+        Selection.MoveLeft(0);
+        var rng = getElemRange('CallLog');
+        if (!rng) {
+            Application.Alert('Not in a CallLog block');
+            return;
         }
-        else if (container == 'Response') {
-            rng.MoveToElement("Response", false);
+        rng.SelectElement();
+        rng.ReadOnlyContainer = false;
+        if (rng.CanDelete) {
+            rng.Delete();
         }
         else {
-            rng.MoveToElement("CallLog", false);
+             Application.Alert("Unable to delete CallLog block");
         }
-        rng.SelectContainerContents();
-        rng.Delete();
-        rng.RemoveContainerTags();
-        return 0;
     }
     deleteMailerCallLog();
   ]]>
