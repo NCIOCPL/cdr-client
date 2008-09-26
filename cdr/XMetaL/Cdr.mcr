@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.188 2008-09-26 16:48:52 venglisc Exp $
+     $Id: Cdr.mcr,v 1.189 2008-09-26 16:51:37 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.188  2008/09/26 16:48:52  venglisc
+     Adding Publish Preview icon to Glossary Term Name toolbar. (Bug 3491)
+
      Revision 1.187  2008/09/23 19:14:26  venglisc
      Removed one alert box that I missed (Bug 4256)
 
@@ -2971,7 +2974,7 @@
                            "Edit GT Concept",     
                            "Edit Concept Document",
                            "CDR", 5, 3,
-                           false)
+                           false),
             new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
