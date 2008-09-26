@@ -42,6 +42,7 @@ DrugInformationSummary,
 Audience,
 ApprovedIndication,
 DrugInformationSummary>Comment,
+DrugReference>Comment,
 DateLastModified,
 Description,
 DrugInfoMetaData,
@@ -83,6 +84,7 @@ URL,
 Audience                 :before, { content: "Audience *: "; }
 ApprovedIndication       :before, { content: "Appr Indication & +: "; }
 DrugInformationSummary>Comment :before, { content: "Comments &: "; }
+DrugReference>Comment    :before, { content: "Comments & +: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
@@ -188,6 +190,9 @@ DateLastModified,
 DrugInformationSummary>Comment,
                         { margin-left: 130pt; 
                           text-indent: -82.5pt; }
+DrugReference>Comment,
+                        { margin-left: 130pt; 
+                          text-indent: -92pt; }
 Description,
                         { margin-left: 130pt;
                           text-indent: -82pt; }
