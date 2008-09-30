@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.190 2008-09-26 16:57:58 bkline Exp $
+     $Id: Cdr.mcr,v 1.191 2008-09-30 13:59:12 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.190  2008/09/26 16:57:58  bkline
+     Rewrote macro to delete a CallLog block.
+
      Revision 1.189  2008/09/26 16:51:37  venglisc
      Missed a comma in previous commit.
 
@@ -708,6 +711,25 @@
         var val  = getTextContent(elem);
         if (val.length < 1) { return null; }
         return val;
+    }
+
+    /*
+     * Extracts the CDR fragment ID for the enclosing block.
+     */
+    function getFragId() {
+        var node   = Selection.ContainerNode;
+        var depth  = 5;
+        while (node) {
+            if (depth-- < 1)
+                return null;
+            if (node.nodeType == 1) {
+                var fragId = node.getAttribute("cdr:id");
+                if (fragId.length > 0)
+                    return fragId;
+            }
+            node = node.parentNode;
+        }
+        return null;
     }
 
     /*
@@ -1557,6 +1579,8 @@
             }
         }
     }
+    Application.AppendMacro("Linked Fragment Docs Report",
+                            "Linked Fragment Docs Report");
   ]]>
 </MACRO>
 
@@ -3896,20 +3920,7 @@
   <![CDATA[
     function copyFragmentId() {
         CdrFragIdClipboard = "";
-        var node           = Selection.ContainerNode;
-        var depth          = 5;
-        var fragId         = "";
-        while (node && !fragId) {
-            if (depth-- < 1)
-                break;
-            if (node.nodeType != 1)
-                node = node.parentNode;
-            else {
-                fragId = node.getAttribute("cdr:id");
-                if (!fragId)
-                    node = node.parentNode;
-            }
-        }
+        var fragId = getFragId();
         if (!fragId)
             Application.Alert("No fragment ID found");
         else {
@@ -6996,6 +7007,38 @@
         cdrObj.showPage(url);
     }
     linkedDocsReport();
+  ]]>
+</MACRO>
+
+<MACRO name="Linked Fragment Docs Report"
+       lang="JScript" >
+  <![CDATA[
+    function linkedFragmentDocsReport() {
+        var docId = getDocId();
+        var fragId = getFragId();
+        if (!fragId) {
+            Application.Alert("Unable to find fragment ID for current " +
+                              "location");
+            return;
+        }
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "LinkedDocs.py?Session="
+                + CdrSession
+                + "&DocId="
+                + docId
+                + "&FragId="
+                + fragId
+                + "&LinkingDocType=Any+Type";
+        cdrObj.showPage(url);
+    }
+    linkedFragmentDocsReport();
   ]]>
 </MACRO>
 
