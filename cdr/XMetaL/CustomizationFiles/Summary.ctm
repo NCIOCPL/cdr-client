@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.14 2008-07-28 18:00:42 venglisc Exp $ -->
+<!-- $Id: Summary.ctm,v 1.15 2008-10-01 15:58:18 venglisc Exp $ -->
 <DTDExtensions>
  <ElementPropertiesList>
   <GlobalPrettyPrintOptions>
@@ -465,6 +465,10 @@
    <Name>StandardWording</Name>
    <TagColor>228B22</TagColor>
   </ElementProperties>
+  <ElementProperties>
+   <Name>WillReplace</Name>
+   <TagColor>purple</TagColor>
+  </ElementProperties>
  </ElementPropertiesList>
  <FollowedByList>
   <FollowedByListItem>
@@ -757,6 +761,13 @@
    <MiniTemplate><![CDATA[<PatientVersionOf><?xm-replace_text {
                    Select a link to the Health Professionals summary
                    }?></PatientVersionOf>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>WillReplace</Name>
+   <MiniTemplate><![CDATA[<WillReplace><?xm-replace_text {
+                   Optionally link to the summary to be replaced
+                   by this document
+                   }?></WillReplace>]]></MiniTemplate>
   </Template>
  </Templates>
  <ChangeLists>
