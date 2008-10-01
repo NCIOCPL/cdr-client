@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	Summary_structure.css                                            */
+/*      Summary_structure.css                                            */
 /*                                                                       */
 /*      v. 3.6                                                           */
 /*      10/10/02  by ebator                                              */
@@ -84,11 +84,10 @@
 /*      Added all common elements and $PROCINS to Hide Text list         */
 /*                                                                       */
 /*************************************************************************/
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-@import "CdrCommonSchema_Structure.css";  
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
+@import "CdrCommonSchema_Structure.css";
 
 @sq-plus-minus;
 
@@ -96,144 +95,145 @@
 
 /* @sq-start-only-tags;      */
 
-*	{ white-space: nowrap;
-	  text-align: left;
-	  margin-left: 10px;
-	  margin-top: 0px;
-	  margin-bottom: 0px;
-	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
-	  font-style: normal;
-	  font-weight: bold;
-	  color: black; }
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-     { margin-left: 0px;  }
+$DOCUMENT > *
+    { margin-left: 0px;  }
 
-$PROCINS 
-     { color: white;
-       font-weight: normal;
-       background-color: white;}
+$PROCINS
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                           BLOCK ELEMENTS                              */
+/*************************************************************************/
 AltTitle,
-Board, 
-BoardMember, 
+Board,
+BoardMember,
 Caption,
 ComprehensiveReviewDate,
 DateLastModified,
-Diagnosis, 
-KeyPoint, 
+Diagnosis,
+KeyPoint,
 MainTopics,
 MediaID,
 MediaLink,
-PatientVersionOf, 
+PatientVersionOf,
 PDQBoard,
-PdqKey, 
+PdqKey,
 QandADiv,
 QandAEntry,
 QandASet,
-SecondaryTopics, 
+SecondaryTopics,
 SectMetaData,
 SectionType,
-SummaryAudience, 
+SummaryAudience,
 SummaryDescription,
-SummaryLanguage, 
-SummaryMetaData, 
+SummaryLanguage,
+SummaryMetaData,
 SummarySection,
 SummarySection>Comment,
-SummaryTitle, 
-SummaryType, 
+SummaryTitle,
+SummaryType,
 SummaryURL,
-Term, 
-Title, 
+Term,
+Title,
 TranslationOf,
-ReplacementFor
+ReplacementFor,
+WillReplace,
     { display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-AltTitle:before			{ content: "Alternate Title "; }
-Board:before			{ content: "Summary Board "; }
-BoardMember:before		{ content: "Board Member "; }
-Caption:before          { content: "Caption "; }
-ComprehensiveReviewDate:before
-                        { content: "Last Reviewed"; }
-DateLastModified:before	{ content: "Last Modified"; }
-Diagnosis:before		{ content: "Diagnosis "; }
-KeyPoint:before			{ content: "Key Point "; }
-MainTopics:before		{ content: "Main Topics "; }
-MediaID:before          { content: "MediaID "; }
-MediaLink:before        { content: "MEDIALINK "; }
-Para:before	            { content: counter(para)". Paragraph "; }
-SummarySection>SummarySection>Para:before
-                        { content: counter(subpara)". Subparagraph "; }
-PatientVersionOf:before	{ content: "Patient Version Of "; }
-PDQBoard:before			{ content: "PDQ Board "; }
-PdqKey:before			{ content: "PDQ Key "; }
-QandASet:before         { content: "Q&A Section "; }
-QandADiv:before         { content: "Q&A Sub-Section "; }
-QandAEntry:before       { content: counter(qanda)". Q&A Entry "; }
-SecondaryTopics:before 	{ content: "Secondary Topics " }
-SectMetaData:before		{ content: "Section Metadata "; }
-SectionType:before		{ content: "Section Type "; }
-Summary:before			{ content: "SUMMARY "; }
-SummaryID:before		{ content: "Summary ID "; }
-SummaryAudience:before	{ content: "Summary Audience "; }
-SummaryDescription:before { content: "Summary Description "; }
-SummaryLanguage:before	{ content: "Summary Language "; }
-SummaryMetaData:before	{ content: "SUMMARY METADATA "; }
-SummaryType:before		{ content: "Summary Type "; }
-SummaryURL:before		{ content: "Summary URL "; }
-SummarySection:before	{ content: "Section "; }
-SummarySection>Comment:before 
-                        { content: "Comment "; }
-SummarySection>SummarySection:before
-				        { content: "Sub-section "; }
-SummarySection>SummarySection>SummarySection:before
-				        { content: "Sub-sub-section "; }
-SummarySection>SummarySection>SummarySection>SummarySection:before
-				        { content: "Sub-sub-sub-section "; }
-SummarySection>SummarySection>SummarySection>SummarySection>SummarySection:before
-				        { content: "Sub-sub-sub-sub-section "; }
-SummaryTitle:before		{ content: "SUMMARY TITLE "; }
-Term:before	            { content: "Term "; }
-SummarySection>Title:before	{ content: "Section Title "; }
-SummarySection>SummarySection>Title:before   
-				        { content: "Sub-section Title "; }
-SummarySection>SummarySection>SummarySection>Title:before   
-				        { content: "Sub-sub-section Title "; }
-SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-				        { content: "Sub-sub-sub-section Title "; }
-SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title:before   
-	        			{ content: "Sub-sub-sub-sub-section Title "; }
-TranslationOf:before	{ content: "Translation Of "; }
-ReplacementFor:before	{ content: "Replacement For "; }
+/*************************************************************************/
+/*                       BEFORE AND AFTER TAGS                           */
+/*************************************************************************/
+AltTitle             :before { content: "Alternate Title "; }
+Board                :before { content: "Summary Board "; }
+BoardMember          :before { content: "Board Member "; }
+Caption              :before { content: "Caption "; }
+ComprehensiveReviewDate
+                     :before { content: "Last Reviewed"; }
+DateLastModified     :before { content: "Last Modified"; }
+Diagnosis            :before { content: "Diagnosis "; }
+KeyPoint             :before { content: "Key Point "; }
+MainTopics           :before { content: "Main Topics "; }
+MediaID              :before { content: "MediaID "; }
+MediaLink            :before { content: "MEDIALINK "; }
+Para                 :before { content: counter(para)". Paragraph "; }
+SummarySection>SummarySection>Para
+                     :before { content: counter(subpara)". Subparagraph "; }
+PatientVersionOf     :before { content: "Patient Version Of "; }
+PDQBoard             :before { content: "PDQ Board "; }
+PdqKey               :before { content: "PDQ Key "; }
+QandASet             :before { content: "Q&A Section "; }
+QandADiv             :before { content: "Q&A Sub-Section "; }
+QandAEntry           :before { content: counter(qanda)". Q&A Entry "; }
+SecondaryTopics      :before { content: "Secondary Topics " }
+SectMetaData         :before { content: "Section Metadata "; }
+SectionType          :before { content: "Section Type "; }
+Summary              :before { content: "SUMMARY "; }
+SummaryID            :before { content: "Summary ID "; }
+SummaryAudience      :before { content: "Summary Audience "; }
+SummaryDescription   :before { content: "Summary Description "; }
+SummaryLanguage      :before { content: "Summary Language "; }
+SummaryMetaData      :before { content: "SUMMARY METADATA "; }
+SummaryType          :before { content: "Summary Type "; }
+SummaryURL           :before { content: "Summary URL "; }
+SummarySection       :before { content: "Section "; }
+SummarySection>Comment
+                     :before { content: "Comment "; }
+SummarySection>SummarySection
+                     :before { content: "Sub-section "; }
+SummarySection>SummarySection>SummarySection
+                     :before { content: "Sub-sub-section "; }
+SummarySection>SummarySection>SummarySection>SummarySection
+                     :before { content: "Sub-sub-sub-section "; }
+SummarySection>SummarySection>SummarySection>SummarySection>SummarySection
+                     :before { content: "Sub-sub-sub-sub-section "; }
+SummaryTitle         :before { content: "SUMMARY TITLE "; }
+Term                 :before { content: "Term "; }
+SummarySection>Title::before { content: "Section Title "; }
+SummarySection>SummarySection>Title
+                     :before { content: "Sub-section Title "; }
+SummarySection>SummarySection>SummarySection>Title
+                     :before { content: "Sub-sub-section Title "; }
+SummarySection>SummarySection>SummarySection>SummarySection>Title
+                     :before { content: "Sub-sub-sub-section Title "; }
+SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title
+                     :before { content: "Sub-sub-sub-sub-section Title "; }
+TranslationOf        :before { content: "Translation Of "; }
+ReplacementFor       :before { content: "Replacement For "; }
+WillReplace          :before { content: "Will Replace "; }
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                     COUNTER DEFINITIONS                               */
+/*************************************************************************/
 SummarySection,
-	{ counter-reset: para; }
+    { counter-reset: para; }
 
 Para,
-	{ counter-increment: para; }
-
+    { counter-increment: para; }
 
 SummarySection>SummarySection,
-	{ counter-reset: subpara; }
+    { counter-reset: subpara; }
 
 SummarySection>SummarySection>Para,
-	{ counter-increment: subpara; }
+    { counter-increment: subpara; }
 
 QandADiv,
     { counter-reset: qanda; }
@@ -241,174 +241,179 @@ QandADiv,
 QandAEntry,
     { counter-increment: qanda; }
 
-/***************************************************************************/ 
-/*                             HEADINGS                                    */ 
-/***************************************************************************/ 
-MainTopics:before,
-PDQBoard:before,
-SecondaryTopics:before,
-SectMetaData:before,
-Summary:before,
-SummaryMetaData:before,
-SummaryTitle:before,
-     { color: black; 
-       font-weight: bold; }
 
-SummarySection:before,
-     { color: navy;
-       font-weight: bold; }
+/*************************************************************************/
+/*                             HEADINGS                                  */
+/*************************************************************************/
+MainTopics                   :before,
+PDQBoard                     :before,
+SecondaryTopics              :before,
+SectMetaData                 :before,
+Summary                      :before,
+SummaryMetaData              :before,
+SummaryTitle                 :before,
+    { color: black;
+      font-weight: bold; }
 
-Board:before,
-BoardMember:before,
-MainTopics:before,
-PDQBoard:before,
-SecondaryTopics:before,
-SummaryAudience:before,
-SummaryDescription:before,
-SummaryLanguage:before,
-SummaryType:before,
-SummaryURL:before,
-Term:before,
-	{ font-size: 10pt; }
+SummarySection               :before,
+    { color: navy;
+      font-weight: bold; }
 
-SummarySection>Comment:before 
-    { color: black; 
+Board                        :before,
+BoardMember                  :before,
+MainTopics                   :before,
+PDQBoard                     :before,
+SecondaryTopics              :before,
+SummaryAudience              :before,
+SummaryDescription           :before,
+SummaryLanguage              :before,
+SummaryType                  :before,
+SummaryURL                   :before,
+Term                         :before,
+    { font-size: 10pt; }
+
+SummarySection>Comment       :before,
+    { color: black;
       background-color: white; }
 
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
-	{ font-style: italic; }
+    { font-style: italic; }
 
 
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
-/***************************************************************************/ 
-Board:before,
-BoardMember:before,
-Diagnosis:before,
-PatientVersionOf:before,
-PdqKey:before,
-SectionType:before,
-SummaryAudience:before, 
-SummaryDescription:before, 
-SummaryLanguage:before,
-SummaryType:before, 
-SummaryURL:before, 
-Term:before,
-TranslationOf:before,
-     { color: black; 
-       font-weight: bold; }
+/*************************************************************************/
+/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS         */
+/*************************************************************************/
+Board                        :before,
+BoardMember                  :before,
+DateLastModified             :before,
+Diagnosis                    :before,
+PatientVersionOf             :before,
+PdqKey                       :before,
+SectionType                  :before,
+SummaryAudience              :before,
+SummaryDescription           :before,
+SummaryLanguage              :before,
+SummaryType                  :before,
+SummaryURL                   :before,
+Term                         :before,
+TranslationOf                :before,
+WillReplace                  :before,
+    { color: black;
+      font-weight: bold; }
 
 
-/***************************************************************************/ 
-/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
-/***************************************************************************/ 
-AltTitle:before,
-Caption:before,
-ComprehensiveReviewDate:before,
-DateLastModified:before,
-KeyPoint:before,
-MediaID:before,
-PatientVersionOf:before,
-SummarySection>Para:before,
+/*************************************************************************/
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                  */
+/*************************************************************************/
+AltTitle                     :before,
+Caption                      :before,
+ComprehensiveReviewDate      :before,
+DateLastModified             :before,
+KeyPoint                     :before,
+MediaID                      :before,
+PatientVersionOf             :before,
+SummarySection>Para          :before,
 SummarySection>SummarySection>Para:before,
-Title:before,
-TranslationOf:before,
-ReplacementFor:before
-     { color: black; 
-       font-weight: bold; 
-       font-size: 10pt; }
+Title                        :before,
+TranslationOf                :before,
+ReplacementFor               :before,
+WillReplace                  :before,
+    { color: black;
+      font-weight: bold;
+      font-size: 10pt; }
 
 Title,
-     { color: black;  
-       font-weight: normal;  }
+    { color: black;
+      font-weight: normal;  }
 
 
-/***************************************************************************/ 
-/*                            BORDER CONTROL                               */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                            BORDER CONTROL                             */
+/*************************************************************************/
 MediaLink,
 SummaryMetaData,
-     { border: none; }
+    { border: none; }
 
 
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                            HIDE TEXT                                  */
+/*************************************************************************/
 AltTitle,
-Board, 
+Board,
 BoardMember,
 Caption,
 Comment,
 ComprehensiveReviewDate,
 DateLastModified,
-Diagnosis, 
-KeyPoint, 
+Diagnosis,
+KeyPoint,
 MainTopics,
 MediaID,
 PatientVersionOf,
 PDQBoard,
-PdqKey, 
-SecondaryTopics, 
+PdqKey,
+SecondaryTopics,
 SectMetaData,
 SectionType,
-SummaryAudience, 
+SummaryAudience,
 SummaryDescription,
-SummaryLanguage, 
-SummaryMetaData, 
-SummarySection, 
-SummarySection>SummarySection, 
-SummarySection>SummarySection>Para, 
-SummaryTitle, 
+SummaryLanguage,
+SummaryMetaData,
+SummarySection,
+SummarySection>SummarySection,
+SummarySection>SummarySection>Para,
+SummaryTitle,
 SummaryType,
 SummaryURL,
-Term, 
+Term,
 /*Title, */
 TranslationOf,
 ReplacementFor,
-     { color: white;
-       background-color: white; }
+WillReplace,
+    { color: white;
+      background-color: white; }
 
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
-
+/*************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                */
+/*************************************************************************/
 /* Remove negative text-indent settings  */
 
 
 
-/***************************************************************************/ 
-/*                            FORM CONTROL                                 */ 
-/***************************************************************************/ 
-Board:before,
-BoardMember:before,
-SummaryAudience:before,
-SummaryDescription:before,
-SummaryLanguage:before,
-SummaryType:before,
-SummaryURL:before,
-MainTopics>Term:before,
-SecondaryTopics>Term:before,
-	{ background-color: white; }
+/*************************************************************************/
+/*                            FORM CONTROL                               */
+/*************************************************************************/
+Board                        :before,
+BoardMember                  :before,
+SummaryAudience              :before,
+SummaryDescription           :before,
+SummaryLanguage              :before,
+SummaryType                  :before,
+SummaryURL                   :before,
+MainTopics>Term              :before,
+SecondaryTopics>Term         :before,
+    { background-color: white; }
 
 
 Board,
 BoardMember,
 Caption,
-ComprehensiveReviewDate
+ComprehensiveReviewDate,
 DateLastModified,
 MainTopics>Term,
 MediaID,
 PatientVersionOf,
 ReplacementFor,
-SecondaryTopics>Term,				
+SecondaryTopics>Term,
 SummaryAudience,
 SummaryDescription,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
 TranslationOf,
-	{ text-indent: 0pt; }
+WillReplace,
+    { text-indent: 0pt; }
 

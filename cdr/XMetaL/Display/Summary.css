@@ -190,6 +190,7 @@ SummaryURL,
 Term,
 Title, 
 TranslationOf,
+WillReplace,
     { display: block; }
 
 
@@ -201,25 +202,26 @@ TranslationOf,
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-Board:before                { content: "Summary Board * @: "; }
-BoardMember:before          { content: "Board Member & + @: "; }
-Caption:before              { content: "Caption: "; }
-ComprehensiveReviewDate:before     
-                            { content: "Last Reviewed & @: "; }
-DateLastModified:before     { content: "Last Modified &: "; }
-/*KeyPoint:before           { content: "Key Point & +: "; } */
-MainTopics>Term:before      { content: "Main Topics * + @: "; }
-MediaID:before              { content: "Media ID: "; }
-PatientVersionOf:before     { content: "Patient Version of & @: "; }
-PdqKey:before               { content: "PDQ Key &: "; }
-ReplacementFor:before       { content: "Replacement for & @: "; }
-SecondaryTopics>Term:before { content: "Second. Topics & + @: " }
-SummaryAudience:before      { content: "Summary Audience *: "; }
-SummaryDescription:before   { content: "Summary Descr *: "; }
-SummaryLanguage:before      { content: "Summary Language *: "; }
-SummaryType:before          { content: "Summary Type *: "; }
-SummaryURL:before           { content: "Summary URL * @: "; }
-TranslationOf:before        { content: "Translation of & @: "; }
+Board                :before { content: "Summary Board * @: "; }
+BoardMember          :before { content: "Board Member & + @: "; }
+Caption              :before { content: "Caption: "; }
+ComprehensiveReviewDate            
+                     :before { content: "Last Reviewed & @: "; }
+DateLastModified     :before { content: "Last Modified &: "; }
+/*KeyPoint           :before { content: "Key Point & +: "; } */
+MainTopics>Term      :before { content: "Main Topics * + @: "; }
+MediaID              :before { content: "Media ID: "; }
+PatientVersionOf     :before { content: "Patient Version of & @: "; }
+PdqKey               :before { content: "PDQ Key &: "; }
+ReplacementFor       :before { content: "Replacement for & @: "; }
+SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
+SummaryAudience      :before { content: "Summary Audience *: "; }
+SummaryDescription   :before { content: "Summary Descr *: "; }
+SummaryLanguage      :before { content: "Summary Language *: "; }
+SummaryType          :before { content: "Summary Type *: "; }
+SummaryURL           :before { content: "Summary URL * @: "; }
+TranslationOf        :before { content: "Translation of & @: "; }
+WillReplace          :before { content: "Will Replace & @: "; }
 
 
 /***************************************************************************/
@@ -231,7 +233,8 @@ TranslationOf,
 PatientVersionOf,
 ReplacementFor,
 DateLastModified,
-ComprehensiveReviewDate
+ComprehensiveReviewDate,
+WillReplace,
                            { margin-left:  135pt; }
 
 TranslationOf              { text-indent: -114pt; } 
@@ -239,6 +242,7 @@ PatientVersionOf           { text-indent: -136.5pt; }
 ReplacementFor             { text-indent: -129pt; } 
 DateLastModified           { text-indent:  -97pt; } 
 ComprehensiveReviewDate    { text-indent: -119pt; } 
+WillReplace                { text-indent: -105pt; }
 
 /***************************************************************************/ 
 /*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
@@ -254,21 +258,21 @@ SummaryMetaData,
 
     { font-size: 12pt; }
 
-SummaryAudience:before, 
-SummaryDescription:before,
-SummaryLanguage:before,
-SummaryType:before, 
-SummaryURL:before,
+SummaryAudience              :before, 
+SummaryDescription           :before,
+SummaryLanguage              :before,
+SummaryType                  :before, 
+SummaryURL                   :before,
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
 
-Board:before,
-BoardMember:before,
-MainTopics>Term:before,
-MediaID:before,
-Caption:before,
-SecondaryTopics>Term:before,
+Board                        :before,
+BoardMember                  :before,
+MainTopics>Term              :before,
+MediaID                      :before,
+Caption                      :before,
+SecondaryTopics>Term         :before,
     { font-weight: bold;
       font-size: 12pt; 
       color: black; }
@@ -298,19 +302,20 @@ SummaryTitle,
 /*                 SUMMARY SECTION TITLES, INDENTS, SUBSECTIONS            */ 
 /***************************************************************************/ 
 KeyPoint, 
-KeyPoint:before,
-ComprehensiveReviewDate:before,
-DateLastModified:before,
-PatientVersionOf:before,
-ReplacementFor:before,
+KeyPoint                     :before,
+ComprehensiveReviewDate      :before,
+DateLastModified             :before,
+PatientVersionOf             :before,
+ReplacementFor               :before,
      { font-weight: bold;
        font-size: 12pt;
        color: black;  
        margin-top: 15pt;
        margin-bottom: 10pt; }
 
-PdqKey:before,
-TranslationOf:before,
+PdqKey                       :before,
+TranslationOf                :before,
+WillReplace                  :before,
      { font-weight: bold;
        color: purple; } 
 
@@ -731,12 +736,12 @@ ResponseToComment,
       background-color: green; 
       color: white; }
 
-Comment:before 
+Comment                      :before 
     { color: white; 
       background-color: green; 
       content: "Comment: "; }
 
-ResponseToComment:before 
+ResponseToComment            :before 
     { color: white; 
       background-color: green; 
       content: "Response: "; }
@@ -770,19 +775,19 @@ SummarySection>Table,
 /***************************************************************************/ 
 /*                               FORM DATA                                 */ 
 /***************************************************************************/ 
-Board:before,
-BoardMember:before,
+Board                        :before,
+BoardMember                  :before,
 SummaryMetaData,
-SummaryAudience:before,
-SummaryDescription:before,
-SummaryLanguage:before,
-SummaryType:before,
-SummaryURL:before,
+SummaryAudience              :before,
+SummaryDescription           :before,
+SummaryLanguage              :before,
+SummaryType                  :before,
+SummaryURL                   :before,
 PDQBoard,
 MainTopics,
-MainTopics>Term:before,
+MainTopics>Term              :before,
 SecondaryTopics,
-SecondaryTopics>Term:before,
+SecondaryTopics>Term         :before,
     { background-color: #CCCCFF; }
 
 
@@ -862,6 +867,7 @@ PdqKey,
 SummaryType,
 TranslationOf,
 ReplacementFor,
+WillReplace,
     { margin-top: 4pt; }
 
 
