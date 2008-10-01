@@ -45,6 +45,6 @@
   <Para><?xm-replace_text {Paragraph}?></Para>
  </SummarySection>
  <TranslationOf><?xm-replace_text {Optionally link to the original English summary}?></TranslationOf>
- <ReplacementFor><?xm-replace_text {Optionally link to a summary obsoleted by this document}?></ReplacementFor>
+ <WillReplace><?xm-replace_text {Optionally link to the summary to be replaced by this document}?></WillReplace>
  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification}?></DateLastModified>
 </Summary>
