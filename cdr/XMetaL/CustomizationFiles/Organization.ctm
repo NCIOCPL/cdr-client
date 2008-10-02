@@ -109,7 +109,7 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
-      <Name>Date</Name>
+      <Name>MeetingDate</Name>
       <PrettyPrintOptions>
         <IndentContent/>
       </PrettyPrintOptions>
@@ -446,9 +446,9 @@
       <MiniTemplate><![CDATA[<IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name>Date</Name>
-      <Parent>BoardMeetingDate</Parent>
-      <MiniTemplate><![CDATA[<Date><?xm-replace_text {Enter each meeting date for the year as a separate occurrence} ?></Date>]]></MiniTemplate>
+      <Name>MeetingDate</Name>
+      <Parent>BoardMeetingDates</Parent>
+      <MiniTemplate><![CDATA[<MeetingDate><?xm-replace_text {Enter each meeting date for the year as a separate occurrence} ?></MeetingDate>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>Date</Name>
@@ -721,7 +721,7 @@
     </Template>
     <Template>
       <Name>Year</Name>
-      <Parent>BoardMeetingDate</Parent>
+      <Parent>BoardMeetingDates</Parent>
       <MiniTemplate><![CDATA[<Year><?xm-replace_text {Enter year for set of meeting dates} ?></Year>]]></MiniTemplate>
     </Template>
     <Template>
