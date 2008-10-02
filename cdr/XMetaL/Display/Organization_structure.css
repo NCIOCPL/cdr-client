@@ -94,7 +94,7 @@ AlternateName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
-BoardMeetingDate,
+BoardMeetingDates,
 DayTime,
 FormerName,
 CCOP,
@@ -114,6 +114,7 @@ IncludeInDirectory,
 Location,
 MainMember, 
 MainMemberOf,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -151,83 +152,84 @@ Year
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-AdvisoryBoardFor:before      { content: "Advisory Board For"; }
-AffiliateMemberOf:before     { content: "AFFILIATE MEMBER OF"; }
-AlternateName:before         { content: "Alternate Name "; }
-BoardManager:before          { content: "Board Manager "; }
-BoardManagerPhone:before     { content: "Board Manager Phone "; }
-BoardManagerEmail:before     { content: "Board Manager Email "; }
-BoardMeetingDate:before      { content: "BOARD MEETING DATE(S) "; }
-DayTime:before               { content: "Meeting Times "; }
-FormerName:before            { content: "Former Name "; }
-CCOP:before                  { content: "CCOP"; }
-CIPSContact:before           { content: "CIPS Contact "; }
-CIPSContactPerson:before     { content: "CIPS Contact Person "; }
-ClinicalTrialsOfficeContact:before 
-                             { content: "CLINICAL TRIALS OFFICE CONTACT "; }
-ClinicalTrialsOfficeContactEmail:before 
-                             { content: "Email "; }
-ClinicalTrialsOfficeContactName:before  
-                             { content: "Name "; }
-ClinicalTrialsOfficeContactPhone:before 
-                             { content: "Phone "; }
-Comment:before               { content: "Comments "; } 
-CooperativeGroup:before      { content: "Cooperative Group "; }
-CurrentStatus:before         { content: "Current Status "; }
-Date:before                  { content: "Date "; }
-DateLastModified:before      { content: "Last Modified"; }
-IncludeInDirectory:before    { content: "Include in Directory? "; } 
-Location:before              { content: "LOCATION "; }
-MainMember:before            { content: "Main Member "; } 
-MainMemberOf:before          { content: "MAIN MEMBER OF "; }
-MemberOfAdHocGroup:before    { content: "Member Ad-Hoc Group "; }
-MemberOfCCOP[CCOPMemberType="Component"]:before         
-                             { content: "MEMBER OF CCOP [COMPONENT] "; }
-MemberOfCCOP[CCOPMemberType="Affiliate"]:before
-                             { content: "MEMBER OF CCOP [AFFILIATE] "; }
-MemberOfCCOP:before	
-                             { content: "MEMBER OF CCOP "; }
-MemberOfCooperativeGroups:before   
-                             { content: "Member of Cooperative Groups "; }
-MemberOfProfessionalOrganization:before
+AdvisoryBoardFor     :before { content: "Advisory Board For"; }
+AffiliateMemberOf    :before { content: "AFFILIATE MEMBER OF"; }
+AlternateName        :before { content: "Alternate Name "; }
+BoardManager         :before { content: "Board Manager "; }
+BoardManagerPhone    :before { content: "Board Manager Phone "; }
+BoardManagerEmail    :before { content: "Board Manager Email "; }
+BoardMeetingDates    :before { content: "BOARD MEETING DATE(S) "; }
+DayTime              :before { content: "Meeting Times "; }
+FormerName           :before { content: "Former Name "; }
+CCOP                 :before { content: "CCOP"; }
+CIPSContact          :before { content: "CIPS Contact "; }
+CIPSContactPerson    :before { content: "CIPS Contact Person "; }
+ClinicalTrialsOfficeContact
+                     :before { content: "CLINICAL TRIALS OFFICE CONTACT "; }
+ClinicalTrialsOfficeContactEmail
+                     :before { content: "Email "; }
+ClinicalTrialsOfficeContactName
+                     :before { content: "Name "; }
+ClinicalTrialsOfficeContactPhone
+                     :before { content: "Phone "; }
+Comment              :before { content: "Comments "; } 
+CooperativeGroup     :before { content: "Cooperative Group "; }
+CurrentStatus        :before { content: "Current Status "; }
+Date:before, MeetingDate:before 
+                             { content: "Date "; }
+DateLastModified     :before { content: "Last Modified"; }
+IncludeInDirectory   :before { content: "Include in Directory? "; } 
+Location             :before { content: "LOCATION "; }
+MainMember           :before { content: "Main Member "; } 
+MainMemberOf         :before { content: "MAIN MEMBER OF "; }
+MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Group "; }
+MemberOfCCOP[CCOPMemberType="Component"]
+                     :before { content: "MEMBER OF CCOP [COMPONENT] "; }
+MemberOfCCOP[CCOPMemberType="Affiliate"]
+                     :before { content: "MEMBER OF CCOP [AFFILIATE] "; }
+MemberOfCCOP       	 :before { content: "MEMBER OF CCOP "; }
+MemberOfCooperativeGroups
+                     :before { content: "Member of Cooperative Groups "; }
+MemberOfProfessionalOrganization
+                     :before
                              { content: "Member Prof Org" ; } 
-Name:before                  { content: "Name " ; }
-OfficialName:before          { content: "Official Name" ; }
-Organization:before          { content: "ORGANIZATION "; }
-OrganizationNameInformation > OfficialName:before  
-                             { content: "Official Name "; }
+Name                 :before { content: "Name " ; }
+OfficialName         :before { content: "Official Name" ; }
+Organization         :before { content: "ORGANIZATION "; }
+OrganizationNameInformation > OfficialName
+                     :before { content: "Official Name "; }
 OrganizationType[Public="No"]:after
                              { content: " (Not public) "; }
 OrganizationType:after       { content: " (Public) "; }
-OrganizationAdministrativeInformation:before
-                             { content: "ADMINISTRATIVE INFORMATION"; }
-OrganizationAffiliations:before                             
-                             { content: "AFFILIATIONS"; }
-OrganizationDetails:before   { content: "ORGANIZATION DETAILS"; }
-OrganizationLocation:before  { content: counter(Loc)". ORGANIZATION LOCATION"; }
+OrganizationAdministrativeInformation
+                     :before { content: "ADMINISTRATIVE INFORMATION"; }
+OrganizationAffiliations
+                     :before { content: "AFFILIATIONS"; }
+OrganizationDetails  :before { content: "ORGANIZATION DETAILS"; }
+OrganizationLocation :before { content: counter(Loc)". ORGANIZATION LOCATION"; }
 OrganizationLocations:before { content: "ORGANIZATION LOCATIONS"; }
-OrganizationNameInformation:before          
-                             { content: "ORGANIZATION NAME INFORMATION"; }
-OrganizationParent:before    { content: "Organization Parent"; }
-OrganizationType:before      { content: "Organization Type"; }
+OrganizationNameInformation
+                     :before { content: "ORGANIZATION NAME INFORMATION"; }
+OrganizationParent   :before { content: "Organization Parent"; }
+OrganizationType     :before { content: "Organization Type"; }
 
-ParentOrganization:before    { content: "Parent Org "; }
-PDQBoardInformation:before   { content: "PDQ BOARD INFORMATION"; }
-PdqKey:before                { content: "PDQ Key"; }
-PersonAssigned:before        { content: "Person Assigned "; }
-PreferredDirectoryContactMode:before          
-                             { content: "Preferred Dir Contact"; }
-PreferredProtocolContactMode:before          
-                             { content: "Preferred Prot Contact"; }
-PreferredProtocolOrganization:before          
-                             { content: "Preferred Protocol Org"; }
+ParentOrganization   :before { content: "Parent Org "; }
+PDQBoardInformation  :before { content: "PDQ BOARD INFORMATION"; }
+PdqKey               :before { content: "PDQ Key"; }
+PersonAssigned       :before { content: "Person Assigned "; }
+PreferredDirectoryContactMode
+                     :before { content: "Preferred Dir Contact"; }
+PreferredProtocolContactMode
+                     :before { content: "Preferred Prot Contact"; }
+PreferredProtocolOrganization
+                     :before { content: "Preferred Protocol Org"; }
 ProtocolParticipation:before { content: "Protocol Participation? "; } 
-ProtocolIDAcronym:before     { content: "Protocol ID Acronym"; }
-ResearchBaseFor:before       { content: "Research Base For "; }
-ShortName:before             { content: "Short Name "; }
-Status:before                { content: "STATUS"; }
-Type:before                  { content: "Type " }
-Year:before                  { content: "Year "; }
+ProtocolIDAcronym    :before { content: "Protocol ID Acronym"; }
+ResearchBaseFor      :before { content: "Research Base For "; }
+ShortName            :before { content: "Short Name "; }
+Status               :before { content: "STATUS"; }
+Type                 :before { content: "Type " }
+Year                 :before { content: "Year "; }
 
 
 
@@ -243,32 +245,32 @@ OrganizationLocation,
 /***************************************************************************/ 
 /*                             HEADINGS                                    */ 
 /***************************************************************************/ 
-AdvisoryBoardFor:before,
-AffiliateMemberOf:before,
-BoardManager:before,
-BoardManagerPhone:before,
-BoardManagerEmail:before,
-BoardMeetingDate:before,
-ClinicalTrialsOfficeContact:before,
-DayTime:before,
-MainMemberOf:before,
-Location:before,
-MemberOfCCOP:before,
-MemberOfCooperativeGroups:before,
+AdvisoryBoardFor                  :before,
+AffiliateMemberOf                 :before,
+BoardManager                      :before,
+BoardManagerPhone                 :before,
+BoardManagerEmail                 :before,
+BoardMeetingDates                 :before,
+ClinicalTrialsOfficeContact       :before,
+DayTime                           :before,
+MainMemberOf                      :before,
+Location                          :before,
+MemberOfCCOP                      :before,
+MemberOfCooperativeGroups         :before,
 OrganizationNameInformation > OfficialName:before,
-Organization:before,
+Organization                      :before,
 OrganizationAdministrativeInformation:before,
-OrganizationAffiliations:before,
-OrganizationDetails:before,
-OrganizationLocation:before,
-OrganizationLocations:before,
-OrganizationNameInformation:before,
-OrganizationParent:before,
-OrganizationType:before,
-PDQBoardInformation:before,
-ShortName:before,
-Status:before,
-Year:before
+OrganizationAffiliations          :before,
+OrganizationDetails               :before,
+OrganizationLocation              :before,
+OrganizationLocations             :before,
+OrganizationNameInformation       :before,
+OrganizationParent                :before,
+OrganizationType                  :before,
+PDQBoardInformation               :before,
+ShortName                         :before,
+Status                            :before,
+Year                              :before
 
      {  font-weight: bold;
         color: black;        }  
@@ -277,21 +279,21 @@ Year:before
 /***************************************************************************/ 
 /*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
 /***************************************************************************/ 
-CCOP:before,
-CIPSContactPerson:before,
-CooperativeGroup:before,
-CurrentStatus:before,
-IncludeInDirectory:before, 
-MainMember:before,
-MemberOfAdHocGroup:before,
-MemberOfProfessionalOrganization:before,
-PdqKey:before,
-PreferredDirectoryContactMode:before,
-PreferredProtocolContactMode:before,
-PreferredProtocolOrganization:before,
-ProtocolParticipation:before,
-ResearchBaseFor:before,
-Type:before,
+CCOP                              :before,
+CIPSContactPerson                 :before,
+CooperativeGroup                  :before,
+CurrentStatus                     :before,
+IncludeInDirectory                :before, 
+MainMember                        :before,
+MemberOfAdHocGroup                :before,
+MemberOfProfessionalOrganization  :before,
+PdqKey                            :before,
+PreferredDirectoryContactMode     :before,
+PreferredProtocolContactMode      :before,
+PreferredProtocolOrganization     :before,
+ProtocolParticipation             :before,
+ResearchBaseFor                   :before,
+Type                              :before,
 
      {  font-weight: bold;
         color: black;  }
@@ -301,21 +303,22 @@ Type:before,
 /***************************************************************************/ 
 /*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
 /***************************************************************************/ 
-AlternateName:before,
-ClinicalTrialsOfficeContactEmail:before,
-ClinicalTrialsOfficeContactName:before,
-ClinicalTrialsOfficeContactPhone:before,
-FormerName:before,
-CIPSContact:before,
-Comment:before,
-Date:before,
-DateLastModified:before,
-PersonAssigned:before,
-OfficialName > Name:before,
-ShortName > Name:before,
-ParentOrganization:before,
-ProtocolIDAcronym:before,
-ShortName > Name:before,
+AlternateName                     :before,
+ClinicalTrialsOfficeContactEmail  :before,
+ClinicalTrialsOfficeContactName   :before,
+ClinicalTrialsOfficeContactPhone  :before,
+FormerName                        :before,
+CIPSContact                       :before,
+Comment                           :before,
+Date                              :before,
+DateLastModified                  :before,
+MeetingDate:                      :before,
+PersonAssigned                    :before,
+OfficialName > Name               :before,
+ShortName > Name                  :before,
+ParentOrganization                :before,
+ProtocolIDAcronym                 :before,
+ShortName > Name                  :before,
 
      {  font-weight: bold;
         color: black;  }
@@ -347,7 +350,7 @@ AlternateName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
-BoardMeetingDate,
+BoardMeetingDates,
 DayTime,
 FormerName,
 CCOP,
@@ -365,6 +368,7 @@ IncludeInDirectory,
 Location,
 MainMember, 
 MainMemberOf,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -406,7 +410,7 @@ AlternateName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
-BoardMeetingDate,
+BoardMeetingDates,
 CCOP,
 CIPSContact,
 CIPSContactPerson, 
@@ -426,6 +430,7 @@ IncludeInDirectory,
 Location,
 MainMember, 
 MainMemberOf,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -461,61 +466,62 @@ Year,
        background-color: white; }
 
 
-AdvisoryBoardFor:before,
-AffiliateMemberOf:before,
-AlternateName:before,
-BoardManager:before,
-BoardManagerPhone:before,
-BoardManagerEmail:before,
-BoardMeetingDate:before,
-CCOP:before,
-CIPSContact:before,
-CIPSContactPerson:before,
-ClinicalTrialsOfficeContact:before,
-ClinicalTrialsOfficeContactEmail:before,
-ClinicalTrialsOfficeContactName:before,
-ClinicalTrialsOfficeContactPhone:before,
-Comment:before,
-CooperativeGroup:before, 
-CurrentStatus:before,
-Date:before,
-DateLastModified:before,
-DayTime:before,
-FormerName:before,
-IncludeInDirectory:before,
-Location:before,
-MainMember:before, 
+AdvisoryBoardFor                  :before,
+AffiliateMemberOf                 :before,
+AlternateName                     :before,
+BoardManager                      :before,
+BoardManagerPhone                 :before,
+BoardManagerEmail                 :before,
+BoardMeetingDates                 :before,
+CCOP                              :before,
+CIPSContact                       :before,
+CIPSContactPerson                 :before,
+ClinicalTrialsOfficeContact       :before,
+ClinicalTrialsOfficeContactEmail  :before,
+ClinicalTrialsOfficeContactName   :before,
+ClinicalTrialsOfficeContactPhone  :before,
+Comment                           :before,
+CooperativeGroup                  :before, 
+CurrentStatus                     :before,
+Date                              :before,
+DateLastModified                  :before,
+DayTime                           :before,
+FormerName                        :before,
+IncludeInDirectory                :before,
+Location                          :before,
+MainMember                        :before, 
 MainMemberOf,
-MemberOfAdHocGroup:before,
+MeetingDate                       :before,
+MemberOfAdHocGroup                :before,
 MemberOfCCOP,
-MemberOfCCOP:before,
-MemberOfCooperativeGroups:before,
-MemberOfProfessionalOrganization:before,
-Name:before,
-OfficialName:before,
+MemberOfCCOP                      :before,
+MemberOfCooperativeGroups         :before,
+MemberOfProfessionalOrganization  :before,
+Name                              :before,
+OfficialName                      :before,
 OrganizationAdministrativeInformation:before,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
-OrganizationLocation:before,
+OrganizationLocation              :before,
 OrganizationLocations,
-OrganizationNameInformation:before,
+OrganizationNameInformation       :before,
 OrganizationParent,
-OrganizationType:before,
-ParentOrganization:before, 
-PDQBoardInformation:before,
-PdqKey:before,
-PersonAssigned:before,
-PreferredDirectoryContactMode:before, 
-PreferredProtocolContactMode:before,
-PreferredProtocolOrganization:before,
-ProtocolIDAcronym:before,
-ProtocolParticipation:before,
-Public:before,
-ResearchBaseFor:before,
-ShortName:before,
+OrganizationType                  :before,
+ParentOrganization                :before, 
+PDQBoardInformation               :before,
+PdqKey                            :before,
+PersonAssigned                    :before,
+PreferredDirectoryContactMode     :before, 
+PreferredProtocolContactMode      :before,
+PreferredProtocolOrganization     :before,
+ProtocolIDAcronym                 :before,
+ProtocolParticipation             :before,
+Public                            :before,
+ResearchBaseFor                   :before,
+ShortName                         :before,
 Status,
-Type:before,
-Year:before,
+Type                              :before,
+Year                              :before,
 
      { background-color: white; }

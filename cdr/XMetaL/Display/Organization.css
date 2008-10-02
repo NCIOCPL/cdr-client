@@ -114,7 +114,7 @@ FormerName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
-BoardMeetingDate,
+BoardMeetingDates,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -132,6 +132,7 @@ IncludeInDirectory,
 Location,
 MainMember,
 MainMemberOf,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -178,7 +179,7 @@ AlternateName        :before { content: "Alternate Name & +: "; }
 BoardManager         :before { content: "Manager *: "; }
 BoardManagerPhone    :before { content: "Phone * @: "; }
 BoardManagerEmail    :before { content: "Email * @: "; }
-BoardMeetingDate     :before { content: "MEETING DATE(s) * +"; }
+BoardMeetingDates    :before { content: "MEETING DATE(s) * +"; }
 DayTime              :before { content: "Time *: "; }
 FormerName           :before { content: "Former Name & +: "; }
 CCOP                 :before { content: "CCOP * @: "; }
@@ -201,6 +202,7 @@ IncludeInDirectory   :before { content: "Include in Directory? *: "; }
 Location             :before { content: "LOCATION [" attr(cdr\:id) "]"; }
 MainMember           :before { content: "Main Member & @: "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF & +"; }
+MeetingDate          :before { content: "Date * +: "; }
 MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Grp & + @: "; }
 MemberOfCCOP[CCOPMemberType="Component"]        
                      :before { content: "MEMBER OF CCOP [COMPONENT] & @"; }
@@ -252,13 +254,14 @@ AffiliateMemberOf    :before,
 BoardManager         :before,
 BoardManagerPhone    :before,
 BoardManagerEmail    :before,
-BoardMeetingDate     :before,
+BoardMeetingDates    :before,
 ClinicalTrialsOfficeContact
                      :before,
 Date                 :before,
 DayTime              :before,
 Location             :before,
 MainMemberOf         :before,
+MeetingDate          :before,
 OrganizationAdministrativeInformation
                      :before,
 OrganizationAffiliations
@@ -287,7 +290,7 @@ OrganizationAdministrativeInformation,
 
 
 PDQBoardInformation,
-BoardMeetingDate
+BoardMeetingDates,
     {  margin-top: 1em;
     margin-bottom: 1em;   }
 
@@ -347,6 +350,7 @@ CIPSContact:before,
 Comment:before,
 Date:before,
 DateLastModified:before,
+MeetingDate                       :before,
 PersonAssigned:before,
 OfficialName > Name:before,
 ParentOrganization:before,
@@ -491,9 +495,9 @@ BoardManagerEmail                      { margin-left: 100pt;
                                          text-indent: -62pt; }
 DayTime                                { margin-left: 100pt; 
                                          text-indent: -43.5pt; }
-BoardMeetingDate > Year                { margin-left: 100pt; 
+BoardMeetingDates > Year               { margin-left: 100pt; 
                                          text-indent: -41.5pt; }
-BoardMeetingDate > Date                { margin-left: 100pt; 
+BoardMeetingDates > MeetingDate        { margin-left: 100pt; 
                                          text-indent: -51.5pt; }
 
 
@@ -523,6 +527,7 @@ IncludeInDirectory,
 Location,
 MainMember,
 MainMemberOf,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -586,6 +591,7 @@ DateLastModified,
 IncludeInDirectory,
 Location,
 MainMember,
+MeetingDate,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -621,7 +627,7 @@ AlternateName:before,
 BoardManager:before,
 BoardManagerPhone:before,
 BoardManagerEmail:before,
-BoardMeetingDate:before,
+BoardMeetingDates:before,
 DayTime:before,
 FormerName:before,
 CCOP:before,
@@ -641,6 +647,7 @@ Location,
 Location:before,
 MainMember:before,
 MainMemberOf,
+MeetingDate                       :before,
 MemberOfAdHocGroup:before,
 MemberOfCCOP,
 MemberOfCCOP:before,
