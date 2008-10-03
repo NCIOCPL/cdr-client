@@ -90,6 +90,7 @@ Term,
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
 Comment, 
+CTGovInterventionType,
 DateLastModified,
 Definition,
 DefinitionSource,
@@ -137,65 +138,61 @@ VocabularySource,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-Comment:before              { content: "Comments "; } 
-DateLastModified:before     { content: "Last Modified"; }
-Definition:before           { content: "DEFINITION "; }
-DefinitionSource:before     { content: "Definition Source  "; }
-DefinitionSourceName:before { content: "Definition Source "; }
-DefinedTermId:before        { content: "Defined Term ID "; }
-DefinitionText:before       { content: "Definition Text "; }
-DefinitionType:before       { content: "Definition Type "; }
-DisplayName:before          { content: "Display Name "; }
-EnteredBy:before            { content: "Entered By "; }
-EntryDate:before            { content: "Entry Date "; }
-MenuInformation:before      { content: "MENU INFORMATION "; }
-MenuItem:before             { content: "MENU ITEM "; }
-MenuParent:before           { content: "Menu Parent "; }
-MenuStatus:before           { content: "Menu Status "; }
-MenuType:before             { content: "Menu Type "; }
-OtherName:before            { content: "OTHER NAME  "; }
-OtherNameType:before        { content: "Other Name Type  "; }
-OtherTermName:before        { content: "Other Term Name "; }
-ParentTerm:before           { content: "PARENT TERM  "; }
-ParentType:before           { content: "Parent Type "; }
-PdqKey:before               { content: "PDQ Key "; }
-PreferredName:before        { content: "PREFERRED NAME "; }
-ReferenceSource:before      { content: "Reference Source "; }
-RelatedTerm:before          { content: counter(RT)". RELATED TERM "; }
-RelationshipType:before     { content: "Relationship Type "; }
-ReviewStatus:before         { content: "Review Status "; }
-SemanticType:before         { content: "Semantic Type  "; } 
-SemanticTypeText:before     { content: "Semantic Type Text "; }
-SourceCode:before           { content: "Source Code "; }
-SourceTermId:before         { content: "Source Term ID "; }
-SourceTermType:before       { content: "Source Term Type "; }
-SourceInformation:before    { content: "Source Information "; }
-Term:before                 { content: "TERM  "; }   
-TermId:before               { content: "Term ID  "; } 
-TermRelationship:before     { content: "TERM RELATIONSHIP "; }
-TermStatus:before           { content: "Term Status "; }
-TermType:before             { content: "TERM TYPE  "; } 
-TermTypeName:before         { content: "Term Type Name "; } 
-VocabularySource:before     { content: "Vocabulary Source  "; }
-
+Comment                      :before { content: "Comments "; } 
+CTGovInterventionType        :before { content: "CTGov Intervention "; }
+DateLastModified             :before { content: "Last Modified "; }
+Definition                   :before { content: "DEFINITION "; }
+DefinitionSource             :before { content: "Definition Source "; }
+DefinitionSourceName         :before { content: "Definition Source "; }
+DefinedTermId                :before { content: "Defined Term ID "; }
+DefinitionText               :before { content: "Definition Text "; }
+DefinitionType               :before { content: "Definition Type "; }
+DisplayName                  :before { content: "Display Name "; }
+EnteredBy                    :before { content: "Entered By "; }
+EntryDate                    :before { content: "Entry Date "; }
+MenuInformation              :before { content: "MENU INFORMATION "; }
+MenuItem                     :before { content: "MENU ITEM "; }
+MenuParent                   :before { content: "Menu Parent "; }
+MenuStatus                   :before { content: "Menu Status "; }
+MenuType                     :before { content: "Menu Type "; }
+OtherName                    :before { content: "OTHER NAME "; }
+OtherNameType                :before { content: "Other Name Type "; }
+OtherTermName                :before { content: "Other Term Name "; }
+ParentTerm                   :before { content: "PARENT TERM "; }
+ParentType                   :before { content: "Parent Type "; }
+PdqKey                       :before { content: "PDQ Key "; }
+PreferredName                :before { content: "PREFERRED NAME "; }
+ReferenceSource              :before { content: "Reference Source "; }
+RelatedTerm                  :before { content: counter(RT)". RELATED TERM "; }
+RelationshipType             :before { content: "Relationship Type "; }
+ReviewStatus                 :before { content: "Review Status "; }
+SemanticType                 :before { content: "Semantic Type  "; } 
+SemanticTypeText             :before { content: "Semantic Type Text "; }
+SourceCode                   :before { content: "Source Code "; }
+SourceTermId                 :before { content: "Source Term ID "; }
+SourceTermType               :before { content: "Source Term Type "; }
+SourceInformation            :before { content: "Source Information "; }
+Term                         :before { content: "TERM  "; }   
+TermId                       :before { content: "Term ID  "; } 
+TermRelationship             :before { content: "TERM RELATIONSHIP "; }
+TermStatus                   :before { content: "Term Status "; }
+TermType                     :before { content: "TERM TYPE  "; } 
+TermTypeName                 :before { content: "Term Type Name "; } 
+VocabularySource             :before { content: "Vocabulary Source  "; }
 
 
 /***************************************************************************/
 /*                     COUNTER DEFINITIONS                                 */
 /***************************************************************************/
 RelatedTerm,
-
     { counter-increment: RT;  }
-
 
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-Term:before,
-
+Term                         :before,
      { color: black;      }
-
 
 
 /***************************************************************************/
@@ -205,43 +202,43 @@ OtherName,
 Definition,
 TermRelationship,
 MenuInformation
-
     { border: none;  }
 
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
-Comment:before,
-DateLastModified:before,
-Definition:before,
-DefinitionSource:before,
-DefinitionSourceName:before,
-DefinedTermId:before,
-DefinitionText:before,
-DisplayName:before,
-EnteredBy:before,
-EntryDate:before,
-MenuInformation:before,
-MenuItem:before,
-MenuParent:before,
-MenuStatus:before,
-MenuType:before,
-OtherName:before,
-OtherTermName:before,
-ParentTerm:before,
-PdqKey:before,
-PreferredName:before,
-ReferenceSource:before,
-RelatedTerm:before,
-SemanticType:before,
-SemanticTypeText:before,
-SourceTermId:before,
-SourceInformation:before,
-TermId:before,
-TermRelationship:before,
-TermType:before,
-VocabularySource:before,
+Comment                      :before,
+CTGovInterventionType        :before,
+DateLastModified             :before,
+Definition                   :before,
+DefinitionSource             :before,
+DefinitionSourceName         :before,
+DefinedTermId                :before,
+DefinitionText               :before,
+DisplayName                  :before,
+EnteredBy                    :before,
+EntryDate                    :before,
+MenuInformation              :before,
+MenuItem                     :before,
+MenuParent                   :before,
+MenuStatus                   :before,
+MenuType                     :before,
+OtherName                    :before,
+OtherTermName                :before,
+ParentTerm                   :before,
+PdqKey                       :before,
+PreferredName                :before,
+ReferenceSource              :before,
+RelatedTerm                  :before,
+SemanticType                 :before,
+SemanticTypeText             :before,
+SourceTermId                 :before,
+SourceInformation            :before,
+TermId                       :before,
+TermRelationship             :before,
+TermType                     :before,
+VocabularySource             :before,
 
 
     { font-weight: bold;
@@ -252,16 +249,15 @@ VocabularySource:before,
 /***************************************************************************/
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
 /***************************************************************************/
-DefinitionType:before,
-OtherNameType:before,
-ParentType:before,
-RelationshipType:before,
-ReviewStatus:before,
-SourceCode:before,
-SourceTermType:before,
-TermStatus:before,
-TermTypeName:before,
-
+DefinitionType               :before,
+OtherNameType                :before,
+ParentType                   :before,
+RelationshipType             :before,
+ReviewStatus                 :before,
+SourceCode                   :before,
+SourceTermType               :before,
+TermStatus                   :before,
+TermTypeName                 :before,
     {  font-weight: bold;
        color: black;  }
 
@@ -269,10 +265,9 @@ TermTypeName:before,
 /***************************************************************************/
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
 /***************************************************************************/
-
 /* Remove negative text-indent settings  */
-
 Comment, 
+CTGovInterventionType,
 DateLastModified,
 Definition,
 DefinitionSource,
@@ -312,7 +307,6 @@ TermStatus,
 TermType,
 TermTypeName,  
 VocabularySource,
-
      { text-indent: 0pt; }
 
 
@@ -321,6 +315,7 @@ VocabularySource,
 /*                              HIDE TEXT                                  */
 /***************************************************************************/
 Comment, 
+CTGovInterventionType,
 DateLastModified,
 Definition,
 DefinitionSource,
@@ -360,52 +355,49 @@ TermStatus,
 TermType,
 TermTypeName,  
 VocabularySource,
-
-
     { color: white;
       background-color: white; }
 
 
-Comment:before, 
-DateLastModified:before,
-Definition:before,
-DefinitionSource:before,
-DefinitionSourceName:before,
-DefinedTermId:before,
-DefinitionText:before,
-DefinitionType:before,
-DisplayName:before,
-EnteredBy:before,
-EntryDate:before,
-MenuInformation:before,
-MenuItem:before,
-MenuParent:before,
-MenuStatus:before,
-MenuType:before,
-OtherName:before,
-OtherNameType:before,
-OtherTermName:before,
-ParentTerm:before,
-ParentType:before,
-PdqKey:before,
-PreferredName:before,
-ReferenceSource:before, 
-RelatedTerm:before,
-RelationshipType:before,
-ReviewStatus:before,
-SemanticType:before,
-SemanticTypeText:before,
-SourceCode:before,
-SourceTermId:before,
-SourceTermType:before,
-SourceInformation:before,
-Term:before,
-TermId:before,
-TermRelationship:before,
-TermStatus:before,
-TermType:before,
-TermTypeName:before,  
-VocabularySource:before,
-
+Comment                      :before, 
+CTGovInterventionType        :before,
+DateLastModified             :before,
+Definition                   :before,
+DefinitionSource             :before,
+DefinitionSourceName         :before,
+DefinedTermId                :before,
+DefinitionText               :before,
+DefinitionType               :before,
+DisplayName                  :before,
+EnteredBy                    :before,
+EntryDate                    :before,
+MenuInformation              :before,
+MenuItem                     :before,
+MenuParent                   :before,
+MenuStatus                   :before,
+MenuType                     :before,
+OtherName                    :before,
+OtherNameType                :before,
+OtherTermName                :before,
+ParentTerm                   :before,
+ParentType                   :before,
+PdqKey                       :before,
+PreferredName                :before,
+ReferenceSource              :before, 
+RelatedTerm                  :before,
+RelationshipType             :before,
+ReviewStatus                 :before,
+SemanticType                 :before,
+SemanticTypeText             :before,
+SourceCode                   :before,
+SourceTermId                 :before,
+SourceTermType               :before,
+SourceInformation            :before,
+Term                         :before,
+TermId                       :before,
+TermRelationship             :before,
+TermStatus                   :before,
+TermType                     :before,
+TermTypeName                 :before,  
+VocabularySource             :before,
     { background-color: white; }
-
