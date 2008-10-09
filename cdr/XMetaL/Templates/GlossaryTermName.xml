@@ -27,7 +27,7 @@
          }?></TermNameVerificationResource>
  </TermName>
  <TermNameStatus><?xm-replace_text {
-         Optionally enter the term status
+         Enter the term name status (required)
          }?></TermNameStatus>
  <TermNameStatusDate><?xm-replace_text {
          Optionally enter the term status date
