@@ -451,13 +451,6 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">SpanishTermDefinition</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
       <Name ns="">StandardWording</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -613,6 +606,13 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">TollFreePhone</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TranslatedTermDefinition</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -834,27 +834,24 @@
       }?></RelatedSummaryRef>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name ns="">SpanishTermDefinition</Name>
-      <MiniTemplate><![CDATA[<SpanishTermDefinition>
+      <Name ns="">TranslatedTermDefinition</Name>
+      <MiniTemplate><![CDATA[<TranslatedTermDefinition language="es">
         <DefinitionText><?xm-replace_text {
              Enter a definition for the concept (required)
              }?></DefinitionText>
-        <ReplacementText name="TERMNAME"><?xm-replace_text {
-             Optionally enter the replacement text and its attribute
-             }?></ReplacementText>
         <Dictionary><?xm-replace_text {
               Optionally select a dictionary
              }?></Dictionary>
         <Audience><?xm-replace_text {
               Select HP or patient (required)
              }?></Audience>
-        <DefinitionStatus><?xm-replace_text {
+        <TranslatedStatus><?xm-replace_text {
               Optionally select the DefinitionStatus
-             }?></DefinitionStatus>
-        <StatusDate><?xm-replace_text {
+             }?></TranslatedStatus>
+        <TranslatedStatusDate><?xm-replace_text {
               Optionally enter a Status date
-             }?></StatusDate>
-      </SpanishTermDefinition>]]></MiniTemplate>
+             }?></TranslatedStatusDate>
+      </TranslatedTermDefinition>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">TranslationResource</Name>
