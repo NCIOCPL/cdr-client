@@ -70,6 +70,30 @@
           }?></GrantContractNo>
   </NIHGrantContract> 
  </FundingInfo> 
+ <RegulatoryInformation>
+  <FDARegulated><?xm-replace_text {
+          Select Yes/No (required)
+          }?></FDARegulated>
+  <Section801><?xm-replace_text {
+          Optionally select Yes/No
+          }?></Section801>
+  <DelayedPosting><?xm-replace_text {
+          Optionally select Yes/No
+          }?></DelayedPosting>
+  <ResponsibleParty>
+   <ResponsiblePerson>
+    <Person><?xm-replace_text {
+          Select the responsible person (required)
+          }?></Person>
+    <SpecificPhone><?xm-replace_text {
+          Optionally enter the person's phone number
+          }?></SpecificPhone>
+    <SpecificEmail><?xm-replace_text {
+          Optionally enter the person's email address
+          }?></SpecificEmail>
+   </ResponsiblePerson>
+  </ResponsibleParty>
+ </RegulatoryInformation>
  <FDAINDInfo>
   <INDGrantor><?xm-replace_text {
           Enter the INDGrantor (required)
@@ -288,4 +312,12 @@
           }?></MissingInformation>
   </MissingRequiredInformation>
  </ProtocolProcessingDetails> 
+ <RelatedDocuments>
+  <SupplementaryInfoLink><?xm-replace_text {
+          Optionally link to supplementary info
+          }?></SupplementaryInfoLink>
+  <WarehouseBoxNumber><?xm-replace_text {
+          Optionally enter a warehouse box number
+          }?></WarehouseBoxNumber>
+ </RelatedDocuments>
 </InScopeProtocol>
