@@ -41,6 +41,14 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
+      <Name ns="">DrugSummaryRef</Name>
+      <TagColor>CDCDFF</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">Emphasis</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -77,6 +85,23 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">GlossaryTermRef</Name>
+      <TagColor>CDFFCD</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ItemizedList</Name>
+      <TagColor>3399FF</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ListItem</Name>
+      <TagColor>66FFFF</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -91,6 +116,15 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">Para</Name>
+      <TagColor>CC99FF</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">SummarySection</Name>
+      <TagColor>66FF66</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
