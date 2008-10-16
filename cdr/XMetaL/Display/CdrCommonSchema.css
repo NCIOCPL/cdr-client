@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.17 2008-02-21 21:13:34 bkline Exp $
+ * $Id: CdrCommonSchema.css,v 1.18 2008-10-16 19:12:59 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.17  2008/02/21 21:13:34  bkline
+ * Added cdr:PrivateUseCharacter formatting.
+ *
  * Revision 1.16  2007/01/11 22:52:36  venglisc
  * Adding formatting for ListTitle (bold, italic). (Bug 2849)
  *
@@ -158,6 +161,7 @@ QandADiv,
 QandAEntry,
 QandASet,
 Question,
+ReplacementText,
 Row,
 Section,
 Section>Title,
@@ -182,6 +186,7 @@ CitationReference,
 Comment,
 Deletion,
 DrugName,
+DrugSummaryRef,
 Emphasis,
 ExternalLink,
 ExternalRef,
@@ -199,6 +204,7 @@ LOERef,
 LOEReference,
 MediaRef,
 Note,
+PlaceHolder,
 ProtocolLink,
 ProtocolRef,
 ProtocolReference,
@@ -266,11 +272,13 @@ DatedAction>Comment:before      { content: "Comments &: "; }
 
 /* Misc styles    */
 
-CitationLink:before             { content: " [Citation] "; }
-CitationReference:before        { content: " [Citation] ";}
-Note:before                     { content: " [Note: "; }
-Note:after                      { content: "] "; }
-ProtocolLink:before             { content: " [Protocol] "; }
+CitationLink            :before { content: " [Citation] "; }
+CitationReference       :before { content: " [Citation] ";}
+Note                    :before { content: " [Note: "; }
+Note                    :after  { content: "] "; }
+ProtocolLink            :before { content: " [Protocol] "; }
+ReplacementText         :before { content: "Repl. Text & + @:"; }
+PlaceHolder             :before { content: "[" attr(name) "]"; }
 
 
 /***************************************************************************/
@@ -462,21 +470,22 @@ Phone,
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
-ActionDate:before,
-ActionDescription:before,
-City:before,
-CitySuffix:before,
-DatedAction>Comment:before,
-ContactName:before,
-Email:before,
-Email:after,
-Fax:before,
-Phone:before,
-Phone:after,
-PostalCode_ZIP:before,
-Street:before,
-TollFreePhone:before,
-WebSite:before,
+ActionDate                   :before,
+ActionDescription            :before,
+City                         :before,
+CitySuffix                   :before,
+DatedAction>Comment          :before,
+ContactName                  :before,
+Email                        :before,
+Email                        :after,
+Fax                          :before,
+Phone                        :before,
+Phone                        :after,
+PostalCode_ZIP               :before,
+ReplacementText              :before,
+Street                       :before,
+TollFreePhone                :before,
+WebSite                      :before,
      { font-weight: bold;
        color: black; }
 
@@ -497,6 +506,7 @@ CitationLink,
 CitationLink:before,
 CitationRef,
 CitationReference:before,
+DrugSummaryRef,
 ExternalRef,
 GlossaryRef,
 GlossaryTerm,
@@ -582,6 +592,7 @@ Insertion>CitationLink,
 Insertion>CitationLink:before,
 Insertion>CitationRef,
 Insertion>CitationReference:before,
+Insertion>DrugSummaryRef,
 Insertion>ExternalRef,
 Insertion>GlossaryRef,
 Insertion>GlossaryTerm,
@@ -650,6 +661,7 @@ Insertion[RevisionLevel='proposed']>CitationLink,
 Insertion[RevisionLevel='proposed']>CitationLink:before,
 Insertion[RevisionLevel='proposed']>CitationRef,
 Insertion[RevisionLevel='proposed']>CitationReference:before,
+Insertion[RevisionLevel='proposed']>DrugSummaryRef,
 Insertion[RevisionLevel='proposed']>ExternalRef,
 Insertion[RevisionLevel='proposed']>GlossaryRef,
 Insertion[RevisionLevel='proposed']>GlossaryTerm,
@@ -718,6 +730,7 @@ Deletion>CitationLink,
 Deletion>CitationLink:before,
 Deletion>CitationRef,
 Deletion>CitationReference:before,
+Deletion>DrugSummaryRef,
 Deletion>ExternalRef,
 Deletion>GlossaryRef,
 Deletion>GlossaryTerm,
@@ -795,6 +808,7 @@ Deletion[RevisionLevel='proposed']>CitationLink,
 Deletion[RevisionLevel='proposed']>CitationLink:before,
 Deletion[RevisionLevel='proposed']>CitationRef,
 Deletion[RevisionLevel='proposed']>CitationReference:before,
+Deletion[RevisionLevel='proposed']>DrugSummaryRef,
 Deletion[RevisionLevel='proposed']>ExternalRef,
 Deletion[RevisionLevel='proposed']>GlossaryRef,
 Deletion[RevisionLevel='proposed']>GlossaryTerm,
@@ -965,7 +979,6 @@ TT,
 
 THead,
      { font-weight: bold; }
-
 THead>Row>entry,
      { font-weight: bold; }
 
@@ -989,4 +1002,29 @@ Insertion[RevisionLevel='proposed'] Comment,
 Deletion[RevisionLevel='proposed'] Comment
      { font-style: italic; 
        background-color: green; 
-       color: white; }
+       color: white; }    
+
+
+/***************************************************************************/
+/*                MARGIN-BOTTOM TO SIMULATE TEXT BOX                       */
+/***************************************************************************/
+ReplacementText,
+    { margin-bottom: 4pt; }
+
+
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+ReplacementText,
+    { background-color: white; }
+
+
+
+ReplacementText              :before,
+    { background-color: #CCCCFF; }  /* light blue */
+
+
+PlaceHolder,
+    { color: teal;
+      font-weight: bold;
+      font-style: normal; }
