@@ -2,15 +2,23 @@
 <!DOCTYPE Summary SYSTEM 'Summary.dtd'>
 <Summary xmlns:cdr="cips.nci.nih.gov/cdr">
  <CdrDocCtl>
-  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl>
  <SummaryMetaData>
   <SummaryType>Treatment</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>Spanish</SummaryLanguage>
-  <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
-  <SummaryURL cdr:xref=""><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
+  <SummaryDescription><?xm-replace_text {
+         Enter a summary description (required)
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov's pretty URL (required)
+         }?></SummaryURL>
   <PDQBoard>
    <Board cdr:ref="CDR0000256088">Inactive</Board>
   </PDQBoard>
@@ -19,74 +27,141 @@
   </MainTopics>
  </SummaryMetaData>
  <SummaryTitle>Título del Cáncer</SummaryTitle>
+
  <SummarySection>
   <Title>Información general sobre el cáncer del X</Title>
   <SummarySection>
-   <KeyPoint>El cáncer del X es una enfermedad en la cual se forman células malignas (cancerosas) en los tejidos del x.</KeyPoint>
+   <KeyPoint>El cáncer del X es una enfermedad en la cual se forman 
+         células malignas (cancerosas) en los tejidos del x.</KeyPoint>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>A, B, C puede influir en el riesgo de contraer cáncer del x.</KeyPoint>
+   <KeyPoint>A, B, C puede influir en el riesgo de contraer cáncer 
+         del x.</KeyPoint>
    <Para>Entre los factores de riesgo figuran los siguientes:</Para>
    <ItemizedList Style="bullet"> 
-    <ListItem>[riesgo]</ListItem> 
-    <ListItem>[riesgo]</ListItem> 
-    <ListItem>[riesgo]</ListItem> 
-    <ListItem>[riesgo]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Riesgo
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Riesgo
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Riesgo
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Riesgo
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Entre los signos que pueden indicar que hay cáncer del x está el A, B, C.</KeyPoint>
-   <Para>Estos y otros síntomas pueden ser debido al cáncer x. Existe la posibilidad de que otras enfermedades ocasionen los mismos síntomas.Se debe acudir a un médico si se presenta cualquiera de los problemas siguientes:</Para>
+   <KeyPoint>Entre los signos que pueden indicar que hay cáncer del x
+         está el A, B, C.</KeyPoint>
+   <Para>Estos y otros síntomas pueden ser debido al cáncer x. Existe
+         la posibilidad de que otras enfermedades ocasionen los mismos
+         síntomas.Se debe acudir a un médico si se presenta cualquiera
+         de los problemas siguientes:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[posible síntoma]</ListItem> 
-    <ListItem>[posible síntoma]</ListItem> 
-    <ListItem>[posible síntoma]</ListItem> 
-    <ListItem>[posible síntoma]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Posible síntoma
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Posible síntoma
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Posible síntoma
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Posible síntoma
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Para detectar (encontrar) y diagnosticar el cáncer del x se utilizan pruebas que examinan el A, B, y C.</KeyPoint>
+   <KeyPoint>Para detectar (encontrar) y diagnosticar el cáncer del x
+         se utilizan pruebas que examinan el A, B, y C.</KeyPoint>
    <Para>Se puede utilizar las siguientes pruebas y procedimientos:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording>Biopsia: La extracción de células o tejidos con el fin de que un patólogo los observe en el microscopio y determine la presencia de signos de cáncer.</StandardWording></ListItem>
-    <ListItem>[prueba]</ListItem>
-    <ListItem>[prueba]</ListItem>
-    <ListItem>[prueba]</ListItem>
-    <ListItem>[prueba]</ListItem>
+    <ListItem>
+     <StandardWording>Biopsia: La extracción de células o tejidos con
+         el fin de que un patólogo los observe en el microscopio y
+         determine la presencia de signos de cáncer.</StandardWording>
+    </ListItem>
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         prueba
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem>
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Ciertos factores afectan el pronóstico (probabilidad de recuperación) y las opciones de tratamiento.</KeyPoint>
-   <Para>El pronóstico (probabilidad de recuperación) depende de lo siguiente:</Para>
+   <KeyPoint>Ciertos factores afectan el pronóstico (probabilidad de
+         recuperación) y las opciones de tratamiento.</KeyPoint>
+   <Para>El pronóstico (probabilidad de recuperación) depende de lo
+         siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[factor]</ListItem>
-    <ListItem>[factor]</ListItem>
-    <ListItem>[factor]</ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
    </ItemizedList>
    <Para>Las opciones de tratamiento dependen de lo siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[factor]</ListItem>
-    <ListItem>[factor]</ListItem>
-    <ListItem>[factor]</ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Factor
+         }?></ListItem>
    </ItemizedList>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>Estadios del cáncer del X</Title>
   <SummarySection>
-   <KeyPoint>Después que se ha diagnosticado el cáncer del x, se hacen pruebas para determinar si las células cancerosas se han diseminado dentro del x o a otras partes del cuerpo.</KeyPoint>
-   <Para>El proceso utilizado para determinar si el cáncer se ha diseminado dentro del x o a otras partes del cuerpo se llama clasificación. La información obtenida en el proceso de clasificación determina el estadio de la enfermedad. Es importante saber en qué estadio se encuentra la enfermedad para poder planear su tratamiento. Las siguientes pruebas se pueden utilizar en el proceso de clasificación:</Para>
+   <KeyPoint>Después que se ha diagnosticado el cáncer del x, se 
+         hacen pruebas para determinar si las células cancerosas se han
+         diseminado dentro del x o a otras partes del cuerpo.</KeyPoint>
+   <Para>El proceso utilizado para determinar si el cáncer se ha 
+         diseminado dentro del x o a otras partes del cuerpo se llama
+         clasificación. La información obtenida en el proceso de
+         clasificación determina el estadio de la enfermedad. Es
+         importante saber en qué estadio se encuentra la enfermedad
+         para poder planear su tratamiento. Las siguientes pruebas se
+         pueden utilizar en el proceso de clasificación:</Para>
    <ItemizedList Style="bullet"> 
-    <ListItem>[prueba]</ListItem> 
-    <ListItem>[prueba]</ListItem> 
-    <ListItem>[prueba]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Prueba
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Para clasificar el cáncer del x, se utilizan los siguientes estadios:</KeyPoint>
+   <KeyPoint>Para clasificar el cáncer del x, se utilizan los siguientes
+         estadios:</KeyPoint>
    <SummarySection>
     <KeyPoint>Estadio 0 (Carcinoma in Situ)</KeyPoint>
-    <Para>El cáncer en estadio 0 se encuentra en .... Al cáncer en estadio 0 se le conoce también como carcinoma in situ.</Para>
+    <Para>El cáncer en estadio 0 se encuentra en .... Al cáncer en
+         estadio 0 se le conoce también como carcinoma in situ.</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Estadio I</KeyPoint>
@@ -106,20 +181,51 @@
    </SummarySection>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>Cáncer recurrente del X</Title>
-  <Para>El cáncer recurrente x es cáncer que ha recurrido (reaparecido) después de haber sido tratado. El cáncer puede reaparecer en el x o en otras partes del cuerpo.</Para>
+  <Para>El cáncer recurrente x es cáncer que ha recurrido (reaparecido)
+         después de haber sido tratado. El cáncer puede reaparecer en
+         el x o en otras partes del cuerpo.</Para>
  </SummarySection>
  <SummarySection>
   <Title>Aspectos generales de las opciones de tratamiento</Title>
   <SummarySection>
-   <KeyPoint>Hay diferentes tipos de tratamiento para los pacientes con cáncer del x.</KeyPoint>
-   <Para>Se cuenta con diferentes tipos de tratamiento disponibles para los pacientes con cáncer de x. Algunos tratamientos son estándar (el tratamiento actualmente en uso) y otros están siendo probados en ensayos clínicos. Antes de iniciar el tratamiento, el paciente debería pensar en la posibilidad de participar en un ensayo clínico. Un ensayo clínico de tratamiento es un estudio de investigación con el propósito de ayudar a mejorar los tratamientos actuales u obtener información sobre nuevos tratamientos para pacientes de cáncer. Cuando un ensayo clínico muestra que un tratamiento nuevo es mejor que el tratamiento estándar, el nuevo tratamiento se convierte en el tratamiento estándar.</Para>
-   <Para>Los ensayos clínicos se están llevando acabo en muchas partes del país. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés). La selección del tratamiento más apropiado contra el cáncer es una decisión que, de forma ideal, involucra al paciente, la familia y el equipo de atención médica.</Para>
+   <KeyPoint>Hay diferentes tipos de tratamiento para los pacientes con
+         cáncer del x.</KeyPoint>
+   <Para>Se cuenta con diferentes tipos de tratamiento disponibles para
+         los pacientes con cáncer de x. Algunos tratamientos son estándar
+         (el tratamiento actualmente en uso) y otros están siendo probados
+         en ensayos clínicos. Antes de iniciar el tratamiento, el paciente
+         debería pensar en la posibilidad de participar en un ensayo
+         clínico. Un ensayo clínico de tratamiento es un estudio de
+         investigación con el propósito de ayudar a mejorar los
+         tratamientos actuales u obtener información sobre nuevos
+         tratamientos para pacientes de cáncer. Cuando un ensayo
+         clínico muestra que un tratamiento nuevo es mejor que el
+         tratamiento estándar, el nuevo tratamiento se convierte en
+         el tratamiento estándar.</Para>
+   <Para>Los ensayos clínicos se están llevando acabo en muchas partes
+         del país. Para mayor información sobre ensayos clínicos en
+         curso, consultar el 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. 
+         (Nota: La información contenida en este enlace solo está
+         disponible en inglés). La selección del tratamiento más
+         apropiado contra el cáncer es una decisión que, de forma
+         ideal, involucra al paciente, la familia y el equipo de atención
+         médica.</Para>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>El tratamiento de niños con cáncer x debe ser planificado por un equipo de médicos con experiencia en el tratamiento de cánceres infantiles.</KeyPoint>
-   <Para>El tratamiento de su niño será supervisado por un oncólogo pediatra, un médico que se especializa en el tratamiento de niños con cáncer. El oncólogo pediatra puede referirlo a otros médicos pediatras que tienen experiencia y conocimientos en el tratamiento de niños con tumores x y que se especializan en ciertos campos de la medicina, como:</Para>
+   <KeyPoint>El tratamiento de niños con cáncer x debe ser planificado
+         por un equipo de médicos con experiencia en el tratamiento de
+         cánceres infantiles.</KeyPoint>
+   <Para>El tratamiento de su niño será supervisado por un oncólogo
+         pediatra, un médico que se especializa en el tratamiento de
+         niños con cáncer. El oncólogo pediatra puede referirlo a
+         otros médicos pediatras que tienen experiencia y conocimientos
+         en el tratamiento de niños con tumores x y que se especializan
+         en ciertos campos de la medicina, como:</Para>
    <ItemizedList Style="bullet">
     <ListItem>Neurocirujano.</ListItem>
     <ListItem>Neurólogo.</ListItem>
@@ -139,133 +245,288 @@
     <KeyPoint>
      <InterventionName>Cirugía</InterventionName>
     </KeyPoint>
-    <Para>[descripción de la cirugía]</Para>
-    <Para>Incluso si el médico extirpa todo el cáncer que se observa al momento de la cirugía, se administra quimioterapia o radioterapia a algunos pacientes al cabo de la cirugía para eliminar toda célula cancerosa restante. El tratamiento administrado después de la cirugía con el propósito de incrementar las posibilidades de curación se denomina terapia adyuvante.</Para>
+    <Para><?xm-replace_text {
+         descripción de la cirugía
+         }?></Para>
+    <Para>Incluso si el médico extirpa todo el cáncer que se observa
+         al momento de la cirugía, se administra quimioterapia o
+         radioterapia a algunos pacientes al cabo de la cirugía para
+         eliminar toda célula cancerosa restante. El tratamiento
+         administrado después de la cirugía con el propósito de
+         incrementar las posibilidades de curación se denomina terapia
+         adyuvante.</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
      <InterventionName>Radioterapia</InterventionName>
     </KeyPoint>
-    <Para><StandardWording>La radioterapia es un tratamiento contra el cáncer que utiliza rayos X de alta energía u otros tipos de radiación para eliminar las células cancerosas. Hay dos tipos de radioterapia. La radioterapia externa utiliza una máquina fuera del cuerpo para enviar radiación hacia el cáncer. La radioterapia interna usa una sustancia radiactiva sellada en agujas, semillas, alambres o catéteres que se colocan directamente dentro del cáncer o cerca de él. La manera en que se administra la radioterapia depende del tipo de cáncer que se está tratando y del estadio en que se encuentra.</StandardWording></Para>
+    <Para>
+     <StandardWording>La radioterapia es un tratamiento contra el
+         cáncer que utiliza rayos X de alta energía u otros tipos de
+         radiación para eliminar las células cancerosas. Hay dos tipos
+         de radioterapia. La radioterapia externa utiliza una máquina
+         fuera del cuerpo para enviar radiación hacia el cáncer. La
+         radioterapia interna usa una sustancia radiactiva sellada en
+         agujas, semillas, alambres o catéteres que se colocan
+         directamente dentro del cáncer o cerca de él. La manera
+         en que se administra la radioterapia depende del tipo de
+         cáncer que se está tratando y del estadio en que se
+         encuentra.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
      <InterventionName>Quimioterapia</InterventionName>
     </KeyPoint>
-    <Para><StandardWording>La quimioterapia es un tratamiento contra el cáncer que utiliza medicamentos para detener el crecimiento de células cancerosas, ya sea eliminándolas o deteniendo su multiplicación. Cuando la quimioterapia se toma por vía oral o se inyecta en una vena o en un músculo, los medicamentos entran al torrente sanguíneo y pueden alcanzar las células cancerosas en todo el cuerpo (quimioterapia sistémica). Cuando la quimioterapia se coloca directamente en la columna vertebral, en un órgano o en una cavidad corporal como el abdomen, los medicamentos afectan principalmente las células cancerosas en esas áreas (quimioterapia regional). La manera en que se administra la quimioterapia depende del tipo del cáncer que se está tratando y del estadio en que se encuentra.</StandardWording></Para>
+    <Para>
+     <StandardWording>La quimioterapia es un tratamiento contra
+         el cáncer que utiliza medicamentos para detener el crecimiento
+         de células cancerosas, ya sea eliminándolas o deteniendo su
+         multiplicación. Cuando la quimioterapia se toma por vía oral
+         o se inyecta en una vena o en un músculo, los medicamentos
+         entran al torrente sanguíneo y pueden alcanzar las células
+         cancerosas en todo el cuerpo (quimioterapia sistémica). Cuando
+         la quimioterapia se coloca directamente en la columna vertebral,
+         en un órgano o en una cavidad corporal como el abdomen, los
+         medicamentos afectan principalmente las células cancerosas en
+         esas áreas (quimioterapia regional). La manera en que se
+         administra la quimioterapia depende del tipo del cáncer que
+         se está tratando y del estadio en que se encuentra.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
      <InterventionName>Terapia hormonal</InterventionName>
     </KeyPoint>
-    <Para><StandardWording>La terapia hormonal es un tratamiento del cáncer que extirpa o bloquea la acción de las hormonas y detiene el crecimiento de las células cancerosas. Las hormonas son sustancias químicas producidas por las glándulas del cuerpo y que circulan por el torrente sanguíneo. La presencia de ciertas hormonas producen el crecimiento de ciertos cánceres. Si las pruebas revelan que las células cancerosas tienen sitios donde se adhieren las hormonas (receptores) se puede utilizar medicamentos, cirugía o radioterapia para reducir la producción de hormonas o impedirles que ejerzan su función.</StandardWording></Para>
+    <Para>
+     <StandardWording>La terapia hormonal es un tratamiento del
+         cáncer que extirpa o bloquea la acción de las hormonas y
+         detiene el crecimiento de las células cancerosas. Las hormonas
+         son sustancias químicas producidas por las glándulas del cuerpo
+         y que circulan por el torrente sanguíneo. La presencia de
+         ciertas hormonas producen el crecimiento de ciertos cánceres.
+         Si las pruebas revelan que las células cancerosas tienen sitios
+         donde se adhieren las hormonas (receptores) se puede utilizar
+         medicamentos, cirugía o radioterapia para reducir la producción
+         de hormonas o impedirles que ejerzan su función.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Terapia biológica</KeyPoint>
-    <Para><StandardWording>La terapia biológica es un tratamiento que utiliza el sistema inmunitario del paciente para combatir el cáncer. Sustancias fabricadas por el cuerpo o en el laboratorio se utilizan para reforzar, dirigir o restaurar las defensas naturales del cuerpo contra el cáncer. Este tipo de tratamiento del cáncer se conoce como bioterapia o inmunoterapia.</StandardWording></Para>
+    <Para>
+     <StandardWording>La terapia biológica es un tratamiento que
+         utiliza el sistema inmunitario del paciente para combatir el
+         cáncer. Sustancias fabricadas por el cuerpo o en el laboratorio
+         se utilizan para reforzar, dirigir o restaurar las defensas
+         naturales del cuerpo contra el cáncer. Este tipo de tratamiento
+         del cáncer se conoce como bioterapia o 
+         inmunoterapia.</StandardWording>
+    </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
-     <InterventionName>[Terapia]</InterventionName>
+     <InterventionName><?xm-replace_text {
+         Terapia
+         }?></InterventionName>
     </KeyPoint>
-    <Para>[Descripción de la terapia]</Para>
+    <Para><?xm-replace_text {
+         Descripción de la terapia
+         }?></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>
-     <InterventionName>[Terapia]</InterventionName>
+     <InterventionName><?xm-replace_text {
+         Terapia
+         }?></InterventionName>
     </KeyPoint>
-    <Para>[Descripción de la terapia]</Para>
+    <Para><?xm-replace_text {
+         Descripción de la terapia
+         }?></Para>
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Otros tipos de tratamiento se están probando en ensayos clínicos. Entre ellos figuran:</KeyPoint>
+   <KeyPoint>Otros tipos de tratamiento se están probando en ensayos
+         clínicos. Entre ellos figuran:</KeyPoint>
    <SummarySection>
     <KeyPoint> Ensayo clínico</KeyPoint>
-    <Para>[para]</Para>
+    <Para><?xm-replace_text {
+         Para
+         }?></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Ensayo clínico</KeyPoint>
-    <Para>[para]</Para>
+    <Para><?xm-replace_text {
+         Para
+         }?></Para>
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran bajo estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran bajo estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos que
+         se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>Opciones de tratamiento por estadios</Title>
   <SummarySection>
    <Title>Cáncer del X en estadio 0 (Carcinoma in Situ)</Title>
-   <Para>El tratamiento contra el cáncer del x en estadio 0 incluye lo siguiente:</Para>
+   <Para>El tratamiento contra el cáncer del x en estadio 0 incluye
+         lo siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[tratamiento]</ListItem>
-    <ListItem>[tratamiento]</ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos
+         que se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>.  (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio I</Title>
-   <Para>El tratamiento contra el cáncer del x en estadio I incluye lo siguiente:</Para>
+   <Para>El tratamiento contra el cáncer del x en estadio I incluye
+         lo siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[tratamiento]</ListItem>
-    <ListItem>[tratamiento]</ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos 
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos
+         que se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio II</Title>
-   <Para>El tratamiento para el cáncer del x en estadio II incluye lo siguiente:</Para>
+   <Para>El tratamiento para el cáncer del x en estadio II incluye
+         lo siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[tratamiento]</ListItem>
-    <ListItem>[tratamiento]</ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos
+         que se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio III</Title>
-   <Para>El tratamiento del cáncer del x en estadio III incluye lo siguiente:</Para>
+   <Para>El tratamiento del cáncer del x en estadio III incluye lo
+         siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[tratamiento]</ListItem>
-    <ListItem>[tratamiento]</ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos que
+         se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
   <SummarySection>
    <Title>Cáncer del X en estadio IV</Title>
-   <Para>El tratamiento del cáncer del x en estadio IV incluye lo siguiente:</Para>
+   <Para>El tratamiento del cáncer del x en estadio IV incluye lo
+         siguiente:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[tratamiento]</ListItem>
-    <ListItem>[tratamiento]</ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
     <ListItem>Participación en un ensayo clínico de ....</ListItem>
    </ItemizedList>
-   <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>. (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+   <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos
+         que se están estudiando. Para mayor información sobre ensayos
+         clínicos en curso, consultar el
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de
+         Internet del NCI</ExternalRef>. (Nota: La información contenida
+         en este enlace solo está disponible en inglés).</Para>
   </SummarySection>
  </SummarySection>
  <SummarySection>
   <Title>Opciones de tratamiento para el cáncer recurrente del X</Title>
-  <Para>El tratamiento para el cáncer recurrente del x incluye lo siguiente:</Para>
+  <Para>El tratamiento para el cáncer recurrente del x incluye lo
+         siguiente:</Para>
   <ItemizedList Style="bullet">
    <ListItem>Cirugía.</ListItem>
    <ListItem>Radioterapia.</ListItem>
    <ListItem>Quimioterapia.</ListItem>
-   <ListItem>[tratamiento]</ListItem>
+   <ListItem><?xm-replace_text {
+         Tratamiento
+         }?></ListItem>
    <ListItem>Participación en un ensayo clínico de ....</ListItem>
   </ItemizedList>
-  <Para>Esta sección del sumario hace referencia a tratamientos específicos que se encuentran en estudio en ensayos clínicos, pero es posible que no mencione todos los tratamientos nuevos que se están estudiando. Para mayor información sobre ensayos clínicos en curso, consultar el <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de Internet del NCI</ExternalRef>.  (Nota: La información contenida en este enlace solo está disponible en inglés).</Para>
+  <Para>Esta sección del sumario hace referencia a tratamientos
+         específicos que se encuentran en estudio en ensayos clínicos,
+         pero es posible que no mencione todos los tratamientos nuevos que
+         se están estudiando. Para mayor información sobre ensayos clínicos
+         en curso, consultar el 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">portal de 
+         Internet del NCI</ExternalRef>.  
+         (Nota: La información contenida en este enlace solo está 
+         disponible en inglés).</Para>
  </SummarySection>
  <SummarySection>
   <SectMetaData>
    <SectionType>Changes to summary</SectionType>
   </SectMetaData>
   <Title>Modificaciones a este sumario (MM/DD/YYYY)</Title>
-  <Para>Los sumarios del PDQ con información sobre el cáncer se revisan con regularidad y se actualizan en la medida en que se obtiene nueva información. Esta sección describe los cambios más recientes hechos a este sumario a partir de la fecha arriba indicada.</Para>
+  <Para>Los sumarios del PDQ con información sobre el cáncer se
+         revisan con regularidad y se actualizan en la medida en que se
+         obtiene nueva información. Esta sección describe los cambios
+         más recientes hechos a este sumario a partir de la fecha arriba
+         indicada.</Para>
   <Para>Este sumario fue revisado y actualizado de forma substancial.</Para>
  </SummarySection>
- <PatientVersionOf>[select title of HP version]</PatientVersionOf>
- <ReplacementFor>[select previous document for summary]</ReplacementFor>
- <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+ <PatientVersionOf><?xm-replace_text {
+         Select title of HP version
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced by this document
+         }?></WillReplace>
+ <DateLastModified><?xm-replace_text {
+         Optionally enter the date of the last record modification
+         }?></DateLastModified>
 </Summary>

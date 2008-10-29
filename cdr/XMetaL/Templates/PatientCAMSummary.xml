@@ -2,8 +2,12 @@
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
 <Summary xmlns:cdr="cips.nci.nih.gov/cdr">
  <CdrDocCtl>
-  <DocId><?xm-replace_text {The document ID will be assigned automatically}?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically}?></DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl>
  <SummaryMetaData>
   <SummaryType>Complementary and alternative medicine</SummaryType>
@@ -24,9 +28,15 @@
  <SummarySection>
   <Title>Overview</Title>
   <ItemizedList Compact="No" Style="bullet">
-   <ListItem><?xm-replace_text [main point]?></ListItem>
-   <ListItem><?xm-replace_text [main point]?></ListItem>
-   <ListItem><?xm-replace_text [main point]?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter main point
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter main point
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter main point
+         }?></ListItem>
   </ItemizedList>
  </SummarySection>
  <SummarySection>
@@ -35,49 +45,70 @@
    <QandAEntry>
     <Question>What is X?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
-    <Question>What is the history of the discovery and use of X as a complementary and alternative treatment for cancer?</Question>
+    <Question>What is the history of the discovery and use of X as a
+         complementary and alternative treatment for cancer?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
-    <Question>What is the theory behind the claim that X is useful in treating cancer?</Question>
+    <Question>What is the theory behind the claim that X is useful in
+         treating cancer?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
     <Question>How is X administered?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
-    <Question>Have any preclinical (laboratory or animal) studies  been conducted using X?</Question>
+    <Question>Have any preclinical (laboratory or animal) studies
+         been conducted using X?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
-    <Question>Have any  clinical trials (research studies with people) of X been conducted?</Question>
+    <Question>Have any  clinical trials (research studies with people)
+         of X been conducted?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
     <Question>Have any side effects or risks been reported from X?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
    <QandAEntry>
-    <Question>Is X approved by the U.S. Food and Drug Administration (FDA) for use as a cancer treatment in the United States?</Question>
+    <Question>Is X approved by the U.S. Food and Drug Administration (FDA) 
+         for use as a cancer treatment in the United States?</Question>
     <Answer>
-     <Para><?xm-replace_text para?></Para>
+     <Para><?xm-replace_text {
+         Enter para
+         }?></Para>
     </Answer>
    </QandAEntry>
   </QandASet>
@@ -87,11 +118,18 @@
    <SectionType>Changes to summary</SectionType>
   </SectMetaData>
   <Title>Changes to This Summary (MM/DD/YYYY)</Title>
-  <Para>The PDQ cancer information summaries are reviewed regularly and updated as new information becomes available.  This section describes the latest changes made to this summary as of the date above.</Para>
+  <Para>The PDQ cancer information summaries are reviewed regularly
+         and updated as new information becomes available.  This 
+         section describes the latest changes made to this summary 
+         as of the date above.</Para>
   <Para>
    <StandardWording>This is a new summary.</StandardWording>
   </Para>
  </SummarySection>
- <PatientVersionOf><?xm-replace_text {Select a link to the Health Professionals Summary}?></PatientVersionOf>
- <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification}?></DateLastModified>
+ <PatientVersionOf><?xm-replace_text {
+        Select a link to the Health Professionals Summary
+        }?></PatientVersionOf>
+ <DateLastModified><?xm-replace_text {
+        Optionally enter the date of the last record modification
+        }?></DateLastModified>
 </Summary>

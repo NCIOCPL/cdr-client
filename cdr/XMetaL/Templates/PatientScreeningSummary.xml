@@ -2,15 +2,23 @@
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
 <Summary xmlns:cdr="cips.nci.nih.gov/cdr">
  <CdrDocCtl>
-  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl>
  <SummaryMetaData>
   <SummaryType>Treatment</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>English</SummaryLanguage>
-  <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
-  <SummaryURL cdr:xref=""><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
+  <SummaryDescription><?xm-replace_text {
+         Enter a summary description (required)
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov's pretty URL (required)
+         }?></SummaryURL>
   <PDQBoard>
    <Board cdr:ref="CDR0000028327">PDQ Adult Treatment Editorial Board</Board>
   </PDQBoard>
@@ -20,19 +28,38 @@
   <SecondaryTopics>
   </SecondaryTopics>
  </SummaryMetaData>
+
  <SummaryTitle>Template: Screening for X Cancer</SummaryTitle>
  <SummarySection>
   <Title>What is screening?</Title>
-  <Para>Screening is looking for cancer before a person has any symptoms. This can help find cancer at an early stage. When abnormal tissue or cancer is found early, it may be easier to treat. By the time symptoms appear, cancer may have begun to spread.</Para>
-  <Para>Scientists are trying to better understand which people are more likely to get certain types of cancer. They also study the things we do and the things around us to see if they cause cancer. This information helps doctors recommend who should be screened for cancer, which screening tests should be used, and how often the tests should be done.</Para>
-  <Para>It is important to remember that your doctor does not necessarily think you have cancer if he or she suggests a screening test. Screening tests are given when you have no cancer symptoms.</Para>
-  <Para>If a screening test result is abnormal, you may need to have more tests done to find out if you have cancer. These are called diagnostic tests.</Para>
-  <Para>Refer to the following PDQ summaries for information about prevention, diagnosis, and treatment of X cancer.</Para>
+  <Para>Screening is looking for cancer before a person has any symptoms. 
+         This can help find cancer at an early stage. When abnormal 
+         tissue or cancer is found early, it may be easier to treat. 
+         By the time symptoms appear, cancer may have begun to spread.</Para>
+  <Para>Scientists are trying to better understand which people are 
+         more likely to get certain types of cancer. They also study the 
+         things we do and the things around us to see if they cause cancer. 
+         This information helps doctors recommend who should be screened 
+         for cancer, which screening tests should be used, and how often 
+         the tests should be done.</Para>
+  <Para>It is important to remember that your doctor does not necessarily 
+         think you have cancer if he or she suggests a screening test.
+         Screening tests are given when you have no cancer symptoms.</Para>
+  <Para>If a screening test result is abnormal, you may need to have more 
+         tests done to find out if you have cancer. These are called 
+         diagnostic tests.</Para>
+  <Para>Refer to the following PDQ summaries for information about 
+         prevention, diagnosis, and treatment of X cancer.</Para>
   <ItemizedList Compact="No" Style="bullet">
-   <ListItem>[link title]</ListItem>
-   <ListItem>[link title]</ListItem>
+   <ListItem><?xm-replace_text {
+         Enter link title
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter link title
+         }?></ListItem>
   </ItemizedList>
  </SummarySection>
+
  <SummarySection>
   <Title>General Information About X Cancer</Title>
   <SummarySection>
@@ -40,93 +67,182 @@
     <SectionType>Cancer description</SectionType>
     <SectionType>Organ description</SectionType>
    </SectMetaData>
-   <KeyPoint>X cancer is a disease in which malignant (cancer) cells form in the x.</KeyPoint>
-   <Para>[compose from treatment summary]</Para>
+   <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
+         form in the x.</KeyPoint>
+   <Para><?xm-replace_text {
+         Compose from treatment summary
+         }?></Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
-    <SectionType>[Section type]</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
-   <KeyPoint>[Incidence keypoint]</KeyPoint>
-   <Para>[Text]</Para>
+   <KeyPoint><?xm-replace_text {
+         Enter incidence keypoint
+         }?></KeyPoint>
+   <Para><?xm-replace_text {
+         Enter text
+         }?></Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
    <KeyPoint>A, B, and C can affect the risk of developing x cancer.</KeyPoint>
-   <Para>Anything that increases the chance of getting a disease is called a risk factor. Having a risk factor does not mean that you will get cancer; not having risk factors doesn't mean that you will not get cancer. People who think they may be at risk should discuss this with their doctor. Risk factors for x cancer include the following: <Comment>Take from treatment summary</Comment></Para>
+   <Para>Anything that increases the chance of getting a disease is 
+         called a risk factor. Having a risk factor does not mean 
+         that you will get cancer; not having risk factors doesn't 
+         mean that you will not get cancer. People who think they may 
+         be at risk should discuss this with their doctor. Risk factors 
+         for x cancer include the following: 
+         <Comment>Take from treatment summary</Comment></Para>
    <ItemizedList Compact="No" Style="bullet">
-    <ListItem>[risk factor]</ListItem>
-    <ListItem>[risk factor]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter risk factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter risk factor
+         }?></ListItem>
    </ItemizedList>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>X Cancer Screening</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>[Section type]</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Tests are used to screen for different types of cancer.</KeyPoint>
-   <Para>Some screening tests are used because they have been shown to be helpful both in finding cancers early and in decreasing the chance of dying from these cancers. Other tests are used because they have been shown to find cancer in some people; however, it has not been proven in clinical trials that use of these tests will decrease the risk of dying from cancer.</Para>
-   <Para>Scientists study screening tests to find those with the fewest risks and most benefits. Cancer screening trials also are meant to show whether early detection (finding cancer before it causes symptoms) decreases a person's chance of dying from the disease. For some types of cancer, the chance of recovery is better if the disease is found and treated at an early stage.</Para>
-   <Para>Clinical trials that study cancer screening methods are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
+   <Para>Some screening tests are used because they have been shown to 
+         be helpful both in finding cancers early and in decreasing the 
+         chance of dying from these cancers. Other tests are used because 
+         they have been shown to find cancer in some people; however, it 
+         has not been proven in clinical trials that use of these tests 
+         will decrease the risk of dying from cancer.</Para>
+   <Para>Scientists study screening tests to find those with the fewest 
+         risks and most benefits. Cancer screening trials also are meant 
+         to show whether early detection (finding cancer before it causes 
+         symptoms) decreases a person's chance of dying from the disease. 
+         For some types of cancer, the chance of recovery is better if 
+         the disease is found and treated at an early stage.</Para>
+   <Para>Clinical trials that study cancer screening methods are taking 
+         place in many parts of the country. Information about ongoing 
+         clinical trials is available from the 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web
+         site</ExternalRef>.</Para>
   </SummarySection>
+
   <SummarySection>
    <KeyPoint># tests are commonly used to screen for x cancer:</KeyPoint>
    <SummarySection>
-    <KeyPoint>[Test]</KeyPoint>
-    <Para>[describe test here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter test
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Enter description of test
+         }?></Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[Test]</KeyPoint>
-    <Para>[describe test here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter test
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Enter description of test
+         }?></Para>
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Other screening tests are being studied in clinical trials.</KeyPoint>
+   <KeyPoint>Other screening tests are being studied in clinical 
+         trials.</KeyPoint>
    <SummarySection>
-    <KeyPoint>[Test]</KeyPoint>
-    <Para>[describe test here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter test
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Enter description of test
+         }?></Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[Test]</KeyPoint>
-    <Para>[describe test here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter test
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Enter description of test
+         }?></Para>
    </SummarySection>
-   <Para>Screening clinical trials are taking place in many parts of the country. Information about ongoing clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
+   <Para>Screening clinical trials are taking place in many parts of 
+         the country. Information about ongoing clinical trials is 
+         available from the 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web 
+         site</ExternalRef>.</Para>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>Risks of X Cancer Screening</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>[Section type]</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Screening tests have risks.</KeyPoint>
-   <Para>Decisions about screening tests can be difficult. Not all screening tests are helpful and most have risks. Before having any screening test, you may want to discuss the test with your doctor. It is important to know the risks of the test and whether it has been proven to reduce the risk of dying from cancer.</Para>
+   <Para>Decisions about screening tests can be difficult. Not all 
+         screening tests are helpful and most have risks. Before having 
+         any screening test, you may want to discuss the test with your 
+         doctor. It is important to know the risks of the test and whether 
+         it has been proven to reduce the risk of dying from cancer.</Para>
   </SummarySection>
+
   <SummarySection>
    <KeyPoint>The risks of x cancer screening include the following:</KeyPoint>
    <SummarySection>
     <KeyPoint>False-negative test results can occur.</KeyPoint>
-    <Para>Screening test results may appear to be normal even though x cancer is present. A person who receives a false-negative result (one that shows there is no cancer when there really is) may delay seeking medical care even if there are symptoms.</Para>
+    <Para>Screening test results may appear to be normal even though x 
+         cancer is present. A person who receives a false-negative result 
+         (one that shows there is no cancer when there really is) may 
+         delay seeking medical care even if there are symptoms.</Para>
    </SummarySection>
+
    <SummarySection>
     <KeyPoint>False-positive test results can occur.</KeyPoint>
-    <Para>Screening test results may appear to be abnormal even though no cancer is present. A false-positive test result (one that shows there is cancer when there really isn't) can cause anxiety and is usually followed by more tests and procedures (such as [tests specific to the cancer]), which also have risks.</Para>
+    <Para>Screening test results may appear to be abnormal even though 
+         no cancer is present. A false-positive test result (one that 
+         shows there is cancer when there really isn't) can cause anxiety 
+         and is usually followed by more tests and procedures (such 
+         as <?xm-replace_text {
+         Enter tests specific to the cancer
+         }?>), which also have risks.</Para>
    </SummarySection>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Changes to summary</SectionType>
   </SectMetaData>
   <Title>Changes to This Summary (MM/DD/YYYY)</Title>
-  <Para>The PDQ cancer information summaries are reviewed regularly and updated as new information becomes available.  This section describes the latest changes made to this summary as of the date above.</Para>
-  <Para><StandardWording>This summary was completely reformatted and some content was added.</StandardWording></Para>
+  <Para>The PDQ cancer information summaries are reviewed regularly 
+         and updated as new information becomes available.  This section 
+         describes the latest changes made to this summary as of the 
+         date above.</Para>
+  <Para>
+   <StandardWording>This summary was completely reformatted and 
+         some content was added.</StandardWording>
+  </Para>
  </SummarySection>
- <PatientVersionOf>[select title of HP version]</PatientVersionOf>
- <ReplacementFor>[select title of unreformatted version being replaced</ReplacementFor>
- <DateLastModified>[enter date]</DateLastModified>
+ <PatientVersionOf><?xm-replace_text {
+         Select title of HP version
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced by this document
+         }?></WillReplace>
+ <DateLastModified><?xm-replace_text {
+         Enter date
+         }?></DateLastModified>
 </Summary>

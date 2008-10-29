@@ -70,14 +70,20 @@
    </SectMetaData>
    <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
          form in the x.</KeyPoint>
-   <Para>[compose from treatment summary]</Para>
+   <Para><?xm-replace_text {
+         compose from treatment summary
+         }?></Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Incidence</SectionType>
    </SectMetaData>
-   <KeyPoint>[Incidence key point]</KeyPoint>
-   <Para>[Text]</Para>
+   <KeyPoint><?xm-replace_text {
+         Incidence key point
+         }?></KeyPoint>
+   <Para><?xm-replace_text {
+         Text
+         }?></Para>
   </SummarySection>
  </SummarySection>
 
@@ -103,16 +109,28 @@
    <KeyPoint>The following <Emphasis>risk</Emphasis> factors may increase 
          the risk of x cancer:</KeyPoint>
    <SummarySection>
-    <KeyPoint>[factor]</KeyPoint>
-    <Para>[describe factor here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[factor]</KeyPoint>
-    <Para>[describe factor here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[factor]</KeyPoint>
-    <Para>[describe factor here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
    </SummarySection></SummarySection>
    <SummarySection>
     <SectMetaData>
@@ -121,16 +139,28 @@
     <KeyPoint>The following <Emphasis>protective</Emphasis> factors may 
          decrease the risk of x cancer:</KeyPoint>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection></SummarySection>
     <SummarySection>
     <SectMetaData>
@@ -141,16 +171,28 @@
      The following have been proven not to be risk factors for x cancer or 
      their effects on x cancer risk are not known:</KeyPoint>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection>
     <SummarySection>
-     <KeyPoint>[factor]</KeyPoint>
-     <Para>[describe factor here]</Para>
+     <KeyPoint><?xm-replace_text {
+         Factor
+         }?></KeyPoint>
+     <Para><?xm-replace_text {
+         Describe factor here
+         }?></Para>
     </SummarySection>
    </SummarySection>
    
@@ -209,9 +251,13 @@
          content was added.</StandardWording>
    </Para>
   </SummarySection>
-  <PatientVersionOf>[Select title of HP version]</PatientVersionOf>
-  <ReplacementFor>[Select title of unreformatted version being 
-         replaced]</ReplacementFor>
-  <DateLastModified>[Enter the date of the last record 
-         modification]</DateLastModified>
+  <PatientVersionOf><?xm-replace_text {
+         Select title of HP version
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced by this document
+         }?></WillReplace>
+  <DateLastModified><?xm-replace_text {
+         Enter the date of the last record modification
+         }?></DateLastModified>
 </Summary>

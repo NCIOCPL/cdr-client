@@ -2,15 +2,23 @@
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
 <Summary xmlns:cdr="cips.nci.nih.gov/cdr">
  <CdrDocCtl>
-  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl>
  <SummaryMetaData>
   <SummaryType>Treatment</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>English</SummaryLanguage>
-  <SummaryDescription><?xm-replace_text {Enter a summary description (required)} ?></SummaryDescription>
-  <SummaryURL cdr:xref=""><?xm-replace_text {Enter Cancer.gov's pretty URL (required)} ?></SummaryURL>
+  <SummaryDescription><?xm-replace_text {
+         Enter a summary description (required)
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov's pretty URL (required)
+         }?></SummaryURL>
   <PDQBoard>
    <Board cdr:ref="CDR0000028327">PDQ Adult Treatment Editorial Board</Board>
   </PDQBoard>
@@ -21,6 +29,7 @@
   </SecondaryTopics>
  </SummaryMetaData>
  <SummaryTitle>Cancer Title</SummaryTitle>
+
  <SummarySection>
   <Title>General Information About X Cancer</Title>
   <SummarySection>
@@ -28,31 +37,55 @@
     <SectionType>Cancer description</SectionType>
     <SectionType>Organ description</SectionType>
    </SectMetaData>
-   <KeyPoint>X cancer is a disease in which malignant (cancer) cells form in the tissues of the x.</KeyPoint>
-   <Para>[descriptive text]</Para>
+   <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
+         form in the tissues of the x.</KeyPoint>
+   <Para><?xm-replace_text {
+         Enter descriptive text
+         }?></Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
-   <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] the risk of developing x cancer.</KeyPoint>
-   <Para>Anything that increases your risk of getting a disease is called a risk factor.  Having a risk factor does not mean that you will get cancer; not having risk factors doesn't mean that you will not get cancer. People who think they may be at risk should discuss this with their doctor.  Risk factors for x cancer include the following:</Para>
+   <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] 
+         the risk of developing x cancer.</KeyPoint>
+   <Para>Anything that increases your risk of getting a disease is called 
+         a risk factor.  Having a risk factor does not mean that you will 
+         get cancer; not having risk factors doesn't mean that you will 
+         not get cancer. People who think they may be at risk should 
+         discuss this with their doctor.  Risk factors for x cancer 
+         include the following:</Para>
    <ItemizedList Style="bullet"> 
-    <ListItem>[risk here]</ListItem> 
-    <ListItem>[risk here]</ListItem> 
-    <ListItem>[risk here]</ListItem> 
-    <ListItem>[risk here]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter risk here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter risk here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter risk here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter risk here
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Genetic aspects</SectionType>
    </SectMetaData>
-   <KeyPoint>X cancer is sometimes caused by inherited gene mutations.</KeyPoint>
+   <KeyPoint>X cancer is sometimes caused by inherited gene 
+         mutations.</KeyPoint>
    <ItemizedList Style="bullet"> 
-    <ListItem>[gene here]</ListItem> 
-    <ListItem>[gene here]</ListItem> 
-    <ListItem>[gene here]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter gene here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter gene here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter gene here
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
@@ -60,59 +93,121 @@
     <SectionType>Symptoms</SectionType>
    </SectMetaData>
    <KeyPoint>Possible signs of x cancer include A, B, C.</KeyPoint>
-   <Para>These and other symptoms may be caused by x cancer. Other conditions may cause the same symptoms. A doctor should be consulted if any of the following problems occur:</Para>
+   <Para>These and other symptoms may be caused by x cancer. Other 
+         conditions may cause the same symptoms. A doctor should be 
+         consulted if any of the following problems occur:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[possible sign here]</ListItem> 
-    <ListItem>[possible sign here]</ListItem> 
-    <ListItem>[possible sign here]</ListItem> 
-    <ListItem>[possible sign here]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter possible sign here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter possible sign here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter possible sign here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter possible sign here
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Diagnostic tests</SectionType>
    </SectMetaData>
-   <KeyPoint>Tests that examine the A, B, and C are used to detect (find) and diagnose x cancer.</KeyPoint>
+   <KeyPoint>Tests that examine the A, B, and C are used to detect (find) 
+         and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording>Biopsy: The removal of cells or tissues so they can be viewed under a microscope by a pathologist to check for signs of cancer.</StandardWording> <Comment>[Note: Within a summary, the description may be tailored to the cancer type.]</Comment></ListItem>
-    <ListItem>[test here]</ListItem>
-    <ListItem>[test here]</ListItem>
-    <ListItem>[test here]</ListItem>
-    <ListItem>[test here]</ListItem>
+    <ListItem><StandardWording>Biopsy: The removal of cells or tissues 
+          so they can be viewed under a microscope by a pathologist 
+          to check for signs of cancer.</StandardWording> 
+     <Comment>[Note: Within a summary, the description may be tailored to 
+          the cancer type.]</Comment></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem>
    </ItemizedList>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Prognostic factors</SectionType>
    </SectMetaData>
-   <KeyPoint>Certain factors affect prognosis (chance of recovery) and treatment options.</KeyPoint>
-   <Para>The prognosis (chance of recovery) depends on the following: <Comment>[Note: Include dramatic prognosis here, extracting philosophy from WYNTK]</Comment></Para>
+   <KeyPoint>Certain factors affect prognosis (chance of recovery) and 
+         treatment options.</KeyPoint>
+   <Para>The prognosis (chance of recovery) depends on the following: 
+    <Comment>[Note: Include dramatic prognosis here, extracting 
+         philosophy from WYNTK]</Comment>
+   </Para>
    <ItemizedList Style="bullet">
-    <ListItem>[factor here]</ListItem>
-    <ListItem>[factor here]</ListItem>
-    <ListItem><Comment>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects prognosis, i.e., "Whether the cancer has just been diagnosed or has recurred (come back)."]</Comment></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter factor here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter factor here
+         }?></ListItem>
+    <ListItem>
+     <Comment>[Note: Include the concept of whether the cancer is 
+          newly diagnosed or recurrent when that affects prognosis, 
+          i.e., "Whether the cancer has just been diagnosed or has 
+          recurred (come back)."]</Comment>
+    </ListItem>
    </ItemizedList>
    <Para>Treatment options depend on the following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[factor here]</ListItem>
-    <ListItem>[factor here]</ListItem>
-    <ListItem><Comment>[Note: Include the concept of whether the cancer is newly diagnosed or recurrent when that affects treatment, i.e., "Whether the cancer has just been diagnosed or has recurred (come back)."]</Comment></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter factor here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter factor here
+         }?></ListItem>
+    <ListItem>
+     <Comment>[Note: Include the concept of whether the cancer 
+         is newly diagnosed or recurrent when that affects treatment, 
+         i.e., "Whether the cancer has just been diagnosed or has 
+         recurred (come back)."]</Comment>
+    </ListItem>
    </ItemizedList>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <Title>Stages of X Cancer</Title>
   <SummarySection>
    <SectMetaData>
     <SectionType>Diagnostic tests</SectionType>
    </SectMetaData>
-   <KeyPoint>After x cancer has been diagnosed, tests are done to find out if cancer cells have spread within the x or to other parts of the body.</KeyPoint>
-   <Para>The process used to find out if cancer has spread within the x or to other parts of the body is called staging. The information gathered from the staging process determines the stage of the disease. It is important to know the stage in order to plan treatment. The following tests and procedures may be used in the staging process: <Comment>[Note: The last sentence should be changed to only tests or only procedures, as appropriate.]</Comment></Para>
+   <KeyPoint>After x cancer has been diagnosed, tests are done to find 
+         out if cancer cells have spread within the x or to other parts 
+         of the body.</KeyPoint>
+   <Para>The process used to find out if cancer has spread within the x 
+         or to other parts of the body is called staging. The information 
+         gathered from the staging process determines the stage of the 
+         disease. It is important to know the stage in order to plan 
+         treatment. The following tests and procedures may be used in 
+         the staging process: 
+    <Comment>[Note: The last sentence should be changed to only tests 
+         or only procedures, as appropriate.]</Comment>
+   </Para>
    <ItemizedList Style="bullet"> 
-    <ListItem>[test here]</ListItem> 
-    <ListItem>[test here]</ListItem> 
-    <ListItem>[test here]</ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem> 
+    <ListItem><?xm-replace_text {
+         Enter test here
+         }?></ListItem> 
    </ItemizedList>
   </SummarySection>
   <SummarySection>
@@ -120,16 +215,21 @@
     <SectionType>Clinical description</SectionType>
    </SectMetaData>
    <KeyPoint>There are three ways that cancer spreads in the body.</KeyPoint>
-   <MiscellaneousDocLink cdr:ref="CDR0000584249#_22">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_22">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Classification by stage</SectionType>
    </SectMetaData>
-   <KeyPoint>The following stages are used for x cancer: <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment></KeyPoint>
+   <KeyPoint>The following stages are used for x cancer: 
+    <Comment>[Linking note: Link first occurrence of all glossary terms 
+         under each stage or substage.]</Comment></KeyPoint>
    <SummarySection>
     <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
-    <Para>In stage 0, abnormal cells are found in .... Abnormal cells may become cancer and spread into nearby normal tissue.  Stage 0 is also called carcinoma in situ.</Para>
+    <Para>In stage 0, abnormal cells are found in .... Abnormal cells 
+          may become cancer and spread into nearby normal tissue.  
+          Stage 0 is also called carcinoma in situ.</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Stage I</KeyPoint>
@@ -149,30 +249,68 @@
    </SummarySection>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Classification by stage</SectionType>
   </SectMetaData>
   <Title>Recurrent X Cancer</Title>
-  <Para>Recurrent x cancer is cancer that has recurred (come back) after it has been treated. The cancer may come back in the x or in other parts of the body.<!--[if true]--></Para>
+  <Para>Recurrent x cancer is cancer that has recurred (come back) after 
+        it has been treated. The cancer may come back in the x or in 
+        other parts of the body.<!--[if true]--></Para>
  </SummarySection>
+
  <SummarySection>
   <Title>Treatment Option Overview</Title>
   <SummarySection>
    <SectMetaData>
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
-   <KeyPoint>There are different types of treatment for patients with x cancer.</KeyPoint>
-   <Para><Comment>For Adult summaries:</Comment> Different types of treatments are available for patients with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials.  A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the  standard treatment, the new treatment may become the standard treatment. Patients may want to think about taking part in a clinical trial. Some clinical trials are open only to patients who have not started treatment.</Para>
-   <Para><Comment>For Childhood summaries:</Comment> Different types of treatment are available for children with x cancer. Some treatments are standard (the currently used treatment), and some are being tested in clinical trials. A treatment clinical trial is a research study meant to help improve current treatments or obtain information on new treatments for patients with cancer. When clinical trials show that a new treatment is better than the standard treatment, the new treatment may become the standard treatment.</Para>
-   <Para>Because cancer in children is rare, taking part in a clinical trial should be considered. Some clinical trials are open only to patients who have not started treatment.</Para>
+   <KeyPoint>There are different types of treatment for patients 
+         with x cancer.</KeyPoint>
+   <Para>
+    <Comment>For Adult summaries:</Comment> Different types of 
+         treatments are available for patients with x cancer. Some 
+         treatments are standard (the currently used treatment), and 
+         some are being tested in clinical trials.  A treatment clinical 
+         trial is a research study meant to help improve current 
+         treatments or obtain information on new treatments for patients 
+         with cancer. When clinical trials show that a new treatment is 
+         better than the  standard treatment, the new treatment may 
+         become the standard treatment. Patients may want to think about 
+         taking part in a clinical trial. Some clinical trials are open 
+         only to patients who have not started treatment.</Para>
+   <Para>
+    <Comment>For Childhood summaries:</Comment> Different types of 
+         treatment are available for children with x cancer. Some 
+         treatments are standard (the currently used treatment), and 
+         some are being tested in clinical trials. A treatment clinical 
+         trial is a research study meant to help improve current 
+         treatments or obtain information on new treatments for patients 
+         with cancer. When clinical trials show that a new treatment is 
+         better than the standard treatment, the new treatment may 
+         become the standard treatment.</Para>
+   <Para>Because cancer in children is rare, taking part in a clinical 
+         trial should be considered. Some clinical trials are open only 
+         to patients who have not started treatment.</Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Standard treatment</SectionType>
    </SectMetaData>
-   <KeyPoint>Children with x cancer should have their treatment planned by a team of health care providers who are experts in treating cancer in children. <Comment>[Use for childhood treatment summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
-   <Para>Treatment will be overseen by a pediatric oncologist, a doctor who specializes in treating children with cancer. The pediatric oncologist works with other pediatric health care providers who are experts in treating children with x cancer and who specialize in certain areas of medicine. These may include the following specialists: <Comment>[Add or delete specialists to fit the cancer treatment.]</Comment></Para>
+   <KeyPoint>Children with x cancer should have their treatment planned 
+         by a team of health care providers who are experts in treating 
+         cancer in children. <Comment>[Use for childhood treatment 
+         summaries.  Tailor if needed for adult.]</Comment></KeyPoint>
+   <Para>Treatment will be overseen by a pediatric oncologist, a doctor 
+         who specializes in treating children with cancer. The pediatric 
+         oncologist works with other pediatric health care providers who 
+         are experts in treating children with x cancer and who specialize 
+         in certain areas of medicine. These may include the following 
+         specialists: 
+    <Comment>[Add or delete specialists to fit the cancer 
+         treatment.]</Comment>
+   </Para>
    <ItemizedList Style="bullet">
     <ListItem>Pediatric surgeon.</ListItem>
     <ListItem>Pediatric hematologist.</ListItem>
@@ -191,13 +329,21 @@
              after treatment has ended. 
     <Comment>[Use for childhood treatment summaries.]</Comment>
    </KeyPoint>
-   <Para>Some cancer treatments cause side effects that continue or appear months or years after cancer treatment has ended. These are called late effects. Late effects of cancer treatment may include:</Para>
+   <Para>Some cancer treatments cause side effects that continue 
+         or appear months or years after cancer treatment has ended. 
+         These are called late effects. Late effects of cancer 
+         treatment may include:</Para>
    <ItemizedList>
     <ListItem>Physical problems.</ListItem>
-    <ListItem>Changes in mood, feelings, thinking, learning, or memory.</ListItem>
+    <ListItem>Changes in mood, feelings, thinking, learning, or 
+          memory.</ListItem>
     <ListItem>Second cancers (new types of cancer).</ListItem>
    </ItemizedList>
-   <Para>Some late effects may be treated or controlled. It is important to talk with your child's doctors about the possible late effects caused by some treatments. (See the PDQ summary on <SummaryRef cdr:href="CDR0000373791">Late Effects of Treatment for Childhood Cancer</SummaryRef> for more information).
+   <Para>Some late effects may be treated or controlled. It is important 
+         to talk with your child's doctors about the possible late 
+         effects caused by some treatments. (See the PDQ summary on 
+         <SummaryRef cdr:href="CDR0000373791">Late Effects of Treatment
+         for Childhood Cancer</SummaryRef> for more information).
    </Para>
   </SummarySection>
   <SummarySection>
@@ -207,82 +353,141 @@
    <KeyPoint># types of standard treatment are used:</KeyPoint>
    <SummarySection>
     <KeyPoint>Surgery</KeyPoint>
-    <Para>[describe surgery here]</Para>
-    <Para>Even if the doctor removes all the cancer that can be seen at the time of the surgery, some patients may be given chemotherapy or radiation therapy after surgery to kill any cancer cells that are left. Treatment given after the surgery, to increase the chances of a cure, is called adjuvant therapy.</Para>
+    <Para><?xm-replace_text {
+         Describe surgery here
+         }?></Para>
+    <Para>Even if the doctor removes all the cancer that can be seen 
+         at the time of the surgery, some patients may be given 
+         chemotherapy or radiation therapy after surgery to kill any 
+         cancer cells that are left. Treatment given after the surgery, 
+         to increase the chances of a cure, is called adjuvant 
+         therapy.</Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Radiation therapy</KeyPoint>
     <Para>
-     <StandardWording>Radiation therapy is a cancer treatment that uses high-energy x-rays or other types of radiation to kill cancer cells or keep them from growing. There are two types of radiation therapy.  External radiation therapy uses a machine outside the body to send radiation toward the cancer.  Internal radiation therapy uses a radioactive substance sealed in needles, seeds, wires, or catheters that are placed directly into or near the cancer.  The way the radiation therapy is given depends on the type and stage of the cancer being treated.</StandardWording>
+     <StandardWording>Radiation therapy is a cancer treatment that 
+         uses high-energy x-rays or other types of radiation to kill 
+         cancer cells or keep them from growing. There are two types 
+         of radiation therapy.  External radiation therapy uses a 
+         machine outside the body to send radiation toward the cancer.  
+         Internal radiation therapy uses a radioactive substance sealed 
+         in needles, seeds, wires, or catheters that are placed directly 
+         into or near the cancer.  The way the radiation therapy is 
+         given depends on the type and stage of the cancer being 
+         treated.</StandardWording>
     </Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Chemotherapy</KeyPoint>
     <Para>
-     <StandardWording>Chemotherapy is a cancer treatment that uses drugs to stop the growth of cancer cells, either by killing the cells or by stopping them from dividing.   When chemotherapy is taken by mouth or injected into a vein or muscle, the drugs enter the bloodstream and can reach cancer cells throughout the body (systemic chemotherapy).  When chemotherapy is placed directly into the spinal column, an organ, or a body cavity such as the abdomen, the drugs mainly affect cancer cells in those areas (regional chemotherapy).  The way the chemotherapy is given depends on the type and stage of the cancer being treated.</StandardWording>
+     <StandardWording>Chemotherapy is a cancer treatment that uses drugs 
+         to stop the growth of cancer cells, either by killing the 
+         cells or by stopping them from dividing.   When chemotherapy 
+         is taken by mouth or injected into a vein or muscle, the 
+         drugs enter the bloodstream and can reach cancer cells 
+         throughout the body (systemic chemotherapy).  When chemotherapy 
+         is placed directly into the spinal column, an organ, or a body 
+         cavity such as the abdomen, the drugs mainly affect cancer 
+         cells in those areas (regional chemotherapy).  The way the 
+         chemotherapy is given depends on the type and stage of the 
+         cancer being treated.</StandardWording>
     </Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[Therapy here]</KeyPoint>
-    <Para>[describe therapy here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter therapy here
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Describe therapy here
+         }?></Para>
    </SummarySection>
    <SummarySection>
-    <KeyPoint>[Therapy here]</KeyPoint>
-    <Para>[describe therapy here]</Para>
+    <KeyPoint><?xm-replace_text {
+         Enter therapy here
+         }?></KeyPoint>
+    <Para><?xm-replace_text {
+         Describe therapy here
+         }?></Para>
    </SummarySection>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Treatment in clinical trials</SectionType>
    </SectMetaData>
-   <KeyPoint>New types of treatment are being tested in clinical trials.</KeyPoint>
-   <Para>This summary section describes treatments that are being studied in <GlossaryTermRef PdqKey="GlossaryTerm:7224" cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>.  It may not mention every new treatment being studied. Information about clinical trials is available from the <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web site</ExternalRef>.</Para>
+   <KeyPoint>New types of treatment are being tested in clinical 
+         trials.</KeyPoint>
+   <Para>This summary section describes treatments that are being 
+         studied in 
+    <GlossaryTermRef PdqKey="GlossaryTerm:7224" 
+         cdr:href="CDR0000045961">clinical trials</GlossaryTermRef>.  
+         It may not mention every new treatment being studied. 
+         Information about clinical trials is available from the 
+         <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web 
+         site</ExternalRef>.</Para>
    <SummarySection>
     <KeyPoint>Clinical trial here</KeyPoint>
-    <Para>[para here]</Para>
+    <Para><?xm-replace_text {
+         Enter para here
+         }?></Para>
    </SummarySection>
    <SummarySection>
     <KeyPoint>Clinical trial here</KeyPoint>
-    <Para>[para here]</Para>
+    <Para><?xm-replace_text {
+         Enter para here
+         }?></Para>
    </SummarySection>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Treatment in clinical trials</SectionType>
    </SectMetaData>
-   <KeyPoint>Patients may want to think about taking part in a clinical trial.</KeyPoint>
-   <MiscellaneousDocLink cdr:ref="CDR0000584249#_13">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+   <KeyPoint>Patients may want to think about taking part in a 
+         clinical trial.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_13">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Treatment in clinical trials</SectionType>
    </SectMetaData>
-   <KeyPoint>Patients can enter clinical trials before, during, or after starting their cancer treatment.</KeyPoint>
-   <MiscellaneousDocLink cdr:ref="CDR0000584249#_28">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+   <KeyPoint>Patients can enter clinical trials before, during, or 
+         after starting their cancer treatment.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_28">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
    <SectMetaData>
     <SectionType>Post-treatment considerations</SectionType>
    </SectMetaData>
    <KeyPoint>Follow-up tests may be needed.</KeyPoint>
-  <MiscellaneousDocLink cdr:ref="CDR0000584249#_32">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_32">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Treatment options by stage</SectionType>
   </SectMetaData>
   <Title>Treatment Options by Stage</Title>
-  <MiscellaneousDocLink cdr:ref="CDR0000584249#_36">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
-  <Comment>[Linking note: Link first occurrence of all glossary terms under each stage or substage.]</Comment>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_36">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
+  <Comment>[Linking note: Link first occurrence of all glossary terms 
+        under each stage or substage.]</Comment>
   <SummarySection>
    <SectMetaData>
    </SectMetaData>
    <Title>Stage 0 (Carcinoma in Situ)</Title>
-   <Para>Treatment of stage 0 (carcinoma in situ) may include the following:</Para>
+   <Para>Treatment of stage 0 (carcinoma in situ) may include the 
+         following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[treatment here]</ListItem>
-    <ListItem>[treatment here]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
   </SummarySection>
@@ -292,8 +497,12 @@
    <Title>Stage I X Cancer</Title>
    <Para>Treatment of stage I x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[treatment here]</ListItem>
-    <ListItem>[treatment here]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
   </SummarySection>
@@ -303,8 +512,12 @@
    <Title>Stage II X Cancer</Title>
    <Para>Treatment of stage II x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[treatment here]</ListItem>
-    <ListItem>[treatment here]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
   </SummarySection>
@@ -314,8 +527,12 @@
    <Title>Stage III X Cancer</Title>
    <Para>Treatment of stage III x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[treatment here]</ListItem>
-    <ListItem>[treatment here]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
   </SummarySection>
@@ -325,12 +542,17 @@
    <Title>Stage IV X Cancer</Title>
    <Para>Treatment of stage IV x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
-    <ListItem>[treatment here]</ListItem>
-    <ListItem>[treatment here]</ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
     <ListItem>A clinical trial of ....</ListItem>
    </ItemizedList>
   </SummarySection>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Treatment options by stage</SectionType>
@@ -341,34 +563,60 @@
    <ListItem>Surgery.</ListItem>
    <ListItem>Radiation therapy.</ListItem>
    <ListItem>Chemotherapy.</ListItem>
-   <ListItem>[treatment here]</ListItem>
+   <ListItem><?xm-replace_text {
+         Enter treatment here
+         }?></ListItem>
    <ListItem>A clinical trial of ....</ListItem>
   </ItemizedList>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Resources</SectionType>
   </SectMetaData>
   <Title>To Learn More About X Cancer</Title>
-  <Para>For more information from the National Cancer Institute about x cancer, see the following:</Para>
+  <Para>For more information from the National Cancer Institute 
+        about x cancer, see the following:</Para>
   <ItemizedList>
-   <ListItem>[link resource here]</ListItem>
-   <ListItem>[link resource here]</ListItem>
-   <ListItem>[link resource here]</ListItem>
+   <ListItem><?xm-replace_text {
+         Enter link resource here
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter link resource here
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter link resource here
+         }?></ListItem>
   </ItemizedList>
   <Comment>For adult summary</Comment>
-  <MiscellaneousDocLink cdr:ref="CDR0000584249#_39">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_39">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
   <Comment>For childhood summary</Comment>
-  <MiscellaneousDocLink cdr:ref="CDR0000584249#_43">Patient Summary Fragments;Patient summary fragments</MiscellaneousDocLink>
+  <MiscellaneousDocLink cdr:ref="CDR0000584249#_43">Patient Summary
+         Fragments;Patient summary fragments</MiscellaneousDocLink>
  </SummarySection>
+
  <SummarySection>
   <SectMetaData>
    <SectionType>Changes to summary</SectionType>
   </SectMetaData>
   <Title>Changes to This Summary (MM/DD/YYYY)</Title>
-  <Para>The PDQ cancer information summaries are reviewed regularly and updated as new information becomes available.  This section describes the latest changes made to this summary as of the date above.</Para>
-  <Para><StandardWording>This summary was completely reformatted and some content was added.</StandardWording></Para>
+  <Para>The PDQ cancer information summaries are reviewed regularly 
+         and updated as new information becomes available.  This section 
+         describes the latest changes made to this summary as of the 
+         date above.</Para>
+  <Para>
+   <StandardWording>This summary was completely reformatted and some 
+         content was added.</StandardWording></Para>
  </SummarySection>
- <PatientVersionOf>[select title of HP version]</PatientVersionOf>
- <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+
+ <PatientVersionOf><?xm-replace_text {
+         Select title of HP version
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced by this document
+         }?></WillReplace>
+ <DateLastModified><?xm-replace_text {
+         Optionally enter the date of the last record modification
+         }?></DateLastModified>
 </Summary>
