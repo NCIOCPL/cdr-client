@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.54 2008-05-29 20:26:04 bkline Exp $
+ * $Id: Commands.cpp,v 1.55 2008-11-04 19:42:41 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.54  2008/05/29 20:26:04  bkline
+ * Added support for navigation to the location of specific validation
+ * errors in the current document.
+ *
  * Revision 1.53  2008/01/29 15:14:21  bkline
  * New command to retrieve document ID for patient equivalent of a health
  * professional summary.
@@ -295,7 +299,9 @@ static void extractValidValueSet(const CString& resp,
             cdr::Element vvElement = 
                 cdr::Element::extractElement(eString, _T("ValidValue"));
             while (vvElement) {
-                vvList.push_back(vvElement.getString());
+                CString value = vvElement.getString();
+                value = cdr::decode(value);
+                vvList.push_back(value);
                 vvElement = 
                     cdr::Element::extractElement(eString, _T("ValidValue"), 
                                                  vvElement.getEndPos());
