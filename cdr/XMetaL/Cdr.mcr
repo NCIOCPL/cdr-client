@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.192 2008-11-25 16:21:04 venglisc Exp $
+     $Id: Cdr.mcr,v 1.193 2008-11-25 19:11:15 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.192  2008/11/25 16:21:04  venglisc
+     Added new icon to run the Glossary Term Name with Concept QC report.
+     (Bug 4366)
+
      Revision 1.191  2008/09/30 13:59:12  bkline
      Implemented new macro for invoking the report for links to specific
      portions of a document.
@@ -3018,6 +3022,12 @@
                            "Publish Preview",
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Phrase Search",
+                           "Glossary Phrase Search",
+                           "Report on matching GlossaryTermName phrases",
+                           "CDR", 5, 3,
                            false)
         );
         var cmdBars = Application.CommandBars;
