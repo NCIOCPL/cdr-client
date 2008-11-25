@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.191 2008-09-30 13:59:12 bkline Exp $
+     $Id: Cdr.mcr,v 1.192 2008-11-25 16:21:04 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.191  2008/09/30 13:59:12  bkline
+     Implemented new macro for invoking the report for links to specific
+     portions of a document.
+
      Revision 1.190  2008/09/26 16:57:58  bkline
      Rewrote macro to delete a CallLog block.
 
@@ -2985,6 +2989,12 @@
     function addGlossaryTermNameToolbar() {
 
         var buttons = new Array(
+            new CdrCmdItem(null,
+                           "TermName with Concept QC Report",
+                           "GT Name/Concept QC",
+                           "Generate QC Report",
+                           "CDR", 3, 8,
+                           false),
             new CdrCmdItem(null,                        // Label.
                            "Generate QC Report",        // Macro.
                            "GT Name QC Report",         // Tooltip.
@@ -6229,6 +6239,28 @@
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId +
                 "&Filter=set:QC InScopeProtocol Admin Set";
+        cdrObj.showPage(url);
+    }
+    protocolAdminQcReport();
+  ]]>
+</MACRO>
+
+<MACRO name="TermName with Concept QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function protocolAdminQcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId +
+                "&Filter=set:QC GlossaryTermName with Concept Set";
         cdrObj.showPage(url);
     }
     protocolAdminQcReport();
