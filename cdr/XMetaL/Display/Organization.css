@@ -114,6 +114,8 @@ FormerName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
+BoardMeeting,
+BoardMeetings,
 BoardMeetingDates,
 CCOP,
 CIPSContact,
@@ -133,6 +135,7 @@ Location,
 MainMember,
 MainMemberOf,
 MeetingDate,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -179,6 +182,8 @@ AlternateName        :before { content: "Alternate Name & +: "; }
 BoardManager         :before { content: "Manager *: "; }
 BoardManagerPhone    :before { content: "Phone * @: "; }
 BoardManagerEmail    :before { content: "Email * @: "; }
+BoardMeeting         :before { content: "BOARD MEETING * +"; }
+BoardMeetings        :before { content: "BOARD MEETINGS &"; }
 BoardMeetingDates    :before { content: "MEETING DATE(s) * +"; }
 DayTime              :before { content: "Time *: "; }
 FormerName           :before { content: "Former Name & +: "; }
@@ -203,6 +208,9 @@ Location             :before { content: "LOCATION [" attr(cdr\:id) "]"; }
 MainMember           :before { content: "Main Member & @: "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF & +"; }
 MeetingDate          :before { content: "Date * +: "; }
+MeetingDate[WebEx="Yes"]:after
+                             { content: " (WebEx)"; }
+MeetingTime          :before { content: "Time * +: "; }
 MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Grp & + @: "; }
 MemberOfCCOP[CCOPMemberType="Component"]        
                      :before { content: "MEMBER OF CCOP [COMPONENT] & @"; }
@@ -254,6 +262,8 @@ AffiliateMemberOf    :before,
 BoardManager         :before,
 BoardManagerPhone    :before,
 BoardManagerEmail    :before,
+BoardMeeting         :before,
+BoardMeetings        :before,
 BoardMeetingDates    :before,
 ClinicalTrialsOfficeContact
                      :before,
@@ -262,6 +272,7 @@ DayTime              :before,
 Location             :before,
 MainMemberOf         :before,
 MeetingDate          :before,
+MeetingTime          :before,
 OrganizationAdministrativeInformation
                      :before,
 OrganizationAffiliations
@@ -291,10 +302,12 @@ OrganizationAdministrativeInformation,
 
 PDQBoardInformation,
 BoardMeetingDates,
+BoardMeetings,
     {  margin-top: 1em;
     margin-bottom: 1em;   }
 
 
+BoardMeeting,
 CIPSContactPerson,
 ClinicalTrialsOfficeContact,
 ClinicalTrialsOfficeContactName,
@@ -341,21 +354,22 @@ Status,
 /**************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS               */
 /**************************************************************************/
-AlternateName:before,
-FormerName:before,
-ClinicalTrialsOfficeContactEmail:before,
-ClinicalTrialsOfficeContactName:before,
-ClinicalTrialsOfficeContactPhone:before,
-CIPSContact:before,
-Comment:before,
-Date:before,
-DateLastModified:before,
+AlternateName                     :before,
+FormerName                        :before,
+ClinicalTrialsOfficeContactEmail  :before,
+ClinicalTrialsOfficeContactName   :before,
+ClinicalTrialsOfficeContactPhone  :before,
+CIPSContact                       :before,
+Comment                           :before,
+Date                              :before,
+DateLastModified                  :before,
 MeetingDate                       :before,
-PersonAssigned:before,
-OfficialName > Name:before,
-ParentOrganization:before,
-ProtocolIDAcronym:before,
-ShortName > Name:before,
+MeetingTime                       :before,
+PersonAssigned                    :before,
+OfficialName > Name               :before,
+ParentOrganization                :before,
+ProtocolIDAcronym                 :before,
+ShortName > Name                  :before,
    {  font-weight: bold;
       color: black;  }
 
@@ -363,24 +377,25 @@ ShortName > Name:before,
 /**************************************************************************/
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS       */
 /**************************************************************************/
-CCOP:before,
-CIPSContactPerson:before,
-CooperativeGroup:before,
-CurrentStatus:before,
-IncludeInDirectory:before,
-MainMember:before,
-MemberOfAdHocGroup:before,
-MemberOfCCOP:before,
-MemberOfProfessionalOrganization:before,
-OrganizationType:before,
-OrganizationType[Public="No"]:after,
-OrganizationType:after,
-PdqKey:before,
-PreferredDirectoryContactMode:before,
-PreferredProtocolContactMode:before,
-PreferredProtocolOrganization:before,
-ProtocolParticipation:before,
-ResearchBaseFor:before,
+CCOP                              :before,
+CIPSContactPerson                 :before,
+CooperativeGroup                  :before,
+CurrentStatus                     :before,
+IncludeInDirectory                :before,
+MeetingDate[WebEx="Yes"]          :after,
+MainMember                        :before,
+MemberOfAdHocGroup                :before,
+MemberOfCCOP                      :before,
+MemberOfProfessionalOrganization  :before,
+OrganizationType                  :before,
+OrganizationType[Public="No"]     :after,
+OrganizationType                  :after,
+PdqKey                            :before,
+PreferredDirectoryContactMode     :before,
+PreferredProtocolContactMode      :before,
+PreferredProtocolOrganization     :before,
+ProtocolParticipation             :before,
+ResearchBaseFor                   :before,
    {  font-weight: bold;
       color: black;  }
 
@@ -495,10 +510,14 @@ BoardManagerEmail                      { margin-left: 100pt;
                                          text-indent: -62pt; }
 DayTime                                { margin-left: 100pt; 
                                          text-indent: -43.5pt; }
+BoardMeetings                          { margin-left:  30pt; }
+BoardMeeting                           { margin-left:  30pt; }
 BoardMeetingDates > Year               { margin-left: 100pt; 
                                          text-indent: -41.5pt; }
-BoardMeetingDates > MeetingDate        { margin-left: 100pt; 
+BoardMeeting > MeetingDate             { margin-left: 100pt; 
                                          text-indent: -51.5pt; }
+BoardMeeting > MeetingTime             { margin-left: 100pt; 
+                                         text-indent: -53pt; }
 
 
 /**************************************************************************/
@@ -592,6 +611,7 @@ IncludeInDirectory,
 Location,
 MainMember,
 MeetingDate,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -621,64 +641,65 @@ Year
 /**************************************************************************/
 /*                     Label Background Color                             */
 /**************************************************************************/
-AdvisoryBoardFor:before,
+AdvisoryBoardFor                  :before,
 AffiliateMemberOf,
-AlternateName:before,
-BoardManager:before,
-BoardManagerPhone:before,
-BoardManagerEmail:before,
-BoardMeetingDates:before,
-DayTime:before,
-FormerName:before,
-CCOP:before,
-CIPSContact:before,
-CIPSContactPerson:before,
+AlternateName                     :before,
+BoardManager                      :before,
+BoardManagerPhone                 :before,
+BoardManagerEmail                 :before,
+BoardMeetingDates                 :before,
+DayTime                           :before,
+FormerName                        :before,
+CCOP                              :before,
+CIPSContact                       :before,
+CIPSContactPerson                 :before,
 ClinicalTrialsOfficeContact,
-ClinicalTrialsOfficeContactEmail:before,
-ClinicalTrialsOfficeContactName:before,
-ClinicalTrialsOfficeContactPhone:before,
-Comment:before,
-CooperativeGroup:before,
-CurrentStatus:before,
-Date:before,
-DateLastModified:before,
-IncludeInDirectory:before,
+ClinicalTrialsOfficeContactEmail  :before,
+ClinicalTrialsOfficeContactName   :before,
+ClinicalTrialsOfficeContactPhone  :before,
+Comment                           :before,
+CooperativeGroup                  :before,
+CurrentStatus                     :before,
+Date                              :before,
+DateLastModified                  :before,
+IncludeInDirectory                :before,
 Location,
-Location:before,
-MainMember:before,
+Location                          :before,
+MainMember                        :before,
 MainMemberOf,
 MeetingDate                       :before,
-MemberOfAdHocGroup:before,
+MeetingTime                       :before,
+MemberOfAdHocGroup                :before,
 MemberOfCCOP,
-MemberOfCCOP:before,
+MemberOfCCOP                      :before,
 MemberOfCooperativeGroups,
-MemberOfCooperativeGroups:before,
-MemberOfProfessionalOrganization:before,
-Name:before,
+MemberOfCooperativeGroups         :before,
+MemberOfProfessionalOrganization  :before,
+Name                              :before,
 OfficialName,
-OfficialName:before,
+OfficialName                      :before,
 OrganizationAdministrativeInformation,
 OrganizationAdministrativeInformation:before,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganzationLocation,
-OrganizationLocation:before,
+OrganizationLocation              :before,
 OrganizationLocations,
-OrganizationNameInformation:before,
+OrganizationNameInformation       :before,
 OrganizationParent,
-OrganizationType:before,
-ParentOrganization:before,
-PdqKey:before,
-PersonAssigned:before,
-PreferredDirectoryContactMode:before,
-PreferredProtocolContactMode:before,
-PreferredProtocolOrganization:before,
-ProtocolIDAcronym:before,
-ProtocolParticipation:before,
-Public:before,
-ResearchBaseFor:before,
+OrganizationType                  :before,
+ParentOrganization                :before,
+PdqKey                            :before,
+PersonAssigned                    :before,
+PreferredDirectoryContactMode     :before,
+PreferredProtocolContactMode      :before,
+PreferredProtocolOrganization     :before,
+ProtocolIDAcronym                 :before,
+ProtocolParticipation             :before,
+Public                            :before,
+ResearchBaseFor                   :before,
 ShortName,
-ShortName:before,
+ShortName                         :before,
 Status,
-Year:before
+Year                              :before
     { background-color: #CCCCFF; }

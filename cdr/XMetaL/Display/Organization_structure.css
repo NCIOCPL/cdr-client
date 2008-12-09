@@ -46,9 +46,9 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/*************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                */ 
+/*************************************************************************/ 
 @import "CdrCommonSchema_structure.css";
 
 @sq-plus-minus;
@@ -95,6 +95,8 @@ BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
 BoardMeetingDates,
+BoardMeeting,
+BoardMeetings,
 DayTime,
 FormerName,
 CCOP,
@@ -115,6 +117,7 @@ Location,
 MainMember, 
 MainMemberOf,
 MeetingDate,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -144,9 +147,7 @@ ResearchBaseFor,
 ShortName,
 Status,
 Year
-
      { display: block; }
-
 
 
 /***************************************************************************/ 
@@ -159,6 +160,8 @@ BoardManager         :before { content: "Board Manager "; }
 BoardManagerPhone    :before { content: "Board Manager Phone "; }
 BoardManagerEmail    :before { content: "Board Manager Email "; }
 BoardMeetingDates    :before { content: "BOARD MEETING DATE(S) "; }
+BoardMeeting         :before { content: "BOARD MEETING"; }
+BoardMeetings        :before { content: "BOARD MEETINGS"; }
 DayTime              :before { content: "Meeting Times "; }
 FormerName           :before { content: "Former Name "; }
 CCOP                 :before { content: "CCOP"; }
@@ -182,6 +185,8 @@ IncludeInDirectory   :before { content: "Include in Directory? "; }
 Location             :before { content: "LOCATION "; }
 MainMember           :before { content: "Main Member "; } 
 MainMemberOf         :before { content: "MAIN MEMBER OF "; }
+MeetingDate          :before { content: "Date"; }
+MeetingTime          :before { content: "Time"; }
 MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Group "; }
 MemberOfCCOP[CCOPMemberType="Component"]
                      :before { content: "MEMBER OF CCOP [COMPONENT] "; }
@@ -237,9 +242,7 @@ Year                 :before { content: "Year "; }
 /*                     COUNTER DEFINITIONS                                 */ 
 /***************************************************************************/ 
 OrganizationLocation,
-
      {  counter-increment: Loc;  }
-
 
 
 /***************************************************************************/ 
@@ -271,7 +274,6 @@ PDQBoardInformation               :before,
 ShortName                         :before,
 Status                            :before,
 Year                              :before
-
      {  font-weight: bold;
         color: black;        }  
 
@@ -294,10 +296,8 @@ PreferredProtocolOrganization     :before,
 ProtocolParticipation             :before,
 ResearchBaseFor                   :before,
 Type                              :before,
-
      {  font-weight: bold;
         color: black;  }
-
 
 
 /***************************************************************************/ 
@@ -319,7 +319,6 @@ ShortName > Name                  :before,
 ParentOrganization                :before,
 ProtocolIDAcronym                 :before,
 ShortName > Name                  :before,
-
      {  font-weight: bold;
         color: black;  }
 
@@ -333,17 +332,13 @@ OrganizationDetails,
 OrganizationLocation,
 PDQBoardInformation,
 Status,
-
      { border: none;  }
-
 
 
 /***************************************************************************/ 
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
 /***************************************************************************/ 
-
 /* Remove negative text-indent settings  */
-
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
@@ -369,6 +364,7 @@ Location,
 MainMember, 
 MainMemberOf,
 MeetingDate,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -397,7 +393,6 @@ ShortName,
 Status,
 Type,
 Year
-
      { text-indent: 0pt; }
 
 
@@ -431,6 +426,8 @@ Location,
 MainMember, 
 MainMemberOf,
 MeetingDate,
+MeetingDate[WebEx="Yes"]          :after,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -444,7 +441,7 @@ OrganizationLocations,
 OrganizationNameInformation,
 OrganizationParent,
 OrganizationType,
-OrganizationType[Public="No"]:after,
+OrganizationType[Public="No"]     :after,
 OrganizationType:after,
 ParentOrganization, 
 PDQBoardInformation,
@@ -461,7 +458,6 @@ ShortName,
 Status,
 Type,
 Year,
-
      { color: white;
        background-color: white; }
 
@@ -492,6 +488,7 @@ Location                          :before,
 MainMember                        :before, 
 MainMemberOf,
 MeetingDate                       :before,
+MeetingTime                       :before,
 MemberOfAdHocGroup                :before,
 MemberOfCCOP,
 MemberOfCCOP                      :before,
@@ -523,5 +520,4 @@ ShortName                         :before,
 Status,
 Type                              :before,
 Year                              :before,
-
      { background-color: white; }
