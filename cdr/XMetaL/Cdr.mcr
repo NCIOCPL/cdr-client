@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.194 2008-11-29 03:10:08 bkline Exp $
+     $Id: Cdr.mcr,v 1.195 2008-12-10 22:16:51 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.194  2008/11/29 03:10:08  bkline
+     Changed icon for glossary phrase search command at William's request.
+
      Revision 1.193  2008/11/25 19:11:15  bkline
      Added Glossary Term Phrase button to GlossaryTermName toolbar.
 
@@ -7254,6 +7257,40 @@
        lang="JScript" >
   <![CDATA[
     cdrObj.addGlossaryPhrase();
+  ]]>
+</MACRO>
+
+<MACRO name="On_ElementList_Insert"
+       lang="JScript">
+  <![CDATA[
+    function onElementListInsert() {
+        var name = Application.ElementList.SelectedName;
+        var dt = ActiveDocument.doctype.name;
+        if (dt == 'GlossaryTermConcept' || dt == 'GlossaryTermName') {
+            if (name == 'ProcessingStatus' || name == 'ProcessingStatuses') {
+                var newElem = "<ProcessingStatus>"
+                            + "<ProcessingStatusValue user='"
+                            + CdrUserName
+                            + "' date='"
+                            + getCurDateString()
+                            + "'><?xm-replace_text { Pick a status }?>"
+                            + "</ProcessingStatusValue>"
+                            + "</ProcessingStatus>";
+                if (name == 'ProcessingStatuses')
+                    newElem = '<ProcessingStatuses>'
+                            + newElem
+                            + '</ProcessingStatuses>';
+                // Application.Alert("selected name is " + name);
+                if (Selection.CanPaste(newElem))
+                    Selection.PasteString(newElem);
+                else
+                    Application.Alert("can't paste " + name);
+                return;
+            }
+        }
+        Selection.InsertWithTemplate(selName);
+    }
+    onElementListInsert()
   ]]>
 </MACRO>
 
