@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.195 2008-12-10 22:16:51 bkline Exp $
+     $Id: Cdr.mcr,v 1.196 2008-12-11 15:50:49 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.195  2008/12/10 22:16:51  bkline
+     Implemented macro to populate attributes for ProcessingStatusValue
+     elements in glossary documents (request #4408).
+
      Revision 1.194  2008/11/29 03:10:08  bkline
      Changed icon for glossary phrase search command at William's request.
 
@@ -7288,7 +7292,7 @@
                 return;
             }
         }
-        Selection.InsertWithTemplate(selName);
+        Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
   ]]>
