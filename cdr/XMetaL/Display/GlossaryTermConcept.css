@@ -180,9 +180,6 @@ TranslationResource          :before,
     { font-weight: bold;
       color: black; }
 
-PlaceHolder                  :before,
-    { font-weight: bold;
-      color: teal; }
 ReplacementText              :after,
     { font-weight: bold;
       color: teal; }
@@ -408,3 +405,10 @@ TermDefinition *:before
 TranslatedTermDefinition,
 TranslatedTermDefinition *:before,
     { background-color: #99FFFF; }  /* another light-blue */
+
+
+/* Need to reset the Inline elements */
+PlaceHolder                  :before,
+    { background-color: white;  
+      font-weight: bold;
+      color: teal; }
