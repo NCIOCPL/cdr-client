@@ -2,6 +2,14 @@
 <!-- Created by XMetaL style generator. (c)2004 Blast Radius. All rights reserved. -->
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions Version="2.0">
+  <ParentList>
+   <TermDefinition>
+    <DefinitionText/>
+   </TermDefinition>
+   <TranslatedTermDefinition>
+    <DefinitionText/>
+   </TranslatedTermDefinition>
+  </ParentList>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
       <IndentAmount>10</IndentAmount>
@@ -78,11 +86,10 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">DefinitionText</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
+      <Name>DefinitionText</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>DefinitionText</Name>
     </ElementProperties>
     <ElementProperties>
       <Name ns="">Dictionary</Name>
@@ -312,6 +319,27 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">PostalCode_ZIP</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatus</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatuses</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatusValue</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -564,10 +592,12 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">TermDefinition</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
+      <PrettyPrintOptions>
+       <IndentContent>50</IndentContent>
+       <PreserveSpace/>
+       <NewLineBeforeEndTag/>
+       <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
       <Name ns="">TermSource</Name>
@@ -607,6 +637,18 @@
     <ElementProperties>
       <Name ns="">TollFreePhone</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TranslatedStatus</Name>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">TranslatedStatusDate</Name>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
@@ -782,6 +824,19 @@
       Optionally enter an NCIThesaurusID
       }?></NCIThesaurusID>]]></MiniTemplate>
     </Template>
+    <!-- 
+    Note:  The ProcessingStatuses block is controlled by a macro in Cdr.mcr
+
+    <Template>
+      <Name ns="">ProcessingStatuses</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatuses>
+        <ProcessingStatus>
+         <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+        </ProcessingStatus>
+       </ProcessingStatuses>]]></MiniTemplate>
+    </Template -->
     <Template>
       <Name ns="">PDQTerm</Name>
       <MiniTemplate><![CDATA[<PDQTerm><?xm-replace_text {

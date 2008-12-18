@@ -56,11 +56,28 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">PronunciationResource</Name>
+      <Name ns="">ProcessingStatus</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatuses</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">ProcessingStatusValue</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>PronunciationResource</Name>
     </ElementProperties>
     <ElementProperties>
       <Name ns="">ReplacementText</Name>
@@ -71,53 +88,62 @@
       <TagColor>teal</TagColor>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermName</Name>
+      <Name>TermName</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermNameSource</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermNameSource</Name>
+      <Name>TermNameSourceVerification</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermNameStatus</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermNameSourceVerification</Name>
+      <Name>TermNameStatusDate</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermNameStatus</Name>
+      <Name>TermNameString</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermNameStatusDate</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
+      <Name>TermPronunciation</Name>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermNameString</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
+      <Name>TermNameVerificationResource</Name>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">TermPronunciation</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
+      <Name>TranslatedName</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TermNameString</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TranslatedNameStatus</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TranslatedNameStatusDate</Name>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>TranslationResource</Name>
     </ElementProperties>
   </ElementPropertiesList>
   <Templates>
@@ -151,6 +177,19 @@
            Optionally enter place holder
            }?></PlaceHolder>]]></MiniTemplate>
     </Template>
+    <!-- 
+    Note:  The ProcessingStatuses block is controlled by a macro in Cdr.mcr
+        
+    <Template>
+      <Name ns="">ProcessingStatuses</Name>
+      <MiniTemplate><![CDATA[<ProcessingStatuses>
+        <ProcessingStatus>
+         <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+        </ProcessingStatus>
+       </ProcessingStatuses>]]></MiniTemplate>
+    </Template -->
     <Template>
       <Name ns="">PronunciationResource</Name>
       <MiniTemplate><![CDATA[<PronunciationResource><?xm-replace_text {
