@@ -63,6 +63,9 @@ MediaID,
 MediaLink,
 PdqKey,
 ReplacementText,
+ProcessingStatuses,
+ProcessingStatus,
+ProcessingStatusValue,
 PronunciationResource,
 StatusDate,
 TranslatedStatusDate,
@@ -78,41 +81,44 @@ TranslationResource,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-Audience                :before { content: "Audience"; }
-Caption                 :before { content: "Caption"; }
-Dictionary              :before { content: "Dictionary"; }
-Comment                 :before { content: "Comments"; }
-DateLastModified        :before { content: "Last Modified"; }
-DateLastReviewed        :before { content: "Last Reviewed"; }
-DefinitionResource      :before { content: "Definition Resource"; }
-DefinitionStatus        :before { content: "Definition Status"; }
-GlossaryTerm            :before { content: "GLOSSARY TERM"; }
-MediaID                 :before { content: "Media ID"; }
-MediaLink               :before { content: "Media Link"; }
-NCIThesaurusID          :before { content: "NCI Thesaurus ID"; }
-PdqKey                  :before { content: "PDQ Key"; }
-PDQTerm                 :before { content: "PDQ Term"; }
-ReplacementText         :before { content: "Replacement Text"; }
-PronunciationResource   :before { content: "Pronunciation Resource"; }
-RelatedInformation      :before { content: "RELATED INFORMATION"; }
-RelatedDrugSummaryRef   :before { content: "Rel Drug Summary Ref"; }
-RelatedExternalRef      :before { content: "Rel External Ref"; }
-RelatedSummaryRef       :before { content: "Rel Summary Ref"; }
-StatusDate              :before { content: "Status Date"; }
-TranslatedTermDefinition:before { content: "TRANSLATED DEFINITION"; }
+Audience                     :before { content: "Audience"; }
+Caption                      :before { content: "Caption"; }
+Dictionary                   :before { content: "Dictionary"; }
+Comment                      :before { content: "Comments"; }
+DateLastModified             :before { content: "Last Modified"; }
+DateLastReviewed             :before { content: "Last Reviewed"; }
+DefinitionResource           :before { content: "Definition Resource"; }
+DefinitionStatus             :before { content: "Definition Status"; }
+GlossaryTerm                 :before { content: "GLOSSARY TERM"; }
+MediaID                      :before { content: "Media ID"; }
+MediaLink                    :before { content: "Media Link"; }
+NCIThesaurusID               :before { content: "NCI Thesaurus ID"; }
+PdqKey                       :before { content: "PDQ Key"; }
+PDQTerm                      :before { content: "PDQ Term"; }
+ReplacementText              :before { content: "Replacement Text"; }
+ProcessingStatus             :before { content: "Processing Status"; }
+ProcessingStatuses           :before { content: "PROCESSING STATUSES"; }
+ProcessingStatusValue        :before { content: "Status"; }
+PronunciationResource        :before { content: "Pronunciation Resource"; }
+RelatedInformation           :before { content: "RELATED INFORMATION"; }
+RelatedDrugSummaryRef        :before { content: "Rel Drug Summary Ref"; }
+RelatedExternalRef           :before { content: "Rel External Ref"; }
+RelatedSummaryRef            :before { content: "Rel Summary Ref"; }
+StatusDate                   :before { content: "Status Date"; }
+TranslatedTermDefinition     :before { content: "TRANSLATED DEFINITION"; }
 TranslatedTermDefinition>DefinitionText            
-                        :before { content: "Translated Definition"; }
-TermDefinition          :before { content: "TERM DEFINITION"; }
+                             :before { content: "Translated Definition"; }
+TermDefinition               :before { content: "TERM DEFINITION"; }
 TermDefinition>DefinitionText                 
-                        :before { content: "Term Definition "; }
-TermName                :before { content: "Term Name "; }
-TermPronunciation       :before { content: "Term Pronunciation "; }
-TermSource              :before { content: "Term Source "; }
-TermStatus              :before { content: "Term Status "; }
-TermType                :before { content: "Term Type  "; }
-TranslatedStatus        :before { content: "Translated Status"; }
-TranslatedStatusDate    :before { content: "Translated Status Date"; }
-TranslationResource     :before { content: "Translation Resource"; }
+                             :before { content: "Term Definition "; }
+TermName                     :before { content: "Term Name "; }
+TermPronunciation            :before { content: "Term Pronunciation "; }
+TermSource                   :before { content: "Term Source "; }
+TermStatus                   :before { content: "Term Status "; }
+TermType                     :before { content: "Term Type  "; }
+TranslatedStatus             :before { content: "Translated Status"; }
+TranslatedStatusDate         :before { content: "Translated Status Date"; }
+TranslationResource          :before { content: "Translation Resource"; }
 
 
 /***************************************************************************/
@@ -125,8 +131,9 @@ GlossaryTerm:before,
 /***************************************************************************/
 /*                         BORDER CONTROL                                  */
 /***************************************************************************/
-TermDefinition,
+ProcessingStatuses,
 RelatedInformation,
+TermDefinition,
 TranslatedTermDefinition,
     { border: none; }
 
@@ -178,6 +185,7 @@ NCIThesaurusID,
 PdqKey,
 PDQTerm,
 ReplacementText,
+ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
@@ -213,17 +221,20 @@ NCIThesaurusID,
 PdqKey,
 PDQTerm,
 ReplacementText,
+ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
 RelatedSummaryRef,
 StatusDate,
 TranslatedStatusDate,
+TermDefinition,
 TermName,
 TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
+TranslatedTermDefinition,
 TranslationResource,
     { color: white;
       background-color: white; }
@@ -246,6 +257,7 @@ NCIThesaurusID          :before,
 PdqKey                  :before,
 PDQTerm                 :before,
 ReplacementText         :before,
+ProcessingStatusValue   :before,
 PronunciationResource   :before,
 RelatedDrugSummaryRef   :before,
 RelatedExternalRef      :before,

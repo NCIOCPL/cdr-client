@@ -54,6 +54,9 @@ MediaLink,
 NCIThesaurusID,
 PdqKey,
 PDQTerm,
+ProcessingStatus,
+ProcessingStatuses,
+ProcessingStatusValue,
 PronunciationResource,
 RelatedInformation,
 RelatedDrugSummaryRef,
@@ -96,6 +99,8 @@ NCIThesaurusID               :before { content: "NCI Thesaurus ID &: "; }
 PdqKey                       :before { content: "PDQ Key &: "; }
 PDQTerm                      :before { content: "PDQ Term &: "; }
 PlaceHolder                  :before { content: "["attr(name)"]"; }
+ProcessingStatuses           :before { content: "PROCESSING STATUSES &"; }
+ProcessingStatusValue        :before { content: "Status * +: "; }
 PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
 RelatedDrugSummaryRef        :before { content: "Rel DrgSum Ref & + @: "; }
@@ -129,12 +134,15 @@ TranslationResource          :before { content: "Trans Resource & +: "; }
 /*                     SECTION TITLES AND BORDERS                          */
 /***************************************************************************/
 MediaLink,
+ProcessingStatuses,
 TranslatedTermDefinition,
 TermDefinition,
 TermSource,
     { margin-top: 1em; }
 
 MediaLink,
+ProcessingStatus,
+ProcessingStatuses,
     { margin-bottom: 1em; }
 
 /***************************************************************************/
@@ -153,6 +161,8 @@ MediaID                      :before,
 MediaLink                    :before,
 NCIThesaurusID               :before,
 PDQTerm                      :before,
+ProcessingStatuses           :before,
+ProcessingStatusValue        :before,
 PronunciationResource        :before,
 RelatedInformation           :before,
 RelatedDrugSummaryRef        :before,
@@ -181,6 +191,7 @@ ReplacementText              :after,
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
 TermDefinition,
+ProcessingStatuses,
 RelatedInformation,
 TranslatedTermDefinition,
     { border: solid;
@@ -228,6 +239,20 @@ MediaID,                     { margin-left: 135pt;
                                text-indent: -79.5pt; }
 NCIThesaurusID,              { margin-left: 135pt;
                                text-indent: -118pt; }
+/* 
+ProcessingStatus             { margin-left: 135pt; }
+ProcessingStatusValue        { margin-left:   0pt;
+                               text-indent: -62pt; }
+ProcessingStatus > Comment   { margin-left:   0pt;
+                               text-indent:-107pt; }
+*/
+ProcessingStatus             { margin-left:  20pt; }
+ProcessingStatusValue        { margin-left:  20pt; }
+
+ProcessingStatus Comment     { margin-left:   0pt; 
+                               text-indent:   0pt; }
+ProcessingStatus  Comment    { margin-left:  20pt; }
+
 PronunciationResource,       { margin-left: 135pt;
                                text-indent: -116.5pt; }
 PdqKey,                      { margin-left: 135pt;
@@ -273,12 +298,14 @@ TranslatedStatusDate,        { margin-left: 135pt;
 
 
 
+/* ******************************************************* */
 /* Section Heading Margins                                 */
 /* ******************************************************* */
 TermName,
     { margin-top: 1em; }
 
 
+/* ******************************************************* */
 /* Margin-bottom to simulate a text box                    */
 /* ******************************************************* */
 Audience,
@@ -293,6 +320,7 @@ MediaID,
 NCIThesaurusID,
 PdqKey, 
 PDQTerm,
+ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef, 
@@ -328,6 +356,7 @@ MediaID,
 NCIThesaurusID,
 PdqKey, 
 PDQTerm,
+ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryRef,
 RelatedExternalRef,
@@ -345,19 +374,16 @@ TranslationResource,
     { background-color: white; }
 
 
-Audience                     :before,
 Caption                      :before,
 Comment                      :before,
 DateLastModified             :before,
 DateLastReviewed             :before,
 DefinitionResource           :before,
-DefinitionStatus             :before,
-DefinitionText               :before,
-Dictionary                   :before,
 MediaID                      :before,
 NCIThesaurusID               :before,
 PdqKey                       :before, 
 PDQTerm                      :before,
+ProcessingStatusValue        :before,
 PronunciationResource        :before,
 RelatedDrugSummaryRef        :before,
 RelatedExternalRef           :before,
@@ -366,7 +392,6 @@ ReplacementText              :before,
 StatusDate                   :before,
 TranslatedStatus             :before,
 TranslatedStatusDate         :before,
-TranslatedTermDefinition     :before,
 TermName                     :before,
 TermPronunciation            :before,
 TermSource                   :before,
@@ -374,3 +399,12 @@ TermStatus                   :before,
 TermType                     :before,
 TranslationResource          :before,
     { background-color: #CCCCFF; }  /* light blue */
+
+
+TermDefinition,
+TermDefinition *:before
+    { background-color: #FFCC99; }  /* brown */
+
+TranslatedTermDefinition,
+TranslatedTermDefinition *:before,
+    { background-color: #99FFFF; }  /* another light-blue */
