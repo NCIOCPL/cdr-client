@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.196 2008-12-11 15:50:49 bkline Exp $
+     $Id: Cdr.mcr,v 1.197 2008-12-19 16:18:39 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.196  2008/12/11 15:50:49  bkline
+     Fixed variable name mismatch in new macro for inserting processing
+     status block.
+
      Revision 1.195  2008/12/10 22:16:51  bkline
      Implemented macro to populate attributes for ProcessingStatusValue
      elements in glossary documents (request #4408).
@@ -7319,6 +7323,34 @@
        lang="JScript">
     try { hideToolbars(); }
     catch (e) {}
+</MACRO>
+
+<MACRO name="On_Document_Save"
+       lang="JScript">
+    function onDocumentSave() {
+        var desc = "Save(" + ActiveDocument.FullName + ")";
+        if (cdrObj) {
+            var eventId = cdrObj.logClientEvent(desc);
+            // Application.Alert("logged event " + eventId);
+        }
+        else
+            Application.Alert(desc + ": not logged into the CDR")
+    }
+    onDocumentSave();
+</MACRO>
+
+<MACRO name="On_Document_SaveAs"
+       lang="JScript">
+    function onDocumentSaveAs() {
+        var desc = "SaveAs(" + ActiveDocument.FullName + ")";
+        if (cdrObj) {
+            var eventId = cdrObj.logClientEvent(desc);
+            // Application.Alert("logged event " + eventId);
+        }
+        else
+            Application.Alert(desc + ": not logged into the CDR")
+    }
+    onDocumentSaveAs();
 </MACRO>
 
 <MACRO name="ShowCDRServer"
