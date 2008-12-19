@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.55 2008-11-04 19:42:41 bkline Exp $
+ * $Id: Commands.cpp,v 1.56 2008-12-19 16:19:04 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.55  2008/11/04 19:42:41  bkline
+ * Added XML decoding for members of valid value lists.
+ *
  * Revision 1.54  2008/05/29 20:26:04  bkline
  * Added support for navigation to the location of specific validation
  * errors in the current document.
@@ -3109,5 +3112,26 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError)
     if (!error->elevel.IsEmpty())
         result += _T(" (") + error->elevel + _T(")");
     result.SetSysString(valError);
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* pRet)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    *pRet = 0;
+    CString desc(*description);
+    CString cmd = _T("<CdrLogClientEvent><EventDescription>")
+                + cdr::encode(desc)
+                + _T("</EventDescription></CdrLogClientEvent>");
+    CString r = CdrSocket::sendCommand(cmd);
+    cdr::Element e = cdr::Element::extractElement(r, _T("EventId"));
+    if (e) {
+        LPCTSTR p = (LPCTSTR)e.getString();
+        *pRet = (int)_tcstol(p, 0, 10);
+    }
+    else
+        cdr::showErrors(r);
+
     return S_OK;
 }
