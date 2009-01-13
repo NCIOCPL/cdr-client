@@ -25,11 +25,16 @@
    <Board cdr:ref="CDR0000028536">PDQ Screening and Prevention Editorial Board</Board>
   </PDQBoard>
   <MainTopics>
-   <Term cdr:ref="CDR0000038832">breast cancer</Term>
+   <Term><?xm-replace_text {
+         Optionally select a terminology link
+         }?></Term>
   </MainTopics>
  </SummaryMetaData>
 
  <SummaryTitle>Template: X Cancer Prevention</SummaryTitle>
+ <AltTitle><?xm-replace_text {
+         Alternate Summary title
+         }?></AltTitle>
  <SummarySection>
   <SectMetaData>
    <SectionType>Rationale for prevention</SectionType>
@@ -94,12 +99,9 @@
     <SectionType>Prevention methods</SectionType>
    </SectMetaData>
    <KeyPoint>Avoiding risk factors and increasing protective factors may 
-         help prevent x cancer.</KeyPoint>
-   <Para>Most people with a certain risk factor for cancer do not actually 
-         get the disease. Doctors cannot always explain why one person 
-         gets cancer and another does not. Talk to your doctor or other 
-         health care professional about cancer prevention methods that 
-         might help you.</Para>
+         help prevent cancer.</KeyPoint>
+   <MiscellaneousDocLink cdr:ref="CDR0000584249#_52">Patient Summary
+         Fragments [_52]</MiscellaneousDocLink>
   </SummarySection>
 
   <SummarySection>
