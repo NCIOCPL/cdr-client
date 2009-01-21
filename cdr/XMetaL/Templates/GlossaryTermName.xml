@@ -32,20 +32,6 @@
  <TermNameStatusDate><?xm-replace_text {
          Optionally enter the term status date
          }?></TermNameStatusDate>
- <TranslatedName language='es'>
-  <TermNameString><?xm-replace_text {
-         Enter the Spanish term name (required)
-         }?></TermNameString>
-  <TranslationResource><?xm-replace_text {
-         Optionally enter the translation resource
-         }?></TranslationResource>
-  <TranslatedNameStatus><?xm-replace_text {
-         Enter the translated name status (required)
-         }?></TranslatedNameStatus>
-  <TranslatedNameStatusDate><?xm-replace_text {
-         Optionally enter the translated name status date
-         }?></TranslatedNameStatusDate>
- </TranslatedName>
  <GlossaryTermConcept><?xm-replace_text {
          Enter a glossary Term concept (required)
          }?></GlossaryTermConcept>
