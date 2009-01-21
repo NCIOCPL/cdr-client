@@ -270,5 +270,34 @@
            Optionally enter the translation resource
            }?></TranslationResource>]]></MiniTemplate>
     </Template>
+    <Template>
+      <Name ns="">TranslatedName</Name>
+      <MiniTemplate><![CDATA[<TranslatedName language='es'>
+        <TermNameString><?xm-replace_text {
+            Enter the Spanish term name (required)
+            }?></TermNameString>
+        <TranslationResource><?xm-replace_text {
+            Optionally enter the translation resource
+            }?></TranslationResource>
+        <TranslatedNameStatus><?xm-replace_text {
+            Enter the translated name status (required)
+            }?></TranslatedNameStatus>
+        <TranslatedNameStatusDate><?xm-replace_text {
+            Optionally enter the translated name status date
+            }?></TranslatedNameStatusDate>
+      </TranslatedName>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TranslatedNameStatus</Name>
+      <MiniTemplate><![CDATA[<TranslatedNameStatus><?xm-replace_text {
+            Enter the translated name status (required)
+            }?></TranslatedNameStatus>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">TranslatedNameStatusDate</Name>
+      <MiniTemplate><![CDATA[<TranslatedNameStatusDate><?xm-replace_text {
+            Optionally enter the translated name status date
+            }?></TranslatedNameStatusDate>]]></MiniTemplate>
+    </Template>
   </Templates>
 </DTDExtensions>
