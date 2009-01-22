@@ -5,7 +5,6 @@
 #include "Cdr.h"
 #include "Glossify.h"
 #include <stack>
-#include ".\glossify.h"
 
 // CGlossify dialog
 
@@ -20,6 +19,26 @@ CGlossify::CGlossify(CWnd* pParent /*=NULL*/)
 	range = doc.GetRange();
     DOMNode docElement = doc.GetDocumentElement();
     docType = docElement.GetNodeName();
+    language = _T("en");
+    if (docType == _T("Summary")) {
+        ::DOMNode c = docElement.GetFirstChild();
+        while (c) {
+            if (c.GetNodeName() == _T("SummaryMetaData")) {
+                ::DOMNode gc = c.GetFirstChild();
+                while (gc) {
+                    if (gc.GetNodeName() == _T("SummaryLanguage")) {
+                        CString value = cdr::extractElementText(gc);
+                        ::AfxMessageBox(value);
+                        if (value == _T("Spanish"))
+                            language = _T("es");
+                        break;
+                    }
+                    gc = gc.GetNextSibling();
+                }
+            }
+            c = c.GetNextSibling();
+        }
+    }
 }
 
 CGlossify::~CGlossify()
@@ -177,7 +196,7 @@ bool CGlossify::findNextMatch()
         return false;
 
 	// Try to match the phrases in the document with those in the glossary.
-	cdr::GlossaryTree* gt = cdr::getGlossaryTree();
+	cdr::GlossaryTree* gt = cdr::getGlossaryTree(language);
 
 	// Pick up where we left off in the current word chain from the doc.
     WordChain* chain = &chains[curChain];
@@ -285,7 +304,7 @@ BOOL CGlossify::OnInitDialog()
     CDialog::OnInitDialog();
 
     DOMNode docElement = doc.GetDocumentElement();
-    cdr::getGlossaryTree()->clearFlags();
+    cdr::getGlossaryTree(language)->clearFlags();
     findChains(docElement);
 
     if (chains.empty()) {

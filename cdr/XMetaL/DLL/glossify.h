@@ -56,6 +56,7 @@ private:
     cdr::GlossaryNode*   curNode;
     void                 findChains(DOMNode& n);
     bool                 findNextMatch();
+    CString              language;
 public:
     afx_msg void OnSkip();
     afx_msg void OnDone();

@@ -1,9 +1,13 @@
 /*
- * $Id: CdrUtil.h,v 1.18 2008-05-29 20:26:04 bkline Exp $
+ * $Id: CdrUtil.h,v 1.19 2009-01-22 22:35:17 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.18  2008/05/29 20:26:04  bkline
+ * Added support for navigation to the location of specific validation
+ * errors in the current document.
+ *
  * Revision 1.17  2007/07/11 00:43:18  bkline
  * Added support for dynamic diagnosis set insertion and for displaying
  * blocked document status.
@@ -188,7 +192,7 @@ namespace cdr {
         }
     };
     struct GlossaryTree {
-        GlossaryTree();
+        GlossaryTree(const CString& command);
         ~GlossaryTree();
         void clearFlags() {
             GlossaryNodeMap::iterator i = nodeMap.begin();
@@ -201,7 +205,7 @@ namespace cdr {
         std::vector<int> counts;
         std::map<int, CString> names;
     };
-    GlossaryTree* getGlossaryTree();
+    GlossaryTree* getGlossaryTree(const CString& language);
 
     class SearchResult {
     public:

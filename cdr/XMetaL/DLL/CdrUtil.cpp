@@ -1,9 +1,12 @@
 /*
- * $Id: CdrUtil.cpp,v 1.30 2008-06-05 13:49:03 bkline Exp $
+ * $Id: CdrUtil.cpp,v 1.31 2009-01-22 22:35:17 bkline Exp $
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.30  2008/06/05 13:49:03  bkline
+ * Removed namespace prefixes from attributes in <Err/> elements.
+ *
  * Revision 1.29  2008/05/29 20:26:04  bkline
  * Added support for navigation to the location of specific validation
  * errors in the current document.
@@ -1215,9 +1218,8 @@ void logWrite(const CString& what) {
     fclose(logFile);
 }
 
-cdr::GlossaryTree::GlossaryTree() {
-    CString response = CdrSocket::sendCommand(_T("<CdrGetGlossaryMap/>"),
-                                              true);
+cdr::GlossaryTree::GlossaryTree(const CString& command) {
+    CString response = CdrSocket::sendCommand(command, true);
     // logWrite(response);
     cdr::Element termElem = cdr::Element::extractElement(response, _T("Term"));
     while (termElem) {
@@ -1244,8 +1246,8 @@ cdr::GlossaryTree::GlossaryTree() {
                 else
                     word = phrase.Mid(start, end - start);
                 if (!word.IsEmpty()) {
-                    CString msg;
-                    msg.Format(L"tree word '%s'", word);
+                    // CString msg;
+                    // msg.Format(L"tree word '%s'", word);
                     // logWrite(msg);
                     ++numWords;
                     GlossaryNodeMap::iterator iter = currentMap->find(word);
@@ -1303,7 +1305,7 @@ cdr::ValidationErrors::ValidationErrors(const Element& e) {
 }
 
 // static cdr::GlossaryTree* glossaryTree;
-cdr::GlossaryTree* cdr::getGlossaryTree() {
+cdr::GlossaryTree* cdr::getGlossaryTree(const CString& language) {
 
     // Make sure the memory gets cleaned up so BoundsChecker is happy.
     struct GlossaryTreeWrapper {
@@ -1311,12 +1313,24 @@ cdr::GlossaryTree* cdr::getGlossaryTree() {
         ~GlossaryTreeWrapper() { if (tree) delete tree; }
         cdr::GlossaryTree* tree;
     };
-    static GlossaryTreeWrapper wrapper;
+    static GlossaryTreeWrapper englishWrapper;
+    static GlossaryTreeWrapper spanishWrapper;
 
     // No need for locking; we'll be called in a single thread.
-    if (!wrapper.tree)
-        wrapper.tree = new cdr::GlossaryTree;
-    return wrapper.tree;
+    if (language == _T("es")) {
+        if (!spanishWrapper.tree) {
+            CString command = _T("<CdrGetSpanishGlossaryMap/>");
+            spanishWrapper.tree = new cdr::GlossaryTree(command);
+        }
+        return spanishWrapper.tree;
+    }
+    else {
+        if (!englishWrapper.tree) {
+            CString command = _T("<CdrGetGlossaryMap/>");
+            englishWrapper.tree = new cdr::GlossaryTree(command);
+        }
+        return englishWrapper.tree;
+    }
 }
 
 static inline unsigned short getNetworkShort(const unsigned char* buf) {
