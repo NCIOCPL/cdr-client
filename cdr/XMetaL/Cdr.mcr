@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.197 2008-12-19 16:18:39 bkline Exp $
+     $Id: Cdr.mcr,v 1.198 2009-01-22 20:51:14 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.197  2008/12/19 16:18:39  bkline
+     Added code to log local document saves.
+
      Revision 1.196  2008/12/11 15:50:49  bkline
      Fixed variable name mismatch in new macro for inserting processing
      status block.
@@ -7328,7 +7331,7 @@
 <MACRO name="On_Document_Save"
        lang="JScript">
     function onDocumentSave() {
-        var desc = "Save(" + ActiveDocument.FullName + ")";
+        var desc = 'Save("' + ActiveDocument.FullName + '")';
         if (cdrObj) {
             var eventId = cdrObj.logClientEvent(desc);
             // Application.Alert("logged event " + eventId);
@@ -7342,7 +7345,7 @@
 <MACRO name="On_Document_SaveAs"
        lang="JScript">
     function onDocumentSaveAs() {
-        var desc = "SaveAs(" + ActiveDocument.FullName + ")";
+        var desc = 'SaveAs("' + ActiveDocument.FullName + '")';
         if (cdrObj) {
             var eventId = cdrObj.logClientEvent(desc);
             // Application.Alert("logged event " + eventId);
