@@ -50,6 +50,7 @@ DrugInfoType,
 DrugReference,
 DrugReferenceDescription,
 DrugReferenceLink,
+DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
 EntryDate,
@@ -92,6 +93,7 @@ DrugInfoType             :before, { content: "Drug Info Type *: "; }
 DrugReference            :before, { content: "DRUG REFERENCE & +"; }
 DrugReferenceDescription :before, { content: "Description * @: "; }
 DrugReferenceLink        :before, { content: "Link * @: "; }
+DrugReferencePostedDate  :before, { content: "Posted Date &: "; }
 DrugReferenceType        :before, { content: "Type *: "; }
 EnteredBy                :before, { content: "Entered By *: "; }
 EntryDate                :before, { content: "Entry Date *: "; }
@@ -134,6 +136,7 @@ DrugInfoType             :before,
 DrugReference            :before,
 DrugReferenceDescription :before,
 DrugReferenceLink        :before,
+DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
 EnteredBy                :before,
 EntryDate                :before,
@@ -208,6 +211,9 @@ DrugReferenceDescription,
 DrugReferenceLink,
                         { margin-left: 130pt;
                           text-indent: -55.5pt; }
+DrugReferencePostedDate,
+                        { margin-left: 130pt;
+                          text-indent: -90pt; }
 DrugReferenceType,
                         { margin-left: 130pt;
                           text-indent: -44pt; }
@@ -266,6 +272,7 @@ Description,
 DrugInfoType,
 DrugReferenceDescription,
 DrugReferenceLink,
+DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
 EntryDate,
@@ -314,6 +321,7 @@ Description,
 DrugInfoType,
 DrugReferenceDescription,
 DrugReferenceLink,
+DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
 EntryDate,
@@ -343,6 +351,7 @@ DrugInfoMetaData         :before,
 DrugInfoType             :before,
 DrugReferenceDescription :before,
 DrugReferenceLink        :before,
+DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
 EnteredBy                :before,
 EntryDate                :before,
