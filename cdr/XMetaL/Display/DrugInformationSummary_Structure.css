@@ -89,6 +89,7 @@ DrugInfoType             :before, { content: "Drug Info Type"; }
 DrugReference            :before, { content: "DRUG REFERENCE"; }
 DrugReferenceDescription :before, { content: "Description"; }
 DrugReferenceLink        :before, { content: "Link"; }
+DrugReferencePostedDate  :before, { content: "Posted Date"; }
 DrugReferenceType        :before, { content: "Type"; }
 EnteredBy                :before, { content: "Entered By"; }
 EntryDate                :before, { content: "Entry Date"; }
@@ -145,6 +146,7 @@ DrugInfoType             :before,
 DrugReference            :before,
 DrugReferenceDescription :before,
 DrugReferenceLink        :before,
+DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
 EnteredBy                :before,
 EntryDate                :before,
@@ -177,6 +179,7 @@ Description,
 DrugInfoType,
 DrugReferenceDescription,
 DrugReferenceLink,
+DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
 EntryDate,
@@ -205,6 +208,7 @@ Description,
 DrugInfoType,
 DrugReferenceDescription,
 DrugReferenceLink,
+DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
 EntryDate,
