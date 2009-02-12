@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.198 2009-01-22 20:51:14 bkline Exp $
+     $Id: Cdr.mcr,v 1.199 2009-02-12 14:56:47 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.198  2009/01/22 20:51:14  bkline
+     Added quote marks to file name in log message for client activity.
+
      Revision 1.197  2008/12/19 16:18:39  bkline
      Added code to log local document saves.
 
@@ -2537,6 +2540,12 @@
                            "Linked Docs",
                            "Launch Linked Docs Report",
                            "Integration (Custom)", 3, 9,
+                           false),
+            new CdrCmdItem(null,
+                           "Open Board Member Doc",
+                           "Open Board Member Doc",
+                           "Open Board Member Doc",
+                           "Databases (Custom)", 7, 1,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -3477,7 +3486,13 @@
                            "QC Report",                 // Tooltip.
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
-                           false)                       // Starts new group?
+                           false),                      // Starts new group?
+            new CdrCmdItem(null,
+                           "Open Person Doc For Board Member",
+                           "Open Person Doc For Board Member",
+                           "Open Person Doc For Board Member",
+                           "Databases (Custom)", 7, 3,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -7907,6 +7922,55 @@
         cdrObj.openCdrDoc(hpId, "Current", false);
     }
     openHPSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Board Member Doc" 
+       lang="JScript" >
+  <![CDATA[
+    function openBoardMemberDoc() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var boardMemberId = cdrObj.getBoardMemberId(docId);
+        if (!boardMemberId)
+            return;
+        cdrObj.openCdrDoc(boardMemberId, "Current", false);
+    }
+    openBoardMemberDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Person Doc For Board Member" 
+       lang="JScript" >
+  <![CDATA[
+    function openPersonDocForBoardMember() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = "BoardMemberName";
+        var nodes = Application.ActiveDocument.getElementsByTagName(name);
+        if (nodes.length < 1) {
+            Application.Alert("BoardMemberName element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var personId = elem.getAttribute("cdr:ref");
+        if (!personId) {
+            Application.Alert("ID for person document not found");
+            return;
+        }
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.openCdrDoc(personId, "Current", false);
+    }
+    openPersonDocForBoardMember();
   ]]>
 </MACRO>
 
