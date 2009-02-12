@@ -28,7 +28,7 @@ CGlossify::CGlossify(CWnd* pParent /*=NULL*/)
                 while (gc) {
                     if (gc.GetNodeName() == _T("SummaryLanguage")) {
                         CString value = cdr::extractElementText(gc);
-                        ::AfxMessageBox(value);
+                        // ::AfxMessageBox(value);
                         if (value == _T("Spanish"))
                             language = _T("es");
                         break;

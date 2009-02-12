@@ -1,11 +1,14 @@
 /*
- * $Id: Commands.cpp,v 1.56 2008-12-19 16:19:04 bkline Exp $
+ * $Id: Commands.cpp,v 1.57 2009-02-12 15:49:35 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.56  2008/12/19 16:19:04  bkline
+ * Added logClientEvent method.
+ *
  * Revision 1.55  2008/11/04 19:42:41  bkline
  * Added XML decoding for members of valid value lists.
  *
@@ -1222,6 +1225,34 @@ STDMETHODIMP CCommands::validate(int *pRet)
 STDMETHODIMP CCommands::logoff(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+    // Show the user the list of documents she still has checked out.
+    if (!username.IsEmpty()) {
+        CString cmd = _T("<CdrReport>")
+                      _T("<ReportName>Locked Documents</ReportName>")
+                      _T("<ReportParams><ReportParam Name='UserId' Value='")
+                    + username
+                    + _T("'/></ReportParams></CdrReport>");
+        CString rsp = CdrSocket::sendCommand(cmd);
+        cdr::StringList docIds;
+        cdr::Element r = cdr::Element::extractElement(rsp, _T("ReportRow"));
+        while (r) {
+            cdr::Element docId = r.extractElement(r.getString(), _T("DocId"));
+            docIds.push_back(docId.getString());
+            r = r.extractElement(rsp, _T("ReportRow"), r.getEndPos());
+        }
+        if (docIds.size() > 0) {
+            CString separator = _T("");
+            CString warning = _T("The following documents are still ")
+                              _T("locked by your CDR account:\n");
+            cdr::StringList::const_iterator i = docIds.begin();
+            while (i != docIds.end()) {
+                warning += separator + *i++;
+                separator = _T(", ");
+            }
+            ::AfxMessageBox(warning, MB_ICONEXCLAMATION);
+        }
+    }
 
     // Initial optimism.
     username = _T("");
@@ -3132,6 +3163,30 @@ STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* pRet)
     }
     else
         cdr::showErrors(r);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
+                                         BSTR* boardMemberId)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString id(*personId);
+    CString cmd = _T("<CdrReport>")
+                  _T("<ReportName>Board Member</ReportName>")
+                  _T("<ReportParams><ReportParam ")
+                  _T("Name='PersonId' ")
+                  _T("Value='") + id + _T("'/></ReportParams>")
+                  _T("</CdrReport>");
+    CString r = CdrSocket::sendCommand(cmd);
+    cdr::Element e = cdr::Element::extractElement(r, _T("BoardMember"));
+    CString boardMember;
+    if (e)
+        boardMember = e.getString();
+    else
+        cdr::showErrors(r);
+    boardMember.SetSysString(boardMemberId);
 
     return S_OK;
 }
