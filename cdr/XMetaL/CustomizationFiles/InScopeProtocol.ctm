@@ -163,6 +163,24 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>CTGovProtocolOwner</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CTGovOwnershipTransferDate</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CTGovOwnershipTransferInfo</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>CurrentOrgStatus</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -872,6 +890,13 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>PRSUserName</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>PublishedResults</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -1267,6 +1292,19 @@
       <MiniTemplate><![CDATA[<CompletionDate><?xm-replace_text {
           Optionally enter the protocol completion date
           }?></CompletionDate>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>CTGovOwnershipTransferInfo</Name>
+      <MiniTemplate><![CDATA[<CTGovOwnershipTransferInfo>
+        <CTGovProtocolOwner><?xm-replace_text {
+          Enter the CTGov protocol owner (required)
+          }?></CTGovProtocolOwner>
+        <PRSUserName><?xm-replace_text {
+          Enter the PRS user name (required)
+          }?></PRSUserName>
+        <CTGovOwnershipTransferDate><?xm-replace_text {
+          Enter the ownership transfer date (required)
+          }?></CTGovOwnershipTransferDate>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>DateReceived</Name>

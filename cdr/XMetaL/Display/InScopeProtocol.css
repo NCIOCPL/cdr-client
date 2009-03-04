@@ -120,6 +120,9 @@ CompletionDate,
 ContactInformation, 
 ExternalSiteAddress > Country,
 CTGovDuplicate,
+CTGovProtocolOwner,
+CTGovOwnershipTransferInfo,
+CTGovOwnershipTransferDate,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -201,6 +204,7 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+PRSUserName,
 RegulatoryAuthority,
 RegulatoryInformation,
 ReimbursementApprovalType, 
@@ -253,6 +257,10 @@ LeadOrgProtocolStatuses>Comment   :before { content: "Comments &: "; }
 ExternalSiteAddress > Country     :before { content: "Country : "; }
 CompletionDate                    :before { content: "Compl Date &: "; }
 CTGovDuplicate                    :before { content: "CTGov Duplicate & +: "; }
+CTGovOwnershipTransferDate        :before { content: "Transfer Date *: "; }
+CTGovOwnershipTransferInfo        :before 
+    { content: "CTGOV OWNERSHIP TRANSFER INFO &"; }
+CTGovProtocolOwner                :before { content: "Protocol Owner *: "; }
 CurrentOrgStatus                  :before { content: "Current Org Status *"; }
 CurrentProtocolStatus             :before 
     { content: "Current Protocol Status *: "; }
@@ -357,6 +365,7 @@ ProtocolSpecialCategory           :before
 ProtocolSpecificContact           :before 
     { content: "Protocol Specific Contact & @ "; }
 ProtocolSponsors                  :before { content: "PROTOCOL SPONSORS &"; }
+PRSUserName                       :before { content: "PRS User Name *: "; }
 RelatedPublications               :before 
     { content: "RELATED PUBLICATIONS & +"; }
 ReimbursementApprovalType         :before 
@@ -416,6 +425,9 @@ CompletionDate                    :before,
 CTGovDuplicate                    :before,
 CurrentOrgStatus                  :before,
 /* CurrentProtocolStatus:before, */
+CTGovOwnershipTransferDate        :before,
+CTGovOwnershipTransferInfo        :before,
+CTGovProtocolOwner                :before,
 DateSentForReview                 :before,
 DateSubmissionComplete            :before,
 DelayedPosting                    :before,
@@ -474,6 +486,7 @@ ProtocolSources                   :before,
 ProtocolSpecialCategory           :before,
 ProtocolSpecificContact           :before,
 ProtocolSponsors                  :before,
+PRSUserName                       :before,
 RegulatoryAuthority               :before,
 RegulatoryInformation             :before,
 ResponsibleOrganization           :before,
@@ -548,6 +561,7 @@ StatusName                        :before,
 /***************************************************************************/
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
+CTGovOwnershipTransferInfo,
 ExternalSites,
 FDAINDInfo,
 FundingInfo, 
@@ -960,12 +974,22 @@ ResponsiblePerson       > SpecificEmail,
 Section801                  { margin-left:  160pt;
                               text-indent:  -87pt; }
 
+CTGovProtocolOwner          { margin-left:  150pt; 
+                              text-indent: -105pt; }
+PRSUserName                 { margin-left:  150pt; 
+                              text-indent: -107pt; }
+CTGovOwnershipTransferDate  { margin-left:  150pt; 
+                              text-indent:  -93pt; }
+
 /* Margin-bottom for simulated text boxes                                  */
 ClinicalTrialOffice,
 ExternalSiteAddress > Country,
 LeadOrgProtocolStatuses > Comment, 
 VerificationInfo > Comment, 
 VoluntaryReview > Comment, 
+CTGovOwnershipTransferDate,
+CTGovOwnershipTransferInfo,
+CTGovProtocolOwner,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -1042,6 +1066,7 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+PRSUserName,
 RegulartoryAuthority,
 ReimbursementApprovalType, 
 ResponsibleOrganization,
@@ -1068,6 +1093,7 @@ VerificationDate,
 
 
 CompletionDate,
+CTGovProtocolOwner,
 CurrentProtocolStatus,
 GrantContractNo,
 INDGrantor,
@@ -1095,6 +1121,8 @@ SubmissionMethod,
 ExternalSiteAddress > Country,
 ClinicalTrialOffice,
 CurrentProtocolStatus,
+CTGovOwnershipTransferDate,
+CTGovProtocolOwner,
 DateLastModified, 
 DateSentForReview,
 DateSubmissionComplete,
@@ -1149,6 +1177,7 @@ ProcessingPriority,
 PrivatePracticeSiteID, 
 PrivatePracticeSiteStatus,
 ProtocolSpecificContact,
+PRSUserName,
 RegulatoryAuthority,
 RegulatoryInformation,
 ReimbursementApprovalType, 
@@ -1178,11 +1207,15 @@ VerificationDate,
 /* Blue = Administrative Information                                    */
 /* **********************************************************************/
 ClinicalTrialOffice          :before,
+CTGovOwnershipTransferInfo,
+CTGovOwnershipTransferDate   :before,
+CTGovProtocolOwner           :before,
 DateSentForReview            :before,
 DateSubmissionComplete       :before,
 DelayedPosting               :before,
 DueDate                      :before,
 EndDateTime                  :before,
+CTGovOwnershipTransferInfo>Comment :before,
 FundingInfo>NIHGrantContract>Comment :before,
 FundingInfo>OtherGrantContractInfo>Comment :before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>Comment :before,
@@ -1261,6 +1294,7 @@ ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSpecificContact,
 ProtocolSponsors,
+PRSUserName                  :before,
 RegulatoryAuthority          :before,
 RegulatoryInformation,
 ReimbursementApprovalType    :before,

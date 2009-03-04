@@ -114,6 +114,9 @@ Comment,
 CompletionDate,
 ContactInformation,
 CTGovDuplicate,
+CTGovOwnershipTransferDate,
+CTGovOwnershipTransferInfo,
+CTGovProtocolOwner,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -188,6 +191,7 @@ ProtocolSources,
 ProtocolSpecialCategory, 
 ProtocolSpecificContact, 
 ProtocolSponsors, 
+PRSUserName,
 RegulatoryAuthority,
 ReimbursementApprovalType, 
 ReviewApprovalType, 
@@ -215,6 +219,9 @@ VerificationDate,
 BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
 ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
 CompletionDate          :before { content: "Completion Date"; }
+CTGovProtocolOwner      :before { content: "CTGov Protocol Owner"; }
+PRSUserName             :before { content: "PRS User Name"; }
+CTGovOwnershipTransferDate:before { content: "Ownership Transfer Date"; }
 DateSubmissionComplete  :before { content: "Date Submission Complete"; }
 Country                 :before { content: "Country"; }
 CTGovDuplicate          :before { content: "CTGov Duplicate"; }
@@ -465,6 +472,9 @@ ClinicalTrialOffice,
 CompletionDate,
 Country,
 CTGovDuplicate,
+CTGovProtocolOwner,
+PRSUserName,
+CTGovOwnershipTransferDate,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
 DateLastModified,
@@ -574,6 +584,8 @@ WarehouseBoxNumber,
 /* Administrative Information                          */
 
 ClinicalTrialOffice       :before,
+CTGovOwnershipTransferInfo > Comment
+                          :before,
 FundingInfo > NIHGrantContract > Comment 
                           :before,
 FundingInfo > OtherGrantContractInfo > Comment 
@@ -594,6 +606,9 @@ VoluntaryReview > Comment :before,
 ExternalSiteAddress > Country 
                           :before,
 CurrentProtocolStatus,
+CTGovOwnershipTransferInfo,
+CTGovOwnershipTransferDate:before,
+CTGovProtocolOwner        :before,
 ProtocolSource > DateReceived 
                           :before,
 DateSentForReview         :before,
@@ -661,6 +676,7 @@ ProtocolSource,
 ProtocolSources,
 ProtocolSpecialCategory,
 ProtocolSponsors,
+PRSUserName               :before,
 RegulatoryAuthority       :before,
 RegulatoryInformation,
 RelatedDocuments,
@@ -701,6 +717,7 @@ ProtocolSpecificContact   :before,
 /***************************************************************************/
 /*                             BORDER CONTROL                              */
 /***************************************************************************/
+CTGovOwnershipTransferInfo,
 ExternalSites,
 FDAINDInfo,
 FundingInfo, 
@@ -730,6 +747,7 @@ ClinicalTrialOffice,
 CompletionDate,
 ExternalSiteAddress > City,
 ExternalSiteAddress > CitySuffix,
+CTGovOwnershipTransferInfo > Comment,
 NIHGrantContract > Comment,
 LeadOrgProtocolStatuses > CurrentOrgStatus > Comment,
 LeadOrgProtocolStatuses > PreviousOrgStatus > Comment,
@@ -743,6 +761,9 @@ ProtocolSponsors > Comment,
 VerificationInfo > Comment,
 VoluntaryReview > Comment,
 ExternalSiteAddress > Country,
+CTGovProtocolOwner,
+PRSUserName,
+CTGovOwnershipTransferDate,
 CurrentProtocolStatus,
 DateLastModified,
 ProtocolSource > DateReceived,
