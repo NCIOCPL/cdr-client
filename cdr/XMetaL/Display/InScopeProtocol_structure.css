@@ -114,9 +114,9 @@ Comment,
 CompletionDate,
 ContactInformation,
 CTGovDuplicate,
+CTGovOwnerOrganization,
 CTGovOwnershipTransferDate,
 CTGovOwnershipTransferInfo,
-CTGovProtocolOwner,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -219,7 +219,7 @@ VerificationDate,
 BlockedFromCTGov        :before { content: "Blocked from CTGov"; }
 ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
 CompletionDate          :before { content: "Completion Date"; }
-CTGovProtocolOwner      :before { content: "CTGov Protocol Owner"; }
+CTGovOwnerOrganization  :before { content: "Owner Organization"; }
 PRSUserName             :before { content: "PRS User Name"; }
 CTGovOwnershipTransferDate:before { content: "Ownership Transfer Date"; }
 DateSubmissionComplete  :before { content: "Date Submission Complete"; }
@@ -472,7 +472,7 @@ ClinicalTrialOffice,
 CompletionDate,
 Country,
 CTGovDuplicate,
-CTGovProtocolOwner,
+CTGovOwnerOrganization,
 PRSUserName,
 CTGovOwnershipTransferDate,
 ProtocolSource>Comment,
@@ -606,9 +606,9 @@ VoluntaryReview > Comment :before,
 ExternalSiteAddress > Country 
                           :before,
 CurrentProtocolStatus,
+CTGovOwnerOrganization    :before,
 CTGovOwnershipTransferInfo,
 CTGovOwnershipTransferDate:before,
-CTGovProtocolOwner        :before,
 ProtocolSource > DateReceived 
                           :before,
 DateSentForReview         :before,
@@ -761,7 +761,7 @@ ProtocolSponsors > Comment,
 VerificationInfo > Comment,
 VoluntaryReview > Comment,
 ExternalSiteAddress > Country,
-CTGovProtocolOwner,
+CTGovOwnerOrganization,
 PRSUserName,
 CTGovOwnershipTransferDate,
 CurrentProtocolStatus,

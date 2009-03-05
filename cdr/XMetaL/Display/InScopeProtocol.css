@@ -120,7 +120,7 @@ CompletionDate,
 ContactInformation, 
 ExternalSiteAddress > Country,
 CTGovDuplicate,
-CTGovProtocolOwner,
+CTGovOwnerOrganization,
 CTGovOwnershipTransferInfo,
 CTGovOwnershipTransferDate,
 CurrentOrgStatus, 
@@ -260,7 +260,7 @@ CTGovDuplicate                    :before { content: "CTGov Duplicate & +: "; }
 CTGovOwnershipTransferDate        :before { content: "Transfer Date *: "; }
 CTGovOwnershipTransferInfo        :before 
     { content: "CTGOV OWNERSHIP TRANSFER INFO &"; }
-CTGovProtocolOwner                :before { content: "Protocol Owner *: "; }
+CTGovOwnerOrganization            :before { content: "Owner Organization *: "; }
 CurrentOrgStatus                  :before { content: "Current Org Status *"; }
 CurrentProtocolStatus             :before 
     { content: "Current Protocol Status *: "; }
@@ -425,9 +425,9 @@ CompletionDate                    :before,
 CTGovDuplicate                    :before,
 CurrentOrgStatus                  :before,
 /* CurrentProtocolStatus:before, */
+CTGovOwnerOrganization            :before,
 CTGovOwnershipTransferDate        :before,
 CTGovOwnershipTransferInfo        :before,
-CTGovProtocolOwner                :before,
 DateSentForReview                 :before,
 DateSubmissionComplete            :before,
 DelayedPosting                    :before,
@@ -974,8 +974,8 @@ ResponsiblePerson       > SpecificEmail,
 Section801                  { margin-left:  160pt;
                               text-indent:  -87pt; }
 
-CTGovProtocolOwner          { margin-left:  150pt; 
-                              text-indent: -105pt; }
+CTGovOwnerOrganization      { margin-left:  150pt; 
+                              text-indent: -130pt; }
 PRSUserName                 { margin-left:  150pt; 
                               text-indent: -107pt; }
 CTGovOwnershipTransferDate  { margin-left:  150pt; 
@@ -989,7 +989,7 @@ VerificationInfo > Comment,
 VoluntaryReview > Comment, 
 CTGovOwnershipTransferDate,
 CTGovOwnershipTransferInfo,
-CTGovProtocolOwner,
+CTGovOwnerOrganization,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
 DateLastModified, 
@@ -1093,7 +1093,7 @@ VerificationDate,
 
 
 CompletionDate,
-CTGovProtocolOwner,
+CTGovOwnerOrganization,
 CurrentProtocolStatus,
 GrantContractNo,
 INDGrantor,
@@ -1121,8 +1121,8 @@ SubmissionMethod,
 ExternalSiteAddress > Country,
 ClinicalTrialOffice,
 CurrentProtocolStatus,
+CTGovOwnerOrganization,
 CTGovOwnershipTransferDate,
-CTGovProtocolOwner,
 DateLastModified, 
 DateSentForReview,
 DateSubmissionComplete,
@@ -1209,7 +1209,7 @@ VerificationDate,
 ClinicalTrialOffice          :before,
 CTGovOwnershipTransferInfo,
 CTGovOwnershipTransferDate   :before,
-CTGovProtocolOwner           :before,
+CTGovOwnerOrganization       :before,
 DateSentForReview            :before,
 DateSubmissionComplete       :before,
 DelayedPosting               :before,
