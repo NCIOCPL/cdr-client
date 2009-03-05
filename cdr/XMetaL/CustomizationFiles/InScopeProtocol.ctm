@@ -163,7 +163,7 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
-      <Name>CTGovProtocolOwner</Name>
+      <Name>CTGovOwnerOrganization</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
@@ -1296,13 +1296,20 @@
    <Template>
       <Name>CTGovOwnershipTransferInfo</Name>
       <MiniTemplate><![CDATA[<CTGovOwnershipTransferInfo>
-        <CTGovProtocolOwner><?xm-replace_text {
-          Enter the CTGov protocol owner (required)
-          }?></CTGovProtocolOwner>
+        <CTGovOwnerOrganization><?xm-replace_text {
+          Enter the CTGov owner organization (required)
+          }?></CTGovOwnerOrganization>
         <PRSUserName><?xm-replace_text {
           Enter the PRS user name (required)
           }?></PRSUserName>
         <CTGovOwnershipTransferDate><?xm-replace_text {
+          Enter the ownership transfer date (required)
+          }?></CTGovOwnershipTransferDate>
+       </CTGovOwnershipTransferInfo>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>CTGovOwnershipTransferDate</Name>
+      <MiniTemplate><![CDATA[<CTGovOwnershipTransferDate><?xm-replace_text {
           Enter the ownership transfer date (required)
           }?></CTGovOwnershipTransferDate>]]></MiniTemplate>
    </Template>
