@@ -1,7 +1,10 @@
 /*
- * $Id: CTGovProtocol_structure.css,v 1.7 2008-08-13 19:07:09 venglisc Exp $
+ * $Id: CTGovProtocol_structure.css,v 1.8 2009-03-05 19:47:44 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.7  2008/08/13 19:07:09  venglisc
+ * Added formatting for new element NCT_Alias. (Bug 4233)
+ *
  * Revision 1.6  2006/01/04 23:24:43  venglisc
  * Moved ProtocolProcessingDetails section from InScopeProtocol to
  * CommonProtocolInfo style.
@@ -67,14 +70,31 @@ InScopeProtocol,
 /***************************************************************************/ 
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
-
 Affiliation,
 AgeText,
+ArmOrGroup,
+ArmOrGroupDescription,
+ArmOrGroupLabel,
+ArmOrGroupType,
+ArmsOrGroups,
+BiospecDescription,
+BiospecRetention,
 BriefSummary,
 BriefTitle,
+City,
+Collaborator,
+Comment,
+Condition,
+Contact,
+ContactBackup,
+Country,
+CTAcronym,
+CTAuthority,
+CTCitation,
 CTCondition,
 CTCriteria,
 CTEligibility,
+CTEnrollment,
 CTExpectedEnrollment,
 CTGender,
 CTGovIndexing,
@@ -84,14 +104,20 @@ CTInterventionName,
 CTInterventionType,
 CTMaximumAge,
 CTMinimumAge,
+CTNumberOfArms,
+CTNumberOfGroups,
+CTOutcome,
+CTOutcomeMeasure,
+CTOutcomeSafetyIssue,
+CTOutcomeTimeFrame,
+CTOutcomes,
+CTOversightInfo,
+CTReference,
+CTSamplingMethod,
+CTSource,
 CTStudyDesign,
-City,
-Collaborator,
-Comment,
-Condition,
-Contact,
-ContactBackup,
-Country,
+CTStudyPop,
+CTStudyType,
 DetailedDescription,
 Diagnosis,
 DownloadDate,
@@ -102,8 +128,10 @@ EnteredBy,
 EntryDate,
 ExclusionCriteria,
 Facility,
+FirstReceivedDate,
 Gene,
 GivenName,
+HasDMC,
 HealthyVolunteers,
 HighAge,
 IDInfo,
@@ -135,11 +163,16 @@ Para,
 Phase,
 Phone,
 PhoneExt,
+PMID,
 PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
+PrimaryCompletionDate,
 ProfessionalSuffix,
 ProtocolDesign,
+ProtocolRelatedLinks,
+ReasonStopped,
+RelatedWebsites,
 RequiredHeader,
 Role,
 SecondaryID,
@@ -153,17 +186,38 @@ StudyType,
 Surname,
 URL,
 VerificationDate
+    { display: block; 
+      text-indent: 0pt; 
+      color: white; 
+      background-color: white;
+      border: none; }
 
-  { display: block; text-indent: 0pt; color: white; background-color: white;
-    border: none; }
 
 Affiliation                  :before,
 AgeText                      :before,
+ArmOrGroup                   :before,
+ArmOrGroupDescription        :before,
+ArmOrGroupLabel              :before,
+ArmOrGroupType               :before,
+ArmsOrGroups                 :before,
+BiospecDescription           :before,
+BiospecRetention             :before,
 BriefSummary                 :before,
 BriefTitle                   :before,
+City                         :before,
+Collaborator                 :before,
+Comment                      :before,
+Condition                    :before,
+Contact                      :before,
+ContactBackup                :before,
+Country                      :before,
+CTAcronym                    :before,
+CTAuthority                  :before,
+CTCitation                   :before,
 CTCondition                  :before,
 CTCriteria                   :before,
 CTEligibility                :before,
+CTEnrollment                 :before,
 CTExpectedEnrollment         :before,
 CTGender                     :before,
 CTGovIndexing                :before,
@@ -173,14 +227,21 @@ CTInterventionName           :before,
 CTInterventionType           :before,
 CTMaximumAge                 :before,
 CTMinimumAge                 :before,
+CTNumberOfArms               :before,
+CTNumberOfGroups             :before,
+CTOutcome                    :before,
+CTOutcomeMeasure             :before,
+CTOutcomeSafetyIssue         :before,
+CTOutcomeTimeFrame           :before,
+CTOutcomes                   :before,
+CTOversightInfo              :before,
+CTReference                  :before,
+CTResultsReference           :before,
+CTSamplingMethod             :before,
+CTSource                     :before,
 CTStudyDesign                :before,
-City                         :before,
-Collaborator                 :before,
-Comment                      :before,
-Condition                    :before,
-Contact                      :before,
-ContactBackup                :before,
-Country                      :before,
+CTStudyPop                   :before,
+CTStudyType                  :before,
 DetailedDescription          :before,
 Diagnosis                    :before,
 DownloadDate                 :before,
@@ -191,8 +252,10 @@ EnteredBy                    :before,
 EntryDate                    :before,
 ExclusionCriteria            :before,
 Facility                     :before,
+FirstReceivedDate            :before,
 Gene                         :before,
 GivenName                    :before,
+HasDMC                       :before,
 HealthyVolunteers            :before,
 HighAge                      :before,
 IDInfo                       :before,
@@ -224,11 +287,16 @@ Para                         :before,
 Phase                        :before,
 Phone                        :before,
 PhoneExt                     :before,
+PMID                         :before,
 PoliticalSubUnit_State       :before,
 PostalAddress                :before,
 PostalCode_ZIP               :before,
+PrimaryCompletionDate        :before,
 ProfessionalSuffix           :before,
 ProtocolDesign               :before,
+ProtocolRelatedLinks         :before,
+ReasonStopped                :before,
+RelatedWebsites              :before,
 RequiredHeader               :before,
 Role                         :before,
 SecondaryID                  :before,
@@ -242,101 +310,132 @@ StudyType                    :before,
 Surname                      :before,
 URL                          :before,
 VerificationDate             :before
- { color: black; background-color: white; }
+    { color: black; 
+      background-color: white; }
+
 
 /***************************************************************************/ 
 /*                      BEFORE AND AFTER TAGS                              */ 
 /***************************************************************************/ 
- 
 /* CDR Doc Control   */
+CdrDocCtl                         :before { content: "CDR DOC CONTROL"; }
+DocId                             :before { content: "Doc ID"; }
+DocTitle                          :before { content: "Doc Title"; }
 
-CdrDocCtl                    :before { content: "CDR DOC CONTROL "; }
-DocId                        :before { content: "Doc ID "; }
-DocTitle                     :before { content: "Doc Title "; }
-
-Affiliation                  :before { content: "Affiliation "; }
-AgeText                      :before { content: "Age Text "; }
-BriefSummary                 :before { content: "BRIEF SUMMARY "; }
-BriefTitle                   :before { content: "Brief Title "; }
-CTCondition                  :before { content: "Condition "; }
-CTCriteria                   :before { content: "CRITERIA "; }
-CTEligibility                :before { content: "ELIGIBILITY "; }
-CTExpectedEnrollment         :before { content: "Expected Enrollment "; }
-CTGender                     :before { content: "Gender "; }
-CTGovIndexing                :before { content: "CTGOV INDEXING "; }
-CTGovProtocol                :before { content: "CTGOVPROTOCOL "; }
-CTIntervention               :before { content: "INTERVENTION "; }
-CTInterventionName           :before { content: "Intervention Name "; }
-CTInterventionType           :before { content: "Intervention Type "; }
-CTMaximumAge                 :before { content: "Maximum Age "; }
-CTMinimumAge                 :before { content: "Minimum Age "; }
-CTStudyDesign                :before { content: "Study Design "; }
-City                         :before { content: "City "; }
-Collaborator                 :before { content: "Collaborator "; }
-Comment                      :before { content: "Comment "; }
-Condition                    :before { content: "Condition "; }
-Contact                      :before { content: "CONTACT "; }
-ContactBackup                :before { content: "CONTACT BACKUP "; }
-Country                      :before { content: "Country "; }
-DetailedDescription          :before { content: "DETAILED DESCRIPTION "; }
-Diagnosis                    :before { content: "Diagnosis "; }
-DownloadDate                 :before { content: "Download Date "; }
-Eligibility                  :before { content: "ELIGIBILITY "; }
-Email                        :before { content: "Email "; }
-EndDate                      :before { content: "End Date "; }
-EnteredBy                    :before { content: "Entered By "; }
-EntryDate                    :before { content: "Entered Date "; }
-ExclusionCriteria            :before { content: "Exclusion Criteria "; }
-Facility                     :before { content: "FACILITY "; }
-Gene                         :before { content: "Gene "; }
-GivenName                    :before { content: "Given Name "; }
-HealthyVolunteers            :before { content: "Healthy Volunteers "; }
-HighAge                      :before { content: "High Age "; }
-IDInfo                       :before { content: "ID INFO "; }
-Intervention                 :before { content: "INTERVENTION "; }
-InterventionNameLink         :before { content: "Intervention Name "; }
-InterventionType             :before { content: "Intervention Type "; }
-Investigator                 :before { content: "INVESTIGATOR "; }
-ItemizedList                 :before { content: "..Itemized List "; }
-LastChangedDate              :before { content: "Last Changed Date "; }
-LeadSponsor                  :before { content: "Lead Sponsor "; }
-LinkText                     :before { content: "Link Text "; }
-Location                     :before { content: counter(Loc) ". LOCATION "; }
-LowAge                       :before { content: "Low Age "; }
-MiddleInitial                :before { content: "Middle Initial "; }
-NCT_Alias                    :before { content: "NCT_Alias "; }
-NCTID                        :before { content: "NCTID "; }
-Name                         :before { content: "Name "; }
-OfficialTitle                :before { content: "Official Title "; }
-OrgStudyID                   :before { content: "Org Study ID "; }
-OverallContact               :before { content: "OVERALL CONTACT "; }
-OverallContactBackup         :before { content: "OVERALL CONTACT BACKUP "; }
-OverallOfficial              :before { content: "OVERALL OFFICIAL "; }
-OverallStatus                :before { content: "Overall Status "; }
-PDQIndexing                  :before { content: "PDQ INDEXING "; }
-PDQSponsorship               :before { content: "PDQ Sponsorship "; }
-PDQPerson                    :before { content: "PDQ Person "; }
-Phase                        :before { content: "Phase "; }
-Phone                        :before { content: "Phone "; }
-PhoneExt                     :before { content: "Phone Ext "; }
-PoliticalSubUnit_State       :before { content: "Polit Unit/State "; }
-PostalAddress                :before { content: "POSTAL ADDRESS "; }
-PostalCode_ZIP               :before { content: "Postal Code "; }
-ProfessionalSuffix           :before { content: "Prof'l Suffix "; }
-ProtocolDesign               :before { content: "Protocol Design "; }
-RequiredHeader               :before { content: "REQUIRED HEADER "; }
-Role                         :before { content: "Role "; }
-SecondaryID                  :before { content: "Secondary ID "; }
-Sponsors                     :before { content: "SPONSORS "; }
-StartDate                    :before { content: "Start Date "; }
-Status                       :before { content: "Status "; }
-StudyCategory                :before { content: "STUDY CATEGORY "; }
-StudyCategoryName            :before { content: "Study Category Name "; }
-StudyCategoryType            :before { content: "Study Category Type "; }
-StudyType                    :before { content: "Study Type "; }
-Surname                      :before { content: "Surname "; }
-URL                          :before { content: "URL "; }
-VerificationDate             :before { content: "Verification Date "; }
+Affiliation                       :before { content: "Affiliation"; }
+AgeText                           :before { content: "Age Text"; }
+ArmOrGroup                        :before { content: "ARM OR GROUP"; }
+ArmOrGroupDescription             :before { content: "Description"; }
+ArmOrGroupLabel                   :before { content: "Label"; }
+ArmOrGroupType                    :before { content: "Type"; }
+ArmsOrGroups                      :before { content: "ARMS OR GROUPS"; }
+BiospecDescription                :before { content: "Biospec Description"; }
+BiospecRetention                  :before { content: "Biospec Retention"; }
+BriefSummary                      :before { content: "BRIEF SUMMARY"; }
+BriefTitle                        :before { content: "Brief Title"; }
+City                              :before { content: "City"; }
+Collaborator                      :before { content: "Collaborator"; }
+Comment                           :before { content: "Comment"; }
+Condition                         :before { content: "Condition"; }
+Contact                           :before { content: "CONTACT"; }
+ContactBackup                     :before { content: "CONTACT BACKUP"; }
+Country                           :before { content: "Country"; }
+CTAcronym                         :before { content: "CT Acronym"; }
+CTAuthority                       :before { content: "CT Authority"; }
+CTCitation                        :before { content: "CT Citation"; }
+CTCondition                       :before { content: "Condition"; }
+CTCriteria                        :before { content: "CRITERIA"; }
+CTEligibility                     :before { content: "ELIGIBILITY"; }
+CTEnrollment                      :before { content: "CT Enrollment"; }
+CTExpectedEnrollment              :before { content: "Expected Enrollment"; }
+CTGender                          :before { content: "Gender"; }
+CTGovIndexing                     :before { content: "CTGOV INDEXING"; }
+CTGovProtocol                     :before { content: "CTGOVPROTOCOL"; }
+CTNumberOfGroups                  :before { content: "CT No. of Groups"; }
+CTNumberOfArms                    :before { content: "CT No. of Arms"; }
+CTOutcome                         :before { content: "CT OUTCOME"; }
+CTOutcomeMeasure                  :before { content: "Measure"; }
+CTOutcomeTimeFrame                :before { content: "Time Frame"; }
+CTOutcomes                        :before { content: "CT OUTCOMES"; }
+CTOutcomeSafetyIssue              :before { content: "Safety Issue"; }
+CTOversightInfo                   :before { content: "CT OVERSIGHT INFO"; }
+CTReference                       :before { content: "REFERENCE"; }
+CTResultsReference                :before { content: "RESULTS REFERENCE"; }
+CTSamplingMethod                  :before { content: "Sampling Method"; }
+CTStudyPop                        :before { content: "STUDY POP"; }
+CTStudyType                       :before { content: "CT Study Type"; }
+CTIntervention                    :before { content: "INTERVENTION"; }
+CTInterventionName                :before { content: "Intervention Name"; }
+CTInterventionType                :before { content: "Intervention Type"; }
+CTMaximumAge                      :before { content: "Maximum Age"; }
+CTMinimumAge                      :before { content: "Minimum Age"; }
+CTStudyDesign                     :before { content: "Study Design"; }
+DetailedDescription               :before { content: "DETAILED DESCRIPTION"; }
+Diagnosis                         :before { content: "Diagnosis"; }
+DownloadDate                      :before { content: "Download Date"; }
+Eligibility                       :before { content: "ELIGIBILITY"; }
+Email                             :before { content: "Email"; }
+EndDate                           :before { content: "End Date"; }
+EnteredBy                         :before { content: "Entered By"; }
+EntryDate                         :before { content: "Entered Date"; }
+ExclusionCriteria                 :before { content: "Exclusion Criteria"; }
+Facility                          :before { content: "FACILITY"; }
+FirstReceivedDate                 :before { content: "First Received Date"; }
+Gene                              :before { content: "Gene"; }
+GivenName                         :before { content: "Given Name"; }
+HasDMC                            :before { content: "Has DMC"; }
+HealthyVolunteers                 :before { content: "Healthy Volunteers"; }
+HighAge                           :before { content: "High Age"; }
+IDInfo                            :before { content: "ID INFO"; }
+Intervention                      :before { content: "INTERVENTION"; }
+InterventionNameLink              :before { content: "Intervention Name"; }
+InterventionType                  :before { content: "Intervention Type"; }
+Investigator                      :before { content: "INVESTIGATOR"; }
+ItemizedList                      :before { content: "..Itemized List"; }
+LastChangedDate                   :before { content: "Last Changed Date"; }
+LeadSponsor                       :before { content: "Lead Sponsor"; }
+LinkText                          :before { content: "Link Text"; }
+Location                          :before { content: counter(Loc) ". LOCATION"; }
+LowAge                            :before { content: "Low Age"; }
+MiddleInitial                     :before { content: "Middle Initial"; }
+NCT_Alias                         :before { content: "NCT_Alias"; }
+NCTID                             :before { content: "NCTID"; }
+Name                              :before { content: "Name"; }
+OfficialTitle                     :before { content: "Official Title"; }
+OrgStudyID                        :before { content: "Org Study ID"; }
+OverallContact                    :before { content: "OVERALL CONTACT"; }
+OverallContactBackup              :before { content: "OVERALL CONTACT BACKUP"; }
+OverallOfficial                   :before { content: "OVERALL OFFICIAL"; }
+OverallStatus                     :before { content: "Overall Status"; }
+PDQIndexing                       :before { content: "PDQ INDEXING"; }
+PDQSponsorship                    :before { content: "PDQ Sponsorship"; }
+PDQPerson                         :before { content: "PDQ Person"; }
+PMID                              :before { content: "PMID"; }
+PrimaryCompletionDate             :before { content: "Primary Compl. Date"; }
+ProtocolRelatedLinks              :before { content: "PROTOCOL RELATED LINKS"; }
+ReasonStopped                     :before { content: "Reason Stopped"; }
+RelatedWebsites                   :before { content: "Related Website"; }
+Phase                             :before { content: "Phase"; }
+Phone                             :before { content: "Phone"; }
+PhoneExt                          :before { content: "Phone Ext"; }
+PoliticalSubUnit_State            :before { content: "Polit Unit/State"; }
+PostalAddress                     :before { content: "POSTAL ADDRESS"; }
+PostalCode_ZIP                    :before { content: "Postal Code"; }
+ProfessionalSuffix                :before { content: "Prof'l Suffix"; }
+ProtocolDesign                    :before { content: "Protocol Design"; }
+RequiredHeader                    :before { content: "REQUIRED HEADER"; }
+Role                              :before { content: "Role"; }
+SecondaryID                       :before { content: "Secondary ID"; }
+Sponsors                          :before { content: "SPONSORS"; }
+StartDate                         :before { content: "Start Date"; }
+Status                            :before { content: "Status"; }
+StudyCategory                     :before { content: "STUDY CATEGORY"; }
+StudyCategoryName                 :before { content: "Study Category Name"; }
+StudyCategoryType                 :before { content: "Study Category Type"; }
+StudyType                         :before { content: "Study Type"; }
+Surname                           :before { content: "Surname"; }
+URL                               :before { content: "URL"; }
+VerificationDate                  :before { content: "Verification Date"; }
 
 
 
