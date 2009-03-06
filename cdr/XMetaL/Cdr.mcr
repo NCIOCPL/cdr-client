@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.199 2009-02-12 14:56:47 bkline Exp $
+     $Id: Cdr.mcr,v 1.200 2009-03-06 19:26:01 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.199  2009/02/12 14:56:47  bkline
+     Added new board member macros.
+
      Revision 1.198  2009/01/22 20:51:14  bkline
      Added quote marks to file name in log message for client activity.
 
@@ -707,6 +710,7 @@
     var CdrFragLinkClipboard = "";
     var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
+    var CdrPdqIndexingClipboard = null;
 
     function padNumber(number, length, padChar) {
         var str = '' + number;
@@ -763,18 +767,28 @@
     /*
      * Clone an node from one document for use in another.
      * Typically you have to turn off validation checking to use the
-     * results of this function (for examle, if only one instance of
+     * results of this function (for example, if only one instance of
      * a given element is allowed by the DTD/schema at a certain
      * location, and you're replacing the existing instance with
      * one cloned from another document using this function,
      * XMetaL's implementation of replaceChild() isn't intelligent
      * enough to know that the result of replacing one element node with
      * another element node of the same type will still be valid.
+     * 2009-03-04 (RMK): added optional argument newName.
+     * 2009-03-06 (RMK): added more information to exception thrown.
      */
-    function cloneFor(newDoc, node) {
+    function cloneFor(newDoc, node, newName) {
 
         // Clone element (recursively).
-        var e = newDoc.createElement(node.nodeName);
+        var n = newName ? newName : node.nodeName;
+        // Application.Alert("name is '" + n + "'");
+        var e = null;
+        try {
+            e = newDoc.createElement(n);
+        }
+        catch (ex) {
+            throw new Error("Failure cloning " + n + ": " + ex.message);
+        }
 
         // Pop in the attributes from the source element.
         for (var i = 0; i < node.attributes.length; ++i) {
@@ -803,6 +817,34 @@
             child = child.nextSibling;
         }
         return e;
+    }
+
+    /*
+     * Remove unwanted attributes from an element (and optionally
+     * recursively from its children).  Prevents problems with
+     * cloning between different document types.  The parameter
+     * attrsToStrip is an object whose attributes represent names
+     * of attributes to be dropped.  For example:
+     * { "cdr:id": 1, PdqKey: 1 }
+     */
+    function stripAttributes(elem, attrsToStrip, recurse) {
+
+        // Pop in the attributes from the source element.
+        for (var i = 0; i < elem.attributes.length; ++i) {
+           var attr = elem.attributes.item(i);
+           if (attr.name in attrsToStrip)
+               elem.removeAttribute(attr.name)
+        }
+
+        // Do this recursively if we're asked to.
+        if (recurse) {
+            var child = elem.firstChild;
+            while (child) {
+                if (child.nodeType == 1)
+                    stripAttributes(child, attrsToStrip, true);
+                child = child.nextSibling;
+            }
+        }
     }
 
     /*
@@ -1541,6 +1583,8 @@
                                         "Paste Org Address Elements");
             }
         }
+        Application.AppendMacro("Extract PDQIndexing Block",
+                                "Extract PDQIndexing Block");
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo") {
@@ -1585,6 +1629,13 @@
             Application.AppendMacro("Insert Diagnosis Links",
                                     "Insert Diagnosis Links");
         }
+    }
+    if (docType.name == "CTGovProtocol") {
+        Application.AppendMacro("Show CTGovProtocol Titles",
+                                "Show CTGovProtocol Titles");
+ 
+        Application.AppendMacro("Insert PDQIndexing Block",
+                                "Insert PDQIndexing Block");
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
@@ -8899,7 +8950,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Split Intervention Block" lang="JScript" key="Alt+Z">
+<MACRO name="Split Intervention Block" lang="JScript">
   <![CDATA[
     function splitInterventionBlock() {
         var node    = Selection.ContainerNode;
@@ -8940,6 +8991,89 @@
         }
     }
     splitInterventionBlock();
+  ]]>
+</MACRO>
+
+<MACRO name="Show CTGovProtocol Titles" lang="JScript">
+  <![CDATA[
+    function showCTGovTitles() {
+        var doc = Application.ActiveDocument;
+        var bTitle = getSingleElement(doc, "BriefTitle");
+        var oTitle = getSingleElement(doc, "OfficialTitle");
+        Application.MessageBox("Brief Title: " + getTextContent(bTitle) +
+                               "\nOfficial Title: " + getTextContent(oTitle),
+                               64, "CT.gov Protocol Titles");
+    }
+    showCTGovTitles();
+  ]]>
+</MACRO>
+
+<MACRO name="Extract PDQIndexing Block" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function grabPdqIndexingBlock() {
+        var doc = Application.ActiveDocument;
+        var protocolDetail = getSingleElement(doc, 'ProtocolDetail');
+        if (!protocolDetail) {
+            Application.Alert("Unable to find ProtocolDetail block");
+            return;
+        }
+        var newElem = cloneFor(doc, protocolDetail);
+        var eligibility = getSingleElement(doc, 'Eligibility');
+        if (eligibility) {
+            var after = getSingleElement(newElem, 'EnteredBy');
+            if (!after) {
+                Application.Alert("Unable to find position for Eligibility");
+                return;
+            }
+            var newElig = cloneFor(doc, eligibility);
+            var gender = getSingleElement(newElig, "Gender");
+            if (gender)
+                newElig.removeChild(gender);
+            newElem.insertBefore(newElig, after);
+        }
+
+        // Remove the elements that don't belong in the CTGovProtocol doc.
+        var studyCat = getSingleElement(newElem, "StudyCategory");
+        if (studyCat) {
+            var studyFocus = getSingleElement(studyCat, "StudyFocus");
+            while (studyFocus) {
+               studyCat.removeChild(studyFocus);
+               studyFocus = getSingleElement(studyCat, "StudyFocus");
+            }
+            var comment = getSingleElement(studyCat, "Comment");
+            while (comment) {
+               studyCat.removeChild(comment);
+               comment = getSingleElement(studyCat, "Comment");
+            }
+        }
+        stripAttributes(newElem, { PdqKey: 1 }, true);
+        CdrPdqIndexingClipboard = newElem;
+    }
+    grabPdqIndexingBlock();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert PDQIndexing Block" lang="JScript">
+  <![CDATA[
+    function insertPdqIndexingBlock() {
+        if (!CdrPdqIndexingClipboard) {
+            Application.Alert("PDQ Indexing clipboard empty");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var oldBlock = getSingleElement(doc, 'PDQIndexing');
+        if (!oldBlock) {
+            Application.Alert("Unable to find old PDQIndexing block");
+            return;
+        }
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+        var newBlock = cloneFor(doc, CdrPdqIndexingClipboard, 'PDQIndexing');
+        oldBlock.parentNode.replaceChild(newBlock, oldBlock);
+        CdrPdqIndexingClipboard = null;
+        ActiveDocument.RulesChecking = rulesChecking;
+    }
+    insertPdqIndexingBlock();
   ]]>
 </MACRO>
 
