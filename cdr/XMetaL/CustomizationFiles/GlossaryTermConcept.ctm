@@ -409,7 +409,7 @@
       <NewLineBeforeStartTag/>
     </ElementProperties>
     <ElementProperties>
-      <Name ns="">RelatedDrugSummaryRef</Name>
+      <Name ns="">RelatedDrugSummaryLink</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -859,9 +859,9 @@
     <Template>
       <Name>RelatedInformation</Name>
       <MiniTemplate><![CDATA[<RelatedInformation>
-        <RelatedDrugSummaryRef><?xm-replace_text {
+        <RelatedDrugSummaryLink><?xm-replace_text {
              Optionally enter related Drug Info Summary information
-             }?></RelatedDrugSummaryRef>
+             }?></RelatedDrugSummaryLink>
         <RelatedExternalRef><?xm-replace_text {
              Optionally enter related external information
              }?></RelatedExternalRef>
@@ -871,10 +871,10 @@
       </RelatedInformation>]]></MiniTemplate>
     </Template>
     <Template>
-      <Name ns="">RelatedDrugSummaryRef</Name>
-      <MiniTemplate><![CDATA[<RelatedDrugSummaryRef><?xm-replace_text {
+      <Name ns="">RelatedDrugSummaryLink</Name>
+      <MiniTemplate><![CDATA[<RelatedDrugSummaryLink><?xm-replace_text {
              Optionally enter related Drug Info Summary information
-      }?></RelatedDrugSummaryRef>]]></MiniTemplate>
+      }?></RelatedDrugSummaryLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">RelatedExternalRef</Name>
