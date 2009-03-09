@@ -59,7 +59,7 @@ ProcessingStatuses,
 ProcessingStatusValue,
 PronunciationResource,
 RelatedInformation,
-RelatedDrugSummaryRef,
+RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedSummaryRef,
 ReplacementText,
@@ -103,7 +103,7 @@ ProcessingStatuses           :before { content: "PROCESSING STATUSES &"; }
 ProcessingStatusValue        :before { content: "Status * +: "; }
 PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
-RelatedDrugSummaryRef        :before { content: "Rel DrgSum Ref & + @: "; }
+RelatedDrugSummaryLink       :before { content: "Rel Drug Link & + @: "; }
 RelatedExternalRef           :before { content: "Rel Ext Ref & + @: "; }
 RelatedSummaryRef            :before { content: "Rel Sum Ref & + @: "; }
 ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
@@ -165,7 +165,7 @@ ProcessingStatuses           :before,
 ProcessingStatusValue        :before,
 PronunciationResource        :before,
 RelatedInformation           :before,
-RelatedDrugSummaryRef        :before,
+RelatedDrugSummaryLink       :before,
 RelatedExternalRef           :before,
 RelatedSummaryRef            :before,
 ReplacementText              :before,
@@ -258,8 +258,8 @@ PDQTerm,                     { margin-left: 135pt;
                                text-indent: -79pt; }
 ReplacementText,             { margin-left: 135pt;
                                text-indent: -134pt; }
-RelatedDrugSummaryRef,       { margin-left: 135pt;
-                               text-indent: -133.5pt; }
+RelatedDrugSummaryLink,      { margin-left: 135pt;
+                               text-indent: -123pt; }
 RelatedExternalRef,          { margin-left: 135pt;
                                text-indent: -105pt; }
 RelatedSummaryRef,           { margin-left: 135pt;
@@ -319,7 +319,7 @@ PdqKey,
 PDQTerm,
 ProcessingStatusValue,
 PronunciationResource,
-RelatedDrugSummaryRef,
+RelatedDrugSummaryLink,
 RelatedExternalRef, 
 RelatedSummaryRef,
 ReplacementText,
@@ -355,7 +355,7 @@ PdqKey,
 PDQTerm,
 ProcessingStatusValue,
 PronunciationResource,
-RelatedDrugSummaryRef,
+RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedSummaryRef,
 ReplacementText,
@@ -382,7 +382,7 @@ PdqKey                       :before,
 PDQTerm                      :before,
 ProcessingStatusValue        :before,
 PronunciationResource        :before,
-RelatedDrugSummaryRef        :before,
+RelatedDrugSummaryLink       :before,
 RelatedExternalRef           :before,
 RelatedSummaryRef            :before,
 ReplacementText              :before,

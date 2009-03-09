@@ -101,7 +101,7 @@ ProcessingStatuses           :before { content: "PROCESSING STATUSES"; }
 ProcessingStatusValue        :before { content: "Status"; }
 PronunciationResource        :before { content: "Pronunciation Resource"; }
 RelatedInformation           :before { content: "RELATED INFORMATION"; }
-RelatedDrugSummaryRef        :before { content: "Rel Drug Summary Ref"; }
+RelatedDrugSummaryLink       :before { content: "Rel Drug Summary Link"; }
 RelatedExternalRef           :before { content: "Rel External Ref"; }
 RelatedSummaryRef            :before { content: "Rel Summary Ref"; }
 StatusDate                   :before { content: "Status Date"; }
@@ -187,7 +187,7 @@ PDQTerm,
 ReplacementText,
 ProcessingStatusValue,
 PronunciationResource,
-RelatedDrugSummaryRef,
+RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedSummaryRef,
 StatusDate,
@@ -223,7 +223,7 @@ PDQTerm,
 ReplacementText,
 ProcessingStatusValue,
 PronunciationResource,
-RelatedDrugSummaryRef,
+RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedSummaryRef,
 StatusDate,
@@ -259,7 +259,7 @@ PDQTerm                 :before,
 ReplacementText         :before,
 ProcessingStatusValue   :before,
 PronunciationResource   :before,
-RelatedDrugSummaryRef   :before,
+RelatedDrugSummaryLink  :before,
 RelatedExternalRef      :before,
 RelatedSummaryRef       :before,
 StatusDate              :before,
