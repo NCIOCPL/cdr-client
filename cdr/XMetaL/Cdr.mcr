@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.200 2009-03-06 19:26:01 bkline Exp $
+     $Id: Cdr.mcr,v 1.201 2009-03-23 15:41:44 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.200  2009/03/06 19:26:01  bkline
+     Added macros for transferring PDQInexing information from InScopeProtocol
+     documents to CTGovProtocol documents.
+
      Revision 1.199  2009/02/12 14:56:47  bkline
      Added new board member macros.
 
@@ -6243,7 +6247,8 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        var url = CdrCgiBin + "QcReport.py?DocType=DIS&DocId="
+        var url = CdrCgiBin + "QcReport.py?DocType=DrugInformationSummary"
+                            + "&DocId="
                             + docId
                             + "&Session="
                             + CdrSession;
@@ -7350,7 +7355,8 @@
                             + CdrUserName
                             + "' date='"
                             + getCurDateString()
-                            + "'><?xm-replace_text { Pick a status }?>"
+                            + "'><?xm-replace_text { Select a "
+                            + "processing status value (required) }?>"
                             + "</ProcessingStatusValue>"
                             + "</ProcessingStatus>";
                 if (name == 'ProcessingStatuses')
