@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.201 2009-03-23 15:41:44 venglisc Exp $
+     $Id: Cdr.mcr,v 1.202 2009-03-26 12:15:33 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.201  2009/03/23 15:41:44  venglisc
+     Modified docType passed in for DIS QC reports from DIS to specify the
+     true document type 'DrugInformationSummary' so it can be easily matched up
+     with the doctype from the database.
+
      Revision 1.200  2009/03/06 19:26:01  bkline
      Added macros for transferring PDQInexing information from InScopeProtocol
      documents to CTGovProtocol documents.
@@ -9050,6 +9055,18 @@
             while (comment) {
                studyCat.removeChild(comment);
                comment = getSingleElement(studyCat, "Comment");
+            }
+            var interventions = studyCat.getElementsByTagName("Intervention");
+            for (var i = 0; i < interventions.length; ++i) {
+                var intervention = interventions.item(i);
+                var child = intervention.firstChild;
+                while (child) {
+                    var nextChild = child.nextSibling;
+                    var n = child.nodeName;
+                    if (!n.match(/^(InterventionType|InterventionNameLink)$/))
+                        intervention.removeChild(child);
+                    child = nextChild;
+                }
             }
         }
         stripAttributes(newElem, { PdqKey: 1 }, true);
