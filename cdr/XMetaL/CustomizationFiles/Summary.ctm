@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.15 2008-10-01 15:58:18 venglisc Exp $ -->
+<!-- $Id: Summary.ctm,v 1.16 2009-04-03 21:30:58 venglisc Exp $ -->
 <DTDExtensions>
  <ElementPropertiesList>
   <GlobalPrettyPrintOptions>
@@ -87,6 +87,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>Diagnosis</Name>
+   <TagColor>FFFF99</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -102,6 +103,14 @@
   <ElementProperties>
    <Name>DocTitle</Name>
    <PrettyPrintOptions>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Drug</Name>
+   <TagColor>FFFF99</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
     <IndentContent/>
    </PrettyPrintOptions>
   </ElementProperties>
@@ -123,6 +132,15 @@
    <Name>Fax</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Intervention</Name>
+   <TagColor>FFFF99</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <NewLineBeforeEndTag/>
     <IndentContent/>
    </PrettyPrintOptions>
   </ElementProperties>
@@ -567,6 +585,18 @@
    <MiniTemplate><![CDATA[<Diagnosis><?xm-replace_text {
                    Optionally select a diagnosis
                    }?></Diagnosis>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Drug</Name>
+   <MiniTemplate><![CDATA[<Drug><?xm-replace_text {
+                   Optionally select a drug
+                   }?></Drug>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Intervention</Name>
+   <MiniTemplate><![CDATA[<Intervention><?xm-replace_text {
+                   Optionally select an intervention
+                   }?></Intervention>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>SectionType</Name>
