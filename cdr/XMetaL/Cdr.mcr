@@ -1,9 +1,14 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.202 2009-03-26 12:15:33 bkline Exp $
+     $Id: Cdr.mcr,v 1.203 2009-04-03 00:11:34 ameyer Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.202  2009/03/26 12:15:33  bkline
+     Modified macro to extract PDQ Indexing block so that children of the
+     Intervention elements which don't belong in the target CTGovProtocol
+     document are removed (issue #4541).
+
      Revision 1.201  2009/03/23 15:41:44  venglisc
      Modified docType passed in for DIS QC reports from DIS to specify the
      true document type 'DrugInformationSummary' so it can be easily matched up
@@ -1244,6 +1249,10 @@
   ]]>
 </MACRO>
 
+
+  ]]>
+</MACRO>
+
 <MACRO  name="On_Update_UI" 
         hide="true" 
         lang="JScript">
@@ -1648,6 +1657,10 @@
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
+    }
+    if (rng.FindInsertLocation("ResponseToComment")) {
+        Application.AppendMacro("Insert ResponseToComment", 
+                                "Insert ResponseToComment");
     }
     if (docType.name == 'ScientificProtocolInfo' ||
         docType.name == 'InScopeProtocol') {
@@ -8624,6 +8637,36 @@
         rng.Select();
     }
     insertComment();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert ResponseToComment"
+       lang="JScript">
+  <![CDATA[
+    function insertResponseToComment() {
+        // This is the same as insertComment, and I considered extracting
+        //   the common logic, but the savings is small and I'm not
+        //   certain that the required logic for Comment and ResponseToComment
+        //   will never diverge.   -- AHM
+        var rng = ActiveDocument.Range;
+        if (!rng.FindInsertLocation("ResponseToComment")) {
+            Application.Alert("Can't insert ResponseToComment element " +
+                              "under current position.");
+            return; 
+        }
+        var newElem = "<ResponseToComment user='"
+            + CdrUserName
+            + "' audience='Internal' date='"
+            + getCurDateString()
+            + "'><?xm-replace_text { Your comment response here }?></ResponseToComment>";
+        rng.PasteString(newElem);
+        rng.MoveToElement("ResponseToComment", false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+    }
+    insertResponseToComment();
   ]]>
 </MACRO>
 
