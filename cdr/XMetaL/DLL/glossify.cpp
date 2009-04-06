@@ -5,6 +5,7 @@
 #include "Cdr.h"
 #include "Glossify.h"
 #include <stack>
+#include <windows.h>
 
 // CGlossify dialog
 
@@ -154,11 +155,15 @@ extern void logWrite(const CString& what);
 
 static CString normalizeWord(const CString& s) {
     CString w = s;
-    // logWrite(_T("before normalization: '") + w + _T("'"));
+    //logWrite(_T("before normalization: '") + w + _T("'"));
     TCHAR* chars = _T("'\".,?!:;()[]{}<>\x201C\x201D");
     for (size_t i = 0; chars[i]; ++i)
         w.Remove(chars[i]);
-    w.MakeUpper();
+    LPTSTR p = w.GetBuffer(w.GetLength());
+    CharUpperBuff(p, w.GetLength());
+    w.ReleaseBuffer();
+    // MakeUpper is badly broken for Unicode; BAD Microsoft!
+    // w.MakeUpper();
     // logWrite(_T("after normalization: '") + w + _T("'"));
     return w;
 }
@@ -183,7 +188,7 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
             words.push_back(w);
             //CString logMsg;
             //logMsg.Format(L"normalizedWord '%s'", s);
-            // logWrite(logMsg);
+            //logWrite(logMsg);
         }
     }
     curWord = 0;
@@ -196,6 +201,9 @@ bool CGlossify::findNextMatch()
         return false;
 
 	// Try to match the phrases in the document with those in the glossary.
+    //CString msg;
+    //msg.Format(L"language: %s", language);
+    //logWrite(msg);
 	cdr::GlossaryTree* gt = cdr::getGlossaryTree(language);
 
 	// Pick up where we left off in the current word chain from the doc.
