@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.57 2009-02-12 15:49:35 bkline Exp $
+ * $Id: Commands.cpp,v 1.58 2009-04-25 01:18:39 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.57  2009/02/12 15:49:35  bkline
+ * Added warning to let the users know they still have documents locked
+ * when they close XMetaL; added getBoardMemberId() method.
+ *
  * Revision 1.56  2008/12/19 16:19:04  bkline
  * Added logClientEvent method.
  *
@@ -2734,6 +2738,32 @@ STDMETHODIMP CCommands::glossify(void)
     return S_OK;
 }
 
+static bool inSpanishSummary() {
+    _Application app = cdr::getApp();
+    ::_Document doc = app.GetActiveDocument();
+    DOMNode docElement = doc.GetDocumentElement();
+    CString docType = docElement.GetNodeName();
+    if (docType == _T("Summary")) {
+        ::DOMNode c = docElement.GetFirstChild();
+        while (c) {
+            if (c.GetNodeName() == _T("SummaryMetaData")) {
+                ::DOMNode gc = c.GetFirstChild();
+                while (gc) {
+                    if (gc.GetNodeName() == _T("SummaryLanguage")) {
+                        CString value = cdr::extractElementText(gc);
+                        //::AfxMessageBox(value);
+                        if (value == _T("Spanish"))
+                            return true;
+                    }
+                    gc = gc.GetNextSibling();
+                }
+            }
+            c = c.GetNextSibling();
+        }
+    }
+    return false;
+}
+
 STDMETHODIMP CCommands::addGlossaryPhrase(void)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
@@ -2755,13 +2785,19 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void)
     if (!docId.IsEmpty())
         docIdElem = _T("<CdrId>") + docId + _T("</CdrId>");
 
-    // Extract the text content of the element.
+    // Extract the text content of the element & determine usage.
     selection.SelectContainerContents();
     CString value = selection.GetText();
+    CString usage = _T("GlossaryTerm Phrases");
+    CString language = _T("English");
+    if (inSpanishSummary()) {
+        usage = _T("Spanish GlossaryTerm Phrases");
+        language = _T("Spanish");
+    }
 
     // Ask the server to add the phrase.
     CString cmd = _T("<CdrAddExternalMapping>")
-                  _T("<Usage>GlossaryTerm Phrases</Usage>")
+                  _T("<Usage>") + usage + _T("</Usage>")
                   _T("<Value>") + value + _T("</Value>")
                 + docIdElem
                 + _T("</CdrAddExternalMapping>");
@@ -2770,7 +2806,7 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void)
     if (rsp.Find(_T("<Error")) != -1)
         cdr::showErrors(rsp);
     else
-        ::AfxMessageBox(_T("Glossary phrase added ")
+        ::AfxMessageBox(language + _T(" glossary phrase added ")
                         _T("to external mapping table."));
     return S_OK;
 }
