@@ -78,6 +78,11 @@
    <Para><?xm-replace_text {
          compose from treatment summary
          }?></Para>
+   <Para>See the following PDQ summaries for more information about X caner:
+    <Comment>Follow with bulleted list of appropriate summary titles. 
+         If there is only one summary reference, change wording to 
+         create a single sentence.</Comment>
+   </Para>
   </SummarySection>
   <SummarySection>
    <SectMetaData>

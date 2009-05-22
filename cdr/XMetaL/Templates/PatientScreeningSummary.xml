@@ -48,16 +48,6 @@
   <Para>If a screening test result is abnormal, you may need to have more 
          tests done to find out if you have cancer. These are called 
          diagnostic tests.</Para>
-  <Para>Refer to the following PDQ summaries for information about 
-         prevention, diagnosis, and treatment of X cancer.</Para>
-  <ItemizedList Compact="No" Style="bullet">
-   <ListItem><?xm-replace_text {
-         Enter link title
-         }?></ListItem>
-   <ListItem><?xm-replace_text {
-         Enter link title
-         }?></ListItem>
-  </ItemizedList>
  </SummarySection>
 
  <SummarySection>
