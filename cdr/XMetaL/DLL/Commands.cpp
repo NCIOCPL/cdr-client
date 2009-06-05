@@ -1,11 +1,15 @@
 /*
- * $Id: Commands.cpp,v 1.58 2009-04-25 01:18:39 bkline Exp $
+ * $Id: Commands.cpp,v 1.59 2009-06-05 14:40:31 bkline Exp $
  *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.58  2009/04/25 01:18:39  bkline
+ * Modified code to store glossary phrases in the external mapping to
+ * know when they phrases are in Spanish.
+ *
  * Revision 1.57  2009/02/12 15:49:35  bkline
  * Added warning to let the users know they still have documents locked
  * when they close XMetaL; added getBoardMemberId() method.
@@ -1359,6 +1363,11 @@ STDMETHODIMP CCommands::edit(int *pRet)
                 editType = CEditElement::PROT_PERSON;
             else if (elemName == _T("PrivatePracticeSiteID"))
                 editType = CEditElement::PRIV_PRACTICE;
+            else if (elemName == _T("Organization")) {
+                LPCTSTR respOrg = _T("ResponsibleOrganization");
+                if (selection.GetIsParentElement(respOrg));
+                    editType = CEditElement::ORG_LOCATION;
+            }
         }
         else if (docType == _T("Person")) {
             if (elemName  == _T("OrganizationLocation")) {
