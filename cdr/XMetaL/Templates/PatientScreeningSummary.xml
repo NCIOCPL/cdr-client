@@ -10,7 +10,7 @@
          }?></DocTitle>
  </CdrDocCtl>
  <SummaryMetaData>
-  <SummaryType>Treatment</SummaryType>
+  <SummaryType>Screening</SummaryType>
   <SummaryAudience>Patients</SummaryAudience>
   <SummaryLanguage>English</SummaryLanguage>
   <SummaryDescription><?xm-replace_text {
@@ -20,7 +20,7 @@
          Enter Cancer.gov's pretty URL (required)
          }?></SummaryURL>
   <PDQBoard>
-   <Board cdr:ref="CDR0000028327">PDQ Adult Treatment Editorial Board</Board>
+   <Board cdr:ref="CDR0000028536">PDQ Screening and Prevention Editorial Board</Board>
   </PDQBoard>
   <MainTopics>
    <Term>Screening for X cancer</Term>
@@ -62,6 +62,11 @@
    <Para><?xm-replace_text {
          Compose from treatment summary
          }?></Para>
+   <Para>See the following PDQ summaries for more information about 
+         X cancer: <Comment>Follow with bulleted list of appropriate 
+         summary titles. If there is only one summary reference, 
+         change wording to create a single sentence.</Comment></Para>
+   
   </SummarySection>
   <SummarySection>
    <SectMetaData>
@@ -125,6 +130,12 @@
          clinical trials is available from the 
          <ExternalRef cdr:xref="http://cancer.gov/clinicaltrials">NCI Web
          site</ExternalRef>.</Para>
+  </SummarySection>
+
+  <SummarySection>
+   <KeyPoint>Studies show that screening for x cancer helps decrease 
+         the number of deaths from the disease. 
+         <Comment>Include this KP when applicable.</Comment></KeyPoint>
   </SummarySection>
 
   <SummarySection>
