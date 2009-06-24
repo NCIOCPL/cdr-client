@@ -1,57 +1,113 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
-  <ElementPropertiesList>
-    <GlobalPrettyPrintOptions>
-      <NoPrettyPrinting/>
-    </GlobalPrettyPrintOptions>
-  </ElementPropertiesList>
-  <Templates>
-    <Template>
-      <Name>BoardContactPostalAddress</Name>
-      <MiniTemplate><![CDATA[
+ <ElementPropertiesList>
+  <GlobalPrettyPrintOptions>
+   <NoPrettyPrinting/>
+  </GlobalPrettyPrintOptions>
+  <ElementProperties>
+   <Name ns="">RelatedDocuments</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+ </ElementPropertiesList>
+ <Templates>
+  <Template>
+   <Name>BoardContactPostalAddress</Name>
+   <MiniTemplate><![CDATA[
         <BoardContactPostalAddress AddressType="US">
-          <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-          <City><?xm-replace_text {Optionally enter a city name} ?></City>
-          <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-          <Country><?xm-replace_text {Select a country link (required)} ?></Country>
-          <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+          <Street><?xm-replace_text {
+                   Optionally enter a street address line
+                   }?></Street>
+          <City><?xm-replace_text {
+                   Optionally enter a city name
+                   }?></City>
+          <PoliticalSubUnit_State><?xm-replace_text {
+                   Optionally select a subunit/state link
+                   }?></PoliticalSubUnit_State>
+          <Country><?xm-replace_text {
+                   Select a country link (required)
+                   }?></Country>
+          <PostalCode_ZIP><?xm-replace_text {
+                   Optionally enter the postal, mail, or zip code
+                   }?></PostalCode_ZIP>
         </BoardContactPostalAddress>
 ]]>
-      </MiniTemplate>
-    </Template>
-    <Template>
-      <Name>SpecificBoardMemberContact</Name>
-      <MiniTemplate><![CDATA[
+   </MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">RelatedDocuments</Name>
+   <MiniTemplate><![CDATA[<RelatedDocuments>
+         <SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info DocTitle (required)
+                   }?></SupplementaryInfoLink>
+       </RelatedDocuments>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>SpecificBoardMemberContact</Name>
+   <MiniTemplate><![CDATA[
         <SpecificBoardMemberContact>
-          <BoardContactOrganizationName><?xm-replace_text {Optionally enter a contact organization name}?></BoardContactOrganizationName>
+          <BoardContactOrganizationName><?xm-replace_text {
+                   Optionally enter a contact organization name
+                   }?></BoardContactOrganizationName>
           <BoardContactPostalAddress AddressType="US">
-            <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-            <City><?xm-replace_text {Optionally enter a city name} ?></City>
-            <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-            <Country><?xm-replace_text {Select a country link (required)} ?></Country>
-            <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
+            <Street><?xm-replace_text {
+                   Optionally enter a street address line
+                   }?></Street>
+            <City><?xm-replace_text {
+                   Optionally enter a city name
+                   }?></City>
+            <PoliticalSubUnit_State><?xm-replace_text {
+                   Optionally select a subunit/state link
+                   }?></PoliticalSubUnit_State>
+            <Country><?xm-replace_text {
+                   Select a country link (required)
+                   }?></Country>
+            <PostalCode_ZIP><?xm-replace_text {
+                   Optionally enter the postal, mail, or zip code
+                   }?></PostalCode_ZIP>
           </BoardContactPostalAddress>
-          <BoardContactPhone><?xm-replace_text {Enter a phone number (required)}?></BoardContactPhone>
-          <BoardContactFax><?xm-replace_text {Enter a fax number (required)}?></BoardContactFax>
-          <BoardContactEmail Public="No"><?xm-replace_text {Enter an email address (required)}?></BoardContactEmail>
+          <BoardContactPhone><?xm-replace_text {
+                   Enter a phone number (required)
+                   }?></BoardContactPhone>
+          <BoardContactFax><?xm-replace_text {
+                   Enter a fax number (required)
+                   }?></BoardContactFax>
+          <BoardContactEmail Public="No"><?xm-replace_text {
+                   Enter an email address (required)
+                   }?></BoardContactEmail>
         </SpecificBoardMemberContact>
 ]]>
-      </MiniTemplate>
-    </Template>
-  </Templates>
-  <ChangeLists>
-    <ChangeList>
-      <Selectors>
-        <Selector>
-          <Name>#DEFAULT</Name>
-          <Parent>BoardMemberContact</Parent>
-        </Selector>
-      </Selectors>
-      <ChangeListElements>
-        <ChangeListElement>PersonContactID</ChangeListElement>
-        <ChangeListElement>SpecificBoardMemberContact</ChangeListElement>
-      </ChangeListElements>
-    </ChangeList>
-  </ChangeLists>
+   </MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info source (required)
+                   }?></SupplementaryInfoLink>]]></MiniTemplate>
+  </Template>
+ </Templates>
+ <ChangeLists>
+  <ChangeList>
+   <Selectors>
+    <Selector>
+     <Name>#DEFAULT</Name>
+     <Parent>BoardMemberContact</Parent>
+    </Selector>
+   </Selectors>
+   <ChangeListElements>
+    <ChangeListElement>PersonContactID</ChangeListElement>
+    <ChangeListElement>SpecificBoardMemberContact</ChangeListElement>
+   </ChangeListElements>
+  </ChangeList>
+ </ChangeLists>
 </DTDExtensions>

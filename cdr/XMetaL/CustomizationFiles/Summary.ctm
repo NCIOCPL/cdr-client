@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.16 2009-04-03 21:30:58 venglisc Exp $ -->
+<!-- $Id: Summary.ctm,v 1.17 2009-06-24 20:01:52 venglisc Exp $ -->
 <DTDExtensions>
  <ElementPropertiesList>
   <GlobalPrettyPrintOptions>
@@ -281,6 +281,13 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">RelatedDocuments</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name>Row</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -363,6 +370,13 @@
     <IndentContent/>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
    <Name>Table</Name>
@@ -496,6 +510,32 @@
  </FollowedByList>
  <Templates>
   <Template>
+   <Name>AltTitle</Name>
+   <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text {
+                   Optional alternate title
+                   }?></AltTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Diagnosis</Name>
+   <MiniTemplate><![CDATA[<Diagnosis><?xm-replace_text {
+                   Optionally select a diagnosis
+                   }?></Diagnosis>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Drug</Name>
+   <MiniTemplate><![CDATA[<Drug><?xm-replace_text {
+                   Optionally select a drug
+                   }?></Drug>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">RelatedDocuments</Name>
+   <MiniTemplate><![CDATA[<RelatedDocuments>
+         <SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info DocTitle (required)
+                   }?></SupplementaryInfoLink>
+       </RelatedDocuments>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>SummaryType</Name>
    <MiniTemplate><![CDATA[<SummaryType><?xm-replace_text {
                    Select a summary type (required)
@@ -545,16 +585,16 @@
         </SummarySection>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info source (required)
+                   }?></SupplementaryInfoLink>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>Title</Name>
    <MiniTemplate><![CDATA[<Title><?xm-replace_text {
                    Section title
                    }?></Title>]]></MiniTemplate>
-  </Template>
-  <Template>
-   <Name>AltTitle</Name>
-   <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text {
-                   Optional alternate title
-                   }?></AltTitle>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>KeyPoint</Name>
@@ -579,18 +619,6 @@
    <MiniTemplate><![CDATA[<PdqKey><?xm-replace_text {
                    PDQ Key
                    }?></PdqKey>]]></MiniTemplate>
-  </Template>
-  <Template>
-   <Name>Diagnosis</Name>
-   <MiniTemplate><![CDATA[<Diagnosis><?xm-replace_text {
-                   Optionally select a diagnosis
-                   }?></Diagnosis>]]></MiniTemplate>
-  </Template>
-  <Template>
-   <Name>Drug</Name>
-   <MiniTemplate><![CDATA[<Drug><?xm-replace_text {
-                   Optionally select a drug
-                   }?></Drug>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Intervention</Name>

@@ -1,143 +1,157 @@
 ﻿<?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions Version="2.0">
-  <ElementPropertiesList>
-    <GlobalPrettyPrintOptions>
-      <NoPrettyPrinting/>
-    </GlobalPrettyPrintOptions>
-    <ElementProperties>
-      <Name ns="">CdrDocCtl</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Comment</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DateCreated</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DocId</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DocTitle</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DrugSummaryRef</Name>
-      <TagColor>CDCDFF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Emphasis</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">EnteredBy</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ExternalRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Glossary</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GlossaryTermLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GlossaryTermRef</Name>
-      <TagColor>CDFFCD</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ItemizedList</Name>
-      <TagColor>3399FF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ListItem</Name>
-      <TagColor>66FFFF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Manufacturer</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Para</Name>
-      <TagColor>CC99FF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SummarySection</Name>
-      <TagColor>66FF66</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Title</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-  </ElementPropertiesList>
+ <ElementPropertiesList>
+  <GlobalPrettyPrintOptions>
+   <NoPrettyPrinting/>
+  </GlobalPrettyPrintOptions>
+  <ElementProperties>
+   <Name ns="">CdrDocCtl</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Comment</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DateCreated</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DocId</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DocTitle</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DrugSummaryRef</Name>
+   <TagColor>CDCDFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Emphasis</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">EnteredBy</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ExternalRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Glossary</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GlossaryTermLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GlossaryTermRef</Name>
+   <TagColor>CDFFCD</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ItemizedList</Name>
+   <TagColor>3399FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ListItem</Name>
+   <TagColor>66FFFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Manufacturer</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Para</Name>
+   <TagColor>CC99FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedDocuments</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SummarySection</Name>
+   <TagColor>66FF66</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Title</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+ </ElementPropertiesList>
   <Images>
     <Image>
       <Name ns="">Multimedia</Name>
@@ -209,75 +223,96 @@
       <FollowedBy ns="">Para</FollowedBy>
     </FollowedByListItem>
   </FollowedByList>
-  <Templates>
-    <Template>
-      <Name ns="">Manufacturer</Name>
-      <MiniTemplate><![CDATA[<Manufacturer><?xm-replace_text {Optionally 
-          select an organization link} ?>
+ <Templates>
+  <Template>
+   <Name ns="">Manufacturer</Name>
+   <MiniTemplate><![CDATA[<Manufacturer><?xm-replace_text {
+                   Optionally select an organization link
+                   }?>
         </Manufacturer>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">SummarySection</Name>
-      <MiniTemplate><![CDATA[<SummarySection>
-        <Para><?xm-replace_text {Enter summary of information about 
-              specific drug information (required)} ?></Para>
+  </Template>
+  <Template>
+   <Name ns="">RelatedDocuments</Name>
+   <MiniTemplate><![CDATA[<RelatedDocuments>
+         <SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info DocTitle (required)
+                   }?></SupplementaryInfoLink>
+       </RelatedDocuments>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">SummarySection</Name>
+   <MiniTemplate><![CDATA[<SummarySection>
+        <Para><?xm-replace_text {
+                   Enter summary of information about 
+                   specific drug information (required)
+                   }?></Para>
         </SummarySection>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DrugReference</Name>
-      <MiniTemplate><![CDATA[<DrugReference>
-        <DrugReferenceType><?xm-replace_text {Select a drug reference type
-                           (required)} ?></DrugReferenceType>
-        <DrugReferenceLink><?xm-replace_text {Enter the link title here and
-                           copy/paste the URL into the attribute inspector
-                           (required)} ?></DrugReferenceLink>
-        <DrugReferenceDescription><?xm-replace_text {Link to Miscellaneous 
-                           Document (right click and copy/paste fragment link
-                           from Misc. Doc.
-                           (required)} ?></DrugReferenceDescription>
+  </Template>
+  <Template>
+   <Name ns="">SupplementaryInfoLink</Name>
+   <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {
+                   Enter the supplementary info source (required)
+                   }?></SupplementaryInfoLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DrugReference</Name>
+   <MiniTemplate><![CDATA[<DrugReference>
+        <DrugReferenceType><?xm-replace_text {
+                   Select a drug reference type (required)
+                   }?></DrugReferenceType>
+        <DrugReferenceLink><?xm-replace_text {
+                   Enter the link title here and copy/paste the URL 
+                   into the attribute inspector (required)
+                   }?></DrugReferenceLink>
+        <DrugReferenceDescription><?xm-replace_text {
+                   Link to Miscellaneous Document (right click and 
+                   copy/paste fragment link from Misc. Doc. (required)
+                   }?></DrugReferenceDescription>
         </DrugReference>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DrugReferenceType</Name>
-      <MiniTemplate><![CDATA[<DrugReferenceType><?xm-replace_text {Select a 
-                           drug reference type 
-                           (required)} ?></DrugReferenceType>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DrugReferenceLink</Name>
-      <MiniTemplate><![CDATA[<DrugReferenceLink><?xm-replace_text {Enter the
-                           link title here and copy/paste the URL into the 
-                           attribute inspector
-                           (required)} ?></DrugReferenceLink>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DrugReferenceDescription</Name>
-      <MiniTemplate><![CDATA[<DrugReferenceDescription><?xm-replace_text {Link
-                           to Miscellaneous Document (right click and 
-                           copy/paste fragment link from Misc. Doc.
-                           (required)} ?></DrugReferenceDescription>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">GlossaryLink</Name>
-      <MiniTemplate><![CDATA[<GlossaryLink><?xm-replace_text {Select a glossary 
-                           link (required)} ?></GlossaryLink>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">Para</Name>
-      <MiniTemplate><![CDATA[<Para><?xm-replace_text {Optionally enter a new 
-                           paragraph} ?></Para>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DateLastModified</Name>
-      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {Optionally 
-                           enter the date of the last record 
-                           modification} ?></DateLastModified>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">ProcessingStatus</Name>
-      <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {Optionally 
-                           select a processing 
-                           status} ?></ProcessingStatus>]]></MiniTemplate>
-    </Template>
-  </Templates>
+  </Template>
+  <Template>
+   <Name ns="">DrugReferenceType</Name>
+   <MiniTemplate><![CDATA[<DrugReferenceType><?xm-replace_text {
+                   Select a drug reference type (required)
+                   }?></DrugReferenceType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DrugReferenceLink</Name>
+   <MiniTemplate><![CDATA[<DrugReferenceLink><?xm-replace_text {
+                   Enter the link title here and copy/paste the URL into the 
+                   attribute inspector (required)
+                   }?></DrugReferenceLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DrugReferenceDescription</Name>
+   <MiniTemplate><![CDATA[<DrugReferenceDescription><?xm-replace_text {
+                   Link to Miscellaneous Document (right click and 
+                   copy/paste fragment link from Misc. Doc. (required)
+                   }?></DrugReferenceDescription>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">GlossaryLink</Name>
+   <MiniTemplate><![CDATA[<GlossaryLink><?xm-replace_text {
+                   Select a glossary link (required)
+                   }?></GlossaryLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">Para</Name>
+   <MiniTemplate><![CDATA[<Para><?xm-replace_text {
+                   Optionally enter a new paragraph
+                   }?></Para>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DateLastModified</Name>
+   <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
+                   Optionally enter the date of the last record modification
+                   }?></DateLastModified>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">ProcessingStatus</Name>
+   <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {
+                   Optionally select a processing status
+                   }?></ProcessingStatus>]]></MiniTemplate>
+  </Template>
+ </Templates>
 </DTDExtensions>
