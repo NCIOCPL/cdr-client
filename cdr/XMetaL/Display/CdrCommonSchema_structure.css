@@ -93,7 +93,10 @@ QandAEntry,
 QandADiv,
 QandASet,
 Question,
+RelatedDocuments,
+ReplacementText,
 Street,
+SupplementaryInfoLink,
 Table,
 TollFreePhone,
 TT,
@@ -180,6 +183,10 @@ Table:before                   { content: "..Table "; }
 Table>Title:before             { content: "Title "; }
 TT:before                      { content: "..Table "; }
 
+RelatedDocuments             :before { content: "RELATED DOCUMENTS"; }
+ReplacementText              :before { content: "Replacement Text"; }
+SupplementaryInfoLink        :before { content: "Supplementary Info Link"; }
+
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR HEADINGS                         */
@@ -213,7 +220,9 @@ Email:before,
 Fax:before,
 Phone:before,
 PostalCode_ZIP:before,
+RelatedDocuments             :before,
 Street:before,
+SupplementaryInfoLink        :before,
 TollFreePhone:before,
 WebSite:before,
      { color:  black;
@@ -236,34 +245,45 @@ PoliticalSubUnit_State:before,
 CdrDocCtl,
 DatedAction,
 PostalAddress,
+RelatedDocuments,
      { border: none;  }
 
 CdrDocCtl,
 DocId,
-DocId:before,
+DocId                        :before,
 DocTitle,
-DocTitle:before,
+DocTitle                     :before,
+City                         :before,
+CitySuffix                   :before,
+ContactName                  :before,
+PostalAddress>Country        :before,
+Email                        :before,
+Fax                          :before,
+Phone                        :before,
+PoliticalSubUnit_State       :before,
+PostalCode_ZIP               :before,
+RelatedDocuments,
+ReplacementText              :before,
+Street                       :before,
+SupplementaryInfoLink        :before,
+TollFreePhone                :before,
+WebSite                      :before,
+ActionDate                   :before,
+ActionDescription            :before,
+DatedAction,
      { background-color: white; }
+
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
 
 CdrDocCtl,
 DocId,
 DocTitle,
      { text-indent: 0pt; }
-
-/* Contact Detail  */
-City:before,
-CitySuffix:before,
-ContactName:before,
-PostalAddress>Country:before,
-Email:before,
-Fax:before,
-Phone:before,
-PoliticalSubUnit_State:before,
-PostalCode_ZIP:before,
-Street:before,
-TollFreePhone:before,
-WebSite:before,
-     { background-color: white }
 
 City,
 CitySuffix,
@@ -274,17 +294,14 @@ Fax,
 Phone,
 PoliticalSubUnit_State,
 PostalCode_ZIP,
+RelatedDocuments,
 Street,
+SupplementaryInfoLink,
 TollFreePhone,
 WebSite,
      { text-indent: 0pt; }
 
 /* Dated Actions  */
-
-ActionDate:before,
-ActionDescription:before,
-DatedAction,
-     { background-color: white }
 
 ActionDate,
 ActionDescription,
@@ -322,7 +339,10 @@ Phone[Public="No"]:after,
 PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
+RelatedDocuments,
+ReplacementText,
 Street,
+SupplementaryInfoLink,
 Table,
 TollFreePhone,
 TT,
@@ -333,7 +353,6 @@ WebSite,
 /* All other Common Elements  */
 Deletion,
 Insertion,
-
 CdrHref,
 CdrRef,
 CitationLink,
@@ -347,11 +366,9 @@ PrimarySecondary,
 ProtocolLink,
 SummaryLink,
 TerminologyLink,
-
 CommonTextElements,
   Multimedia,
   Section,
-
 OtherPhraseElements,
   CitationLink,
   CitationRef,
@@ -388,8 +405,6 @@ OtherPhraseElements,
   SummaryLink,
   SummaryRef,
   SummaryReference,
-
-
 ParaLevelElements,
   Contact,
     ListItem,
@@ -413,7 +428,6 @@ ParaLevelElements,
     THead,
     THeadOrFoot,
     TitleAbbrev,
-
 TitleMarkupElements,
   Emphasis,
   ForeignWord,
@@ -422,7 +436,6 @@ TitleMarkupElements,
   Strong,
   Subscript,
   Superscript,
-
 Table>Title,
    {display: none; }
 

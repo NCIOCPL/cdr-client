@@ -1,7 +1,10 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.18 2008-10-16 19:12:59 venglisc Exp $
+ * $Id: CdrCommonSchema.css,v 1.19 2009-06-24 20:04:15 venglisc Exp $
  *
  * $Log: not supported by cvs2svn $
+ * Revision 1.18  2008/10/16 19:12:59  venglisc
+ * Adding new DrugSummaryRef element. (Bug 4323)
+ *
  * Revision 1.17  2008/02/21 21:13:34  bkline
  * Added cdr:PrivateUseCharacter formatting.
  *
@@ -161,9 +164,11 @@ QandADiv,
 QandAEntry,
 QandASet,
 Question,
+RelatedDocuments,
 ReplacementText,
 Row,
 Section,
+SupplementaryInfoLink,
 Section>Title,
 Street,
 Table,
@@ -259,7 +264,9 @@ PostalAddress[Public="No"]:before
                                 { content: "POSTAL ADDRESS (Not Public) & @"; }
 PostalAddress:before            { content: "POSTAL ADDRESS (Public) & @"; }
 PostalCode_ZIP:before           { content: "Postal Code &: "; }
+RelatedDocuments        :before { content: "RELATED DOCUMENTS &";}
 Street:before                   { content: "Street & +: "; }
+SupplementaryInfoLink   :before { content: "Sup Info Link * + @: ";}
 TollFreePhone:before            { content: "Toll Free &: "; }
 WebSite:before                  { content: "Web Site & @: "; }
 
@@ -287,9 +294,10 @@ PlaceHolder             :before { content: "[" attr(name) "]"; }
 /* CDR Doc Control  */
 
 CdrDocCtl,
+RelatedDocuments,
      { border: solid;
-       border-color: black;
        border-width: thin;
+       border-color: black;
        margin-top: 1em;
        margin-bottom: 6pt;
        background-color: #CCCCFF; }
@@ -437,6 +445,10 @@ ActionDate,
 DatedAction>Comment,                    
      { margin-left: 100pt;
        text-indent: -82pt; }
+SupplementaryInfoLink,
+     { margin-left: 120pt;
+       text-indent: -116pt; }
+
 
 DatedAction>ActionDate,
 DatedAction>ActionDescription,
@@ -482,8 +494,10 @@ Fax                          :before,
 Phone                        :before,
 Phone                        :after,
 PostalCode_ZIP               :before,
+RelatedDocuments             :before,
 ReplacementText              :before,
 Street                       :before,
+SupplementaryInfoLink        :before,
 TollFreePhone                :before,
 WebSite                      :before,
      { font-weight: bold;
@@ -1009,18 +1023,24 @@ Deletion[RevisionLevel='proposed'] Comment
 /*                MARGIN-BOTTOM TO SIMULATE TEXT BOX                       */
 /***************************************************************************/
 ReplacementText,
+SupplementaryInfoLink,
     { margin-bottom: 4pt; }
 
+
+RelatedDocuments,
+	{ margin-bottom: 10pt; }
 
 /***************************************************************************/
 /*                               COLOR                                     */
 /***************************************************************************/
 ReplacementText,
+SupplementaryInfoLink,
     { background-color: white; }
 
 
 
 ReplacementText              :before,
+SupplementaryInfoLink        :before,
     { background-color: #CCCCFF; }  /* light blue */
 
 
