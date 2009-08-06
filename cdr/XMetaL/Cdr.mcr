@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.203 2009-04-03 00:11:34 ameyer Exp $
+     $Id: Cdr.mcr,v 1.204 2009-08-06 12:07:57 bkline Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.203  2009/04/03 00:11:34  ameyer
+     Added macro to "Insert ResponseToComment" exactly like "Insert Comment"
+     for Bugzilla issue #4510.
+
      Revision 1.202  2009/03/26 12:15:33  bkline
      Modified macro to extract PDQ Indexing block so that children of the
      Intervention elements which don't belong in the target CTGovProtocol
@@ -741,7 +745,7 @@
     function getSingleElement(node, name, attrName, attrValue) {
         var elems = node.getElementsByTagName(name);
         for (var i = 0; i < elems.length; ++i) {
-            var elem = elems.item(0);
+            var elem = elems.item(i);
             if (!attrName || elem.getAttribute(attrName) == attrValue)
                 return elem;
         }
@@ -9087,8 +9091,9 @@
         }
 
         // Remove the elements that don't belong in the CTGovProtocol doc.
-        var studyCat = getSingleElement(newElem, "StudyCategory");
-        if (studyCat) {
+        var studyCats = newElem.getElementsByTagName("StudyCategory");
+        for (var i = 0; i < studyCats.length; ++i) {
+            var studyCat = studyCats.item(i);
             var studyFocus = getSingleElement(studyCat, "StudyFocus");
             while (studyFocus) {
                studyCat.removeChild(studyFocus);
@@ -9100,8 +9105,8 @@
                comment = getSingleElement(studyCat, "Comment");
             }
             var interventions = studyCat.getElementsByTagName("Intervention");
-            for (var i = 0; i < interventions.length; ++i) {
-                var intervention = interventions.item(i);
+            for (var j = 0; j < interventions.length; ++j) {
+                var intervention = interventions.item(j);
                 var child = intervention.firstChild;
                 while (child) {
                     var nextChild = child.nextSibling;
