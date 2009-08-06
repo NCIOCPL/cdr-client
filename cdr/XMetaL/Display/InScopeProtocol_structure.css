@@ -115,10 +115,13 @@ CompletionDate,
 ContactInformation,
 CTGovDuplicate,
 CTGovOwnerOrganization,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnershipTransferDate,
 CTGovOwnershipTransferInfo,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
+Date,
 DateLastModified, 
 DateSendForReview,
 DateSubmissionComplete,
@@ -221,12 +224,17 @@ ClinicalTrialOffice     :before { content: "Clinical Trial Office"; }
 CompletionDate          :before { content: "Completion Date"; }
 CTGovOwnerOrganization  :before { content: "Owner Organization"; }
 PRSUserName             :before { content: "PRS User Name"; }
+CTGovOwnershipTransferContactLog
+                        :before { content: "CTGOV OWNERSHIP TRANSFER CONTACT LOG"; }
+CTGovOwnershipTransferContactResponse
+                        :before { content: "Contact Response"; }
 CTGovOwnershipTransferDate:before { content: "Ownership Transfer Date"; }
 DateSubmissionComplete  :before { content: "Date Submission Complete"; }
 Country                 :before { content: "Country"; }
 CTGovDuplicate          :before { content: "CTGov Duplicate"; }
 CurrentOrgStatus        :before { content: "Current Org Status"; }
 CurrentProtocolStatus   :before { content: "Current Protocol Status";  }
+Date                    :before { content: "Date"; }
 DateLastModified        :before { content: "Last Modified"; }
 DateSentForReview       :before { content: "Date Sent for Review"; }
 DelayedPosting          :before { content: "Delayed Posting"; }
@@ -474,9 +482,11 @@ Country,
 CTGovDuplicate,
 CTGovOwnerOrganization,
 PRSUserName,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnershipTransferDate,
 ProtocolSource>Comment,
 CurrentProtocolStatus,
+Date,
 DateLastModified,
 DateSentForReview,
 DateSubmissionComplete,
@@ -584,6 +594,8 @@ WarehouseBoxNumber,
 /* Administrative Information                          */
 
 ClinicalTrialOffice       :before,
+CTGovOwnershipTransferContactLog > Comment
+                          :before,
 CTGovOwnershipTransferInfo > Comment
                           :before,
 FundingInfo > NIHGrantContract > Comment 
@@ -607,10 +619,14 @@ ExternalSiteAddress > Country
                           :before,
 CurrentProtocolStatus,
 CTGovOwnerOrganization    :before,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse
+                          :before,
 CTGovOwnershipTransferInfo,
 CTGovOwnershipTransferDate:before,
 ProtocolSource > DateReceived 
                           :before,
+Date                      :before,
 DateSentForReview         :before,
 DateSubmissionComplete    :before,
 DelayedPosting            :before,
@@ -717,6 +733,7 @@ ProtocolSpecificContact   :before,
 /***************************************************************************/
 /*                             BORDER CONTROL                              */
 /***************************************************************************/
+CTGovOwnershipTransferContactLog,
 CTGovOwnershipTransferInfo,
 ExternalSites,
 FDAINDInfo,
@@ -747,6 +764,7 @@ ClinicalTrialOffice,
 CompletionDate,
 ExternalSiteAddress > City,
 ExternalSiteAddress > CitySuffix,
+CTGovOwnershipTransferContactLog > Comment,
 CTGovOwnershipTransferInfo > Comment,
 NIHGrantContract > Comment,
 LeadOrgProtocolStatuses > CurrentOrgStatus > Comment,
@@ -763,8 +781,10 @@ VoluntaryReview > Comment,
 ExternalSiteAddress > Country,
 CTGovOwnerOrganization,
 PRSUserName,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnershipTransferDate,
 CurrentProtocolStatus,
+Date, 
 DateLastModified,
 ProtocolSource > DateReceived,
 DateSentForReview,

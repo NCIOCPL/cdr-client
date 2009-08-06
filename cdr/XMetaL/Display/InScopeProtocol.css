@@ -121,10 +121,13 @@ ContactInformation,
 ExternalSiteAddress > Country,
 CTGovDuplicate,
 CTGovOwnerOrganization,
-CTGovOwnershipTransferInfo,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnershipTransferDate,
+CTGovOwnershipTransferInfo,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
+Date,
 DateLastModified, 
 DateSentForReview,
 DateSubmissionComplete,
@@ -257,6 +260,9 @@ LeadOrgProtocolStatuses>Comment   :before { content: "Comments &: "; }
 ExternalSiteAddress > Country     :before { content: "Country : "; }
 CompletionDate                    :before { content: "Compl Date &: "; }
 CTGovDuplicate                    :before { content: "CTGov Duplicate & +: "; }
+CTGovOwnershipTransferContactLog  :before { content: "CTOV OWNERSHIP TRANSFER CONTACT LOG &: "; }
+CTGovOwnershipTransferContactResponse
+                                  :before { content: "Contact Response *: "; }
 CTGovOwnershipTransferDate        :before { content: "Transfer Date *: "; }
 CTGovOwnershipTransferInfo        :before 
     { content: "CTGOV OWNERSHIP TRANSFER INFO &"; }
@@ -264,6 +270,7 @@ CTGovOwnerOrganization            :before { content: "Owner Organization *: "; }
 CurrentOrgStatus                  :before { content: "Current Org Status *"; }
 CurrentProtocolStatus             :before 
     { content: "Current Protocol Status *: "; }
+Date                              :before { content: "Date *: "; }
 DateLastModified                  :before { content: "Last Modified &: "; }
 ProtocolSource>DateReceived       :before { content: "Date Received *: "; }
 DelayedPosting                    :before { content: "Delayed Posting &: "; }
@@ -426,8 +433,12 @@ CTGovDuplicate                    :before,
 CurrentOrgStatus                  :before,
 /* CurrentProtocolStatus:before, */
 CTGovOwnerOrganization            :before,
+CTGovOwnershipTransferContactLog  :before,
+CTGovOwnershipTransferContactResponse     
+                                  :before,
 CTGovOwnershipTransferDate        :before,
 CTGovOwnershipTransferInfo        :before,
+Date                              :before,
 DateSentForReview                 :before,
 DateSubmissionComplete            :before,
 DelayedPosting                    :before,
@@ -561,6 +572,7 @@ StatusName                        :before,
 /***************************************************************************/
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
+CTGovOwnershipTransferContactLog,
 CTGovOwnershipTransferInfo,
 ExternalSites,
 FDAINDInfo,
@@ -620,6 +632,7 @@ ResponsibleParty,
 SpecificPerson,
   {  margin-top: .5em;    }
 
+CTGovOwnershipTransferContactLog,
 ExternalSiteAddress,
 ExternalSiteContact,
 ExternalSitePI,
@@ -980,6 +993,14 @@ PRSUserName                 { margin-left:  150pt;
                               text-indent: -107pt; }
 CTGovOwnershipTransferDate  { margin-left:  150pt; 
                               text-indent:  -93pt; }
+CTGovOwnershipTransferContactResponse
+                            { margin-left:  160pt;
+                              text-indent: -122pt; }
+Date                        { margin-left:  160pt;
+                              text-indent:  -42pt; }
+CTGovOwnershipTransferContactLog>Comment,
+                            { margin-left: 160pt;
+                              text-indent: -82.5pt; }
 
 /* Margin-bottom for simulated text boxes                                  */
 ClinicalTrialOffice,
@@ -987,11 +1008,13 @@ ExternalSiteAddress > Country,
 LeadOrgProtocolStatuses > Comment, 
 VerificationInfo > Comment, 
 VoluntaryReview > Comment, 
+CTGovOwnershipTransferContactResponse,
 CTGovOwnershipTransferDate,
 CTGovOwnershipTransferInfo,
 CTGovOwnerOrganization,
 CurrentOrgStatus, 
 CurrentProtocolStatus,
+Date,
 DateLastModified, 
 DateSentForReview,
 DateSubmissionComplete,
@@ -1093,6 +1116,7 @@ VerificationDate,
 
 
 CompletionDate,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnerOrganization,
 CurrentProtocolStatus,
 GrantContractNo,
@@ -1121,8 +1145,10 @@ SubmissionMethod,
 ExternalSiteAddress > Country,
 ClinicalTrialOffice,
 CurrentProtocolStatus,
+CTGovOwnershipTransferContactResponse,
 CTGovOwnerOrganization,
 CTGovOwnershipTransferDate,
+Date,
 DateLastModified, 
 DateSentForReview,
 DateSubmissionComplete,
@@ -1207,31 +1233,45 @@ VerificationDate,
 /* Blue = Administrative Information                                    */
 /* **********************************************************************/
 ClinicalTrialOffice          :before,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse
+                             :before,
 CTGovOwnershipTransferInfo,
 CTGovOwnershipTransferDate   :before,
 CTGovOwnerOrganization       :before,
+Date                         :before,
 DateSentForReview            :before,
 DateSubmissionComplete       :before,
 DelayedPosting               :before,
 DueDate                      :before,
 EndDateTime                  :before,
-CTGovOwnershipTransferInfo>Comment :before,
-FundingInfo>NIHGrantContract>Comment :before,
-FundingInfo>OtherGrantContractInfo>Comment :before,
-LeadOrgProtocolStatuses>CurrentOrgStatus>Comment :before,
-LeadOrgProtocolStatuses>PreviousOrgStatus>Comment :before,
+CTGovOwnershipTransferContactLog>Comment 
+                             :before,
+CTGovOwnershipTransferInfo>Comment 
+                             :before,
+FundingInfo>NIHGrantContract>Comment 
+                             :before,
+FundingInfo>OtherGrantContractInfo>Comment 
+                             :before,
+LeadOrgProtocolStatuses>CurrentOrgStatus>Comment 
+                             :before,
+LeadOrgProtocolStatuses>PreviousOrgStatus>Comment 
+                             :before,
 ProtocolAdminInfo>Comment    :before,
 ProtocolApproval>Comment     :before,
 ProtocolSource>Comment       :before,
-ProtocolSpecialCategory>Comment      :before,
+ProtocolSpecialCategory>Comment      
+                             :before,
 ProtocolSponsors>Comment     :before,
 VerificationInfo>Comment     :before,
 VoluntaryReview>Comment      :before,
 /* CurrentProtocolStatus:before, */
 ExternalSiteAddress > Country:before,
 ProtocolSource>DateReceived  :before,
-LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy  :before,
-LeadOrgProtocolStatuses>PreviousOrgStatus>EnteredBy :before,
+LeadOrgProtocolStatuses>CurrentOrgStatus>EnteredBy  
+                             :before,
+LeadOrgProtocolStatuses>PreviousOrgStatus>EnteredBy 
+                             :before,
 VerificationInfo>EnteredBy   :before,
 VoluntaryReview>EnteredBy    :before,
 LeadOrgProtocolStatuses>CurrentOrgStatus>EntryDate  :before,
