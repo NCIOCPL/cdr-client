@@ -169,6 +169,18 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>CTGovOwnershipTransferContactLog</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>CTGovOwnershipTransferContactResponse</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>CTGovOwnershipTransferDate</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -191,6 +203,13 @@
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Date</Name>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
@@ -1294,6 +1313,22 @@
           }?></CompletionDate>]]></MiniTemplate>
    </Template>
    <Template>
+      <Name>CTGovOwnershipTransferContactLog</Name>
+      <MiniTemplate><![CDATA[<CTGovOwnershipTransferContactLog>
+        <CTGovOwnershipTransferContactResponse><?xm-replace_text {
+          Select a contact response (required)
+        }?></CTGovOwnershipTransferContactResponse>
+        <Date><?xm-replace_text {
+        Enter the response date (required)
+        }?></Date>]]></MiniTemplate>    
+   </Template>
+   <Template>
+      <Name>CTGovOwnershipTransferDate</Name>
+      <MiniTemplate><![CDATA[<CTGovOwnershipTransferDate><?xm-replace_text {
+          Enter the ownership transfer date (required)
+          }?></CTGovOwnershipTransferDate>]]></MiniTemplate>
+   </Template>
+   <Template>
       <Name>CTGovOwnershipTransferInfo</Name>
       <MiniTemplate><![CDATA[<CTGovOwnershipTransferInfo>
         <CTGovOwnerOrganization><?xm-replace_text {
@@ -1306,12 +1341,6 @@
           Enter the ownership transfer date (required)
           }?></CTGovOwnershipTransferDate>
        </CTGovOwnershipTransferInfo>]]></MiniTemplate>
-   </Template>
-   <Template>
-      <Name>CTGovOwnershipTransferDate</Name>
-      <MiniTemplate><![CDATA[<CTGovOwnershipTransferDate><?xm-replace_text {
-          Enter the ownership transfer date (required)
-          }?></CTGovOwnershipTransferDate>]]></MiniTemplate>
    </Template>
    <Template>
       <Name>DateReceived</Name>
