@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.204 2009-08-06 12:07:57 bkline Exp $
+     $Id: Cdr.mcr,v 1.205 2009-08-10 16:37:40 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.204  2009/08/06 12:07:57  bkline
+     Changed PDQIndexing extraction code to deal with multiple StudyCategory
+     blocks.  Also fixed a bug in function to get a single named element.
+
      Revision 1.203  2009/04/03 00:11:34  ameyer
      Added macro to "Insert ResponseToComment" exactly like "Insert Comment"
      for Bugzilla issue #4510.
@@ -7385,7 +7389,7 @@
                     newElem = '<ProcessingStatuses>'
                             + newElem
                             + '</ProcessingStatuses>';
-                // Application.Alert("selected name is " + name);
+                //Application.Alert("selected name is " + name);
                 if (Selection.CanPaste(newElem))
                     Selection.PasteString(newElem);
                 else
@@ -7396,6 +7400,7 @@
         Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
+    Selection.GotoPrevious(2);
   ]]>
 </MACRO>
 
