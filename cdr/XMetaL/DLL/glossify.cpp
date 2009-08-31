@@ -6,6 +6,7 @@
 #include "Glossify.h"
 #include <stack>
 #include <windows.h>
+#include ".\glossify.h"
 
 // CGlossify dialog
 
@@ -59,6 +60,7 @@ BEGIN_MESSAGE_MAP(CGlossify, CDialog)
     ON_BN_CLICKED(IDCANCEL, OnDone)
     ON_BN_CLICKED(IDOK, OnMarkup)
     ON_BN_CLICKED(IDC_GLOSSIFY_SKIP_FIRST, OnBnClickedGlossifySkipFirst)
+    ON_BN_CLICKED(IDC_GLOSSIFY_NEXT_SECTION, OnBnClickedGlossifyNextSection)
 END_MESSAGE_MAP()
 
 
@@ -325,4 +327,15 @@ BOOL CGlossify::OnInitDialog()
     }
     return TRUE;  // return TRUE unless you set the focus to a control
     // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CGlossify::OnBnClickedGlossifyNextSection()
+{
+	// We're done if there are no more word chains to look at.
+    if (curChain < static_cast<int>(chains.size()))
+        ++curChain;
+    if (!findNextMatch()) {
+        ::AfxMessageBox(_T("No more glossary phrases found"));
+        OnOK();
+    }
 }

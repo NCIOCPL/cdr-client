@@ -63,4 +63,5 @@ public:
     afx_msg void OnMarkup();
     virtual BOOL OnInitDialog();
     afx_msg void OnBnClickedGlossifySkipFirst();
+    afx_msg void OnBnClickedGlossifyNextSection();
 };
