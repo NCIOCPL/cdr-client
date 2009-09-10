@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.205 2009-08-10 16:37:40 venglisc Exp $
+     $Id: Cdr.mcr,v 1.206 2009-09-10 14:52:20 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.205  2009/08/10 16:37:40  venglisc
+     Moving cursor two steps back. (Bug 4613)
+
      Revision 1.204  2009/08/06 12:07:57  bkline
      Changed PDQIndexing extraction code to deal with multiple StudyCategory
      blocks.  Also fixed a bug in function to get a single named element.
@@ -7400,7 +7403,7 @@
         Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
-    Selection.GotoPrevious(2);
+    //Selection.GotoPrevious(2);
   ]]>
 </MACRO>
 
