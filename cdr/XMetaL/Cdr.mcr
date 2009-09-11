@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 
 <!-- 
-     $Id: Cdr.mcr,v 1.206 2009-09-10 14:52:20 venglisc Exp $
+     $Id: Cdr.mcr,v 1.207 2009-09-11 15:25:53 venglisc Exp $
 
      $Log: not supported by cvs2svn $
+     Revision 1.206  2009/09/10 14:52:20  venglisc
+     Reverting last change since it has unintended consequences for other
+     elements being added as well. (Bug 4613)
+
      Revision 1.205  2009/08/10 16:37:40  venglisc
      Moving cursor two steps back. (Bug 4613)
 
@@ -7397,13 +7401,13 @@
                     Selection.PasteString(newElem);
                 else
                     Application.Alert("can't paste " + name);
+                Selection.GotoPrevious(2);
                 return;
             }
         }
         Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
-    //Selection.GotoPrevious(2);
   ]]>
 </MACRO>
 
