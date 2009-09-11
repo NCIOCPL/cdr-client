@@ -1,0 +1,277 @@
+/*************************************************************************/
+/*     Licensee.CSS                                                      */
+/*                                                                       */
+/*                                                                       */
+/*************************************************************************/
+
+
+
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema_structure.css";
+
+@sq-plus-minus;
+
+*   { white-space: nowrap;
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      font-style: normal;
+      font-weight: bold;
+      color: black; }
+
+$DOCUMENT > *
+    { margin-left: 0px;  }
+
+$PROCINS
+    { color: white;
+      font-weight: normal;
+      background-color: white;}
+
+/***************************************************************************/
+/*                          INLINE ELEMENTS                                */
+/***************************************************************************/
+GrantID,
+    { display: inline; }
+
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+AccountBlocked,
+AlternateName,
+ApplicationInformation,
+Audience,
+Audiences,
+Comment,
+ContactDetail,
+ContactName,
+ContactPerson,
+ContactPersons,
+ContactType,
+DateLastModified,
+DistributionMethod,
+DistributionMethods,
+FormerName,
+FtpInformation,
+LicenseeDepartment,
+LicenseeInformation,
+LicenseeNameInformation,
+LicenseeStatus,
+LicenseeStatusDates,
+LicenseeType,
+OfficialName,
+OrganizationType,
+OtherNames,
+Password,
+ProductionActivation,
+ProductionInactivation,
+TestActivation,
+TestExtension,
+TestInactivation,
+UserName,
+    { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+/* For PDQ Citation elements only:  */
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+AccountBlocked         :before { content: "Account Blocked "; }
+ApplicationInformation :before { content: "APPLICATION INFORMATION "; }
+Audiences              :before { content: "AUDIENCES "; }
+Audience               :before { content: "Audience "; }
+Comment                :before { content: "Comment "; }
+ContactDetail          :before { content: "CONTACT DETAIL "; }
+ContactName            :before { content: "Name "; }
+ContactPerson          :before { content: "CONTACT PERSON "; }
+ContactPersons         :before { content: "CONTACT PERSONS "; }
+ContactType            :before { content: "Type "; }
+DateLastModified       :before { content: "Date Last Modified "; }
+DistributionMethod     :before { content: "Distribution Method "; }
+DistributionMethods    :before { content: "DISTRIBUTION METHODS "; }
+FtpInformation         :before { content: "FTP INFORMATION "; }
+LicenseeDepartment     :before { content: "Department "; }
+LicenseeInformation    :before { content: "LICENSEE INFORMATION "; }
+LicenseeNameInformation:before { content: "LICENSEE NAME INFORMATION "; }
+LicenseeStatus         :before { content: "Status "; }
+LicenseeStatusDates    :before { content: "STATUS DATES "; }
+LicenseeType           :before { content: "Licensee Type "; }
+ApplicationInformation>Name 
+                       :before { content: "Application Info "; }
+OfficialName>Name      :before { content: "Official Name "; }
+AlternateName>Name     :before { content: "Alternate Name "; }
+FormerName>Name        :before { content: "Former Name "; }
+OrganizationType       :before { content: "Org Type "; }
+OtherNames             :before { content: "Other Names "; }
+Password               :before { content: "Password "; }
+ProductionActivation   :before { content: "Prod Activation "; }
+ProductionInactivation :before { content: "Prod Inactivation "; }
+TestActivation         :before { content: "Test Activation "; }
+TestExtension          :before { content: "Test Extension "; }
+TestInactivation       :before { content: "Test Inactivation "; }
+UserName               :before { content: "User Name "; }
+
+
+/***************************************************************************/
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+ApplicationInformation,
+ContactPersons,
+FtpInformation,
+LicenseeInformation,
+   { border: none; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+
+   {  font-weight: bold;
+      color: black;  }
+
+
+PDQCitation             :before,
+   {  font-weight: bold;
+      color: blue;  }
+
+PDQCitation             :before,
+PubMedArticle           :before,
+   { font-weight: bold;
+     color: green;  }
+
+PubmedData              :before,
+   { font-weight: bold;
+     color: navy;  }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+AccountBlocked         :before,
+AlternateName          :before,
+ApplicationInformation :before,
+Audience               :before,
+Audiences              :before,
+Comment                :before,
+ContactDetail          :before,
+ContactName            :before,
+ContactPerson          :before,
+ContactPersons         :before,
+ContactType            :before,
+DateLastModified       :before,
+DistributionMethod     :before,
+DistributionMethods    :before,
+FormerName             :before,
+FtpInformation         :before,
+LicenseeDepartment     :before,
+LicenseeInformation    :before,
+LicenseeNameInformation:before,
+LicenseeStatus         :before,
+LicenseeStatusDates    :before,
+LicenseeType           :before,
+Name                   :before,
+OfficialName           :before,
+OrganizationType       :before,
+OtherNames             :before,
+Password               :before,
+ProductionActivation   :before,
+ProductionInactivation :before,
+TestActivation         :before,
+TestExtension          :before,
+TestInactivation       :before,
+UserName               :before,
+    {  color: black;  }
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Remove negative text-indent settings  */
+
+*
+    { text-indent: 0pt; }
+
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
+AccountBlocked,
+AlternateName,
+ApplicationInformation,
+Audience,
+Audiences,
+Comment,
+ContactDetail>*,
+ContactType,
+DateLastModified,
+DistributionMethod,
+DistributionMethods,
+FormerName,
+LicenseeDepartment,
+LicenseeType,
+LicenseeStatus,
+Name,
+OfficialName,
+OrganizationType,
+Password,
+PostalAddress>*,
+ProductionActivation,
+ProductionInactivation,
+TestActivation,
+TestExtension,
+TestInactivation,
+UserName,
+    { color: white;
+      background-color: white; }
+
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+Licensee,
+AccountBlocked       :before,
+AlternateName        :before,
+ApplicationInformation:before,
+Audience             :before,
+Audiences            :before,
+Comment              :before,
+ContactDetail>*      :before,
+ContactType          :before,
+DateLastModified     :before,
+DistributionMethod   :before,
+DistributionMethods  :before,
+FormerName           :before,
+LicenseeDepartment   :before,
+LicenseeType         :before,
+LicenseeStatus       :before,
+Name                 :before,
+OfficialName         :before,
+OrganizationType     :before,
+Password             :before,
+PostalAddress>*      :before,
+Season               :before,
+ProductionActivation :before,
+ProductionInactivation:before,
+TestActivation       :before,
+TestExtension        :before,
+TestInactivation     :before,
+UserName             :before,
+    { background-color: white; }
+
+    { font-weight: bold; }
+
+VerificationDetails  :before,
+    { background-color: #CCCCFF; }  /*light blue*/
+
+
+Volume               :before,
+    { background-color: #CCFFCC; }  /*light green*/
+

@@ -1,0 +1,377 @@
+/*************************************************************************/
+/*      License.css                                                      */
+/*      ===========                                                      */
+/*      2008-11-28:  Volker Englisch                                     */
+/*                                                                       */
+/*************************************************************************/
+/*************************************************************************/
+/*                    DEFAULT PROPERTIES                                 */
+/*************************************************************************/
+@import "CdrCommonSchema.css";
+
+$DOCUMENT
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      margin-top: 5px;
+      margin-left: 5px;
+      color: black;          }
+
+$COMMENT
+    { display: block;
+      color: purple;
+      white-space: pre; }
+
+$PROCINS
+    { color: blue;
+      background-color: white; }
+
+Licensee,
+    { background-color: #CCCCFF;  }
+
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+AccountBlocked,
+AlternateName,
+ApplicationInformation,
+Audience,
+Audiences,
+Comment,
+ContactDetail,
+ContactName,
+ContactPerson,
+ContactPersons,
+ContactType,
+DateLastModified,
+DistributionMethod,
+DistributionMethods,
+FormerName,
+FtpInformation,
+LicenseeDepartment,
+LicenseeInformation,
+LicenseeNameInformation,
+LicenseeStatus,
+LicenseeStatusDates,
+LicenseeType,
+OfficialName,
+OrganizationType,
+OtherNames,
+Password,
+ProductionActivation,
+ProductionInactivation,
+TestActivation,
+TestExtension,
+TestInactivation,
+UserName,
+    { display: block; }
+
+
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+/* * = Required field */
+/* + = Multiply-occurring field */
+/* @ = Attribute assigned to element */
+/* & = Optional element */
+
+AccountBlocked         :before { content: "Account Blocked *: "; }
+ApplicationInformation :before { content: "APPLICATION INFORMATION *"; }
+Audiences              :before { content: "AUDIENCES &: "; }
+Audience               :before { content: "- "; }
+Comment                :before { content: "Comment &: "; }
+ContactDetail          :before { content: "CONTACT DETAIL &"; }
+ContactName            :before { content: "Name *: "; }
+ContactPerson          :before { content: "CONTACT PERSON & "; }
+ContactPersons         :before { content: "CONTACT PERSONS * +"; }
+ContactType            :before { content: "Type &: "; }
+DateLastModified       :before { content: "Date Last Modified &: "; }
+DistributionMethod     :before { content: "- "; }
+DistributionMethods    :before { content: "DISTRIBUTION METHODS * "; }
+FtpInformation         :before { content: "FTP INFORMATION &: "; }
+LicenseeDepartment     :before { content: "Department &: "; }
+LicenseeInformation    :before { content: "LICENSEE INFORMATION *"; }
+LicenseeNameInformation:before { content: "LICENSEE NAME INFORMATION &: "; }
+LicenseeStatus         :before { content: "Status &: "; }
+LicenseeStatusDates    :before { content: "STATUS DATES &: "; }
+LicenseeType           :before { content: "Licensee Type &: "; }
+ApplicationInformation>Name 
+                       :before { content: "Application Info &: "; }
+OfficialName>Name      :before { content: "Official Name *: "; }
+AlternateName>Name     :before { content: "Alternate Name & +: "; }
+FormerName>Name        :before { content: "Former Name & +: "; }
+OrganizationType       :before { content: "Org Type &: "; }
+Password               :before { content: "Password &: "; }
+ProductionActivation   :before { content: "Prod Activation &: "; }
+ProductionInactivation :before { content: "Prod Inactivation &: "; }
+TestActivation         :before { content: "Test Activation *: "; }
+TestExtension          :before { content: "Test Extension &: "; }
+TestInactivation       :before { content: "Test Inactivation &: "; }
+UserName               :before { content: "User Name &: "; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
+ApplicationInformation,
+ContactDetail,
+ContactPerson,
+ContactPersons,
+FtpInformation,
+LicenseeInformation,
+LicenseeNameInformation,
+LicenseeStatusDates,
+OfficicalName,
+OtherNames,
+Statistics,
+    { margin-bottom: 1em;  }
+
+ApplicationInformation>Audiences,
+ContactDetail,
+LicenseeStatusDates,
+LicenseeType,
+Statistics,
+    { margin-top: 1em;  }
+
+
+/***************************************************************************/
+/*                         BORDERED SECTIONS                               */
+/***************************************************************************/
+ApplicationInformation,
+ContactPersons,
+FtpInformation,
+LicenseeInformation,
+    { border: solid;
+      border-color: black;
+      border-width: thin;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
+
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
+AccountBlocked         :before,
+AlternateName          :before,
+ApplicationInformation :before,
+Audience               :before,
+Audiences              :before,
+Comment                :before,
+ContactDetail          :before,
+ContactName            :before,
+ContactPerson          :before,
+ContactPersons         :before,
+ContactType            :before,
+DateLastModified       :before,
+DistributionMethod     :before,
+DistributionMethods    :before,
+FormerName             :before,
+FtpInformation         :before,
+LicenseeDepartment     :before,
+LicenseeInformation    :before,
+LicenseeNameInformation:before,
+LicenseeStatus         :before,
+LicenseeStatusDates    :before,
+LicenseeType           :before,
+Name                   :before,
+OfficialName           :before,
+OrganizationType       :before,
+OtherNames             :before,
+Password               :before,
+ProductionActivation   :before,
+ProductionInactivation :before,
+TestActivation         :before,
+TestExtension          :before,
+TestInactivation       :before,
+UserName               :before,
+    {  font-weight: bold;
+       color: black;       }
+
+
+/***************************************************************************/
+/*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
+/***************************************************************************/
+/* some properties don't get applied on the first element in a list        */
+Verified:before,
+    {  font-weight: bold;
+       color: black;  }
+
+
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
+/* Each tag is manually positioned to right-align                          */
+/* Key element for length = GenerationSuffix    */
+
+/* LicenseeInformation Group */
+LicenseeNameInformation,
+    { margin-left: 30pt; }
+  Comment,
+    { margin-left: 100pt;
+      text-indent: -76pt; }
+  OfficialName,
+    { margin-left: 100pt; 
+      text-indent: -91pt; }
+  AlternateName,
+    { margin-left: 100pt; 
+      text-indent:-117pt; }
+  FormerName,
+    { margin-left: 100pt; 
+      text-indent:-107pt; }
+
+LicenseeDepartment,
+    { margin-left: 130pt;
+      text-indent: -87pt; }  
+LicenseeStatus,
+    { margin-left: 130pt;
+      text-indent: -57pt; }  
+LicenseeType,
+    { margin-left: 130pt;
+      text-indent:-103.5pt; }  
+
+LicenseeStatusDates,
+    { margin-left: 30pt; }
+  ProductionActivation,
+    { margin-left: 100pt;
+      text-indent:-108pt; }  
+  ProductionInactivation,
+    { margin-left: 100pt;
+      text-indent:-117pt; }  
+  TestActivation,
+    { margin-left: 100pt;
+      text-indent:-100.5pt; }  
+  TestExtension,
+    { margin-left: 100pt;
+      text-indent:-106pt; }  
+  TestInactivation,
+    { margin-left: 100pt;
+      text-indent:-114pt; }  
+
+  UserName,
+    { margin-left: 130pt;
+      text-indent: -83pt; }  
+  Password,
+    { margin-left: 130pt;
+      text-indent: -78pt; }  
+  AccountBlocked,
+    { margin-left: 130pt;
+      text-indent:-114pt; }  
+
+/* Technical Contacts Group */
+ContactDetail,  ContactPerson,
+    { margin-left:  30pt; }
+  ContactName,
+    { margin-left: 100pt;
+      text-indent: -49pt; }  
+  ContactType,
+    { margin-left: 100pt;
+      text-indent: -49pt; }  
+
+/* Technical Contacts Group */
+ApplicationInformation,
+    { margin-left:   0pt; }
+
+  DistributionMethods, Audiences, PostalAddress
+    { text-indent:  30pt; }
+
+  PostallAddress *
+    { text-indent: -30pt; }
+
+    DistributionMethod, Audience,
+    { margin-left: 130pt;
+      text-indent: -7.5pt; }  
+
+/* Misc Info Group */
+Status
+    { margin-left: 130pt; }
+
+DateLastModified,
+    { margin-left: 130pt;
+      text-indent:-126pt; }  
+
+OrganizationType,
+    { margin-left: 130pt;
+      text-indent: -73pt; }  
+
+
+
+/* Separate each line to make it look like a text box  */
+
+AccountBlocked,
+AlternateName,
+Audience,
+Comment,
+ContactName,
+ContactType,
+DateLastModified,
+DistributionMethod,
+FormerName,
+LicenseeDepartment,
+LicenseeInformation,
+LicenseeStatus,
+LicenseeType,
+OfficialName,
+OrganizationType,
+Password,
+UserName,
+ProductionActivation,
+ProductionInactivation,
+TestActivation,
+TestExtension,
+TestInactivation,
+Web,
+    { margin-bottom: 4pt; }
+
+
+
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+AccountBlocked,
+AlternateName,
+Audience,
+Comment,
+ContactName,
+ContactType,
+DateLastModified,
+DistributionMethod,
+FormerName,
+LicenseeDepartment,
+LicenseeStatus,
+LicenseeType,
+Name,
+OfficialName,
+OrganizationType,
+Password,
+UserName,
+ProductionActivation,
+ProductionInactivation,
+TestActivation,
+TestExtension,
+TestInactivation,
+Web,
+    { background-color: white; }
+
+AccountBlocked         :before,
+AlternateName          :before,
+ApplicationInformation :before,
+Audience               :before,
+Comment                :before,
+ContactName            :before,
+ContactType            :before,
+DateLastModified       :before,
+DistributionMethod     :before,
+LicenseeDepartment     :before,
+LicenseeStatus         :before,
+LicenseeType           :before,
+Name                   :before,
+OfficialName           :before,
+OrganizationType       :before,
+Password               :before,
+UserName               :before,
+ProductionActivation   :before,
+ProductionInactivation :before,
+TestActivation         :before,
+TestExtension          :before,
+TestInactivation       :before,
+Web                    :before,
+    { background-color: #CCCCFF; }
