@@ -1,5 +1,5 @@
 /*
- * $Id: CdrClient.cpp,v 1.2 2005-11-08 22:11:02 bkline Exp $
+ * $Id: CdrClient.cpp,v 1.3 2009-09-23 18:35:28 bkline Exp $
  *
  * Ensures that the CDR client files are up-to-date, then launches XMetaL
  * with custom CDR DLL.  See documentation of the InitInstance method
@@ -7,7 +7,10 @@
  * of the processing logic.
  *
  * $Log: not supported by cvs2svn $
- * Revision 1.1.1.1  2005/11/08 21:30:20  bkline
+ * Revision 1.2  2005/11/08 22:11:02  bkline
+ * Cleanup of initial CVS comments.
+ *
+ * Revision 1.1  2005/11/08 21:30:20  bkline
  * Rewrite of CDR loader.
  */
 #include "stdafx.h"
@@ -232,7 +235,7 @@ static void usage();
  * CdrClient class implementation.
  */
 BEGIN_MESSAGE_MAP(CdrClient, CWinApp)
-	ON_COMMAND(ID_HELP, CWinApp::OnHelp)
+    ON_COMMAND(ID_HELP, CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
 /*
@@ -287,7 +290,7 @@ BOOL CdrClient::InitInstance() {
         InitCommonControls();
 
         // 0. Invoke the base class's version of this method.
-	    CWinApp::InitInstance();
+        CWinApp::InitInstance();
 
         // 1. Read the settings from the application's state file.
         serverSettings = new ServerSettings(xmlDomParser);
@@ -308,7 +311,7 @@ BOOL CdrClient::InitInstance() {
 
         // 6. Launch new version of this program, if any; else start XMetal.
         if (loaderReplaced)
-            launchRecursively();
+            runAgain();
         else
             launchClient();
     }
@@ -327,8 +330,8 @@ BOOL CdrClient::InitInstance() {
         log(_T("Unexpected failure ... closing\n"));
     }
 
-	// We're done; FALSE means don't start the Windows message pump.
-	return FALSE;
+    // We're done; FALSE means don't start the Windows message pump.
+    return FALSE;
 }
 
 /*
@@ -422,22 +425,22 @@ ServerSettings::ServerGroup::ServerGroup(CComPtr<IXMLDOMNode>& node) {
  * group.
  */
 void ServerSettings::ServerGroup::serialize(CStdioFile& file) const {
-    file.WriteString(_T("  <ServerGroup Name=\""));
+    file.WriteString(_T(" <ServerGroup Name=\""));
     file.WriteString((LPCTSTR)groupName);
     file.WriteString(_T("\">\n"));
-    file.WriteString(_T("   <UpdateServer>"));
+    file.WriteString(_T("  <UpdateServer>"));
     file.WriteString((LPCTSTR)updateServer);
     file.WriteString(_T("</UpdateServer>\n"));
-    file.WriteString(_T("   <UpdatePort>"));
+    file.WriteString(_T("  <UpdatePort>"));
     file.WriteString((LPCTSTR)updatePort);
     file.WriteString(_T("</UpdatePort>\n"));
-    file.WriteString(_T("   <CdrServer>"));
+    file.WriteString(_T("  <CdrServer>"));
     file.WriteString((LPCTSTR)cdrServer);
     file.WriteString(_T("</CdrServer>\n"));
-    file.WriteString(_T("   <CdrPort>"));
+    file.WriteString(_T("  <CdrPort>"));
     file.WriteString((LPCTSTR)cdrPort);
     file.WriteString(_T("</CdrPort>\n"));
-    file.WriteString(_T("  </ServerGroup>\n"));
+    file.WriteString(_T(" </ServerGroup>\n"));
 }
 
 /*
@@ -459,8 +462,8 @@ CdrCommandLineOptions::CdrCommandLineOptions() {
     skipCdrLogin     = false;
     skipDialog       = false;
     skipRefresh      = false;
-    skipRecursion    = false;
-    recurse          = false;
+    skipReload       = false;
+    runAgain         = false;
     serverDebugLevel = 1;
     clientDebugLevel = 1;
     TCHAR* envClient = _tgetenv(_T("CDR_CLIENT_DEBUG_LEVEL"));
@@ -497,15 +500,15 @@ void CdrCommandLineOptions::ParseParam(const TCHAR* param,
             skipDialog = true;
         else if (!_tcscmp(param, _T("-skip-refresh")))
             skipRefresh = true;
-        else if (!_tcscmp(param, _T("-skip-recursion")))
-            skipRecursion = true;
+        else if (!_tcscmp(param, _T("-skip-reload")))
+            skipReload = true;
         else if (!_tcscmp(param, _T("-server-debug-level")))
             currentOption = _T("server-debug-level");
         else if (!_tcscmp(param, _T("-debug-level")))
             currentOption = _T("debug-level");
-        else if (!_tcscmp(param, _T("-recurse"))) {
-            recurse = true;
-            _tremove(RECURSIVE_SCRIPT);
+        else if (!_tcscmp(param, _T("-run-again"))) {
+            runAgain = true;
+            _tremove(RELAUNCH_SCRIPT);
         }
         else {
             usage();
@@ -538,14 +541,14 @@ void CdrCommandLineOptions::ParseParam(const TCHAR* param,
  * debugging level, if the client debugging level is 2 or higher.
  */
 void CdrClient::logOptions() {
-    if (commandLineOptions.recurse)
-        log(_T("Option --recurse specified.\n"), 2);
+    if (commandLineOptions.runAgain)
+        log(_T("Option --run-again specified.\n"), 2);
     if (commandLineOptions.skipCdrLogin)
         log(_T("Option --skip-login specified.\n"), 2);
     if (commandLineOptions.skipDialog)
         log(_T("Option --skip-dialog specified.\n"), 2);
-    if (commandLineOptions.skipRecursion)
-        log(_T("Option --skip-recursion specified.\n"), 2);
+    if (commandLineOptions.skipReload)
+        log(_T("Option --skip-reload specified.\n"), 2);
     if (commandLineOptions.skipRefresh)
         log(_T("Option --skip-refresh specified.\n"), 2);
     CString buf;
@@ -561,19 +564,20 @@ void CdrClient::logOptions() {
  * dialog window by the InitInstance method where the exception is caught.
  */
 void usage() {
+
     throw _T("Usage: CdrClient [options]           \n\n")
           _T("available options:\n")
-          _T("  --recurse\n")
+          _T("  --run-again\n")
           _T("  --skip-login\n")
           _T("  --skip-dialog\n")
           _T("  --skip-refresh\n")
-          _T("  --skip-recursion\n")
+          _T("  --skip-reload\n")
           _T("  --debug-level N\n")
           _T("  --server-debug-level N\n");
 }
 
 /*
- * If we have been invoked recursively, a login session will already have
+ * If we have been invoked by ourselves, a login session will already have
  * been created for the user and the ID for the session will have been
  * passed to us as part of the environment strings provided to the process.
  * If not we put up the logon dialog window, in which the user enters
@@ -609,9 +613,9 @@ bool CdrClient::createCdrSession() {
     TCHAR* envId = _tgetenv(_T("CDRSession"));
     if (envId) {
         sessionId = envId;
-        log(_T("Already logged into the CDR with session ") + 
-            sessionId + _T("\n"), 1);
         extractServerSettings();
+        log(_T("Already logged into the CDR on ") + cdrServer + _T("\n"), 1);
+        log(_T("Session: ") + sessionId + _T("\n"), 1);
         return true;
     }
 
@@ -619,16 +623,17 @@ bool CdrClient::createCdrSession() {
     if (!commandLineOptions.skipDialog) {
         CWaitCursor waitCursor;
         dialog = new CdrLoginDlg(serverSettings);
-	    INT_PTR nResponse = dialog->DoModal();
+        INT_PTR nResponse = dialog->DoModal();
         if (nResponse == IDOK) {
 
             // Remember any changes to the server settings.
+            serverSettings->currentUser = dialog->uid;
             serverSettings->serialize(SETTINGS_FILE);
 
-	        // Create the logon command.
+            // Create the logon command.
             CString uidElem;
             CString pwdElem;
-	        CString request;
+            CString request;
             uidElem.Format(_T("<UserName>%s</UserName>"), dialog->uid);
             pwdElem.Format(_T("<Password>%s</Password>"), dialog->pwd);
             request = _T("<CdrLogon>") + uidElem + pwdElem + _T("</CdrLogon>");
@@ -640,8 +645,11 @@ bool CdrClient::createCdrSession() {
             // Submit the logon request and get our CDR session ID.
             CString serverResponse = cdrSocket.sendCommand(request);
             sessionId = extractSessionId(serverResponse);
-            log(_T("Logged into the CDR as ") + dialog->uid +
-                _T(" with session ") + sessionId + _T("\n"), 1);
+            CString logMessage;
+            logMessage.Format(_T("Logged into %s as %s\n"), 
+                              cdrServer, dialog->uid);
+            log(logMessage, 1);
+            log(_T("Session: ") + sessionId + _T("\n"), 1);
 
             // Inject some important values into the environment.
             CString portEnviron;
@@ -822,9 +830,9 @@ void CdrClient::deleteFiles(const CString& pattern,
  * created: make sure all of the files needed by the CDR client are
  * up to date.  This is accomplished by communicating via the network
  * with a server which has a set of the current version of all of
- * these files, as well as a list of all of those files (the "MANIFEST")
+ * these files, as well as a list of all of those files (the "Manifest")
  * with pathname and timestamp for each file, as well as a header (called
- * a "TICKET" below) identifying the server on which the manifest was
+ * a "Ticket" below) identifying the server on which the manifest was
  * generated, as well as the date and time of this generation.
  *
  * The first time this program connects to the client refresh server,
@@ -836,10 +844,10 @@ void CdrClient::deleteFiles(const CString& pattern,
  * For subsequent invocations of this program, the client first asks
  * the client refresh server if any changes have been made to the file
  * set since the previous session.  It does this by extracting the
- * header ("TICKET") from the stored manifest document and sending it
+ * header ("Ticket") from the stored manifest document and sending it
  * to the server.  If the server name and timestamp match those in
- * the server's copy of the manifest, the response "ACK" is returned
- * to the client, and no further work needs to be done.
+ * the server's copy of the manifest, the response "<Current>Y</Current>"
+ * is returned to the client, and no further work needs to be done.
  *
  * In the event that we detect tampering with the local client files
  * (we check to ensure that all of the files in our local copy of the
@@ -853,42 +861,34 @@ void CdrClient::deleteFiles(const CString& pattern,
  * a problem.
  *
  * If the server determines that changes have occurred, it returns the
- * response "NAK" and the client sends a copy of its complete manifest
- * file to the server.  The server compares its own copy of the manifest
- * with the copy from the client and builds two lists: one for files which
- * the client currently has but are no longer in the set of files needed
- * by the client, and a second list of files which the client does not
- * yet have, or for which the client's copy differs from that on the
- * server.  If the second list is not empty, the server creates a
- * compressed archive containing the files represented by this list.
- * An XML document ("DELTA") is sent back to the client containing the
- * name of the compressed archive (in the "ZIPFILE" element, which is
- * only created if the file was created), and an optional "DELETE" element
- * with one or more child "FILE" elements.  If the ZIPFILE element
- * is present the client asks the server to send it the file named in
- * the element, and the contents of the archive are installed locally
- * on the client machine.  If there are any files to be removed, they
- * are then deleted.
- *
- * Even in the initial case, in which the client sends a stub version
- * of the manifest, the intermediate DELTA document is returned with
- * the name of the compressed archive file, which the client requests
- * in a separate exchange with the server.
+ * response "<Current>N</Current>" and the client sends a copy of its
+ * complete manifest file to the server.  The server compares its own
+ * copy of the manifest with the copy from the client and builds two
+ * lists: one for files which the client currently has but are no longer
+ * in the set of files needed by the client, and a second list of files
+ * which the client does not yet have, or for which the client's copy
+ * differs from that on the server.  If the second list is not empty,
+ * the server creates a compressed archive containing the files
+ * represented by this list.  An XML document ("Updates") is sent back
+ * to the client with a ZipFile child element containing the bytes
+ * for the archive containing the new and updated client files, and
+ * an optional "Delete" element with one or more child "File" elements.
+ * If the ZipFile element is present and non-empty, its contents are
+ * installed locally on the client machine.  If there are any files to
+ * be removed, they are then deleted.
  *
  * For additional information about the structure of the XML responses
  * returned by the server, see the interface documentation for the
- * Manifest and Delta types.
+ * Manifest and Updates types.
  *
  * In summary, the following sequence of exchanges would take place
  * if the client's files are not completely up to date, and the
  * refresh process is successful:
  *
- *      1. Client sends <TICKET>...</TICKET> document.
- *      2. Server responds with <VALIDATION>NAK</VALIDATION>.
- *      3. Client sends <MANIFEST>...</MANIFEST> document.
- *      4. Server responds with <DELTA>...</DELTA> document.
- *      5. Client sends <ZIPREQ>[name of zipfile]</ZIPREQ>.
- *      6. Server responds with <ZIPFILE>...</ZIPFILE> document.
+ *      1. Client sends <Ticket>...</Ticket> document.
+ *      2. Server responds with <Current>N</Current>.
+ *      3. Client sends <Manifest>...</Manifest> document.
+ *      4. Server responds with <Updates>...</Updates> document.
  */
 void CdrClient::refreshFiles() {
 
@@ -897,7 +897,7 @@ void CdrClient::refreshFiles() {
         return;
 
     // Start out with stubs for the manifest document and ticket header.
-    CString manifestXml = _T("<MANIFEST/>");
+    CString manifestXml = _T("<Manifest/>");
     CString ticketXml;
 
     // Parse the local copy of the manifest, if it exists.
@@ -923,10 +923,11 @@ void CdrClient::refreshFiles() {
     if (ticketXml.IsEmpty())
         log(_T("No local ticket available; refresh forced.\n"), 1);
     else {
-        log(_T("Asking server if any files have changed.\n"), 1);
+        log(_T("Asking ") + httpServer + 
+            _T(" if any files have changed.\n"), 1);
         CString response = sendHttpCommand(ticketXml);
         TicketValidation ticketValidation(xmlDomParser, response);
-        if (ticketValidation.response == _T("ACK")) {
+        if (ticketValidation.response == _T("Y")) {
             log(_T("Local files are up to date.\n"), 1);
             return;
         }
@@ -943,16 +944,16 @@ void CdrClient::refreshFiles() {
     log(_T("Some files have changed; sending manifest for local files.\n"), 1);
     CString response = sendHttpCommand(manifestXml);
     progressDialog.Advance();
-    Delta delta = Delta(xmlDomParser, response);
+    Updates updates = Updates(xmlDomParser, response);
 
     // If there are new or changed files, retrieve and unpack them.
-    if (!delta.zipFile.IsEmpty())
-        getNewFiles(delta.zipFile, progressDialog);
+    if (!updates.zipBytes.empty())
+        getNewFiles(updates.zipBytes, progressDialog);
     progressDialog.Advance();
 
     // If we've been asked to delete any files, do so here.
-    std::list<CString>::const_iterator iter = delta.deletes.begin();
-    while (iter != delta.deletes.end()) {
+    std::list<CString>::const_iterator iter = updates.deletes.begin();
+    while (iter != updates.deletes.end()) {
         log(_T("Removing ") + *iter + _T(" on instructions from server\n"), 1);
         try {
             CFile::Remove((LPCTSTR)*iter);
@@ -994,25 +995,48 @@ Manifest::Manifest(CComPtr<IXMLDOMDocument>& xmlDomParser) {
     CComPtr<IXMLDOMElement> docElem;
     if (FAILED(xmlDomParser->get_documentElement(&docElem)))
         throw _T("Failure extracting elements from manifest");
+    CString elemName = getNodeName((CComPtr<IXMLDOMNode>)docElem);
+    if (elemName != _T("Manifest"))
+        throw _T("Expected Manifest element; got ") + elemName;
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
         CString nodeName = getNodeName(node);
-        if (nodeName == _T("TICKET")) {
+        if (nodeName == _T("Ticket")) {
             ticket = Ticket(node);
             CComBSTR xmlString;
             node->get_xml(&xmlString);
             ticketXml = xmlString;
         }
-        else if (nodeName == _T("FILELIST")) {
+        else if (nodeName == _T("FileList")) {
             CComPtr<IXMLDOMNode> child = getFirstChild(node);
             while (child) {
                 CString nodeName = getNodeName(child);
-                if (nodeName == _T("FILE"))
+                if (nodeName == _T("File"))
                     fileList.push_back(File(child));
                 child = getNextSibling(child);
             }
         }
         node = getNextSibling(node);
+    }
+}
+
+/*
+ * Populates this object with the values found in the DOM node for
+ * its XML representation.
+ */
+Ticket::Ticket(CComPtr<IXMLDOMNode>& node) {
+    CComPtr<IXMLDOMNode> child = getFirstChild(node);
+    while (child) {
+        CString nodeName = getNodeName(child);
+        if (nodeName == _T("Application"))
+            application = getTextContent(child);
+        else if (nodeName == _T("Timestamp"))
+            timestamp = getTextContent(child);
+        else if (nodeName == _T("Host"))
+            host = getTextContent(child);
+        else if (nodeName == _T("Author"))
+            author = getTextContent(child);
+        child = getNextSibling(child);
     }
 }
 
@@ -1024,9 +1048,9 @@ File::File(CComPtr<IXMLDOMNode>& node) {
     CComPtr<IXMLDOMNode> child = getFirstChild(node);
     while (child) {
         CString nodeName = getNodeName(child);
-        if (nodeName == _T("NAME"))
+        if (nodeName == _T("Name"))
             name = getTextContent(child);
-        else if (nodeName == _T("TIMESTAMP"))
+        else if (nodeName == _T("Timestamp"))
             timestamp = getTextContent(child);
         child = getNextSibling(child);
     }
@@ -1037,20 +1061,20 @@ File::File(CComPtr<IXMLDOMNode>& node) {
  * they're all present and have matching timestamps.  Returns an empty
  * string if there are no discrepancies; otherwise returns a string
  * identifying the first mismatch or missing file detected.  We don't
- * bother checking the script to invoke ourselves recursively, because
- * we delete that file as soon as we are invoked with the --recurse
- * command-line option, in order to prevent infinite recursion.  For
- * a more detailed explanation of how the recursion works (and why
+ * bother checking the script to invoke ourselves a second time, because
+ * we delete that file as soon as we are invoked with the --run-again
+ * command-line option, in order to prevent infinite relaunching.  For
+ * a more detailed explanation of how the relaunch works (and why
  * and when it is needed), see the comment for the implementation
- * of the CdrClient::launchRecursively() method.
+ * of the CdrClient::runAgain() method.
  */
 CString Manifest::validate(CdrClient* client) {
     std::vector<File>::const_iterator file = fileList.begin();
-    CString skipRecursiveLoader = CString(RECURSIVE_SCRIPT).MakeLower();
+    CString relaunchScript = CString(RELAUNCH_SCRIPT).MakeLower();
     while (file != fileList.end()) {
         CString lowerName = file->name;
         lowerName.MakeLower();
-        if (lowerName.Find(skipRecursiveLoader) == -1) {
+        if (lowerName.Find(relaunchScript) == -1) {
             CString clientTimestamp;
             try {
                 clientTimestamp = getFileTimestamp(file->name);
@@ -1059,10 +1083,13 @@ CString Manifest::validate(CdrClient* client) {
                 return err;
             }
             if (clientTimestamp != file->timestamp) {
+                client->log(_T("Client ") + file->name + _T(": ") +
+                            clientTimestamp + _T("\n"), 1);
+                client->log(_T("Server ") + file->name + _T(": ") +
+                            file->timestamp + _T("\n"), 1);
                 CString msg;
                 msg.Format(_T("%s: local stamp = %s; server stamp = %s"),
                     file->name, clientTimestamp, file->timestamp);
-                client->log(msg + _T("\n"), 1);
                 AfxMessageBox(msg);
                 return file->name + _T(" mismatch");
             }
@@ -1110,26 +1137,6 @@ CString getFileTimestamp(const CString& name) {
 }
 
 /*
- * Populates this object with the values found in the DOM node for
- * its XML representation.
- */
-Ticket::Ticket(CComPtr<IXMLDOMNode>& node) {
-    CComPtr<IXMLDOMNode> child = getFirstChild(node);
-    while (child) {
-        CString nodeName = getNodeName(child);
-        if (nodeName == _T("APPLICATION"))
-            application = getTextContent(child);
-        else if (nodeName == _T("TIMESTAMP"))
-            timestamp = getTextContent(child);
-        else if (nodeName == _T("HOST"))
-            host = getTextContent(child);
-        else if (nodeName == _T("AUTHOR"))
-            author = getTextContent(child);
-        child = getNextSibling(child);
-    }
-}
-
-/*
  * Send an XML document via HTTP to the client refresh server, then
  * retrieve and return the server's response.
  */
@@ -1146,11 +1153,10 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
     CStringA::PCXSTR bytes   = ascii.GetString();
     DWORD            length  = cmd.GetLength();
     BOOL             success = FALSE;
-    try {//_T("Content-Length: %d\n")
+    try {
         headers.Format(_T("Content-Type: text/xml; charset=utf-8\n")
                        
                        _T("X-Debug-Level: %d\n"), 
-                       // length, 
                        commandLineOptions.serverDebugLevel);
         log(_T("HTTP headers:\n%s\n") + headers, 3);
 
@@ -1242,24 +1248,49 @@ TicketValidation::TicketValidation(CComPtr<IXMLDOMDocument>& xmlDomParser,
  * what the differences are, if any.  Throws a string-based
  * exception if we are unable to parse the response's XML
  * document.
+ *
+ * Extracts the bytes for the compressed archive containing new and/or
+ * modified files.  Decodes the bytes into a non-Unicode string object
+ * which is saved as the bytes data member of the object.  Throws a
+ * string-based exception if the XML document representing the zipfile
+ * cannot be parsed successfully, or if the bytes cannot be decoded from
+ * their base 64 representation.
  */
-Delta::Delta(CComPtr<IXMLDOMDocument>& xmlParser, const CString& xmlString) {
+Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
+                 const CString& xmlString) {
     VARIANT_BOOL success;
     CComBSTR bstrXml(xmlString);
     if (FAILED(xmlParser->loadXML(bstrXml, &success)))
-        throw _T("Failure parsing ticket validation response");
+        throw _T("Failure parsing server updates response");
     CComPtr<IXMLDOMElement> docElem;
     if (FAILED(xmlParser->get_documentElement(&docElem)))
-        throw _T("Failure extracting ticket validation response");
+        throw _T("Failure extracting server updates response");
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
         CString nodeName = getNodeName(node);
-        if (nodeName == _T("ZIPFILE"))
-            zipFile = getTextContent(node);
-        else if (nodeName == _T("DELETE")) {
+        if (nodeName == _T("ZipFile")) {
+            CString encoding = getAttribute(node, _T("encoding"));
+            if (encoding != _T("base64"))
+                throw _T("Unsupported encoding for zipfile: ") + encoding;
+            CString zipFile = getTextContent(node);
+            CStringA bytes = CStringA(zipFile);
+            int nBytes = zipFile.GetLength();
+            struct SafeBuf {
+                SafeBuf(int n) { buf = new char[n]; }
+                ~SafeBuf() { delete [] buf; }
+                char* buf;
+            };
+            SafeBuf safeBuf(nBytes);
+            BOOL success = Base64Decode((LPCSTR)bytes, zipFile.GetLength(), 
+                                        (BYTE*)safeBuf.buf, &nBytes);
+            if (!success)
+                throw _T("Failure decoding base64 bytes for zipfile");
+            zipBytes = std::string((char*)safeBuf.buf, nBytes);
+        }
+        else if (nodeName == _T("Delete")) {
             CComPtr<IXMLDOMNode> child = getFirstChild(node);
             CString nodeName = getNodeName(child);
-            if (nodeName == _T("FILE"))
+            if (nodeName == _T("File"))
                 deletes.push_back(getTextContent(child));
             child = getNextSibling(child);
         }
@@ -1268,8 +1299,8 @@ Delta::Delta(CComPtr<IXMLDOMDocument>& xmlParser, const CString& xmlString) {
 }
 
 /*
- * Ask the server to send us the archive of new and/or changed files.
- * Unpack the set, and then verify that the files match the manifest.
+ * Unpack the set of new and/or changed files, and then verify that the
+ * files match the manifest.
  *
  * Mismatches can happen for a variety of reasons:
  *
@@ -1366,98 +1397,46 @@ Delta::Delta(CComPtr<IXMLDOMDocument>& xmlParser, const CString& xmlString) {
  * the a file named unzip.out.  Any error messages from that operation
  * are stored in a file named unzip.err.
  */
-void CdrClient::getNewFiles(const CString& zipName, CdrProgressDlg& dialog) {
-
-    // Ask the server for the zipfile.
-    CString request  = _T("<ZIPREQ>") + zipName + _T("</ZIPREQ>");
-    CString response = sendHttpCommand(request);
-    dialog.Advance();
-
-    // Parse the response.
-    ZipFile zipFile(xmlDomParser, response);
-    dialog.Advance();
-    log(_T("Retrieved zipfile ") + zipFile.name + _T("\n"), 1);
+void CdrClient::getNewFiles(const std::string& bytes, CdrProgressDlg& dialog) {
 
     // Save the zipfile to the current working directory.
+    dialog.Advance();
     FILE* fp = fopen("CdrClientFiles.zip", "wb");
     if (!fp)
         throw _T("Failure opening CdrClientFiles.zip");
-    size_t n = fwrite(zipFile.bytes.c_str(), 1, zipFile.bytes.size(), fp);
-    if (n != zipFile.bytes.size())
+    size_t n = fwrite(bytes.c_str(), 1, bytes.size(), fp);
+    if (n != bytes.size())
         throw _T("Failure writing CdrClientFiles.zip");
     if (fclose(fp))
         throw _T("Failure closing CdrClientFiles.zip");
 
     // Unpack the archive.
+    dialog.Advance();
     log(_T("Unpacking updated files from the server.\n"), 1);
     int rc = system(".\\unzip -o CdrClientFiles.zip >unzip.out 2>unzip.err");
     if (rc == -1)
         throw _T("Failure unpacking new files from server");
-    dialog.Advance();
 
     // Verify that the manifest and files match each other.
+    dialog.Advance();
     CString mismatch;
     try {
         Manifest manifest(xmlDomParser);
         log(_T("Verifying the new manifest against our local files ...\n"), 1);
         mismatch = manifest.validate(this);
-        dialog.Advance();
     }
     catch (...) {
-        throw _T("Missing or corrupted manifest");
+        throw _T("Missing or corrupted server manifest");
     }
+    dialog.Advance();
     if (!mismatch.IsEmpty())
         throw mismatch;
 
     // If a new version of this program was included, there will be a
-    // copy of the script to launch the program again recursively.
-    // Make a note so we'll know to invoke the script.
-    if (PathFileExists(RECURSIVE_SCRIPT))
+    // copy of the script to launch the program again.  Make a note so
+    // we'll know to invoke the script.
+    if (PathFileExists(RELAUNCH_SCRIPT))
         this->loaderReplaced = true;
-}
-
-/*
- * Extracts the filename and bytes for the compressed archive containing
- * new and/or modified files.  Decodes the bytes into a non-Unicode string
- * object which is saved as the bytes data member of the object.  Throws
- * a string-based exception if the XML document representing the zipfile
- * cannot be parsed successfully, or if the bytes cannot be decoded from
- * their base 64 representation.
- */
-ZipFile::ZipFile(CComPtr<IXMLDOMDocument>& xmlParser, const CString& xml) {
-    VARIANT_BOOL success;
-    CComBSTR bstrXml(xml);
-    if (FAILED(xmlParser->loadXML(bstrXml, &success)))
-        throw _T("Failure parsing ZIPFILE response");
-    CComPtr<IXMLDOMElement> docElem;
-    if (FAILED(xmlParser->get_documentElement(&docElem)))
-        throw _T("Failure extracting ZIPFILE element");
-    CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
-    while (node) {
-        CString nodeName = getNodeName(node);
-        if (nodeName == _T("FNAME"))
-            name = getTextContent(node);
-        else if (nodeName == _T("DATA")) {
-            CString encoding = getAttribute(node, _T("encoding"));
-            if (encoding != _T("base64"))
-                throw _T("Unsupported encoding for zipfile: ") + encoding;
-            CString data = getTextContent(node);
-            CStringA bytes = CStringA(data);
-            int nBytes = data.GetLength();
-            struct SafeBuf {
-                SafeBuf(int n) { buf = new char[n]; }
-                ~SafeBuf() { delete [] buf; }
-                char* buf;
-            };
-            SafeBuf safeBuf(nBytes);
-            BOOL success = Base64Decode((LPCSTR)bytes, data.GetLength(), 
-                                        (BYTE*)safeBuf.buf, &nBytes);
-            if (!success)
-                throw _T("Failure decoding base64 bytes for zipfile");
-            this->bytes = std::string((char*)safeBuf.buf, nBytes);
-        }
-        node = getNextSibling(node);
-    }
 }
 
 /*
@@ -1508,59 +1487,58 @@ CString findXmetalProgram() {
 
 /*
  * Invokes the script to run this program a second time with the
- * --recurse command-line argument.  Throws a string-based exception
+ * --run-again command-line argument.  Throws a string-based exception
  * if the launch does not succeed.
  *
  * Here's how this works.  The set of client files always includes
- * a script named LaunchCdrClientRecursively.cmd, which has a single
- * line calling this program with the --recurse argument.  Whenever
- * this program (CdrClient-versionstamp.exe) is updated, an executable
- * with a new name containing a timestamp representing the date and
- * time this version of the program was compiled (for example,
- * CdrClient20051103-1709.exe).  At the same time, the script
- * LaunchCdrClientRecursively.cmd is edited to invoke this version
- * of the program instead of the previous version.  Since the
- * client's manifest indicates that its version of the recursion
+ * a script named CdrRunAgain.cmd, which has a single line calling
+ * this program with the --run-again argument.  Whenever this program
+ * (CdrClient-versionstamp.exe) is updated, an executable with a new
+ * name containing a timestamp representing the date and time this
+ * version of the program was compiled (e.g., CdrClient20051103-1709.exe).
+ * At the same time, the script CdrRunAgain.cmd is edited to invoke this 
+ * version of the program instead of the previous version.  Since the
+ * client's manifest indicates that its version of the CdrRunAgain.cmd
  * script is older than the version now on the server, the server
  * sends this new version of the script to the client, along with
  * the new version of this program.  This program downloads the
- * new client files, notices that the recursion script is present
+ * new client files, notices that the script to run again is present
  * in the set, and invokes the script (using the function below
  * this comment).  The code to parse the command-line arguments
- * deletes the recursion script when it sees the --recurse argument
- * in the current invocation of the program, preventing infinite
- * recursion.  Although the recursion script file has been deleted,
+ * deletes the script when it sees the --run-again option in the
+ * current invocation of the program, preventing an endless
+ * re-launching.  Although the re-launch script file has been deleted,
  * the client's copy of the manifest still includes the listing
  * for the script file, so the server doesn't keep sending the
- * missing recursion script over and over.  The code which verifies
- * that the client files are in sync with the manifest is smart
- * enough to know that it shouldn't bother checking the recursion
- * script file, because if it did, the check would almost always
- * fail needlessly.  A bit complicated, but it all works just fine.
+ * missing script over and over.  The code which verifies that the 
+ * client files are in sync with the manifest is smart enough to
+ * know that it shouldn't bother checking this script file, because
+ * if it did, the check would almost always fail needlessly.  A bit 
+ * complicated, but it all works just fine.
  *
  * The reason we need to use different names for the individual
  * versions of this program is that Windows is not capable of
  * allowing the binary file for a program to be replaced while
  * the program is still running.
  */
-void CdrClient::launchRecursively() {
+void CdrClient::runAgain() {
 
     // Don't do this if we're asked not to.
-    if (commandLineOptions.skipRecursion)
+    if (commandLineOptions.skipReload)
         return;
 
-    // Avoid infinite recursion.
-    if (commandLineOptions.recurse) {
-        log(_T("Recursion attempted a second time; bailing out.\n"));
+    // Avoid infinite relaunching.
+    if (commandLineOptions.runAgain) {
+        log(_T("Trying to relaunch too many times; bailing out.\n"));
         return;
     }
     
     CString msg;
-    msg.Format(_T("Recursively launching %s\n"), RECURSIVE_SCRIPT);
+    msg.Format(_T("Launching %s\n"), RELAUNCH_SCRIPT);
     log(msg, 1);
-    TCHAR* args[2] = { RECURSIVE_SCRIPT };
-    (void)_texecve(RECURSIVE_SCRIPT, args, NULL);
-    msg.Format(_T("Failure launching %s: %d"), RECURSIVE_SCRIPT, 
+    TCHAR* args[2] = { RELAUNCH_SCRIPT };
+    (void)_texecve(RELAUNCH_SCRIPT, args, NULL);
+    msg.Format(_T("Failure launching %s: %d"), RELAUNCH_SCRIPT, 
                strerror(errno));
     throw msg;
 }
@@ -1714,6 +1692,6 @@ std::string LogFile::cStringToUtf8(const CString& str) {
  * Wrapper for the LogFile object's write() method.
  */
 void CdrClient::log(const CString& what, int level) {
-    if (level >= commandLineOptions.clientDebugLevel)
+    if (level <= commandLineOptions.clientDebugLevel)
         logger->write(what);
 }

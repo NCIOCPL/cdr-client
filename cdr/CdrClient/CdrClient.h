@@ -1,10 +1,13 @@
 /*
- * $Id: CdrClient.h,v 1.2 2005-11-08 22:11:02 bkline Exp $
+ * $Id: CdrClient.h,v 1.3 2009-09-23 18:35:28 bkline Exp $
  *
  * Interface file for CDR loader application.
  *
  * $Log: not supported by cvs2svn $
- * Revision 1.1.1.1  2005/11/08 21:30:20  bkline
+ * Revision 1.2  2005/11/08 22:11:02  bkline
+ * Cleanup of initial CVS comments.
+ *
+ * Revision 1.1  2005/11/08 21:30:20  bkline
  * Rewrite of CDR loader.
  */
 
@@ -33,7 +36,7 @@
 /*
  * Fixed names.
  */
-#define RECURSIVE_SCRIPT _T("LaunchCdrClientRecursively.cmd")
+#define RELAUNCH_SCRIPT  _T("CdrRunAgain.cmd")
 #define MANIFEST_FILE    _T("CdrManifest.xml")
 #define SETTINGS_FILE    _T("CdrSettings.xml")
 #define PROD_GROUP       _T("PRODUCTION")
@@ -99,8 +102,8 @@ struct ServerSettings {
  * is derived from the general MFC class for handling command-line
  * parameters.  The following options are supported:
  *
- *   --recurse:            This option is used when we are being invoked
- *                         recursively, which we must do when we have
+ *   --run-again           This option is used when we are being invoked
+ *                         by ourselves, which we must do when we have
  *                         just received a new version of this program
  *
  *   --server-debug-level  Used to control the amount of logging to
@@ -115,10 +118,10 @@ struct ServerSettings {
  *                         value is 1, similar to that used for
  *                         the server debug level.
  *
- *   --skip-recursion      Used to suppress recursive invocation of
+ *   --skip-reload         Used to suppress second invocation of
  *                         this program, even when the server sends
  *                         us a new version of the program with a
- *                         script to invoke the program recursively.
+ *                         script to invoke the program again.
  *                         Used during development for debugging.
  *
  *   --skip-login          Used during development and debugging
@@ -143,8 +146,8 @@ public:
     bool skipCdrLogin;
     bool skipDialog;
     bool skipRefresh;
-    bool skipRecursion;
-    bool recurse;
+    bool skipReload;
+    bool runAgain;
     int  serverDebugLevel;
     int  clientDebugLevel;
 private:
@@ -171,11 +174,11 @@ private:
     bool createCdrSession();
     void clearCaches();
     void refreshFiles();
-    void launchRecursively();
+    void runAgain();
     void launchClient();
     void exportEnvironment();
     void logOptions();
-    void getNewFiles(const CString&, CdrProgressDlg&);
+	void getNewFiles(const std::string&, CdrProgressDlg&);
     void deleteFiles(const CString&, const std::set<CString>&);
     CString sendHttpCommand(const CString& cmd);
     CString extractSessionId(const CString& xmlString);
@@ -240,16 +243,16 @@ struct File {
  *
  * The structure for the manifest file looks like this:
  *
- *  MANIFEST
- *    TICKET
- *      APPLICATION [string]
- *      TIMESTAMP [date-time]
- *      HOST [string]
- *      AUTHOR [string]
- *    FILELIST
- *      FILE [multiple]
- *        NAME
- *        TIMESTAMP
+ *  Manifest
+ *    Ticket
+ *      Application [string]
+ *      Timestamp [date-time]
+ *      Host [string]
+ *      Author [string]
+ *    FileList
+ *      File [multiple]
+ *        Name
+ *        Timestamp
  */
 struct Manifest {
     Manifest(CComPtr<IXMLDOMDocument>&);
@@ -264,7 +267,7 @@ struct Manifest {
  * Represents the server's response to our request to determine
  * whether our manifest is out of date.  The XML document for
  * the server's response consists of only a single text-content
- * element named VALIDATION.
+ * element named Current.
  */
 struct TicketValidation {
     TicketValidation(CComPtr<IXMLDOMDocument>&, const CString&);
@@ -276,44 +279,21 @@ struct TicketValidation {
  * manifest file with the client's copy.  This object will have
  * a list of files that we said we have but are no longer on
  * the server's manifest, and should therefore be deleted, as
- * well as the name of a compressed archive of all the new or
- * changed files (if any) the server needs to send us.  If
- * there are no new or changed files, this name will be an
- * empty string.  If there are no files to be deleted, the
- * 'deletes' list will be empty.
+ * well as the bytes for a zipfile containing all the new or
+ * changed files (if any) the server needs to send us.
  *
  * The server's response has the following structure:
  *
- *  DELTA
- *    ZIPFILE [string, optional]
- *    DELETE [optional]
- *      FILE [string, multiple]
- */
-struct Delta {
-    Delta(CComPtr<IXMLDOMDocument>&, const CString&);
-    CString zipFile;
-    std::list<CString> deletes;
-};
-
-/*
- * Represents the compressed archive sent by the server with
- * all of the new or changed files we need.  The object has
- * a string with the name of the archive file (not used by
- * the client, but can be useful in tracking down failures
- * if a problem occurs), as well as an in-memory string (with
- * single-byte characters) for the compressed archive.
- *
- * The XML structure for the server's response looks like this:
- *
- *  ZIPFILE
- *    FNAME [string]
- *    DATA [base64-encoded bytes for archive]
+ *  Updates
+ *    ZipFile [string, optional]
  *      @encoding [='base64']
+ *    Delete [optional]
+ *      File [string, multiple]
  */
-struct ZipFile {
-    ZipFile(CComPtr<IXMLDOMDocument>&, const CString&);
-    CString     name;
-    std::string bytes;
+struct Updates {
+    Updates(CComPtr<IXMLDOMDocument>&, const CString&);
+    std::string zipBytes;
+    std::list<CString> deletes;
 };
 
 /*

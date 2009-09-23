@@ -1,5 +1,5 @@
 /*
- * $Id: CdrProgressDlg.h,v 1.2 2005-11-08 22:11:02 bkline Exp $
+ * $Id: CdrProgressDlg.h,v 1.3 2009-09-23 18:35:29 bkline Exp $
  *
  * Interface for the progress window's object.  There's a method for
  * bumping up the current position of the progress bar, and another
@@ -8,7 +8,10 @@
  * really know what you're doing.
  *
  * $Log: not supported by cvs2svn $
- * Revision 1.1.1.1  2005/11/08 21:30:21  bkline
+ * Revision 1.2  2005/11/08 22:11:02  bkline
+ * Cleanup of initial CVS comments.
+ *
+ * Revision 1.1  2005/11/08 21:30:21  bkline
  * Rewrite of CDR loader.
  */
 #pragma once

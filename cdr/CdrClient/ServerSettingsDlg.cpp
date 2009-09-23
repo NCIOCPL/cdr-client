@@ -1,11 +1,14 @@
 /*
- * $Id: ServerSettingsDlg.cpp,v 1.2 2005-11-08 22:11:02 bkline Exp $
+ * $Id: ServerSettingsDlg.cpp,v 1.3 2009-09-23 18:35:29 bkline Exp $
  *
  * Implementation for object used to track and manipulate values for
  * connecting with the CDR servers.
  *
  * $Log: not supported by cvs2svn $
- * Revision 1.1.1.1  2005/11/08 21:30:22  bkline
+ * Revision 1.2  2005/11/08 22:11:02  bkline
+ * Cleanup of initial CVS comments.
+ *
+ * Revision 1.1  2005/11/08 21:30:22  bkline
  * Rewrite of CDR loader.
  */
 #include "stdafx.h"
