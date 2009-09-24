@@ -54,7 +54,7 @@
  <ProcessingStatuses>
   <ProcessingStatus>
    <ProcessingStatusValue><?xm-replace_text {Select a processing status value (required)} ?> </ProcessingStatusValue>
-   <ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?> </ProcessingStatusDate>
+   <ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>
    <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
    <Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>
   </ProcessingStatus>
