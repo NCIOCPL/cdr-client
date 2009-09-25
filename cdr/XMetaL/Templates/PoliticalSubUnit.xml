@@ -2,9 +2,9 @@
 <!DOCTYPE PoliticalSubUnit SYSTEM "PoliticalSubUnit.dtd">
 <PoliticalSubUnit xmlns:cdr="cips.nci.nih.gov/cdr"> 
   <CdrDocCtl> 
-	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-	 </CdrDocCtl> 
+     <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+     <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+     </CdrDocCtl> 
   <PoliticalSubUnitFullName><?xm-replace_text {Enter the complete name of the political unit (required)} ?></PoliticalSubUnitFullName>
   <PoliticalSubUnitShortName><?xm-replace_text {Optionally enter an abbreviation or shortened name} ?></PoliticalSubUnitShortName>
   <PoliticalSubUnitAlternateName><?xm-replace_text {Optionally enter an accepted other name} ?></PoliticalSubUnitAlternateName>

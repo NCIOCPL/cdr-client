@@ -2,62 +2,102 @@
 <!DOCTYPE Media SYSTEM "Media.dtd">
 <Media xmlns:cdr="cips.nci.nih.gov/cdr"> 
  <CdrDocCtl> 
-  <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-  <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
  </CdrDocCtl> 
- <MediaTitle><?xm-replace_text {The media title} ?></MediaTitle>
+ <MediaTitle><?xm-replace_text {
+         The media title
+         }?></MediaTitle>
  <PhysicalMedia>
   <ImageData>
-   <ImageType><?xm-replace_text {Select the type for this image (required)} ?></ImageType>
-   <ImageEncoding><?xm-replace_text {Select the image encoding type for this image (required)} ?></ImageEncoding>
-   <Color><?xm-replace_text {Select the color for this image (required)} ?></Color>
-   <Labeled><?xm-replace_text {Select Yes or No (required)} ?></Labeled>
+   <ImageType><?xm-replace_text {
+         Select the type for this image (required)
+         }?></ImageType>
+   <ImageEncoding><?xm-replace_text {
+         Select the image encoding type for this image (required)
+         }?></ImageEncoding>
+   <Color><?xm-replace_text {
+         Select the color for this image (required)
+         }?></Color>
+   <Labeled><?xm-replace_text {
+         Select Yes or No (required)
+         }?></Labeled>
    <ImageDimensions>
-    <HeightPixels><?xm-replace_text {System generated when linked to source file} ?></HeightPixels>
-    <WidthPixels><?xm-replace_text {System generated when linked to source file} ?></WidthPixels>
+    <HeightPixels><?xm-replace_text {
+         System generated when linked to source file
+         }?></HeightPixels>
+    <WidthPixels><?xm-replace_text {
+         System generated when linked to source file
+         }?></WidthPixels>
    </ImageDimensions>
   </ImageData>
  </PhysicalMedia>
  <MediaSource>
   <OriginalSource>
-   <Creator><?xm-replace_text {Optionally enter the creator} ?></Creator>
-   <SourcePublication><?xm-replace_text {Optionally enter the publication source} ?></SourcePublication>
-   <DateCreated><?xm-replace_text {Optionally enter the date the document got created} ?></DateCreated>
-   <TextDateCreated><?xm-replace_text {Optionally enter the date created in text form} ?></TextDateCreated>
-   <Acknowledgement><?xm-replace_text {Optionally enter an acknowledgment text} ?></Acknowledgement>
-   <SourceFilename><?xm-replace_text {Optionally enter the source filename} ?></SourceFilename>
-   <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+   <Creator><?xm-replace_text {
+         Optionally enter the creator
+         }?></Creator>
+   <DateCreated><?xm-replace_text {
+         Optionally enter the date the document got created
+         }?></DateCreated>
+   <SourceFilename><?xm-replace_text {
+         Optionally enter the source filename
+         }?></SourceFilename>
   </OriginalSource>
  </MediaSource>
  <MediaContent>
   <Categories>
-   <Category><?xm-replace_text {Select the category (required)} ?></Category>
+   <Category><?xm-replace_text {
+         Select the category (required)
+         }?></Category>
   </Categories>
   <Diagnoses>
-   <Diagnosis><?xm-replace_text {Select a diagnosis link (optional)} ?></Diagnosis>
+   <Diagnosis><?xm-replace_text {
+         Select a diagnosis link (optional)
+         }?></Diagnosis>
   </Diagnoses>
   <Topics>
-   <Topic><?xm-replace_text {Select a terminology link (optional)} ?></Topic>
+   <Topic><?xm-replace_text {
+         Select a terminology link (optional)
+         }?></Topic>
   </Topics>
   <ContentDescriptions>
-   <ContentDescription><?xm-replace_text {Enter the content description (required)} ?></ContentDescription>
+   <ContentDescription><?xm-replace_text {
+         Enter the content description (required)
+         }?></ContentDescription>
   </ContentDescriptions>
   <Captions>
-   <MediaCaption><?xm-replace_text {Optionally enter a caption} ?></MediaCaption>
+   <MediaCaption><?xm-replace_text {
+         Optionally enter a caption
+         }?></MediaCaption>
   </Captions>
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
  </MediaContent>
  <ProposedUse>
-  <Summary><?xm-replace_text {Select a summary link (required)} ?></Summary>
-  <Glossary><?xm-replace_text {Select a glossary link (required)} ?></Glossary>
+  <Summary><?xm-replace_text {
+         Select a summary link (required)
+         }?></Summary>
+  <Glossary><?xm-replace_text {
+         Select a glossary link (required)
+         }?></Glossary>
  </ProposedUse>
  <ProcessingStatuses>
   <ProcessingStatus>
-   <ProcessingStatusValue><?xm-replace_text {Select a processing status value (required)} ?> </ProcessingStatusValue>
-   <ProcessingStatusDate><?xm-replace_text {Enter the processing status date (required)} ?></ProcessingStatusDate>
-   <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
-   <Comment><?xm-replace_text {Optionally enter a processing status comment} ?></Comment>
+   <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+   <ProcessingStatusDate><?xm-replace_text {
+         Enter the processing status date (required)
+         }?></ProcessingStatusDate>
+   <EnteredBy><?xm-replace_text {
+         Enter your name (required)
+         }?></EnteredBy>
+   <Comment><?xm-replace_text {
+         Optionally enter a processing status comment
+         }?></Comment>
   </ProcessingStatus>
  </ProcessingStatuses>
- <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
 </Media>
