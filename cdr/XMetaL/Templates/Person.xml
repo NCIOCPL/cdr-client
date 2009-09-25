@@ -2,53 +2,53 @@
 <!DOCTYPE Person SYSTEM "Person.dtd">
 <Person xmlns:cdr="cips.nci.nih.gov/cdr"> 
   <CdrDocCtl> 
-	 <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-	 <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-	 </CdrDocCtl> 
+     <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
+     <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
+     </CdrDocCtl> 
   <PersonNameInformation> 
-	 <GivenName><?xm-replace_text {Optionally enter the person's given name or initial} ?></GivenName>
-	 <MiddleInitial><?xm-replace_text {Optionally enter the middle initials} ?></MiddleInitial>
-	 <SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>
-	  
-	 
-	 <ProfessionalSuffix> 
-		<StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional suffix} ?></StandardProfessionalSuffix>
-		
-		</ProfessionalSuffix> 
-	 
-	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-	 </PersonNameInformation> 
+     <GivenName><?xm-replace_text {Optionally enter the person's given name or initial} ?></GivenName>
+     <MiddleInitial><?xm-replace_text {Optionally enter the middle initials} ?></MiddleInitial>
+     <SurName><?xm-replace_text {Enter the person's last name (required)} ?></SurName>
+     
+     
+     <ProfessionalSuffix> 
+         <StandardProfessionalSuffix><?xm-replace_text {Optionally select a standard professional suffix} ?></StandardProfessionalSuffix>
+          
+         </ProfessionalSuffix> 
+     
+     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+     </PersonNameInformation> 
   <ProfessionalInformation> 
-	  
-	 <PhysicianDetails> 
-		<AdministrativeInformation> 
-		  <Directory> 
-			 <Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
-			 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
-			 <Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
-			 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-			 </Directory> 
-		  
-		  </AdministrativeInformation> 
-		<PhysicianSpecialtyInformation> 
-		  <BoardCertifiedSpecialty>
+     
+     <PhysicianDetails> 
+         <AdministrativeInformation> 
+         <Directory> 
+             <Include><?xm-replace_text {Select an inclusion instruction (required)} ?></Include>
+             <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy>
+             <Date><?xm-replace_text {Optionally enter the directory inclusion date} ?></Date>
+             <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+             </Directory> 
+          
+         </AdministrativeInformation> 
+         <PhysicianSpecialtyInformation> 
+         <BoardCertifiedSpecialty>
 <BoardCertifiedSpecialtyName><?xm-replace_text {Select a specialty, or Change to an Other Specialty} ?></BoardCertifiedSpecialtyName>
 <Certified><?xm-replace_text {Select Yes or No (required)} ?></Certified>
 <Verified><?xm-replace_text {Optionally select Yes} ?></Verified>
 </BoardCertifiedSpecialty> 
-		</PhysicianSpecialtyInformation> 
-		<PhysicianMembershipInformation> 
-		  <MemberOfCooperativeGroup> 
-			 <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
-			 </MemberOfCooperativeGroup> 
-			 <MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>
-		  </PhysicianMembershipInformation> 
-		  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-		</PhysicianDetails> 
+         </PhysicianSpecialtyInformation> 
+         <PhysicianMembershipInformation> 
+         <MemberOfCooperativeGroup> 
+             <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
+             </MemberOfCooperativeGroup> 
+             <MemberOfMedicalSociety><?xm-replace_text {Optionally select a medical society} ?></MemberOfMedicalSociety>
+         </PhysicianMembershipInformation> 
+         <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+         </PhysicianDetails> 
   </ProfessionalInformation> 
   <PersonLocations>
  
-	 <PrivatePractice>
+     <PrivatePractice>
 <PrivatePracticeLocation>
 <PostalAddress AddressType="US">
 <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
@@ -65,7 +65,7 @@
 </PrivatePracticeLocation>
 </PrivatePractice>
  
-	 <OtherPracticeLocation>
+     <OtherPracticeLocation>
 <OrganizationLocation><?xm-replace_text {Optionally select an organization fragment link} ?></OrganizationLocation>
 <PersonTitle><?xm-replace_text {Optionally enter the person's title at this organization} ?></PersonTitle>
 <PersonRole><?xm-replace_text {Optionally select the person's role at this location} ?></PersonRole>
@@ -86,16 +86,16 @@
 </ComplexAffiliation>
 </OtherPracticeLocation>
  
-	 <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Home, PrivatePractice, or OtherPracticeLocation to identify this person's CIPS address and phone information} ?></CIPSContact>
+     <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Home, PrivatePractice, or OtherPracticeLocation to identify this person's CIPS address and phone information} ?></CIPSContact>
      <UpdateMode MailerType='Protocol_SandP'><?xm-replace_text {Select the preferred method of contact for Protocol S&P mailers}?></UpdateMode>
      <UpdateMode MailerType='Protocol_Abstract'><?xm-replace_text {Select the preferred method of contact for Protocol abstract mailers}?></UpdateMode>
-	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-	 </PersonLocations> 
+     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
+     </PersonLocations> 
   <Status> 
-	 <CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>
-	 <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
-	 <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
-	 <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> </Status> 
+     <CurrentStatus><?xm-replace_text {Select the current status of this record (required)} ?></CurrentStatus>
+     <EnteredBy><?xm-replace_text {Enter your name (required)} ?></EnteredBy> 
+     <EntryDate><?xm-replace_text {Enter today's date (required)} ?></EntryDate>
+     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> </Status> 
  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
   
 </Person>
