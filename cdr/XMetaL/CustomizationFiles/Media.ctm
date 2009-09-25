@@ -1149,16 +1149,15 @@
    <MiniTemplate><![CDATA[<MediaSource>
   <DerivedFrom>
    <FromObject>
-    <FromCdrMedia><?xm-replace_text {
+    <FromCdrMedia>
+     <MediaID><?xm-replace_text {
                    Select a media link (required)
-                   }?></FromCdrMedia>
-    <FromMethod><?xm-replace_text {
-                   Optionally enter the import method
-                   }?></FromMethod>
+                   }?></MediaID>
+    </FromCdrMedia>
    </FromObject>
-   <Comment><?xm-replace_text {
-                   Optionally enter a comment
-                   }?></Comment>
+   <SourceFilename><?xm-replace_text {
+                   Optionally enter the source filename
+                   }?></SourceFilename>
   </DerivedFrom>
  </MediaSource>]]></MiniTemplate>
   </Template>
@@ -1166,16 +1165,18 @@
    <Name ns="">DerivedFrom</Name>
    <MiniTemplate><![CDATA[<DerivedFrom>
    <FromObject>
-    <FromCdrMedia><?xm-replace_text {
+    <FromCdrMedia>
+     <MediaID><?xm-replace_text {
                    Select a media link (required)
-                   }?></FromCdrMedia>
+                   }?></MediaID>
+    </FromCdrMedia>
     <FromMethod><?xm-replace_text {
                    Optionally enter the import method
                    }?></FromMethod>
    </FromObject>
-   <Comment><?xm-replace_text {
-                   Optionally enter a comment
-                   }?></Comment>
+   <SourceFilename><?xm-replace_text {
+                   Optionally enter the source filename
+                   }?></SourceFilename>
   </DerivedFrom>]]></MiniTemplate>
   </Template>
   <Template>
