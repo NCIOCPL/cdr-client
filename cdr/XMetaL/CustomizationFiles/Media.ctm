@@ -1170,9 +1170,6 @@
                    Select a media link (required)
                    }?></MediaID>
     </FromCdrMedia>
-    <FromMethod><?xm-replace_text {
-                   Optionally enter the import method
-                   }?></FromMethod>
    </FromObject>
    <SourceFilename><?xm-replace_text {
                    Optionally enter the source filename
@@ -1253,9 +1250,6 @@
     <FromCdrMedia><?xm-replace_text {
                     Select a media link (required)
                     }?></FromCdrMedia>
-    <FromMethod><?xm-replace_text {
-                    Optionally enter the import method
-                    }?></FromMethod>
    </FromObject>]]></MiniTemplate>
   </Template>
   <Template>
