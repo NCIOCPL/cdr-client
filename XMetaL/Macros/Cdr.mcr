@@ -1678,7 +1678,8 @@
                                 "Insert ResponseToComment");
     }
     if (docType.name == 'ScientificProtocolInfo' ||
-        docType.name == 'InScopeProtocol') {
+        docType.name == 'InScopeProtocol' ||
+        docType.name == 'CTGovProtocol') {
         if (!cdrDocReadOnly()) {
             Application.AppendMacro("Insert Current Date and Time",
                                     "Insert Current Date and Time");
