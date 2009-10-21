@@ -30,6 +30,18 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>ProcessingEndDateTime</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ProcessingStartDateTime</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>ProcessingStatus</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -77,6 +89,22 @@
       </MiniTemplate>
   </Template>
   <Template>
+   <Name>ProcessingEndDateTime</Name>
+   <MiniTemplate>
+    <![CDATA[<ProcessingEndDateTime><?xm-replace_text {
+       Enter the effective date and time of this status
+       }?></ProcessingEndDateTime>]]>
+      </MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ProcessingStartDateTime</Name>
+   <MiniTemplate>
+    <![CDATA[<ProcessingStartDateTime><?xm-replace_text {
+       Enter the effective date and time of this status
+       }?></ProcessingStartDateTime>]]>
+      </MiniTemplate>
+  </Template>
+  <Template>
    <Name>ProcessingStatus</Name>
    <MiniTemplate>
     <![CDATA[<ProcessingStatus><?xm-replace_text {
@@ -94,9 +122,12 @@
      <EnteredBy><?xm-replace_text {
        Enter your name (required)
        }?></EnteredBy>
-     <ProcessingDate><?xm-replace_text {
-       Enter the effective date of this status
-       }?></ProcessingDate>
+     <ProcessingStartDateTime><?xm-replace_text {
+       Enter the effective date and time of this status
+       }?></ProcessingStartDateTime>
+     <ProcessingEndDateTime><?xm-replace_text {
+       Enter the effective date and time of this status
+       }?></ProcessingEndDateTime>
      <Comment><?xm-replace_text {
        Optionally enter a comment
        }?></Comment>
