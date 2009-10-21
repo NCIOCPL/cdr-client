@@ -220,8 +220,8 @@ PrimaryID                 :before { content: "PRIMARY ID "; }
 PrimaryID > IDString      :before { content: "ID Number "; }
 PrimaryID > Comment       :before { content: "Comments ";  }
 PriorConcurrentTherapy    :before { content: "Prior Concurrent Therapy "; }
-ProcessingDate            :before { content: "Processing Status "; }
-ProcessingStatus          :before { content: "Processing Date "; }
+ProcessingDate            :before { content: "Processing Date"; }
+ProcessingStatus          :before { content: "Processing Status"; }
 ProcessingStatuses        :before { content: "STATUSES"; }
 ProcessingStatusInfo      :before { content: "STATUS INFO"; }
 Professional              :before { content: "PROFESSIONAL ABSTRACT"; }
