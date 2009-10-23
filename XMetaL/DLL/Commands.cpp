@@ -985,10 +985,18 @@ STDMETHODIMP CCommands::save(int *pRet)
                         }
                     }
                 }
+                catch (::CException* e) {
+                    CString msg;
+                    msg.Format(_T("Failure loading %s"), blobFilename);
+                    ::AfxMessageBox(msg);
+                    e->ReportError();
+                    e->Delete();
+                    *pRet = -7;
+                    return S_OK;
+                }
                 catch (...) {
                     CString msg;
-                    msg.Format(_T("Failure loading %s"), 
-                               saveDialog.m_blobFilename);
+                    msg.Format(_T("Unknown failure loading %s"), blobFilename);
                     ::AfxMessageBox(msg);
                     *pRet = -7;
                     return S_OK;
