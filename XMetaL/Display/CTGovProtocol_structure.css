@@ -74,6 +74,11 @@ CTEnrollment,
 CTExpectedEnrollment,
 CTGender,
 CTGovIndexing,
+CTGovOwnerOrganization,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse,
+CTGovOwnershipTransferDate,
+CTGovOwnershipTransferInfo,
 CTGovProtocol,
 CTIntervention,
 CTInterventionName,
@@ -94,6 +99,7 @@ CTSource,
 CTStudyDesign,
 CTStudyPop,
 CTStudyType,
+Date,
 DetailedDescription,
 Diagnosis,
 DownloadDate,
@@ -105,8 +111,11 @@ EntryDate,
 ExclusionCriteria,
 Facility,
 FirstReceivedDate,
+FundingInfo,
 Gene,
 GivenName,
+GrantContractNo,
+GrantContractType,
 HasDMC,
 HealthyVolunteers,
 HighAge,
@@ -123,17 +132,22 @@ ListItem,
 Location,
 LowAge,
 MiddleInitial,
+Name,
 NCT_Alias,
 NCTID,
-Name,
+NIHGrantContract,
+NIHGrantContractType,
 OfficialTitle,
 OrgStudyID,
+OtherGrantContractInfo,
 OverallContact,
 OverallContactBackup,
 OverallOfficial,
 OverallStatus,
 PDQIndexing,
+PDQAdminInfo,
 PDQPerson,
+PDQProtocolIDs,
 PDQSponsorship,
 Para,
 Phase,
@@ -149,11 +163,14 @@ ProcessingStartDateTime,
 ProfessionalSuffix,
 ProtocolDesign,
 ProtocolRelatedLinks,
+ProtocolSpecialCategory,
+PRSUserName,
 ReasonStopped,
 RelatedWebsites,
 RequiredHeader,
 Role,
 SecondaryID,
+SpecialCategory,
 Sponsors,
 StartDate,
 Status,
@@ -199,6 +216,10 @@ CTEnrollment                 :before,
 CTExpectedEnrollment         :before,
 CTGender                     :before,
 CTGovIndexing                :before,
+CTGovOwnershipTransferContactResponse
+                             :before,
+CTGovOwnershipTransferDate   :before,
+CTGovOwnerOrganization       :before,
 CTGovProtocol                :before,
 CTIntervention               :before,
 CTInterventionName           :before,
@@ -220,6 +241,7 @@ CTSource                     :before,
 CTStudyDesign                :before,
 CTStudyPop                   :before,
 CTStudyType                  :before,
+Date                         :before,
 DetailedDescription          :before,
 Diagnosis                    :before,
 DownloadDate                 :before,
@@ -233,6 +255,7 @@ Facility                     :before,
 FirstReceivedDate            :before,
 Gene                         :before,
 GivenName                    :before,
+GrantContractNo              :before,
 HasDMC                       :before,
 HealthyVolunteers            :before,
 HighAge                      :before,
@@ -249,9 +272,10 @@ ListItem                     :before,
 Location                     :before,
 LowAge                       :before,
 MiddleInitial                :before,
+Name                         :before,
 NCT_Alias                    :before,
 NCTID                        :before,
-Name                         :before,
+NIHGrantContractType         :before,
 OfficialTitle                :before,
 OrgStudyID                   :before,
 OverallContact               :before,
@@ -275,11 +299,13 @@ ProcessingStartDateTime      :before,
 ProfessionalSuffix           :before,
 ProtocolDesign               :before,
 ProtocolRelatedLinks         :before,
+PRSUserName                  :before,
 ReasonStopped                :before,
 RelatedWebsites              :before,
 RequiredHeader               :before,
 Role                         :before,
 SecondaryID                  :before,
+SpecialCategory              :before,
 Sponsors                     :before,
 StartDate                    :before,
 Status                       :before,
@@ -330,6 +356,12 @@ CTEnrollment                      :before { content: "CT Enrollment"; }
 CTExpectedEnrollment              :before { content: "Expected Enrollment"; }
 CTGender                          :before { content: "Gender"; }
 CTGovIndexing                     :before { content: "CTGOV INDEXING"; }
+CTGovOwnershipTransferContactLog  :before { content: "CTGOV TRANSFER CONTACT LOG"; }
+CTGovOwnershipTransferContactResponse
+                                  :before { content: "Contact Response"; }
+CTGovOwnershipTransferDate        :before { content: "Transfer Date"; }
+CTGovOwnershipTransferInfo        :before { content: "CTGOV TRANSFER INFO"; }
+CTGovOwnerOrganization            :before { content: "Owner Organization"; }
 CTGovProtocol                     :before { content: "CTGOVPROTOCOL"; }
 CTNumberOfGroups                  :before { content: "CT No. of Groups"; }
 CTNumberOfArms                    :before { content: "CT No. of Arms"; }
@@ -350,6 +382,7 @@ CTInterventionType                :before { content: "Intervention Type"; }
 CTMaximumAge                      :before { content: "Maximum Age"; }
 CTMinimumAge                      :before { content: "Minimum Age"; }
 CTStudyDesign                     :before { content: "Study Design"; }
+Date                              :before { content: "Date"; }
 DetailedDescription               :before { content: "DETAILED DESCRIPTION"; }
 Diagnosis                         :before { content: "Diagnosis"; }
 DownloadDate                      :before { content: "Download Date"; }
@@ -361,8 +394,10 @@ EntryDate                         :before { content: "Entered Date"; }
 ExclusionCriteria                 :before { content: "Exclusion Criteria"; }
 Facility                          :before { content: "FACILITY"; }
 FirstReceivedDate                 :before { content: "First Received Date"; }
+FundingInfo                       :before { content: "FUNDING INFO"; }
 Gene                              :before { content: "Gene"; }
 GivenName                         :before { content: "Given Name"; }
+GrantContractNo                   :before { content: "Contract No"; }
 HasDMC                            :before { content: "Has DMC"; }
 HealthyVolunteers                 :before { content: "Healthy Volunteers"; }
 HighAge                           :before { content: "High Age"; }
@@ -380,18 +415,25 @@ LowAge                            :before { content: "Low Age"; }
 MiddleInitial                     :before { content: "Middle Initial"; }
 NCT_Alias                         :before { content: "NCT_Alias"; }
 NCTID                             :before { content: "NCTID"; }
+NIHGrantContract                  :before { content: "NIH GRANT CONTRACT"; }
+NIHGrantContractType              :before { content: "Contract Type"; }
 Name                              :before { content: "Name"; }
 OfficialTitle                     :before { content: "Official Title"; }
 OrgStudyID                        :before { content: "Org Study ID"; }
+OtherGrantContractInfo            :before { content: "OTHER CONTRACT INFO"; }
 OverallContact                    :before { content: "OVERALL CONTACT"; }
 OverallContactBackup              :before { content: "OVERALL CONTACT BACKUP"; }
 OverallOfficial                   :before { content: "OVERALL OFFICIAL"; }
 OverallStatus                     :before { content: "Overall Status"; }
+PDQAdminInfo                      :before { content: "PDQ ADMIN INFO"; }
 PDQIndexing                       :before { content: "PDQ INDEXING"; }
 PDQSponsorship                    :before { content: "PDQ Sponsorship"; }
 PDQPerson                         :before { content: "PDQ Person"; }
+PDQProtocolIDs                    :before { content: "PROTOCOL IDS"; }
 PMID                              :before { content: "PMID"; }
 PrimaryCompletionDate             :before { content: "Primary Compl. Date"; }
+ProtocolSpecialCategory           :before { content: "PROTOCOL SPECIAL CATEGORY"; }
+PRSUserName                       :before { content: "PRS User Name"; }
 ProcessingEndDateTime             :before { content: "End Date"; }
 ProcessingStartDateTime           :before { content: "Start Date"; }
 ProtocolRelatedLinks              :before { content: "PROTOCOL RELATED LINKS"; }
@@ -408,6 +450,7 @@ ProtocolDesign                    :before { content: "Protocol Design"; }
 RequiredHeader                    :before { content: "REQUIRED HEADER"; }
 Role                              :before { content: "Role"; }
 SecondaryID                       :before { content: "Secondary ID"; }
+SpecialCategory                   :before { content: "Special Category"; }
 Sponsors                          :before { content: "SPONSORS"; }
 StartDate                         :before { content: "Start Date"; }
 Status                            :before { content: "Status"; }

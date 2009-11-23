@@ -53,6 +53,146 @@
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
   </ElementProperties>
+  <ElementProperties>
+   <Name>PDQAdminInfo</Name>
+   <TagColor>FFCC33</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>PDQProtocolIDs</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>PrimaryID</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>IDString</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>IDType</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>OtherID</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>FundingInfo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>NIHGrantContract</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>NIHGrantContractType</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>GrantContractNo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>OtherGrantContractInfo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferContactLog</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferContactResponse</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Date</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferInfo</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnerOrganization</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>PRSUserName</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferDate</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ProtocolSpecialCategory</Name>
+   <TagColor>FFCC99</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>SpecialCategory</Name>
+   <TagColor>FFCC99</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
  </ElementPropertiesList>
  <!-- 
  Templates are sorted alphabetically
@@ -66,12 +206,106 @@
        }?></Comment>]]>
    </MiniTemplate>
   </Template>
-  <Template>                                                                  
+  <Template>
+   <Name>CTGovOwnerOrganization</Name>
+    <MiniTemplate>
+     <![CDATA[<CTGovOwnerOrganization><?xm-replace_text {
+           Enter the owner organization name (required)
+           }?></CTGovOwnerOrganization>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CTGovOwnershipTransferContactLog</Name>
+    <MiniTemplate>
+     <![CDATA[<CTGovOwnershipTransferContactLog>
+       <CTGovOwnershipTransferContactResponse><?xm-replace_text {
+           Select the contact response (required)
+           }?></CTGovOwnershipTransferContactResponse>
+       <Date><?xm-replace_text {
+           Enter the date of the contact response (required)
+           }?></Date>
+      </CTGovOwnershipTransferContactLog>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CTGovOwnershipTransferDate</Name>
+    <MiniTemplate>
+     <![CDATA[<CTGovOwnershipTransferDate><?xm-replace_text {
+           Enter the CTGov transfer date (required)
+           }?></CTGovOwnershipTransferDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CTGovOwnershipTransferInfo</Name>
+    <MiniTemplate>
+     <![CDATA[<CTGovOwnershipTransferInfo>
+       <CTGovOwnerOrganization><?xm-replace_text {
+           Enter the owner organization name (required)
+           }?></CTGovOwnerOrganization>
+       <PRSUserName><?xm-replace_text {
+           Enter the PRS user name (required)
+           }?></PRSUserName>
+       <CTGovOwnershipTransferDate><?xm-replace_text {
+           Enter the CTGov transfer date (required)
+           }?></CTGovOwnershipTransferDate>
+      </CTGovOwnershipTransferInfo>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CTGovOwnershipTransferContactResponse</Name>
+    <MiniTemplate>
+     <![CDATA[<CTGovOwnershipTransferContactResponse><?xm-replace_text {
+           Select the contact response (required)
+           }?></CTGovOwnershipTransferContactResponse>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Date</Name>
+    <MiniTemplate>
+     <![CDATA[<Date><?xm-replace_text {
+           Enter the date of the contact response (required)
+           }?></Date>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>EnteredBy</Name>                                                    
    <MiniTemplate>
     <![CDATA[<EnteredBy><?xm-replace_text {
        Enter your name (required)
        }?></EnteredBy>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>FundingInfo</Name>
+    <MiniTemplate>
+     <![CDATA[<FundingInfo>
+       <NIHGrantContract>
+        <NIHGrantContractType><?xm-replace_text {
+            Select the NIH contract type (required)
+            }?></NIHGrantContractType>
+        <GrantContractNo><?xm-replace_text {
+            Enter the NIH contract number (required)
+            }?></GrantContractNo>
+       </NIHGrantContract>
+       <OtherGrantContractInfo>
+        <GrantContractNo><?xm-replace_text {
+            Enter the grant number (required)
+            }?></GrantContractNo>
+       </OtherGrantContractInfo>
+      </FundingInfo>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>GrantContractNo</Name>
+    <MiniTemplate>
+     <![CDATA[<GrantContractNo><?xm-replace_text {
+            Enter the NIH contract number (required)
+            }?></GrantContractNo>]]></MiniTemplate>
+  </Template>
+   <Name>IDType</Name>
+    <MiniTemplate>
+     <![CDATA[<IDType><?xm-replace_text {
+            Select the ID type (required)
+            }?></IDType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>IDString</Name>
+    <MiniTemplate>
+     <![CDATA[<IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>]]></MiniTemplate>
   </Template>
   <Template>                                                                  
    <Name>NCT_Alias</Name>                                                    
@@ -79,6 +313,134 @@
      <![CDATA[<NCT_Alias><?xm-replace_text {
         Optionally enter the NCT alias ID
         }?></NCT_Alias>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>NIHGrantContract</Name>
+    <MiniTemplate>
+     <![CDATA[<NIHGrantContract>
+        <NIHGrantContractType><?xm-replace_text {
+            Select the NIH contract type (required)
+            }?></NIHGrantContractType>
+        <GrantContractNo><?xm-replace_text {
+            Enter the NIH contract number (required)
+            }?></GrantContractNo>
+       </NIHGrantContract>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>NIHGrantContractType</Name>
+    <MiniTemplate>
+     <![CDATA[<NIHGrantContractType><?xm-replace_text {
+            Select the NIH contract type (required)
+            }?></NIHGrantContractType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>OtherGrantContractInfo</Name>
+    <MiniTemplate>
+     <![CDATA[<OtherGrantContractInfo>
+        <GrantContractNo><?xm-replace_text {
+            Enter the grant number (required)
+            }?></GrantContractNo>
+       </OtherGrantContractInfo>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>OtherID</Name>
+    <MiniTemplate>
+     <![CDATA[<OtherID>
+        <IDType><?xm-replace_text {
+            Select the ID type (required)
+            }?></IDType>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </OtherID>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PDQAdminInfo</Name>
+    <MiniTemplate>
+     <![CDATA[<PDQAdminInfo>
+      <PDQProtocolIDs>
+       <PrimaryID>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </PrimaryID>
+       <OtherID>
+        <IDType><?xm-replace_text {
+            Select the ID type (required)
+            }?></IDType>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </OtherID>
+      </PDQProtocolIDs>
+      <FundingInfo>
+       <NIHGrantContract>
+        <NIHGrantContractType><?xm-replace_text {
+            Select the NIH contract type (required)
+            }?></NIHGrantContractType>
+        <GrantContractNo><?xm-replace_text {
+            Enter the NIH contract number (required)
+            }?></GrantContractNo>
+       </NIHGrantContract>
+       <OtherGrantContractInfo>
+        <GrantContractNo><?xm-replace_text {
+            Enter the grant number (required)
+            }?></GrantContractNo>
+       </OtherGrantContractInfo>
+      </FundingInfo>
+      <CTGovOwnershipTransferContactLog>
+       <CTGovOwnershipTransferContactResponse><?xm-replace_text {
+           Select the contact response (required)
+           }?></CTGovOwnershipTransferContactResponse>
+       <Date><?xm-replace_text {
+           Enter the date of the contact response (required)
+           }?></Date>
+      </CTGovOwnershipTransferContactLog>
+      <CTGovOwnershipTransferInfo>
+       <CTGovOwnerOrganization><?xm-replace_text {
+           Enter the owner organization name (required)
+           }?></CTGovOwnerOrganization>
+       <PRSUserName><?xm-replace_text {
+           Enter the PRS user name (required)
+           }?></PRSUserName>
+       <CTGovOwnershipTransferDate><?xm-replace_text {
+           Enter the CTGov transfer date (required)
+           }?></CTGovOwnershipTransferDate>
+      </CTGovOwnershipTransferInfo>
+      <ProtocolSpecialCategory>
+       <SpecialCategory><?xm-replace_text {
+           Select the special category (required)
+           }?></SpecialCategory>
+      </ProtocolSpecialCategory>
+     </PDQAdminInfo>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PDQProtocolIDs</Name>
+    <MiniTemplate>
+     <![CDATA[<PDQProtocolIDs>
+       <PrimaryID>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </PrimaryID>
+       <OtherID>
+        <IDType><?xm-replace_text {
+            Select the ID type (required)
+            }?></IDType>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </OtherID>
+      </PDQProtocolIDs>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PrimaryID</Name>
+    <MiniTemplate>
+     <![CDATA[<PrimaryID>
+        <IDString><?xm-replace_text {
+            Enter the protocol ID string (required)
+            }?></IDString>
+       </PrimaryID>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>ProcessingDate</Name>
@@ -134,5 +496,28 @@
     </ProtocolProcessingDetails>]]>
    </MiniTemplate>
   </Template>              
+  <Template>
+   <Name>ProtocolSpecialCategory</Name>
+    <MiniTemplate>
+     <![CDATA[<ProtocolSpecialCategory>
+       <SpecialCategory><?xm-replace_text {
+           Select the special category (required)
+           }?></SpecialCategory>
+      </ProtocolSpecialCategory>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PRSUserName</Name>
+    <MiniTemplate>
+     <![CDATA[<PRSUserName><?xm-replace_text {
+           Enter the PRS user name (required)
+           }?></PRSUserName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>SpecialCategory</Name>
+    <MiniTemplate>
+     <![CDATA[<SpecialCategory><?xm-replace_text {
+           Select the special category (required)
+           }?></SpecialCategory>]]></MiniTemplate>
+  </Template>
  </Templates>
 </DTDExtensions>

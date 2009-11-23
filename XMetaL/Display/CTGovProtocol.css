@@ -59,6 +59,11 @@ CTEnrollment,
 CTExpectedEnrollment,
 CTGender,
 CTGovIndexing,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse,
+CTGovOwnershipTransferDate,
+CTGovOwnershipTransferInfo,
+CTGovOwnerOrganization,
 CTGovProtocol,
 CTIntervention,
 CTInterventionName,
@@ -80,6 +85,7 @@ CTSource,
 CTStudyDesign,
 CTStudyPop,
 CTStudyType,
+Date,
 DetailedDescription,
 Diagnosis,
 DownloadDate,
@@ -91,12 +97,15 @@ EntryDate,
 ExclusionCriteria,
 Facility,
 FirstReceivedDate,
+FundingInfo,
 Gene,
 GivenName,
+GrantContractNo,
 HasDMC,
 HealthyVolunteers,
 HighAge,
 IDInfo,
+IDType,
 Intervention,
 InterventionNameLink,
 InterventionType,
@@ -112,14 +121,20 @@ MiddleInitial,
 NCT_Alias,
 NCTID,
 Name,
+NIHGrantContract,
+NIHGrantContractType,
 OfficialTitle,
 OrgStudyID,
+OtherGrantContractInfo,
+OtherID,
 OverallContact,
 OverallContactBackup,
 OverallOfficial,
 OverallStatus,
+PDQAdminInfo,
 PDQIndexing,
 PDQPerson,
+PDQProtocolIDs,
 PDQSponsorship,
 Para,
 Phase,
@@ -130,16 +145,20 @@ PoliticalSubUnit_State,
 PostalAddress,
 PostalCode_ZIP,
 PrimaryCompletionDate,
+PrimaryID,
 ProcessingEndDateTime,
 ProcessingStartDateTime,
 ProfessionalSuffix,
 ProtocolDesign,
 ProtocolRelatedLinks,
+ProtocolSpecialCategory,
+PRSUserName,
 ReasonStopped,
 RelatedWebsites,
 RequiredHeader,
 Role,
 SecondaryID,
+SpecialCategory,
 Sponsors,
 StartDate,
 Status,
@@ -176,6 +195,13 @@ CTAuthority                       :before { content: "CT Authority & +: "; }
 CTCitation                        :before { content: "CT Citation &: "; }
 CTCriteria                        :before { content: "CRITERIA *"; }
 CTEnrollment                      :before { content: "CT Enrollment & @: "; }
+CTGovOwnershipTransferContactLog  :before { content: "CTGOV TRANSFER CONTACT LOG &"; }
+CTGovOwnershipTransferContactResponse
+                                  :before { content: "Contact Response *: "; }
+CTGovOwnershipTransferDate        :before { content: "Transfer Date *: "; }
+CTGovOwnershipTransferInfo        :before { content: "CTGOV TRANSFER INFO &"; }
+CTGovOwnerOrganization            :before { content: "Owner Organization *:"; }
+Date                              :before { content: "Date *: "; }
 CTOversightInfo                   :before { content: "CT OVERSIGHT INFO &"; }
 CTNumberOfGroups                  :before { content: "CT No. of Groups &: "; }
 CTNumberOfArms                    :before { content: "CT No. of Arms &: "; }
@@ -192,27 +218,38 @@ CTStudyPop                        :before { content: "STUDY POP &"; }
 CTStudyType                       :before { content: "CT Study Type &: "; }
 DownloadDate                      :before { content: "Download Date *: "; }
 FirstReceivedDate                 :before { content: "First Received Date &: "; }
+FundingInfo                       :before { content: "FUNDING INFO &"; }
 GivenName                         :before { content: "Given Name &: "; }
+GrantContractNo                   :before { content: "Contract No *: "; }
 HasDMC                            :before { content: "Has DMC &: "; }
 IDInfo                            :before { content: "ID INFORMATION * "; }
+PDQProtocolIDs IDType             :before { content: "ID Type *: "; }
+PDQProtocolIDs IDString           :before { content: "ID *: "; }
 LeadSponsor                       :before { content: "Lead Sponsor & @: "; }
 LinkText                          :before { content: "Link Text *: "; }
 MiddleInitial                     :before { content: "Middle Initial &: "; }
 NCT_Alias                         :before { content: "NCT_Alias & +: "; }
 NCTID                             :before { content: "NCTID *: "; }
+NIHGrantContract                  :before { content: "NIH GRANT CONTRACT &"; }
+NIHGrantContractType              :before { content: "Contract Type *:"; }
 OrgStudyID                        :before { content: "Org Study ID *: "; }
+OtherGrantContractInfo            :before { content: "OTHER CONTRACT INFO & +: "; }
 OverallContact                    :before { content: "OVERALL CONTACT &"; }
 OverallOfficial                   :before { content: "OVERALL OFFICIAL & +"; }
 OverallContactBackup              :before { content: "OV. CONT. BACKUP &"; }
+PDQAdminInfo                      :before { content: "PDQ ADMIN INFO &"; }
 PDQSponsorship                    :before { content: "PDQ Sponsorship &: "; }
 PMID                              :before { content: "PMID &: "; }
 ProcessingEndDateTime             :before { content: "End Date &: "; }
 ProcessingStartDateTime           :before { content: "Start Date &: "; }
 PrimaryCompletionDate             :before { content: "Primary Compl. Date &: "; }
 ProtocolRelatedLinks              :before { content: "PROTOCOL RELATED LINKS &"; }
+ProtocolSpecialCategory           :before { content: "PROTOCOL SPECIAL CATEGORY &"; }
+PRSUserName                       :before { content: "PRS User Name *:"; }
 ReasonStopped                     :before { content: "Reason Stopped &: "; }
 RelatedWebsites                   :before { content: "Related Website * + @: "; }
 SecondaryID                       :before { content: "Secondary ID & +: "; }
+SpecialCategory                   :before { content: "Special Category *: "; }
 Sponsors                          :before { content: "SPONSORS *"; }
 Surname                           :before { content: "Surname *: "; }
 URL                               :before { content: "URL *: "; }
@@ -258,8 +295,9 @@ ContactBackup                     :before { content: "CONTACT BACKUP & @"; }
 Investigator                      :before { content: "INVESTIGATOR & + @"; }
 Affiliation                       :before { content: "Affiliation &: "; }
 Role                              :before { content: "Role &: "; }
-PDQPerson                         :before { content: "PDQ Person & @: "; }
 PDQIndexing                       :before { content: "PDQ INDEXING * "; }
+PDQPerson                         :before { content: "PDQ Person & @: "; }
+PDQProtocolIDs                    :before { content: "PROTOCOL IDS &"; }
 StudyType                         :before { content: "Study Type *: "; }
 StudyCategory                     :before { content: "STUDY CATEGORY * +"; }
 StudyCategoryType                 :before { content: "Study Category Type *: "; }
@@ -398,6 +436,23 @@ StudyType                         :before,
 Surname                           :before,
 URL                               :before,
 VerificationDate                  :before,
+PDQAdminInfo                      :before,
+PDQProtocolIDs                    :before,
+FundingInfo                       :before,
+NIHGrantContract                  :before,
+NIHGrantContractType              :before,
+GrantContractNo                   :before,
+OtherGrantContractInfo            :before,
+CTGovOwnershipTransferContactLog  :before,
+CTGovOwnershipTransferContactResponse 
+                                  :before,
+CTGovOwnershipTransferDate        :before,
+Date                              :before,
+CTGovOwnershipTransferInfo        :before,
+CTGovOwnerOrganization            :before,
+PRSUserName                       :before,
+ProtocolSpecialCategory           :before,
+SpecialCategory                   :before,
     { font-weight: bold; 
       color: black;  }
 
@@ -425,6 +480,8 @@ Contact,
 ContactBackup,
 CTCriteria,
 CTGovIndexing,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferInfo,
 CTIntervention,
 CTNumberOfArms,
 CTReference,
@@ -433,6 +490,7 @@ CTStudyDesign,
 CTSamplingMethod,
 CTStudyPop,
 Eligibility,
+FundingInfo,
 Intervention,
 Investigator,
 LastChangedDate
@@ -444,6 +502,7 @@ OverallStatus,
 PDQSponsorship,
 Phase,
 PostalAddress,
+ProtocolSpecialCategory,
 Location>Status,
 StudyCategory,
 VerificationDate,
@@ -459,6 +518,7 @@ CTOversightInfo,
 DetailedDescription,
 IDInfo,
 Location,
+PDQAdminInfo,
 PDQIndexing,
 Sponsors,
 RequiredHeader,
@@ -762,6 +822,44 @@ ProtocolProcessingDetails > Comment
                             { margin-left: 135pt;
                               text-indent: -82.5pt; }
 
+PDQProtocolIDs              { margin-left: 30pt; }
+PrimaryID, OtherID          { margin-left: 30pt; }
+IDString                    { margin-left: 90pt; 
+                              text-indent:-28pt; }
+IDType                      { margin-left: 90pt; 
+                              text-indent:-59pt; }
+PDQProtocolIDs Comment      { margin-left: 90pt; 
+                              text-indent:-82.5pt; }
+
+FundingInfo                 { margin-left: 30pt; }
+NIHGrantContract            { margin-left: 30pt; }
+NIHGrantContractType        { margin-left: 90pt; 
+                              text-indent:-94pt; }
+GrantContractNo             { margin-left: 90pt;
+                              text-indent:-85pt; }
+
+OtherGrantContractInfo      { margin-left: 30pt; }
+
+CTGovOwnershipTransferContactLog
+                            { margin-left:  30pt; }
+CTGovOwnershipTransferContactResponse
+                            { margin-left: 120pt;
+                              text-indent:-122pt; }
+Date                        { margin-left: 120pt;
+                              text-indent: -42pt; }
+
+CTGovOwnershipTransferInfo  { margin-left:  30pt; }
+CTGovOwnerOrganization      { margin-left: 120pt; 
+                              text-indent:-127pt; }
+PRSUserName                 { margin-left: 120pt; 
+                              text-indent:-104pt; }
+CTGovOwnershipTransferDate  { margin-left: 120pt; 
+                              text-indent: -93pt; }
+
+ProtocolSpecialCategory     { margin-left:  30pt; }
+SpecialCategory             { margin-left: 120pt; 
+                              text-indent:-113pt; }
+
 /***************************************************************************/
 /*             Margin-bottom for simulated text boxes                      */
 /***************************************************************************/
@@ -832,6 +930,22 @@ StudyCategoryType,
 Surname,
 URL,
 VerificationDate,
+PDQAdminInfo,
+PDQProtocolIDs,
+FundingInfo,
+NIHGrantContract,
+NIHGrantContractType,
+GrantContractNo,
+OtherGrantContractInfo,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse,
+CTGovOwnershipTransferDate,
+Date,
+CTGovOwnershipTransferInfo,
+CTGovOwnerOrganization,
+PRSUserName,
+ProtocolSpecialCategory,
+SpecialCategory,
 	{ margin-bottom: 4pt; }
 
 
@@ -939,6 +1053,15 @@ NCT_Alias,
 NCTID,
 VerificationDate,
 LastChangedDate
+NIHGrantContract,
+NIHGrantContractType,
+GrantContractNo,
+CTGovOwnershipTransferContactResponse,
+CTGovOwnershipTransferDate,
+Date,
+CTGovOwnerOrganization,
+PRSUserName,
+SpecialCategory,
     { background-color: white; }
 
 
@@ -1063,6 +1186,28 @@ Comment                      :before,
 EnteredBy                    :before,
 EntryDate                    :before,
 	{ background-color: #CCFFCC; }  /*light green*/
+
+PDQAdminInfo,
+PrimaryID > Comment               :before,
+OtherID   > Comment               :before,
+PrimaryID,
+OtherID,
+IDType                            :before,
+IDString                          :before,
+FundingInfo,
+NIHGrantContract,
+NIHGrantContractType              :before,
+GrantContractNo                   :before,
+OtherGrantContractInfo,
+CTGovOwnershipTransferContactLog,
+CTGovOwnershipTransferContactResponse 
+                                  :before,
+CTGovOwnershipTransferDate        :before,
+Date                              :before,
+CTGovOwnerOrganization            :before,
+PRSUserName                       :before,
+SpecialCategory                   :before,
+    { background-color: #FFCC66; }  /*light purple*/
 
 Foobar    
     { font-weight: bold; 
