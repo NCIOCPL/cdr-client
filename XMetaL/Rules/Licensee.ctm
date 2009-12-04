@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
+<DTDExtensions>
+ <ElementPropertiesList>
+  <GlobalPrettyPrintOptions>
+   <NoPrettyPrinting/>
+  </GlobalPrettyPrintOptions>
+ </ElementPropertiesList>
+ <Templates>
+  <Template>
+   <Name>ContactPerson</Name>
+   <MiniTemplate><![CDATA[<ContactPerson>
+     <ContactName><?xm-replace_text {
+         Enter the contact name (required)
+         }?></ContactName>
+     <ContactType><?xm-replace_text {
+         Enter the contact type (required)
+         }?></ContactType>
+     <ContactDetail>
+     <PostalAddress>
+      <Street><?xm-replace_text {
+         Enter the street
+         }?></Street>
+      <City><?xm-replace_text {
+         Enter the City
+         }?></City>
+      <PoliticalSubUnit_State><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></PoliticalSubUnit_State>
+      <Country><?xm-replace_text {
+         Enter the Country
+         }?></Country>
+      <PostalCode_ZIP><?xm-replace_text {
+         Enter the PostalCode_ZIP
+         }?></PostalCode_ZIP>
+     </PostalAddress>
+     <Phone><?xm-replace_text {
+         Enter the Phone
+         }?></Phone>
+     <Fax><?xm-replace_text {
+         Enter the Fax
+         }?></Fax>
+     <Email><?xm-replace_text {
+         Enter the Email
+         }?></Email>
+     <WebSite><?xm-replace_text {
+         Enter the WebSite
+         }?></WebSite>
+    </ContactDetail>
+    </ContactPerson>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ContactDetail</Name>
+   <MiniTemplate><![CDATA[<ContactDetail>
+     <PostalAddress>
+      <Street><?xm-replace_text {
+         Enter the street
+         }?></Street>
+      <City><?xm-replace_text {
+         Enter the City
+         }?></City>
+      <PoliticalSubUnit_State><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></PoliticalSubUnit_State>
+      <Country><?xm-replace_text {
+         Enter the Country
+         }?></Country>
+      <PostalCode_ZIP><?xm-replace_text {
+         Enter the PostalCode_ZIP
+         }?></PostalCode_ZIP>
+     </PostalAddress>
+     <Phone><?xm-replace_text {
+         Enter the Phone
+         }?></Phone>
+     <Fax><?xm-replace_text {
+         Enter the Fax
+         }?></Fax>
+     <Email><?xm-replace_text {
+         Enter the Email
+         }?></Email>
+     <WebSite><?xm-replace_text {
+         Enter the WebSite
+         }?></WebSite>
+    </ContactDetail>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PostalAddress</Name>
+   <MiniTemplate><![CDATA[<PostalAddress>
+      <Street><?xm-replace_text {
+         Enter the street
+         }?></Street>
+      <City><?xm-replace_text {
+         Enter the City
+         }?></City>
+      <PoliticalSubUnit_State><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></PoliticalSubUnit_State>
+      <Country><?xm-replace_text {
+         Enter the Country
+         }?></Country>
+      <PostalCode_ZIP><?xm-replace_text {
+         Enter the PostalCode_ZIP
+         }?></PostalCode_ZIP>
+     </PostalAddress>]]></MiniTemplate>
+  </Template>
+ </Templates>
+</DTDExtensions>
