@@ -16,29 +16,44 @@
          Enter the official organization name (required)
          }?></Name>
      </OfficialName>
-     <LicenseeAlternateNames>
-      <AlternateName>
-        <Name><?xm-replace_text {
-         Optionally enter any former or alternate names for the organization
-         }?></Name>
-      </AlternateName>
-      <Comment><?xm-replace_text {
-         Optionally enter a comment explaining the alternate name
-         }?></Comment>
-     </LicenseeAlternateNames>
    </LicenseeNameInformation>
    <LicenseeDepartment><?xm-replace_text {
          Optionally enter the organizational department
          }?></LicenseeDepartment>
-   <LicenseeIsForProfit><?xm-replace_text {
-         Is this organization "for profit"? (optional)
-         }?></LicenseeIsForProfit>
-   <Email><?xm-replace_text {
-         Optionally enter the organization's email address
+   <OrganizationType><?xm-replace_text {
+         Select the organization type (profit/non-profit) (required)
+         }?></OrganizationType>
+   <ContactDetail>
+    <PostalAddress AddressType="US">
+     <Street><?xm-replace_text {
+         Enter the street
+         }?></Street>
+     <City><?xm-replace_text {
+         Enter the City
+         }?></City>
+     <PoliticalSubUnit_State><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></PoliticalSubUnit_State>
+     <Country><?xm-replace_text {
+         Enter the Country
+         }?></Country>
+     <PostalCode_ZIP><?xm-replace_text {
+         Enter the PostalCode_ZIP
+         }?></PostalCode_ZIP>
+    </PostalAddress>
+     <Phone><?xm-replace_text {
+         Enter the Phone
+         }?></Phone>
+     <Fax><?xm-replace_text {
+         Enter the Fax
+         }?></Fax>
+     <Email><?xm-replace_text {
+         Enter the Email
          }?></Email>
-   <Web><?xm-replace_text {
-         Optionally enter the organization's web address
-         }?></Web>
+     <WebSite><?xm-replace_text {
+         Enter the WebSite
+         }?></WebSite>
+   </ContactDetail>
    <LicenseeType><?xm-replace_text {
          Select the licensee type (required)
          }?></LicenseeType>
@@ -46,62 +61,53 @@
          Select the licensee status (required)
          }?></LicenseeStatus>
    <LicenseeStatusDates>
-      <ApplicationDate><?xm-replace_text {
-         Enter the date listed on the application
-         }?></ApplicationDate>
-      <TestStartDate><?xm-replace_text {
-         Enter the date the organization became a test licensee
-         }?></TestStartDate>
-      <ActiveStartDate><?xm-replace_text {
-         Enter the date the organization became an active licensee
-         }?></ActiveStartDate>
-      <ApprovedDate><?xm-replace_text {
-         ??? Enter the date the organization was approved ???
-         }?></ApprovedDate>
-      <EndDate><?xm-replace_text {
-         Enter the date the organization became inactive
-         }?></EndDate>
+      <TestActivation><?xm-replace_text {
+         Enter the date the test license has been activated
+         }?></TestActivation>
    </LicenseeStatusDates>
-   <FtpInformation>
-      <UserName><?xm-replace_text {
-         Enter the organization's user name
-         }?></UserName>
-      <Password><?xm-replace_text {
-         Enter the password
-         }?></Password>
-   </FtpInformation>
-   <ApplicationDate><?xm-replace_text {
-         Enter the application date (required)
-         }?></ApplicationDate>
  </LicenseeInformation>
- <BusinessContacts>
-  <BusinessContact><?xm-replace_text {
-         Enter the name of the business contact (required)
-         }?></BusinessContact>
- </BusinessContacts>
- <TechnicalContacts>
-  <TechnicalContact>
-   <ContactName><?xm-replace_text {
-         Enter the name of the technical contact (required)
-         }?></ContactName>
-   <ContactEmail><?xm-replace_text {
-         Enter the email of the technical contact (required)
-         }?></ContactEmail>
-   <ContactPhone><?xm-replace_text {
-         Optionally enter the phone number of the technical contact
-         }?></ContactPhone>
-   <ContactFax><?xm-replace_text {
-         Optionally enter the fax number of the technical contact
-         }?></ContactFax>
-   <ContactType><?xm-replace_text {
-         Select the contact type (required)
-         }?></ContactType>
-  </TechnicalContact>
- </TechnicalContacts>
+ <ContactPersons>
+   <ContactPerson>
+     <ContactName><?xm-replace_text {
+     Enter the person's name
+     }?></ContactName>
+     <ContactType><?xm-replace_text {
+     Select the contact type
+     }?></ContactType>
+   <ContactDetail>
+    <PostalAddress AddressType="US">
+     <Street><?xm-replace_text {
+         Enter the street
+         }?></Street>
+     <City><?xm-replace_text {
+         Enter the City
+         }?></City>
+     <PoliticalSubUnit_State><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></PoliticalSubUnit_State>
+     <Country><?xm-replace_text {
+         Enter the Country
+         }?></Country>
+     <PostalCode_ZIP><?xm-replace_text {
+         Enter the PostalCode_ZIP
+         }?></PostalCode_ZIP>
+    </PostalAddress>
+     <Phone><?xm-replace_text {
+         Enter the Phone
+         }?></Phone>
+     <Fax><?xm-replace_text {
+         Enter the Fax
+         }?></Fax>
+     <Email><?xm-replace_text {
+         Enter the Email
+         }?></Email>
+     <WebSite><?xm-replace_text {
+         Enter the WebSite
+         }?></WebSite>
+   </ContactDetail>
+   </ContactPerson>
+ </ContactPersons>
  <ApplicationInformation>
-   <ServiceDescription><?xm-replace_text {
-         Enter description of services provided (required)
-         }?></ServiceDescription>
    <DistributionMethods>
      <DistributionMethod><?xm-replace_text {
          Select one or more of the distribution methods (required)
@@ -112,44 +118,16 @@
          Select one or more of the audiences (required)
          }?></Audience>
    </Audiences>
-   <AudienceEndUser><?xm-replace_text {
-         Select if audiences are end-user (required)
-         }?></AudienceEndUser>
-   <PlannedPromotion><?xm-replace_text {
-         Enter how the services are promoted (required)
-         }?></PlannedPromotion>
-   <IncludeAdvertising><?xm-replace_text {
-         Enter if advertising is included (required)
-         }?></IncludeAdvertising>
-   <PriceCharged><?xm-replace_text {
-         Enter the price charged for the product (required)
-         }?></PriceCharged>
-   <UpdateProcess><?xm-replace_text {
-         Enter the process/frequency of updates (required)
-         }?></UpdateProcess>
-   <Statistics>
-     <NumberPageViews><?xm-replace_text {
-         Select if number of page views can be provided (required)
-         }?></NumberPageViews>
-     <NumberUserSessions><?xm-replace_text {
-         Select if number of user sessions can be provided (required)
-         }?></NumberUserSessions>
-     <NumberUsers><?xm-replace_text {
-         Select if number of users can be provide (required)
-         }?></NumberUsers>
-   </Statistics>
-   <ProductionDate><?xm-replace_text {
-         Enter application information (required)
-         }?></ProductionDate>
  </ApplicationInformation>
- <Status>
-   <CurrentStatus><?xm-replace_text {
-         What status is this? (required)
-         }?></CurrentStatus>
- </Status>
- <OrganizationType><?xm-replace_text {
-         Optionally select the organization type
-         }?></OrganizationType>
+ <FtpInformation>
+    <UserName><?xm-replace_text {
+       Enter the organization's user name
+       }?></UserName>
+    <Password><?xm-replace_text {
+       Enter the password
+       }?></Password>
+    <AccountBlocked>No</AccountBlocked>
+ </FtpInformation>
  <DateLastModified><?xm-replace_text {
          Optionally enter the modification date
          }?></DateLastModified>
