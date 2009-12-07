@@ -5,193 +5,6 @@
  *
  * To do: rationalize error return codes for automation commands.
  *
- * $Log: not supported by cvs2svn $
- * Revision 1.58  2009/04/25 01:18:39  bkline
- * Modified code to store glossary phrases in the external mapping to
- * know when they phrases are in Spanish.
- *
- * Revision 1.57  2009/02/12 15:49:35  bkline
- * Added warning to let the users know they still have documents locked
- * when they close XMetaL; added getBoardMemberId() method.
- *
- * Revision 1.56  2008/12/19 16:19:04  bkline
- * Added logClientEvent method.
- *
- * Revision 1.55  2008/11/04 19:42:41  bkline
- * Added XML decoding for members of valid value lists.
- *
- * Revision 1.54  2008/05/29 20:26:04  bkline
- * Added support for navigation to the location of specific validation
- * errors in the current document.
- *
- * Revision 1.53  2008/01/29 15:14:21  bkline
- * New command to retrieve document ID for patient equivalent of a health
- * professional summary.
- *
- * Revision 1.52  2007/12/27 19:58:47  bkline
- * Added support for two more MIME types (rtf and jpeg).
- *
- * Revision 1.51  2007/07/26 21:25:33  bkline
- * Added new methods for retrieving glossary term names and IDs.
- *
- * Revision 1.50  2007/07/11 00:43:18  bkline
- * Added support for dynamic diagnosis set insertion and for displaying
- * blocked document status.
- *
- * Revision 1.49  2006/06/26 20:29:40  bkline
- * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
- *
- * Revision 1.48  2005/12/30 19:36:11  bkline
- * Added support for opening a CDR document directly, and for finding
- * the translation of a summary document.
- *
- * Revision 1.47  2005/12/30 15:50:48  bkline
- * Modified check for manifest to look for new file name.
- *
- * Revision 1.46  2005/05/05 17:51:56  bkline
- * Corrected SupplementalInfo to SupplementaryInfo.
- *
- * Revision 1.45  2005/04/13 13:20:51  bkline
- * Completed BLOB support, including calculating of image dimensions.
- *
- * Revision 1.44  2005/03/18 17:17:50  bkline
- * Added client-side support for working with image blobs.
- *
- * Revision 1.43  2005/03/03 15:02:09  bkline
- * Added new interface for reviewing all of the change markup at once.
- *
- * Revision 1.42  2005/02/15 19:02:55  bkline
- * Added setTitleBar command.  Added code to strip unwanted portion of
- * glossary document title.
- *
- * Revision 1.41  2004/12/27 19:20:45  bkline
- * Added missing Id attribute to validation command.
- *
- * Revision 1.40  2004/09/09 18:43:03  bkline
- * Glossifier implemented.
- *
- * Revision 1.39  2004/02/26 01:45:53  bkline
- * Added glossifier support.
- *
- * Revision 1.38  2004/02/26 00:48:10  bkline
- * Fixed code broken by Microsoft in upgrade to Visual Studio 7.10.
- *
- * Revision 1.37  2003/05/13 19:23:39  bkline
- * Implemented enhancement for request #717, to allow the user to control
- * the level of markup filtering for validation from the toolbar.
- *
- * Revision 1.36  2003/01/29 18:48:26  bkline
- * Added ability to paste cdr:href links.
- *
- * Revision 1.35  2003/01/10 15:16:22  bkline
- * Blocked sending instruction to change document status to Active.
- *
- * Revision 1.34  2002/10/15 22:22:05  bkline
- * Adding code for issue #471.
- *
- * Revision 1.33  2002/10/14 20:06:23  bkline
- * Added DDE replacement for SoftQuad's ShowPage().
- *
- * Revision 1.32  2002/10/04 16:42:42  bkline
- * Added my own showPage method, to get around the buggy version in XMetaL.
- *
- * Revision 1.31  2002/09/23 22:07:00  bkline
- * Fixed exception catching code to accomodate bug in MFC documentation.
- *
- * Revision 1.30  2002/08/16 22:03:07  bkline
- * Turned on support for private practice picklist.
- *
- * Revision 1.29  2002/08/03 12:13:59  bkline
- * Backed out private practice picklist support temporarily [per LG].
- *
- * Revision 1.28  2002/07/30 21:37:37  bkline
- * Fixed problem with & in DocTitle; removed hard tabs inserted by Visual
- * Studio.
- *
- * Revision 1.27  2002/07/26 20:31:54  bkline
- * Added new private practice location picklist (#345).
- *
- * Revision 1.26  2002/07/18 00:54:06  bkline
- * Adjusted XML encoding and added host name to title bar.
- *
- * Revision 1.25  2002/07/01 22:49:01  bkline
- * Removed remaining instances of hard-coded mmdb2.
- *
- * Revision 1.24  2002/06/13 18:48:48  bkline
- * Added hostname property.
- *
- * Revision 1.23  2002/05/28 22:26:45  bkline
- * Mods for CDR client loader.
- *
- * Revision 1.22  2002/05/17 20:11:42  bkline
- * Added AddressType attribute to top-level element for getOrgAddress().
- *
- * Revision 1.21  2002/05/15 23:39:24  bkline
- * Modified to work with Jeff's new utility to refresh the client files.
- *
- * Revision 1.20  2002/05/14 14:22:46  bkline
- * Finished implementation of version retrieval.
- *
- * Revision 1.19  2002/05/08 21:20:52  bkline
- * Added return statement from exception handler to eliminate warning.
- *
- * Revision 1.18  2002/05/06 18:48:24  bkline
- * Added code to populate comment for version table.
- *
- * Revision 1.17  2002/04/29 11:01:31  bkline
- * Added code to eliminate extra space after CdrDocCtl element.
- *
- * Revision 1.16  2002/04/20 19:19:58  bkline
- * Removed version string from search and retrieve dialogs.  Will replace
- * soon with more sophisticated picklist for most recent versions.
- *
- * Revision 1.15  2002/04/18 21:49:04  bkline
- * Added more sophisticated exception handling.
- *
- * Revision 1.14  2002/03/09 03:24:46  bkline
- * Implemented enhancement for Issue #125.
- *
- * Revision 1.13  2002/03/01 21:13:40  bkline
- * Fixed bug that was causing saved document to be marked readonly.
- *
- * Revision 1.12  2002/02/20 12:23:03  bkline
- * Set edit command to return non-zero on cancelled command.
- *
- * Revision 1.11  2002/02/19 23:14:40  bkline
- * Modified getOrgAddress to pull down and insert SpecificPostalAddress only.
- *
- * Revision 1.10  2002/02/15 23:05:01  bkline
- * Changed save command so that document is not reopened after checkin.
- *
- * Revision 1.9  2002/02/14 01:13:22  bkline
- * Dialog box message changed for new document save.
- *
- * Revision 1.8  2002/02/01 22:01:03  bkline
- * Removed doRetrieve call in checkIn command.  Fixed save command to
- * refresh local copy of document even if validation failed.
- *
- * Revision 1.7  2002/01/22 22:50:53  bkline
- * Some code cleanup.
- *
- * Revision 1.6  2001/11/27 14:21:01  bkline
- * Version used at November 2001 demo.
- *
- * Revision 1.5  2001/06/14 01:21:18  bkline
- * Added code to pull down a fresh copy of the CSS stylesheets for the
- * client.  Added new isReadOnly() command.
- *
- * Revision 1.4  2001/06/11 18:27:18  bkline
- * Snapshot prior to re-working automation support using CCmdTarget.
- *
- * Revision 1.3  2001/06/09 12:33:45  bkline
- * Switched to Unicode; added code to sync client with server.
- *
- * Revision 1.2  2001/04/18 14:46:24  bkline
- * Switched to extracting document types from Type attribute (instead of
- * inferring it from first tag).  Removed some dead code.
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
  */
 
 // Local headers.
@@ -252,6 +65,10 @@ CString CCommands::username;
 bool    CCommands::invokedFromClientRefreshTool = false;
 static std::map<CString, CString> diagnosisTermSets;
 static cdr::StringList diagnosisTermSetNames;
+
+static CString getFullDocPath(_Document* doc) {
+    return doc->GetPath() + _T("\\") + doc->GetName();
+}
 
 /**
  * Determines whether a given element in a particular document type can
@@ -1061,7 +878,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                         openDoc(rsp, docId.getString(), true);
                         if (valErrors) {
                             doc = cdr::getApp().GetActiveDocument();
-                            CString path = doc.GetPath();
+                            CString path = getFullDocPath(&doc);
                             cdr::validationErrorSets[path] = valErrors;
                         }
                     }
@@ -1186,7 +1003,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
             if (errors) {
                 cdr::ValidationErrors *valErrs = 
                     new cdr::ValidationErrors(errors);
-                CString path = doc.GetPath();
+                CString path = getFullDocPath(&doc);
                 cdr::validationErrorSets[path] = valErrs;
                 CString version = _T("Current");
                 if (valErrs->errors.size() > 0) {
@@ -3136,7 +2953,7 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId, BSTR* patientDocId)
 void clearErrorList() {
     _Document doc = cdr::getApp().GetActiveDocument();
     if (doc) {
-        CString path = doc.GetPath();
+        CString path = getFullDocPath(&doc);
         if (!path.IsEmpty()) {
             cdr::ValidationErrorSets::iterator iter = 
                 cdr::validationErrorSets.find(path);
@@ -3159,7 +2976,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError)
         result.SetSysString(valError);
         return S_OK;
     }
-    CString path = doc.GetPath();
+    CString path = getFullDocPath(&doc);
     if (path.IsEmpty()) {
         result = _T("0|No validation results available");
         result.SetSysString(valError);
