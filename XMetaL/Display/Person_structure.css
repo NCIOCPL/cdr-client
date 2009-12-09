@@ -1,6 +1,9 @@
 /*************************************************************************/
 /*      Person_structure.css                                             */
 /*      ====================                                             */
+/*                                                                       */
+/*      BZIssue::4640 - Update CSS for GeneticsProfessional elements     */
+/*                                                                       */
 /*      v. 3.6                                                           */
 /*      5/03/02  by ebator                                               */
 /*      Changed before text for BoardCertifiedSpecialtyName per users    */
@@ -167,6 +170,7 @@ Prefix,
 PrivatePractice,
 PrivatePracticeLocation,
 ProfessionalInformation,
+ProfessionalType,
 ProvidesServices,
 Role,
 RoleAtAffiliatedOrganization,
@@ -259,6 +263,7 @@ Prefix                            :before { content: "Prefix"; }
 PrivatePractice                   :before { content: "PRIVATE PRACTICE"; }
 PrivatePracticeLocation           :before { content: "PRIVATE PRACTICE LOCATION"; }
 ProfessionalInformation           :before { content: "Professional Information"; }
+ProfessionalType                  :before { content: "Professional Type"; }
 ProvidesServices                  :before { content: "Provides Services?"; }
 RoleAtAffiliatedOrganization      :before { content: "Role at Affiliated Org"; }
 ServiceLimitations                :before { content: "Service Limits"; }
@@ -463,6 +468,7 @@ PersonTitle,
 PhysicianDetails>Comment,
 PreferredContactMode,
 Prefix,
+ProfessionalType,
 ProvidesServices,
 RoleAtAffiliatedOrganization,
 ServiceLimitations,
@@ -537,6 +543,7 @@ PersonRole,
 PersonTitle,
 PreferredContactMode,
 Prefix,
+ProfessionalType,
 ProvidesServices,
 RoleAtAffiliatedOrganization,
 ServiceLimitations,
@@ -617,6 +624,7 @@ PhysicianSpecialtyInformation,
 PhysicianSpecialtyInformation     :before,
 PreferredContactMode              :before,
 Prefix                            :before,
+ProfessionalType                  :before,
 ProvidesServices                  :before,
 Role                              :before,
 RoleAtAffiliatedOrganization      :before,

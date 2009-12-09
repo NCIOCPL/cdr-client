@@ -2,6 +2,8 @@
 /*      Person.css                                                       */
 /*      ==========                                                       */
 /*                                                                       */
+/*      BZIssue::4640 - Update CSS for GeneticsProfessional elements     */
+/*                                                                       */
 /*      v. 3.10                                                          */
 /*      3/25/2004  by Cburg                                              */
 /*      Added UpdateMode data element                                    */
@@ -216,6 +218,7 @@ Prefix,
 PrivatePractice,
 PrivatePracticeLocation,
 ProfessionalInformation,
+ProfessionalType,
 ProvidesServices,
 Role,
 RoleAtAffiliatedOrganization,
@@ -313,6 +316,7 @@ PrivatePractice[PreviousLocation="Yes"]
                                   :before { content: "PRIVATE PRACTICE LOCATION [Previous] & + @ "; }
 PrivatePracticeLocation           :before { content: "PRIVATE PRACTICE LOCATION [" attr(cdr\:id) "] ";}
 ProfessionalInformaton            :before { content: "Professional Information &"; }
+ProfessionalType                  :before { content: "Prof Type & +: "; }
 ProvidesServices                  :before { content: "Provides Services? *: "; }
 RoleAtAffiliatedOrganization      :before { content: "Role at Aff Org *: "; }
 ServiceLimitations                :before { content: "Service Limits &: "; }
@@ -458,6 +462,7 @@ MiddleInitial                     :before,
 OracleID                          :before,
 OriginalCreationDate              :before,
 OriginalCreationUser              :before,
+ProfessionalType                  :before,
 PersonTitle                       :before,
 Prefix                            :before,
 ServiceLimitations                :before,
@@ -690,6 +695,10 @@ CIPSContact,
          { margin-left: 100pt;
            text-indent: -91.5pt; }
 
+ProfessionalType,
+         { margin-left: 100pt;
+           text-indent: -85.5pt; }
+
 UpdateMode,
          { margin-left: 100pt;
            text-indent: -101pt; }
@@ -808,6 +817,7 @@ PersonRole,
 PersonTitle,
 PreferredContactMode,
 Prefix,
+ProfessionalType,
 ProvidesServices,
 Role,
 RoleAtAffiliatedOrganization,
@@ -877,6 +887,7 @@ PersonRole,
 PersonTitle,
 PreferredContactMode,
 Prefix,
+ProfessionalType,
 ProvidesServices,
 Role,
 RoleAtAffiliatedOrganization,
@@ -946,6 +957,7 @@ PersonTitle                       :before,
 PhysicianSpecialtyInformation,
 PreferredContactMode              :before,
 Prefix                            :before,
+ProfessionalType                  :before,
 ProvidesServices                  :before,
 Role                              :before,
 RoleAtAffiliatedOrganization      :before,
