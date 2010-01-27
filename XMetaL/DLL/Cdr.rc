@@ -382,6 +382,17 @@ BEGIN
     LTEXT           "Select diagnosis set:",IDC_STATIC,17,37,82,8
 END
 
+IDD_COMMENT_DIALOG DIALOGEX 0, 0, 436, 249
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Comment Attribute"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,379,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,379,24,50,14
+    EDITTEXT        IDC_COMMENT_BOX,17,52,401,158,ES_MULTILINE | WS_VSCROLL
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -418,7 +429,7 @@ BEGIN
     IDD_SAVE_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 279
+        RIGHTMARGIN, 278
         TOPMARGIN, 7
         BOTTOMMARGIN, 149
     END
@@ -533,6 +544,14 @@ BEGIN
         RIGHTMARGIN, 179
         TOPMARGIN, 7
         BOTTOMMARGIN, 107
+    END
+
+    IDD_COMMENT_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 429
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 242
     END
 END
 #endif    // APSTUDIO_INVOKED

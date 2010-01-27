@@ -48,6 +48,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(38), helpstring("method getNextValidationError")] HRESULT getNextValidationError([out,retval] BSTR* valError);
         [id(39), helpstring("method logClientEvent")] HRESULT logClientEvent([in] const BSTR* description, [out,retval] int* pRet);
         [id(40), helpstring("method getBoardMemberId")] HRESULT getBoardMemberId([in] const BSTR* personId, [out,retval] BSTR* boardMemberId);
+        [id(41), helpstring("method editComment")] HRESULT editComment([in] VARIANT_BOOL readOnly);
     };
 
 [

@@ -83,6 +83,7 @@ public:
     STDMETHOD(getNextValidationError)(BSTR* valError);
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(getBoardMemberId)(const BSTR* personId, BSTR* boardMemberId);
+    STDMETHOD(editComment)(VARIANT_BOOL readOnly);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

@@ -28,6 +28,7 @@
 #include "ReviewMarkup.h"
 #include "resource.h"
 #include "DiagnosisSets.h"
+#include "CommentDialog.h"
 
 // System headers
 #include <list>
@@ -40,7 +41,6 @@
 #include <wchar.h>
 #include <windows.h>
 #include <atlenc.h>
-#include ".\commands.h"
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -3057,6 +3057,17 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
     else
         cdr::showErrors(r);
     boardMember.SetSysString(boardMemberId);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::editComment(VARIANT_BOOL readOnly)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    BOOL ro(readOnly);
+    ::CCommentDialog dialog(ro);
+    dialog.DoModal();
 
     return S_OK;
 }

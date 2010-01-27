@@ -52,6 +52,8 @@
 #define ID_LOGON_OK                     221
 #define IDD_INSERT_DIAGNOSIS_TERMS      221
 #define IDC_LINK_TITLE_LABEL            222
+#define IDD_COMMENT                     222
+#define IDD_COMMENT_DIALOG              222
 #define IDC_TEXT_MESSAGE                224
 #define IDC_SUCCESS_ICON                225
 #define IDC_GLOSSIFY_SKIP_FIRST         226
@@ -71,14 +73,15 @@
 #define IDC_MEDIA_FILE_BROWSE           240
 #define IDC_DIAGNOSIS_SETS              241
 #define IDC_GLOSSIFY_NEXT_SECTION       242
+#define IDC_COMMENT_BOX                 243
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        222
+#define _APS_NEXT_RESOURCE_VALUE        223
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         243
+#define _APS_NEXT_CONTROL_VALUE         244
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif
