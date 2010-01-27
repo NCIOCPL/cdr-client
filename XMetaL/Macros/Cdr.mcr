@@ -1010,6 +1010,19 @@
     }
     Application.AppendMacro("Linked Fragment Docs Report",
                             "Linked Fragment Docs Report");
+    if (docType.name == 'Summary' && (
+        Selection.IsParentElement('ProtocolRef') ||
+        Selection.IsParentElement('ProtocolLink') ||
+        Selection.IsParentElement('CitationRef') ||
+        Selection.IsParentElement('CitationLink'))) {
+        if (!cdrDocReadOnly()) {
+            Application.AppendMacro("Edit Comment", "Edit Comment");
+            Application.AppendMacro("Set Last Reviewed Attribute",
+                                    "Set Last Reviewed Date");
+        }
+        else
+            Application.AppendMacro("View Comment", "Edit Comment");
+    }
   ]]>
 </MACRO>
 
@@ -8482,6 +8495,55 @@
         ActiveDocument.RulesChecking = rulesChecking;
     }
     insertPdqIndexingBlock();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert PDQIndexing Block" lang="JScript">
+  <![CDATA[
+    function insertPdqIndexingBlock() {
+        if (!CdrPdqIndexingClipboard) {
+            Application.Alert("PDQ Indexing clipboard empty");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var oldBlock = getSingleElement(doc, 'PDQIndexing');
+        if (!oldBlock) {
+            Application.Alert("Unable to find old PDQIndexing block");
+            return;
+        }
+        var rulesChecking = ActiveDocument.RulesChecking;
+        ActiveDocument.RulesChecking = false;
+        var newBlock = cloneFor(doc, CdrPdqIndexingClipboard, 'PDQIndexing');
+        oldBlock.parentNode.replaceChild(newBlock, oldBlock);
+        CdrPdqIndexingClipboard = null;
+        ActiveDocument.RulesChecking = rulesChecking;
+    }
+    insertPdqIndexingBlock();
+  ]]>
+</MACRO>
+
+<MACRO name="Edit Comment" lang="JScript">
+  <![CDATA[
+    function editComment() {
+        var readOnly = cdrDocReadOnly();
+        cdrObj.editComment(readOnly);
+    }
+    editComment();
+  ]]>
+</MACRO>
+
+<MACRO name="Set Last Reviewed Date" lang="JScript">
+  <![CDATA[
+    function setLastReviewedAttribute() {
+        var today = getCurDateString();
+        var node  = Selection.ContainerNode;
+        var depth = 5;
+        while (node && node.nodeType != 1 && depth-- > 0)
+            node = node.parentNode;
+        if (node && node.nodeType == 1)
+            node.setAttribute("LastReviewed", today);
+    }
+    setLastReviewedAttribute();
   ]]>
 </MACRO>
 
