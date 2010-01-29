@@ -2562,6 +2562,50 @@
     }
 
 
+    function addLicenseeToolbar() {
+
+        var buttons = new Array(
+            new CdrCmdItem(null,                      // Label.
+                           "Licensee QC Report",      // Macro.
+                           "Licensee QC Report",      // Tooltip.
+                           "Licensee QC Report",      // Description
+                           "CDR", 3, 4,               // Icon set, row, col.
+                           false)                     // Starts new group?
+        );
+        var cmdBars = Application.CommandBars;
+        var cmdBar  = null;
+        
+        try { cmdBar = cmdBars.item("CDR Licensee"); }
+        catch (e) { 
+        }
+        if (cmdBar) { 
+            try {
+                cmdBar.Delete(); 
+            }
+            catch (e) {
+                Application.Alert("Failure deleting old CDR Licensee toolbar: "
+                                + e);
+            }
+            cmdBar = null; 
+        }
+        
+        try {
+            cmdBar = cmdBars.add("CDR Licensee", 2);
+            //cmdBar.Visible = false;
+        }
+        catch (e) {
+            Application.Alert("Failure adding CDR Licensee toolbar: " + e);
+        }
+        if (cmdBar) {
+            toolbars["Licensee"] = cmdBar;
+            var ctrls = cmdBar.Controls;
+            for (var i = 0; i < buttons.length; ++i) {
+                addCdrButton(ctrls, buttons[i]);
+            }
+        }
+    }
+
+
     function addCountryToolbar() {
 
         var buttons = new Array(
@@ -3145,6 +3189,7 @@
     addTermSetToolbar();
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
+    addLicenseeToolbar();
     addCdrMenus();
     hideToolbars();
 
@@ -5558,6 +5603,28 @@
        lang="JScript">
   <![CDATA[
     Application.Alert("Stub for Reset Contact Information Macro");
+  ]]>
+</MACRO>
+
+<MACRO name="Licensee QC Report" 
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Filter.py?Session="
+                + CdrSession + "&DocId=" + docId
+                + "&Filter=name:Licensee QC Report Filter";
+        cdrObj.showPage(url);
+    }
+    qcReport();
   ]]>
 </MACRO>
 
