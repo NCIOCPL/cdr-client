@@ -53,6 +53,12 @@
        </RelatedDocuments>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name ns="">ResponseDate</Name>
+   <MiniTemplate><![CDATA[<ResponseDate><?xm-replace_text {
+                   Optionally enter a response date
+                   }?></ResponseDate>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>SpecificBoardMemberContact</Name>
    <MiniTemplate><![CDATA[
         <SpecificBoardMemberContact>
@@ -94,6 +100,18 @@
    <MiniTemplate><![CDATA[<SupplementaryInfoLink><?xm-replace_text {
                    Enter the supplementary info source (required)
                    }?></SupplementaryInfoLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TerminationDate</Name>
+   <MiniTemplate><![CDATA[<TerminationDate><?xm-replace_text {
+                   Optionally enter ending date for membership term
+                   }?></TerminationDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TerminationReason</Name>
+   <MiniTemplate><![CDATA[<TerminationReason><?xm-replace_text {
+                   Optionally select reason for termination of term
+                   }?></TerminationReason>]]></MiniTemplate>
   </Template>
  </Templates>
  <ChangeLists>
