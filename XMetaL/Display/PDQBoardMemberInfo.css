@@ -49,12 +49,12 @@ BoardMemberName,
 BoardMembershipDetails,
 BoardName,
 Comment,
+DatedAction>Comment,
 ConflictOfInterestFormSigned,
 Country,
 CurrentMember,
 Date,
 DatedAction,
-DatedAction>Comment,
 DateSigned,
 EditorInChief>TermStartDate,
 EditorInChief>TermEndDate,
@@ -365,13 +365,16 @@ DatedAction>Comment
            text-indent: -81pt; }
 ConflictOfInterestFormSigned
          { margin-left: 135pt;
-           text-indent: -110pt; }
+           text-indent: -112pt; }
 DateSigned
          { margin-left: 135pt;
-           text-indent: -88pt; }
+           text-indent: -90pt; }
 Comment
          { margin-left: 135pt;
-           text-indent: -80pt; }
+           text-indent: -82.5pt; }
+BoardMemberAssistant > Comment
+         { margin-left: 100pt;
+           text-indent: -82.5pt; }
 
 
 
