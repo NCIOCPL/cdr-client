@@ -5,6 +5,7 @@
  *
  * To do: rationalize error return codes for automation commands.
  *
+ * BZIssue::4767
  */
 
 // Local headers.
@@ -618,61 +619,28 @@ STDMETHODIMP CCommands::search(int *pRet)
 /**
  * Load bytes for a document BLOB from the specified file.
  */
-static std::string getBlobFromFile(const CString& path) {
-    CFile file;
-    file.Open((LPCTSTR)path, CFile::modeRead);
-    int srcLen = (int)file.GetLength();
-
-    // Use a local buffer type to ensure memory release even if an
-    // exception occurs.
-    struct Buf {
-        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
-        ~Buf() { delete [] buf; }
-        char* buf;
-    };
-    Buf src((size_t)srcLen);
+static void getBlobFromFile(char* buf, CFile& file, int len) {
+    file.SeekToBegin();
     int totalRead = 0;
-    while (totalRead < srcLen) {
-        int bytesRead = file.Read(src.buf + totalRead, srcLen - totalRead);
+    while (totalRead < len) {
+        int bytesRead = file.Read(buf + totalRead, len - totalRead);
         if (bytesRead < 1) {
             ::AfxMessageBox(_T("Failure reading blob file"));
             throw _T("Failure reading from blob file");
         }
         totalRead += bytesRead;
     }
-    return std::string(src.buf, srcLen);
-}
-
-/*
- * Encode BLOB bytes.
- */
-static CString encodeBlob(const std::string& src) {
-    int srcLen = (int)src.size();
-    int dstLen = srcLen * 2; // more than enough
-    struct Buf {
-        Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
-        ~Buf() { delete [] buf; }
-        char* buf;
-    };
-    Buf dst((size_t)dstLen);
-    if (!::Base64Encode((const BYTE*)src.c_str(), srcLen, 
-                        (LPSTR)dst.buf, &dstLen)) {
-        ::AfxMessageBox(_T("Failure encoding blob file"));
-        throw _T("Failure encoding Blob file");
-    }
-
     CString msg;
-    // msg.Format(_T("encoded %d-byte %s as %d bytes"), srcLen, path, dstLen);
-    // ::AfxMessageBox(msg);
-    return CString(dst.buf, dstLen);
+    msg.Format(_T("read %d bytes for blob"), totalRead);
+    ::AfxMessageBox(msg);
 }
 
-static void insertImageDimensions(::DOMNode& docElement, 
-                                  const std::string& bytes) {
+static void insertImageDimensions(::DOMNode& docElement, CFile& file) {
     cdr::ImageDimensions dim;
-    if (cdr::getImageDimensions((const unsigned char*)bytes.c_str(),
-                                bytes.size(),
-                                dim)) {
+    char bytes[1024];
+    int bytesRead = file.Read(bytes, sizeof bytes);
+    file.SeekToBegin();
+    if (cdr::getImageDimensions((const unsigned char*)bytes, bytesRead, dim)) {
         CString height, width;
         height.Format(_T("%ld"), dim.height);
         width.Format(_T("%ld"), dim.width);
@@ -739,6 +707,14 @@ STDMETHODIMP CCommands::save(int *pRet)
         switch (saveDialog.DoModal()) {
         case IDOK:
         {
+            // Use a local buffer type to ensure memory release even if an
+            // exception occurs.
+            struct Buf {
+                Buf(size_t n) : buf(new char[n]) { memset(buf, 0, n); }
+                ~Buf() { delete [] buf; }
+                char* buf;
+            };
+
             CWaitCursor wc;
             clearErrorList();
             cdr::ValidationErrors* valErrors = NULL;
@@ -785,22 +761,28 @@ STDMETHODIMP CCommands::save(int *pRet)
                    << _T("</DocComment>");
             os << _T("</CdrDocCtl>");
 
-            CString encodedBlob;
+            // Handle blob if present.
+            int blobSize = 0;
+            CFile blobFile;
             CString blobFilename = saveDialog.m_blobFilenameString;
             if (!blobFilename.IsEmpty()) {
-                try {
-                    std::string blobBytes = getBlobFromFile(blobFilename);
-                    encodedBlob = encodeBlob(blobBytes);
-                    if (ctrlInfo.docType == _T("Media")) {
-                        try {
-                            // ::AfxMessageBox(_T("calling insertImageDimensions"));
-                            insertImageDimensions(docElement, blobBytes);
-                        }
-                        catch (...) {
-                            TCHAR* msg = _T("Unable to set image dimensions");
-                            ::AfxMessageBox(msg);
-                        }
+                blobFile.Open((LPCTSTR)blobFilename, CFile::modeRead);
+                blobSize = (int)blobFile.GetLength();
+                if (ctrlInfo.docType == _T("Media")) {
+                    try {
+                        // Harmless if blob isn't an image.
+                      insertImageDimensions(docElement, blobFile);
                     }
+                    catch (...) {
+                        TCHAR* msg = _T("Unable to set image dimensions");
+                        ::AfxMessageBox(msg);
+                    }
+                }
+            }
+            Buf blobBuf(blobSize);
+            if (blobSize > 0) {
+                try {
+                    getBlobFromFile(blobBuf.buf, blobFile, blobSize);
                 }
                 catch (::CException* e) {
                     CString msg;
@@ -819,17 +801,75 @@ STDMETHODIMP CCommands::save(int *pRet)
                     return S_OK;
                 }
             }
+
+            // Add the XML for the document.
             os << _T("<CdrDocXml><![CDATA[") << docElement 
                << _T("]]></CdrDocXml>");
-            if (!blobFilename.IsEmpty()) {
-                os << _T("<CdrDocBlob>") 
-                   << (LPCTSTR)encodedBlob
-                   << _T("</CdrDocBlob>");
+
+            //------------------------------------------------------------
+            // This has been rewritten to work around a bug in the Microsoft
+            // runtime, which fails to request additional memory from the
+            // operating system when the heap which it is managing itself
+            // is unable to fulfil a memory allocation request.  We need
+            // to calculate the amount of memory to allocate for the
+            // save command's buffer and only create a single copy of
+            // that command.  If even this fails, we may resort to
+            // using our own base-64 encoding directly from the blob
+            // file instead of reading the blob's bytes into a separate
+            // buffer.  We allocate an additional kilobyte for the
+            // buffer to provide room for the sendCommand() method
+            // to wrap the command in the CdrCommandSet element.
+            //------------------------------------------------------------
+            int encodedBlobSize = 0;
+            CString back;
+            if (blobSize) {
+                os << _T("<CdrDocBlob>");
+                back = _T("</CdrDocBlob>");
+                encodedBlobSize = Base64EncodeGetRequiredLength(blobSize);
             }
-            os << _T("</CdrDoc></") << (LPCTSTR)cmdTag << _T(">");
+            CString front = os.str().c_str();
+            std::string f = cdr::cStringToUtf8(front);
+            back += _T("</CdrDoc></") + cmdTag + _T(">");
+            std::string b = cdr::cStringToUtf8(back);
+
+            // Calculate how much memory we need (with 1KB padding).
+            int commandSize = f.length() + encodedBlobSize + b.length() + 1024;
+            Buf commandBuf(commandSize);
+            memcpy(commandBuf.buf, f.c_str(), f.length());
+            char* p = commandBuf.buf + f.length();
+
+            // Add the blob if we have one.
+            if (encodedBlobSize) {
+                int written = encodedBlobSize;
+                BOOL ok = Base64Encode((const BYTE*)blobBuf.buf, blobSize,
+                                       p, &written);
+                if (!ok) {
+                    ::AfxMessageBox(_T("failure encoding blob"));
+                    *pRet = -9;
+                    return S_OK;
+                }
+                int actualLen = strlen(p);
+                p += written;
+            }
+
+            // Tack on the end of the command and null terminate the string.
+            memcpy(p, b.c_str(), b.length());
+            p += b.length();
+            *p = '\0';
+
+            // Safety check.
+            if (p - commandBuf.buf < 1024) {
+                CString msg;
+                msg.Format(_T("save command occupies %d bytes; expected %d"),
+                           p - commandBuf.buf, commandSize - 1024);
+                ::AfxMessageBox(msg);
+                *pRet = -8;
+                return S_OK;
+            }
 
             // Submit the save command to the server.
-            CString rsp = CdrSocket::sendCommand(os.str().c_str());
+            CString dummy;
+            CString rsp = CdrSocket::sendCommand(dummy, false, commandBuf.buf);
             cdr::Element responseElem = 
                 cdr::Element::extractElement(rsp, _T("CdrResponse"));
             CString status = responseElem.getAttribute(_T("Status"));

@@ -3,62 +3,7 @@
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
- * $Log: not supported by cvs2svn $
- * Revision 1.18  2008/05/29 20:26:04  bkline
- * Added support for navigation to the location of specific validation
- * errors in the current document.
- *
- * Revision 1.17  2007/07/11 00:43:18  bkline
- * Added support for dynamic diagnosis set insertion and for displaying
- * blocked document status.
- *
- * Revision 1.16  2005/04/13 13:20:51  bkline
- * Completed BLOB support, including calculating of image dimensions.
- *
- * Revision 1.15  2004/09/09 18:43:03  bkline
- * Glossifier implemented.
- *
- * Revision 1.14  2004/02/26 01:57:25  bkline
- * Cleared out some experimental/debugging dross.
- *
- * Revision 1.13  2004/02/26 01:47:16  bkline
- * Added glossifier support; upgraded to XMetaL 4 APIs.
- *
- * Revision 1.12  2004/02/26 00:46:33  bkline
- * Added code for suppressing/expanding leading zeros in document IDs.
- *
- * Revision 1.11  2002/10/15 22:22:05  bkline
- * Adding code for issue #471.
- *
- * Revision 1.10  2002/10/04 16:42:42  bkline
- * Added my own showPage method, to get around the buggy version in XMetaL.
- *
- * Revision 1.9  2002/08/12 20:19:51  bkline
- * Added destructor for CdrSocket class to close the socket.
- *
- * Revision 1.8  2002/07/18 00:52:13  bkline
- * Added decode() and getShortHostName().
- *
- * Revision 1.7  2002/06/13 18:48:48  bkline
- * Added hostname property.
- *
- * Revision 1.6  2002/04/18 21:47:53  bkline
- * Replaced include statement for xmetal2.h with xmetal3.h.
- *
- * Revision 1.5  2001/11/27 14:18:57  bkline
- * New utility methods; modified extraction methods.
- *
- * Revision 1.4  2001/06/11 18:26:43  bkline
- * Snapshot prior to re-working automation support using CCmdTarget.
- *
- * Revision 1.3  2001/06/09 12:29:47  bkline
- * Switched to Unicode strings; added more sophisticated XML parsing.
- *
- * Revision 1.2  2001/04/18 14:44:19  bkline
- * Added insertion operator for DOM node.
- *
- * Revision 1.1  2000/10/16 22:31:48  bkline
- * CDR client header
+ * BZIssue::4767
  */
 
 #ifndef CDR_UTIL_H_
@@ -98,7 +43,8 @@ struct CdrLinkInfo {
  */
 class CdrSocket {
 public:
-    static CString sendCommand(const CString& command, bool = false);
+    static CString sendCommand(const CString& command, bool = false,
+                               char* cmdBuf = NULL);
 	static void setSessionString(const CString& s) { sessionString = s; }
 	static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }

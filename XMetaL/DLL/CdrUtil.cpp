@@ -3,100 +3,7 @@
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
- * $Log: not supported by cvs2svn $
- * Revision 1.30  2008/06/05 13:49:03  bkline
- * Removed namespace prefixes from attributes in <Err/> elements.
- *
- * Revision 1.29  2008/05/29 20:26:04  bkline
- * Added support for navigation to the location of specific validation
- * errors in the current document.
- *
- * Revision 1.28  2007/07/11 00:43:18  bkline
- * Added support for dynamic diagnosis set insertion and for displaying
- * blocked document status.
- *
- * Revision 1.27  2006/06/26 20:29:40  bkline
- * Sped up launch process for XMetaL DLL.  Fixed typo in mime type.
- *
- * Revision 1.26  2005/04/13 13:20:51  bkline
- * Completed BLOB support, including calculating of image dimensions.
- *
- * Revision 1.25  2004/09/09 18:43:03  bkline
- * Glossifier implemented.
- *
- * Revision 1.24  2004/02/26 01:57:25  bkline
- * Cleared out some experimental/debugging dross.
- *
- * Revision 1.23  2004/02/26 01:45:53  bkline
- * Added glossifier support.
- *
- * Revision 1.22  2004/02/26 00:46:33  bkline
- * Added code for suppressing/expanding leading zeros in document IDs.
- *
- * Revision 1.21  2003/03/05 12:41:50  bkline
- * Added workaround for XMetaL entity encoding bugs in attributes.
- *
- * Revision 1.20  2003/01/23 17:21:43  bkline
- * Eliminated some dead code.
- *
- * Revision 1.19  2002/12/24 15:04:15  bkline
- * Switched from DDE to ActiveX Automation for showPage().
- *
- * Revision 1.18  2002/10/16 19:56:26  bkline
- * Workaround for XMetaL automation bug.
- *
- * Revision 1.17  2002/10/15 22:22:05  bkline
- * Adding code for issue #471.
- *
- * Revision 1.16  2002/10/14 20:06:22  bkline
- * Added DDE replacement for SoftQuad's ShowPage().
- *
- * Revision 1.15  2002/10/04 16:42:42  bkline
- * Added my own showPage method, to get around the buggy version in XMetaL.
- *
- * Revision 1.14  2002/07/30 21:37:36  bkline
- * Fixed problem with & in DocTitle; removed hard tabs inserted by Visual
- * Studio.
- *
- * Revision 1.13  2002/07/26 20:30:15  bkline
- * Added wait cursor to sendCommand().
- *
- * Revision 1.12  2002/07/18 00:51:37  bkline
- * Added cdr::decode().
- *
- * Revision 1.11  2002/07/05 18:57:59  bkline
- * Masked out 'readonly' attributes.
- *
- * Revision 1.10  2002/06/13 18:48:47  bkline
- * Added hostname property.
- *
- * Revision 1.9  2002/04/29 10:57:30  bkline
- * Added code to preserve XML comments.
- *
- * Revision 1.8  2002/04/12 01:32:25  bkline
- * Fixed bug in PI handling.  Added CDR_HOST and CDR_PORT environment
- * variable overrides.
- *
- * Revision 1.7  2002/02/12 21:44:05  bkline
- * Replaced mmdb2 with mmdb2.nci.nih.gov.
- *
- * Revision 1.6  2002/02/08 18:53:27  bkline
- * Fixed typos in last change.
- *
- * Revision 1.5  2002/02/08 14:28:32  bkline
- * Added code to handle empty element tags.
- *
- * Revision 1.4  2001/11/27 14:18:57  bkline
- * New utility methods; modified extraction methods.
- *
- * Revision 1.3  2001/06/09 12:31:51  bkline
- * Switched to Unicode strings; added more sophisticated XML parsing.
- *
- * Revision 1.2  2001/04/18 14:43:55  bkline
- * Added insertion operator for DOM node.
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
+ * BZIssue::4767
  */
 
 // Local headers.
@@ -200,35 +107,68 @@ CdrSocket::CdrSocket()
  * submission.
  *
  *  @param  cmd             reference to string object containing the command.
+ *  @param  guest           flag indicating that we don't need a real
+ *                          session identifier
+ *  @param  requestBuf      if not NULL, this parameter contains a byte
+ *                          string buffer terminated by a zero byte,
+ *                          with an additional 1KB to accomodate the
+ *                          CdrCommandSet, SessionId, and CdrCommand
+ *                          wrappers (a workaround for a Microsoft heap
+ *                          bug, which is preventing the runtime from
+ *                          asking the operating system for additional
+ *                          memory (which we know is available) when
+ *                          storing large blobs); caller is responsible
+ *                          for freeing this buffer
  *  @return                 string object containing the server's response.
  *  @exception  const char* if a communications error is encountered.
  */
-CString CdrSocket::sendCommand(const CString& cmd, bool guest) 
+CString CdrSocket::sendCommand(const CString& cmd, bool guest,
+                               char* requestBuf)
 {
     try {
 
         CWaitCursor wc;
 
         // Wrap the command in a CdrCommandSet element.
-        CString request = _T("<CdrCommandSet>");
+        CString front = _T("<CdrCommandSet>");
         if (!sessionString.IsEmpty())
-            request += _T("<SessionId>") + sessionString + _T("</SessionId>");
+            front += _T("<SessionId>") + sessionString + _T("</SessionId>");
         else if (guest)
-            request += _T("<SessionId>guest</SessionId>");
-        request += _T("<CdrCommand>") + cmd 
-            + _T("</CdrCommand></CdrCommandSet>");
+            front += _T("<SessionId>guest</SessionId>");
+        front += _T("<CdrCommand>");
+        CString back = _T("</CdrCommand></CdrCommandSet>");
+        const char* commands;
+
+        // Use caller's buffer if present.
+        long requestLen = 0;
+        std::string request; // may not need, but keep in scope when we do
+        if (requestBuf) {
+            std::string f = cdr::cStringToUtf8(front);
+            std::string b = cdr::cStringToUtf8(back);
+            size_t cmdLen = strlen(requestBuf);
+            memmove(requestBuf + f.length(), requestBuf, cmdLen);
+            memcpy(requestBuf, f.c_str(), f.length());
+            strcpy(requestBuf + cmdLen + f.length(), b.c_str());
+            requestLen = cmdLen + f.length() + b.length();
+            commands = requestBuf;
+        }
+        else {
+          CString requestString = front + cmd + back;
+          request = cdr::cStringToUtf8(requestString);
+          commands = request.c_str();
+          requestLen = request.length();
+        }
 
         // Connect to the server.
         CdrSocket cdrSocket;
 
         // Tell the server the size of the coming request buffer.
-        std::string buf = cdr::cStringToUtf8(request);
-        long len = htonl(buf.length());
+        long len = htonl(requestLen);
         if (send(cdrSocket.sock, (char *)&len, sizeof len, 0) < 0)
             throw _T("Failure sending command length");
 
         // Submit the command to the server.
-        if (send(cdrSocket.sock, buf.c_str(), buf.length(), 0) < 0)
+        if (send(cdrSocket.sock, commands, requestLen, 0) < 0)
             throw _T("Failure sending command");
 
         // Retrieve the server's response.
