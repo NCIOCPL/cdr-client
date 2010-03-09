@@ -10,12 +10,15 @@
          }?></DocTitle>
  </CdrDocCtl> 
  <DrugInfoMetaData>
-  <Description><?xm-replace_text {
-         Enter the drug information document description (required)
-         } ?></Description>
-  <URL><?xm-replace_text {
-         Enter the link title here and enter the pretty URL 
-         into the attribute inspector (required)
+  <Description>This page contains brief information about <?xm-replace_text {
+         Enter the drug name
+         } ?>
+         and a collection of links to more information about the use of 
+         this drug, related news and research results, and ongoing 
+         clinical trials.
+  </Description>
+  <URL>http://www.cancer.gov/cancertopics/druginfo/<?xm-replace_text {
+         Enter the drug name
          }?></URL>
   <Audience>Patients</Audience>
   <DrugInfoType>Brief</DrugInfoType>
@@ -32,8 +35,19 @@
          }?></Title>
  <SummarySection>                                                              
   <Para><?xm-replace_text {
-         Enter summary of information about specific drug (required)
-         }?></Para>                          
+         Enter the Drug name
+         }?>
+         is approved by the 
+         <GlossaryTermRef cdr:href="CDR0000454785">Food and Drug 
+         Administration (FDA)</GlossaryTermRef>
+         to <?xm-replace_text {
+         Enter the rest of the descriptive paragraph
+         }?>.</Para>                          
+  <Para><?xm-replace_text {
+         Enter the Drug name
+         }?>
+         is also being studied in the treatment of other types of
+         <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>.</Para>
  </SummarySection>
  <DrugReference>
   <DrugReferenceType>FDA</DrugReferenceType>
