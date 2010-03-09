@@ -6887,7 +6887,11 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        cdrObj.launchBlob(docId, docVer ? docVer : "");
+        // cdrObj.launchBlob(docId, docVer ? docVer : "");
+        var url = CdrCgiBin + "GetCdrBlob.py?id=" + docId;
+        if (docVer)
+            url += "ver=" + docVer;
+        cdrObj.showPage(url);
     }
     showDocBlob();
   ]]>
