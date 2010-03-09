@@ -1318,7 +1318,7 @@ bool CCommands::doRetrieve(const CString& id,
 
     // Ask the server for the document.
     CString request;
-    request.Format(_T("<CdrGetDoc>")
+    request.Format(_T("<CdrGetDoc includeBlob='N'>")
                    _T("<DocId>%s</DocId>")
                    _T("<Lock>%s</Lock>")
                    _T("<DocVersion>%s</DocVersion>")
