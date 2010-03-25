@@ -624,15 +624,10 @@ static void getBlobFromFile(char* buf, CFile& file, int len) {
     int totalRead = 0;
     while (totalRead < len) {
         int bytesRead = file.Read(buf + totalRead, len - totalRead);
-        if (bytesRead < 1) {
-            ::AfxMessageBox(_T("Failure reading blob file"));
+        if (bytesRead < 1)
             throw _T("Failure reading from blob file");
-        }
         totalRead += bytesRead;
     }
-    CString msg;
-    msg.Format(_T("read %d bytes for blob"), totalRead);
-    ::AfxMessageBox(msg);
 }
 
 static void insertImageDimensions(::DOMNode& docElement, CFile& file) {
