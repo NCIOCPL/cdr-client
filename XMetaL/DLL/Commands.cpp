@@ -852,16 +852,6 @@ STDMETHODIMP CCommands::save(int *pRet)
             p += b.length();
             *p = '\0';
 
-            // Safety check.
-            if (p - commandBuf.buf < 1024) {
-                CString msg;
-                msg.Format(_T("save command occupies %d bytes; expected %d"),
-                           p - commandBuf.buf, commandSize - 1024);
-                ::AfxMessageBox(msg);
-                *pRet = -8;
-                return S_OK;
-            }
-
             // Submit the save command to the server.
             CString dummy;
             CString rsp = CdrSocket::sendCommand(dummy, false, commandBuf.buf);
