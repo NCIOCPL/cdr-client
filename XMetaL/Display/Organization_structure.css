@@ -185,6 +185,7 @@ IncludeInDirectory   :before { content: "Include in Directory? "; }
 Location             :before { content: "LOCATION "; }
 MainMember           :before { content: "Main Member "; } 
 MainMemberOf         :before { content: "MAIN MEMBER OF "; }
+MediaLink            :before { content: "Media Link"; }
 MeetingDate          :before { content: "Date"; }
 MeetingTime          :before { content: "Time"; }
 MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Group "; }
@@ -363,6 +364,7 @@ IncludeInDirectory,
 Location,
 MainMember, 
 MainMemberOf,
+MediaLink,
 MeetingDate,
 MeetingTime,
 MemberOfAdHocGroup,
@@ -425,6 +427,7 @@ IncludeInDirectory,
 Location,
 MainMember, 
 MainMemberOf,
+MediaID,
 MeetingDate,
 MeetingDate[WebEx="Yes"]          :after,
 MeetingTime,
@@ -487,6 +490,7 @@ IncludeInDirectory                :before,
 Location                          :before,
 MainMember                        :before, 
 MainMemberOf,
+MediaLink                         :before,
 MeetingDate                       :before,
 MeetingTime                       :before,
 MemberOfAdHocGroup                :before,

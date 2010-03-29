@@ -134,6 +134,7 @@ IncludeInDirectory,
 Location,
 MainMember,
 MainMemberOf,
+MediaLink,
 MeetingDate,
 MeetingTime,
 MemberOfAdHocGroup,
@@ -182,6 +183,8 @@ AlternateName        :before { content: "Alternate Name & +: "; }
 BoardManager         :before { content: "Manager *: "; }
 BoardManagerPhone    :before { content: "Phone * @: "; }
 BoardManagerEmail    :before { content: "Email * @: "; }
+BoardMeeting[ReasonCanceled]
+                     :before { content: "BOARD MEETING * + (Cancelled)"; }
 BoardMeeting         :before { content: "BOARD MEETING * +"; }
 BoardMeetings        :before { content: "BOARD MEETINGS &"; }
 BoardMeetingDates    :before { content: "MEETING DATE(s) * +"; }
@@ -207,6 +210,7 @@ IncludeInDirectory   :before { content: "Include in Directory? *: "; }
 Location             :before { content: "LOCATION [" attr(cdr\:id) "]"; }
 MainMember           :before { content: "Main Member & @: "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF & +"; }
+MediaLink            :before { content: "Media & + @: "; }
 MeetingDate          :before { content: "Date * +: "; }
 MeetingDate[WebEx="Yes"]:after
                              { content: " (WebEx)"; }
@@ -271,6 +275,8 @@ Date                 :before,
 DayTime              :before,
 Location             :before,
 MainMemberOf         :before,
+MediaID              :before,
+MediaLink            :before,
 MeetingDate          :before,
 MeetingTime          :before,
 OrganizationAdministrativeInformation
@@ -312,6 +318,7 @@ CIPSContactPerson,
 ClinicalTrialsOfficeContact,
 ClinicalTrialsOfficeContactName,
 CurrentStatus,
+MediaLink,
 MemberOfCCOP,
 OfficialName,
 OrganizationDetails > Comment,
@@ -518,6 +525,8 @@ BoardMeeting > MeetingDate             { margin-left: 100pt;
                                          text-indent: -51.5pt; }
 BoardMeeting > MeetingTime             { margin-left: 100pt; 
                                          text-indent: -53pt; }
+BoardMeeting > MediaLink               { margin-left: 100pt;
+                                         text-indent: -79pt; }
 
 
 /**************************************************************************/
@@ -547,6 +556,7 @@ Location,
 MainMember,
 MainMemberOf,
 MeetingDate,
+MeetingTime,
 MemberOfAdHocGroup,
 MemberOfCCOP,
 MemberOfCooperativeGroups,
@@ -610,6 +620,7 @@ DateLastModified,
 IncludeInDirectory,
 Location,
 MainMember,
+MediaID,
 MeetingDate,
 MeetingTime,
 MemberOfAdHocGroup,
@@ -667,6 +678,8 @@ Location,
 Location                          :before,
 MainMember                        :before,
 MainMemberOf,
+MediaID                           :before,
+MediaLink                         :before,
 MeetingDate                       :before,
 MeetingTime                       :before,
 MemberOfAdHocGroup                :before,
