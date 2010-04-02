@@ -184,7 +184,7 @@ BoardManager         :before { content: "Manager *: "; }
 BoardManagerPhone    :before { content: "Phone * @: "; }
 BoardManagerEmail    :before { content: "Email * @: "; }
 BoardMeeting[ReasonCanceled]
-                     :before { content: "BOARD MEETING * + (Cancelled)"; }
+                     :before { content: "BOARD MEETING * + (Canceled)"; }
 BoardMeeting         :before { content: "BOARD MEETING * +"; }
 BoardMeetings        :before { content: "BOARD MEETINGS &"; }
 BoardMeetingDates    :before { content: "MEETING DATE(s) * +"; }
