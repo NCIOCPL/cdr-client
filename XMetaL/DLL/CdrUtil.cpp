@@ -1289,53 +1289,66 @@ static inline unsigned long getNetworkLong(const unsigned char* buf) {
 }
 
 // Fills in dim structure with height and width of image if possible.
-// The len parameter tells the function how many bytes are in buf.
 // We only support the image types stored in the CDR.
-bool cdr::getImageDimensions(const unsigned char* buf, int len,
-                             ImageDimensions& dim) {
+bool cdr::getImageDimensions(CFile& file, ImageDimensions& dim) {
 
+    // Get the first byte, which will give us a clue about which type we have.
+    unsigned char buf[256];
+    if (file.Read(buf, 1) != 1)
+        return false;
+    
     // Try GIF.
-    if (len >= 10 && buf[0] == 'G' && buf[1] == 'I' && buf[2] == 'F') {
-        dim.width  = (unsigned long)getLittleEndianShort(buf + 6);
-        dim.height = (unsigned long)getLittleEndianShort(buf + 8);
-        return true;
+    if (buf[0] == 'G') {
+        if (file.Read(buf + 1, 9) == 9 && buf[1] == 'I' && buf[2] == 'F') {
+            dim.width  = (unsigned long)getLittleEndianShort(buf + 6);
+            dim.height = (unsigned long)getLittleEndianShort(buf + 8);
+            return true;
+        }
     }
 
     // Try PNG
-    if (len >= 24      && buf[0]  == 137 && 
-        buf[1]  == 'P' && buf[2]  == 'N' && buf[3]  == 'G' &&
-        buf[4]  == 13  && buf[5]  == 10  && buf[6]  == 26  && buf[7]  == 10 &&
-        buf[12] == 'I' && buf[13] == 'H' && buf[14] == 'D' && buf[15] == 'R') {
-        dim.width  = getNetworkLong(buf + 16);
-        dim.height = getNetworkLong(buf + 20);
-        return true;
+    elif (buf[0] == 0x89) {
+        if (file.Read(buf, 23) == 23 && !memcmp(buf, "PNG\r\n\x1a\nIHDR", 23) {
+            dim.width  = getNetworkLong(buf + 16);
+            dim.height = getNetworkLong(buf + 20);
+            return true;
+        }
     }
 
     // Try JPEG
-    int i = 2, skip = 0;
-    if (len >= 2 && buf[0] == 0xFF && buf[1] == 0xD8) { // SOI marker
-        while (i < len) {
-            if (buf[i++] == 0xFF) {
-                while (buf[i] == 0xFF)
-                    ++i;
-                switch (buf[i++]) {
-                case 0xC0: case 0xC1: case 0xC2: case 0xC3:
-                case 0xC5: case 0xC6: case 0xC7: case 0xC9:
-                case 0xCA: case 0xCB: case 0xCD: case 0xCE:
-                case 0xCF: // SOF (Start Of Frame) markers
-                    dim.height = (unsigned long)getNetworkShort(buf + i + 3);
-                    dim.width  = (unsigned long)getNetworkShort(buf + i + 5);
-                    return true;
-                case 0xDA: // SOS (Start of Scan) marker
-                case 0xD9: // EOI (End of Image) marker
+    elif (buf[0] == 0xFF) {
+        int skip = 0;
+        if (file.Read(buf, 1) != 1 || buf[0] != 0xD8) // SOI marker
+            return false;
+
+        // Read until we find the SOF (Start Of Frame) markers
+        while (file.Read(buf, 1) == 1) {
+
+            // Skip past 0xFF bytes
+            while (buf[0] == 0xFF)
+                if (file.Read(buf, 1) != 1)
                     return false;
-                default:
-                    skip = (int)getNetworkShort(buf + i);
-                    if (skip < 2)
-                        return false;
-                    i += skip;
-                    break;
-                }
+            switch (buf[0]) {
+            case 0xC0: case 0xC1: case 0xC2: case 0xC3:
+            case 0xC5: case 0xC6: case 0xC7: case 0xC9:
+            case 0xCA: case 0xCB: case 0xCD: case 0xCE:
+            case 0xCF: // SOF (Start Of Frame) markers
+                if (file.Read(buf, 7) != 7)
+                    return false;
+                dim.height = (unsigned long)getNetworkShort(buf + 3);
+                dim.width  = (unsigned long)getNetworkShort(buf + 5);
+                return true;
+            case 0xDA: // SOS (Start of Scan) marker
+            case 0xD9: // EOI (End of Image) marker
+                return false;
+            default:
+                if (file.Read(buf, 2) != 2)
+                    return false;
+                skip = (int)getNetworkShort(buf);
+                if (skip < 2)
+                    return false;
+                file.Seek((LONGLONG)skip, CFile::current);
+                break;
             }
         }
     }

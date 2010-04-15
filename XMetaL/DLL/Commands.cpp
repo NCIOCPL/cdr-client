@@ -620,7 +620,6 @@ STDMETHODIMP CCommands::search(int *pRet)
  * Load bytes for a document BLOB from the specified file.
  */
 static void getBlobFromFile(char* buf, CFile& file, int len) {
-    file.SeekToBegin();
     int totalRead = 0;
     while (totalRead < len) {
         int bytesRead = file.Read(buf + totalRead, len - totalRead);
@@ -630,30 +629,48 @@ static void getBlobFromFile(char* buf, CFile& file, int len) {
     }
 }
 
+static bool replaceImageDimensions(::DOMNode& docElement,
+                                   CString height, CString width) {
+    ::DOMElement& elem = (::DOMElement&)docElement;
+    ::DOMNodeList nodeList = elem.getElementsByTagName(_T("ImageDimensions"));
+    if (nodeList == 0)
+        return false;
+    ::DOMElement dimElem = nodeList.item(0);
+    ::DOMElement child = dimElem.GetFirstChild();
+    bool foundHeight = false, foundWidth = false;
+    while (child != 0) {
+        if (child.GetNodeName() == _T("HeightPixels")) {
+            cdr::replaceElementContent(child, height);
+            foundHeight = true;
+        }
+        else if (child.GetNodeName() == _T("WidthPixels")) {
+            cdr::replaceElementContent(child, width);
+            foundWidth = true;
+        }
+        child = child.GetNextSibling();
+    }
+    return foundHeight && foundWidth;
+}
+
 static void insertImageDimensions(::DOMNode& docElement, CFile& file) {
+
+    // Start by blanking out the existing values, to prevent leaving
+    // invalid information in the event that we're unable to determine
+    // the correct new information.  If the dimension elements are not
+    // already present, we do nothing.
+    if (!replaceImageDimensions(docElement, _T(""), _T("")))
+        return;
+
     cdr::ImageDimensions dim;
-    char bytes[1024];
-    int bytesRead = file.Read(bytes, sizeof bytes);
-    file.SeekToBegin();
-    if (cdr::getImageDimensions((const unsigned char*)bytes, bytesRead, dim)) {
+    if (cdr::getImageDimensions(file, dim)) {
         CString height, width;
         height.Format(_T("%ld"), dim.height);
         width.Format(_T("%ld"), dim.width);
-        ::DOMElement& elem = (::DOMElement&)docElement;
-        ::DOMNodeList nodeList = 
-            elem.getElementsByTagName(_T("ImageDimensions"));
-        if (nodeList == 0)
-            return;
-        ::DOMElement dimElem = nodeList.item(0);
-        ::DOMElement child = dimElem.GetFirstChild();
-        while (child != 0) {
-            if (child.GetNodeName() == _T("HeightPixels"))
-                cdr::replaceElementContent(child, height);
-            else if (child.GetNodeName() == _T("WidthPixels"))
-                cdr::replaceElementContent(child, width);
-            child = child.GetNextSibling();
-        }
+        replaceImageDimensions(docElement, height, width);
     }
+
+    // Restore file position for loading the entire blob.
+    file.SeekToBegin();
 }
 
 /**

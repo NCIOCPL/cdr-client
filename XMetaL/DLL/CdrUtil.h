@@ -259,8 +259,7 @@ namespace cdr {
     CString suppressLeadingZeros(const CString&);
     CString expandLeadingZeros(const CString&);
     bool replaceElementContent(::DOMElement&, const CString&);
-    bool getImageDimensions(const unsigned char* buf, int len,
-                            ImageDimensions& dim);
+    bool getImageDimensions(CFile& file, ImageDimensions& dim);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 
