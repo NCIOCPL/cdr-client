@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	MiscellaneousDocument.css                                        */
+/*      MiscellaneousDocument.css                                        */
 /*                                                                       */
 /*      v. 3.3                                                           */
 /*      3/19/02  by ebator                                               */
@@ -34,40 +34,33 @@
 /*      CSS based on 6/27/01 schema                                      */
 /*                                                                       */
 /*************************************************************************/
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
+@import "CdrCommonSchema.css";
 
 
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
-@import "CdrCommonSchema.css";  
-
-
-$DOCUMENT 
-
-     { font-family: Arial, sans-serif;
+$DOCUMENT
+    { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
 
-$COMMENT 
-
-     { display: block;
+$COMMENT
+    { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
-     { color: navy;
+$PROCINS
+    { color: navy;
        font-weight: normal;
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                           BLOCK ELEMENTS                              */
+/*************************************************************************/
 
 
 Audience,
@@ -79,120 +72,109 @@ MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 MiscellaneousDocumentText,
 PdqKey,
-
     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-
+/*************************************************************************/
+/*                       BEFORE AND AFTER TAGS                           */
+/*************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+Audience                          :before { content: "Audience *: "; }
+DateLastModified                  :before { content: "Last Modified &: "; }
+Language                          :before { content: "Language *: "; }
+MiscellaneousDocumentType         :before { content: "Type *: "; }
+Note                              :before { content: " [Note: "; }
+Note                              :after  { content: "]"; }
+PdqKey                            :before { content: "PDQ Key &: "; }
 
-Audience:before				{ content: "Audience *: "; }
-DateLastModified:before			{ content: "Last Modified &: "; }
-Language:before				{ content: "Language *: "; }
-MiscellaneousDocumentType:before	{ content: "Type *: "; }
-Note:before 				{ content: " [Note: "; }
-Note:after 				{ content: "]"; }
-PdqKey:before				{ content: "PDQ Key &: "; }
 
-
-/***************************************************************************/ 
-/*                      DOCUMENT, ID, AND META DATA                        */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                      DOCUMENT, ID, AND META DATA                      */
+/*************************************************************************/
 
 
 MiscellaneousDocumentMetadata,
-
-   { border: solid; 
+    { border: solid;
      border-color: black;
      border-width: thin;
      margin-top: 1em;
      margin-bottom: 6pt; }
 
-DateLastModified:before,
-
-     { font-weight: bold;
+DateLastModified                  :before,
+    { font-weight: bold;
        color: black;  }
 
 MiscellaneousDocumentMetaData,
+    { font-size: 12pt; }
 
-     { font-size: 12pt; }
-
-Audience:before, 
-Language:before,
-MiscellaneousDocumentType:before, 
-
-     { font-weight: bold;
+Audience                          :before,
+Language                          :before,
+MiscellaneousDocumentType         :before,
+    { font-weight: bold;
        font-size: 12pt;
        color: black; }
 
-PdqKey:before,
-    
-     { font-weight: bold;
-       color: purple; } 
+PdqKey                            :before,
+    { font-weight: bold;
+       color: purple; }
 
 PdqKey,
+    { margin-top: 4pt;  }
 
-     { margin-top: 4pt;  }
 
+/*************************************************************************/
+/*                            DOCUMENT TITLE                             */
+/*************************************************************************/
 
-/***************************************************************************/ 
-/*                            DOCUMENT TITLE                               */ 
-/***************************************************************************/ 
-
-MiscellaneousDocumentTitle 
-
-     { font-size: 20pt;
+MiscellaneousDocumentTitle
+    { font-size: 20pt;
        font-weight: bold;
        margin-top: 12pt; }
 
 
-
-/***************************************************************************/ 
-/*                               FORM DATA                                 */ 
-/***************************************************************************/ 
+/*************************************************************************/
+/*                               FORM DATA                               */
+/*************************************************************************/
 
 Audience,
 Language,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
+    { background-color: white; }
 
-	{ background-color: white; }
-
-Audience:before,
-Language:before,
-MiscellaneousDocumentType:before,
+Audience                          :before,
+Language                          :before,
+MiscellaneousDocumentType         :before,
 MiscellaneousDocumentMetadata,
+    { background-color: #CCCCFF; }
 
-	{ background-color: #CCCCFF; }
+/* Key element for length = Language                               */
+MiscellaneousDocumentType,
+    { margin-left: 80pt;
+      text-indent: -43.5pt; }
+Audience,
+    { margin-left: 80pt;
+      text-indent: -69pt;}
+Language,
+    { margin-left: 80pt;
+      text-indent: -72.5pt;}
 
-
-
-/* Key element for length = Language             	                  */
-
-MiscellaneousDocumentType,		{ margin-left: 80pt;
-					  text-indent: -43.5pt; }
-Audience,				{ margin-left: 80pt; 
-					  text-indent: -69pt;}
-Language,				{ margin-left: 80pt; 
-					  text-indent: -72.5pt;}
-					  
 Audience,
 Language,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
-
-	{ margin-bottom: 4pt; }
+    { margin-bottom: 4pt; }
 
 DateLastModified,
 MiscellaneousDocumentType,
+    { margin-top: 4pt; }
 
-	{ margin-top: 4pt; }
+Title
+    { margin-top: 24pt; }
 
-                                
+MiscellaneousDocumentText
+    { margin-bottom: 12pt; }
