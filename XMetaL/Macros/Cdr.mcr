@@ -5,6 +5,7 @@
 
      BZIssue::4716
      BZIssue::4767
+     BZIssue::4822
  
   -->
 
@@ -54,11 +55,18 @@
     var CdrOrgAddressClipboard = null;
     var CdrPdqIndexingClipboard = null;
 
-    function padNumber(number, length, padChar) {
-        var str = '' + number;
-        while (str.length < length)
-            str = padChar + str;
-        return str;
+    /*
+     * Find the path of the element enclosing the caller's selection.
+     */
+    function getSelectionPath(sel) {
+        var path = '';
+        var sep = '';
+        for (var depth = 0; depth < 999; ++depth) {
+            name = sel.ElementName(depth);
+            if (!name) return "/" + path;
+            path = name + sep + path;
+            sep = "/";
+        }
     }
 
     /*
@@ -979,9 +987,12 @@
     if (docType.name == "CTGovProtocol") {
         Application.AppendMacro("Show CTGovProtocol Titles",
                                 "Show CTGovProtocol Titles");
- 
         Application.AppendMacro("Insert PDQIndexing Block",
                                 "Insert PDQIndexing Block");
+        Application.AppendMacro("Next Unlinked Org",
+                                "Find Next Unlinked CTGov Org");
+        Application.AppendMacro("Next Unlinked Person",
+                                "Find Next Unlinked CTGov Person");
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
@@ -8488,7 +8499,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Extract PDQIndexing Block" lang="JScript" key="Alt+Z">
+<MACRO name="Extract PDQIndexing Block" lang="JScript">
   <![CDATA[
     function grabPdqIndexingBlock() {
         var doc = Application.ActiveDocument;
@@ -8616,6 +8627,59 @@
             node.setAttribute("LastReviewed", today);
     }
     setLastReviewedAttribute();
+  ]]>
+</MACRO>
+
+<MACRO name="Find Next Unlinked CTGov Org" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function findNextUnlinkedCTGovOrg() {
+        var pattern = new RegExp(
+            "^(\/CTGovProtocol\/Sponsors\/LeadSponsor|"
+            + "\/CTGovProtocol\/Sponsors\/Collaborator|"
+            + "\/CTGovProtocol\/Location\/Facility\/Name)$");
+        for (;;) {
+           var start = Selection.Duplicate;
+           Selection.GotoNext(0);
+           if (!start.IsLessThan(Selection.Duplicate)) {
+                Application.Alert("No more unlinked organizations found.");
+                break;
+            }
+            var path = getSelectionPath(Selection);
+            if (path.match(pattern)) {
+                var elem = Selection.ContainerNode;
+                var attr = elem.getAttribute('cdr:ref');
+                if (attr.length != 13 || attr.substring(0, 3) != 'CDR')
+                    break;
+            }
+        }
+    }
+    findNextUnlinkedCTGovOrg();
+  ]]>
+</MACRO>
+
+<MACRO name="Find Next Unlinked CTGov Person" lang="JScript">
+  <![CDATA[
+    function findNextUnlinkedCTGovPerson() {
+        var pattern = new RegExp(
+            "^(\/CTGovProtocol\/Sponsors\/OverallOfficial\/PDQPerson|"
+            + "\/CTGovProtocol\/Location\/Investigator\/PDQPerson)$");
+        for (;;) {
+           var start = Selection.Duplicate;
+           Selection.GotoNext(0);
+           if (!start.IsLessThan(Selection.Duplicate)) {
+                Application.Alert("No more unlinked persons found.");
+                break;
+            }
+            var path = getSelectionPath(Selection);
+            if (path.match(pattern)) {
+                var elem = Selection.ContainerNode;
+                var attr = elem.getAttribute('cdr:ref');
+                if (attr.length != 13 || attr.substring(0, 3) != 'CDR')
+                    break;
+            }
+        }
+    }
+    findNextUnlinkedCTGovPerson();
   ]]>
 </MACRO>
 
