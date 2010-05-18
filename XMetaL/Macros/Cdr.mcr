@@ -6,6 +6,7 @@
      BZIssue::4716
      BZIssue::4767
      BZIssue::4822
+     BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
  
   -->
 
@@ -48,12 +49,13 @@
     catch (ignoreMe) {}
 
 
-    // Clipboard for CDR links.
+    // Clipboard for CDR links and blocks.
     var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
     var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
     var CdrPdqIndexingClipboard = null;
+    var CdrPdqAdminInfoClipboard = null;
 
     /*
      * Find the path of the element enclosing the caller's selection.
@@ -67,6 +69,13 @@
             path = name + sep + path;
             sep = "/";
         }
+    }
+
+    function padNumber(number, length, padChar) {
+        var str = '' + number;
+        while (str.length < length)
+            str = padChar + str;
+        return str;
     }
 
     /*
@@ -939,6 +948,8 @@
         }
         Application.AppendMacro("Extract PDQIndexing Block",
                                 "Extract PDQIndexing Block");
+        Application.AppendMacro("Extract PDQAdminInfo Block",
+                                "Extract PDQAdminInfo Block");
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo") {
@@ -989,6 +1000,8 @@
                                 "Show CTGovProtocol Titles");
         Application.AppendMacro("Insert PDQIndexing Block",
                                 "Insert PDQIndexing Block");
+        Application.AppendMacro("Insert PDQAdminInfo Block",
+                                "Insert PDQAdminInfo Block");
         Application.AppendMacro("Next Unlinked Org",
                                 "Find Next Unlinked CTGov Org");
         Application.AppendMacro("Next Unlinked Person",
@@ -8581,27 +8594,79 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert PDQIndexing Block" lang="JScript">
+<MACRO name="Extract PDQAdminInfo Block" lang="JScript" key="Alt+Z">
   <![CDATA[
-    function insertPdqIndexingBlock() {
-        if (!CdrPdqIndexingClipboard) {
-            Application.Alert("PDQ Indexing clipboard empty");
+    function _grab(obj, doc, name) {
+        var nodes = new Array();
+        obj[name] = nodes;
+        var child = doc.documentElement.firstChild;
+        while (child) {
+            if (child.nodeName == name)
+                nodes.push(cloneFor(doc, child));
+            child = child.nextSibling;
+        }
+    }
+    function grabPdqAdminInfoBlock() {
+        var adminInfo = {};
+        var doc = Application.ActiveDocument;
+        _grab(adminInfo, doc, 'ProtocolIDs');
+        _grab(adminInfo, doc, 'FundingInfo');
+        _grab(adminInfo, doc, 'CTGovOwnershipTransferContactLog');
+        _grab(adminInfo, doc, 'CTGovOwnershipTransferInfo');
+        _grab(adminInfo, doc, 'PublishedResults');
+        _grab(adminInfo, doc, 'RelatedPublications');
+        _grab(adminInfo, doc, 'ProtocolSpecialCategory');
+        CdrPdqAdminInfoClipboard = adminInfo;
+    }
+    grabPdqAdminInfoBlock();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert PDQAdminInfo Block" lang="JScript">
+  <![CDATA[
+    function _insert(doc, parent, obj, name, newName) {
+        var elems = obj[name];
+        for (var i = 0; i < elems.length; ++i) {
+            var oldElem = elems[i];
+            var newElem = cloneFor(doc, oldElem, newName);
+            parent.appendChild(newElem);
+        }
+    }
+    function insertPdqAdminInfoBlock() {
+        if (!CdrPdqAdminInfoClipboard) {
+            Application.Alert("PDQ Admin Info clipboard empty");
             return;
         }
+        var info = CdrPdqAdminInfoClipboard;
         var doc = Application.ActiveDocument;
-        var oldBlock = getSingleElement(doc, 'PDQIndexing');
-        if (!oldBlock) {
-            Application.Alert("Unable to find old PDQIndexing block");
+        if (getSingleElement(doc, 'PDQAdminInfo')) {
+            Application.Alert("PDQAdminInfo block already present.\n" +
+                              "You must first remove it to use this macro.");
+            return;
+        }
+        var pdqIndexing = getSingleElement(doc, 'PDQIndexing');
+        if (!pdqIndexing) {
+            Application.Alert("PDQIndexing block missing.\n" +
+                              "Don't know where to insert new block.");
             return;
         }
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
-        var newBlock = cloneFor(doc, CdrPdqIndexingClipboard, 'PDQIndexing');
-        oldBlock.parentNode.replaceChild(newBlock, oldBlock);
-        CdrPdqIndexingClipboard = null;
+        var newBlock = doc.createElement('PDQAdminInfo');
+        _insert(doc, newBlock, info, 'ProtocolIDs', 'PDQProtocolIDs');
+        _insert(doc, newBlock, info, 'FundingInfo');
+        _insert(doc, newBlock, info, 'CTGovOwnershipTransferContactLog');
+        _insert(doc, newBlock, info, 'CTGovOwnershipTransferInfo');
+        _insert(doc, newBlock, info, 'PublishedResults');
+        _insert(doc, newBlock, info, 'RelatedPublications');
+        _insert(doc, newBlock, info, 'ProtocolSpecialCategory');
+        doc.documentElement.insertBefore(newBlock, pdqIndexing.nextSibling);
+        // oldBlock.parentNode.replaceChild(newBlock, oldBlock);
+        stripAttributes(newBlock, { "cdr:ref": 1, PdqKey: 1 }, true);
+        CdrPdqAdminInfoClipboard = null;
         ActiveDocument.RulesChecking = rulesChecking;
     }
-    insertPdqIndexingBlock();
+    insertPdqAdminInfoBlock();
   ]]>
 </MACRO>
 
@@ -8630,7 +8695,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Find Next Unlinked CTGov Org" lang="JScript" key="Alt+Z">
+<MACRO name="Find Next Unlinked CTGov Org" lang="JScript">
   <![CDATA[
     function findNextUnlinkedCTGovOrg() {
         var pattern = new RegExp(
