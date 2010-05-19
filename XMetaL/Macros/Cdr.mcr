@@ -1044,6 +1044,8 @@
             Application.AppendMacro("Edit Comment", "Edit Comment");
             Application.AppendMacro("Set Last Reviewed Attribute",
                                     "Set Last Reviewed Date");
+            Application.AppendMacro("Set Last Reviewed Status Attribute",
+                                    "Populate LastReviewedStatus Attribute");
         }
         else
             Application.AppendMacro("View Comment", "Edit Comment");
@@ -8594,7 +8596,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Extract PDQAdminInfo Block" lang="JScript" key="Alt+Z">
+<MACRO name="Extract PDQAdminInfo Block" lang="JScript">
   <![CDATA[
     function _grab(obj, doc, name) {
         var nodes = new Array();
@@ -8745,6 +8747,32 @@
         }
     }
     findNextUnlinkedCTGovPerson();
+  ]]>
+</MACRO>
+
+<MACRO name="Populate LastReviewedStatus Attribute" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function populateLastReviewedStatus() {
+        var elem = Selection.ContainerNode;
+        var docId = elem.getAttribute('cdr:href');
+        if (!docId) {
+            Application.Alert("Link attribute not found on current element");
+            return;
+        }
+        if (!cdrObj) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var path = '/InScopeProtocol/ProtocolAdminInfo/CurrentProtocolStatus';
+        var status = cdrObj.valuesForPath(docId, path);
+        if (!status) {
+            Application.Alert("Unable to find status for " + docId);
+            return;
+        }
+        //Application.Alert(status);
+        elem.setAttribute('LastReviewedStatus', status);
+    }
+    populateLastReviewedStatus();
   ]]>
 </MACRO>
 
