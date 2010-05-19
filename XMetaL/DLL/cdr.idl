@@ -49,6 +49,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(39), helpstring("method logClientEvent")] HRESULT logClientEvent([in] const BSTR* description, [out,retval] int* pRet);
         [id(40), helpstring("method getBoardMemberId")] HRESULT getBoardMemberId([in] const BSTR* personId, [out,retval] BSTR* boardMemberId);
         [id(41), helpstring("method editComment")] HRESULT editComment([in] VARIANT_BOOL readOnly);
+        [id(42), helpstring("method valuesForPath")] HRESULT valuesForPath([in] const BSTR* docId, [in] const BSTR* path, [out,retval] BSTR* values);
     };
 
 [

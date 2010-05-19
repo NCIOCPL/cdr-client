@@ -42,6 +42,7 @@
 #include <wchar.h>
 #include <windows.h>
 #include <atlenc.h>
+#include ".\commands.h"
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -3110,6 +3111,44 @@ STDMETHODIMP CCommands::editComment(VARIANT_BOOL readOnly)
     BOOL ro(readOnly);
     ::CCommentDialog dialog(ro);
     dialog.DoModal();
+
+    return S_OK;
+}
+
+/*
+ * Ask the CDR Server to find the values found at a specified
+ * path in a specific CDR document.  Returns the list of values
+ * in a single string, using the ASCII RS (record separator)
+ * as delimiter between the values, since this control character
+ * is not permitted in XML documents.  If it's possible to 
+ * return an array of strings from a COM object, I was unable
+ * to find documentation for this feature.
+ */
+STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path, 
+                                      BSTR* values)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString RS = _T("\x0E");
+    CString id(*docId);
+    CString p(*path);
+    CString request;
+    request.Format( 
+        _T("<CdrReport><ReportName>Values For Path</ReportName>")
+        _T("<ReportParams>")
+        _T("<ReportParam Name='DocId' Value='%s'/>")
+        _T("<ReportParam Name='Path' Value='%s'/>")
+        _T("</ReportParams></CdrReport>"), id, p);
+    CString resp = CdrSocket::sendCommand(request);
+    CString result = _T("");
+    CString sep = _T("");
+    cdr::Element e = cdr::Element::extractElement(resp, _T("Value"));
+    while (e) {
+        result += sep + e.getString();
+        sep = RS;
+        e = cdr::Element::extractElement(resp, _T("Value"), e.getEndPos());
+    }
+    result.SetSysString(values);
 
     return S_OK;
 }

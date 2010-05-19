@@ -1307,16 +1307,20 @@ bool cdr::getImageDimensions(CFile& file, ImageDimensions& dim) {
     }
 
     // Try PNG
-    elif (buf[0] == 0x89) {
-        if (file.Read(buf, 23) == 23 && !memcmp(buf, "PNG\r\n\x1a\nIHDR", 23) {
-            dim.width  = getNetworkLong(buf + 16);
-            dim.height = getNetworkLong(buf + 20);
-            return true;
+    else if (buf[0] == 0x89) {
+        if (file.Read(buf, 23) == 23) {
+            if (!memcmp(buf, "PNG\r\n\x1a\n", 7)) {
+                if (!memcmp(buf + 11, "IHDR", 4)) {
+                    dim.width  = getNetworkLong(buf + 15);
+                    dim.height = getNetworkLong(buf + 19);
+                    return true;
+                }
+            }
         }
     }
 
     // Try JPEG
-    elif (buf[0] == 0xFF) {
+    else if (buf[0] == 0xFF) {
         int skip = 0;
         if (file.Read(buf, 1) != 1 || buf[0] != 0xD8) // SOI marker
             return false;
@@ -1344,8 +1348,8 @@ bool cdr::getImageDimensions(CFile& file, ImageDimensions& dim) {
             default:
                 if (file.Read(buf, 2) != 2)
                     return false;
-                skip = (int)getNetworkShort(buf);
-                if (skip < 2)
+                skip = (int)getNetworkShort(buf) - 2;
+                if (skip < 0)
                     return false;
                 file.Seek((LONGLONG)skip, CFile::current);
                 break;
