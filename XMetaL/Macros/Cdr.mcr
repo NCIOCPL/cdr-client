@@ -8767,10 +8767,13 @@
         var path = '/InScopeProtocol/ProtocolAdminInfo/CurrentProtocolStatus';
         var status = cdrObj.valuesForPath(docId, path);
         if (!status) {
-            Application.Alert("Unable to find status for " + docId);
-            return;
+            path = '/CTGovProtocol/OverallStatus';
+            status = cdrObj.valuesForPath(docId, path);
+            if (!status) {
+                Application.Alert("Unable to find status for " + docId);
+                return;
+            }
         }
-        //Application.Alert(status);
         elem.setAttribute('LastReviewedStatus', status);
     }
     populateLastReviewedStatus();
