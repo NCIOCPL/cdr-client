@@ -7,6 +7,7 @@
      BZIssue::4767
      BZIssue::4822
      BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
+     BZIssue::4839 (populate LastReviewedStatus attribute)
  
   -->
 
@@ -8664,7 +8665,7 @@
         _insert(doc, newBlock, info, 'ProtocolSpecialCategory');
         doc.documentElement.insertBefore(newBlock, pdqIndexing.nextSibling);
         // oldBlock.parentNode.replaceChild(newBlock, oldBlock);
-        stripAttributes(newBlock, { "cdr:ref": 1, PdqKey: 1 }, true);
+        stripAttributes(newBlock, { "cdr:id": 1, PdqKey: 1 }, true);
         CdrPdqAdminInfoClipboard = null;
         ActiveDocument.RulesChecking = rulesChecking;
     }
