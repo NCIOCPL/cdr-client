@@ -634,7 +634,7 @@ static bool replaceImageDimensions(::DOMNode& docElement,
                                    CString height, CString width) {
     ::DOMElement& elem = (::DOMElement&)docElement;
     ::DOMNodeList nodeList = elem.getElementsByTagName(_T("ImageDimensions"));
-    if (nodeList == 0)
+    if (nodeList == 0 || nodeList.GetLength() < 1)
         return false;
     ::DOMElement dimElem = nodeList.item(0);
     ::DOMElement child = dimElem.GetFirstChild();
