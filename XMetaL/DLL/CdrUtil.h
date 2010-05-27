@@ -260,6 +260,7 @@ namespace cdr {
     CString expandLeadingZeros(const CString&);
     bool replaceElementContent(::DOMElement&, const CString&);
     bool getImageDimensions(CFile& file, ImageDimensions& dim);
+    int getAudioSeconds(CFile& file);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 

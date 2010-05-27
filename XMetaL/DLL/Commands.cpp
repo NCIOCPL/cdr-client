@@ -630,6 +630,40 @@ static void getBlobFromFile(char* buf, CFile& file, int len) {
     }
 }
 
+static bool replaceAudioSeconds(::DOMNode& docElement, CString seconds) {
+    ::DOMElement& elem = (::DOMElement&)docElement;
+    ::DOMNodeList nodeList = elem.getElementsByTagName(_T("SoundData"));
+    if (nodeList == 0 || nodeList.GetLength() < 1)
+        return false;
+    ::DOMElement dimElem = nodeList.item(0);
+    ::DOMElement child = dimElem.GetFirstChild();
+    while (child != 0) {
+        if (child.GetNodeName() == _T("RunSeconds")) {
+            cdr::replaceElementContent(child, seconds);
+            return true;
+        }
+        child = child.GetNextSibling();
+    }
+    return false;
+}
+
+static void insertAudioSeconds(::DOMNode& docElement, CFile& file) {
+
+    // Start by blanking out the existing value, to prevent leaving
+    // invalid information in the event that we're unable to determine
+    // the correct new information.  If the element is not already
+    // present, we do nothing.
+    if (!replaceAudioSeconds(docElement, _T("")))
+        return;
+
+    int seconds = cdr::getAudioSeconds(file);
+    if (seconds >= 0) {
+        CString s;
+        s.Format(_T("%d"), seconds);
+        replaceAudioSeconds(docElement, s);
+    }
+}
+
 static bool replaceImageDimensions(::DOMNode& docElement,
                                    CString height, CString width) {
     ::DOMElement& elem = (::DOMElement&)docElement;
@@ -784,10 +818,18 @@ STDMETHODIMP CCommands::save(int *pRet)
                 if (ctrlInfo.docType == _T("Media")) {
                     try {
                         // Harmless if blob isn't an image.
-                      insertImageDimensions(docElement, blobFile);
+                        insertImageDimensions(docElement, blobFile);
                     }
                     catch (...) {
                         TCHAR* msg = _T("Unable to set image dimensions");
+                        ::AfxMessageBox(msg);
+                    }
+                    try {
+                        // Shouldn't be a problem if this isn't an audio file.
+                        insertAudioSeconds(docElement, blobFile);
+                    }
+                    catch (...) {
+                        TCHAR* msg = _T("Unable to set RunSeconds");
                         ::AfxMessageBox(msg);
                     }
                 }

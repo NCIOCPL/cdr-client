@@ -9,6 +9,7 @@
 // Local headers.
 #include "stdafx.h"
 #include "CdrUtil.h"
+#include "mp3.h"
 
 // System headers.
 #include <map>
@@ -1359,6 +1360,15 @@ bool cdr::getImageDimensions(CFile& file, ImageDimensions& dim) {
 
     // Give up.
     return false;
+}
+
+// Parses mp3 file to determine the duration in seconds.
+// Returns the number of seconds if successful, otherwise -1.
+int cdr::getAudioSeconds(CFile& file) {
+    MP3INFO mp3;
+    if (getMp3Info(&mp3, file))
+        return mp3.seconds;
+    return -1;
 }
 
 // Assumes text-only content; no mixed-content markup allowed!
