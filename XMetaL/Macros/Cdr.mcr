@@ -8,7 +8,7 @@
      BZIssue::4822
      BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
      BZIssue::4839 (populate LastReviewedStatus attribute)
- 
+     BZIssue::4856 (changed name for LastReviewedDate macro's attribute) 
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
@@ -1043,7 +1043,7 @@
         Selection.IsParentElement('CitationLink'))) {
         if (!cdrDocReadOnly()) {
             Application.AppendMacro("Edit Comment", "Edit Comment");
-            Application.AppendMacro("Set Last Reviewed Attribute",
+            Application.AppendMacro("Set Last Reviewed Date Attribute",
                                     "Set Last Reviewed Date");
             Application.AppendMacro("Set Last Reviewed Status Attribute",
                                     "Populate LastReviewedStatus Attribute");
@@ -8685,16 +8685,16 @@
 
 <MACRO name="Set Last Reviewed Date" lang="JScript">
   <![CDATA[
-    function setLastReviewedAttribute() {
+    function setLastReviewedDateAttribute() {
         var today = getCurDateString();
         var node  = Selection.ContainerNode;
         var depth = 5;
         while (node && node.nodeType != 1 && depth-- > 0)
             node = node.parentNode;
         if (node && node.nodeType == 1)
-            node.setAttribute("LastReviewed", today);
+            node.setAttribute("LastReviewedDate", today);
     }
-    setLastReviewedAttribute();
+    setLastReviewedDateAttribute();
   ]]>
 </MACRO>
 
