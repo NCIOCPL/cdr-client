@@ -1,54 +1,57 @@
-/*************************************************************************/
-/*      Organization_structure.css                                       */
-/*                                                                       */
-/*      v. 3.6                                                           */
-/*      4/09/02  by ebator                                               */
-/*      Changed Location before text to match normal view                */
-/*                                                                       */
-/*      v. 3.5                                                           */
-/*      3/19/02  by ebator                                               */
-/*      Changed "sans serif" to sans-serif                               */
-/*                                                                       */
-/*      v. 3.4                                                           */
-/*      02/22/02  by ebator                                              */
-/*      Syntax in Default Properties modified to work with XMetaL 3      */
-/*                                                                       */
-/*      v. 3.3                                                           */
-/*      1/22/02  by ebator                                               */
-/*      User requests for tag and template changes                       */
-/*                                                                       */
-/*      v. 3.2                                                           */
-/*      1/10/02   by ebator                                              */
-/*      Changes based on user feedback to template and css               */
-/*                                                                       */
-/*      v. 3.0                                                           */
-/*      12/07-11/01   by ebator                                          */
-/*      Edited to import common schema elements                          */
-/*                                                                       */
-/*      v. 2.1                                                           */
-/*      12/06/01   by ebator                                             */
-/*      Cosmetic changes and common schema changes                       */
-/*                                                                       */
-/*      v. 2.0                                                           */
-/*      10/18/01  by ebator                                              */
-/*      Changes for Forms model                                          */
-/*                                                                       */
-/*      v. 1.2                                                           */
-/*      9/24/01  by ebator                                               */
-/*      Make all tags black; display:none common elements;               */
-/*      added counter to Location                                        */
-/*                                                                       */
-/*      v 1.1                                                            */
-/*                                                                       */
-/*      9/8/01  5:00 pm  by ebator                                       */
-/*      Based on the 9/8/01 update of the organization.css               */
-/*      Added all common elements and $PROCINS to Hide Text list         */
-/*                                                                       */
-/*************************************************************************/
+/**************************************************************************/
+/*   Organization_structure.css                                           */
+/*   ==========================                                           */
+/*                                                                        */
+/*   Bug 4847  - Change CSS to accomodate new elements                    */
+/*                                                                        */
+/*      v. 3.6                                                            */
+/*      4/09/02  by ebator                                                */
+/*      Changed Location before text to match normal view                 */
+/*                                                                        */
+/*      v. 3.5                                                            */
+/*      3/19/02  by ebator                                                */
+/*      Changed "sans serif" to sans-serif                                */
+/*                                                                        */
+/*      v. 3.4                                                            */
+/*      02/22/02  by ebator                                               */
+/*      Syntax in Default Properties modified to work with XMetaL 3       */
+/*                                                                        */
+/*      v. 3.3                                                            */
+/*      1/22/02  by ebator                                                */
+/*      User requests for tag and template changes                        */
+/*                                                                        */
+/*      v. 3.2                                                            */
+/*      1/10/02   by ebator                                               */
+/*      Changes based on user feedback to template and css                */
+/*                                                                        */
+/*      v. 3.0                                                            */
+/*      12/07-11/01   by ebator                                           */
+/*      Edited to import common schema elements                           */
+/*                                                                        */
+/*      v. 2.1                                                            */
+/*      12/06/01   by ebator                                              */
+/*      Cosmetic changes and common schema changes                        */
+/*                                                                        */
+/*      v. 2.0                                                            */
+/*      10/18/01  by ebator                                               */
+/*      Changes for Forms model                                           */
+/*                                                                        */
+/*      v. 1.2                                                            */
+/*      9/24/01  by ebator                                                */
+/*      Make all tags black; display:none common elements;                */
+/*      added counter to Location                                         */
+/*                                                                        */
+/*      v 1.1                                                             */
+/*                                                                        */
+/*      9/8/01  5:00 pm  by ebator                                        */
+/*      Based on the 9/8/01 update of the organization.css                */
+/*      Added all common elements and $PROCINS to Hide Text list          */
+/*                                                                        */
+/**************************************************************************/
 
-/*************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                */ 
-/*************************************************************************/ 
+/**************************************************************************/ 
+/*                     DEFAULT PROPERTIES                                 */ 
+/**************************************************************************/ 
 @import "CdrCommonSchema_structure.css";
 
 @sq-plus-minus;
@@ -114,6 +117,7 @@ DateLastModified,
 Directory,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember, 
 MainMemberOf,
 MeetingDate,
@@ -145,6 +149,7 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 ShortName,
+ShowReviewerInfo,
 Status,
 Year
      { display: block; }
@@ -183,6 +188,7 @@ Date:before, MeetingDate:before
 DateLastModified     :before { content: "Last Modified"; }
 IncludeInDirectory   :before { content: "Include in Directory? "; } 
 Location             :before { content: "LOCATION "; }
+LOESummary           :before { content: "LOE Summary"; }
 MainMember           :before { content: "Main Member "; } 
 MainMemberOf         :before { content: "MAIN MEMBER OF "; }
 MediaLink            :before { content: "Media Link"; }
@@ -233,6 +239,7 @@ ProtocolParticipation:before { content: "Protocol Participation? "; }
 ProtocolIDAcronym    :before { content: "Protocol ID Acronym"; }
 ResearchBaseFor      :before { content: "Research Base For "; }
 ShortName            :before { content: "Short Name "; }
+ShowReviewerInfo     :before { content: "Show Reviewer Info?"; }
 Status               :before { content: "STATUS"; }
 Type                 :before { content: "Type " }
 Year                 :before { content: "Year "; }
@@ -362,6 +369,7 @@ Date,
 DateLastModified,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember, 
 MainMemberOf,
 MediaLink,
@@ -392,6 +400,7 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 ShortName,
+ShowReviewerInfo,
 Status,
 Type,
 Year
@@ -425,6 +434,7 @@ DayTime,
 FormerName,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember, 
 MainMemberOf,
 MediaID,
@@ -458,6 +468,7 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 ShortName,
+ShowReviewerInfo,
 Status,
 Type,
 Year,
@@ -488,6 +499,7 @@ DayTime                           :before,
 FormerName                        :before,
 IncludeInDirectory                :before,
 Location                          :before,
+LOESummary                        :before,
 MainMember                        :before, 
 MainMemberOf,
 MediaLink                         :before,
@@ -521,7 +533,8 @@ ProtocolParticipation             :before,
 Public                            :before,
 ResearchBaseFor                   :before,
 ShortName                         :before,
+ShowReviewerInfo                  :before,
 Status,
 Type                              :before,
-Year                              :before,
+Year                              :before
      { background-color: white; }

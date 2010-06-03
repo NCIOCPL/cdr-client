@@ -1,5 +1,8 @@
 /**************************************************************************/
 /*   Organization.css                                                     */
+/*   ================                                                     */
+/*                                                                        */
+/*   Bug 4847  - Change CSS to accomodate new elements                    */
 /*                                                                        */
 /*      v. 3.8                                                            */
 /*      5/16/02  by ebator                                                */
@@ -69,8 +72,6 @@
 /*      "hidden" attributes that don't appear in the CSS,                 */
 /*      org links filled in with dummy data,                              */
 /*      required * and multiple + elements                                */
-/*                                                                        */
-/*                                                                        */
 /**************************************************************************/
 
 /**************************************************************************/
@@ -132,6 +133,7 @@ DateLastModified,
 DayTime,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember,
 MainMemberOf,
 MediaLink,
@@ -163,6 +165,7 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 ShortName,
+ShowReviewerInfo,
 Status,
 Type,
 Year
@@ -208,6 +211,7 @@ Date                 :before { content: "Date * +: "; }
 DateLastModified     :before { content: "Last Modified &: "; }
 IncludeInDirectory   :before { content: "Include in Directory? *: "; }
 Location             :before { content: "LOCATION [" attr(cdr\:id) "]"; }
+LOESummary           :before { content: "LOE Summary * @: "; }
 MainMember           :before { content: "Main Member & @: "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF & +"; }
 MediaLink            :before { content: "Media & + @: "; }
@@ -254,6 +258,7 @@ ProtocolIDAcronym    :before { content: "Protocol ID Acronym & +: "; }
 ProtocolParticipation:before { content: "Protocol Participation? *: "; }
 ResearchBaseFor      :before { content: "Research Base For & + @: "; }
 ShortName > Name     :before { content: "Short Name & + @: "; }
+ShowReviewerInfo     :before { content: "Show Reviewer Info? *:"; }
 Status               :before { content: "STATUS *"; }
 Year                 :before { content: "Year *: "; }
 
@@ -274,6 +279,7 @@ ClinicalTrialsOfficeContact
 Date                 :before,
 DayTime              :before,
 Location             :before,
+LOESummary           :before,
 MainMemberOf         :before,
 MediaID              :before,
 MediaLink            :before,
@@ -289,6 +295,7 @@ OrganizationLocations:before,
 OrganizationNameInformation
                      :before,
 PDQBoardInformation  :before,
+ShowReviewerInfo     :before,
 Status               :before,
 Year                 :before
     {  font-weight: bold;
@@ -507,14 +514,18 @@ ClinicalTrialsOfficeContactPhone       { margin-left: 110pt;
 ClinicalTrialsOfficeContactName        { margin-left: 110pt; 
                                          text-indent: -82.5pt; }
 
-AdvisoryBoardFor                       { margin-left: 100pt; 
-                                         text-indent: -97.5pt; }
-BoardManager                           { margin-left: 100pt; 
+AdvisoryBoardFor                       { margin-left: 160pt; 
+                                         text-indent: -112.5pt; }
+BoardManager                           { margin-left: 160pt; 
                                          text-indent: -65pt; }
-BoardManagerPhone                      { margin-left: 100pt; 
+BoardManagerPhone                      { margin-left: 160pt; 
                                          text-indent: -68pt; }
-BoardManagerEmail                      { margin-left: 100pt; 
+BoardManagerEmail                      { margin-left: 160pt; 
                                          text-indent: -62pt; }
+LOESummary                             { margin-left: 160pt; 
+                                         text-indent: -113pt; }
+ShowReviewerInfo                       { margin-left: 160pt; 
+                                         text-indent: -134pt; }
 DayTime                                { margin-left: 100pt; 
                                          text-indent: -43.5pt; }
 BoardMeetings                          { margin-left:  30pt; }
@@ -553,6 +564,7 @@ Date,
 DateLastModified,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember,
 MainMemberOf,
 MeetingDate,
@@ -582,14 +594,15 @@ ProtocolParticipation,
 Public,
 ResearchBaseFor,
 ShortName,
+ShowReviewerInfo,
 Status,
-Year,
+Year
     { margin-bottom: 4pt; }
 
 
 CCOP,
 CooperativeGroup,
-IncludeInDirectory,
+IncludeInDirectory
     { margin-top: 4pt; }
 
 
@@ -619,6 +632,7 @@ Date,
 DateLastModified,
 IncludeInDirectory,
 Location,
+LOESummary,
 MainMember,
 MediaID,
 MeetingDate,
@@ -644,6 +658,7 @@ ProtocolIDAcronym,
 ProtocolParticipation,
 Public,
 ResearchBaseFor,
+ShowReviewerInfo,
 Status,
 Year
     { background-color: white; }
@@ -676,6 +691,7 @@ DateLastModified                  :before,
 IncludeInDirectory                :before,
 Location,
 Location                          :before,
+LOESummary                        :before,
 MainMember                        :before,
 MainMemberOf,
 MediaID                           :before,
@@ -713,6 +729,7 @@ Public                            :before,
 ResearchBaseFor                   :before,
 ShortName,
 ShortName                         :before,
+ShowReviewerInfo                  :before,
 Status,
 Year                              :before
     { background-color: #CCCCFF; }
