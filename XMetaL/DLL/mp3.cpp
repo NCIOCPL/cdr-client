@@ -87,10 +87,17 @@ bool getMp3Info(MP3INFO* mp3, CFile& file) {
         // I've copied that sloppiness from the original
         // mp3info code; will eliminate it if the CDR users
         // ask me to.
+        // 2010-06-03: eliminated padding bug described above,
+        // after further discussion with original author, who
+        // tells me that the padding byte has no effect on
+        // runtime length (RMK)
         int frameTypes = 0, framesSoFar = 0, vbrMedian = -1;
         double seconds = 0.0, totalRate = 0.0;
         MP3HEADER h;
         memcpy(&h, &mp3->header, sizeof h);
+        // Force padding to false, since we're not interested at this
+        // point in counting bytes but in calculating runtime duration.
+        h.padding = false;
         for (int i = 0; i < sizeof(counts) / sizeof(*counts); ++i) {
             if (counts[i]) {
                 frameTypes++;
