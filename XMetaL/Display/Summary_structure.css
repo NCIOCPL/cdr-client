@@ -1,6 +1,8 @@
 /*************************************************************************/
 /*      Summary_structure.css                                            */
 /*                                                                       */
+/*      BZIssue::4847 - Change CSS to accomodate new elements            */
+/*                                                                       */
 /*      v. 3.6                                                           */
 /*      10/10/02  by ebator                                              */
 /*      Added 4th and 5th level subsections                              */
@@ -136,6 +138,7 @@ MediaLink,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
+PurposeText,
 QandADiv,
 QandAEntry,
 QandASet,
@@ -155,7 +158,7 @@ Term,
 Title,
 TranslationOf,
 ReplacementFor,
-WillReplace,
+WillReplace
     { display: block; }
 
 
@@ -183,6 +186,7 @@ SummarySection>SummarySection>Para
 PatientVersionOf                  :before { content: "Patient Version Of "; }
 PDQBoard                          :before { content: "PDQ Board "; }
 PdqKey                            :before { content: "PDQ Key "; }
+PurposeText                       :before { content: "Purpose Text"; }
 QandASet                          :before { content: "Q&A Section "; }
 QandADiv                          :before { content: "Q&A Sub-Section "; }
 QandAEntry                        :before { content: counter(qanda)". Q&A Entry "; }
@@ -267,13 +271,14 @@ Board                             :before,
 BoardMember                       :before,
 MainTopics                        :before,
 PDQBoard                          :before,
+PurposeText                       :before,
 SecondaryTopics                   :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
-Term                              :before,
+Term                              :before
     { font-size: 10pt; }
 
 SummarySection>Comment            :before,
@@ -296,6 +301,7 @@ Drug                              :before,
 Intervention                      :before,
 PatientVersionOf                  :before,
 PdqKey                            :before,
+PurposeText                       :before,
 SectionType                       :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
@@ -304,7 +310,7 @@ SummaryType                       :before,
 SummaryURL                        :before,
 Term                              :before,
 TranslationOf                     :before,
-WillReplace                       :before,
+WillReplace                       :before
     { color: black;
       font-weight: bold; }
 
@@ -361,6 +367,7 @@ MediaID,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
+PurposeText,
 SecondaryTopics,
 SectMetaData,
 SectionType,
@@ -378,7 +385,7 @@ Term,
 /*Title, */
 TranslationOf,
 ReplacementFor,
-WillReplace,
+WillReplace
     { color: white;
       background-color: white; }
 
@@ -396,13 +403,14 @@ WillReplace,
 /*************************************************************************/
 Board                             :before,
 BoardMember                       :before,
+PurposeText                       :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
 MainTopics>Term                   :before,
-SecondaryTopics>Term              :before,
+SecondaryTopics>Term              :before
     { background-color: white; }
 
 
@@ -414,6 +422,7 @@ DateLastModified,
 MainTopics>Term,
 MediaID,
 PatientVersionOf,
+PurposeText,
 ReplacementFor,
 SecondaryTopics>Term,
 SummaryAudience,
@@ -422,6 +431,6 @@ SummaryLanguage,
 SummaryType,
 SummaryURL,
 TranslationOf,
-WillReplace,
+WillReplace
     { text-indent: 0pt; }
 

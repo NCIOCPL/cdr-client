@@ -1,6 +1,8 @@
 /*************************************************************************/
 /*      Summary.css                                                      */
 /*                                                                       */
+/*      BZIssue::4847 - Change Css to accomodate new elements            */
+/*                                                                       */
 /*      v. 3.6                                                           */
 /*      10/08/02  by ebator                                              */
 /*      SummarySection/SummarySection/SummarySection/Insertion/Title     */
@@ -176,6 +178,7 @@ MediaID,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
+PurposeText,
 ReplacementFor,
 SecondaryTopics, 
 SectMetaData,
@@ -215,6 +218,7 @@ MainTopics>Term      :before { content: "Main Topics * + @: "; }
 MediaID              :before { content: "Media ID: "; }
 PatientVersionOf     :before { content: "Patient Version of & @: "; }
 PdqKey               :before { content: "PDQ Key &: "; }
+PurposeText          :before { content: "Purpose Text &: "; }
 ReplacementFor       :before { content: "Replacement for & @: "; }
 SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
 SummaryAudience      :before { content: "Summary Audience *: "; }
@@ -271,10 +275,11 @@ SummaryURL                   :before,
 
 Board                        :before,
 BoardMember                  :before,
+Caption                      :before,
 MainTopics>Term              :before,
 MediaID                      :before,
-Caption                      :before,
-SecondaryTopics>Term         :before,
+PurposeText                  :before,
+SecondaryTopics>Term         :before
     { font-weight: bold;
       font-size: 12pt; 
       color: black; }
@@ -779,13 +784,14 @@ SummarySection>Table,
 /***************************************************************************/ 
 Board                        :before,
 BoardMember                  :before,
+PDQBoard,
+PurposeText                  :before,
 SummaryMetaData,
 SummaryAudience              :before,
 SummaryDescription           :before,
 SummaryLanguage              :before,
 SummaryType                  :before,
 SummaryURL                   :before,
-PDQBoard,
 MainTopics,
 MainTopics>Term              :before,
 SecondaryTopics,
@@ -793,15 +799,16 @@ SecondaryTopics>Term         :before,
     { background-color: #CCCCFF; }
 
 
+Board,
+BoardMember,
+PurposeText,
 SummaryAudience,
 SummaryDescription,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
-Board,
-BoardMember,
 MainTopics>Term,
-SecondaryTopics>Term,
+SecondaryTopics>Term
     { background-color: white; }
 
 
@@ -813,6 +820,9 @@ Board,
 BoardMember,    
                   { margin-left: 135pt; 
                     text-indent: -129pt;}
+PurposeText
+                  { margin-left: 135pt; 
+                    text-indent: -97pt;}
 SummaryAudience,    
                   { margin-left: 135pt; 
                     text-indent: -127.5pt;}
@@ -853,6 +863,7 @@ Board,
 BoardMember,
 Caption,
 MediaID,
+PurposeText,
 SummaryAudience,
 SummaryDescription,
 SummaryLanguage,
