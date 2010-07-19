@@ -3,6 +3,9 @@
 /*                                                                       */
 /*      v. 1.0                                                           */
 /*      3/05/04  by CBurg                                                */
+/*                                                                       */
+/* BZIssue::4853 - Changes to CSS/Template in PDQ Board Member Info      */
+/*                                                                       */
 /*************************************************************************/
 /*************************************************************************/
 /*                     DEFAULT PROPERTIES                                */
@@ -43,6 +46,10 @@ PDQBoardMemberInfo,
 /*************************************************************************/
 /*                           BLOCK ELEMENTS                              */
 /*************************************************************************/
+Affiliation,
+AffiliationName,
+AffiliationPlace,
+Affiliations,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -88,6 +95,10 @@ TransferFromBoard,
 /*************************************************************************/
 /*                       BEFORE AND AFTER TAGS                           */
 /*************************************************************************/
+Affiliation                  :before { content: "AFFILIATION"; }
+AffiliationName              :before { content: "Affiliation Name"; }
+AffiliationPlace             :before { content: "Affiliation Place"; }
+Affiliations                 :before { content: "AFFILIATIONS"; }
 AreaComment                  :before { content: "Comment";}
 AreaOfExpertise              :before { content: "Area of Expertise";}
 AssistantEmail               :before { content: "Email";}
@@ -149,6 +160,8 @@ SpecificBoardMemberContact        :before,
 /*************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS              */
 /*************************************************************************/
+AffiliationName                   :before,
+AffiliationPlace                  :before,
 AreaOfExpertise                   :before,
 AssistantEmail                    :before,
 AssistantFax                      :before,
@@ -204,10 +217,11 @@ AreaOfExpertise                   :before,
 /*************************************************************************/
 /*                            BORDER CONTROL                             */
 /*************************************************************************/
+Affiliations,
 BoardMemberAssistant,
 BoardMembershipDetails,
 DatedAction,
-SpecificBoardMemberContact,
+SpecificBoardMemberContact
     { border: none; }
 
 
@@ -215,6 +229,10 @@ SpecificBoardMemberContact,
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                */
 /*************************************************************************/
 /* Remove negative text-indent settings  */
+Affiliation,
+AffiliationName,
+AffiliationPlace,
+Affiliations,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -260,6 +278,8 @@ TransferFromBoard,
 /*************************************************************************/
 /*                            HIDE TEXT                                  */
 /*************************************************************************/
+AffiliationName,
+AffiliationPlace,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -299,6 +319,10 @@ TransferFromBoard,
       background-color: white; }
 
 
+Affiliation                       :before,
+AffiliationName                   :before,
+AffiliationPlace                  :before,
+Affiliations                      :before,
 AreaOfExpertise                   :before,
 AssistantEmail                    :before,
 AssistantFax                      :before,

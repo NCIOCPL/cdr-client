@@ -3,6 +3,8 @@
 /*  v. 1.0                                                               */
 /*      3/2/2004 cburg                                                   */
 /*                                                                       */
+/* BZIssue::4853 - Changes to CSS/Template in PDQ Board Member Info      */
+/*                                                                       */
 /*************************************************************************/
 /*************************************************************************/
 /*                     DEFAULT PROPERTIES                                */
@@ -32,6 +34,10 @@ PDQBoardMemberInfo,
 /*************************************************************************/
 /*                           BLOCK ELEMENTS                              */
 /*************************************************************************/
+Affiliation,
+AffiliationName,
+AffiliationPlace,
+Affiliations,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -84,6 +90,11 @@ TransferFromBoard,
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+Affiliation                  :before { content: "AFFILIATION * + @"; }
+Affiliation[Usage]           :before { content: "AFFILIATION * + @ (" attr(Usage) ")"; }
+AffiliationName              :before { content: "Name & +:"; }
+AffiliationPlace             :before { content: "Place &:"; }
+Affiliations                 :before { content: "AFFILIATIONS &"; }
 AreaComment                  :before { content: "Comment & : "; }
 AreaOfExpertise              :before { content: "Area of Expertise &: "; }
 AssistantEmail               :before { content: "Email & @: "; }
@@ -170,14 +181,16 @@ AreaOfExpertise,
          { margin-top: 1em; }
 
 
+Affiliation,
 AssistantPhone,
-BoardContactPhone,
+BoardContactPhone
     { margin-top: 1em; }
 
 
 /*************************************************************************/
 /*                         BORDERED SECTIONS                             */
 /*************************************************************************/
+Affiliations                      :before,
 BoardMemberAssistant              :before,
 BoardMembershipDetails            :before,
 SpecificBoardMemberContact        :before,
@@ -185,6 +198,7 @@ SpecificBoardMemberContact        :before,
       font-size: 12pt;
       color: black; }
 
+Affiliations,
 BoardMemberAssistant,
 BoardMembershipDetails,
 SpecificBoardMemberContact,
@@ -201,6 +215,9 @@ DatedAction,
 /*************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS              */
 /*************************************************************************/
+Affiliation                       :before,
+AffiliationName                   :before,
+AffiliationPlace                  :before,
 AreaOfExpertise                   :before,
 AssistantEmail                    :before,
 AssistantEmail                    :after,
@@ -265,6 +282,15 @@ AreaOfExpertise                   :before,
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                */
 /*************************************************************************/
 /* Each tag is manually positioned to right-align                        */
+
+Affiliation
+         { text-indent:  30pt; }
+AffiliationName
+         { margin-left: 100pt;
+           text-indent: -60pt; }
+AffiliationPlace
+         { margin-left: 100pt;
+           text-indent: -48.5pt; }
 
 /* Contact Information */
 BoardMemberName,
@@ -379,6 +405,10 @@ BoardMemberAssistant > Comment
 
 
 /* Separate each line to make it look like a text box  */
+Affiliation,
+AffiliationName,
+AffiliationPlace,
+Affiliations,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -421,6 +451,8 @@ TransferFromBoard,
 /*************************************************************************/
 /*                               COLOR                                   */
 /*************************************************************************/
+AffiliationName,
+AffiliationPlace,
 AreaOfExpertise,
 AssistantEmail,
 AssistantFax,
@@ -460,6 +492,10 @@ TermStartDate,
 TransferFromBoard,
     { background-color: white; }
 
+Affiliation                       :before,
+AffiliationName                   :before,
+AffiliationPlace                  :before,
+Affiliations                      :before,
 AreaOfExpertise                   :before,
 AssistantEmail                    :before,
 AssistantFax                      :before,
