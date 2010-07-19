@@ -6,6 +6,38 @@
    <NoPrettyPrinting/>
   </GlobalPrettyPrintOptions>
   <ElementProperties>
+   <Name ns="">Affiliation</Name>
+   <TagColor>CC8800</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">AffiliationName</Name>
+   <TagColor>CCAA00</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">AffiliationPlace</Name>
+   <TagColor>CCAA00</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Affiliations</Name>
+   <TagColor>CC6600</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">RelatedDocuments</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -21,6 +53,36 @@
   </ElementProperties>
  </ElementPropertiesList>
  <Templates>
+  <Template>
+   <Name>Affiliation</Name>
+   <MiniTemplate><![CDATA[
+        <Affiliation>
+          <AffiliationName><?xm-replace_text {
+                   Enter an affiliation name
+                   }?></AffiliationName>
+          <AffiliationPlace><?xm-replace_text {
+                   Enter an affiliation place
+                   }?></AffiliationPlace>
+        </Affiliation>
+]]>
+   </MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Affiliations</Name>
+   <MiniTemplate><![CDATA[
+        <Affiliations>
+          <Affiliation>
+            <AffiliationName><?xm-replace_text {
+                   Enter an affiliation name
+                   }?></AffiliationName>
+            <AffiliationPlace><?xm-replace_text {
+                   Enter an affiliation place
+                   }?></AffiliationPlace>
+          </Affiliation>
+        </Affiliations>
+]]>
+   </MiniTemplate>
+  </Template>
   <Template>
    <Name>BoardContactPostalAddress</Name>
    <MiniTemplate><![CDATA[
