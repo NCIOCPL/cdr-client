@@ -259,7 +259,7 @@ DateSubmissionComplete            :before
 LeadOrgProtocolStatuses>Comment   :before { content: "Comments &: "; }
 ExternalSiteAddress > Country     :before { content: "Country : "; }
 CompletionDate                    :before { content: "Compl Date &: "; }
-CTGovDuplicate                    :before { content: "CTGov Duplicate & +: "; }
+CTGovDuplicate                    :before { content: "*** CTGOV DUPLICATE: REVIEW BEFORE TRANSFER ***"; }
 CTGovOwnershipTransferContactLog  :before { content: "CTOV OWNERSHIP TRANSFER CONTACT LOG &: "; }
 CTGovOwnershipTransferContactResponse
                                   :before { content: "Contact Response *: "; }
@@ -514,10 +514,11 @@ VoluntaryReview                   :before,
   {  font-weight: bold;
      color: black;  }
 
+CTGovDuplicate                    :before,
 BlockedFromCTGov                  :before,
   {  font-weight: bold;
      color: red;  }
-
+CTGovDuplicate                    :before { font-size: 14pt }
 LeadOrgProtocolStatuses > Comment :before,
 DateLastModified                  :before,
 ProtocolSource>DateReceived       :before,
