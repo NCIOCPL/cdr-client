@@ -96,8 +96,9 @@
          is approved by the
          <GlossaryTermRef cdr:href="CDR0000454785">Food and Drug 
          Administration (FDA)</GlossaryTermRef>
-         to treat cancer or conditions related to 
-         <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>.</Para>                          
+         to treat 
+         <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>
+         or conditions related to cancer.</Para>                          
   <Para><?xm-replace_text {
          Enter the DCS regimen
          }?>
