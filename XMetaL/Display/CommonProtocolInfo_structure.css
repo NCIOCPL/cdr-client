@@ -234,7 +234,7 @@ ProtocolDesign            :before { content: "Protocol Design "; }
 ProtocolDetail            :before { content: "PROTOCOL DETAILS"; }
 ProtocolIDs               :before { content: "PROTOCOL IDS "; }
 ProtocolPhase             :before { content: "Protocol Phase "; }
-ProtocolProcessingDetails::before { content: "PROTOCOL PROCESSING DETAILS "; }
+ProtocolProcessingDetails :before { content: "PROTOCOL PROCESSING DETAILS "; }
 ProtocolRelatedLinks      :before { content: "PROTOCOL RELATED LINKS "; }
 ProtocolTitle[Type="Original"]
                           :before { content: "ORIGINAL TITLE "; }

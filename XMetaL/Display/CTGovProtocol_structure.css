@@ -81,8 +81,10 @@ CTGovOwnershipTransferDate,
 CTGovOwnershipTransferInfo,
 CTGovProtocol,
 CTIntervention,
+CTInterventionDescription,
 CTInterventionName,
 CTInterventionType,
+CTKeyword,
 CTMaximumAge,
 CTMinimumAge,
 CTNumberOfArms,
@@ -222,8 +224,10 @@ CTGovOwnershipTransferDate   :before,
 CTGovOwnerOrganization       :before,
 CTGovProtocol                :before,
 CTIntervention               :before,
+CTInterventionDescription    :before,
 CTInterventionName           :before,
 CTInterventionType           :before,
+CTKeyword                    :before,
 CTMaximumAge                 :before,
 CTMinimumAge                 :before,
 CTNumberOfArms               :before,
@@ -374,11 +378,14 @@ CTOversightInfo                   :before { content: "CT OVERSIGHT INFO"; }
 CTReference                       :before { content: "REFERENCE"; }
 CTResultsReference                :before { content: "RESULTS REFERENCE"; }
 CTSamplingMethod                  :before { content: "Sampling Method"; }
+CTSource                          :before { content: "CT Source"; }
 CTStudyPop                        :before { content: "STUDY POP"; }
 CTStudyType                       :before { content: "CT Study Type"; }
 CTIntervention                    :before { content: "INTERVENTION"; }
+CTInterventionDescription         :before { content: "Intervention Description"; }
 CTInterventionName                :before { content: "Intervention Name"; }
 CTInterventionType                :before { content: "Intervention Type"; }
+CTKeyword                         :before { content: "Keyword"; }
 CTMaximumAge                      :before { content: "Maximum Age"; }
 CTMinimumAge                      :before { content: "Minimum Age"; }
 CTStudyDesign                     :before { content: "Study Design"; }
