@@ -137,9 +137,7 @@
 
 @import "CdrCommonSchema.css";  
 
-
 $DOCUMENT 
-
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
@@ -147,13 +145,11 @@ $DOCUMENT
        margin-left: 5px; }
 
 $COMMENT 
-
      { display: block;
        color: purple;
        white-space: pre; }
 
 $PROCINS 
-
      { color: navy;
        font-weight: normal;
        background-color: white; }
@@ -163,7 +159,6 @@ $PROCINS
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 AltTitle,
-Caption,
 Board, 
 BoardMember, 
 ComprehensiveReviewDate,
@@ -173,8 +168,6 @@ Drug,
 Intervention,
 KeyPoint, 
 MainTopics, 
-MediaLink,
-MediaID,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
@@ -795,12 +788,14 @@ SummaryURL                   :before,
 MainTopics,
 MainTopics>Term              :before,
 SecondaryTopics,
-SecondaryTopics>Term         :before,
+SecondaryTopics>Term         :before
     { background-color: #CCCCFF; }
 
 
 Board,
 BoardMember,
+Caption                      :before,
+MediaID                      :before,
 PurposeText,
 SummaryAudience,
 SummaryDescription,
@@ -861,8 +856,6 @@ MediaLink,
 
 Board,
 BoardMember,
-Caption,
-MediaID,
 PurposeText,
 SummaryAudience,
 SummaryDescription,

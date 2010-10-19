@@ -118,6 +118,7 @@ BoardManagerEmail,
 BoardMeeting,
 BoardMeetings,
 BoardMeetingDates,
+BoardNameTranslation,
 CCOP,
 CIPSContact,
 CIPSContactPerson,
@@ -136,7 +137,6 @@ Location,
 LOESummary,
 MainMember,
 MainMemberOf,
-MediaLink,
 MeetingDate,
 MeetingTime,
 MemberOfAdHocGroup,
@@ -191,6 +191,7 @@ BoardMeeting[ReasonCanceled]
 BoardMeeting         :before { content: "BOARD MEETING * +"; }
 BoardMeetings        :before { content: "BOARD MEETINGS &"; }
 BoardMeetingDates    :before { content: "MEETING DATE(s) * +"; }
+BoardNameTranslation :before { content: "Board Name Transl. &: "; }
 DayTime              :before { content: "Time *: "; }
 FormerName           :before { content: "Former Name & +: "; }
 CCOP                 :before { content: "CCOP * @: "; }
@@ -274,6 +275,7 @@ BoardManagerEmail    :before,
 BoardMeeting         :before,
 BoardMeetings        :before,
 BoardMeetingDates    :before,
+BoardNameTranslation :before,
 ClinicalTrialsOfficeContact
                      :before,
 Date                 :before,
@@ -298,8 +300,8 @@ PDQBoardInformation  :before,
 ShowReviewerInfo     :before,
 Status               :before,
 Year                 :before
-    {  font-weight: bold;
-    color: black;        }
+    { font-weight: bold;
+      color: black;        }
 
 
 OrganizationNameInformation:before,
@@ -522,6 +524,8 @@ BoardManagerPhone                      { margin-left: 160pt;
                                          text-indent: -68pt; }
 BoardManagerEmail                      { margin-left: 160pt; 
                                          text-indent: -62pt; }
+BoardNameTranslation                   { margin-left: 160pt; 
+                                         text-indent:-133.5pt; }
 LOESummary                             { margin-left: 160pt; 
                                          text-indent: -113pt; }
 ShowReviewerInfo                       { margin-left: 160pt; 
@@ -549,6 +553,7 @@ AlternateName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
+BoardNameTranslation,
 DayTime,
 FormerName,
 CCOP,
@@ -616,6 +621,7 @@ AlternateName,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
+BoardNameTranslation,
 DayTime,
 FormerName,
 CCOP,
@@ -674,6 +680,7 @@ BoardManager                      :before,
 BoardManagerPhone                 :before,
 BoardManagerEmail                 :before,
 BoardMeetingDates                 :before,
+BoardNameTranslation              :before,
 DayTime                           :before,
 FormerName                        :before,
 CCOP                              :before,

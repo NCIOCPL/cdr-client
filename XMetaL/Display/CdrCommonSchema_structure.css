@@ -68,6 +68,7 @@ $PROCINS
 ActionDate,
 ActionDescription,
 Answer,
+Caption,
 CdrDocCtl,
 City,
 CitySuffix,
@@ -83,6 +84,8 @@ ItemizedList,
 ListTitle,
 LiteralLayout,
 MarkedUpTitle,
+MediaID,
+MediaLink,
 OrderedList,
 Para,
 Phone,
@@ -150,58 +153,61 @@ Superscript,
 /***************************************************************************/
 
 /* CDR Doc Control   */
-CdrDocCtl:before               { content: "CDR Doc Control "; }
-DocId:before                   { content: "Doc ID "; }
-DocTitle:before                { content: "Doc Title "; }
+CdrDocCtl                    :before { content: "CDR Doc Control "; }
+DocId                        :before { content: "Doc ID "; }
+DocTitle                     :before { content: "Doc Title "; }
 
 /* Contact Detail   */
-City:before                    { content: "City "; }
-CitySuffix:before              { content: "Suffix "; }
-ContactName:before             { content: "Contact Name "; }
-PostalAddress>Country:before   { content: "Country "; }
-Email:before                   { content: "Email "; }
-Fax:before                     { content: "Fax "; }
-Phone:before                   { content: "Phone "; }
-PoliticalSubUnit_State:before  { content: "Polit Unit/State "; }
-PostalAddress:before           { content: "POSTAL ADDRESS "; }
-PostalCode_ZIP:before          { content: "Postal Code "; }
-Street:before                  { content: "Street "; }
-TollFreePhone:before           { content: "Toll Free "; }
-WebSite:before                 { content: "Web Site "; }
+City                         :before { content: "City "; }
+CitySuffix                   :before { content: "Suffix "; }
+ContactName                  :before { content: "Contact Name "; }
+PostalAddress>Country        :before { content: "Country "; }
+Email                        :before { content: "Email "; }
+Fax                          :before { content: "Fax "; }
+Phone                        :before { content: "Phone "; }
+PoliticalSubUnit_State       :before { content: "Polit Unit/State "; }
+PostalAddress                :before { content: "POSTAL ADDRESS "; }
+PostalCode_ZIP               :before { content: "Postal Code "; }
+Street                       :before { content: "Street "; }
+TollFreePhone                :before { content: "Toll Free "; }
+WebSite                      :before { content: "Web Site "; }
 
 /* DatedAction   */
-ActionDate:before              { content: "Action Date "; }
-ActionDescription:before       { content: "Action "; }
-DatedAction:before             { content: "DATED ACTION"; }
-DatedAction>Comment:before     { content: "Comments "; }
+ActionDate                   :before { content: "Action Date "; }
+ActionDescription            :before { content: "Action "; }
+DatedAction                  :before { content: "DATED ACTION"; }
+DatedAction>Comment          :before { content: "Comments "; }
 
 /* Tables and Lists   */
 
-ItemizedList:before            { content: "..Itemized List "; }
-OrderedList:before             { content: "..Ordered List "; }
-Table:before                   { content: "..Table "; }
-Table>Title:before             { content: "Title "; }
-TT:before                      { content: "..Table "; }
+ItemizedList                 :before { content: "..Itemized List "; }
+OrderedList                  :before { content: "..Ordered List "; }
+Table                        :before { content: "..Table "; }
+Table>Title                  :before { content: "Title "; }
+TT                           :before { content: "..Table "; }
 
 RelatedDocuments             :before { content: "RELATED DOCUMENTS"; }
 ReplacementText              :before { content: "Replacement Text"; }
 SupplementaryInfoLink        :before { content: "Supplementary Info Link"; }
 
+Caption                      :before { content: "Caption"; }
+MediaID                      :before { content: "Media ID"; }
+MediaLink                    :before { content: "Media Link"; }
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR HEADINGS                         */
 /***************************************************************************/
-CdrDocCtl:before,
-DatedAction:before,
-DocId:before,
-DocTitle:before,
-ItemizedList:before,
-OrderedList:before,
-PostalAddress:before,
-QandAEntry:before,
-QandADiv:before,
-Table:before,
-TT:before,
+CdrDocCtl                    :before,
+DatedAction                  :before,
+DocId                        :before,
+DocTitle                     :before,
+ItemizedList                 :before,
+OrderedList                  :before,
+PostalAddress                :before,
+QandAEntry                   :before,
+QandADiv                     :before,
+Table                        :before,
+TT                           :before,
      { color: black;
        font-size: 10pt;
        font-weight: bold; }
@@ -210,21 +216,21 @@ TT:before,
 /***************************************************************************/
 /*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */
 /***************************************************************************/
-ActionDate:before,
-ActionDescription:before,
-City:before,
-CitySuffix:before,
-DatedAction>Comment:before,
-ContactName:before,
-Email:before,
-Fax:before,
-Phone:before,
-PostalCode_ZIP:before,
+ActionDate                   :before,
+ActionDescription            :before,
+City                         :before,
+CitySuffix                   :before,
+DatedAction>Comment          :before,
+ContactName                  :before,
+Email                        :before,
+Fax                          :before,
+Phone                        :before,
+PostalCode_ZIP               :before,
 RelatedDocuments             :before,
-Street:before,
+Street                       :before,
 SupplementaryInfoLink        :before,
-TollFreePhone:before,
-WebSite:before,
+TollFreePhone                :before,
+WebSite                      :before,
      { color:  black;
        font-weight: bold;    }
 
@@ -232,8 +238,8 @@ WebSite:before,
 /***************************************************************************/
 /*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */
 /***************************************************************************/
-PostalAddress>Country:before,
-PoliticalSubUnit_State:before,
+PostalAddress>Country        :before,
+PoliticalSubUnit_State       :before,
      { font-weight: bold;
        color: black;      }
 
@@ -285,12 +291,14 @@ DocId,
 DocTitle,
      { text-indent: 0pt; }
 
+Caption,
 City,
 CitySuffix,
 ContactName,
 PostalAddress>Country,
 Email,
 Fax,
+MediaID,
 Phone,
 PoliticalSubUnit_State,
 PostalCode_ZIP,
@@ -317,6 +325,7 @@ DatedAction>Comment,
 ActionDate,
 ActionDescription,
 bullet,
+Caption,
 CdrDocCtl,
 City,
 CitySuffix,
@@ -331,6 +340,8 @@ Email[Public="No"]:after,
 Fax,
 ItemizedList,
 LiteralLayout,
+MediaID,
+MediaLink,
 OrderedList,
 Para,
 Phone,
@@ -350,6 +361,10 @@ WebSite,
      { color: white;
        background-color: white; }
 
+Caption                      :before,
+MediaID                      :before,
+MediaLink                    :before
+     { background-color: white; }
 /* All other Common Elements  */
 Deletion,
 Insertion,
