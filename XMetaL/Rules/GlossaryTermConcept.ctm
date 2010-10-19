@@ -24,6 +24,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">Caption</Name>
+      <TagColor>#EE9A4D</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -226,6 +227,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">MediaID</Name>
+      <TagColor>#EE9A4D</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -233,6 +235,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">MediaLink</Name>
+      <TagColor>#EE9A4D</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>

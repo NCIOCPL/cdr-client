@@ -7,6 +7,14 @@
       <NoPrettyPrinting/>
     </GlobalPrettyPrintOptions>
     <ElementProperties>
+      <Name ns="">Caption</Name>
+      <TagColor>#EE9A4D</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name ns="">CdrDocCtl</Name>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
@@ -50,6 +58,22 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">GlossaryTermName</Name>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">MediaID</Name>
+      <TagColor>#EE9A4D</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">MediaLink</Name>
+      <TagColor>#EE9A4D</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -170,6 +194,14 @@
       <MiniTemplate><![CDATA[<GlossaryTermConcept><?xm-replace_text {
            Enter a glossary Term concept (required)
            }?></GlossaryTermConcept>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>MediaLink</Name>
+      <MiniTemplate><![CDATA[<MediaLink>
+        <MediaID><?xm-replace_text {
+             Enter the Media ID (required)
+             }?></MediaID>
+      </MediaLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">PlaceHolder</Name>

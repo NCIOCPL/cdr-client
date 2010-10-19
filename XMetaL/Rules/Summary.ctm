@@ -34,6 +34,14 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">Caption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name>CdrDocCtl</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -197,6 +205,22 @@
     <NewLineBeforeStartTag/>
     <IndentContent/>
    </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaID</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaLink</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
    <Name>MiscellaneousDocLink</Name>
@@ -469,6 +493,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>TranslationOf</Name>
+   <TagColor>purple</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -487,11 +512,16 @@
   </ElementProperties>
   <ElementProperties>
    <Name>Insertion</Name>
-   <TagColor>FFCCCC</TagColor>
+   <TagColor>purple</TagColor>
+   <HideInNormalView/>
   </ElementProperties>
   <ElementProperties>
    <Name>Deletion</Name>
    <TagColor>CC9966</TagColor>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Comment</Name>
+   <TagColor>green</TagColor>
   </ElementProperties>
   <ElementProperties>
    <Name>StandardWording</Name>
