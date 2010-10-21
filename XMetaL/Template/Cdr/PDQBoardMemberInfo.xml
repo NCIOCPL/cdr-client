@@ -20,6 +20,16 @@
  <BoardMemberContactMode><?xm-replace_text {
          Choose a contact mode (required)
          }?></BoardMemberContactMode>
+ <Affiliations>
+   <Affiliation>
+     <AffiliationName><?xm-replace_text {
+         Optionally enter an affiliation name
+         }?></AffiliationName>
+     <AffiliationPlace><?xm-replace_text {
+         Optionally enter an affiliation place
+         }?></AffiliationPlace>
+   </Affiliation>
+ </Affiliations>
  <BoardMemberAssistant>
   <AssistantName><?xm-replace_text {
          Enter an assistant name (required)

@@ -41,6 +41,9 @@
          Optionally select a terminology link
          }?></Term>
   </SecondaryTopics>
+  <PurposeText><?xm-replace_text {
+         Enter the summaries purpose text
+         }?></PurposeText>
  </SummaryMetaData>
  <SummaryTitle><?xm-replace_text {
          Summary title
