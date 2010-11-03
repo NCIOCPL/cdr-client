@@ -8,7 +8,9 @@
      BZIssue::4822
      BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
      BZIssue::4839 (populate LastReviewedStatus attribute)
-     BZIssue::4856 (changed name for LastReviewedDate macro's attribute) 
+     BZIssue::4856 (changed name for LastReviewedDate macro's attribute)
+     BZIssue::4941 (find next advisory board markup)
+
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
@@ -1865,6 +1867,12 @@
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
                            "Design (Custom)", 4, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "Find Next Advisory Board Markup",
+                           "Find Next Advisory Board Markup",
+                           "Find next Advisory Board markup",
+                           "Databases (Custom)", 7, 4,
                            true),
             new CdrCmdItem(null,
                            "Open Patient Summary",
@@ -8751,7 +8759,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Populate LastReviewedStatus Attribute" lang="JScript" key="Alt+Z">
+<MACRO name="Populate LastReviewedStatus Attribute" lang="JScript">
   <![CDATA[
     function populateLastReviewedStatus() {
         var elem = Selection.ContainerNode;
@@ -8777,6 +8785,30 @@
         elem.setAttribute('LastReviewedStatus', status);
     }
     populateLastReviewedStatus();
+  ]]>
+</MACRO>
+
+<MACRO name="Find Next Advisory Board Markup" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function findNextAdvisoryBoardMarkup() {
+        for (;;) {
+           var start = Selection.Duplicate;
+           Selection.GotoNext(0);
+           if (!start.IsLessThan(Selection.Duplicate)) {
+                Application.Alert("No more Advisory Board markup found.");
+                break;
+            }
+            //path = getSelectionPath(Selection);
+            var tag = Selection.ContainerName;
+            if (tag == 'Deletion' || tag == 'Insertion') {
+                var elem = Selection.ContainerNode;
+                var attr = elem.getAttribute('Source');
+                if (attr == 'advisory-board')
+                    break;
+            }
+        }
+    }
+    findNextAdvisoryBoardMarkup();
   ]]>
 </MACRO>
 
