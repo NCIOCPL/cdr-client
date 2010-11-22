@@ -164,6 +164,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>CTGovOwnerOrganization</Name>
+      <TagColor>99CCFF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
@@ -181,13 +182,22 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>ImportTrialFrom</Name>
+      <TagColor>99CCFF</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>CTGovOwnershipTransferDate</Name>
+      <TagColor>99CCFF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
       <Name>CTGovOwnershipTransferInfo</Name>
+      <TagColor>99CCFF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
       </PrettyPrintOptions>
@@ -910,6 +920,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>PRSUserName</Name>
+      <TagColor>99CCFF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -1418,6 +1429,11 @@
       <MiniTemplate><![CDATA[<Gender><?xm-replace_text {
           Optionally select a specified study gender
           }?></Gender>]]></MiniTemplate>
+   </Template>
+   <Template>
+      <Name>ImportTrialFrom</Name>
+      <MiniTemplate><![CDATA[<ImportTrialFrom>CTRP</ImportTrialFrom>]]>
+      </MiniTemplate>
    </Template>
    <Template>
       <Name>IDString</Name>
