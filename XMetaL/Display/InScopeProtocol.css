@@ -159,6 +159,7 @@ FundingInfo,
 GenericPerson, 
 GenericPersonContact, 
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
@@ -309,6 +310,7 @@ GenericPersonContact              :before
     { content: "Generic Person Contact Information *: "; }
 GrantContractNo                   :before 
     { content: "Grant Contract Number *: "; }
+ImportTrialFrom                   :before { content: "Import From &: "; }
 INDGrantor                        :before { content: "IND Grantor *: "; }
 INDNumber                         :before { content: "IND Number *: "; }
 INDSerialNumber                   :before { content: "IND Serial No &: "; }
@@ -466,6 +468,7 @@ FDARegulated                      :before,
 FundingInfo                       :before,
 GenericPerson                     :before,
 GenericPersonContact              :before,
+ImportTrialFrom                   :before,
 IRBApprovalForm                   :before,
 IRBApproved                       :before,
 IRBInfo                           :before,
@@ -994,6 +997,9 @@ PRSUserName                 { margin-left:  150pt;
                               text-indent: -107pt; }
 CTGovOwnershipTransferDate  { margin-left:  150pt; 
                               text-indent:  -93pt; }
+ImportTrialFrom
+                            { margin-left:  150pt;
+                              text-indent:  -90pt; }
 CTGovOwnershipTransferContactResponse
                             { margin-left:  160pt;
                               text-indent: -122pt; }
@@ -1046,6 +1052,7 @@ FundingInfo,
 GenericPerson, 
 GenericPersonContact, 
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
@@ -1175,6 +1182,7 @@ ExternalSiteRegDate,
 ExternalSiteRegStatus,
 FDARegulated,
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
@@ -1299,6 +1307,7 @@ FDAINDInfo,
 FDARegulated                 :before,
 FundingInfo, 
 GrantContractNo              :before,
+ImportTrialFrom              :before,
 INDGrantor                   :before,
 INDNumber                    :before,
 INDSerialNumber              :before,

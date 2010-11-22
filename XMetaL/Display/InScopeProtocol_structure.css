@@ -152,6 +152,7 @@ FundingInfo,
 GenericPerson, 
 GenericPersonContact, 
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
@@ -265,6 +266,7 @@ FundingInfo             :before { content: "FUNDING INFORMATION";  }
 GenericPerson           :before { content: "Generic Contact";  }
 GenericPersonContact    :before { content: "Generic Person Contact Information";  }
 GrantContractNo         :before { content: "Grant Contract Number"; }
+ImportTrialFrom         :before { content: "Import From"; }
 INDGrantor              :before { content: "IND Grantor"; }
 INDNumber               :before { content: "IND Number"; }
 INDSerialNumber         :before { content: "IND Serial No"; }
@@ -518,6 +520,7 @@ FundingInfo,
 GenericPerson,
 GenericPersonContact,
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
@@ -653,6 +656,7 @@ FDAINDInfo                :before,
 FDARegulated              :before,
 FundingInfo, 
 GrantContractNo           :before,
+ImportTrialFrom           :before,
 INDGrantor                :before,
 INDNumber                 :before,
 INDSerialNumber           :before,
@@ -812,6 +816,7 @@ ExternalSiteContactPhone,
 ExternalSiteContactTitle,
 FDARegulated,
 GrantContractNo,
+ImportTrialFrom,
 INDGrantor,
 INDNumber,
 INDSerialNumber,
