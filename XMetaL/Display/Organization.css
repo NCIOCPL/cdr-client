@@ -215,7 +215,7 @@ Location             :before { content: "LOCATION [" attr(cdr\:id) "]"; }
 LOESummary           :before { content: "LOE Summary * @: "; }
 MainMember           :before { content: "Main Member & @: "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF & +"; }
-MediaLink            :before { content: "Media & + @: "; }
+MediaLink            :before { content: "MEDIA & + @"; }
 MeetingDate          :before { content: "Date * +: "; }
 MeetingDate[WebEx="Yes"]:after
                              { content: " (WebEx)"; }
@@ -445,9 +445,9 @@ CIPSContactPerson,                     { margin-left: 160pt;
                                          text-indent: -155pt; }
 IncludeInDirectory,                    { margin-left: 160pt;
                                          text-indent: -133.5pt; }
-OrganizationAdministrativeInformation > Date,    
+OrganizationAdministrativeInformation > Date
                                        { margin-left: 160pt;
-                                         text-indent: -41.5pt; }
+                                         text-indent: -52pt; }
 PreferredDirectoryContactMode,         { margin-left: 160pt;
                                          text-indent: -140pt; }
 PreferredProtocolContactMode,          { margin-left: 160pt;
@@ -542,6 +542,8 @@ BoardMeeting > MeetingTime             { margin-left: 100pt;
                                          text-indent: -53pt; }
 BoardMeeting > MediaLink               { margin-left: 100pt;
                                          text-indent: -79pt; }
+BoardMeeting > MediaLink > MediaID     { margin-left: 0pt;
+                                         text-indent: -79.5pt; }
 
 
 /**************************************************************************/
