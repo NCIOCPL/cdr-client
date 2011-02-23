@@ -4,6 +4,8 @@
 /*      3/2/2004 cburg                                                   */
 /*                                                                       */
 /* BZIssue::4853 - Changes to CSS/Template in PDQ Board Member Info      */
+/* BZIssue::4985 - [Summaries] Add Govt Employee Element to PDQ Board    */
+/*                 Member Document                                       */
 /*                                                                       */
 /*************************************************************************/
 /*************************************************************************/
@@ -64,6 +66,7 @@ DatedAction,
 DateSigned,
 EditorInChief>TermStartDate,
 EditorInChief>TermEndDate,
+GovernmentEmployee,
 InvitationDate,
 PDQBoardMemberInfo
 PersonContactID,
@@ -128,6 +131,7 @@ DateSigned                   :before { content: "Date Signed &: ";}
 EditorInChief                :before { content: "Editor In Chief &  ";}
 EditorInChief>TermEndDate    :before { content: "Term End Date & : ";}
 EditorInChief>TermStartDate  :before { content: "Term Start Date *  : ";}
+GovernmentEmployee           :before { content: "Govt Employee * : "; }
 InvitationDate               :before { content: "Invitation Date *: "}
 PersonContactID              :before { content: "Person Cont ID * : ";}
 MemberOfSubgroup             :before { content: "Member Subgroup &: ";}
@@ -245,6 +249,7 @@ DateSigned                        :before,
 EditorInChief                     :before,
 EditorInChief>TermEndDate         :before,
 EditorInChief>TermStartDate       :before,
+GovernmentEmployee                :before,
 InvitationDate                    :before,
 PDQBoardMemberInfo                :before,
 PersonContactID                   :before,
@@ -298,10 +303,13 @@ BoardMemberName,
            text-indent: -88.5pt; }
 BoardMemberContactMode,
          { margin-left: 100pt;
-           text-indent: -96.5pt; }
+           text-indent: -98pt; }
 PersonContactID,
          { margin-left: 100pt;
-           text-indent: -104.5pt; }
+           text-indent: -106pt; }
+GovernmentEmployee,
+         { margin-left: 100pt;
+           text-indent: -106pt; }
 
 /*  Board Member Assistant     */
 AssistantEmail,
@@ -430,6 +438,7 @@ ConflictOfInterestFormSigned,
 Country,
 CurrentMember,
 DateSigned,
+GovernmentEmployee,
 InvitationDate,
 PDQBoardMemberInfo
 PersonContactID,
@@ -476,6 +485,7 @@ CurrentMember,
 /*DatedAction,*/
 DateSigned,
 InvitationDate,
+GovernmentEmployee,
 PDQBoardMemberInfo
 PersonContactID,
 MemberOfSubgroup,
@@ -519,6 +529,7 @@ Country                           :before,
 CurrentMember                     :before,
 DatedAction                       :before,
 DateSigned                        :before,
+GovernmentEmployee                :before,
 InvitationDate                    :before,
 PersonContactID                   :before,
 MemberOfSubgroup                  :before,

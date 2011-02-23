@@ -5,6 +5,8 @@
 /*      3/05/04  by CBurg                                                */
 /*                                                                       */
 /* BZIssue::4853 - Changes to CSS/Template in PDQ Board Member Info      */
+/* BZIssue::4985 - [Summaries] Add Govt Employee Element to PDQ Board    */
+/*                 Member Document                                       */
 /*                                                                       */
 /*************************************************************************/
 /*************************************************************************/
@@ -76,6 +78,7 @@ DatedAction>Comment,
 DateSigned,
 EditorInChief>TermEndDate,
 EditorInChief>TermStartDate,
+GovernmentEmployee,
 InvitationDate,
 PDQBoardMemberInfo,
 PersonContactID,
@@ -127,6 +130,7 @@ DateSigned                   :before { content: "Date Signed";}
 EditorInChief                :before { content: "Editor In Chief";}
 EditorInChief>TermEndDate    :before { content: "Term End Date";}
 EditorInChief>TermStartDate  :before { content: "Term Start Date";}
+GovernmentEmployee           :before { content: "Govt Employee";}
 InvitationDate               :before { content: "Invitation Date";}
 PDQBoardMemberInfo           :before { content: "PDQBOARDMEMBERINFO";}
 PersonContactID              :before { content: "Person Contact ID";}
@@ -146,6 +150,7 @@ TransferFromBoard            :before { content: "Transfer from Board";}
 /*                     TAG PROPERTIES FOR SECTION HEADINGS               */
 /*************************************************************************/
 /* some properties don't get applied on the first element in a list      */
+Affiliations                      :before,
 BoardMemberAssistant              :before,
 BoardMemberContact                :before,
 BoardMembershipDetails            :before,
@@ -180,6 +185,7 @@ CurrentMember                     :before,
 DateSigned                        :before,
 EditorInChief>TermEndDate         :before,
 EditorInChief>TermStartDate       :before,
+GovernmentEmployee                :before,
 InvitationDate                    :before,
 PersonContactID                   :before,
 MemberOfSubgroup                  :before,
@@ -259,6 +265,7 @@ DatedAction>Comment,
 DateSigned,
 EditorInChief>TermEndDate,
 EditorInChief>TermStartDate,
+GovernmentEmployee,
 InvitationDate,
 PDQBoardMemberInfo
 PersonContactID,
@@ -303,6 +310,7 @@ DatedAction>Comment,
 DateSigned,
 EditorInChief>TermEndDate,
 EditorInChief>TermStartDate,
+GovernmentEmployee,
 InvitationDate,
 PersonContactID,
 MemberOfSubgroup,
@@ -351,6 +359,7 @@ DatedAction>Comment               :before,
 DateSigned                        :before,
 EditorInChief>TermEndDate         :before,
 EditorInChief>TermStartDate       :before,
+GovernmentEmployee                :before,
 InvitationDate                    :before,
 PDQBoardMemberInfo                :before,
 PersonContactID                   :before,
