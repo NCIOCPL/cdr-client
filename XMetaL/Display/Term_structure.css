@@ -105,6 +105,7 @@ MenuInformation,
 MenuItem,
 MenuStatus,
 MenuType,
+NCIThesaurusConcept,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -155,6 +156,7 @@ MenuItem                     :before { content: "MENU ITEM "; }
 MenuParent                   :before { content: "Menu Parent "; }
 MenuStatus                   :before { content: "Menu Status "; }
 MenuType                     :before { content: "Menu Type "; }
+NCIThesaurusConcept          :before { content: "NCI Thesaurus Concept"; }
 OtherName                    :before { content: "OTHER NAME "; }
 OtherNameType                :before { content: "Other Name Type "; }
 OtherTermName                :before { content: "Other Term Name "; }
@@ -283,6 +285,7 @@ MenuItem,
 MenuParent,
 MenuStatus,
 MenuType,
+NCIThesaurusConcept,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -331,6 +334,7 @@ MenuItem,
 MenuParent,
 MenuStatus,
 MenuType,
+NCIThesaurusConcept,
 OtherName,
 OtherNameType,
 OtherTermName,
@@ -376,6 +380,7 @@ MenuItem                     :before,
 MenuParent                   :before,
 MenuStatus                   :before,
 MenuType                     :before,
+NCIThesaurusConcept          :before,
 OtherName                    :before,
 OtherNameType                :before,
 OtherTermName                :before,
