@@ -42,8 +42,6 @@
    <TGroup Cols="2">
     <ColSpec ColName="col1" ColNum="1" ColWidth="*"/>
     <ColSpec ColName="col2" ColNum="2" ColWidth="*"/>
-    <THead/>
-    <TFoot/>
     <TBody>
      <Row>
       <entry><Strong><?xm-replace_text {
