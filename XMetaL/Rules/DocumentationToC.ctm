@@ -166,6 +166,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ItemizedList</Name>
+      <TagColor>3399FF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
@@ -209,6 +210,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>OrderedList</Name>
+      <TagColor>3399FF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
