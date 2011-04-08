@@ -22,7 +22,7 @@
          view)</TopicSectionTitle> 
          <TopicText> 
          <Para>What this subtask is. When you should do this subtask.</Para> 
-         <OrderedList> 
+         <OrderedList Style="Arabic"> 
              <ListTitle>To do this task (if a title is necessary) (hot in
                  structure view)</ListTitle> 
              <ListItem>Step one 
@@ -41,7 +41,7 @@
           
          <TopicText> 
          <Para>Guidelines for doing this specialized subtask.</Para> 
-         <OrderedList> 
+         <OrderedList Style="Arabic"> 
              <ListItem><?xm-replace_text {ListItem}?></ListItem> 
              <ListItem><?xm-replace_text {ListItem}?></ListItem> 
              <ListItem><?xm-replace_text {ListItem}?></ListItem> 

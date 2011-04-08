@@ -333,7 +333,7 @@
          or appear months or years after cancer treatment has ended. 
          These are called late effects. Late effects of cancer 
          treatment may include:</Para>
-   <ItemizedList>
+   <ItemizedList Style="bullet">
     <ListItem>Physical problems.</ListItem>
     <ListItem>Changes in mood, feelings, thinking, learning, or 
           memory.</ListItem>
@@ -577,7 +577,7 @@
   <Title>To Learn More About X Cancer</Title>
   <Para>For more information from the National Cancer Institute 
         about x cancer, see the following:</Para>
-  <ItemizedList>
+  <ItemizedList Style="bullet">
    <ListItem><?xm-replace_text {
          Enter link resource here
          }?></ListItem>
