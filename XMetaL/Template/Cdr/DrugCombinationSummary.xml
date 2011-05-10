@@ -10,13 +10,12 @@
          }?></DocTitle>
  </CdrDocCtl> 
  <DrugInfoMetaData>
-  <Description>This page contains brief information from the National Cancer
-         Institute (NCI) about the drug combination called <?xm-replace_text {
+  <Description>This page contains brief information about the drug combination 
+         called <?xm-replace_text {
          Enter the DCS regimen
-         }?>
-         and lists the drugs included in the combination.  Links to
-         NCI's Drug Information Summaries about the individual drugs in the
-         combination are included, when available.
+         }?>. 
+         The drugs in the combination are listed, and links to individual 
+         drug summaries are included.
   </Description>
   <URL>http://www.cancer.gov/cancertopics/druginfo/<?xm-replace_text {
          Enter the DCS regimen

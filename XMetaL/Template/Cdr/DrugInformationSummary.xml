@@ -14,8 +14,7 @@
          Enter the drug name
          } ?>
          and a collection of links to more information about the use of 
-         this drug, related news and research results, and ongoing 
-         clinical trials.
+         this drug, research results, and ongoing clinical trials.
   </Description>
   <URL>http://www.cancer.gov/cancertopics/druginfo/<?xm-replace_text {
          Enter the drug name
