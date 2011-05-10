@@ -1,44 +1,61 @@
 <?xml version="1.0"?>
 <!DOCTYPE Citation SYSTEM "Citation.dtd">
 <Citation xmlns:cdr="cips.nci.nih.gov/cdr"> 
-  <CdrDocCtl> 
-     <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-     <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-     </CdrDocCtl> 
-  <VerificationDetails>
-  <Verified><?xm-replace_text {Select Yes or No (required)}?></Verified> 
-  <VerifiedIn><?xm-replace_text {Optionally select a verification source}?></VerifiedIn>
-  </VerificationDetails> 
-  <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-  <PDQCitation> 
-     <CitationType><?xm-replace_text {Select a citation type (required)} ?></CitationType>
-     <CitationTitle><?xm-replace_text {Enter the title (required)} ?></CitationTitle>
-     <AuthorList Complete="Yes"> 
-         <Author> 
-         <LastName><?xm-replace_text {Enter the author's last name (required)} ?></LastName>
-         <FirstName><?xm-replace_text {Enter the author's initials (required)} ?></FirstName><MiddleName><?xm-replace_text {Optionally enter the author's middle name} ?></MiddleName>
-         <Initials><?xm-replace_text {Optionally enter the author's initials} ?></Initials>
-     </Author> 
-         <Author> 
-         <CollectiveName><?xm-replace_text {Enter a collective name author, or Change to a personal name author (required)} ?></CollectiveName>
-         </Author> 
-     </AuthorList> 
-     <PublicationDetails> 
-         <PublishedIn><?xm-replace_text {Optionally link to a parent citation} ?></PublishedIn>
-          
-         <OtherPublicationInformation><PublicationInformation><?xm-replace_text {Enter volume, issue, and pagination for an article; place, publisher, edition, and year for a book (required)} ?></PublicationInformation><InternetInformation><?xm-replace_text {Optionally enter available Internet information}?></InternetInformation></OtherPublicationInformation><PublicationYear><?xm-replace_text {Optionally enter the citation's year of publication (for sorting)} ?></PublicationYear>
-     </PublicationDetails> 
-     <CancerLitID><?xm-replace_text {Optionally enter the CancerLit ID number for this citation} ?></CancerLitID>
-     <CancerLitAbstract> 
-     <AbstractText><?xm-replace_text {Enter the abstract (required)} ?></AbstractText> 
-     <CopyrightInformation><?xm-replace_text {Optionally enter relevant copyright data} ?></CopyrightInformation>
-     </CancerLitAbstract> 
-  </PDQCitation> 
-  <FullTextArticle><?xm-replace_text {Optionally link to supplementary info} ?></FullTextArticle>
-  <DatedAction> 
-     <ActionDescription><?xm-replace_text {Describe the future record action} ?></ActionDescription>
-     <ActionDate><?xm-replace_text {Enter the date on which the action should be taken} ?></ActionDate>
-     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-  </DatedAction> 
-  <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
-  </Citation>
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl> 
+ <VerificationDetails>
+  <Verified><?xm-replace_text {
+         Select Yes or No (required)
+         }?></Verified> 
+  <VerifiedIn><?xm-replace_text {
+         Optionally select a verification source
+         }?></VerifiedIn>
+ </VerificationDetails> 
+ <PDQCitation> 
+  <CitationType><?xm-replace_text {
+         Select a citation type (required)
+         }?></CitationType>
+  <CitationTitle><?xm-replace_text {
+         Enter the title (required)
+         }?></CitationTitle>
+  <AuthorList Complete="Yes"> 
+   <Author> 
+    <LastName><?xm-replace_text {
+         Enter the author's last name (required)
+         }?></LastName>
+    <FirstName><?xm-replace_text {
+         Enter the author's initials (required)
+         }?></FirstName>
+   </Author> 
+   <Author> 
+    <CollectiveName><?xm-replace_text {
+         Enter a collective name author, or Change to a personal 
+         name author (required)
+         }?></CollectiveName>
+   </Author> 
+  </AuthorList> 
+  <PublicationDetails> 
+   <PublishedIn><?xm-replace_text {
+         Optionally link to a parent citation
+         }?></PublishedIn>
+   <OtherPublicationInformation>
+    <PublicationInformation><?xm-replace_text {
+         Enter volume, issue, and pagination for an article; 
+         place, publisher, edition, and year for a book (required)
+         }?></PublicationInformation>
+    <InternetInformation><?xm-replace_text {
+         Optionally enter available Internet information
+         }?></InternetInformation>
+   </OtherPublicationInformation>
+   <PublicationYear><?xm-replace_text {
+         Optionally enter the citation's year of publication (for sorting)
+         }?></PublicationYear>
+  </PublicationDetails> 
+ </PDQCitation> 
+</Citation>
