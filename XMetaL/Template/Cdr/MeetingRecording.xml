@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE Media SYSTEM "Media.dtd">
+<Media xmlns:cdr="cips.nci.nih.gov/cdr" Usage="Internal"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl> 
+ <MediaTitle><?xm-replace_text {
+         The media title
+         }?></MediaTitle>
+ <PhysicalMedia>
+  <SoundData>
+   <SoundType>Speech</SoundType>
+   <SoundEncoding>MP3</SoundEncoding>
+   <RunSeconds><?xm-replace_text {
+         Optionally enter an integer number
+         }?></RunSeconds>
+  </SoundData>
+ </PhysicalMedia>
+ <MediaSource>
+  <OriginalSource>
+   <Creator><?xm-replace_text {
+         Optionally enter the creator
+         }?></Creator>
+   <DateCreated><?xm-replace_text {
+         Optionally enter the date the document got created
+         }?></DateCreated>
+   <SourceFilename><?xm-replace_text {
+         Optionally enter the source filename
+         }?></SourceFilename>
+  </OriginalSource>
+ </MediaSource>
+ <MediaContent>
+  <Categories>
+   <Category>meeting Recording</Category>
+  </Categories>
+  <ContentDescriptions>
+   <ContentDescription audience="Health_professionals"
+                       language="en">Board Meeting</ContentDescription>
+  </ContentDescriptions>
+ </MediaContent>
+</Media>
