@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE Media SYSTEM "Media.dtd">
+<Media xmlns:cdr="cips.nci.nih.gov/cdr" Usage="External"> 
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl> 
+ <MediaTitle><?xm-replace_text {
+         The media title
+         }?></MediaTitle>
+ <PhysicalMedia>
+  <SoundData>
+   <SoundType><?xm-replace_text {
+         Enter the sound type for this audio file (required)
+         }?></SoundType>
+   <SoundEncoding>MP3</SoundEncoding>
+   <RunSeconds><?xm-replace_text {
+         Optionally enter the number of seconds of audio recording
+         }?></RunSeconds>
+  </SoundData>
+ </PhysicalMedia>
+ <MediaSource>
+  <OriginalSource>
+   <Creator>Vanessa Richardson, VR Voice</Creator>
+   <DateCreated><?xm-replace_text {
+         Optionally enter the date the document got created
+         }?></DateCreated>
+   <SourceFilename><?xm-replace_text {
+         Optionally enter the source filename
+         }?></SourceFilename>
+  </OriginalSource>
+ </MediaSource>
+ <MediaContent>
+  <Categories>
+   <Category>pronunciation</Category>
+  </Categories>
+  <ContentDescriptions>
+   <ContentDescription audience="Patients">Pronunciation of dictionary
+         term "<?xm-replace_text {
+         Enter the dictionary term (required)
+         }?>"</ContentDescription>
+  </ContentDescriptions>
+ </MediaContent>
+ <ProposedUse>
+  <Glossary><?xm-replace_text {
+         Select a glossary link (required)
+         }?></Glossary>
+ </ProposedUse>
+ <ProcessingStatuses>
+  <ProcessingStatus>
+   <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+   <ProcessingStatusDate><?xm-replace_text {
+         Enter the processing status date (required)
+         }?></ProcessingStatusDate>
+   <EnteredBy><?xm-replace_text {
+         Enter your name (required)
+         }?></EnteredBy>
+  </ProcessingStatus>
+ </ProcessingStatuses>
+</Media>
