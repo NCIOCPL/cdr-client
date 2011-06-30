@@ -36,12 +36,18 @@
   <Para><?xm-replace_text {
          Enter the Drug name
          }?>
-         is approved by the 
-         <GlossaryTermRef cdr:href="CDR0000454785">Food and Drug 
-         Administration (FDA)</GlossaryTermRef>
-         to <?xm-replace_text {
-         Enter the rest of the descriptive paragraph
-         }?>.</Para>                          
+         is approved 
+         to treat:</Para>                          
+  <ItemizedList Compact="No" Style="bullet">
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem></ItemizedList>
   <Para><?xm-replace_text {
          Enter the Drug name
          }?>

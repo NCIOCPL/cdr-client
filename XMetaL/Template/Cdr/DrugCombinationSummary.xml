@@ -34,8 +34,8 @@
          Enter the DCS Regimen
          }?></Title>
  <SummarySection>                                                              
-  <Table>
-   <Title>Drugs included in the <?xm-replace_text {
+  <Table Frame="None">
+   <Title>Drugs in the <?xm-replace_text {
          Enter the DCS regimen
          }?> combination:</Title>
    <TGroup Cols="2">
@@ -43,7 +43,7 @@
     <ColSpec ColName="col2" ColNum="2" ColWidth="*"/>
     <TBody>
      <Row>
-      <entry><Strong><?xm-replace_text {
+      <entry Align="Right"><Strong><?xm-replace_text {
          Enter the Initial for generic or brand name
          }?></Strong>
       </entry>
@@ -54,7 +54,7 @@
       </entry>
      </Row>
      <Row>
-      <entry><Strong><?xm-replace_text {
+      <entry Align="Right"><Strong><?xm-replace_text {
          Enter the Initial for generic or brand name
          }?></Strong>
       </entry>
@@ -64,7 +64,7 @@
       </entry>
      </Row>
      <Row>
-      <entry><Strong><?xm-replace_text {
+      <entry Align="Right"><Strong><?xm-replace_text {
          Enter the Initial for generic or brand name
          }?></Strong>
       </entry>
@@ -74,7 +74,7 @@
       </entry>
      </Row>
      <Row>
-      <entry><Strong><?xm-replace_text {
+      <entry Align="Right"><Strong><?xm-replace_text {
          Enter the Initial for generic or brand name
          }?></Strong>
       </entry>
@@ -86,37 +86,53 @@
     </TBody>
    </TGroup>
   </Table>
-  <Para>Each of the 
-         <GlossaryTermRef cdr:href="CDR0000348921">drugs</GlossaryTermRef> 
-         in this
+  <Para><GlossaryTermRef cdr:href="CDR0000045214">Chemotherapy</GlossaryTermRef>
+         is often given as a 
          <GlossaryTermRef cdr:href="CDR0000045650">combination</GlossaryTermRef>
-         is approved by the
+         of 
+         <GlossaryTermRef cdr:href="CDR0000348921">drugs</GlossaryTermRef>. 
+         Combinations usually work better than single drugs because 
+         different drugs kill 
+         <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef> 
+         cells in different ways.</Para>
+  <Para>Each of the drugs in this combination is approved by the 
          <GlossaryTermRef cdr:href="CDR0000454785">Food and Drug 
-         Administration (FDA)</GlossaryTermRef>
-         to treat 
-         <GlossaryTermRef cdr:href="CDR0000045333">cancer</GlossaryTermRef>
-         or conditions related to cancer.</Para>                          
+         Administration (FDA)</GlossaryTermRef> 
+         to treat cancer or conditions related to cancer.</Para>
+ </SummarySection>
+ <SummarySection>
+  <Title>Use in Cancer</Title>
   <Para><?xm-replace_text {
          Enter the DCS regimen
-         }?>
-         is used to treat <?xm-replace_text {
-         Enter the cancer type or condition
-         }?>.  This combination may also be used with other drugs
-         or treatments or to treat other types of cancer.</Para>
+         }?> 
+         is used to treat:</Para>
+  <ItemizedList Compact="No" Style="bullet">
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem>
+   <ListItem><?xm-replace_text {
+         Enter list item
+         }?></ListItem></ItemizedList>
+  <Para><?xm-replace_text {
+         Enter text
+         }?></Para>
  </SummarySection>
  <EnteredBy><?xm-replace_text {
-        Use the tool bar icon to enter your user name (required)
-        }?></EnteredBy>
+         Use the tool bar icon to enter your user name (required)
+         }?></EnteredBy>
  <EntryDate><?xm-replace_text {
-        Use the tool bar icon to enter today's date (required)
-        }?></EntryDate>
+         Use the tool bar icon to enter today's date (required)
+         }?></EntryDate>
  <DateLastModified><?xm-replace_text {
-        Optionally enter the date of the last record modification
-        }?></DateLastModified>
+         Optionally enter the date of the last record modification
+         }?></DateLastModified>
  <ProcessingStatus><?xm-replace_text {
-        Optionally select a processing status
-        }?></ProcessingStatus>
+         Optionally select a processing status
+         }?></ProcessingStatus>
  <Comment><?xm-replace_text {
-        Optionally enter a comment
-        }?></Comment>
+         Optionally enter a comment
+         }?></Comment>
 </DrugInformationSummary>
