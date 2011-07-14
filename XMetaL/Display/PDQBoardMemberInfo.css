@@ -108,10 +108,10 @@ AssistantName                :before { content: "Name *: "; }
 AssistantPhone               :before { content: "Phone * @ : "; }
 AssistantPhone[Public="No"]  :after  { content: " (Not Public) "; }
 AssistantPhone               :after  { content: " (Public) "; }
-BoardContactEmail            :before { content: "Email * @: "; }
+BoardContactEmail            :before { content: "Email & @: "; }
 BoardContactEmail[Public="No"]:after { content: " (Not Public) "; }
 BoardContactEmail            :after  { content: " (Public) "; }
-BoardContactFax              :before { content: "Fax * : "; }
+BoardContactFax              :before { content: "Fax & : "; }
 BoardContactOrganizationName :before { content: "B C Org Name &: "; }
 BoardContactPhone            :before { content: "Phone * @: "; }
 BoardContactPhone[Public="No"]:after { content: " (Not Public) "; }
@@ -326,10 +326,10 @@ AssistantPhone,
            text-indent: -71pt; }
 BoardContactEmail,
          { margin-left: 100pt;
-           text-indent: -61.5pt; }
+           text-indent: -67pt; }
 BoardContactFax,
          { margin-left: 100pt;
-           text-indent: -39pt; }
+           text-indent: -44.5pt; }
 BoardContactPhone,
          { margin-left: 100pt;
            text-indent: -67.5pt; }
