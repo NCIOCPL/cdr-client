@@ -98,20 +98,20 @@ Affiliation[Usage]           :before { content: "AFFILIATION * + @ (" attr(Usage
 AffiliationName              :before { content: "Name & +:"; }
 AffiliationPlace             :before { content: "Place &:"; }
 Affiliations                 :before { content: "AFFILIATIONS &"; }
-AreaComment                  :before { content: "Comment & : "; }
+AreaComment                  :before { content: "Comment &: "; }
 AreaOfExpertise              :before { content: "Area of Expertise &: "; }
 AssistantEmail               :before { content: "Email & @: "; }
 AssistantEmail[Public="No"]  :after  { content: " (Not Public) "; }
 AssistantEmail               :after  { content: " (Public) "; }
 AssistantFax                 :before { content: "Fax &: "; }
 AssistantName                :before { content: "Name *: "; }
-AssistantPhone               :before { content: "Phone @ : "; }
+AssistantPhone               :before { content: "Phone @: "; }
 AssistantPhone[Public="No"]  :after  { content: " (Not Public) "; }
 AssistantPhone               :after  { content: " (Public) "; }
 BoardContactEmail            :before { content: "Email & @: "; }
 BoardContactEmail[Public="No"]:after { content: " (Not Public) "; }
 BoardContactEmail            :after  { content: " (Public) "; }
-BoardContactFax              :before { content: "Fax & : "; }
+BoardContactFax              :before { content: "Fax &: "; }
 BoardContactOrganizationName :before { content: "B C Org Name &: "; }
 BoardContactPhone            :before { content: "Phone * @: "; }
 BoardContactPhone[Public="No"]:after { content: " (Not Public) "; }
@@ -119,8 +119,8 @@ BoardContactPhone            :after  { content: " (Public) "; }
 BoardContactPostalAddress    :before { content: "Board Contact Postal Address *";}
 BoardMemberAssistant         :before { content: "BOARD MEMBER ASSISTANT & "; }
 BoardMemberContact           :before { content: "BOARD MEMBER CONTACT  * "; }
-BoardMemberContactMode       :before { content: "Contact Mode * : "; }
-BoardMemberName              :before { content: "Board Member Name * : "; }
+BoardMemberContactMode       :before { content: "Contact Mode *: "; }
+BoardMemberName              :before { content: "Board Member Name *: "; }
 BoardMembershipDetails       :before { content: "BOARD MEMBERSHIP DETAILS &  + "; }
 BoardName                    :before { content: "Board Name *: "; }
 Comment                      :before { content: "Comments &: "; }
@@ -129,11 +129,11 @@ BoardContactPostalAddress>Country:before {content:"Country * @: " ;}
 CurrentMember                :before { content: "Current Member *: ";}
 DateSigned                   :before { content: "Date Signed &: ";}
 EditorInChief                :before { content: "Editor In Chief &  ";}
-EditorInChief>TermEndDate    :before { content: "Term End Date & : ";}
-EditorInChief>TermStartDate  :before { content: "Term Start Date *  : ";}
-GovernmentEmployee           :before { content: "Govt Employee * : "; }
+EditorInChief>TermEndDate    :before { content: "Term End Date &: ";}
+EditorInChief>TermStartDate  :before { content: "Term Start Date *: ";}
+GovernmentEmployee           :before { content: "Govt Employee *: "; }
 InvitationDate               :before { content: "Invitation Date *: "}
-PersonContactID              :before { content: "Person Cont ID * : ";}
+PersonContactID              :before { content: "Person Cont ID *: ";}
 MemberOfSubgroup             :before { content: "Member Subgroup &: ";}
 RecommendedBy                :before { content: "Recommended By &: "; }
 ResponseDate                 :before { content: "Response Date &: "; }
@@ -323,7 +323,7 @@ AssistantName,
            text-indent: -48pt; }
 AssistantPhone,
          { margin-left: 100pt;
-           text-indent: -64pt; }
+           text-indent: -61pt; }
 BoardContactEmail,
          { margin-left: 100pt;
            text-indent: -67pt; }
