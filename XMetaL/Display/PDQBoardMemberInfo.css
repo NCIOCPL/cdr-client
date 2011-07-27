@@ -105,7 +105,7 @@ AssistantEmail[Public="No"]  :after  { content: " (Not Public) "; }
 AssistantEmail               :after  { content: " (Public) "; }
 AssistantFax                 :before { content: "Fax &: "; }
 AssistantName                :before { content: "Name *: "; }
-AssistantPhone               :before { content: "Phone * @ : "; }
+AssistantPhone               :before { content: "Phone @ : "; }
 AssistantPhone[Public="No"]  :after  { content: " (Not Public) "; }
 AssistantPhone               :after  { content: " (Public) "; }
 BoardContactEmail            :before { content: "Email & @: "; }
@@ -323,7 +323,7 @@ AssistantName,
            text-indent: -48pt; }
 AssistantPhone,
          { margin-left: 100pt;
-           text-indent: -71pt; }
+           text-indent: -64pt; }
 BoardContactEmail,
          { margin-left: 100pt;
            text-indent: -67pt; }
