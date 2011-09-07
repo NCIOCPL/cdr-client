@@ -9,6 +9,7 @@
   </GlobalPrettyPrintOptions>
   <ElementProperties>
    <Name>AltTitle</Name>
+   <TagColor>FFC165</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -369,6 +370,15 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>SummaryModuleLink</Name>
+   <TagColor>B2FF65</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <NewLineBeforeEndTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>SummaryURL</Name>
    <PrettyPrintOptions>
     <IndentContent/>
@@ -385,6 +395,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>SummaryTitle</Name>
+   <TagColor>FF9900</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -453,6 +464,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>Title</Name>
+   <TagColor>FFC165</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -861,6 +873,12 @@
    <MiniTemplate><![CDATA[<PatientVersionOf><?xm-replace_text {
                    Select a link to the Health Professionals summary
                    }?></PatientVersionOf>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>SummaryModuleLink</Name>
+   <MiniTemplate><![CDATA[<SummaryModuleLink><?xm-replace_text {
+                   Optionally link to a summary module
+                   }?></SummaryModuleLink>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>WillReplace</Name>
