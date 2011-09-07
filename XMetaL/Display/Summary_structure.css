@@ -149,6 +149,7 @@ SummaryAudience,
 SummaryDescription,
 SummaryLanguage,
 SummaryMetaData,
+SummaryModuleLink,
 SummarySection,
 SummarySection>Comment,
 SummaryTitle,
@@ -199,6 +200,7 @@ SummaryAudience                   :before { content: "Summary Audience "; }
 SummaryDescription                :before { content: "Summary Description "; }
 SummaryLanguage                   :before { content: "Summary Language "; }
 SummaryMetaData                   :before { content: "SUMMARY METADATA "; }
+SummaryModuleLink                 :before { content: "Summary Module "; }
 SummaryType                       :before { content: "Summary Type "; }
 SummaryURL                        :before { content: "Summary URL "; }
 SummarySection                    :before { content: "Section "; }
