@@ -218,6 +218,7 @@ SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
 SummaryAudience      :before { content: "Summary Audience *: "; }
 SummaryDescription   :before { content: "Summary Descr *: "; }
 SummaryLanguage      :before { content: "Summary Language *: "; }
+SummaryModuleLink    :before { content: "Summary Module &: "; }
 SummaryType          :before { content: "Summary Type *: "; }
 SummaryURL           :before { content: "Summary URL * @: "; }
 TranslationOf        :before { content: "Translation of & @: "; }
@@ -306,6 +307,7 @@ KeyPoint,
 KeyPoint                     :before,
 ComprehensiveReviewDate      :before,
 DateLastModified             :before,
+SummaryModuleLink            :before,
 PatientVersionOf             :before,
 ReplacementFor               :before,
      { font-weight: bold;
@@ -322,6 +324,11 @@ WillReplace                  :before,
 
 PdqKey,
      { margin-bottom: 10pt;  }
+
+SummaryModuleLink
+     { margin-bottom: 10pt;
+       margin-top: 10pt;
+       background-color: #B2FF65; }
 
 SummarySection>AltTitle,
      { font-weight: bold;
