@@ -307,7 +307,7 @@ KeyPoint,
 KeyPoint                     :before,
 ComprehensiveReviewDate      :before,
 DateLastModified             :before,
-SummaryModuleLink            :before,
+/*SummaryModuleLink            :before, */
 PatientVersionOf             :before,
 ReplacementFor               :before,
      { font-weight: bold;
@@ -315,6 +315,12 @@ ReplacementFor               :before,
        color: black;  
        margin-top: 15pt;
        margin-bottom: 10pt; }
+
+SummaryModuleLink            :before
+     { font-weight: bold;
+       margin-bottom: 10pt;
+       margin-top: 10pt;
+       color: black; }
 
 PdqKey                       :before,
 TranslationOf                :before,
@@ -326,7 +332,8 @@ PdqKey,
      { margin-bottom: 10pt;  }
 
 SummaryModuleLink
-     { margin-bottom: 10pt;
+     { font-weight: bold;
+       margin-bottom: 10pt;
        margin-top: 10pt;
        background-color: #B2FF65; }
 
