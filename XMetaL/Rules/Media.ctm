@@ -176,6 +176,15 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">DateCreated</Name>
+   <TagColor>#CBF9FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DateLastModified</Name>
+   <TagColor>#CBF9FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -1221,6 +1230,12 @@
    <MiniTemplate><![CDATA[<DateCreated><?xm-replace_text {
                    Optionally enter the date the document got created
                    }?></DateCreated>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DateLastModified</Name>
+   <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
+                   Optionally enter the date of the last record modification
+                   }?></LastModified>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">TextDateCreated</Name>
