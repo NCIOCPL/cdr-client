@@ -55,6 +55,7 @@ ContentDescriptions,
 ContentDescription,
 Creator,
 DateCreated,
+DateLastModified,
 DerivationMethod,
 DerivedFrom,
 Diagnoses,
@@ -131,6 +132,7 @@ ContentDescriptions:before,       { content: "CONTENT DESCRIPTIONS * ";}
 ContentDescription:before,        { content: "Cont. Descr. * + @: ";}
 Creator:before,                   { content: "Creator &: ";}
 DateCreated:before,               { content: "Date Created &: ";}
+DateLastModified:before,          { content: "Last Modified &: ";}
 DerivedFrom:before,               { content: "DERIVED FROM * + ";}
 Diagnoses:before,                 { content: "DIAGNOSES & ";}
 Diagnosis:before,                 { content: "Diagnosis * +: ";}
@@ -212,6 +214,7 @@ ContentDescriptions:before,
 ContentDescription:before,
 Creator:before,
 DateCreated:before,
+DateLastModified:before,
 DerivationMethod:before,
 DerivedFrom:before,
 Diagnoses:before,
@@ -304,6 +307,9 @@ Creator,
 DateCreated,
                         { margin-left: 120pt;
                           text-indent: -94.5pt; }
+DateLastModified,
+                        { margin-left: 120pt;
+                          text-indent: -97pt; }
 DerivationMethod,
                         { margin-left: 120pt;
                           text-indent: 0pt; }
@@ -419,6 +425,7 @@ ProcessingStatus>Comment,
 ContentDescription,
 Creator,
 DateCreated,
+DateLastModified,
 Diagnosis,
 DocTitle,
 ProcessingStatus>EnteredBy,
@@ -481,6 +488,7 @@ Comment,
 ContentDescription,
 Creator,
 DateCreated,
+DateLastModified,
 DerivationMethod,
 Diagnosis,
 DocTitle,
@@ -530,6 +538,7 @@ ContentDescriptions:before,
 ContentDescription:before,
 Creator:before,
 DateCreated:before,
+DateLastModified:before,
 DerivationMethod:before,
 DerivedFrom:before,
 Diagnoses:before,
@@ -575,6 +584,5 @@ Topics:before,
 VideoData:before,
 VideoEncoding:before,
 VideoType:before,
-WidthPixels:before,
-
+WidthPixels:before
    { background-color: #CCCCFF; }
