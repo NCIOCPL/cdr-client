@@ -84,6 +84,13 @@ CTOutcomes,
 CTOversightInfo,
 CTReference,
 CTResultsReference,
+CTRPContact,
+CTRPFacility,
+CTRPLocation,
+CTRPInfo,
+CTRPInvestigator,
+CTRPOrgName,
+CTRPStatus,
 CTSamplingMethod,
 CTSource,
 CTStudyDesign,
@@ -137,6 +144,7 @@ OverallOfficial,
 OverallStatus,
 PDQAdminInfo,
 PDQIndexing,
+PDQOrganization,
 PDQPerson,
 PDQProtocolIDs,
 PDQSponsorship,
@@ -216,6 +224,13 @@ CTOutcomes                        :before { content: "CT OUTCOMES &"; }
 CTOutcomeSafetyIssue              :before { content: "Safety Issue &: "; }
 CTReference                       :before { content: "REFERENCE & +: "; }
 CTResultsReference                :before { content: "RESULTS REFERENCE & +: "; }
+CTRPContact                       :before { content: "CONTACT &"; }
+CTRPFacility                      :before { content: "FACILITY * @ "; }
+CTRPLocation                      :before { content: "CTRP LOCATION & +"; }
+CTRPInfo                          :before { content: "CTRP INFO &"; }
+CTRPInvestigator                  :before { content: "INVESTIGATOR & +"; }
+CTRPOrgName                       :before { content: "Org Name *: "; }
+CTRPStatus                        :before { content: "Status *: "; }
 CTSamplingMethod                  :before { content: "Sampling Method &: "; }
 CTSource                          :before { content: "CT Source &: "; }
 CTStudyPop                        :before { content: "STUDY POP &"; }
@@ -223,15 +238,13 @@ CTStudyType                       :before { content: "CT Study Type &: "; }
 DownloadDate                      :before { content: "Download Date *: "; }
 FirstReceivedDate                 :before { content: "First Received Date &: "; }
 FundingInfo                       :before { content: "FUNDING INFO &"; }
-GivenName                         :before { content: "Given Name &: "; }
+GivenName                         :before { content: "Given Name: "; }
 GrantContractNo                   :before { content: "Contract No *: "; }
 HasDMC                            :before { content: "Has DMC &: "; }
 IDInfo                            :before { content: "ID INFORMATION * "; }
-PDQProtocolIDs IDType             :before { content: "ID Type *: "; }
-PDQProtocolIDs IDString           :before { content: "ID *: "; }
 LeadSponsor                       :before { content: "Lead Sponsor & @: "; }
 LinkText                          :before { content: "Link Text *: "; }
-MiddleInitial                     :before { content: "Middle Initial &: "; }
+MiddleInitial                     :before { content: "Middle Initial: "; }
 NCT_Alias                         :before { content: "NCT_Alias & +: "; }
 NCTID                             :before { content: "NCTID *: "; }
 NIHGrantContract                  :before { content: "NIH GRANT CONTRACT &"; }
@@ -242,7 +255,13 @@ OverallContact                    :before { content: "OVERALL CONTACT &"; }
 OverallOfficial                   :before { content: "OVERALL OFFICIAL & +"; }
 OverallContactBackup              :before { content: "OV. CONT. BACKUP &"; }
 PDQAdminInfo                      :before { content: "PDQ ADMIN INFO &"; }
+PDQOrganization                   :before { content: "PDQ Org * @: "; }
+PDQProtocolIDs IDType             :before { content: "ID Type *: "; }
+PDQProtocolIDs IDString           :before { content: "ID *: "; }
 PDQSponsorship                    :before { content: "PDQ Sponsorship &: "; }
+PDQIndexing                       :before { content: "PDQ INDEXING * "; }
+PDQPerson                         :before { content: "PDQ Person & @: "; }
+PDQProtocolIDs                    :before { content: "PROTOCOL IDS &"; }
 PMID                              :before { content: "PMID &: "; }
 ProcessingEndDateTime             :before { content: "End Date &: "; }
 ProcessingStartDateTime           :before { content: "Start Date &: "; }
@@ -301,9 +320,6 @@ ContactBackup                     :before { content: "CONTACT BACKUP & @"; }
 Investigator                      :before { content: "INVESTIGATOR & + @"; }
 Affiliation                       :before { content: "Affiliation &: "; }
 Role                              :before { content: "Role &: "; }
-PDQIndexing                       :before { content: "PDQ INDEXING * "; }
-PDQPerson                         :before { content: "PDQ Person & @: "; }
-PDQProtocolIDs                    :before { content: "PROTOCOL IDS &"; }
 StudyType                         :before { content: "Study Type *: "; }
 StudyCategory                     :before { content: "STUDY CATEGORY * +"; }
 StudyCategoryType                 :before { content: "Study Category Type *: "; }
@@ -376,6 +392,13 @@ CTOutcomes                        :before,
 CTOversightInfo                   :before,
 CTReference                       :before,
 CTResultsReference                :before,
+CTRPContact                       :before,
+CTRPFacility                      :before,
+CTRPLocation                      :before,
+CTRPInfo                          :before,
+CTRPInvestigator                  :before,
+CTRPOrgName                       :before,
+CTRPStatus                        :before,
 CTSamplingMethod                  :before,
 CTSource                          :before,
 CTStudyDesign                     :before,
@@ -415,6 +438,7 @@ OverallContactBackup              :before,
 OverallOfficial                   :before,
 OverallStatus                     :before,
 PDQIndexing                       :before,
+PDQOrganization                   :before,
 PDQPerson                         :before,
 PDQSponsorship                    :before,
 Phase                             :before,
@@ -473,12 +497,14 @@ Phone
 Para  
     { margin-bottom: 1em; }
 
-RequiredHeader,
 IDInfo,
+RequiredHeader,
 PDQIndexing
     { margin-bottom: 4pt; }
 
 BriefTitle,
+CTRPInfo,
+CTRPStatus,
 OfficialTitle
     { margin-top: 1em; 
       margin-bottom: 1em; }
@@ -494,6 +520,10 @@ CTIntervention,
 CTNumberOfArms,
 CTReference,
 CTResultsReference,
+CTRPContact,
+CTRPInfo Role,
+CTRPInvestigator,
+CTRPLocation,
 CTStudyDesign,
 CTSamplingMethod,
 CTStudyPop,
@@ -523,6 +553,7 @@ CTOutcomes,
 CTEligibility,
 CTGovIndexing,
 CTOversightInfo,
+CTRPInfo,
 DetailedDescription,
 IDInfo,
 Location,
@@ -554,6 +585,61 @@ LinkText
 URL                              
                             { margin-left: 110pt; 
                               text-indent:  -41.0pt; }
+
+/*  CTRP Info Elements  */
+/*  =================== */
+CTRPFacility                { margin-left:   30pt; }
+
+CTRPOrgName                 { margin-left:   100pt; 
+                              text-indent:  -73pt; }
+
+CTRPInfo PDQPerson
+                            { margin-left: 100pt;
+                              text-indent:-106pt; }
+
+PDQOrganization             { margin-left:   100pt; 
+                              text-indent:  -81pt; }
+
+CTRPStatus                  { margin-left:   30pt; }
+
+CTRPContact                 { margin-left:   30pt; }
+
+CTRPInvestigator            { margin-left:   30pt; }
+
+CTRPInfo GivenName               
+                            { margin-left: 100pt; 
+                              text-indent:  -77pt; }
+CTRPInfo MiddleInitial               
+                            { margin-left: 100pt; 
+                              text-indent:  -79pt; }
+CTRPInfo Surname               
+                            { margin-left: 100pt; 
+                              text-indent:  -72pt; }
+
+CTRPInfo Role               
+                            { margin-left: 100pt; 
+                              text-indent:  -46.5pt; }
+
+CTRPInfo Street               
+                            { margin-left:  70pt; 
+                              text-indent:  -64pt; }
+
+CTRPInfo City               
+                            { margin-left:  70pt; 
+                              text-indent:  -43pt; }
+
+CTRPInfo PoliticalSubUnit_State               
+                            { margin-left:  70pt; 
+                              text-indent:  -83pt; }
+
+CTRPInfo Country               
+                            { margin-left:  70pt; 
+                              text-indent:  -77pt; }
+
+CTRPInfo PostalCode_ZIP               
+                            { margin-left:  70pt; 
+                              text-indent:  -90pt; }
+
 CTSource                         
                             { margin-left: 110pt; 
                               text-indent:  -81.0pt; }
@@ -942,8 +1028,11 @@ NCT_Alias,
 NCTID,
 OrgStudyID,
 OverallStatus,
+PDQOrganization,
 PDQPerson,
 PDQSponsorship,
+PDQAdminInfo,
+PDQProtocolIDs,
 Phase,
 Phone,
 PhoneExt,
@@ -965,8 +1054,6 @@ StudyCategoryType,
 Surname,
 URL,
 VerificationDate,
-PDQAdminInfo,
-PDQProtocolIDs,
 FundingInfo,
 NIHGrantContract,
 NIHGrantContractType,
@@ -1011,6 +1098,13 @@ CTOutcomes,
 CTOutcomeMeasure,
 CTOutcomeSafetyIssue,
 CTOutcomeTimeFrame,
+CTRPContact,
+CTRPFacility,
+CTRPLocation,
+CTRPInfo,
+CTRPInvestigator,
+CTRPOrgName,
+CTRPStatus,
 CTSamplingMethod,
 CTSource,
 CTStudyDesign,
@@ -1058,6 +1152,7 @@ OverallContactBackup,
 OverallOfficial,
 OverallStatus,
 PDQIndexing,
+PDQOrganization,
 PDQPerson,
 PDQSponsorship,
 Para,
@@ -1111,6 +1206,13 @@ ContactBackup,
 CTAcronym                    :before,
 CTAuthority                  :before,
 CTOversightInfo,
+CTRPContact,
+CTRPFacility,
+CTRPInfo,
+CTRPInvestigator,
+CTRPLocation,
+CTRPOrgName                  :before,
+CTRPStatus                   :before,
 CTSource                     :before,
 DownloadDate                 :before,
 ProtocolProcessingDetails > EnteredBy
@@ -1134,6 +1236,7 @@ OverallContactBackup,
 OverallOfficial              :before,
 OverallContact               :before,
 OverallContactBackup         :before,
+PDQOrganization              :before,
 PDQPerson                    :before,
 PDQSponsorship               :before,
 PhoneExt                     :before,
