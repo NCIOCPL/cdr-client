@@ -1206,13 +1206,6 @@ ContactBackup,
 CTAcronym                    :before,
 CTAuthority                  :before,
 CTOversightInfo,
-CTRPContact,
-CTRPFacility,
-CTRPInfo,
-CTRPInvestigator,
-CTRPLocation,
-CTRPOrgName                  :before,
-CTRPStatus                   :before,
 CTSource                     :before,
 DownloadDate                 :before,
 ProtocolProcessingDetails > EnteredBy
@@ -1236,7 +1229,6 @@ OverallContactBackup,
 OverallOfficial              :before,
 OverallContact               :before,
 OverallContactBackup         :before,
-PDQOrganization              :before,
 PDQPerson                    :before,
 PDQSponsorship               :before,
 PhoneExt                     :before,
@@ -1253,6 +1245,34 @@ Surname                      :before,
 Status                       :before,
 URL                          :before
     { background-color: #CCCCFF; }  /*light blue*/
+
+
+/* Purple = CTRP Information                                               */
+CTRPLocation City            :before,
+CTRPLocation Country         :before,
+CTRPContact,
+CTRPFacility,
+CTRPInfo,
+CTRPInvestigator,
+CTRPLocation,
+CTRPOrgName                  :before,
+CTRPStatus                   :before,
+CTRPLocation Email           :before,
+CTRPLocation Fax             :before,
+CTRPLocation GivenName       :before,
+CTRPLocation MiddleInitial   :before,
+CTRPLocation PDQOrganization :before,
+CTRPLocation PDQPerson       :before,
+CTRPLocation Phone           :before,
+CTRPLocation PoliticalSubUnit_State          
+                             :before,
+CTRPLocation PostalAddress,
+CTRPLocation PostalCode_ZIP  :before,
+CTRPLocation Role            :before,
+CTRPLocation Street          :before,
+CTRPLocation Surname         :before
+    { background-color: #436EEE; }  /*royal blue*/
+    /* { background-color: #E6CDFF; }  light blue*/
 
 
 /* *********************************************************************** */
