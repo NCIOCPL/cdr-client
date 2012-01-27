@@ -145,6 +145,14 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>FigureNumber</Name>
+   <TagColor>99CCFF</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>Intervention</Name>
    <TagColor>FFFF99</TagColor>
    <PrettyPrintOptions>
@@ -307,6 +315,22 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>ReferencedFigureNumber</Name>
+   <TagColor>99CCFF</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ReferencedTableNumber</Name>
+   <TagColor>99CCFF</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">RelatedDocuments</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -420,6 +444,14 @@
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <NewLineBeforeEndTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>TableNumber</Name>
+   <TagColor>99CCFF</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
     <IndentContent/>
    </PrettyPrintOptions>
   </ElementProperties>
@@ -869,16 +901,32 @@
     </MediaLink>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name>FigureNumber</Name>
+   <MiniTemplate><![CDATA[<FigureNumber></FigureNumber>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>PatientVersionOf</Name>
    <MiniTemplate><![CDATA[<PatientVersionOf><?xm-replace_text {
                    Select a link to the Health Professionals summary
                    }?></PatientVersionOf>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name>ReferencedFigureNumber</Name>
+   <MiniTemplate><![CDATA[<ReferencedFigureNumber></ReferencedFigureNumber>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ReferencedTableNumber</Name>
+   <MiniTemplate><![CDATA[<ReferencedTableNumber></ReferencedTableNumber>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>SummaryModuleLink</Name>
    <MiniTemplate><![CDATA[<SummaryModuleLink><?xm-replace_text {
                    Optionally link to a summary module
                    }?></SummaryModuleLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>TableNumber</Name>
+   <MiniTemplate><![CDATA[<TableNumber></TableNumber>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>WillReplace</Name>
