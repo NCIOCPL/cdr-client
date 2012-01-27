@@ -168,6 +168,7 @@ Drug,
 Intervention,
 KeyPoint, 
 MainTopics, 
+MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
@@ -201,6 +202,12 @@ WillReplace,
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+TableNumber          :before { content: "[#]"; }
+ReferencedTableNumber
+                     :before { content: "[#]"; }
+FigureNumber         :before { content: "[#]"; }
+ReferencedFigureNumber 
+                     :before { content: "[#]"; }
 Board                :before { content: "Summary Board * @: "; }
 BoardMember          :before { content: "Board Member & + @: "; }
 Caption              :before { content: "Caption: "; }
@@ -210,6 +217,7 @@ DateLastModified     :before { content: "Last Modified &: "; }
 /*KeyPoint           :before { content: "Key Point & +: "; } */
 MainTopics>Term      :before { content: "Main Topics * + @: "; }
 MediaID              :before { content: "Media ID: "; }
+MobileURL            :before { content: "Mobile URL & @: "; }
 PatientVersionOf     :before { content: "Patient Version of & @: "; }
 PdqKey               :before { content: "PDQ Key &: "; }
 PurposeText          :before { content: "Purpose Text &: "; }
@@ -259,11 +267,12 @@ SummaryMetaData,
 
     { font-size: 12pt; }
 
+MobileURL                    :before,
 SummaryAudience              :before, 
 SummaryDescription           :before,
 SummaryLanguage              :before,
 SummaryType                  :before, 
-SummaryURL                   :before,
+SummaryURL                   :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
@@ -792,6 +801,7 @@ SummarySection>Table,
 /***************************************************************************/ 
 Board                        :before,
 BoardMember                  :before,
+MobileURL                    :before,
 PDQBoard,
 PurposeText                  :before,
 SummaryMetaData,
@@ -811,6 +821,7 @@ Board,
 BoardMember,
 Caption                      :before,
 MediaID                      :before,
+MobileURL,
 PurposeText,
 SummaryAudience,
 SummaryDescription,
@@ -830,6 +841,9 @@ Board,
 BoardMember,    
                   { margin-left: 135pt; 
                     text-indent: -129pt;}
+MobileURL,    
+                  { margin-left: 135pt;
+                    text-indent: -101pt; }
 PurposeText
                   { margin-left: 135pt; 
                     text-indent: -97pt;}
@@ -871,6 +885,7 @@ MediaLink,
 
 Board,
 BoardMember,
+MobileURL,
 PurposeText,
 SummaryAudience,
 SummaryDescription,

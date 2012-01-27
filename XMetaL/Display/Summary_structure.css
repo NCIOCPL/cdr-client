@@ -135,6 +135,7 @@ KeyPoint,
 MainTopics,
 MediaID,
 MediaLink,
+MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
@@ -176,11 +177,13 @@ ComprehensiveReviewDate
 DateLastModified                  :before { content: "Last Modified"; }
 Diagnosis                         :before { content: "Diagnosis "; }
 Drug                              :before { content: "Drug "; }
+FigureNumber                      :before { content: ""; }
 Intervention                      :before { content: "Intervention "; }
 KeyPoint                          :before { content: "Key Point "; }
 MainTopics                        :before { content: "Main Topics "; }
 MediaID                           :before { content: "MediaID "; }
 MediaLink                         :before { content: "MEDIALINK "; }
+MobileURL                         :before { content: "Mobile URL "; }
 Para                              :before { content: counter(para)". Paragraph "; }
 SummarySection>SummarySection>Para
                                   :before { content: counter(subpara)". Subparagraph "; }
@@ -191,6 +194,8 @@ PurposeText                       :before { content: "Purpose Text"; }
 QandASet                          :before { content: "Q&A Section "; }
 QandADiv                          :before { content: "Q&A Sub-Section "; }
 QandAEntry                        :before { content: counter(qanda)". Q&A Entry "; }
+ReferencedFigureNumber            :before { content: ""; }
+ReferencedTableNumber             :before { content: ""; }
 SecondaryTopics                   :before { content: "Secondary Topics " }
 SectMetaData                      :before { content: "Section Metadata "; }
 SectionType                       :before { content: "Section Type "; }
@@ -225,6 +230,7 @@ SummarySection>SummarySection>SummarySection>SummarySection>Title
                                   :before { content: "Sub-sub-sub-section Title "; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title
                                   :before { content: "Sub-sub-sub-sub-section Title "; }
+TableNumber                       :before { content: ""; }
 TranslationOf                     :before { content: "Translation Of "; }
 ReplacementFor                    :before { content: "Replacement For "; }
 WillReplace                       :before { content: "Will Replace "; }
@@ -272,6 +278,7 @@ SummarySection                    :before,
 Board                             :before,
 BoardMember                       :before,
 MainTopics                        :before,
+MobileURL                         :before,
 PDQBoard                          :before,
 PurposeText                       :before,
 SecondaryTopics                   :before,
@@ -301,6 +308,7 @@ DateLastModified                  :before,
 Diagnosis                         :before,
 Drug                              :before,
 Intervention                      :before,
+MobileURL                         :before,
 PatientVersionOf                  :before,
 PdqKey                            :before,
 PurposeText                       :before,
@@ -366,6 +374,7 @@ Intervention,
 KeyPoint,
 MainTopics,
 MediaID,
+MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
@@ -406,6 +415,7 @@ WillReplace
 /*************************************************************************/
 Board                             :before,
 BoardMember                       :before,
+MobileURL                         :before,
 PurposeText                       :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
@@ -424,6 +434,7 @@ ComprehensiveReviewDate,
 DateLastModified,
 MainTopics>Term,
 MediaID,
+MobileURL,
 PatientVersionOf,
 PurposeText,
 ReplacementFor,
