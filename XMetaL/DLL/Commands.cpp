@@ -6,6 +6,7 @@
  * To do: rationalize error return codes for automation commands.
  *
  * BZIssue::4767
+ * BZIssue::5172 - Add support for pasting fragment ref into Target attribute.
  */
 
 // Local headers.
@@ -2439,6 +2440,15 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
 
                 // If this is a cdr:href link, this is all we need to do.
                 elem.setAttribute(_T("cdr:href"), docLink);
+                *pRet = 0;
+                return S_OK;
+            }
+
+            // BZIssue::5172 - Add support for Target attribute.
+            if (dt.GetHasAttribute(elem.GetNodeName(), _T("Target"))) {
+
+                // If this is a Target link, this is all we need to do.
+                elem.setAttribute(_T("Target"), docLink);
                 *pRet = 0;
                 return S_OK;
             }
