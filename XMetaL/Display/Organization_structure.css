@@ -94,6 +94,7 @@ Organization,
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -162,6 +163,7 @@ Year
 AdvisoryBoardFor     :before { content: "Advisory Board For"; }
 AffiliateMemberOf    :before { content: "AFFILIATE MEMBER OF"; }
 AlternateName        :before { content: "Alternate Name "; }
+BoardDescription     :before { content: "Board Description "; }
 BoardManager         :before { content: "Board Manager "; }
 BoardManagerPhone    :before { content: "Board Manager Phone "; }
 BoardManagerEmail    :before { content: "Board Manager Email "; }
@@ -260,6 +262,7 @@ OrganizationLocation,
 /***************************************************************************/ 
 AdvisoryBoardFor                  :before,
 AffiliateMemberOf                 :before,
+BoardDescription                  :before,
 BoardManager                      :before,
 BoardManagerPhone                 :before,
 BoardManagerEmail                 :before,
@@ -353,6 +356,7 @@ Status,
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -417,6 +421,7 @@ Year
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -484,6 +489,7 @@ Year,
 AdvisoryBoardFor                  :before,
 AffiliateMemberOf                 :before,
 AlternateName                     :before,
+BoardDescription                  :before,
 BoardManager                      :before,
 BoardManagerPhone                 :before,
 BoardManagerEmail                 :before,

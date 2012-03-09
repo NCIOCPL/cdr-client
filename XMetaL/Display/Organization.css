@@ -112,6 +112,7 @@ AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
 FormerName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -183,6 +184,7 @@ Year
 AdvisoryBoardFor     :before { content: "AdvBoardFor & @: "; }
 AffiliateMemberOf    :before { content: "AFFILIATE MEMBER OF & +"; }
 AlternateName        :before { content: "Alternate Name & +: "; }
+BoardDescription     :before { content: "Description *: "; }
 BoardManager         :before { content: "Manager *: "; }
 BoardManagerPhone    :before { content: "Phone * @: "; }
 BoardManagerEmail    :before { content: "Email * @: "; }
@@ -269,6 +271,7 @@ Year                 :before { content: "Year *: "; }
 /**************************************************************************/
 AdvisoryBoardFor     :before,
 AffiliateMemberOf    :before,
+BoardDescription     :before,
 BoardManager         :before,
 BoardManagerPhone    :before,
 BoardManagerEmail    :before,
@@ -518,6 +521,8 @@ ClinicalTrialsOfficeContactName        { margin-left: 110pt;
 
 AdvisoryBoardFor                       { margin-left: 160pt; 
                                          text-indent: -112.5pt; }
+BoardDescription                       { margin-left: 160pt; 
+                                         text-indent: -82pt; }
 BoardManager                           { margin-left: 160pt; 
                                          text-indent: -65pt; }
 BoardManagerPhone                      { margin-left: 160pt; 
@@ -552,6 +557,7 @@ BoardMeeting > MediaLink > MediaID     { margin-left: 0pt;
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -620,6 +626,7 @@ IncludeInDirectory
 /**************************************************************************/
 AdvisoryBoardFor,
 AlternateName,
+BoardDescription,
 BoardManager,
 BoardManagerPhone,
 BoardManagerEmail,
@@ -678,6 +685,7 @@ Year
 AdvisoryBoardFor                  :before,
 AffiliateMemberOf,
 AlternateName                     :before,
+BoardDescription                  :before,
 BoardManager                      :before,
 BoardManagerPhone                 :before,
 BoardManagerEmail                 :before,
