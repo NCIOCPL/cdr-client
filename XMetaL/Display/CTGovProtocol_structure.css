@@ -102,6 +102,7 @@ CTRPLocation,
 CTRPInfo,
 CTRPInvestigator,
 CTRPOrgName,
+CTRPOverallOfficial,
 CTRPStatus,
 CTSamplingMethod,
 CTSource,
@@ -249,6 +250,7 @@ CTOversightInfo              :before,
 CTReference                  :before,
 CTResultsReference           :before,
 CTRPOrgName                  :before,
+CTRPOverallOfficial          :before,
 CTRPStatus                   :before,
 CTSamplingMethod             :before,
 CTSource                     :before,
@@ -394,6 +396,7 @@ CTRPLocation                      :before { content: "CTRP LOCATION"; }
 CTRPInfo                          :before { content: "CTRP INFO"; }
 CTRPInvestigator                  :before { content: "INVESTIGATOR"; }
 CTRPOrgName                       :before { content: "Org Name"; }
+CTRPOverallOfficial               :before { content: "Overall Official"; }
 CTRPStatus                        :before { content: "Status"; }
 CTSamplingMethod                  :before { content: "Sampling Method"; }
 CTSource                          :before { content: "CT Source"; }

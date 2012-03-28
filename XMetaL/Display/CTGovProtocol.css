@@ -90,6 +90,7 @@ CTRPLocation,
 CTRPInfo,
 CTRPInvestigator,
 CTRPOrgName,
+CTRPOverallOfficial,
 CTRPStatus,
 CTSamplingMethod,
 CTSource,
@@ -230,6 +231,7 @@ CTRPLocation                      :before { content: "CTRP LOCATION & +"; }
 CTRPInfo                          :before { content: "CTRP INFO &"; }
 CTRPInvestigator                  :before { content: "INVESTIGATOR & +"; }
 CTRPOrgName                       :before { content: "Org Name *: "; }
+CTRPOverallOfficial               :before { content: "OVERALL OFFICIAL *"; }
 CTRPStatus                        :before { content: "Status *: "; }
 CTSamplingMethod                  :before { content: "Sampling Method &: "; }
 CTSource                          :before { content: "CT Source &: "; }
@@ -398,6 +400,7 @@ CTRPLocation                      :before,
 CTRPInfo                          :before,
 CTRPInvestigator                  :before,
 CTRPOrgName                       :before,
+CTRPOverallOfficial               :before,
 CTRPStatus                        :before,
 CTSamplingMethod                  :before,
 CTSource                          :before,
@@ -546,6 +549,12 @@ StudyCategory,
 VerificationDate
     { margin-top: 1em; }
 
+CTRPOverallOfficial
+    { margin-top: 0.5em; 
+      margin-bottom: 1em; }
+
+CTRPOverallOfficial PDQPerson
+    { margin-top: 0.2em; }
 
 ArmsOrGroups,
 BriefSummary,
@@ -639,6 +648,10 @@ CTRPInfo Country
 CTRPInfo PostalCode_ZIP               
                             { margin-left:  70pt; 
                               text-indent:  -90pt; }
+
+CTRPOverallOfficial         { margin-left:   30pt; }
+
+CTRPLocation                { margin-left:   30pt; }
 
 CTSource                         
                             { margin-left: 110pt; 
@@ -1104,6 +1117,7 @@ CTRPLocation,
 CTRPInfo,
 CTRPInvestigator,
 CTRPOrgName,
+CTRPOverallOfficial,
 CTRPStatus,
 CTSamplingMethod,
 CTSource,
@@ -1256,7 +1270,10 @@ CTRPInfo,
 CTRPInvestigator,
 CTRPLocation,
 CTRPOrgName                  :before,
+CTRPOverallOfficial,
 CTRPStatus                   :before,
+CTRPLocation City            :before,
+CTRPLocation Country         :before,
 CTRPLocation Email           :before,
 CTRPLocation Fax             :before,
 CTRPLocation GivenName       :before,
@@ -1270,7 +1287,23 @@ CTRPLocation PostalAddress,
 CTRPLocation PostalCode_ZIP  :before,
 CTRPLocation Role            :before,
 CTRPLocation Street          :before,
-CTRPLocation Surname         :before
+CTRPLocation Surname         :before,
+CTRPOverallOfficial City            :before,
+CTRPOverallOfficial Country         :before,
+CTRPOverallOfficial Email           :before,
+CTRPOverallOfficial Fax             :before,
+CTRPOverallOfficial GivenName       :before,
+CTRPOverallOfficial MiddleInitial   :before,
+CTRPOverallOfficial PDQOrganization :before,
+CTRPOverallOfficial PDQPerson       :before,
+CTRPOverallOfficial Phone           :before,
+CTRPOverallOfficial PoliticalSubUnit_State          
+                                    :before,
+CTRPOverallOfficial PostalAddress,
+CTRPOverallOfficial PostalCode_ZIP  :before,
+CTRPOverallOfficial Role            :before,
+CTRPOverallOfficial Street          :before,
+CTRPOverallOfficial Surname         :before
     { background-color: #436EEE; }  /*royal blue*/
     /* { background-color: #E6CDFF; }  light blue*/
 
