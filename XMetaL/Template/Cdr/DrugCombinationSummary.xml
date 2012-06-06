@@ -116,9 +116,8 @@
    <ListItem><?xm-replace_text {
          Enter list item
          }?></ListItem></ItemizedList>
-  <Para><?xm-replace_text {
-         Enter text
-         }?></Para>
+  <Para>This combination may also be used with other drugs or 
+         treatments or to treat other types of cancer.</Para>
  </SummarySection>
  <EnteredBy><?xm-replace_text {
          Use the tool bar icon to enter your user name (required)
