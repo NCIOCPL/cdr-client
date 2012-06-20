@@ -151,6 +151,10 @@ DocumentationTitle,
 /***************************************************************************/ 
 
 
+DocumentationRef,
+DocumentationFragmentRef
+     { color: blue; }
+
 DateLastModified:before,
 
      { font-weight: bold;
@@ -187,7 +191,6 @@ RelatedTopicID,
      { margin-left: 10pt; }
 
 OrderedList>ListTitle,
-
      { font-weight: bold;
        font-size: 12pt;
        color: blue; }
