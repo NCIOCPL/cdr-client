@@ -29,6 +29,13 @@
          Optionally enter a Status date
          }?></StatusDate>
  </TermDefinition> 
+ <ProcessingStatuses>
+  <ProcessingStatus>
+   <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+  </ProcessingStatus>
+ </ProcessingStatuses>
  <TermType><?xm-replace_text {
          Select the TermType (required)
          }?></TermType>

@@ -22,9 +22,6 @@
   <TermNameSource><?xm-replace_text {
          Optionally select the TermNameSource
          }?></TermNameSource>
-  <TermNameVerificationResource><?xm-replace_text {
-         Optionally enter the term name source verification
-         }?></TermNameVerificationResource>
  </TermName>
  <TermNameStatus><?xm-replace_text {
          Enter the term name status (required)
@@ -32,6 +29,13 @@
  <TermNameStatusDate><?xm-replace_text {
          Optionally enter the term status date
          }?></TermNameStatusDate>
+ <ProcessingStatuses>
+  <ProcessingStatus>
+   <ProcessingStatusValue><?xm-replace_text {
+         Select a processing status value (required)
+         }?></ProcessingStatusValue>
+  </ProcessingStatus>
+ </ProcessingStatuses>
  <GlossaryTermConcept><?xm-replace_text {
          Enter a glossary Term concept (required)
          }?></GlossaryTermConcept>
