@@ -70,6 +70,7 @@ CTGovProtocol,
 CTIntervention,
 CTInterventionDescription,
 CTInterventionName,
+CTInterventionOtherName,
 CTInterventionType,
 CTKeyword,
 CTMaximumAge,
@@ -195,7 +196,7 @@ VerificationDate
 
 ArmOrGroup                        :before { content: "ARM OR GROUP & +"; }
 ArmOrGroupDescription             :before { content: "Description &: "; }
-ArmOrGroupLabel                   :before { content: "Label *: "; }
+ArmOrGroupLabel                   :before { content: "Label & +: "; }
 ArmOrGroupType                    :before { content: "Type *: "; }
 ArmsOrGroups                      :before { content: "ARMS OR GROUPS & @"; }
 BiospecDescription                :before { content: "Biospec Description &: "; }
@@ -308,6 +309,7 @@ CTCondition                       :before { content: "Condition & +: "; }
 CTIntervention                    :before { content: "INTERVENTION & +"; }
 CTInterventionType                :before { content: "Type *: "; }
 CTInterventionName                :before { content: "Name *: "; }
+CTInterventionOtherName           :before { content: "Other Name & +: "; }
 CTInterventionDescription         :before { content: "Description &: "; }
 CTKeyword                         :before { content: "Keyword & +: "; }
 
@@ -380,6 +382,7 @@ CTGovProtocol                     :before,
 CTIntervention                    :before,
 CTInterventionDescription         :before,
 CTInterventionName                :before,
+CTInterventionOtherName           :before,
 CTInterventionType                :before,
 CTKeyword                         :before,
 CTMaximumAge                      :before,
@@ -746,12 +749,15 @@ CTInterventionType
 CTInterventionName               
                             { margin-left: 100pt; 
                               text-indent:  -49.0pt; }
+CTInterventionOtherName               
+                            { margin-left: 100pt; 
+                              text-indent:  -97.5pt; }
 CTInterventionDescription        
                             { margin-left: 100pt; 
                               text-indent:  -86.0pt; }
 CTIntervention > ArmOrGroupLabel    
                             { margin-left: 100pt; 
-                              text-indent:  -47.0pt; }
+                              text-indent:  -61.5pt; }
 
 CTKeyword
                             { margin-left: 100pt; 
@@ -1007,6 +1013,7 @@ CTExpectedEnrollment,
 CTGender,
 CTInterventionDescription,
 CTInterventionName,
+CTInterventionOtherName,
 CTInterventionType,
 CTKeyword,
 CTMinimumAge,
@@ -1103,6 +1110,7 @@ CTGovProtocol,
 CTIntervention,
 CTInterventionDescription,
 CTInterventionName,
+CTInterventionOtherName,
 CTInterventionType,
 CTKeyword,
 CTMaximumAge,
@@ -1348,6 +1356,7 @@ CTIntervention,
 CTInterventionDescription    :before,
 CTInterventionType           :before,
 CTInterventionName           :before,
+CTInterventionOtherName      :before,
 CTKeyword                    :before,
 CTEligibility,
 CTCriteria,

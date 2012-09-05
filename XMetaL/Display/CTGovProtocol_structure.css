@@ -83,6 +83,7 @@ CTGovProtocol,
 CTIntervention,
 CTInterventionDescription,
 CTInterventionName,
+CTInterventionOtherName,
 CTInterventionType,
 CTKeyword,
 CTMaximumAge,
@@ -235,6 +236,7 @@ CTGovProtocol                :before,
 CTIntervention               :before,
 CTInterventionDescription    :before,
 CTInterventionName           :before,
+CTInterventionOtherName      :before,
 CTInterventionType           :before,
 CTKeyword                    :before,
 CTMaximumAge                 :before,
@@ -405,6 +407,7 @@ CTStudyType                       :before { content: "CT Study Type"; }
 CTIntervention                    :before { content: "INTERVENTION"; }
 CTInterventionDescription         :before { content: "Intervention Description"; }
 CTInterventionName                :before { content: "Intervention Name"; }
+CTInterventionOtherName           :before { content: "Intervention Other Name"; }
 CTInterventionType                :before { content: "Intervention Type"; }
 CTKeyword                         :before { content: "Keyword"; }
 CTMaximumAge                      :before { content: "Maximum Age"; }
