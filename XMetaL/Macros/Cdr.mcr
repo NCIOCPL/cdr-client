@@ -3549,6 +3549,7 @@
         }
         docType = ActiveDocument.doctype;
         if (!docType.hasAttribute(container.nodeName, "cdr:ref") && 
+            !docType.hasAttribute(container.nodeName, "Target") &&
             !docType.hasAttribute(container.nodeName, "cdr:href")) {
             Application.Alert("Current element cannot accept links.");
             return;
