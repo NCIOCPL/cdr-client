@@ -26,6 +26,7 @@
     var CdrWebServer = "http://mahler.nci.nih.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     var lastMarkupLevel = '';
+    var CdrUserPath = '';
     
     var blobLinkElementNames = [
         "MediaLink",
@@ -41,6 +42,16 @@
     var CdrSession  = "";
     try {
         if (cdrObj) {
+            try {
+                CdrUserPath  = cdrObj.userPath;
+            }
+            catch (e) {
+                // Older versions of the DLL don't have the userPath
+                // attribute.  Only users running with the client
+                // files stored in the Program Files area next to
+                // the XMetaL software will have the older CDR DLL.
+                CdrUserPath = Application.Path;
+            }
             CdrUserName  = cdrObj.username;
             CdrSession   = cdrObj.session;
             if (cdrObj.hostname) {
@@ -394,7 +405,7 @@
                     "\nWindows Scripting Host needs to be installed.");
         }
         try {
-            var xmPath   = Application.Path;
+            var xmPath   = CdrUserPath;
             var fromPath = xmPath + "/display/" + from;
             var toPath   = xmPath + "/display/" + to;
             if (fso.FileExists(fromPath)) {
@@ -593,10 +604,6 @@
         rng.Select();
         return true;
     }
-
-  ]]>
-</MACRO>
-
 
   ]]>
 </MACRO>
@@ -3668,7 +3675,7 @@
 
     var ipeg = Application.ActiveInPlaceControl;
     var browser = ipeg.Control;
-    var form    = Application.Path + "/Forms/PersonNameInfo.html";
+    var form    = CdrUserPath + "/Forms/PersonNameInfo.html";
     ipeg.Height = 200;
     ipeg.Width  = 580;
     browser.Navigate2(form, 2);
@@ -3809,7 +3816,7 @@
     //----------------------------------------------------------------------
     function mergeChanges()
     {
-        var frm = Application.Path + "/Forms/CDR/AcceptAllChanges.xft";
+        var frm = CdrUserPath + "/Forms/CDR/AcceptAllChanges.xft";
         var dlg = Application.CreateFormDlg(frm);
         dlg.ApprovedButton.Value = true;
         var rc = dlg.DoModal();
@@ -3897,7 +3904,7 @@
         Undo = false;
         FindPrev = true;
         FindNext = true;
-        var AcceptOrReject_Dlg = CreateFormDlg(Application.Path + 
+        var AcceptOrReject_Dlg = CreateFormDlg(CdrUserPath + 
                 "\\Cdr\\AcceptOrReject.hhf");
         var rng = ActiveDocument.Range;
         Insertion_list = ActiveDocument.getElementsByTagName("Insertion");
@@ -4473,7 +4480,7 @@
     //----------------------------------------------------------------------
     function findNextInsertionOrDeletion() {
         var markupLevel = "";
-        var dlg = Application.CreateFormDlg(Application.Path +
+        var dlg = Application.CreateFormDlg(CdrUserPath +
                                             "/Forms/CDR/FindNextMarkup.xft");
         dlg.MarkupLevel.Value = 2;
         if (dlg.DoModal() != 1)
@@ -4611,7 +4618,8 @@
         var insElem = ActiveDocument.Range;
         var keepGoing = true;
         var markupLevel = "";
-        var dlg = Application.CreateFormDlg("Forms/CDR/FindNextMarkup.xft");
+        var dlg = Application.CreateFormDlg(CdrUserPath +
+                                            "/Forms/CDR/FindNextMarkup.xft");
         dlg.MarkupLevel.Value = 2;
         dlg.TheFrame.Title = "Find Previous Revision Markup";
         if (dlg.DoModal() != 1)
@@ -7768,7 +7776,7 @@
     function makeCitationSupplementaryInfoDoc() {
 
         var title = getDocTitle();
-        var template = Application.Path
+        var template = CdrUserPath
               + "\\Template\\Cdr\\CitationSupplementaryInfo.xml";
         var doc = Application.Documents.OpenTemplate(template);
         insertCitationTitle(doc, title);
@@ -7829,7 +7837,7 @@
 
         // Create a new ScientificProtocolInfo document from the template.
         var templateLocation = "\\Template\\Cdr\\ScientificProtocolInfo.xml";
-        var templatePath = Application.Path + templateLocation;
+        var templatePath = CdrUserPath + templateLocation;
         var doc = Application.Documents.OpenTemplate(templatePath);
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
@@ -7939,7 +7947,7 @@
             Application.Alert("Document has not yet been saved in the CDR");
             return;
         }
-        var template = Application.Path
+        var template = CdrUserPath
                      + "\\Template\\Cdr\\GlossaryTermName.xml";
         var doc = Application.Documents.OpenTemplate(template);
         var docIdElems = doc.getElementsByTagName('GlossaryTermConcept');
