@@ -5,13 +5,6 @@
  * with custom CDR DLL.  See documentation of the InitInstance method
  * (the entry point for a dialog-based application) below for an overview
  * of the processing logic.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.2  2005/11/08 22:11:02  bkline
- * Cleanup of initial CVS comments.
- *
- * Revision 1.1  2005/11/08 21:30:20  bkline
- * Rewrite of CDR loader.
  */
 #include "stdafx.h"
 #include "CdrClient.h"
@@ -20,6 +13,7 @@
 #include <fstream>
 #include <winsock.h>
 #include <atlenc.h>
+#include <direct.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -228,7 +222,8 @@ static CString getTextContent(CComPtr<IXMLDOMNode>& element);
 static CString getFileTimestamp(const CString& name);
 static CString getAttribute(CComPtr<IXMLDOMNode>& elem, const TCHAR* name);
 static CString extractErrorString(CComPtr<IXMLDOMNode>& node);
-static CString findXmetalProgram();
+static CString findXmetalProgram(CdrClient*);
+static CString tryXmetalPath(TCHAR* tail, CdrClient*);
 static void usage();
 
 /*
@@ -252,6 +247,28 @@ CdrClient::CdrClient() : loaderReplaced(false),
                          logger(NULL) {
     CoInitialize(NULL);
     xmlDomParser.CoCreateInstance(__uuidof(DOMDocument));
+
+    // Default XMetaL version is what we used before we
+    // started putting our client files in the user's
+    // private area of the file system.  Investigations
+    // into the feasibility of upgrading to 7.0 has been
+    // deferred.
+    xmver = XM45;
+#ifdef XM70_SUPPORTED
+    TCHAR buf[256];
+    TCHAR* temp = _tgetcwd(buf, sizeof buf / sizeof buf[0]);
+    if (!temp) {
+        CString msg;
+        msg.Format(_T("Failure getting CWD: %S"), strerror(errno));
+        throw msg;
+    }
+    CString cwd = buf;
+    cwd.MakeLower();
+    if (cwd.Find(_T("softquad")) >= 0) {
+        if (cwd.Find(_T("7.0")) >= 0)
+            xmver = XM70;
+    }
+#endif
 }
 
 /*
@@ -558,7 +575,16 @@ void CdrClient::logOptions() {
     buf.Format(_T("Server logging level: %d.\n"),
                commandLineOptions.serverDebugLevel);
     log(buf, 2);
+    TCHAR* v = _T("4.5");
+    switch (xmver) {
+    case XM70:
+        v = _T("7.0");
+        break;
+    }
+    buf.Format(_T("Running XMetaL version %s"), v);
+    log(buf, 0);
 }
+
 /*
  * Tell the user how to invoke the program.  Will be displayed in a
  * dialog window by the InitInstance method where the exception is caught.
@@ -1158,7 +1184,7 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
                        
                        _T("X-Debug-Level: %d\n"), 
                        commandLineOptions.serverDebugLevel);
-        log(_T("HTTP headers:\n%s\n") + headers, 3);
+        log(_T("HTTP headers:\n") + headers, 3);
 
         // Connect the to client refresh server.
         try {
@@ -1447,12 +1473,33 @@ void CdrClient::getNewFiles(const std::string& bytes, CdrProgressDlg& dialog) {
  */
 void CdrClient::launchClient() {
     CString msg;
-    int rc = system("regsvr32 /s CDR\\Cdr.dll");
+    int rc;
+
+    // If we're running a later version of XMetaL than the one
+    // most users are running, swap in a DLL to match.
+#ifdef XM70_SUPPORTED
+    if (xmver == XM70 && !_waccess(_T(".\\CDR\\cdr.xm7"))) {
+        log(_T("Swapping in DLL for XMetaL 7.0\n"));
+        BOOL success = CopyFileA("CDR\\Cdr.xm7", "CDR\\Cdr.dll", FALSE);
+        if (!success)
+            throw _T("Failure swapping DLL for XMetaL 7.0");
+    }
+#endif
+
+    // If we have the tool which supports registration of the DLL
+    // without requiring administrative privileges, use it instead
+    // of Microsoft's.
+    char* regCmd = "regsvr32 /s CDR\\Cdr.dll";
+    if (!_waccess(_T(".\\RegSvrEx.exe"), 0))
+        regCmd = ".\\RegSvrEx /c CDR\\Cdr.dll";
+    msg.Format(_T("Registering DLL: %S\n"), regCmd);
+    log(msg, 1);
+    rc = system(regCmd);
     if (rc) {
         msg.Format(_T("Failure registering Cdr.dll: %S"), strerror(errno));
         throw msg;
     }
-    CString programName = findXmetalProgram();
+    CString programName = findXmetalProgram(this);
     if (programName.IsEmpty())
         throw _T("Unable to find XMetaL program");
     TCHAR* args[2] = { _T("XMetaL") };
@@ -1463,26 +1510,48 @@ void CdrClient::launchClient() {
 }
 
 /*
- * Look in the current working directory for the XMetaL executable
- * program file with the latest version, skipping over versions
- * which use single-byte-character strings (the names of which
- * end in "a.exe").  Returns the name of the program to run,
- * or an empty string if no appropriate file is found.
+ * Returns the path to the XMetaL executable program to be
+ * launched; or an empty string if no appropriate path is found.
+ * Note that until XM70_SUPPORTED is defined, xmver will always
+ * be XM45.  We have deferred work on determining whether an
+ * upgrade to XMetaL 7.0 is feasible.
  */
-CString findXmetalProgram() {
-    CFileFind fileFinder;
-    BOOL more = fileFinder.FindFile(_T(".\\xmetal*.exe"));
-    CString xmetalProgram;
-    while (more) {
-        more = fileFinder.FindNextFile();
-        CString fileName = fileFinder.GetFileName();
-        CString ucName = fileName.MakeUpper();
-        if (ucName.Right(5).Compare(_T("A.EXE"))) {
-            if (ucName > xmetalProgram.MakeUpper())
-                xmetalProgram = fileName;
+CString findXmetalProgram(CdrClient* client) {
+    client->log(_T("Top of findXmetalProgram\n"), 3);
+    TCHAR* xm45 = _T("\\Blast Radius\\XMetaL 4.5\\Author\\xmetal45.exe");
+    TCHAR* xm70 = _T("\\XMetaL 7.0\\Author\\xmetal70.exe");
+    CString msg;
+    switch (client->xmver) {
+    case CdrClient::XM45:
+        return tryXmetalPath(xm45, client);
+    case CdrClient::XM70:
+        return tryXmetalPath(xm70, client);
+    default:
+        msg.Format(_T("Unrecognized XMetaL version %s"), client->xmver);
+        throw msg;
+    }
+}
+
+/*
+ * Tries to find the path to the XMetaL executable by appending the tail
+ * for a proposed path to the Program Files directory at the root of
+ * the system drive.  The Program Files directory is different on
+ * machines running 64-bit Windows from those running 32-bit Windows,
+ * so we have to try both.
+ */
+CString tryXmetalPath(TCHAR* t, CdrClient* client) {
+    TCHAR* vars[] = { _T("ProgramFiles(x86)"), _T("ProgramFiles") };
+    CString tail = t;
+    for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
+        TCHAR* dir = _tgetenv(vars[i]);
+        if (dir) {
+            CString path = dir + tail;
+            client->log(_T("Testing presence of ") + path + _T("\n"), 3);
+            if (!_waccess((LPCTSTR)path, 0))
+                return path;
         }
     }
-    return xmetalProgram;
+    return L"";
 }
 
 /*

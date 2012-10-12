@@ -168,6 +168,10 @@ public:
     // Override base class methods.
     virtual BOOL InitInstance();
 
+    // XMetaL version we're running.
+    typedef enum { XM45 = 45, XM70 = 70 } XMVER;
+    XMVER xmver;
+
 private:
     // Implementation.
     void extractServerSettings();
