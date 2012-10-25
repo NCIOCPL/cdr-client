@@ -12,6 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <winsock.h>
+#include <wininet.h>
 #include <atlenc.h>
 #include <direct.h>
 
@@ -1177,20 +1178,23 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
     const TCHAR*     target  = _T("/cgi-bin/cdr/ClientRefresh.py");
     CStringA         ascii   = (CStringA)cmd.GetString();
     CStringA::PCXSTR bytes   = ascii.GetString();
-    DWORD            length  = cmd.GetLength();
+    DWORD            length  = ascii.GetLength();
     BOOL             success = FALSE;
     try {
         headers.Format(_T("Content-Type: text/xml; charset=utf-8\n")
-                       
                        _T("X-Debug-Level: %d\n"), 
                        commandLineOptions.serverDebugLevel);
         log(_T("HTTP headers:\n") + headers, 3);
 
         // Connect the to client refresh server.
         try {
+            DWORD flags = INTERNET_FLAG_EXISTING_CONNECT;
+            if (httpPort != 80)
+                flags |= INTERNET_FLAG_SECURE;
             conn = session.GetHttpConnection(httpServer, httpPort);
             log(_T("Got HTTP connection to ") + httpServer + _T("\n"), 3);
-            file = conn->OpenRequest(_T("POST"), target);
+            file = conn->OpenRequest(_T("POST"), target, NULL, 1, NULL, NULL,
+                                     flags);
             log(_T("POST request opened successfully.\n"), 3);
         }
         catch (...) {
@@ -1199,11 +1203,47 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
 
         // This fails occasionally; give the server three chances.
         for (int i = 0; !success && i < 3; ++i) {
+
+            // http://msdn.microsoft.com/en-us/library/aa385328(v=vs.100).aspx
+            //
+            // It appears that this option is ignored; we still get the error
+            // ERROR_INTERNET_INVALID_CA (decimal 12045) trying to connect
+            // to a CBIIT server with a self-signed cert.
+            // 2012-10-25 update: it turns out that invoking the SetOption
+            // method on the connection object before creating the request
+            // object (CHttpFile) doesn't do anything.  It also turns out
+            // that the CHttpFile class supports QueryOption and SetOption,
+            // even though Microsoft omitted these methods from the MSDN
+            // documentation for the class.
+            if (httpPort != 80) {
+                DWORD secFlags;
+                file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+                CString flagMessage;
+                flagMessage.Format(_T("Original security flags: %08X\n"),
+                                   secFlags);
+                log(flagMessage, 3);
+                secFlags |= SECURITY_IGNORE_ERROR_MASK;
+                file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+                flagMessage.Format(_T("New security flags: %08X\n"), secFlags);
+                log(flagMessage, 3);
+            }
+                            
             try {
                 log(_T("Calling SendRequest().\n"), 3);
-                success = file->SendRequest(headers, 0, (void *)bytes, length);
+                success = file->SendRequest(headers, (void *)bytes, length);
             }
-            catch (...) {}
+            catch (CInternetException* e) {
+                CString errmsg;
+                TCHAR msg[1024];
+                if (e->GetErrorMessage(msg, 1024))
+                    errmsg.Format(_T("SendRequest(): %s"), msg);
+                else
+                    errmsg.Format(_T("SendRequest() error: %d\n"),
+                                  e->m_dwError);
+                if (errmsg.Right(1) != _T("\n"))
+                    errmsg += _T("\n");
+                log(errmsg);
+            }
         }
         if (!success)
             throw _T("Failure submitting request to update server");
