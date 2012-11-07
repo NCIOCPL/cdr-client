@@ -319,8 +319,16 @@
                 CdrWebServer = "http://" + cdrObj.hostname;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
-//if (CdrUserName == 'rmk')
-//            Application.Alert("User Name is " + CdrUserName);
+            try {
+                CdrUserPath  = cdrObj.userPath;
+            }
+            catch (e) {
+                // Older versions of the DLL don't have the userPath
+                // attribute.  Only users running with the client
+                // files stored in the Program Files area next to
+                // the XMetaL software will have the older CDR DLL.
+                CdrUserPath = Application.Path;
+            }
             cdrObj.setTitleBar();
         }
     }
