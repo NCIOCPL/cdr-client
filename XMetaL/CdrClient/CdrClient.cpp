@@ -1331,6 +1331,11 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
     CComPtr<IXMLDOMElement> docElem;
     if (FAILED(xmlParser->get_documentElement(&docElem)))
         throw _T("Failure extracting server updates response");
+	CString docElemName = getNodeName((CComPtr<IXMLDOMNode>)docElem);
+	if (docElemName == _T("ERROR")) {
+		CString errorMessage = getTextContent((CComPtr<IXMLDOMNode>)docElem);
+		throw _T("Failure assembling update package"); //errorMessage;
+	}
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
         CString nodeName = getNodeName(node);
