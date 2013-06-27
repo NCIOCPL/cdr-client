@@ -73,6 +73,22 @@ static CString getFullDocPath(_Document* doc) {
     return doc->GetPath() + _T("\\") + doc->GetName();
 }
 
+void debugLogWrite(const CString& what, const CString& who) {
+    if (who != _T("rmk"))
+        return;
+    FILE* logFile = fopen("c:/tmp/debug.log", "a");
+    static bool warned = true; // false;
+    if (!logFile) {
+        if (!warned) {
+            warned = true;
+            ::AfxMessageBox(_T("Can't open log file"));
+        }
+        return;
+    }
+    fprintf(logFile, "%s\n", cdr::cStringToUtf8(what).c_str());
+    fclose(logFile);
+}
+
 /**
  * Determines whether a given element in a particular document type can
  * link to another document or fragment.  Do this by checking the set of 
@@ -166,7 +182,7 @@ static bool syncDtd(const CString& dtd, const CString& docType)
     // Find out where to write the DTD.
     CString dtdPath;
     CString rlxPath;
-    CString rulesPath = cdr::getXmetalPath() + _T("\\Rules");
+    CString rulesPath = cdr::getUserPath() + _T("\\Rules");
     dtdPath.Format(_T("%s\\%s.dtd"), (LPCTSTR)rulesPath, (LPCTSTR)docType);
     //rlxPath.Format(_T("%s\\%s.rlx"), (LPCTSTR)rulesPath, (LPCTSTR)docType);
     std::string pathName = cdr::cStringToUtf8(dtdPath);
@@ -283,7 +299,7 @@ bool getCssFiles(LogonDialog* dialog, CLogonProgress& progressDialog)
 {
     cdr::StringList files;
     _Application app = cdr::getApp();
-    CString displayPath = cdr::getXmetalPath() + _T("\\Display");
+    CString displayPath = cdr::getUserPath() + _T("\\Display");
     messageLoop();
     CString resp = CdrSocket::sendCommand(_T("<CdrGetCssFiles/>"));
     messageLoop();
@@ -457,8 +473,8 @@ STDMETHODIMP CCommands::logon(int *pRet)
         }
 
         // See if the client machine has the refresh utility installed.
-        CString oldManifest  = cdr::getXmetalPath() + _T("\\CDR_MANIFEST.XML");
-        CString manifestName = cdr::getXmetalPath() + _T("\\CdrManifest.xml");
+        CString oldManifest  = cdr::getUserPath() + _T("\\CDR_MANIFEST.XML");
+        CString manifestName = cdr::getUserPath() + _T("\\CdrManifest.xml");
         invokedFromClientRefreshTool = false;
         //::AfxMessageBox(_T("Looking for ") + manifestName);
         if (!_waccess((LPCTSTR)manifestName, 0) ||
@@ -524,7 +540,6 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
         // Make sure the user is logged on to the CDR.
         if (!CdrSocket::loggedOn())
             err = "This session is not logged into the CDR";
-
         // Ask the user which document to retrieve.
         if (err.IsEmpty()) {
             int rc = retrieveDialog.DoModal();
@@ -1276,7 +1291,7 @@ STDMETHODIMP CCommands::edit(int *pRet)
                 editType = CEditElement::PRIV_PRACTICE;
             else if (elemName == _T("Organization")) {
                 LPCTSTR respOrg = _T("ResponsibleOrganization");
-                if (selection.GetIsParentElement(respOrg));
+                if (selection.GetIsParentElement(respOrg))
                     editType = CEditElement::ORG_LOCATION;
             }
         }
@@ -1332,9 +1347,12 @@ bool CCommands::doRetrieve(const CString& id,
                            BOOL checkOut,
                            const CString& version)
 {
+    debugLogWrite(_T("Top of doRetrieve"), username);
     // Make sure the document isn't already open.
     _Application app = cdr::getApp();
+    debugLogWrite(_T("Got app"), username);
     Documents docs = app.GetDocuments();
+    debugLogWrite(_T("Got documents"), username);
     unsigned int docNo = cdr::getDocNo(id);
     CString match;
     if (version != _T("Current"))
@@ -1342,6 +1360,7 @@ bool CCommands::doRetrieve(const CString& id,
     else
         match.Format(_T("CDR%u "), docNo);
     int matchLen = match.GetLength();
+    debugLogWrite(match, username);
     for (long i = docs.GetCount(); i > 0; --i) {
         COleVariant vi;
         vi = i;
@@ -1371,6 +1390,7 @@ bool CCommands::doRetrieve(const CString& id,
                    _T("</CdrGetDoc>"), docId,
                                        (checkOut ? _T("Y") : _T("N")),
                                        version);
+    debugLogWrite(request, username);
     CString response = CdrSocket::sendCommand(request);
 
     return openDoc(response, docId, checkOut, version);
@@ -1379,7 +1399,7 @@ bool CCommands::doRetrieve(const CString& id,
 void removeDoc(const CString& docId)
 {
     unsigned int docNo = cdr::getDocNo(docId);
-    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
+    CString cdrPath = cdr::getUserPath() + _T("\\Cdr");
     CString docPath;
     docPath.Format(_T("%s\\Checkout\\CDR%u.xml"), (LPCTSTR)cdrPath, docNo);
     try {
@@ -1404,7 +1424,7 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
     CString retrievedDocTitle;
     CString cdrDoc;
     CString docTitle;
-    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
+    CString cdrPath = cdr::getUserPath() + _T("\\Cdr");
     cdr::Element cdrDocElem = cdr::Element::extractElement(resp, 
                                                            _T("CdrDoc"));
 
@@ -1664,7 +1684,7 @@ static CString getLocalDocTypeInfo() {
     };
     try {
         CFile file;
-        CString path = cdr::getXmetalPath() + _T("\\CdrDocTypes.xml");
+        CString path = cdr::getUserPath() + _T("\\CdrDocTypes.xml");
         file.Open((LPCTSTR)path, CFile::modeRead);
         int nBytes = (int)file.GetLength();
 
@@ -1688,7 +1708,7 @@ static CString getLocalDocTypeInfo() {
 bool CCommands::doLogon(LogonDialog* logonDialog)
 {
     // Make the document directories if they aren't already there.
-    CString cdrPath = cdr::getXmetalPath() + _T("\\Cdr");
+    CString cdrPath = cdr::getUserPath() + _T("\\Cdr");
     CString roPath  = cdrPath + _T("\\ReadOnly");
     CString coPath  = cdrPath + _T("\\Checkout");
     CString mePath  = cdrPath + _T("\\Media");
@@ -2870,7 +2890,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer)
     CString docXml = xmlElem.getCdataSection();
 
     // Save the file.
-    CString path = cdr::getXmetalPath() + _T("\\Cdr\\Media");
+    CString path = cdr::getUserPath() + _T("\\Cdr\\Media");
     ::CreateDirectory((LPCTSTR)path, NULL);
     path += _T("\\") + fileName;
     CString ext = getBlobExtension(docXml, docType);
@@ -3203,4 +3223,15 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
     result.SetSysString(values);
 
     return S_OK;
+}
+
+
+STDMETHODIMP CCommands::get_userPath(BSTR* pVal)
+{
+	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+	CString userPath = cdr::getUserPath();
+    userPath.SetSysString(pVal);
+
+	return S_OK;
 }

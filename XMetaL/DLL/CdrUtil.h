@@ -243,6 +243,7 @@ namespace cdr {
     bool showValidationErrors(ValidationErrors&);
     _Application getApp();
     CString getXmetalPath();
+    CString getUserPath();
     CString encode(CString str, bool fixQuotes = false);
     CString decode(CString str);
     unsigned long getDocNo(const CString& docString);

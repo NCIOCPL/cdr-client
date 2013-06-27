@@ -85,6 +85,7 @@ public:
     STDMETHOD(getBoardMemberId)(const BSTR* personId, BSTR* boardMemberId);
     STDMETHOD(editComment)(VARIANT_BOOL readOnly);
     STDMETHOD(valuesForPath)(const BSTR* docId, const BSTR* path, BSTR* values);
+	STDMETHOD(get_userPath)(BSTR* pVal);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

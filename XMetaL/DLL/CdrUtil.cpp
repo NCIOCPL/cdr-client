@@ -27,6 +27,8 @@
 
 // Local support functions.
 static CString errResponse(const CString& err);
+static bool isUserPath(const CString& path);
+extern void debugLogWrite(const CString& what, const CString& who);
 
 /**
  * Login token obtained from the CDR server.
@@ -410,14 +412,22 @@ int cdr::fillListBox(CListBox& listBox, const DocSet& docSet)
  */
 _Application cdr::getApp()
 {
+    debugLogWrite(_T("Top of getApp()"), _T("rmk"));
     _Application app;
     try {
         COleException e;
-        if (app.CreateDispatch(_T("XMetaL.Application"), &e))
+        debugLogWrite(_T("Before CreateDispatch()"), _T("rmk"));
+        if (app.CreateDispatch(_T("XMetaL.Application"), &e)) {
+            debugLogWrite(_T("After CreateDispatch()"), _T("rmk"));
             return app;
+        }
+        debugLogWrite(_T("After after CreateDispatch()"), _T("rmk"));
+        e.ReportError();
     }
-    catch (CException *e) {
-        e->ReportError();
+    catch (CException *ee) {
+        debugLogWrite(_T("Caught exception in cdr::getApp()\n"), _T("rmk"));
+        ee->ReportError();
+        debugLogWrite(_T("Reported exception in cdr::getApp()\n"), _T("rmk"));
     }
     throw _T("Unable to create XMetaL Application-level automation object");
 }
@@ -438,6 +448,47 @@ CString cdr::getXmetalPath()
             xmetalPath = app.GetPath();
     }
     return xmetalPath;
+}
+
+/**
+ * Finds the user-specific location where client files for the application
+ * are stored.
+ *
+ *  @return             reference to string containing location for client
+ *                      files.
+ */
+CString cdr::getUserPath() 
+{
+    static CString userPath;
+    if (userPath.IsEmpty()) {
+        CString tail = _T("\\Softquad\\XMetaL\\4.5");
+        TCHAR* vars[] = { _T("LOCALAPPDATA"), _T("APPDATA") };
+        for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
+            TCHAR* dir = _tgetenv(vars[i]);
+            if (dir) {
+                CString candidate = CString(dir) + tail;
+                if (isUserPath(candidate)) {
+                    userPath = candidate;
+                    return userPath;
+                }
+            }
+        }
+        userPath = cdr::getXmetalPath();
+    }
+    return userPath;
+}
+
+/**
+ * Test a candidate path to determine whether it can be used to store
+ * client files for our application.
+ *
+ *  @param  path      fully qualified path string for candidate path
+ */
+bool isUserPath(const CString& path) {
+    CString manifest = path + _T("\\CdrManifest.xml");
+    if (!_waccess((LPCTSTR)manifest, 0))
+        return true;
+    return false;
 }
 
 /**
@@ -1120,17 +1171,42 @@ int cdr::showPage(const CString& url)
 int cdr::showPage(const CString& url)
 {
     COleDispatchDriver ie;
-    if (!ie.CreateDispatch(_T("InternetExplorer.Application"))) {
-        ::AfxMessageBox(_T("Unable to launch Internet Explorer"),
-            MB_ICONEXCLAMATION);
+    COleException* pe = new COleException;
+    try {
+    if (!ie.CreateDispatch(_T("InternetExplorer.Application"), pe)) {
+        DWORD error = ::GetLastError();
+        TCHAR buf[256];
+        swprintf(buf, _T("CreateDisplatch: Unable to launch Internet Explorer (%ld)"), error);
+        ::AfxMessageBox(buf, MB_ICONEXCLAMATION);
+        throw pe;
+    }
+    }
+    catch (COleDispatchException* pExc) {
+        CString s;
+        if (!pExc->m_strSource.IsEmpty())
+            s = pExc->m_strSource + _T(" - ");
+        if (!pExc->m_strDescription.IsEmpty())
+            s += pExc->m_strDescription;
+        else
+            s += _T("unknown error");
+        ::AfxMessageBox(s, MB_OK, pExc->m_strHelpFile.IsEmpty() ? 0 : pExc->m_dwHelpContext);
+        pExc->Delete();
         return EXIT_FAILURE;
     }
+    catch (CException* e) {
+        TCHAR b[256];
+        swprintf(b, _T("%S(%d): OLE Exception caught: SCODE = %x"), __FILE__, __LINE__, COleException::Process(e));
+        ::AfxMessageBox(b, MB_OK);
+        e->Delete();
+        return EXIT_FAILURE;
+    }
+    pe->Delete();
     DISPID dispid;
     OLECHAR* member = _T("Navigate");
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL, 
         &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
     if (hresult != S_OK) {
-        ::AfxMessageBox(_T("Unable to launch Internet Explorer"),
+        ::AfxMessageBox(_T("GetIDsOfNames: Unable to launch Internet Explorer"),
             MB_ICONEXCLAMATION);
         return EXIT_FAILURE;
     }
