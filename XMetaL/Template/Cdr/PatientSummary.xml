@@ -17,7 +17,7 @@
          Enter a summary description (required)
          }?></SummaryDescription>
   <SummaryURL cdr:xref=""><?xm-replace_text {
-         Enter Cancer.gov pretty URL (required)
+         Enter Cancer.gov's pretty URL (required)
          }?></SummaryURL>
   <PDQBoard>
    <Board cdr:ref="CDR0000028327">PDQ Adult Treatment Editorial Board</Board>
@@ -48,12 +48,13 @@
     <SectionType>Risk factors</SectionType>
    </SectMetaData>
    <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] 
-         the risk of x cancer.</KeyPoint>
+         the risk of developing x cancer.</KeyPoint>
    <Para>Anything that increases your risk of getting a disease is called 
          a risk factor.  Having a risk factor does not mean that you will 
          get cancer; not having risk factors doesn't mean that you will 
-         not get cancer.  Talk with your doctor if you think you may be 
-         at risk.  Risk factors for x cancer include the following:</Para>
+         not get cancer. People who think they may be at risk should 
+         discuss this with their doctor.  Risk factors for x cancer 
+         include the following:</Para>
    <ItemizedList Style="bullet"> 
     <ListItem><?xm-replace_text {
          Enter risk here
@@ -93,8 +94,8 @@
    </SectMetaData>
    <KeyPoint>Possible signs of x cancer include A, B, C.</KeyPoint>
    <Para>These and other symptoms may be caused by x cancer. Other 
-         conditions may cause the same symptoms. Check with your doctor 
-         if you have any of the following problems:</Para>
+         conditions may cause the same symptoms. A doctor should be 
+         consulted if any of the following problems occur:</Para>
    <ItemizedList Style="bullet">
     <ListItem><?xm-replace_text {
          Enter possible sign here
@@ -117,15 +118,12 @@
    <KeyPoint>Tests that examine the A, B, and C are used to detect (find) 
          and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
-   <Comment>Itemized list attribute is compact =No; tests are 
-         boldface</Comment>
    <ItemizedList Style="bullet">
-    <ListItem><StandardWording><Strong>Biopsy</Strong>: 
-         The removal of cells or tissues 
-         so they can be viewed under a microscope by a pathologist 
-         to check for signs of cancer.</StandardWording> 
+    <ListItem><StandardWording>Biopsy: The removal of cells or tissues 
+          so they can be viewed under a microscope by a pathologist 
+          to check for signs of cancer.</StandardWording> 
      <Comment>[Note: Within a summary, the description may be tailored to 
-         the cancer type.]</Comment></ListItem>
+          the cancer type.]</Comment></ListItem>
     <ListItem><?xm-replace_text {
          Enter test here
          }?></ListItem>
@@ -200,8 +198,6 @@
     <Comment>[Note: The last sentence should be changed to only tests 
          or only procedures, as appropriate.]</Comment>
    </Para>
-   <Comment>Itemized list attribute is compact =No; tests 
-         are boldface</Comment>
    <ItemizedList Style="bullet"> 
     <ListItem><?xm-replace_text {
          Enter test here
@@ -228,8 +224,7 @@
    </SectMetaData>
    <KeyPoint>The following stages are used for x cancer: 
     <Comment>[Linking note: Link first occurrence of all glossary terms 
-         under each stage or substage, except link "cancer" only once 
-         per stage.]</Comment></KeyPoint>
+         under each stage or substage.]</Comment></KeyPoint>
    <SummarySection>
     <KeyPoint>Stage 0 (Carcinoma in Situ)</KeyPoint>
     <Para>In stage 0, abnormal cells are found in .... Abnormal cells 
@@ -330,18 +325,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <KeyPoint>Childhood brain tumors may cause symptoms that begin 
-             before diagnosis and continue for months or years.
-    <Comment>Use this Key Point section for childhood brain tumor 
-             summaries.</Comment>
-   </KeyPoint>
-   <Para>Symptoms caused by the tumor may begin before diagnosis. 
-             These symptoms may continue for months or years. It is 
-             important to talk with your child's doctors about symptoms 
-             caused by the tumor that may continue after treatment.
-   </Para>
-  </SummarySection>
-  <SummarySection>
    <KeyPoint>Some cancer treatments cause side effects months or years 
              after treatment has ended. 
     <Comment>[Use for childhood treatment summaries.]</Comment>
@@ -404,7 +387,7 @@
          is taken by mouth or injected into a vein or muscle, the 
          drugs enter the bloodstream and can reach cancer cells 
          throughout the body (systemic chemotherapy).  When chemotherapy 
-         is placed directly into the cerebrospinal fluid, an organ, or a body 
+         is placed directly into the spinal column, an organ, or a body 
          cavity such as the abdomen, the drugs mainly affect cancer 
          cells in those areas (regional chemotherapy).  The way the 
          chemotherapy is given depends on the type and stage of the 
@@ -480,9 +463,6 @@
    <KeyPoint>Follow-up tests may be needed.</KeyPoint>
   <MiscellaneousDocLink cdr:ref="CDR0000584249#_32">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
-   <Comment>For childhood summaries</Comment>
-   <MiscellaneousDocLink cdr:ref="CDR0000584249#_59">Patient Summary
-         Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
  </SummarySection>
 
@@ -493,11 +473,8 @@
   <Title>Treatment Options by Stage</Title>
   <MiscellaneousDocLink cdr:ref="CDR0000584249#_36">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
-  <Comment>For childhood summaries</Comment>
-  <MiscellaneousDocLink cdr:ref="CDR0000584249#_60">Patient Summary
-         Fragments;Patient summary fragments</MiscellaneousDocLink>
   <Comment>[Linking note: Link first occurrence of all glossary terms 
-         under each stage or substage.]</Comment>
+        under each stage or substage.]</Comment>
   <SummarySection>
    <SectMetaData>
    </SectMetaData>
