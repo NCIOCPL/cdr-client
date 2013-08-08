@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE Summary SYSTEM "Summary.dtd">
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr">
+ <CdrDocCtl>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl>
+ <SummaryMetaData>
+  <SummaryType>Prevention</SummaryType>
+  <SummaryAudience>Patients</SummaryAudience>
+  <SummaryLanguage>Spanish</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {
+         Expert-reviewed information summary about factors that may 
+         increase the risk of developing X cancer and about research 
+         aimed at the prevention of this disease.
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov''s pretty URL (required)
+         }?></SummaryURL>
+  <PDQBoard>
+   <Board cdr:ref="CDR0000256088">Inactive</Board>
+  </PDQBoard>
+  <MainTopics>
+   <Term><?xm-replace_text {
+         Optionally select a terminology link
+         }?></Term>
+  </MainTopics>
+ </SummaryMetaData>
+
+ <SummaryTitle>Prevención del cáncer de X</SummaryTitle>
+ <AltTitle TitleType="Short">Prevención del cáncer de X</AltTitle>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Rationale for prevention</SectionType>
+  </SectMetaData>
+
+  <Title>¿Qué es prevención?</Title>
+  <Para>La prevención es un conjunto de acciones destinadas a reducir 
+         la posibilidad de enfermarse de cáncer. Por medio de esta, el 
+         número de casos nuevos disminuye en un grupo o población. Con 
+         suerte, esto reducirá el número de muertes que causa el 
+         cáncer.</Para>
+  <Para>Para evitar que empiecen nuevos cánceres, los científicos analizan 
+         los factores de riesgo y los factores de protección. Cualquier 
+         cosa que aumente la posibilidad de enfermar de cáncer se llama 
+         factor de riesgo; cualquier cosa que disminuya la posiblidad de 
+         enfermar de cáncer se llama factor de protección. </Para>
+  <Para>Algunos factores de riesgo de enfermar de cáncer se pueden evitar, 
+         mientras muchos otros son inevitables.  Por ejemplo, tanto fumar 
+         como heredar ciertos genes son factores de riesgo para ciertos 
+         tipos de cáncer,  pero solo se puede evitar fumar. El ejercicio 
+         regular y una alimentación sana pueden ser factores de protección 
+         contra ciertos tipos de cáncer. Evitar los factores de riesgo y 
+         aumentar los  de protección puede disminuir el riesgo, pero esto 
+         no significa que no se tendrá cáncer. </Para>
+  <Para>Hay diferentes maneras de prevenir el cáncer que están bajo 
+         estudio, entre estas las siguientes:</Para>
+  <ItemizedList Style="bullet">
+   <ListItem>Cambiar el estilo de vida o hábitos de alimentación.</ListItem>
+   <ListItem>Evitar todo lo que se sabe que puede causar cáncer.</ListItem>
+   <ListItem>Tomar medicamentos para tratar un afección precancerosa 
+         o para evitar que empiece el cáncer.</ListItem>
+  </ItemizedList>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>Información general sobre el cáncer de X</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Cancer description</SectionType>
+    <SectionType>Organ description</SectionType>
+   </SectMetaData>
+   <KeyPoint>El cáncer de X es una enfermedad por la que las células 
+         malignas (cancerosas) en x.</KeyPoint>
+  
+   <Para>Para mayor información sobre el cáncer de X, consultar los 
+         siguientes sumarios del PDQ:</Para>
+  </SummarySection>
+   
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Incidence</SectionType>
+   </SectMetaData>
+   <KeyPoint><?xm-replace_text {
+         Incidence key point
+         }?></KeyPoint>
+   <Para><?xm-replace_text {
+         Text
+         }?></Para>
+  </SummarySection>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>Prevención del cáncer de X</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Prevention methods</SectionType>
+   </SectMetaData>
+   <KeyPoint>Evitar los factores de riesgo y aumentar los factores de 
+         protección puede ayudar a prevenir el cáncer.</KeyPoint>
+         
+   <MiscellaneousDocLink cdr:ref="CDR0000586392#_44">Patient Summary 
+         Fragments[Spanish] [_44]</MiscellaneousDocLink>
+  </SummarySection>
+
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>Los siguentes factores de <Emphasis>riesgo</Emphasis> 
+         pueden aumentar las posibilidades de cáncer de X:</KeyPoint>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+   <SummarySection>
+          
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+   <SummarySection>
+          
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+  </SummarySection>
+
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>Los siguientes factores de <Emphasis>protección</Emphasis> 
+         pueden disminuir el riesgo de cáncer de X:</KeyPoint>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint></SummarySection>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+  </SummarySection>
+    
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>No se comprobó si los siguientes aspectos son factores 
+         de riesgo para el cáncer de X; tampoco se conocen sus efectos 
+         sobre el riesgo de este tipo de cáncer:</KeyPoint>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+   <SummarySection>
+    <KeyPoint><?xm-replace_text {
+         Optionally enter a Key Point for a patient summary
+         }?></KeyPoint>
+   </SummarySection>
+  </SummarySection>
+    
+  <SummarySection>
+   <KeyPoint>Los ensayos clínicos de prevención del cáncer se usan 
+         para estudiar formas de prevenirlo.</KeyPoint>
+   <SummarySection>
+    <Para>Los ensayos clínicos de prevención del cáncer se usan para 
+         estudiar formas de disminuir el riesgo de enfermar de ciertos 
+         tipos de cáncer. Algunos ensayos clínicos de prevención se 
+         realizan con personas sanas que no tuvieron cáncer, pero que 
+         tienen un riesgo mayor de tenerlo. Otros ensayos clínicos de 
+         prevención se realizan con personas que tuvieron cáncer y que 
+         tratan de prevenir otro cáncer del mismo tipo o disminuir la 
+         posibilidad de enfermar de un tipo nuevo. Otros ensayos se 
+         realizan con voluntarios sanos de quienes no se sabe si tienen 
+         cualquier factor de riesgo de cáncer.</Para>
+    <Para>El objetivo de algunos ensayos clínicos de prevención del 
+         cáncer es determinar si las acciones que toman las personas 
+         pueden prevenirlo. Estas pueden incluir comer frutas y 
+         vegetales, hacer ejercicio, dejar de fumar, o tomar 
+         ciertos medicamentos, vitaminas, minerales o suplementos 
+         alimentarios.</Para>
+   </SummarySection>
+  </SummarySection>
+    
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Current clinical trials</SectionType>
+   </SectMetaData>
+   <KeyPoint>En los ensayos clínicos se estudian nuevas maneras de 
+         prevenir el cáncer de X.</KeyPoint>
+   <Para>Los ensayos clínicos se realizan en muchas partes del país. 
+         La información en inglés sobre estos se puede encontrar en la 
+         sección de ensayos clínicos del 
+         <ExternalRef cdr:xref="http://www.cancer.gov/clinicaltrials">portal 
+         de internet del NCI</ExternalRef>. 
+         Consultar la lista de ensayos clínicos del NCI sobre el cáncer 
+         en el Registro de Ensayos Clínicos del PDQ que están aceptando 
+         pacientes para realizar estudios de la prevención del 
+         cáncer de X.</Para>
+  </SummarySection>
+ </SummarySection>
+
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Changes to summary</SectionType>
+  </SectMetaData>
+  <Title>Modificaciones a este sumario (MM/DD/YYYY)</Title>
+  <Para>Los sumarios del PDQ con información sobre el cáncer se revisan 
+         con regularidad y se actualizan en la medida en que se obtiene 
+         nueva información. Esta sección describe los cambios más 
+         recientes introducidos en este sumario a partir de la fecha 
+         arriba indicada.</Para>
+  <Para>
+   <StandardWording>La traducción al español de este sumario es 
+         nueva.</StandardWording>
+  </Para>
+   
+ </SummarySection>
+ 
+ <TranslationOf><?xm-replace_text {
+         Optionally link to the original English summary
+         }?></TranslationOf>
+ <PatientVersionOf><?xm-replace_text {
+         Select a link to the Health Professionals summary
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced
+         by this document
+         }?></WillReplace>
+</Summary>

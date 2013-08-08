@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE Summary SYSTEM "Summary.dtd">
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr">
+ <CdrDocCtl>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl>
+ <SummaryMetaData>
+  <SummaryType>Screening</SummaryType>
+  <SummaryAudience>Patients</SummaryAudience>
+  <SummaryLanguage>Spanish</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {
+         Enter a summary description (required)
+         }?></SummaryDescription>
+  <SummaryURL cdr:xref=""><?xm-replace_text {
+         Enter Cancer.gov''s pretty URL (required)
+         }?></SummaryURL>
+  <PDQBoard>
+   <Board cdr:ref="CDR0000256088">Inactive</Board>
+  </PDQBoard>
+  <MainTopics>
+   <Term>Screening for X cancer</Term>
+  </MainTopics>
+ </SummaryMetaData>
+
+ <SummaryTitle>Exámenes de detección del cáncer de X</SummaryTitle>
+ <SummarySection>
+  <Title>¿Qué son los exámenes de detección?</Title>
+  <Para>Los exámenes de detección son la búsqueda de un 
+         cáncer antes de que la persona tenga algún síntoma. Esto puede 
+         ayudar a encontrar el cáncer en un estadio temprano. Cuando el 
+         tejido anormal o el cáncer se encuentran temprano, puede ser 
+         más fácil tratarlos. Cuando aparecen los síntomas, el cáncer 
+         pudo empezar a diseminarse.</Para>
+  <Para>Los científicos tratan de entender mejor quiénes 
+         tienen más probabilidades de enfermarse de ciertos tipos de 
+         cáncer. También estudian lo que hacen las personas y las cosas 
+         que las rodean para ver si estas causan cáncer. Esta información 
+         ayuda a los médicos a recomendar quién se debe someter a los 
+         exámenes de detección del cáncer, qué pruebas se deben usar y 
+         con qué frecuencia deben realizarse.</Para>
+  <Para>Es importante recordar que el médico no piensa 
+         necesariamente que la persona tiene cáncer si ordena un examen 
+         de detección, ya que estos se realizan cuando la persona no 
+         tiene síntomas.</Para>
+  <Para>Si el resultado de un examen de detección es 
+         anormal, la persona necesitaría someterse a más pruebas para 
+         determinar si está enferma de cáncer. Estas se llaman pruebas 
+         de diagnóstico.</Para>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>Información general sobre el cáncer de X</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Cancer description</SectionType>
+    <SectionType>Organ description</SectionType>
+   </SectMetaData>
+   <KeyPoint>El cáncer de X es una enfermedad en la que se forman 
+         células malignas (cancerosas) en X.</KeyPoint>
+   <Para>Para mayor información sobre el cáncer de X, consultar el 
+         siguiente sumario del PDQ:</Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
+   </SectMetaData>
+   <KeyPoint><?xm-replace_text {
+         Enter incidence keypoint
+         }?></KeyPoint>
+   <Para><?xm-replace_text {
+         Enter text
+         }?></Para>
+  </SummarySection>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType>Risk factors</SectionType>
+   </SectMetaData>
+   <KeyPoint>A, B y C pueden afectar el riesgo de enfermarse de 
+         cáncer de X.</KeyPoint>
+   <Para>Cualquier cosa que aumenta el riesgo de contraer una enfermedad 
+         se llama factor de riesgo. Tener un factor de riesgo no significa 
+         que se va a enfermar de cáncer; no tener un factor de riesgo no 
+         significa que no se va a enfermar de cáncer. Las personas que 
+         piensan que pueden estar en riesgo deben consultarlo con su 
+         médico. Entre los factores de riesgo se incluyen los 
+         siguientes: </Para>
+   <ItemizedList Compact="No" Style="bullet">
+    <ListItem><?xm-replace_text {
+         Enter risk factor
+         }?></ListItem>
+    <ListItem><?xm-replace_text {
+         Enter risk factor
+         }?></ListItem>
+   </ItemizedList>
+  </SummarySection>
+ </SummarySection>
+   
+ <SummarySection>
+  <Title>Exámenes de detección del cáncer de X</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
+   </SectMetaData>
+   <KeyPoint>Se usan pruebas para detectar distintos tipos de cáncer.</KeyPoint>
+   <Para>Se usan algunas pruebas de detección porque demostraron ser 
+         útiles tanto para encontrar cánceres tempranamente como para 
+         disminuir la probabilidad de morir por estos cánceres. Otras 
+         pruebas se usan porque demostraron que pueden encontrar cáncer 
+         en algunas personas; sin embargo, no se comprobó en ensayos 
+         clínicos que el uso de estas pruebas disminuya el riesgo de 
+         morir por cáncer.</Para>
+   <Para>Los científicos estudian las pruebas de detección para encontrar 
+         cuáles son las que tienen menos riesgos y más beneficios. Los 
+         ensayos de detección del cáncer también se dirigen a determinar 
+         si la detección temprana (encontrar el cáncer antes de que cause 
+         síntomas) disminuye la probabilidad de que una persona muera por 
+         la enfermedad. Para algunos tipos de cáncer, el encontrar y tratar 
+         la enfermedad en un estadio temprano, puede dar como resultado una 
+         mejor probabilidad de recuperarse.</Para>
+   <Para>Los ensayos clínicos que estudian los métodos de detección del 
+         cáncer se realizan en muchas partes del país. Para mayor 
+         información en inglés sobre ensayos clínicos en curso, 
+         consultar el 
+         <ExternalRef cdr:xref="http://www.cancer.gov/clinicaltrials">portal 
+         de Internet del NCI</ExternalRef>.</Para>
+  </SummarySection>
+   
+  <SummarySection>
+
+   <KeyPoint>Algunos estudios muestran que los exámenes de detección 
+         del cáncer de X ayudan a disminuir el número de muertes por 
+         la enfermedad.</KeyPoint>
+  </SummarySection>
+
+  <SummarySection>
+   <KeyPoint>En general, se usan # pruebas para detectar el cáncer 
+         de X.</KeyPoint>
+   <SummarySection>
+    <KeyPoint>Prueba</KeyPoint>
+    <Para>Descripción de la prueba</Para>
+   </SummarySection>
+  </SummarySection>
+
+  <SummarySection>
+   <KeyPoint>Otros exámenes de detección están bajo estudio en ensayos 
+         clínicos.</KeyPoint>
+   <Para>Los ensayos clínicos que estudian los exámenes de detección 
+         se realizan en muchas partes del país. La información en 
+         inglés sobre los ensayos clínicos en curso está disponible 
+         en el 
+         <ExternalRef cdr:xref="http://www.cancer.gov/clinicaltrials">portal 
+         de Internet del NCI</ExternalRef></Para>
+  </SummarySection>
+ </SummarySection>
+
+ <SummarySection>
+  <Title>Riesgos de los exámenes de detección del cáncer de X</Title>
+  <SummarySection>
+   <SectMetaData>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
+   </SectMetaData>
+   <KeyPoint>Los exámenes de detección tienen riesgos.</KeyPoint>
+   <Para>Las decisiones sobre los exámenes de detección pueden ser 
+         difíciles. No todos estos exámenes son útiles y la mayoría 
+         tienen riesgos. Se debe consultar con el médico antes de 
+         someterse a un examen de detección, ya que es importante 
+         conocer sus riesgos y si está comprobado que reduce las 
+         posiblidades de morir de cáncer.</Para>
+  </SummarySection>
+
+  <SummarySection>
+   <KeyPoint>Entre los riesgos de los exámenes de detección del cáncer 
+         se incluyen los siguientes:</KeyPoint>
+   <SummarySection>
+    <KeyPoint>Se pueden obtener resultados negativos falsos del 
+         examen.</KeyPoint>
+    <Para>Los resultados de los exámenes de detección pueden parecer 
+         normales aunque el cáncer esté presente. Una persona que 
+         recibe un resultado negativo falso (que muestra que no hay 
+         cáncer cuando en realidad lo hay) puede demorarse en buscar 
+         atención médica aunque tenga síntomas.</Para>
+   </SummarySection>
+
+   <SummarySection>
+    <KeyPoint>Se pueden obtener resultados positivos falsos del 
+         examen.</KeyPoint>
+    <Para>Los resultados de los exámenes de detección pueden parecer 
+         anormales aunque no haya cáncer. Un resultado positivo falso 
+         (que muestra que hay un cáncer cuando en realidad no lo hay) 
+         puede causar ansiedad y, habitualmente, se realizan más 
+         pruebas y procedimientos (como <?xm-replace_text {
+         Enter tests specific to the cancer
+         }?>) que también pueden tener riesgos.</Para>
+   </SummarySection>
+  </SummarySection>
+ </SummarySection>
+
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Changes to summary</SectionType>
+  </SectMetaData>
+  <Title>Modificaciones a este sumario (MM/DD/YYYY)</Title>
+  <Para>Los sumarios del PDQ con información sobre el cáncer se
+         revisan con regularidad y se actualizan en la medida en que se
+         obtiene nueva información. Esta sección describe los cambios
+         más recientes introducidos en este sumario a partir de la 
+         fecha arriba indicada.</Para>
+  <Para>
+   <StandardWording>La traducción al español de este sumario 
+         es nueva.</StandardWording>
+  </Para>
+ </SummarySection>
+ <PatientVersionOf><?xm-replace_text {
+         Select title of HP version
+         }?></PatientVersionOf>
+ <WillReplace><?xm-replace_text {
+         Optionally link to the summary to be replaced by this document
+         }?></WillReplace>
+ <DateLastModified><?xm-replace_text {
+         Enter date
+         }?></DateLastModified>
+</Summary>
