@@ -139,7 +139,7 @@
 
 $DOCUMENT 
      { font-family: Arial, sans-serif;
-       font-size: 14pt;
+       font-size: 12pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
@@ -161,10 +161,14 @@ $PROCINS
 AltTitle,
 Board, 
 BoardMember, 
+ChangeDate,
+TypeOfSummaryChange > Comment,
 ComprehensiveReviewDate,
+Date,
 DateLastModified,
 Diagnosis, 
 Drug,
+EnteredBy,
 Intervention,
 KeyPoint, 
 MainTopics, 
@@ -190,24 +194,12 @@ SummaryURL,
 Term,
 Title, 
 TranslationOf,
+TypeOfChange,
+TypeOfSummaryChange,
+TypeOfSummaryChangeValue,
+User,
 WillReplace,
     { display: block; }
-
-
-Board,
-BoardMember,
-MobileURL,
-PurposeText,
-SummaryAudience, 
-SummaryBoard,
-SummaryDescription,
-SummaryLanguage, 
-SummaryType, 
-SummaryURL,
-MainTopics > Term,
-SecondaryTopics > Term
-    { font-weight: bold; }
-
 
 
 /***************************************************************************/ 
@@ -227,10 +219,14 @@ ReferencedFigureNumber
 Board                :before { content: "Summary Board * @: "; }
 BoardMember          :before { content: "Board Member & + @: "; }
 Caption              :before { content: "Caption: "; }
+ChangeDate           :before { content: "Change Date *: "; }
+TypeOfSummaryChange > Comment
+                     :before { content: "Comment & @: "; }
 ComprehensiveReviewDate            
                      :before { content: "Last Reviewed & @: "; }
 DateLastModified     :before { content: "Last Modified &: "; }
 /*KeyPoint           :before { content: "Key Point & +: "; } */
+EnteredBy            :before { content: "Entered By *: "; }
 MainTopics>Term      :before { content: "Main Topics * + @: "; }
 MediaID              :before { content: "Media ID: "; }
 MobileURL            :before { content: "Mobile URL & @: "; }
@@ -246,6 +242,12 @@ SummaryModuleLink    :before { content: "Summary Module &: "; }
 SummaryType          :before { content: "Summary Type *: "; }
 SummaryURL           :before { content: "Summary URL * @: "; }
 TranslationOf        :before { content: "Translation of & @: "; }
+TypeOfChange         :before { content: "Change Type *: "; }
+TypeOfSummaryChange  :before { content: "TYPE OF CHANGE & +"; }
+TypeOfSummaryChangeValue 
+                     :before { content: "Change Type *: "; }
+User                 :before { content: "Change User *: "; }
+Date                 :before { content: "Change Date *: "; }
 WillReplace          :before { content: "Will Replace & @: "; }
 
 
@@ -259,28 +261,35 @@ PatientVersionOf,
 ReplacementFor,
 DateLastModified,
 ComprehensiveReviewDate,
-WillReplace,
+WillReplace
                            { margin-left:  135pt; }
+/*TypeOfSummaryChange,*/
 
 TranslationOf              { text-indent: -114pt; } 
 PatientVersionOf           { text-indent: -136.5pt; } 
 ReplacementFor             { text-indent: -129pt; } 
 DateLastModified           { text-indent:  -97pt; } 
 ComprehensiveReviewDate    { text-indent: -119pt; } 
+/*TypeOfSummaryChange        { text-indent: -120pt; }*/
 WillReplace                { text-indent: -105pt; }
 
 /***************************************************************************/ 
 /*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
 /***************************************************************************/ 
 SummaryMetaData,
+TypeOfSummaryChange
     { border: solid; 
       border-color: black;
       border-width: thin;
+      font-weight: normal;
       margin-top: 1em;
-      margin-bottom: 6pt; }
+      margin-bottom: 1em; 
+      background-color: #CCCCFF; }
+
+TypeOfSummaryChange      :before
+    { font-weight: bold; }
 
 SummaryMetaData,
-
     { font-size: 12pt; }
 
 MobileURL                    :before,
@@ -295,11 +304,18 @@ SummaryURL                   :before
 
 Board                        :before,
 BoardMember                  :before,
+ChangeDate                   :before,
 Caption                      :before,
+Date                         :before,
+TypeOfSummaryChange > Comment:before,
+EnteredBy                    :before,
 MainTopics>Term              :before,
 MediaID                      :before,
 PurposeText                  :before,
-SecondaryTopics>Term         :before
+SecondaryTopics>Term         :before,
+TypeOfChange                 :before,
+TypeOfSummaryChangeValue     :before,
+User                         :before
     { font-weight: bold;
       font-size: 12pt; 
       color: black; }
@@ -335,12 +351,13 @@ DateLastModified             :before,
 /*SummaryModuleLink            :before, */
 PatientVersionOf             :before,
 ReplacementFor               :before,
+/*TypeOfSummaryChange          :before
      { font-weight: bold;
        font-size: 12pt;
        color: black;  
        margin-top: 15pt;
        margin-bottom: 10pt; }
-
+*/
 SummaryModuleLink            :before
      { font-weight: bold;
        margin-bottom: 10pt;
@@ -817,6 +834,10 @@ SummarySection>Table,
 /***************************************************************************/ 
 Board                        :before,
 BoardMember                  :before,
+ChangeDate                   :before,
+TypeOfSummaryChange > Comment:before,
+Date                         :before,
+EnteredBy                    :before,
 MobileURL                    :before,
 PDQBoard,
 PurposeText                  :before,
@@ -828,14 +849,21 @@ SummaryType                  :before,
 SummaryURL                   :before,
 MainTopics,
 MainTopics>Term              :before,
+User                         :before,
 SecondaryTopics,
-SecondaryTopics>Term         :before
+SecondaryTopics>Term         :before,
+TypeOfChange                 :before,
+TypeOfSummaryChangeValue     :before
     { background-color: #CCCCFF; }
 
 
 Board,
 BoardMember,
 Caption                      :before,
+ChangeDate,
+TypeOfSummaryChange > Comment,
+Date,
+EnteredBy,
 MediaID                      :before,
 MobileURL,
 PurposeText,
@@ -845,7 +873,10 @@ SummaryLanguage,
 SummaryType,
 SummaryURL,
 MainTopics>Term,
-SecondaryTopics>Term
+SecondaryTopics>Term,
+TypeOfChange,
+TypeOfSummaryChangeValue,
+User
     { background-color: white; }
 
 
@@ -857,6 +888,24 @@ Board,
 BoardMember,    
                   { margin-left: 135pt; 
                     text-indent: -129pt;}
+ChangeDate    
+                  { margin-left: -10pt; 
+                    text-indent: -90pt;}
+TypeOfSummaryChangeValue
+                  { margin-left: 135pt; 
+                    text-indent: -91.5pt;}
+User
+                  { margin-left: 135pt; 
+                    text-indent: -90pt;}
+Date
+                  { margin-left: 135pt; 
+                    text-indent: -90pt;}
+TypeOfSummaryChange > Comment    
+                  { margin-left: 135pt; 
+                    text-indent: -91pt;}
+EnteredBy    
+                  { margin-left: -10pt; 
+                    text-indent: -79.5pt;}
 MobileURL,    
                   { margin-left: 135pt;
                     text-indent: -101pt; }
@@ -884,6 +933,9 @@ MainTopics>Term,
 SecondaryTopics>Term,    
                   { margin-left: 135pt; 
                     text-indent: -134pt; }
+TypeOfChange    
+                  { margin-left: -10pt; 
+                    text-indent: -92pt;}
 
 Caption,
                   { margin-left: 70pt; 
@@ -901,6 +953,10 @@ MediaLink,
 
 Board,
 BoardMember,
+ChangeDate,
+TypeOfSummaryChange > Comment,
+Date,
+EnteredBy,
 MobileURL,
 PurposeText,
 SummaryAudience,
@@ -910,6 +966,9 @@ SummaryType,
 SummaryURL,
 MainTopics>Term,
 SecondaryTopics>Term,
+TypeOfChange,
+TypeOfSummaryChangeValue,
+User
     { margin-bottom: 4pt; }
 
 ComprehensiveReviewDate,
@@ -921,6 +980,10 @@ TranslationOf,
 ReplacementFor,
 WillReplace,
     { margin-top: 4pt; }
+
+TypeOfSummaryChange > Comment
+    { font-style: normal;
+      color: black; }
 
 
 /* Colors are                                              */

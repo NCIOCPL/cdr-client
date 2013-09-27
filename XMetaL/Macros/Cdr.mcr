@@ -23,7 +23,7 @@
     //------------------------------------------------------------------
     // GLOBAL VARIABLES
     //------------------------------------------------------------------
-    var CdrWebServer = "http://mahler.nci.nih.gov";
+    var CdrWebServer = "https://cdr.dev.cancer.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     var lastMarkupLevel = '';
     var CdrUserPath = '';
@@ -55,7 +55,7 @@
             CdrUserName  = cdrObj.username;
             CdrSession   = cdrObj.session;
             if (cdrObj.hostname) {
-                CdrWebServer = "http://" + cdrObj.hostname;
+                CdrWebServer = "https://" + cdrObj.hostname;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
         }
@@ -316,7 +316,7 @@
             CdrUserName = cdrObj.username;
             CdrSession  = cdrObj.session;
             if (cdrObj.hostname) {
-                CdrWebServer = "http://" + cdrObj.hostname;
+                CdrWebServer = "https://" + cdrObj.hostname;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
             try {
@@ -1024,6 +1024,10 @@
                                 "Find Next Unlinked CTGov Org");
         Application.AppendMacro("Next Unlinked Person",
                                 "Find Next Unlinked CTGov Person");
+    }
+    if (rng.FindInsertLocation("TypeOfSummaryChange")) {
+        Application.AppendMacro("Insert Type of Summary Change", 
+                                "Insert TypeOfChange");
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
@@ -5764,6 +5768,7 @@
         }
         var url = CdrCgiBin + "QcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
+        Application.Alert(url);
         cdrObj.showPage(url);
     }
     qcReport();
@@ -8720,6 +8725,44 @@
             node.setAttribute("LastReviewedDate", today);
     }
     setLastReviewedDateAttribute();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert TypeOfChange"
+       lang="JScript">
+  <![CDATA[
+    function insertTypeOfChange() {
+        var rng = ActiveDocument.Range;
+        // rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("TypeOfSummaryChange")) {
+            Application.Alert("Can't insert TypeOfSummaryChange element " +
+                              "under current position.");
+            return; 
+        }
+        var newElem = "<TypeOfSummaryChange>"
+                    + "  <TypeOfSummaryChangeValue"
+                    + "><?xm-replace_text { Select a change type }?>"
+                    + "</TypeOfSummaryChangeValue>"
+                    + "<User>"
+                    + CdrUserName
+                    + "</User>"
+                    + "<Date>"
+                    + getCurDateString()
+                    + "</Date>"
+                    + "<Comment user='"
+                    + CdrUserName
+                    + "' audience='Internal' date='"
+                    + getCurDateString()
+                    + "'><?xm-replace_text { Enter a Comment }?></Comment>"
+                    + "</TypeOfSummaryChange>";
+        rng.PasteString(newElem);
+        rng.MoveToElement("Comment", false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+    }
+    insertTypeOfChange();
   ]]>
 </MACRO>
 

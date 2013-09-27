@@ -43,6 +43,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">ChangeDate</Name>
+   <TagColor>#99CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name>CdrDocCtl</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -122,6 +130,14 @@
     <NewLineBeforeStartTag/>
     <IndentContent/>
    </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">EnteredBy</Name>
+   <TagColor>#99CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
    <Name>Email</Name>
@@ -577,6 +593,46 @@
    <Name>WillReplace</Name>
    <TagColor>purple</TagColor>
   </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfChange</Name>
+   <TagColor>#99CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfSummaryChange</Name>
+   <TagColor>#33CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfSummaryChangeValue</Name>
+   <TagColor>#66CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">User</Name>
+   <TagColor>#66CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Date</Name>
+   <TagColor>#66CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
  </ElementPropertiesList>
  <FollowedByList>
   <FollowedByListItem>
@@ -805,6 +861,50 @@
    <MiniTemplate><![CDATA[<TranslationOf><?xm-replace_text {
                    Optionally link to the original English summary
                    }?></TranslationOf>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>TypeOfSummaryChange</Name>
+   <MiniTemplate><![CDATA[<TypeOfSummaryChange>
+       <TypeOfSummaryChangeValue><?xm-replace_text {
+                   Select the type of change
+                   }?></TypeOfSummaryChangeValue>
+       <User><?xm-replace_text {
+                   Enter your user-ID
+                   }?></User>
+       <Date><?xm-replace_text {
+                   Enter today's date
+                   }?></Date>
+     </TypeOfSummaryChange>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>TypeOfChangeValue</Name>
+   <MiniTemplate><![CDATA[<TypeOfChangeValue><?xm-replace_text {
+                   Select the type of change
+                   }?></TypeOfChangeValue>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ChangeDate</Name>
+   <MiniTemplate><![CDATA[<ChangeDate><?xm-replace_text {
+                   Enter today's date 
+                   }?></ChangeDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Date</Name>
+   <MiniTemplate><![CDATA[<Date><?xm-replace_text {
+                   Enter today's date 
+                   }?></Date>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>EnteredBy</Name>
+   <MiniTemplate><![CDATA[<EnteredBy><?xm-replace_text {
+                   Enter your user-ID
+                   }?></EnteredBy>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>User</Name>
+   <MiniTemplate><![CDATA[<User><?xm-replace_text {
+                   Enter your user-ID
+                   }?></User>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>DocId</Name>

@@ -126,10 +126,14 @@ AltTitle,
 Board,
 BoardMember,
 Caption,
+ChangeDate,
 ComprehensiveReviewDate,
+TypeOfSummaryChange > Comment,
+Date,
 DateLastModified,
 Diagnosis,
 Drug,
+EnteredBy,
 Intervention,
 KeyPoint,
 MainTopics,
@@ -143,6 +147,7 @@ PurposeText,
 QandADiv,
 QandAEntry,
 QandASet,
+ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
@@ -159,7 +164,10 @@ SummaryURL,
 Term,
 Title,
 TranslationOf,
-ReplacementFor,
+TypeOfChange,
+TypeOfSummaryChange,
+TypeOfSummaryChangeValue,
+User,
 WillReplace
     { display: block; }
 
@@ -172,11 +180,15 @@ AltTitle                          :before { content: "Alternate Title "; }
 Board                             :before { content: "Summary Board "; }
 BoardMember                       :before { content: "Board Member "; }
 Caption                           :before { content: "Caption "; }
+ChangeDate                        :before { content: "Change Date "; }
+TypeOfSummaryChange > Comment     :before { content: "Comment "; }
 ComprehensiveReviewDate
                                   :before { content: "Last Reviewed"; }
+Date                              :before { content: "Date "; }
 DateLastModified                  :before { content: "Last Modified"; }
 Diagnosis                         :before { content: "Diagnosis "; }
 Drug                              :before { content: "Drug "; }
+EnteredBy                         :before { content: "Entered By "; }
 FigureNumber                      :before { content: ""; }
 Intervention                      :before { content: "Intervention "; }
 KeyPoint                          :before { content: "Key Point "; }
@@ -232,7 +244,11 @@ SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title
                                   :before { content: "Sub-sub-sub-sub-section Title "; }
 TableNumber                       :before { content: ""; }
 TranslationOf                     :before { content: "Translation Of "; }
+TypeOfChange                      :before { content: "Change Type"; }
+TypeOfSummaryChange               :before { content: "TYPE OF CHANGE"; }
+TypeOfSummaryChangeValue          :before { content: "Type "; }
 ReplacementFor                    :before { content: "Replacement For "; }
+User                              :before { content: "User "; }
 WillReplace                       :before { content: "Will Replace "; }
 
 
@@ -320,6 +336,8 @@ SummaryType                       :before,
 SummaryURL                        :before,
 Term                              :before,
 TranslationOf                     :before,
+TypeOfSummaryChange               :before,
+TypeOfSummaryChanges              :before,
 WillReplace                       :before
     { color: black;
       font-weight: bold; }
@@ -331,6 +349,9 @@ WillReplace                       :before
 AltTitle                          :before,
 Caption                           :before,
 ComprehensiveReviewDate           :before,
+ChangeDate                        :before,
+TypeOfSummaryChange > Comment     :before,
+EnteredBy                         :before,
 DateLastModified                  :before,
 KeyPoint                          :before,
 MediaID                           :before,
@@ -340,6 +361,8 @@ SummarySection>SummarySection>Para:before,
 Title                             :before,
 TranslationOf                     :before,
 ReplacementFor                    :before,
+TypeOfChange                      :before,
+TypeOfSummaryChange               :before,
 WillReplace                       :before,
     { color: black;
       font-weight: bold;
@@ -355,6 +378,7 @@ Title,
 /*************************************************************************/
 MediaLink,
 SummaryMetaData,
+TypeOfSummaryChange
     { border: none; }
 
 
@@ -365,11 +389,15 @@ AltTitle,
 Board,
 BoardMember,
 Caption,
+ChangeDate,
+TypeOfSummaryChange > Comment,
 Comment,
 ComprehensiveReviewDate,
+Date,
 DateLastModified,
 Diagnosis,
 Drug,
+EnteredBy,
 Intervention,
 KeyPoint,
 MainTopics,
@@ -379,6 +407,7 @@ PatientVersionOf,
 PDQBoard,
 PdqKey,
 PurposeText,
+ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
@@ -396,7 +425,10 @@ SummaryURL,
 Term,
 /*Title, */
 TranslationOf,
-ReplacementFor,
+TypeOfChange,
+TypeOfSummaryChange,
+TypeOfSummaryChangeValue,
+User,
 WillReplace
     { color: white;
       background-color: white; }
@@ -415,6 +447,10 @@ WillReplace
 /*************************************************************************/
 Board                             :before,
 BoardMember                       :before,
+ChangeDate                        :before,
+TypeOfSummaryChange > Comment     :before,
+Date                              :before,
+EnteredBy                         :before,
 MobileURL                         :before,
 PurposeText                       :before,
 SummaryAudience                   :before,
@@ -423,7 +459,11 @@ SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
 MainTopics>Term                   :before,
-SecondaryTopics>Term              :before
+SecondaryTopics>Term              :before,
+TypeOfChange                      :before,
+TypeOfSummaryChange               :before,
+TypeOfSummaryChangeValue          :before,
+User                              :before
     { background-color: white; }
 
 
@@ -431,7 +471,11 @@ Board,
 BoardMember,
 Caption,
 ComprehensiveReviewDate,
+ChangeDate,
+TypeOfSummaryChange > Comment,
+Date,
 DateLastModified,
+EnteredBy,
 MainTopics>Term,
 MediaID,
 MobileURL,
@@ -445,6 +489,10 @@ SummaryLanguage,
 SummaryType,
 SummaryURL,
 TranslationOf,
+TypeOfChange,
+TypeOfSummaryChange,
+TypeOfSummaryChangeValue,
+User,
 WillReplace
     { text-indent: 0pt; }
 
