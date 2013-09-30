@@ -45,6 +45,7 @@ Media,
 /***************************************************************************/ 
 Acknowledgement,
 AlternativeText,
+ApprovedUse,
 Audience,
 Color,
 Captions,
@@ -84,21 +85,29 @@ MediaSource,
 MediaTitle,
 MinWidthPixels,
 OriginalSource,
+PermissionInformation,
+PermissionRequested,
+PermissionRequestDate,
+PermissionResponse,
+PermissionResponseDate,
+PermissionExpirationDate,
+PhysicalMedia,
 ProposedUse,
 ProcessingStatus,
 ProcessingStatusDate,
 ProcessingStatuses,
 ProcessingStatusValue,
-PhysicalMedia,
+PublisherPermissionText,
 RelatedDocuments,
 RunSeconds,
 SoundData,
 SoundEncoding,
 SoundType,
 SourceFilename,
+SourcePublication,
+SpanishTranslationPermissionRequested,
 Summary,
 SupplementaryInfoLink,
-SourcePublication,
 TextDateCreated,
 Topic,
 Topics,
@@ -120,67 +129,77 @@ WidthPixels,
 /* @ = Attribute assigned to element */
 
 
-Acknowledgement:before,           { content: "Acknowledgemnt &: ";}
-AlternativeText:before,           { content: "Alternative Text *: "; }
-Audience:before,                  { content: "Audience *: ";}
-Color:before,                     { content: "Color *: ";}
-Captions:before,                  { content: "CAPTIONS & ";}
-Categories:before,                { content: "CATEGORIES * ";}
-Category:before,                  { content: "Category * +: ";}
-Comment:before,                   { content: "Comments &: "; }
-ContentDescriptions:before,       { content: "CONTENT DESCRIPTIONS * ";}
-ContentDescription:before,        { content: "Cont. Descr. * + @: ";}
-Creator:before,                   { content: "Creator &: ";}
-DateCreated:before,               { content: "Date Created &: ";}
-DateLastModified:before,          { content: "Last Modified &: ";}
-DerivedFrom:before,               { content: "DERIVED FROM * + ";}
-Diagnoses:before,                 { content: "DIAGNOSES & ";}
-Diagnosis:before,                 { content: "Diagnosis * +: ";}
-DocTitle:before,                  { content: "Doc Title: "; }
-EnteredBy:before,                 { content: "Entered By *: ";}
-FromCdrMedia:before,              { content: "From CDR Media *: ";}
-FromExternalFile:before,          { content: "From External File *: ";}
-FromMethod:before,                { content: "From Method & @: ";}
-FromObject:before,                { content: "FROM OBJECT * ";}
-Glossary:before,                  { content: "Glossary * @: ";}
-HeightPixels:before,              { content: "Height (Pixels) *: ";}
-ImageData:before,                 { content: "IMAGE DATA * ";}
-ImageDimensions:before,           { content: "IMAGE DIMENSIONS & ";}
-ImageType:before,                 { content: "Image Type *: ";}
-ImageEncoding:before,             { content: "Image Encoding *: ";}
-Inlined:before,                   { content: "Inlined &: ";}
-Labeled:before,                   { content: "Labeled *: ";}
-LabelName:before,                 { content: "Label Name & +: ";}
-Language:before,                  { content: "Language *: ";}
-MediaCaption:before,              { content: "Caption * + @: "; }
-MediaContent:before,              { content: "MEDIA CONTENT * "; }
-MediaLanguage:before,             { content: "Media Language &: ";}
-MediaSource:before,               { content: "MEDIA SOURCE & "; }
-MediaTitle:before,                { content: "MediaTitle *: "; }
-MinWidthPixels:before,            { content: "MinWidth (Pixels) &: ";}
-OriginalSource:before,            { content: "ORIGINAL SOURCE * ";}
-PhysicalMedia:before,             { content: "PHYSICAL MEDIA * "; }
-ProcessingStatus:before,          { content: "PROCESSING STATUS * + ";}
-ProcessingStatusDate:before,      { content: "Status Date *: ";}
-ProcessingStatuses:before,        { content: "PROCESSING STATUSES & ";}
-ProcessingStatusValue:before,     { content: "Status Value *: ";}
-ProposedUse:before,               { content: "PROPOSED USE & + ";}
-RelatedDocuments        :before,  { content: "RELATED DOCUMENTS &";}
-RunSeconds:before,                { content: "Run (sec) &: ";}
-SoundData:before,                 { content: "SOUND DATA * ";}
-SoundEncoding:before,             { content: "Sound Encoding *: ";}
-SoundType:before,                 { content: "Sound Type *: ";}
-SourceFilename:before,            { content: "Source Filename &: ";}
-SourcePublication:before,         { content: "Src Publication &: ";}
-Summary:before,                   { content: "Summary * @: ";}
-SupplementaryInfoLink   :before,  { content: "Sup Info Link * + @: ";}
-TextDateCreated:before,           { content: "Txt Date Created &: ";}
-Topic:before,                     { content: "Topic * +: ";}
-Topics:before,                    { content: "TOPICS & ";}
-VideoData:before,                 { content: "VIDEO DATA * ";}
-VideoEncoding:before,             { content: "Video Encoding *: ";}
-VideoType:before,                 { content: "Video Type *: ";}
-WidthPixels:before,               { content: "Width (Pixels) *: ";}
+Acknowledgement           :before { content: "Acknowledgemnt &: ";}
+AlternativeText           :before { content: "Alternative Text *: "; }
+Audience                  :before { content: "Audience *: ";}
+Color                     :before { content: "Color *: ";}
+Captions                  :before { content: "CAPTIONS & ";}
+Categories                :before { content: "CATEGORIES * ";}
+Category                  :before { content: "Category * +: ";}
+Comment                   :before { content: "Comments &: "; }
+ContentDescriptions       :before { content: "CONTENT DESCRIPTIONS * ";}
+ContentDescription        :before { content: "Cont. Descr. * + @: ";}
+Creator                   :before { content: "Creator &: ";}
+DateCreated               :before { content: "Date Created &: ";}
+DateLastModified          :before { content: "Last Modified &: ";}
+DerivedFrom               :before { content: "DERIVED FROM * + ";}
+Diagnoses                 :before { content: "DIAGNOSES & ";}
+Diagnosis                 :before { content: "Diagnosis * +: ";}
+DocTitle                  :before { content: "Doc Title: "; }
+EnteredBy                 :before { content: "Entered By *: ";}
+FromCdrMedia              :before { content: "From CDR Media *: ";}
+FromExternalFile          :before { content: "From External File *: ";}
+FromMethod                :before { content: "From Method & @: ";}
+FromObject                :before { content: "FROM OBJECT * ";}
+Glossary                  :before { content: "Glossary * @: ";}
+HeightPixels              :before { content: "Height (Pixels) *: ";}
+ImageData                 :before { content: "IMAGE DATA * ";}
+ImageDimensions           :before { content: "IMAGE DIMENSIONS & ";}
+ImageType                 :before { content: "Image Type *: ";}
+ImageEncoding             :before { content: "Image Encoding *: ";}
+Inlined                   :before { content: "Inlined &: ";}
+Labeled                   :before { content: "Labeled *: ";}
+LabelName                 :before { content: "Label Name & +: ";}
+Language                  :before { content: "Language *: ";}
+MediaCaption              :before { content: "Caption * + @: "; }
+MediaContent              :before { content: "MEDIA CONTENT * "; }
+MediaLanguage             :before { content: "Media Language &: ";}
+MediaSource               :before { content: "MEDIA SOURCE & "; }
+MediaTitle                :before { content: "MediaTitle *: "; }
+MinWidthPixels            :before { content: "MinWidth (Pixels) &: ";}
+OriginalSource            :before { content: "ORIGINAL SOURCE * ";}
+PhysicalMedia             :before { content: "PHYSICAL MEDIA * "; }
+ProcessingStatus          :before { content: "PROCESSING STATUS * + ";}
+ProcessingStatusDate      :before { content: "Status Date *: ";}
+ProcessingStatuses        :before { content: "PROCESSING STATUSES & ";}
+ProcessingStatusValue     :before { content: "Status Value *: ";}
+ProposedUse               :before { content: "PROPOSED USE & + ";}
+RelatedDocuments          :before { content: "RELATED DOCUMENTS &";}
+RunSeconds                :before { content: "Run (sec) &: ";}
+SoundData                 :before { content: "SOUND DATA * ";}
+SoundEncoding             :before { content: "Sound Encoding *: ";}
+SoundType                 :before { content: "Sound Type *: ";}
+SourceFilename            :before { content: "Source Filename &: ";}
+SourcePublication         :before { content: "Src Publication &: ";}
+Summary                   :before { content: "Summary * @: ";}
+SupplementaryInfoLink     :before { content: "Sup Info Link * + @: ";}
+TextDateCreated           :before { content: "Txt Date Created &: ";}
+Topic                     :before { content: "Topic * +: ";}
+Topics                    :before { content: "TOPICS & ";}
+VideoData                 :before { content: "VIDEO DATA * ";}
+VideoEncoding             :before { content: "Video Encoding *: ";}
+VideoType                 :before { content: "Video Type *: ";}
+WidthPixels               :before { content: "Width (Pixels) *: ";}
+PermissionInformation     :before { content: "PERMISSION INFORMATION &"; }
+PermissionRequested       :before { content: "Requested &: "; }
+PermissionRequestDate     :before { content: "Req. Date &: "; }
+PermissionResponse        :before { content: "Response &: "; }
+PermissionResponseDate    :before { content: "Resp. Date &: "; }
+PermissionExpirationDate  :before { content: "Expiration &: "; }
+ApprovedUse               :before { content: "APPROVED USE & "; }
+SpanishTranslationPermissionRequested 
+                          :before { content: "ES Perm Req &: "; }
+PublisherPermissionText   :before { content: "Publisher Txt &: "; }
 
 
 /***************************************************************************/ 
@@ -202,69 +221,78 @@ RelatedDocuments,
 /***************************************************************************/ 
 /*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
 /***************************************************************************/ 
-Acknowledgement:before,
-AlternativeText:before,
-Audience:before,
-Color:before,
-Captions:before,
-Categories:before,
-Category:before,
-Comment:before,
-ContentDescriptions:before,
-ContentDescription:before,
-Creator:before,
-DateCreated:before,
-DateLastModified:before,
-DerivationMethod:before,
-DerivedFrom:before,
-Diagnoses:before,
-Diagnosis:before,
-DocTitle:before,
-EnteredBy:before,
-FromCdrMedia:before,
-FromExternalFile:before,
-FromMethod:before,
-FromObject:before,
-Glossary:before,
-HeightPixels:before,
-ImageData:before,
-ImageDimensions:before,
-ImageType:before,
-ImageEncoding:before,
-Inlined:before,
-Labeled:before,
-LabelName:before,
-Language:before,
-Media:before,
-MediaCaption:before,
-MediaContent:before,
-MediaLanguage:before,
-MediaSource:before,
-MediaTitle:before,
-MinWidthPixels:before,
-OriginalSource:before,
-PhysicalMedia:before,
-ProcessingStatus:before,
-ProcessingStatusDate:before,
-ProcessingStatuses:before,
-ProcessingStatusValue:before,
-ProposedUse:before,
-RelatedDocuments:before,
-RunSeconds:before,
-SoundData:before,
-SoundEncoding:before,
-SoundType:before,
-SourceFilename:before,
-SourcePublication:before,
-Summary:before,
-SupplementaryInfoLink:before,
-TextDateCreated:before,
-Topic:before,
-Topics:before,
-VideoData:before,
-VideoEncoding:before,
-VideoType:before,
-WidthPixels:before,
+Acknowledgement                        :before,
+AlternativeText                        :before,
+Audience                               :before,
+Color                                  :before,
+Captions                               :before,
+Categories                             :before,
+Category                               :before,
+Comment                                :before,
+ContentDescriptions                    :before,
+ContentDescription                     :before,
+Creator                                :before,
+DateCreated                            :before,
+DateLastModified                       :before,
+DerivationMethod                       :before,
+DerivedFrom                            :before,
+Diagnoses                              :before,
+Diagnosis                              :before,
+DocTitle                               :before,
+EnteredBy                              :before,
+FromCdrMedia                           :before,
+FromExternalFile                       :before,
+FromMethod                             :before,
+FromObject                             :before,
+Glossary                               :before,
+HeightPixels                           :before,
+ImageData                              :before,
+ImageDimensions                        :before,
+ImageType                              :before,
+ImageEncoding                          :before,
+Inlined                                :before,
+Labeled                                :before,
+LabelName                              :before,
+Language                               :before,
+Media                                  :before,
+MediaCaption                           :before,
+MediaContent                           :before,
+MediaLanguage                          :before,
+MediaSource                            :before,
+MediaTitle                             :before,
+MinWidthPixels                         :before,
+OriginalSource                         :before,
+PermissionInformation                  :before,
+PermissionRequested                    :before,
+PermissionRequestDate                  :before,
+PermissionResponse                     :before,
+PermissionResponseDate                 :before,
+PermissionExpirationDate               :before,
+ApprovedUse                            :before,
+SpanishTranslationPermissionRequested  :before,
+PublisherPermissionText                :before,
+PhysicalMedia                          :before,
+ProcessingStatus                       :before,
+ProcessingStatusDate                   :before,
+ProcessingStatuses                     :before,
+ProcessingStatusValue                  :before,
+ProposedUse                            :before,
+RelatedDocuments                       :before,
+RunSeconds                             :before,
+SoundData                              :before,
+SoundEncoding                          :before,
+SoundType                              :before,
+SourceFilename                         :before,
+SourcePublication                      :before,
+Summary                                :before,
+SupplementaryInfoLink                  :before,
+TextDateCreated                        :before,
+Topic                                  :before,
+Topics                                 :before,
+VideoData                              :before,
+VideoEncoding                          :before,
+VideoType                              :before,
+WidthPixels                            :before
    {  font-weight: bold;
       color: black;  }
 
@@ -412,6 +440,33 @@ WidthPixels,
                         { margin-left: 120pt;
                           text-indent: -94pt; }
 
+/*PermissionInformation
+                        { margin-left: 120pt;
+                          text-indent: -80pt; } */
+PermissionRequested
+                        { margin-left: 120pt;
+                          text-indent: -82.5pt; }
+PermissionRequestDate
+                        { margin-left: 120pt;
+                          text-indent: -76pt; }
+PermissionResponse
+                        { margin-left: 120pt;
+                          text-indent: -79pt; }
+PermissionResponseDate
+                        { margin-left: 120pt;
+                          text-indent: -82.5pt; }
+PermissionExpirationDate
+                        { margin-left: 120pt;
+                          text-indent: -79pt; }
+ApprovedUse
+                        { margin-left: 20pt; }
+                       /* text-indent: -90pt; } */
+SpanishTranslationPermissionRequested
+                        { margin-left: 120pt;
+                          text-indent: -96pt; }
+PublisherPermissionText
+                        { margin-left: 120pt;
+                          text-indent: -96pt; }
 
 /***************************************************************************/ 
 /*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
@@ -454,6 +509,15 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 WidthPixels,
+PermissionInformation,
+PermissionRequested,
+PermissionRequestDate,
+PermissionResponse,
+PermissionResponseDate,
+PermissionExpirationDate,
+ApprovedUse,
+SpanishTranslationPermissionRequested,
+PublisherPermissionText
 	{ margin-bottom: 4pt; }
 
 
@@ -522,67 +586,83 @@ Topic,
 VideoEncoding,
 VideoType,
 WidthPixels,
+PermissionRequested,
+PermissionRequestDate,
+PermissionResponse,
+PermissionResponseDate,
+PermissionExpirationDate,
+SpanishTranslationPermissionRequested,
+PublisherPermissionText
    { background-color: white; }
 
 
 /* Background color for Text Labels */
-Acknowledgement:before,
-AlternativeText:before,
-Audience:before,
-Color:before,
-Captions:before, 
-Categories:before,
-Category:before,
-Comment:before,
-ContentDescriptions:before,
-ContentDescription:before,
-Creator:before,
-DateCreated:before,
-DateLastModified:before,
-DerivationMethod:before,
-DerivedFrom:before,
-Diagnoses:before,
-Diagnosis:before,
-DocTitle:before,
-EnteredBy:before,
-FromCdrMedia:before,
-FromExternalFile:before,
-FromMethod:before,
-FromObject:before,
-Glossary:before,
-HeightPixels:before,
-ImageData:before,
-ImageDimensions:before,
-ImageType:before,
-ImageEncoding:before,
-Inlined:before,
-Labeled:before,
-LabelName:before,
-Language:before,
-Media:before,
-MediaCaption:before,
-MediaContent:before,
-MediaLanguage:before,
-MediaSource:before,
-MediaTitle:before,
-MinWidthPixels:before,
-OriginalSource:before,
-PhysicalMedia:before,
-ProcessingStatusDate:before,
-ProcessingStatusValue:before,
-RunSeconds:before,
-SoundData:before,
-SoundEncoding:before,
-SoundType:before,
-SourceFilename:before,
-SourcePublication:before,
-Summary:before,
-SupplementaryInfoLink:before,
-TextDateCreated:before,
-Topic:before,
-Topics:before,
-VideoData:before,
-VideoEncoding:before,
-VideoType:before,
-WidthPixels:before
+Acknowledgement                   :before,
+AlternativeText                   :before,
+Audience                          :before,
+Color                             :before,
+Captions                          :before, 
+Categories                        :before,
+Category                          :before,
+Comment                           :before,
+ContentDescriptions               :before,
+ContentDescription                :before,
+Creator                           :before,
+DateCreated                       :before,
+DateLastModified                  :before,
+DerivationMethod                  :before,
+DerivedFrom                       :before,
+Diagnoses                         :before,
+Diagnosis                         :before,
+DocTitle                          :before,
+EnteredBy                         :before,
+FromCdrMedia                      :before,
+FromExternalFile                  :before,
+FromMethod                        :before,
+FromObject                        :before,
+Glossary                          :before,
+HeightPixels                      :before,
+ImageData                         :before,
+ImageDimensions                   :before,
+ImageType                         :before,
+ImageEncoding                     :before,
+Inlined                           :before,
+Labeled                           :before,
+LabelName                         :before,
+Language                          :before,
+Media                             :before,
+MediaCaption                      :before,
+MediaContent                      :before,
+MediaLanguage                     :before,
+MediaSource                       :before,
+MediaTitle                        :before,
+MinWidthPixels                    :before,
+OriginalSource                    :before,
+PhysicalMedia                     :before,
+ProcessingStatusDate              :before,
+ProcessingStatusValue             :before,
+RunSeconds                        :before,
+SoundData                         :before,
+SoundEncoding                     :before,
+SoundType                         :before,
+SourceFilename                    :before,
+SourcePublication                 :before,
+Summary                           :before,
+SupplementaryInfoLink             :before,
+TextDateCreated                   :before,
+Topic                             :before,
+Topics                            :before,
+VideoData                         :before,
+VideoEncoding                     :before,
+VideoType                         :before,
+WidthPixels                       :before,
+PermissionInformation             :before,
+PermissionRequested               :before,
+PermissionRequestDate             :before,
+PermissionResponse                :before,
+PermissionResponseDate            :before,
+PermissionExpirationDate          :before,
+ApprovedUse                       :before,
+SpanishTranslationPermissionRequested :before,
+PublisherPermissionText           :before
    { background-color: #CCCCFF; }

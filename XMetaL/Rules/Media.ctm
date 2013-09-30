@@ -564,6 +564,78 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">PermissionInformation</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PermissionRequested</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PermissionRequestDate</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PermissionResponse</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PermissionResponseDate</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PermissionExpirationDate</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PublisherPermissionText</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ApprovedUse</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpanishTranslationPermissionRequested</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Phone</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -1401,6 +1473,94 @@
    <MiniTemplate><![CDATA[<MediaTitle><?xm-replace_text {
                    The media title
                    }?></MediaTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionInformation</Name>
+   <MiniTemplate><![CDATA[<PermissionInformation>
+    <PermissionRequested><?xm-replace_text {
+                    Select Yes/No value (required)
+                    }?>
+    </PermissionRequested>
+    <PermissionRequestDate><?xm-replace_text {
+                    Optionally enter date permission was requested
+                    }?>
+    </PermissionRequestDate>
+    <PermissionResponse><?xm-replace_text {
+                    Optionally enter permission response
+                    }?>
+    </PermissionResponse>
+    <PermissionResponseDate><?xm-replace_text {
+                    Optionally enter permission response date
+                    }?>
+    </PermissionResponseDate>
+    <PermissionExpirationDate><?xm-replace_text {
+                    Optionally enter permission expiration date
+                    }?>
+    </PermissionExpirationDate>
+    <PublisherPermissionText><?xm-replace_text {
+                    Optionally enter publisher permission text
+                    }?>
+    </PublisherPermissionText>
+    <ApprovedUse>
+     <Summary><?xm-replace_text {
+                    Select a summary link (required)
+                    }?></Summary>
+     <Glossary><?xm-replace_text {
+                    Select a glossary link (required)
+                    }?></Glossary>
+    </ApprovedUse></PermissionInformation>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionRequested</Name>
+   <MiniTemplate><![CDATA[<PermissionRequested><?xm-replace_text {
+                    Select Yes/No value (required)
+                    }?></PermissionRequested>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionRequestDate</Name>
+   <MiniTemplate><![CDATA[<PermissionRequestDate><?xm-replace_text {
+                    Optionally enter date permission was requested
+                    }?></PermissionRequestDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionResponse</Name>
+   <MiniTemplate><![CDATA[<PermissionResponse><?xm-replace_text {
+                    Optionally enter permission response
+                    }?></PermissionResponse>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionResponseDate</Name>
+   <MiniTemplate><![CDATA[<PermissionResponseDate><?xm-replace_text {
+                    Optionally enter permission response date
+                    }?></PermissionResponseDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PermissionExpirationDate</Name>
+   <MiniTemplate><![CDATA[<PermissionExpirationDate><?xm-replace_text {
+                    Optionally enter permission expiration date
+                    }?></PermissionExpirationDate>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PublisherPermissionText</Name>
+   <MiniTemplate><![CDATA[<PublisherPermissionText><?xm-replace_text {
+                    Optionally enter publisher permission text
+                    }?></PublisherPermissionText>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">ApprovedUse</Name>
+   <MiniTemplate><![CDATA[<ApprovedUse>
+     <Summary><?xm-replace_text {
+                    Select a summary link (required)
+                    }?></Summary>
+     <Glossary><?xm-replace_text {
+                    Select a glossary link (required)
+                    }?></Glossary></ApprovedUse>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">SpanishTranslationPermissionRequested</Name>
+   <MiniTemplate><![CDATA[<SpanishTranslationPermissionRequested><?xm-replace_text {
+                    Optionally enter approved use
+                    }?></SpanishTranslationPermissionRequested>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">PhysicalMedia</Name>
