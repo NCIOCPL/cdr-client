@@ -1025,10 +1025,6 @@
         Application.AppendMacro("Next Unlinked Person",
                                 "Find Next Unlinked CTGov Person");
     }
-    if (rng.FindInsertLocation("TypeOfSummaryChange")) {
-        Application.AppendMacro("Insert Type of Summary Change", 
-                                "Insert TypeOfChange");
-    }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
     }
@@ -1036,6 +1032,14 @@
         Application.AppendMacro("Insert ResponseToComment", 
                                 "Insert ResponseToComment");
     }
+    if (docType.name == "Summary") {
+        Application.AppendMacro("Insert Type of Summary Change", 
+                                "Insert TypeOfChange");
+    }
+    // if (rng.FindInsertLocation("TypeOfSummaryChange")) {
+    //     Application.AppendMacro("Insert Type of Summary Change", 
+    //                             "Insert TypeOfChange");
+    // }
     if (docType.name == 'ScientificProtocolInfo' ||
         docType.name == 'InScopeProtocol' ||
         docType.name == 'CTGovProtocol') {
