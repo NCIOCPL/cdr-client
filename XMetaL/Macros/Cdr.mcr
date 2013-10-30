@@ -5772,7 +5772,7 @@
         }
         var url = CdrCgiBin + "QcReport.py?Session="
                 + CdrSession + "&DocId=" + docId;
-        Application.Alert(url);
+        //Application.Alert(url);
         cdrObj.showPage(url);
     }
     qcReport();
