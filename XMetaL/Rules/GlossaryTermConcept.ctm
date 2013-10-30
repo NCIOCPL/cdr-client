@@ -415,6 +415,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">RelatedDrugSummaryLink</Name>
+      <TagColor>#0088FF</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -422,6 +423,15 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">RelatedExternalRef</Name>
+      <TagColor>#00AAFF</TagColor>
+      <PrettyPrintOptions></PrettyPrintOptions>
+      <IndentContent/>
+      <NewLineBeforeEndTag/>
+      <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+      <Name ns="">RelatedGlossaryTermNameLink</Name>
+      <TagColor>#00FFFF</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -429,6 +439,8 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">RelatedInformation</Name>
+      <TagColor>#0066FF</TagColor>
+      <FontColor>red</FontColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -436,6 +448,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name ns="">RelatedSummaryRef</Name>
+      <TagColor>#00DDFF</TagColor>
       <PrettyPrintOptions></PrettyPrintOptions>
       <IndentContent/>
       <NewLineBeforeEndTag/>
@@ -873,6 +886,9 @@
         <RelatedSummaryRef><?xm-replace_text {
              Optionally enter related Summary information
              }?></RelatedSummaryRef>
+        <RelatedGlossaryTermNameLink><?xm-replace_text {
+             Optionally enter related Glossary Term Name information
+             }?></GlossaryTermNameLink>
       </RelatedInformation>]]></MiniTemplate>
     </Template>
     <Template>
@@ -886,6 +902,12 @@
       <MiniTemplate><![CDATA[<RelatedExternalRef><?xm-replace_text {
              Optionally enter related external information
       }?></RelatedExternalRef>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name ns="">RelatedGlossaryTermNameLink</Name>
+      <MiniTemplate><![CDATA[<RelatedGlossaryTermNameLink><?xm-replace_text {
+             Optionally enter related Glossary Term Name information
+      }?></RelatedGlossaryTermNameLink>]]></MiniTemplate>
     </Template>
     <Template>
       <Name ns="">RelatedSummaryRef</Name>

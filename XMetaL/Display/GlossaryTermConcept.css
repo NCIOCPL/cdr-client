@@ -58,6 +58,7 @@ PronunciationResource,
 RelatedInformation,
 RelatedDrugSummaryLink,
 RelatedExternalRef,
+RelatedGlossaryTermNameLink,
 RelatedSummaryRef,
 ReplacementText,
 StatusDate,
@@ -99,6 +100,7 @@ PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
 RelatedDrugSummaryLink       :before { content: "Rel Drug Link & + @: "; }
 RelatedExternalRef           :before { content: "Rel Ext Ref & + @: "; }
+RelatedGlossaryTermNameLink  :before { content: "Rel Gloss Link & + @: "; }
 RelatedSummaryRef            :before { content: "Rel Sum Ref & + @: "; }
 ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
 ReplacementText              :after  { content: " ["attr(name)"]"; }
@@ -159,6 +161,7 @@ RelatedInformation           :before,
 RelatedDrugSummaryLink       :before,
 RelatedExternalRef           :before,
 RelatedSummaryRef            :before,
+RelatedGlossaryTermNameLink  :before,
 ReplacementText              :before,
 StatusDate                   :before,
 TranslatedStatus             :before,
@@ -246,11 +249,13 @@ PDQTerm,                     { margin-left: 135pt;
 ReplacementText,             { margin-left: 135pt;
                                text-indent: -134pt; }
 RelatedDrugSummaryLink,      { margin-left: 135pt;
-                               text-indent: -123pt; }
+                               text-indent: -120pt; }
 RelatedExternalRef,          { margin-left: 135pt;
                                text-indent: -105pt; }
 RelatedSummaryRef,           { margin-left: 135pt;
                                text-indent: -112.5pt; }
+RelatedGlossaryTermNameLink, { margin-left: 135pt;
+                               text-indent: -124.5pt; }
 StatusDate                   { margin-left: 135pt;
                                text-indent: -86pt; }
 TermName,                    { margin-left: 135pt;
@@ -308,6 +313,7 @@ PronunciationResource,
 RelatedDrugSummaryLink,
 RelatedExternalRef, 
 RelatedSummaryRef,
+RelatedGlossaryTermNameLink,
 ReplacementText,
 StatusDate,
 TranslatedStatus,
@@ -341,6 +347,7 @@ ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryLink,
 RelatedExternalRef,
+RelatedGlossaryTermNameLink,
 RelatedSummaryRef,
 ReplacementText,
 StatusDate,
@@ -366,6 +373,7 @@ ProcessingStatusValue        :before,
 PronunciationResource        :before,
 RelatedDrugSummaryLink       :before,
 RelatedExternalRef           :before,
+RelatedGlossaryTermNameLink  :before,
 RelatedSummaryRef            :before,
 ReplacementText              :before,
 StatusDate                   :before,
