@@ -636,6 +636,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">SpanishTranslationPermissionResponse</Name>
+   <TagColor>#FE2E2E</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Phone</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -1479,28 +1487,22 @@
    <MiniTemplate><![CDATA[<PermissionInformation>
     <PermissionRequested><?xm-replace_text {
                     Select Yes/No value (required)
-                    }?>
-    </PermissionRequested>
+                    }?></PermissionRequested>
     <PermissionRequestDate><?xm-replace_text {
                     Optionally enter date permission was requested
-                    }?>
-    </PermissionRequestDate>
+                    }?></PermissionRequestDate>
     <PermissionResponse><?xm-replace_text {
-                    Optionally enter permission response
-                    }?>
-    </PermissionResponse>
+                    Optionally select permission response
+                    }?></PermissionResponse>
     <PermissionResponseDate><?xm-replace_text {
                     Optionally enter permission response date
-                    }?>
-    </PermissionResponseDate>
+                    }?></PermissionResponseDate>
     <PermissionExpirationDate><?xm-replace_text {
                     Optionally enter permission expiration date
-                    }?>
-    </PermissionExpirationDate>
+                    }?></PermissionExpirationDate>
     <PublisherPermissionText><?xm-replace_text {
                     Optionally enter publisher permission text
-                    }?>
-    </PublisherPermissionText>
+                    }?></PublisherPermissionText>
     <ApprovedUse>
      <Summary><?xm-replace_text {
                     Select a summary link (required)
@@ -1508,7 +1510,14 @@
      <Glossary><?xm-replace_text {
                     Select a glossary link (required)
                     }?></Glossary>
-    </ApprovedUse></PermissionInformation>]]></MiniTemplate>
+    </ApprovedUse>
+    <SpanishTranslationPermissionRequested><?xm-replace_text {
+                    Select Yes/No value (required)
+                    }?></SpanishTranslationPermissionRequested>
+    <SpanishTranslationPermissionResponse><?xm-replace_text {
+                    Optionally select permission response
+                    }?></SpanishTranslationPermissionResponse>
+    </PermissionInformation>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">PermissionRequested</Name>
@@ -1559,8 +1568,14 @@
   <Template>
    <Name ns="">SpanishTranslationPermissionRequested</Name>
    <MiniTemplate><![CDATA[<SpanishTranslationPermissionRequested><?xm-replace_text {
-                    Optionally enter approved use
+                    Optionally select Yes/N for permission requestedo
                     }?></SpanishTranslationPermissionRequested>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">SpanishTranslationPermissionResponse</Name>
+   <MiniTemplate><![CDATA[<SpanishTranslationPermissionResponse><?xm-replace_text {
+                    Optionally select permission response
+                    }?></SpanishTranslationPermissionResponse>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">PhysicalMedia</Name>

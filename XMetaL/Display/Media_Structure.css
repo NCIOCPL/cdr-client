@@ -98,6 +98,7 @@ PermissionResponseDate,
 PermissionExpirationDate,
 ApprovedUse,
 SpanishTranslationPermissionRequested,
+SpanishTranslationPermissionResponse,
 PublisherPermissionText,
 ProcessingStatus,
 ProcessingStatusDate,
@@ -174,7 +175,9 @@ PermissionResponseDate    :before { content: "Resp. Date"; }
 PermissionExpirationDate  :before { content: "Expiration"; }
 ApprovedUse               :before { content: "APPROVED USE"; }
 SpanishTranslationPermissionRequested 
-                          :before { content: "ES Permission Req"; }
+                          :before { content: "Spn Permission Req"; }
+SpanishTranslationPermissionResponse 
+                          :before { content: "Spn Permission Resp"; }
 PublisherPermissionText   :before { content: "Publisher Txt"; }
 PhysicalMedia:before,             { content: "PHYSICAL MEDIA "; }
 ProcessingStatus:before,          { content: "PROCESSING STATUS "; }
@@ -289,6 +292,7 @@ PermissionResponseDate                 :before,
 PermissionExpirationDate               :before,
 ApprovedUse                            :before,
 SpanishTranslationPermissionRequested  :before,
+SpanishTranslationPermissionResponse   :before,
 PublisherPermissionText                :before,
 PhysicalMedia:before,
 ProcessingStatusDate:before,
@@ -355,6 +359,7 @@ PermissionResponseDate,
 PermissionExpirationDate,
 ApprovedUse,
 SpanishTranslationPermissionRequested,
+SpanishTranslationPermissionResponse,
 PublisherPermissionText,
 ProcessingStatusDate,
 ProcessingStatusValue,
@@ -415,6 +420,7 @@ PermissionResponseDate,
 PermissionExpirationDate,
 ApprovedUse,
 SpanishTranslationPermissionRequested,
+SpanishTranslationPermissionResponse,
 PublisherPermissionText,
 ProcessingStatusDate,
 ProcessingStatusValue,
@@ -479,6 +485,7 @@ PermissionResponseDate                 :before,
 PermissionExpirationDate               :before,
 ApprovedUse                            :before,
 SpanishTranslationPermissionRequested  :before,
+SpanishTranslationPermissionResponse   :before,
 PublisherPermissionText                :before,
 PhysicalMedia:before,
 RunSeconds:before,
