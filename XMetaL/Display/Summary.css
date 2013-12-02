@@ -139,7 +139,7 @@
 
 $DOCUMENT 
      { font-family: Arial, sans-serif;
-       font-size: 12pt;
+       font-size: 14pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
@@ -200,6 +200,21 @@ TypeOfSummaryChangeValue,
 User,
 WillReplace,
     { display: block; }
+
+
+Board,
+BoardMember,
+MobileURL,
+PurposeText,
+SummaryAudience,
+SummaryBoard,
+SummaryDescription,
+SummaryLanguage,
+SummaryType,
+SummaryURL,
+MainTopics > Term,
+SecondaryTopics > Term
+    { font-weight: bold; }
 
 
 /***************************************************************************/ 
