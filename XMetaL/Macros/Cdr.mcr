@@ -922,6 +922,7 @@
     var container = Selection.ContainerNode;
     var docType = ActiveDocument.doctype;
     var rng = ActiveDocument.Range;
+    var isReadOnly = cdrDocReadOnly();
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
     Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
@@ -971,7 +972,7 @@
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!cdrDocReadOnly())
+        if (!isReadOnly)
             Application.AppendMacro("Glossify Document", "Glossify Document");
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
@@ -1006,7 +1007,7 @@
     //Application.AppendMacro("submenu test", "Test Submenu");
     if (docType.name == "InScopeProtocol" || docType.name == "CTGovProtocol" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!cdrDocReadOnly()) {
+        if (!isReadOnly) {
             Application.AppendMacro("-", "");
             // addCdrSubmenu();
             Application.AppendMacro("Insert Diagnosis Links",
@@ -1043,7 +1044,7 @@
     if (docType.name == 'ScientificProtocolInfo' ||
         docType.name == 'InScopeProtocol' ||
         docType.name == 'CTGovProtocol') {
-        if (!cdrDocReadOnly()) {
+        if (!isReadOnly) {
             Application.AppendMacro("Insert Current Date and Time",
                                     "Insert Current Date and Time");
         }
@@ -1052,7 +1053,7 @@
                             "Find Private Use Chars");
     if (docType.name == "InScopeProtocol" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!cdrDocReadOnly()) {
+        if (!isReadOnly) {
             if (ActiveDocument.Range.IsParentElement("Intervention")) {
                 Application.AppendMacro("Split Intervention Block",
                                         "Split Intervention Block");
@@ -1066,7 +1067,7 @@
         Selection.IsParentElement('ProtocolLink') ||
         Selection.IsParentElement('CitationRef') ||
         Selection.IsParentElement('CitationLink'))) {
-        if (!cdrDocReadOnly()) {
+        if (!isReadOnly) {
             Application.AppendMacro("Edit Comment", "Edit Comment");
             Application.AppendMacro("Set Last Reviewed Date Attribute",
                                     "Set Last Reviewed Date");
@@ -1075,6 +1076,14 @@
         }
         else
             Application.AppendMacro("View Comment", "Edit Comment");
+    }
+    if (!isReadOnly && docType.name == "Summary" && getDocId()) {
+        var nodes = ActiveDocument.getElementsByTagName("TranslationOf");
+        if (nodes.length == 1) {
+            Application.AppendMacro("-", "");
+            Application.AppendMacro("Spanish Link ID Swap",
+                                    "Spanish Link ID Swap");
+        }
     }
   ]]>
 </MACRO>
@@ -8852,7 +8861,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Find Next Advisory Board Markup" lang="JScript" key="Alt+Z">
+<MACRO name="Find Next Advisory Board Markup" lang="JScript">
   <![CDATA[
     function findNextAdvisoryBoardMarkup() {
         for (;;) {
@@ -8873,6 +8882,50 @@
         }
     }
     findNextAdvisoryBoardMarkup();
+  ]]>
+</MACRO>
+
+<MACRO name="Spanish Link ID Swap" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function spanishLinkIdSwap() {
+        var doc = Application.ActiveDocument;
+        var translationOf = getSingleElement(doc, "TranslationOf");
+        if (!translationOf) {
+            Application.Alert("TranslationOf element not found.");
+            return;
+        }
+        var oldId = translationOf.getAttribute('cdr:ref');
+        var newId = getDocId();
+        if (!oldId) {
+            Application.Alert("TranslationOf document ID not found.");
+            return;
+        }
+        if (oldId.length != 13 || oldId.substr(0, 3) != 'CDR') {
+            Application.Alert("Malformed TranslationOf document ID: " + oldId);
+            return;
+        }
+        if (!newId) {
+            Application.Alert("Summary has not yet been saved.");
+            return;
+        }
+        if (newId.length != 13 || newId.substr(0, 3) != 'CDR') {
+            Application.Alert("Malformed document ID: " + newId);
+            return;
+        }
+        var links = doc.getElementsByTagName("SummaryFragmentRef");
+        var replaced = 0;
+        for (var i = 0; i < links.length; ++i) {
+            var linkElement = links.item(i);
+            var linkId = linkElement.getAttribute("cdr:href");
+            if (linkId.substr(0, 13) == oldId) {
+                var newValue = newId + linkId.substr(13);
+                linkElement.setAttribute("cdr:href", newValue);
+                ++replaced;
+            }
+        }
+        Application.Alert("Swapped " + replaced + " link(s).");
+    }
+    spanishLinkIdSwap();
   ]]>
 </MACRO>
 
