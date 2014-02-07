@@ -1,4 +1,4 @@
 all:
 	devenv Cdr.sln /build "Unicode Release MinDependency"
 clean:
-	rm -rf cdr_p.c cdr.ncb ReleaseUMinDependency
+	rm -rf cdr_p.c cdr.ncb ReleaseUMinDependency cdr.sdf ipch Cdr.vcxproj.user
