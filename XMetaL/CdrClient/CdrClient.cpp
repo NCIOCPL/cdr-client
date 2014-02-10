@@ -1094,6 +1094,8 @@ File::File(CComPtr<IXMLDOMNode>& node) {
  * a more detailed explanation of how the relaunch works (and why
  * and when it is needed), see the comment for the implementation
  * of the CdrClient::runAgain() method.
+ *
+ * 2014-02-10: Modified to skip check of CdrClient-<timestamp>.exe.
  */
 CString Manifest::validate(CdrClient* client) {
     std::vector<File>::const_iterator file = fileList.begin();
@@ -1102,6 +1104,12 @@ CString Manifest::validate(CdrClient* client) {
         CString lowerName = file->name;
         lowerName.MakeLower();
         if (lowerName.Find(relaunchScript) == -1) {
+            if (lowerName.Find(_T("cdrclient-20")) != -1) {
+                if (lowerName.Find(_T(".exe")) != -1) {
+                    ++file;
+                    continue;
+                }
+            }
             CString clientTimestamp;
             try {
                 clientTimestamp = getFileTimestamp(file->name);
