@@ -1,14 +1,7 @@
 /*
  * $Id: CdrClient.h,v 1.3 2009-09-23 18:35:28 bkline Exp $
  *
- * Interface file for CDR loader application.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.2  2005/11/08 22:11:02  bkline
- * Cleanup of initial CVS comments.
- *
- * Revision 1.1  2005/11/08 21:30:20  bkline
- * Rewrite of CDR loader.
+ * Interface file for CDR loader application.  Rewritten 2005 by bkline.
  */
 
 /*
@@ -182,7 +175,8 @@ private:
     void launchClient();
     void exportEnvironment();
     void logOptions();
-	void getNewFiles(const std::string&, CdrProgressDlg&);
+    void cleanOutOlderVersions();
+    void getNewFiles(const std::string&, CdrProgressDlg&);
     void deleteFiles(const CString&, const std::set<CString>&);
     CString sendHttpCommand(const CString& cmd);
     CString extractSessionId(const CString& xmlString);

@@ -11,6 +11,7 @@
 #include "CdrLogin.h"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <winsock.h>
 #include <wininet.h>
 #include <atlenc.h>
@@ -990,7 +991,68 @@ void CdrClient::refreshFiles() {
         }
         ++iter;
     }
+
+    // Added 2014-02-18: sweep to remove older versions of this program.
+    cleanOutOlderVersions();
     log(_T("Refresh of local files complete.\n"), 1);
+}
+
+/*
+ * Compare two CString values, case insensitive.
+ */
+static bool compareNoCase(const CString& s1, const CString& s2) {
+    return s1.CompareNoCase(s2) < 0;
+}
+
+/*
+ * Determine whether the file name specified matches the pattern for
+ * the CDR client loader executable (CdrClient-YYYYMMDDHHMMSS.exe).
+ */
+static bool isClientProgram(const CString& name) {
+    if (name.GetLength() != 28)
+        return false;
+    CString start = name.Left(10);
+    start.MakeLower();
+    if (start != _T("cdrclient-"))
+        return false;
+    CString tail = name.Right(4);
+    tail.MakeLower();
+    if (tail != _T(".exe"))
+        return false;
+    CString middle = name.Mid(10, 14);
+    return middle.SpanIncluding(_T("0123456789")) == middle;
+}
+
+/*
+ * Collect the names of all files in the current directory whose names
+ * match the pattern CdrClient-YYYYMMDDHHMMSS.exe, sort them (without
+ * regard to case), and delete all but the most recent five of these files.
+ */
+void CdrClient::cleanOutOlderVersions() {
+    std::vector<CString> files;
+    CFileFind finder;
+    BOOL more = finder.FindFile(_T("CdrClient-*.exe"));
+    while (more) {
+        more = finder.FindNextFile();
+        CString name = finder.GetFileName();
+        if (isClientProgram(name))
+            files.push_back(name);
+    }
+    std::sort(std::begin(files), std::end(files), compareNoCase);
+    if (files.size() > 5) {
+        files.resize(files.size() - 5);
+        std::vector<CString>::iterator iter = files.begin();
+        while (iter != files.end()) {
+            log(_T("Removing old client ") + *iter + _T("\n"), 1);
+            try {
+                CFile::Remove((LPCTSTR)*iter);
+            }
+            catch (...) {
+                log(_T("Unable to remove client ") + *iter + _T("\n"));
+            }
+            ++iter;
+        }
+    }
 }
 
 /*
