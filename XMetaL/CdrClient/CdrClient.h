@@ -1,5 +1,5 @@
 /*
- * $Id: CdrClient.h,v 1.3 2009-09-23 18:35:28 bkline Exp $
+ * $Id$
  *
  * Interface file for CDR loader application.  Rewritten 2005 by bkline.
  */

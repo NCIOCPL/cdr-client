@@ -1,5 +1,5 @@
 /*
- * $Id: ServerSettingsDlg.cpp,v 1.3 2009-09-23 18:35:29 bkline Exp $
+ * $Id$
  *
  * Implementation for object used to track and manipulate values for
  * connecting with the CDR servers.

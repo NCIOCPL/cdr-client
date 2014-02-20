@@ -1,5 +1,5 @@
 /*
- * $Id: CdrLogin.cpp,v 1.3 2009-09-23 18:35:29 bkline Exp $
+ * $Id$
  *
  * Implementation for dialog window object used to connect to the
  * CDR server and obtain a session ID.  Collects user ID and password,

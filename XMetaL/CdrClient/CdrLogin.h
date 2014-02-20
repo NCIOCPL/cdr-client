@@ -1,5 +1,5 @@
 /*
- * $Id: CdrLogin.h,v 1.3 2009-09-23 18:35:29 bkline Exp $
+ * $Id$
  *
  * Interface for dialog window used to log into the CDR (with controls
  * for adjusting the values used for connecting to the servers).  There

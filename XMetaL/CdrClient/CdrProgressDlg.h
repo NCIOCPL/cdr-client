@@ -1,5 +1,5 @@
 /*
- * $Id: CdrProgressDlg.h,v 1.3 2009-09-23 18:35:29 bkline Exp $
+ * $Id$
  *
  * Interface for the progress window's object.  There's a method for
  * bumping up the current position of the progress bar, and another

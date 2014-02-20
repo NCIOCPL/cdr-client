@@ -1,5 +1,5 @@
 /*
- * $Id: CdrClient.cpp,v 1.3 2009-09-23 18:35:28 bkline Exp $
+ * $Id$
  *
  * Ensures that the CDR client files are up-to-date, then launches XMetaL
  * with custom CDR DLL.  See documentation of the InitInstance method

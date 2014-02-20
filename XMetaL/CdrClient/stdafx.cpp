@@ -1,5 +1,5 @@
 /*
- * $Id: stdafx.cpp,v 1.3 2009-09-23 18:35:29 bkline Exp $
+ * $Id$
  *
  * Object module for holding pre-compiled MFC type information.
  *
