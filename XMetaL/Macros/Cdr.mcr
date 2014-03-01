@@ -8885,7 +8885,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Spanish Link ID Swap" lang="JScript" key="Alt+Z">
+<MACRO name="Spanish Link ID Swap" lang="JScript">
   <![CDATA[
     function spanishLinkIdSwap() {
         var doc = Application.ActiveDocument;
@@ -8926,6 +8926,17 @@
         Application.Alert("Swapped " + replaced + " link(s).");
     }
     spanishLinkIdSwap();
+  ]]>
+</MACRO>
+
+<MACRO name="Test New Fetch From URL Method" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function testFetchFromUrl() {
+        var url = CdrCgiBin + "cdrping.py";
+        response = cdrObj.fetchFromUrl(url);
+        Application.Alert(response);
+    }
+    testFetchFromUrl();
   ]]>
 </MACRO>
 
