@@ -17,7 +17,8 @@ class CEditElement : public CDialog
 {
 // Construction
 public:
-    enum Type { NORMAL, LEAD_ORG, PROT_PERSON, ORG_LOCATION, PRIV_PRACTICE };
+    enum Type { NORMAL, LEAD_ORG, PROT_PERSON, ORG_LOCATION, PRIV_PRACTICE,
+                GP_SYNDROME };
     CEditElement(const CString&, const CString&, Type = NORMAL,
                  CWnd* pParent = NULL);   // standard constructor
 
@@ -59,6 +60,7 @@ private:
     bool            insertProtPerson(const CString& str);
     bool            insertOrgLocation(const CString& str);
     void            extractLeadOrgs(const CString& str);
+    void            extractGeneticsSyndromes(const CString& str);
     CFont           biggerFont;
 public:
     afx_msg void OnLbnSelchangeList1();

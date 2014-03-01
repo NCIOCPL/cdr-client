@@ -262,6 +262,7 @@ namespace cdr {
     bool replaceElementContent(::DOMElement&, const CString&);
     bool getImageDimensions(CFile& file, ImageDimensions& dim);
     int getAudioSeconds(CFile& file);
+    CString fetchFromUrl(const CString&);
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 

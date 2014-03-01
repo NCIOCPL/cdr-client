@@ -15,6 +15,7 @@
 #include <map>
 #include <set>
 #include <fstream>
+#include <afxinet.h>
 
 // Implement our own command to show an HTML page.
 // #define SHOW_PAGE_WITH_DDE /* Use ActiveX Automation instead. */
@@ -1463,4 +1464,22 @@ bool cdr::replaceElementContent(::DOMElement& elem, const CString& value) {
     ::DOMNode textNode = curDoc.createTextNode(value);
     ::DOMNode dummy = elem.appendChild(textNode);
     return true;
+}
+
+CString cdr::fetchFromUrl(const CString& url) {
+    CInternetSession session(_T("CDR"));
+    DWORD flags = INTERNET_FLAG_TRANSFER_BINARY;
+    if (url.Left(5) == _T("https"))
+        flags |= INTERNET_FLAG_SECURE;
+    CStdioFile* file = session.OpenURL(url, 1, flags);
+    std::string response;
+    for (;;) {
+        char buf[1024];
+        UINT read = file->Read((void*)buf, sizeof(buf));
+        if (read > 0)
+            response.append(buf, read);
+        else
+            break;
+    }
+    return cdr::utf8ToCString(response.c_str());
 }

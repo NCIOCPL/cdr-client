@@ -7,6 +7,7 @@
  *
  * BZIssue::4767
  * BZIssue::5172 - Add support for pasting fragment ref into Target attribute.
+ * JIRA::OCECDR-3732 - custom support for genetics syndrome picklist
  */
 
 // Local headers.
@@ -1300,6 +1301,8 @@ STDMETHODIMP CCommands::edit(int *pRet)
                 if (selection.GetIsParentElement(_T("OtherPracticeLocation")))
                     editType = CEditElement::ORG_LOCATION;
             }
+            else if (elemName == _T("FamilialCancerSyndrome"))
+                editType = CEditElement::GP_SYNDROME;
         }
 
         // Most of the real work is done inside this call.
@@ -3228,10 +3231,33 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
 
 STDMETHODIMP CCommands::get_userPath(BSTR* pVal)
 {
-	AFX_MANAGE_STATE(AfxGetStaticModuleState());
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-	CString userPath = cdr::getUserPath();
+    CString userPath = cdr::getUserPath();
     userPath.SetSysString(pVal);
 
-	return S_OK;
+    return S_OK;
+}
+
+/*
+ * Support for fetching information from the CDR web server.  Allows
+ * us to implement simpler enhancements which would otherwise require
+ * a rebuild of the CDR server.
+ */
+STDMETHODIMP CCommands::fetchFromUrl(const BSTR* url_, BSTR* response_) {
+
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    CString url(*url_);
+    CString response;
+    try {
+        response = cdr::fetchFromUrl(url);
+    }
+    catch (...) {
+        ::AfxMessageBox(_T("Unable to open ") + url, MB_ICONEXCLAMATION);
+        response = _T("");
+    }
+    response.SetSysString(response_);
+
+    return S_OK;
 }

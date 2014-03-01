@@ -3,43 +3,7 @@
  *
  * Implementation of dialog object for editing inter-document links.
  *
- * $Log: not supported by cvs2svn $
- * Revision 1.12  2002/07/25 01:40:31  bkline
- * Added multi-selection support to link editing.
- *
- * Revision 1.11  2002/07/01 22:49:02  bkline
- * Removed remaining instances of hard-coded mmdb2.
- *
- * Revision 1.10  2002/06/01 00:47:06  bkline
- * Replaced raw XML display for View button with QC reports.
- *
- * Revision 1.9  2002/03/09 03:25:22  bkline
- * Cleaned up commented-out section.
- *
- * Revision 1.8  2002/03/04 11:58:23  bkline
- * Enlarged link edit dialog window and picklist font.
- *
- * Revision 1.7  2002/02/01 21:58:37  bkline
- * Added code to populate the text node for the lead org.
- *
- * Revision 1.6  2002/01/29 22:55:32  bkline
- * Modified wildcard handing.
- *
- * Revision 1.5  2002/01/29 21:53:30  bkline
- * Fixed bug in insertion of lead org name.
- *
- * Revision 1.4  2001/11/27 14:21:01  bkline
- * Version used at November 2001 demo.
- *
- * Revision 1.3  2001/06/09 12:35:21  bkline
- * Switched to Unicode; added button to launch browser view of document.
- *
- * Revision 1.2  2001/04/18 14:45:01  bkline
- * Removed std::ends (no longer using obsolete strstream).
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
- *
+ * JIRA::OCECDR-3732 - custom support for genetics picklists
  */
 
 // Local headers.
@@ -191,6 +155,26 @@ void CEditElement::OnOK()
 
             extractLeadOrgs(rsp);
             break;
+
+        case GP_SYNDROME:
+
+            cmd << _T("<CdrReport>")
+                   _T("<ReportName>Genetics Syndromes</ReportName>")
+                   _T("<ReportParams><ReportParam Name='TitlePattern' Value=\"")
+                << (LPCTSTR)m_title
+                << _T("\"/></ReportParams></CdrReport>");
+            rsp = CdrSocket::sendCommand(cmd.str().c_str());
+            pos = rsp.Find(_T("<ReportBody"));
+            if (pos == -1) {
+                if (!cdr::showErrors(rsp))
+                    ::AfxMessageBox(_T("Unknown failure from search"),
+                                    MB_ICONEXCLAMATION);
+                EndDialog(IDCANCEL);
+                return;
+            }
+
+            extractGeneticsSyndromes(rsp);
+            break;
     }
 
     if (cdr::fillListBox(m_linkList, docSet) > 0) {
@@ -223,6 +207,7 @@ void CEditElement::OnSelectButton()
         m_linkList.GetText(curSel, str);
         switch (type) {
             case NORMAL:
+            case GP_SYNDROME:
                 CCommands::doInsertLink(str);
                 while (++i < selCount) {
                     ::Selection selection = cdr::getApp().GetSelection();
@@ -414,6 +399,20 @@ void CEditElement::extractLeadOrgs(const CString& rsp)
         cdr::SearchResult qr = cdr::SearchResult(
                 id.getString(), _T("Organization"), title.getString(), 
                 group.getString() == _T("Yes"));
+        docSet.push_back(qr);
+        r = r.extractElement(rsp, _T("ReportRow"), r.getEndPos());
+    }
+}
+
+void CEditElement::extractGeneticsSyndromes(const CString& rsp)
+{
+    docSet.clear();
+    cdr::Element r = cdr::Element::extractElement(rsp, _T("ReportRow"));
+    while (r) {
+        cdr::Element id      = r.extractElement(r.getString(), _T("DocId"));
+        cdr::Element title   = r.extractElement(r.getString(), _T("DocTitle"));
+        cdr::SearchResult qr = cdr::SearchResult(
+            id.getString(), _T("Term"), title.getString());
         docSet.push_back(qr);
         r = r.extractElement(rsp, _T("ReportRow"), r.getEndPos());
     }

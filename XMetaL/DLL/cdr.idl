@@ -51,6 +51,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(41), helpstring("method editComment")] HRESULT editComment([in] VARIANT_BOOL readOnly);
         [id(42), helpstring("method valuesForPath")] HRESULT valuesForPath([in] const BSTR* docId, [in] const BSTR* path, [out,retval] BSTR* values);
 		[propget, id(43)] HRESULT userPath([out, retval] BSTR* pVal);
+        [id(44), helpstring("retrieve response from HTTP(S) GET request")] HRESULT fetchFromUrl([in] const BSTR* url_, [out,retval] BSTR* response_);
 	};
 
 [
