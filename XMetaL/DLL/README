@@ -1,0 +1,20 @@
+The MFC wizard for creating new ICommands methods doesn't work very well
+in the more recent versions of Visual Studio.  Better to just add them
+directly in your text editor:
+
+* add declaration for public method of CCommands class to Commands.h; e.g.:
+
+  STDMETHOD(fetchFromUrl)(const BSTR* url_, BSTR* response_);
+
+* add definition to Commands.cpp; e.g.:
+
+  STDMETHODIMP CCommands::fetchFromUrl(const BSTR* url_, BSTR* response_) {
+
+      AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+      CString url(*url_);
+      CString json = _T("{'42': 'f\\u00fcr Elise', '23': 'foo'}");
+      json.SetSysString(response);
+
+      return S_OK;
+  }
