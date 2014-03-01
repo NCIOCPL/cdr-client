@@ -18,3 +18,13 @@ directly in your text editor:
 
       return S_OK;
   }
+
+* add line to cdr.idl in the interface ICommands : IDispatch block; e.g.:
+
+  [id(44), helpstring("retrieve response from HTTP(S) GET request")] HRESULT fetchFromUrl([in] const BSTR* url_, [out,retval] BSTR* response_);
+
+  (... picking the next available id for that first field)
+
+For a property, modify the same three files, modeling one of the propget
+examples already there (for example, username); note the prefix added to
+the method name for a property in Commands.h; e.g. get_session).
