@@ -108,6 +108,123 @@
     }
 
     /*
+     * Produce a string representation of a Javascript object.  The
+     * optional indent argument is used by the recursive calls for
+     * nested levels of the object.
+     */
+    function dump(me, indent) {
+        if (!indent) indent = "";
+        var more = "    ";
+        switch (me.constructor) {
+        case Array:
+            result = "[\n";
+            for (var i = 0; i < me.length; i++)
+                result += indent + more + dump(me[i], indent + more) + "\n";
+            return result + indent + "]";
+        case Object:
+            result = "{\n";
+            for (var i in me) {
+                result += indent + more + i + ": " + 
+                    dump(me[i], indent + more) + "\n";
+            }
+            return result + indent + "}";
+        default:
+            return me;
+        }
+    }
+
+    /*
+     * Oddly, Javascript doesn't have a builtin way to determine whether
+     * a particular value is present in an array.  This function fills
+     * gap.
+     */
+    function inArray(needle, haystack) {
+        for (var i = 0; i < haystack.length; ++i)
+            if (haystack[i] == needle)
+                return true;
+        return false;
+    }
+
+    /*
+     * Load an XML parser for external documents, if one is available.
+     */
+    function getXmlParser() {
+        var versions = ["MSXML2.DOMDocument.6.0", "MSXML2.DOMDocument.4.0",
+                        "MSXML2.DOMDocument", "MSXML.DOMDocument"];
+        for (var i = 0; i < versions.length; ++i) {
+            try { return new ActiveXObject(versions[i]); }
+            catch (e) { ; }
+        }
+        throw new Error("no parser available");
+    }
+
+    /*
+     * Fetch XML document from an HTTP(S) call for a URL.  Construct a
+     * Javascript object for the document.  See objectFromNode() below
+     * for a description of the optional forceArray argument.
+     */
+    function objectFromUrl(url, forceArray) {
+        var response = cdrObj.fetchFromUrl(url);
+        if (!response)
+            throw "failure fetching from " + url;
+        return objectFromXml(response, forceArray);
+    }
+
+    /*
+     * Parse a serialized XML document and construct a Javascript object
+     * from the resulting DOM tree.  See objectFromNode() below for a
+     * description of the optional forceArray argument.
+     */
+    function objectFromXml(xml, forceArray) {
+        var parser = getXmlParser();
+        parser.loadXML(xml);
+        if (parser.parseError.errorCode != 0) {
+            var err = parser.parseError;
+            throw new Error("parse failure: " + err.reason);
+        }
+        return objectFromNode(parser.documentElement, forceArray);
+    }
+
+    /*
+     * Recursively extract values from an XML DOM element node, building up
+     * and returning a Javascript object containing those values.  An optional
+     * array of element names can be passed, to force values for that name
+     * to be returned as an array instead of a single instance, even if there
+     * is only one occurrence of the name found.
+     */
+    function objectFromNode(node, forceArray) {
+        if (typeof(forceArray) === "undefined")
+            forceArray = [];
+        var values = {};
+        var count = 0;
+        var attrs = node.attributes;
+        for (var i = 0; i < attrs.length; ++i) {
+            var item = attrs.item(i);
+            values[item.name] = [item.text];
+            ++count;
+        }
+        var children = node.childNodes;
+        for (var i = 0; i < children.length; ++i) {
+            var child = children.item(i);
+            if (child.nodeType == 1) {
+                var name = child.nodeName;
+                if (values[name] === undefined) {
+                    values[name] = [];
+                }
+                values[name].push(objectFromNode(child, forceArray));
+                ++count;
+            }
+        }
+        if (!count)
+            return node.text;
+        for (name in values) {
+            if (!inArray(name, forceArray) && values[name].length == 1)
+                values[name] = values[name][0];
+        }
+        return values;
+    }
+
+    /*
      * Extracts the document ID from the current document.
      */
     function getDocId() {
@@ -8932,9 +9049,14 @@
 <MACRO name="Test New Fetch From URL Method" lang="JScript" key="Alt+Z">
   <![CDATA[
     function testFetchFromUrl() {
-        var url = CdrCgiBin + "cdrping.py";
-        response = cdrObj.fetchFromUrl(url);
-        Application.Alert(response);
+        try {
+            var url = CdrCgiBin + "TestFetchFromUrl.py";
+            var obj = objectFromUrl(url, ["address"]);
+            Application.Alert(dump(obj));
+        }
+        catch (e) {
+            Application.Alert(e);
+        }
     }
     testFetchFromUrl();
   ]]>
