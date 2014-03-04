@@ -148,7 +148,7 @@ Diagnoses                 :before { content: "DIAGNOSES & ";}
 Diagnosis                 :before { content: "Diagnosis * +: ";}
 DocTitle                  :before { content: "Doc Title: "; }
 EnteredBy                 :before { content: "Entered By *: ";}
-FromCdrMedia              :before { content: "From CDR Media *: ";}
+FromCdrMedia              :before { content: "FROM CDR MEDIA * ";}
 FromExternalFile          :before { content: "From External File *: ";}
 FromMethod                :before { content: "From Method & @: ";}
 FromObject                :before { content: "FROM OBJECT * ";}
@@ -357,6 +357,11 @@ ProcessingStatus>EnteredBy,
 FromCdrMedia,
                         { margin-left: 120pt;
                           text-indent: -112.5pt; }
+
+Caption                 { margin-left:  20pt;
+                          text-indent: -75pt; }
+MediaID                 { margin-left:  20pt;
+                          text-indent: -79.5pt; }
 FromExternalFile,
                         { margin-left: 120pt;
                           text-indent: -119pt; }
@@ -533,6 +538,7 @@ Captions,
 Categories,
 ContentDescriptions,
 Diagnoses,
+FromCdrMedia,
 MediaContent,
 MediaSource,
 PhysicalMedia,
@@ -543,7 +549,7 @@ RelatedDocuments,
 Topics,
 	{ margin-bottom: 10pt; }
 
-ImageDimensions,
+ImageDimensions
     { margin-top: 10pt; }
 
 
@@ -565,7 +571,6 @@ DerivationMethod,
 Diagnosis,
 DocTitle,
 EnteredBy,
-FromCdrMedia,
 FromExternalFile,
 FromMethod,
 Glossary,

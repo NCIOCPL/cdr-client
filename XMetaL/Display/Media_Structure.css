@@ -145,7 +145,7 @@ Diagnosis:before,                 { content: "Diagnosis "; }
 DocTitle:before,                  { content: "Doc Title "; }
 ProcessingStatus>EnteredBy:before,
                                   { content: "Entered By "; }
-FromCdrMedia:before,              { content: "From CDR Media "; }
+FromCdrMedia:before,              { content: "FROM CDR MEDIA "; }
 FromExternalFile:before,          { content: "From External File "; }
 FromMethod:before,                { content: "From Method "; }
 FromObject:before,                { content: "FROM OBJECT "; }
