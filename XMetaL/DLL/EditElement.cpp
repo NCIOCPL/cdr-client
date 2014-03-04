@@ -457,7 +457,7 @@ BOOL CEditElement::OnInitDialog()
 
 void CEditElement::OnLbnSelchangeList1()
 {
-    if (type != NORMAL) {
+    if (type != NORMAL && type != GP_SYNDROME) {
         int sel = m_linkList.GetCurSel();
         int selCount = m_linkList.GetSelCount();
         //CString msg;
