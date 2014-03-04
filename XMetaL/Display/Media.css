@@ -51,6 +51,7 @@ Color,
 Captions,
 Categories,
 Category,
+CitationLink,
 Comment,
 ContentDescriptions,
 ContentDescription,
@@ -119,6 +120,13 @@ WidthPixels,
     { display: block; }
 
 
+/***************************************************************************/ 
+/* Redefine CitationLink which is by default an inline element             */ 
+/***************************************************************************/ 
+CitationLink             :before
+    { text-decoration: none; }
+CitationLink
+    { text-decoration: none; }
 
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
@@ -137,6 +145,7 @@ Color                     :before { content: "Color *: ";}
 Captions                  :before { content: "CAPTIONS & ";}
 Categories                :before { content: "CATEGORIES * ";}
 Category                  :before { content: "Category * +: ";}
+CitationLink              :before { content: "Citation & + @: ";}
 Comment                   :before { content: "Comments &: "; }
 ContentDescriptions       :before { content: "CONTENT DESCRIPTIONS * ";}
 ContentDescription        :before { content: "Cont. Descr. * + @: ";}
@@ -231,6 +240,7 @@ Color                                  :before,
 Captions                               :before,
 Categories                             :before,
 Category                               :before,
+CitationLink                           :before,
 Comment                                :before,
 ContentDescriptions                    :before,
 ContentDescription                     :before,
@@ -479,6 +489,9 @@ SpanishTranslationPermissionResponse
 PublisherPermissionText
                         { margin-left: 120pt;
                           text-indent: -96pt; }
+CitationLink
+                        { margin-left: 120pt;
+                          text-indent: -89pt; }
 
 /***************************************************************************/ 
 /*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
@@ -486,6 +499,7 @@ PublisherPermissionText
 Acknowledgement,
 AlternativeText,
 Category,
+CitationLink,
 Color,
 Comment,
 ProcessingStatus>Comment,
@@ -562,6 +576,7 @@ AlternativeText,
 Audience,
 Color,
 Category,
+CitationLink,
 Comment,
 ContentDescription,
 Creator,
@@ -618,6 +633,7 @@ Color                             :before,
 Captions                          :before, 
 Categories                        :before,
 Category                          :before,
+CitationLink                      :before,
 Comment                           :before,
 ContentDescriptions               :before,
 ContentDescription                :before,

@@ -54,6 +54,7 @@ Color,
 Captions,
 Categories,
 Category,
+CitationLink,
 Comment,
 ContentDescriptions,
 ContentDescription,
@@ -126,47 +127,48 @@ WidthPixels,
 /***************************************************************************/ 
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
-Acknowledgement:before,           { content: "Acknowledgement "; }
-AlternativeText:before,           { content: "Alternative Text "; }
-Audience:before,                  { content: "Audience "; }
-Color:before,                     { content: "Color "; }
-Captions:before,                  { content: "CAPTIONS "; }
-Categories:before,                { content: "CATEGORIES "; }
-Category:before,                  { content: "Category "; }
-Comment:before,                   { content: "Comments "; }
-ContentDescriptions:before,       { content: "CONTENT DESCRIPTIONS "; }
-ContentDescription:before,        { content: "Content Description "; }
-Creator:before,                   { content: "Creator "; }
-DateCreated:before,               { content: "Date Created "; }
-DateLastModified:before,          { content: "Last Modified "; }
-DerivedFrom:before,               { content: "DERIVED FROM "; }
-Diagnoses:before,                 { content: "DIAGNOSES "; }
-Diagnosis:before,                 { content: "Diagnosis "; }
-DocTitle:before,                  { content: "Doc Title "; }
+Acknowledgement           :before { content: "Acknowledgement "; }
+AlternativeText           :before { content: "Alternative Text "; }
+Audience                  :before { content: "Audience "; }
+Color                     :before { content: "Color "; }
+Captions                  :before { content: "CAPTIONS "; }
+Categories                :before { content: "CATEGORIES "; }
+Category                  :before { content: "Category "; }
+CitationLink              :before { content: "Citation "; }
+Comment                   :before { content: "Comments "; }
+ContentDescriptions       :before { content: "CONTENT DESCRIPTIONS "; }
+ContentDescription        :before { content: "Content Description "; }
+Creator                   :before { content: "Creator "; }
+DateCreated               :before { content: "Date Created "; }
+DateLastModified          :before { content: "Last Modified "; }
+DerivedFrom               :before { content: "DERIVED FROM "; }
+Diagnoses                 :before { content: "DIAGNOSES "; }
+Diagnosis                 :before { content: "Diagnosis "; }
+DocTitle                  :before { content: "Doc Title "; }
 ProcessingStatus>EnteredBy:before,
                                   { content: "Entered By "; }
-FromCdrMedia:before,              { content: "FROM CDR MEDIA "; }
-FromExternalFile:before,          { content: "From External File "; }
-FromMethod:before,                { content: "From Method "; }
-FromObject:before,                { content: "FROM OBJECT "; }
-Glossary:before,                  { content: "Glossary "; }
-HeightPixels:before,              { content: "Height (Pixels) "; }
-ImageData:before,                 { content: "IMAGE DATA ";}
-ImageDimensions:before,           { content: "IMAGE DIMENSIONS "; }
-ImageType:before,                 { content: "Image Type "; }
-ImageEncoding:before,             { content: "Image Encoding "; }
-Inlined:before,                   { content: "Inlined "; }
-Labeled:before,                   { content: "Labeled "; }
-LabelName:before,                 { content: "Label Name "; }
-Language:before,                  { content: "Language "; }
-Media:before,                     { content: "Media "; }
-MediaCaption:before,              { content: "Caption "; }
-MediaContent:before,              { content: "MEDIA CONTENT "; }
-MediaLanguage:before,             { content: "Media Language "; }
-MediaSource:before,               { content: "MEDIA SOURCE "; }
-MediaTitle:before,                { content: "MediaTitle "; }
-MinWidthPixels:before,            { content: "MinWidth (Pixels) "; }
-OriginalSource:before,            { content: "ORIGINAL SOURCE "; }
+FromCdrMedia              :before { content: "FROM CDR MEDIA "; }
+FromExternalFile          :before { content: "From External File "; }
+FromMethod                :before { content: "From Method "; }
+FromObject                :before { content: "FROM OBJECT "; }
+Glossary                  :before { content: "Glossary "; }
+HeightPixels              :before { content: "Height (Pixels) "; }
+ImageData                 :before { content: "IMAGE DATA ";}
+ImageDimensions           :before { content: "IMAGE DIMENSIONS "; }
+ImageType                 :before { content: "Image Type "; }
+ImageEncoding             :before { content: "Image Encoding "; }
+Inlined                   :before { content: "Inlined "; }
+Labeled                   :before { content: "Labeled "; }
+LabelName                 :before { content: "Label Name "; }
+Language                  :before { content: "Language "; }
+Media                     :before { content: "Media "; }
+MediaCaption              :before { content: "Caption "; }
+MediaContent              :before { content: "MEDIA CONTENT "; }
+MediaLanguage             :before { content: "Media Language "; }
+MediaSource               :before { content: "MEDIA SOURCE "; }
+MediaTitle                :before { content: "MediaTitle "; }
+MinWidthPixels            :before { content: "MinWidth (Pixels) "; }
+OriginalSource            :before { content: "ORIGINAL SOURCE "; }
 PermissionInformation     :before { content: "PERMISSION INFORMATION"; }
 PermissionRequested       :before { content: "Requested"; }
 PermissionRequestDate     :before { content: "Req. Date"; }
@@ -179,28 +181,28 @@ SpanishTranslationPermissionRequested
 SpanishTranslationPermissionResponse 
                           :before { content: "Spn Permission Resp"; }
 PublisherPermissionText   :before { content: "Publisher Txt"; }
-PhysicalMedia:before,             { content: "PHYSICAL MEDIA "; }
-ProcessingStatus:before,          { content: "PROCESSING STATUS "; }
-ProcessingStatusDate:before,      { content: "Status Date"; }
-ProcessingStatuses:before,        { content: "PROCESSING STATUSES "; }
-ProcessingStatusValue:before,     { content: "Status Value"; }
-ProposedUse:before,               { content: "PROPOSED USE "; }
-RelatedDocuments         :before, { content: "RELATED DOCUMENTS"; }
-RunSeconds               :before, { content: "Run (sec) "; }
-SoundData                :before, { content: "Sound Data "; }
-SoundEncoding            :before, { content: "Sound Encoding "; }
-SoundType                :before, { content: "Sound Type "; }
-SourceFilename           :before, { content: "Source Filename "; }
-SourcePublication        :before, { content: "Source Publication "; }
-Summary                  :before, { content: "Summary "; }
-SupplementaryInfoLink    :before, { content: "Supplementary Info Link "; }
-TextDateCreated:before,           { content: "Text Date Created "; }
-Topic:before,                     { content: "Topic "; }
-Topics:before,                    { content: "TOPICS "; }
-VideoData:before,                 { content: "Video Data "; }
-VideaEncoding:before,             { content: "Video Encoding "; }
-VideaType:before,                 { content: "Video Type "; }
-WidthPixels:before,               { content: "Width (Pixels) "; }
+PhysicalMedia             :before { content: "PHYSICAL MEDIA "; }
+ProcessingStatus          :before { content: "PROCESSING STATUS "; }
+ProcessingStatusDate      :before { content: "Status Date"; }
+ProcessingStatuses        :before { content: "PROCESSING STATUSES "; }
+ProcessingStatusValue     :before { content: "Status Value"; }
+ProposedUse               :before { content: "PROPOSED USE "; }
+RelatedDocuments          :before { content: "RELATED DOCUMENTS"; }
+RunSeconds                :before { content: "Run (sec) "; }
+SoundData                 :before { content: "Sound Data "; }
+SoundEncoding             :before { content: "Sound Encoding "; }
+SoundType                 :before { content: "Sound Type "; }
+SourceFilename            :before { content: "Source Filename "; }
+SourcePublication         :before { content: "Source Publication "; }
+Summary                   :before { content: "Summary "; }
+SupplementaryInfoLink     :before { content: "Supplementary Info Link "; }
+TextDateCreated           :before { content: "Text Date Created "; }
+Topic                     :before { content: "Topic "; }
+Topics                    :before { content: "TOPICS "; }
+VideoData                 :before { content: "Video Data "; }
+VideaEncoding             :before { content: "Video Encoding "; }
+VideaType                 :before { content: "Video Type "; }
+WidthPixels               :before { content: "Width (Pixels) "; }
 
 
 
@@ -218,23 +220,23 @@ RelatedDocuments,
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-Captions:before,
-Categories:before,
-ContentDescriptions:before,
-DerivedFrom:before,
-Diagnoses:before,
-FromObject:before,
-ImageData:before,
-ImageDimensions:before,
-Media:before,
-MediaContent:before,
-MediaSource:before,
-OriginalSource:before,
-PhysicalMedia:before,
-ProcessingStatus:before,
-ProcessingStatuses:before,
-ProposedUse:before,
-Topics:before,
+Captions                               :before,
+Categories                             :before,
+ContentDescriptions                    :before,
+DerivedFrom                            :before,
+Diagnoses                              :before,
+FromObject                             :before,
+ImageData                              :before,
+ImageDimensions                        :before,
+Media                                  :before,
+MediaContent                           :before,
+MediaSource                            :before,
+OriginalSource                         :before,
+PhysicalMedia                          :before,
+ProcessingStatus                       :before,
+ProcessingStatuses                     :before,
+ProposedUse                            :before,
+Topics                                 :before,
    { color: black;
      font-size: 10pt; }
 
@@ -243,47 +245,48 @@ Topics:before,
 /***************************************************************************/ 
 /*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
 /***************************************************************************/ 
-Acknowledgement:before,
-AlternativeText:before,
-Audience:before,
-Color:before,
-Captions:before,
-Categories:before,
-Category:before,
-Comment:before,
-ContentDescriptions:before,
-ContentDescription:before,
-Creator:before,
-DateCreated:before,
-DateLastModified:before,
-DerivationMethod:before,
-DerivedFrom:before,
-Diagnoses:before,
-Diagnosis:before,
-DocTitle:before,
-ProcessingStatus>EnteredBy:before,
-FromCdrMedia:before,
-FromExternalFile:before,
-FromMethod:before,
-FromObject:before,
-Glossary:before,
-HeightPixels:before,
-ImageData:before,
-ImageDimensions:before,
-ImageType:before,
-ImageEncoding:before,
-Inlined:before,
-Labeled:before,
-LabelName:before,
-Language:before,
-Media:before,
-MediaCaption:before,
-MediaContent:before,
-MediaLanguage:before,
-MediaSource:before,
-MediaTitle:before,
-MinWidthPixels:before,
-OriginalSource:before,
+Acknowledgement                        :before,
+AlternativeText                        :before,
+Audience                               :before,
+Color                                  :before,
+Captions                               :before,
+Categories                             :before,
+Category                               :before,
+CitationLink                           :before,
+Comment                                :before,
+ContentDescriptions                    :before,
+ContentDescription                     :before,
+Creator                                :before,
+DateCreated                            :before,
+DateLastModified                       :before,
+DerivationMethod                       :before,
+DerivedFrom                            :before,
+Diagnoses                              :before,
+Diagnosis                              :before,
+DocTitle                               :before,
+ProcessingStatus>EnteredBy             :before,
+FromCdrMedia                           :before,
+FromExternalFile                       :before,
+FromMethod                             :before,
+FromObject                             :before,
+Glossary                               :before,
+HeightPixels                           :before,
+ImageData                              :before,
+ImageDimensions                        :before,
+ImageType                              :before,
+ImageEncoding                          :before,
+Inlined                                :before,
+Labeled                                :before,
+LabelName                              :before,
+Language                               :before,
+Media                                  :before,
+MediaCaption                           :before,
+MediaContent                           :before,
+MediaLanguage                          :before,
+MediaSource                            :before,
+MediaTitle                             :before,
+MinWidthPixels                         :before,
+OriginalSource                         :before,
 PermissionInformation                  :before,
 PermissionRequested                    :before,
 PermissionRequestDate                  :before,
@@ -294,25 +297,25 @@ ApprovedUse                            :before,
 SpanishTranslationPermissionRequested  :before,
 SpanishTranslationPermissionResponse   :before,
 PublisherPermissionText                :before,
-PhysicalMedia:before,
-ProcessingStatusDate:before,
-ProcessingStatusValue:before,
-RelatedDocuments:before,
-RunSeconds:before,
-SoundData:before,
-SoundEncoding:before,
-SoundType:before,
-SourceFilename:before,
-SourcePublication:before,
-Summary:before,
-SupplementaryInfoLink:before,
-TextDateCreated:before,
-Topic:before,
-Topics:before,
-VideoData:before,
-VideaEncoding:before,
-VideaType:before,
-WidthPixels:before,
+PhysicalMedia                          :before,
+ProcessingStatusDate                   :before,
+ProcessingStatusValue                  :before,
+RelatedDocuments                       :before,
+RunSeconds                             :before,
+SoundData                              :before,
+SoundEncoding                          :before,
+SoundType                              :before,
+SourceFilename                         :before,
+SourcePublication                      :before,
+Summary                                :before,
+SupplementaryInfoLink                  :before,
+TextDateCreated                        :before,
+Topic                                  :before,
+Topics                                 :before,
+VideoData                              :before,
+VideaEncoding                          :before,
+VideaType                              :before,
+WidthPixels                            :before,
      { color: black;  
        background-color: white; }
 
@@ -327,6 +330,7 @@ AlternativeText,
 Audience,
 Color,
 Category,
+CitationLink,
 Comment,
 ContentDescription,
 Creator,
@@ -388,6 +392,7 @@ AlternativeText,
 Audience,
 Color,
 Category,
+CitationLink,
 Comment,
 ContentDescription,
 Creator,
@@ -447,37 +452,38 @@ WidthPixels,
 /*                               COLOR                                     */ 
 /***************************************************************************/ 
 /* Background color for Fields (Do not include Container Elements here */
-AlternativeText:before,
-Audience:before,
-Color:before,
-Category:before,
-Comment:before,
-ContentDescription:before,
-Creator:before,
-DateCreated:before,
-DateLastModified:before,
-DerivationMethod:before,
-Diagnosis:before,
-DocTitle:before,
-FromCdrMedia:before,
-FromExternalFile:before,
-FromMethod:before,
+AlternativeText                        :before,
+Audience                               :before,
+Color                                  :before,
+Category                               :before,
+CitationLink                           :before,
+Comment                                :before,
+ContentDescription                     :before,
+Creator                                :before,
+DateCreated                            :before,
+DateLastModified                       :before,
+DerivationMethod                       :before,
+Diagnosis                              :before,
+DocTitle                               :before,
+FromCdrMedia                           :before,
+FromExternalFile                       :before,
+FromMethod                             :before,
 Glossary,
 ProcessingStatusDate,
 ProcessingStatusValue,
 Summary,
-HeightPixels:before,
-ImageType:before,
-ImageEncoding:before,
-Inlined:before,
-Labeled:before,
-LabelName:before,
-Language:before,
-MediaCaption:before,
-MediaLanguage:before,
-MediaTitle:before,
-MinWidthPixels:before,
-OriginalSource:before,
+HeightPixels                           :before,
+ImageType                              :before,
+ImageEncoding                          :before,
+Inlined                                :before,
+Labeled                                :before,
+LabelName                              :before,
+Language                               :before,
+MediaCaption                           :before,
+MediaLanguage                          :before,
+MediaTitle                             :before,
+MinWidthPixels                         :before,
+OriginalSource                         :before,
 PermissionRequested                    :before,
 PermissionRequestDate                  :before,
 PermissionResponse                     :before,
@@ -487,19 +493,19 @@ ApprovedUse                            :before,
 SpanishTranslationPermissionRequested  :before,
 SpanishTranslationPermissionResponse   :before,
 PublisherPermissionText                :before,
-PhysicalMedia:before,
-RunSeconds:before,
-SoundData:before,
-SoundEncoding:before,
-SoundType:before,
-SourceFilename:before,
-SourcePublication:before,
-TextDateCreated:before,
-Topic:before,
-VideoData:before,
-VideaEncoding:before,
-VideaType:before,
-WidthPixels:before,
+PhysicalMedia                          :before,
+RunSeconds                             :before,
+SoundData                              :before,
+SoundEncoding                          :before,
+SoundType                              :before,
+SourceFilename                         :before,
+SourcePublication                      :before,
+TextDateCreated                        :before,
+Topic                                  :before,
+VideoData                              :before,
+VideaEncoding                          :before,
+VideaType                              :before,
+WidthPixels                            :before,
    { background-color: white; }
 
 
@@ -510,6 +516,7 @@ Color,
 Captions,
 Categories,
 Category,
+CitationLink,
 Comment,
 ContentDescriptions,
 ContentDescription,
