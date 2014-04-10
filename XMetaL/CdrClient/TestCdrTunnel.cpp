@@ -1,7 +1,17 @@
 //----------------------------------------------------------------------
+//
 // $Id$
 //
 // Proof of concept for OCECDR-3748
+//
+// Build:
+//     cl /EHsc TestCdrTunnel.cpp
+//
+// Usage:
+//     TestCdrTunnel.exe [server [command-set]]
+//     [default server is cdr.dev.cancer.gov; reads command set from
+//      standard input by default]
+//
 //----------------------------------------------------------------------
 #define WINVER 0x0500
 #define WIN32
