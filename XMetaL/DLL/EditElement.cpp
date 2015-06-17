@@ -1,5 +1,5 @@
 /*
- * $Id: EditElement.cpp,v 1.13 2002-07-26 20:31:56 bkline Exp $
+ * $Id$
  *
  * Implementation of dialog object for editing inter-document links.
  *

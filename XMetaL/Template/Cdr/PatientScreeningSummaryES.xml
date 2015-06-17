@@ -91,7 +91,7 @@
          piensan que pueden estar en riesgo deben consultarlo con su 
          médico. Entre los factores de riesgo se incluyen los 
          siguientes: </Para>
-   <ItemizedList Compact="No" Style="bullet">
+   <ItemizedList Style="bullet">
     <ListItem><?xm-replace_text {
          Enter risk factor
          }?></ListItem>

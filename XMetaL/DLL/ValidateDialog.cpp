@@ -1,5 +1,5 @@
 /*
- * $Id: ValidateDialog.cpp,v 1.3 2003-05-13 19:23:39 bkline Exp $
+ * $Id$
  *
  * Implementation of dialog object for validating the currently active 
  * document.

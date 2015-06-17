@@ -109,7 +109,7 @@
          Enter the DCS regimen
          }?> 
          is used to treat:</Para>
-  <ItemizedList Compact="No" Style="bullet">
+  <ItemizedList Style="bullet">
    <ListItem><?xm-replace_text {
          Enter list item
          }?></ListItem>

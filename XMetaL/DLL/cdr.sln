@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cdr", "Cdr.vcxproj", "{EEC16184-8A35-784C-31D2-B47ECB40228A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cdr", "Cdr.vcxproj", "{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,15 +13,15 @@ Global
 		Unicode Release MinSize|Win32 = Unicode Release MinSize|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Release MinDependency|Win32.ActiveCfg = Release MinDependency|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Release MinSize|Win32.ActiveCfg = Release MinSize|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Template|Win32.ActiveCfg = Template|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Template|Win32.Build.0 = Template|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Unicode Release MinDependency|Win32.ActiveCfg = Unicode Release MinDependency|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Unicode Release MinDependency|Win32.Build.0 = Unicode Release MinDependency|Win32
-		{EEC16184-8A35-784C-31D2-B47ECB40228A}.Unicode Release MinSize|Win32.ActiveCfg = Unicode Release MinSize|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Release MinDependency|Win32.ActiveCfg = Release MinDependency|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Release MinSize|Win32.ActiveCfg = Release MinSize|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Template|Win32.ActiveCfg = Template|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Template|Win32.Build.0 = Template|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Unicode Release MinDependency|Win32.ActiveCfg = Unicode Release MinDependency|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Unicode Release MinDependency|Win32.Build.0 = Unicode Release MinDependency|Win32
+		{EB5BD09E-FA19-A5D2-A4D5-2C57A6E70112}.Unicode Release MinSize|Win32.ActiveCfg = Unicode Release MinSize|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

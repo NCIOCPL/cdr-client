@@ -241,7 +241,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
-<!--
+    <!--
 We don't have permission to do this on the CBIIT servers, and we don't need it.
 
     <CustomBuildStep>
@@ -427,6 +427,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClCompile Include="ProtUpdPerson.cpp" />
     <ClCompile Include="RetrieveDialog.cpp" />
     <ClCompile Include="ReviewMarkup.cpp" />
+    <ClCompile Include="RevisionLevel.cpp" />
     <ClCompile Include="SaveDialog.cpp" />
     <ClCompile Include="SchemaPicklist.cpp" />
     <ClCompile Include="SearchDialog.cpp" />
@@ -440,7 +441,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ClCompile>
     <ClCompile Include="ValidateDialog.cpp" />
     <ClCompile Include="VersionList.cpp" />
-    <ClCompile Include="xmetal4.cpp" />
+    <ClCompile Include="xmetal90.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cdr.def" />
@@ -504,13 +505,14 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RetrieveDialog.h" />
     <ClInclude Include="ReviewMarkup.h" />
+    <ClInclude Include="RevisionLevel.h" />
     <ClInclude Include="SaveDialog.h" />
     <ClInclude Include="SchemaPicklist.h" />
     <ClInclude Include="SearchDialog.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ValidateDialog.h" />
     <ClInclude Include="VersionList.h" />
-    <ClInclude Include="xmetal4.h" />
+    <ClInclude Include="xmetal90.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

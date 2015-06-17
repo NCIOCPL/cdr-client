@@ -27,7 +27,7 @@
  <SummaryTitle>Template: Patient CAM</SummaryTitle>
  <SummarySection>
   <Title>Overview</Title>
-  <ItemizedList Compact="No" Style="bullet">
+  <ItemizedList Style="bullet">
    <ListItem><?xm-replace_text {
          Enter main point
          }?></ListItem>

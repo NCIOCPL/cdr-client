@@ -1,5 +1,5 @@
 /*
- * $Id: SaveDialog.cpp,v 1.7 2005-03-18 17:17:50 bkline Exp $
+ * $Id$
  *
  * Implementation of dialog object for performing a CDR document search.
  *

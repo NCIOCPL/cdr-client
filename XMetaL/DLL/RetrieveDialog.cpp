@@ -1,5 +1,5 @@
 /*
- * $Id: RetrieveDialog.cpp,v 1.4 2002-05-14 14:22:48 bkline Exp $
+ * $Id$
  *
  * Implementation of dialog object for performing a CDR document search.
  *

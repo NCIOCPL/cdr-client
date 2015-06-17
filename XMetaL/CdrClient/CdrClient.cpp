@@ -54,9 +54,10 @@ public:
      * an exception if the connection cannot be made.
      */
     CdrSocket(CdrClient* cdrClient,
-              const CString& hostString, INTERNET_PORT port = 2019) 
+              const CString& hostString, INTERNET_PORT port = 2019)
         : connected(false), client(cdrClient) {
 
+#ifndef TUNNELING
         client->log(_T("Creating socket connection to ") + hostString +
                     _T("\n"), 3);
         // Working variables.
@@ -81,19 +82,20 @@ public:
         // Connect to the server.
         if (connect(sock, (struct sockaddr *)&addr, sizeof addr) < 0)
             throw _T("CdrSocket(): Failure connecting to ") + hostString;
-        logMessage.Format(_T("Connected to %s over port %d.\n"), hostString, 
+        logMessage.Format(_T("Connected to %s over port %d.\n"), hostString,
                           port);
         client->log(logMessage, 3);
         connected = true;
+#endif
     }
 
     /*
      * Conditionally cleans up by closing the socket.
      */
-    ~CdrSocket() { 
+    ~CdrSocket() {
         if (connected) {
             client->log(_T("Closing socket.\n"), 3);
-            closesocket(sock); 
+            closesocket(sock);
         }
     }
 
@@ -110,6 +112,10 @@ public:
                         + _T("</CdrCommand></CdrCommandSet>");
         client->log(_T("Sending command ") + request + _T("\n"), 3);
 
+#ifdef TUNNELING
+        const TCHAR* target = _T("/cgi-bin/cdr/https-tunnel.ashx");
+        return client->sendHttpCommand(request, target);
+#else
         // Tell the server the size of the coming request buffer.
         CStringA            ascii = (CStringA)request.GetString();
         CStringA::PCXSTR    buf   = ascii.GetString();
@@ -123,6 +129,7 @@ public:
 
         // Retrieve the server's response.
         return this->read();
+#endif
     }
 
 private:
@@ -256,7 +263,7 @@ CdrClient::CdrClient() : loaderReplaced(false),
     // into the feasibility of upgrading to 7.0 has been
     // deferred.
     xmver = XM45;
-#ifdef XM70_SUPPORTED
+#ifdef XM90_SUPPORTED
     TCHAR buf[256];
     TCHAR* temp = _tgetcwd(buf, sizeof buf / sizeof buf[0]);
     if (!temp) {
@@ -269,6 +276,8 @@ CdrClient::CdrClient() : loaderReplaced(false),
     if (cwd.Find(_T("softquad")) >= 0) {
         if (cwd.Find(_T("7.0")) >= 0)
             xmver = XM70;
+        else if (cwd.Find(_T("9.0")) >= 0)
+            xmver = XM90;
     }
 #endif
 }
@@ -507,7 +516,7 @@ CdrCommandLineOptions::CdrCommandLineOptions() {
  * ParseCommandLine with a reference to our CdrCommandLineOptions
  * object.
  */
-void CdrCommandLineOptions::ParseParam(const TCHAR* param, 
+void CdrCommandLineOptions::ParseParam(const TCHAR* param,
                                        BOOL flag, BOOL last) {
     CString msg;
     CString previousOption = currentOption;
@@ -556,7 +565,7 @@ void CdrCommandLineOptions::ParseParam(const TCHAR* param,
 }
 
 /*
- * Record the command-line options specified and the client and server 
+ * Record the command-line options specified and the client and server
  * debugging level, if the client debugging level is 2 or higher.
  */
 void CdrClient::logOptions() {
@@ -582,6 +591,9 @@ void CdrClient::logOptions() {
     case XM70:
         v = _T("7.0");
         break;
+    case XM90:
+        v = _T("9.0");
+        break;
     }
     buf.Format(_T("Running XMetaL version %s"), v);
     log(buf, 0);
@@ -602,6 +614,56 @@ void usage() {
           _T("  --skip-reload\n")
           _T("  --debug-level N\n")
           _T("  --server-debug-level N\n");
+}
+
+/*
+ * Request a session ID from the CDR web server's login.py script.
+ * The directory in which this script resides is protected, so we
+ * submit the user's NIH domain account credentials to be verified
+ * by Windows authentication. If the credentials are invalid, an
+ * exception will be thrown. If the credentials pass Windows
+ * authentication, but the domain account name is not found in
+ * the CDR account mapping table, the HTTP status code returned
+ * will be 403 (forbidden), and we'll throw our own exception here.
+ */
+static CString login(CString host, CString uid, CString pwd) {
+    CString response;
+    CInternetSession session(_T("CDR Client"));
+    CHttpConnection* conn = NULL;
+    CHttpFile* file = NULL;
+    BOOL success = FALSE;
+    INTERNET_PORT port = INTERNET_DEFAULT_HTTPS_PORT;
+    const TCHAR* target = _T("/cgi-bin/secure/login.py");
+    conn = session.GetHttpConnection(host, port, uid, pwd);
+    DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
+    file = conn->OpenRequest(_T("GET"), target, NULL, 1, NULL, NULL, flags);
+    for (int i = 0; !success && i < 3; ++i) {
+        DWORD secFlags;
+        file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+        secFlags |= SECURITY_IGNORE_ERROR_MASK;
+        file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+        std::cerr << "sec flags=" << secFlags << "\n";
+        success = file->SendRequest();
+    }
+    if (!success)
+        throw _T("Failure submitting logon request to server");
+    DWORD result;
+    file->QueryInfoStatusCode(result);
+    std::cerr << "status code=" << result << "\n";
+    if (result != HTTP_STATUS_OK) {
+        CString err;
+        err.Format(_T("HTTP status code from login request: %lu"), result);
+        throw err;
+    }
+    static char buf[1024 * 1024];
+    UINT nread = file->Read(buf, sizeof buf);
+    while (nread > 0) {
+        response += CString(buf, (int)nread);
+        nread = file->Read(buf, sizeof buf);
+    }
+    file->Close();
+    conn->Close();
+    return response.Trim();
 }
 
 /*
@@ -634,6 +696,10 @@ void usage() {
  *
  * The CdrLogonResp element is wrapped by the document-level element
  * CdrResponseSet, as described above for the CdrSocket type.
+ *
+ * Change of strategy, mandated by CBIIT: we now integrate the CDR
+ * logon process with the NIH Active Directory, using Windows
+ * authentication. (2015-01-10, OCECDR-3849).
  */
 bool CdrClient::createCdrSession() {
 
@@ -661,20 +727,16 @@ bool CdrClient::createCdrSession() {
             // Create the logon command.
             CString uidElem;
             CString pwdElem;
-            CString request;
-            uidElem.Format(_T("<UserName>%s</UserName>"), dialog->uid);
-            pwdElem.Format(_T("<Password>%s</Password>"), dialog->pwd);
-            request = _T("<CdrLogon>") + uidElem + pwdElem + _T("</CdrLogon>");
 
-            // Establish a socket connection to the CDR server.
+            // Submit the login credentials to the login script.
             extractServerSettings();
-            CdrSocket cdrSocket(this, cdrServer, cdrPort);
-
-            // Submit the logon request and get our CDR session ID.
-            CString serverResponse = cdrSocket.sendCommand(request);
-            sessionId = extractSessionId(serverResponse);
+            CString uid(dialog->uid);
+            CString pwd(dialog->pwd);
+            sessionId = login(cdrServer, uid, pwd);
+            if (sessionId.IsEmpty())
+                throw _T("empty session string received from logon server");
             CString logMessage;
-            logMessage.Format(_T("Logged into %s as %s\n"), 
+            logMessage.Format(_T("Logged into %s as %s\n"),
                               cdrServer, dialog->uid);
             log(logMessage, 1);
             log(_T("Session: ") + sessionId + _T("\n"), 1);
@@ -684,7 +746,7 @@ bool CdrClient::createCdrSession() {
             CString clientDebugEnv;
             CString serverDebugEnv;
             portEnviron.Format(_T("CDR_PORT=%d"), cdrPort);
-            clientDebugEnv.Format(_T("CDR_CLIENT_DEBUG_LEVEL=%d"), 
+            clientDebugEnv.Format(_T("CDR_CLIENT_DEBUG_LEVEL=%d"),
                                   commandLineOptions.clientDebugLevel);
             serverDebugEnv.Format(_T("CDR_SERVER_DEBUG_LEVEL=%d"),
                                   commandLineOptions.serverDebugLevel);
@@ -707,12 +769,12 @@ bool CdrClient::createCdrSession() {
 /*
  * Find the currently-selected server group, and extract the server
  * names and ports into private member variables of the CdrClient
- * object.  Invoked by createCdrSession().  
+ * object.  Invoked by createCdrSession().
  */
 void CdrClient::extractServerSettings() {
     httpPort       = 80;
     cdrPort        = 2019;
-    httpServer     = cdrServer 
+    httpServer     = cdrServer
                    = _T("mahler.nci.nih.gov");
     for (size_t i = 0; i < serverSettings->serverGroups.size(); ++i) {
         ServerSettings::ServerGroup* group = &serverSettings->serverGroups[i];
@@ -939,7 +1001,7 @@ void CdrClient::refreshFiles() {
             ticketXml   = manifest.ticketXml;
         }
     }
-    
+
     // Errors are not fatal; log them and use the stub manifest.
     catch (const TCHAR* err) {
         CString msg;
@@ -951,7 +1013,7 @@ void CdrClient::refreshFiles() {
     if (ticketXml.IsEmpty())
         log(_T("No local ticket available; refresh forced.\n"), 1);
     else {
-        log(_T("Asking ") + httpServer + 
+        log(_T("Asking ") + httpServer +
             _T(" if any files have changed.\n"), 1);
         CString response = sendHttpCommand(ticketXml);
         TicketValidation ticketValidation(xmlDomParser, response);
@@ -1237,7 +1299,7 @@ CString getFileTimestamp(const CString& name) {
  * Send an XML document via HTTP to the client refresh server, then
  * retrieve and return the server's response.
  */
-CString CdrClient::sendHttpCommand(const CString& cmd) {
+CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
 
     // Build the strings needed for submitting the request.
     CInternetSession session;
@@ -1245,14 +1307,13 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
     CString          headers;
     CHttpConnection* conn    = NULL;
     CHttpFile*       file    = NULL;
-    const TCHAR*     target  = _T("/cgi-bin/cdr/ClientRefresh.py");
     CStringA         ascii   = (CStringA)cmd.GetString();
     CStringA::PCXSTR bytes   = ascii.GetString();
     DWORD            length  = ascii.GetLength();
     BOOL             success = FALSE;
     try {
         headers.Format(_T("Content-Type: text/xml; charset=utf-8\n")
-                       _T("X-Debug-Level: %d\n"), 
+                       _T("X-Debug-Level: %d\n"),
                        commandLineOptions.serverDebugLevel);
         log(_T("HTTP headers:\n") + headers, 3);
 
@@ -1297,7 +1358,7 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
                 flagMessage.Format(_T("New security flags: %08X\n"), secFlags);
                 log(flagMessage, 3);
             }
-                            
+
             try {
                 log(_T("Calling SendRequest().\n"), 3);
                 success = file->SendRequest(headers, (void *)bytes, length);
@@ -1323,7 +1384,7 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
         file->QueryInfoStatusCode(result);
         if (result != HTTP_STATUS_OK) {
             CString err;
-            err.Format(_T("HTTP status code from update server: %lu"), 
+            err.Format(_T("HTTP status code from update server: %lu"),
                        result);
             throw err;
         }
@@ -1362,11 +1423,11 @@ CString CdrClient::sendHttpCommand(const CString& cmd) {
 }
 
 /*
- * Constructor for parsing the server response when we ask if our 
+ * Constructor for parsing the server response when we ask if our
  * manifest is up to date.  Throws a string-based exception if
  * we are unable to parse the response's XML document.
  */
-TicketValidation::TicketValidation(CComPtr<IXMLDOMDocument>& xmlDomParser, 
+TicketValidation::TicketValidation(CComPtr<IXMLDOMDocument>& xmlDomParser,
                                    const CString& xmlString) {
     VARIANT_BOOL success;
     CComBSTR bstrXml(xmlString);
@@ -1379,7 +1440,7 @@ TicketValidation::TicketValidation(CComPtr<IXMLDOMDocument>& xmlDomParser,
 }
 
 /*
- * Constructor for parsing the server response when we ask it to 
+ * Constructor for parsing the server response when we ask it to
  * compare our copy of the manifest with its copy and determine
  * what the differences are, if any.  Throws a string-based
  * exception if we are unable to parse the response's XML
@@ -1401,11 +1462,12 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
     CComPtr<IXMLDOMElement> docElem;
     if (FAILED(xmlParser->get_documentElement(&docElem)))
         throw _T("Failure extracting server updates response");
-	CString docElemName = getNodeName((CComPtr<IXMLDOMNode>)docElem);
-	if (docElemName == _T("ERROR")) {
-		CString errorMessage = getTextContent((CComPtr<IXMLDOMNode>)docElem);
-		throw _T("Failure assembling update package"); //errorMessage;
-	}
+    CString docElemName = getNodeName((CComPtr<IXMLDOMNode>)docElem);
+    if (docElemName == _T("ERROR")) {
+        CString errorMessage =
+            getTextContent((CComPtr<IXMLDOMNode>)docElem);
+        throw _T("Failure assembling update package"); //errorMessage;
+    }
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
         CString nodeName = getNodeName(node);
@@ -1422,7 +1484,7 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
                 char* buf;
             };
             SafeBuf safeBuf(nBytes);
-            BOOL success = Base64Decode((LPCSTR)bytes, zipFile.GetLength(), 
+            BOOL success = Base64Decode((LPCSTR)bytes, zipFile.GetLength(),
                                         (BYTE*)safeBuf.buf, &nBytes);
             if (!success)
                 throw _T("Failure decoding base64 bytes for zipfile");
@@ -1509,7 +1571,7 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
  *       used for installing files from the remote server's filesystem.
  *
  *       An even more elaborate, but more reliable approach (and one
- *       providing richer functionality), would be to store the client 
+ *       providing richer functionality), would be to store the client
  *       file set in tables of a DBMS.
  *
  *   (4) Transmission errors.  Theoretically possible, but should be
@@ -1592,13 +1654,22 @@ void CdrClient::launchClient() {
 
     // If we're running a later version of XMetaL than the one
     // most users are running, swap in a DLL to match.
-#ifdef XM70_SUPPORTED
-    if (xmver == XM70 && !_waccess(_T(".\\CDR\\cdr.xm7"))) {
-        log(_T("Swapping in DLL for XMetaL 7.0\n"));
-        BOOL success = CopyFileA("CDR\\Cdr.xm7", "CDR\\Cdr.dll", FALSE);
+#ifdef XM90_SUPPORTED
+    if (xmver == XM90 && !_waccess(_T(".\\CDR\\cdr.xm9"), 0)) {
+        log(_T("Swapping in DLL for XMetaL 9.0\n"));
+        BOOL success = CopyFileA("CDR\\Cdr.xm9", "CDR\\Cdr.dll", FALSE);
         if (!success)
-            throw _T("Failure swapping DLL for XMetaL 7.0");
+            throw _T("Failure swapping DLL for XMetaL 9.0");
     }
+
+    // Make it possible to switch back and forth.
+    if (xmver == XM45 && !_waccess(_T(".\\CDR\\cdr.xm45"), 0)) {
+        log(_T("Swapping in DLL for XMetaL 4.5\n"));
+        BOOL success = CopyFileA("CDR\\Cdr.xm45", "CDR\\Cdr.dll", FALSE);
+        if (!success)
+            throw _T("Failure swapping DLL for XMetaL 4.5");
+    }
+
 #endif
 
     // If we have the tool which supports registration of the DLL
@@ -1630,17 +1701,25 @@ void CdrClient::launchClient() {
  * Note that until XM70_SUPPORTED is defined, xmver will always
  * be XM45.  We have deferred work on determining whether an
  * upgrade to XMetaL 7.0 is feasible.
+ *
+ * RMK 2014-04-12: JIRA ticket OCECDR-3749 has been created to
+ * resume the work on investigating the feasibility of upgrading
+ * the XMetaL client to the latest version, which is now 9.0.
+ * The defined constant XM70_SUPPORTED is now XM90_SUPPORTED.
  */
 CString findXmetalProgram(CdrClient* client) {
     client->log(_T("Top of findXmetalProgram\n"), 3);
     TCHAR* xm45 = _T("\\Blast Radius\\XMetaL 4.5\\Author\\xmetal45.exe");
     TCHAR* xm70 = _T("\\XMetaL 7.0\\Author\\xmetal70.exe");
+    TCHAR* xm90 = _T("\\XMetaL 9.0\\Author\\xmetal90.exe");
     CString msg;
     switch (client->xmver) {
     case CdrClient::XM45:
         return tryXmetalPath(xm45, client);
     case CdrClient::XM70:
         return tryXmetalPath(xm70, client);
+    case CdrClient::XM90:
+        return tryXmetalPath(xm90, client);
     default:
         msg.Format(_T("Unrecognized XMetaL version %s"), client->xmver);
         throw msg;
@@ -1680,7 +1759,7 @@ CString tryXmetalPath(TCHAR* t, CdrClient* client) {
  * (CdrClient-versionstamp.exe) is updated, an executable with a new
  * name containing a timestamp representing the date and time this
  * version of the program was compiled (e.g., CdrClient20051103-1709.exe).
- * At the same time, the script CdrRunAgain.cmd is edited to invoke this 
+ * At the same time, the script CdrRunAgain.cmd is edited to invoke this
  * version of the program instead of the previous version.  Since the
  * client's manifest indicates that its version of the CdrRunAgain.cmd
  * script is older than the version now on the server, the server
@@ -1694,10 +1773,10 @@ CString tryXmetalPath(TCHAR* t, CdrClient* client) {
  * re-launching.  Although the re-launch script file has been deleted,
  * the client's copy of the manifest still includes the listing
  * for the script file, so the server doesn't keep sending the
- * missing script over and over.  The code which verifies that the 
+ * missing script over and over.  The code which verifies that the
  * client files are in sync with the manifest is smart enough to
  * know that it shouldn't bother checking this script file, because
- * if it did, the check would almost always fail needlessly.  A bit 
+ * if it did, the check would almost always fail needlessly.  A bit
  * complicated, but it all works just fine.
  *
  * The reason we need to use different names for the individual
@@ -1716,13 +1795,13 @@ void CdrClient::runAgain() {
         log(_T("Trying to relaunch too many times; bailing out.\n"));
         return;
     }
-    
+
     CString msg;
     msg.Format(_T("Launching %s\n"), RELAUNCH_SCRIPT);
     log(msg, 1);
     TCHAR* args[2] = { RELAUNCH_SCRIPT };
     (void)_texecve(RELAUNCH_SCRIPT, args, NULL);
-    msg.Format(_T("Failure launching %s: %d"), RELAUNCH_SCRIPT, 
+    msg.Format(_T("Failure launching %s: %d"), RELAUNCH_SCRIPT,
                strerror(errno));
     throw msg;
 }

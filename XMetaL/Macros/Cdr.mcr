@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- 
+<!--
      $Id$
 
      BZIssue::4716
@@ -14,9 +14,9 @@
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
-<MACROS> 
+<MACROS>
 
-<MACRO  name="On_Macro_File_Load" 
+<MACRO  name="On_Macro_File_Load"
         lang="JScript">
   <![CDATA[
 
@@ -27,7 +27,7 @@
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     var lastMarkupLevel = '';
     var CdrUserPath = '';
-    
+
     var blobLinkElementNames = [
         "MediaLink",
         "SupplementaryInfo"
@@ -124,7 +124,7 @@
         case Object:
             result = "{\n";
             for (var i in me) {
-                result += indent + more + i + ": " + 
+                result += indent + more + i + ": " +
                     dump(me[i], indent + more) + "\n";
             }
             return result + indent + "}";
@@ -387,7 +387,7 @@
                 + padNumber(d.getSeconds(), 2, '0');
         return str;
     }
-        
+
     /*
      * Produce string containing current date/time in XSD format.
      */
@@ -401,7 +401,7 @@
                 + padNumber(d.getSeconds(), 2, '0');
         return str;
     }
-        
+
     /*
      * Utility function to extract the text content of an element.
      */
@@ -474,7 +474,7 @@
     function cdrDocReadOnly() {
         if (ActiveDocument == null)                   { return 0; }
         if (ActiveDocument.documentElement == null)   { return 0; }
-        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
+        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes")
                                                       { return 1; }
         return 0;
     }
@@ -486,7 +486,7 @@
         if (gEditingCdrLink)                          { return 0; }
         if (ActiveDocument == null)                   { return 0; }
         if (ActiveDocument.documentElement == null)   { return 0; }
-        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes") 
+        if (ActiveDocument.documentElement.getAttribute("readonly") == "yes")
                                                       { return 1; }
         if (ActiveDocument.doctype == null)           { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
@@ -516,7 +516,7 @@
          *     feature.
          */
         // return cdrObj.isReadOnly(dtName, elName);
-        
+
         return 0;
     }
 
@@ -606,7 +606,7 @@
             }
         }
     }
-    
+
     /*
      * Allows the user to pick a protocol update person.
      */
@@ -628,7 +628,7 @@
             Selection.ReadOnlyContainer = whatItWas;
         }
     }
-  
+
     function getMarkupStyle(element) {
         var docProps = ActiveDocument.CustomDocumentProperties;
         var highlighting = docProps.item("Highlighting").value;
@@ -702,6 +702,10 @@
             url += "&Version=" + ver;
         else
             url += "&Version=cwd";
+
+        if (ActiveDocument.doctype.name == "Summary")
+            url += "#section/all";
+
         cdrObj.showPage(url);
     }
 
@@ -733,12 +737,12 @@
   ]]>
 </MACRO>
 
-<MACRO  name="On_Update_UI" 
-        hide="true" 
+<MACRO  name="On_Update_UI"
+        hide="true"
         lang="JScript">
   <![CDATA[
 
-    // This workaround is being used because SoftQuad is unable or 
+    // This workaround is being used because SoftQuad is unable or
     // unwilling to fix the bug which is wiping out our setting of
     // the Visible property of the document-specific toolbar in the
     // On_Document_Activate event.
@@ -753,7 +757,7 @@
 
     // this will only work if no On_Update_UI macro is defined for the DTD
     if (Selection.IsInsertionPoint && ActiveDocument.ViewType == 1) {
-        // this should only apply to the tags-on view, and allow selection 
+        // this should only apply to the tags-on view, and allow selection
         // of the top-level element
        if (Selection.ContainerNode == null) {
           Selection.MoveRight();
@@ -783,11 +787,11 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Refresh Macros" 
-        key="Ctrl+Alt+R" 
-        lang="JScript" 
-        id="1270" 
-        tooltip="" 
+<MACRO  name="Refresh Macros"
+        key="Ctrl+Alt+R"
+        lang="JScript"
+        id="1270"
+        tooltip=""
         desc="">
   <![CDATA[
     Application.RefreshMacros();
@@ -795,8 +799,8 @@
   ]]>
 </MACRO>
 
-<MACRO  lang="JScript" 
-        name="Open Document Macros" 
+<MACRO  lang="JScript"
+        name="Open Document Macros"
         id="1272">
   <![CDATA[
     var count = Application.Documents.Count;
@@ -810,8 +814,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Open Application Macros" 
-        lang="JScript" 
+<MACRO  name="Open Application Macros"
+        lang="JScript"
         id="1274">
   <![CDATA[
     var mpath = Application.MacroFile;
@@ -819,8 +823,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="On_Application_Open" 
-        hide="true" 
+<MACRO  name="On_Application_Open"
+        hide="true"
         lang="JScript">
     /*
      * Initialize global variables for CDR macros.
@@ -831,16 +835,16 @@
     //Application.DisablePlainTextView();
 </MACRO>
 
-<MACRO  name="On_Application_Open_Complete" 
-        hide="true" 
+<MACRO  name="On_Application_Open_Complete"
+        hide="true"
         lang="JScript">
     turnOffStandardToolbars();
     if (cdrObj != null)
         cdrObj.setTitleBar();
 </MACRO>
 
-<MACRO  name="On_Application_Close" 
-        hide="true" 
+<MACRO  name="On_Application_Close"
+        hide="true"
         lang="JScript">
     /*
      * Close the connection to the CDR Server.
@@ -850,11 +854,11 @@
     }
 </MACRO>
 
-<MACRO  name="On_Mouse_Over" 
-        lang="JScript" 
+<MACRO  name="On_Mouse_Over"
+        lang="JScript"
         hide="true">
   <![CDATA[
-    // Reset the Status Text and the Cursor in case a different 
+    // Reset the Status Text and the Cursor in case a different
     // document changed them and they are stuck.
     function OnMouseOver()
     {
@@ -865,9 +869,9 @@
   ]]>
 </MACRO>
 
-<MACRO name="On_DTD_Open_Complete" 
-       key="" 
-       hide="false" 
+<MACRO name="On_DTD_Open_Complete"
+       key=""
+       hide="false"
        lang="JScript">
          <![CDATA[
 
@@ -942,8 +946,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="On_Document_Open_Complete" 
-        hide="true" 
+<MACRO  name="On_Document_Open_Complete"
+        hide="true"
         lang="JScript">
 <![CDATA[
     //Application.Alert("entering On_Document_Open_Complete");
@@ -969,68 +973,29 @@
 ]]>
 </MACRO>
 
-<MACRO  name="On_Context_Menu" 
-        lang="JScript">
+
+<MACRO  name="On_Context_Menu" lang="JScript">
   <![CDATA[
- 
-    function addCdrSubmenu() {
-        var acmControls = Application.ActiveContextMenu.Controls;
-        var submenu = acmControls.Add(sqcbcTypePopup);
-        submenu.Caption = "Insert Canned Diagnosis Set";
-        submenu.BeginGroup = true;
-        submenu.FaceId  = Application.MakeFaceId("Databases (Custom)", 4, 10);
-        var menuItems = new Array(
-            new CdrCmdItem("&Advanced Head and Neck",
-                           "Insert Advanced Head And Neck Diagnoses",
-                           "Advanced Head and Neck",
-                           "Add canned list of diagnoses for " +
-                           "Advanced Head and Neck",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("Advanced &Leukemia",
-                           "Insert ALK Diagnoses",
-                           "ALK",
-                           "Insert Advanced Leukemia Diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("Advanced L&ymphomas",
-                           "Insert AL Diagnoses",
-                           "AL",
-                           "Insert Advanced Lymphoma Diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("All &Head and Neck",
-                           "Insert Head And Neck Diagnoses",
-                           "Head and Neck",
-                           "Add canned list of Head and Neck diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("&Bone Marrow Transplant",
-                           "Insert BMT Diagnoses",
-                           "BMT",
-                           "Insert Diagnoses Eligible for Bone Marrow " +
-                           "Transplants",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem("&Squamous Cell Carcinoma of the Head and Neck",
-                           "Insert Squamous Cell Carcinoma Head And Neck " +
-                           "Diagnoses",
-                           "Squamous Cell Carcinoma of the Head and Neck",
-                           "Add canned list of diagnoses for Squamous Cell " +
-                           "Carcinoma of the Head and Neck",
-                           "Databases (Custom)", 4, 10,
-                           false)
-        );
+    // See comment on Build CDR Context Menu below.
+    if (Application.VersionNumber < 9.0)
+        Application.Run("Build CDR Context Menu")
+]]>
+</MACRO>
 
-        //menu = menuControls.Add(sqcbcTypePopup, null, beforeThis);
-        //menu.Caption = "Test Submenu";
+<MACRO  name="On_Application_Document_Context_Menu" lang="JScript">
+  <![CDATA[
+    // See comment on Build CDR Context Menu below.
+    if (Application.VersionNumber > 4.5)
+        Application.Run("Build CDR Context Menu")
+]]>
+</MACRO>
 
-        // Add the menu items.
-        var controls = submenu.Controls;
-        for (var i = 0; i < menuItems.length; ++i) {
-            addCdrMenuItem(controls, menuItems[i]);
-        }
-    }
+<MACRO  name="Build CDR Context Menu" lang="JScript">
+  <![CDATA[
+
+    // XMetaL 9.0 broke the use of On_Context_Menu, so now we wire
+    // this functionality to different macros, depending on which
+    // version of XMetaL is running.
 
     /*
      * Adds a menu option to the popup context menu for custom editing
@@ -1065,11 +1030,11 @@
         Application.AppendMacro("-", "");
         Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
         Application.AppendMacro("Prot Update Person", "Protocol Update Person");
-        Application.AppendMacro("New Current Org Status", 
+        Application.AppendMacro("New Current Org Status",
                                 "New Current Org Status");
-        Application.AppendMacro("Insert Grp POs", 
+        Application.AppendMacro("Insert Grp POs",
                                 "CDR Participating Orgs");
-        Application.AppendMacro("Retrieve Person Address", 
+        Application.AppendMacro("Retrieve Person Address",
                                 "CDR Get Person Address");
         if (rng.IsParentElement("ProtocolLeadOrg"))
             Application.AppendMacro("Change Site Statuses",
@@ -1089,14 +1054,18 @@
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!isReadOnly)
+        if (!isReadOnly) {
             Application.AppendMacro("Glossify Document", "Glossify Document");
+            Application.AppendMacro(
+                "Glossify Document (include all sections in markup)",
+                "Glossify Document (dig)");
+            }
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
     }
     if (docType.name == "Person") {
-        Application.AppendMacro("Retrieve Org Postal Address", 
+        Application.AppendMacro("Retrieve Org Postal Address",
                                 "CDR Get Org Postal Address");
         Application.AppendMacro("Copy Fragment ID", "Cdr Copy Fragment ID");
     }
@@ -1126,7 +1095,7 @@
         docType.name == "ScientificProtocolInfo") {
         if (!isReadOnly) {
             Application.AppendMacro("-", "");
-            // addCdrSubmenu();
+
             Application.AppendMacro("Insert Diagnosis Links",
                                     "Insert Diagnosis Links");
         }
@@ -1147,17 +1116,13 @@
         Application.AppendMacro("Insert Comment", "Insert Comment");
     }
     if (rng.FindInsertLocation("ResponseToComment")) {
-        Application.AppendMacro("Insert ResponseToComment", 
+        Application.AppendMacro("Insert ResponseToComment",
                                 "Insert ResponseToComment");
     }
     if (docType.name == "Summary") {
-        Application.AppendMacro("Insert Type of Summary Change", 
+        Application.AppendMacro("Insert Type of Summary Change",
                                 "Insert TypeOfChange");
     }
-    // if (rng.FindInsertLocation("TypeOfSummaryChange")) {
-    //     Application.AppendMacro("Insert Type of Summary Change", 
-    //                             "Insert TypeOfChange");
-    // }
     if (docType.name == 'ScientificProtocolInfo' ||
         docType.name == 'InScopeProtocol' ||
         docType.name == 'CTGovProtocol') {
@@ -1202,18 +1167,43 @@
                                     "Spanish Link ID Swap");
         }
     }
+    if (!isReadOnly)
+        Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
   ]]>
 </MACRO>
 
-<MACRO  name="On_Default_CommandBars_Complete" 
-        key="" 
+<MACRO  name="On_Default_CommandBars_Complete"
+        key=""
         lang="JScript">
   <![CDATA[
 
     /*
+     * Make sure none of our doctype-specific toolbars is visible except
+     * the ones that match the document type of the active document.
+     * Used for XMetaL 9.0 and later.
+     */
+    function adjustToolbarVisibility() {
+        if (!Application.CommandBars)
+            return;
+        var currentDoctype = "";
+        if (ActiveDocument && ActiveDocument.doctype)
+            currentDoctype = ActiveDocument.doctype.name;
+        var bars = Application.CommandBars;
+        for (var i = 1; i <= bars.Count; ++i) {
+            var bar = bars.item(i);
+            if (bar.name in toolbarNames)
+                bar.Visible = currentDoctype in toolbarNames[bar.name];
+            else if (bar.name == "Standard" || bar.name == "Repository")
+                bar.Visible = false;
+            else if (bar.name == "Main Menu")
+                bar.Visible = true;
+        }
+    }
+
+    /*
      * Constructor for a custom menu or toolbar item.
      */
-    function CdrCmdItem(label, action, tip, desc, iconSet, row, col, newGroup) 
+    function CdrCmdItem(label, action, tip, desc, iconSet, row, col, newGroup)
     {
         this.label    = label;
         this.action   = action;
@@ -1224,7 +1214,7 @@
         this.iconSet  = iconSet;
         this.newGroup = newGroup;
     }
-    
+
     function addCdrButton(ctrls, item) {
 
         // Create a new button.
@@ -1238,8 +1228,8 @@
             newButton.DescriptionText  = item.desc;
             newButton.BeginGroup       = item.newGroup;
             if (item.iconSet != null) {
-                newButton.FaceId       = Application.MakeFaceId(item.iconSet, 
-                                                                item.row, 
+                newButton.FaceId       = Application.MakeFaceId(item.iconSet,
+                                                                item.row,
                                                                 item.col);
             }
         }
@@ -1274,8 +1264,8 @@
             newItem.Enabled         = true;
             newItem.BeginGroup      = item.newGroup;
             if (item.iconSet  != null) {
-                newItem.FaceId      = Application.MakeFaceId(item.iconSet, 
-                                                             item.row, 
+                newItem.FaceId      = Application.MakeFaceId(item.iconSet,
+                                                             item.row,
                                                              item.col);
             }
         }
@@ -1588,7 +1578,7 @@
         var menuControls = menuBar.Controls;
         var i = 1;
         while (i <= menuControls.Count) {
-        //  Application.Alert("menu count: " + 
+        //  Application.Alert("menu count: " +
         //                    menuControls.Count + " i: " + i);
             var menu = menuControls.item(i);
             var caption = menu.Caption.toUpperCase();
@@ -1824,25 +1814,25 @@
             }
         }
         */
-        
-        
+
+
         try { cmdBar = cmdBars.item("CDR"); }
-        catch (e) { 
+        catch (e) {
             //Application.Alert(e.description);
             //Application.Alert("Error number: " + (e.number & 0xFFFF));
             //Application.Alert("Error description: " + e.description);
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR", 2);
         }
@@ -1887,27 +1877,27 @@
     new CdrCmdItem(null, "SC 3quart", "3/4", "3/4", "CDR2", 1, 7, false),
     new CdrCmdItem(null, "SC nbsp", "NBSP", "NBSP", "CDR2", 1, 8, false)
         );
-        
+
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
         try { cmdBar = cmdBars.item("CDR Symbols"); }
-        catch (e) { 
+        catch (e) {
             //Application.Alert(e.description);
             //Application.Alert("Error number: " + (e.number & 0xFFFF));
             //Application.Alert("Error description: " + e.description);
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR symbols " +
                                   "toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Symbols", 4);
         }
@@ -2051,47 +2041,49 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Summary"); }
-        catch (e) { 
+        catch (e) {
             //Application.Alert(e.description);
             //Application.Alert("Error number: " + (e.number & 0xFFFF));
             //Application.Alert("Error description: " + e.description);
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Summary Toolbar: "
                                   + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
         try { cmdBar = cmdBars.item("Summary"); }
-        catch (e) { 
+        catch (e) {
             // Do nothing.
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old Summary toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Summary", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Summary toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Summary"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Summary": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2155,31 +2147,33 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Person"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Person toolbar: "
                                   + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Person", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Person toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Person"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Person": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2223,31 +2217,33 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Organization"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Organization " +
                                   "toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Organization", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Organization toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Organization"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Organization": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2399,25 +2395,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Protocol"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
-                Application.Alert("Failure deleting old " + 
+                Application.Alert("Failure deleting old " +
                     "CDR Protocol toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Protocol", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
         Application.Alert("Failure adding CDR Protocol toolbar: " + e);
@@ -2426,6 +2423,11 @@
             toolbars["InScopeProtocol"] = cmdBar;
             toolbars["OutOfScopeProtocol"] = cmdBar;
             toolbars["ScientificProtocolInfo"] = cmdBar;
+            toolbarNames[cmdBar.name] = {
+                "InScopeProtocol": 1,
+                "OutOfScopeProtocol": 1,
+                "ScientificProtocolInfo": 1
+            };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2451,31 +2453,33 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Term"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
             Application.Alert("Failure deleting old CDR Term toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Term", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Term toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Term"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Term": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2513,31 +2517,33 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Glossary Term"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Glossary Term " +
                                   "toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Glossary Term", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Glossary Term toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["GlossaryTerm"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "GlossaryTerm": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2587,26 +2593,27 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Glossary Term Concept"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert(
                    "Failure deleting old CDR Glossary Term Concept toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Glossary Term Concept", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert(
@@ -2614,6 +2621,7 @@
         }
         if (cmdBar) {
             toolbars["GlossaryTermConcept"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "GlossaryTermConcept": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2644,7 +2652,7 @@
                            false),                      // Starts new group?
             new CdrCmdItem(null,
                            "Edit Linked Glossary Term Concept Doc",
-                           "Edit GT Concept",     
+                           "Edit GT Concept",
                            "Edit Concept Document",
                            "CDR", 5, 3,
                            false),
@@ -2663,26 +2671,27 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Glossary Term Name"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert(
                     "Failure deleting old CDR Glossary Term Name toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Glossary Term Name", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert(
@@ -2690,6 +2699,7 @@
         }
         if (cmdBar) {
             toolbars["GlossaryTermName"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "GlossaryTermName": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2715,30 +2725,32 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Drug Info"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Drug Info toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
+
         try {
             cmdBar = cmdBars.add("CDR Drug Info", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Drug Info toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["DrugInformationSummary"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "DrugInformationSummary": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2759,30 +2771,32 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Licensee"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Licensee toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
+
         try {
             cmdBar = cmdBars.add("CDR Licensee", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Licensee toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Licensee"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Licensee": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2803,30 +2817,32 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Country"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Drug Info toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
+
         try {
             cmdBar = cmdBars.add("CDR Country", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Country toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Country"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Country": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2859,31 +2875,33 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Citation"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Citation toolbar: "
                                 + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Citation", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Citation toolbar: " + e);
         }
         if (cmdBar) {
             toolbars["Citation"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Citation": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2903,25 +2921,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Miscellaneous Document"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Miscellaneous " +
                                   "Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Miscellaneous Document", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Miscellaneous Document " +
@@ -2929,6 +2948,7 @@
         }
         if (cmdBar) {
             toolbars["MiscellaneousDocument"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "MiscellaneousDocument": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -2960,25 +2980,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Mailer"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Mailer " +
                                   "Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Mailer", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Mailer " +
@@ -2986,6 +3007,7 @@
         }
         if (cmdBar) {
             toolbars["Mailer"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Mailer": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3006,7 +3028,7 @@
                            "CTGovProtocol Diff",        // Macro.
                            "Diff ",                     // Tooltip.
                            "Diff against prior version",// Description
-                           // "CDR", 6, 5,                
+                           // "CDR", 6, 5,
                            "Databases (Custom)", 2, 9,  // Icon set, row, col.
                            false),                      // Starts new group?
             new CdrCmdItem(null,
@@ -3043,25 +3065,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR CTGovProtocol"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR CTGovProtocol " +
                                   "Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR CTGovProtocol", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR CTGovProtocol " +
@@ -3069,6 +3092,7 @@
         }
         if (cmdBar) {
             toolbars["CTGovProtocol"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "CTGovProtocol": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3094,25 +3118,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR TermSet"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR TermSet " +
                                   "Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR TermSet", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR TermSet " +
@@ -3120,6 +3145,7 @@
         }
         if (cmdBar) {
             toolbars["TermSet"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "TermSet": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3145,25 +3171,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR PDQBoardMemberInfo"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR " +
                                   "PDQBoardMemberInfo toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR PDQBoardMemberInfo", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR PDQBoardMemberInfo " +
@@ -3171,6 +3198,7 @@
         }
         if (cmdBar) {
             toolbars["PDQBoardMemberInfo"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "PDQBoardMemberInfo": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3202,25 +3230,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Media Document"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Media " +
                                   "Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Media Document", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Media Document " +
@@ -3228,6 +3257,7 @@
         }
         if (cmdBar) {
             toolbars["Media"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "Media": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3253,25 +3283,26 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
+
         try { cmdBar = cmdBars.item("CDR Supplementary Info Document"); }
-        catch (e) { 
+        catch (e) {
         }
-        if (cmdBar) { 
+        if (cmdBar) {
             try {
-                cmdBar.Delete(); 
+                cmdBar.Delete();
             }
             catch (e) {
                 Application.Alert("Failure deleting old CDR Supplementary " +
                                   "Info Document toolbar: " + e);
             }
-            cmdBar = null; 
+            cmdBar = null;
         }
-        
-        
+
+
         try {
             cmdBar = cmdBars.add("CDR Supplementary Info Document", 2);
-            //cmdBar.Visible = false;
+            if (Application.VersionNumber > 4.5)
+                cmdBar.Visible = false;
         }
         catch (e) {
             Application.Alert("Failure adding CDR Supplementary Info " +
@@ -3279,6 +3310,7 @@
         }
         if (cmdBar) {
             toolbars["SupplementaryInfo"] = cmdBar;
+            toolbarNames[cmdBar.name] = { "SupplementaryInfo": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3323,13 +3355,16 @@
     function turnOffStandardToolbars() {
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
-        
-        try { cmdBar = cmdBars.item("Standard"); }
-        catch (e) { }
-        if (cmdBar) {
-            cmdBar.Visible = false;
+        var standard = new Array("Standard");
+        if (Application.VersionNumber > 4.5)
+            standard.push("Repository");
+        for (var i in standard) {
+            try { cmdBar = cmdBars.item(standard(i)); }
+            catch (e) { }
+            if (cmdBar)
+                cmdBar.Visible = false;
+            cmdBar = null;
         }
-        cmdBar = null;
         try { cmdBar = cmdBars.item("Formatting"); }
         catch (e) { }
         if (cmdBar) {
@@ -3354,6 +3389,7 @@
      * menu as part of a customized default.tbr.
      */
     var toolbars = new Object();
+    var toolbarNames = {}; // Needed for XMetaL 9.0 and greater
     addCdrToolbar();
     addSupplementaryInfoToolbar();
     addSymbolToolbar();
@@ -3376,15 +3412,16 @@
     addMediaToolbar();
     addLicenseeToolbar();
     addCdrMenus();
-    hideToolbars();
+    if (Application.VersionNumber < 9.0)
+        hideToolbars();
 
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Logon" 
-        key="" 
-        lang="JScript" 
-        tooltip="Log On To CDR" 
+<MACRO  name="Cdr Logon"
+        key=""
+        lang="JScript"
+        tooltip="Log On To CDR"
         id="1342">
   <![CDATA[
 
@@ -3393,10 +3430,10 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Retrieve" 
-        key="" 
-        lang="JScript" 
-        tooltip="Retrieve Document From CDR" 
+<MACRO  name="Cdr Retrieve"
+        key=""
+        lang="JScript"
+        tooltip="Retrieve Document From CDR"
         id="1221">
   <![CDATA[
 
@@ -3417,10 +3454,10 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Search" 
-        key="" 
-        lang="JScript" 
-        tooltip="Search for Document in CDR" 
+<MACRO  name="Cdr Search"
+        key=""
+        lang="JScript"
+        tooltip="Search for Document in CDR"
         id="20103">
   <![CDATA[
 
@@ -3440,14 +3477,14 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Validate" 
-        key="" 
-        lang="JScript" 
+<MACRO  name="Cdr Validate"
+        key=""
+        lang="JScript"
         tooltip="Ask CDR to Validate Document">
   <![CDATA[
 
     /*
-     * Perform CDR validation (schema and/or links) on the currently active 
+     * Perform CDR validation (schema and/or links) on the currently active
      * document.
      */
     function cdrValidate() {
@@ -3456,7 +3493,7 @@
             try {
                 ActiveDocument.ViewType = sqViewNormal;
             }
-            catch (e) { 
+            catch (e) {
                 Application.Alert("Switch to normal or tags-on view " +
                                   "to validate documents.");
                 return;
@@ -3478,13 +3515,13 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Save" 
+<MACRO  name="Cdr Save"
         key="Ctrl+Shift+S"
-        lang="JScript" 
-        tooltip="Store Document in the CDR" 
+        lang="JScript"
+        tooltip="Store Document in the CDR"
         id="1365">
   <![CDATA[
-  
+
 
     /*
      * Saves the currently active document in the CDR repository.
@@ -3495,7 +3532,7 @@
             try {
                 ActiveDocument.ViewType = sqViewNormal;
             }
-            catch (e) { 
+            catch (e) {
                 Application.Alert("Switch to normal or tags-on view " +
                                   "to save documents.");
                 return;
@@ -3533,33 +3570,33 @@
     }
     cdrSave();
 
-  
+
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Logoff" 
-        key="" 
-        lang="JScript" 
-        tooltip="Log out of the CDR" 
+<MACRO  name="Cdr Logoff"
+        key=""
+        lang="JScript"
+        tooltip="Log out of the CDR"
         id="20307">
   <![CDATA[
     cdrLogoff();
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Edit" 
+<MACRO  name="Cdr Edit"
         key="Ctrl+Enter"
-        lang="JScript" 
-        tooltip="Store Document in the CDR" 
+        lang="JScript"
+        tooltip="Store Document in the CDR"
         id="1919">
  <![CDATA[
     cdrEdit();
   ]]>
 </MACRO>
 
-<MACRO  name="Protocol Update Person" 
-        key="" 
-        lang="JScript" 
+<MACRO  name="Protocol Update Person"
+        key=""
+        lang="JScript"
         tooltip="Pick a protocol update person" >
   <![CDATA[
     protUpdPerson();
@@ -3567,8 +3604,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Copy Document Link"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Copy Document Link to CDR Clipboard">
   <![CDATA[
     function copyDocumentLink() {
@@ -3583,8 +3620,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Copy Fragment Link"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Copy Fragment Link to CDR Clipboard">
   <![CDATA[
     function copyFragmentLink() {
@@ -3622,8 +3659,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Copy Fragment ID"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Copy Fragment ID to CDR Clipboard">
   <![CDATA[
     function copyFragmentId() {
@@ -3641,8 +3678,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Paste Document Link"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Paste Document Link From CDR Clipboard">
  <![CDATA[
     function pasteDocumentLink() {
@@ -3665,7 +3702,7 @@
             Application.Alert("Current element cannot accept links.");
             return;
         }
-        
+
         Selection.ReadOnlyContainer = false;
         gEditingCdrLink = true;
         cdrObj.pasteDocLink(CdrDocLinkClipboard);
@@ -3678,8 +3715,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Paste Fragment Link"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Paste Fragment Link From CDR Clipboard">
  <![CDATA[
     function pasteFragmentLink() {
@@ -3697,13 +3734,13 @@
             return;
         }
         docType = ActiveDocument.doctype;
-        if (!docType.hasAttribute(container.nodeName, "cdr:ref") && 
+        if (!docType.hasAttribute(container.nodeName, "cdr:ref") &&
             !docType.hasAttribute(container.nodeName, "Target") &&
             !docType.hasAttribute(container.nodeName, "cdr:href")) {
             Application.Alert("Current element cannot accept links.");
             return;
         }
-        
+
         Selection.ReadOnlyContainer = false;
         gEditingCdrLink = true;
         cdrObj.pasteDocLink(CdrFragLinkClipboard);
@@ -3716,8 +3753,8 @@
 </MACRO>
 
 <MACRO  name="Cdr Paste Fragment ID"
-        key="" 
-        lang="JScript" 
+        key=""
+        lang="JScript"
         tooltip="Paste Fragment ID From CDR Clipboard">
  <![CDATA[
     function pasteFragmentId() {
@@ -3751,8 +3788,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Test Schema Validation" 
-        lang="JScript" 
+<MACRO  name="Test Schema Validation"
+        lang="JScript"
         key="Ctrl+Alt+Shift+V">
   <![CDATA[
 
@@ -3764,7 +3801,7 @@
     function testSchemaValidation() {
         Application.ActiveDocument.Save();
         var WSHShell = new ActiveXObject("WScript.Shell");
-        WSHShell.run("macros\\tValidate.cmd \"" + 
+        WSHShell.run("macros\\tValidate.cmd \"" +
                      Application.ActiveDocument.FullName + "\"", 1, 1);
     }
     testSchemaValidation();
@@ -3773,8 +3810,8 @@
 </MACRO>
 
 
-<MACRO  name="PrevElement"  
-        key="Shift+Tab" 
+<MACRO  name="PrevElement"
+        key="Shift+Tab"
         lang="JScript">
   <![CDATA[
     Selection.GotoPrevious(0);
@@ -3782,8 +3819,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="NextElement" 
-        key="Tab" 
+<MACRO  name="NextElement"
+        key="Tab"
         lang="JScript">
   <![CDATA[
     Selection.GotoNext(0);
@@ -3791,8 +3828,8 @@
   ]]>
 </MACRO>
 
-<MACRO  name="ReloadCSS" 
-        key="Ctrl+Alt+S" 
+<MACRO  name="ReloadCSS"
+        key="Ctrl+Alt+S"
         lang="JScript">
   <![CDATA[
     ActiveDocument.RefreshCssStyle();
@@ -3800,8 +3837,8 @@
 </MACRO>
 
 <!--
-<MACRO  name="On_Double_Click" 
-        lang="JScript" 
+<MACRO  name="On_Double_Click"
+        lang="JScript"
         key="Ctrl+Shift+E">
   <![CDATA[
     cdrEdit();
@@ -3810,8 +3847,8 @@
  -->
 
 <!--
-<MACRO  name="PersonNameInfo_OnInitialize" 
-        hide="true" 
+<MACRO  name="PersonNameInfo_OnInitialize"
+        hide="true"
         lang="JScript">
 <![CDATA[
 
@@ -3830,7 +3867,7 @@
        lang="JScript">
          <![CDATA[
 
-    // refreshes the Insertion and Deletion element container styles on 
+    // refreshes the Insertion and Deletion element container styles on
     // view change fromplain text to Normal or Tags on
 /*
     function refreshStyles() {
@@ -3866,8 +3903,8 @@
 
     //------------------------------------------------------------------
     // Macro for Revision Control
-    // Surrounds the selected text with Deletion element and sets the 
-    // container style accordingly if highlighting  is true then the 
+    // Surrounds the selected text with Deletion element and sets the
+    // container style accordingly if highlighting  is true then the
     // selected text color is red and style is strike through.  If the
     // selected text has an Deletion inside then it merges it with the
     // current parent.  If the selected text has an Insertion element
@@ -3886,7 +3923,7 @@
                 //Selection.ContainerStyle = getMarkupStyle("Deletion");
                 Selection.ContainerAttribute("UserName") = CdrUserName;
                 Selection.ContainerAttribute("Time") = date.toLocaleString();
-                Selection.ContainerAttribute("RevisionLevel") = "approved";
+                Selection.ContainerAttribute("RevisionLevel") = "proposed";
             }
             else
                 Application.Alert("Deletion markup not allowed here.");
@@ -3898,10 +3935,10 @@
     if (CanRunMacros()) {
         doDeletion();
     }
-    
+
   ]]>
 </MACRO>
- 
+
 <MACRO  name="Insertion"
         key="Ctrl+Alt+I"
         lang="JScript"
@@ -3910,8 +3947,8 @@
   <![CDATA[
 
     //----------------------------------------------------------------------
-    // Allows the users to track changes while inserting any text in the 
-    // document.  If the user selects some text and clicks on insertion 
+    // Allows the users to track changes while inserting any text in the
+    // document.  If the user selects some text and clicks on insertion
     // toolbar button the selected text is surrounded by deletion element
     //----------------------------------------------------------------------
     function simpleInsertion() {
@@ -3933,7 +3970,7 @@
         }
         Selection.ContainerAttribute("UserName") = CdrUserName;
         Selection.ContainerAttribute("Time") = date.toLocaleString();
-        Selection.ContainerAttribute("RevisionLevel") = "approved";
+        Selection.ContainerAttribute("RevisionLevel") = "proposed";
         //Selection.ContainerStyle = getMarkupStyle("Insertion");
     }
 
@@ -3943,7 +3980,7 @@
 
   ]]>
 </MACRO>
- 
+
 <MACRO  name="Accept Changes"
         key=""
         lang="JScript"
@@ -4008,10 +4045,10 @@
             mergeChanges();
         }
     }
-    
+
   ]]>
 </MACRO>
- 
+
 <MACRO  name="Review Markup"
         lang="JScript"
         id="1948"
@@ -4032,7 +4069,7 @@
         desc="Accept or Reject Changes..."
         tooltip="Accept or Reject Changes... (Ctrl+Alt+A)">
   <![CDATA[
-        
+
     //----------------------------------------------------------------------
     // Enables the Reviewers to Incorporates the changes from a dialog box.
     //----------------------------------------------------------------------
@@ -4046,7 +4083,7 @@
         Undo = false;
         FindPrev = true;
         FindNext = true;
-        var AcceptOrReject_Dlg = CreateFormDlg(CdrUserPath + 
+        var AcceptOrReject_Dlg = CreateFormDlg(CdrUserPath +
                 "\\Cdr\\AcceptOrReject.hhf");
         var rng = ActiveDocument.Range;
         Insertion_list = ActiveDocument.getElementsByTagName("Insertion");
@@ -4108,7 +4145,7 @@
 
   ]]>
 </MACRO>
- 
+
 <MACRO  name="Accept Change"
         key=""
         lang="JScript"
@@ -4145,19 +4182,19 @@
 
     if (CanRunMacros())
         doAcceptChangeWithoutSoftQuadBugs();
-    
+
   ]]>
 </MACRO>
- 
-<MACRO  name="Reject Change" 
-        key="" 
-        lang="JScript" 
-        id="1902" 
+
+<MACRO  name="Reject Change"
+        key=""
+        lang="JScript"
+        id="1902"
         desc="Rejects the current marked change">
   <![CDATA[
     //----------------------------------------------------------------------
-    // Rejects the current marked change i.e. if the selection is inside an 
-    // Insertion the contents are removed and if the contents are inside an 
+    // Rejects the current marked change i.e. if the selection is inside an
+    // Insertion the contents are removed and if the contents are inside an
     // Deletion they are merged back with the document.
     //----------------------------------------------------------------------
     //----------------------------------------------------------------------
@@ -4186,11 +4223,11 @@
 
   ]]>
 </MACRO>
- 
-<MACRO  name="Reject Changes" 
-        key="" 
-        lang="JScript" 
-        id="1909" 
+
+<MACRO  name="Reject Changes"
+        key=""
+        lang="JScript"
+        id="1909"
         desc="Deletes all marked changes">
   <![CDATA[
 
@@ -4230,9 +4267,9 @@
         return;
     }
 
-    function readtree(startRng, endRng) {  
+    function readtree(startRng, endRng) {
 
-        while (true) {  
+        while (true) {
 
             // Move to next element
             var tempRng = startRng.Duplicate;
@@ -4240,13 +4277,13 @@
             if (tempRng.isEqual(startRng)) {
                 tempRng = null;
                 break;
-            } 
+            }
             else {
                 // if it is with in the range of the selected parent
                 if (startRng.IsLessThan(endRng)) {
                     // element = startRng.ContainerNode.nodeName;
                     // startRng.ContainerStyle = getMarkupStyle(element);
-                } 
+                }
                 else {
                     break;
                 }
@@ -4266,11 +4303,11 @@
 
   ]]>
 </MACRO>
- 
-<MACRO  name="Show Original" 
-        key="" 
-        lang="JScript" 
-        id="20207" 
+
+<MACRO  name="Show Original"
+        key=""
+        lang="JScript"
+        id="20207"
         desc="Displays the document without any marked changes">
   <![CDATA[
 
@@ -4308,15 +4345,15 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Show Changes With Highlighting" 
-        key="" 
-        lang="JScript" 
-        id="1908" 
+<MACRO  name="Show Changes With Highlighting"
+        key=""
+        lang="JScript"
+        id="1908"
         desc="Displays all marked changes with highlighting">
   <![CDATA[
 
     //----------------------------------------------------------------------
-    // Highlights all the marked changes by setting the container style of all 
+    // Highlights all the marked changes by setting the container style of all
     // Insertion and Deletion Elements
     //----------------------------------------------------------------------
     function doShowChangesWithHL() {
@@ -4349,7 +4386,7 @@
 
     function readtree(startRng, endRng) {
 
-        while (true) {  
+        while (true) {
 
             // Move to next element
             var tempRng = startRng.Duplicate;
@@ -4357,14 +4394,14 @@
             if (tempRng.isEqual(startRng)) {
                 tempRng = null;
                 break;
-            } 
-            else {  
+            }
+            else {
                 // if it is with in the range of the selected parent
                 if (startRng.IsLessThan(endRng)) {
                     element = startRng.ContainerNode.nodeName;
                     element = "Deletion";
                     //startRng.ContainerStyle = getMarkupStyle(element);
-                } 
+                }
                 else {
                     break;
                 }
@@ -4383,16 +4420,16 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Show Changes Without Highlighting" 
-        key="" 
-        lang="JScript" 
-        id="1907" 
+<MACRO  name="Show Changes Without Highlighting"
+        key=""
+        lang="JScript"
+        id="1907"
         desc="Displays all marked changes without highlighting">
   <![CDATA[
 
 
     //----------------------------------------------------------------------
-    // Displays the document with marked changes but without highlighting 
+    // Displays the document with marked changes but without highlighting
     //----------------------------------------------------------------------
     function doShowChangesWOH() {
         var docProps = ActiveDocument.CustomDocumentProperties;
@@ -4428,13 +4465,13 @@
             if (tempRng.isEqual(startRng)) {
                 tempRng = null;
                 break;
-            } 
+            }
             else {
-                if (startRng.IsLessThan(endRng)) {  
-                
+                if (startRng.IsLessThan(endRng)) {
+
                     // if it is with in the range of the selected parent
                     // startRng.ContainerStyle = getMarkupStyle("Deletion");
-                } 
+                }
                 else {
                     break;
                 }
@@ -4452,9 +4489,9 @@
 </MACRO>
 
 <MACRO  name="Jump To Next Markup"
-        key="Ctrl+Alt+J" 
-        lang="JScript" 
-        id="2911" 
+        key="Ctrl+Alt+J"
+        lang="JScript"
+        id="2911"
         desc="Moves the selection to the next marked change if any" >
   <![CDATA[
     if (lastMarkupLevel)
@@ -4462,19 +4499,19 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Find Next" 
-        key="" 
-        lang="JScript" 
-        id="1911" 
-        desc="Moves the selection to the next marked change if any" 
+<MACRO  name="Find Next"
+        key=""
+        lang="JScript"
+        id="1911"
+        desc="Moves the selection to the next marked change if any"
         tooltip="Find Next Change">
   <![CDATA[
 
 
     //----------------------------------------------------------------------
     // Moves the selection to the next Marked change in the document
-    // If the end of the document is reached the search is resumed from 
-    // the beginning of the document 
+    // If the end of the document is reached the search is resumed from
+    // the beginning of the document
     // XXX This is SoftQuad's code.  Very complicated and impressive,
     //     but it doesn't work.  Replaced below.
     //----------------------------------------------------------------------
@@ -4513,7 +4550,7 @@
             else {
                 var rng1 = ActiveDocument.Range;
                 var rng2 = rng1.Duplicate;
-            
+
                 var Insertion = rng1.MoveToElement("Insertion");
                 var Deletion = rng2.MoveToElement("Deletion");
                 if (Insertion && Deletion) {
@@ -4570,11 +4607,11 @@
                         }
                         else {
                             var ad = ActiveDocument;
-                            var InsertionList = 
-                                ad.getElementsByTagName("Insertion"); 
-                            var DeletionList = 
-                                ad.getElementsByTagName("Deletion"); 
-                            if (InsertionList.length != 0 || 
+                            var InsertionList =
+                                ad.getElementsByTagName("Insertion");
+                            var DeletionList =
+                                ad.getElementsByTagName("Deletion");
+                            if (InsertionList.length != 0 ||
                                 DeletionList.length != 0) {
                                 var search = Application.Confirm(
                                     "Reached the end of the Document.  " +
@@ -4601,7 +4638,7 @@
 
     function hasChildren(rng_chld, elemName) {
         if (rng_chld.ContainerNode) {
-            if (rng_chld.ContainerNode.hasChildNodes()) { 
+            if (rng_chld.ContainerNode.hasChildNodes()) {
                 var children = rng_chld.ContainerNode.childNodes;
                 for (var i=0; i < children.length; i++) {
                     if (children.item(i).nodeName == elemName) {
@@ -4615,7 +4652,7 @@
             }
         }
     }
-  
+
     //----------------------------------------------------------------------
     // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
     // report #330.
@@ -4691,17 +4728,17 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Find Prev" 
-        key="" 
-        lang="JScript" 
-        id="1910" 
+<MACRO  name="Find Prev"
+        key=""
+        lang="JScript"
+        id="1910"
         desc="Moves the selection to the previous marked change if any">
         <![CDATA[
 
     //----------------------------------------------------------------------
     // Moves the selection to the previous Marked change in the document
-    // If the beginning of the document is reached the search is resumed 
-    // from the end of the document 
+    // If the beginning of the document is reached the search is resumed
+    // from the end of the document
     // XXX Buggy SoftQuad code.  See note on doFindNext() above.
     //----------------------------------------------------------------------
     function doFindPrev() {
@@ -4720,19 +4757,19 @@
                 Selection.MoveToElement("Deletion", false);
                 Selection.SelectContainerContents();
             }
-        } 
+        }
         else if (Insertion) {
             Selection.MoveToElement("Insertion", false);
             Selection.SelectContainerContents();
-        } 
+        }
         else if (Deletion) {
             Selection.MoveToElement("Deletion", false);
             Selection.SelectContainerContents();
-        } 
+        }
         else {
             var ad = ActiveDocument;
-            var InsertionList = ad.getElementsByTagName("Insertion"); 
-            var DeletionList = ad.getElementsByTagName("Deletion"); 
+            var InsertionList = ad.getElementsByTagName("Insertion");
+            var DeletionList = ad.getElementsByTagName("Deletion");
             if (InsertionList.length != 0 || DeletionList.length != 0) {
                 var search = Application.Confirm(
                     "Reached the beginning of the Document.  " +
@@ -4821,22 +4858,22 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Init_JScript_Macros" 
-        lang="JScript" 
-        desc="initialize JScript macros" 
+<MACRO  name="Init_JScript_Macros"
+        lang="JScript"
+        desc="initialize JScript macros"
         hide="true">
   <![CDATA[
 
     function CanRunMacros() {
-        if (ActiveDocument.ViewType != sqViewNormal && 
+        if (ActiveDocument.ViewType != sqViewNormal &&
             ActiveDocument.ViewType != sqViewTagsOn) {
-            Application.Alert("Change to Tags On or Normal " + 
+            Application.Alert("Change to Tags On or Normal " +
                               "view to run macros.");
             return false;
         }
 
         if (!ActiveDocument.IsXML) {
-            Application.Alert("Cannot run macros because document " + 
+            Application.Alert("Cannot run macros because document " +
                               "is not XML.");
             return false;
         }
@@ -4847,8 +4884,8 @@
 </MACRO>
 
 <MACRO  name="CDR Advanced Search"
-        lang="JScript" 
-        desc="Launch browser menu for advanced CDR searching" 
+        lang="JScript"
+        desc="Launch browser menu for advanced CDR searching"
         hide="false">
   <![CDATA[
 
@@ -4866,7 +4903,7 @@
 </MACRO>
 
 <MACRO  name="Show Checked Out Docs"
-        lang="JScript" 
+        lang="JScript"
         desc="Bring up report showing documents checked out by this user."
         hide="false">
   <![CDATA[
@@ -4885,7 +4922,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Published Version Report" 
+<MACRO name="Published Version Report"
        lang="JScript">
   <![CDATA[
     Application.Alert("This report depends on the Publish Preview interface" +
@@ -4893,28 +4930,28 @@
   ]]>
 </MACRO>
 
-<MACRO name="Publish Preview" 
+<MACRO name="Publish Preview"
        lang="JScript">
   <![CDATA[
     publishPreview("");
   ]]>
 </MACRO>
 
-<MACRO name="Patient Publish Preview" 
+<MACRO name="Patient Publish Preview"
        lang="JScript">
   <![CDATA[
     publishPreview("Protocol_Patient");
   ]]>
 </MACRO>
 
-<MACRO name="Patient Summary Publish Preview" 
+<MACRO name="Patient Summary Publish Preview"
        lang="JScript">
   <![CDATA[
     publishPreview("Summary_Patient");
   ]]>
 </MACRO>
 
-<MACRO name="Patient CTGovProtocol Publish Preview" 
+<MACRO name="Patient CTGovProtocol Publish Preview"
        lang="JScript">
   <![CDATA[
     publishPreview("CTGovProtocol_Patient");
@@ -4922,7 +4959,7 @@
 </MACRO>
 
 <MACRO  name="CDR Check In"
-        lang="JScript" 
+        lang="JScript"
         desc="Releases CDR lock, abandoning any changes to current document."
         hide="false">
   <![CDATA[
@@ -4938,7 +4975,7 @@
 </MACRO>
 
 <MACRO  name="CDR Get Person Address"
-        lang="JScript" 
+        lang="JScript"
         desc="Retrieve address from fragment link"
         hide="false">
   <![CDATA[
@@ -4954,7 +4991,7 @@
 </MACRO>
 
 <MACRO  name="CDR Participating Orgs"
-        lang="JScript" 
+        lang="JScript"
         desc="Select Participating Organizations for Protocol"
         hide="false">
   <![CDATA[
@@ -4970,7 +5007,7 @@
 </MACRO>
 
 <MACRO  name="Insert Lead Org"
-        lang="JScript" 
+        lang="JScript"
         desc="Insert new Protocol lead organization"
         hide="false">
   <![CDATA[
@@ -4997,8 +5034,8 @@
 </MACRO>
 
 <MACRO  name="Insert Participating Org"
-        lang="JScript" 
-        key="Ctrl+Alt+Z" 
+        lang="JScript"
+        key="Ctrl+Alt+Z"
         desc="Insert new Protocol participating organization"
         hide="false">
   <![CDATA[
@@ -5026,7 +5063,7 @@
         }
         if (!rng.FindInsertLocation("OrgSite", true)) {
             Application.Alert("Can't insert OrgSite element");
-            return; 
+            return;
         }
         rng.InsertWithTemplate("OrgSite");
         rng.Select();
@@ -5036,7 +5073,7 @@
 </MACRO>
 
 <MACRO  name="Next Lead Org"
-        lang="JScript" 
+        lang="JScript"
         desc="Move to the next lead organization in the protocol"
         hide="false">
   <![CDATA[
@@ -5053,7 +5090,7 @@
 </MACRO>
 
 <MACRO  name="Next External Site"
-        lang="JScript" 
+        lang="JScript"
         desc="Move to the next external site in the protocol"
         hide="false">
   <![CDATA[
@@ -5070,7 +5107,7 @@
 </MACRO>
 
 <MACRO  name="CDR Get Org Postal Address"
-        lang="JScript" 
+        lang="JScript"
         desc="Retrieve org address from fragment link"
         hide="false">
   <![CDATA[
@@ -5086,7 +5123,7 @@
 </MACRO>
 
 <MACRO  name="CDR Persons Linking to Org Address Fragment"
-        lang="JScript" 
+        lang="JScript"
         desc="Finds Person documents linking to current Org location."
         hide="false">
   <![CDATA[
@@ -5104,7 +5141,7 @@
             }
             if (elem.nodeName == "Location") {
                 var id = elem.getAttribute("cdr:id");
-                var nodes = 
+                var nodes =
                     Application.ActiveDocument.getElementsByTagName("DocId");
                 if (nodes.length < 1) {
                     Application.Alert(
@@ -5114,7 +5151,7 @@
                 else {
                     var elem = nodes.item(0);
                     var val  = getTextContent(elem);
-                    var url = CdrCgiBin + "PersonOrgLocLinks.py?FragLink=" + 
+                    var url = CdrCgiBin + "PersonOrgLocLinks.py?FragLink=" +
                               val + "%23" + id;
                     cdrObj.showPage(url);
                 }
@@ -5128,7 +5165,7 @@
 </MACRO>
 
 <MACRO  name="Remember Org Postal Address"
-        lang="JScript" 
+        lang="JScript"
         desc="Stores org postal address in an internal clipboard."
         hide="false">
   <![CDATA[
@@ -5159,7 +5196,7 @@
 </MACRO>
 
 <MACRO  name="Paste Org Address Elements"
-        lang="JScript" 
+        lang="JScript"
         desc="Pastes org address elements from internal clipboard."
         hide="false">
   <![CDATA[
@@ -5261,7 +5298,7 @@
 </MACRO>
 
 <MACRO  name="Term Hierarchy"
-        lang="JScript" 
+        lang="JScript"
         desc="Web interface for displaying Term document hierarchies"
         hide="false">
   <![CDATA[
@@ -5269,7 +5306,7 @@
     function termHierarchyDisplay() {
         var url = CdrCgiBin + "TermHierarchy.py";
         if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
-            var nodes = 
+            var nodes =
                 Application.ActiveDocument.getElementsByTagName("DocId");
             if (nodes.length > 0) {
                 var elem  = nodes.item(0);
@@ -5286,14 +5323,14 @@
 </MACRO>
 
 <MACRO  name="CDR Terminology Usage Report"
-        lang="JScript" 
+        lang="JScript"
         desc="Report listing documents which are indexed by this term"
         hide="false">
   <![CDATA[
 
     function termUsageReport() {
         if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
-            var nodes = 
+            var nodes =
                 Application.ActiveDocument.getElementsByTagName("DocId");
             if (nodes.length > 0) {
                 var elem  = nodes.item(0);
@@ -5316,8 +5353,8 @@
 </MACRO>
 
 <MACRO  name="Insert Current Date"
-        lang="JScript" 
-        key="Alt+D" 
+        lang="JScript"
+        key="Alt+D"
         desc="Inserts the current date as text content of current elem"
         hide="false">
   <![CDATA[
@@ -5335,7 +5372,7 @@
 </MACRO>
 
 <MACRO  name="Insert Current Date and Time"
-        lang="JScript" 
+        lang="JScript"
         desc="Inserts the current date/time as text content of current elem"
         hide="false">
   <![CDATA[
@@ -5353,9 +5390,9 @@
 </MACRO>
 
 <MACRO  name="Insert User ID"
-        lang="JScript" 
+        lang="JScript"
         desc="Inserts the login name as text content of current elem"
-        key="Alt+U" 
+        key="Alt+U"
         hide="false">
   <![CDATA[
 
@@ -5370,67 +5407,67 @@
 </MACRO>
 
 <MACRO  name="Insert DrugName Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with DrugName tags"
         hide="false">
     Selection.InsertElement("DrugName");
 </MACRO>
 
 <MACRO  name="Insert ForeignWord Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with ForeignWord tags"
         hide="false">
     Selection.InsertElement("ForeignWord");
 </MACRO>
 
 <MACRO  name="Insert GeneName Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with GeneName tags"
         hide="false">
     Selection.InsertElement("GeneName");
 </MACRO>
 
 <MACRO  name="Insert ScientificName Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with ScientificName tags"
         hide="false">
     Selection.InsertElement("ScientificName");
 </MACRO>
 
 <MACRO  name="Insert Emphasis Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with Emphasis tags"
         hide="false">
     Selection.InsertElement("Emphasis");
 </MACRO>
 
 <MACRO  name="Insert Strong Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with Strong tags"
         hide="false">
     Selection.InsertElement("Strong");
 </MACRO>
 
 <MACRO  name="Insert Subscript Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with Subscript tags"
         hide="false">
     Selection.InsertElement("Subscript");
 </MACRO>
 
 <MACRO  name="Insert Superscript Element"
-        lang="JScript" 
+        lang="JScript"
         desc="Wraps the current selection with Superscript tags"
         hide="false">
     Selection.InsertElement("Superscript");
 </MACRO>
 
-<MACRO name="Administrative Subsystem" 
-       lang="JScript" 
+<MACRO name="Administrative Subsystem"
+       lang="JScript"
        id="1019">
   <![CDATA[
     function administrativeSubsystem() {
-        
+
         var url = CdrCgiBin + "Admin.py?Session=" + CdrSession;
         cdrObj.showPage(url);
     }
@@ -5438,16 +5475,16 @@
   ]]>
 </MACRO>
 
-<MACRO name="New CDR Document" 
-       lang="JScript" 
+<MACRO name="New CDR Document"
+       lang="JScript"
        id="2028">
   <![CDATA[
     Documents.Add();
   ]]>
 </MACRO>
 
-<MACRO name="Print" 
-       lang="JScript" 
+<MACRO name="Print"
+       lang="JScript"
        id="2009">
   <![CDATA[
         // This didn't work
@@ -5469,7 +5506,7 @@
             Application.Alert("got a live one!");
             printCtrl.Execute();
         }
-        return; 
+        return;
     }
     // This doesn't work, either.  Confirmed by Derek of SoftQuad Technical
     // Support email 24 Oct 2001.  He has filed a bug report.
@@ -5479,8 +5516,8 @@
   ]]>
 </MACRO>
 
-<MACRO name="PubMed Browse" 
-       lang="JScript" 
+<MACRO name="PubMed Browse"
+       lang="JScript"
        id="2022">
   <![CDATA[
     function searchPubMed() {
@@ -5491,16 +5528,16 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert CitationLink" 
+<MACRO name="Insert CitationLink"
        lang="JScript" >
   <![CDATA[
     Selection.InsertWithTemplate("CitationLink")
   ]]>
 </MACRO>
 
-<MACRO name="Itemized List" 
-       key="Alt+L" 
-       lang="JScript" 
+<MACRO name="Itemized List"
+       key="Alt+L"
+       lang="JScript"
        id="20404">
   <![CDATA[
     Selection.InsertElement("ItemizedList");
@@ -5517,9 +5554,9 @@
   ]]>
 </MACRO>
 
-<MACRO name="Ordered List" 
-       key="Alt+O" 
-       lang="JScript" 
+<MACRO name="Ordered List"
+       key="Alt+O"
+       lang="JScript"
        id="20412">
   <![CDATA[
     Selection.InsertElement("OrderedList");
@@ -5568,14 +5605,14 @@
   ]]>
 </MACRO>
 
-<MACRO name="CDR Help" 
+<MACRO name="CDR Help"
        lang="JScript">
   <![CDATA[
     cdrObj.showPage(CdrCgiBin + "Help.py")
   ]]>
 </MACRO>
 
-<MACRO name="Jump Past Element" 
+<MACRO name="Jump Past Element"
        key="Ctrl+Alt+Shift+P"
        lang="JScript">
   <![CDATA[
@@ -5595,7 +5632,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Jump Before Element" 
+<MACRO name="Jump Before Element"
        key="Ctrl+Alt+Shift+B"
        lang="JScript">
   <![CDATA[
@@ -5639,7 +5676,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="On_Document_Open_View" 
+<MACRO name="On_Document_Open_View"
        lang="JScript">
   <![CDATA[
     //Application.Alert("entering On_Document_Open_View");
@@ -5651,7 +5688,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="New Current Org Status" 
+<MACRO name="New Current Org Status"
        lang="JScript">
   <![CDATA[
     function newCurrentOrgStatus() {
@@ -5668,7 +5705,7 @@
         rng.SelectElement();
         elemText = rng.Text;
         elemText = elemText.replace("<CurrentOrgStatus", "<PreviousOrgStatus");
-        elemText = elemText.replace("</CurrentOrgStatus>", 
+        elemText = elemText.replace("</CurrentOrgStatus>",
                                     "</PreviousOrgStatus>");
         var rulesChecking = ActiveDocument.RulesChecking;
         ActiveDocument.RulesChecking = false;
@@ -5689,7 +5726,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert PatientCharacteristics" 
+<MACRO name="Insert PatientCharacteristics"
        lang="JScript">
   <![CDATA[
     function insertPatientCharacteristics() {
@@ -5735,7 +5772,7 @@
                      + "<ListTitle>Other</ListTitle>"
                      + "<ListItem></ListItem>"
                      + "</ItemizedList>";
-  
+
         rng.PasteString(newElems);
         savePos.Select();
         ActiveDocument.RulesChecking = rulesChecking;
@@ -5744,7 +5781,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert PriorConcurrentTherapy" 
+<MACRO name="Insert PriorConcurrentTherapy"
        lang="JScript">
   <![CDATA[
     function insertPriorConcurrentTherapy() {
@@ -5786,14 +5823,14 @@
   ]]>
 </MACRO>
 
-<MACRO name="Reset Contact Information" 
+<MACRO name="Reset Contact Information"
        lang="JScript">
   <![CDATA[
     Application.Alert("Stub for Reset Contact Information Macro");
   ]]>
 </MACRO>
 
-<MACRO name="Licensee QC Report" 
+<MACRO name="Licensee QC Report"
        lang="JScript">
   <![CDATA[
     function qcReport() {
@@ -5815,7 +5852,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Country QC Report" 
+<MACRO name="Country QC Report"
        lang="JScript">
   <![CDATA[
     function qcReport() {
@@ -5837,7 +5874,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="TermSet QC Report" 
+<MACRO name="TermSet QC Report"
        lang="JScript">
   <![CDATA[
     function qcReport() {
@@ -5859,7 +5896,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="DrugInfo QC Report" 
+<MACRO name="DrugInfo QC Report"
        lang="JScript">
   <![CDATA[
     function qcReport() {
@@ -5883,7 +5920,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Generate QC Report" 
+<MACRO name="Generate QC Report"
        lang="JScript">
   <![CDATA[
     function qcReport() {
@@ -5905,7 +5942,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol HP QC Report" 
+<MACRO name="Protocol HP QC Report"
        lang="JScript">
   <![CDATA[
     function protocolHpQcReport() {
@@ -5926,7 +5963,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol Patient QC Report" 
+<MACRO name="Protocol Patient QC Report"
        lang="JScript">
   <![CDATA[
     function protocolPatientQcReport() {
@@ -5947,7 +5984,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol Admin QC Report" 
+<MACRO name="Protocol Admin QC Report"
        lang="JScript">
   <![CDATA[
     function protocolAdminQcReport() {
@@ -5969,7 +6006,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="TermName with Concept QC Report" 
+<MACRO name="TermName with Concept QC Report"
        lang="JScript">
   <![CDATA[
     function protocolAdminQcReport() {
@@ -5991,7 +6028,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol Citations QC Report" 
+<MACRO name="Protocol Citations QC Report"
        lang="JScript">
   <![CDATA[
     function protocolCitationsQcReport() {
@@ -6012,7 +6049,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Generate Mailer" 
+<MACRO name="Generate Mailer"
        lang="JScript">
   <![CDATA[
     function generateMailer() {
@@ -6065,7 +6102,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol Merge" 
+<MACRO name="Protocol Merge"
        lang="JScript">
   <![CDATA[
     function protocolMerge() {
@@ -6076,7 +6113,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Search PubMed" 
+<MACRO name="Search PubMed"
        lang="JScript">
   <![CDATA[
     function searchPubMed() {
@@ -6087,9 +6124,9 @@
   ]]>
 </MACRO>
 
-<MACRO name="New Summary Section" 
-       key ="" 
-       lang="JScript" 
+<MACRO name="New Summary Section"
+       key =""
+       lang="JScript"
        id  ="1247">
   <![CDATA[
     function newSection() {
@@ -6113,10 +6150,10 @@
                         rng.Select();
                         break;
                     }
-                    if (!rng.ContainerNode) { 
+                    if (!rng.ContainerNode) {
                         var msg = "Can't find a place to insert Section";
                         Application.Alert(msg);
-                        break; 
+                        break;
                     }
                     rng.SelectAfterContainer();
                     i++;
@@ -6129,27 +6166,27 @@
   ]]>
 </MACRO>
 
-<MACRO name="Next Summary Section" 
-       key ="Ctrl+Alt+N" 
-       lang="JScript" 
+<MACRO name="Next Summary Section"
+       key ="Ctrl+Alt+N"
+       lang="JScript"
        id  ="2033">
   <![CDATA[
     Selection.MoveToElement("SummarySection");
   ]]>
 </MACRO>
 
-<MACRO name="Previous Summary Section" 
-       lang="JScript" 
-       id  ="2034" 
+<MACRO name="Previous Summary Section"
+       lang="JScript"
+       id  ="2034"
        key ="Ctrl+Alt+P">
   <![CDATA[
     Selection.MoveToElement("SummarySection", false);
   ]]>
 </MACRO>
 
-<MACRO name="Higher Summary Section" 
-       lang="JScript" 
-       id  ="2035" 
+<MACRO name="Higher Summary Section"
+       lang="JScript"
+       id  ="2035"
        key ="Ctrl+Alt+H">
   <![CDATA[
     function higherSection() {
@@ -6160,10 +6197,10 @@
                 var i = 0; // Safety measure...
                 while (rng && i < 50) {
                     var node = rng.ContainerNode;
-                    if (!node) { 
+                    if (!node) {
                         var msg = "Not inside a nested SummarySection";
                         Application.Alert(msg);
-                        break; 
+                        break;
                     }
                     if (node.nodeName == "SummarySection") {
                         if (foundOne) {
@@ -6184,7 +6221,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Create Summary Markup Report" 
+<MACRO name="Create Summary Markup Report"
        lang="JScript">
   <![CDATA[
     function createSummaryMarkupReport() {
@@ -6203,7 +6240,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Create HTML for Board" 
+<MACRO name="Create HTML for Board"
        lang="JScript">
   <![CDATA[
     function createHtmlForBoard() {
@@ -6220,7 +6257,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Bold Underline Report" 
+<MACRO name="Bold Underline Report"
        lang="JScript">
   <![CDATA[
     function boldUnderlineReport() {
@@ -6239,7 +6276,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Redline Strikeout Report" 
+<MACRO name="Redline Strikeout Report"
        lang="JScript">
   <![CDATA[
     function redlineStrikeoutReport() {
@@ -6258,7 +6295,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Glossary RS Report" 
+<MACRO name="Glossary RS Report"
        lang="JScript">
   <![CDATA[
     function glossaryRSReport() {
@@ -6277,7 +6314,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Full Concept QC Report" 
+<MACRO name="Full Concept QC Report"
        lang="JScript">
   <![CDATA[
     function qcFullReport() {
@@ -6298,7 +6335,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Patient Summary RS QC Report" 
+<MACRO name="Patient Summary RS QC Report"
        lang="JScript">
   <![CDATA[
     function patientSummaryRsQcReport() {
@@ -6327,7 +6364,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Patient Summary BU QC Report" 
+<MACRO name="Patient Summary BU QC Report"
        lang="JScript">
   <![CDATA[
     function patientSummaryBuQcReport() {
@@ -6391,7 +6428,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert DateLastModified" 
+<MACRO name="Insert DateLastModified"
        lang="JScript" >
   <![CDATA[
     function insertDateLastModified() {
@@ -6400,7 +6437,7 @@
         if (!rng.MoveToElement("DateLastModified", false)) {
             if (!rng.FindInsertLocation("DateLastModified", false)) {
                 Application.Alert("Can't insert DateLastModified element");
-                return; 
+                return;
             }
             rng.InsertWithTemplate("DateLastModified");
         }
@@ -6410,7 +6447,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert ProtocolAmendmentInformation" 
+<MACRO name="Insert ProtocolAmendmentInformation"
        lang="JScript" >
   <![CDATA[
     function insertProtocolAmendmentInformation() {
@@ -6419,7 +6456,7 @@
         if (!rng.FindInsertLocation("ProtocolAmendmentInformation", false)) {
             Application.Alert(
                     "Can't insert ProtocolAmendmentInformation element");
-                return; 
+                return;
         }
         rng.InsertElement("ProtocolAmendmentInformation");
         rng.InsertWithTemplate("ProtocolAmendment");
@@ -6429,7 +6466,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Undo Last Edit" 
+<MACRO name="Undo Last Edit"
        lang="JScript" >
   <![CDATA[
     if (ActiveDocument)
@@ -6437,7 +6474,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="NHL Text" 
+<MACRO name="NHL Text"
        lang="JScript">
   <![CDATA[
     function nhlText() {
@@ -6464,7 +6501,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Change Participating Site Statuses" 
+<MACRO name="Change Participating Site Statuses"
        lang="JScript">
   <![CDATA[
     function changeSiteStatuses() {
@@ -6541,14 +6578,14 @@
                 numStatuses += 1;
             }
         }
-        Application.Alert("Status set for " + numStatuses + 
+        Application.Alert("Status set for " + numStatuses +
                 " participating sites.");
     }
     changeSiteStatuses();
   ]]>
 </MACRO>
 
-<MACRO name="Insert Mailer Response" 
+<MACRO name="Insert Mailer Response"
        lang="JScript" >
   <![CDATA[
     function insertMailerResponse() {
@@ -6557,7 +6594,7 @@
         if (!rng.FindInsertLocation("Response", false)) {
             Application.Alert(
                     "Can't insert Response element");
-                return; 
+                return;
         }
         rng.InsertWithTemplate("Response");
         rng.Select();
@@ -6566,7 +6603,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Mailer CallLog" 
+<MACRO name="Insert Mailer CallLog"
        lang="JScript" >
   <![CDATA[
     function insertMailerCallLog() {
@@ -6577,7 +6614,7 @@
         Selection.ReadOnlyContainer = false;
         if (!rng.FindInsertLocation("CallLog", false)) {
             Application.Alert("Can't insert CallLog element");
-            return; 
+            return;
         }
         var newElem = "<CallLog CallLogType='initial'><Comment user='"
                     + CdrUserName
@@ -6600,7 +6637,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Delete Mailer CallLog" 
+<MACRO name="Delete Mailer CallLog"
        lang="JScript" >
   <![CDATA[
     function deleteMailerCallLog() {
@@ -6624,7 +6661,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert PDQ Board Info" 
+<MACRO name="Insert PDQ Board Info"
        lang="JScript" >
   <![CDATA[
     function insertPdqBoardInfo() {
@@ -6633,7 +6670,7 @@
         if (!rng.FindInsertLocation("PDQBoardInformation", false)) {
             Application.Alert(
                     "Can't insert PDQBoardInformation element");
-                return; 
+                return;
         }
         var newElems = "<PDQBoardInformation>"
                      + "<BoardManager>"
@@ -6665,7 +6702,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Set Non-Public" 
+<MACRO name="Set Non-Public"
        lang="JScript" >
   <![CDATA[
     function setNonPublic() {
@@ -6680,7 +6717,7 @@
                 "Current element does not have a Public attribute.");
             return;
         }
-        
+
         var holdFlag = Selection.ReadOnlyContainer;
         Selection.ReadOnlyContainer = false;
         gEditingCdrLink = true;
@@ -6692,7 +6729,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Set Public" 
+<MACRO name="Set Public"
        lang="JScript" >
   <![CDATA[
     function setPublic() {
@@ -6707,7 +6744,7 @@
                 "Current element does not have a Public attribute.");
             return;
         }
-        
+
         var holdFlag = Selection.ReadOnlyContainer;
         Selection.ReadOnlyContainer = false;
         gEditingCdrLink = true;
@@ -6719,7 +6756,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Mailer History" 
+<MACRO name="Mailer History"
        lang="JScript" >
   <![CDATA[
     function mailerHistory() {
@@ -6798,7 +6835,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Audit Trail Report" 
+<MACRO name="Audit Trail Report"
        lang="JScript" >
   <![CDATA[
     function auditTrailReport() {
@@ -6818,12 +6855,12 @@
   ]]>
 </MACRO>
 
-<MACRO name="Verify Specialties" 
+<MACRO name="Verify Specialties"
        lang="JScript" >
     cdrObj.showPage("https://specialistsonline.abms.org/");
 </MACRO>
 
-<MACRO name="Back Out Rejected Markup" 
+<MACRO name="Back Out Rejected Markup"
        lang="JScript" >
   <![CDATA[
 
@@ -6907,7 +6944,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Preview Mailer" 
+<MACRO name="Preview Mailer"
        lang="JScript" >
   <![CDATA[
     function previewMailer() {
@@ -6930,7 +6967,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Send Missing Protocol Info Mailer" 
+<MACRO name="Send Missing Protocol Info Mailer"
        lang="JScript" >
   <![CDATA[
     function sendMissingProtocolInfoMailer() {
@@ -6951,17 +6988,27 @@
   ]]>
 </MACRO>
 
-<MACRO name="Glossify Document" 
+<MACRO name="Glossify Document"
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify();
+        cdrObj.glossify(false);
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
 </MACRO>
 
-<MACRO name="Add Glossary Phrase" 
+<MACRO name="Glossify Document (dig)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true);
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Add Glossary Phrase"
        lang="JScript" >
   <![CDATA[
     cdrObj.addGlossaryPhrase();
@@ -7016,16 +7063,28 @@
             }
         }
     }
-    try { showToolbarForDoctype(); }
-    catch (e) {}
+    if (Application.VersionNumber > 4.5)
+        adjustToolbarVisibility();
+    else {
+        try { showToolbarForDoctype(); }
+        catch (e) {}
+    }
   ]]>
 </MACRO>
 
+<!-- Doesn't work as documented; suppressed at Derek's suggestion 2015-04-19
 <MACRO name="On_CommandBars_DeActivate"
        lang="JScript">
-    try { hideToolbars(); }
-    catch (e) {}
-</MACRO>
+  <![CDATA[
+    if (Application.VersionNumber > 4.5)
+        adjustToolbarVisibility();
+    else {
+        try { hideToolbars(); }
+        catch (e) {}
+    }
+  ]]>
+</MACRO
+-->
 
 <MACRO name="On_Document_Save"
        lang="JScript">
@@ -7059,9 +7118,11 @@
        lang="JScript">
     if (cdrObj)
         cdrObj.setTitleBar();
+    else
+        Application.Alert("no cdrObj");
 </MACRO>
 
-<MACRO name="Show Doc Blob" 
+<MACRO name="Show Doc Blob"
        lang="JScript" >
   <![CDATA[
     function showDocBlob() {
@@ -7085,7 +7146,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Show Linked Blob" 
+<MACRO name="Show Linked Blob"
        lang="JScript" >
   <![CDATA[
     function showLinkedBlob() {
@@ -7117,7 +7178,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Term Set Members" 
+<MACRO name="Insert Term Set Members"
        lang="JScript" >
   <![CDATA[
     function makeCdrIdString(cdrId) {
@@ -7194,7 +7255,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert BMT Diagnoses" 
+<MACRO name="Insert BMT Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertBmtDiagnoses() {
@@ -7343,7 +7404,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert ALK Diagnoses" 
+<MACRO name="Insert ALK Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertAlkDiagnoses() {
@@ -7419,7 +7480,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert AL Diagnoses" 
+<MACRO name="Insert AL Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertAlDiagnoses() {
@@ -7513,7 +7574,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open Translated Summary" 
+<MACRO name="Open Translated Summary"
        lang="JScript" >
   <![CDATA[
     function openTranslatedSummary() {
@@ -7537,7 +7598,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open Original English Summary" 
+<MACRO name="Open Original English Summary"
        lang="JScript" >
   <![CDATA[
     function openOriginalEnglishSummary() {
@@ -7564,7 +7625,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open Patient Summary" 
+<MACRO name="Open Patient Summary"
        lang="JScript" >
   <![CDATA[
     function openPatientSummary() {
@@ -7586,7 +7647,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open HP Summary" 
+<MACRO name="Open HP Summary"
        lang="JScript" >
   <![CDATA[
     function openHPSummary() {
@@ -7613,7 +7674,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open Board Member Doc" 
+<MACRO name="Open Board Member Doc"
        lang="JScript" >
   <![CDATA[
     function openBoardMemberDoc() {
@@ -7635,7 +7696,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Open Person Doc For Board Member" 
+<MACRO name="Open Person Doc For Board Member"
        lang="JScript" >
   <![CDATA[
     function openPersonDocForBoardMember() {
@@ -7722,7 +7783,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Show Glossary Term Names" 
+<MACRO name="Show Glossary Term Names"
        lang="JScript" >
   <![CDATA[
     function showGlossaryTermNames() {
@@ -7745,7 +7806,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="View Glossary Term Name Docs" 
+<MACRO name="View Glossary Term Name Docs"
        lang="JScript" >
   <![CDATA[
     function viewGlossaryTermNameDocs() {
@@ -7773,7 +7834,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Edit Glossary Term Name Docs" 
+<MACRO name="Edit Glossary Term Name Docs"
        lang="JScript" >
   <![CDATA[
     function editGlossaryTermNameDocs() {
@@ -8187,7 +8248,7 @@
      * the private use characters.  Shelving work on this, since it's a
      * lower-priority task than some of the other issues I'm working on
      * right now.  When we proceed with implementing this, use the new
-     * 
+     *
      */
     function findPrivateUseChars() {
         var rng = ActiveDocument.Range;
@@ -8235,7 +8296,7 @@
         if (!rng.FindInsertLocation("Comment")) {
             Application.Alert("Can't insert Comment element " +
                               "under current position.");
-            return; 
+            return;
         }
         var newElem = "<Comment user='"
                     + CdrUserName
@@ -8265,7 +8326,7 @@
         if (!rng.FindInsertLocation("ResponseToComment")) {
             Application.Alert("Can't insert ResponseToComment element " +
                               "under current position.");
-            return; 
+            return;
         }
         var newElem = "<ResponseToComment user='"
             + CdrUserName
@@ -8338,7 +8399,7 @@
 <MACRO name="SC nbsp"
        lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
 
-<MACRO name="Insert Diagnosis Links" 
+<MACRO name="Insert Diagnosis Links"
        lang="JScript" >
   <![CDATA[
     function insertDiagnosisLinks() {
@@ -8357,7 +8418,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Head And Neck Diagnoses" 
+<MACRO name="Insert Head And Neck Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertHeadAndNeckDiagnoses() {
@@ -8477,7 +8538,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Squamous Cell Carcinoma Head And Neck Diagnoses" 
+<MACRO name="Insert Squamous Cell Carcinoma Head And Neck Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertSquamousCellCarcinomaHeadAndNeckDiagnoses() {
@@ -8540,7 +8601,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert Advanced Head And Neck Diagnoses" 
+<MACRO name="Insert Advanced Head And Neck Diagnoses"
        lang="JScript" >
   <![CDATA[
     function insertAdvancedHeadAndNeckDiagnoses() {
@@ -8867,7 +8928,7 @@
         if (!rng.FindInsertLocation("TypeOfSummaryChange")) {
             Application.Alert("Can't insert TypeOfSummaryChange element " +
                               "under current position.");
-            return; 
+            return;
         }
         var newElem = "<TypeOfSummaryChange>"
                     + "  <TypeOfSummaryChangeValue"
@@ -9046,7 +9107,7 @@
   ]]>
 </MACRO>
 
-<MACRO name="Test New Fetch From URL Method" lang="JScript" key="Alt+Z">
+<MACRO name="Test New Fetch From URL Method" lang="JScript">
   <![CDATA[
     function testFetchFromUrl() {
         try {
@@ -9059,6 +9120,68 @@
         }
     }
     testFetchFromUrl();
+  ]]>
+</MACRO>
+
+<MACRO name="Test Env Fetch" lang="JScript">
+  <![CDATA[
+    function testEnvFetch() {
+        try {
+            var name = Application.Prompt("Env Variable Name?");
+            var wsh = new ActiveXObject("Wscript.Shell");
+
+            //Get the list of environment variables
+            var envVars = wsh.Environment("PROCESS");
+            var value = envVars.Item(name)
+            Application.Alert(value);
+            wsh = null;
+        }
+        catch (e) {
+            wsh = null;
+            Application.Alert(e);
+        }
+    }
+    testEnvFetch();
+  ]]>
+</MACRO>
+
+<MACRO name="Apply Revision Level" lang="JScript" key="Alt+Z">
+  <![CDATA[
+    function applyRevisionLevelHelper(selection, name, level) {
+        var count = 0;
+        var cursor = selection.Duplicate;
+        cursor.Collapse();
+        var moved = cursor.MoveToElement(name);
+        while (moved) {
+            if (selection.Contains(cursor)) {
+                count++;
+                var elem = cursor.ContainerNode;
+                elem.setAttribute("RevisionLevel", level);
+            }
+            moved = cursor.MoveToElement(name);
+        }
+        return count;
+    }
+    function applyRevisionLevel() {
+        try {
+            var level = cdrObj.chooseRevisionLevel();
+            var holdFlag = Selection.ReadOnlyContainer;
+            Selection.ReadOnlyContainer = false;
+            var sel = ActiveDocument.Range;
+            var count = applyRevisionLevelHelper(sel, "Insertion", level);
+            count += applyRevisionLevelHelper(sel, "Deletion", level);
+            Selection.ReadOnlyContainer = holdFlag;
+            var message = "Marked " + count + " element";
+            if (count != 1)
+                message += "s";
+            message += " as '" + level + "'.";
+            Application.Alert(message);
+        }
+        catch (e) {
+            Application.Alert(e);
+        }
+    }
+    applyRevisionLevel();
   ]]>
 </MACRO>
 

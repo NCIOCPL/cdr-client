@@ -963,11 +963,11 @@
   </Template>
   <Template>
    <Name>Insertion</Name>
-   <MiniTemplate><![CDATA[<Insertion RevisionLevel="approved"></Insertion>]]></MiniTemplate>
+   <MiniTemplate><![CDATA[<Insertion RevisionLevel="proposed"></Insertion>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Deletion</Name>
-   <MiniTemplate><![CDATA[<Deletion RevisionLevel="approved"></Deletion>]]></MiniTemplate>
+   <MiniTemplate><![CDATA[<Deletion RevisionLevel="proposed"></Deletion>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>ItemizedList</Name>

@@ -30,10 +30,14 @@ int main() {
     char ext[_MAX_EXT];
     char files[MAX_PATH];
     char script[MAX_PATH * 2];
+    char source[MAX_PATH];
+    char dest[MAX_PATH];
     DWORD n = GetModuleFileName(NULL, path, sizeof path);
     _splitpath(path, drive, dir, name, ext);
-    sprintf(files, "%s%sFiles", drive, dir);
-    sprintf(script, "\"%s\\setup.cmd\" %s", files, files);
-    system(script);
+    sprintf(source, "%s%sxmetal90.exe", drive, dir);
+    printf("%s\n", source);
+    //sprintf(files, "%s%sFiles", drive, dir);
+    //sprintf(script, "\"%s\\setup.cmd\" %s", files, files);
+    //system(script);
     return 0;
 }

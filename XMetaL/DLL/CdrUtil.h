@@ -1,5 +1,5 @@
 /*
- * $Id: CdrUtil.h,v 1.19 2009-01-22 22:35:17 bkline Exp $
+ * $Id$
  *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
@@ -11,7 +11,7 @@
 
 // Local headers.
 #include "stdafx.h"
-#include "xmetal4.h"
+#include "xmetal90.h"
 
 // System headers.
 #include <string>
@@ -23,9 +23,9 @@
 
 // Information used to populate the CdrDocCtl element.
 struct CdrDocCtrlInfo {
-	CString docType;
-	CString docId;
-	CString docTitle;
+    CString docType;
+    CString docId;
+    CString docTitle;
     bool    blocked;
     bool    readyForReview;
 };
@@ -45,10 +45,11 @@ class CdrSocket {
 public:
     static CString sendCommand(const CString& command, bool = false,
                                char* cmdBuf = NULL);
-	static void setSessionString(const CString& s) { sessionString = s; }
-	static bool loggedOn() { return !sessionString.IsEmpty(); }
+    static void setSessionString(const CString& s) { sessionString = s; }
+    static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }
     static const CString getHostName() { return hostName; }
+    static const CString getHostTier() { return hostTier; }
     static CString getShortHostName() {
         int dot = hostName.Find(TCHAR('.'));
         if (dot != -1 && !_istdigit(hostName[0]))
@@ -67,8 +68,9 @@ private:
         WSAData wsaData;
         static Init init;
     };
-	static CString sessionString;
+    static CString sessionString;
     static CString hostName;
+    static CString hostTier;
 };
 
 /**
@@ -155,12 +157,12 @@ namespace cdr {
 
     class SearchResult {
     public:
-        SearchResult(const CString& id, 
-                     const CString& type = _T(""), 
+        SearchResult(const CString& id,
+                     const CString& type = _T(""),
                      const CString& title = _T(""),
                      bool           grp = false,
                      const CString& cMemb = _T(""),
-                     const LinkInfoList& piList = LinkInfoList()) : 
+                     const LinkInfoList& piList = LinkInfoList()) :
                         docId(id),
                         docType(type),
                         docTitle(title),
@@ -173,7 +175,7 @@ namespace cdr {
         bool    isGroup()     const { return group; }
         CString getCoopMemb() const { return coopMembership; }
         const LinkInfoList& getPiList() const { return principalInvestigators; }
-        bool    operator==(const SearchResult& sr)  const 
+        bool    operator==(const SearchResult& sr)  const
             { return sr.docId == docId; }
     private:
         CString         docId;
@@ -239,7 +241,7 @@ namespace cdr {
     // Common utility functions.
     int fillListBox(CListBox& listBox, const DocSet& docSet);
     void extractSearchResults(const CString& xml, DocSet& docSet);
-	bool showErrors(const CString& msg);
+    bool showErrors(const CString& msg);
     bool showValidationErrors(ValidationErrors&);
     _Application getApp();
     CString getXmetalPath();
@@ -265,7 +267,7 @@ namespace cdr {
     CString fetchFromUrl(const CString&);
 }
 
-std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os, 
-									  DOMNode& node);
+std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
+                                      DOMNode& node);
 
 #endif

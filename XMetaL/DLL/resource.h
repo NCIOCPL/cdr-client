@@ -26,6 +26,7 @@
 #define IDD_LINK_EDIT_DIALOG            206
 #define IDC_BUTTON1                     207
 #define IDD_SCHEMA_PICKLIST             207
+#define IDC_RADIO4                      207
 #define IDC_COMBO1                      208
 #define IDD_LOGON_PROGRESS              208
 #define IDC_CHECK1                      209
@@ -54,6 +55,7 @@
 #define IDC_LINK_TITLE_LABEL            222
 #define IDD_COMMENT                     222
 #define IDD_COMMENT_DIALOG              222
+#define IDD_REVISION_LEVEL              223
 #define IDC_TEXT_MESSAGE                224
 #define IDC_SUCCESS_ICON                225
 #define IDC_GLOSSIFY_SKIP_FIRST         226
@@ -79,7 +81,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        223
+#define _APS_NEXT_RESOURCE_VALUE        224
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         244
 #define _APS_NEXT_SYMED_VALUE           104

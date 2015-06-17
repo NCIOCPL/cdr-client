@@ -13,8 +13,8 @@
 const TCHAR* TAG_NAME = _T("GlossaryTermRef");
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
-CGlossify::CGlossify(CWnd* pParent /*=NULL*/)
-	: CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0)
+CGlossify::CGlossify(bool dig, CWnd* pParent /*=NULL*/)
+    : CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0), m_dig(dig)
 {
     _Application app = cdr::getApp();
     doc = app.GetActiveDocument();
@@ -107,6 +107,25 @@ void CGlossify::OnMarkup()
     }
 }
 
+/**
+ * Added for JIRA ticket OCECDR-3815. Exercises option
+ * to dig through the layers of Insertion and Deletion
+ * elements to find what would otherwise be top-level
+ * SummarySection elements.
+ */
+void CGlossify::keepDigging(::DOMNode& node, ::_Document& doc) {
+    ::DOMNode c = node.GetFirstChild();
+    while (c) {
+	CString nodeName = c.GetNodeName();
+	if (nodeName == _T("SummarySection"))
+	    chains.push_back(WordChain(c, doc));
+	else if (nodeName == _T("Insertion") ||
+		 nodeName == _T("Deletion"))
+	    keepDigging(c, doc);
+	c = c.GetNextSibling();
+    }
+}
+
 void CGlossify::findChains(DOMNode& docElem)
 {
     _Document doc = cdr::getApp().GetActiveDocument();
@@ -115,13 +134,19 @@ void CGlossify::findChains(DOMNode& docElem)
         if (docType == _T("Summary")) {
             ::DOMNode c = docElem.GetFirstChild();
             while (c) {
-                if (c.GetNodeName() == _T("SummarySection"))
+		CString nodeName = c.GetNodeName();
+                if (nodeName == _T("SummarySection"))
                     chains.push_back(WordChain(c, doc));
+		else if (m_dig) {
+		    if (nodeName == _T("Insertion") ||
+			nodeName == _T("Deletion"))
+		    keepDigging(c, doc);
+		}
                 c = c.GetNextSibling();
             }
         }
-        else if (docType == _T("InScopeProtocol") || 
-                 docType == _T("ScientificProtocolInfo")) 
+        else if (docType == _T("InScopeProtocol") ||
+                 docType == _T("ScientificProtocolInfo"))
         {
             ::DOMNode c = docElem.GetFirstChild();
             while (c) {
@@ -150,7 +175,6 @@ void CGlossify::findChains(DOMNode& docElem)
     catch (...) {}
     doc.SetFormattingUpdating(TRUE);
 }
-        
 
 // For debugging.
 extern void logWrite(const CString& what);
@@ -177,13 +201,12 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
     ::Find find = range.GetFind();
     range.SelectBeforeNode(node);
     end.SelectAfterNode(node);
-    while (find.Execute(_T("[^-\n\r\t ]+"), _T(""), _T(""), 
-                        TRUE, FALSE, TRUE, TRUE, FALSE, 0, FALSE)) 
+    while (find.Execute(_T("[^-\n\r\t ]+"), _T(""), _T(""),
+                        TRUE, FALSE, TRUE, TRUE, FALSE, 0, FALSE))
     {
         if (!range.GetIsLessThan(end, FALSE))
             break;
         CString s = normalizeWord(range.GetText());
-        
         if (!s.IsEmpty()) {
             ::Range r = range.GetDuplicate();
             Word w = Word(r, s);
@@ -251,13 +274,13 @@ bool CGlossify::findNextMatch()
 
 				// Position the range object to include the phrase.
                 Word& firstWord = chain->words[chain->curWord];
-                Word& lastWord  = chain->words[chain->curWord + 
+                Word& lastWord  = chain->words[chain->curWord +
                                                phrase.size() - 1];
                 range = firstWord.r.GetDuplicate();
                 bool glossifiable = true;
                 if (!range.ExtendTo(lastWord.r))
                     glossifiable = false;
-                
+
                 // Make sure the phrase can be marked up.
                 if (glossifiable && !range.GetCanSurround(TAG_NAME))
                     glossifiable = false;
@@ -288,7 +311,7 @@ bool CGlossify::findNextMatch()
                         m_phrase.SetWindowText(phraseText);
                         m_markup.SetWindowText(cdrId);
                         range.Select();
-                        
+
                         // Skip past the current phrase.
                         chain->curWord += phrase.size();
                         curNode = n;

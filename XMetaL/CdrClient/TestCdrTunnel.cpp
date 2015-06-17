@@ -40,7 +40,7 @@ CString send_command(const CString& cmd, const CString& server) {
     DWORD length = ascii.GetLength();
     BOOL success = FALSE;
     INTERNET_PORT port = 443;
-    const TCHAR* target = _T("/cgi-bin/cdr/https-tunnel.py");
+    const TCHAR* target = _T("/cgi-bin/cdr/https-tunnel.ashx");
     headers.Format(_T("Content-type: application/xml; charset=utf-8\n"));
     DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
     conn = session.GetHttpConnection(server, port);
@@ -66,7 +66,7 @@ CString send_command(const CString& cmd, const CString& server) {
 	err.Format(_T("HTTP status code from server: %lu"), result);
 	throw err;
     }
-    char buf[1024];
+    static char buf[1024 * 1024];
     UINT nread = file->Read(buf, sizeof buf);
     while (nread > 0) {
 	response += CString(buf, (int)nread);

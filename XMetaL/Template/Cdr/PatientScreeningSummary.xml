@@ -93,7 +93,7 @@
          be at risk should discuss this with their doctor. Risk factors 
          for x cancer include the following: 
          <Comment>Take from treatment summary</Comment></Para>
-   <ItemizedList Compact="No" Style="bullet">
+   <ItemizedList Style="bullet">
     <ListItem><?xm-replace_text {
          Enter risk factor
          }?></ListItem>

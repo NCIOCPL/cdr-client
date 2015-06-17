@@ -35,6 +35,9 @@
 #define PROD_GROUP       _T("PRODUCTION")
 #define TEST_GROUP       _T("TEST")
 #define DEV_GROUP        _T("DEV")
+#define CLREFR           _T("/cgi-bin/cdr/ClientRefresh.py")
+#define TUNNELING        1
+#define XM90_SUPPORTED   1
 
 /*
  * Forward references.
@@ -162,8 +165,9 @@ public:
     virtual BOOL InitInstance();
 
     // XMetaL version we're running.
-    typedef enum { XM45 = 45, XM70 = 70 } XMVER;
+    typedef enum { XM45 = 45, XM70 = 70, XM90 = 90 } XMVER;
     XMVER xmver;
+    CString sendHttpCommand(const CString& cmd, const TCHAR* target = CLREFR);
 
 private:
     // Implementation.
@@ -178,7 +182,6 @@ private:
     void cleanOutOlderVersions();
     void getNewFiles(const std::string&, CdrProgressDlg&);
     void deleteFiles(const CString&, const std::set<CString>&);
-    CString sendHttpCommand(const CString& cmd);
     CString extractSessionId(const CString& xmlString);
     CString httpServer;
     CString cdrServer;

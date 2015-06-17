@@ -644,7 +644,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\VersionList.cpp">
 			</File>
 			<File
-				RelativePath=".\xmetal4.cpp">
+				RelativePath=".\xmetal90.cpp">
 			</File>
 		</Filter>
 		<Filter
@@ -723,7 +723,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\VersionList.h">
 			</File>
 			<File
-				RelativePath=".\xmetal4.h">
+				RelativePath=".\xmetal90.h">
 			</File>
 		</Filter>
 		<Filter
