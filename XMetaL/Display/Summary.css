@@ -183,6 +183,8 @@ SectMetaData,
 SectionType,
 SummaryAudience, 
 SummaryDescription,
+SummaryKeyWord,
+SummaryKeyWords,
 SummaryLanguage, 
 SummaryMetaData, 
 SummaryModuleLink,
@@ -212,6 +214,8 @@ SummaryDescription,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
+SummaryKeyWord,
+SummaryKeyWords,
 MainTopics > Term,
 SecondaryTopics > Term
     { font-weight: bold; }
@@ -250,8 +254,11 @@ PdqKey               :before { content: "PDQ Key &: "; }
 PurposeText          :before { content: "Purpose Text &: "; }
 ReplacementFor       :before { content: "Replacement for & @: "; }
 SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
+SummaryAbstract      :before { content: "Summary Abstract &: "; }
 SummaryAudience      :before { content: "Summary Audience *: "; }
 SummaryDescription   :before { content: "Summary Descr *: "; }
+SummaryKeyWords      :before { content: "SUMMARY KEYWORDS &"; }
+SummaryKeyWord       :before { content: "Keyword &: "; }
 SummaryLanguage      :before { content: "Summary Language *: "; }
 SummaryModuleLink    :before { content: "Summary Module &: "; }
 SummaryType          :before { content: "Summary Type *: "; }
@@ -312,6 +319,8 @@ SummaryAudience              :before,
 SummaryDescription           :before,
 SummaryLanguage              :before,
 SummaryType                  :before, 
+SummaryKeyWord               :before,
+SummaryAbstract              :before,
 SummaryURL                   :before
     { font-weight: bold;
       font-size: 12pt;
@@ -339,6 +348,7 @@ BoardMember,
     { margin-left: 1em; }
 
 PDQBoard,
+SummaryKeyWords
     { margin-top: 1em; 
       margin-bottom: 1em;  }
 
@@ -857,8 +867,10 @@ MobileURL                    :before,
 PDQBoard,
 PurposeText                  :before,
 SummaryMetaData,
+SummaryAbstract              :before,
 SummaryAudience              :before,
 SummaryDescription           :before,
+SummaryKeyWord               :before,
 SummaryLanguage              :before,
 SummaryType                  :before,
 SummaryURL                   :before,
@@ -883,9 +895,12 @@ MediaID                      :before,
 MobileURL,
 PurposeText,
 SummaryAudience,
+SummaryAbstract > Para,
 SummaryDescription,
+SummaryKeyWord,
 SummaryLanguage,
 SummaryType,
+SummaryAbstract,
 SummaryURL,
 MainTopics>Term,
 SecondaryTopics>Term,
@@ -933,6 +948,9 @@ SummaryAudience,
 SummaryDescription,    
                   { margin-left: 135pt;
                     text-indent: -107pt; }
+SummaryKeyWord,    
+                  { margin-left: 135pt;
+                    text-indent: -80pt; }
 SummaryLanguage,    
                   { margin-left: 135pt; 
                     text-indent: -131pt;}
@@ -975,8 +993,10 @@ EnteredBy,
 MobileURL,
 PurposeText,
 SummaryAudience,
+SummaryAbstract,
 SummaryDescription,
 SummaryLanguage,
+SummaryKeyWord,
 SummaryType,
 SummaryURL,
 MainTopics>Term,

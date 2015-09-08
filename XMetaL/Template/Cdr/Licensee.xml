@@ -107,25 +107,11 @@
    </ContactDetail>
    </ContactPerson>
  </ContactPersons>
- <ApplicationInformation>
-   <DistributionMethods>
-     <DistributionMethod><?xm-replace_text {
-         Select one or more of the distribution methods (required)
-         }?></DistributionMethod>
-   </DistributionMethods>
-   <Audiences>
-     <Audience><?xm-replace_text {
-         Select one or more of the audiences (required)
-         }?></Audience>
-   </Audiences>
- </ApplicationInformation>
  <FtpInformation>
     <UserName><?xm-replace_text {
        Enter the organization's user name
        }?></UserName>
-    <Password><?xm-replace_text {
-       Enter the password
-       }?></Password>
+    <Password>NA</Password>
     <AccountBlocked>No</AccountBlocked>
  </FtpInformation>
  <DateLastModified><?xm-replace_text {

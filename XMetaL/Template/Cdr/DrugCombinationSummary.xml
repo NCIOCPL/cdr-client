@@ -17,7 +17,7 @@
          The drugs in the combination are listed, and links to individual 
          drug summaries are included.
   </Description>
-  <URL>http://www.cancer.gov/cancertopics/druginfo/<?xm-replace_text {
+  <URL>http://www.cancer.gov/about-cancer/treatment/drugs/<?xm-replace_text {
          Enter the DCS regimen
          }?></URL>
   <Audience>Patients</Audience>

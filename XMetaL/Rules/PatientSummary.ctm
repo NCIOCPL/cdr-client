@@ -56,21 +56,25 @@
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>
-    <ElementProperties>
-      <Name>CdrDocCtl</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <NewLineBeforeEndTag/>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>City</Name>
-      <PrettyPrintOptions>
-        <NewLineBeforeStartTag/>
-        <IndentContent/>
-      </PrettyPrintOptions>
-    </ElementProperties>
+  <ElementProperties>
+    <Name>CdrDocCtl</Name>
+    <PrettyPrintOptions>
+      <NewLineBeforeStartTag/>
+      <NewLineBeforeEndTag/>
+      <IndentContent/>
+    </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CitationLink</Name>
+   <TagColor>#3399FF</TagColor>
+  </ElementProperties>
+  <ElementProperties>
+    <Name>City</Name>
+    <PrettyPrintOptions>
+      <NewLineBeforeStartTag/>
+      <IndentContent/>
+    </PrettyPrintOptions>
+  </ElementProperties>
     <ElementProperties>
       <Name>Country</Name>
       <PrettyPrintOptions>

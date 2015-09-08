@@ -16,7 +16,7 @@
          and a collection of links to more information about the use of 
          this drug, research results, and ongoing clinical trials.
   </Description>
-  <URL>http://www.cancer.gov/cancertopics/druginfo/<?xm-replace_text {
+  <URL>http://www.cancer.gov/about-cancer/treatment/drugs/<?xm-replace_text {
          Enter the drug name
          }?></URL>
   <Audience>Patients</Audience>
@@ -39,8 +39,7 @@
   <Para><?xm-replace_text {
          Enter the Drug name
          }?>
-         is approved 
-         to treat:</Para>                          
+         is approved to treat:</Para>                          
   <ItemizedList Style="bullet">
    <ListItem><?xm-replace_text {
          Enter list item

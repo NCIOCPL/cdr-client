@@ -12,13 +12,129 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>CTGovOwnerOrganization</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferContactLog</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferContactResponse</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferDate</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CTGovOwnershipTransferInfo</Name>
+   <TagColor>CCCC00</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Date</Name>
+   <TagColor>FF6600</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>EnteredBy</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>FundingInfo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>GrantContractNo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>IDString</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>IDType</Name>
+   <TagColor>CC6633</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Intervention</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>InterventionNameLink</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>InterventionType</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>NCT_Alias</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>NIHGrantContract</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>NIHGrantContractType</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>OtherGrantContractInfo</Name>
+   <TagColor>FF9966</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>OtherID</Name>
+   <TagColor>CC6633</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -75,92 +191,8 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
-   <Name>IDString</Name>
-   <TagColor>CC6633</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>IDType</Name>
-   <TagColor>CC6633</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>OtherID</Name>
-   <TagColor>CC6633</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>FundingInfo</Name>
-   <TagColor>FF9966</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>NIHGrantContract</Name>
-   <TagColor>FF9966</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>NIHGrantContractType</Name>
-   <TagColor>FF9966</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>GrantContractNo</Name>
-   <TagColor>FF9966</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>OtherGrantContractInfo</Name>
-   <TagColor>FF9966</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>CTGovOwnershipTransferContactLog</Name>
-   <TagColor>FF6600</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>CTGovOwnershipTransferContactResponse</Name>
-   <TagColor>FF6600</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>Date</Name>
-   <TagColor>FF6600</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>CTGovOwnershipTransferInfo</Name>
-   <TagColor>CCCC00</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>CTGovOwnerOrganization</Name>
-   <TagColor>CCCC00</TagColor>
+   <Name>ProtocolSpecialCategory</Name>
+   <TagColor>FFCC99</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -168,20 +200,6 @@
   <ElementProperties>
    <Name>PRSUserName</Name>
    <TagColor>CCCC00</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>CTGovOwnershipTransferDate</Name>
-   <TagColor>CCCC00</TagColor>
-   <PrettyPrintOptions>
-    <NewLineBeforeStartTag/>
-   </PrettyPrintOptions>
-  </ElementProperties>
-  <ElementProperties>
-   <Name>ProtocolSpecialCategory</Name>
-   <TagColor>FFCC99</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -307,6 +325,29 @@
             Enter the protocol ID string (required)
             }?></IDString>]]></MiniTemplate>
   </Template>
+   <Template>
+    <Name>Intervention</Name>
+    <MiniTemplate><![CDATA[<Intervention>
+     <InterventionType><?xm-replace_text {
+      Optionally link to a term describing the type of intervention
+      }?></InterventionType>
+     <InterventionNameLink><?xm-replace_text {
+      Optionally link to a term naming the specific intervention
+      }?></InterventionNameLink>
+     </Intervention>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>InterventionType</Name>
+    <MiniTemplate><![CDATA[<InterventionType><?xm-replace_text {
+     Optionally link to a term describing the type of intervention
+     }?></InterventionType>]]></MiniTemplate>
+   </Template>
+   <Template>
+    <Name>InterventionNameLink</Name>
+    <MiniTemplate><![CDATA[<InterventionNameLink><?xm-replace_text {
+     Optionally link to a term naming the specific intervention
+     }?></InterventionNameLink>]]></MiniTemplate>
+   </Template>
   <Template>                                                                  
    <Name>NCT_Alias</Name>                                                    
     <MiniTemplate>

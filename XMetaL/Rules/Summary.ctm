@@ -58,6 +58,10 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>CitationLink</Name>
+   <TagColor>#CCCCFF</TagColor>
+  </ElementProperties>
+  <ElementProperties>
    <Name>City</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -646,6 +650,12 @@
    <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text {
                    Optional alternate title
                    }?></AltTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CitationLink</Name>
+   <MiniTemplate><![CDATA[<CitationLink><?xm-replace_text {
+                   CitationLink
+                   }?></CitationLink>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Diagnosis</Name>
