@@ -37,7 +37,6 @@
 #define DEV_GROUP        _T("DEV")
 #define CLREFR           _T("/cgi-bin/cdr/ClientRefresh.py")
 #define TUNNELING        1
-#define XM90_SUPPORTED   1
 
 /*
  * Forward references.
@@ -181,7 +180,8 @@ private:
     void logOptions();
     void cleanOutOlderVersions();
     void getNewFiles(const std::string&, CdrProgressDlg&);
-    void deleteFiles(const CString&, const std::set<CString>&);
+    void deleteFiles(const CString&);
+    void deleteRlxFiles(const CString&);
     CString extractSessionId(const CString& xmlString);
     CString httpServer;
     CString cdrServer;
@@ -221,6 +221,7 @@ struct Ticket {
     CString timestamp;
     CString host;
     CString author;
+    CString checksum;
 };
 
 /*
@@ -232,6 +233,9 @@ struct File {
     File(CComPtr<IXMLDOMNode>&);
     CString name;
     CString timestamp;
+    CString checksum;
+    CString getChecksum() const;
+    bool skipValidation() const;
 };
 
 /*
@@ -250,9 +254,11 @@ struct File {
  *      Timestamp [date-time]
  *      Host [string]
  *      Author [string]
+ *      Checksum
  *    FileList
  *      File [multiple]
  *        Name
+ *        Checksum
  *        Timestamp
  */
 struct Manifest {

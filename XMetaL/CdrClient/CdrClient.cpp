@@ -14,12 +14,20 @@
 #include <algorithm>
 #include <winsock.h>
 #include <wininet.h>
+#include <wincrypt.h>
 #include <atlenc.h>
 #include <direct.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+// For checksum support (OCECDR-4006)
+#ifndef BUFSIZE
+#define BUFSIZE (BUFSIZ * 16)
+#endif
+#define MD5LEN 16
+#define STILL_SUPPORTING_TIMESTAMPS 1
 
 /*
  * Wrapper class for CDR client commands.  This program only uses
@@ -259,11 +267,8 @@ CdrClient::CdrClient() : loaderReplaced(false),
 
     // Default XMetaL version is what we used before we
     // started putting our client files in the user's
-    // private area of the file system.  Investigations
-    // into the feasibility of upgrading to 7.0 has been
-    // deferred.
+    // private area of the file system.
     xmver = XM45;
-#ifdef XM90_SUPPORTED
     TCHAR buf[256];
     TCHAR* temp = _tgetcwd(buf, sizeof buf / sizeof buf[0]);
     if (!temp) {
@@ -279,7 +284,6 @@ CdrClient::CdrClient() : loaderReplaced(false),
         else if (cwd.Find(_T("9.0")) >= 0)
             xmver = XM90;
     }
-#endif
 }
 
 /*
@@ -866,51 +870,60 @@ CString extractErrorString(CComPtr<IXMLDOMNode>& node) {
  * types, even though the file timestamps for the DTDs are more recent
  * than the dates on XMetaL's compiled RLX files for these DTDs.  Sometimes
  * XMetaL ignores our changes; at other times XMetaL simply crashes.  We
- * eliminate these problems by clearing out XMetaL's compiled RLX files
- * for our own document types (but we leave the RLX files for their own
- * document types intact).
+ * eliminate these problems by clearing out XMetaL's compiled RLX files.
  */
 void CdrClient::clearCaches() {
 
-    // Files we want to retain (none for media).
-    std::set<CString> mediaKeepers;
-    std::set<CString> rlxKeepers;
-    rlxKeepers.insert(_T("MACROS.RLX"));
-    rlxKeepers.insert(_T("TBR.RLX"));
-    rlxKeepers.insert(_T("XMETAL.RLX"));
-    rlxKeepers.insert(_T("CTM.RLX"));
-    rlxKeepers.insert(_T("JOURNALIST.RLX"));
-    rlxKeepers.insert(_T("MEETING.RLX"));
-    rlxKeepers.insert(_T("OPENRULESET.RLX"));
-
     log(_T("Clearing out unwanted cached and compiled files.\n"), 1);
-    deleteFiles(_T(".\\Cdr\\Media\\*"), mediaKeepers);
-    deleteFiles(_T(".\\Rules\\*.rlx"),  rlxKeepers);
+    deleteFiles(_T(".\\Cdr\\Media\\*"));
+    deleteRlxFiles(_T("."));
+}
+
+/*
+ * Modified workaround to cope with the fact that our original workaround
+ * was broken when XMetaL changed the location where it wrote the compiled
+ * RLX files. This version is recursive.
+ */
+void CdrClient::deleteRlxFiles(const CString& where) {
+    CString pattern(where);
+    pattern += _T("\\*.*");
+    CFileFind finder;
+    BOOL more = finder.FindFile(pattern);
+    while (more) {
+        more = finder.FindNextFile();
+        if (!finder.IsDots()) {
+            CString path = finder.GetFilePath();
+            if (finder.IsDirectory())
+                deleteRlxFiles(path);
+            else if (!path.Right(4).CompareNoCase(_T(".rlx"))) {
+                try {
+                    CFile::Remove(path);
+                }
+                catch (...) {
+                    log(_T("Failure removing " + path + _T("\n")));
+                }
+            }
+        }
+    }
 }
 
 /*
  * Helper method invoked by clearCaches() with common code to find
- * all files whose pathnames match a string pattern, and delete any
- * which don't appear on a list of exceptions which we're supposed
- * to keep.
+ * all files whose pathnames match a string pattern, and delete them.
  */
-void CdrClient::deleteFiles(const CString& pattern,
-                            const std::set<CString>& exceptions) {
+void CdrClient::deleteFiles(const CString& pattern) {
     CFileFind fileFinder;
     BOOL more = fileFinder.FindFile(pattern);
     while (more) {
         more = fileFinder.FindNextFile();
-        CString fileName = fileFinder.GetFileName();
-        if (fileName == _T(".") || fileName == _T(".."))
-            continue;
-        if (exceptions.find(fileName.MakeUpper()) != exceptions.end())
-            continue;
-        CString filePath = fileFinder.GetFilePath();
-        try {
-            CFile::Remove(filePath);
-        }
-        catch (...) {
-            log(_T("Failure removing ") + filePath + _T("\n"));
+        if (!fileFinder.IsDots()) {
+            CString filePath = fileFinder.GetFilePath();
+            try {
+                CFile::Remove(filePath);
+            }
+            catch (...) {
+                log(_T("Failure removing ") + filePath + _T("\n"));
+            }
         }
     }
 }
@@ -1187,6 +1200,8 @@ Ticket::Ticket(CComPtr<IXMLDOMNode>& node) {
             host = getTextContent(child);
         else if (nodeName == _T("Author"))
             author = getTextContent(child);
+        else if (nodeName == _T("Checksum"))
+            checksum = getTextContent(child);
         child = getNextSibling(child);
     }
 }
@@ -1203,8 +1218,116 @@ File::File(CComPtr<IXMLDOMNode>& node) {
             name = getTextContent(child);
         else if (nodeName == _T("Timestamp"))
             timestamp = getTextContent(child);
+        else if (nodeName == _T("Checksum"))
+            checksum = getTextContent(child);
         child = getNextSibling(child);
     }
+}
+
+/*
+ * Get the MD5 checksum for this file. We're calculating the value
+ * from the bytes on the user's disk, rather than returning the
+ * value we got for the file from the manifest, to which we'll
+ * compare the return value from this method.
+ */
+CString File::getChecksum() const {
+
+    // Return value for failure.
+    CString err;
+
+    // Open the file for reading.
+    HANDLE h = ::CreateFile((LPCTSTR)name, GENERIC_READ, FILE_SHARE_READ, NULL,
+                            OPEN_EXISTING, FILE_FLAG_SEQUENTIAL_SCAN, 0);
+    if (!h) {
+        err.Format(_T("failure getting checksum for %s"), name);
+        return err;
+    }
+
+    // Get a handle for the cryptography provider.
+    HCRYPTPROV p = 0;
+    if (!::CryptAcquireContext(&p, 0, 0, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT)) {
+        ::CloseHandle(h);
+        err.Format(_T("failure getting cryptography provider for %s"), name);
+        return err;
+    }
+
+    // Create a hash for the checksum.
+    HCRYPTHASH hash = 0;
+    if (!::CryptCreateHash(p, CALG_MD5, 0, 0, &hash)) {
+        ::CryptReleaseContext(p, 0);
+        ::CloseHandle(h);
+        err.Format(_T("failure creating hash for %s"), name);
+        return err;
+    }
+
+    // Read the file.
+    BOOL ok = FALSE;
+    BYTE buffer[BUFSIZE];
+    DWORD count = 0;
+    while ((ok = ReadFile(h, buffer, BUFSIZE, &count, NULL)) == TRUE) {
+        if (count == 0)
+            break;
+        if (!CryptHashData(hash, buffer, count, 0)) {
+            ::CryptReleaseContext(p, 0);
+            ::CryptDestroyHash(hash);
+            ::CloseHandle(h);
+            err.Format(_T("unable to hash data for %s"), name);
+            return err;
+        }
+    }
+    ::CloseHandle(h);
+
+    // Check for failure reading the file.
+    if (!ok) {
+        ::CryptReleaseContext(p, 0);
+        ::CryptDestroyHash(hash);
+        err.Format(_T("failure reading %s"), name);
+        return err;
+    }
+
+    // Extract the bytes from the hash.
+    BYTE hash_bytes[MD5LEN];
+    count = MD5LEN;
+    ok = CryptGetHashParam(hash, HP_HASHVAL, hash_bytes, &count, 0);
+    ::CryptReleaseContext(p, 0);
+    ::CryptDestroyHash(hash);
+    if (!ok) {
+        err.Format(_T("failure extracting checksum for %s"), name);
+        return err;
+    }
+
+    // Assemble the string representation for the hash.
+    const TCHAR digits[] = _T("0123456789abcdef");
+    CString md5;
+    for (DWORD i = 0; i < count; ++i) {
+        md5 += digits[hash_bytes[i] >> 4];
+        md5 += digits[hash_bytes[i] & 0xf];
+    }
+    return md5;
+}
+
+/*
+ * Determine whether we can bypass the check whether this file has been
+ * changed. We don't check the relaunch script, because that's deleted
+ * after a one-time use. The manifest file is already checked using its
+ * Ticket block. The builds of this program have their build time
+ * embedded in their names, so if a new build is sent it will have a
+ * different name. We check everything else.
+ */
+bool File::skipValidation() const {
+    CString relaunchScript = CString(RELAUNCH_SCRIPT).MakeLower();
+    CString manifestFile = CString(MANIFEST_FILE).MakeLower();
+    CString lowerName(name);
+    lowerName.MakeLower();
+    if (lowerName.Find(relaunchScript) != -1)
+        return true;
+    if (lowerName.Find(manifestFile) != -1)
+        return true;
+    if (lowerName.Find(_T("cdrclient-20")) != -1) {
+        if (lowerName.Find(_T(".exe")) != -1)
+            return true;
+    }
+    return false;
 }
 
 /*
@@ -1220,38 +1343,51 @@ File::File(CComPtr<IXMLDOMNode>& node) {
  * of the CdrClient::runAgain() method.
  *
  * 2014-02-10: Modified to skip check of CdrClient-<timestamp>.exe.
+ * 2015-12-07: Use checksums instead of timestamps (OCECDR-4006).
  */
 CString Manifest::validate(CdrClient* client) {
     std::vector<File>::const_iterator file = fileList.begin();
-    CString relaunchScript = CString(RELAUNCH_SCRIPT).MakeLower();
     while (file != fileList.end()) {
-        CString lowerName = file->name;
-        lowerName.MakeLower();
-        if (lowerName.Find(relaunchScript) == -1) {
-            if (lowerName.Find(_T("cdrclient-20")) != -1) {
-                if (lowerName.Find(_T(".exe")) != -1) {
-                    ++file;
-                    continue;
+        if (!file->skipValidation()) {
+#ifdef STILL_SUPPORTING_TIMESTAMPS
+            if (!file->checksum.IsEmpty()) {
+#endif
+                CString clientChecksum = file->getChecksum();
+                if (clientChecksum != file->checksum) {
+                    client->log(_T("Client ") + file->name + _T(": ") +
+                                clientChecksum + _T("\n"), 1);
+                    client->log(_T("Server ") + file->name + _T(": ") +
+                                file->checksum + _T("\n"), 1);
+                    CString msg;
+                    msg.Format(_T("%s: checksum mismatch"), file->name);
+                    AfxMessageBox(msg);
+                    return file->name + _T(" mismatch");
+                }
+#ifdef STILL_SUPPORTING_TIMESTAMPS
+            }
+
+            else {
+
+                CString clientTimestamp;
+                try {
+                    clientTimestamp = getFileTimestamp(file->name);
+                }
+                catch (const CString err) {
+                    return err;
+                }
+                if (clientTimestamp != file->timestamp) {
+                    client->log(_T("Client ") + file->name + _T(": ") +
+                                clientTimestamp + _T("\n"), 1);
+                    client->log(_T("Server ") + file->name + _T(": ") +
+                                file->timestamp + _T("\n"), 1);
+                    CString msg;
+                    msg.Format(_T("%s: local stamp = %s; server stamp = %s"),
+                               file->name, clientTimestamp, file->timestamp);
+                    AfxMessageBox(msg);
+                    return file->name + _T(" mismatch");
                 }
             }
-            CString clientTimestamp;
-            try {
-                clientTimestamp = getFileTimestamp(file->name);
-            }
-            catch (const CString err) {
-                return err;
-            }
-            if (clientTimestamp != file->timestamp) {
-                client->log(_T("Client ") + file->name + _T(": ") +
-                            clientTimestamp + _T("\n"), 1);
-                client->log(_T("Server ") + file->name + _T(": ") +
-                            file->timestamp + _T("\n"), 1);
-                CString msg;
-                msg.Format(_T("%s: local stamp = %s; server stamp = %s"),
-                    file->name, clientTimestamp, file->timestamp);
-                AfxMessageBox(msg);
-                return file->name + _T(" mismatch");
-            }
+#endif
         }
         ++file;
     }
@@ -1261,9 +1397,9 @@ CString Manifest::validate(CdrClient* client) {
 /*
  * Finds the local copy of a file on the disk and obtains its
  * data/time stamp for last modification.  Returns a string
- * representing the UTF date/time for the stamp.  Throws a
- * string-based exception if the file cannot be found or the
- * timestamp cannot be obtained.
+ * representing the UTF date/time for the stamp.  Returns a
+ * string describing the error if the file cannot be found or
+ * the timestamp cannot be obtained.
  */
 CString getFileTimestamp(const CString& name) {
     HANDLE h = ::CreateFile((LPCTSTR)name, GENERIC_READ, 0, NULL,
@@ -1654,7 +1790,6 @@ void CdrClient::launchClient() {
 
     // If we're running a later version of XMetaL than the one
     // most users are running, swap in a DLL to match.
-#ifdef XM90_SUPPORTED
     if (xmver == XM90 && !_waccess(_T(".\\CDR\\cdr.xm9"), 0)) {
         log(_T("Swapping in DLL for XMetaL 9.0\n"));
         BOOL success = CopyFileA("CDR\\Cdr.xm9", "CDR\\Cdr.dll", FALSE);
@@ -1669,8 +1804,6 @@ void CdrClient::launchClient() {
         if (!success)
             throw _T("Failure swapping DLL for XMetaL 4.5");
     }
-
-#endif
 
     // If we have the tool which supports registration of the DLL
     // without requiring administrative privileges, use it instead
@@ -1705,7 +1838,6 @@ void CdrClient::launchClient() {
  * RMK 2014-04-12: JIRA ticket OCECDR-3749 has been created to
  * resume the work on investigating the feasibility of upgrading
  * the XMetaL client to the latest version, which is now 9.0.
- * The defined constant XM70_SUPPORTED is now XM90_SUPPORTED.
  */
 CString findXmetalProgram(CdrClient* client) {
     client->log(_T("Top of findXmetalProgram\n"), 3);
