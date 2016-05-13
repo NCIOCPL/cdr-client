@@ -207,10 +207,10 @@ private:
  * entire manifest file.  Since in most cases, no such changes have
  * occurred, this saves significant time and network bandwidth.  The
  * header records the name of the machine on which the manifest was
- * created, the date and time it was created, who ran the program
- * to create it, and what application was used to create it.  Only
- * the host name and manifest timestamp are used in the determination
- * of whether changes have taken place since the client's copy of
+ * created, a cumulative checksum for the client files, who ran the
+ * program to create it, and what application was used to create it.
+ * Only the host name and manifest checksum are used in the determina-
+ * tion of whether changes have taken place since the client's copy of
  * the manifest was created.  See comment below for Manifest type
  * for the header's XML structure.
  */
@@ -218,21 +218,18 @@ struct Ticket {
     Ticket(CComPtr<IXMLDOMNode>&);
     Ticket() {}
     CString application;
-    CString timestamp;
     CString host;
     CString author;
     CString checksum;
 };
 
 /*
- * Records the pathname and timestamp for last modification of one of
- * the files listed in the manifest.  See comment below for Manifest
- * type for the XML structure.
+ * Records the pathname and checksum for one of the files listed in
+ * the manifest.
  */
 struct File {
     File(CComPtr<IXMLDOMNode>&);
     CString name;
-    CString timestamp;
     CString checksum;
     CString getChecksum() const;
     bool skipValidation() const;
@@ -251,15 +248,13 @@ struct File {
  *  Manifest
  *    Ticket
  *      Application [string]
- *      Timestamp [date-time]
  *      Host [string]
  *      Author [string]
- *      Checksum
+ *      Checksum [string]
  *    FileList
  *      File [multiple]
- *        Name
- *        Checksum
- *        Timestamp
+ *        Name [string]
+ *        Checksum [string]
  */
 struct Manifest {
     Manifest(CComPtr<IXMLDOMDocument>&);

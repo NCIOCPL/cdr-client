@@ -558,6 +558,18 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>PMID</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>SummaryKeyWord</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>TranslationOf</Name>
    <TagColor>purple</TagColor>
    <PrettyPrintOptions>
@@ -761,6 +773,18 @@
    <MiniTemplate><![CDATA[<PdqKey><?xm-replace_text {
                    PDQ Key
                    }?></PdqKey>]]></MiniTemplate>
+  </Template>
+   <Template>
+   <Name>PMID</Name>
+   <MiniTemplate><![CDATA[<PMID><?xm-replace_text {
+                   Optionally enter the PMID
+                   }?></PMID>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>SummaryKeyWord</Name>
+   <MiniTemplate><![CDATA[<SummaryKeyWord><?xm-replace_text {
+                   Optionally enter a keyword
+                   }?></SummaryKeyWord>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Intervention</Name>

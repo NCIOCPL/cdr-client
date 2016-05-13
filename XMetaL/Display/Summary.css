@@ -176,6 +176,7 @@ MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */, 
+PMID, 
 PurposeText,
 ReplacementFor,
 SecondaryTopics, 
@@ -207,6 +208,7 @@ WillReplace,
 Board,
 BoardMember,
 MobileURL,
+PMID,
 PurposeText,
 SummaryAudience,
 SummaryBoard,
@@ -251,13 +253,14 @@ MediaID              :before { content: "Media ID: "; }
 MobileURL            :before { content: "Mobile URL & @: "; }
 PatientVersionOf     :before { content: "Patient Version of & @: "; }
 PdqKey               :before { content: "PDQ Key &: "; }
+PMID                   :before { content: "PMID &: "; }
 PurposeText          :before { content: "Purpose Text &: "; }
 ReplacementFor       :before { content: "Replacement for & @: "; }
 SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
 SummaryAbstract      :before { content: "Summary Abstract &: "; }
 SummaryAudience      :before { content: "Summary Audience *: "; }
 SummaryDescription   :before { content: "Summary Descr *: "; }
-SummaryKeyWords      :before { content: "SUMMARY KEYWORDS &"; }
+SummaryKeyWords      :before { content: "Summary Keywords &"; }
 SummaryKeyWord       :before { content: "Keyword &: "; }
 SummaryLanguage      :before { content: "Summary Language *: "; }
 SummaryModuleLink    :before { content: "Summary Module &: "; }
@@ -285,14 +288,13 @@ DateLastModified,
 ComprehensiveReviewDate,
 WillReplace
                            { margin-left:  135pt; }
-/*TypeOfSummaryChange,*/
-
+SummaryAbstract>Para,
 TranslationOf              { text-indent: -114pt; } 
 PatientVersionOf           { text-indent: -136.5pt; } 
 ReplacementFor             { text-indent: -129pt; } 
 DateLastModified           { text-indent:  -97pt; } 
 ComprehensiveReviewDate    { text-indent: -119pt; } 
-/*TypeOfSummaryChange        { text-indent: -120pt; }*/
+SummaryAbstract>Para        { text-indent: 0pt; }
 WillReplace                { text-indent: -105pt; }
 
 /***************************************************************************/ 
@@ -315,6 +317,7 @@ SummaryMetaData,
     { font-size: 12pt; }
 
 MobileURL                    :before,
+PMID              			  :before, 
 SummaryAudience              :before, 
 SummaryDescription           :before,
 SummaryLanguage              :before,
@@ -393,11 +396,18 @@ PdqKey                       :before,
 TranslationOf                :before,
 WillReplace                  :before,
      { font-weight: bold;
-       color: purple; } 
+       color: purple; }
 
 PdqKey,
      { margin-bottom: 10pt;  }
 
+PMID,
+     { margin-bottom: 10pt;  }
+
+SummaryAbstract>Para, 
+     { margin-left: 20pt;
+       margin-bottom: .5em; }
+	   
 SummaryModuleLink
      { font-weight: bold;
        margin-bottom: 10pt;
@@ -865,6 +875,7 @@ Date                         :before,
 EnteredBy                    :before,
 MobileURL                    :before,
 PDQBoard,
+PMID				     :before,
 PurposeText                  :before,
 SummaryMetaData,
 SummaryAbstract              :before,
@@ -893,6 +904,7 @@ Date,
 EnteredBy,
 MediaID                      :before,
 MobileURL,
+PMID,
 PurposeText,
 SummaryAudience,
 SummaryAbstract > Para,
@@ -939,17 +951,25 @@ EnteredBy
 MobileURL,    
                   { margin-left: 135pt;
                     text-indent: -101pt; }
+
+PMID
+                  { margin-left: 87pt; 
+                    text-indent: -2pt;}
 PurposeText
-                  { margin-left: 135pt; 
+				   { margin-left: 135pt; 
                     text-indent: -97pt;}
+					
+SummaryAbstract  	  { margin-left: 155pt; 
+                    text-indent: 95pt;}
+							
 SummaryAudience,    
-                  { margin-left: 135pt; 
-                    text-indent: -127.5pt;}
+                  { margin-left: 88pt; 
+                    text-indent: -80pt;}
 SummaryDescription,    
                   { margin-left: 135pt;
                     text-indent: -107pt; }
 SummaryKeyWord,    
-                  { margin-left: 135pt;
+                  { margin-left: 145pt;
                     text-indent: -80pt; }
 SummaryLanguage,    
                   { margin-left: 135pt; 
@@ -991,6 +1011,7 @@ TypeOfSummaryChange > Comment,
 Date,
 EnteredBy,
 MobileURL,
+PMID,
 PurposeText,
 SummaryAudience,
 SummaryAbstract,
@@ -1010,6 +1031,7 @@ ComprehensiveReviewDate,
 DateLastModified,
 PatientVersionOf,
 PdqKey,
+PMID,
 SummaryType,
 TranslationOf,
 ReplacementFor,

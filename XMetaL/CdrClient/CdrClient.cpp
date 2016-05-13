@@ -27,7 +27,6 @@
 #define BUFSIZE (BUFSIZ * 16)
 #endif
 #define MD5LEN 16
-#define STILL_SUPPORTING_TIMESTAMPS 1
 
 /*
  * Wrapper class for CDR client commands.  This program only uses
@@ -236,7 +235,6 @@ static CComPtr<IXMLDOMNode> getFirstChild(CComPtr<IXMLDOMNode>& node);
 static CComPtr<IXMLDOMNode> getNextSibling(CComPtr<IXMLDOMNode>& node);
 static CString getNodeName(CComPtr<IXMLDOMNode>& node);
 static CString getTextContent(CComPtr<IXMLDOMNode>& element);
-static CString getFileTimestamp(const CString& name);
 static CString getAttribute(CComPtr<IXMLDOMNode>& elem, const TCHAR* name);
 static CString extractErrorString(CComPtr<IXMLDOMNode>& node);
 static CString findXmetalProgram(CdrClient*);
@@ -934,9 +932,9 @@ void CdrClient::deleteFiles(const CString& pattern) {
  * up to date.  This is accomplished by communicating via the network
  * with a server which has a set of the current version of all of
  * these files, as well as a list of all of those files (the "Manifest")
- * with pathname and timestamp for each file, as well as a header (called
+ * with pathname and checksum for each file, as well as a header (called
  * a "Ticket" below) identifying the server on which the manifest was
- * generated, as well as the date and time of this generation.
+ * generated, as well as a cumulative checksum for the client files.
  *
  * The first time this program connects to the client refresh server,
  * it sends a stub version of the manifest to the server, asking it
@@ -948,13 +946,13 @@ void CdrClient::deleteFiles(const CString& pattern) {
  * the client refresh server if any changes have been made to the file
  * set since the previous session.  It does this by extracting the
  * header ("Ticket") from the stored manifest document and sending it
- * to the server.  If the server name and timestamp match those in
+ * to the server.  If the server name and checksum match those in
  * the server's copy of the manifest, the response "<Current>Y</Current>"
  * is returned to the client, and no further work needs to be done.
  *
  * In the event that we detect tampering with the local client files
  * (we check to ensure that all of the files in our local copy of the
- * manifest are present, with timestamps which match those in the
+ * manifest are present, with checksums which match those in the
  * manifest exactly), then we discard the manifest and get a complete
  * new set, as if this were the first time we had connected to the
  * server.  A possible side effect is that the client might retain
@@ -1194,8 +1192,6 @@ Ticket::Ticket(CComPtr<IXMLDOMNode>& node) {
         CString nodeName = getNodeName(child);
         if (nodeName == _T("Application"))
             application = getTextContent(child);
-        else if (nodeName == _T("Timestamp"))
-            timestamp = getTextContent(child);
         else if (nodeName == _T("Host"))
             host = getTextContent(child);
         else if (nodeName == _T("Author"))
@@ -1207,7 +1203,7 @@ Ticket::Ticket(CComPtr<IXMLDOMNode>& node) {
 }
 
 /*
- * Extract the pathname and timestamp for a single node in the manifest's
+ * Extract the pathname and checksum for a single node in the manifest's
  * fileList vector.
  */
 File::File(CComPtr<IXMLDOMNode>& node) {
@@ -1216,8 +1212,6 @@ File::File(CComPtr<IXMLDOMNode>& node) {
         CString nodeName = getNodeName(child);
         if (nodeName == _T("Name"))
             name = getTextContent(child);
-        else if (nodeName == _T("Timestamp"))
-            timestamp = getTextContent(child);
         else if (nodeName == _T("Checksum"))
             checksum = getTextContent(child);
         child = getNextSibling(child);
@@ -1332,7 +1326,7 @@ bool File::skipValidation() const {
 
 /*
  * Compares the manifest with the files on the local disk, making sure
- * they're all present and have matching timestamps.  Returns an empty
+ * they're all present and have matching checksums.  Returns an empty
  * string if there are no discrepancies; otherwise returns a string
  * identifying the first mismatch or missing file detected.  We don't
  * bother checking the script to invoke ourselves a second time, because
@@ -1349,86 +1343,21 @@ CString Manifest::validate(CdrClient* client) {
     std::vector<File>::const_iterator file = fileList.begin();
     while (file != fileList.end()) {
         if (!file->skipValidation()) {
-#ifdef STILL_SUPPORTING_TIMESTAMPS
-            if (!file->checksum.IsEmpty()) {
-#endif
-                CString clientChecksum = file->getChecksum();
-                if (clientChecksum != file->checksum) {
-                    client->log(_T("Client ") + file->name + _T(": ") +
-                                clientChecksum + _T("\n"), 1);
-                    client->log(_T("Server ") + file->name + _T(": ") +
-                                file->checksum + _T("\n"), 1);
-                    CString msg;
-                    msg.Format(_T("%s: checksum mismatch"), file->name);
-                    AfxMessageBox(msg);
-                    return file->name + _T(" mismatch");
-                }
-#ifdef STILL_SUPPORTING_TIMESTAMPS
+            CString clientChecksum = file->getChecksum();
+            if (clientChecksum != file->checksum) {
+                client->log(_T("Client ") + file->name + _T(": ") +
+                            clientChecksum + _T("\n"), 1);
+                client->log(_T("Server ") + file->name + _T(": ") +
+                            file->checksum + _T("\n"), 1);
+                CString msg;
+                msg.Format(_T("%s: checksum mismatch"), file->name);
+                AfxMessageBox(msg);
+                return file->name + _T(" mismatch");
             }
-
-            else {
-
-                CString clientTimestamp;
-                try {
-                    clientTimestamp = getFileTimestamp(file->name);
-                }
-                catch (const CString err) {
-                    return err;
-                }
-                if (clientTimestamp != file->timestamp) {
-                    client->log(_T("Client ") + file->name + _T(": ") +
-                                clientTimestamp + _T("\n"), 1);
-                    client->log(_T("Server ") + file->name + _T(": ") +
-                                file->timestamp + _T("\n"), 1);
-                    CString msg;
-                    msg.Format(_T("%s: local stamp = %s; server stamp = %s"),
-                               file->name, clientTimestamp, file->timestamp);
-                    AfxMessageBox(msg);
-                    return file->name + _T(" mismatch");
-                }
-            }
-#endif
         }
         ++file;
     }
     return _T("");
-}
-
-/*
- * Finds the local copy of a file on the disk and obtains its
- * data/time stamp for last modification.  Returns a string
- * representing the UTF date/time for the stamp.  Returns a
- * string describing the error if the file cannot be found or
- * the timestamp cannot be obtained.
- */
-CString getFileTimestamp(const CString& name) {
-    HANDLE h = ::CreateFile((LPCTSTR)name, GENERIC_READ, 0, NULL,
-                            OPEN_EXISTING, 0, 0);
-    if (!h) {
-        CString err;
-        err.Format(_T("failure getting timestamp for %s"), name);
-        return err;
-    }
-    FILETIME cre, acc, wri;
-    if (!::GetFileTime(h, &cre, &acc, &wri)) {
-        CString err;
-        err.Format(_T("unable to get timestamp for %s"), name);
-        ::CloseHandle(h);
-        return err;
-    }
-    ::CloseHandle(h);
-    SYSTEMTIME s;
-    if (!::FileTimeToSystemTime(&wri, &s)) {
-        CString err;
-        err.Format(_T("failure converting filetime to system time for %s"),
-                   name);
-        return err;
-    }
-    CString result;
-    result.Format(_T("%04d-%02d-%02dT%02d:%02d:%02d"),
-                  s.wYear, s.wMonth, s.wDay,
-                  s.wHour, s.wMinute, s.wSecond);
-    return result;
 }
 
 /*
@@ -1714,21 +1643,13 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
  *       eliminated by the error-correction facilities provided by
  *       TCP/IP, over which the connections communicate.
  *
- *   (5) Operating system bugs in reporting of file timestamps.  The
- *       predecessor of this program was susceptible to the most
- *       notorious of these bugs in Windows, which reported different
- *       values depending on whether the client and server were
- *       on different sides of a daylight-saving time boundary.
- *       This program avoids that bug by storing file timestamps
- *       as a standard ISO representation of the UTC string for
- *       the timestamp, which is unaffected by local time changes,
- *       including those for daylight savings time.  Another problem
- *       in this category is caused by the discrepancy in older
- *       versions of Windows, which returned timestamp values with
- *       insufficient granularity, resulting in discrepancies in
- *       representations of the same timestamp.  This problem is
- *       currently addressed by client requirements for minimum
- *       operating system versions.
+ *   (5) Bugs in the libraries for calculating checksums. So far we
+ *       haven't yet encountered such bugs.
+ *
+ * In the past, bugs in how the operating system reported file time
+ * stamps also caused bogus discrepancies. This class of problem has
+ * been eliminated by switching from the use of checksums for detecting
+ * file changes.
  *
  * The zipfile is saved in the current working directory under the
  * name CdrClientFiles.zip.  The output from the command to unpack

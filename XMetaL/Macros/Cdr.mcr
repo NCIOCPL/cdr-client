@@ -3,6 +3,8 @@
 <!--
      $Id$
 
+     Javascript macros implementing customized behavior of XMetaL for the CDR.
+     
      BZIssue::4716
      BZIssue::4767
      BZIssue::4822
@@ -335,6 +337,34 @@
                 child = child.nextSibling;
             }
         }
+    }
+
+    /*
+     * Set selected attributes in selection to a new value.
+     */
+    function setNewAttrVal(selection, e_name, a_name, a_val) {
+        var count = 0;
+        var cursor = selection.Duplicate;
+        cursor.Collapse();
+        var moved = cursor.MoveToElement(e_name);
+        while (moved) {
+            if (selection.Contains(cursor)) {
+                count++;
+                var elem = cursor.ContainerNode;
+                elem.setAttribute(a_name, a_val);
+            }
+            moved = cursor.MoveToElement(e_name);
+        }
+        return count;
+    }
+
+    /*
+     * Set selected attributes in selection's revision markup elements
+     * to a new value.
+     */
+    function setRevMarkupAttrs(selection, name, val) {
+        return setNewAttrVal(selection, "Insertion", name, val) +
+               setNewAttrVal(selection, "Deletion", name, val);
     }
 
     /*
@@ -1167,8 +1197,15 @@
                                     "Spanish Link ID Swap");
         }
     }
-    if (!isReadOnly)
+    if (!isReadOnly) {
         Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
+
+        // OCECDR-3958
+        Application.AppendMacro("Set Source to Advisory Board",
+                                "Set Source to Advisory Board");
+        Application.AppendMacro("Set Source to Editorial Board",
+                                "Set Source to Editorial Board");
+    }
   ]]>
 </MACRO>
 
@@ -9145,31 +9182,15 @@
   ]]>
 </MACRO>
 
-<MACRO name="Apply Revision Level" lang="JScript" key="Alt+Z">
+<MACRO name="Apply Revision Level" lang="JScript">
   <![CDATA[
-    function applyRevisionLevelHelper(selection, name, level) {
-        var count = 0;
-        var cursor = selection.Duplicate;
-        cursor.Collapse();
-        var moved = cursor.MoveToElement(name);
-        while (moved) {
-            if (selection.Contains(cursor)) {
-                count++;
-                var elem = cursor.ContainerNode;
-                elem.setAttribute("RevisionLevel", level);
-            }
-            moved = cursor.MoveToElement(name);
-        }
-        return count;
-    }
     function applyRevisionLevel() {
         try {
             var level = cdrObj.chooseRevisionLevel();
             var holdFlag = Selection.ReadOnlyContainer;
             Selection.ReadOnlyContainer = false;
             var sel = ActiveDocument.Range;
-            var count = applyRevisionLevelHelper(sel, "Insertion", level);
-            count += applyRevisionLevelHelper(sel, "Deletion", level);
+            var count = setRevMarkupAttrs(sel, "RevisionLevel", level);
             Selection.ReadOnlyContainer = holdFlag;
             var message = "Marked " + count + " element";
             if (count != 1)
@@ -9182,6 +9203,54 @@
         }
     }
     applyRevisionLevel();
+  ]]>
+</MACRO>
+
+<MACRO name="Set Source to Advisory Board" lang="JScript">
+  <![CDATA[
+    function setSourceToAdvisoryBoard() {
+        try {
+            var holdFlag = Selection.ReadOnlyContainer;
+            Selection.ReadOnlyContainer = false;
+            var sel = ActiveDocument.Range;
+            var count = setRevMarkupAttrs(sel, "Source", "advisory-board");
+            Selection.ReadOnlyContainer = holdFlag;
+            var message = "Set Source to 'advisory-board' for " + count
+                        + " element";
+            if (count != 1)
+                message += "s";
+            message += ".";
+            Application.Alert(message);
+        }
+        catch (e) {
+            Application.Alert(e);
+        }
+    }
+    setSourceToAdvisoryBoard();
+  ]]>
+</MACRO>
+
+<MACRO name="Set Source to Editorial Board" lang="JScript">
+  <![CDATA[
+    function setSourceToEditorialBoard() {
+        try {
+            var holdFlag = Selection.ReadOnlyContainer;
+            Selection.ReadOnlyContainer = false;
+            var sel = ActiveDocument.Range;
+            var count = setRevMarkupAttrs(sel, "Source", "editorial-board");
+            Selection.ReadOnlyContainer = holdFlag;
+            var message = "Set Source to 'editorial-board' for " + count
+                        + " element";
+            if (count != 1)
+                message += "s";
+            message += ".";
+            Application.Alert(message);
+        }
+        catch (e) {
+            Application.Alert(e);
+        }
+    }
+    setSourceToEditorialBoard();
   ]]>
 </MACRO>
 

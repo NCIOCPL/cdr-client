@@ -1,85 +1,68 @@
 <?xml version="1.0"?>
 <!DOCTYPE Organization SYSTEM "Organization.dtd">
 <Organization xmlns:cdr="cips.nci.nih.gov/cdr"> 
-  <CdrDocCtl> 
-     <DocId><?xm-replace_text {The document ID will be assigned automatically} ?></DocId>
-     <DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>
-     </CdrDocCtl> 
-  <OrganizationNameInformation> 
-     <OfficialName> 
-         <Name><?xm-replace_text {Enter the official name of this organization (required)} ?></Name>
-         </OfficialName> 
-     <ShortName> 
-         <Name><?xm-replace_text {Optionally enter an abbreviation or short name for this organization } ?></Name>
-         </ShortName> 
-     <AlternateName><?xm-replace_text {Optionally enter another name for this organization } ?></AlternateName>
-     <FormerName><?xm-replace_text {Optionally enter a previous name for this organization } ?></FormerName>
-     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
-  </OrganizationNameInformation> 
-  <OrganizationParent>
-<ParentOrganization><?xm-replace_text {Optionally select a link to the parent organization} ?></ParentOrganization>
-<Comment><?xm-replace_text {Optionally enter a comment} ?></Comment>
-</OrganizationParent> 
-  <OrganizationDetails> 
-     
-     <OrganizationAdministrativeInformation Directory="Treatment"> 
-         <IncludeInDirectory><?xm-replace_text {Select an inclusion instruction (required)} ?></IncludeInDirectory>
-         <Date><?xm-replace_text {Enter the directory inclusion date (required)} ?></Date>
-     
-     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment></OrganizationAdministrativeInformation> 
-     
-     
-  </OrganizationDetails> 
-  <OrganizationLocations> 
-     <OrganizationLocation> 
-         <Location> 
-             <PostalAddress AddressType="US"> 
-             <Street><?xm-replace_text {Optionally enter a street address line} ?></Street>
-             <City><?xm-replace_text {Optionally enter a city name} ?></City> 
-               
-             <PoliticalSubUnit_State><?xm-replace_text {Optionally select a subunit/state link} ?></PoliticalSubUnit_State>
-             <Country><?xm-replace_text {Select a country link (required)} ?></Country>
-             <PostalCode_ZIP><?xm-replace_text {Optionally enter the postal, mail, or zip code} ?></PostalCode_ZIP>
-             </PostalAddress> 
-         <Phone><?xm-replace_text {Optionally enter a phone number} ?></Phone> 
-         <TollFreePhone><?xm-replace_text {Optionally enter a toll-free phone number} ?></TollFreePhone>
-         <Fax><?xm-replace_text {Optionally enter a fax number} ?></Fax> 
-         <Email><?xm-replace_text {Optionally enter an e-mail address} ?></Email>
-         <WebSite><?xm-replace_text {Optionally enter a Web site address} ?></WebSite>
-         </Location> 
-     </OrganizationLocation> 
-   <ClinicalTrialsOfficeContact>
-    <ClinicalTrialsOfficeContactName><?xm-replace_text {Optionally enter a contact name } ?></ClinicalTrialsOfficeContactName>
-    <ClinicalTrialsOfficeContactPhone><?xm-replace_text {Enter a phone number (required) } ?></ClinicalTrialsOfficeContactPhone>
-    <ClinicalTrialsOfficeContactEmail><?xm-replace_text {Optionally enter an email address } ?></ClinicalTrialsOfficeContactEmail>
-   </ClinicalTrialsOfficeContact>
-     <CIPSContact><?xm-replace_text {Enter the cdr:id attribute value of any Location to identify this organization's CIPS address and phone information} ?></CIPSContact><Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
-  </OrganizationLocations> 
-  <OrganizationAffiliations> 
-     <ResearchBaseFor><?xm-replace_text {Optionally select an organization link} ?></ResearchBaseFor>
-     <MemberOfProfessionalOrganization><?xm-replace_text {Optionally select an organization} ?></MemberOfProfessionalOrganization>
-     <MemberOfCooperativeGroups> 
-         <MainMemberOf> 
-             <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
-         <ProtocolParticipation>Yes</ProtocolParticipation>
-         </MainMemberOf> 
-         <AffiliateMemberOf> 
-         <CooperativeGroup><?xm-replace_text {Select an organization link (required)} ?></CooperativeGroup>
-         <MainMember><?xm-replace_text {Optionally select an organization link} ?></MainMember>
-         <ProtocolParticipation><?xm-replace_text {Select Yes or No (required)} ?></ProtocolParticipation>
-         </AffiliateMemberOf> 
-     </MemberOfCooperativeGroups> 
-     <MemberOfCCOP CCOPMemberType="Component"> 
-     <CCOP><?xm-replace_text {Optionally select an organization link} ?></CCOP>
-     </MemberOfCCOP> 
-     
-     </OrganizationAffiliations> 
-  <Status> 
-     <CurrentStatus>Active</CurrentStatus>
-     <Comment><?xm-replace_text {Optionally enter a comment} ?></Comment> 
-  </Status> 
-  <OrganizationType><?xm-replace_text {Select a type for this organization (required)} ?></OrganizationType>
-  <ProtocolIDAcronym><?xm-replace_text {Optionally enter an acronym used to identify this organization in a protocol } ?></ProtocolIDAcronym>
-  
- <DateLastModified><?xm-replace_text {Optionally enter the date of the last record modification} ?></DateLastModified>
+ <CdrDocCtl> 
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl> 
+ <OrganizationNameInformation> 
+  <OfficialName> 
+   <Name><?xm-replace_text {
+         Enter the official name of this organization (required)
+         }?></Name>
+  </OfficialName> 
+ </OrganizationNameInformation> 
+
+ <OrganizationDetails> 
+  <OrganizationAdministrativeInformation Directory="Treatment"> 
+   <IncludeInDirectory><?xm-replace_text {
+         Select an inclusion instruction (required)
+         }?></IncludeInDirectory>
+   <Date><?xm-replace_text {
+         Enter the directory inclusion date (required)
+         }?></Date>
+   <Comment><?xm-replace_text {
+         Optionally enter a comment
+         }?></Comment>
+  </OrganizationAdministrativeInformation> 
+ </OrganizationDetails> 
+
+ <OrganizationLocations> 
+  <OrganizationLocation> 
+   <Location> 
+    <PostalAddress AddressType="US"> 
+     <Street><?xm-replace_text {
+         Optionally enter a street address line
+         }?></Street>
+     <City><?xm-replace_text {
+         Optionally enter a city name
+         }?></City> 
+     <PoliticalSubUnit_State><?xm-replace_text {
+         Optionally select a subunit/state link
+         }?></PoliticalSubUnit_State>
+     <Country cdr:ref="CDR0000043753">U.S.A.</Country>
+     <PostalCode_ZIP><?xm-replace_text {
+         Optionally enter the postal, mail, or zip code
+         }?></PostalCode_ZIP>
+    </PostalAddress> 
+   </Location> 
+  </OrganizationLocation> 
+
+  <CIPSContact><?xm-replace_text {
+         Enter the cdr:id attribute value of any Location to identify 
+         this organization's CIPS address and phone information
+         }?></CIPSContact>
+ </OrganizationLocations> 
+
+ <Status> 
+  <CurrentStatus>Active</CurrentStatus>
+ </Status> 
+ <OrganizationType>Community hospital/medical center/clinic</OrganizationType>
+ <DateLastModified><?xm-replace_text {
+         Optionally enter the date of the last record modification
+         }?></DateLastModified>
 </Organization>

@@ -17,12 +17,6 @@
 #include <fstream>
 #include <afxinet.h>
 
-// Implement our own command to show an HTML page.
-// #define SHOW_PAGE_WITH_DDE /* Use ActiveX Automation instead. */
-#ifdef SHOW_PAGE_WITH_DDE
-#include <ddeml.h>
-#endif
-
 // Use HTTPS instead of CDR custom port (2019).
 #define TUNNELING
 
@@ -1171,73 +1165,21 @@ CString cdr::expandLeadingZeros(const CString& s) {
 
 // Implement our own command to show an HTML page
 // (SoftQuad's version has bugs).
-#ifdef SHOW_PAGE_WITH_DDE
-static HDDEDATA ddeCallback(UINT type, UINT fmt, HCONV conv,
-                            HSZ str1, HSZ str2,
-                            HDDEDATA data, DWORD data1, DWORD data2) {
-    return NULL;
-}
-
-int cdr::showPage(const CString& url) {
-    // Initial assumptions about where the browser is.
-    const char* ie  = "c:\\Program Files\\Internet Explorer\\IEXPLORE.EXE";
-    const char* app = ie;
-
-    // Put together the DDE command.
-    std::string cmdStr = "\"" + cStringToUtf8(url) + "\",,-1,,,,,";
-    const char* cmd = cmdStr.c_str();
-    size_t len = strlen(cmd) + 1;
-
-    // Prepare the DDE variables.
-    DWORD instance = 0;
-    HCONV conv     = 0;
-    DWORD flags    = APPCLASS_STANDARD | APPCMD_CLIENTONLY;
-
-    // Initialize DDE.
-    UINT rc = DdeInitialize(&instance, (PFNCALLBACK)&ddeCallback, flags, 0);
-    if (rc != DMLERR_NO_ERROR)
-        return EXIT_FAILURE;
-
-    // Connect to the service.
-    HSZ service = DdeCreateStringHandle(instance, L"IExplore", 0);
-    HSZ topic   = DdeCreateStringHandle(instance, L"WWW_OpenURL", 0);
-    conv = DdeConnect(instance, service, topic, NULL);
-    if (!conv) {
-        WinExec(app, SW_SHOWMINNOACTIVE);
-        conv = DdeConnect(instance, service, topic, NULL);
-    }
-
-    // Clean up.
-    DdeFreeStringHandle(instance, service);
-    DdeFreeStringHandle(instance, topic);
-
-    // Bring up the URL.
-    if (conv) {
-        DWORD dummy = 0;
-        LPBYTE vCmd = (LPBYTE)cmd;
-        DdeClientTransaction(vCmd, len, conv, 0, 0, XTYP_EXECUTE, 2000, &dummy);
-        DdeDisconnect(conv);
-        return EXIT_SUCCESS;
-    }
-    else
-        return EXIT_FAILURE;
-}
-
-#else
-
 // This version uses ActiveX Automation instead of DDE,
 // to get around a bug in Internet Explorer's DDE code.
 int cdr::showPage(const CString& url) {
     COleDispatchDriver ie;
     COleException* pe = new COleException;
     try {
-    if (!ie.CreateDispatch(_T("InternetExplorer.Application"), pe)) {
-        DWORD error = ::GetLastError();
-        TCHAR buf[256];
-        swprintf(buf, _T("CreateDisplatch: Unable to launch Internet Explorer (%ld)"), error);
-        ::AfxMessageBox(buf, MB_ICONEXCLAMATION);
-        throw pe;
-    }
+        if (!ie.CreateDispatch(_T("InternetExplorer.Application"), pe)) {
+            DWORD error = ::GetLastError();
+            TCHAR buf[256];
+            swprintf(buf,
+               _T("CreateDisplatch: Unable to launch Internet Explorer (%ld)"),
+               error);
+            ::AfxMessageBox(buf, MB_ICONEXCLAMATION);
+            throw pe;
+        }
     }
     catch (COleDispatchException* pExc) {
         CString s;
@@ -1247,13 +1189,15 @@ int cdr::showPage(const CString& url) {
             s += pExc->m_strDescription;
         else
             s += _T("unknown error");
-        ::AfxMessageBox(s, MB_OK, pExc->m_strHelpFile.IsEmpty() ? 0 : pExc->m_dwHelpContext);
+        ::AfxMessageBox(s, MB_OK, pExc->m_strHelpFile.IsEmpty() ? 0
+                        : pExc->m_dwHelpContext);
         pExc->Delete();
         return EXIT_FAILURE;
     }
     catch (CException* e) {
         TCHAR b[256];
-        swprintf(b, _T("%S(%d): OLE Exception caught: SCODE = %x"), __FILE__, __LINE__, COleException::Process(e));
+        swprintf(b, _T("%S(%d): OLE Exception caught: SCODE = %x"),
+                 __FILE__, __LINE__, COleException::Process(e));
         ::AfxMessageBox(b, MB_OK);
         e->Delete();
         return EXIT_FAILURE;
@@ -1275,7 +1219,6 @@ int cdr::showPage(const CString& url) {
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
     return EXIT_SUCCESS;
 }
-#endif
 
 // For debugging.
 void logWrite(const CString& what) {

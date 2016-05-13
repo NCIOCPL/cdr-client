@@ -143,6 +143,7 @@ MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
+PMID,
 PurposeText,
 QandADiv,
 QandAEntry,
@@ -151,8 +152,12 @@ ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
+SummaryAbstract,
+SummaryAbstract>Paragraph,
 SummaryAudience,
 SummaryDescription,
+SummaryKeyWords,
+SummaryKeyWords>SummaryKeyWord,
 SummaryLanguage,
 SummaryMetaData,
 SummaryModuleLink,
@@ -202,6 +207,7 @@ SummarySection>SummarySection>Para
 PatientVersionOf                  :before { content: "Patient Version Of "; }
 PDQBoard                          :before { content: "PDQ Board "; }
 PdqKey                            :before { content: "PDQ Key "; }
+PMID                                :before { content: "PMID "; }
 PurposeText                       :before { content: "Purpose Text"; }
 QandASet                          :before { content: "Q&A Section "; }
 QandADiv                          :before { content: "Q&A Sub-Section "; }
@@ -213,8 +219,12 @@ SectMetaData                      :before { content: "Section Metadata "; }
 SectionType                       :before { content: "Section Type "; }
 Summary                           :before { content: "SUMMARY "; }
 SummaryID                         :before { content: "Summary ID "; }
+SummaryAbstract                  :before { content: "Summary Abstract "; }
+SummaryAbstract>Para                 :before { content: "Paragraph "; }
 SummaryAudience                   :before { content: "Summary Audience "; }
 SummaryDescription                :before { content: "Summary Description "; }
+SummaryKeyWords      		:before { content: "Summary Keywords "; }
+SummaryKeyWord       		:before { content: "Keyword "; }
 SummaryLanguage                   :before { content: "Summary Language "; }
 SummaryMetaData                   :before { content: "SUMMARY METADATA "; }
 SummaryModuleLink                 :before { content: "Summary Module "; }
@@ -296,10 +306,13 @@ BoardMember                       :before,
 MainTopics                        :before,
 MobileURL                         :before,
 PDQBoard                          :before,
+PMID					   :before,
 PurposeText                       :before,
 SecondaryTopics                   :before,
+SummaryAbstract		   :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
+SummaryKeyWords			:before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
@@ -327,8 +340,10 @@ Intervention                      :before,
 MobileURL                         :before,
 PatientVersionOf                  :before,
 PdqKey                            :before,
+PMID                                :before,
 PurposeText                       :before,
 SectionType                       :before,
+SummaryAbstract		   :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
 SummaryLanguage                   :before,
@@ -356,6 +371,8 @@ DateLastModified                  :before,
 KeyPoint                          :before,
 MediaID                           :before,
 PatientVersionOf                  :before,
+SummaryAbstract>Para               :before,
+SummaryKeyWords>SummaryKeyWord :before,
 SummarySection>Para               :before,
 SummarySection>SummarySection>Para:before,
 Title                             :before,
@@ -406,13 +423,16 @@ MobileURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
+PMID,
 PurposeText,
 ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
+SummaryAbstract,
 SummaryAudience,
 SummaryDescription,
+SummaryKeyWords>SummaryKeyWord,
 SummaryLanguage,
 SummaryMetaData,
 SummaryModuleLink,
@@ -452,9 +472,14 @@ TypeOfSummaryChange > Comment     :before,
 Date                              :before,
 EnteredBy                         :before,
 MobileURL                         :before,
+PMID					   :before,
 PurposeText                       :before,
+SummaryAbstract			:before,
+SummaryAbstract>Para		:before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
+SummaryKeyWords			:before,
+SummaryKeyWords>SummaryKeyWord :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
@@ -465,8 +490,7 @@ TypeOfSummaryChange               :before,
 TypeOfSummaryChangeValue          :before,
 User                              :before
     { background-color: white; }
-
-
+	
 Board,
 BoardMember,
 Caption,
@@ -480,11 +504,16 @@ MainTopics>Term,
 MediaID,
 MobileURL,
 PatientVersionOf,
+PMID,
 PurposeText,
 ReplacementFor,
 SecondaryTopics>Term,
+SummaryAbstract,
+SummaryAbstract>Para,
 SummaryAudience,
 SummaryDescription,
+SummaryKeyWords,
+SummaryKeyWords>SummaryKeyWord,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
@@ -495,4 +524,5 @@ TypeOfSummaryChangeValue,
 User,
 WillReplace
     { text-indent: 0pt; }
+	
 

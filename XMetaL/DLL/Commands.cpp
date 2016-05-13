@@ -1485,10 +1485,13 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
                                                               _T("DocTitle"));
         if (titleElem) {
             docTitle = titleElem.getString();
+            CString titleStart = docTitle.Left(15); // OCECDR-3914
+            if (titleStart.GetLength() < docTitle.GetLength())
+                titleStart += L'\x2026';
             retrievedDocTitle.Format(_T("CDR%u%s%s - %s"), docNo,
                                      (LPCTSTR)verPart,
-                                     checkOut ? _T("") : _T(" [READ ONLY]"),
-                                     (LPCTSTR)cdr::decode(docTitle));
+                                     checkOut ? _T("") : _T(" [RO]"),
+                                     (LPCTSTR)cdr::decode(titleStart));
         }
         cdr::Element statusElem = cdr::Element::extractElement(cdrDoc,
                                                  _T("DocActiveStatus"));
@@ -1548,8 +1551,8 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
         try {
             _Document doc = docs.Open((LPCTSTR)docPath, 1);
             if (doc) {
-                CString tier = CdrSocket::getHostTier();
-                doc.SetTitle(_T("[") + tier + _T("] ") +
+                //CString tier = CdrSocket::getHostTier();
+                doc.SetTitle(//_T("[") + tier + _T("] ") +
                              retrievedDocTitle);
                 return true;
             }
