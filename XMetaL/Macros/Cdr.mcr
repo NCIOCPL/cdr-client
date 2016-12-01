@@ -1,10 +1,8 @@
 <?xml version="1.0"?>
 
 <!--
-     $Id$
-
      Javascript macros implementing customized behavior of XMetaL for the CDR.
-     
+
      BZIssue::4716
      BZIssue::4767
      BZIssue::4822
@@ -5558,7 +5556,7 @@
        id="2022">
   <![CDATA[
     function searchPubMed() {
-        var url = "http://www.ncbi.nlm.nih.gov/entrez/";
+        var url = "https://www.ncbi.nlm.nih.gov/entrez/";
         cdrObj.showPage(url);
     }
     searchPubMed();
@@ -6154,7 +6152,7 @@
        lang="JScript">
   <![CDATA[
     function searchPubMed() {
-        var url = "http://www.ncbi.nlm.nih.gov/entrez/";
+        var url = "https://www.ncbi.nlm.nih.gov/entrez/";
         cdrObj.showPage(url);
     }
     searchPubMed();
