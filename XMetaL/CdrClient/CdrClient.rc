@@ -247,7 +247,7 @@ IDB_BITMAP1             BITMAP                  "res\\bitmap1.bmp"
 // RT_MANIFEST
 //
 
-IDR_MANIFEST            RT_MANIFEST             "res\\CdrClient.manifest"
+// IDR_MANIFEST            RT_MANIFEST             "res\\CdrClient.manifest"
 
 /////////////////////////////////////////////////////////////////////////////
 //

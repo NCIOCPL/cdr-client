@@ -1,8 +1,5 @@
 /*
- * $Id$
- *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
- *
  * BZIssue::4767
  */
 
@@ -16,9 +13,13 @@
 #include <set>
 #include <fstream>
 #include <afxinet.h>
+#include <afxole.h>
 
 // Use HTTPS instead of CDR custom port (2019).
 #define TUNNELING
+
+// How patient we should be for launching IE (in milliseconds).
+#define MESSAGE_PENDING_DELAY 20000
 
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
@@ -487,6 +488,13 @@ _Application cdr::getApp()
 {
     debugLogWrite(_T("Top of getApp()"), _T("rmk"));
     _Application app;
+    CWinApp* win_app = ::AfxGetApp();
+    if (!win_app->m_pMessageFilter) {
+        win_app->m_pMessageFilter = new COleMessageFilter();
+        win_app->m_pMessageFilter->Register();
+    }
+    //win_app->m_pMessageFilter->EnableNotRespondingDialog(FALSE);
+    win_app->m_pMessageFilter->SetMessagePendingDelay(MESSAGE_PENDING_DELAY);
     try {
         COleException e;
         debugLogWrite(_T("Before CreateDispatch()"), _T("rmk"));
