@@ -1105,15 +1105,16 @@ void CdrClient::cleanOutOlderVersions() {
     std::vector<CString> files;
     CFileFind finder;
     BOOL more = finder.FindFile(_T("CdrClient-*.exe"));
+    CString appName = AfxGetAppName();
     while (more) {
         more = finder.FindNextFile();
         CString name = finder.GetFileName();
-        if (isClientProgram(name))
+        if (isClientProgram(name) && name != appName)
             files.push_back(name);
     }
     std::sort(std::begin(files), std::end(files), compareNoCase);
-    if (files.size() > 5) {
-        files.resize(files.size() - 5);
+    if (files.size() > 10) {
+        files.resize(files.size() - 10);
         std::vector<CString>::iterator iter = files.begin();
         while (iter != files.end()) {
             log(_T("Removing old client ") + *iter + _T("\n"), 1);

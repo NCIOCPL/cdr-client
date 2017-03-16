@@ -477,6 +477,7 @@ STDMETHODIMP CCommands::logon(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("logon");
     try {
 
         // Make sure the user isn't already logged on.
@@ -546,6 +547,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("retrieve");
     try {
 
         // Working variables.
@@ -604,6 +606,7 @@ STDMETHODIMP CCommands::search(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("search");
     try {
 
         // Working variables.
@@ -749,6 +752,7 @@ STDMETHODIMP CCommands::save(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("save");
     *pRet = 0;
     try {
 
@@ -1050,6 +1054,7 @@ STDMETHODIMP CCommands::validate(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("validate");
     *pRet = 0;
 
     // Find the currently active document.
@@ -1182,6 +1187,7 @@ STDMETHODIMP CCommands::logoff(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("logoff");
     // Show the user the list of documents she still has checked out.
     if (!username.IsEmpty()) {
         CString cmd = _T("<CdrReport>")
@@ -1254,6 +1260,7 @@ STDMETHODIMP CCommands::edit(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("edit");
     // Initial optimism.
     *pRet = 0;
 
@@ -1960,6 +1967,7 @@ STDMETHODIMP CCommands::isReadOnly(const BSTR *docType,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("isReadOnly");
     // Initial assumption: the element is not read-only.
     *pVal = FALSE;
     CString dt(*docType);
@@ -1985,6 +1993,7 @@ STDMETHODIMP CCommands::advancedSearch(int *retVal)
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
     *retVal = EXIT_FAILURE;
 
+    cdr::trace_log("advancedSearch");
     COleDispatchDriver ie;
     if (!ie.CreateDispatch(_T("InternetExplorer.Application"))) {
         ::AfxMessageBox(_T("Unable to launch Internet Explorer"),
@@ -2017,6 +2026,7 @@ STDMETHODIMP CCommands::get_username(BSTR *pVal)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("get_username");
     username.SetSysString(pVal);
 
     return S_OK;
@@ -2026,6 +2036,7 @@ STDMETHODIMP CCommands::protUpdPerson(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("protUpdPerson");
     // Initial pessimism.
     *pRet = 1;
 
@@ -2118,6 +2129,7 @@ STDMETHODIMP CCommands::getPersonAddress(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("getPersonAddress");
     // Initial pessimism.
     *pRet = 1;
 
@@ -2230,6 +2242,7 @@ STDMETHODIMP CCommands::particOrgs(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("particOrgs");
     // Initial pessimism.
     *pRet = 1;
 
@@ -2314,6 +2327,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("getOrgAddress");
     // Initial pessimism.
     *pRet = 1;
 
@@ -2455,6 +2469,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("pasteDocLink");
     *pRet = 1;
     CString docLink(*link);
 
@@ -2589,6 +2604,7 @@ STDMETHODIMP CCommands::get_session(BSTR *pVal)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("get_session");
     CString session = CdrSocket::getSessionString();
     session.SetSysString(pVal);
 
@@ -2599,6 +2615,7 @@ STDMETHODIMP CCommands::checkIn(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("checkIn");
     *pRet = 1;
     try {
 
@@ -2687,6 +2704,7 @@ STDMETHODIMP CCommands::get_hostname(BSTR *pVal)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
+    cdr::trace_log("get_hostname");
     CString hostname = CdrSocket::getHostName();
     hostname.SetSysString(pVal);
 
@@ -2697,6 +2715,7 @@ STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("showPage");
     CString urlString(*url);
     *pRet = cdr::showPage(urlString);
     return S_OK;
@@ -2705,6 +2724,7 @@ STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet)
 STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
+    cdr::trace_log("glossify");
     CGlossify glossify(dig != VARIANT_FALSE);
     glossify.DoModal();
     return S_OK;
@@ -2740,6 +2760,7 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("addGlossaryPhrase");
     // Find the element with the current focus.
     ::Selection selection = cdr::getApp().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
@@ -2787,6 +2808,7 @@ STDMETHODIMP CCommands::setTitleBar(void)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    //cdr::trace_log("setTitleBar"); XXX too noisy; clutters the log
     CString title;
     title.Format(_T("CDR Editor (%s)"), CdrSocket::getHostTier());
     //::AfxMessageBox(title);
@@ -2802,6 +2824,7 @@ STDMETHODIMP CCommands::acceptOrRejectMarkup(void)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("acceptOrRejectMarkup");
     CReviewMarkup markupReviewDialog;
     markupReviewDialog.DoModal();
 
@@ -2850,6 +2873,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("launchBlob");
     CString id(*docId);
     CString ver(*docVer);
     CString fileName;
@@ -2942,6 +2966,7 @@ STDMETHODIMP CCommands::openCdrDoc(const BSTR* docId, const BSTR* docVer,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("openCdrDoc");
     CString id(*docId);
     CString ver(*docVer);
     BOOL co(checkOut);
@@ -2955,6 +2980,7 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getTranslatedDocId");
     CString id(*originalId);
     CString cmd = _T("<CdrReport>")
                   _T("<ReportName>Translated Summary</ReportName>")
@@ -2978,6 +3004,7 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
 STDMETHODIMP CCommands::getDiagnosisSetTerms(BSTR* termIds)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
+    cdr::trace_log("getDiagnosisSetTerms");
     CDiagnosisSets dialog(diagnosisTermSetNames);
     int rc = dialog.DoModal();
     CString result = _T("");
@@ -3007,6 +3034,7 @@ STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getGlossaryTermNames");
     CString id(*conceptId);
     CString cmd = _T("<CdrReport>")
                   _T("<ReportName>Glossary Term Names</ReportName>")
@@ -3040,6 +3068,7 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getGlossaryTermNameIds");
     CString id(*conceptId);
     CString cmd = _T("<CdrReport>")
                   _T("<ReportName>Glossary Term Names</ReportName>")
@@ -3071,6 +3100,7 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId, BSTR* patientDocId)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getPatientDocId");
     CString id(*hpDocId);
     CString cmd = _T("<CdrReport>")
                   _T("<ReportName>Patient Summary</ReportName>")
@@ -3108,6 +3138,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getNextValidationError");
     CString result;
     _Document doc = cdr::getApp().GetActiveDocument();
     if (!doc) {
@@ -3158,6 +3189,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError)
 STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* pRet) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("logClientEvent");
     *pRet = 0;
     CString desc(*description);
     CString cmd = _T("<CdrLogClientEvent><EventDescription>")
@@ -3180,6 +3212,7 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("getBoardMemberId");
     CString id(*personId);
     CString cmd = _T("<CdrReport>")
                   _T("<ReportName>Board Member</ReportName>")
@@ -3203,6 +3236,7 @@ STDMETHODIMP CCommands::editComment(VARIANT_BOOL readOnly)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("editComment");
     BOOL ro(readOnly);
     ::CCommentDialog dialog(ro);
     dialog.DoModal();
@@ -3224,6 +3258,7 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("valuesForPath");
     CString RS = _T("\x0E");
     CString id(*docId);
     CString p(*path);
@@ -3253,6 +3288,7 @@ STDMETHODIMP CCommands::get_userPath(BSTR* pVal)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("get_userPath");
     CString userPath = cdr::getUserPath();
     userPath.SetSysString(pVal);
 
@@ -3268,6 +3304,7 @@ STDMETHODIMP CCommands::fetchFromUrl(const BSTR* url_, BSTR* response_) {
 
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("fetchFromUrl");
     CString url(*url_);
     CString response;
     try {
@@ -3290,6 +3327,7 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
 
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
+    cdr::trace_log("chooseRevisionLevel");
     CString level;
     try {
         RevisionLevel dialog;

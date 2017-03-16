@@ -62,16 +62,19 @@ Creator,
 DateCreated,
 DateLastModified,
 DerivationMethod,
+DefaultVideoPresentationTemplate,
 DerivedFrom,
 Diagnoses,
 Diagnosis,
 DocTitle,
+ExternalRef,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 FromObject,
 Glossary,
 HeightPixels,
+HostingID,
 ImageData,
 ImageDimensions,
 ImageType,
@@ -117,8 +120,9 @@ TextDateCreated,
 Topic,
 Topics,
 VideoData,
-VideaEncoding,
-VideaType,
+VideoEncoding,
+VideoHosting,
+VideoType,
 WidthPixels,
     { display: block; }
 
@@ -141,18 +145,22 @@ ContentDescription        :before { content: "Content Description "; }
 Creator                   :before { content: "Creator "; }
 DateCreated               :before { content: "Date Created "; }
 DateLastModified          :before { content: "Last Modified "; }
+DefaultVideoPresentationTemplate
+                          :before { content: "Display "; }
 DerivedFrom               :before { content: "DERIVED FROM "; }
 Diagnoses                 :before { content: "DIAGNOSES "; }
 Diagnosis                 :before { content: "Diagnosis "; }
 DocTitle                  :before { content: "Doc Title "; }
 ProcessingStatus>EnteredBy:before,
                                   { content: "Entered By "; }
+ExternalRef               :before { content: "ExternalRef "; }
 FromCdrMedia              :before { content: "FROM CDR MEDIA "; }
 FromExternalFile          :before { content: "From External File "; }
 FromMethod                :before { content: "From Method "; }
 FromObject                :before { content: "FROM OBJECT "; }
 Glossary                  :before { content: "Glossary "; }
 HeightPixels              :before { content: "Height (Pixels) "; }
+HostingID                 :before { content: "Hosting ID "; }
 ImageData                 :before { content: "IMAGE DATA ";}
 ImageDimensions           :before { content: "IMAGE DIMENSIONS "; }
 ImageType                 :before { content: "Image Type "; }
@@ -200,8 +208,9 @@ TextDateCreated           :before { content: "Text Date Created "; }
 Topic                     :before { content: "Topic "; }
 Topics                    :before { content: "TOPICS "; }
 VideoData                 :before { content: "Video Data "; }
-VideaEncoding             :before { content: "Video Encoding "; }
-VideaType                 :before { content: "Video Type "; }
+VideoEncoding             :before { content: "Video Encoding "; }
+VideoHosting              :before { content: "Video Hosting "; }
+VideoType                 :before { content: "Video Type "; }
 WidthPixels               :before { content: "Width (Pixels) "; }
 
 
@@ -260,17 +269,20 @@ Creator                                :before,
 DateCreated                            :before,
 DateLastModified                       :before,
 DerivationMethod                       :before,
+DefaultVideoPresentation Template      :before,
 DerivedFrom                            :before,
 Diagnoses                              :before,
 Diagnosis                              :before,
 DocTitle                               :before,
 ProcessingStatus>EnteredBy             :before,
+ExternalRef                            :before,
 FromCdrMedia                           :before,
 FromExternalFile                       :before,
 FromMethod                             :before,
 FromObject                             :before,
 Glossary                               :before,
 HeightPixels                           :before,
+HostingID                              :before,
 ImageData                              :before,
 ImageDimensions                        :before,
 ImageType                              :before,
@@ -313,8 +325,9 @@ TextDateCreated                        :before,
 Topic                                  :before,
 Topics                                 :before,
 VideoData                              :before,
-VideaEncoding                          :before,
-VideaType                              :before,
+VideoEncoding                          :before,
+VideoHosting                           :before,
+VideoType                              :before,
 WidthPixels                            :before,
      { color: black;  
        background-color: white; }
@@ -336,15 +349,18 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DefaultVideoPresentationTemplate,
 DerivationMethod,
 Diagnosis,
 DocTitle,
+ExternalRef,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 ProcessingStatus>EnteredBy,
 Glossary,
 HeightPixels,
+HostingID,
 ImageType,
 ImageEncoding,
 Inlined,
@@ -378,8 +394,9 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 VideoData,
-VideaEncoding,
-VideaType,
+VideoEncoding,
+VideoHosting,
+VideoType,
 WidthPixels,
      { text-indent: 0pt; }
 
@@ -398,15 +415,18 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DefaultVideoPresentationTemplate,
 DerivationMethod,
 Diagnosis,
 DocTitle,
 ProcessingStatus>EnteredBy,
+ExternalRef,
 Glossary,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 HeightPixels,
+HostingID,
 ImageType,
 ImageEncoding,
 Inlined,
@@ -440,8 +460,9 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 VideoData,
-VideaEncoding,
-VideaType,
+VideoEncoding,
+VideoHosting,
+VideoType,
 WidthPixels,
      { color: white;
        background-color: white; }
@@ -462,6 +483,7 @@ ContentDescription                     :before,
 Creator                                :before,
 DateCreated                            :before,
 DateLastModified                       :before,
+DefaultVideoPresentationTemplate       :before,
 DerivationMethod                       :before,
 Diagnosis                              :before,
 DocTitle                               :before,
@@ -473,6 +495,7 @@ ProcessingStatusDate,
 ProcessingStatusValue,
 Summary,
 HeightPixels                           :before,
+HostingID                              :before,
 ImageType                              :before,
 ImageEncoding                          :before,
 Inlined                                :before,
@@ -503,8 +526,9 @@ SourcePublication                      :before,
 TextDateCreated                        :before,
 Topic                                  :before,
 VideoData                              :before,
-VideaEncoding                          :before,
-VideaType                              :before,
+VideoEncoding                          :before,
+VideoHosting                           :before,
+VideoType                              :before,
 WidthPixels                            :before,
    { background-color: white; }
 
@@ -523,6 +547,7 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DefaultVideoPresentationTemplate,
 DerivationMethod,
 DerivedFrom,
 Diagnoses,
@@ -533,6 +558,7 @@ FromExternalFile,
 FromMethod,
 FromObject,
 HeightPixels,
+HostingID,
 ImageData,
 ImageDimensions,
 ImageType,
@@ -560,7 +586,8 @@ TextDateCreated,
 Topic,
 Topics,
 VideoData,
-VideaEncoding,
-VideaType,
+VideoEncoding,
+VideoHosting,
+VideoType,
 WidthPixels,
    { background-color: white; }

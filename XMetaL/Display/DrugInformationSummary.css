@@ -187,6 +187,9 @@ Audience,
 ApprovedIndication,
                         { margin-left: 130pt;
                           text-indent: -117pt; }
+Caption
+                        { margin-left: 130pt;
+                          text-indent: -75pt; }
 DateLastModified,
                         { margin-left: 130pt;
                           text-indent: -126pt; }
@@ -232,6 +235,18 @@ GlossaryLink,
 Manufacturer,
                         { margin-left: 130pt;
                           text-indent: -111pt; }
+MediaID
+                        { margin-left: 130pt;
+                          text-indent: -79.5pt; }
+SpecificMediaCaption
+                        { margin-left: 130pt;
+                          text-indent: -65pt; }
+SpecificMediaTitle
+                        { margin-left: 130pt;
+                          text-indent: -44pt; }
+SpecificVideoPresentationTemplate
+                        { margin-left: 130pt;
+                          text-indent: -63pt; }
 SummarySection>Para,
                         { margin-left: 130pt; }
 
@@ -259,6 +274,9 @@ TerminologyLink,
 URL,
                         { margin-left: 130pt;
                           text-indent: -56pt; }
+VideoID
+                        { margin-left: 130pt;
+                          text-indent: -79pt; }
 
 
 

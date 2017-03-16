@@ -1491,3 +1491,89 @@ CString cdr::fetchFromUrl(const CString& url) {
     }
     return cdr::utf8ToCString(response.c_str());
 }
+
+const char* cdr::get_cdr_trace_log_path() {
+    static char* path = 0;
+    if (!path) {
+        try {
+            char* name = "cdr-dll-trace.log";
+            CString userPath = cdr::getUserPath();
+            size_t extra = 2; // 1 for path separator + 1 for null byte
+            size_t len = userPath.GetLength() + strlen(name) + extra;
+            const std::string p = cdr::cStringToUtf8(userPath);
+            path = new char[len];
+            if (!path)
+                return 0;
+            sprintf(path, "%s\\%s", p.c_str(), name);
+        }
+        catch (...) {}
+    }
+    return path;
+}
+
+void cdr::trace_log(const char* what) {
+    static bool startup = true;
+    if (startup) {
+        cdr::send_trace_log();
+        startup = false;
+    }
+    try {
+        SYSTEMTIME sys_time;
+        ::GetLocalTime(&sys_time);
+        const char* path = get_cdr_trace_log_path();
+        if (!path)
+            return;
+        FILE* fp = fopen(path, "ab");
+        fprintf(fp, "%04d-%02d-%02d %02d:%02d:%02d.%03d %s",
+                sys_time.wYear,
+                sys_time.wMonth,
+                sys_time.wDay,
+                sys_time.wHour,
+                sys_time.wMinute,
+                sys_time.wSecond,
+                sys_time.wMilliseconds,
+                what);
+        if (strcmp(what, "logon") == 0) {
+            const char* session = getenv("CDRSession");
+            const char* user = getenv("CDRUser");
+            fprintf(fp, "(%s, %s)",
+                    user ? user : "unknown",
+                    session ? session : "unknown");
+        }
+        fprintf(fp, "\n");
+        fclose(fp);
+        if (strcmp(what, "logoff") == 0)
+            cdr::send_trace_log();
+    }
+    catch (...) {}
+}
+void cdr::send_trace_log() {
+    try {
+        const char* path = get_cdr_trace_log_path();
+        if (!path)
+            return;
+        FILE* fp = fopen(path, "rb");
+        if (!fp) {
+            return;
+        }
+        static char buf[1024 * 1024];
+        size_t nread = fread(buf, 1, sizeof buf, fp);
+        std::string temp;
+        while (nread > 0) {
+            temp.append(buf, (size_t)nread);
+            nread = fread(buf, 1, sizeof buf, fp);
+        }
+        fclose(fp);
+        CString log_data = cdr::utf8ToCString(temp.c_str());
+        if (log_data.IsEmpty()) {
+            return;
+        }
+        CString command = _T("<CdrSaveClientTraceLog><LogData>");
+        command += cdr::encode(log_data);
+        command += _T("</LogData></CdrSaveClientTraceLog>");
+        CString response = CdrSocket::sendCommand(command, true);
+        if (response.Find(_T("success")) >= 0)
+            _unlink(path);
+    }
+    catch (...) {}
+}

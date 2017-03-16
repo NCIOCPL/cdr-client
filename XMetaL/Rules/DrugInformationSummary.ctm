@@ -6,6 +6,14 @@
    <NoPrettyPrinting/>
   </GlobalPrettyPrintOptions>
   <ElementProperties>
+   <Name ns="">Caption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">CdrDocCtl</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -43,6 +51,14 @@
   <ElementProperties>
    <Name ns="">DrugSummaryRef</Name>
    <TagColor>CDCDFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">EmbeddedVideo</Name>
+   <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -115,6 +131,22 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">MediaID</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaLink</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Para</Name>
    <TagColor>CC99FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -124,6 +156,30 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">RelatedDocuments</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificMediaCaption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificMediaTitle</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificVideoPresentationTemplate</Name>
+   <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -146,6 +202,14 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">Title</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+   <ElementProperties>
+   <Name ns="">VideoID</Name>
+   <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -225,11 +289,39 @@
   </FollowedByList>
  <Templates>
   <Template>
+   <Name ns="">EmbeddedVideo</Name>
+   <MiniTemplate><![CDATA[<EmbeddedVideo>
+       <VideoID><?xm-replace_text {
+                   Enter the video ID (required)
+                   }?></VideoID>
+       <SpecificMediaTitle><?xm-replace_text {
+                   Optionally enter the video title
+                   }?></SpecificMediaTitle>
+       <SpecificMediaCaption><?xm-replace_text {
+                   Optionally enter the video caption
+                   }?></SpecificMediaCaption>
+       <SpecificVideoPresentationTemplate><?xm-replace_text {
+                   Optionally enter the video presentation
+                   }?></SpecificVideoPresentationTemplate>
+      </EmbeddedVideo>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name ns="">Manufacturer</Name>
    <MiniTemplate><![CDATA[<Manufacturer><?xm-replace_text {
                    Optionally select an organization link
                    }?>
         </Manufacturer>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>MediaLink</Name>
+   <MiniTemplate><![CDATA[<MediaLink>
+     <MediaID><?xm-replace_text {
+                   Select a Media ID (required)
+                   }?></MediaID>
+     <Caption><?xm-replace_text {
+                   Optionally enter a caption for the image
+                   }?></Caption>
+    </MediaLink>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">RelatedDocuments</Name>
@@ -264,10 +356,6 @@
                    Enter the link title here and copy/paste the URL 
                    into the attribute inspector (required)
                    }?></DrugReferenceLink>
-        <DrugReferenceDescription><?xm-replace_text {
-                   Link to Miscellaneous Document (right click and 
-                   copy/paste fragment link from Misc. Doc. (required)
-                   }?></DrugReferenceDescription>
         </DrugReference>]]></MiniTemplate>
   </Template>
   <Template>

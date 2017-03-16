@@ -44,51 +44,50 @@ DECLARE_REGISTRY_RESOURCEID(IDR_Commands)
 
 // ICommands
 public:
-    STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
-    STDMETHOD(checkIn)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
-    STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
-    STDMETHOD(getOrgAddress)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(particOrgs)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(getPersonAddress)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(protUpdPerson)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(acceptOrRejectMarkup)(void);
+    STDMETHOD(addGlossaryPhrase)(void);
     STDMETHOD(advancedSearch)(/*[out, retval]*/ int* retVal);
-    STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
+    STDMETHOD(checkIn)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(chooseRevisionLevel)(BSTR* response_);
     STDMETHOD(edit)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(editComment)(VARIANT_BOOL readOnly);
+    STDMETHOD(fetchFromUrl)(const BSTR* url_, BSTR* response_);
+    STDMETHOD(getBoardMemberId)(const BSTR* personId, BSTR* boardMemberId);
+    STDMETHOD(getDiagnosisSetTerms)(BSTR* termIds);
+    STDMETHOD(getGlossaryTermNameIds)(const BSTR* conceptId, BSTR* termNameIds);
+    STDMETHOD(getGlossaryTermNames)(const BSTR* conceptId, BSTR* termNames);
+    STDMETHOD(getNextValidationError)(BSTR* valError);
+    STDMETHOD(getOrgAddress)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(getPatientDocId)(const BSTR* hpDocId, BSTR* patientDocId);
+    STDMETHOD(getPersonAddress)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
+    STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(get_userPath)(BSTR* pVal);
+    STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(glossify)(VARIANT_BOOL dig);
+    STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
+    STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
+    STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(validate)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
+    STDMETHOD(particOrgs)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
+    STDMETHOD(protUpdPerson)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);
     STDMETHOD(save)(/*[out, retval]*/ int* pRet);
     STDMETHOD(search)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);
-    STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(setTitleBar)(void);
+    STDMETHOD(showPage)(const BSTR* url,  int* pRet);
+    STDMETHOD(validate)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(valuesForPath)(const BSTR* docId, const BSTR* path, BSTR* values);
 
     static bool invokedFromClientRefreshTool;
 
 private:
     static CString username;
     static CString linkClipboard;
-public:
-    STDMETHOD(showPage)(const BSTR* url,  int* pRet);
-    STDMETHOD(glossify)(VARIANT_BOOL dig);
-    STDMETHOD(addGlossaryPhrase)(void);
-    STDMETHOD(setTitleBar)(void);
-    STDMETHOD(acceptOrRejectMarkup)(void);
-    STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
-    STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
-    STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
-    STDMETHOD(getDiagnosisSetTerms)(BSTR* termIds);
-    STDMETHOD(getGlossaryTermNames)(const BSTR* conceptId, BSTR* termNames);
-    STDMETHOD(getGlossaryTermNameIds)(const BSTR* conceptId, BSTR* termNameIds);
-    STDMETHOD(getPatientDocId)(const BSTR* hpDocId, BSTR* patientDocId);
-    STDMETHOD(getNextValidationError)(BSTR* valError);
-    STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
-    STDMETHOD(getBoardMemberId)(const BSTR* personId, BSTR* boardMemberId);
-    STDMETHOD(editComment)(VARIANT_BOOL readOnly);
-    STDMETHOD(valuesForPath)(const BSTR* docId, const BSTR* path, BSTR* values);
-    STDMETHOD(get_userPath)(BSTR* pVal);
-    STDMETHOD(fetchFromUrl)(const BSTR* url_, BSTR* response_);
-    STDMETHOD(chooseRevisionLevel)(BSTR* response_);
 };
 
 #endif // !defined(AFX_COMMANDS_H__B4E5B924_A6EE_46EA_A5D4_FB1EA9F19174__INCLUDED_)

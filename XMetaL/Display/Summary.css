@@ -231,49 +231,49 @@ SecondaryTopics > Term
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-TableNumber          :before { content: "[#]"; }
-ReferencedTableNumber
-                     :before { content: "[#]"; }
-FigureNumber         :before { content: "[#]"; }
-ReferencedFigureNumber 
-                     :before { content: "[#]"; }
-Board                :before { content: "Summary Board * @: "; }
-BoardMember          :before { content: "Board Member & + @: "; }
-Caption              :before { content: "Caption: "; }
-ChangeDate           :before { content: "Change Date *: "; }
+TableNumber                  :before { content: "[#]"; }
+ReferencedTableNumber        :before { content: "[#]"; }
+FigureNumber                 :before { content: "[#]"; }
+ReferencedFigureNumber       :before { content: "[#]"; }
+Board                        :before { content: "Summary Board * @: "; }
+BoardMember                  :before { content: "Board Member & + @: "; }
+Caption                      :before { content: "Caption &: "; }
+ChangeDate                   :before { content: "Change Date *: "; }
 TypeOfSummaryChange > Comment
-                     :before { content: "Comment & @: "; }
-ComprehensiveReviewDate            
-                     :before { content: "Last Reviewed & @: "; }
-DateLastModified     :before { content: "Last Modified &: "; }
-/*KeyPoint           :before { content: "Key Point & +: "; } */
-EnteredBy            :before { content: "Entered By *: "; }
-MainTopics>Term      :before { content: "Main Topics * + @: "; }
-MediaID              :before { content: "Media ID: "; }
-MobileURL            :before { content: "Mobile URL & @: "; }
-PatientVersionOf     :before { content: "Patient Version of & @: "; }
-PdqKey               :before { content: "PDQ Key &: "; }
-PMID                   :before { content: "PMID &: "; }
-PurposeText          :before { content: "Purpose Text &: "; }
-ReplacementFor       :before { content: "Replacement for & @: "; }
-SecondaryTopics>Term :before { content: "Second. Topics & + @: " }
-SummaryAbstract      :before { content: "Summary Abstract &: "; }
-SummaryAudience      :before { content: "Summary Audience *: "; }
-SummaryDescription   :before { content: "Summary Descr *: "; }
-SummaryKeyWords      :before { content: "Summary Keywords &"; }
-SummaryKeyWord       :before { content: "Keyword &: "; }
-SummaryLanguage      :before { content: "Summary Language *: "; }
-SummaryModuleLink    :before { content: "Summary Module &: "; }
-SummaryType          :before { content: "Summary Type *: "; }
-SummaryURL           :before { content: "Summary URL * @: "; }
-TranslationOf        :before { content: "Translation of & @: "; }
-TypeOfChange         :before { content: "Change Type *: "; }
-TypeOfSummaryChange  :before { content: "TYPE OF CHANGE & +"; }
-TypeOfSummaryChangeValue 
-                     :before { content: "Change Type *: "; }
-User                 :before { content: "Change User *: "; }
-Date                 :before { content: "Change Date *: "; }
-WillReplace          :before { content: "Will Replace & @: "; }
+                             :before { content: "Comment & @: "; }
+ComprehensiveReviewDate      :before { content: "Last Reviewed & @: "; }
+DateLastModified             :before { content: "Last Modified &: "; }
+/*KeyPoint                   :before { content: "Key Point & +: "; } */
+EnteredBy                    :before { content: "Entered By *: "; }
+MainTopics>Term              :before { content: "Main Topics * + @: "; }
+MediaID                      :before { content: "Media ID * @: "; }
+MobileURL                    :before { content: "Mobile URL & @: "; }
+PatientVersionOf             :before { content: "Patient Version of & @: "; }
+PdqKey                       :before { content: "PDQ Key &: "; }
+PMID                         :before { content: "PMID &: "; }
+PurposeText                  :before { content: "Purpose Text &: "; }
+ReplacementFor               :before { content: "Replacement for & @: "; }
+SecondaryTopics>Term         :before { content: "Second. Topics & + @: " }
+SpecificMediaCaption         :before { content: "Caption &: " ; }
+SpecificMediaTitle           :before { content: "Title &: " ; }
+SpecificVideoPresentationTemplate
+                             :before { content: "Display &: " }
+SummaryAbstract              :before { content: "Summary Abstract &: "; }
+SummaryAudience              :before { content: "Summary Audience *: "; }
+SummaryDescription           :before { content: "Summary Descr *: "; }
+SummaryKeyWords              :before { content: "Summary Keywords &"; }
+SummaryKeyWord               :before { content: "Keyword &: "; }
+SummaryLanguage              :before { content: "Summary Language *: "; }
+SummaryModuleLink            :before { content: "Summary Module &: "; }
+SummaryType                  :before { content: "Summary Type *: "; }
+SummaryURL                   :before { content: "Summary URL * @: "; }
+TranslationOf                :before { content: "Translation of & @: "; }
+TypeOfChange                 :before { content: "Change Type *: "; }
+TypeOfSummaryChange          :before { content: "TYPE OF CHANGE & +"; }
+TypeOfSummaryChangeValue     :before { content: "Change Type *: "; }
+User                         :before { content: "Change User *: "; }
+Date                         :before { content: "Change Date *: "; }
+WillReplace                  :before { content: "Will Replace & @: "; }
 
 
 /***************************************************************************/
@@ -340,9 +340,14 @@ MainTopics>Term              :before,
 MediaID                      :before,
 PurposeText                  :before,
 SecondaryTopics>Term         :before,
+SpecificMediaCaption         :before,
+SpecificMediaTitle           :before,
+SpecificVideoPresentationTemplate
+                             :before,
 TypeOfChange                 :before,
 TypeOfSummaryChangeValue     :before,
-User                         :before
+User                         :before,
+VideoID                      :before
     { font-weight: bold;
       font-size: 12pt; 
       color: black; }
@@ -906,6 +911,10 @@ MediaID                      :before,
 MobileURL,
 PMID,
 PurposeText,
+SpecificMediaCaption         :before,
+SpecificMediaTitle           :before,
+SpecificVideoPresentationTemplate
+                             :before,
 SummaryAudience,
 SummaryAbstract > Para,
 SummaryDescription,
@@ -918,86 +927,98 @@ MainTopics>Term,
 SecondaryTopics>Term,
 TypeOfChange,
 TypeOfSummaryChangeValue,
-User
+User,
+VideoID                      :before
     { background-color: white; }
 
 
 /* Key element for length = SummaryLanguage                               */
 
 Board,    
-                  { margin-left: 135pt; 
-                    text-indent: -123.5pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -123.5pt;}
 BoardMember,    
-                  { margin-left: 135pt; 
-                    text-indent: -129pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -129pt;}
 ChangeDate    
-                  { margin-left: -10pt; 
-                    text-indent: -90pt;}
+                             { margin-left: -10pt; 
+                               text-indent: -90pt;}
 TypeOfSummaryChangeValue
-                  { margin-left: 135pt; 
-                    text-indent: -91.5pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -91.5pt;}
 User
-                  { margin-left: 135pt; 
-                    text-indent: -90pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -90pt;}
 Date
-                  { margin-left: 135pt; 
-                    text-indent: -90pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -90pt;}
 TypeOfSummaryChange > Comment    
-                  { margin-left: 135pt; 
-                    text-indent: -91pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -91pt;}
 EnteredBy    
-                  { margin-left: -10pt; 
-                    text-indent: -79.5pt;}
+                             { margin-left: -10pt; 
+                               text-indent: -79.5pt;}
 MobileURL,    
-                  { margin-left: 135pt;
-                    text-indent: -101pt; }
-
+                             { margin-left: 135pt;
+                               text-indent: -101pt; }
 PMID
-                  { margin-left: 87pt; 
-                    text-indent: -2pt;}
+                             { margin-left: 87pt; 
+                               text-indent: -2pt;}
 PurposeText
-				   { margin-left: 135pt; 
-                    text-indent: -97pt;}
+				             { margin-left: 135pt; 
+                               text-indent: -97pt;}
 					
-SummaryAbstract  	  { margin-left: 155pt; 
-                    text-indent: 95pt;}
+SummaryAbstract  	         { margin-left: 155pt; 
+                               text-indent: 95pt;}
 							
 SummaryAudience,    
-                  { margin-left: 88pt; 
-                    text-indent: -80pt;}
+                             { margin-left: 88pt; 
+                               text-indent: -80pt;}
 SummaryDescription,    
-                  { margin-left: 135pt;
-                    text-indent: -107pt; }
+                             { margin-left: 135pt;
+                               text-indent: -107pt; }
 SummaryKeyWord,    
-                  { margin-left: 145pt;
-                    text-indent: -80pt; }
+                             { margin-left: 145pt;
+                               text-indent: -80pt; }
 SummaryLanguage,    
-                  { margin-left: 135pt; 
-                    text-indent: -131pt;}
+                             { margin-left: 135pt; 
+                               text-indent: -131pt;}
 SummaryType,    
-                  { margin-left: 135pt;
-                    text-indent: -102pt; }
+                             { margin-left: 135pt;
+                               text-indent: -102pt; }
 SummaryURL,    
-                  { margin-left: 135pt;
-                    text-indent: -114pt; }
+                             { margin-left: 135pt;
+                               text-indent: -114pt; }
 MainTopics>Term,    
-                  { margin-left: 135pt;
-                    text-indent: -109.5pt; }
+                             { margin-left: 135pt;
+                               text-indent: -109.5pt; }
 SecondaryTopics>Term,    
-                  { margin-left: 135pt; 
-                    text-indent: -134pt; }
+                             { margin-left: 135pt; 
+                               text-indent: -134pt; }
 TypeOfChange    
-                  { margin-left: -10pt; 
-                    text-indent: -92pt;}
+                             { margin-left: -10pt; 
+                               text-indent: -92pt;}
 
 Caption,
-                  { margin-left: 70pt; 
-                    text-indent: -53pt; }
+                             { margin-left: 100pt; 
+                               text-indent: -65pt; }
 MediaID,
-                  { margin-left: 70pt; 
-                    text-indent: -57pt; }
+                             { margin-left: 100pt; 
+                               text-indent: -79.5pt; }
+VideoID,
+                             { margin-left: 100pt; 
+                               text-indent: -79pt; }
+SpecificMediaTitle,
+                             { margin-left: 100pt; 
+                               text-indent: -44pt; }
+SpecificMediaCaption,
+                             { margin-left: 100pt; 
+                               text-indent: -65pt; }
+SpecificVideoPresentationTemplate,
+                             { margin-left: 100pt; 
+                               text-indent: -63pt; }
 
-MediaLink,
+MediaLink, EmbeddedVideo
     { border: solid; 
       border-color: black;
       border-width: thin;

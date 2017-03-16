@@ -78,6 +78,7 @@ DatedAction,
 DocId,
 DocTitle,
 Email,
+EmbeddedVideo,
 Fax,
 Head,
 ItemizedList,
@@ -98,11 +99,15 @@ QandASet,
 Question,
 RelatedDocuments,
 ReplacementText,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 Street,
 SupplementaryInfoLink,
 Table,
 TollFreePhone,
 TT,
+VideoID,
 WebSite,
     { display: block; }
 
@@ -153,46 +158,52 @@ Superscript,
 /***************************************************************************/
 
 /* CDR Doc Control   */
-CdrDocCtl                    :before { content: "CDR Doc Control "; }
-DocId                        :before { content: "Doc ID "; }
-DocTitle                     :before { content: "Doc Title "; }
+CdrDocCtl                    :before { content: "CDR Doc Control"; }
+DocId                        :before { content: "Doc ID"; }
+DocTitle                     :before { content: "Doc Title"; }
 
 /* Contact Detail   */
-City                         :before { content: "City "; }
-CitySuffix                   :before { content: "Suffix "; }
-ContactName                  :before { content: "Contact Name "; }
-PostalAddress>Country        :before { content: "Country "; }
-Email                        :before { content: "Email "; }
-Fax                          :before { content: "Fax "; }
-Phone                        :before { content: "Phone "; }
-PoliticalSubUnit_State       :before { content: "Polit Unit/State "; }
-PostalAddress                :before { content: "POSTAL ADDRESS "; }
-PostalCode_ZIP               :before { content: "Postal Code "; }
-Street                       :before { content: "Street "; }
-TollFreePhone                :before { content: "Toll Free "; }
-WebSite                      :before { content: "Web Site "; }
+City                         :before { content: "City"; }
+CitySuffix                   :before { content: "Suffix"; }
+ContactName                  :before { content: "Contact Name"; }
+PostalAddress>Country        :before { content: "Country"; }
+Email                        :before { content: "Email"; }
+EmbeddedVideo                :before { content: "VIDEOLINK"; }
+Fax                          :before { content: "Fax"; }
+Phone                        :before { content: "Phone"; }
+PoliticalSubUnit_State       :before { content: "Polit Unit/State"; }
+PostalAddress                :before { content: "POSTAL ADDRESS"; }
+PostalCode_ZIP               :before { content: "Postal Code"; }
+Street                       :before { content: "Street"; }
+TollFreePhone                :before { content: "Toll Free"; }
+WebSite                      :before { content: "Web Site"; }
 
 /* DatedAction   */
-ActionDate                   :before { content: "Action Date "; }
-ActionDescription            :before { content: "Action "; }
+ActionDate                   :before { content: "Action Date"; }
+ActionDescription            :before { content: "Action"; }
 DatedAction                  :before { content: "DATED ACTION"; }
-DatedAction>Comment          :before { content: "Comments "; }
+DatedAction>Comment          :before { content: "Comments"; }
 
 /* Tables and Lists   */
 
-ItemizedList                 :before { content: "..Itemized List "; }
-OrderedList                  :before { content: "..Ordered List "; }
-Table                        :before { content: "..Table "; }
-Table>Title                  :before { content: "Title "; }
-TT                           :before { content: "..Table "; }
+ItemizedList                 :before { content: "..Itemized List"; }
+OrderedList                  :before { content: "..Ordered List"; }
+Table                        :before { content: "..Table"; }
+Table>Title                  :before { content: "Title"; }
+TT                           :before { content: "..Table"; }
 
 RelatedDocuments             :before { content: "RELATED DOCUMENTS"; }
 ReplacementText              :before { content: "Replacement Text"; }
+SpecificMediaCaption         :before { content: "Caption"; }
+SpecificMediaTitle           :before { content: "Title"; }
+SpecificVideoPresentationTemplate
+                             :before { content: "Display"; }
 SupplementaryInfoLink        :before { content: "Supplementary Info Link"; }
 
 Caption                      :before { content: "Caption"; }
 MediaID                      :before { content: "Media ID"; }
-MediaLink                    :before { content: "Media Link"; }
+MediaLink                    :before { content: "MEDIALINK"; }
+VideoID                      :before { content: "Video ID"; }
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR HEADINGS                         */
@@ -254,7 +265,11 @@ PostalAddress,
 RelatedDocuments,
      { border: none;  }
 
+ActionDate                   :before,
+ActionDescription            :before,
 CdrDocCtl,
+Caption                      :before,
+DatedAction,
 DocId,
 DocId                        :before,
 DocTitle,
@@ -265,6 +280,12 @@ ContactName                  :before,
 PostalAddress>Country        :before,
 Email                        :before,
 Fax                          :before,
+MediaID                      :before,
+MediaLink                    :before,
+SpecificMediaCaption         :before,
+SpecificMediaTitle           :before,
+SpecificVideoPresentationTemplate
+                             :before,
 Phone                        :before,
 PoliticalSubUnit_State       :before,
 PostalCode_ZIP               :before,
@@ -273,10 +294,8 @@ ReplacementText              :before,
 Street                       :before,
 SupplementaryInfoLink        :before,
 TollFreePhone                :before,
-WebSite                      :before,
-ActionDate                   :before,
-ActionDescription            :before,
-DatedAction,
+VideoID                      :before,
+WebSite                      :before
      { background-color: white; }
 
 
@@ -303,9 +322,13 @@ Phone,
 PoliticalSubUnit_State,
 PostalCode_ZIP,
 RelatedDocuments,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 Street,
 SupplementaryInfoLink,
 TollFreePhone,
+VideoID,
 WebSite,
      { text-indent: 0pt; }
 
@@ -352,19 +375,19 @@ PostalAddress,
 PostalCode_ZIP,
 RelatedDocuments,
 ReplacementText,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 Street,
 SupplementaryInfoLink,
 Table,
 TollFreePhone,
 TT,
+VideoID,
 WebSite,
      { color: white;
        background-color: white; }
 
-Caption                      :before,
-MediaID                      :before,
-MediaLink                    :before
-     { background-color: white; }
 /* All other Common Elements  */
 Deletion,
 Insertion,

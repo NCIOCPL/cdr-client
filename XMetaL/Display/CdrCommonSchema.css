@@ -1,50 +1,14 @@
 /*
- * $Id: CdrCommonSchema.css,v 1.19 2009-06-24 20:04:15 venglisc Exp $
+ * Common style rules.
  *
- * $Log: not supported by cvs2svn $
- * Revision 1.18  2008/10/16 19:12:59  venglisc
- * Adding new DrugSummaryRef element. (Bug 4323)
- *
- * Revision 1.17  2008/02/21 21:13:34  bkline
- * Added cdr:PrivateUseCharacter formatting.
- *
- * Revision 1.16  2007/01/11 22:52:36  venglisc
- * Adding formatting for ListTitle (bold, italic). (Bug 2849)
- *
- * Revision 1.15  2006/11/27 14:59:08  bkline
- * Added visible indication of blocked document (request #2730).
- *
- * Revision 1.14  2006/04/03 20:29:44  venglisc
- * Added missing space between Date element and flag. (Bug 2033)
- *
- * Revision 1.13  2005/08/10 18:33:43  venglisc
- * Modified the list to display as bulleted list if no Style attribute has
- * been entered. (Bug 1789)
- *
- * Revision 1.12  2005/07/28 14:24:46  venglisc
- * Added CSS for QandASet node plus some minor formatting changes. (Bug 1774)
- *
- * Revision 1.11  2005/01/05 00:17:16  venglisc
- * Updated CSS to handle new MediaLink, MediaRef and Caption elements.
- *
- * Revision 1.10  2004/09/09 17:25:25  bkline
- * Switched Comment colors back to white on green (request #1213).
- *
- * Revision 1.9  2004/08/17 12:03:30  bkline
- * Changed teal to green for proposed markup.
- *
- * Revision 1.8  2004/08/10 19:37:18  bkline
- * Fixed last change to apply to proposed markup instead of approved.
- *
- * Revision 1.7  2004/08/10 19:29:13  bkline
- * Made approved markup blue instead of red (request #1213).
- *
- * Revision 1.6  2003/08/14 21:57:50  bkline
- * Added handling for Compact='No' in ordered lists.
- *
- * Revision 1.5  2003/02/05 21:02:30  bkline
- * Implemented support for non-compact itemized lists (Bugzilla #544).
- *
+ * BZIssue::544 - implement suppor for non-compact itemized lists
+ * BZIssue::1213 - color changes
+ * BZIssue::1774 - add rules for QandASet node; other minor formatting changes
+ * BZIssue::1789 - display list as bulleted list of no style element present
+ * BZIssue::2033 - add missing space between Date element and flag
+ * BZIssue::2730 - add visible indication of blocked documents
+ * BZIssue::2849 - add formatting for ListTitle (bold, italic)
+ * BZIssue::4323 - add new DrugSummaryRef element
  */
 
 /*************************************************************************/
@@ -145,6 +109,7 @@ DatedAction,
 DocId,
 DocTitle,
 Email,
+EmbeddedVideo,
 entry,
 Fax,
 Head,
@@ -173,6 +138,9 @@ Row,
 Section,
 SupplementaryInfoLink,
 Section>Title,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 Street,
 Table,
 TBody,
@@ -181,6 +149,7 @@ TGroup,
 Title,
 TollFreePhone,
 TT,
+VideoID,
 WebSite,
      { display: block; }
 
@@ -258,6 +227,7 @@ PostalAddress>Country        :before { content: "Country * @: "; }
 Email                        :before { content: "Email & @: "; }
 Email[Public="No"]           :after  { content: " (Not public) "; }
 Email                        :after  { content: " (Public) "; }
+EmbeddedVideo                :before { content: "VIDEO LINK & +"; }
 Fax                          :before { content: "Fax &: "; }
 MediaID                      :before { content: "Media ID * @: "; }
 MediaLink                    :before { content: "MEDIA LINK & + @"; }
@@ -271,9 +241,14 @@ PostalAddress[Public="No"]   :before
 PostalAddress                :before { content: "POSTAL ADDRESS (Public) & @"; }
 PostalCode_ZIP               :before { content: "Postal Code &: "; }
 RelatedDocuments             :before { content: "RELATED DOCUMENTS &";}
+SpecificMediaCaption         :before { content: "Caption &: "; }
+SpecificMediaTitle           :before { content: "Title &: "; }
+SpecificVideoPresentationTemplate
+                             :before { content: "Display &: "; }
 Street                       :before { content: "Street & +: "; }
 SupplementaryInfoLink        :before { content: "Sup Info Link * + @: ";}
 TollFreePhone                :before { content: "Toll Free &: "; }
+VideoID                      :before { content: "Video ID * @: "; }
 WebSite                      :before { content: "Web Site & @: "; }
 
 /*DatedAction   */
@@ -332,10 +307,10 @@ DocTitle,
       text-indent: -58pt;
       margin-bottom: 4pt; }
 
-MediaLink
+MediaLink, EmbeddedVideo
     { margin-top: 1em; }
 
-MediaLink
+MediaLink, EmbeddedVideo
     { margin-bottom: 1em; }
 
 /* Contact Detail Form Definition  */
@@ -403,8 +378,12 @@ Phone,
 PoliticalSubUnit_State,
 PostalCode_ZIP,
 QandAEntry,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 Street,
 TollFreePhone,
+VideoID,
 WebSite
     { margin-bottom: 4pt;
       background-color: white; }
@@ -420,8 +399,12 @@ MediaID                           :before,
 Phone                             :before,
 PoliticalSubUnit_State            :before,
 PostalCode_ZIP                    :before,
+SpecificMediaCaption              :before,
+SpecificMediaTitle                :before,
+SpecificVideoPresentationTemplate :before,
 Street                            :before,
 TollFreePhone                     :before,
+VideoID                           :before,
 WebSite                           :before
     { background-color: #CCCCFF; }  /*light blue*/
 
@@ -465,6 +448,17 @@ Caption                      { margin-left: 135pt;
                                text-indent: -75pt; }
 MediaID                      { margin-left: 135pt;
                                text-indent: -79.5pt; }
+VideoID                      { margin-left: 135pt;
+                               text-indent: -79pt; }
+SpecificMediaTitle,
+                             { margin-left: 135pt; 
+                               text-indent: -44pt; }
+SpecificMediaCaption,
+                             { margin-left: 135pt; 
+                               text-indent: -65pt; }
+SpecificVideoPresentationTemplate,
+                             { margin-left: 135pt; 
+                               text-indent: -63pt; }
 DatedAction>ActionDate,
 DatedAction>ActionDescription,
 DatedAction>Comment,
@@ -506,6 +500,7 @@ DatedAction>Comment          :before,
 ContactName                  :before,
 Email                        :before,
 Email                        :after,
+EmbeddedVideo                :before,
 Fax                          :before,
 MediaID                      :before,
 MediaLink                    :before,
@@ -514,9 +509,14 @@ Phone                        :after,
 PostalCode_ZIP               :before,
 RelatedDocuments             :before,
 ReplacementText              :before,
+SpecificMediaCaption         :before,
+SpecificMediaTitle           :before,
+SpecificVideoPresentationTemplate
+                             :before,
 Street                       :before,
 SupplementaryInfoLink        :before,
 TollFreePhone                :before,
+VideoID                      :before,
 WebSite                      :before
     { font-weight: bold;
       color: black; }

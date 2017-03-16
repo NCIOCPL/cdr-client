@@ -127,12 +127,14 @@ Board,
 BoardMember,
 Caption,
 ChangeDate,
+Comment,
 ComprehensiveReviewDate,
 TypeOfSummaryChange > Comment,
 Date,
 DateLastModified,
 Diagnosis,
 Drug,
+EmbeddedVideo,
 EnteredBy,
 Intervention,
 KeyPoint,
@@ -152,6 +154,9 @@ ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 SummaryAbstract,
 SummaryAbstract>Paragraph,
 SummaryAudience,
@@ -163,6 +168,7 @@ SummaryMetaData,
 SummaryModuleLink,
 SummarySection,
 SummarySection>Comment,
+SummarySection>ResponseToComment,
 SummaryTitle,
 SummaryType,
 SummaryURL,
@@ -181,85 +187,93 @@ WillReplace
 /*************************************************************************/
 /*                       BEFORE AND AFTER TAGS                           */
 /*************************************************************************/
-AltTitle                          :before { content: "Alternate Title "; }
-Board                             :before { content: "Summary Board "; }
-BoardMember                       :before { content: "Board Member "; }
-Caption                           :before { content: "Caption "; }
-ChangeDate                        :before { content: "Change Date "; }
-TypeOfSummaryChange > Comment     :before { content: "Comment "; }
+AltTitle                          :before { content: "Alternate Title"; }
+Board                             :before { content: "Summary Board"; }
+BoardMember                       :before { content: "Board Member"; }
+Caption                           :before { content: "Caption"; }
+ChangeDate                        :before { content: "Change Date"; }
+Comment                           :before { content: "Comment"; }
+TypeOfSummaryChange > Comment     :before { content: "Comment"; }
 ComprehensiveReviewDate
                                   :before { content: "Last Reviewed"; }
-Date                              :before { content: "Date "; }
+Date                              :before { content: "Date"; }
 DateLastModified                  :before { content: "Last Modified"; }
-Diagnosis                         :before { content: "Diagnosis "; }
-Drug                              :before { content: "Drug "; }
-EnteredBy                         :before { content: "Entered By "; }
+Diagnosis                         :before { content: "Diagnosis"; }
+Drug                              :before { content: "Drug"; }
+EnteredBy                         :before { content: "Entered By"; }
+EmbeddedVideo                     :before { content: "VIDEOLINK"; }
 FigureNumber                      :before { content: ""; }
-Intervention                      :before { content: "Intervention "; }
-KeyPoint                          :before { content: "Key Point "; }
-MainTopics                        :before { content: "Main Topics "; }
-MediaID                           :before { content: "MediaID "; }
-MediaLink                         :before { content: "MEDIALINK "; }
-MobileURL                         :before { content: "Mobile URL "; }
-Para                              :before { content: counter(para)". Paragraph "; }
+Intervention                      :before { content: "Intervention"; }
+KeyPoint                          :before { content: "Key Point"; }
+MainTopics                        :before { content: "Main Topics"; }
+MediaID                           :before { content: "Media ID"; }
+MediaLink                         :before { content: "MEDIALINK"; }
+MobileURL                         :before { content: "Mobile URL"; }
+Para                              :before { content: counter(para)". Paragraph"; }
 SummarySection>SummarySection>Para
-                                  :before { content: counter(subpara)". Subparagraph "; }
-PatientVersionOf                  :before { content: "Patient Version Of "; }
-PDQBoard                          :before { content: "PDQ Board "; }
-PdqKey                            :before { content: "PDQ Key "; }
-PMID                                :before { content: "PMID "; }
+                                  :before { content: counter(subpara)". Subparagraph"; }
+PatientVersionOf                  :before { content: "Patient Version Of"; }
+PDQBoard                          :before { content: "PDQ Board"; }
+PdqKey                            :before { content: "PDQ Key"; }
+PMID                              :before { content: "PMID"; }
 PurposeText                       :before { content: "Purpose Text"; }
-QandASet                          :before { content: "Q&A Section "; }
-QandADiv                          :before { content: "Q&A Sub-Section "; }
-QandAEntry                        :before { content: counter(qanda)". Q&A Entry "; }
+QandASet                          :before { content: "Q&A Section"; }
+QandADiv                          :before { content: "Q&A Sub-Section"; }
+QandAEntry                        :before { content: counter(qanda)". Q&A Entry"; }
 ReferencedFigureNumber            :before { content: ""; }
 ReferencedTableNumber             :before { content: ""; }
-SecondaryTopics                   :before { content: "Secondary Topics " }
-SectMetaData                      :before { content: "Section Metadata "; }
-SectionType                       :before { content: "Section Type "; }
-Summary                           :before { content: "SUMMARY "; }
-SummaryID                         :before { content: "Summary ID "; }
-SummaryAbstract                  :before { content: "Summary Abstract "; }
-SummaryAbstract>Para                 :before { content: "Paragraph "; }
-SummaryAudience                   :before { content: "Summary Audience "; }
-SummaryDescription                :before { content: "Summary Description "; }
-SummaryKeyWords      		:before { content: "Summary Keywords "; }
-SummaryKeyWord       		:before { content: "Keyword "; }
-SummaryLanguage                   :before { content: "Summary Language "; }
-SummaryMetaData                   :before { content: "SUMMARY METADATA "; }
-SummaryModuleLink                 :before { content: "Summary Module "; }
-SummaryType                       :before { content: "Summary Type "; }
-SummaryURL                        :before { content: "Summary URL "; }
-SummarySection                    :before { content: "Section "; }
+SecondaryTopics                   :before { content: "Secondary Topics" }
+SectMetaData                      :before { content: "Section Metadata"; }
+SectionType                       :before { content: "Section Type"; }
+SpecificMediaCaption              :before { content: "Caption"; }
+SpecificMediaTitle                :before { content: "Title"; }
+SpecificVideoPresentationTemplate :before { content: "Display"; }
+Summary                           :before { content: "SUMMARY"; }
+SummaryID                         :before { content: "Summary ID"; }
+SummaryAbstract                   :before { content: "Summary Abstract"; }
+SummaryAbstract>Para              :before { content: "Paragraph"; }
+SummaryAudience                   :before { content: "Summary Audience"; }
+SummaryDescription                :before { content: "Summary Description"; }
+SummaryKeyWords                   :before { content: "Summary Keywords"; }
+SummaryKeyWord                    :before { content: "Keyword"; }
+SummaryLanguage                   :before { content: "Summary Language"; }
+SummaryMetaData                   :before { content: "SUMMARY METADATA"; }
+SummaryModuleLink                 :before { content: "Summary Module"; }
+SummaryType                       :before { content: "Summary Type"; }
+SummaryURL                        :before { content: "Summary URL"; }
+SummarySection                    :before { content: "Section"; }
 SummarySection>Comment
-                                  :before { content: "Comment "; }
+                                  :before { content: "Comment"; }
+SummarySection>ResponseToComment
+                                  :before { content: "Response"; }
 SummarySection>SummarySection
-                                  :before { content: "Sub-section "; }
+                                  :before { content: "Sub-section"; }
 SummarySection>SummarySection>SummarySection
-                                  :before { content: "Sub-sub-section "; }
+                                  :before { content: "Sub-sub-section"; }
 SummarySection>SummarySection>SummarySection>SummarySection
-                                  :before { content: "Sub-sub-sub-section "; }
+                                  :before { content: "Sub-sub-sub-section"; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection
-                                  :before { content: "Sub-sub-sub-sub-section "; }
-SummaryTitle                      :before { content: "SUMMARY TITLE "; }
-Term                              :before { content: "Term "; }
-SummarySection>Title              :before { content: "Section Title "; }
+                                  :before { content: "Sub-sub-sub-sub-section"; }
+SummaryTitle                      :before { content: "SUMMARY TITLE"; }
+Term                              :before { content: "Term"; }
+SummarySection>Title              :before { content: "Section Title"; }
 SummarySection>SummarySection>Title
-                                  :before { content: "Sub-section Title "; }
+                                  :before { content: "Sub-section Title"; }
 SummarySection>SummarySection>SummarySection>Title
-                                  :before { content: "Sub-sub-section Title "; }
+                                  :before { content: "Sub-sub-section Title"; }
 SummarySection>SummarySection>SummarySection>SummarySection>Title
-                                  :before { content: "Sub-sub-sub-section Title "; }
+                                  :before { content: "Sub-sub-sub-section Title"; }
 SummarySection>SummarySection>SummarySection>SummarySection>SummarySection>Title
-                                  :before { content: "Sub-sub-sub-sub-section Title "; }
+                                  :before { content: "Sub-sub-sub-sub-section Title"; }
 TableNumber                       :before { content: ""; }
-TranslationOf                     :before { content: "Translation Of "; }
+TranslationOf                     :before { content: "Translation Of"; }
 TypeOfChange                      :before { content: "Change Type"; }
 TypeOfSummaryChange               :before { content: "TYPE OF CHANGE"; }
-TypeOfSummaryChangeValue          :before { content: "Type "; }
-ReplacementFor                    :before { content: "Replacement For "; }
-User                              :before { content: "User "; }
-WillReplace                       :before { content: "Will Replace "; }
+TypeOfSummaryChangeValue          :before { content: "Type"; }
+ReplacementFor                    :before { content: "Replacement For"; }
+User                              :before { content: "User"; }
+VideoID                           :before { content: "Video ID"; }
+WillReplace                       :before { content: "Will Replace"; }
 
 
 /*************************************************************************/
@@ -306,20 +320,23 @@ BoardMember                       :before,
 MainTopics                        :before,
 MobileURL                         :before,
 PDQBoard                          :before,
-PMID					   :before,
+PMID                              :before,
 PurposeText                       :before,
 SecondaryTopics                   :before,
-SummaryAbstract		   :before,
+SummaryAbstract                   :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
-SummaryKeyWords			:before,
+SummaryKeyWords                   :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
 Term                              :before
     { font-size: 10pt; }
 
+Comment                           :before,
 SummarySection>Comment            :before,
+SummarySection>ResponseToComment  :before,
+ResponseToComment                 :before
     { color: black;
       background-color: white; }
 
@@ -340,10 +357,10 @@ Intervention                      :before,
 MobileURL                         :before,
 PatientVersionOf                  :before,
 PdqKey                            :before,
-PMID                                :before,
+PMID                              :before,
 PurposeText                       :before,
 SectionType                       :before,
-SummaryAbstract		   :before,
+SummaryAbstract                   :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
 SummaryLanguage                   :before,
@@ -366,13 +383,18 @@ Caption                           :before,
 ComprehensiveReviewDate           :before,
 ChangeDate                        :before,
 TypeOfSummaryChange > Comment     :before,
+TypeOfSummaryChange > Date        :before,
+TypeOfSummaryChange > User        :before,
 EnteredBy                         :before,
 DateLastModified                  :before,
 KeyPoint                          :before,
 MediaID                           :before,
 PatientVersionOf                  :before,
-SummaryAbstract>Para               :before,
-SummaryKeyWords>SummaryKeyWord :before,
+SpecificMediaCaption              :before,
+SpecificMediaTitle                :before,
+SpecificVideoPresentationTemplate :before,
+SummaryAbstract>Para              :before,
+SummaryKeyWords>SummaryKeyWord    :before,
 SummarySection>Para               :before,
 SummarySection>SummarySection>Para:before,
 Title                             :before,
@@ -380,6 +402,8 @@ TranslationOf                     :before,
 ReplacementFor                    :before,
 TypeOfChange                      :before,
 TypeOfSummaryChange               :before,
+TypeOfSummaryChangeValue          :before,
+VideoID                           :before,
 WillReplace                       :before,
     { color: black;
       font-weight: bold;
@@ -393,6 +417,7 @@ Title,
 /*************************************************************************/
 /*                            BORDER CONTROL                             */
 /*************************************************************************/
+EmbeddedVideo,
 MediaLink,
 SummaryMetaData,
 TypeOfSummaryChange
@@ -426,9 +451,14 @@ PdqKey,
 PMID,
 PurposeText,
 ReplacementFor,
+ResponseToComment,
 SecondaryTopics,
 SectMetaData,
+SectionTitle,
 SectionType,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 SummaryAbstract,
 SummaryAudience,
 SummaryDescription,
@@ -436,7 +466,7 @@ SummaryKeyWords>SummaryKeyWord,
 SummaryLanguage,
 SummaryMetaData,
 SummaryModuleLink,
-SummarySection,
+SummarySection>Title,
 SummarySection>SummarySection,
 SummarySection>SummarySection>Para,
 SummaryTitle,
@@ -449,6 +479,7 @@ TypeOfChange,
 TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
+VideoID,
 WillReplace
     { color: white;
       background-color: white; }
@@ -472,14 +503,14 @@ TypeOfSummaryChange > Comment     :before,
 Date                              :before,
 EnteredBy                         :before,
 MobileURL                         :before,
-PMID					   :before,
+PMID                              :before,
 PurposeText                       :before,
-SummaryAbstract			:before,
-SummaryAbstract>Para		:before,
+SummaryAbstract                   :before,
+SummaryAbstract>Para              :before,
 SummaryAudience                   :before,
 SummaryDescription                :before,
-SummaryKeyWords			:before,
-SummaryKeyWords>SummaryKeyWord :before,
+SummaryKeyWords                   :before,
+SummaryKeyWords>SummaryKeyWord    :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
@@ -490,7 +521,7 @@ TypeOfSummaryChange               :before,
 TypeOfSummaryChangeValue          :before,
 User                              :before
     { background-color: white; }
-	
+
 Board,
 BoardMember,
 Caption,
@@ -508,6 +539,9 @@ PMID,
 PurposeText,
 ReplacementFor,
 SecondaryTopics>Term,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 SummaryAbstract,
 SummaryAbstract>Para,
 SummaryAudience,
@@ -522,7 +556,8 @@ TypeOfChange,
 TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
+VideoID,
 WillReplace
     { text-indent: 0pt; }
-	
+
 

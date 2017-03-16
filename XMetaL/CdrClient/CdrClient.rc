@@ -175,13 +175,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "TODO: <Company name>"
-            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "CompanyName", "U.S. National Cancer Institute"
+            VALUE "FileDescription", "Logs into the CDR and Launches XMetaL"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "CdrClient.exe"
-            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "LegalCopyright", "(c) NCI.  All rights reserved."
             VALUE "OriginalFilename", "CdrClient.exe"
-            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductName", "CDR Launcher"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END

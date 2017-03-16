@@ -169,6 +169,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">Creator</Name>
+   <TagColor>#CBF9FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -508,6 +509,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">MediaSource</Name>
+   <TagColor>#CBF9FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -551,6 +553,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">OriginalSource</Name>
+   <TagColor>#CBF9FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -841,6 +844,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">SourceFilename</Name>
+   <TagColor>#CBF9FF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -1186,7 +1190,7 @@
                    Select the image encoding type for this image (required)
                    }?></ImageEncoding>
           <Color><?xm-replace_text {
-                   Select the color for this image (required)
+                   Select Color or BW (required)
                    }?></Color>
           <Labeled><?xm-replace_text {
                    Select Yes or No (required)
@@ -1208,7 +1212,7 @@
    <Name ns="">SoundData</Name>
    <MiniTemplate><![CDATA[<SoundData>
          <SoundType><?xm-replace_text {
-                   Enter an the sound type (required)
+                   Enter the sound type (required)
                    }?></SoundType>
          <SoundEncoding><?xm-replace_text {
                    Select the sound encoding (required)
@@ -1222,17 +1226,19 @@
    <Name ns="">VideoData</Name>
    <MiniTemplate><![CDATA[<VideoData>
    <VideoType><?xm-replace_text {
-                   Enter an the video type (required)
+                   Enter the video type (required)
                    }?></VideoType>
    <VideoEncoding><?xm-replace_text {
                    Select the video encoding (required)
                    }?></VideoEncoding>
-   <Color><?xm-replace_text {
-                   Select the color for this image (required)
-                   }?></Color>
+   <Color>Color</Color>
    <RunSeconds><?xm-replace_text {
                    Optionally enter an integer number
                    }?></RunSeconds>
+   <VideoHosting>youtube</VideoHosting>
+   <HostingID><?xm-replace_text {
+                   Enter the hosting ID (required)
+                   }?></HostingID>
   </VideoData>]]></MiniTemplate>
   </Template>
   <Template>
@@ -1588,7 +1594,7 @@
                    Select the image encoding type for this image (required)
                    }?></ImageEncoding>
    <Color><?xm-replace_text {
-                   Select the color for this image (required)
+                   Select Color or BW (required)
                    }?></Color>
    <Labeled><?xm-replace_text {
                    Select Yes or No (required)
@@ -1607,21 +1613,25 @@
   </ImageData>
   <VideoData>
    <VideoType><?xm-replace_text {
-                   Enter an the video type (required)
+                   Enter the video type (required)
                    }?></VideoType>
    <VideoEncoding><?xm-replace_text {
                    Select the video encoding (required)
                    }?></VideoEncoding>
    <Color><?xm-replace_text {
-                   Select the color for this image (required)
+                   Select Color or BW (required)
                    }?></Color>
    <RunSeconds><?xm-replace_text {
                    Optionally enter an integer number
                    }?></RunSeconds>
+   <VideoHosting>youtube</VideoHosting>
+   <HostingID><?xm-replace_text {
+                   Enter the hosting ID (required)
+                   }?></HostingID>
   </VideoData>
   <SoundData>
    <SoundType><?xm-replace_text {
-                   Enter an the sound type (required)
+                   Enter the sound type (required)
                    }?></SoundType>
    <SoundEncoding><?xm-replace_text {
                    Select the sound encoding (required)
@@ -1647,7 +1657,7 @@
   <Template>
    <Name ns="">Color</Name>
    <MiniTemplate><![CDATA[<Color><?xm-replace_text {
-                   Select the color for this image (required)
+                   Select Color or BW (required)
                    }?></Color>]]></MiniTemplate>
   </Template>
   <Template>
@@ -1681,6 +1691,12 @@
                    }?></HeightPixels>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name ns="">HostingID</Name>
+   <MiniTemplate><![CDATA[<HostingID><?xm-replace_text {
+                   Enter the hosting ID (required)
+                   }?></HostingID>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name ns="">WidthPixels</Name>
    <MiniTemplate><![CDATA[<WidthPixels><?xm-replace_text {
                    Enter an integer number (required)
@@ -1695,7 +1711,7 @@
   <Template>
    <Name ns="">SoundType</Name>
    <MiniTemplate><![CDATA[<SoundType><?xm-replace_text {
-                   Enter an the sound type (required)
+                   Enter the sound type (required)
                    }?></SoundType>]]></MiniTemplate>
   </Template>
   <Template>
@@ -1713,7 +1729,7 @@
   <Template>
    <Name ns="">VideoType</Name>
    <MiniTemplate><![CDATA[<VideoType><?xm-replace_text {
-                   Enter an the video type (required)
+                   Enter the video type (required)
                    }?></VideoType>]]></MiniTemplate>
   </Template>
   <Template>
@@ -1721,6 +1737,10 @@
    <MiniTemplate><![CDATA[<VideoEncoding><?xm-replace_text {
                    Select the video encoding (required)
                    }?></VideoEncoding>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">VideoHosting</Name>
+   <MiniTemplate><![CDATA[<VideoHosting>youtube</VideoHosting>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">ProposedUse</Name>
@@ -1743,6 +1763,12 @@
    <MiniTemplate><![CDATA[<Glossary><?xm-replace_text {
                    Select a glossary link (required)
                    }?></Glossary>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">ExternalRef</Name>
+   <MiniTemplate><![CDATA[<ExternalRef><?xm-replace_text {
+                   Optionally enter a URL
+                   }?></ExternalRef>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">ProcessingStatuses</Name>

@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <!-- Added Jean's couleurs. -->
-<!-- $Id: Summary.ctm,v 1.17 2009-06-24 20:01:52 venglisc Exp $ -->
-<DTDExtensions>
+<DTDExtensions Version="2.0">
  <ElementPropertiesList>
   <GlobalPrettyPrintOptions>
    <NoPrettyPrinting/>
@@ -134,6 +133,14 @@
     <NewLineBeforeStartTag/>
     <IndentContent/>
    </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">EmbeddedVideo</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">EnteredBy</Name>
@@ -389,6 +396,30 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">SpecificMediaCaption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificMediaTitle</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificVideoPresentationTemplate</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name>Street</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -636,6 +667,14 @@
   <ElementProperties>
    <Name ns="">User</Name>
    <TagColor>#66CCCC</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">VideoID</Name>
+   <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -1022,6 +1061,23 @@
    <MiniTemplate><![CDATA[<Caption><?xm-replace_text {
                    Optionally enter a caption for the image
                    }?></Caption>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">EmbeddedVideo</Name>
+   <MiniTemplate><![CDATA[<EmbeddedVideo>
+       <VideoID><?xm-replace_text {
+                   Enter the video ID (required)
+                   }?></VideoID>
+       <SpecificMediaTitle><?xm-replace_text {
+                   Optionally enter the video title
+                   }?></SpecificMediaTitle>
+       <SpecificMediaCaption><?xm-replace_text {
+                   Optionally enter the video caption
+                   }?></SpecificMediaCaption>
+       <SpecificVideoPresentationTemplate><?xm-replace_text {
+                   Optionally enter the video presentation
+                   }?></SpecificVideoPresentationTemplate>
+      </EmbeddedVideo>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>MediaLink</Name>

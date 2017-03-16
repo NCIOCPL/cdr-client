@@ -80,8 +80,9 @@ URL,
 AltTitle                 :before, { content: "Alternate Title"; }
 ApprovedIndication       :before, { content: "Approved Indication"; }
 Audience                 :before, { content: "Audience"; }
-DrugInformationSummary>Comment, DrugReference>Comment
+DrugInformationSummary>Comment, 
                          :before, { content: "Comments"; }
+DrugReference>Comment    :before, { content: "Comments"; }
 DateLastModified         :before, { content: "Date Last Modified"; }
 Description              :before, { content: "Description"; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA"; }

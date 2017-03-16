@@ -24,6 +24,17 @@
          Enter the reference source of the term, or Change
          to another source type
          }?></ReferenceSource>
+   <VocabularySource>
+    <SourceCode><?xm-replace_text {
+         Select this term's source, or Change to another source type
+         }?></SourceCode>
+    <SourceTermType><?xm-replace_text {
+         Select a category for the source term (required)
+         }?></SourceTermType>
+    <SourceTermId><?xm-replace_text {
+         Optionally enter the ID of the source term
+         }?></SourceTermId>
+   </VocabularySource>
   </SourceInformation>
   <ReviewStatus><?xm-replace_text {
          Optionally select a Reviewed/Unreviewed type
@@ -47,9 +58,9 @@
          Optionally enter the ID of the source term definition
          }?></DefinedTermId>
   </DefinitionSource>
-  <Comment><?xm-replace_text {
-         Optionally enter a comment
-         }?></Comment>
+  <ReviewStatus><?xm-replace_text {
+         Optionally select a Reviewed/Unreviewed type
+         }?></ReviewStatus>
  </Definition>
  <TermType>
   <TermTypeName><?xm-replace_text {

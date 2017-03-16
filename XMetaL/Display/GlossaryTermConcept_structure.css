@@ -56,6 +56,7 @@ DateLastReviewed,
 GlossaryTerm,
 DefinitionResource,
 DefinitionStatus,
+EmbeddedVideo,
 TranslatedStatus,
 DefinitionText,
 Dictionary,
@@ -67,6 +68,9 @@ ProcessingStatuses,
 ProcessingStatus,
 ProcessingStatusValue,
 PronunciationResource,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 StatusDate,
 TranslatedStatusDate,
 TermName,
@@ -75,6 +79,7 @@ TermSource,
 TermStatus,
 TermType,
 TranslationResource,
+VideoID,
     { display: block; }
 
 
@@ -88,7 +93,9 @@ DateLastModified             :before { content: "Last Modified"; }
 DateLastReviewed             :before { content: "Last Reviewed"; }
 DefinitionResource           :before { content: "Definition Resource"; }
 DefinitionStatus             :before { content: "Definition Status"; }
+EmbeddedVideo                :before { content: "VIDEOLINK"; }
 GlossaryTerm                 :before { content: "GLOSSARY TERM"; }
+MediaLink                    :before { content: "MEDIALINK"; }
 NCIThesaurusID               :before { content: "NCI Thesaurus ID"; }
 PdqKey                       :before { content: "PDQ Key"; }
 PDQTerm                      :before { content: "PDQ Term"; }
@@ -102,6 +109,10 @@ RelatedDrugSummaryLink       :before { content: "Rel Drug Summary Link"; }
 RelatedExternalRef           :before { content: "Rel External Ref"; }
 RelatedGlossaryTermNameLink  :before { content: "Rel Glossary Link"; }
 RelatedSummaryRef            :before { content: "Rel Summary Ref"; }
+SpecificMediaCaption         :before { content: "Caption"; }
+SpecificMediaTitle           :before { content: "Title"; }
+SpecificVideoPresentationTemplate
+                             :before { content: "Display"; }
 StatusDate                   :before { content: "Status Date"; }
 TranslatedTermDefinition     :before { content: "TRANSLATED DEFINITION"; }
 TranslatedTermDefinition>DefinitionText            
@@ -117,6 +128,7 @@ TermType                     :before { content: "Term Type  "; }
 TranslatedStatus             :before { content: "Translated Status"; }
 TranslatedStatusDate         :before { content: "Translated Status Date"; }
 TranslationResource          :before { content: "Translation Resource"; }
+VideoID                      :before { content: "Video ID"; }
 
 
 /***************************************************************************/
@@ -187,6 +199,9 @@ RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedGlossaryTermNameLink,
 RelatedSummaryRef,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 StatusDate,
 TranslatedStatusDate,
 TermName,
@@ -194,7 +209,8 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-TranslationResource
+TranslationResource,
+VideoID
     { text-indent: 0pt; }
 
 
@@ -207,6 +223,7 @@ DateLastModified,
 DateLastReviewed,
 DefinitionResource,
 DefinitionStatus,
+EmbeddedVideo,
 TranslatedStatus,
 GlossaryTerm,
 DefinitionText,
@@ -221,6 +238,9 @@ RelatedDrugSummaryLink,
 RelatedExternalRef,
 RelatedGlossaryTermNameLink,
 RelatedSummaryRef,
+SpecificMediaCaption,
+SpecificMediaTitle,
+SpecificVideoPresentationTemplate,
 StatusDate,
 TranslatedStatusDate,
 TermDefinition,
@@ -231,6 +251,7 @@ TermStatus,
 TermType,
 TranslatedTermDefinition,
 TranslationResource,
+VideoID
     { color: white;
       background-color: white; }
 
@@ -241,6 +262,7 @@ DateLastModified            :before,
 DateLastReviewed            :before,
 DefinitionResource          :before,
 DefinitionStatus            :before,
+EmbeddedVideo               :before,
 TranslatedStatus            :before,
 GlossaryTerm                :before,
 DefinitionText              :before,
@@ -255,13 +277,18 @@ RelatedDrugSummaryLink      :before,
 RelatedExternalRef          :before,
 RelatedGlossaryTermNameLink :before,
 RelatedSummaryRef           :before,
-StatusDate              :before,
-TranslatedTermDefinition:before,
-TranslatedStatusDate    :before,
-TermName                :before,
-TermPronunciation       :before,
-TermSource              :before,
-TermStatus              :before,
-TermType                :before,
-TranslationResource     :before,
+SpecificMediaCaption        :before,
+SpecificMediaTitle          :before,
+SpecificVideoPresentationTemplate
+                            :before,
+StatusDate                  :before,
+TranslatedTermDefinition    :before,
+TranslatedStatusDate        :before,
+TermName                    :before,
+TermPronunciation           :before,
+TermSource                  :before,
+TermStatus                  :before,
+TermType                    :before,
+TranslationResource         :before,
+VideoID                     :before
     { background-color: white; }

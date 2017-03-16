@@ -2,846 +2,905 @@
 <!-- Created by XMetaL style generator. (c)2004 Blast Radius. All rights reserved. -->
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions Version="2.0">
-  <ParentList>
-   <TermDefinition>
-    <DefinitionText/>
-   </TermDefinition>
-   <TranslatedTermDefinition>
-    <DefinitionText/>
-   </TranslatedTermDefinition>
-  </ParentList>
-  <ElementPropertiesList>
-    <GlobalPrettyPrintOptions>
-      <IndentAmount>10</IndentAmount>
-      <MaxLineLength>60</MaxLineLength>
-    </GlobalPrettyPrintOptions>
-    <ElementProperties>
-      <Name ns="">Audience</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Caption</Name>
-      <TagColor>#EE9A4D</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">CdrDocCtl</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">CitationLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">CitationRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Comment</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DateLastModified</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DateLastReviewed</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DefinitionResource</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DefinitionStatus</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>DefinitionText</Name>
-    </ElementProperties>
-    <ElementProperties>
-      <Name>DefinitionText</Name>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Dictionary</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DocId</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DocTitle</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">DrugName</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Email</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Emphasis</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ExternalRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Fax</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ForeignWord</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GeneName</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GlossaryTermConcept</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GlossaryTermLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">GlossaryTermRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">InterventionName</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ItemizedList</Name>
-      <TagColor>3399FF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ListItem</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ListTitle</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">LiteralLayout</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">MarkedUpTitle</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">MediaID</Name>
-      <TagColor>#EE9A4D</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">MediaLink</Name>
-      <TagColor>#EE9A4D</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">MediaRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">NCIThesaurusID</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Note</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">OrderedList</Name>
-      <TagColor>3399FF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">PDQTerm</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Para</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Phone</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">PlaceHolder</Name>
-      <TagColor>008080</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ReplacementText</Name>
-      <TagColor>teal</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">PoliticalSubUnit_State</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">PostalAddress</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">PostalCode_ZIP</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ProcessingStatus</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ProcessingStatuses</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ProcessingStatusValue</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ProtocolLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ProtocolRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">QandADiv</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">QandAEntry</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">QandASet</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Question</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Quote</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">QuoteAuthor</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">QuotedText</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">RelatedDrugSummaryLink</Name>
-      <TagColor>#0088FF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">RelatedExternalRef</Name>
-      <TagColor>#00AAFF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">RelatedGlossaryTermNameLink</Name>
-      <TagColor>#00FFFF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">RelatedInformation</Name>
-      <TagColor>#0066FF</TagColor>
-      <FontColor>red</FontColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">RelatedSummaryRef</Name>
-      <TagColor>#00DDFF</TagColor>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ResponseToComment</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Row</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">ScientificName</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Section</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Source</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SpanSpec</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">StandardWording</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">StatusDate</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Street</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Strong</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Subscript</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SummaryFragmentLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SummaryFragmentRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SummaryLink</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">SummaryRef</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Superscript</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TBody</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TFoot</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TGroup</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">THead</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TT</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Table</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TermDefinition</Name>
-      <PrettyPrintOptions>
-       <IndentContent>50</IndentContent>
-       <PreserveSpace/>
-       <NewLineBeforeEndTag/>
-       <NewLineBeforeStartTag/>
-      </PrettyPrintOptions>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TermSource</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TermStatus</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TermType</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">Title</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TitleAbbrev</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TollFreePhone</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TranslatedStatus</Name>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TranslatedStatusDate</Name>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TranslatedTermDefinition</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">TranslationResource</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">WebSite</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-    <ElementProperties>
-      <Name ns="">entry</Name>
-      <PrettyPrintOptions></PrettyPrintOptions>
-      <IndentContent/>
-      <NewLineBeforeEndTag/>
-      <NewLineBeforeStartTag/>
-    </ElementProperties>
-  </ElementPropertiesList>
-  <Images>
-    <Image>
-      <Name ns="">MediaRef</Name>
-      <Source-Attribute>href</Source-Attribute>
-    </Image>
-  </Images>
-  <ListElements>
-    <BulletedList>
-      <Name ns="">ItemizedList</Name>
-      <ListItem ns="">ListItem</ListItem>
-    </BulletedList>
-    <NumberedList>
-      <Name ns="">OrderedList</Name>
-      <ListItem ns="">ListItem</ListItem>
-    </NumberedList>
-  </ListElements>
-  <TogglingInlines>
-    <Italic>
-      <Name ns="">Emphasis</Name>
-    </Italic>
-    <Bold>
-      <Name ns="">Strong</Name>
-    </Bold>
-  </TogglingInlines>
-  <Paragraphs>
-    <Paragraph>
-      <Name ns="">Para</Name>
-    </Paragraph>
-  </Paragraphs>
-  <FollowedByList>
-    <FollowedByListItem>
-      <Name ns="">Para</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">ItemizedList</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">OrderedList</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">AltTitle</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">DocTitle</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">ListTitle</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">MarkedUpTitle</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">Title</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">TitleAbbrev</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">Table</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">MediaRef</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">ProtocolLink</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">ProtocolRef</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-    <FollowedByListItem>
-      <Name ns="">ResponseToComment</Name>
-      <FollowedBy ns="">Para</FollowedBy>
-    </FollowedByListItem>
-  </FollowedByList>
-  <Templates>
-    <Template>
-      <Name ns="">AltTitle</Name>
-      <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text Type new AltTitle here ?></AltTitle>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">Comment</Name>
-      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
-      Optionally enter a Comment
-      }?></Comment>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DateLastModified</Name>
-      <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
-      Optionally enter the last modification date
-      }?></DateLastModified>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DateLastReviewed</Name>
-      <MiniTemplate><![CDATA[<DateLastReviewed><?xm-replace_text {
-      Optionally enter the last review date
-      }?></DateLastReviewed>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DefinitionResource</Name>
-      <MiniTemplate><![CDATA[<DefinitionResource><?xm-replace_text {
-      Optionally enter DefinitionResource
-      }?></DefinitionResource>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">DefinitionStatus</Name>
-      <MiniTemplate><![CDATA[<DefinitionStatus><?xm-replace_text {
-      Optionally select the DefinitionStatus
-      }?></DefinitionStatus>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">Dictionary</Name>
-      <MiniTemplate><![CDATA[<Dictionary><?xm-replace_text {
-      Optionally select a dictionary
-      }?></Dictionary>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>MediaLink</Name>
-      <MiniTemplate><![CDATA[<MediaLink>
-        <MediaID><?xm-replace_text {
-             Enter the Media ID (required)
-             }?></MediaID>
+ <ParentList>
+  <TermDefinition>
+   <DefinitionText/>
+  </TermDefinition>
+  <TranslatedTermDefinition>
+   <DefinitionText/>
+  </TranslatedTermDefinition>
+ </ParentList>
+ <ElementPropertiesList>
+  <GlobalPrettyPrintOptions>
+   <IndentAmount>10</IndentAmount>
+   <MaxLineLength>60</MaxLineLength>
+  </GlobalPrettyPrintOptions>
+  <ElementProperties>
+   <Name ns="">Audience</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Caption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">CdrDocCtl</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">CitationLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">CitationRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Comment</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DateLastModified</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DateLastReviewed</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DefinitionResource</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DefinitionStatus</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>DefinitionText</Name>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>DefinitionText</Name>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Dictionary</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DocId</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DocTitle</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">DrugName</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Email</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">EmbeddedVideo</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Emphasis</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ExternalRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Fax</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ForeignWord</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GeneName</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GlossaryTermConcept</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GlossaryTermLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">GlossaryTermRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">InterventionName</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ItemizedList</Name>
+   <TagColor>3399FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ListItem</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ListTitle</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">LiteralLayout</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MarkedUpTitle</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaID</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaLink</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">MediaRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">NCIThesaurusID</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Note</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">OrderedList</Name>
+   <TagColor>3399FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PDQTerm</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Para</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Phone</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PlaceHolder</Name>
+   <TagColor>008080</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ReplacementText</Name>
+   <TagColor>teal</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PoliticalSubUnit_State</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PostalAddress</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">PostalCode_ZIP</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProcessingStatus</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProcessingStatuses</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProcessingStatusValue</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProtocolLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProtocolRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">QandADiv</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">QandAEntry</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">QandASet</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Question</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Quote</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">QuoteAuthor</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">QuotedText</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedDrugSummaryLink</Name>
+   <TagColor>#0088FF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedExternalRef</Name>
+   <TagColor>#00AAFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedGlossaryTermNameLink</Name>
+   <TagColor>#00FFFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedInformation</Name>
+   <TagColor>#0066FF</TagColor>
+   <FontColor>red</FontColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">RelatedSummaryRef</Name>
+   <TagColor>#00DDFF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ResponseToComment</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Row</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ScientificName</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Section</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Source</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpanSpec</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificMediaCaption</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificMediaTitle</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SpecificVideoPresentationTemplate</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">StandardWording</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">StatusDate</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Street</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Strong</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Subscript</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SummaryFragmentLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SummaryFragmentRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SummaryLink</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SummaryRef</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Superscript</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TBody</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TFoot</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TGroup</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">THead</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TT</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Table</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TermDefinition</Name>
+   <PrettyPrintOptions>
+    <IndentContent>50</IndentContent>
+    <PreserveSpace/>
+    <NewLineBeforeEndTag/>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TermSource</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TermStatus</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TermType</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Title</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TitleAbbrev</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TollFreePhone</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TranslatedStatus</Name>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TranslatedStatusDate</Name>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TranslatedTermDefinition</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TranslationResource</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">VideoID</Name>
+   <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">WebSite</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">entry</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+ </ElementPropertiesList>
+ <Images>
+  <Image>
+   <Name ns="">MediaRef</Name>
+   <Source-Attribute>href</Source-Attribute>
+  </Image>
+ </Images>
+ <ListElements>
+  <BulletedList>
+   <Name ns="">ItemizedList</Name>
+   <ListItem ns="">ListItem</ListItem>
+  </BulletedList>
+  <NumberedList>
+   <Name ns="">OrderedList</Name>
+   <ListItem ns="">ListItem</ListItem>
+  </NumberedList>
+ </ListElements>
+ <TogglingInlines>
+  <Italic>
+   <Name ns="">Emphasis</Name>
+  </Italic>
+  <Bold>
+   <Name ns="">Strong</Name>
+  </Bold>
+ </TogglingInlines>
+ <Paragraphs>
+  <Paragraph>
+   <Name ns="">Para</Name>
+  </Paragraph>
+ </Paragraphs>
+ <FollowedByList>
+  <FollowedByListItem>
+   <Name ns="">Para</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">ItemizedList</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">OrderedList</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">AltTitle</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">DocTitle</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">ListTitle</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">MarkedUpTitle</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">Title</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">TitleAbbrev</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">Table</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">MediaRef</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">ProtocolLink</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">ProtocolRef</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+  <FollowedByListItem>
+   <Name ns="">ResponseToComment</Name>
+   <FollowedBy ns="">Para</FollowedBy>
+  </FollowedByListItem>
+ </FollowedByList>
+ <Templates>
+  <Template>
+   <Name ns="">AltTitle</Name>
+   <MiniTemplate><![CDATA[<AltTitle><?xm-replace_text {
+                   Type new AltTitle here 
+                   }?></AltTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">Comment</Name>
+   <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+                   Optionally enter a Comment
+                   }?></Comment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DateLastModified</Name>
+   <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
+                   Optionally enter the last modification date
+                   }?></DateLastModified>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DateLastReviewed</Name>
+   <MiniTemplate><![CDATA[<DateLastReviewed><?xm-replace_text {
+                   Optionally enter the last review date
+                   }?></DateLastReviewed>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DefinitionResource</Name>
+   <MiniTemplate><![CDATA[<DefinitionResource><?xm-replace_text {
+                   Optionally enter DefinitionResource
+                   }?></DefinitionResource>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DefinitionStatus</Name>
+   <MiniTemplate><![CDATA[<DefinitionStatus><?xm-replace_text {
+                   Optionally select the DefinitionStatus
+                   }?></DefinitionStatus>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">Dictionary</Name>
+   <MiniTemplate><![CDATA[<Dictionary><?xm-replace_text {
+                   Optionally select a dictionary
+                   }?></Dictionary>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">EmbeddedVideo</Name>
+   <MiniTemplate><![CDATA[<EmbeddedVideo>
+       <VideoID><?xm-replace_text {
+                   Enter the video ID (required)
+                   }?></VideoID>
+       <SpecificMediaTitle><?xm-replace_text {
+                   Optionally enter the video title
+                   }?></SpecificMediaTitle>
+       <SpecificMediaCaption><?xm-replace_text {
+                   Optionally enter the video caption
+                   }?></SpecificMediaCaption>
+       <SpecificVideoPresentationTemplate><?xm-replace_text {
+                   Optionally enter the video presentation
+                   }?></SpecificVideoPresentationTemplate>
+      </EmbeddedVideo>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>MediaLink</Name>
+   <MiniTemplate><![CDATA[<MediaLink>
+      <MediaID><?xm-replace_text {
+                   Enter the Media ID (required)
+                   }?></MediaID>
       </MediaLink>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">NCIThesaurusID</Name>
-      <MiniTemplate><![CDATA[<NCIThesaurusID><?xm-replace_text {
-      Optionally enter an NCIThesaurusID
-      }?></NCIThesaurusID>]]></MiniTemplate>
-    </Template>
+  </Template>
+  <Template>
+   <Name ns="">NCIThesaurusID</Name>
+   <MiniTemplate><![CDATA[<NCIThesaurusID><?xm-replace_text {
+                   Optionally enter an NCIThesaurusID
+                   }?></NCIThesaurusID>]]></MiniTemplate>
+  </Template>
     <!-- 
     Note:  The ProcessingStatuses block is controlled by a macro in Cdr.mcr
 
@@ -855,97 +914,97 @@
         </ProcessingStatus>
        </ProcessingStatuses>]]></MiniTemplate>
     </Template -->
-    <Template>
-      <Name ns="">PDQTerm</Name>
-      <MiniTemplate><![CDATA[<PDQTerm><?xm-replace_text {
-      Optionally enter a term link
-      }?></PDQTerm>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">PlaceHolder</Name>
-      <MiniTemplate><![CDATA[<PlaceHolder name="TERMNAME"><?xm-replace_text {
-      Replace attribute for PlaceHolder (if necessary) to link to 
-      ReplacementText and delete these instructions
-      }?></PlaceHolder>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">ReplacementText</Name>
-      <MiniTemplate><![CDATA[<ReplacementText name="TERMNAME"><?xm-replace_text {
-      Optionally enter the replacement text and its name attribute
-      }?></ReplacementText>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name>RelatedInformation</Name>
-      <MiniTemplate><![CDATA[<RelatedInformation>
+  <Template>
+   <Name ns="">PDQTerm</Name>
+   <MiniTemplate><![CDATA[<PDQTerm><?xm-replace_text {
+                   Optionally enter a term link
+                   }?></PDQTerm>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">PlaceHolder</Name>
+   <MiniTemplate><![CDATA[<PlaceHolder name="TERMNAME"><?xm-replace_text {
+                   Replace attribute for PlaceHolder (if necessary) to link to 
+                   ReplacementText and delete these instructions
+                   }?></PlaceHolder>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">ReplacementText</Name>
+   <MiniTemplate><![CDATA[<ReplacementText name="TERMNAME"><?xm-replace_text {
+                   Optionally enter the replacement text and its name attribute
+                   }?></ReplacementText>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>RelatedInformation</Name>
+   <MiniTemplate><![CDATA[<RelatedInformation>
         <RelatedDrugSummaryLink><?xm-replace_text {
-             Optionally enter related Drug Info Summary information
-             }?></RelatedDrugSummaryLink>
+                   Optionally enter related Drug Info Summary information
+                   }?></RelatedDrugSummaryLink>
         <RelatedExternalRef><?xm-replace_text {
-             Optionally enter related external information
-             }?></RelatedExternalRef>
+                   Optionally enter related external information
+                   }?></RelatedExternalRef>
         <RelatedSummaryRef><?xm-replace_text {
-             Optionally enter related Summary information
-             }?></RelatedSummaryRef>
+                   Optionally enter related Summary information
+                   }?></RelatedSummaryRef>
         <RelatedGlossaryTermNameLink><?xm-replace_text {
-             Optionally enter related Glossary Term Name information
-             }?></GlossaryTermNameLink>
+                   Optionally enter related Glossary Term Name information
+                   }?></GlossaryTermNameLink>
       </RelatedInformation>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">RelatedDrugSummaryLink</Name>
-      <MiniTemplate><![CDATA[<RelatedDrugSummaryLink><?xm-replace_text {
-             Optionally enter related Drug Info Summary information
-      }?></RelatedDrugSummaryLink>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">RelatedExternalRef</Name>
-      <MiniTemplate><![CDATA[<RelatedExternalRef><?xm-replace_text {
-             Optionally enter related external information
-      }?></RelatedExternalRef>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">RelatedGlossaryTermNameLink</Name>
-      <MiniTemplate><![CDATA[<RelatedGlossaryTermNameLink><?xm-replace_text {
-             Optionally enter related Glossary Term Name information
-      }?></RelatedGlossaryTermNameLink>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">RelatedSummaryRef</Name>
-      <MiniTemplate><![CDATA[<RelatedSummaryRef><?xm-replace_text {
-             Optionally enter related Summary information
-      }?></RelatedSummaryRef>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">TranslatedTermDefinition</Name>
-      <MiniTemplate><![CDATA[<TranslatedTermDefinition language="es">
+  </Template>
+  <Template>
+   <Name ns="">RelatedDrugSummaryLink</Name>
+   <MiniTemplate><![CDATA[<RelatedDrugSummaryLink><?xm-replace_text {
+                   Optionally enter related Drug Info Summary information
+                   }?></RelatedDrugSummaryLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">RelatedExternalRef</Name>
+   <MiniTemplate><![CDATA[<RelatedExternalRef><?xm-replace_text {
+                   Optionally enter related external information
+                   }?></RelatedExternalRef>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">RelatedGlossaryTermNameLink</Name>
+   <MiniTemplate><![CDATA[<RelatedGlossaryTermNameLink><?xm-replace_text {
+                   Optionally enter related Glossary Term Name information
+                   }?></RelatedGlossaryTermNameLink>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">RelatedSummaryRef</Name>
+   <MiniTemplate><![CDATA[<RelatedSummaryRef><?xm-replace_text {
+                   Optionally enter related Summary information
+                   }?></RelatedSummaryRef>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TranslatedTermDefinition</Name>
+   <MiniTemplate><![CDATA[<TranslatedTermDefinition language="es">
         <DefinitionText><?xm-replace_text {
-             Enter a definition for the concept (required)
-             }?></DefinitionText>
+                   Enter a definition for the concept (required)
+                   }?></DefinitionText>
         <Dictionary><?xm-replace_text {
-              Optionally select a dictionary
-             }?></Dictionary>
+                   Optionally select a dictionary
+                   }?></Dictionary>
         <Audience><?xm-replace_text {
-              Select HP or patient (required)
-             }?></Audience>
+                   Select HP or patient (required)
+                   }?></Audience>
         <TranslatedStatus><?xm-replace_text {
-              Optionally select the DefinitionStatus
-             }?></TranslatedStatus>
+                   Optionally select the DefinitionStatus
+                   }?></TranslatedStatus>
         <TranslatedStatusDate><?xm-replace_text {
-              Optionally enter a Status date
-             }?></TranslatedStatusDate>
+                   Optionally enter a Status date
+                   }?></TranslatedStatusDate>
       </TranslatedTermDefinition>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">TranslationResource</Name>
-      <MiniTemplate><![CDATA[<TranslationResource><?xm-replace_text {
-      Optionally enter the source of the translation
-      }?></TranslationResource>]]></MiniTemplate>
-    </Template>
-    <Template>
-      <Name ns="">StatusDate</Name>
-      <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {
-      Optionally enter a Status date
-      }?></StatusDate>]]></MiniTemplate>
-    </Template>
-  </Templates>
+  </Template>
+  <Template>
+   <Name ns="">TranslationResource</Name>
+   <MiniTemplate><![CDATA[<TranslationResource><?xm-replace_text {
+                   Optionally enter the source of the translation
+                   }?></TranslationResource>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">StatusDate</Name>
+   <MiniTemplate><![CDATA[<StatusDate><?xm-replace_text {
+                   Optionally enter a Status date
+                   }?></StatusDate>]]></MiniTemplate>
+  </Template>
+ </Templates>
 </DTDExtensions>

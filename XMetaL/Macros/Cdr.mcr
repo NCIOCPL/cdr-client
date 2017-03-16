@@ -40,6 +40,7 @@
     // To be overridden by successful logon.
     var CdrUserName = "";
     var CdrSession  = "";
+    var CdrHostName = "";
     try {
         if (cdrObj) {
             try {
@@ -52,10 +53,11 @@
                 // the XMetaL software will have the older CDR DLL.
                 CdrUserPath = Application.Path;
             }
-            CdrUserName  = cdrObj.username;
+            CdrHostName  = cdrObj.hostname;
             CdrSession   = cdrObj.session;
-            if (cdrObj.hostname) {
-                CdrWebServer = "https://" + cdrObj.hostname;
+            CdrUserName  = cdrObj.username;
+            if (CdrHostName) {
+                CdrWebServer = "https://" + CdrHostName;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
         }
@@ -460,8 +462,9 @@
             cdrObj.logon();
             CdrUserName = cdrObj.username;
             CdrSession  = cdrObj.session;
-            if (cdrObj.hostname) {
-                CdrWebServer = "https://" + cdrObj.hostname;
+            CdrHostName = cdrObj.hostname;
+            if (CdrHostName) {
+                CdrWebServer = "https://" + CdrHostName;
                 CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
             }
             try {
@@ -1035,6 +1038,8 @@
     var isReadOnly = cdrDocReadOnly();
     Application.AppendMacro("-", "");
     Application.AppendMacro("&Edit Element", "Cdr Edit");
+    Application.AppendMacro("Linked Fragment Docs Report",
+                            "Linked Fragment Docs Report");
     Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
     Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
@@ -1047,6 +1052,8 @@
                 Application.AppendMacro("Make Public=No", "Set Non-Public");
         }
         var linkId = container.getAttribute("cdr:ref");
+        if (!linkId)
+            linkId = container.getAttribute("cdr:href");
         if (linkId && linkId.indexOf("CDR") >= 0) {
             Application.AppendMacro("Open &Link For Editing",
                                     "Open Linked Doc Edit Mode");
@@ -1082,12 +1089,6 @@
     }
     if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
         docType.name == "ScientificProtocolInfo") {
-        if (!isReadOnly) {
-            Application.AppendMacro("Glossify Document", "Glossify Document");
-            Application.AppendMacro(
-                "Glossify Document (include all sections in markup)",
-                "Glossify Document (dig)");
-            }
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
@@ -1147,10 +1148,6 @@
         Application.AppendMacro("Insert ResponseToComment",
                                 "Insert ResponseToComment");
     }
-    if (docType.name == "Summary") {
-        Application.AppendMacro("Insert Type of Summary Change",
-                                "Insert TypeOfChange");
-    }
     if (docType.name == 'ScientificProtocolInfo' ||
         docType.name == 'InScopeProtocol' ||
         docType.name == 'CTGovProtocol') {
@@ -1159,8 +1156,6 @@
                                     "Insert Current Date and Time");
         }
     }
-    Application.AppendMacro("Find Private Use Unicode Characters",
-                            "Find Private Use Chars");
     if (docType.name == "InScopeProtocol" ||
         docType.name == "ScientificProtocolInfo") {
         if (!isReadOnly) {
@@ -1170,8 +1165,6 @@
             }
         }
     }
-    Application.AppendMacro("Linked Fragment Docs Report",
-                            "Linked Fragment Docs Report");
     if (docType.name == 'Summary' && (
         Selection.IsParentElement('ProtocolRef') ||
         Selection.IsParentElement('ProtocolLink') ||
@@ -1196,13 +1189,13 @@
         }
     }
     if (!isReadOnly) {
-        Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
-
         // OCECDR-3958
         Application.AppendMacro("Set Source to Advisory Board",
                                 "Set Source to Advisory Board");
         Application.AppendMacro("Set Source to Editorial Board",
                                 "Set Source to Editorial Board");
+
+        Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
     }
   ]]>
 </MACRO>
@@ -1818,6 +1811,13 @@
                            "Insert User ID",
                            "CDR", 5, 10,
                            false),
+            /* For OCECDR-4188 */
+            new CdrCmdItem(null,
+                           "Find Private Use Chars",
+                           "Find Private Use Unicode Characters",
+                           "Find Private Use Unicode Characters",
+                           "General (Custom)", 4, 10,
+                           true),
             new CdrCmdItem(null,
                            "CDR Help",
                            "CDR Help",
@@ -2072,6 +2072,43 @@
                            "Spanish",
                            "Open Spanish translation of this summary",
                            "CDR2", 2, 3,
+                           false),
+            new CdrCmdItem(null,
+                           "Translation Job",
+                           "Translation Job",
+                           "Add/edit translation job for this summary",
+                           "Databases (Custom)", 4, 1,
+                           true),
+            new CdrCmdItem(null,
+                           "Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
+                           false),
+            /* Next 3 for OCECDR-4188 */
+            new CdrCmdItem(null,
+                           "Glossify Document",
+                           "Glossify Document",
+                           "Glossify Document",
+                           "General (Custom)", 5, 9,
+                           true),
+            new CdrCmdItem(null,
+                           "Glossify Document (dig)",
+                           "Glossify Document (include all sections in markup)",
+                           "Glossify Document (include all sections in markup)",
+                           "General (Custom)", 5, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Insert TypeOfChange",
+                           "Insert Type of Summary Change",
+                           "Insert Type of Summary Change",
+                           "Revisions (Custom)", 2, 5,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -7050,23 +7087,25 @@
   ]]>
 </MACRO>
 
-<MACRO name="On_ElementList_Insert"
+<MACRO name="On_Application_ElementList_Insert"
        lang="JScript">
   <![CDATA[
     function onElementListInsert() {
         var name = Application.ElementList.SelectedName;
         var dt = ActiveDocument.doctype.name;
         if (dt == 'GlossaryTermConcept' || dt == 'GlossaryTermName') {
-            if (name == 'ProcessingStatus' || name == 'ProcessingStatuses') {
-                var newElem = "<ProcessingStatus>"
-                            + "<ProcessingStatusValue user='"
+            if (name == 'ProcessingStatus' || name == 'ProcessingStatuses' ||
+                name == 'ProcessingStatusValue') {
+                var newElem = "<ProcessingStatusValue user='"
                             + CdrUserName
                             + "' date='"
                             + getCurDateString()
                             + "'><?xm-replace_text { Select a "
                             + "processing status value (required) }?>"
-                            + "</ProcessingStatusValue>"
-                            + "</ProcessingStatus>";
+                            + "</ProcessingStatusValue>";
+                if (name != 'ProcessingStatusValue')
+                    newElem = '<ProcessingStatus>' + newElem
+                            + '</ProcessingStatus>';
                 if (name == 'ProcessingStatuses')
                     newElem = '<ProcessingStatuses>'
                             + newElem
@@ -7764,6 +7803,9 @@
     function openLinkedDocEditMode() {
         var container = Selection.ContainerNode;
         var linkedDocId = container.getAttribute("cdr:ref");
+        if (!linkedDocId)
+            linkedDocId = container.getAttribute("cdr:href");
+        // No need to strip fragment portion; DLL does that.
         cdrObj.openCdrDoc(linkedDocId, "Current", true);
     }
     openLinkedDocEditMode();
@@ -7776,6 +7818,9 @@
     function openLinkedDocViewMode() {
         var container = Selection.ContainerNode;
         var linkedDocId = container.getAttribute("cdr:ref");
+        if (!linkedDocId)
+            linkedDocId = container.getAttribute("cdr:href");
+        // No need to strip fragment portion; DLL does that.
         cdrObj.openCdrDoc(linkedDocId, "Current", false);
     }
     openLinkedDocViewMode();
@@ -9142,22 +9187,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Test New Fetch From URL Method" lang="JScript">
-  <![CDATA[
-    function testFetchFromUrl() {
-        try {
-            var url = CdrCgiBin + "TestFetchFromUrl.py";
-            var obj = objectFromUrl(url, ["address"]);
-            Application.Alert(dump(obj));
-        }
-        catch (e) {
-            Application.Alert(e);
-        }
-    }
-    testFetchFromUrl();
-  ]]>
-</MACRO>
-
 <MACRO name="Test Env Fetch" lang="JScript">
   <![CDATA[
     function testEnvFetch() {
@@ -9185,16 +9214,20 @@
     function applyRevisionLevel() {
         try {
             var level = cdrObj.chooseRevisionLevel();
-            var holdFlag = Selection.ReadOnlyContainer;
-            Selection.ReadOnlyContainer = false;
-            var sel = ActiveDocument.Range;
-            var count = setRevMarkupAttrs(sel, "RevisionLevel", level);
-            Selection.ReadOnlyContainer = holdFlag;
-            var message = "Marked " + count + " element";
-            if (count != 1)
-                message += "s";
-            message += " as '" + level + "'.";
-            Application.Alert(message);
+            if (level) {
+                var holdFlag = Selection.ReadOnlyContainer;
+                Selection.ReadOnlyContainer = false;
+                var sel = ActiveDocument.Range;
+                var count = setRevMarkupAttrs(sel, "RevisionLevel", level);
+                Selection.ReadOnlyContainer = holdFlag;
+                var message = "Marked " + count + " element";
+                if (count != 1)
+                    message += "s";
+                message += " as '" + level + "'.";
+                Application.Alert(message);
+            }
+            else
+                Application.Alert("Action canceled.");
         }
         catch (e) {
             Application.Alert(e);
@@ -9249,6 +9282,85 @@
         }
     }
     setSourceToEditorialBoard();
+  ]]>
+</MACRO>
+
+<MACRO  name="CDR Browser Launch Test"
+        lang="JScript"
+        desc="Launch IE lots of times quickly"
+        hide="false">
+  <![CDATA[
+
+    function launchTest() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "Admin.py?Session=" + CdrSession;
+        for (var i = 0; i < 25; ++i)
+            cdrObj.showPage(url);
+    }
+    launchTest();
+
+  ]]>
+</MACRO>
+
+<MACRO  name="Translation Job" lang="JScript">
+  <![CDATA[
+    function translationJob() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = "";
+        var translationOf = getSingleElement(doc, "TranslationOf");
+        if (translationOf)
+            docId = translationOf.getAttribute("cdr:ref");
+        else
+            docId = getDocId();
+        if (!docId) {
+            Application.Alert("Summary has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "translation-job.py?Session=" + CdrSession
+                            + "&english_id=" + docId;
+        cdrObj.showPage(url);
+    }
+    translationJob();
+  ]]>
+</MACRO>
+
+<MACRO  name="Translation Job Queue" lang="JScript">
+  <![CDATA[
+    function translationJobQueue() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "translation-jobs.py?Session=" + CdrSession;
+        cdrObj.showPage(url);
+    }
+    translationJobQueue();
+  ]]>
+</MACRO>
+
+<MACRO  name="Translation Job Workflow Report" lang="JScript">
+  <![CDATA[
+    function translationJobWorkflowReport() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "translation-job-report.py?Session=" + CdrSession;
+        cdrObj.showPage(url);
+    }
+    translationJobWorkflowReport();
   ]]>
 </MACRO>
 

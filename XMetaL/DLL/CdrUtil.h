@@ -265,6 +265,9 @@ namespace cdr {
     bool getImageDimensions(CFile& file, ImageDimensions& dim);
     int getAudioSeconds(CFile& file);
     CString fetchFromUrl(const CString&);
+    void trace_log(const char* what);
+    void send_trace_log();
+    const char* get_cdr_trace_log_path();
 }
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,

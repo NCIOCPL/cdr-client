@@ -16,7 +16,7 @@
          and a collection of links to more information about the use of 
          this drug, research results, and ongoing clinical trials.
   </Description>
-  <URL>http://www.cancer.gov/about-cancer/treatment/drugs/<?xm-replace_text {
+  <URL>https://www.cancer.gov/about-cancer/treatment/drugs/<?xm-replace_text {
          Enter the drug name
          }?></URL>
   <Audience>Patients</Audience>
@@ -62,10 +62,6 @@
          Enter the link title here and copy/paste the URL 
          into the attribute inspector (required)
          }?></DrugReferenceLink>
-  <DrugReferenceDescription><?xm-replace_text {
-         Link to Miscellaneous Document (right click and 
-         copy/paste fragment link from Misc. Doc. (required)
-         }?></DrugReferenceDescription>
  </DrugReference>
  <DrugReference>
   <DrugReferenceType>NCI</DrugReferenceType>
@@ -73,10 +69,6 @@
          Enter the link title here and copy/paste the URL 
          into the attribute inspector (required)
          }?></DrugReferenceLink>
-  <DrugReferenceDescription><?xm-replace_text {
-         Link to Miscellaneous Document (right click and 
-         copy/paste fragment link from Misc. Doc. (required)
-         }?></DrugReferenceDescription>
  </DrugReference>
  <DrugReference>
   <DrugReferenceType>NLM</DrugReferenceType>
@@ -84,10 +76,6 @@
          Enter the link title here and copy/paste the URL 
          into the attribute inspector (required)
          }?></DrugReferenceLink>
-  <DrugReferenceDescription><?xm-replace_text {
-         Link to Miscellaneous Document (right click and 
-         copy/paste fragment link from Misc. Doc. (required)
-         }?></DrugReferenceDescription>
  </DrugReference>
  <EnteredBy><?xm-replace_text {
         Use the tool bar icon to enter your user name (required)

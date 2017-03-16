@@ -3,10 +3,7 @@
 # Rules for building standalone tools supporting the CDR XMetaL client.
 #----------------------------------------------------------------------
 
-all: ShowTimestamp.exe InstallCDRClientFiles.exe PatchXMetaL9.exe
-
-ShowTimestamp.exe: ShowTimestamp.cpp
-	cl /EHsc ShowTimestamp.cpp
+all: InstallCDRClientFiles.exe PatchXMetaL9.exe
 
 InstallCDRClientFiles.exe: InstallCDRClientFiles.c
 	cl InstallCDRClientFiles.c

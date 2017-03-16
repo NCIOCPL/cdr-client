@@ -15,29 +15,25 @@
 @import "CdrCommonSchema.css";
 
 $DOCUMENT 
-
-     { font-family: Arial, sans-serif;
-       font-size: 12pt;
-       margin-top: 5px;
-       margin-left: 5px;
-       color:black;         }
+    { font-family: Arial, sans-serif;
+      font-size: 12pt;
+      margin-top: 5px;
+      margin-left: 5px;
+      color:black;         }
 
 $COMMENT 
-
-     { display: block;
-       color: purple;
-       white-space: pre; }
+    { display: block;
+      color: purple;
+      white-space: pre; }
 
 $PROCINS 
-
-     { color: blue;
-       background-color: white; }
+    { color: blue;
+      background-color: white; }
 
 Media,
-
-     { background-color: #CCCCFF; 
-       text-decoration: none;    
-       color: black; }
+    { background-color: #CCCCFF; 
+      text-decoration: none;    
+      color: black; }
 
 
 /***************************************************************************/ 
@@ -58,18 +54,21 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DefaultVideoPresentationTemplate,
 DerivationMethod,
 DerivedFrom,
 Diagnoses,
 Diagnosis,
 DocTitle,
 ProcessingStatus>EnteredBy,
+ExternalRef,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 FromObject,
 Glossary,
 HeightPixels,
+HostingID,
 ImageData,
 ImageDimensions,
 ImageType,
@@ -115,6 +114,7 @@ Topic,
 Topics,
 VideoData,
 VideoEncoding,
+VideoHosting,
 VideoType,
 WidthPixels,
     { display: block; }
@@ -125,7 +125,8 @@ WidthPixels,
 /***************************************************************************/ 
 CitationLink             :before
     { text-decoration: none; }
-CitationLink
+CitationLink,
+ExternalRef
     { text-decoration: none; }
 
 /***************************************************************************/ 
@@ -136,7 +137,6 @@ CitationLink
 /* & = Optional element */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
-
 
 Acknowledgement           :before { content: "Acknowledgemnt &: ";}
 AlternativeText           :before { content: "Alternative Text *: "; }
@@ -152,17 +152,21 @@ ContentDescription        :before { content: "Cont. Descr. * + @: ";}
 Creator                   :before { content: "Creator &: ";}
 DateCreated               :before { content: "Date Created &: ";}
 DateLastModified          :before { content: "Last Modified &: ";}
+DefaultVideoPresentationTemplate
+                          :before { content: "Display &: ";}
 DerivedFrom               :before { content: "DERIVED FROM * + ";}
 Diagnoses                 :before { content: "DIAGNOSES & ";}
 Diagnosis                 :before { content: "Diagnosis * +: ";}
 DocTitle                  :before { content: "Doc Title: "; }
 EnteredBy                 :before { content: "Entered By *: ";}
+ExternalRef               :before { content: "ExternalRef & + @: ";}
 FromCdrMedia              :before { content: "FROM CDR MEDIA * ";}
 FromExternalFile          :before { content: "From External File *: ";}
 FromMethod                :before { content: "From Method & @: ";}
 FromObject                :before { content: "FROM OBJECT * ";}
 Glossary                  :before { content: "Glossary * @: ";}
 HeightPixels              :before { content: "Height (Pixels) *: ";}
+HostingID                 :before { content: "Hosting ID *: ";}
 ImageData                 :before { content: "IMAGE DATA * ";}
 ImageDimensions           :before { content: "IMAGE DIMENSIONS & ";}
 ImageType                 :before { content: "Image Type *: ";}
@@ -198,6 +202,7 @@ Topic                     :before { content: "Topic * +: ";}
 Topics                    :before { content: "TOPICS & ";}
 VideoData                 :before { content: "VIDEO DATA * ";}
 VideoEncoding             :before { content: "Video Encoding *: ";}
+VideoHosting              :before { content: "Video Hosting *: ";}
 VideoType                 :before { content: "Video Type *: ";}
 WidthPixels               :before { content: "Width (Pixels) *: ";}
 PermissionInformation     :before { content: "PERMISSION INFORMATION &"; }
@@ -222,13 +227,12 @@ MediaSource,
 PhysicalMedia,
 ProcessingStatuses,
 RelatedDocuments,
-   { border: solid;
-     border-width: thin; 
-     border-color: black;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
+    { border: solid;
+      border-width: thin; 
+      border-color: black;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
 
- 
 
 /***************************************************************************/ 
 /*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
@@ -247,18 +251,21 @@ ContentDescription                     :before,
 Creator                                :before,
 DateCreated                            :before,
 DateLastModified                       :before,
+DefaultVideoPresentationTemplate       :before,
 DerivationMethod                       :before,
 DerivedFrom                            :before,
 Diagnoses                              :before,
 Diagnosis                              :before,
 DocTitle                               :before,
 EnteredBy                              :before,
+ExternalRef                            :before,
 FromCdrMedia                           :before,
 FromExternalFile                       :before,
 FromMethod                             :before,
 FromObject                             :before,
 Glossary                               :before,
 HeightPixels                           :before,
+HostingID                              :before,
 ImageData                              :before,
 ImageDimensions                        :before,
 ImageType                              :before,
@@ -305,10 +312,11 @@ Topic                                  :before,
 Topics                                 :before,
 VideoData                              :before,
 VideoEncoding                          :before,
+VideoHosting                           :before,
 VideoType                              :before,
 WidthPixels                            :before
-   {  font-weight: bold;
-      color: black;  }
+    {  font-weight: bold;
+       color: black;  }
 
 
 
@@ -352,6 +360,9 @@ DateCreated,
 DateLastModified,
                         { margin-left: 120pt;
                           text-indent: -97pt; }
+DefaultVideoPresentationTemplate,
+                        { margin-left: 120pt;
+                          text-indent: -63pt; }
 DerivationMethod,
                         { margin-left: 120pt;
                           text-indent: 0pt; }
@@ -364,6 +375,9 @@ DocTitle,
 ProcessingStatus>EnteredBy,
                         { margin-left: 110pt;
                           text-indent: -79.5pt; }
+ExternalRef,
+                        { margin-left: 120pt;
+                          text-indent: -112pt; }
 FromCdrMedia,
                         { margin-left: 120pt;
                           text-indent: -112.5pt; }
@@ -384,6 +398,9 @@ Glossary,
 HeightPixels,
                         { margin-left: 120pt;
                           text-indent: -98pt; }
+HostingID,   
+                        { margin-left: 120pt;
+                          text-indent: -76pt; }
 ImageType,
                         { margin-left: 120pt;
                           text-indent: -82pt; }
@@ -452,6 +469,9 @@ Topic,
 VideoEncoding,
                         { margin-left: 120pt;
                           text-indent: -107.5pt; }
+VideoHosting, 
+                        { margin-left: 120pt;
+                          text-indent: -97pt; }
 VideoType,
                         { margin-left: 120pt;
                           text-indent: -80pt; }
@@ -507,14 +527,17 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DefaultVideoPresentationTemplate,
 Diagnosis,
 DocTitle,
 ProcessingStatus>EnteredBy,
+ExternalRef,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
 Glossary,
 HeightPixels,
+HostingID,
 ImageType,
 ImageEncoding, 
 Labeled,
@@ -541,6 +564,9 @@ PermissionRequestDate,
 PermissionResponse,
 PermissionResponseDate,
 PermissionExpirationDate,
+VideoEncoding,
+VideoHosting,
+VideoType,
 ApprovedUse,
 SpanishTranslationPermissionRequested,
 SpanishTranslationPermissionResponse,
@@ -583,13 +609,16 @@ Creator,
 DateCreated,
 DateLastModified,
 DerivationMethod,
+DefaultVideoPresentationTemplate,
 Diagnosis,
 DocTitle,
 EnteredBy,
+ExternalRef,
 FromExternalFile,
 FromMethod,
 Glossary,
 HeightPixels,
+HostingID,
 ImageType,
 ImageEncoding,
 Inlined,
@@ -612,6 +641,7 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 VideoEncoding,
+VideoHosting,
 VideoType,
 WidthPixels,
 PermissionRequested,
@@ -622,78 +652,82 @@ PermissionExpirationDate,
 SpanishTranslationPermissionRequested,
 SpanishTranslationPermissionResponse,
 PublisherPermissionText
-   { background-color: white; }
+    { background-color: white; }
 
 
 /* Background color for Text Labels */
-Acknowledgement                   :before,
-AlternativeText                   :before,
-Audience                          :before,
-Color                             :before,
-Captions                          :before, 
-Categories                        :before,
-Category                          :before,
-CitationLink                      :before,
-Comment                           :before,
-ContentDescriptions               :before,
-ContentDescription                :before,
-Creator                           :before,
-DateCreated                       :before,
-DateLastModified                  :before,
-DerivationMethod                  :before,
-DerivedFrom                       :before,
-Diagnoses                         :before,
-Diagnosis                         :before,
-DocTitle                          :before,
-EnteredBy                         :before,
-FromCdrMedia                      :before,
-FromExternalFile                  :before,
-FromMethod                        :before,
-FromObject                        :before,
-Glossary                          :before,
-HeightPixels                      :before,
-ImageData                         :before,
-ImageDimensions                   :before,
-ImageType                         :before,
-ImageEncoding                     :before,
-Inlined                           :before,
-Labeled                           :before,
-LabelName                         :before,
-Language                          :before,
-Media                             :before,
-MediaCaption                      :before,
-MediaContent                      :before,
-MediaLanguage                     :before,
-MediaSource                       :before,
-MediaTitle                        :before,
-MinWidthPixels                    :before,
-OriginalSource                    :before,
-PhysicalMedia                     :before,
-ProcessingStatusDate              :before,
-ProcessingStatusValue             :before,
-RunSeconds                        :before,
-SoundData                         :before,
-SoundEncoding                     :before,
-SoundType                         :before,
-SourceFilename                    :before,
-SourcePublication                 :before,
-Summary                           :before,
-SupplementaryInfoLink             :before,
-TextDateCreated                   :before,
-Topic                             :before,
-Topics                            :before,
-VideoData                         :before,
-VideoEncoding                     :before,
-VideoType                         :before,
-WidthPixels                       :before,
-PermissionInformation             :before,
-PermissionRequested               :before,
-PermissionRequestDate             :before,
-PermissionResponse                :before,
-PermissionResponseDate            :before,
-PermissionExpirationDate          :before,
-ApprovedUse                       :before,
-SpanishTranslationPermissionRequested :before,
-SpanishTranslationPermissionResponse :before,
-PublisherPermissionText           :before
-   { background-color: #CCCCFF; }
+Acknowledgement                        :before,
+AlternativeText                        :before,
+Audience                               :before,
+Color                                  :before,
+Captions                               :before, 
+Categories                             :before,
+Category                               :before,
+CitationLink                           :before,
+Comment                                :before,
+ContentDescriptions                    :before,
+ContentDescription                     :before,
+Creator                                :before,
+DateCreated                            :before,
+DateLastModified                       :before,
+DerivationMethod                       :before,
+DefaultVideoPresentationTemplate       :before,
+DerivedFrom                            :before,
+Diagnoses                              :before,
+Diagnosis                              :before,
+DocTitle                               :before,
+EnteredBy                              :before,
+ExternalRef                            :before,
+FromCdrMedia                           :before,
+FromExternalFile                       :before,
+FromMethod                             :before,
+FromObject                             :before,
+Glossary                               :before,
+HeightPixels                           :before,
+HostingID                              :before,
+ImageData                              :before,
+ImageDimensions                        :before,
+ImageType                              :before,
+ImageEncoding                          :before,
+Inlined                                :before,
+Labeled                                :before,
+LabelName                              :before,
+Language                               :before,
+Media                                  :before,
+MediaCaption                           :before,
+MediaContent                           :before,
+MediaLanguage                          :before,
+MediaSource                            :before,
+MediaTitle                             :before,
+MinWidthPixels                         :before,
+OriginalSource                         :before,
+PhysicalMedia                          :before,
+ProcessingStatusDate                   :before,
+ProcessingStatusValue                  :before,
+RunSeconds                             :before,
+SoundData                              :before,
+SoundEncoding                          :before,
+SoundType                              :before,
+SourceFilename                         :before,
+SourcePublication                      :before,
+Summary                                :before,
+SupplementaryInfoLink                  :before,
+TextDateCreated                        :before,
+Topic                                  :before,
+Topics                                 :before,
+VideoData                              :before,
+VideoEncoding                          :before,
+VideoHosting                           :before,
+VideoType                              :before,
+WidthPixels                            :before,
+PermissionInformation                  :before,
+PermissionRequested                    :before,
+PermissionRequestDate                  :before,
+PermissionResponse                     :before,
+PermissionResponseDate                 :before,
+PermissionExpirationDate               :before,
+ApprovedUse                            :before,
+SpanishTranslationPermissionRequested  :before,
+SpanishTranslationPermissionResponse   :before,
+PublisherPermissionText                :before
+    { background-color: #CCCCFF; }
