@@ -11,10 +11,12 @@
 
 #define _WIN32_WINNT 0x0501
 #define _AFXDLL 1
+#define _UNICODE 1
 #include <iostream>
 #include <cstdlib>
 #include <afxwin.h>
 #include <afxdisp.h>
+#include <afxole.h>
 
 static int showPage(const CString& url) {
     COleDispatchDriver ie;
@@ -38,25 +40,29 @@ static int showPage(const CString& url) {
         return EXIT_FAILURE;
     }
     pe->Delete();
+    COleMessageFilter* pFilter = AfxOleGetMessageFilter();
+    pFilter->SetMessagePendingDelay(20000);
+    pFilter->EnableNotRespondingDialog(FALSE);
+    pFilter->EnableBusyDialog(FALSE);
     DISPID dispid;
     OLECHAR* member = L"Navigate";
-    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL, 
+    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
         &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
     if (hresult != S_OK) {
         std::cerr << "GetIDsOfNames: Unable to launch IE" << std::endl;
         return EXIT_FAILURE;
     }
-    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR 
+    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR
                           VTS_PVARIANT VTS_PVARIANT;
     COleVariant dummy;
-    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms, 
+    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
     return EXIT_SUCCESS;
 }
 
 int main(int ac, char** av) {
-    //AfxOleInit();
+    AfxOleInit();
     CoInitialize(NULL);
-    CString url = ac > 1 ? av[1] : "https://cdr.cancer.gov/CdrAdmin.html";
+    CString url = ac > 1 ? av[1] : "https://cancer.gov";
     return showPage(url);
 }
