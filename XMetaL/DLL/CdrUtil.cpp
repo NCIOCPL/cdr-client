@@ -1175,6 +1175,7 @@ CString cdr::expandLeadingZeros(const CString& s) {
 // (SoftQuad's version has bugs).
 // This version uses ActiveX Automation instead of DDE,
 // to get around a bug in Internet Explorer's DDE code.
+#if 0
 int cdr::showPage(const CString& url) {
     COleDispatchDriver ie;
     COleException* pe = new COleException;
@@ -1227,7 +1228,13 @@ int cdr::showPage(const CString& url) {
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
     return EXIT_SUCCESS;
 }
-
+#endif
+int cdr::showPage(const CString& url) {
+    CString ie = _T("\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"");
+    CString command = _T("\"") + ie + _T(" \"") + url + _T("\"\"");
+    _tsystem(command);
+    return EXIT_SUCCESS;
+}
 // For debugging.
 void logWrite(const CString& what) {
     return;

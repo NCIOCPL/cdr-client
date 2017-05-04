@@ -18,7 +18,7 @@
 #include <afxdisp.h>
 #include <afxole.h>
 
-static int showPage(const CString& url) {
+static int xxshowPage(const CString& url) {
     COleDispatchDriver ie;
     COleException* pe = new COleException;
     try {
@@ -57,6 +57,13 @@ static int showPage(const CString& url) {
     COleVariant dummy;
     ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
         url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
+    return EXIT_SUCCESS;
+}
+
+static int showPage(const CString& url) {
+    CString ie = _T("\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"");
+    CString command = _T("\"") + ie + _T(" \"") + url + _T("\"\"");
+    _tsystem(command);
     return EXIT_SUCCESS;
 }
 
