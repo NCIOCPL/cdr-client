@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Repro case for CBIIT to show Microsoft for tracking down why IE
  * is opening duplicate tabs when launched using OLE automation.
  *
