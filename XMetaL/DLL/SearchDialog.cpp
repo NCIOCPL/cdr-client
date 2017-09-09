@@ -1,34 +1,5 @@
 /*
- * $Id$
- *
  * Implementation of dialog object for performing a CDR document search.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.8  2002/05/14 14:22:48  bkline
- * Finished implementation of version retrieval.
- *
- * Revision 1.7  2002/05/13 12:39:42  bkline
- * Adding version button to search dialog window.
- *
- * Revision 1.6  2002/05/08 21:19:50  bkline
- * Turned off check out button by default (requested by Lakshmi).
- *
- * Revision 1.5  2002/04/20 19:20:00  bkline
- * Removed version string from search and retrieve dialogs.  Will replace
- * soon with more sophisticated picklist for most recent versions.
- *
- * Revision 1.4  2001/11/27 14:21:01  bkline
- * Version used at November 2001 demo.
- *
- * Revision 1.3  2001/06/14 01:25:14  bkline
- * Added missing UpdateData() call.
- *
- * Revision 1.2  2001/06/09 12:43:36  bkline
- * Switched to Unicode; added code to make search state persistent.
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
- *
  */
 
 // Local headers.

@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Implementation of CCdrApp and DLL registration.
  *
  * To do: rationalize error return codes for automation commands.

@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Launches script which copies the CDR client files to the current
  * user's application data area of the file system and puts a shortcut
  * on the desktop.  A string identifying the full path of the location

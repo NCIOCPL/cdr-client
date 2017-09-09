@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Interface file for CDR loader application.  Rewritten 2005 by bkline.
  */
 

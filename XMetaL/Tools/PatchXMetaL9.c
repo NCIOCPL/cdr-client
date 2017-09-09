@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Installs and registers a patched version of XMetaL 9.0.
  *
  * Build command (using Microsoft C compiler):

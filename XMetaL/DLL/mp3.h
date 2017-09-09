@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * Collect MP3 file information.
  */
 // #include <stdio.h>         // For FILE definition.
 

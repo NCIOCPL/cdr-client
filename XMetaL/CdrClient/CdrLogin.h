@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Interface for dialog window used to log into the CDR (with controls
  * for adjusting the values used for connecting to the servers).  There
  * are data members for the user id and password controls, and corresponding
@@ -8,13 +6,6 @@
  * a ServerSettings object, which is passed to the constructor for the
  * dialog object for viewing/adjusting the values used to connect to the
  * CDR servers.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.2  2005/11/08 22:11:02  bkline
- * Cleanup of initial CVS comments.
- *
- * Revision 1.1  2005/11/08 21:30:21  bkline
- * Rewrite of CDR loader.
  */
 #pragma once
 #include "afxwin.h"

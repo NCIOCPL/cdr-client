@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Code to calculate MP3 seconds.  Adapted from mp3info package
  * (http://www.ibiblio.org/mp3info/).
  *

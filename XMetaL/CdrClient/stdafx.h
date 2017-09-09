@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Include file for MFC features.
  */
 #pragma once

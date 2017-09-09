@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Common utility classes and functions for CDR DLL used to customize XMetaL.
  *
  * BZIssue::4767

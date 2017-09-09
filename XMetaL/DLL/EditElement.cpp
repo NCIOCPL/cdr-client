@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Implementation of dialog object for editing inter-document links.
  *
  * JIRA::OCECDR-3732 - custom support for genetics picklists

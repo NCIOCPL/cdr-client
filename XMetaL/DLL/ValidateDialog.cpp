@@ -1,16 +1,6 @@
 /*
- * $Id$
- *
- * Implementation of dialog object for validating the currently active 
+ * Implementation of dialog object for validating the currently active
  * document.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.2  2001/06/09 12:44:24  bkline
- * Switched to Unicode.
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
- *
  */
 
 // Local headers.
@@ -64,7 +54,7 @@ END_MESSAGE_MAP()
  * Ensures that the user has selected at least one validation type, then
  * passes control back to the validation command handler.
  */
-void CValidateDialog::OnOK() 
+void CValidateDialog::OnOK()
 {
   	UpdateData(true);
     if (m_linkValidation || m_schemaValidation)

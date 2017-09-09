@@ -1,6 +1,4 @@
 /*
- * $Id$
- *
  * Ensures that the CDR client files are up-to-date, then launches XMetaL
  * with custom CDR DLL.  See documentation of the InitInstance method
  * (the entry point for a dialog-based application) below for an overview

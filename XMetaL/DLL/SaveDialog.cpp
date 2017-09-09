@@ -1,27 +1,5 @@
 /*
- * $Id$
- *
  * Implementation of dialog object for performing a CDR document search.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.6  2002/10/16 19:56:27  bkline
- * Workaround for XMetaL automation bug.
- *
- * Revision 1.5  2002/10/15 22:22:05  bkline
- * Adding code for issue #471.
- *
- * Revision 1.4  2002/07/20 13:45:43  bkline
- * Added automatic setting of dialog controls.
- *
- * Revision 1.3  2001/11/28 21:05:11  bkline
- * Added m_readyForReview member variable.
- *
- * Revision 1.2  2001/06/09 12:42:17  bkline
- * Removed title control; added controls for versioning and status.
- *
- * Revision 1.1  2000/10/16 22:29:27  bkline
- * Initial revision
- *
  */
 
 // Local headers.
