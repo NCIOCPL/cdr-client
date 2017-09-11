@@ -1,0 +1,14 @@
+# Auto detect text files and perform LF normalization
+*        text=auto
+
+*.ini     text eol=lf
+*.h       text eol=lf
+*.rc      text eol=lf
+*.rc2     text eol=lf
+*.vcproj  text eol=lf
+*.vcxproj text eol=lf
+*.c       text eol=lf
+*.cpp     text eol=lf
+*.sln     text eol=lf
+*.txt     text eol=lf
+Makefile  text eol=lf
