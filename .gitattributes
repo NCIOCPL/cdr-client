@@ -11,4 +11,7 @@
 *.cpp     text eol=lf
 *.sln     text eol=lf
 *.txt     text eol=lf
+*.bas     text eol=lf
 Makefile  text eol=lf
+*.manifest text eol=lf
+*.vcxproj.filters text eol=lf

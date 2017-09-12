@@ -6,7 +6,7 @@ Sub BoardRosterPageBreak()
 '
 Dim lCount As Long
     lCount = 0
-    
+
     Selection.WholeStory
     Selection.Font.Name = "Arial"
     Selection.Font.Size = 12
@@ -21,12 +21,12 @@ Dim lCount As Long
         With Selection.Tables(1).Rows
             .AllowBreakAcrossPages = False
         End With
-        
+
     Loop Until lCount = 40
-    
+
     Selection.GoTo What:=wdGoToTable, Which:=wdGoToNext, Count:=1, Name:=""
     Selection.GoTo What:=wdGoToTable, Which:=wdGoToNext, Count:=1, Name:=""
-    
+
     WordBasic.ViewFooterOnly
     WordBasic.ViewFooterOnly
     NormalTemplate.BuildingBlockEntries("CDR Footer").Insert Where:=Selection. _
@@ -245,7 +245,7 @@ Sub HeaderFooter()
     Selection.Font.Size = 12
     ActiveWindow.ActivePane.View.SeekView = wdSeekMainDocument
     Selection.HomeKey Unit:=wdLine
-    
+
 End Sub
 Sub HeaderFooter10pt()
 '
@@ -305,7 +305,7 @@ Sub HeaderFooterAndText_RH()
     Selection.InsertDateTime DateTimeFormat:="M/d/yyyy", InsertAsField:=False, _
          DateLanguage:=wdEnglishUS, CalendarType:=wdCalendarWestern, _
         InsertAsFullWidth:=False
-        
+
     ' Create the Footer
     '
     WordBasic.GoToFooter
@@ -347,7 +347,7 @@ Sub HeaderFooterAndText_SQ()
     Selection.InsertDateTime DateTimeFormat:="M/d/yyyy", InsertAsField:=False, _
          DateLanguage:=wdEnglishUS, CalendarType:=wdCalendarWestern, _
         InsertAsFullWidth:=False
-        
+
     ' Create the Footer
     '
     WordBasic.GoToFooter
@@ -454,13 +454,13 @@ Sub Macro_RB()
 '
     ' Setting font to Arial
     DocumentArial
-    
+
     ' Adding normal Header and Footer
     HeaderFooterDefault
-    
+
     ' Removing the entire TOC List and the Changes Section
     RemoveTOCListandChanges
-        
+
 End Sub
 Sub Macro_RH()
 '
@@ -469,19 +469,19 @@ Sub Macro_RH()
 '
     ' Setting font to Arial
     DocumentArial
-    
+
     ' Removing the Summary type and audience
     DeleteTypeAudience
-    
+
     ' Remove the TOC links and display in black w/o underline
     RemoveTOCHyperlinks
-    
+
     ' Adding normal Header and Footer
     HeaderFooterAndText_RH
-    
+
     ' Delete the Changes to This Summary section
     RemoveChangesSection
-    
+
 End Sub
 Sub Macro_SQ()
 '
@@ -603,28 +603,28 @@ Sub RemoveTOCHyperlinks()
 '
     Dim i As Long, myRange As Range, n As Long
     n = 0
-    
+
     ' Start at the beginning of the document
     Selection.WholeStory
     Selection.Collapse     ' This sets the entry point to the beginning of the doc
-    
+
     ' The TOC are links and have therefore a different color
     ' Move the selection point to the first occurrence of the link color
     ' and then move to the beginning of the line
     Selection.SelectCurrentColor
     Selection.Collapse (wdCollapseEnd)
-    
+
     ' After this statement the entry point is at the beginning of the TOC list
     Selection.HomeKey Unit:=wdLine, Extend:=wdExtend
     Selection.Collapse
-    
+
     ' Select the entire TOC and change the color to black
     Selection.SelectCurrentFont
     Selection.Font.Color = wdColorBlack
 
     ' Remove the links from each entry, one at a time beginning from the end
     Set rng = Selection.Range
-    
+
     For i = rng.Hyperlinks.Count To 1 Step -1
         With rng.Hyperlinks(i)
             Set myRange = .Range
@@ -638,7 +638,7 @@ Sub RemoveTOCHyperlinks_Old()
 '
     Dim i As Long, myRange As Range, n As Long
     n = 0
-    
+
     ' Step through all Hyperlinks on the document
     '      Note:  There is a problem with with approach.  VB Word renumbers the elements on
     '             the fly.  This means when given the links [1], [2], and [3], the first one
@@ -655,17 +655,17 @@ Sub RemoveTOCHyperlinks_Old()
             If Left(.TextToDisplay, 23) = "Changes to This Summary" Then
                 Done = "Yes"
             End If
-            
+
             Set myRange = .Range
             .Delete
             ' myRange.Style = wdStyleHyperlink  ' (keeping the style)
-            
+
             ' Have we hit the last TOC item?  Then we're done.
             If Done = "Yes" Then
                 Exit For
             End If
         End With
-        
+
         ' Since we're resetting the counter we need to prevent an infinite loop
         n = n + 1
         If n > ActiveDocument.Hyperlinks.Count Then Exit For
@@ -678,21 +678,21 @@ Sub RemoveTOCHyperlinksNotBold()
 '
     Dim i As Long, myRange As Range, n As Long
     n = 0
-    
+
     ' Start at the beginning of the document
     Selection.WholeStory
     Selection.Collapse     ' This sets the entry point to the beginning of the doc
-    
+
     ' The TOC are links and have therefore a different color
     ' Move the selection point to the first occurrence of the link color
     ' and then move to the beginning of the line
     Selection.SelectCurrentColor
     Selection.Collapse (wdCollapseEnd)
-    
+
     ' After this statement the entry point is at the beginning of the TOC list
     Selection.HomeKey Unit:=wdLine, Extend:=wdExtend
     Selection.Collapse
-    
+
     ' Select the entire TOC and change the color to black
     Selection.SelectCurrentFont
     Selection.Font.Color = wdColorBlack
@@ -700,7 +700,7 @@ Sub RemoveTOCHyperlinksNotBold()
 
     ' Remove the links from each entry, one at a time beginning from the end
     Set rng = Selection.Range
-    
+
     For i = rng.Hyperlinks.Count To 1 Step -1
         With rng.Hyperlinks(i)
             Set myRange = .Range
