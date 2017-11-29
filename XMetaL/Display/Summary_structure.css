@@ -195,7 +195,7 @@ ChangeDate                        :before { content: "Change Date"; }
 Comment                           :before { content: "Comment"; }
 TypeOfSummaryChange > Comment     :before { content: "Comment"; }
 ComprehensiveReviewDate
-                                  :before { content: "Last Reviewed"; }
+                                  :before { content: "Review Date"; }
 Date                              :before { content: "Date"; }
 DateLastModified                  :before { content: "Last Modified"; }
 Diagnosis                         :before { content: "Diagnosis"; }

@@ -241,7 +241,7 @@ Caption                      :before { content: "Caption &: "; }
 ChangeDate                   :before { content: "Change Date *: "; }
 TypeOfSummaryChange > Comment
                              :before { content: "Comment & @: "; }
-ComprehensiveReviewDate      :before { content: "Last Reviewed & @: "; }
+ComprehensiveReviewDate      :before { content: "Review Date & @: "; }
 DateLastModified             :before { content: "Last Modified &: "; }
 /*KeyPoint                   :before { content: "Key Point & +: "; } */
 EnteredBy                    :before { content: "Entered By *: "; }
@@ -289,13 +289,13 @@ ComprehensiveReviewDate,
 WillReplace
                            { margin-left:  135pt; }
 SummaryAbstract>Para,
-TranslationOf              { text-indent: -114pt; } 
+TranslationOf              { text-indent: -138pt; } 
 PatientVersionOf           { text-indent: -136.5pt; } 
-ReplacementFor             { text-indent: -129pt; } 
-DateLastModified           { text-indent:  -97pt; } 
-ComprehensiveReviewDate    { text-indent: -119pt; } 
-SummaryAbstract>Para        { text-indent: 0pt; }
-WillReplace                { text-indent: -105pt; }
+ReplacementFor             { text-indent: -160pt; } 
+DateLastModified           { text-indent: -118pt; } 
+ComprehensiveReviewDate    { text-indent: -126pt; } 
+SummaryAbstract>Para       { text-indent: 0pt; }
+WillReplace                { text-indent: -125pt; }
 
 /***************************************************************************/ 
 /*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
