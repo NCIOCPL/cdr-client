@@ -76,7 +76,7 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSearchDialog message handlers
 
-BOOL CSearchDialog::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext) 
+BOOL CSearchDialog::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
     return CDialog::Create(IDD, pParentWnd);
 }
@@ -85,7 +85,7 @@ BOOL CSearchDialog::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD 
  * Ensures that a document selection has been made, then passes control
  * back to the CdrSearch command handler.
  */
-void CSearchDialog::OnRetrieveButton() 
+void CSearchDialog::OnRetrieveButton()
 {
     UpdateData(true);
     int curSel = m_docList.GetCurSel();
@@ -93,7 +93,7 @@ void CSearchDialog::OnRetrieveButton()
         CString str;
         m_docList.GetText(curSel, str);
         if (CCommands::doRetrieve(str, m_checkOut))
-            EndDialog(IDCANCEL);    
+            EndDialog(IDCANCEL);
         lastSearch.selection = curSel;
         lastSearch.checkOut  = m_checkOut;
     }
@@ -103,7 +103,7 @@ void CSearchDialog::OnRetrieveButton()
  * Submits a search for CDR documents to the server, and populates
  * the list box with the results.
  */
-void CSearchDialog::OnSearchButton() 
+void CSearchDialog::OnSearchButton()
 {
     // In case we blow up, don't leave a live LastSearch object around.
     lastSearch.empty = true;
@@ -112,11 +112,11 @@ void CSearchDialog::OnSearchButton()
     UpdateData(true);
 
     // Build the search request.
-    CString cmd = _T("<CdrSearch><Query MaxDocs='100'>//CdrDoc[");
+    CString cmd = _T("<CdrSearch><Query MaxDocs='100'>");
     int curType = m_docTypes.GetCurSel();
     lastSearch.docType = curType;
 
-    // Don't do anything unless we have at least a search string or a doc 
+    // Don't do anything unless we have at least a search string or a doc
     // type.
     if (m_searchString.IsEmpty()) {
         if (curType == 0)
@@ -124,31 +124,27 @@ void CSearchDialog::OnSearchButton()
     }
     else {
         lastSearch.searchString = m_searchString;
-        m_searchString.Replace(_T("'"), _T("\\'"));
-        CString op = _T("=");
+        CString op = _T("eq");
         if (m_titleContains.GetCheck() == 1) {
             op = _T("contains");
-            m_searchString = _T("%") + m_searchString + _T("%");
             lastSearch.stringType = LastSearch::CONTAINS;
         }
         else if (m_titleStart.GetCheck() == 1) {
             op = _T("begins");
-            m_searchString += _T("%");
             lastSearch.stringType = LastSearch::BEGINS;
         }
         else
             lastSearch.stringType = LastSearch::ALL;
-        cmd += _T("CdrCtl/Title ") + op + _T(" '") + 
-            cdr::encode(m_searchString) + _T("'");
+        cmd += _T("<Test>CdrCtl/Title ") + op + _T(" ") +
+            cdr::encode(m_searchString) + _T("</Test>");
     }
     if (curType > 0) {
         CString val;
         m_docTypes.GetLBText(curType, val);
         if (!m_searchString.IsEmpty())
-            cmd += _T(" and ");
-        cmd += _T("CdrCtl/DocType = '") + val + _T("'");
+        cmd += _T("<DocType>") + val + _T("</DocType>");
     }
-    cmd += "]/CdrCtl/DocId</Query></CdrSearch>";
+    cmd += "</Query></CdrSearch>";
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
@@ -187,10 +183,10 @@ void CSearchDialog::OnSearchButton()
  *  @return         <code>TRUE</code> since we did not set the
  *                  focust to a control.
  */
-BOOL CSearchDialog::OnInitDialog() 
+BOOL CSearchDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    
+
     m_titleStart.SetButtonStyle(BS_AUTORADIOBUTTON);
     m_titleContains.SetButtonStyle(BS_AUTORADIOBUTTON);
     m_titleEquals.SetButtonStyle(BS_AUTORADIOBUTTON);
@@ -224,7 +220,7 @@ BOOL CSearchDialog::OnInitDialog()
         m_docList.EnableWindow();
         UpdateData(FALSE);
     }
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -233,12 +229,12 @@ BOOL CSearchDialog::OnInitDialog()
  * Allows the user to double-click on a search result as an alternative
  * to the Retrieve button.
  */
-void CSearchDialog::OnDblclkDocument() 
+void CSearchDialog::OnDblclkDocument()
 {
-    OnRetrieveButton(); 
+    OnRetrieveButton();
 }
 
-void CSearchDialog::OnVersionsButton() 
+void CSearchDialog::OnVersionsButton()
 {
     UpdateData(true);
     int curSel = m_docList.GetCurSel();
