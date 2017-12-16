@@ -1,18 +1,9 @@
 /*
- * $Id$
- *
  * Implementation for dialog window object used to connect to the
  * CDR server and obtain a session ID.  Collects user ID and password,
  * and allows the user to invoke a second overlaid dialog window
  * in which the values for connecting to the servers (DNS names and
  * ports) can be modified before connecting.
- *
- * $Log: not supported by cvs2svn $
- * Revision 1.2  2005/11/08 22:11:02  bkline
- * Cleanup of initial CVS comments.
- *
- * Revision 1.1  2005/11/08 21:30:21  bkline
- * Rewrite of CDR loader.
  */
 #include "stdafx.h"
 #include "CdrClient.h"
@@ -55,7 +46,7 @@ void CdrLoginDlg::OnBnClickedOptions() {
  * but leave the password blank.
  */
 BOOL CdrLoginDlg::OnInitDialog() {
-    
+
     CDialog::OnInitDialog();
     userId.SetWindowText(ss->currentUser);
     return TRUE;  // return TRUE unless you set the focus to a control

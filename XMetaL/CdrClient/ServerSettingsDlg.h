@@ -30,11 +30,11 @@ struct ServerSettings;
  * you're doing.
  */
 class ServerSettingsDlg : public CDialog {
-    
+
 	DECLARE_DYNAMIC(ServerSettingsDlg)
 
 public:
-	ServerSettingsDlg(ServerSettings*, CWnd* pParent = NULL); 
+	ServerSettingsDlg(ServerSettings*, CWnd* pParent = NULL);
 	virtual ~ServerSettingsDlg();
 
 // Dialog Data
@@ -45,18 +45,14 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CString prodUpdateServer;
-    CString prodUpdatePort;
-    CString prodCdrServer;
-    CString prodCdrPort;
-    CString testUpdateServer;
-    CString testUpdatePort;
-    CString testCdrServer;
-    CString testCdrPort;
-    CString devUpdateServer;
-    CString devUpdatePort;
-    CString devCdrServer;
-    CString devCdrPort;
+    CString prodCDRServer;
+    CString prodAPIServer;
+    CString stageCDRServer;
+    CString stageAPIServer;
+    CString qaCDRServer;
+    CString qaAPIServer;
+    CString devCDRServer;
+    CString devAPIServer;
     ServerSettings* ss;
     afx_msg void OnBnClickedOk();
     virtual BOOL OnInitDialog();

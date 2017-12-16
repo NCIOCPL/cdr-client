@@ -35,14 +35,15 @@ extern void debugLogWrite(const CString& what, const CString& who);
 CString CdrSocket::sessionString;
 
 /**
- * DNS name for CDR server host.
+ * DNS names for CDR server host.
  */
-CString CdrSocket::hostName;
+CString CdrSocket::cdrHost;
+CString CdrSocket::apiHost;
 
 /**
- * DNS name for CDR server host's CBIIT tier (e.g., PROD, DEV).
+ * Name for CDR server host's CBIIT tier (e.g., PROD, DEV).
  */
-CString CdrSocket::hostTier;
+CString CdrSocket::tier;
 
 /**
  * Object to ensure proper cleanup at shutdown time.
@@ -55,7 +56,7 @@ CdrSocket::Init CdrSocket::Init::init;
 cdr::ValidationErrorSets cdr::validationErrorSets;
 
 /**
- * Initializes the Winsock package.
+ * Initialize the Winsock package and figure out which tier we're talking to.
  */
 CdrSocket::Init::Init()
 {
@@ -63,27 +64,31 @@ CdrSocket::Init::Init()
         ::AfxMessageBox(_T("Unable to initialize Windows socket library"));
         throw _T("Failure initializing Windows socket library");
     }
-    const char* hostEnv = getenv("CDR_HOST");
-    hostName = hostEnv ? hostEnv : "mahler.nci.nih.gov";
-    CString lowerHostName = hostName;
-    hostTier = "UNKNOWN TIER";
+    const TCHAR* cdrHostEnv = _tgetenv(_T("CDR_HOST"));
+    const TCHAR* apiHostEnv = _tgetenv(_T("API_HOST"));
+    const TCHAR* sessionEnv = _tgetenv(_T("CDRSession"));
+    cdrHost = cdrHostEnv ? cdrHostEnv : _T("cdr-dev.cancer.gov");
+    apiHost = apiHostEnv ? apiHostEnv : _T("cdrapi-dev.cancer.gov");
+    sessionString = sessionEnv ? sessionEnv : _T("");
+    CString lowerHostName = cdrHost;
+    tier = "UNKNOWN TIER";
     lowerHostName.MakeLower();
     if (lowerHostName == "cdr.cancer.gov")
-        hostTier = "PROD";
+        tier = "PROD";
     else if (lowerHostName == "cdr-dev.cancer.gov")
-        hostTier = "DEV";
+        tier = "DEV";
     else if (lowerHostName == "cdr-qa.cancer.gov")
-        hostTier = "QA";
+        tier = "QA";
     else if (lowerHostName == "cdr-test.cancer.gov")
-        hostTier = "STAGE";
+        tier = "STAGE";
     else if (lowerHostName == "cdr-stage.cancer.gov")
-        hostTier = "STAGE";
+        tier = "STAGE";
     else if (lowerHostName == "cdr.test.cancer.gov")
-        hostTier = "STAGE";
+        tier = "STAGE";
     else if (lowerHostName == "cdr.stage.cancer.gov")
-        hostTier = "STAGE";
+        tier = "STAGE";
     else if (lowerHostName == "cdr.dev.cancer.gov")
-        hostTier = "DEV";
+        tier = "DEV";
 }
 
 /**
@@ -93,84 +98,6 @@ CdrSocket::Init::~Init()
 {
     WSACleanup();
 }
-
-/**
- * Creates a socket and connects to the CDR server.
- *
- *  @exception  const char*  if a network error is encountered.
- */
-CdrSocket::CdrSocket()
-{
-    const char* hostEnv = getenv("CDR_HOST");
-    const char* portEnv = getenv("CDR_PORT");
-    const char* host = hostEnv ? hostEnv : "mahler.nci.nih.gov";
-    int port = portEnv ? atoi(portEnv) : CDR_SOCK;
-
-    // Working variables.
-    struct sockaddr_in  addr;
-    struct hostent *    ph = gethostbyname(host);
-    if (!ph)
-        throw _T("Failure resolving host name");
-
-    // Build the socket address.
-    addr.sin_family = ph->h_addrtype;
-    memcpy(&addr.sin_addr, ph->h_addr, ph->h_length);
-    addr.sin_port = htons(port);
-
-    // Create the socket.
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0)
-        throw _T("Failure creating socket");
-
-    // Connect to the server.
-    if (connect(sock, (struct sockaddr *)&addr, sizeof addr) < 0)
-        throw _T("Failure connecting to CDR server");
-}
-
-#ifdef TUNNELING
-CString send_command(const char* commands, long len, const CString& server) {
-    CInternetSession session;
-    CString headers;
-    CHttpConnection* conn = NULL;
-    CHttpFile* file = NULL;
-    CStringA::PCXSTR bytes = (CStringA::PCXSTR)commands;
-    DWORD length = (DWORD)len;
-    BOOL success = FALSE;
-    INTERNET_PORT port = 443;
-    const TCHAR* target = _T("/cgi-bin/cdr/https-tunnel.ashx");
-    headers.Format(_T("Content-type: text/xml\n"));
-    DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
-    conn = session.GetHttpConnection(server, port);
-    file = conn->OpenRequest(_T("POST"), target, NULL, 1, NULL, NULL, flags);
-    for (int i = 0; !success && i < 3; ++i) {
-        DWORD secFlags;
-        file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-        secFlags |= SECURITY_IGNORE_ERROR_MASK;
-        file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-        success = file->SendRequest(headers, (void*)bytes, length);
-    }
-    if (!success)
-        throw _T("Failure submitting request to server");
-    DWORD result;
-    file->QueryInfoStatusCode(result);
-    if (result != HTTP_STATUS_OK) {
-        CString err;
-        err.Format(_T("HTTP status code from server: %lu"), result);
-        throw err;
-    }
-    static char buf[1024 * 1024];
-    UINT nread = file->Read(buf, sizeof buf);
-    std::string temp;
-    while (nread > 0) {
-        temp.append(buf, (size_t)nread);
-        nread = file->Read(buf, sizeof buf);
-    }
-    conn->Close();
-    file->Close();
-    CString response = cdr::utf8ToCString(temp.c_str());
-    return response;
-}
-#endif
 
 /**
  * Sends an API command to the CDR server and reads the server's response.
@@ -230,73 +157,60 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
           requestLen = request.length();
         }
 
-#ifdef TUNNELING
-        return send_command(commands, requestLen, getHostName());
-#else
-        // Connect to the server.
-        CdrSocket cdrSocket;
+        // Open an HTTPS connection to the CDR API tunnelling wrapper.
+        CInternetSession session;
+        CString headers;
+        CHttpConnection* conn = NULL;
+        CHttpFile* file = NULL;
+        CStringA::PCXSTR bytes = (CStringA::PCXSTR)commands;
+        DWORD length = (DWORD)requestLen;
+        BOOL success = FALSE;
+        INTERNET_PORT port = 443;
+        const TCHAR* verb = _T("POST");
+        const TCHAR* target = _T("/");
+        headers.Format(_T("Content-type: text/xml\n"));
+        DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
+        conn = session.GetHttpConnection(apiHost, port);
+        file = conn->OpenRequest(verb, target, NULL, 1, NULL, NULL, flags);
 
-        // Tell the server the size of the coming request buffer.
-        long len = htonl(requestLen);
-        if (send(cdrSocket.sock, (char *)&len, sizeof len, 0) < 0)
-            throw _T("Failure sending command length");
+        // Sometimes this fails the first time; don't give up too quickly.
+        for (int i = 0; !success && i < 3; ++i) {
+            DWORD secFlags;
+            file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            secFlags |= SECURITY_IGNORE_ERROR_MASK;
+            file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            success = file->SendRequest(headers, (void*)bytes, length);
+        }
+        if (!success)
+            throw _T("Failure submitting request to server");
 
-        // Submit the command to the server.
-        if (send(cdrSocket.sock, commands, requestLen, 0) < 0)
-            throw _T("Failure sending command");
+        // Make sure the server thinks we succeeded.
+        DWORD result;
+        file->QueryInfoStatusCode(result);
+        if (result != HTTP_STATUS_OK) {
+            CString err;
+            err.Format(_T("HTTP status code from server: %lu"), result);
+            throw err;
+        }
 
-        // Retrieve the server's response.
-        std::string response = cdrSocket.read();
-        return cdr::utf8ToCString(response.c_str());
-#endif
+        // Read the response in chunks.
+        static char buf[1024 * 1024];
+        UINT nread = file->Read(buf, sizeof buf);
+        std::string temp;
+        while (nread > 0) {
+            temp.append(buf, (size_t)nread);
+            nread = file->Read(buf, sizeof buf);
+        }
+
+        // Clean up communications and decode the response.
+        conn->Close();
+        file->Close();
+        CString response = cdr::utf8ToCString(temp.c_str());
+        return response;
     }
     catch (LPCTSTR error) { return errResponse(error); }
     catch (const CString& err) { return errResponse(err); }
     catch (...) { return errResponse(_T("sendCommand: unexpected failure")); }
-}
-
-/**
- * Reads a response buffer from the CDR server.
- *
- *  @return                 string object containing the server's response.
- */
-std::string CdrSocket::read()
-{
-    // Find out how many bytes the response contains.  This solves the
-    // "how do we know we're done?" problem.
-    size_t totalRead = 0;
-    char lengthBytes[4];
-    while (totalRead < sizeof lengthBytes) {
-        int leftToRead = sizeof lengthBytes - totalRead;
-        int bytesRead = recv(sock, lengthBytes + totalRead, leftToRead, 0);
-        if (bytesRead < 0)
-            throw _T("Failure reading byte count from server");
-        totalRead += bytesRead;
-    }
-    long length;
-    memcpy(&length, lengthBytes, sizeof length);
-    length = ntohl(length);
-
-    // Use a local buffer type to ensure memory release even if an
-    // exception occurs.
-    struct Buf {
-        Buf(size_t n) : buf(new char[n + 1]) { memset(buf, 0, n + 1); }
-        ~Buf() { delete [] buf; }
-        char* buf;
-    };
-    Buf b(length);
-
-    // Read until we have all the bytes we've been promised.
-    char* buf = b.buf;
-    int recd = 0;
-    while (recd < length) {
-        int n = recv(sock, buf + recd, length - recd, 0);
-        if (n > 0)
-            recd += n;
-        else if (n < 0)
-            throw _T("Failure reading reply from server");
-    }
-    return buf;
 }
 
 /**
