@@ -480,8 +480,8 @@ STDMETHODIMP CCommands::logon(int *pRet)
 
         // Make sure the user isn't already logged on.
         if (CdrSocket::loggedOn()) {
-            ::AfxMessageBox(_T("This session is already logged into the CDR"),
-                            MB_ICONEXCLAMATION);
+            //::AfxMessageBox(_T("This session is already logged into the CDR"),
+            //                MB_ICONEXCLAMATION);
             *pRet = 1;
             return S_OK;
         }
