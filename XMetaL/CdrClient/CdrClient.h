@@ -42,6 +42,7 @@
  */
 class CdrLoginDlg;
 class LogFile;
+class CdrClient;
 
 /*
  * These are the values used for connecting to the CDR server and the
@@ -65,7 +66,8 @@ class LogFile;
  *      APIServer [string]
  */
 struct ServerSettings {
-    ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser);
+    ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
+                   CdrClient* client);
 
     /*
      * Each group has a name, as well as values (DNS names for the
@@ -85,7 +87,7 @@ struct ServerSettings {
     std::vector<ServerGroup> serverGroups;
     CString currentUser;
     CString currentGroup;
-    void serialize(const CString& name) const;
+    void serialize(const CString& name, CdrClient*) const;
 };
 
 /*

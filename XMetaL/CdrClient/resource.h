@@ -17,19 +17,18 @@
 #define IDC_USER_ID                     1001
 #define IDC_PROGRESS1                   1002
 #define IDC_PASSWORD                    1002
-#define IDC_PROD_API_SERVER             1003
-#define IDC_STAGE_API_SERVER            1004
-#define IDC_QA_API_SERVER               1005
-#define IDC_DEV_API_SERVER              1006
-#define IDC_PROD_CDR_SERVER             1013
-#define IDC_STAGE_CDR_SERVER            1014
-#define IDC_PROD                        1015
-#define IDC_PROD_TIER                   1015
-#define IDC_STAGE_TIER                  1016
-#define IDC_QA_CDR_SERVER               1017
-#define IDC_QA_TIER                     1018
-#define IDC_DEV_CDR_SERVER              1019
-#define IDC_DEV_TIER                    1020
+#define IDC_PROD_CDR_SERVER             1003
+#define IDC_PROD_API_SERVER             1004
+#define IDC_STAGE_CDR_SERVER            1005
+#define IDC_STAGE_API_SERVER            1006
+#define IDC_QA_CDR_SERVER               1007
+#define IDC_QA_API_SERVER               1008
+#define IDC_DEV_CDR_SERVER              1009
+#define IDC_DEV_API_SERVER              1010
+#define IDC_PROD_TIER                   1011
+#define IDC_STAGE_TIER                  1012
+#define IDC_QA_TIER                     1013
+#define IDC_DEV_TIER                    1014
 
 // Next default values for new objects
 //
