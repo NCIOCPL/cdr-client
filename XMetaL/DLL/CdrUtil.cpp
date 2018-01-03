@@ -69,7 +69,10 @@ CdrSocket::Init::Init()
     const TCHAR* sessionEnv = _tgetenv(_T("CDRSession"));
     cdrHost = cdrHostEnv ? cdrHostEnv : _T("cdr-dev.cancer.gov");
     apiHost = apiHostEnv ? apiHostEnv : _T("cdrapi-dev.cancer.gov");
-    sessionString = sessionEnv ? sessionEnv : _T("");
+
+    // Don't do this: it short-circuits needed initialization code.
+    // sessionString = sessionEnv ? sessionEnv : _T("");
+
     CString lowerHostName = cdrHost;
     tier = "UNKNOWN TIER";
     lowerHostName.MakeLower();
