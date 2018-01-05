@@ -2,15 +2,6 @@
 
 <!--
      Javascript macros implementing customized behavior of XMetaL for the CDR.
-
-     BZIssue::4716
-     BZIssue::4767
-     BZIssue::4822
-     BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
-     BZIssue::4839 (populate LastReviewedStatus attribute)
-     BZIssue::4856 (changed name for LastReviewedDate macro's attribute)
-     BZIssue::4941 (find next advisory board markup)
-
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
@@ -1035,8 +1026,6 @@
             Application.AppendMacro("Edit Comment", "Edit Comment");
             Application.AppendMacro("Set Last Reviewed Date Attribute",
                                     "Set Last Reviewed Date");
-            Application.AppendMacro("Set Last Reviewed Status Attribute",
-                                    "Populate LastReviewedStatus Attribute");
         }
         else
             Application.AppendMacro("View Comment", "Edit Comment");
@@ -2925,6 +2914,26 @@
         }
     }
 
+    function cleanupOldToolbars() {
+        var bars = Application.CommandBars;
+        var bar = null;
+        var names = [
+            "CDR Protocol",
+            "CDR Glossary Term",
+            "CDR CTGovProtocol"
+        ];
+        for (var i = 0; i < names.length; ++i) {
+            try { bar = bars.item(names[i]); }
+            catch (e1) {}
+            if (bar) {
+                toolbarNames[bar.name] = {}
+                try { bar.Delete; }
+                catch (e2) {}
+            }
+            bar = null;
+        }
+    }
+
     /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
@@ -2950,6 +2959,7 @@
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
     addLicenseeToolbar();
+    cleanupOldToolbars();
     addCdrMenus();
     if (Application.VersionNumber < 9.0)
         hideToolbars();
@@ -6326,35 +6336,6 @@
         rng.Select();
     }
     insertTypeOfChange();
-  ]]>
-</MACRO>
-
-<MACRO name="Populate LastReviewedStatus Attribute" lang="JScript">
-  <![CDATA[
-    function populateLastReviewedStatus() {
-        var elem = Selection.ContainerNode;
-        var docId = elem.getAttribute('cdr:href');
-        if (!docId) {
-            Application.Alert("Link attribute not found on current element");
-            return;
-        }
-        if (!cdrObj) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var path = '/InScopeProtocol/ProtocolAdminInfo/CurrentProtocolStatus';
-        var status = cdrObj.valuesForPath(docId, path);
-        if (!status) {
-            path = '/CTGovProtocol/OverallStatus';
-            status = cdrObj.valuesForPath(docId, path);
-            if (!status) {
-                Application.Alert("Unable to find status for " + docId);
-                return;
-            }
-        }
-        elem.setAttribute('LastReviewedStatus', status);
-    }
-    populateLastReviewedStatus();
   ]]>
 </MACRO>
 

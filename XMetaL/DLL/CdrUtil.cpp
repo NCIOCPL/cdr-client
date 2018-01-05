@@ -68,7 +68,8 @@ CdrSocket::Init::Init()
     const TCHAR* apiHostEnv = _tgetenv(_T("API_HOST"));
     const TCHAR* sessionEnv = _tgetenv(_T("CDRSession"));
     cdrHost = cdrHostEnv ? cdrHostEnv : _T("cdr-dev.cancer.gov");
-    apiHost = apiHostEnv ? apiHostEnv : _T("cdrapi-dev.cancer.gov");
+    // Do this below until the service-based API is gone from all tiers.
+    // apiHost = apiHostEnv ? apiHostEnv : cdrHost;
 
     // Don't do this: it short-circuits needed initialization code.
     // sessionString = sessionEnv ? sessionEnv : _T("");
@@ -92,6 +93,19 @@ CdrSocket::Init::Init()
         tier = "STAGE";
     else if (lowerHostName == "cdr.dev.cancer.gov")
         tier = "DEV";
+    if (apiHostEnv)
+        apiHost = apiHostEnv;
+    else {
+        if (tier == "PROD")
+            apiHost = _T("cdrapi.cancer.gov");
+        else {
+            apiHost.Format(_T("cdrapi-%s.cancer.gov"), tier);
+            apiHost.MakeLower();
+        }
+    }
+    CString buf;
+    buf.Format(_T("cdrhost=%s apihost=%s"), cdrHostEnv, apiHostEnv);
+    cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
 }
 
 /**
@@ -173,6 +187,7 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         const TCHAR* target = _T("/");
         headers.Format(_T("Content-type: text/xml\n"));
         DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
+        //::AfxMessageBox(_T("sending command to ") + apiHost);
         conn = session.GetHttpConnection(apiHost, port);
         file = conn->OpenRequest(verb, target, NULL, 1, NULL, NULL, flags);
 
@@ -1245,7 +1260,7 @@ cdr::ValidationErrors::ValidationErrors(const Element& e) {
         CString eid = err.getAttribute(_T("eref"));
         CString etype = err.getAttribute(_T("etype"));
         CString elevel = err.getAttribute(_T("elevel"));
-        if (etype == _T("validation"))
+        if (etype == _T("validation") || etype == _T("link"))
             errors.push_back(cdr::ValidationError(message, eid, elevel));
         else
             ::AfxMessageBox(message + _T(" (") + elevel + _T(")"));

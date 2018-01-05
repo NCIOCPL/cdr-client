@@ -2670,6 +2670,7 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
                   _T("Value='") + id + _T("'/></ReportParams>")
                   _T("</CdrReport>");
     CString rsp = CdrSocket::sendCommand(cmd);
+    debugLogWrite(rsp, username);
     CString termIds = _T("");
     if (rsp.Find(_T("<Error")) != -1) {
         termIds = _T("ERROR");
