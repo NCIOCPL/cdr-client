@@ -116,32 +116,32 @@ void CSearchDialog::OnSearchButton()
     int curType = m_docTypes.GetCurSel();
     lastSearch.docType = curType;
 
-    // Don't do anything unless we have at least a search string or a doc
+    // Don't do anything unless we have at least a search string or a doc type.
     // type.
-    if (m_searchString.IsEmpty()) {
-        if (curType == 0)
-            return;
+    if (m_searchString.IsEmpty() && curType == 0)
+        return;
+    lastSearch.searchString = m_searchString;
+    CString op = _T("eq");
+    if (m_titleContains.GetCheck() == 1) {
+        op = _T("contains");
+        lastSearch.stringType = LastSearch::CONTAINS;
+        if (m_searchString.IsEmpty())
+            m_searchString = _T("%");
     }
-    else {
-        lastSearch.searchString = m_searchString;
-        CString op = _T("eq");
-        if (m_titleContains.GetCheck() == 1) {
-            op = _T("contains");
-            lastSearch.stringType = LastSearch::CONTAINS;
-        }
-        else if (m_titleStart.GetCheck() == 1) {
-            op = _T("begins");
-            lastSearch.stringType = LastSearch::BEGINS;
-        }
-        else
-            lastSearch.stringType = LastSearch::ALL;
-        cmd += _T("<Test>CdrCtl/Title ") + op + _T(" ") +
-            cdr::encode(m_searchString) + _T("</Test>");
+    else if (m_titleStart.GetCheck() == 1) {
+        op = _T("begins");
+        lastSearch.stringType = LastSearch::BEGINS;
+        if (m_searchString.IsEmpty())
+            m_searchString = _T("%");
     }
+    else
+        lastSearch.stringType = LastSearch::ALL;
+    cmd += _T("<Test>CdrCtl/Title ") + op + _T(" ") +
+        cdr::encode(m_searchString) + _T("</Test>");
     if (curType > 0) {
         CString val;
         m_docTypes.GetLBText(curType, val);
-        if (!m_searchString.IsEmpty())
+        if (!val.IsEmpty())
         cmd += _T("<DocType>") + val + _T("</DocType>");
     }
     cmd += "</Query></CdrSearch>";
