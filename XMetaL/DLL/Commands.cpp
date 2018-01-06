@@ -2044,10 +2044,12 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
         // Submit the request to the CDR server.
         CWaitCursor wc;
         CString cmdString = cmd.str().c_str();
+        debugLogWrite(cmdString, username);
         //::AfxMessageBox(cmdString);
         CString rsp = CdrSocket::sendCommand(cmdString);
         //::AfxMessageBox(rsp);
 
+        debugLogWrite(rsp, username);
         // Extract the address elements.
         cdr::Element addressElements =
             cdr::Element::extractElement(rsp, _T("AddressElements"));
