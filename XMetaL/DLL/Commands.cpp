@@ -925,7 +925,10 @@ STDMETHODIMP CCommands::save(int *pRet)
 
             // Submit the save command to the server.
             CString dummy;
+            CTime start_time = CTime::GetCurrentTime();
             CString rsp = CdrSocket::sendCommand(dummy, false, commandBuf.buf);
+            CTime end_time = CTime::GetCurrentTime();
+            CTimeSpan elapsed_time = end_time - start_time;
             cdr::Element responseElem =
                 cdr::Element::extractElement(rsp, _T("CdrResponse"));
             CString status = responseElem.getAttribute(_T("Status"));
@@ -965,7 +968,8 @@ STDMETHODIMP CCommands::save(int *pRet)
                 }
                 else {
                     doc.Close(2); // 2=don't save changes.
-                    CString msg = _T("Document stored successfully.");
+                    CString msg = elapsed_time.Format(
+                        _T("Document stored successfully (elapsed: %M:%S)"));
                     if (ctrlInfo.docId.IsEmpty())
                         msg += _T("\nIt is now checked out to you.\n")
                            _T("Please check in when processing is complete.");

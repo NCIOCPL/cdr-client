@@ -188,6 +188,7 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         headers.Format(_T("Content-type: text/xml\n"));
         DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
         //::AfxMessageBox(_T("sending command to ") + apiHost);
+        session.SetOption(INTERNET_OPTION_CONTROL_RECEIVE_TIMEOUT, 180000);
         conn = session.GetHttpConnection(apiHost, port);
         file = conn->OpenRequest(verb, target, NULL, 1, NULL, NULL, flags);
 
@@ -212,7 +213,7 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         }
 
         // Read the response in chunks.
-        static char buf[1024 * 1024];
+        static char buf[1024 * 1024 * 16];
         UINT nread = file->Read(buf, sizeof buf);
         std::string temp;
         while (nread > 0) {
@@ -228,6 +229,18 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
     }
     catch (LPCTSTR error) { return errResponse(error); }
     catch (const CString& err) { return errResponse(err); }
+    catch (CException *ee) {
+        TCHAR message[1024];
+        ee->GetErrorMessage(message, 1023);
+        CString msg;
+        msg.Format(_T("failure sending command: %s"), message);
+        debugLogWrite(_T("Caught exception in sendCommand()\n"), _T("bkline"));
+        //ee->ReportError();
+        debugLogWrite(_T("Reported exception in sendCommand()\n"),
+                      _T("bkline"));
+        ee->Delete();
+        return errResponse(msg);
+    }
     catch (...) { return errResponse(_T("sendCommand: unexpected failure")); }
 }
 
@@ -441,6 +454,7 @@ _Application cdr::getApp()
         debugLogWrite(_T("Caught exception in cdr::getApp()\n"), _T("rmk"));
         ee->ReportError();
         debugLogWrite(_T("Reported exception in cdr::getApp()\n"), _T("rmk"));
+        ee->Delete();
     }
     throw _T("Unable to create XMetaL Application-level automation object");
 }
