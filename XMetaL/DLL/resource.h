@@ -51,7 +51,6 @@
 #define IDD_GLOSSIFY_DIALOG             219
 #define IDD_REVIEW_MARKUP               220
 #define ID_LOGON_OK                     221
-#define IDD_INSERT_DIAGNOSIS_TERMS      221
 #define IDC_LINK_TITLE_LABEL            222
 #define IDD_COMMENT                     222
 #define IDD_COMMENT_DIALOG              222
@@ -73,7 +72,6 @@
 #define IDC_MARKUP_SOURCE               238
 #define IDC_MEDIA_FILENAME              239
 #define IDC_MEDIA_FILE_BROWSE           240
-#define IDC_DIAGNOSIS_SETS              241
 #define IDC_GLOSSIFY_NEXT_SECTION       242
 #define IDC_COMMENT_BOX                 243
 

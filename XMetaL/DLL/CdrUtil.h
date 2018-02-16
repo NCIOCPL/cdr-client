@@ -38,6 +38,15 @@ struct CdrLinkInfo {
 
 /**
  * Wrapper for socket communication between the CDR client and server.
+ *
+ * Raw sockets replaced along the way with tunneling through HTTPS (at
+ * the insistence of CBIIT), but we kept the name for old times' sake. :-)
+ * Now that we're not using sockets directly, we no longer need object
+ * instances of this class: everything is static (class-based) now.
+ *
+ * There are two host names. One (`apiHost`) is used for tunneling
+ * CDR client-server commands and the other (`cdrHost`) is used to
+ * build links to web admin HTML pages.
  */
 class CdrSocket {
 public:
@@ -46,20 +55,15 @@ public:
     static void setSessionString(const CString& s) { sessionString = s; }
     static bool loggedOn() { return !sessionString.IsEmpty(); }
     static const CString getSessionString() { return sessionString; }
-    static const CString getHostName() { return hostName; }
-    static const CString getHostTier() { return hostTier; }
+    static const CString getHostName() { return cdrHost; }
+    static const CString getHostTier() { return tier; }
     static CString getShortHostName() {
-        int dot = hostName.Find(TCHAR('.'));
-        if (dot != -1 && !_istdigit(hostName[0]))
-            return hostName.Left(dot);
-        return hostName;
+        int dot = cdrHost.Find(TCHAR('.'));
+        if (dot != -1 && !_istdigit(cdrHost[0]))
+            return cdrHost.Left(dot);
+        return cdrHost;
     }
 private:
-    int sock;
-    enum { CDR_SOCK = 2019 };
-    CdrSocket();
-    ~CdrSocket() { closesocket(sock); }
-    std::string read();
     struct Init {
         Init();
         ~Init();
@@ -67,8 +71,9 @@ private:
         static Init init;
     };
     static CString sessionString;
-    static CString hostName;
-    static CString hostTier;
+    static CString cdrHost;
+    static CString apiHost;
+    static CString tier;
 };
 
 /**

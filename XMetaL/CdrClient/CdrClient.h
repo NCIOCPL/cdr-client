@@ -29,10 +29,11 @@
  */
 #define RELAUNCH_SCRIPT  _T("CdrRunAgain.cmd")
 #define MANIFEST_FILE    _T("CdrManifest.xml")
-#define SETTINGS_FILE    _T("CdrSettings.xml")
-#define PROD_GROUP       _T("PRODUCTION")
-#define TEST_GROUP       _T("TEST")
-#define DEV_GROUP        _T("DEV")
+#define SETTINGS_FILE    _T("CdrTiers.xml")
+#define PROD_TIER        _T("PROD")
+#define STAGE_TIER       _T("STAGE")
+#define QA_TIER          _T("QA")
+#define DEV_TIER         _T("DEV")
 #define CLREFR           _T("/cgi-bin/cdr/ClientRefresh.py")
 #define TUNNELING        1
 
@@ -41,12 +42,13 @@
  */
 class CdrLoginDlg;
 class LogFile;
+class CdrClient;
 
 /*
  * These are the values used for connecting to the CDR server and the
- * client files refresh server.  There are three groups of these
- * servers (and the values used to connect to them), one each for
- * production, testing, and development.  This object also remembers
+ * client files refresh server.  There are four groups ("tiers") of
+ * these servers (and the values used to connect to them), one each for
+ * production, stage, qa, and development.  This object also remembers
  * the currently selected group, as well as the current CDR user ID.
  * There are methods available for finding a group by its name,
  * and for serializing the values held by the object in a persistent
@@ -60,34 +62,32 @@ class LogFile;
  *    CurrentGroup [string]
  *    ServerGroup [multiple]
  *      @Name
- *      UpdateServer [string]
- *      UpdatePort [decimal number]
- *      CdrServer [string]
- *      CdrPort [decimal number]
+ *      CDRServer [string]
+ *      APIServer [string]
  */
 struct ServerSettings {
-    ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser);
+    ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
+                   CdrClient* client);
 
     /*
-     * Each group has a name, as well as values (DNS names and TCP/IP
-     * ports) for connecting to the CDR server and client refresh
-     * server in the group.  The group object knows how to generate
-     * an XML representation of itself.
+     * Each group has a name, as well as values (DNS names for the
+     * servers) for connecting to the CDR server and CDR API server
+     * in the group.  The group object knows how to generate an XML
+     * representation of itself.
      */
     struct ServerGroup {
+        ServerGroup(CString name, CString cdr, CString api);
         ServerGroup(CComPtr<IXMLDOMNode>& node);
         CString groupName;
-        CString updateServer;
-        CString updatePort;
         CString cdrServer;
-        CString cdrPort;
+        CString apiServer;
         void serialize(CStdioFile&) const;
     };
     ServerGroup* findGroup(const CString& name);
     std::vector<ServerGroup> serverGroups;
     CString currentUser;
     CString currentGroup;
-    void serialize(const CString& name) const;
+    void serialize(const CString& name, CdrClient*) const;
 };
 
 /*
@@ -132,7 +132,7 @@ struct ServerSettings {
  *                         or to avoid downloading files which
  *                         may have unwanted changes.
  */
- class CdrCommandLineOptions : public CCommandLineInfo {
+class CdrCommandLineOptions : public CCommandLineInfo {
 public:
     CdrCommandLineOptions();
     void ParseParam(const TCHAR* param, BOOL flag, BOOL last);
@@ -180,12 +180,9 @@ private:
     void getNewFiles(const std::string&, CdrProgressDlg&);
     void deleteFiles(const CString&);
     void deleteRlxFiles(const CString&);
-    CString extractSessionId(const CString& xmlString);
-    CString httpServer;
     CString cdrServer;
+    CString apiServer;
     CString sessionId;
-    INTERNET_PORT httpPort;
-    INTERNET_PORT cdrPort;
     bool loaderReplaced;
     ServerSettings* serverSettings;
     CComPtr<IXMLDOMDocument> xmlDomParser;

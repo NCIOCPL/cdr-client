@@ -15,6 +15,8 @@
 #include <wincrypt.h>
 #include <atlenc.h>
 #include <direct.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,206 +29,6 @@
 #define MD5LEN 16
 
 /*
- * Wrapper class for CDR client commands.  This program only uses
- * this class for logging on to the CDR, so the complexity of
- * remembering and re-using the session string (obtained by the
- * logon command) for subsequent requests is omitted here.
- *
- * CDR client requests are sent as an XML document with the
- * following structure:
- *
- *   CdrCommandSet
- *     SessionId [optional, not present for the logon command]
- *     CdrCommand [multiple, only one used here]
- *       Cdr[CommandName]
- *         [content of command]
- *
- * The server's response has the following structure:
- *
- *   CdrResponseSet
- *     @Time [date-time]
- *     CdrResponse [optional, multiple, only one returned here]
- *       Cdr[NameOfCommand]Resp [CdrLogonResp here]
- *     Errors [optional]
- *       Err [multiple; only one sent when logon fails]
- */
-class CdrSocket {
-
-public:
-
-    /*
-     * Connects to the CDR server over the specified port.  Throws
-     * an exception if the connection cannot be made.
-     */
-    CdrSocket(CdrClient* cdrClient,
-              const CString& hostString, INTERNET_PORT port = 2019)
-        : connected(false), client(cdrClient) {
-
-#ifndef TUNNELING
-        client->log(_T("Creating socket connection to ") + hostString +
-                    _T("\n"), 3);
-        // Working variables.
-        CString             logMessage;
-        CStringA            ascii = (CStringA)hostString.GetString();
-        CStringA::PCXSTR    host  = ascii.GetString();
-        struct sockaddr_in  addr;
-        struct hostent *    ph = gethostbyname(host);
-        if (!ph)
-            throw _T("CdrSocket(): Failure resolving host name ") + hostString;
-
-        // Build the socket address.
-        addr.sin_family = ph->h_addrtype;
-        memcpy(&addr.sin_addr, ph->h_addr, ph->h_length);
-        addr.sin_port = htons(port);
-
-        // Create the socket.
-        sock = (SOCKET)socket(AF_INET, SOCK_STREAM, 0);
-        if (sock < 0)
-            throw _T("CdrSocket(): Failure creating socket for") + hostString;
-
-        // Connect to the server.
-        if (connect(sock, (struct sockaddr *)&addr, sizeof addr) < 0)
-            throw _T("CdrSocket(): Failure connecting to ") + hostString;
-        logMessage.Format(_T("Connected to %s over port %d.\n"), hostString,
-                          port);
-        client->log(logMessage, 3);
-        connected = true;
-#endif
-    }
-
-    /*
-     * Conditionally cleans up by closing the socket.
-     */
-    ~CdrSocket() {
-        if (connected) {
-            client->log(_T("Closing socket.\n"), 3);
-            closesocket(sock);
-        }
-    }
-
-    /*
-     * Packs up a CDR client request, sends it to the CDR server,
-     * retrieves the server's response, and returns that response
-     * to the caller.  Throws a string-based exception if an
-     * error is encountered.
-     */
-    CString sendCommand(const CString& cmd) const {
-
-        // Wrap the command in the command/set elements.
-        CString request = _T("<CdrCommandSet><CdrCommand>") + cmd
-                        + _T("</CdrCommand></CdrCommandSet>");
-        client->log(_T("Sending command ") + request + _T("\n"), 3);
-
-#ifdef TUNNELING
-        const TCHAR* target = _T("/cgi-bin/cdr/https-tunnel.ashx");
-        return client->sendHttpCommand(request, target);
-#else
-        // Tell the server the size of the coming request buffer.
-        CStringA            ascii = (CStringA)request.GetString();
-        CStringA::PCXSTR    buf   = ascii.GetString();
-        long len = (long)htonl((u_long)request.GetLength());
-        if (send(sock, (char *)&len, sizeof len, 0) < 0)
-            throw _T("In sendCommand(): Failure sending command length");
-
-        // Submit the command to the server.
-        if (send(sock, buf, (int)request.GetLength(), 0) < 0)
-            throw _T("In sendCommand(): Failure sending command");
-
-        // Retrieve the server's response.
-        return this->read();
-#endif
-    }
-
-private:
-
-    /*
-     * Private method for reading the server's response.  Pulls out
-     * the first four bytes, which are transmitted in network ("big
-     * endian") order and indicate the number of bytes to follow.
-     * Allocates a buffer to hold the response, reads the response
-     * into the buffer, converts it to a CString object, and returns
-     * that object.  Throws a string-based exception if anything
-     * goes wrong.
-     */
-    CString read() const {
-
-        // Find out how many bytes the response contains.  This solves the
-        // "how do we know we're done?" problem.
-        CString msg;
-        char lengthBytes[4];
-        if (readn(sizeof lengthBytes, lengthBytes) != sizeof lengthBytes)
-            throw _T("Failure reading byte count from server");
-        long length;
-        memcpy(&length, lengthBytes, sizeof length);
-        length = ntohl(length);
-        msg.Format(_T("Read length bytes: %ld.\n"), length);
-        client->log(msg, 3);
-
-        // Use a local buffer type to ensure memory release even if an
-        // exception occurs.
-        struct Buf {
-            Buf(size_t n) : buf(new char[n + 1]) { memset(buf, 0, n + 1); }
-            ~Buf() { delete [] buf; }
-            char* buf;
-        };
-        Buf b(length);
-        if (readn(length, b.buf) != length)
-            throw _T("Failure reading response from CDR server");
-
-        CString response(b.buf);
-        msg.Format(_T("Server response: %s\n"), response);
-        client->log(msg, 3);
-        return response;
-    }
-
-    /*
-     * Common private code for reading a specified number of bytes into
-     * a supplied buffer.  Used for reading the 4-byte length header,
-     * as well as the payload for the server's response.  Returns the
-     * number of bytes read, or -1 if an error occurs.
-     */
-    int readn(int nBytes, char* buf) const {
-
-        // Read until we have all the bytes we've been promised.
-        int recd = 0;
-        while (recd < nBytes) {
-            int n = recv(sock, buf + recd, nBytes - recd, 0);
-            CString msg;
-            msg.Format(_T("recv requested %d bytes; got %d.\n"),
-                       nBytes - recd, n);
-            client->log(msg, 4);
-            if (n < 0)
-                return -1;
-            recd += n;
-        }
-        return recd;
-    }
-
-    /*
-     * Private static object used to ensure that intialization and
-     * cleanup are handled automatically, even if failures cause
-     * an unexpectedly early end of the program.
-     */
-    struct Init {
-        Init() {
-            if (WSAStartup(0x0101, &wsaData) != 0) {
-                AfxMessageBox(_T("Unable to initialize socket library"));
-                throw _T("Failure initializing Windows socket library");
-            }
-        }
-        ~Init() { WSACleanup(); }
-        WSAData wsaData;
-        static Init init;
-    };
-    SOCKET     sock;
-    bool       connected;
-    CdrClient* client;
-};
-
-// Ensures cleanup at shutdown time.
-CdrSocket::Init CdrSocket::Init::init;
-
-/*
  * Local utility functions.
  */
 static CComPtr<IXMLDOMNode> getFirstChild(CComPtr<IXMLDOMNode>& node);
@@ -234,10 +36,15 @@ static CComPtr<IXMLDOMNode> getNextSibling(CComPtr<IXMLDOMNode>& node);
 static CString getNodeName(CComPtr<IXMLDOMNode>& node);
 static CString getTextContent(CComPtr<IXMLDOMNode>& element);
 static CString getAttribute(CComPtr<IXMLDOMNode>& elem, const TCHAR* name);
-static CString extractErrorString(CComPtr<IXMLDOMNode>& node);
 static CString findXmetalProgram(CdrClient*);
 static CString tryXmetalPath(TCHAR* tail, CdrClient*);
 static void usage();
+
+// Needed only until the transition to Gauss is complete.
+static void fix_cdr_settings(CdrClient*, const CString&);
+static long long get_file_time(const char*);
+static bool legacy_file_newer(CdrClient*);
+static CString get_legacy_tier(CdrClient*);
 
 /*
  * CdrClient class implementation.
@@ -321,7 +128,9 @@ BOOL CdrClient::InitInstance() {
         CWinApp::InitInstance();
 
         // 1. Read the settings from the application's state file.
-        serverSettings = new ServerSettings(xmlDomParser);
+        serverSettings = new ServerSettings(xmlDomParser, this);
+        log(_T("Settings loaded -- tier is '") +
+            serverSettings->currentGroup + _T("'.\n"));
 
         // 2. Parse the command-line arguments.
         ParseCommandLine(commandLineOptions);
@@ -367,15 +176,31 @@ BOOL CdrClient::InitInstance() {
  * configuration file, stored locally to remember the values the
  * user last gave us.
  */
-ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser) {
+ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
+                               CdrClient* client) {
 
     // Parse the XML settings file.
     if (!xmlDomParser)
         throw _T("XML parser not created");
     VARIANT_BOOL success;
     CComVariant fileName = SETTINGS_FILE;
-    if (FAILED(xmlDomParser->load(fileName, &success)) || !success)
+
+    // If the settings file doesn't exist yet, set default tier names.
+    if (FAILED(xmlDomParser->load(fileName, &success)) || !success) {
+        serverGroups.push_back(ServerGroup(_T("PROD"),
+                                           _T("cdr.cancer.gov"),
+                                           _T("cdrapi.cancer.gov")));
+        serverGroups.push_back(ServerGroup(_T("STAGE"),
+                                           _T("cdr-stage.cancer.gov"),
+                                           _T("cdrapi-stage.cancer.gov")));
+        serverGroups.push_back(ServerGroup(_T("QA"),
+                                           _T("cdr-qa.cancer.gov"),
+                                           _T("cdrapi-qa.cancer.gov")));
+        serverGroups.push_back(ServerGroup(_T("DEV"),
+                                           _T("cdr-dev.cancer.gov"),
+                                           _T("cdrapi-dev.cancer.gov")));
         return;
+    }
 
     // Start at the top-level element.
     CComPtr<IXMLDOMElement> docElem;
@@ -394,6 +219,13 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser) {
             currentGroup = getTextContent(node);
         node = getNextSibling(node);
     }
+    if (!currentGroup.IsEmpty()) {
+        if (legacy_file_newer(client)) {
+            CString tier = get_legacy_tier(client);
+            if (!tier.IsEmpty())
+                currentGroup = tier;
+        }
+    }
 }
 
 /*
@@ -402,7 +234,20 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser) {
  * of the characters will be ASCII (mostly DNS names and strings
  * representing decimal port numbers).
  */
-void ServerSettings::serialize(const CString& name) const {
+void ServerSettings::serialize(const CString& name, CdrClient* client) const {
+
+    // Temporary code to ease the transition between tiers which
+    // have upgraded to Gauss and those which have not yet upgraded.
+    // Do this first, so that the legacy settings file will only
+    // have a newer timestamp than the new tier settings file when
+    // we're switching to a tier that's been upgraded to Gauss from
+    // one which hasn't yet.
+    try {
+        fix_cdr_settings(client, currentGroup);
+    }
+    catch(...) {}
+
+    // Now update the new four-tier settings file.
     CStdioFile file;
     CFileException e;
     UINT flags = CFile::modeCreate | CFile::modeWrite | CFile::shareDenyNone;
@@ -427,6 +272,124 @@ void ServerSettings::serialize(const CString& name) const {
     file.Close();
 }
 
+long long get_file_time(const char* name) {
+    try {
+        struct _stat buf;
+        int result = _stat(name, &buf);
+        if (result)
+            return -1;
+        return buf.st_mtime;
+    }
+    catch (...) { return -1; }
+}
+
+bool legacy_file_newer(CdrClient* client) {
+    try {
+        long long legacy_time = get_file_time("CdrSettings.xml");
+        if (legacy_time == -1) {
+            client->log(_T("Can't stat CdrSettings.xml.\n"), 2);
+            return false;
+        }
+        CString buf;
+        buf.Format(_T("Timestamp for CdrSettings.xml: %llu.\n"), legacy_time);
+        client->log(buf, 2);
+        long long tiers_time = get_file_time("CdrTiers.xml");
+        buf.Format(_T("Timestamp for CdrTiers.xml: %llu.\n"), tiers_time);
+        client->log(buf, 2);
+        return legacy_time > tiers_time;
+    }
+    catch (...) { return false; }
+}
+
+CString get_legacy_tier(CdrClient* client) {
+    try {
+        client->log(_T("Extracting legacy tier from CdrSettings.xml.\n"), 2);
+        static char buf[2048];
+        FILE* fp = fopen("CdrSettings.xml", "rb");
+        if (!fp) {
+            client->log(_T("Can't find CdrSettings.xml.\n"), 2);
+            return _T("");
+        }
+        UINT nread = fread(buf, 1, sizeof(buf) - 1, fp);
+        fclose(fp);
+        CString settings(buf, (int)nread);
+        if (settings.Find(_T("<CurrentGroup>PRODUCTION</CurrentGroup>")) >= 0)
+            return _T("PROD");
+        if (settings.Find(_T("<CurrentGroup>DEV</CurrentGroup>")) >= 0)
+            return _T("DEV");
+        if (settings.Find(_T("cdr-qa")) >= 0)
+            return _T("QA");
+        return _T("STAGE");
+    }
+    catch(...) { return _T(""); }
+}
+
+/*
+ * Adjust the legacy settings file
+ *
+ * We do this in case we're switching to a tier which hasn't yet
+ * upgraded to Gauss. If we re-launch ourselves after such a switch
+ * this will ensure that the old loader lands on the right CDR server.
+ *
+ * The CdrSettings.xml file has always been well under 1,000 bytes,
+ * and we won't need this code after the transition to Gauss is complete,
+ * otherwise I would use a more robust loop to make sure we got the whole
+ * file.
+ *
+ * Pass:
+ *   client - pointer to `CdrClient` object so we can log what we're doing
+ *   tier - CString for current group (e.g. DEV, QA, etc.)
+ *
+ * Return:
+ *  none
+ */
+void fix_cdr_settings(CdrClient* client, const CString& tier) {
+    client->log(_T("Adjusting legacy settings file.\n"), 2);
+    CString legacy(tier);
+    if (tier == _T("QA") || tier == _T("STAGE"))
+        legacy = _T("TEST");
+    if (tier == _T("PROD"))
+        legacy = _T("PRODUCTION");
+    client->log(_T("Ensuring that the legacy settings point to ") +
+                legacy + _T(".\n"), 2);
+    static char buf[2048];
+    FILE* fp = fopen("CdrSettings.xml", "rb");
+    if (!fp) {
+        client->log(_T("Can't find legacy settings file.\n"), 2);
+        return;
+    }
+    UINT nread = fread(buf, 1, sizeof(buf) - 1, fp);
+    fclose(fp);
+    CString settings(buf, (int)nread);
+    CString current = _T("<CurrentGroup>") + legacy + _T("</CurrentGroup>");
+    // don't stop here even if group matches -- we have to make sure that
+    // TEST points to the right server
+    //if (settings.Find((LPCTSTR)current) >= 0) {
+    //    client->log(_T("Legacy group already set to ") + legacy +
+    //                _T(".\n"), 2);
+    //    return;
+    //}
+    settings.Replace(_T("<CurrentGroup>PRODUCTION</CurrentGroup>"),
+                     (LPCTSTR)current);
+    settings.Replace(_T("<CurrentGroup>TEST</CurrentGroup>"),
+                     (LPCTSTR)current);
+    settings.Replace(_T("<CurrentGroup>DEV</CurrentGroup>"),
+                     (LPCTSTR)current);
+    if (tier == _T("QA")) {
+        settings.Replace(_T("cdr-stage"), _T("cdr-qa"));
+        client->log(_T("Replaced 'cdr-stage' with 'cdr-qa'.\n"), 2);
+    }
+    if (tier == _T("STAGE")) {
+        settings.Replace(_T("cdr-qa"), _T("cdr-stage"));
+        client->log(_T("Replaced 'cdr-qa' with 'cdr-stage'.\n"), 2);
+    }
+    fp = fopen("CdrSettings.xml", "wb");
+    CT2A newbuf(settings);
+    fwrite(newbuf, 1, settings.GetLength(), fp);
+    fclose(fp);
+    client->log(_T("Wrote new CdrSettings.xml.\n"));
+}
+
 /*
  * Constructs a ServerGroup object from its serialized form in the
  * DOM node from the XML document for remembered server settings.
@@ -436,16 +399,26 @@ ServerSettings::ServerGroup::ServerGroup(CComPtr<IXMLDOMNode>& node) {
     CComPtr<IXMLDOMNode> child = getFirstChild(node);
     while (child) {
         CString nodeName = getNodeName(child);
-        if (nodeName == _T("UpdateServer"))
-            updateServer = getTextContent(child);
-        else if (nodeName == _T("UpdatePort"))
-            updatePort = getTextContent(child);
-        else if (nodeName == _T("CdrServer"))
+        if (nodeName == _T("CDRServer"))
             cdrServer = getTextContent(child);
-        else if (nodeName == _T("CdrPort"))
-            cdrPort = getTextContent(child);
+        else if (nodeName == _T("APIServer"))
+            apiServer = getTextContent(child);
         child = getNextSibling(child);
     }
+}
+
+/*
+ * Create a group for a new settings file, with default names for the group.
+ *
+ * Pass:
+ *   n - CString for group name
+ *   c - CString for CDR server DNS name
+ *   a - CString for CDR API server DNS name
+ */
+ServerSettings::ServerGroup::ServerGroup(CString n, CString c, CString a) {
+    groupName = n;
+    cdrServer = c;
+    apiServer = a;
 }
 
 /*
@@ -456,18 +429,12 @@ void ServerSettings::ServerGroup::serialize(CStdioFile& file) const {
     file.WriteString(_T(" <ServerGroup Name=\""));
     file.WriteString((LPCTSTR)groupName);
     file.WriteString(_T("\">\n"));
-    file.WriteString(_T("  <UpdateServer>"));
-    file.WriteString((LPCTSTR)updateServer);
-    file.WriteString(_T("</UpdateServer>\n"));
-    file.WriteString(_T("  <UpdatePort>"));
-    file.WriteString((LPCTSTR)updatePort);
-    file.WriteString(_T("</UpdatePort>\n"));
-    file.WriteString(_T("  <CdrServer>"));
+    file.WriteString(_T("  <CDRServer>"));
     file.WriteString((LPCTSTR)cdrServer);
-    file.WriteString(_T("</CdrServer>\n"));
-    file.WriteString(_T("  <CdrPort>"));
-    file.WriteString((LPCTSTR)cdrPort);
-    file.WriteString(_T("</CdrPort>\n"));
+    file.WriteString(_T("</CDRServer>\n"));
+    file.WriteString(_T("  <APIServer>"));
+    file.WriteString((LPCTSTR)apiServer);
+    file.WriteString(_T("</APIServer>\n"));
     file.WriteString(_T(" </ServerGroup>\n"));
 }
 
@@ -586,6 +553,7 @@ void CdrClient::logOptions() {
     buf.Format(_T("Server logging level: %d.\n"),
                commandLineOptions.serverDebugLevel);
     log(buf, 2);
+    log(_T("Tier is '") + serverSettings->currentGroup + _T("'.\n"), 1);
     TCHAR* v = _T("4.5");
     switch (xmver) {
     case XM70:
@@ -595,7 +563,7 @@ void CdrClient::logOptions() {
         v = _T("9.0");
         break;
     }
-    buf.Format(_T("Running XMetaL version %s"), v);
+    buf.Format(_T("Running XMetaL version %s\n"), v);
     log(buf, 0);
 }
 
@@ -642,7 +610,6 @@ static CString login(CString host, CString uid, CString pwd) {
         file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
         secFlags |= SECURITY_IGNORE_ERROR_MASK;
         file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-        std::cerr << "sec flags=" << secFlags << "\n";
         success = file->SendRequest();
     }
     if (!success)
@@ -722,7 +689,7 @@ bool CdrClient::createCdrSession() {
 
             // Remember any changes to the server settings.
             serverSettings->currentUser = dialog->uid;
-            serverSettings->serialize(SETTINGS_FILE);
+            serverSettings->serialize(SETTINGS_FILE, this);
 
             // Create the logon command.
             CString uidElem;
@@ -740,12 +707,11 @@ bool CdrClient::createCdrSession() {
                               cdrServer, dialog->uid);
             log(logMessage, 1);
             log(_T("Session: ") + sessionId + _T("\n"), 1);
+            log(_T("Server: ") + cdrServer + _T("\n"), 2);
 
             // Inject some important values into the environment.
-            CString portEnviron;
             CString clientDebugEnv;
             CString serverDebugEnv;
-            portEnviron.Format(_T("CDR_PORT=%d"), cdrPort);
             clientDebugEnv.Format(_T("CDR_CLIENT_DEBUG_LEVEL=%d"),
                                   commandLineOptions.clientDebugLevel);
             serverDebugEnv.Format(_T("CDR_SERVER_DEBUG_LEVEL=%d"),
@@ -753,13 +719,14 @@ bool CdrClient::createCdrSession() {
             _tputenv((LPCTSTR)(_T("CDRUser=") + dialog->uid));
             _tputenv((LPCTSTR)(_T("CDRSession=") + sessionId));
             _tputenv((LPCTSTR)(_T("CDR_HOST=") + cdrServer));
-            _tputenv((LPCTSTR)portEnviron);
+            _tputenv((LPCTSTR)(_T("CDR_PORT=443")));
+            _tputenv((LPCTSTR)(_T("API_HOST=") + apiServer));
             _tputenv((LPCTSTR)clientDebugEnv);
             _tputenv((LPCTSTR)serverDebugEnv);
             return true;
         }
         else if (nResponse == IDCANCEL) {
-            log(_T("User cancelled logon; shutting down ... \n"), 1);
+            log(_T("User cancelled logon; shutting down ...\n"), 1);
             return false;
         }
     }
@@ -772,90 +739,19 @@ bool CdrClient::createCdrSession() {
  * object.  Invoked by createCdrSession().
  */
 void CdrClient::extractServerSettings() {
-    httpPort       = 80;
-    cdrPort        = 2019;
-    httpServer     = cdrServer
-                   = _T("mahler.nci.nih.gov");
+    log(_T("Extracting settings for '") + serverSettings->currentGroup +
+        _T("'\n"), 2);
     for (size_t i = 0; i < serverSettings->serverGroups.size(); ++i) {
         ServerSettings::ServerGroup* group = &serverSettings->serverGroups[i];
         if (serverSettings->currentGroup == group->groupName) {
-            if (!group->cdrServer.IsEmpty())
+            if (!group->cdrServer.IsEmpty()) {
                 cdrServer = group->cdrServer;
-            if (!group->updateServer.IsEmpty())
-                httpServer = group->updateServer;
-            if (!group->cdrPort.IsEmpty()) {
-                long p = _tcstol((LPCTSTR)group->cdrPort, NULL, 10);
-                if (p > 0)
-                    cdrPort = (INTERNET_PORT)p;
+                log(_T("CDR server=") + cdrServer + _T("\n"), 2);
             }
-            if (!group->updatePort.IsEmpty()) {
-                long p = _tcstol((LPCTSTR)group->updatePort, NULL, 10);
-                if (p > 0)
-                    httpPort = (INTERNET_PORT)p;
-            }
+            if (!group->apiServer.IsEmpty())
+                apiServer = group->apiServer;
         }
     }
-}
-
-/*
- * Parse the XML message from the server in response to our logon
- * request and extract the text content of the SessionId element.
- * An string-based exception is thrown if the server sends back
- * an error message, or we are unable to find the session ID.
- */
-CString CdrClient::extractSessionId(const CString& xmlString) {
-    VARIANT_BOOL success;
-    CComBSTR bstrXml(xmlString);
-    if (FAILED(xmlDomParser->loadXML(bstrXml, &success))) {
-        log(_T("Server response: ") + xmlString + _T("\n"));
-        throw _T("Failure parsing CDR Server response");
-    }
-    CComPtr<IXMLDOMElement> docElem;
-    if (FAILED(xmlDomParser->get_documentElement(&docElem))) {
-        log(_T("Server response: ") + xmlString + _T("\n"));
-        throw _T("Failure extracting session ID");
-    }
-    CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
-    while (node) {
-        CString nodeName = getNodeName(node);
-        if (nodeName == _T("CdrResponse")) {
-            CComPtr<IXMLDOMNode> child = getFirstChild(node);
-            while (child) {
-                CString nodeName = getNodeName(child);
-                if (nodeName == _T("CdrLogonResp")) {
-                    CComPtr<IXMLDOMNode> grandchild = getFirstChild(child);
-                    while (grandchild) {
-                        CString nodeName = getNodeName(grandchild);
-                        if (nodeName == _T("SessionId"))
-                            return getTextContent(grandchild);
-                        else if (nodeName == _T("Errors"))
-                            throw extractErrorString(grandchild);
-                        grandchild = getNextSibling(grandchild);
-                    }
-                }
-                child = getNextSibling(child);
-            }
-        }
-        node = getNextSibling(node);
-    }
-    log(_T("Server response: ") + xmlString + _T("\n"));
-    throw _T("Unable to find Session ID in server response");
-}
-
-/*
- * Helper function invoked by CdrClient::extractSessionId() to pull out
- * the text content of the Err child element of an Errors element
- * returned by the CDR server in response to our logon request.
- */
-CString extractErrorString(CComPtr<IXMLDOMNode>& node) {
-    CComPtr<IXMLDOMNode> child = getFirstChild(node);
-    while (child) {
-        CString nodeName = getNodeName(child);
-        if (nodeName == _T("Err"))
-            return getTextContent(child);
-        child = getNextSibling(child);
-    }
-    return _T("Unable to find server's explanation of logon failure");
 }
 
 /*
@@ -1022,7 +918,7 @@ void CdrClient::refreshFiles() {
     if (ticketXml.IsEmpty())
         log(_T("No local ticket available; refresh forced.\n"), 1);
     else {
-        log(_T("Asking ") + httpServer +
+        log(_T("Asking ") + cdrServer +
             _T(" if any files have changed.\n"), 1);
         CString response = sendHttpCommand(ticketXml);
         TicketValidation ticketValidation(xmlDomParser, response);
@@ -1360,7 +1256,7 @@ CString Manifest::validate(CdrClient* client) {
 }
 
 /*
- * Send an XML document via HTTP to the client refresh server, then
+ * Send an XML document via HTTP to the CDR client refresh service, then
  * retrieve and return the server's response.
  */
 CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
@@ -1383,11 +1279,10 @@ CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
 
         // Connect the to client refresh server.
         try {
-            DWORD flags = INTERNET_FLAG_EXISTING_CONNECT;
-            if (httpPort != 80)
-                flags |= INTERNET_FLAG_SECURE;
-            conn = session.GetHttpConnection(httpServer, httpPort);
-            log(_T("Got HTTP connection to ") + httpServer + _T("\n"), 3);
+            INTERNET_PORT port = INTERNET_DEFAULT_HTTPS_PORT;
+            DWORD flags = INTERNET_FLAG_EXISTING_CONNECT|INTERNET_FLAG_SECURE;
+            conn = session.GetHttpConnection(cdrServer, port);
+            log(_T("Got HTTP connection to ") + cdrServer + _T("\n"), 3);
             file = conn->OpenRequest(_T("POST"), target, NULL, 1, NULL, NULL,
                                      flags);
             log(_T("POST request opened successfully.\n"), 3);
@@ -1410,18 +1305,16 @@ CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
             // that the CHttpFile class supports QueryOption and SetOption,
             // even though Microsoft omitted these methods from the MSDN
             // documentation for the class.
-            if (httpPort != 80) {
-                DWORD secFlags;
-                file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-                CString flagMessage;
-                flagMessage.Format(_T("Original security flags: %08X\n"),
-                                   secFlags);
-                log(flagMessage, 3);
-                secFlags |= SECURITY_IGNORE_ERROR_MASK;
-                file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-                flagMessage.Format(_T("New security flags: %08X\n"), secFlags);
-                log(flagMessage, 3);
-            }
+            DWORD secFlags;
+            file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            CString flagMessage;
+            flagMessage.Format(_T("Original security flags: %08X\n"),
+                               secFlags);
+            log(flagMessage, 3);
+            secFlags |= SECURITY_IGNORE_ERROR_MASK;
+            file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            flagMessage.Format(_T("New security flags: %08X\n"), secFlags);
+            log(flagMessage, 3);
 
             try {
                 log(_T("Calling SendRequest().\n"), 3);

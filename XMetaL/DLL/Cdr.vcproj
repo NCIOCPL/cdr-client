@@ -551,9 +551,6 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\CommentDialog.cpp">
 			</File>
 			<File
-				RelativePath=".\DiagnosisSets.cpp">
-			</File>
-			<File
 				RelativePath=".\EditElement.cpp">
 			</File>
 			<File
@@ -572,16 +569,10 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\OrgLocs.cpp">
 			</File>
 			<File
-				RelativePath=".\ParticOrgs.cpp">
-			</File>
-			<File
 				RelativePath=".\PassedValidation.cpp">
 			</File>
 			<File
 				RelativePath=".\PersonLocs.cpp">
-			</File>
-			<File
-				RelativePath=".\ProtUpdPerson.cpp">
 			</File>
 			<File
 				RelativePath=".\RetrieveDialog.cpp">
@@ -663,9 +654,6 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\CommentDialog.h">
 			</File>
 			<File
-				RelativePath=".\DiagnosisSets.h">
-			</File>
-			<File
 				RelativePath=".\EditElement.h">
 			</File>
 			<File
@@ -684,16 +672,10 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\OrgLocs.h">
 			</File>
 			<File
-				RelativePath=".\ParticOrgs.h">
-			</File>
-			<File
 				RelativePath=".\PassedValidation.h">
 			</File>
 			<File
 				RelativePath=".\PersonLocs.h">
-			</File>
-			<File
-				RelativePath=".\ProtUpdPerson.h">
 			</File>
 			<File
 				RelativePath=".\Resource.h">

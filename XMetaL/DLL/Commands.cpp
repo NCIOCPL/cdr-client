@@ -21,14 +21,11 @@
 #include "EditElement.h"
 #include "SchemaPicklist.h"
 #include "LogonProgress.h"
-#include "ProtUpdPerson.h"
-#include "ParticOrgs.h"
 #include "CheckIn.h"
 #include "PassedValidation.h"
 #include "Glossify.h"
 #include "ReviewMarkup.h"
 #include "resource.h"
-#include "DiagnosisSets.h"
 #include "CommentDialog.h"
 #include "RevisionLevel.h"
 
@@ -66,8 +63,6 @@ static cdr::ValidValueSets  validValueSets;
 static cdr::ElementSets     linkingElements;
 CString CCommands::username;
 bool    CCommands::invokedFromClientRefreshTool = false;
-static std::map<CString, CString> diagnosisTermSets;
-static cdr::StringList diagnosisTermSetNames;
 
 static CString getFullDocPath(_Document* doc) {
     return doc->GetPath() + _T("\\") + doc->GetName();
@@ -87,7 +82,7 @@ static void set_title_bar() {
 }
 
 void debugLogWrite(const CString& what, const CString& who) {
-    if (who != _T("rmk"))
+    if (who != _T("bkline"))
         return;
     FILE* logFile = fopen("c:/tmp/debug.log", "a");
     static bool warned = true; // false;
@@ -200,14 +195,6 @@ static bool syncDtd(const CString& dtd, const CString& docType)
     //rlxPath.Format(_T("%s\\%s.rlx"), (LPCTSTR)rulesPath, (LPCTSTR)docType);
     std::string pathName = cdr::cStringToUtf8(dtdPath);
 
-#if 0
-    // Remove the old RLX (XMetaL doesn't always do the right thing, and
-    // sometimes fails to recognize that it has a DTD with a more recent
-    // date than the RLX).
-    DeleteFile(rlxPath);
-    DeleteFile(dtdPath);
-#endif
-
     // Write out the DTD.
     std::ofstream dtdStream(pathName.c_str());
     if (!dtdStream) {
@@ -216,22 +203,6 @@ static bool syncDtd(const CString& dtd, const CString& docType)
         return false;
     }
     dtdStream << cdr::cStringToUtf8(dtd).c_str();
-
-#if 0
-    // Compile the RLX file.
-    CString cmpRlx = cdr::getXmetalPath() + _T("%s\\mkrls.exe");
-    const char* cmdStr = cdr::cStringToUtf8(cmpRlx).c_str();
-    const char* dtdStr = cdr::cStringToUtf8(dtdPath).c_str();
-    wchar_t dir[_MAX_PATH];
-    CString curDir = _wgetcwd(dir, _MAX_PATH);
-    std::string dt = cdr::cStringToUtf8(docType);
-    char cmd[1024];
-    sprintf(cmd, "mkrls -a -c -x rules\\%s.dtd 2>>\\temp.o", dt.c_str());
-    system(cmd);
-    //::AfxMessageBox(L"current dir is " + curDir);
-    //_spawnl(_P_WAIT, cmdStr, cmdStr, "-a", "-c", "-x", dtdStr, NULL);
-    //cdrsystem(cdr::cStringToUtf8(cmpRlx).c_str());
-#endif
 
     return true;
 }
@@ -480,8 +451,8 @@ STDMETHODIMP CCommands::logon(int *pRet)
 
         // Make sure the user isn't already logged on.
         if (CdrSocket::loggedOn()) {
-            ::AfxMessageBox(_T("This session is already logged into the CDR"),
-                            MB_ICONEXCLAMATION);
+            //::AfxMessageBox(_T("This session is already logged into the CDR"),
+            //                MB_ICONEXCLAMATION);
             *pRet = 1;
             return S_OK;
         }
@@ -954,7 +925,10 @@ STDMETHODIMP CCommands::save(int *pRet)
 
             // Submit the save command to the server.
             CString dummy;
+            CTime start_time = CTime::GetCurrentTime();
             CString rsp = CdrSocket::sendCommand(dummy, false, commandBuf.buf);
+            CTime end_time = CTime::GetCurrentTime();
+            CTimeSpan elapsed_time = end_time - start_time;
             cdr::Element responseElem =
                 cdr::Element::extractElement(rsp, _T("CdrResponse"));
             CString status = responseElem.getAttribute(_T("Status"));
@@ -994,7 +968,8 @@ STDMETHODIMP CCommands::save(int *pRet)
                 }
                 else {
                     doc.Close(2); // 2=don't save changes.
-                    CString msg = _T("Document stored successfully.");
+                    CString msg = elapsed_time.Format(
+                        _T("Document stored successfully (elapsed: %M:%S)"));
                     if (ctrlInfo.docId.IsEmpty())
                         msg += _T("\nIt is now checked out to you.\n")
                            _T("Please check in when processing is complete.");
@@ -1229,12 +1204,6 @@ STDMETHODIMP CCommands::logoff(int *pRet)
 
         // Submit the logoff request to the server.
         CString rsp = CdrSocket::sendCommand(_T("<CdrLogoff/>"));
-#if 0
-        if (rsp.Find(_T("<Error")) != -1) {
-            cdr::showErrors(rsp);
-            *pRet = 2;
-        }
-#endif
     }
     catch (...) {
         //::AfxMessageBox(_T("Unexpected error from logoff command."),
@@ -1475,6 +1444,14 @@ bool openDoc(const CString& resp, const CString& docId, BOOL checkOut,
 
     if (!cdrDocElem) {
 
+        // Log the response so we can examine it.
+        char name[1024];
+        time_t now = time(NULL);
+        sprintf(name, "response-%lld.xml", (long long)now);
+        std::ofstream respStream(name);
+        if (respStream)
+            respStream << cdr::cStringToUtf8(resp).c_str();
+
         cdr::Element errElem = cdr::Element::extractElement(resp,
                                                             _T("Err"));
         if (errElem)
@@ -1690,17 +1667,6 @@ CString& fixDoc(CString& doc, const CString& ctl,
             doc.Insert(pos, _T(" readonly='yes'"));
     }
 
-    // Strip out whitespace between elements.
-#if 0
-    while ((pos = doc.find('>', pos)) != doc.npos) {
-        ++pos;
-        size_t n = 0;
-        while (isspace(doc[pos + n]))
-            ++n;
-        if (n)
-            doc.erase(pos, n);
-    }
-#endif
     return doc;
 }
 
@@ -1807,27 +1773,6 @@ bool CCommands::doLogon(LogonDialog* logonDialog)
         progressDialog.DestroyWindow();
     }
 
-    // Populate the strings for creating diagnosis macros.
-    CString termSetRequest =
-        _T("<CdrReport><ReportName>Term Sets</ReportName>")
-        _T("<ReportParams>")
-        _T("<ReportParam Name='SetType' Value='diagnosis macro'/>")
-        _T("</ReportParams></CdrReport>");
-    CString tsResponse = CdrSocket::sendCommand(termSetRequest);
-    cdr::Element tsElem =
-        cdr::Element::extractElement(tsResponse, _T("TermSet"));
-    while (tsElem) {
-        cdr::Element nameElem = cdr::Element::extractElement(
-            tsElem.getString(), _T("Name"));
-        cdr::Element membersElem = cdr::Element::extractElement(
-            tsElem.getString(), _T("Members"));
-        CString name = nameElem.getString();
-        CString members = membersElem.getString();
-        diagnosisTermSetNames.push_back(nameElem.getString());
-        diagnosisTermSets[name] = members;
-        tsElem = cdr::Element::extractElement(tsResponse,
-            _T("TermSet"), tsElem.getEndPos());
-    }
     return gotDocTypes;
 }
 
@@ -2030,297 +1975,6 @@ STDMETHODIMP CCommands::get_username(BSTR *pVal)
     return S_OK;
 }
 
-STDMETHODIMP CCommands::protUpdPerson(int *pRet)
-{
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-
-    cdr::trace_log("protUpdPerson");
-    // Initial pessimism.
-    *pRet = 1;
-
-    try {
-
-        // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox(_T("This session is not logged into the CDR"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the currently active document.
-        _Document doc = cdr::getApp().GetActiveDocument();
-
-        // Extract the control information from the document.
-        DOMNode docElement = doc.GetDocumentElement();
-        CdrDocCtrlInfo ctrlInfo;
-        cdr::extractCtlInfo(docElement, ctrlInfo);
-        CString docType = docElement.GetNodeName();
-
-        // Find the element with the current focus.
-        ::Selection selection = cdr::getApp().GetSelection();
-        CString elemName = selection.GetContainerName();
-
-        // Make sure the command is appropriate here.
-        if (docType != _T("InScopeProtocol")) {
-            ::AfxMessageBox(_T("This command is intended for ")
-                            _T("InScopeProtocol documents"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        else if (elemName != _T("Person")) {
-            ::AfxMessageBox(_T("Current element is not Person"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the document ID for the lead organization.
-        ::Range leadOrgLoc = cdr::getElemRange(_T("ProtocolLeadOrg"));
-        if (!leadOrgLoc) {
-            ::AfxMessageBox(_T("Unable to find ProtocolLeadOrg"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMElement leadOrgElem = leadOrgLoc.GetContainerNode();
-        if (!leadOrgElem || leadOrgElem.GetNodeName() != _T("ProtocolLeadOrg"))
-        {
-            ::AfxMessageBox(_T("Unable to find ProtocolLeadOrg element"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMNodeList nodeList =
-            leadOrgElem.getElementsByTagName(_T("LeadOrganizationID"));
-        if (nodeList.GetLength() < 1) {
-            ::AfxMessageBox(_T("Unable to find LeadOrganization ID element"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMElement leadOrgIdElem = nodeList.item(0);
-        CString leadOrgId = leadOrgIdElem.getAttribute(_T("cdr:ref"));
-        if (leadOrgId.IsEmpty()) {
-            ::AfxMessageBox(_T("Missing or empty cdr:ref attribute ")
-                            _T("for lead organization ID"),
-                            MB_ICONEXCLAMATION);
-
-            return S_OK;
-        }
-
-        // Most of the real work is done inside this call.
-        CProtUpdPerson pupDialog(leadOrgId);
-        pupDialog.DoModal();
-    }
-    catch (::CException* e) {
-        e->ReportError();
-        e->Delete();
-        *pRet = 2;
-    }
-    catch (...) {
-        ::AfxMessageBox(_T("Unexpected error from ")
-                        _T("Protocol Update Person command."),
-                        MB_ICONEXCLAMATION);
-        *pRet = 2;
-    }
-    *pRet = 0;
-    return S_OK;
-}
-
-STDMETHODIMP CCommands::getPersonAddress(int *pRet)
-{
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-
-    cdr::trace_log("getPersonAddress");
-    // Initial pessimism.
-    *pRet = 1;
-
-    try {
-
-        // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox(_T("This session is not logged into the CDR"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the LeadOrgPersonnel element location.
-        ::Range lopLoc = cdr::getElemRange(_T("LeadOrgPersonnel"));
-        if (!lopLoc) {
-            ::AfxMessageBox(_T("ProtocolLeadPersonnel for ")
-                            _T("current location not found"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the adddress fragment link.
-        ::DOMElement lopElem = lopLoc.GetContainerNode();
-        if (!lopElem || lopElem.GetNodeName() != _T("LeadOrgPersonnel"))
-        {
-            ::AfxMessageBox(_T("Unable to find LeadOrgPersonnel element"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMNodeList nodeList =
-            lopElem.getElementsByTagName(_T("Person"));
-        if (nodeList.GetLength() < 1) {
-            ::AfxMessageBox(_T("Unable to find Person element"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMElement personElem = nodeList.item(0);
-        CString addrLink = personElem.getAttribute(_T("cdr:ref"));
-        if (addrLink.IsEmpty()) {
-            ::AfxMessageBox(_T("Missing or empty cdr:ref attribute ")
-                            _T("for address link"),
-                            MB_ICONEXCLAMATION);
-
-            return S_OK;
-        }
-
-        // Ask the server for the full address.
-        std::basic_ostringstream<TCHAR> cmd;
-        cmd << _T("<CdrReport><ReportName>Person Address Fragment")
-               _T("</ReportName><ReportParams><ReportParam Name='Link'")
-               _T(" Value='")
-            << (LPCTSTR)addrLink
-            << _T("'/></ReportParams></CdrReport>");
-
-        // Submit the request to the CDR server.
-        CWaitCursor wc;
-        CString rsp = CdrSocket::sendCommand(cmd.str().c_str());
-
-        // Extract the address elements.
-        // Change requested May 2002 by LG: only import PostalAddress.
-        cdr::Element paElement =
-            cdr::Element::extractElement(rsp, _T("PostalAddress"));
-        if (!paElement) {
-            if (!cdr::showErrors(rsp))
-                ::AfxMessageBox(_T("Unknown failure from search"),
-                                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the proper location for the address.
-        ::Range pscLoc = cdr::findOrCreateChild(lopLoc,
-            _T("ProtocolSpecificContact"));
-        if (!pscLoc) {
-            ::AfxMessageBox(_T("Failure creating ProtocolSpecificContact ")
-                            _T("element"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Plug in our own data.
-        pscLoc.SelectElement();
-        pscLoc.Select();
-        CString pscData = _T("<ProtocolSpecificContact><PostalAddress>")
-                        + paElement.getString()
-                        + _T("</PostalAddress></ProtocolSpecificContact>");
-        //::AfxMessageBox(pscData);
-        if (!pscLoc.GetCanPaste(pscData, FALSE))
-            ::AfxMessageBox(_T("Unable to insert ") + pscData,
-                MB_ICONEXCLAMATION);
-        else
-            pscLoc.PasteString(pscData);
-
-    }
-    catch (::CException* e) {
-        e->ReportError();
-        e->Delete();
-        *pRet = 2;
-    }
-    catch (...) {
-        ::AfxMessageBox(_T("Unexpected error retrieving ")
-                        _T("contact address information"),
-                        MB_ICONEXCLAMATION);
-        *pRet = 2;
-    }
-    *pRet = 0;
-    return S_OK;
-}
-
-STDMETHODIMP CCommands::particOrgs(int *pRet)
-{
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-
-    cdr::trace_log("particOrgs");
-    // Initial pessimism.
-    *pRet = 1;
-
-    try {
-
-        // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
-            ::AfxMessageBox(_T("This session is not logged into the CDR"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the currently active document.
-        _Document doc = cdr::getApp().GetActiveDocument();
-
-        // Extract the control information from the document.
-        DOMNode docElement = doc.GetDocumentElement();
-        CdrDocCtrlInfo ctrlInfo;
-        cdr::extractCtlInfo(docElement, ctrlInfo);
-        CString docType = docElement.GetNodeName();
-
-        // Make sure the command is appropriate here.
-        if (docType != _T("InScopeProtocol")) {
-            ::AfxMessageBox(_T("This command is intended for ")
-                            _T("InScopeProtocol documents"),
-                            MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-
-        // Find the document ID for the lead organization.
-        ::Range leadOrgLoc = cdr::getElemRange(_T("ProtocolLeadOrg"));
-        if (!leadOrgLoc) {
-            ::AfxMessageBox(_T("Unable to find ProtocolLeadOrg"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMElement leadOrgElem = leadOrgLoc.GetContainerNode();
-        if (!leadOrgElem || leadOrgElem.GetNodeName() != _T("ProtocolLeadOrg"))
-        {
-            ::AfxMessageBox(_T("Unable to find ProtocolLeadOrg element"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMNodeList nodeList =
-            leadOrgElem.getElementsByTagName(_T("LeadOrganizationID"));
-        if (nodeList.GetLength() < 1) {
-            ::AfxMessageBox(_T("Unable to find LeadOrganization ID element"),
-                MB_ICONEXCLAMATION);
-            return S_OK;
-        }
-        ::DOMElement leadOrgIdElem = nodeList.item(0);
-        CString leadOrgId = leadOrgIdElem.getAttribute(_T("cdr:ref"));
-        if (leadOrgId.IsEmpty()) {
-            ::AfxMessageBox(_T("Missing or empty cdr:ref attribute ")
-                            _T("for lead organization ID"),
-                            MB_ICONEXCLAMATION);
-
-            return S_OK;
-        }
-
-        // Most of the real work is done inside this call.
-        CParticOrgs poDialog(leadOrgId);
-        poDialog.DoModal();
-    }
-    catch (::CException* e) {
-        e->ReportError();
-        e->Delete();
-        *pRet = 2;
-    }
-    catch (...) {
-        ::AfxMessageBox(_T("Unexpected error from ")
-                        _T("Participating Orgs command."),
-                        MB_ICONEXCLAMATION);
-        *pRet = 2;
-    }
-    *pRet = 0;
-
-    return S_OK;
-}
-
 STDMETHODIMP CCommands::getOrgAddress(int *pRet)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
@@ -2394,10 +2048,12 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet)
         // Submit the request to the CDR server.
         CWaitCursor wc;
         CString cmdString = cmd.str().c_str();
+        debugLogWrite(cmdString, username);
         //::AfxMessageBox(cmdString);
         CString rsp = CdrSocket::sendCommand(cmdString);
         //::AfxMessageBox(rsp);
 
+        debugLogWrite(rsp, username);
         // Extract the address elements.
         cdr::Element addressElements =
             cdr::Element::extractElement(rsp, _T("AddressElements"));
@@ -2566,32 +2222,6 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet)
             *pRet = 2;
         }
 
-#if 0 // Save this for pasteFragLink!
-
-        // Break the link into its two parts.
-        int delimPos = addrLink.Find(_T("#"));
-        if (delimPos < 1 || delimPos == addrLink.GetLength() - 1) {
-            ::AfxMessageBox(_T("Malformed fragment link: ") + addrLink);
-            return S_OK;
-        }
-        CString docId = addrLink.Left(delimPos);
-        CString fragId = addrLink.Mid(delimPos + 1);
-
-#endif
-
-#if 0 // Save this for pasting in multiple elements!
-        // Plug in our own data.
-        scLoc.SelectElement();
-        scLoc.Select();
-        CString scData = _T("<SpecificContact>") + addrStr +
-                         _T("</SpecificContact>");
-        //::AfxMessageBox(pscData);
-        if (!scLoc.GetCanPaste(scData, FALSE))
-            ::AfxMessageBox(_T("Unable to insert ") + scData,
-                    MB_ICONEXCLAMATION);
-        else
-            scLoc.PasteString(scData);
-#endif
     }
     *pRet = 0;
 
@@ -2999,34 +2629,6 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
     return S_OK;
 }
 
-STDMETHODIMP CCommands::getDiagnosisSetTerms(BSTR* termIds)
-{
-    AFX_MANAGE_STATE(AfxGetStaticModuleState());
-    cdr::trace_log("getDiagnosisSetTerms");
-    CDiagnosisSets dialog(diagnosisTermSetNames);
-    int rc = dialog.DoModal();
-    CString result = _T("");
-    switch (rc) {
-    case IDOK:
-        //::AfxMessageBox(_T("CDR Logon Successful"));
-        if (!dialog.chosenSetName.IsEmpty())
-            try {
-                diagnosisTermSets[dialog.chosenSetName].SetSysString(termIds);
-            }
-            catch (...) {
-                ::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
-            }
-        break;
-    case IDCANCEL:
-        break;
-    case -1:
-    default:
-        ::AfxMessageBox(_T("Internal failure"), MB_ICONEXCLAMATION);
-        break;
-    }
-    return S_OK;
-}
-
 STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId,
                                              BSTR* termNames)
 {
@@ -3074,6 +2676,7 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
                   _T("Value='") + id + _T("'/></ReportParams>")
                   _T("</CdrReport>");
     CString rsp = CdrSocket::sendCommand(cmd);
+    debugLogWrite(rsp, username);
     CString termIds = _T("");
     if (rsp.Find(_T("<Error")) != -1) {
         termIds = _T("ERROR");

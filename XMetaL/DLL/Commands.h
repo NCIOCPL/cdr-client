@@ -53,13 +53,11 @@ public:
     STDMETHOD(editComment)(VARIANT_BOOL readOnly);
     STDMETHOD(fetchFromUrl)(const BSTR* url_, BSTR* response_);
     STDMETHOD(getBoardMemberId)(const BSTR* personId, BSTR* boardMemberId);
-    STDMETHOD(getDiagnosisSetTerms)(BSTR* termIds);
     STDMETHOD(getGlossaryTermNameIds)(const BSTR* conceptId, BSTR* termNameIds);
     STDMETHOD(getGlossaryTermNames)(const BSTR* conceptId, BSTR* termNames);
     STDMETHOD(getNextValidationError)(BSTR* valError);
     STDMETHOD(getOrgAddress)(/*[out, retval]*/ int* pRet);
     STDMETHOD(getPatientDocId)(const BSTR* hpDocId, BSTR* patientDocId);
-    STDMETHOD(getPersonAddress)(/*[out, retval]*/ int* pRet);
     STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
     STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
@@ -72,9 +70,7 @@ public:
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
     STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
     STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
-    STDMETHOD(particOrgs)(/*[out, retval]*/ int* pRet);
     STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
-    STDMETHOD(protUpdPerson)(/*[out, retval]*/ int* pRet);
     STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);
     STDMETHOD(save)(/*[out, retval]*/ int* pRet);
     STDMETHOD(search)(/*[out, retval]*/ int* pRet);

@@ -18,63 +18,54 @@
  * for an explanation of the ServerSettings type.
  */
 IMPLEMENT_DYNAMIC(ServerSettingsDlg, CDialog)
-ServerSettingsDlg::ServerSettingsDlg(ServerSettings* settings, 
+ServerSettingsDlg::ServerSettingsDlg(ServerSettings* settings,
                                      CWnd* pParent /*=NULL*/)
 	: CDialog(ServerSettingsDlg::IDD, pParent)
-    , prodUpdateServer(_T(""))
-    , prodUpdatePort(_T(""))
-    , prodCdrServer(_T(""))
-    , prodCdrPort(_T(""))
-    , testUpdateServer(_T(""))
-    , testUpdatePort(_T(""))
-    , testCdrServer(_T(""))
-    , testCdrPort(_T(""))
-    , devUpdateServer(_T(""))
-    , devUpdatePort(_T(""))
-    , devCdrServer(_T(""))
-    , devCdrPort(_T(""))
+    , prodCDRServer(_T(""))
+    , prodAPIServer(_T(""))
+    , stageCDRServer(_T(""))
+    , stageAPIServer(_T(""))
+    , qaCDRServer(_T(""))
+    , qaAPIServer(_T(""))
+    , devCDRServer(_T(""))
+    , devAPIServer(_T(""))
     , ss(settings) {
 
-    ServerSettings::ServerGroup* sg = ss->findGroup(PROD_GROUP);
+    ServerSettings::ServerGroup* sg = ss->findGroup(PROD_TIER);
     if (sg) {
-        prodUpdateServer = sg->updateServer;
-        prodUpdatePort   = sg->updatePort;
-        prodCdrServer    = sg->cdrServer;
-        prodCdrPort      = sg->cdrPort;
+        prodCDRServer = sg->cdrServer;
+        prodAPIServer = sg->apiServer;
     }
-    sg = ss->findGroup(TEST_GROUP);
+    sg = ss->findGroup(STAGE_TIER);
     if (sg) {
-        testUpdateServer = sg->updateServer;
-        testUpdatePort   = sg->updatePort;
-        testCdrServer    = sg->cdrServer;
-        testCdrPort      = sg->cdrPort;
+        stageCDRServer = sg->cdrServer;
+        stageAPIServer = sg->apiServer;
     }
-    sg = ss->findGroup(DEV_GROUP);
+    sg = ss->findGroup(QA_TIER);
     if (sg) {
-        devUpdateServer  = sg->updateServer;
-        devUpdatePort    = sg->updatePort;
-        devCdrServer     = sg->cdrServer;
-        devCdrPort       = sg->cdrPort;
+        qaCDRServer = sg->cdrServer;
+        qaAPIServer = sg->apiServer;
+    }
+    sg = ss->findGroup(DEV_TIER);
+    if (sg) {
+        devCDRServer = sg->cdrServer;
+        devAPIServer = sg->apiServer;
     }
 }
 
 ServerSettingsDlg::~ServerSettingsDlg() {}
 
 void ServerSettingsDlg::DoDataExchange(CDataExchange* pDX) {
-    
+
     CDialog::DoDataExchange(pDX);
-    DDX_Text(pDX, IDC_PROD_UPDATE_SERVER, prodUpdateServer);
-    DDX_Text(pDX, IDC_PROD_UPDATE_PORT, prodUpdatePort);
-    DDX_Text(pDX, IDC_PROD_CDR_SERVER, prodCdrServer);
-    DDX_Text(pDX, IDC_PROD_CDR_PORT, prodCdrPort);
-    DDX_Text(pDX, IDC_TEST_UPDATE_SERVER, testUpdateServer);
-    DDX_Text(pDX, IDC_TEST_UPDATE_PORT, testUpdatePort);
-    DDX_Text(pDX, IDC_TEST_CDR_SERVER, testCdrServer);
-    DDX_Text(pDX, IDC_TEST_CDR_PORT, testCdrPort);
-    DDX_Text(pDX, IDC_DEV_UPDATE_SERVER, devUpdateServer);
-    DDX_Text(pDX, IDC_DEV_UPDATE_PORT, devUpdatePort);
-    DDX_Text(pDX, IDC_DEV_CDR_SERVER, devCdrServer);
-    DDX_Text(pDX, IDC_DEV_CDR_PORT, devCdrPort);
+    DDX_Text(pDX, IDC_PROD_CDR_SERVER, prodCDRServer);
+    DDX_Text(pDX, IDC_PROD_API_SERVER, prodAPIServer);
+    DDX_Text(pDX, IDC_STAGE_CDR_SERVER, stageCDRServer);
+    DDX_Text(pDX, IDC_STAGE_API_SERVER, stageAPIServer);
+    DDX_Text(pDX, IDC_QA_CDR_SERVER, qaCDRServer);
+    DDX_Text(pDX, IDC_QA_API_SERVER, qaAPIServer);
+    DDX_Text(pDX, IDC_DEV_CDR_SERVER, devCDRServer);
+    DDX_Text(pDX, IDC_DEV_API_SERVER, devAPIServer);
 }
 
 
@@ -91,36 +82,38 @@ END_MESSAGE_MAP()
 void ServerSettingsDlg::OnBnClickedOk() {
 	CDataExchange dx(this, true);
 	DoDataExchange(&dx);
-    ServerSettings::ServerGroup* sg = ss->findGroup(PROD_GROUP);
+    ServerSettings::ServerGroup* sg = ss->findGroup(PROD_TIER);
     if (sg) {
-        sg->updateServer = prodUpdateServer;
-        sg->updatePort   = prodUpdatePort;
-        sg->cdrServer    = prodCdrServer;
-        sg->cdrPort      = prodCdrPort;
+        sg->cdrServer = prodCDRServer;
+        sg->apiServer = prodAPIServer;
     }
-    sg = ss->findGroup(TEST_GROUP);
+    sg = ss->findGroup(STAGE_TIER);
     if (sg) {
-        sg->updateServer = testUpdateServer;
-        sg->updatePort   = testUpdatePort;
-        sg->cdrServer    = testCdrServer;
-        sg->cdrPort      = testCdrPort;
+        sg->cdrServer = stageCDRServer;
+        sg->apiServer = stageAPIServer;
     }
-    sg = ss->findGroup(DEV_GROUP);
+    sg = ss->findGroup(QA_TIER);
     if (sg) {
-        sg->updateServer = devUpdateServer;
-        sg->updatePort   = devUpdatePort;
-        sg->cdrServer    = devCdrServer;
-        sg->cdrPort      = devCdrPort;
+        sg->cdrServer = qaCDRServer;
+        sg->apiServer = qaAPIServer;
     }
-    switch (GetCheckedRadioButton(IDC_PROD, IDC_DEV)) {
-        case IDC_PROD:
-            ss->currentGroup = PROD_GROUP;
+    sg = ss->findGroup(DEV_TIER);
+    if (sg) {
+        sg->cdrServer = devCDRServer;
+        sg->apiServer = devAPIServer;
+    }
+    switch (GetCheckedRadioButton(IDC_PROD_TIER, IDC_DEV_TIER)) {
+        case IDC_PROD_TIER:
+            ss->currentGroup = PROD_TIER;
             break;
-        case IDC_TEST:
-            ss->currentGroup = TEST_GROUP;
+        case IDC_STAGE_TIER:
+            ss->currentGroup = STAGE_TIER;
             break;
-        case IDC_DEV:
-            ss->currentGroup = DEV_GROUP;
+        case IDC_QA_TIER:
+            ss->currentGroup = QA_TIER;
+            break;
+        case IDC_DEV_TIER:
+            ss->currentGroup = DEV_TIER;
             break;
         default:
             ss->currentGroup = _T("");
@@ -134,14 +127,16 @@ void ServerSettingsDlg::OnBnClickedOk() {
  * group.
  */
 BOOL ServerSettingsDlg::OnInitDialog() {
-    
+
     CDialog::OnInitDialog();
 
-    if (ss->currentGroup == PROD_GROUP)
-        CheckRadioButton(IDC_PROD, IDC_DEV, IDC_PROD);
-    else if (ss->currentGroup == TEST_GROUP)
-        CheckRadioButton(IDC_PROD, IDC_DEV, IDC_TEST);
-    else if (ss->currentGroup == DEV_GROUP)
-        CheckRadioButton(IDC_PROD, IDC_DEV, IDC_DEV);
+    if (ss->currentGroup == PROD_TIER)
+        CheckRadioButton(IDC_PROD_TIER, IDC_DEV_TIER, IDC_PROD_TIER);
+    else if (ss->currentGroup == STAGE_TIER)
+        CheckRadioButton(IDC_PROD_TIER, IDC_DEV_TIER, IDC_STAGE_TIER);
+    else if (ss->currentGroup == QA_TIER)
+        CheckRadioButton(IDC_PROD_TIER, IDC_DEV_TIER, IDC_QA_TIER);
+    else if (ss->currentGroup == DEV_TIER)
+        CheckRadioButton(IDC_PROD_TIER, IDC_DEV_TIER, IDC_DEV_TIER);
     return TRUE;  // return TRUE unless you set the focus to a control
 }

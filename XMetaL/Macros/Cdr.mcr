@@ -2,15 +2,6 @@
 
 <!--
      Javascript macros implementing customized behavior of XMetaL for the CDR.
-
-     BZIssue::4716
-     BZIssue::4767
-     BZIssue::4822
-     BZIssue::4827 (macros to copy/paste PDQAdminInfo block)
-     BZIssue::4839 (populate LastReviewedStatus attribute)
-     BZIssue::4856 (changed name for LastReviewedDate macro's attribute)
-     BZIssue::4941 (find next advisory board markup)
-
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
@@ -23,7 +14,7 @@
     //------------------------------------------------------------------
     // GLOBAL VARIABLES
     //------------------------------------------------------------------
-    var CdrWebServer = "https://cdr.dev.cancer.gov";
+    var CdrWebServer = "https://cdr-dev.cancer.gov";
     var CdrCgiBin    = CdrWebServer + "/cgi-bin/cdr/";
     var lastMarkupLevel = '';
     var CdrUserPath = '';
@@ -32,10 +23,6 @@
         "MediaLink",
         "SupplementaryInfo"
     ];
-
-    //"Summary", "Person", "Organization",
-    //                             "InScopeProtocol", "Term",
-    //                             "Citation", "GlossaryTerm");
 
     // To be overridden by successful logon.
     var CdrUserName = "";
@@ -70,8 +57,6 @@
     var CdrFragLinkClipboard = "";
     var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
-    var CdrPdqIndexingClipboard = null;
-    var CdrPdqAdminInfoClipboard = null;
 
     /*
      * Find the path of the element enclosing the caller's selection.
@@ -638,44 +623,6 @@
         }
     }
 
-    /*
-     * Allows the user to pick a protocol update person.
-     */
-    function protUpdPerson() {
-        if (cdrDocReadOnly()) {
-            Application.Alert("Document retrieved as read-only.");
-        }
-        else if (cdrObj == null) {
-            Application.Alert("You are not logged on to the CDR");
-        }
-        else {
-
-            // Prevent On_Update_UI macro from blocking our editing.
-            var whatItWas = Selection.ReadOnlyContainer;
-            Selection.ReadOnlyContainer = false;
-            gEditingCdrLink = true;
-            var rc  = cdrObj.protUpdPerson();
-            gEditingCdrLink = false;
-            Selection.ReadOnlyContainer = whatItWas;
-        }
-    }
-
-    function getMarkupStyle(element) {
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        var highlighting = docProps.item("Highlighting").value;
-        var style = "color:black;background-color:white";
-        if (highlighting == "True") {
-            if (element == "Insertion") {
-                style =  "color:red;background-color:white";
-            }
-            else if (element == "Deletion") {
-                style = "color:red;background-color:white;" +
-                        "text-decoration:line-through";
-            }
-        }
-        return (style);
-    }
-
     function getElemRange(elemName) {
 
         // Find out where we are.
@@ -711,10 +658,6 @@
     }
 
     function publishPreview(flavor) {
-        //Application.Alert("*** WARNING ***\n" +
-        //                "This service is still under development.\n" +
-        //                "Formatting and content may be significantly\n" +
-        //                "different in final version of software.");
         var docId = getDocId();
         if (!docId) {
             Application.Alert("Document has not yet been saved in the CDR");
@@ -738,31 +681,6 @@
             url += "#section/all";
 
         cdrObj.showPage(url);
-    }
-
-    function insertDiagnoses(elemString) {
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('Diagnosis', false)) {
-            if (!rng.MoveToElement('Gender', false)) {
-                if (!rng.MoveToElement('AgeText', false)) {
-                    Application.Alert('Unable to find location for ' +
-                                      'insertion.');
-                    return false;
-                }
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("Diagnosis", true)) {
-            Application.Alert("Unable to insert Diagnosis terms here.");
-            return false;
-        }
-        rng.PasteString(elemString);
-        rng.Select();
-        return true;
     }
 
   ]]>
@@ -1061,34 +979,7 @@
                                     "Open Linked Doc View Mode");
         }
     }
-    if (docType.name == "InScopeProtocol") {
-        Application.AppendMacro("-", "");
-        Application.AppendMacro("Insert Lead Org", "Insert Lead Org");
-        Application.AppendMacro("Prot Update Person", "Protocol Update Person");
-        Application.AppendMacro("New Current Org Status",
-                                "New Current Org Status");
-        Application.AppendMacro("Insert Grp POs",
-                                "CDR Participating Orgs");
-        Application.AppendMacro("Retrieve Person Address",
-                                "CDR Get Person Address");
-        if (rng.IsParentElement("ProtocolLeadOrg"))
-            Application.AppendMacro("Change Site Statuses",
-                    "Change Participating Site Statuses");
-        if (CdrOrgAddressClipboard) {
-            if (rng.IsParentElement("GenericPerson") ||
-                rng.IsParentElement("OverallContact"))
-            {
-                Application.AppendMacro("Paste Org Address Elements",
-                                        "Paste Org Address Elements");
-            }
-        }
-        Application.AppendMacro("Extract PDQIndexing Block",
-                                "Extract PDQIndexing Block");
-        Application.AppendMacro("Extract PDQAdminInfo Block",
-                                "Extract PDQAdminInfo Block");
-    }
-    if (docType.name == "InScopeProtocol" || docType.name == "Summary" ||
-        docType.name == "ScientificProtocolInfo") {
+    if (docType.name == "Summary") {
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
@@ -1119,51 +1010,12 @@
             break;
         }
     }
-    //Application.AppendMacro("submenu test", "Test Submenu");
-    if (docType.name == "InScopeProtocol" || docType.name == "CTGovProtocol" ||
-        docType.name == "ScientificProtocolInfo") {
-        if (!isReadOnly) {
-            Application.AppendMacro("-", "");
-
-            Application.AppendMacro("Insert Diagnosis Links",
-                                    "Insert Diagnosis Links");
-        }
-    }
-    if (docType.name == "CTGovProtocol") {
-        Application.AppendMacro("Show CTGovProtocol Titles",
-                                "Show CTGovProtocol Titles");
-        Application.AppendMacro("Insert PDQIndexing Block",
-                                "Insert PDQIndexing Block");
-        Application.AppendMacro("Insert PDQAdminInfo Block",
-                                "Insert PDQAdminInfo Block");
-        Application.AppendMacro("Next Unlinked Org",
-                                "Find Next Unlinked CTGov Org");
-        Application.AppendMacro("Next Unlinked Person",
-                                "Find Next Unlinked CTGov Person");
-    }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
     }
     if (rng.FindInsertLocation("ResponseToComment")) {
         Application.AppendMacro("Insert ResponseToComment",
                                 "Insert ResponseToComment");
-    }
-    if (docType.name == 'ScientificProtocolInfo' ||
-        docType.name == 'InScopeProtocol' ||
-        docType.name == 'CTGovProtocol') {
-        if (!isReadOnly) {
-            Application.AppendMacro("Insert Current Date and Time",
-                                    "Insert Current Date and Time");
-        }
-    }
-    if (docType.name == "InScopeProtocol" ||
-        docType.name == "ScientificProtocolInfo") {
-        if (!isReadOnly) {
-            if (ActiveDocument.Range.IsParentElement("Intervention")) {
-                Application.AppendMacro("Split Intervention Block",
-                                        "Split Intervention Block");
-            }
-        }
     }
     if (docType.name == 'Summary' && (
         Selection.IsParentElement('ProtocolRef') ||
@@ -1174,8 +1026,6 @@
             Application.AppendMacro("Edit Comment", "Edit Comment");
             Application.AppendMacro("Set Last Reviewed Date Attribute",
                                     "Set Last Reviewed Date");
-            Application.AppendMacro("Set Last Reviewed Status Attribute",
-                                    "Populate LastReviewedStatus Attribute");
         }
         else
             Application.AppendMacro("View Comment", "Edit Comment");
@@ -1568,24 +1418,6 @@
                            "Review Markup",
                            "Accept or Reject Changes",
                            null, 0, 0,
-                           false),
-            new CdrCmdItem("Vie&w Changes With Highlighting",
-                           "Show Changes With Highlighting",
-                           "View Changes With Highlighting",
-                           "View markup changes with highlighting",
-                           "CDR", 2, 1,
-                           true),
-            new CdrCmdItem("View Changes With&out Highlighting",
-                           "Show Changes Without Highlighting",
-                           "View Changes Without Highlighting",
-                           "View markup changes without highlighting",
-                           "CDR", 2, 2,
-                           false),
-            new CdrCmdItem("&View Original",
-                           "Show Original",
-                           "View Original",
-                           "View document before markup",
-                           "CDR", 2, 10,
                            false)
         );
 
@@ -1709,14 +1541,6 @@
                            "Print the current document",
                            "CDR", 1, 10,
                            false),
-            /*
-            new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            */
             new CdrCmdItem(null,
                            "Cdr Validate",
                            "Validate",
@@ -1827,7 +1651,9 @@
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
+
         /*
+         XXX DEBUGGING CODE
         var i = 1;
         //Application.Alert("number of bars: " + cmdBars.count);
         while (i <= cmdBars.count) {
@@ -1848,7 +1674,7 @@
                 ++i;
             }
         }
-        */
+        XXX END DEBUGGING CODE */
 
 
         try { cmdBar = cmdBars.item("CDR"); }
@@ -1998,14 +1824,6 @@
                            "Redline Strikeout Report",
                            "CDR", 2, 4,
                            false),
-            /* Removed at Margaret's request 2003-06-05 (#755).
-            new CdrCmdItem(null,
-                           "Published Version Report",
-                           "Published Version",
-                           "Published Version Report",
-                           "CDR", 5, 1,
-                           false),
-            */
             new CdrCmdItem(null,
                            "Patient Summary BU QC Report",
                            "Patient BU QC",
@@ -2166,31 +1984,17 @@
     function addPersonToolbar() {
 
         var buttons = new Array(
-            /*
-            new CdrCmdItem(null,                        // Label.
-                           "Reset Contact Information", // Macro.
-                           "Reset Contact",             // Tooltip.
-                           "Reset Contact Information", // Description
-                           "CDR", 4, 9,                 // Icon set, row, col.
-                           true),                       // Starts new group?
-            */
-            new CdrCmdItem(null,
-                           "Generate QC Report",
-                           "QC Report",
-                           "Generate QC Report",
-                           "CDR", 3, 4,
-                           false),
+            new CdrCmdItem(null,                        // label
+                           "Generate QC Report",        // macro
+                           "QC Report",                 // tooltip
+                           "Generate QC Report",        // description
+                           "CDR", 3, 4,                 // icon set, row, col
+                           false),                      // starts new group?
             new CdrCmdItem(null,
                            "Publish Preview",
                            "Publish Preview",
                            "Publish Preview",
                            "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Verify Specialties",
-                           "Specialties",
-                           "Link to American Board of Medical Specialties",
-                           "Misc 1 (Custom)", 8, 6,
                            false),
             new CdrCmdItem(null,
                            "Mailer History",
@@ -2323,190 +2127,6 @@
         }
     }
 
-    function addProtocolToolbar() {
-
-        var buttons = new Array(
-            new CdrCmdItem(null,                        // Label.
-                           "Go To Admin Info Section",  // Macro.
-                           "Admin Info",                // Tooltip.
-                           "Go To Admin Info Section",  // Description
-                           "General (Custom)", 7, 1,    // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Go To Scientific Info Section",
-                           "Scientific Info",
-                           "Go To Scientific Info Section",
-                           "CDR", 6, 7,
-                           false),
-            new CdrCmdItem(null,
-                           "Go To Patient Abstract",
-                           "Patient Abstract",
-                           "Navigate to Patient Abstract",
-                           "CDR2", 1, 9,
-                           false),
-            new CdrCmdItem(null,
-                           "Next Lead Org",
-                           "Go To Next Lead Org",
-                           "Go To Next Lead Org",
-                           "CDR", 1, 4,
-                           false),
-            new CdrCmdItem(null,
-                           "Next External Site",
-                           "Go To Next External Site",
-                           "Go To Next External Site",
-                           "CDR2", 2, 2,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert PatientCharacteristics",
-                           "Patient Characteristics",
-                           "Patient Characteristics",
-                           "CDR", 1, 2,
-                           true),
-            new CdrCmdItem(null,
-                           "Insert PriorConcurrentTherapy",
-                           "Prior Concurrent Therapy",
-                           "Prior Concurrent Therapy",
-                           "CDR", 1, 3,
-                           false),
-            new CdrCmdItem(null,
-                           "NHL Text",
-                           "NHL Text",
-                           "NHL Text",
-                           "CDR", 5, 7,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert ProtocolAmendmentInformation",
-                           "Amendment",
-                           "Insert ProtocolAmendmentInformation",
-                           "CDR", 5, 4,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert Participating Org",
-                           "Add POs",
-                           "Add Participating Organizations",
-                           "CDR", 5, 6,
-                           false),
-            new CdrCmdItem(null,
-                           "Protocol Merge",
-                           "Merge",
-                           "Protocol Merge",
-                           "Integration (Custom)", 8, 4,
-                           true),
-            new CdrCmdItem(null,
-                           "New Current Org Status",
-                           "New Current Org Status",
-                           "Change Organization Status",
-                           "CDR", 6, 10,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate QC Report",
-                           "Full QC",
-                           "Full QC Report",
-                           "CDR", 4, 3,
-                           true),
-            new CdrCmdItem(null,
-                           "Protocol HP QC Report",
-                           "Health Professional QC",
-                           "Health Professional QC Report",
-                           "CDR", 3, 6,
-                           false),
-            new CdrCmdItem(null,
-                           "Protocol Patient QC Report",
-                           "Patient QC",
-                           "Patient QC Report",
-                           "CDR", 3, 5,
-                           false),
-            new CdrCmdItem(null,
-                           "Protocol Admin QC Report",
-                           "Administrative QC",
-                           "Administrative QC Report",
-                           "CDR", 3, 7,
-                           false),
-            new CdrCmdItem(null,
-                           "Protocol Citations QC Report",
-                           "Citations QC",
-                           "Citations QC Report",
-                           "CDR", 3, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Mailer History",
-                           "Mailer History",
-                           "Mailer History",
-                           "CDR", 7, 1,
-                           false),
-            new CdrCmdItem(null,
-                           "Patient Publish Preview",
-                           "Patient Publish Preview",
-                           "Patient Publish Preview",
-                           "Structure (Custom)", 1, 9,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Make Scientific Protocol Doc",
-                           "Create Scientific Doc",
-                           "Make Scientific Protocol Info Document",
-                           "CDR2", 2, 5,
-                           false),
-            new CdrCmdItem(null,
-                           "Send Missing Protocol Info Mailer",
-                           "Missing Info Mailer",
-                           "Send Mailer for Missing Protocol Information",
-                           "Misc 1 (Custom)", 7, 1,
-                           false)
-        );
-        var cmdBars = Application.CommandBars;
-        var cmdBar  = null;
-
-        try { cmdBar = cmdBars.item("CDR Protocol"); }
-        catch (e) {
-        }
-        if (cmdBar) {
-            try {
-                cmdBar.Delete();
-            }
-            catch (e) {
-                Application.Alert("Failure deleting old " +
-                    "CDR Protocol toolbar: " + e);
-            }
-            cmdBar = null;
-        }
-
-
-        try {
-            cmdBar = cmdBars.add("CDR Protocol", 2);
-            if (Application.VersionNumber > 4.5)
-                cmdBar.Visible = false;
-        }
-        catch (e) {
-        Application.Alert("Failure adding CDR Protocol toolbar: " + e);
-        }
-        if (cmdBar) {
-            toolbars["InScopeProtocol"] = cmdBar;
-            toolbars["OutOfScopeProtocol"] = cmdBar;
-            toolbars["ScientificProtocolInfo"] = cmdBar;
-            toolbarNames[cmdBar.name] = {
-                "InScopeProtocol": 1,
-                "OutOfScopeProtocol": 1,
-                "ScientificProtocolInfo": 1
-            };
-            var ctrls = cmdBar.Controls;
-            for (var i = 0; i < buttons.length; ++i) {
-                addCdrButton(ctrls, buttons[i]);
-            }
-        }
-    }
-
     function addTermToolbar() {
 
         var buttons = new Array(
@@ -2552,70 +2172,6 @@
         if (cmdBar) {
             toolbars["Term"] = cmdBar;
             toolbarNames[cmdBar.name] = { "Term": 1 };
-            var ctrls = cmdBar.Controls;
-            for (var i = 0; i < buttons.length; ++i) {
-                addCdrButton(ctrls, buttons[i]);
-            }
-        }
-    }
-
-    function addGlossaryToolbar() {
-
-        var buttons = new Array(
-            new CdrCmdItem(null,                        // Label.
-                           "Generate QC Report",        // Macro.
-                           "QC Report",                 // Tooltip.
-                           "Generate QC Report",        // Description
-                           "CDR", 3, 4,                 // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Glossary RS Report",
-                           "Redline Strikeout",
-                           "Glossary Redline Strikeout Report",
-                           "CDR", 2, 4,
-                           false),
-            new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Glossary Phrase Search",
-                           "Glossary Phrase Search",
-                           "Report on matching GlossaryTerm phrases",
-                           "Revisions (Custom)", 2, 2,
-                           false)
-        );
-        var cmdBars = Application.CommandBars;
-        var cmdBar  = null;
-
-        try { cmdBar = cmdBars.item("CDR Glossary Term"); }
-        catch (e) {
-        }
-        if (cmdBar) {
-            try {
-                cmdBar.Delete();
-            }
-            catch (e) {
-                Application.Alert("Failure deleting old CDR Glossary Term " +
-                                  "toolbar: " + e);
-            }
-            cmdBar = null;
-        }
-
-
-        try {
-            cmdBar = cmdBars.add("CDR Glossary Term", 2);
-            if (Application.VersionNumber > 4.5)
-                cmdBar.Visible = false;
-        }
-        catch (e) {
-            Application.Alert("Failure adding CDR Glossary Term toolbar: " + e);
-        }
-        if (cmdBar) {
-            toolbars["GlossaryTerm"] = cmdBar;
-            toolbarNames[cmdBar.name] = { "GlossaryTerm": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3036,18 +2592,6 @@
                            "Response",                  // Tooltip.
                            "Insert Mailer Response",    // Description
                            "CDR", 6, 5,                 // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,                        // Label.
-                           "Insert Mailer CallLog",     // Macro.
-                           "CallLog",                   // Tooltip.
-                           "Insert Mailer CallLog",     // Description
-                           "Integration (Custom)", 2, 7, // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,                        // Label.
-                           "Delete Mailer CallLog",     // Macro.
-                           "Delete CallLog",            // Tooltip.
-                           "Delete Mailer CallLog",     // Description
-                           "Integration (Custom)", 5, 7, // Icon set, row, col.
                            false)                       // Starts new group?
         );
         var cmdBars = Application.CommandBars;
@@ -3080,91 +2624,6 @@
         if (cmdBar) {
             toolbars["Mailer"] = cmdBar;
             toolbarNames[cmdBar.name] = { "Mailer": 1 };
-            var ctrls = cmdBar.Controls;
-            for (var i = 0; i < buttons.length; ++i) {
-                addCdrButton(ctrls, buttons[i]);
-            }
-        }
-    }
-
-    function addCTGovToolbar() {
-
-        var buttons = new Array(
-            new CdrCmdItem(null,                        // Label.
-                           "Go To Brief Summary",       // Macro.
-                           "Brief Summary",             // Tooltip.
-                           "Move to Brief Summary element",// Description
-                           "General (Custom)", 7, 2,    // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,                        // Label.
-                           "CTGovProtocol Diff",        // Macro.
-                           "Diff ",                     // Tooltip.
-                           "Diff against prior version",// Description
-                           // "CDR", 6, 5,
-                           "Databases (Custom)", 2, 9,  // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,                        // Label.
-                           "Generate QC Report",        // Macro.
-                           "QC Report",                 // Tooltip.
-                           "Generate QC Report",        // Description
-                           "CDR", 3, 4,                 // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Insert BMT Diagnoses",
-                           "BMT",
-                           "Insert Diagnoses Eligible for Bone Marrow " +
-                           "Transplants",
-                           "Databases (Custom)", 4, 10,
-                           true),
-            new CdrCmdItem(null,
-                           "Insert AL Diagnoses",
-                           "AL",
-                           "Insert Advanced Lymphoma Diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert ALK Diagnoses",
-                           "ALK",
-                           "Insert Advanced Leukemia Diagnoses",
-                           "Databases (Custom)", 4, 10,
-                           false)
-        );
-        var cmdBars = Application.CommandBars;
-        var cmdBar  = null;
-
-        try { cmdBar = cmdBars.item("CDR CTGovProtocol"); }
-        catch (e) {
-        }
-        if (cmdBar) {
-            try {
-                cmdBar.Delete();
-            }
-            catch (e) {
-                Application.Alert("Failure deleting old CDR CTGovProtocol " +
-                                  "Document toolbar: " + e);
-            }
-            cmdBar = null;
-        }
-
-
-        try {
-            cmdBar = cmdBars.add("CDR CTGovProtocol", 2);
-            if (Application.VersionNumber > 4.5)
-                cmdBar.Visible = false;
-        }
-        catch (e) {
-            Application.Alert("Failure adding CDR CTGovProtocol " +
-                              "toolbar: " + e);
-        }
-        if (cmdBar) {
-            toolbars["CTGovProtocol"] = cmdBar;
-            toolbarNames[cmdBar.name] = { "CTGovProtocol": 1 };
             var ctrls = cmdBar.Controls;
             for (var i = 0; i < buttons.length; ++i) {
                 addCdrButton(ctrls, buttons[i]);
@@ -3455,6 +2914,26 @@
         }
     }
 
+    function cleanupOldToolbars() {
+        var bars = Application.CommandBars;
+        var bar = null;
+        var names = [
+            "CDR Protocol",
+            "CDR Glossary Term",
+            "CDR CTGovProtocol"
+        ];
+        for (var i = 0; i < names.length; ++i) {
+            try { bar = bars.item(names[i]); }
+            catch (e1) {}
+            if (bar) {
+                toolbarNames[bar.name] = {}
+                try { bar.Delete; }
+                catch (e2) {}
+            }
+            bar = null;
+        }
+    }
+
     /*
      * This workaround is needed because, as Softquad admits, there is no way
      * for us to customize our installation in a way which installs the CDR
@@ -3468,9 +2947,7 @@
     addSummaryToolbar();
     addPersonToolbar();
     addOrganizationToolbar();
-    addProtocolToolbar();
     addTermToolbar();
-    addGlossaryToolbar();
     addGlossaryTermConceptToolbar();
     addGlossaryTermNameToolbar();
     addDrugInfoToolbar();
@@ -3478,11 +2955,11 @@
     addMiscToolbar();
     addCountryToolbar();
     addMailerToolbar();
-    addCTGovToolbar();
     addTermSetToolbar();
     addPDQBoardMemberInfoToolbar();
     addMediaToolbar();
     addLicenseeToolbar();
+    cleanupOldToolbars();
     addCdrMenus();
     if (Application.VersionNumber < 9.0)
         hideToolbars();
@@ -3663,15 +3140,6 @@
         id="1919">
  <![CDATA[
     cdrEdit();
-  ]]>
-</MACRO>
-
-<MACRO  name="Protocol Update Person"
-        key=""
-        lang="JScript"
-        tooltip="Pick a protocol update person" >
-  <![CDATA[
-    protUpdPerson();
   ]]>
 </MACRO>
 
@@ -3860,28 +3328,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Test Schema Validation"
-        lang="JScript"
-        key="Ctrl+Alt+Shift+V">
-  <![CDATA[
-
-    /*
-     * Launches external schema validation app.  This is likely to be used
-     * by Aspen for validation of temporary documents created with XMetaL
-     * before the CDR system has gone into production.
-     */
-    function testSchemaValidation() {
-        Application.ActiveDocument.Save();
-        var WSHShell = new ActiveXObject("WScript.Shell");
-        WSHShell.run("macros\\tValidate.cmd \"" +
-                     Application.ActiveDocument.FullName + "\"", 1, 1);
-    }
-    testSchemaValidation();
-
-  ]]>
-</MACRO>
-
-
 <MACRO  name="PrevElement"
         key="Shift+Tab"
         lang="JScript">
@@ -3907,33 +3353,6 @@
     ActiveDocument.RefreshCssStyle();
   ]]>
 </MACRO>
-
-<!--
-<MACRO  name="On_Double_Click"
-        lang="JScript"
-        key="Ctrl+Shift+E">
-  <![CDATA[
-    cdrEdit();
-  ]]>
-</MACRO>
- -->
-
-<!--
-<MACRO  name="PersonNameInfo_OnInitialize"
-        hide="true"
-        lang="JScript">
-<![CDATA[
-
-    var ipeg = Application.ActiveInPlaceControl;
-    var browser = ipeg.Control;
-    var form    = CdrUserPath + "/Forms/PersonNameInfo.html";
-    ipeg.Height = 200;
-    ipeg.Width  = 580;
-    browser.Navigate2(form, 2);
-
-]]>
-</MACRO>
--->
 
 <MACRO name="On_View_Change"
        lang="JScript">
@@ -3992,7 +3411,6 @@
             if (Selection.CanSurround("Deletion")) {
                 var date = new Date();
                 Selection.Surround("Deletion");
-                //Selection.ContainerStyle = getMarkupStyle("Deletion");
                 Selection.ContainerAttribute("UserName") = CdrUserName;
                 Selection.ContainerAttribute("Time") = date.toLocaleString();
                 Selection.ContainerAttribute("RevisionLevel") = "proposed";
@@ -4043,7 +3461,6 @@
         Selection.ContainerAttribute("UserName") = CdrUserName;
         Selection.ContainerAttribute("Time") = date.toLocaleString();
         Selection.ContainerAttribute("RevisionLevel") = "proposed";
-        //Selection.ContainerStyle = getMarkupStyle("Insertion");
     }
 
     if (CanRunMacros()) {
@@ -4132,89 +3549,6 @@
         Application.Alert("Document is not checked out for editing.");
     else if (CanRunMacros())
         cdrObj.acceptOrRejectMarkup();
-  ]]>
-</MACRO>
-
-<MACRO  name="Accept or Reject Changes"
-        lang="JScript"
-        id="1904"
-        desc="Accept or Reject Changes..."
-        tooltip="Accept or Reject Changes... (Ctrl+Alt+A)">
-  <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Enables the Reviewers to Incorporates the changes from a dialog box.
-    //----------------------------------------------------------------------
-    function doAcceptOrReject() {
-        var Accept, Reject, AcceptAll, RejectAll, Undo,
-            FindPrev, FindNext, Insertion_list, Deletion_list;
-        Accept = true;
-        Reject = true;
-        AcceptAll = true;
-        RejectAll = true;
-        Undo = false;
-        FindPrev = true;
-        FindNext = true;
-        var AcceptOrReject_Dlg = CreateFormDlg(CdrUserPath +
-                "\\Cdr\\AcceptOrReject.hhf");
-        var rng = ActiveDocument.Range;
-        Insertion_list = ActiveDocument.getElementsByTagName("Insertion");
-        Deletion_list = ActiveDocument.getElementsByTagName("Deletion");
-        if (Insertion_list.length == 0 && Deletion_list.length == 0) {
-            Accept = false;
-            Reject = false;
-            AcceptAll = false;
-            RejectAll = false;
-            Undo = false;
-            FindPrev = false;
-            FindNext = false;
-        }
-        else if (!Selection.IsParentElement("Insertion") &&
-                 !Selection.IsParentElement("Deletion")) {
-            Accept = false;
-            Reject = false;
-        }
-
-        AcceptOrReject_Dlg.cmdAccept.Enabled = Accept;
-        AcceptOrReject_Dlg.cmdReject.Enabled = Reject;
-        AcceptOrReject_Dlg.cmdAcceptAll.Enabled = AcceptAll;
-        AcceptOrReject_Dlg.cmdRejectAll.Enabled = RejectAll;
-        AcceptOrReject_Dlg.cmdUndo.Enabled = Undo;
-        AcceptOrReject_Dlg.cmdFindPrev.Enabled = FindPrev;
-        AcceptOrReject_Dlg.cmdFindNext.Enabled = FindNext;
-
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        if (docProps.item("Highlighting").value == "True") {
-            AcceptOrReject_Dlg.opt_ChangesWH.Value = true;
-        }
-        else if (docProps.item("ShowOriginal").value == "True") {
-            AcceptOrReject_Dlg.opt_Original.Value = true;
-        }
-        else {
-            AcceptOrReject_Dlg.opt_ChangesWOH.Value = true;
-        }
-        if (Selection.ContainerNode.nodeName == "Insertion") {
-            AcceptOrReject_Dlg.lblUser.Caption =
-                Selection.ContainerAttribute("UserName");
-            AcceptOrReject_Dlg.lblAction.Caption = "Insertion";
-            AcceptOrReject_Dlg.lblTime.Caption =
-                Selection.ContainerAttribute("Time");
-        }
-        else if (Selection.ContainerNode.nodeName == "Deletion") {
-            AcceptOrReject_Dlg.lblUser.Caption =
-                Selection.ContainerAttribute("UserName");
-                AcceptOrReject_Dlg.lblAction.Caption = "Deletion";
-                AcceptOrReject_Dlg.lblTime.Caption =
-                    Selection.ContainerAttribute("Time");
-        }
-
-        AcceptOrReject_Dlg.DoModal();
-    }
-
-    //if (CanRunMacros()) {
-    //    doAcceptOrReject();
-    //}
-
   ]]>
 </MACRO>
 
@@ -4350,15 +3684,8 @@
                 tempRng = null;
                 break;
             }
-            else {
-                // if it is with in the range of the selected parent
-                if (startRng.IsLessThan(endRng)) {
-                    // element = startRng.ContainerNode.nodeName;
-                    // startRng.ContainerStyle = getMarkupStyle(element);
-                }
-                else {
-                    break;
-                }
+            else if (!startRng.IsLessThan(endRng))
+                break;
             }
         }
         startRng = null;
@@ -4371,190 +3698,6 @@
         if (confirm) {
             doRejectAllChanges();
         }
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Show Original"
-        key=""
-        lang="JScript"
-        id="20207"
-        desc="Displays the document without any marked changes">
-  <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Displays the original document (i.e., without any tracked changes).
-    //----------------------------------------------------------------------
-    function doShowOriginal()
-    {
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        docProps.item("Highlighting").value = false;
-        docProps.item("ShowOriginal").value = true;
-        var r = ActiveDocument.Range;
-        r.MoveToDocumentStart();
-        while (r.MoveToElement("Deletion")) {
-            //    r.HiddenContainer = false;
-            r.ContainerStyle = "";
-
-            //r.ReadOnlyContainer = false;
-            //r.ContainerAttribute("display") = "showNormal";
-            //r.ReadOnlyContainer = true;
-        }
-        r.MoveToDocumentStart();
-        while (r.MoveToElement("Insertion")) {
-            if (!r.HiddenContainer) {
-                r.HiddenContainer = true;
-            }
-        }
-        r = null;
-    }
-
-    if (CanRunMacros()) {
-        doShowOriginal();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Show Changes With Highlighting"
-        key=""
-        lang="JScript"
-        id="1908"
-        desc="Displays all marked changes with highlighting">
-  <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Highlights all the marked changes by setting the container style of all
-    // Insertion and Deletion Elements
-    //----------------------------------------------------------------------
-    function doShowChangesWithHL() {
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        docProps.item("Highlighting").value = true;
-        docProps.item("ShowOriginal").value = false;
-        var rng_HL = ActiveDocument.Range;
-        rng_HL.MoveToDocumentStart();
-        while (rng_HL.MoveToElement("Insertion")) {
-            rng_HL.HiddenContainer = false;
-            //rng_HL.ContainerStyle = getMarkupStyle("Insertion");
-            var rng2 = rng_HL.Duplicate;
-            rng2.SelectElement();
-            //txt = rng2.ContainerStyle;
-            //rng2.ContainerStyle = txt;
-            rng2 = null;
-        }
-        rng_HL.MoveToDocumentStart();
-        while (rng_HL.MoveToElement("Deletion")) {
-            rng_HL.SelectContainerContents();
-            start = rng_HL.Duplicate;
-            start.Collapse(1);  // set the starting boundary for the search
-            end = rng_HL.Duplicate;
-            end.Collapse(0);  // set the ending boundary for the search
-            // rng_HL.ContainerStyle = getMarkupStyle("Deletion");
-            rng_HL = readtree(start, end);
-        }
-        rng_HL= null;
-    }
-
-    function readtree(startRng, endRng) {
-
-        while (true) {
-
-            // Move to next element
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            }
-            else {
-                // if it is with in the range of the selected parent
-                if (startRng.IsLessThan(endRng)) {
-                    element = startRng.ContainerNode.nodeName;
-                    element = "Deletion";
-                    //startRng.ContainerStyle = getMarkupStyle(element);
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        startRng = null;
-        return endRng;
-    }
-
-    // XXX This looks to be pretty buggy!
-    var element;
-    if (CanRunMacros()) {
-        doShowChangesWithHL();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Show Changes Without Highlighting"
-        key=""
-        lang="JScript"
-        id="1907"
-        desc="Displays all marked changes without highlighting">
-  <![CDATA[
-
-
-    //----------------------------------------------------------------------
-    // Displays the document with marked changes but without highlighting
-    //----------------------------------------------------------------------
-    function doShowChangesWOH() {
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        docProps.item("Highlighting").value = false;
-        docProps.item("ShowOriginal").value = false;
-        var rng_HL = ActiveDocument.Range;
-        rng_HL.MoveToDocumentStart();
-        while (rng_HL.MoveToElement("Insertion")) {
-            rng_HL.HiddenContainer = false;
-            // rng_HL.ContainerStyle = getMarkupStyle("Insertion");
-            rng2 = null;  // clean up
-        }
-        rng_HL.MoveToDocumentStart();
-        while (rng_HL.MoveToElement("Deletion")) {
-            rng_HL.SelectContainerContents();
-            start = rng_HL.Duplicate;
-            start.Collapse(1);  // set the starting boundary for the search
-            end = rng_HL.Duplicate;
-            end.Collapse(0);  // set the ending boundary for the search
-            // rng_HL.ContainerStyle = getMarkupStyle("Deletion");
-            rng_HL = readtree(start, end);
-        }
-        rng_HL= null;
-    }
-
-    function readtree(startRng, endRng) {
-
-        while (true) {
-
-            // Move to next element
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            }
-            else {
-                if (startRng.IsLessThan(endRng)) {
-
-                    // if it is with in the range of the selected parent
-                    // startRng.ContainerStyle = getMarkupStyle("Deletion");
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        startRng = null;
-        return endRng;
-    }
-
-    if (CanRunMacros()) {
-        doShowChangesWOH();
     }
 
   ]]>
@@ -4994,14 +4137,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Published Version Report"
-       lang="JScript">
-  <![CDATA[
-    Application.Alert("This report depends on the Publish Preview interface" +
-                      "\nwith Cancer.Gov, which is still under development");
-  ]]>
-</MACRO>
-
 <MACRO name="Publish Preview"
        lang="JScript">
   <![CDATA[
@@ -5009,24 +4144,10 @@
   ]]>
 </MACRO>
 
-<MACRO name="Patient Publish Preview"
-       lang="JScript">
-  <![CDATA[
-    publishPreview("Protocol_Patient");
-  ]]>
-</MACRO>
-
 <MACRO name="Patient Summary Publish Preview"
        lang="JScript">
   <![CDATA[
     publishPreview("Summary_Patient");
-  ]]>
-</MACRO>
-
-<MACRO name="Patient CTGovProtocol Publish Preview"
-       lang="JScript">
-  <![CDATA[
-    publishPreview("CTGovProtocol_Patient");
   ]]>
 </MACRO>
 
@@ -5043,138 +4164,6 @@
         cdrCheckIn();
     }
 
-  ]]>
-</MACRO>
-
-<MACRO  name="CDR Get Person Address"
-        lang="JScript"
-        desc="Retrieve address from fragment link"
-        hide="false">
-  <![CDATA[
-
-    if (cdrObj == null) {
-        Application.Alert("You are not logged on to the CDR");
-    }
-    else {
-        cdrObj.getPersonAddress();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="CDR Participating Orgs"
-        lang="JScript"
-        desc="Select Participating Organizations for Protocol"
-        hide="false">
-  <![CDATA[
-
-    if (cdrObj == null) {
-        Application.Alert("You are not logged on to the CDR");
-    }
-    else {
-        cdrObj.particOrgs();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Insert Lead Org"
-        lang="JScript"
-        desc="Insert new Protocol lead organization"
-        hide="false">
-  <![CDATA[
-
-    if (!insertAnother("ProtocolAdminInfo", "ProtocolLeadOrg",
-        "<ProtocolLeadOrg>" +
-        "<LeadOrganizationID>Select Organization Here</LeadOrganizationID>" +
-        "<LeadOrgRole/>" +
-        "<LeadOrgProtocolID/>" +
-        "<LeadOrgProtocolStatuses>" +
-        "<CurrentOrgStatus>" +
-        "<StatusName/>" +
-        "<StatusDate/><EnteredBy/><EntryDate/>" +
-        "</CurrentOrgStatus>" +
-        "</LeadOrgProtocolStatuses>" +
-        "<LeadOrgPersonnel>" +
-        "<Person cdr:ref=''>Person Name Here</Person>" +
-        "<PersonRole/>" +
-        "</LeadOrgPersonnel>" +
-        "</ProtocolLeadOrg>")) {
-        Application.Alert("Unable to insert ProtocolLeadOrg");
-    }
-  ]]>
-</MACRO>
-
-<MACRO  name="Insert Participating Org"
-        lang="JScript"
-        key="Ctrl+Alt+Z"
-        desc="Insert new Protocol participating organization"
-        hide="false">
-  <![CDATA[
-    /*
-     * Modified 2003-03-04 at Lakshmi's request (#433) to insert
-     * the missing ProtocolSites parent element when the user
-     * has failed to do so.
-     */
-    function insertParticipatingOrg() {
-        var rng = getElemRange("ProtocolLeadOrg");
-        if (!rng) {
-            Application.Alert(
-                "Current position is not within a lead organization");
-            return;
-        }
-        leadOrg = rng.ContainerNode;
-        protSites = leadOrg.getElementsByTagName("ProtocolSites");
-        if (!protSites.length) {
-            // Application.Alert("Inserting ProtocolSites element");
-            if (!rng.FindInsertLocation("ProtocolSites", true)) {
-                Application.Alert("Failure inserting ProtocolSites element");
-                return;
-            }
-            rng.InsertElementWithRequired("ProtocolSites");
-        }
-        if (!rng.FindInsertLocation("OrgSite", true)) {
-            Application.Alert("Can't insert OrgSite element");
-            return;
-        }
-        rng.InsertWithTemplate("OrgSite");
-        rng.Select();
-    }
-    insertParticipatingOrg();
-  ]]>
-</MACRO>
-
-<MACRO  name="Next Lead Org"
-        lang="JScript"
-        desc="Move to the next lead organization in the protocol"
-        hide="false">
-  <![CDATA[
-    function nextLeadOrg() {
-        var rng = ActiveDocument.Range;
-        if (!rng.MoveToElement("ProtocolLeadOrg", true)) {
-            Application.Alert("No more ProtocolLeadOrg elements found.");
-            return;
-        }
-        rng.Select();
-    }
-    nextLeadOrg();
-  ]]>
-</MACRO>
-
-<MACRO  name="Next External Site"
-        lang="JScript"
-        desc="Move to the next external site in the protocol"
-        hide="false">
-  <![CDATA[
-    function nextExternalSite() {
-        var rng = ActiveDocument.Range;
-        if (!rng.MoveToElement("ExternalSite", true)) {
-            Application.Alert("No more ExternalSite elements found.");
-            return;
-        }
-        rng.Select();
-    }
-    nextExternalSite();
   ]]>
 </MACRO>
 
@@ -5267,108 +4256,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Paste Org Address Elements"
-        lang="JScript"
-        desc="Pastes org address elements from internal clipboard."
-        hide="false">
-  <![CDATA[
-
-    /*
-     * This is necessary because the DOM interface doesn't support
-     * cloning elements for use in another document.
-     *
-     * XXX Doesn't work.  Another bug in XMetaL.
-     */
-    function cloneElementAcrossDocs(newDoc, oldElem) {
-        if (!oldElem || !newDoc) return null;
-        // Application.Alert("creating a new " + oldElem.nodeName);
-        var newElem = newDoc.createElement(oldElem.nodeName);
-        if (!newElem) return null;
-        var attrs = oldElem.attributes;
-        for (var i = 0; i < attrs.length; ++i) {
-            var attr = attrs.item(i);
-            newElem.setAttribute(attr.nodeName, attr.nodeValue);
-        }
-        var child = oldElem.firstChild;
-        while (child) {
-            if (child.nodeType == 1) { // DOMElement
-                var newChild = cloneElementAcrossDocs(newDoc, child);
-                newElem.appendChild(newChild);
-            }
-            else if (child.nodeType == 3) { // DOMText
-                var textNode = newDoc.createTextNode(child.nodeValue);
-                newElem.appendChild(textNode);
-            }
-            else if (child.nodeType == 7) { // DOMProcessingInstruction
-                var piNode = newDoc.createProcessingInstruction(child.target,
-                                                                child.data);
-                newElem.appendChild(piNode);
-            }
-            else if (child.nodeType == 8) { // DOMComment
-                var cmt = newDoc.createComment(child.data);
-                newElem.appendChild(cmt);
-            }
-            else if (child.nodeType == 505) { // DOMCharacterReference
-                Application.Alert("Please inform development staff that " +
-                                  "a DOM character reference was found.");
-            }
-            child = child.nextSibling;
-        }
-        return newElem;
-    }
-
-    function pasteOrgAddressElements() {
-
-        if (!CdrOrgAddressClipboard) {
-            Application.Alert("Org address clipbard is empty!");
-            return;
-        }
-        var rng = getElemRange("GenericPerson");
-        if (!rng)
-            rng = getElemRange("OverallContact");
-        if (!rng) {
-            Application.Alert(
-                "Current position is not within a GenericPerson " +
-                " or OverallContact element.");
-            return;
-        }
-
-        var gpElem = rng.ContainerNode;
-        var addrList = gpElem.getElementsByTagName("PostalAddress");
-        if (!addrList.length) {
-            if (!rng.FindInsertLocation("PostalAddress")) {
-                Application.Alert("No PostalAddress element found.");
-                return;
-            }
-            rng.Select();
-        }
-        else {
-            rng.MoveToElement("PostalAddress");
-            rng.SelectElement();
-        }
-        rng.Text = CdrOrgAddressClipboard;
-        return;
-        /*
-         * Doesn't work: bug in XMetaL.
-        var paElem = addrList.item(0);
-        var cdElem = paElem.parentNode;
-        var newNode = cloneElementAcrossDocs(ActiveDocument,
-                                             CdrOrgAddressClipboard);
-        if (!newNode) {
-            Application.Alert("Failure cloning address node");
-            return;
-        }
-        Application.Alert("Replacing " + paElem.nodeName +
-                          " with " + newNode.nodeName);
-        cdElem.replaceChild(newNode, paElem);
-         */
-    }
-
-    pasteOrgAddressElements();
-
-  ]]>
-</MACRO>
-
 <MACRO  name="Term Hierarchy"
         lang="JScript"
         desc="Web interface for displaying Term document hierarchies"
@@ -5394,36 +4281,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="CDR Terminology Usage Report"
-        lang="JScript"
-        desc="Report listing documents which are indexed by this term"
-        hide="false">
-  <![CDATA[
-
-    function termUsageReport() {
-        if (ActiveDocument && ActiveDocument.doctype.name == "Term") {
-            var nodes =
-                Application.ActiveDocument.getElementsByTagName("DocId");
-            if (nodes.length > 0) {
-                var elem  = nodes.item(0);
-                var docId = getTextContent(elem);
-                var url = CdrCgiBin + "TermUsage.py?DocId=" + docId;
-                cdrObj.showPage(url);
-            }
-            else {
-                Application.Alert("This is a new document.");
-            }
-        }
-        else {
-            Application.Alert("No Term document found.");
-        }
-    }
-
-    termUsageReport();
-
-  ]]>
-</MACRO>
-
 <MACRO  name="Insert Current Date"
         lang="JScript"
         key="Alt+D"
@@ -5439,24 +4296,6 @@
         }
     }
     insCurrentDate();
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Insert Current Date and Time"
-        lang="JScript"
-        desc="Inserts the current date/time as text content of current elem"
-        hide="false">
-  <![CDATA[
-
-    function insCurrentDateTime() {
-        if (Selection != null) {
-            // Selection.SelectContainerContents();
-            str = getCurDateTimeString();
-            Selection.Text = str;
-        }
-    }
-    insCurrentDateTime();
 
   ]]>
 </MACRO>
@@ -5585,18 +4424,6 @@
     // doPrint();
     Application.Alert("Sorry.  Due to a bug in XMetaL, you must invoke the\n"
         + "Print dialog box from the File menu or using Control+P.");
-  ]]>
-</MACRO>
-
-<MACRO name="PubMed Browse"
-       lang="JScript"
-       id="2022">
-  <![CDATA[
-    function searchPubMed() {
-        var url = "https://www.ncbi.nlm.nih.gov/entrez/";
-        cdrObj.showPage(url);
-    }
-    searchPubMed();
   ]]>
 </MACRO>
 
@@ -5760,148 +4587,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="New Current Org Status"
-       lang="JScript">
-  <![CDATA[
-    function newCurrentOrgStatus() {
-        Selection.MoveRight();
-        Selection.MoveLeft();
-        var rng = ActiveDocument.Range;
-        var savePos = ActiveDocument.Range;
-        rng.SelectElement();
-        var oldStatusElem = rng.ContainerNode;
-        if (oldStatusElem.nodeName != "CurrentOrgStatus") {
-            Application.Alert("Not in CurrentOrgStatus");
-            return;
-        }
-        rng.SelectElement();
-        elemText = rng.Text;
-        elemText = elemText.replace("<CurrentOrgStatus", "<PreviousOrgStatus");
-        elemText = elemText.replace("</CurrentOrgStatus>",
-                                    "</PreviousOrgStatus>");
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-        var newElem = "<CurrentOrgStatus>"
-                    + "<StatusName></StatusName>"
-                    + "<StatusDate>" + getCurDateString() + "</StatusDate>"
-                    + "<Comment>Your comment here ...</Comment>"
-                    + "<EnteredBy>" + CdrUserName + "</EnteredBy>"
-                    + "<EntryDate>" + getCurDateString() + "</EntryDate>"
-                    + "</CurrentOrgStatus>";
-        rng.PasteString(newElem + elemText);
-        savePos.Select();
-        Selection.MoveRight();
-        Selection.MoveLeft();
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    newCurrentOrgStatus();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert PatientCharacteristics"
-       lang="JScript">
-  <![CDATA[
-    function insertPatientCharacteristics() {
-        //Selection.MoveRight();
-        //Selection.MoveLeft();
-        var rng = ActiveDocument.Range;
-        var savePos = ActiveDocument.Range;
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-        var newElems = "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Age</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Performance status</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Life expectancy</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Hematopoietic</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Hepatic</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Renal</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Cardiovascular</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Pulmonary</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Other</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>";
-
-        rng.PasteString(newElems);
-        savePos.Select();
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    insertPatientCharacteristics();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert PriorConcurrentTherapy"
-       lang="JScript">
-  <![CDATA[
-    function insertPriorConcurrentTherapy() {
-        //Selection.MoveRight();
-        //Selection.MoveLeft();
-        var rng = ActiveDocument.Range;
-        var savePos = ActiveDocument.Range;
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-        var newElems = "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Biologic therapy</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Chemotherapy</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Endocrine therapy</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Radiotherapy</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Surgery</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>"
-                     + "<ItemizedList Style='bullet'>"
-                     + "<ListTitle>Other</ListTitle>"
-                     + "<ListItem></ListItem>"
-                     + "</ItemizedList>";
-        rng.PasteString(newElems);
-        savePos.Select();
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    insertPriorConcurrentTherapy();
-  ]]>
-</MACRO>
-
-<MACRO name="Reset Contact Information"
-       lang="JScript">
-  <![CDATA[
-    Application.Alert("Stub for Reset Contact Information Macro");
-  ]]>
-</MACRO>
-
 <MACRO name="Licensee QC Report"
        lang="JScript">
   <![CDATA[
@@ -6014,70 +4699,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol HP QC Report"
-       lang="JScript">
-  <![CDATA[
-    function protocolHpQcReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "ProtocolHpQcReport.py?Session="
-                + CdrSession + "&DocId=" + docId;
-        cdrObj.showPage(url);
-    }
-    protocolHpQcReport();
-  ]]>
-</MACRO>
-
-<MACRO name="Protocol Patient QC Report"
-       lang="JScript">
-  <![CDATA[
-    function protocolPatientQcReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "ProtocolPatientQcReport.py?Session="
-                + CdrSession + "&DocId=" + docId;
-        cdrObj.showPage(url);
-    }
-    protocolPatientQcReport();
-  ]]>
-</MACRO>
-
-<MACRO name="Protocol Admin QC Report"
-       lang="JScript">
-  <![CDATA[
-    function protocolAdminQcReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
-                "&Filter=set:QC InScopeProtocol Admin Set";
-        cdrObj.showPage(url);
-    }
-    protocolAdminQcReport();
-  ]]>
-</MACRO>
-
 <MACRO name="TermName with Concept QC Report"
        lang="JScript">
   <![CDATA[
@@ -6100,27 +4721,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Protocol Citations QC Report"
-       lang="JScript">
-  <![CDATA[
-    function protocolCitationsQcReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "ProtocolCitationsQcReport.py?Session="
-                + CdrSession + "&DocId=" + docId;
-        cdrObj.showPage(url);
-    }
-    protocolCitationsQcReport();
-  ]]>
-</MACRO>
-
 <MACRO name="Generate Mailer"
        lang="JScript">
   <![CDATA[
@@ -6129,59 +4729,6 @@
         cdrObj.showPage(url);
     }
     generateMailer();
-  ]]>
-</MACRO>
-
-<MACRO name="Go To Admin Info Section"
-       lang="JScript">
-  <![CDATA[
-    if (Selection != null) {
-        Selection.MoveToDocumentStart();
-        Selection.MoveToElement("CurrentProtocolStatus");
-        Selection.SelectContainerContents();
-    }
-  ]]>
-</MACRO>
-
-<MACRO name="Go To Patient Abstract"
-       lang="JScript">
-  <![CDATA[
-    if (Selection != null) {
-        Selection.MoveToDocumentStart();
-        Selection.MoveToElement("Patient");
-        Selection.SelectContainerContents();
-    }
-  ]]>
-</MACRO>
-
-<MACRO name="Go To Scientific Info Section"
-       lang="JScript">
-  <![CDATA[
-    if (Selection != null) {
-        Selection.MoveToDocumentStart();
-        Selection.MoveToElement("ProtocolAbstract");
-    }
-  ]]>
-</MACRO>
-
-<MACRO name="Go To Brief Summary"
-       lang="JScript">
-  <![CDATA[
-    if (Selection != null) {
-        Selection.MoveToDocumentStart();
-        Selection.MoveToElement("BriefSummary");
-    }
-  ]]>
-</MACRO>
-
-<MACRO name="Protocol Merge"
-       lang="JScript">
-  <![CDATA[
-    function protocolMerge() {
-        var url = CdrCgiBin + "MergeProt.py?Session=" + CdrSession;
-        cdrObj.showPage(url);
-    }
-    protocolMerge();
   ]]>
 </MACRO>
 
@@ -6293,42 +4840,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Create Summary Markup Report"
-       lang="JScript">
-  <![CDATA[
-    function createSummaryMarkupReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Current document ID not found");
-            return;
-        }
-        var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
-                            + docId
-                            + "&Session="
-                            + CdrSession;
-        cdrObj.showPage(url);
-    }
-    createSummaryMarkupReport();
-  ]]>
-</MACRO>
-
-<MACRO name="Create HTML for Board"
-       lang="JScript">
-  <![CDATA[
-    function createHtmlForBoard() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Current document ID not found");
-            return;
-        }
-        var url = CdrCgiBin + "Filter.py?DocId=" + docId;
-        cdrObj.showPage(url);
-    }
-    Application.Alert("Don't have filters for this command yet.");
-    //createHtmlForBoard();
-  ]]>
-</MACRO>
-
 <MACRO name="Bold Underline Report"
        lang="JScript">
   <![CDATA[
@@ -6364,25 +4875,6 @@
         cdrObj.showPage(url);
     }
     redlineStrikeoutReport();
-  ]]>
-</MACRO>
-
-<MACRO name="Glossary RS Report"
-       lang="JScript">
-  <![CDATA[
-    function glossaryRSReport() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Current document ID not found");
-            return;
-        }
-        var url = CdrCgiBin + "QcReport.py?DocType=GlossaryTerm&DocId="
-                            + docId
-                            + "&ReportType=rs&Session="
-                            + CdrSession;
-        cdrObj.showPage(url);
-    }
-    glossaryRSReport();
   ]]>
 </MACRO>
 
@@ -6465,18 +4957,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Generate Summary Mailers"
-       lang="JScript">
-  <![CDATA[
-    function generateSummaryMailers() {
-        var url = CdrCgiBin + "PDQMailerRequestForm.py?Session="
-            + CdrSession;
-        cdrObj.showPage(url);
-    }
-    generateSummaryMailers();
-  ]]>
-</MACRO>
-
 <MACRO name="Document History Report"
        lang="JScript">
   <![CDATA[
@@ -6519,141 +4999,11 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert ProtocolAmendmentInformation"
-       lang="JScript" >
-  <![CDATA[
-    function insertProtocolAmendmentInformation() {
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.FindInsertLocation("ProtocolAmendmentInformation", false)) {
-            Application.Alert(
-                    "Can't insert ProtocolAmendmentInformation element");
-                return;
-        }
-        rng.InsertElement("ProtocolAmendmentInformation");
-        rng.InsertWithTemplate("ProtocolAmendment");
-        rng.Select();
-    }
-    insertProtocolAmendmentInformation();
-  ]]>
-</MACRO>
-
 <MACRO name="Undo Last Edit"
        lang="JScript" >
   <![CDATA[
     if (ActiveDocument)
         ActiveDocument.Undo();
-  ]]>
-</MACRO>
-
-<MACRO name="NHL Text"
-       lang="JScript">
-  <![CDATA[
-    function nhlText() {
-        var rng = ActiveDocument.Range;
-        if (!rng.IsParentElement("DiseaseCharacteristics")) {
-            Application.Alert("This macro can only be used within the "
-                    + "DiseaseCharacteristics element");
-            return;
-        }
-        if (!rng.FindInsertLocation("Para")) {
-            Application.Alert("Unable to insert new Para element");
-            return;
-        }
-        rng.InsertElement("Para");
-        rng.InsertElement("Note");
-        rng.Text = "A new classification scheme for adult non-Hodgkin's "
-                 + "lymphoma has been adopted by PDQ.  The terminology "
-                 + "of \"indolent\" or \"aggressive\" lymphoma will "
-                 + "replace the former terminology of \"low\", "
-                 + "\"intermediate\", or \"high\" grade lymphoma. "
-                 + "However, this protocol uses the former terminology.";
-    }
-    nhlText();
-  ]]>
-</MACRO>
-
-<MACRO name="Change Participating Site Statuses"
-       lang="JScript">
-  <![CDATA[
-    function changeSiteStatuses() {
-        var rng = ActiveDocument.Range;
-        if (!rng.IsParentElement("ProtocolLeadOrg")) {
-            Application.Alert("This macro can only be used within a "
-                    + "ProtocolLeadOrg element");
-            return;
-        }
-        if (!rng.MoveToElement("ProtocolLeadOrg", false)) {
-            Application.Alert("Can't find ProtocolLeadOrg element.");
-            return;
-        }
-        var node = rng.ContainerNode;
-        var elemList = node.getElementsByTagName("CurrentOrgStatus");
-        if (!elemList || !elemList.length) {
-            Application.Alert("Can't find CurrentOrgStatus element.");
-            return;
-        }
-        elemList = elemList.item(0).getElementsByTagName("StatusName");
-        if (!elemList || !elemList.length) {
-            Application.Alert("Can't find StatusName element.");
-            return;
-        }
-        var status = getTextContent(elemList.item(0));
-        if (!status) {
-            Application.Alert("Lead org status has not yet been set.");
-            return;
-        }
-        var yes = 6;
-        var no = 7;
-        var response = no;
-        var displayOkNoCancelButtons = 3;
-        var useWarningQueryIcon = 32;
-        var dlgConfig = displayOkNoCancelButtons + useWarningQueryIcon;
-        var dlgMsg = "Set participating site statuses to " + status + "?";
-        var dlgTitle = "Adjust Participating Site Statuses";
-        response = Application.MessageBox(dlgMsg, dlgConfig, dlgTitle);
-        if (response != yes)
-            return;
-        var sitesList = node.getElementsByTagName("ProtocolSites");
-        if (!sitesList || !sitesList.length) {
-            Application.Alert("Can't find ProtocolSites element.");
-            return;
-        }
-        var numStatuses = 0;
-        elemList = sitesList.item(0).getElementsByTagName("OrgSite");
-        for (var i = 0; elemList && i < elemList.length; ++i) {
-            var site = elemList.item(i);
-            var statusList = site.getElementsByTagName("OrgSiteStatus");
-            if (statusList && statusList.length) {
-                var statusNode = statusList.item(0);
-                rng.selectNodeContents(statusNode);
-                var oldSetting = rng.WritePermittedContainer;
-                rng.WritePermittedContainer = true;
-                rng.PasteString(status);
-                rng.WritePermittedContainer = oldSetting;
-                numStatuses += 1;
-            }
-        }
-        elemList = sitesList.item(0).getElementsByTagName(
-                                                      "PrivatePracticeSite");
-        for (var i = 0; elemList && i < elemList.length; ++i) {
-            var site = elemList.item(i);
-            var statusList = site.getElementsByTagName(
-                                                "PrivatePracticeSiteStatus");
-            if (statusList && statusList.length) {
-                var statusNode = statusList.item(0);
-                rng.selectNodeContents(statusNode);
-                var oldSetting = rng.WritePermittedContainer;
-                rng.WritePermittedContainer = true;
-                rng.PasteString(status);
-                rng.WritePermittedContainer = oldSetting;
-                numStatuses += 1;
-            }
-        }
-        Application.Alert("Status set for " + numStatuses +
-                " participating sites.");
-    }
-    changeSiteStatuses();
   ]]>
 </MACRO>
 
@@ -6672,64 +5022,6 @@
         rng.Select();
     }
     insertMailerResponse();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Mailer CallLog"
-       lang="JScript" >
-  <![CDATA[
-    function insertMailerCallLog() {
-        // Application.Alert("XXX In insert CallLog");
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        var roFlag = Selection.ReadOnlyContainer;
-        Selection.ReadOnlyContainer = false;
-        if (!rng.FindInsertLocation("CallLog", false)) {
-            Application.Alert("Can't insert CallLog element");
-            return;
-        }
-        var newElem = "<CallLog CallLogType='initial'><Comment user='"
-                    + CdrUserName
-                    + "' audience='Internal' date='"
-                    + getCurDateString()
-                    + "'><?xm-replace_text { "
-                    + "Enter a comment (required) }?></Comment>"
-                    + "<Resolution><?xm-replace_text { "
-                    + "Please select a resolution (required) }?>"
-                    + "</Resolution></CallLog>";
-        rng.PasteString(newElem);
-        rng.MoveToElement("Comment", false);
-        rng.SelectElement();
-        rng.Collapse(1);
-        rng.MoveRight();
-        rng.Select();
-        Selection.ReadOnlyContainer = roFlag;
-    }
-    insertMailerCallLog();
-  ]]>
-</MACRO>
-
-<MACRO name="Delete Mailer CallLog"
-       lang="JScript" >
-  <![CDATA[
-    function deleteMailerCallLog() {
-        Selection.MoveRight(0);
-        Selection.MoveLeft(0);
-        var rng = getElemRange('CallLog');
-        if (!rng) {
-            Application.Alert('Not in a CallLog block');
-            return;
-        }
-        rng.SelectElement();
-        rng.ReadOnlyContainer = false;
-        if (rng.CanDelete) {
-            rng.Delete();
-        }
-        else {
-             Application.Alert("Unable to delete CallLog block");
-        }
-    }
-    deleteMailerCallLog();
   ]]>
 </MACRO>
 
@@ -6927,11 +5219,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Verify Specialties"
-       lang="JScript" >
-    cdrObj.showPage("https://specialistsonline.abms.org/");
-</MACRO>
-
 <MACRO name="Back Out Rejected Markup"
        lang="JScript" >
   <![CDATA[
@@ -6971,26 +5258,6 @@
         }
     }
 
-  ]]>
-</MACRO>
-
-<MACRO name="CTGovProtocol Diff"
-       lang="JScript" >
-  <![CDATA[
-    function ctGovDiff() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "DiffCTGovProtocol.py?DocId=" + docId;
-        cdrObj.showPage(url);
-    }
-    ctGovDiff();
   ]]>
 </MACRO>
 
@@ -7036,27 +5303,6 @@
         cdrObj.showPage(url);
     }
     previewMailer();
-  ]]>
-</MACRO>
-
-<MACRO name="Send Missing Protocol Info Mailer"
-       lang="JScript" >
-  <![CDATA[
-    function sendMissingProtocolInfoMailer() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "MissingInfoMailer.py?id=" + docId
-                + "&Session=" + CdrSession;
-        cdrObj.showPage(url);
-    }
-    sendMissingProtocolInfoMailer();
   ]]>
 </MACRO>
 
@@ -7326,325 +5572,6 @@
     }
 
     insertTermSetMembers();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert BMT Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertBmtDiagnoses() {
-
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('Diagnosis', false)) {
-            if (!rng.MoveToElement('AgeText', false)) {
-                Application.Alert('Unable to find location for insertion.');
-                return false;
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("Diagnosis", true)) {
-            Application.Alert("Unable to insert Diagnosis terms here.");
-            return false;
-        }
-
-        // Insert the new Dianosis terms.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000377661'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377660'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377664'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377659'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377655'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039070'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039084'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039083'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000335175'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039071'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039086'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039085'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000286994'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000276487'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039357'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040361'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000276485'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039069'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040812'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043711'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372812'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038439'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000335177'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372811'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042740'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042739'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042737'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042734'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042738'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042741'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042731'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042732'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042733'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042735'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371959'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371899'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040856'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043389'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041144'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038716'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038678'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040561'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042968'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040557'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040556'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040555'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040559'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040560'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039738'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040232'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042458'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038643'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042198'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038024'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043196'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042197'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038380'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040551'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040552'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040554'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042755'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371961'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038228'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043713'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043706'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040292'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040550'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038791'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037763'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038728'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040080'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041876'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038720'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040808'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041145'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372809'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037801'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037810'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043703'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040535'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042483'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040531'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040530'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040529'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040533'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040534'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038490'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040525'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040526'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040528'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042744'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371902'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037811'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043704'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040524'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038780'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039180'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041974'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000340180'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040548'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042945'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040544'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040543'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040542'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040546'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040547'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039108'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038501'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040538'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040539'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040541'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042751'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371903'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000043705'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040537'/>\n";
-        rng.PasteString(elemString);
-        rng.Select();
-
-        return true;
-    }
-
-    insertBmtDiagnoses();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert ALK Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertAlkDiagnoses() {
-
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('Diagnosis', false)) {
-            if (!rng.MoveToElement('AgeText', false)) {
-                Application.Alert('Unable to find location for insertion.');
-                return false;
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("Diagnosis", true)) {
-            Application.Alert("Unable to insert Diagnosis terms here.");
-            return false;
-        }
-
-        // Insert the new Dianosis terms.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000039070'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040510'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377661'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377660'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377664'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377659'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000377655'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000335175'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039071'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000276487'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039357'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040361'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000276485'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039069'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040812'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039361'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041865'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038439'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039072'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000335177'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039350'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041144'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041926'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040079'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041618'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038716'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038678'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040781'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038728'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040080'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041876'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038720'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040808'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041145'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040779'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038490'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037811'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040780'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038501'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039077'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039078'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040078'/>\n";
-        rng.PasteString(elemString);
-        rng.Select();
-
-        return true;
-    }
-
-    insertAlkDiagnoses();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert AL Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertAlDiagnoses() {
-
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('Diagnosis', false)) {
-            if (!rng.MoveToElement('AgeText', false)) {
-                Application.Alert('Unable to find location for insertion.');
-                return false;
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("Diagnosis", true)) {
-            Application.Alert("Unable to insert Diagnosis terms here.");
-            return false;
-        }
-
-        // Insert the new Dianosis terms.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000041629'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041630'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042785'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042765'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372812'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042137'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372811'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042673'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000041199'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040561'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040557'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040556'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040555'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042968'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040559'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040560'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040781'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038380'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040551'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040552'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040554'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042755'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371961'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038228'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040550'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038745'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000372809'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040535'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040531'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040530'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040529'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042483'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040533'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040534'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040779'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037770'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040525'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040526'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040528'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042744'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371902'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038226'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040524'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040548'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040544'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040543'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040542'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042945'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040546'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040547'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040780'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037813'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040538'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040539'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040541'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000042751'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000371903'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038227'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040537'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000037790'/>\n";
-        rng.PasteString(elemString);
-        rng.Select();
-
-        return true;
-    }
-
-    insertAlDiagnoses();
   ]]>
 </MACRO>
 
@@ -8069,136 +5996,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Make Scientific Protocol Doc"
-       lang="JScript">
-  <![CDATA[
-    function OriginalProtocolDoc(doc, newDoc) {
-
-        // Initialize object properties.
-        this.docId       = null;
-        this.primaryId   = null;
-        this.title       = null;
-        this.procInfo    = null;
-        this.relDocs     = null;
-        this.phases      = new Array();
-        if (!doc)        { return; }
-
-        // Get the CDR ID for the InScopeProtocol document.
-        var docId = getSingleElement(doc, 'DocId');
-        if (docId)
-            this.docId = getTextContent(docId);
-
-        // Extract a copy of the primary protocol ID element.
-        var primaryId = getSingleElement(doc, 'PrimaryID');
-        if (primaryId)
-            this.primaryId = cloneFor(newDoc, primaryId);
-
-        // Copy the original title element.
-        var title = getSingleElement(doc, 'ProtocolTitle', 'Type', 'Original');
-        if (title)
-            this.title = cloneFor(newDoc, title);
-
-        // Get the related documents block.
-        var relDocs = getSingleElement(doc, 'RelatedDocuments');
-        if (relDocs)
-            this.relDocs = cloneFor(newDoc, relDocs);
-
-        // Collect all the phase elements from the source document.
-        var phases = doc.getElementsByTagName('ProtocolPhase');
-        for (var i = 0; i < phases.length; ++i)
-            this.phases.push(cloneFor(newDoc, phases.item(i)));
-
-        // Clone the processing details block.
-        var procInfo = getSingleElement(doc, 'ProtocolProcessingDetails');
-        if (procInfo)
-            this.procInfo = cloneFor(newDoc, procInfo);
-    }
-
-    function makeScientificProtocolDoc() {
-
-        // Get a reference to the source document.
-        var inScopeDoc = Application.ActiveDocument;
-
-        // Create a new ScientificProtocolInfo document from the template.
-        var templateLocation = "\\Template\\Cdr\\ScientificProtocolInfo.xml";
-        var templatePath = CdrUserPath + templateLocation;
-        var doc = Application.Documents.OpenTemplate(templatePath);
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-
-        // Extract the interesting bits from the source document.
-        var oDoc = new OriginalProtocolDoc(inScopeDoc, doc);
-
-        // Replace the empty primary ID element with the one from the source.
-        if (oDoc.primaryId) {
-            var primaryId = getSingleElement(doc, 'PrimaryID');
-            if (!primaryId)
-                Application.Alert("PrimaryID element missing from template");
-            else
-                primaryId.parentNode.replaceChild(oDoc.primaryId, primaryId);
-        }
-
-        // Replace the empty InScopeDocID element.
-        var docId = getSingleElement(doc, 'InScopeDocID');
-        if (!docId)
-            Application.Alert("InScopeDocID element not found in template");
-        else {
-            var newElem = doc.createElement('InScopeDocID')
-            newElem.setAttribute('cdr:ref', oDoc.docId);
-            docId.parentNode.replaceChild(newElem, docId);
-        }
-
-        // Replace the single empty phase node with the in-scope phases.
-        var phase = getSingleElement(doc, "ProtocolPhase");
-        if (!phase)
-            Application.Alert('ProtocolPhase element missing from template');
-        else {
-            for (var i = 0; i < oDoc.phases.length; ++i) {
-                 var newElem = oDoc.phases[i];
-                 if (i == oDoc.phases.length - 1)
-                     phase.parentNode.replaceChild(newElem, phase);
-                 else
-                     phase.parentNode.insertBefore(newElem, phase);
-            }
-        }
-
-        // Pop in the new RelatedDocuments block.
-        if (oDoc.relDocs) {
-            var relDocs = getSingleElement(doc, "RelatedDocuments");
-            if (!relDocs)
-                Application.Alert("RelatedDocuments missing from template");
-            else
-                relDocs.parentNode.replaceChild(oDoc.relDocs, relDocs);
-        }
-
-        // Insert the original title in front of the professional title.
-        if (oDoc.title) {
-            var title = getSingleElement(doc, 'ProtocolTitle');
-            if (!title)
-                Application.Alert("ProtocolTitle element not in template");
-            else
-                title.parentNode.insertBefore(oDoc.title, title);
-        }
-
-        // Last step: insert the processing information block.
-        if (oDoc.procInfo) {
-            var procInfo = getSingleElement(doc, "ProtocolProcessingDetails");
-            if (!procInfo)
-                Application.Alert("Template missing ProtocolProcessingDetails");
-            else
-                procInfo.parentNode.replaceChild(oDoc.procInfo, procInfo);
-        }
-        var rng = ActiveDocument.Range;
-        rng.SelectAll();
-        var docAsString = rng.Text;
-        rng.Delete();
-        rng.PasteString(docAsString);
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    makeScientificProtocolDoc();
-  ]]>
-</MACRO>
-
 <MACRO name="PI Bug Repro"
        lang="JScript"
        key="Ctrl+Alt+O">
@@ -8479,501 +6276,6 @@
 <MACRO name="SC nbsp"
        lang="JScript">Selection.TypeText("&amp;#x00A0;");</MACRO>
 
-<MACRO name="Insert Diagnosis Links"
-       lang="JScript" >
-  <![CDATA[
-    function insertDiagnosisLinks() {
-        var diagString = cdrObj.getDiagnosisSetTerms();
-        if (!diagString)
-            return;
-        // Application.Alert(diagString);
-        var elemString = "\n";
-        var diags = diagString.split(' ');
-        for (var i in diags) {
-            elemString += "<Diagnosis cdr:ref='" + diags[i] + "'/>\n";
-        }
-        insertDiagnoses(elemString);
-    }
-    insertDiagnosisLinks();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Head And Neck Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertHeadAndNeckDiagnoses() {
-        var diagString = cdrObj.getDiagnosisSetTerms();
-        Application.Alert(diagString);
-        return;
-
-        // Create a string for the diagnosis link elements.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000038936'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040741'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040742'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038935'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040746'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040747'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040748'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040749'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039407'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040699'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040696'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040698'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040695'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040697'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040704'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040701'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040703'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040700'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040702'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040709'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040706'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040708'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040714'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040711'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040713'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040719'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040716'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040718'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038933'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040732'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040731'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040734'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040733'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040736'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040738'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040740'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038934'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040722'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040720'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040724'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040723'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040726'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038932'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040760'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040758'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040759'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040757'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040764'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040762'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040763'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040761'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040768'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040766'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040767'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040772'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040770'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040771'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040776'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040774'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040775'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040042'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040043'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040048'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040046'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040047'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040044'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040040'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040038'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038947'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038948'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
-            "";
-        insertDiagnoses(elemString);
-    }
-    insertHeadAndNeckDiagnoses();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Squamous Cell Carcinoma Head And Neck Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertSquamousCellCarcinomaHeadAndNeckDiagnoses() {
-
-        // Create a string for the diagnosis link elements.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000040741'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040742'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040746'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040747'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040748'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040749'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040695'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040700'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040697'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040702'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040731'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040733'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040720'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040723'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040757'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040761'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038947'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038948'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
-            "";
-        insertDiagnoses(elemString);
-    }
-    insertSquamousCellCarcinomaHeadAndNeckDiagnoses();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Advanced Head And Neck Diagnoses"
-       lang="JScript" >
-  <![CDATA[
-    function insertAdvancedHeadAndNeckDiagnoses() {
-
-        // Create a string for the diagnosis link elements.
-        var elemString = "\n" +
-            "<Diagnosis cdr:ref='CDR0000040743'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040744'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040745'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040750'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040751'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040753'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040754'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040755'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040756'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040709'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040706'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040708'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040705'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040707'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040714'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040711'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040713'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040710'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040712'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040719'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040716'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040718'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040715'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040717'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039988'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039089'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039088'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040736'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040735'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040738'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040737'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040740'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040739'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040726'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040725'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040728'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040727'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040729'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040730'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040768'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040766'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040767'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040765'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040772'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040770'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040771'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040769'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040776'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040774'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040775'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040773'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040042'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040043'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040048'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040046'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040047'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040044'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000039989'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040040'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000040038'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038949'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038950'/>\n" +
-            "<Diagnosis cdr:ref='CDR0000038951'/>\n" +
-            "";
-        insertDiagnoses(elemString);
-    }
-    insertAdvancedHeadAndNeckDiagnoses();
-  ]]>
-</MACRO>
-
-<MACRO name="Split Intervention Block" lang="JScript">
-  <![CDATA[
-    function splitInterventionBlock() {
-        var node    = Selection.ContainerNode;
-        var depth   = 5;
-        var oldElem = null;
-        while (node && !oldElem) {
-            if (depth-- < 1) {
-                Application.Alert("This macro can only be used in an " +
-                                  "Intervention block.");
-                return;
-            }
-            if (node.nodeName == 'Intervention')
-                oldElem = node;
-            else
-                node = node.parentNode;
-        }
-        if (!oldElem) {
-            Application.Alert("No Intervention element at this location.");
-            return;
-        }
-
-        // Collect all the phase elements from the source document.
-        var nameNodes = oldElem.getElementsByTagName('InterventionNameLink');
-        if (nameNodes.length < 2) {
-            Application.Alert("Didn't find multiple name link nodes here.");
-            return;
-        }
-        var typeNodes = oldElem.getElementsByTagName('InterventionType');
-        var typeNode = typeNodes.length ? typeNodes.item(0) : null;
-        var parent = oldElem.parentNode;
-        while (nameNodes.length > 1) {
-            var newElem = ActiveDocument.createElement("Intervention");
-            if (typeNode)
-                newElem.appendChild(cloneFor(ActiveDocument, typeNode));
-            newElem.appendChild(nameNodes.item(0));
-            parent.insertBefore(newElem, oldElem);
-            nameNodes = oldElem.getElementsByTagName('InterventionNameLink');
-        }
-    }
-    splitInterventionBlock();
-  ]]>
-</MACRO>
-
-<MACRO name="Show CTGovProtocol Titles" lang="JScript">
-  <![CDATA[
-    function showCTGovTitles() {
-        var doc = Application.ActiveDocument;
-        var bTitle = getSingleElement(doc, "BriefTitle");
-        var oTitle = getSingleElement(doc, "OfficialTitle");
-        Application.MessageBox("Brief Title: " + getTextContent(bTitle) +
-                               "\nOfficial Title: " + getTextContent(oTitle),
-                               64, "CT.gov Protocol Titles");
-    }
-    showCTGovTitles();
-  ]]>
-</MACRO>
-
-<MACRO name="Extract PDQIndexing Block" lang="JScript">
-  <![CDATA[
-    function grabPdqIndexingBlock() {
-        var doc = Application.ActiveDocument;
-        var protocolDetail = getSingleElement(doc, 'ProtocolDetail');
-        if (!protocolDetail) {
-            Application.Alert("Unable to find ProtocolDetail block");
-            return;
-        }
-        var newElem = cloneFor(doc, protocolDetail);
-        var eligibility = getSingleElement(doc, 'Eligibility');
-        if (eligibility) {
-            var after = getSingleElement(newElem, 'EnteredBy');
-            if (!after) {
-                Application.Alert("Unable to find position for Eligibility");
-                return;
-            }
-            var newElig = cloneFor(doc, eligibility);
-            var gender = getSingleElement(newElig, "Gender");
-            if (gender)
-                newElig.removeChild(gender);
-            newElem.insertBefore(newElig, after);
-        }
-
-        // Remove the elements that don't belong in the CTGovProtocol doc.
-        var studyCats = newElem.getElementsByTagName("StudyCategory");
-        for (var i = 0; i < studyCats.length; ++i) {
-            var studyCat = studyCats.item(i);
-            var studyFocus = getSingleElement(studyCat, "StudyFocus");
-            while (studyFocus) {
-               studyCat.removeChild(studyFocus);
-               studyFocus = getSingleElement(studyCat, "StudyFocus");
-            }
-            var comment = getSingleElement(studyCat, "Comment");
-            while (comment) {
-               studyCat.removeChild(comment);
-               comment = getSingleElement(studyCat, "Comment");
-            }
-            var interventions = studyCat.getElementsByTagName("Intervention");
-            for (var j = 0; j < interventions.length; ++j) {
-                var intervention = interventions.item(j);
-                var child = intervention.firstChild;
-                while (child) {
-                    var nextChild = child.nextSibling;
-                    var n = child.nodeName;
-                    if (!n.match(/^(InterventionType|InterventionNameLink)$/))
-                        intervention.removeChild(child);
-                    child = nextChild;
-                }
-            }
-        }
-        stripAttributes(newElem, { PdqKey: 1 }, true);
-        CdrPdqIndexingClipboard = newElem;
-    }
-    grabPdqIndexingBlock();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert PDQIndexing Block" lang="JScript">
-  <![CDATA[
-    function insertPdqIndexingBlock() {
-        if (!CdrPdqIndexingClipboard) {
-            Application.Alert("PDQ Indexing clipboard empty");
-            return;
-        }
-        var doc = Application.ActiveDocument;
-        var oldBlock = getSingleElement(doc, 'PDQIndexing');
-        if (!oldBlock) {
-            Application.Alert("Unable to find old PDQIndexing block");
-            return;
-        }
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-        var newBlock = cloneFor(doc, CdrPdqIndexingClipboard, 'PDQIndexing');
-        oldBlock.parentNode.replaceChild(newBlock, oldBlock);
-        CdrPdqIndexingClipboard = null;
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    insertPdqIndexingBlock();
-  ]]>
-</MACRO>
-
-<MACRO name="Extract PDQAdminInfo Block" lang="JScript">
-  <![CDATA[
-    function _grab(obj, doc, name) {
-        var nodes = new Array();
-        obj[name] = nodes;
-        var child = doc.documentElement.firstChild;
-        while (child) {
-            if (child.nodeName == name)
-                nodes.push(cloneFor(doc, child));
-            child = child.nextSibling;
-        }
-    }
-    function grabPdqAdminInfoBlock() {
-        var adminInfo = {};
-        var doc = Application.ActiveDocument;
-        _grab(adminInfo, doc, 'ProtocolIDs');
-        _grab(adminInfo, doc, 'FundingInfo');
-        _grab(adminInfo, doc, 'CTGovOwnershipTransferContactLog');
-        _grab(adminInfo, doc, 'CTGovOwnershipTransferInfo');
-        _grab(adminInfo, doc, 'PublishedResults');
-        _grab(adminInfo, doc, 'RelatedPublications');
-        _grab(adminInfo, doc, 'ProtocolSpecialCategory');
-        CdrPdqAdminInfoClipboard = adminInfo;
-    }
-    grabPdqAdminInfoBlock();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert PDQAdminInfo Block" lang="JScript">
-  <![CDATA[
-    function _insert(doc, parent, obj, name, newName) {
-        var elems = obj[name];
-        for (var i = 0; i < elems.length; ++i) {
-            var oldElem = elems[i];
-            var newElem = cloneFor(doc, oldElem, newName);
-            parent.appendChild(newElem);
-        }
-    }
-    function insertPdqAdminInfoBlock() {
-        if (!CdrPdqAdminInfoClipboard) {
-            Application.Alert("PDQ Admin Info clipboard empty");
-            return;
-        }
-        var info = CdrPdqAdminInfoClipboard;
-        var doc = Application.ActiveDocument;
-        if (getSingleElement(doc, 'PDQAdminInfo')) {
-            Application.Alert("PDQAdminInfo block already present.\n" +
-                              "You must first remove it to use this macro.");
-            return;
-        }
-        var pdqIndexing = getSingleElement(doc, 'PDQIndexing');
-        if (!pdqIndexing) {
-            Application.Alert("PDQIndexing block missing.\n" +
-                              "Don't know where to insert new block.");
-            return;
-        }
-        var rulesChecking = ActiveDocument.RulesChecking;
-        ActiveDocument.RulesChecking = false;
-        var newBlock = doc.createElement('PDQAdminInfo');
-        _insert(doc, newBlock, info, 'ProtocolIDs', 'PDQProtocolIDs');
-        _insert(doc, newBlock, info, 'FundingInfo');
-        _insert(doc, newBlock, info, 'CTGovOwnershipTransferContactLog');
-        _insert(doc, newBlock, info, 'CTGovOwnershipTransferInfo');
-        _insert(doc, newBlock, info, 'PublishedResults');
-        _insert(doc, newBlock, info, 'RelatedPublications');
-        _insert(doc, newBlock, info, 'ProtocolSpecialCategory');
-        doc.documentElement.insertBefore(newBlock, pdqIndexing.nextSibling);
-        // oldBlock.parentNode.replaceChild(newBlock, oldBlock);
-        stripAttributes(newBlock, { "cdr:id": 1, PdqKey: 1 }, true);
-        CdrPdqAdminInfoClipboard = null;
-        ActiveDocument.RulesChecking = rulesChecking;
-    }
-    insertPdqAdminInfoBlock();
-  ]]>
-</MACRO>
-
 <MACRO name="Edit Comment" lang="JScript">
   <![CDATA[
     function editComment() {
@@ -9034,88 +6336,6 @@
         rng.Select();
     }
     insertTypeOfChange();
-  ]]>
-</MACRO>
-
-<MACRO name="Find Next Unlinked CTGov Org" lang="JScript">
-  <![CDATA[
-    function findNextUnlinkedCTGovOrg() {
-        var pattern = new RegExp(
-            "^(\/CTGovProtocol\/Sponsors\/LeadSponsor|"
-            + "\/CTGovProtocol\/Sponsors\/Collaborator|"
-            + "\/CTGovProtocol\/Location\/Facility\/Name)$");
-        for (;;) {
-           var start = Selection.Duplicate;
-           Selection.GotoNext(0);
-           if (!start.IsLessThan(Selection.Duplicate)) {
-                Application.Alert("No more unlinked organizations found.");
-                break;
-            }
-            var path = getSelectionPath(Selection);
-            if (path.match(pattern)) {
-                var elem = Selection.ContainerNode;
-                var attr = elem.getAttribute('cdr:ref');
-                if (attr.length != 13 || attr.substring(0, 3) != 'CDR')
-                    break;
-            }
-        }
-    }
-    findNextUnlinkedCTGovOrg();
-  ]]>
-</MACRO>
-
-<MACRO name="Find Next Unlinked CTGov Person" lang="JScript">
-  <![CDATA[
-    function findNextUnlinkedCTGovPerson() {
-        var pattern = new RegExp(
-            "^(\/CTGovProtocol\/Sponsors\/OverallOfficial\/PDQPerson|"
-            + "\/CTGovProtocol\/Location\/Investigator\/PDQPerson)$");
-        for (;;) {
-           var start = Selection.Duplicate;
-           Selection.GotoNext(0);
-           if (!start.IsLessThan(Selection.Duplicate)) {
-                Application.Alert("No more unlinked persons found.");
-                break;
-            }
-            var path = getSelectionPath(Selection);
-            if (path.match(pattern)) {
-                var elem = Selection.ContainerNode;
-                var attr = elem.getAttribute('cdr:ref');
-                if (attr.length != 13 || attr.substring(0, 3) != 'CDR')
-                    break;
-            }
-        }
-    }
-    findNextUnlinkedCTGovPerson();
-  ]]>
-</MACRO>
-
-<MACRO name="Populate LastReviewedStatus Attribute" lang="JScript">
-  <![CDATA[
-    function populateLastReviewedStatus() {
-        var elem = Selection.ContainerNode;
-        var docId = elem.getAttribute('cdr:href');
-        if (!docId) {
-            Application.Alert("Link attribute not found on current element");
-            return;
-        }
-        if (!cdrObj) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var path = '/InScopeProtocol/ProtocolAdminInfo/CurrentProtocolStatus';
-        var status = cdrObj.valuesForPath(docId, path);
-        if (!status) {
-            path = '/CTGovProtocol/OverallStatus';
-            status = cdrObj.valuesForPath(docId, path);
-            if (!status) {
-                Application.Alert("Unable to find status for " + docId);
-                return;
-            }
-        }
-        elem.setAttribute('LastReviewedStatus', status);
-    }
-    populateLastReviewedStatus();
   ]]>
 </MACRO>
 

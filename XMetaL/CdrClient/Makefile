@@ -3,4 +3,4 @@ rebuild:
 	MSBuild.exe CdrClient.vcxproj /t:Rebuild $(PROPERTIES)
 
 clean:
-	rm -rf ipch *.sdf Release *.vcxproj.user
+	rm -rf ipch *.sdf Release *.vcxproj.user CdrClient *.suo
