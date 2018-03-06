@@ -2634,18 +2634,12 @@
     function addTermSetToolbar() {
 
         var buttons = new Array(
-            new CdrCmdItem(null,                        // Label.
-                           "Insert Term Set Members",   // Macro.
-                           "Insert Terms",              // Tooltip.
-                           "Insert Term Set Members",   // Description
-                           "Databases (Custom)", 4, 10, // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "TermSet QC Report",
-                           "QC Report",
-                           "Generate QC Report",
-                           "CDR", 3, 4,
-                           true)
+            new CdrCmdItem(null,                      // Label.
+                           "TermSet QC Report",       // Macro.
+                           "QC Report",               // Tooltip.
+                           "Generate QC Report",      // Description
+                           "CDR", 3, 4,               // Icon set, row, col.
+                           true)                      // Starts new group?
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -5495,83 +5489,6 @@
             Application.Alert("No link found to a viewable object.");
     }
     showLinkedBlob();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Term Set Members"
-       lang="JScript" >
-  <![CDATA[
-    function makeCdrIdString(cdrId) {
-        var padding = "0000000000".substring(0, 10 - cdrId.length);
-        return "CDR" + padding + cdrId;
-    }
-    function insertTermSetMembers() {
-
-        // Get the term IDs from the system clipboard.
-        var pieces = Application.Clipboard.Text.split(':');
-        if (pieces.length != 2) {
-            Application.Alert('Clipboard not ready.');
-            return false;
-        }
-        var generatedFrom = pieces[0];
-        if (isNaN(generatedFrom)) {
-            Application.Alert('Malformed clipboard contents.');
-            return false;
-        }
-        var termIds = pieces[1].split(' ');
-        if (!termIds) {
-            Application.Alert('No term IDs in clipboard.');
-            return false;
-        }
-
-        // Sanity check.
-        for (var i in termIds) {
-            if (isNaN(termIds[i])) {
-                Application.Alert('Clipboard does not contain document IDs.'
-                                  + ': ' + termIds[i]);
-                return false;
-            }
-        }
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentStart();
-        if (!rng.FindInsertLocation("GeneratedFrom")) {
-            Application.Alert("Unable to insert GeneratedFrom element.");
-            return false;
-        }
-        rng.PasteString("<GeneratedFrom cdr:ref='" +
-                        makeCdrIdString(generatedFrom) +
-                        "'/>");
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('TermSetMember', false)) {
-            if (!rng.MoveToElement('TermSetType', false)) {
-                Application.Alert('Unable to find location for insertion.');
-                return false;
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("TermSetMember", true)) {
-            Application.Alert("Unable to insert TermSetMember terms here.");
-            return false;
-        }
-
-        // Insert the new TermSetMember terms.
-        var elemString = "\n";
-        for (var i in termIds) {
-            var termId = termIds[i];
-            var padding = "0000000000".substring(0, 10 - termId.length);
-            var idString = "CDR" + padding + termId;
-            elemString += "<TermSetMember cdr:ref='" + idString + "'/>\n";
-        }
-        rng.PasteString(elemString);
-        rng.Select();
-
-        return true;
-    }
-
-    insertTermSetMembers();
   ]]>
 </MACRO>
 
