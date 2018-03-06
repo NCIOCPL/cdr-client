@@ -53,7 +53,6 @@
 
 
     // Clipboard for CDR links and blocks.
-    var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
     var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
@@ -958,9 +957,7 @@
     Application.AppendMacro("&Edit Element", "Cdr Edit");
     Application.AppendMacro("Linked Fragment Docs Report",
                             "Linked Fragment Docs Report");
-    Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
-    Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
     Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
     if (container && container.nodeType == 1) { // we're in an element?
         if (docType.hasAttribute(container.nodeName, "Public")) {
@@ -3105,22 +3102,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Copy Document Link"
-        key=""
-        lang="JScript"
-        tooltip="Copy Document Link to CDR Clipboard">
-  <![CDATA[
-    function copyDocumentLink() {
-        var docId  = getDocId();
-        if (!docId) {
-            Application.Alert("This is a new document without a document ID.");
-        }
-        CdrDocLinkClipboard = docId;
-    }
-    copyDocumentLink();
-  ]]>
-</MACRO>
-
 <MACRO  name="Cdr Copy Fragment Link"
         key=""
         lang="JScript"
@@ -3176,43 +3157,6 @@
         }
     }
     copyFragmentId();
-  ]]>
-</MACRO>
-
-<MACRO  name="Cdr Paste Document Link"
-        key=""
-        lang="JScript"
-        tooltip="Paste Document Link From CDR Clipboard">
- <![CDATA[
-    function pasteDocumentLink() {
-        if (cdrObj == null) {
-            Application.Alert("You are not logged on to the CDR");
-            return;
-        }
-        if (CdrDocLinkClipboard == "") {
-            Application.Alert("CDR Document Link Clipboard is empty");
-            return;
-        }
-        var container = Selection.ContainerNode;
-        if (!container || container.nodeType != 1) { // Look for element.
-            Application.Alert("Can't find current element.");
-            return;
-        }
-        docType = ActiveDocument.doctype;
-        if (!docType.hasAttribute(container.nodeName, "cdr:ref") &&
-            !docType.hasAttribute(container.nodeName, "cdr:href")) {
-            Application.Alert("Current element cannot accept links.");
-            return;
-        }
-
-        Selection.ReadOnlyContainer = false;
-        gEditingCdrLink = true;
-        cdrObj.pasteDocLink(CdrDocLinkClipboard);
-        gEditingCdrLink = false;
-        Selection.ReadOnlyContainer = true;
-    }
-
-    pasteDocumentLink();
   ]]>
 </MACRO>
 
