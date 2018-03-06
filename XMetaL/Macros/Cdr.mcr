@@ -1559,20 +1559,6 @@
                            "Invoke the web-based CDR Administration menu",
                            "Databases (Custom)", 2, 10,
                            false),
-            new CdrCmdItem(null,
-                           "Jump Before Element",
-                           "Jump Before Element",
-                           "Position cursor in front of current element's" +
-                           " start tag",
-                           "CDR", 6, 3,
-                           true),
-            new CdrCmdItem(null,
-                           "Jump Past Element",
-                           "Jump Past Element",
-                           "Position cursor beyond current element's" +
-                           " start tag",
-                           "CDR", 6, 4,
-                           false),
             /* Bug in XMetaL prevents this from working...
             new CdrCmdItem(null,
                            "Undo Last Edit",
@@ -1782,24 +1768,6 @@
                            "Insert new SummarySection", //Description
                            "General (Custom)", 5, 8,    // Icon set, row, col.
                            false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Next Summary Section",
-                           "Next Section",
-                           "Move to next SummarySection",
-                           "CDR", 4, 4,
-                           true),
-            new CdrCmdItem(null,
-                           "Previous Summary Section",
-                           "Previous Section",
-                           "Move to previous SummarySection",
-                           "CDR", 4, 5,
-                           false),
-            new CdrCmdItem(null,
-                           "Higher Summary Section",
-                           "Higher Section",
-                           "Move to higher SummarySection",
-                           "CDR", 4, 6,
-                           false),
             new CdrCmdItem(null,
                            "Insert CitationLink",
                            "Citation Link",
@@ -4776,61 +4744,6 @@
         catch (e) { }
     }
     newSection();
-  ]]>
-</MACRO>
-
-<MACRO name="Next Summary Section"
-       key ="Ctrl+Alt+N"
-       lang="JScript"
-       id  ="2033">
-  <![CDATA[
-    Selection.MoveToElement("SummarySection");
-  ]]>
-</MACRO>
-
-<MACRO name="Previous Summary Section"
-       lang="JScript"
-       id  ="2034"
-       key ="Ctrl+Alt+P">
-  <![CDATA[
-    Selection.MoveToElement("SummarySection", false);
-  ]]>
-</MACRO>
-
-<MACRO name="Higher Summary Section"
-       lang="JScript"
-       id  ="2035"
-       key ="Ctrl+Alt+H">
-  <![CDATA[
-    function higherSection() {
-        try {
-            if (ActiveDocument) {
-                var rng = ActiveDocument.Range;
-                var foundOne = false;
-                var i = 0; // Safety measure...
-                while (rng && i < 50) {
-                    var node = rng.ContainerNode;
-                    if (!node) {
-                        var msg = "Not inside a nested SummarySection";
-                        Application.Alert(msg);
-                        break;
-                    }
-                    if (node.nodeName == "SummarySection") {
-                        if (foundOne) {
-                            rng.SelectBeforeContainer();
-                            rng.Select();
-                            break;
-                        }
-                        foundOne = true;
-                    }
-                    rng.SelectBeforeContainer();
-                    i++;
-                }
-            }
-        }
-        catch (e) { }
-    }
-    higherSection();
   ]]>
 </MACRO>
 
