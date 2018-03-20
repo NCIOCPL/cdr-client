@@ -61,17 +61,16 @@ $PROCINS
 /*************************************************************************/
 /*                           BLOCK ELEMENTS                              */
 /*************************************************************************/
-
-
 Audience,
 DateLastModified,
+EmbeddedVideo,
 Language,
 MiscellaneousDocument,
 MiscellaneousDocumentTitle,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 MiscellaneousDocumentText,
-PdqKey,
+PdqKey
     { display: block; }
 
 
@@ -95,18 +94,17 @@ PdqKey                            :before { content: "PDQ Key &: "; }
 /*************************************************************************/
 /*                      DOCUMENT, ID, AND META DATA                      */
 /*************************************************************************/
-
-
-MiscellaneousDocumentMetadata,
+EmbeddedVideo,
+MiscellaneousDocumentMetadata
     { border: solid;
-     border-color: black;
-     border-width: thin;
-     margin-top: 1em;
-     margin-bottom: 6pt; }
+      border-color: black;
+      border-width: thin;
+      margin-top: 1em;
+      margin-bottom: 6pt; }
 
 DateLastModified                  :before,
     { font-weight: bold;
-       color: black;  }
+      color: black;  }
 
 MiscellaneousDocumentMetaData,
     { font-size: 12pt; }
@@ -115,12 +113,12 @@ Audience                          :before,
 Language                          :before,
 MiscellaneousDocumentType         :before,
     { font-weight: bold;
-       font-size: 12pt;
-       color: black; }
+      font-size: 12pt;
+      color: black; }
 
 PdqKey                            :before,
     { font-weight: bold;
-       color: purple; }
+      color: purple; }
 
 PdqKey,
     { margin-top: 4pt;  }
@@ -129,17 +127,15 @@ PdqKey,
 /*************************************************************************/
 /*                            DOCUMENT TITLE                             */
 /*************************************************************************/
-
 MiscellaneousDocumentTitle
     { font-size: 20pt;
-       font-weight: bold;
-       margin-top: 12pt; }
+      font-weight: bold;
+      margin-top: 12pt; }
 
 
 /*************************************************************************/
 /*                               FORM DATA                               */
 /*************************************************************************/
-
 Audience,
 Language,
 MiscellaneousDocumentType,
@@ -147,9 +143,10 @@ MiscellaneousDocumentMetadata,
     { background-color: white; }
 
 Audience                          :before,
+EmbeddedVideo,
 Language                          :before,
 MiscellaneousDocumentType         :before,
-MiscellaneousDocumentMetadata,
+MiscellaneousDocumentMetadata
     { background-color: #CCCCFF; }
 
 /* Key element for length = Language                               */
