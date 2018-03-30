@@ -105,6 +105,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+     <Name>EmbeddedVideo</Name>
+     <TagColor>#EE9A4D</TagColor>
+     <PrettyPrintOptions></PrettyPrintOptions>
+     <IndentContent/>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Fax</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -303,6 +311,30 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+     <Name ns="">SpecificMediaCaption</Name>
+     <TagColor>#EE9A4D</TagColor>
+     <PrettyPrintOptions></PrettyPrintOptions>
+     <IndentContent/>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+     <Name ns="">SpecificMediaTitle</Name>
+     <TagColor>#EE9A4D</TagColor>
+     <PrettyPrintOptions></PrettyPrintOptions>
+     <IndentContent/>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
+     <Name ns="">SpecificVideoPresentationTemplate</Name>
+     <TagColor>#EE9A4D</TagColor>
+     <PrettyPrintOptions></PrettyPrintOptions>
+     <IndentContent/>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name>Street</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -371,6 +403,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+     <Name ns="">VideoID</Name>
+     <TagColor>#EE9A4D</TagColor>
+     <PrettyPrintOptions></PrettyPrintOptions>
+     <IndentContent/>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+    </ElementProperties>
+    <ElementProperties>
       <Name>WebSite</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -393,6 +433,23 @@
     <Template>
       <Name>DocTitle</Name>
       <MiniTemplate><![CDATA[<DocTitle><?xm-replace_text {The document title will be constructed automatically} ?></DocTitle>]]></MiniTemplate>
+    </Template>
+    <Template>
+     <Name ns="">EmbeddedVideo</Name>
+     <MiniTemplate><![CDATA[<EmbeddedVideo>
+         <VideoID><?xm-replace_text {
+                   Enter the video ID (required)
+                   }?></VideoID>
+         <SpecificMediaTitle><?xm-replace_text {
+                   Optionally enter the video title
+                   }?></SpecificMediaTitle>
+         <SpecificMediaCaption><?xm-replace_text {
+                   Optionally enter the video caption
+                   }?></SpecificMediaCaption>
+         <SpecificVideoPresentationTemplate><?xm-replace_text {
+                   Optionally enter the video presentation
+                   }?></SpecificVideoPresentationTemplate>
+        </EmbeddedVideo>]]></MiniTemplate>
     </Template>
     <Template>
       <Name>MiscellaneousDocumentType</Name>
