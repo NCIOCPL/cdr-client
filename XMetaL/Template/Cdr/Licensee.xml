@@ -71,9 +71,9 @@
      <ContactName><?xm-replace_text {
      Enter the person's name
      }?></ContactName>
-     <ContactType><?xm-replace_text {
+     <ContactRole><?xm-replace_text {
      Select the contact type
-     }?></ContactType>
+     }?></ContactRole>
    <ContactDetail>
     <PostalAddress AddressType="US">
      <Street><?xm-replace_text {
@@ -111,7 +111,6 @@
     <UserName><?xm-replace_text {
        Enter the organization's user name
        }?></UserName>
-    <Password>NA</Password>
     <AccountBlocked>No</AccountBlocked>
  </FtpInformation>
  <DateLastModified><?xm-replace_text {

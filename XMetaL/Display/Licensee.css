@@ -41,7 +41,7 @@ ContactDetail,
 ContactName,
 ContactPerson,
 ContactPersons,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 DistributionMethods,
@@ -83,7 +83,7 @@ ContactDetail          :before { content: "CONTACT DETAIL &"; }
 ContactName            :before { content: "Name *: "; }
 ContactPerson          :before { content: "CONTACT PERSON & "; }
 ContactPersons         :before { content: "CONTACT PERSONS * +"; }
-ContactType            :before { content: "Type &: "; }
+ContactRole            :before { content: "Role &: "; }
 DateLastModified       :before { content: "Date Last Modified &: "; }
 DistributionMethod     :before { content: "- "; }
 DistributionMethods    :before { content: "DISTRIBUTION METHODS * "; }
@@ -160,7 +160,7 @@ ContactDetail          :before,
 ContactName            :before,
 ContactPerson          :before,
 ContactPersons         :before,
-ContactType            :before,
+ContactRole            :before,
 DateLastModified       :before,
 DistributionMethod     :before,
 DistributionMethods    :before,
@@ -262,9 +262,9 @@ ContactDetail,  ContactPerson,
   ContactName,
     { margin-left: 100pt;
       text-indent: -49pt; }  
-  ContactType,
+  ContactRole,
     { margin-left: 100pt;
-      text-indent: -49pt; }  
+      text-indent: -46pt; }  
 
 /* Technical Contacts Group */
 ApplicationInformation,
@@ -301,7 +301,7 @@ AlternateName,
 Audience,
 Comment,
 ContactName,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 FormerName,
@@ -331,7 +331,7 @@ AlternateName,
 Audience,
 Comment,
 ContactName,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 FormerName,
@@ -357,7 +357,7 @@ ApplicationInformation :before,
 Audience               :before,
 Comment                :before,
 ContactName            :before,
-ContactType            :before,
+ContactRole            :before,
 DateLastModified       :before,
 DistributionMethod     :before,
 LicenseeDepartment     :before,
