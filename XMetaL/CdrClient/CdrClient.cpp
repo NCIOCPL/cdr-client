@@ -717,6 +717,7 @@ bool CdrClient::createCdrSession() {
             extractServerSettings();
             CString uid(dialog->uid);
             CString pwd(dialog->pwd);
+            CString tier(serverSettings->currentGroup);
             sessionId = login(this, cdrServer, uid, pwd);
             if (sessionId.IsEmpty())
                 throw _T("empty session string received from logon server");
@@ -739,6 +740,7 @@ bool CdrClient::createCdrSession() {
             _tputenv((LPCTSTR)(_T("CDR_HOST=") + cdrServer));
             _tputenv((LPCTSTR)(_T("CDR_PORT=443")));
             _tputenv((LPCTSTR)(_T("API_HOST=") + apiServer));
+            _tputenv((LPCTSTR)(_T("CDR_TIER=") + tier));
             _tputenv((LPCTSTR)clientDebugEnv);
             _tputenv((LPCTSTR)serverDebugEnv);
             return true;

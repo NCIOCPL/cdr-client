@@ -67,6 +67,7 @@ CdrSocket::Init::Init()
     const TCHAR* cdrHostEnv = _tgetenv(_T("CDR_HOST"));
     const TCHAR* apiHostEnv = _tgetenv(_T("API_HOST"));
     const TCHAR* sessionEnv = _tgetenv(_T("CDRSession"));
+    const TCHAR* cdrTierEnv = _tgetenv(_T("CDR_TIER"));
     cdrHost = cdrHostEnv ? cdrHostEnv : _T("cdr-dev.cancer.gov");
     // Do this below until the service-based API is gone from all tiers.
     // apiHost = apiHostEnv ? apiHostEnv : cdrHost;
@@ -74,25 +75,33 @@ CdrSocket::Init::Init()
     // Don't do this: it short-circuits needed initialization code.
     // sessionString = sessionEnv ? sessionEnv : _T("");
 
-    CString lowerHostName = cdrHost;
-    tier = "UNKNOWN TIER";
-    lowerHostName.MakeLower();
-    if (lowerHostName == "cdr.cancer.gov")
-        tier = "PROD";
-    else if (lowerHostName == "cdr-dev.cancer.gov")
-        tier = "DEV";
-    else if (lowerHostName == "cdr-qa.cancer.gov")
-        tier = "QA";
-    else if (lowerHostName == "cdr-test.cancer.gov")
-        tier = "STAGE";
-    else if (lowerHostName == "cdr-stage.cancer.gov")
-        tier = "STAGE";
-    else if (lowerHostName == "cdr.test.cancer.gov")
-        tier = "STAGE";
-    else if (lowerHostName == "cdr.stage.cancer.gov")
-        tier = "STAGE";
-    else if (lowerHostName == "cdr.dev.cancer.gov")
-        tier = "DEV";
+    if (cdrTierEnv) {
+        CString tier_buf;
+        tier_buf.Format(_T("env var CDR_TIER=%s"), cdrTierEnv);
+        cdr::trace_log(cdr::cStringToUtf8(tier_buf).c_str());
+        tier = cdrTierEnv;
+    }
+    else {
+        CString lowerHostName = cdrHost;
+        tier = "UNKNOWN TIER";
+        lowerHostName.MakeLower();
+        if (lowerHostName == "cdr.cancer.gov")
+            tier = "PROD";
+        else if (lowerHostName == "cdr-dev.cancer.gov")
+            tier = "DEV";
+        else if (lowerHostName == "cdr-qa.cancer.gov")
+            tier = "QA";
+        else if (lowerHostName == "cdr-test.cancer.gov")
+            tier = "STAGE";
+        else if (lowerHostName == "cdr-stage.cancer.gov")
+            tier = "STAGE";
+        else if (lowerHostName == "cdr.test.cancer.gov")
+            tier = "STAGE";
+        else if (lowerHostName == "cdr.stage.cancer.gov")
+            tier = "STAGE";
+        else if (lowerHostName == "cdr.dev.cancer.gov")
+            tier = "DEV";
+    }
     if (apiHostEnv)
         apiHost = apiHostEnv;
     else {
