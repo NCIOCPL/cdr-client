@@ -81,6 +81,7 @@ PerDoctypeErrorThresholds,
 PerDoctypeErrorThreshold,
 ProcessScript,
 PublishingSystem,
+SpecificationName,
 Subdirectory,
 SubsetActionName,
 SubsetDescription,
@@ -115,10 +116,10 @@ UserSelectDoctype
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-Doctype:before              { content: "Doctype "; }
-MaxErrors:before            { content: "Max Errors "; }
-OptionName:before           { content: "Option "; }
-OptionValue:before          { content: "Option Value "; }
+Doctype             :before { content: "Doctype "; }
+MaxErrors           :before { content: "Max Errors "; }
+OptionName          :before { content: "Option "; }
+OptionValue         :before { content: "Option Value "; }
 ParmInfo            :before { content: "PARM INFO: "; }
 ParmInfoHelp        :before { content: "Help "; }
 ParmInfoName        :before { content: "Name "; }
@@ -127,37 +128,38 @@ ParmInfoPattern     :before { content: "Pattern "; }
 ParmInfoSet         :before { content: "PARAMETER INFO "; }
 ParmInfoValidValues :before { content: "VALID VALUES "; }
 ParmInfoValidValue  :before { content: "Value "; }
-ParmName:before             { content: "Parameter "; }
-ParmValue:before            { content: "Parm Value "; }
+ParmName            :before { content: "Parameter "; }
+ParmValue           :before { content: "Parm Value "; }
 PerDoctypeErrorThreshold:before
                             { content: "Max Errors "; }
 PerDoctypeErrorThresholds:before
                             { content: "MAX ERRORS PER DOCTYPE"; }
-ProcessScript:before        { content: "Proc Script "; }
-PublishingSystem:before     { content: "PUBLISHING SYSTEM "; }
-Subdirectory:before         { content: "Subdirectory "; }
-SubsetActionName:before     { content: "Subset Action "; }
-SubsetDescription:before    { content: "Description "; }
-SubsetFilter:before         { content: "Subset Filter "; }
-SubsetFilterId:before       { content: "Filter ID "; }
-SubsetFilterName:before     { content: "Filter Name "; }
-SubsetFilterParm:before     { content: "Filter Parameter "; }
-SubsetFilters:before        { content: "Subset Filters "; }
-SubsetName:before           { content: "Subset "; }
-SubsetOption:before         { content: "Subset Option "; }
-SubsetOptions:before        { content: "SUBSET OPTIONS "; }
-SubsetParameter:before      { content: "Subset Parameter "; }
-SubsetParameters:before     { content: "SUBSET PARAMETERS "; }
-SubsetSelection:before      { content: "Subset Selection "; }
-SubsetSpecification:before  { content: "SUBSET SPECIFICATION "; }
+ProcessScript       :before { content: "Proc Script "; }
+PublishingSystem    :before { content: "PUBLISHING SYSTEM "; }
+SpecificationName   :before { content: "Spec Name "; }
+Subdirectory        :before { content: "Subdirectory "; }
+SubsetActionName    :before { content: "Subset Action "; }
+SubsetDescription   :before { content: "Description "; }
+SubsetFilter        :before { content: "Subset Filter "; }
+SubsetFilterId      :before { content: "Filter ID "; }
+SubsetFilterName    :before { content: "Filter Name "; }
+SubsetFilterParm    :before { content: "Filter Parameter "; }
+SubsetFilters       :before { content: "Subset Filters "; }
+SubsetName          :before { content: "Subset "; }
+SubsetOption        :before { content: "Subset Option "; }
+SubsetOptions       :before { content: "SUBSET OPTIONS "; }
+SubsetParameter     :before { content: "Subset Parameter "; }
+SubsetParameters    :before { content: "SUBSET PARAMETERS "; }
+SubsetSelection     :before { content: "Subset Selection "; }
+SubsetSpecification :before { content: "SUBSET SPECIFICATION "; }
 SubsetSpecifications:before { content: "SUBSET SPECIFICATIONS "; }
-SubsetSQL:before            { content: "Subset SQL "; }
-SubsetXQL:before            { content: "Subset XQL "; }
-SystemDescription:before    { content: "System Description "; }
-SystemName:before           { content: "System Name "; } *
-SystemSubset:before         { content: "SYSTEM SUBSET  "; }
-UserSelect:before           { content: "User Select "; }
-UserSelectDoctype:before    { content: "Doc Type "; }
+SubsetSQL           :before { content: "Subset SQL "; }
+SubsetXQL           :before { content: "Subset XQL "; }
+SystemDescription   :before { content: "System Description "; }
+SystemName          :before { content: "System Name "; } *
+SystemSubset        :before { content: "SYSTEM SUBSET  "; }
+UserSelect          :before { content: "User Select "; }
+UserSelectDoctype   :before { content: "Doc Type "; }
 
 
 /***************************************************************************/
@@ -202,6 +204,7 @@ ParmValue             :before,
 PerDoctypeErrorThreshold
                       :before,
 ProcessScript         :before,
+SpecificationName     :before,
 SubsetActionName      :before,
 SubsetDescription     :before,
 SubsetFilter          :before,
@@ -244,6 +247,7 @@ ParmInfoValidValues,
 ParmInfoValidValue,
 ParmName,
 ParmValue,
+SpecificationName,
 SubsetActionName,
 ProcessScript,
 UserSelectDoctype,
@@ -273,6 +277,7 @@ ParmInfoValidValue,
 ParmName,
 ParmValue,
 ProcessScript,
+SpecificationName,
 Subdirectory,
 SubsetActionName,
 SubsetDescription,
@@ -306,6 +311,7 @@ ParmValue            :before,
 PerDoctypeErrorThreshold
                      :before,
 ProcessScript        :before,
+SpecificationName    :before,
 Subdirectory         :before,
 SubsetActionName     :before,
 SubsetDescription    :before,
