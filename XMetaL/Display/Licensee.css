@@ -81,7 +81,10 @@ Audience               :before { content: "- "; }
 Comment                :before { content: "Comment &: "; }
 ContactDetail          :before { content: "CONTACT DETAIL &"; }
 ContactName            :before { content: "Name *: "; }
-ContactPerson          :before { content: "CONTACT PERSON & "; }
+ContactPerson          :before { content: "CONTACT PERSON & @"; }
+ContactPerson[Type="P"]:before { content: "CONTACT PERSON & @ (Primary)"; }
+ContactPerson[Type="S"]:before { content: "CONTACT PERSON & @ (Secondary)"; }
+ContactPerson[Type="I"]:before { content: "CONTACT PERSON & @ (Internal)"; }
 ContactPersons         :before { content: "CONTACT PERSONS * +"; }
 ContactRole            :before { content: "Role &: "; }
 DateLastModified       :before { content: "Date Last Modified &: "; }
@@ -101,6 +104,12 @@ AlternateName>Name     :before { content: "Alternate Name & +: "; }
 FormerName>Name        :before { content: "Former Name & +: "; }
 OrganizationType       :before { content: "Org Type &: "; }
 Password               :before { content: "Password &: "; }
+/* Overwriting style from CdrCommon.css for PostalAddress */
+PostalAddress          :before { content: "POSTAL ADDRESS & @"; }
+PostalAddress[AddressType="US"]
+                       :before { content: "POSTAL ADDRESS & @ (US)"; }
+PostalAddress[AddressType="Non-US"]
+                       :before { content: "POSTAL ADDRESS & @ (Non-US)"; }
 ProductionActivation   :before { content: "Prod Activation &: "; }
 ProductionInactivation :before { content: "Prod Inactivation &: "; }
 TestActivation         :before { content: "Test Activation *: "; }
