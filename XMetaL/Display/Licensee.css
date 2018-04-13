@@ -85,6 +85,7 @@ ContactPerson          :before { content: "CONTACT PERSON & @"; }
 ContactPerson[Type="P"]:before { content: "CONTACT PERSON & @ (Primary)"; }
 ContactPerson[Type="S"]:before { content: "CONTACT PERSON & @ (Secondary)"; }
 ContactPerson[Type="I"]:before { content: "CONTACT PERSON & @ (Internal)"; }
+ContactPerson[Type="D"]:before { content: "CONTACT PERSON & @ (Deleted)"; }
 ContactPersons         :before { content: "CONTACT PERSONS * +"; }
 ContactRole            :before { content: "Role &: "; }
 DateLastModified       :before { content: "Date Last Modified &: "; }
