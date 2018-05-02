@@ -53,7 +53,6 @@
 
 
     // Clipboard for CDR links and blocks.
-    var CdrDocLinkClipboard = "";
     var CdrFragLinkClipboard = "";
     var CdrFragIdClipboard = "";
     var CdrOrgAddressClipboard = null;
@@ -958,9 +957,7 @@
     Application.AppendMacro("&Edit Element", "Cdr Edit");
     Application.AppendMacro("Linked Fragment Docs Report",
                             "Linked Fragment Docs Report");
-    Application.AppendMacro("Copy Document Link", "Cdr Copy Document Link");
     Application.AppendMacro("Copy Fragment Link", "Cdr Copy Fragment Link");
-    Application.AppendMacro("Paste Document Link", "Cdr Paste Document Link");
     Application.AppendMacro("Paste Fragment Link", "Cdr Paste Fragment Link");
     if (container && container.nodeType == 1) { // we're in an element?
         if (docType.hasAttribute(container.nodeName, "Public")) {
@@ -1559,20 +1556,6 @@
                            "Invoke the web-based CDR Administration menu",
                            "Databases (Custom)", 2, 10,
                            false),
-            new CdrCmdItem(null,
-                           "Jump Before Element",
-                           "Jump Before Element",
-                           "Position cursor in front of current element's" +
-                           " start tag",
-                           "CDR", 6, 3,
-                           true),
-            new CdrCmdItem(null,
-                           "Jump Past Element",
-                           "Jump Past Element",
-                           "Position cursor beyond current element's" +
-                           " start tag",
-                           "CDR", 6, 4,
-                           false),
             /* Bug in XMetaL prevents this from working...
             new CdrCmdItem(null,
                            "Undo Last Edit",
@@ -1782,24 +1765,6 @@
                            "Insert new SummarySection", //Description
                            "General (Custom)", 5, 8,    // Icon set, row, col.
                            false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Next Summary Section",
-                           "Next Section",
-                           "Move to next SummarySection",
-                           "CDR", 4, 4,
-                           true),
-            new CdrCmdItem(null,
-                           "Previous Summary Section",
-                           "Previous Section",
-                           "Move to previous SummarySection",
-                           "CDR", 4, 5,
-                           false),
-            new CdrCmdItem(null,
-                           "Higher Summary Section",
-                           "Higher Section",
-                           "Move to higher SummarySection",
-                           "CDR", 4, 6,
-                           false),
             new CdrCmdItem(null,
                            "Insert CitationLink",
                            "Citation Link",
@@ -2634,18 +2599,12 @@
     function addTermSetToolbar() {
 
         var buttons = new Array(
-            new CdrCmdItem(null,                        // Label.
-                           "Insert Term Set Members",   // Macro.
-                           "Insert Terms",              // Tooltip.
-                           "Insert Term Set Members",   // Description
-                           "Databases (Custom)", 4, 10, // Icon set, row, col.
-                           false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "TermSet QC Report",
-                           "QC Report",
-                           "Generate QC Report",
-                           "CDR", 3, 4,
-                           true)
+            new CdrCmdItem(null,                      // Label.
+                           "TermSet QC Report",       // Macro.
+                           "QC Report",               // Tooltip.
+                           "Generate QC Report",      // Description
+                           "CDR", 3, 4,               // Icon set, row, col.
+                           true)                      // Starts new group?
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -3143,22 +3102,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Cdr Copy Document Link"
-        key=""
-        lang="JScript"
-        tooltip="Copy Document Link to CDR Clipboard">
-  <![CDATA[
-    function copyDocumentLink() {
-        var docId  = getDocId();
-        if (!docId) {
-            Application.Alert("This is a new document without a document ID.");
-        }
-        CdrDocLinkClipboard = docId;
-    }
-    copyDocumentLink();
-  ]]>
-</MACRO>
-
 <MACRO  name="Cdr Copy Fragment Link"
         key=""
         lang="JScript"
@@ -3214,43 +3157,6 @@
         }
     }
     copyFragmentId();
-  ]]>
-</MACRO>
-
-<MACRO  name="Cdr Paste Document Link"
-        key=""
-        lang="JScript"
-        tooltip="Paste Document Link From CDR Clipboard">
- <![CDATA[
-    function pasteDocumentLink() {
-        if (cdrObj == null) {
-            Application.Alert("You are not logged on to the CDR");
-            return;
-        }
-        if (CdrDocLinkClipboard == "") {
-            Application.Alert("CDR Document Link Clipboard is empty");
-            return;
-        }
-        var container = Selection.ContainerNode;
-        if (!container || container.nodeType != 1) { // Look for element.
-            Application.Alert("Can't find current element.");
-            return;
-        }
-        docType = ActiveDocument.doctype;
-        if (!docType.hasAttribute(container.nodeName, "cdr:ref") &&
-            !docType.hasAttribute(container.nodeName, "cdr:href")) {
-            Application.Alert("Current element cannot accept links.");
-            return;
-        }
-
-        Selection.ReadOnlyContainer = false;
-        gEditingCdrLink = true;
-        cdrObj.pasteDocLink(CdrDocLinkClipboard);
-        gEditingCdrLink = false;
-        Selection.ReadOnlyContainer = true;
-    }
-
-    pasteDocumentLink();
   ]]>
 </MACRO>
 
@@ -4785,61 +4691,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Next Summary Section"
-       key ="Ctrl+Alt+N"
-       lang="JScript"
-       id  ="2033">
-  <![CDATA[
-    Selection.MoveToElement("SummarySection");
-  ]]>
-</MACRO>
-
-<MACRO name="Previous Summary Section"
-       lang="JScript"
-       id  ="2034"
-       key ="Ctrl+Alt+P">
-  <![CDATA[
-    Selection.MoveToElement("SummarySection", false);
-  ]]>
-</MACRO>
-
-<MACRO name="Higher Summary Section"
-       lang="JScript"
-       id  ="2035"
-       key ="Ctrl+Alt+H">
-  <![CDATA[
-    function higherSection() {
-        try {
-            if (ActiveDocument) {
-                var rng = ActiveDocument.Range;
-                var foundOne = false;
-                var i = 0; // Safety measure...
-                while (rng && i < 50) {
-                    var node = rng.ContainerNode;
-                    if (!node) {
-                        var msg = "Not inside a nested SummarySection";
-                        Application.Alert(msg);
-                        break;
-                    }
-                    if (node.nodeName == "SummarySection") {
-                        if (foundOne) {
-                            rng.SelectBeforeContainer();
-                            rng.Select();
-                            break;
-                        }
-                        foundOne = true;
-                    }
-                    rng.SelectBeforeContainer();
-                    i++;
-                }
-            }
-        }
-        catch (e) { }
-    }
-    higherSection();
-  ]]>
-</MACRO>
-
 <MACRO name="Bold Underline Report"
        lang="JScript">
   <![CDATA[
@@ -5495,83 +5346,6 @@
             Application.Alert("No link found to a viewable object.");
     }
     showLinkedBlob();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert Term Set Members"
-       lang="JScript" >
-  <![CDATA[
-    function makeCdrIdString(cdrId) {
-        var padding = "0000000000".substring(0, 10 - cdrId.length);
-        return "CDR" + padding + cdrId;
-    }
-    function insertTermSetMembers() {
-
-        // Get the term IDs from the system clipboard.
-        var pieces = Application.Clipboard.Text.split(':');
-        if (pieces.length != 2) {
-            Application.Alert('Clipboard not ready.');
-            return false;
-        }
-        var generatedFrom = pieces[0];
-        if (isNaN(generatedFrom)) {
-            Application.Alert('Malformed clipboard contents.');
-            return false;
-        }
-        var termIds = pieces[1].split(' ');
-        if (!termIds) {
-            Application.Alert('No term IDs in clipboard.');
-            return false;
-        }
-
-        // Sanity check.
-        for (var i in termIds) {
-            if (isNaN(termIds[i])) {
-                Application.Alert('Clipboard does not contain document IDs.'
-                                  + ': ' + termIds[i]);
-                return false;
-            }
-        }
-
-        // Move to the desired location.
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentStart();
-        if (!rng.FindInsertLocation("GeneratedFrom")) {
-            Application.Alert("Unable to insert GeneratedFrom element.");
-            return false;
-        }
-        rng.PasteString("<GeneratedFrom cdr:ref='" +
-                        makeCdrIdString(generatedFrom) +
-                        "'/>");
-        rng.MoveToDocumentEnd();
-        if (!rng.MoveToElement('TermSetMember', false)) {
-            if (!rng.MoveToElement('TermSetType', false)) {
-                Application.Alert('Unable to find location for insertion.');
-                return false;
-            }
-        }
-        rng.SelectElement();
-        rng.Collapse(0);
-        if (!rng.FindInsertLocation("TermSetMember", true)) {
-            Application.Alert("Unable to insert TermSetMember terms here.");
-            return false;
-        }
-
-        // Insert the new TermSetMember terms.
-        var elemString = "\n";
-        for (var i in termIds) {
-            var termId = termIds[i];
-            var padding = "0000000000".substring(0, 10 - termId.length);
-            var idString = "CDR" + padding + termId;
-            elemString += "<TermSetMember cdr:ref='" + idString + "'/>\n";
-        }
-        rng.PasteString(elemString);
-        rng.Select();
-
-        return true;
-    }
-
-    insertTermSetMembers();
   ]]>
 </MACRO>
 

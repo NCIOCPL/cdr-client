@@ -41,7 +41,7 @@ ContactDetail,
 ContactName,
 ContactPerson,
 ContactPersons,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 DistributionMethods,
@@ -81,9 +81,13 @@ Audience               :before { content: "- "; }
 Comment                :before { content: "Comment &: "; }
 ContactDetail          :before { content: "CONTACT DETAIL &"; }
 ContactName            :before { content: "Name *: "; }
-ContactPerson          :before { content: "CONTACT PERSON & "; }
+ContactPerson          :before { content: "CONTACT PERSON & @"; }
+ContactPerson[Type="P"]:before { content: "CONTACT PERSON & @ (Primary)"; }
+ContactPerson[Type="S"]:before { content: "CONTACT PERSON & @ (Secondary)"; }
+ContactPerson[Type="I"]:before { content: "CONTACT PERSON & @ (Internal)"; }
+ContactPerson[Type="D"]:before { content: "CONTACT PERSON & @ (Deleted)"; }
 ContactPersons         :before { content: "CONTACT PERSONS * +"; }
-ContactType            :before { content: "Type &: "; }
+ContactRole            :before { content: "Role &: "; }
 DateLastModified       :before { content: "Date Last Modified &: "; }
 DistributionMethod     :before { content: "- "; }
 DistributionMethods    :before { content: "DISTRIBUTION METHODS * "; }
@@ -101,6 +105,12 @@ AlternateName>Name     :before { content: "Alternate Name & +: "; }
 FormerName>Name        :before { content: "Former Name & +: "; }
 OrganizationType       :before { content: "Org Type &: "; }
 Password               :before { content: "Password &: "; }
+/* Overwriting style from CdrCommon.css for PostalAddress */
+PostalAddress          :before { content: "POSTAL ADDRESS & @"; }
+PostalAddress[AddressType="US"]
+                       :before { content: "POSTAL ADDRESS & @ (US)"; }
+PostalAddress[AddressType="Non-US"]
+                       :before { content: "POSTAL ADDRESS & @ (Non-US)"; }
 ProductionActivation   :before { content: "Prod Activation &: "; }
 ProductionInactivation :before { content: "Prod Inactivation &: "; }
 TestActivation         :before { content: "Test Activation *: "; }
@@ -160,7 +170,7 @@ ContactDetail          :before,
 ContactName            :before,
 ContactPerson          :before,
 ContactPersons         :before,
-ContactType            :before,
+ContactRole            :before,
 DateLastModified       :before,
 DistributionMethod     :before,
 DistributionMethods    :before,
@@ -262,9 +272,9 @@ ContactDetail,  ContactPerson,
   ContactName,
     { margin-left: 100pt;
       text-indent: -49pt; }  
-  ContactType,
+  ContactRole,
     { margin-left: 100pt;
-      text-indent: -49pt; }  
+      text-indent: -46pt; }  
 
 /* Technical Contacts Group */
 ApplicationInformation,
@@ -301,7 +311,7 @@ AlternateName,
 Audience,
 Comment,
 ContactName,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 FormerName,
@@ -331,7 +341,7 @@ AlternateName,
 Audience,
 Comment,
 ContactName,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 FormerName,
@@ -357,7 +367,7 @@ ApplicationInformation :before,
 Audience               :before,
 Comment                :before,
 ContactName            :before,
-ContactType            :before,
+ContactRole            :before,
 DateLastModified       :before,
 DistributionMethod     :before,
 LicenseeDepartment     :before,

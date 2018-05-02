@@ -52,7 +52,7 @@ ContactDetail,
 ContactName,
 ContactPerson,
 ContactPersons,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 DistributionMethods,
@@ -95,7 +95,7 @@ ContactDetail          :before { content: "CONTACT DETAIL "; }
 ContactName            :before { content: "Name "; }
 ContactPerson          :before { content: "CONTACT PERSON "; }
 ContactPersons         :before { content: "CONTACT PERSONS "; }
-ContactType            :before { content: "Type "; }
+ContactRole            :before { content: "Role "; }
 DateLastModified       :before { content: "Date Last Modified "; }
 DistributionMethod     :before { content: "Distribution Method "; }
 DistributionMethods    :before { content: "DISTRIBUTION METHODS "; }
@@ -167,7 +167,7 @@ ContactDetail          :before,
 ContactName            :before,
 ContactPerson          :before,
 ContactPersons         :before,
-ContactType            :before,
+ContactRole            :before,
 DateLastModified       :before,
 DistributionMethod     :before,
 DistributionMethods    :before,
@@ -211,7 +211,7 @@ Audience,
 Audiences,
 Comment,
 ContactDetail>*,
-ContactType,
+ContactRole,
 DateLastModified,
 DistributionMethod,
 DistributionMethods,
@@ -244,7 +244,7 @@ Audience             :before,
 Audiences            :before,
 Comment              :before,
 ContactDetail>*      :before,
-ContactType          :before,
+ContactRole          :before,
 DateLastModified     :before,
 DistributionMethod   :before,
 DistributionMethods  :before,

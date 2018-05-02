@@ -1,5 +1,5 @@
 /*************************************************************************/
-/* 	PublishingSystem.css                                             */
+/*      PublishingSystem.css                                             */
 /*                                                                       */
 /*      v. 1.2                                                           */
 /*      11/12/02 by ebator                                               */
@@ -15,54 +15,56 @@
 /*      Imports CdrCommonSchema.css for CdrDocCtl information            */
 /*                                                                       */
 /*************************************************************************/
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema.css";
 
-
-
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-
-@import "CdrCommonSchema.css"; 
-
-
-$DOCUMENT 
-
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
        margin-left: 5px;
        color:black;         }
 
-$COMMENT 
-
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
+$PROCINS
      { color: blue;
        background-color: white; }
 
 PublishingSystem,
-
      { background-color: #CCCCFF; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
-
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 CdrDocCtl,
 DocId,
 DocTitle,
+Doctype,
+MaxErrors,
 OptionName,
 OptionValue,
+ParmInfo,
+ParmInfoHelp,
+ParmInfoName,
+ParmInfoMethod,
+ParmInfoPattern,
+ParmInfoSet,
+ParmInfoValidValues,
+ParmInfoValidValue,
 ParmName,
 ParmValue,
+PerDoctypeErrorThresholds,
+PerDoctypeErrorThreshold,
 ProcessScript,
 PublishingSystem,
+SpecificationName,
 Subdirectory,
 SubsetActionName,
 SubsetDescription,
@@ -80,201 +82,277 @@ SubsetSelection,
 SubsetSpecification,
 SubsetSpecifications,
 SubsetSQL,
-SubsetXQL, 
+SubsetXQL,
 SystemDescription,
 SystemName,
-SystemSubset, 
+SystemSubset,
 UserSelect,
-UserSelectDoctype,
-
-	{ display: block; }
-
+UserSelectDoctype
+   { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+Doctype             :before { content: "Doctype *: "; }
+MaxErrors           :before { content: "Max Errors *: "; }
+OptionName          :before { content: "Option *: "; }
+OptionValue         :before { content: "Option Value *: "; }
+ParmInfo            :before { content: "PARM INFO: "; }
+ParmInfoHelp        :before { content: "Help: "; }
+ParmInfoName        :before { content: "Name: "; }
+ParmInfoMethod      :before { content: "Method: "; }
+ParmInfoPattern     :before { content: "Pattern: "; }
+ParmInfoSet         :before { content: "PARAMETER INFO: "; }
+ParmInfoValidValues :before { content: "VALID VALUES: "; }
+ParmInfoValidValue  :before { content: "Value: "; }
+ParmName            :before { content: "Parameter *: "; }
+ParmValue           :before { content: "Parm Value *: "; }
+PerDoctypeErrorThreshold:before
+                            { content: "Max Errors * +:"; }
+PerDoctypeErrorThresholds:before
+                            { content: "MAX ERRORS PER DOCTYPE &"; }
+ProcessScript       :before { content: "Proc Script * +: "; }
+SpecificationName   :before { content: "Spec Name *: "; }
+Subdirectory        :before { content: "Subdirectory &:"; }
+SubsetActionName    :before { content: "Subset Action &: "; }
+SubsetDescription   :before { content: "Description *: "; }
+SubsetFilter        :before { content: "Subset Filter * +: "; }
+SubsetFilterId      :before { content: "Filter ID *: "; }
+SubsetFilterName    :before { content: "Filter Name *: "; }
+SubsetFilterParm    :before { content: "Filter Parameter & +: "; }
+SubsetFilters       :before { content: "Subset Filters * + "; }
+SubsetName          :before { content: "Subset *: "; }
+SubsetOption        :before { content: "Subset Option * +: "; }
+SubsetOptions       :before { content: "SUBSET OPTIONS & "; }
+SubsetParameter     :before { content: "Subset Parameter * +: "; }
+SubsetParameters    :before { content: "SUBSET PARAMETERS & "; }
+SubsetSelection     :before { content: "Subset Selection *: "; }
+SubsetSpecification :before { content: "SUBSET SPECIFICATION * +: "; }
+SubsetSpecifications:before { content: "SUBSET SPECIFICATIONS * + "; }
+SubsetSQL           :before { content: "Subset SQL & +: "; }
+SubsetXQL           :before { content: "Subset XQL & +: "; }
+SystemDescription   :before { content: "System Description *: "; }
+SystemName          :before { content: "System Name *: "; } *
+SystemSubset        :before { content: "SYSTEM SUBSET & +  "; }
+UserSelect          :before { content: "User Select & @: "; }
+UserSelectDoctype   :before { content: "Doc Type & +: "; }
 
-OptionName:before			{ content: "Option *: "; }
-OptionValue:before			{ content: "Option Value *: "; }
-ParmName:before				{ content: "Parameter *: "; }
-ParmValue:before			{ content: "Parm Value *: "; }
-ProcessScript:before			{ content: "Proc Script * +: "; }
-Subdirectory:before			{ content: "Subdirectory &:"; }
-SubsetActionName:before			{ content: "Subset Action &: "; }
-SubsetDescription:before		{ content: "Description *: "; }
-SubsetFilter:before			{ content: "Subset Filter * +: "; }
-SubsetFilterId:before			{ content: "Filter ID *: "; }
-SubsetFilterName:before			{ content: "Filter Name *: "; }
-SubsetFilterParm:before			{ content: "Filter Parameter & +: "; }
-SubsetFilters:before			{ content: "Subset Filters * + "; }
-SubsetName:before			{ content: "Subset *: "; }
-SubsetOption:before			{ content: "Subset Option * +: "; }
-SubsetOptions:before			{ content: "SUBSET OPTIONS & "; }
-SubsetParameter:before			{ content: "Subset Parameter * +: "; }
-SubsetParameters:before			{ content: "SUBSET PARAMETERS & "; }
-SubsetSelection:before			{ content: "Subset Selection *: "; }
-SubsetSpecification:before		{ content: "SUBSET SPECIFICATION * +: "; }
-SubsetSpecifications:before		{ content: "SUBSET SPECIFICATIONS * + "; }
-SubsetSQL:before			{ content: "Subset SQL & +: "; }
-SubsetXQL:before			{ content: "Subset XQL & +: "; } 
-SystemDescription:before		{ content: "System Description *: "; }
-SystemName:before			{ content: "System Name *: "; } *
-SystemSubset:before			{ content: "SYSTEM SUBSET & +  "; }
-UserSelect:before			{ content: "User Select & @: "; }
-UserSelectDoctype:before		{ content: "Doc Type & +: "; }
 
-
-
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
-
-SystemSubset,
-
-   { border: solid; 
+ParmInfoSet,
+SystemSubset
+   { border: solid;
      border-color: black;
      border-width: thin;
      margin-top: 1em;
      margin-bottom: 6pt; }
 
+ParmInfo,
 SystemOptions,
-SystemParameters,
+SystemParameters
+   { margin-top: .5em;
+     margin-bottom: .5em;   }
 
-	{  margin-top: .5em;  
-	   margin-bottom: .5em;   }
-
+PerDoctypeErrorThresholds,
 Subdirectory,
 SubsetFilters,
 SubsetOptions,
 SubsetParameters,
 SubsetSpecifications,
-SystemName,
+SystemName
+   { margin-top: 1em;  }
 
-	{ margin-top: 1em;  }
-
-SubsetSpecification,
-
-	{ margin-top: .5em; }
+SubsetSpecification
+   { margin-top: .5em; }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         TAG PROPERTIES FOR HEADINGS                     */
 /***************************************************************************/
-
-Subdirectory:before,
-SubsetFilters:before,
-SubsetOptions:before,
-SubsetParameters:before,
-SubsetSpecifications:before,
-
+ParmInfo              :before,
+ParmInfoSet           :before,
+ParmInfoValidValues   :before,
+PerDoctypeErrorThresholds
+                      :before,
+Subdirectory          :before,
+SubsetFilters         :before,
+SubsetOptions         :before,
+SubsetParameters      :before,
+SubsetSpecifications  :before,
    {  font-weight: bold;
       color: black;  }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 
 
-OptionName:before,
-OptionValue:before,
-ParmName:before,
-ParmValue:before,
-ProcessScript:before,
-SubsetActionName:before,
-SubsetDescription:before,
-SubsetFilter:before,
-SubsetFilterId:before,
-SubsetFilterName:before,
-SubsetFilterParm:before,
-SubsetName:before,
-SubsetOption:before,
-SubsetParameter:before,
-SubsetSelection:before,
-SubsetSpecification:before,
-SubsetSQL:before,
-SubsetXQL:before, 
-SystemDescription:before,
-SystemName:before,
-SystemSubset:before,
-UserSelect:before,
-UserSelectDoctype:before,
-
+Doctype               :before,
+MaxErrors             :before,
+OptionName            :before,
+OptionValue           :before,
+ParmInfoHelp          :before,
+ParmInfoName          :before,
+ParmInfoMethod        :before,
+ParmInfoPattern       :before,
+ParmInfoValidValue    :before,
+ParmName              :before,
+ParmValue             :before,
+PerDoctypeErrorThreshold
+                      :before,
+ProcessScript         :before,
+SpecificationName     :before,
+SubsetActionName      :before,
+SubsetDescription     :before,
+SubsetFilter          :before,
+SubsetFilterId        :before,
+SubsetFilterName      :before,
+SubsetFilterParm      :before,
+SubsetName            :before,
+SubsetOption          :before,
+SubsetParameter       :before,
+SubsetSelection       :before,
+SubsetSpecification   :before,
+SubsetSQL             :before,
+SubsetXQL             :before,
+SystemDescription     :before,
+SystemName            :before,
+SystemSubset          :before,
+UserSelect            :before,
+UserSelectDoctype     :before,
    {  font-weight: bold;
       color: black;  }
 
 
-
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
-
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 
+/* Key element for length = SystemDescription                  */
 
-/* Key element for length = SystemDescription				   */
+SystemName,
+   { margin-left: 130pt;
+     text-indent: -94pt; }
+SystemDescription,
+   { margin-left: 130pt;
+     text-indent: -127pt; }
 
-SystemName,				{ margin-left: 130pt; 
-					  text-indent: -94pt; }
-SystemDescription,			{ margin-left: 130pt; 
-					  text-indent: -127pt; }
+/* Key element for length = SubsetDescription                  */
 
-/* Key element for length = SubsetDescription				   */
+SubsetName,
+   { margin-left: 100pt;
+     text-indent: -55.5pt; }
+SubsetDescription,
+   { margin-left: 100pt;
+     text-indent: -81pt; }
 
-SubsetName,				{ margin-left: 100pt; 
-					  text-indent: -55.5pt; }
-SubsetDescription,			{ margin-left: 100pt; 
-					  text-indent: -81pt; }
+ParmInfo
+   { margin-left:  20pt; }
 
-ParmName,				{ margin-left: 100pt; 
-					  text-indent: -73.5pt; }
-ParmValue,				{ margin-left: 100pt; 
-					  text-indent: -80pt; }
+ParmInfoHelp
+   { margin-left:  80pt;
+     text-indent: -34.5pt; }
+ParmInfoName
+   { margin-left:  80pt;
+     text-indent: -42pt; }
+ParmInfoMethod
+   { margin-left:  80pt;
+     text-indent: -51pt; }
+ParmInfoPattern
+   { margin-left:  80pt;
+     text-indent: -49.5pt; }
 
-SubsetActionName,			{ margin-left: 100pt; 
-					  text-indent: -100pt; }
-ProcessScript,				{ margin-left: 100pt; 
-					  text-indent: -88.5pt; }
+ParmInfoValidValues
+   { margin-left:  100pt;
+     text-indent:  -70pt; }
+ParmInfoValidValue
+   { margin-left: -20pt;
+     text-indent: -40.5pt; }
 
-UserSelectDoctype,			{ margin-left: 100pt; 
-					  text-indent: -84pt; }
+ParmName
+   { margin-left: 100pt;
+     text-indent: -73.5pt; }
+ParmValue
+   { margin-left: 100pt;
+     text-indent: -80pt; }
 
-SubsetSQL,				{ margin-left: 100pt; 
-					  text-indent: -97.5pt; }
+SubsetActionName,
+   { margin-left: 100pt;
+     text-indent: -100pt; }
+ProcessScript,
+   { margin-left: 100pt;
+     text-indent: -88.5pt; }
 
-SubsetXQL,				{ margin-left: 100pt; 
-					  text-indent: -97.5pt; }
+SpecificationName,
+   { margin-left: 100pt;
+     text-indent: -79pt; }
 
-SubsetFilterId,				{ margin-left: 100pt; 
-					  text-indent: -58.5pt; }
+UserSelectDoctype,
+   { margin-left: 100pt;
+     text-indent: -84pt; }
 
-SubsetFilterName,			{ margin-left: 100pt;
-					  text-indent: -79.5pt; }
+SubsetSQL,
+   { margin-left: 100pt
+     text-indent: -97.5pt; }
 
-Subdirectory,				{ margin-left: 100pt;
-					  text-indent: -91pt; }
+SubsetXQL,
+   { margin-left: 100pt;
+     text-indent: -97.5pt; }
 
-OptionName,				{ margin-left: 100pt; 
-					  text-indent: -53.5pt; }
+SubsetFilterId,
+   { margin-left: 100pt;
+     text-indent: -58.5pt; }
 
-OptionValue,				{ margin-left: 100pt; 
-					  text-indent: -88.5pt; }
+SubsetFilterName,
+   { margin-left: 100pt;
+     text-indent: -79.5pt; }
 
-
+Subdirectory,
+   { margin-left: 100pt;
+     text-indent: -91pt; }
 
 OptionName,
+   { margin-left: 100pt;
+     text-indent: -53.5pt; }
+
 OptionValue,
+   { margin-left: 100pt;
+     text-indent: -88.5pt; }
+
+Doctype,
+   { margin-left: 100pt;
+     text-indent: -64pt; }
+
+MaxErrors,
+   { margin-left: 100pt;
+     text-indent: -78pt; }
+
+
+
+Doctype,
+MaxErrors,
+OptionName,
+OptionValue,
+ParmInfoHelp,
+ParmInfoName,
+ParmInfoMethod,
+ParmInfoPattern,
+ParmInfoValidValue,
 ParmName,
 ParmValue,
+PerDoctypeErrorThreshold,
 ProcessScript,
+SpecificationName,
 Subdirectory,
 SubsetActionName,
 SubsetDescription,
@@ -288,19 +366,26 @@ SubsetParameter,
 SubsetSelection,
 SubsetSpecification,
 SubsetSQL,
-SubsetXQL, 
+SubsetXQL,
 SystemDescription,
 SystemName,
 SystemSubset,
 UserSelect:,
-UserSelectDoctype,
+UserSelectDoctype
+   { margin-bottom: 4pt; }
 
-	{ margin-bottom: 4pt; }
 
-
+Doctype,
+MaxErrors,
 FilterID,
 OptionName,
+ParmInfoHelp,
+ParmInfoName,
+ParmInfoMethod,
+ParmInfoPattern,
+ParmInfoValidValue,
 ParmName,
+PerDoctypeErrorThreshold,
 SubsetFilter,
 SubsetFilterParm,
 SubsetName,
@@ -309,20 +394,25 @@ SubsetParameter,
 SubsetSelection,
 SubsetSQL,
 UserSelect,
-UserSelectDoctype,
+UserSelectDoctype
+   { margin-top: 4pt; }
 
-	{ margin-top: 4pt; }
-
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
-
-
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
+Doctype,
+MaxErrors,
 OptionName,
 OptionValue,
+ParmInfoHelp,
+ParmInfoName,
+ParmInfoMethod,
+ParmInfoPattern,
+ParmInfoValidValue,
 ParmName,
 ParmValue,
 ProcessScript,
+SpecificationName,
 Subdirectory,
 SubsetActionName,
 SubsetDescription,
@@ -330,37 +420,49 @@ SubsetFilterId,
 SubsetFilterName,
 SubsetName,
 SubsetSQL,
-SubsetXQL, 
+SubsetXQL,
 SystemDescription,
 SystemName,
 UserSelect:,
-UserSelectDoctype,
+UserSelectDoctype
+   { background-color: white; }
 
-	{ background-color: white; }
 
-OptionName:before,
-OptionValue:before,
-ParmName:before,
-ParmValue:before,
-ProcessScript:before,
-Subdirectory:before,
-SubsetActionName:before,
-SubsetDescription:before,
-SubsetFilter:before,
-SubsetFilterId:before,
-SubsetFilterName:before,
-SubsetFilterParm:before,
-SubsetName:before,
-SubsetOption:before,
-SubsetParameter:before,
-SubsetSelection:before,
-SubsetSpecification:before,
-SubsetSQL:before,
-SubsetXQL:before, 
-SystemDescription:before,
-SystemName:before,
-SystemSubset:before,
-UserSelect:before,
-UserSelectDoctype:before,
-
-	{ background-color: #CCCCFF; }
+Doctype              :before,
+MaxErrors            :before,
+OptionName           :before,
+OptionValue          :before,
+ParmInfo             :before,
+ParmInfoHelp         :before,
+ParmInfoName         :before,
+ParmInfoMethod       :before,
+ParmInfoPattern      :before,
+ParmInfoSet          :before,
+ParmInfoValidValues  :before,
+ParmInfoValidValue   :before,
+ParmName             :before,
+ParmValue            :before,
+PerDoctypeErrorThreshold
+                     :before,
+ProcessScript        :before,
+SpecificationName    :before,
+Subdirectory         :before,
+SubsetActionName     :before,
+SubsetDescription    :before,
+SubsetFilter         :before,
+SubsetFilterId       :before,
+SubsetFilterName     :before,
+SubsetFilterParm     :before,
+SubsetName           :before,
+SubsetOption         :before,
+SubsetParameter      :before,
+SubsetSelection      :before,
+SubsetSpecification  :before,
+SubsetSQL            :before,
+SubsetXQL            :before,
+SystemDescription    :before,
+SystemName           :before,
+SystemSubset         :before,
+UserSelect           :before,
+UserSelectDoctype    :before
+   { background-color: #CCCCFF; }

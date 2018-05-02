@@ -594,7 +594,7 @@ void usage() {
  * the CDR account mapping table, the HTTP status code returned
  * will be 403 (forbidden), and we'll throw our own exception here.
  */
-static CString login(CString host, CString uid, CString pwd) {
+static CString login(CdrClient* cli, CString host, CString uid, CString pwd) {
     CString response;
     CInternetSession session(_T("CDR Client"));
     CHttpConnection* conn = NULL;
@@ -610,7 +610,25 @@ static CString login(CString host, CString uid, CString pwd) {
         file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
         secFlags |= SECURITY_IGNORE_ERROR_MASK;
         file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
-        success = file->SendRequest();
+        try {
+            cli->log(_T("Calling login SendRequest().\n"), 2);
+            success = file->SendRequest();
+        }
+        catch (CInternetException* e) {
+            CString errmsg;
+            TCHAR msg[1024];
+            if (e->GetErrorMessage(msg, 1024))
+                errmsg.Format(_T("login SendRequest(): %s"), msg);
+            else
+                errmsg.Format(_T("login SendRequest() error: %d\n"),
+                              e->m_dwError);
+            if (errmsg.Right(1) != _T("\n"))
+                errmsg += _T("\n");
+            cli->log(errmsg);
+        }
+        catch (...) {
+            cli->log(_T("Unspecified exception thrown by SendRequest()"));
+        }
     }
     if (!success)
         throw _T("Failure submitting logon request to server");
@@ -699,7 +717,8 @@ bool CdrClient::createCdrSession() {
             extractServerSettings();
             CString uid(dialog->uid);
             CString pwd(dialog->pwd);
-            sessionId = login(cdrServer, uid, pwd);
+            CString tier(serverSettings->currentGroup);
+            sessionId = login(this, cdrServer, uid, pwd);
             if (sessionId.IsEmpty())
                 throw _T("empty session string received from logon server");
             CString logMessage;
@@ -721,6 +740,7 @@ bool CdrClient::createCdrSession() {
             _tputenv((LPCTSTR)(_T("CDR_HOST=") + cdrServer));
             _tputenv((LPCTSTR)(_T("CDR_PORT=443")));
             _tputenv((LPCTSTR)(_T("API_HOST=") + apiServer));
+            _tputenv((LPCTSTR)(_T("CDR_TIER=") + tier));
             _tputenv((LPCTSTR)clientDebugEnv);
             _tputenv((LPCTSTR)serverDebugEnv);
             return true;

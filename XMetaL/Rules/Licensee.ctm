@@ -84,6 +84,21 @@
     </ContactDetail>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name>OtherNames</Name>
+   <MiniTemplate><![CDATA[<OtherNames>
+     <AlternateName>
+      <Name><?xm-replace_text {
+         Optionally enter alternate name for this organization
+         }?></Name>
+     </AlternateName>
+     <FormerName>
+      <Name><?xm-replace_text {
+         Optionally enter former name for this organization
+         }?></Name>
+     </FormerName>
+    </OtherNames>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>PostalAddress</Name>
    <MiniTemplate><![CDATA[<PostalAddress>
       <Street><?xm-replace_text {
