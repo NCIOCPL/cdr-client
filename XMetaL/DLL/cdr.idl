@@ -5,7 +5,7 @@
 // produce the type library (Cdr.tlb) and marshalling code.
 
 import "oaidl.idl";import "ocidl.idl";
-    
+
     [
         object,
         uuid(744ECEA9-3F8F-497C-ABCA-2A6C4C653466),
@@ -49,6 +49,7 @@ import "oaidl.idl";import "ocidl.idl";
         [propget, id(43)] HRESULT userPath([out, retval] BSTR* pVal);
         [id(44), helpstring("retrieve response from HTTP(S) GET request")] HRESULT fetchFromUrl([in] const BSTR* url_, [out,retval] BSTR* response_);
         [id(45), helpstring("let user select level for revision markup elements in selection")] HRESULT chooseRevisionLevel([out,retval] BSTR* response_);
+        [propget, id(46), helpstring("count non-markup characters in selection")] HRESULT selectionCharacterCount([out, retval] int* pRet);
     };
 
 [

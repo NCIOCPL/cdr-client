@@ -2956,3 +2956,37 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
 
     return S_OK;
 }
+
+/*
+ * Count the non-markup characters in the current selection.
+ */
+STDMETHODIMP CCommands::get_selectionCharacterCount(int *pVal)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+    ::Selection selection = cdr::getApp().GetSelection();
+    CString characters = selection.GetText();
+    int n = 0;
+    TCHAR q = _T('');
+    bool in_tag = false;
+    for (int i = 0; i < characters.GetLength(); ++i) {
+        TCHAR c = characters[i];
+        if (in_tag) {
+            if (q) {
+                if (c == q)
+                    q = _T('');
+            }
+            else if (c == _T('>'))
+                in_tag = false;
+            else if (c == _T('"') || c == _T('\''))
+                q = c;
+        }
+        else if (c == _T('<'))
+            in_tag = true;
+        else
+            ++n;
+    }
+    *pVal = n;
+
+    return S_OK;
+}

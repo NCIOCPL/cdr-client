@@ -1044,6 +1044,7 @@
 
         Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
     }
+    Application.AppendMacro("Character Count", "Count Characters");
   ]]>
 </MACRO>
 
@@ -6355,6 +6356,20 @@
         cdrObj.showPage(url);
     }
     translationJobWorkflowReport();
+  ]]>
+</MACRO>
+
+<MACRO  name="Count Characters" lang="JScript">
+  <![CDATA[
+    function count_characters_in_selection() {
+        if (!cdrObj) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var n = cdrObj.selectionCharacterCount;
+        Application.Alert("Selection contains " + n + " characters.");
+    }
+    count_characters_in_selection();
   ]]>
 </MACRO>
 

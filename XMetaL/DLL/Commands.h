@@ -60,6 +60,7 @@ public:
     STDMETHOD(getPatientDocId)(const BSTR* hpDocId, BSTR* patientDocId);
     STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
     STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(get_selectionCharacterCount)(/*[out, retval]*/ int *pVal);
     STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(get_userPath)(BSTR* pVal);
     STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
