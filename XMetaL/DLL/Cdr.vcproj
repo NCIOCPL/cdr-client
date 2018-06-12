@@ -554,6 +554,9 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				RelativePath=".\EditElement.cpp">
 			</File>
 			<File
+				RelativePath=".\FindMarkup.cpp">
+			</File>
+			<File
 				RelativePath=".\Glossify.cpp">
 			</File>
 			<File
@@ -655,6 +658,9 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 			</File>
 			<File
 				RelativePath=".\EditElement.h">
+			</File>
+			<File
+				RelativePath=".\FindMarkup.h">
 			</File>
 			<File
 				RelativePath=".\Glossify.h">

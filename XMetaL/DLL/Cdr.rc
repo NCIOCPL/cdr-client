@@ -347,6 +347,20 @@ BEGIN
     GROUPBOX        "Select Level",IDC_STATIC,27,11,76,75
 END
 
+IDD_FIND_MARKUP_DIALOG DIALOGEX 0, 0, 180, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find Revision Markup"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    LTEXT           "Select revision level of markup to navigate to.",IDC_STATIC,18,10,200,8
+    CONTROL         "publish",IDC_FIND_MARKUP_PUBLISH,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,40,50,10
+    CONTROL         "approved",IDC_FIND_MARKUP_APPROVED,"Button",BS_AUTORADIOBUTTON,35,52,50,10
+    CONTROL         "proposed",IDC_FIND_MARKUP_PROPOSED,"Button",BS_AUTORADIOBUTTON,35,64,50,10
+    PUSHBUTTON      "Prev",IDC_FIND_MARKUP_PREV,95,30,50,14
+    DEFPUSHBUTTON   "Next",IDC_FIND_MARKUP_NEXT,95,50,50,14
+    PUSHBUTTON      "Done",IDCANCEL,95,70,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

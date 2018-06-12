@@ -28,6 +28,7 @@
 #include "resource.h"
 #include "CommentDialog.h"
 #include "RevisionLevel.h"
+#include "FindMarkup.h"
 
 // System headers
 #include <list>
@@ -2455,6 +2456,18 @@ STDMETHODIMP CCommands::acceptOrRejectMarkup(void)
     cdr::trace_log("acceptOrRejectMarkup");
     CReviewMarkup markupReviewDialog;
     markupReviewDialog.DoModal();
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::navigateMarkup(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    cdr::trace_log("navigateMarkup");
+    CFindMarkup *dialog = new CFindMarkup();
+    dialog->Create(CFindMarkup::IDD);
+    dialog->ShowWindow(SW_SHOW);
 
     return S_OK;
 }

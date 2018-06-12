@@ -50,6 +50,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(44), helpstring("retrieve response from HTTP(S) GET request")] HRESULT fetchFromUrl([in] const BSTR* url_, [out,retval] BSTR* response_);
         [id(45), helpstring("let user select level for revision markup elements in selection")] HRESULT chooseRevisionLevel([out,retval] BSTR* response_);
         [propget, id(46), helpstring("count non-markup characters in selection")] HRESULT selectionCharacterCount([out, retval] int* pRet);
+        [id(47), helpstring("method navigateMarkup")] HRESULT navigateMarkup(void);
     };
 
 [

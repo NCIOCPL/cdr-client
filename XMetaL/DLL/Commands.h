@@ -70,6 +70,7 @@ public:
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
     STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(navigateMarkup)(void);
     STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
     STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
     STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);

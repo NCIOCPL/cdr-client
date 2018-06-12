@@ -1375,12 +1375,14 @@
                            "Find next markup change",   // Description.
                            "CDR", 1, 8,                 // Icon set, row, col.
                            false),                      // Starts new group?
+            /*
             new CdrCmdItem("Find &Previous Change",
                            "Find Prev",
                            "Find Previous Change",
                            "Find previous markup change",
                            "CDR", 1, 9,
                            false),
+            */
             new CdrCmdItem("&Accept Change",
                            "Accept Change",
                            "Accept Change",
@@ -3445,6 +3447,17 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Navigate Markup"
+        lang="JScript"
+        key="Ctrl+Alt+N"
+        desc="Navigate Markup..."
+        tooltip="Navigate Markup... (Ctrl+Alt+N)">
+  <![CDATA[
+    if (CanRunMacros())
+        cdrObj.navigateMarkup();
+  ]]>
+</MACRO>
+
 <MACRO  name="Review Markup"
         lang="JScript"
         id="1948"
@@ -3610,371 +3623,29 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Jump To Next Markup"
-        key="Ctrl+Alt+J"
-        lang="JScript"
-        id="2911"
-        desc="Moves the selection to the next marked change if any" >
-  <![CDATA[
-    if (lastMarkupLevel)
-        findMarkupOfSpecifiedLevel(lastMarkupLevel);
-  ]]>
-</MACRO>
-
 <MACRO  name="Find Next"
-        key=""
+        key="Ctrl+Alt+N"
         lang="JScript"
         id="1911"
         desc="Moves the selection to the next marked change if any"
         tooltip="Find Next Change">
   <![CDATA[
 
-
-    //----------------------------------------------------------------------
-    // Moves the selection to the next Marked change in the document
-    // If the end of the document is reached the search is resumed from
-    // the beginning of the document
-    // XXX This is SoftQuad's code.  Very complicated and impressive,
-    //     but it doesn't work.  Replaced below.
-    //----------------------------------------------------------------------
-    function doFindNext() {
-
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        var parentName = "";
-        if (Selection.ContainerNode) {
-            parentName = Selection.ContainerNode.parentNode.nodeName;
-        }
-        if (docProps.item("InsNextPrev").value == "True") {
-            if (Selection.ContainerNode) {
-                if (parentName == "Insertion") {
-                    Application.Run("Find Prev");
-                }
-                else {
-                    docProps.item("InsNextPrev").value = false;
-                    doFindNext();
-                }
-            }
-            docProps.item("InsNextPrev").value = false;
-        }
-        else {
-            if (docProps.item("DelNextPrev").value == "True") {
-                if (Selection.ContainerNode) {
-                    if (parentName == "Deletion") {
-                        Application.Run("Find Prev");
-                    }
-                    else {
-                        docProps.item("DelNextPrev").value = false;
-                        doFindNext();
-                    }
-                }
-                docProps.item("DelNextPrev").value = false;
-            }
-            else {
-                var rng1 = ActiveDocument.Range;
-                var rng2 = rng1.Duplicate;
-
-                var Insertion = rng1.MoveToElement("Insertion");
-                var Deletion = rng2.MoveToElement("Deletion");
-                if (Insertion && Deletion) {
-                    if (rng1.IsLessThan(rng2)) {
-                        if (hasChildren(rng1.Duplicate, "Insertion")) {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("InsNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                    else {
-                        if (hasChildren(rng1.Duplicate, "Deletion")) {
-                            Selection.MoveToElement("Deletion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("DelNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Deletion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                }
-                else {
-                    if (Insertion) {
-                        if (hasChildren(rng1.Duplicate, "Insertion")) {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("InsNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                    else {
-                        if (Deletion) {
-                            if (hasChildren(rng1.Duplicate, "Deletion")) {
-                                Selection.MoveToElement("Deletion");
-                                Selection.SelectAfterContainer();
-                                docProps.item("DelNextPrev").value = true;
-                                Application.Run("Find Prev");
-                            }
-                            else {
-                                Selection.MoveToElement("Deletion");
-                                Selection.SelectContainerContents();
-                            }
-                        }
-                        else {
-                            var ad = ActiveDocument;
-                            var InsertionList =
-                                ad.getElementsByTagName("Insertion");
-                            var DeletionList =
-                                ad.getElementsByTagName("Deletion");
-                            if (InsertionList.length != 0 ||
-                                DeletionList.length != 0) {
-                                var search = Application.Confirm(
-                                    "Reached the end of the Document.  " +
-                                    "Do you want to continue searching " +
-                                    "from the beginning of the document?");
-                                if (search) {
-                                    Selection.MoveToDocumentStart();
-                                    var rng = ActiveDocument.Range;
-                                    rng.MoveToDocumentStart();
-                                    doFindNext();
-                                }
-                            }
-                            else {
-                                Application.Alert("Found no tracked changes");
-                            }
-                        }
-                    }
-                }
-                rng1 = null;
-                rng2 = null;
-            }
-        }
-    }
-
-    function hasChildren(rng_chld, elemName) {
-        if (rng_chld.ContainerNode) {
-            if (rng_chld.ContainerNode.hasChildNodes()) {
-                var children = rng_chld.ContainerNode.childNodes;
-                for (var i=0; i < children.length; i++) {
-                    if (children.item(i).nodeName == elemName) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-
     //----------------------------------------------------------------------
     // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
     // report #330.
+    // Rewritten again for JIRA ticket OCECDR-4485
     //----------------------------------------------------------------------
     function findNextInsertionOrDeletion() {
-        var markupLevel = "";
-        var dlg = Application.CreateFormDlg(CdrUserPath +
-                                            "/Forms/CDR/FindNextMarkup.xft");
-        dlg.MarkupLevel.Value = 2;
-        if (dlg.DoModal() != 1)
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
             return;
-        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
-        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
-        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
-        lastMarkupLevel = markupLevel;
-        findMarkupOfSpecifiedLevel(markupLevel);
-    }
-    function findMarkupOfSpecifiedLevel(markupLevel) {
-        var delElem = ActiveDocument.Range;
-        var insElem = ActiveDocument.Range;
-        var keepGoing = true;
-        while (keepGoing) {
-            delElem.Collapse();
-            insElem.Collapse();
-            var foundDel = delElem.MoveToElement('Deletion', true);
-            var foundIns = insElem.MoveToElement('Insertion', true);
-            while (foundDel && markupLevel) {
-                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                delElem.Collapse();
-                foundDel = delElem.MoveToElement('Deletion', true);
-            }
-            while (foundIns && markupLevel) {
-                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                insElem.Collapse();
-                foundIns = insElem.MoveToElement('Insertion', true);
-            }
-            if (!foundDel && !foundIns) {
-                keepGoing = Application.Confirm(
-                    "Reached the end of the Document.  " +
-                    "Do you want to continue searching " +
-                    "from the beginning of the document?");
-                if (keepGoing) {
-                    delElem.MoveToDocumentStart();
-                    insElem.MoveToDocumentStart();
-                }
-            }
-            else {
-                keepGoing = false;
-                var whichRange = null;
-                if (!foundDel)
-                    whichRange = insElem;
-                else if (!foundIns)
-                    whichRange = delElem;
-                else if (insElem.IsGreaterThan(delElem))
-                    whichRange = delElem;
-                else
-                    whichRange = insElem;
-                whichRange.SelectContainerContents();
-                whichRange.Select();
-            }
         }
+        cdrObj.navigateMarkup();
     }
 
     if (CanRunMacros()) {
-        //doFindNext();
         findNextInsertionOrDeletion();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Find Prev"
-        key=""
-        lang="JScript"
-        id="1910"
-        desc="Moves the selection to the previous marked change if any">
-        <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Moves the selection to the previous Marked change in the document
-    // If the beginning of the document is reached the search is resumed
-    // from the end of the document
-    // XXX Buggy SoftQuad code.  See note on doFindNext() above.
-    //----------------------------------------------------------------------
-    function doFindPrev() {
-
-        var rng1 = ActiveDocument.Range;
-        var rng2 = rng1.Duplicate;
-
-        var Insertion = rng1.MoveToElement("Insertion", false);
-        var Deletion = rng2.MoveToElement("Deletion", false);
-        if (Insertion && Deletion) {
-            if (rng1.IsGreaterThan(rng2)) {
-                Selection.MoveToElement("Insertion", false);
-                Selection.SelectContainerContents();
-            }
-            else {
-                Selection.MoveToElement("Deletion", false);
-                Selection.SelectContainerContents();
-            }
-        }
-        else if (Insertion) {
-            Selection.MoveToElement("Insertion", false);
-            Selection.SelectContainerContents();
-        }
-        else if (Deletion) {
-            Selection.MoveToElement("Deletion", false);
-            Selection.SelectContainerContents();
-        }
-        else {
-            var ad = ActiveDocument;
-            var InsertionList = ad.getElementsByTagName("Insertion");
-            var DeletionList = ad.getElementsByTagName("Deletion");
-            if (InsertionList.length != 0 || DeletionList.length != 0) {
-                var search = Application.Confirm(
-                    "Reached the beginning of the Document.  " +
-                    "Do you want to continue searching from the " +
-                    "end of the document?");
-                if (search) {
-                    Selection.MoveToDocumentEnd();
-                    doFindPrev();
-                }
-            }
-            else {
-                Application.Alert("Found no tracked changes");
-            }
-        }
-        rng1 = null;
-        rng2 = null;
-    }
-
-    //----------------------------------------------------------------------
-    // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
-    // report #330.
-    //----------------------------------------------------------------------
-    function findPrevInsertionOrDeletion() {
-        var delElem = ActiveDocument.Range;
-        var insElem = ActiveDocument.Range;
-        var keepGoing = true;
-        var markupLevel = "";
-        var dlg = Application.CreateFormDlg(CdrUserPath +
-                                            "/Forms/CDR/FindNextMarkup.xft");
-        dlg.MarkupLevel.Value = 2;
-        dlg.TheFrame.Title = "Find Previous Revision Markup";
-        if (dlg.DoModal() != 1)
-            return;
-        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
-        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
-        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
-        while (keepGoing) {
-            //delElem.Collapse();
-            //insElem.Collapse();
-            var foundDel = delElem.MoveToElement('Deletion', false);
-            var foundIns = insElem.MoveToElement('Insertion', false);
-            while (foundDel && markupLevel) {
-                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                foundDel = delElem.MoveToElement('Deletion', false);
-            }
-            while (foundIns && markupLevel) {
-                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                foundIns = insElem.MoveToElement('Insertion', false);
-            }
-            if (!foundDel && !foundIns) {
-                keepGoing = Application.Confirm(
-                    "Reached the beginning of the Document.  " +
-                    "Do you want to continue searching " +
-                    "from the end of the document?");
-                if (keepGoing) {
-                    delElem.MoveToDocumentEnd();
-                    insElem.MoveToDocumentEnd();
-                }
-            }
-            else {
-                keepGoing = false;
-                var whichRange = null;
-                if (!foundDel)
-                    whichRange = insElem;
-                else if (!foundIns)
-                    whichRange = delElem;
-                else if (insElem.IsGreaterThan(delElem))
-                    whichRange = insElem;
-                else
-                    whichRange = delElem;
-                whichRange.SelectContainerContents();
-                whichRange.Select();
-            }
-        }
-    }
-
-    if (CanRunMacros()) {
-        //doFindPrev();
-        findPrevInsertionOrDeletion();
     }
 
   ]]>
