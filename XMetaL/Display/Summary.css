@@ -872,6 +872,18 @@ ResponseToComment            :before
     { color: white; 
       background-color: green; 
       content: "Response: "; }
+ResponseToComment[source='advisory-board']:before 
+    { color: white; 
+      background-color: green; 
+      content: "AB-Response: "; }
+ResponseToComment[duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-Response: "; }
+ResponseToComment[source='advisory-board'][duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-AB-Response: "; }
 ResponseToComment            :after 
     { color: white; 
       background-color: green; 
