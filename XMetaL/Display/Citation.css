@@ -125,6 +125,7 @@ Abstract,
 AbstractText,
 Affiliation,
 Article,
+ArticleDate,
 ArticleId,
 ArticleIdList,
 ArticleTitle,
@@ -150,6 +151,7 @@ DateCreated,
 DateLastModified,
 DateRevised,
 ElectronicPubDate,
+ELocationID,
 EndPage,
 FullTextArticle,
 PDQCitation>AuthorList>Author>FirstName,
@@ -160,6 +162,7 @@ History,
 PDQCitation>AuthorList>Author>Initials,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 InternetInformation,
 Issue,
 Journal,
@@ -226,26 +229,27 @@ Agency               :before { content: "  Agency: "; }
 Author>Affiliation   :before { content: "Affiliation &: "; }
 Affiliation          :before { content: "Affiliation: "; }
 Article              :before { content: "ARTICLE "; }
-ArticleIdList>ArticleId[IdType="pubmed"]       
+ArticleDate          :before { content: "Article Date & +: "; }
+ArticleIdList>ArticleId[IdType="pubmed"]
                      :before { content: "PubMed Article ID @: "; }
-ArticleIdList>ArticleId[IdType="medline"]       
+ArticleIdList>ArticleId[IdType="medline"]
                      :before { content: "Medline Article ID @: "; }
-ArticleIdList>ArticleId[IdType="pii"]       
+ArticleIdList>ArticleId[IdType="pii"]
                      :before { content: "PII Article ID @: "; }
-ArticleIdList>ArticleId[IdType="doi"]       
+ArticleIdList>ArticleId[IdType="doi"]
                      :before { content: "DOI Article ID @: "; }
-ArticleIdList>ArticleId[IdType="sici"]       
+ArticleIdList>ArticleId[IdType="sici"]
                      :before { content: "SICI Article ID @: "; }
-ArticleIdList>ArticleId[IdType="pmcpid"]       
+ArticleIdList>ArticleId[IdType="pmcpid"]
                      :before { content: "PMCPID Article ID @: "; }
-ArticleIdList>ArticleId[IdType="pmpid"]       
+ArticleIdList>ArticleId[IdType="pmpid"]
                      :before { content: "PMPID Article ID @: "; }
-ArticleIdList>ArticleId[IdType="pmcid"]       
+ArticleIdList>ArticleId[IdType="pmcid"]
                      :before { content: "PMCID Article ID @: "; }
 ArticleTitle         :before { content: "TITLE: "; }
 AccessionNumber      :before { content: "Accession No &: "; }
 AuthorList           :before { content: "AUTHORS & @ "; }
-PDQCitation>AuthorList>Author       
+PDQCitation>AuthorList>Author
                      :before { content: "Author * +: "; }
 CancerLitAbstract    :before { content: "CANCERLIT ABSTRACT &"; }
 CancerLitID          :before { content: "CancerLitID &: "; }
@@ -256,7 +260,7 @@ CitationType         :before { content: "Cite Type *: "; }
 Coden                :before { content: "Coden &: "; }
 MedlineCitation>Article>AuthorList>Author>CollectiveName
                      :after  { content: " (Collective Name)"; }
-PDQCitation>AuthorList>Author>CollectiveName       
+PDQCitation>AuthorList>Author>CollectiveName
                      :before { content: "Collective Name *: "; }
 Comment              :before { content: "Comment &: "; }
 CopyrightInformation :before { content: "Copyright & @: "; }
@@ -267,16 +271,17 @@ DateCompleted        :before { content: "Date Completed: "; }
 DateLastModified     :before { content: "Last Modified &: "; }
 DateRevised          :before { content: "Date Revised: "; }
 Day                  :before { content: "/"; }
-DescriptorName[MajorTopicYN="Y"]:after    
+DescriptorName[MajorTopicYN="Y"]:after
                      :after  { content: " (major) "; }
 EndPage              :before { content: "EndPage &: "; }
 ElectronicPubDate    :before { content: "Elec. Pub. Date &: "; }
+ELocationID          :before { content: "ELocation ID & +: "; }
 FullTextArticle      :before { content: "Full Text Article & @: ";}
-MedlineCitation>Article>AuthorList>Author>FirstName      
+MedlineCitation>Article>AuthorList>Author>FirstName
                      :after  { content: " "; }
 PDQCitation>AuthorList>Author>FirstName
                      :before { content: "First Name *: "; }
-MedlineCitation>Article>AuthorList>Author>ForeName      
+MedlineCitation>Article>AuthorList>Author>ForeName
                      :after  { content: " "; }
 PDQCitation>AuthorList>Author>ForeName
                      :before { content: "Forename *: "; }
@@ -284,43 +289,44 @@ GrantID              :before { content: "Grant ID: "; }
 GrantList            :before { content: "GRANT LIST "; }
 History              :before { content: "HISTORY "; }
 Hour                 :before { content: ":"; }
-MedlineCitation>Article>AuthorList>Author>Initials       
+MedlineCitation>Article>AuthorList>Author>Initials
                      :before { content: "(Initials: "; }
-MedlineCitation>Article>AuthorList>Author>Initials      
+MedlineCitation>Article>AuthorList>Author>Initials
                      :after  { content: ")"; }
-PDQCitation>AuthorList>Author>Initials       
+PDQCitation>AuthorList>Author>Initials
                      :before { content: "Initials &: "; }
 InternetInformation  :before { content: "Internet Info &: "; }
 ISOAbbreviation      :before { content: "ISO Abbrev.: "; }
 ISSN                 :before { content: "ISSN: "; }
+ISSNLinking          :before { content: "ISSN Linking &: "; }
 Issue                :before { content: "Issue: "; }
 Journal              :before { content: "JOURNAL INFORMATION"; }
 Language             :before { content: "Language *: "; }
-MedlineCitation>Article>AuthorList>Author>LastName      
+MedlineCitation>Article>AuthorList>Author>LastName
                      :after  { content: ", "; }
-PDQCitation>AuthorList>Author>LastName       
+PDQCitation>AuthorList>Author>LastName
                      :before { content: "Last Name *: "; }
 MedlineCitation      :before { content: "MEDLINE CITATION"; }
 MedlineCode          :before { content: "Medline Code: "; }
 MedlineDate          :before { content: "Medline Date: "; }
 MedlineID            :before { content: "Medline ID: "; }
-MedlineJournalInformation           
+MedlineJournalInformation
                      :before { content: "MEDLINE JOURNAL INFORMATION"; }
 MedlineJournalInfo   :before { content: "MEDLINE JOURNAL INFORMATION"; }
-Pagination > MedlinePgn           
+Pagination > MedlinePgn
                      :before { content: "Pages: "; }
 MedlineTA            :before { content: "Journal Abbrev: "; }
 MeshHeadingList      :before { content: "MESH HEADINGS"; }
-PDQCitation>AuthorList>Author>MiddleName       
+PDQCitation>AuthorList>Author>MiddleName
                      :before { content: "Middle Name &: "; }
-MedlineCitation>Article>AuthorList>Author>MiddleName      
+MedlineCitation>Article>AuthorList>Author>MiddleName
                      :after  { content: " "; }
 Month                :before { content: "/"; }
 NameOfSubstance      :before { content: "Substance: "; }
 NlmUniqueID          :before { content: "NLM Code: "; }
 NumberOfReferences   :before { content: "References: " }
 PublicationInformation:before{ content: "Pub Info *: "; }
-OtherPublicationInformation           
+OtherPublicationInformation
                      :before { content: "OTHER PUB INFO *"; }
 PDQCitation          :before { content: "PDQ CITATION *"; }
 PdqKey               :before { content: "PDQ Key: "; }
@@ -335,27 +341,29 @@ PublicationYear      :before { content: "Pub Year &: "; }
 PublishedIn          :before { content: "Pub'd In & @: "; }
 PublishedIn          :after  { content: "[Citation]"; }
 PubmedData           :before { content: "PUBMED DATA "; }
-PubMedPubDate[PubStatus="medline"]       
+PubMedPubDate[PubStatus="medline"]
                      :before { content: "Medline Pub Date @: "; }
-PubMedPubDate[PubStatus="pubmed"]       
+PubMedPubDate[PubStatus="pubmed"]
                      :before { content: "PubMed Pub Date @: "; }
+PubMedPubDate[PubStatus="entrez"]
+                     :before { content: "Entrez Pub Date @: "; }
 PubStatus            :before { content: "Publication Status: "; }
 QualifierName        :before { content: " - "; }
-QualifierName[MajorTopicYN="Y"]:after    
+QualifierName[MajorTopicYN="Y"]:after
                      :after  { content: " (major) "; }
 RefSource            :before { content: "Reference Source: "; }
 RegistryNumber       :before { content: " Registry #: "; }
 RegistryNumber       :after  { content: "   "; }
 Season               :before { content: "/"; }
 StartPage            :before { content: "StartPage &: "; }
-MedlineCitation>Article>AuthorList>Author>Suffix       
+MedlineCitation>Article>AuthorList>Author>Suffix
                      :before { content: " "; }
-PDQCitation>AuthorList>Author>Suffix       
+PDQCitation>AuthorList>Author>Suffix
                      :before { content: "Suffix &: "; }
 Journal>Title        :before { content: "Journal &: "; }
-URL[URLType="Full_Text"]>URLstring       
+URL[URLType="Full_Text"]>URLstring
                      :before { content: "Full Text At @: "; }
-URL[URLType="Summary"]>URLstring       
+URL[URLType="Summary"]>URLstring
                      :before { content: "Text Summary At @: "; }
 URL                  :before { content: "URL: "; }
 VerificationDetails  :before { content: "VERIFICATION DETAILS *"; }
@@ -445,17 +453,21 @@ Acronym                 :before,
 Agency                  :before,
 Author>Affiliation      :before,
 Affiliation             :before,
+ArticleDate             :before,
 ArticleTitle            :before,
 AccessionNumber         :before,
-PDQCitation>AuthorList>Author:before,
+PDQCitation>AuthorList>Author
+                        :before,
 AuthorList              :before,
 CancerLitAbstract       :before,
 CancerLitID             :before,
 CitationSubset          :before,
 CitationTitle           :before,
 Coden                   :before,
-MedlineCitation>Article>AuthorList>Author>CollectiveName:after,
-PDQCitation>AuthorList>Author>CollectiveName                     :before,
+MedlineCitation>Article>AuthorList>Author>CollectiveName
+                        :after,
+PDQCitation>AuthorList>Author>CollectiveName
+                        :before,
 MedlineCitation>Comment :before,
 Comment                 :before,
 CopyrightInformation    :before,
@@ -466,53 +478,67 @@ DateCompleted           :before,
 DateRevised             :before,
 DescriptorName:after,
 ElectronicPubDate       :before,
+ELocationID             :before,
 EndPage                 :before,
 StartPage               :before,
 FullTextArticle         :before,
-MedlineCitation>Article>AuthorList>Author>FirstName:after,
-PDQCitation>AuthorList>Author>FirstName                     :before,
-ForeName:after,
-PDQCitation>AuthorList>Author>ForeName                     :before,
+MedlineCitation>Article>AuthorList>Author>FirstName
+                        :after,
+PDQCitation>AuthorList>Author>FirstName
+                        :before,
+ForeName                :after,
+PDQCitation>AuthorList>Author>ForeName
+                        :before,
 GrantID                 :before,
 Hour                    :before,
-MedlineCitation>Article>AuthorList>Author>Initials:before,
-MedlineCitation>Article>AuthorList>Author>Initials:after,
-PDQCitation>AuthorList>Author>Initials                     :before,
+MedlineCitation>Article>AuthorList>Author>Initials
+                        :before,
+MedlineCitation>Article>AuthorList>Author>Initials
+                        :after,
+PDQCitation>AuthorList>Author>Initials
+                        :before,
 InternetInformation     :before,
 ISOAbbreviation         :before,
 ISSN                    :before,
+ISSNLinking             :before,
 Issue                   :before,
 Language                :before,
-MedlineCitation>Article>AuthorList>Author>LastName:after,
-PDQCitation>AuthorList>Author>LastName:before,
+MedlineCitation>Article>AuthorList>Author>LastName
+                        :after,
+PDQCitation>AuthorList>Author>LastName
+                        :before,
 MedlineCode             :before,
 MedlineDate             :before,
 MedlineID               :before,
 MedlineTA               :before,
-MedlineCitation>Article>AuthorList>Author>MiddleName:after,
-PDQCitation>AuthorList>Author>MiddleName:before,
+MedlineCitation>Article>AuthorList>Author>MiddleName
+                        :after,
+PDQCitation>AuthorList>Author>MiddleName
+                        :before,
 NameOfSubstance         :before,
 PublicationInformation  :before,
-OtherPublicationInformation                     :before,
+OtherPublicationInformation
+                        :before,
 Pagination > MedlinePgn :before,
 PublicationDetails      :before,
 PublicationYear         :before,
 NlmUniqueID             :before,
 NumberOfReferences      :before,
-QualifierName:after,
+QualifierName           :after,
 PMID                    :before,
 PubDate                 :before,
 PublicationType         :before,
-PubMedPubDate[PubStatus="medline"]                     :before,
-PubMedPubDate[PubStatus="pubmed"]                     :before,
+PubMedPubDate           :before,
 RefSource               :before,
 Status                  :before,
-PDQCitation>AuthorList>Author>Suffix                     :before,
+PDQCitation>AuthorList>Author>Suffix
+                        :before,
 Title                   :before,
 VernacularTitle         :before,
 Volume                  :before,
    {  font-weight: bold;
       color: black;  }
+
 
 ArticleIdList>ArticleId :before,
 Comment                 :before,
@@ -520,9 +546,11 @@ DateLastModified        :before,
 FullTextArticle         :before,
 PdqKey                  :before,
 PublicationStatus       :before,
-URL[URLType="Full_Text"]>URLstring                     :before,
-URL[URLType="Summary"]URLstring                     :before,
-URL                                                               :before,
+URL[URLType="Full_Text"]>URLstring
+                        :before,
+URL[URLType="Summary"]URLstring
+                        :before,
+URL                     :before,
    {  font-weight: bold;
       color: navy;  }
 
@@ -537,11 +565,11 @@ Season                  :before,
 /***************************************************************************/
 CitationType            :before,
 PublishedIn             :before,
-PublishedIn:after,
+PublishedIn             :after,
 PubStatus               :before,
 Verified                :before,
 VerifiedIn              :before,
-PublishedIn:after,
+PublishedIn             :after,
    {  font-weight: bold;
       color: black;  }
 
@@ -574,42 +602,42 @@ VerifiedIn,
 
 /* Key element for length = VerifiedIn 85     */
 
-Verified,    
+Verified,
     { margin-left: 110pt;
       text-indent: -58.5pt; }
-VerifiedIn,    
+VerifiedIn,
     { margin-left: 110pt;
       text-indent: -76.6pt; }
-Citation>Comment,    
+Citation>Comment,
     { margin-left: 110pt;
       text-indent: -75pt; }
 
 /* Key element for length = DateCompleted 100    */
 
-MedlineID,    
+MedlineID,
     { margin-left: 110pt;
       text-indent: -67pt; }
-PMID,    
+PMID,
     { margin-left: 110pt;
       text-indent: -37.5pt; }
-DateCreated,    
+DateCreated,
     { margin-left: 110pt;
       text-indent: -82pt; }
-DateCompleted,    
+DateCompleted,
     { margin-left: 110pt;
       text-indent: -99pt; }
-DateRevised,    
+DateRevised,
     { margin-left: 110pt;
       text-indent: -83pt; }
 
 AccessionNumber,
-    { margin-left: 110pt; 
+    { margin-left: 110pt;
       text-indent:-100pt; }
-CopyrightInformation,    
+CopyrightInformation,
     { margin-left: 110pt;
       text-indent: -92pt; }
 DataBankName,
-    { margin-left: 110pt; 
+    { margin-left: 110pt;
       text-indent: -75pt; }
 StartPage,
     { margin-left: 110pt;
@@ -626,98 +654,116 @@ ISOAbbreviation,
 Journal>Title,
     { margin-left: 110pt;
       text-indent: -64pt; }
-ISSN,    
+ISSN,
     { margin-left: 110pt;
       text-indent: -36pt; }
-Volume,    
+ISSNLinking,
+    { margin-left: 110pt;
+      text-indent: -94pt; }
+Volume,
     { margin-left: 110pt;
       text-indent: -51pt; }
-Issue,    
+Issue,
     { margin-left: 110pt;
       text-indent: -38pt; }
-PubDate,    
+PubDate,
     { margin-left: 110pt;
       text-indent: -73pt; }
-MedlineDate,    
+MedlineDate,
     { text-indent: -81pt; }
 
 /* Key element for length = MedlinePgn    */
 
-ArticleTitle,    
+ArticleTitle,
     { margin-left: 45pt;
       text-indent: -41pt; }
-MedlinePgn,    
+
+ArticleDate,
+    { margin-left: 45pt;
+      text-indent: -30pt; }
+
+MedlinePgn,
     { margin-left: 110pt;
       text-indent: -43.5pt; }
 
-AbstractText,    
+ELocationID,
+    { margin-left: 110pt;
+      text-indent:-103pt; }
+
+AbstractText,
     { margin-left: 45pt;
       text-indent: -39.5pt; }
 
-Affiliation,    
+Affiliation,
     { margin-left: 110pt;
       text-indent: -61pt; }
-MedlineCitation>Article>AuthorList>Author,    
+MedlineCitation>Article>AuthorList>Author,
     { margin-left: 45pt;
       text-indent: -0pt; }
 
-Language,     
+Language,
     { margin-left: 110pt;
       text-indent: -73pt; }
-Grant,    
+Grant,
     { margin-left: 45pt;
       text-indent: -0pt; }
-PublicationType,    
+PublicationType,
     { margin-left: 110pt;
       text-indent: -62pt; }
 
 /* Key element for length = VernacularTitle    */
 
-VernacularTitle,    
+VernacularTitle,
     { margin-left: 110pt;
       text-indent: -97pt; }
-Country,    
+Country,
     { margin-left: 110pt;
       text-indent: -54pt; }
-MedlineTA,    
+MedlineTA,
     { margin-left: 110pt;
       text-indent: -95pt; }
-MedlineCode,    
+MedlineCode,
     { margin-left: 110pt;
       text-indent: -85.5pt; }
-Chemical,    
+Chemical,
     { margin-left: 45pt;
       text-indent: -0pt; }
-CitationSubset,    
+CitationSubset,
     { margin-left: 110pt;
       text-indent: -95pt; }
-RefSource,    
+RefSource,
     { margin-left: 110pt;
       text-indent: -110pt; }
-MeshHeading,    
+MeshHeading,
     { margin-left: 45pt;
       text-indent: -0pt; }
-NumberOfReferences,    
+NumberOfReferences,
     { margin-left: 110pt;
       text-indent: -73pt; }
-NlmUniqueID,    
+NlmUniqueID,
     { margin-left: 110pt;
       text-indent: -67.5pt; }
-MedlineCitation>Comment,    
+MedlineCitation>Comment,
     { margin-left: 110pt;
       text-indent: -63pt; }
-ElectronicPubDate     
+ElectronicPubDate
+    { margin-left: 110pt;
+      text-indent: -106pt; }
+ELinkingID
     { margin-left: 110pt;
       text-indent: -106pt; }
 
 /* Key element for length = PubMedPubDate    */
 
-PubMedPubDate[PubStatus="pubmed"],    
+PubMedPubDate[PubStatus="pubmed"],
     { margin-left: 130pt;
       text-indent: -125pt; }
-PubMedPubDate[PubStatus="medline"],    
+PubMedPubDate[PubStatus="medline"],
     { margin-left: 130pt;
       text-indent: -122pt; }
+PubMedPubDate[PubStatus="entrez"],
+    { margin-left: 130pt;
+      text-indent: -116pt; }
 ArticleIdList>ArticleId[IdType="pubmed"],
     { margin-left: 130pt;
       text-indent: -124pt; }
@@ -743,25 +789,25 @@ ArticleIdList>ArticleId[IdType="pmcid"],
     { margin-left: 130pt;
       text-indent: -115.5pt; }
 
-URL[URLType="Full_Text"]>URLstring,    
+URL[URLType="Full_Text"]>URLstring,
     { margin-left: 130pt;
       text-indent: -86pt; }
-URL[URLType="Summary"]>URLstring,    
+URL[URLType="Summary"]>URLstring,
     { margin-left: 130pt;
       text-indent: -120pt; }
-URL,    
+URL,
     { margin-left: 130pt;
       text-indent: -33pt; }
 
 /* Key element for length = DateLastModified    */
 
-PublicationStatus,    
+PublicationStatus,
     { margin-left: 130pt;
       text-indent: -70.5pt; }
-PdqKey,    
+PdqKey,
     { margin-left: 130pt;
       text-indent: -59pt; }
-DateLastModified,    
+DateLastModified,
     { margin-left: 100pt;
       text-indent: -96pt; }
 
@@ -770,54 +816,54 @@ DateLastModified,
 
 /* Key element for length = CitationType    */
 
-CitationType,    
+CitationType,
     { margin-left: 85pt;
       text-indent: -69pt; }
-CitationTitle,    
+CitationTitle,
     { margin-left: 85pt;
       text-indent: -48.5pt; }
-PDQCitation>AuthorList>Author>CollectiveName,    
+PDQCitation>AuthorList>Author>CollectiveName,
     { margin-left: 110pt;
       text-indent: -107pt; }
-PDQCitation>AuthorList>Author>FirstName,    
+PDQCitation>AuthorList>Author>FirstName,
     { margin-left: 110pt;
       text-indent: -76.5pt; }
-PDQCitation>AuthorList>Author>ForeName,    
+PDQCitation>AuthorList>Author>ForeName,
     { margin-left: 110pt;
       text-indent: -73pt; }
-PDQCitation>AuthorList>Author>Initials,    
+PDQCitation>AuthorList>Author>Initials,
     { margin-left: 110pt;
       text-indent: -56pt; }
-PDQCitation>AuthorList>Author>LastName,    
+PDQCitation>AuthorList>Author>LastName,
     { margin-left: 110pt;
       text-indent: -76pt; }
-PDQCitation>AuthorList>Author>MiddleName,    
+PDQCitation>AuthorList>Author>MiddleName,
     { margin-left: 110pt;
       text-indent: -93pt; }
-PDQCitation>AuthorList>Author>Suffix,    
+PDQCitation>AuthorList>Author>Suffix,
     { margin-left: 110pt;
       text-indent: -52.5pt; }
-Author>Affiliation,    
+Author>Affiliation,
     { margin-left: 110pt;
       text-indent: -73pt; }
 
 /* Key element for length = OtherPublicationInformation    */
 
-PublishedIn,    
+PublishedIn,
     { margin-left: 120pt;
       text-indent: -82.5pt }
-InternetInformation,    
+InternetInformation,
     { margin-left: 100pt;
       text-indent: -88.5pt; }
-PublicationInformation,    
+PublicationInformation,
     { margin-left: 100pt;
       text-indent: -64pt; }
-OtherPublicationInformation,    
+OtherPublicationInformation,
     { margin-left: 20pt; }
-PublicationYear,    
+PublicationYear,
     { margin-left: 120pt;
       text-indent: -72pt; }
-CancerLitID,    
+CancerLitID,
     { margin-left: 100pt;
       text-indent: -87pt; }
 
@@ -854,6 +900,7 @@ DateRevised,
 Day,
 Day                  :before,
 DescriptorName,
+ELocationID,
 EndPage,
 StartPage,
 PDQCitation>AuthorList>Author>FirstName,
@@ -866,6 +913,7 @@ PDQCitation>AuthorList>Author>Initials,
 InternetInformation,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 Issue,
 Language,
 PDQCitation>AuthorList>Author>LastName,
@@ -987,6 +1035,7 @@ DateRevised,
 Day,
 Day                  :before,
 DescriptorName,
+ELocationID,
 EndPage,
 StartPage,
 FullTextArticle,
@@ -997,6 +1046,7 @@ Hour                 :before,
 InternetInformation,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 Issue,
 Language,
 MedlineCode,
@@ -1085,6 +1135,7 @@ DataBankName         :before,
 DateCompleted        :before,
 DateCreated          :before,
 DateRevised          :before,
+ELocationID          :before,
 EndPage              :before,
 StartPage            :before,
 PDQCitation>AuthorList>Author>FirstName:before,
@@ -1094,6 +1145,7 @@ PDQCitation>AuthorList>Author>Initials:before,
 InternetInformation  :before,
 ISOAbbreviation      :before,
 ISSN                 :before,
+ISSNLinking          :before,
 Issue                :before,
 Journal,
 Journal              :before,

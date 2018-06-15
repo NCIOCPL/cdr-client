@@ -103,6 +103,7 @@ Acronym,
 Agency,
 Affiliation,
 Article,
+ArticleDate,
 ArticleId,
 ArticleIdList,
 ArticleTitle,
@@ -128,6 +129,7 @@ DateLastModified,
 DateRevised,
 Day,
 DescriptorName,
+ELocationID,
 EndPage,
 FirstName,
 ForeName,
@@ -140,6 +142,7 @@ Initials,
 InternetInformation,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 Issue,
 Journal,
 JournalIssue,
@@ -206,6 +209,7 @@ Acronym                   :before { content: "Acronym "; }
 Agency                    :before { content: "Agency "; }
 Affiliation               :before { content: "Affiliation"; }
 Article                   :before { content: "ARTICLE "; }
+ArticleDate               :before { content: "Article Date "; }
 ArticleIdList             :before { content: "Article ID List"; }
 ArticleId[IdType="pubmed"]:before { content: "PubMed Article ID "; }
 ArticleId[IdType="medline"]
@@ -249,6 +253,7 @@ DateRevised               :before { content: "Date Revised "; }
 Day                       :before { content: "Day"; }
 DescriptorName            :before { content: "Descriptor "; }
 ElectronicPubDate         :before { content: "Electronic Pub Date"; }
+ELocationID               :before { content: "ELocation ID"; }
 EndPage                   :before { content: "End Page"; }
 FirstName                 :before { content: "First Name "; }
 ForeName                  :before { content: "Forename "; }
@@ -262,6 +267,7 @@ Initials                  :before { content: "Initials "; }
 InternetInformation       :before { content: "Internet Information"; }
 ISOAbbreviation           :before { content: "ISO Abbreviation"; }
 ISSN                      :before { content: "ISSN "; }
+ISSNLinking               :before { content: "ISSN Linking "; }
 Issue                     :before { content: "Issue "; }
 Journal                   :before { content: "JOURNAL INFORMATION "; }
 JournalIssue              :before { content: "Journal Issue "; }
@@ -304,6 +310,8 @@ PubMedPubDate[PubStatus="medline"]
                           :before { content: "Medline Pub Date "; }
 PubMedPubDate[PubStatus="pubmed"]
                           :before { content: "PubMed Pub Date "; }
+PubMedPubDate[PubStatus="entrez"]
+                          :before { content: "Entrez Pub Date "; }
 PubStatus                 :before { content: "Publication Status "; }
 QualifierName             :before { content: "Qualifier "; }
 RefSource                 :before { content: "Reference Source "; }
@@ -402,6 +410,7 @@ DateRevised                       :before,
 Day                               :before,
 Descriptor:after,
 Descriptor                        :before,
+ELocationID                       :before,
 FirstName                         :before,
 ForeName                          :before,
 FullTextArticle                   :before,
@@ -413,6 +422,7 @@ Initials:after,
 InternetInformation,
 ISOAbbreviation                   :before,
 ISSN                              :before,
+ISSNLinking                       :before,
 Issue                             :before,
 Language                          :before,
 LastName                          :before,
@@ -494,6 +504,7 @@ DateCompleted,
 DateLastModified,
 DateRevised,
 ElectronicPubDate,
+ELocationID,
 EndPage,
 ForeName,
 FullTextArticle,
@@ -503,6 +514,7 @@ Initials,
 InternetInformation,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 Issue,
 Language,
 MedlineCode,
@@ -567,6 +579,7 @@ DateCompleted,
 DateCreated,
 DateLastModified,
 DateRevised,
+ELocationID,
 EndPage,
 ForeName,
 FullTextArticle,
@@ -576,6 +589,7 @@ Initials,
 InternetInformation,
 ISOAbbreviation,
 ISSN,
+ISSNLinking,
 Issue,
 Journal,
 JournalIssue,
@@ -686,12 +700,14 @@ DataBankName                      :before,
 DateCompleted                     :before,
 DateCreated                       :before,
 DateRevised                       :before,
+ELocationID                       :before,
 EndPage                           :before,
 GrantList                         :before,
 History,
 InternetInformation               :before,
 ISOAbbreviation                   :before,
 ISSN                              :before,
+ISSNLinking                       :before,
 Issue                             :before,
 Journal,
 Journal                           :before,
