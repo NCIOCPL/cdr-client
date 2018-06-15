@@ -29,6 +29,7 @@
 #include "CommentDialog.h"
 #include "RevisionLevel.h"
 #include "FindMarkup.h"
+#include "FindComments.h"
 
 // System headers
 #include <list>
@@ -2467,6 +2468,18 @@ STDMETHODIMP CCommands::navigateMarkup(void)
     cdr::trace_log("navigateMarkup");
     CFindMarkup *dialog = new CFindMarkup();
     dialog->Create(CFindMarkup::IDD);
+    dialog->ShowWindow(SW_SHOW);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::navigateComments(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    cdr::trace_log("navigateComments");
+    CFindComments *dialog = new CFindComments();
+    dialog->Create(CFindComments::IDD);
     dialog->ShowWindow(SW_SHOW);
 
     return S_OK;

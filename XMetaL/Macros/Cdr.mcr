@@ -1598,6 +1598,12 @@
                            "CDR", 2, 8,
                            false),
             new CdrCmdItem(null,
+                           "Navigate Comments",
+                           "Find Comments",
+                           "Find Comments",
+                           "CDR2", 3, 3,
+                           true),
+            new CdrCmdItem(null,
                            "Itemized List",
                            "Itemized List",
                            "Insert itemized list",
@@ -3447,14 +3453,20 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Navigate Markup"
+<MACRO  name="Navigate Comments"
         lang="JScript"
-        key="Ctrl+Alt+N"
-        desc="Navigate Markup..."
-        tooltip="Navigate Markup... (Ctrl+Alt+N)">
+        key="Ctrl+Alt+C"
+        desc="Navigate Comments..."
+        tooltip="Navigate Comments... (Ctrl+Alt+C)">
   <![CDATA[
-    if (CanRunMacros())
-        cdrObj.navigateMarkup();
+    function navigateComments() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.navigateComments();
+    }
+    navigateComments();
   ]]>
 </MACRO>
 
