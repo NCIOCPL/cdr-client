@@ -2191,7 +2191,13 @@
                            "Edit GT Name Docs",
                            "Edit Term Name Documents",
                            "CDR", 5, 3,
-                           false)
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job",
+                           "Add Translation Job",
+                        "Add/edit translation job for this Glossary document",
+                           "Databases (Custom)", 4, 1,
+                           true)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2269,7 +2275,13 @@
                            "Glossary Phrase Search",
                            "Report on matching GlossaryTermName phrases",
                            "Revisions (Custom)", 2, 2,
-                           false)
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job",
+                           "Add Translation Job",
+                         "Add/edit translation job for this Glossary document",
+                           "Databases (Custom)", 4, 1,
+                           true)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2725,6 +2737,12 @@
                            "Clone Document",
                            "Clone Media Document",
                            "CDR2", 2, 5,
+                           true),
+            new CdrCmdItem(null,
+                           "Media Translation Job",
+                           "Add Translation Job",
+                           "Add/edit translation job for this Media document",
+                           "Databases (Custom)", 4, 1,
                            true)
         );
         var cmdBars = Application.CommandBars;
@@ -6039,6 +6057,59 @@
         cdrObj.showPage(url);
     }
     translationJobWorkflowReport();
+  ]]>
+</MACRO>
+
+<MACRO  name="Media Translation Job" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJob() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Media document has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "media-translation-job.py?Session=" + CdrSession
+                            + "&english_id=" + docId;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJob();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJob() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Glossary document has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "glossary-translation-job.py?Session="
+                            + CdrSession
+                            + "&doc_id=" + docId;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJob();
   ]]>
 </MACRO>
 
