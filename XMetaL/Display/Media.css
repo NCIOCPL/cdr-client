@@ -112,6 +112,7 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 Topics,
+TranslationOf,
 VideoData,
 VideoEncoding,
 VideoHosting,
@@ -200,23 +201,24 @@ SupplementaryInfoLink     :before { content: "Sup Info Link * + @: ";}
 TextDateCreated           :before { content: "Txt Date Created &: ";}
 Topic                     :before { content: "Topic * +: ";}
 Topics                    :before { content: "TOPICS & ";}
+TranslationOf             :before { content: "Translation of & @: ";},
 VideoData                 :before { content: "VIDEO DATA * ";}
 VideoEncoding             :before { content: "Video Encoding *: ";}
 VideoHosting              :before { content: "Video Hosting *: ";}
 VideoType                 :before { content: "Video Type *: ";}
 WidthPixels               :before { content: "Width (Pixels) *: ";}
-PermissionInformation     :before { content: "PERMISSION INFORMATION &"; }
-PermissionRequested       :before { content: "Requested &: "; }
-PermissionRequestDate     :before { content: "Req. Date &: "; }
-PermissionResponse        :before { content: "Response &: "; }
-PermissionResponseDate    :before { content: "Resp. Date &: "; }
-PermissionExpirationDate  :before { content: "Expiration &: "; }
-ApprovedUse               :before { content: "APPROVED USE & "; }
+PermissionInformation     :before { content: "PERMISSION INFORMATION &";}
+PermissionRequested       :before { content: "Requested &: ";}
+PermissionRequestDate     :before { content: "Req. Date &: ";}
+PermissionResponse        :before { content: "Response &: ";}
+PermissionResponseDate    :before { content: "Resp. Date &: ";}
+PermissionExpirationDate  :before { content: "Expiration &: ";}
+ApprovedUse               :before { content: "APPROVED USE & ";}
 SpanishTranslationPermissionRequested 
-                          :before { content: "Spn Perm Req &: "; }
+                          :before { content: "Spn Perm Req &: ";}
 SpanishTranslationPermissionResponse 
-                          :before { content: "Spn Perm Resp &: "; }
-PublisherPermissionText   :before { content: "Publisher Txt &: "; }
+                          :before { content: "Spn Perm Resp &: ";}
+PublisherPermissionText   :before { content: "Publisher Txt &: ";}
 
 
 /***************************************************************************/ 
@@ -310,6 +312,7 @@ SupplementaryInfoLink                  :before,
 TextDateCreated                        :before,
 Topic                                  :before,
 Topics                                 :before,
+TranslationOf                          :before,
 VideoData                              :before,
 VideoEncoding                          :before,
 VideoHosting                           :before,
@@ -466,6 +469,9 @@ TextDateCreated,
 Topic,
                         { margin-left: 120pt;
                           text-indent: -57.5pt; }
+TranslationOf
+                        { margin-left: 120pt;
+                          text-indent: -114pt; }
 VideoEncoding,
                         { margin-left: 120pt;
                           text-indent: -107.5pt; }
@@ -557,6 +563,7 @@ Summary,
 SupplementaryInfoLink,
 TextDateCreated,
 Topic,
+TranslationOf,
 WidthPixels,
 PermissionInformation,
 PermissionRequested,
@@ -640,6 +647,7 @@ Summary,
 SupplementaryInfoLink,
 TextDateCreated,
 Topic,
+TranslationOf,
 VideoEncoding,
 VideoHosting,
 VideoType,
@@ -715,6 +723,7 @@ SupplementaryInfoLink                  :before,
 TextDateCreated                        :before,
 Topic                                  :before,
 Topics                                 :before,
+TranslationOf                          :before,
 VideoData                              :before,
 VideoEncoding                          :before,
 VideoHosting                           :before,
