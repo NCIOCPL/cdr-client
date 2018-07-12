@@ -119,6 +119,7 @@ SupplementaryInfoLink,
 TextDateCreated,
 Topic,
 Topics,
+TranslationOf,
 VideoData,
 VideoEncoding,
 VideoHosting,
@@ -207,6 +208,7 @@ SupplementaryInfoLink     :before { content: "Supplementary Info Link "; }
 TextDateCreated           :before { content: "Text Date Created "; }
 Topic                     :before { content: "Topic "; }
 Topics                    :before { content: "TOPICS "; }
+TranslationOf             :before { content: "Translation of"; }
 VideoData                 :before { content: "Video Data "; }
 VideoEncoding             :before { content: "Video Encoding "; }
 VideoHosting              :before { content: "Video Hosting "; }
@@ -324,6 +326,7 @@ SupplementaryInfoLink                  :before,
 TextDateCreated                        :before,
 Topic                                  :before,
 Topics                                 :before,
+TranslationOf                          :before,
 VideoData                              :before,
 VideoEncoding                          :before,
 VideoHosting                           :before,
@@ -393,6 +396,7 @@ Summary,
 SupplementaryInfoLink,
 TextDateCreated,
 Topic,
+TranslationOf,
 VideoData,
 VideoEncoding,
 VideoHosting,
@@ -459,6 +463,7 @@ Summary,
 SupplementaryInfoLink,
 TextDateCreated,
 Topic,
+TranslationOf,
 VideoData,
 VideoEncoding,
 VideoHosting,
