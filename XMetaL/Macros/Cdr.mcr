@@ -2197,7 +2197,19 @@
                            "Add Translation Job",
                         "Add/edit translation job for this Glossary document",
                            "Databases (Custom)", 4, 1,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2281,7 +2293,19 @@
                            "Add Translation Job",
                          "Add/edit translation job for this Glossary document",
                            "Databases (Custom)", 4, 1,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2743,7 +2767,19 @@
                            "Add Translation Job",
                            "Add/edit translation job for this Media document",
                            "Databases (Custom)", 4, 1,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Media Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Media Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -6086,6 +6122,36 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Media Translation Job Queue" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJobQueue() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "media-translation-jobs.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJobQueue();
+  ]]>
+</MACRO>
+
+<MACRO  name="Media Translation Job Workflow Report" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJobWorkflowReport() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "media-translation-job-report.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJobWorkflowReport();
+  ]]>
+</MACRO>
+
 <MACRO  name="Glossary Translation Job" lang="JScript">
   <![CDATA[
     function glossaryTranslationJob() {
@@ -6110,6 +6176,36 @@
         cdrObj.showPage(url);
     }
     glossaryTranslationJob();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job Queue" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJobQueue() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "glossary-translation-jobs.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJobQueue();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job Workflow Report" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJobWorkflowReport() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "glossary-translation-job-report.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJobWorkflowReport();
   ]]>
 </MACRO>
 
