@@ -28,6 +28,8 @@
 #include "resource.h"
 #include "CommentDialog.h"
 #include "RevisionLevel.h"
+#include "FindMarkup.h"
+#include "FindComments.h"
 
 // System headers
 #include <list>
@@ -2459,6 +2461,30 @@ STDMETHODIMP CCommands::acceptOrRejectMarkup(void)
     return S_OK;
 }
 
+STDMETHODIMP CCommands::navigateMarkup(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    cdr::trace_log("navigateMarkup");
+    CFindMarkup *dialog = new CFindMarkup();
+    dialog->Create(CFindMarkup::IDD);
+    dialog->ShowWindow(SW_SHOW);
+
+    return S_OK;
+}
+
+STDMETHODIMP CCommands::navigateComments(void)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
+
+    cdr::trace_log("navigateComments");
+    CFindComments *dialog = new CFindComments();
+    dialog->Create(CFindComments::IDD);
+    dialog->ShowWindow(SW_SHOW);
+
+    return S_OK;
+}
+
 CString getBlobExtension(const CString& docXml, const CString& docType) {
     CString extension;
     if (docType == _T("Media")) {
@@ -2953,6 +2979,40 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
         ::AfxMessageBox(_T("Internal error selecting revision level"));
     }
     level.SetSysString(response_);
+
+    return S_OK;
+}
+
+/*
+ * Count the non-markup characters in the current selection.
+ */
+STDMETHODIMP CCommands::get_selectionCharacterCount(int *pVal)
+{
+    AFX_MANAGE_STATE(AfxGetStaticModuleState())
+
+    ::Selection selection = cdr::getApp().GetSelection();
+    CString characters = selection.GetText();
+    int n = 0;
+    TCHAR q = _T('');
+    bool in_tag = false;
+    for (int i = 0; i < characters.GetLength(); ++i) {
+        TCHAR c = characters[i];
+        if (in_tag) {
+            if (q) {
+                if (c == q)
+                    q = _T('');
+            }
+            else if (c == _T('>'))
+                in_tag = false;
+            else if (c == _T('"') || c == _T('\''))
+                q = c;
+        }
+        else if (c == _T('<'))
+            in_tag = true;
+        else
+            ++n;
+    }
+    *pVal = n;
 
     return S_OK;
 }

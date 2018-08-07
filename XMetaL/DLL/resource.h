@@ -74,14 +74,27 @@
 #define IDC_MEDIA_FILE_BROWSE           240
 #define IDC_GLOSSIFY_NEXT_SECTION       242
 #define IDC_COMMENT_BOX                 243
+#define IDD_FIND_MARKUP_DIALOG          224
+#define IDC_FIND_MARKUP_PUBLISH         244
+#define IDC_FIND_MARKUP_APPROVED        245
+#define IDC_FIND_MARKUP_PROPOSED        246
+#define IDC_FIND_MARKUP_NEXT            247
+#define IDC_FIND_MARKUP_PREV            248
+#define IDD_FIND_COMMENTS_DIALOG        225
+#define IDC_FIND_COMMENTS_ADVISORY      249
+#define IDC_FIND_COMMENTS_INTERNAL      250
+#define IDC_FIND_COMMENTS_EXTERNAL      251
+#define IDC_FIND_COMMENTS_PERMANENT     252
+#define IDC_FIND_COMMENTS_NEXT          253
+#define IDC_FIND_COMMENTS_PREV          254
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        224
+#define _APS_NEXT_RESOURCE_VALUE        226
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         244
+#define _APS_NEXT_CONTROL_VALUE         255
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

@@ -1278,6 +1278,9 @@ CString Manifest::validate(CdrClient* client) {
 /*
  * Send an XML document via HTTP to the CDR client refresh service, then
  * retrieve and return the server's response.
+ *
+ * See https://docs.microsoft.com/en-us/windows/desktop/WinInet/option-flags
+ * for documentation of the Microsoft options flags.
  */
 CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
 
@@ -1314,9 +1317,7 @@ CString CdrClient::sendHttpCommand(const CString& cmd, const TCHAR* target) {
         // This fails occasionally; give the server three chances.
         for (int i = 0; !success && i < 3; ++i) {
 
-            // http://msdn.microsoft.com/en-us/library/aa385328(v=vs.100).aspx
-            //
-            // It appears that this option is ignored; we still get the error
+            // It appears that our options are ignored; we still get the error
             // ERROR_INTERNET_INVALID_CA (decimal 12045) trying to connect
             // to a CBIIT server with a self-signed cert.
             // 2012-10-25 update: it turns out that invoking the SetOption
@@ -1469,10 +1470,12 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
         }
         else if (nodeName == _T("Delete")) {
             CComPtr<IXMLDOMNode> child = getFirstChild(node);
-            CString nodeName = getNodeName(child);
-            if (nodeName == _T("File"))
-                deletes.push_back(getTextContent(child));
-            child = getNextSibling(child);
+            while (child) {
+                CString nodeName = getNodeName(child);
+                if (nodeName == _T("File"))
+                    deletes.push_back(getTextContent(child));
+                child = getNextSibling(child);
+            }
         }
         node = getNextSibling(node);
     }
@@ -1560,7 +1563,7 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
  *
  * In the past, bugs in how the operating system reported file time
  * stamps also caused bogus discrepancies. This class of problem has
- * been eliminated by switching from the use of checksums for detecting
+ * been eliminated by switching to the use of checksums for detecting
  * file changes.
  *
  * The zipfile is saved in the current working directory under the

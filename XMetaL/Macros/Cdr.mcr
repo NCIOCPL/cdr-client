@@ -1044,6 +1044,7 @@
 
         Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
     }
+    Application.AppendMacro("Character Count", "Count Characters");
   ]]>
 </MACRO>
 
@@ -1374,12 +1375,14 @@
                            "Find next markup change",   // Description.
                            "CDR", 1, 8,                 // Icon set, row, col.
                            false),                      // Starts new group?
+            /*
             new CdrCmdItem("Find &Previous Change",
                            "Find Prev",
                            "Find Previous Change",
                            "Find previous markup change",
                            "CDR", 1, 9,
                            false),
+            */
             new CdrCmdItem("&Accept Change",
                            "Accept Change",
                            "Accept Change",
@@ -1595,6 +1598,12 @@
                            "CDR", 2, 8,
                            false),
             new CdrCmdItem(null,
+                           "Navigate Comments",
+                           "Find Comments",
+                           "Find Comments",
+                           "CDR2", 3, 3,
+                           true),
+            new CdrCmdItem(null,
                            "Itemized List",
                            "Itemized List",
                            "Insert itemized list",
@@ -1779,25 +1788,25 @@
                            false),
             new CdrCmdItem(null,
                            "Bold Underline Report",
-                           "Bold Underline",
+                           "HP B/U",
                            "Bold Underline Report",
                            "CDR", 2, 3,
                            true),
             new CdrCmdItem(null,
                            "Redline Strikeout Report",
-                           "Redline Strikeout",
+                           "HP RLSO",
                            "Redline Strikeout Report",
                            "CDR", 2, 4,
                            false),
             new CdrCmdItem(null,
                            "Patient Summary BU QC Report",
-                           "Patient BU QC",
+                           "PT B/U",
                            "Patient Summary BU QC Report",
                            "CDR2", 2, 1,
                            false),
             new CdrCmdItem(null,
                            "Patient Summary RS QC Report",
-                           "Patient RS QC",
+                           "PT RLSO",
                            "Patient Summary RS QC Report",
                            "CDR", 3, 5,
                            false),
@@ -2182,6 +2191,24 @@
                            "Edit GT Name Docs",
                            "Edit Term Name Documents",
                            "CDR", 5, 3,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job",
+                           "Add Translation Job",
+                        "Add/edit translation job for this Glossary document",
+                           "Databases (Custom)", 4, 1,
+                           true),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -2260,6 +2287,24 @@
                            "Glossary Phrase Search",
                            "Report on matching GlossaryTermName phrases",
                            "Revisions (Custom)", 2, 2,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job",
+                           "Add Translation Job",
+                         "Add/edit translation job for this Glossary document",
+                           "Databases (Custom)", 4, 1,
+                           true),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossary Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
                            false)
         );
         var cmdBars = Application.CommandBars;
@@ -2716,7 +2761,25 @@
                            "Clone Document",
                            "Clone Media Document",
                            "CDR2", 2, 5,
-                           true)
+                           true),
+            new CdrCmdItem(null,
+                           "Media Translation Job",
+                           "Add Translation Job",
+                           "Add/edit translation job for this Media document",
+                           "Databases (Custom)", 4, 1,
+                           true),
+            new CdrCmdItem(null,
+                           "Media Translation Job Queue",
+                           "Translation Job Queue",
+                           "Open interface for managing translation job queue",
+                           "Databases (Custom)", 4, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Media Translation Job Workflow Report",
+                           "Translation Job Workflow Report",
+                           "Request a report on the translation job queue",
+                           "Databases (Custom)", 6, 6,
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -3444,6 +3507,23 @@
   ]]>
 </MACRO>
 
+<MACRO  name="Navigate Comments"
+        lang="JScript"
+        key="Ctrl+Alt+C"
+        desc="Navigate Comments..."
+        tooltip="Navigate Comments... (Ctrl+Alt+C)">
+  <![CDATA[
+    function navigateComments() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.navigateComments();
+    }
+    navigateComments();
+  ]]>
+</MACRO>
+
 <MACRO  name="Review Markup"
         lang="JScript"
         id="1948"
@@ -3609,371 +3689,29 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Jump To Next Markup"
-        key="Ctrl+Alt+J"
-        lang="JScript"
-        id="2911"
-        desc="Moves the selection to the next marked change if any" >
-  <![CDATA[
-    if (lastMarkupLevel)
-        findMarkupOfSpecifiedLevel(lastMarkupLevel);
-  ]]>
-</MACRO>
-
 <MACRO  name="Find Next"
-        key=""
+        key="Ctrl+Alt+N"
         lang="JScript"
         id="1911"
         desc="Moves the selection to the next marked change if any"
         tooltip="Find Next Change">
   <![CDATA[
 
-
-    //----------------------------------------------------------------------
-    // Moves the selection to the next Marked change in the document
-    // If the end of the document is reached the search is resumed from
-    // the beginning of the document
-    // XXX This is SoftQuad's code.  Very complicated and impressive,
-    //     but it doesn't work.  Replaced below.
-    //----------------------------------------------------------------------
-    function doFindNext() {
-
-        var docProps = ActiveDocument.CustomDocumentProperties;
-        var parentName = "";
-        if (Selection.ContainerNode) {
-            parentName = Selection.ContainerNode.parentNode.nodeName;
-        }
-        if (docProps.item("InsNextPrev").value == "True") {
-            if (Selection.ContainerNode) {
-                if (parentName == "Insertion") {
-                    Application.Run("Find Prev");
-                }
-                else {
-                    docProps.item("InsNextPrev").value = false;
-                    doFindNext();
-                }
-            }
-            docProps.item("InsNextPrev").value = false;
-        }
-        else {
-            if (docProps.item("DelNextPrev").value == "True") {
-                if (Selection.ContainerNode) {
-                    if (parentName == "Deletion") {
-                        Application.Run("Find Prev");
-                    }
-                    else {
-                        docProps.item("DelNextPrev").value = false;
-                        doFindNext();
-                    }
-                }
-                docProps.item("DelNextPrev").value = false;
-            }
-            else {
-                var rng1 = ActiveDocument.Range;
-                var rng2 = rng1.Duplicate;
-
-                var Insertion = rng1.MoveToElement("Insertion");
-                var Deletion = rng2.MoveToElement("Deletion");
-                if (Insertion && Deletion) {
-                    if (rng1.IsLessThan(rng2)) {
-                        if (hasChildren(rng1.Duplicate, "Insertion")) {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("InsNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                    else {
-                        if (hasChildren(rng1.Duplicate, "Deletion")) {
-                            Selection.MoveToElement("Deletion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("DelNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Deletion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                }
-                else {
-                    if (Insertion) {
-                        if (hasChildren(rng1.Duplicate, "Insertion")) {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectAfterContainer();
-                            docProps.item("InsNextPrev").value = true;
-                            Application.Run("Find Prev");
-                        }
-                        else {
-                            Selection.MoveToElement("Insertion");
-                            Selection.SelectContainerContents();
-                        }
-                    }
-                    else {
-                        if (Deletion) {
-                            if (hasChildren(rng1.Duplicate, "Deletion")) {
-                                Selection.MoveToElement("Deletion");
-                                Selection.SelectAfterContainer();
-                                docProps.item("DelNextPrev").value = true;
-                                Application.Run("Find Prev");
-                            }
-                            else {
-                                Selection.MoveToElement("Deletion");
-                                Selection.SelectContainerContents();
-                            }
-                        }
-                        else {
-                            var ad = ActiveDocument;
-                            var InsertionList =
-                                ad.getElementsByTagName("Insertion");
-                            var DeletionList =
-                                ad.getElementsByTagName("Deletion");
-                            if (InsertionList.length != 0 ||
-                                DeletionList.length != 0) {
-                                var search = Application.Confirm(
-                                    "Reached the end of the Document.  " +
-                                    "Do you want to continue searching " +
-                                    "from the beginning of the document?");
-                                if (search) {
-                                    Selection.MoveToDocumentStart();
-                                    var rng = ActiveDocument.Range;
-                                    rng.MoveToDocumentStart();
-                                    doFindNext();
-                                }
-                            }
-                            else {
-                                Application.Alert("Found no tracked changes");
-                            }
-                        }
-                    }
-                }
-                rng1 = null;
-                rng2 = null;
-            }
-        }
-    }
-
-    function hasChildren(rng_chld, elemName) {
-        if (rng_chld.ContainerNode) {
-            if (rng_chld.ContainerNode.hasChildNodes()) {
-                var children = rng_chld.ContainerNode.childNodes;
-                for (var i=0; i < children.length; i++) {
-                    if (children.item(i).nodeName == elemName) {
-                        return true;
-                    }
-                }
-                return false;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-
     //----------------------------------------------------------------------
     // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
     // report #330.
+    // Rewritten again for JIRA ticket OCECDR-4485
     //----------------------------------------------------------------------
     function findNextInsertionOrDeletion() {
-        var markupLevel = "";
-        var dlg = Application.CreateFormDlg(CdrUserPath +
-                                            "/Forms/CDR/FindNextMarkup.xft");
-        dlg.MarkupLevel.Value = 2;
-        if (dlg.DoModal() != 1)
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
             return;
-        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
-        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
-        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
-        lastMarkupLevel = markupLevel;
-        findMarkupOfSpecifiedLevel(markupLevel);
-    }
-    function findMarkupOfSpecifiedLevel(markupLevel) {
-        var delElem = ActiveDocument.Range;
-        var insElem = ActiveDocument.Range;
-        var keepGoing = true;
-        while (keepGoing) {
-            delElem.Collapse();
-            insElem.Collapse();
-            var foundDel = delElem.MoveToElement('Deletion', true);
-            var foundIns = insElem.MoveToElement('Insertion', true);
-            while (foundDel && markupLevel) {
-                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                delElem.Collapse();
-                foundDel = delElem.MoveToElement('Deletion', true);
-            }
-            while (foundIns && markupLevel) {
-                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                insElem.Collapse();
-                foundIns = insElem.MoveToElement('Insertion', true);
-            }
-            if (!foundDel && !foundIns) {
-                keepGoing = Application.Confirm(
-                    "Reached the end of the Document.  " +
-                    "Do you want to continue searching " +
-                    "from the beginning of the document?");
-                if (keepGoing) {
-                    delElem.MoveToDocumentStart();
-                    insElem.MoveToDocumentStart();
-                }
-            }
-            else {
-                keepGoing = false;
-                var whichRange = null;
-                if (!foundDel)
-                    whichRange = insElem;
-                else if (!foundIns)
-                    whichRange = delElem;
-                else if (insElem.IsGreaterThan(delElem))
-                    whichRange = delElem;
-                else
-                    whichRange = insElem;
-                whichRange.SelectContainerContents();
-                whichRange.Select();
-            }
         }
+        cdrObj.navigateMarkup();
     }
 
     if (CanRunMacros()) {
-        //doFindNext();
         findNextInsertionOrDeletion();
-    }
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Find Prev"
-        key=""
-        lang="JScript"
-        id="1910"
-        desc="Moves the selection to the previous marked change if any">
-        <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Moves the selection to the previous Marked change in the document
-    // If the beginning of the document is reached the search is resumed
-    // from the end of the document
-    // XXX Buggy SoftQuad code.  See note on doFindNext() above.
-    //----------------------------------------------------------------------
-    function doFindPrev() {
-
-        var rng1 = ActiveDocument.Range;
-        var rng2 = rng1.Duplicate;
-
-        var Insertion = rng1.MoveToElement("Insertion", false);
-        var Deletion = rng2.MoveToElement("Deletion", false);
-        if (Insertion && Deletion) {
-            if (rng1.IsGreaterThan(rng2)) {
-                Selection.MoveToElement("Insertion", false);
-                Selection.SelectContainerContents();
-            }
-            else {
-                Selection.MoveToElement("Deletion", false);
-                Selection.SelectContainerContents();
-            }
-        }
-        else if (Insertion) {
-            Selection.MoveToElement("Insertion", false);
-            Selection.SelectContainerContents();
-        }
-        else if (Deletion) {
-            Selection.MoveToElement("Deletion", false);
-            Selection.SelectContainerContents();
-        }
-        else {
-            var ad = ActiveDocument;
-            var InsertionList = ad.getElementsByTagName("Insertion");
-            var DeletionList = ad.getElementsByTagName("Deletion");
-            if (InsertionList.length != 0 || DeletionList.length != 0) {
-                var search = Application.Confirm(
-                    "Reached the beginning of the Document.  " +
-                    "Do you want to continue searching from the " +
-                    "end of the document?");
-                if (search) {
-                    Selection.MoveToDocumentEnd();
-                    doFindPrev();
-                }
-            }
-            else {
-                Application.Alert("Found no tracked changes");
-            }
-        }
-        rng1 = null;
-        rng2 = null;
-    }
-
-    //----------------------------------------------------------------------
-    // Rewritten to fix SoftQuad's buggy approach in response to CDR issue
-    // report #330.
-    //----------------------------------------------------------------------
-    function findPrevInsertionOrDeletion() {
-        var delElem = ActiveDocument.Range;
-        var insElem = ActiveDocument.Range;
-        var keepGoing = true;
-        var markupLevel = "";
-        var dlg = Application.CreateFormDlg(CdrUserPath +
-                                            "/Forms/CDR/FindNextMarkup.xft");
-        dlg.MarkupLevel.Value = 2;
-        dlg.TheFrame.Title = "Find Previous Revision Markup";
-        if (dlg.DoModal() != 1)
-            return;
-        if (dlg.MarkupLevel.Value == 1) markupLevel = "proposed";
-        else if (dlg.MarkupLevel.Value == 2) markupLevel = "approved";
-        else if (dlg.MarkupLevel.Value == 3) markupLevel = "publish";
-        while (keepGoing) {
-            //delElem.Collapse();
-            //insElem.Collapse();
-            var foundDel = delElem.MoveToElement('Deletion', false);
-            var foundIns = insElem.MoveToElement('Insertion', false);
-            while (foundDel && markupLevel) {
-                var lvl = delElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                foundDel = delElem.MoveToElement('Deletion', false);
-            }
-            while (foundIns && markupLevel) {
-                var lvl = insElem.ContainerNode.getAttribute("RevisionLevel");
-                if (lvl == markupLevel)
-                    break;
-                foundIns = insElem.MoveToElement('Insertion', false);
-            }
-            if (!foundDel && !foundIns) {
-                keepGoing = Application.Confirm(
-                    "Reached the beginning of the Document.  " +
-                    "Do you want to continue searching " +
-                    "from the end of the document?");
-                if (keepGoing) {
-                    delElem.MoveToDocumentEnd();
-                    insElem.MoveToDocumentEnd();
-                }
-            }
-            else {
-                keepGoing = false;
-                var whichRange = null;
-                if (!foundDel)
-                    whichRange = insElem;
-                else if (!foundIns)
-                    whichRange = delElem;
-                else if (insElem.IsGreaterThan(delElem))
-                    whichRange = insElem;
-                else
-                    whichRange = delElem;
-                whichRange.SelectContainerContents();
-                whichRange.Select();
-            }
-        }
-    }
-
-    if (CanRunMacros()) {
-        //doFindPrev();
-        findPrevInsertionOrDeletion();
     }
 
   ]]>
@@ -6355,6 +6093,133 @@
         cdrObj.showPage(url);
     }
     translationJobWorkflowReport();
+  ]]>
+</MACRO>
+
+<MACRO  name="Media Translation Job" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJob() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Media document has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "media-translation-job.py?Session=" + CdrSession
+                            + "&english_id=" + docId;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJob();
+  ]]>
+</MACRO>
+
+<MACRO  name="Media Translation Job Queue" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJobQueue() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "media-translation-jobs.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJobQueue();
+  ]]>
+</MACRO>
+
+<MACRO  name="Media Translation Job Workflow Report" lang="JScript">
+  <![CDATA[
+    function mediaTranslationJobWorkflowReport() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "media-translation-job-report.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    mediaTranslationJobWorkflowReport();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJob() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Glossary document has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "glossary-translation-job.py?Session="
+                            + CdrSession
+                            + "&doc_id=" + docId;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJob();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job Queue" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJobQueue() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "glossary-translation-jobs.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJobQueue();
+  ]]>
+</MACRO>
+
+<MACRO  name="Glossary Translation Job Workflow Report" lang="JScript">
+  <![CDATA[
+    function glossaryTranslationJobWorkflowReport() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "glossary-translation-job-report.py?Session="
+                            + CdrSession;
+        cdrObj.showPage(url);
+    }
+    glossaryTranslationJobWorkflowReport();
+  ]]>
+</MACRO>
+
+<MACRO  name="Count Characters" lang="JScript">
+  <![CDATA[
+    function count_characters_in_selection() {
+        if (!cdrObj) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var n = cdrObj.selectionCharacterCount;
+        Application.Alert("Selection contains " + n + " characters.");
+    }
+    count_characters_in_selection();
   ]]>
 </MACRO>
 

@@ -60,6 +60,7 @@ public:
     STDMETHOD(getPatientDocId)(const BSTR* hpDocId, BSTR* patientDocId);
     STDMETHOD(getTranslatedDocId)(const BSTR* originalId, BSTR* translatedDocId);
     STDMETHOD(get_hostname)(/*[out, retval]*/ BSTR *pVal);
+    STDMETHOD(get_selectionCharacterCount)(/*[out, retval]*/ int *pVal);
     STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(get_userPath)(BSTR* pVal);
     STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
@@ -69,6 +70,8 @@ public:
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
     STDMETHOD(logon)(/*[out, retval]*/ int* pRet);
+    STDMETHOD(navigateComments)(void);
+    STDMETHOD(navigateMarkup)(void);
     STDMETHOD(openCdrDoc)(const BSTR* docId, const BSTR* docVer, VARIANT_BOOL checkOut);
     STDMETHOD(pasteDocLink)(/*[in]*/ const BSTR* val, /*[out, retval]*/ int* pRet);
     STDMETHOD(retrieve)(/*[out, retval]*/ int* pRet);

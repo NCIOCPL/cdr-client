@@ -241,6 +241,8 @@ Caption                      :before { content: "Caption &: "; }
 ChangeDate                   :before { content: "Change Date *: "; }
 TypeOfSummaryChange > Comment
                              :before { content: "Comment & @: "; }
+TypeOfSummaryChange > Comment
+                             :after  { content: ""; }
 ComprehensiveReviewDate      :before { content: "Review Date & @: "; }
 DateLastModified             :before { content: "Last Modified &: "; }
 /*KeyPoint                   :before { content: "Key Point & +: "; } */
@@ -823,6 +825,9 @@ Deletion[RevisionLevel='proposed']>SummarySection:before,
     { text-decoration: line-through; color: green; }
 
 
+/* InLine comments and responses are receiving special labels */
+/* according to the attributes the element carries            */
+/* ---------------------------------------------------------- */
 Comment,  
     { font-style: italic; 
       background-color: green; 
@@ -838,10 +843,51 @@ Comment                      :before
       background-color: green; 
       content: "Comment: "; }
 
+Comment[source='advisory-board']:before 
+    { color: white; 
+      background-color: green; 
+      content: "AB-Comment: "; }
+
+Comment[duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-Comment: "; }
+
+Comment[source='advisory-board'][duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-AB-Comment: "; }
+
+Comment[audience='Internal'] :after 
+    { color: white; 
+      background-color: green; 
+      content: " (Internal)"; }
+
+Comment[audience='External'] :after 
+    { color: white; 
+      background-color: green; 
+      content: " (External)"; }
+
 ResponseToComment            :before 
     { color: white; 
       background-color: green; 
       content: "Response: "; }
+ResponseToComment[source='advisory-board']:before 
+    { color: white; 
+      background-color: green; 
+      content: "AB-Response: "; }
+ResponseToComment[duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-Response: "; }
+ResponseToComment[source='advisory-board'][duration='permanent']:before 
+    { color: white; 
+      background-color: green; 
+      content: "Permanent-AB-Response: "; }
+ResponseToComment            :after 
+    { color: white; 
+      background-color: green; 
+      content: " (" attr(audience) ")"; }
 
 SummarySection>Comment
     { color: white; 
