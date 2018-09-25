@@ -5394,36 +5394,60 @@
             child = child.nextSibling;
         }
     }
-    function stripDocId(docElem) {
-        var target = "xm-replace_text";
-        var data   = "{The document ID will be assigned automatically} ";
-        var newPI  = ActiveDocument.createProcessingInstruction(target, data);
-        var node   = docElem.firstChild;
-        while (node) {
-            if (node.nodeName == 'CdrDocCtl') {
-                var child = node.firstChild;
-                while (child) {
-                    if (child.nodeName == 'DocId') {
-                        gEditingCdrLink = true;
-                        var grandchild = child.firstChild;
-                        while (grandchild) {
-                            var nextGrandchild = grandchild.nextSibling;
-                            child.removeChild(grandchild);
-                            grandchild = nextGrandchild;
-                        }
-                        grandchild.appendChild(newPI);
-                        gEditingCdrLink = false;
-                    }
-                    child = child.nextSibling;
-                }
-            }
-            node = node.nextSibling;
-        }
+    // function stripDocId(docElem) {
+    //     var target = "xm-replace_text";
+    //     var data   = "{The document ID will be assigned automatically} ";
+    //     var newPI  = ActiveDocument.createProcessingInstruction(target, data);
+    //     var node   = docElem.firstChild;
+    //     while (node) {
+    //         if (node.nodeName == 'CdrDocCtl') {
+    //             var child = node.firstChild;
+    //             while (child) {
+    //                 if (child.nodeName == 'DocId') {
+    //                     gEditingCdrLink = true;
+    //                     var grandchild = child.firstChild;
+    //                     while (grandchild) {
+    //                         var nextGrandchild = grandchild.nextSibling;
+    //                         child.removeChild(grandchild);
+    //                         grandchild = nextGrandchild;
+    //                     }
+    //                     grandchild.appendChild(newPI);
+    //                     gEditingCdrLink = false;
+    //                 }
+    //                 child = child.nextSibling;
+    //             }
+    //         }
+    //         node = node.nextSibling;
+    //     }
+    // }
+
+    // Extracting the CDR-ID of the parent document
+    function getDocId(docText) {
+        var sourceId = docText.match(/CDR\d+/);
+        return sourceId;
     }
     function fixDocId(docText) {
         var docId = "<DocId><?xm-replace_text {The document ID will be "
                   + "assigned automatically} ?></DocId>";
         return docText.replace(/<DocId[^>]*>CDR\d+<\/DocId>/, docId);
+    }
+    // Comments from the original document should not be copied to 
+    // the cloned document.  
+    // Note: The regex works because the Comment and Media elements
+    //       are on one line.
+    function removeComment(docText) {
+        return docText.replace(/<Comment.+<\/Comment><\/Media>/, "<\/Media>");
+    }
+    // Adding new TranslationOf element with CDR-ID from parent
+    // document.
+    function addTranslationOf(docText, CdrId) {
+        var enCdrId = CdrId;
+        var transElem = "<TranslationOf cdr:ref=\""
+                  + enCdrId
+                  + "\">"
+                  + enCdrId
+                  + "</TranslationOf>";
+        return docText.replace(/<\/Media>/, transElem + "<\/Media>");
     }
     function cloneDoc() {
         var docType = ActiveDocument.doctype;
@@ -5431,13 +5455,17 @@
             var rng = ActiveDocument.Range;
             rng.SelectAll();
             rng.Copy();
-            var docText = fixDocId(Application.Clipboard.Text);
+            var curDoc = Application.Clipboard.Text;
+            var docCdrId = getDocId(curDoc);
+            var newDoc = fixDocId(curDoc);
+            newDoc = removeComment(newDoc);
+            newDoc = addTranslationOf(newDoc, docCdrId);
             var xmlText = "<?xml version='1.0'?>\n<!DOCTYPE "
                         + docType.name
                         + " SYSTEM '"
                         + docType.name
                         + ".dtd'>\n"
-                        + docText;
+                        + newDoc;
             var doc = Application.Documents.OpenString(xmlText, 0,
                                                        "newdoc.xml",
                                                        true, true, false);
