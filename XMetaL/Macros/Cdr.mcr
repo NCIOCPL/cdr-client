@@ -5421,10 +5421,28 @@
     //     }
     // }
 
+    function mediaTitle() {
+        var nodes = ActiveDocument.getElementsByTagName("MediaTitle");
+        var title = "";
+        if (nodes.length > 0) {
+            var elem = nodes.item(0);
+            title = getTextContent(elem);
+        }
+        return title;
+    }
     // Extracting the CDR-ID of the parent document
-    function getDocId(docText) {
-        var sourceId = docText.match(/CDR\d+/);
-        return sourceId;
+    //function getDocId(docText) {
+    //    var sourceId = docText.match(/CDR\d+/);
+    //    return sourceId;
+    //}
+    function getDocIdNew() {
+        var nodes = ActiveDocument.getElementsByTagName("DocId");
+        var cdrId = "";
+        if (nodes.length > 0) {
+            var elem = nodes.item(0);
+            cdrId = getTextContent(elem);
+        }
+        return cdrId;
     }
     function fixDocId(docText) {
         var docId = "<DocId><?xm-replace_text {The document ID will be "
@@ -5440,26 +5458,32 @@
     }
     // Adding new TranslationOf element with CDR-ID from parent
     // document.
-    function addTranslationOf(docText, CdrId) {
+    function addTranslationOf(docText, CdrId, title) {
         var enCdrId = CdrId;
         var transElem = "<TranslationOf cdr:ref=\""
                   + enCdrId
                   + "\">"
-                  + enCdrId
+                  + title
                   + "</TranslationOf>";
         return docText.replace(/<\/Media>/, transElem + "<\/Media>");
     }
+    // Main function to clone the document
     function cloneDoc() {
         var docType = ActiveDocument.doctype;
+
+        // Extract CDR-ID and document title to populate
+        // TranslationOf element.
+        var docCdrId = getDocIdNew();
+        var title = mediaTitle();
+
         if (docType) {
             var rng = ActiveDocument.Range;
             rng.SelectAll();
             rng.Copy();
             var curDoc = Application.Clipboard.Text;
-            var docCdrId = getDocId(curDoc);
             var newDoc = fixDocId(curDoc);
             newDoc = removeComment(newDoc);
-            newDoc = addTranslationOf(newDoc, docCdrId);
+            newDoc = addTranslationOf(newDoc, docCdrId, title);
             var xmlText = "<?xml version='1.0'?>\n<!DOCTYPE "
                         + docType.name
                         + " SYSTEM '"
