@@ -135,6 +135,14 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>DrugName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">EmbeddedVideo</Name>
    <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -174,6 +182,22 @@
   <ElementProperties>
    <Name>FigureNumber</Name>
    <TagColor>99CCFF</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ForeignWord</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>GeneName</Name>
+   <TagColor>FEA7A7</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -369,6 +393,13 @@
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <NewLineBeforeEndTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>ScientificName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
     <IndentContent/>
    </PrettyPrintOptions>
   </ElementProperties>
@@ -689,6 +720,19 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
  </ElementPropertiesList>
+
+   <TogglingInlines>
+
+   <Bold>
+    <Name>Strong</Name>
+   </Bold>
+
+   <Italic>
+    <Name>Emphasis</Name>
+   </Italic>
+
+  </TogglingInlines>
+
  <FollowedByList>
   <FollowedByListItem>
    <Name>SummaryMetaData</Name>
@@ -800,6 +844,30 @@
    <MiniTemplate><![CDATA[<Para><?xm-replace_text {
                    Paragraph
                    }?></Para>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>GeneName</Name>
+   <MiniTemplate><![CDATA[<GeneName><?xm-replace_text {
+                   GeneName
+                   }?></GeneName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ForeignWord</Name>
+   <MiniTemplate><![CDATA[<ForeignWord><?xm-replace_text {
+                   ForeignWord
+                   }?></ForeignWord>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>DrugName</Name>
+   <MiniTemplate><![CDATA[<DrugName><?xm-replace_text {
+                   DrugName
+                   }?></DrugName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ScientificName</Name>
+   <MiniTemplate><![CDATA[<ScientificName><?xm-replace_text {
+                   ScientificName
+                   }?></ScientificName>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>MiscellaneousDocLink</Name>
@@ -1036,7 +1104,9 @@
   </Template>
   <Template>
    <Name>Insertion</Name>
-   <MiniTemplate><![CDATA[<Insertion RevisionLevel="proposed"></Insertion>]]></MiniTemplate>
+   <MiniTemplate><![CDATA[<Insertion><?xm-replace_text {
+                   Insert text
+                   }?></Insertion>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Deletion</Name>
