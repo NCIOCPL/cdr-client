@@ -5449,8 +5449,8 @@
                   + "assigned automatically} ?></DocId>";
         return docText.replace(/<DocId[^>]*>CDR\d+<\/DocId>/, docId);
     }
-    // Comments from the original document should not be copied to 
-    // the cloned document.  
+    // Comments from the original document should not be copied to
+    // the cloned document.
     // Note: The regex works because the Comment and Media elements
     //       are on one line.
     function removeComment(docText) {
