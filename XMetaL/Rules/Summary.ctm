@@ -1026,13 +1026,13 @@
   <Template>
    <Name>ChangeDate</Name>
    <MiniTemplate><![CDATA[<ChangeDate><?xm-replace_text {
-                   Enter today's date 
+                   Enter today's date
                    }?></ChangeDate>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>Date</Name>
    <MiniTemplate><![CDATA[<Date><?xm-replace_text {
-                   Enter today's date 
+                   Enter today's date
                    }?></Date>]]></MiniTemplate>
   </Template>
   <Template>
