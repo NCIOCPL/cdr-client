@@ -5420,6 +5420,21 @@
             node = node.nextSibling;
         }
     }
+    // Set language attribute for LabelName to "es"
+    function chgLabelLanguage(doc) {
+        var labelElems = doc.getElementsByTagName("LabelName");
+
+        if (!labelElems.length) {
+             Application.Alert("No Labels found");
+             return;
+        }
+
+        for (var i = 0; i < labelElems.length; ++i) {
+            var labelElement = labelElems.item(i);
+            labelElement.setAttribute("language", "es");
+        }
+
+    }
     function fixDocId(docText) {
         var docId = "<DocId><?xm-replace_text {The document ID will be "
                   + "assigned automatically} ?></DocId>";
@@ -5445,7 +5460,7 @@
             if (docElem.hasAttribute("readonly"))
                 docElem.removeAttribute("readonly");
             stripCdrIdAttrs(docElem);
-            // stripDocId(docElem);
+            chgLabelLanguage(docElem);
         }
     }
     cloneDoc();
