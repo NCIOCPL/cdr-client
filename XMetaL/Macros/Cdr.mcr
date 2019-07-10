@@ -5445,6 +5445,22 @@
         }
         return cdrId;
     }
+    // Set language attribute for element(s) to "es"
+    function chgLabelLanguage(doc, languageElem) {
+        var elemName = languageElem;
+        var labelElems = doc.getElementsByTagName(elemName);
+
+        if (!labelElems.length) {
+             Application.Alert("No Labels found");
+             return;
+        }
+
+        for (var i = 0; i < labelElems.length; ++i) {
+            var labelElement = labelElems.item(i);
+            labelElement.setAttribute("language", "es");
+        }
+
+    }
     function fixDocId(docText) {
         var docId = "<DocId><?xm-replace_text {The document ID will be "
                   + "assigned automatically} ?></DocId>";
@@ -5498,7 +5514,10 @@
             if (docElem.hasAttribute("readonly"))
                 docElem.removeAttribute("readonly");
             stripCdrIdAttrs(docElem);
-            // stripDocId(docElem);
+            // Change language attribute for these elements
+            chgLabelLanguage(docElem, "LabelName");
+            chgLabelLanguage(docElem, "ContentDescription");
+            chgLabelLanguage(docElem, "MediaCaption");
         }
     }
     cloneDoc();
