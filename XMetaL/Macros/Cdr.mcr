@@ -4953,8 +4953,9 @@
                 Selection.GotoPrevious(2);
                 return;
             }
+            Selection.InsertWithTemplate(name);
         }
-        Selection.InsertWithTemplate(name);
+        //Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
   ]]>
@@ -5394,50 +5395,118 @@
             child = child.nextSibling;
         }
     }
-    function stripDocId(docElem) {
-        var target = "xm-replace_text";
-        var data   = "{The document ID will be assigned automatically} ";
-        var newPI  = ActiveDocument.createProcessingInstruction(target, data);
-        var node   = docElem.firstChild;
-        while (node) {
-            if (node.nodeName == 'CdrDocCtl') {
-                var child = node.firstChild;
-                while (child) {
-                    if (child.nodeName == 'DocId') {
-                        gEditingCdrLink = true;
-                        var grandchild = child.firstChild;
-                        while (grandchild) {
-                            var nextGrandchild = grandchild.nextSibling;
-                            child.removeChild(grandchild);
-                            grandchild = nextGrandchild;
-                        }
-                        grandchild.appendChild(newPI);
-                        gEditingCdrLink = false;
-                    }
-                    child = child.nextSibling;
-                }
-            }
-            node = node.nextSibling;
+    // function stripDocId(docElem) {
+    //     var target = "xm-replace_text";
+    //     var data   = "{The document ID will be assigned automatically} ";
+    //     var newPI  = ActiveDocument.createProcessingInstruction(target, data);
+    //     var node   = docElem.firstChild;
+    //     while (node) {
+    //         if (node.nodeName == 'CdrDocCtl') {
+    //             var child = node.firstChild;
+    //             while (child) {
+    //                 if (child.nodeName == 'DocId') {
+    //                     gEditingCdrLink = true;
+    //                     var grandchild = child.firstChild;
+    //                     while (grandchild) {
+    //                         var nextGrandchild = grandchild.nextSibling;
+    //                         child.removeChild(grandchild);
+    //                         grandchild = nextGrandchild;
+    //                     }
+    //                     grandchild.appendChild(newPI);
+    //                     gEditingCdrLink = false;
+    //                 }
+    //                 child = child.nextSibling;
+    //             }
+    //         }
+    //         node = node.nextSibling;
+    //     }
+    // }
+
+    function mediaTitle() {
+        var nodes = ActiveDocument.getElementsByTagName("MediaTitle");
+        var title = "";
+        if (nodes.length > 0) {
+            var elem = nodes.item(0);
+            title = getTextContent(elem);
         }
+        return title;
+    }
+    // Extracting the CDR-ID of the parent document
+    //function getDocId(docText) {
+    //    var sourceId = docText.match(/CDR\d+/);
+    //    return sourceId;
+    //}
+    function getDocIdNew() {
+        var nodes = ActiveDocument.getElementsByTagName("DocId");
+        var cdrId = "";
+        if (nodes.length > 0) {
+            var elem = nodes.item(0);
+            cdrId = getTextContent(elem);
+        }
+        return cdrId;
+    }
+    // Set language attribute for element(s) to "es"
+    function chgLabelLanguage(doc, languageElem) {
+        var elemName = languageElem;
+        var labelElems = doc.getElementsByTagName(elemName);
+
+        if (!labelElems.length) {
+             Application.Alert("No Labels found");
+             return;
+        }
+
+        for (var i = 0; i < labelElems.length; ++i) {
+            var labelElement = labelElems.item(i);
+            labelElement.setAttribute("language", "es");
+        }
+
     }
     function fixDocId(docText) {
         var docId = "<DocId><?xm-replace_text {The document ID will be "
                   + "assigned automatically} ?></DocId>";
         return docText.replace(/<DocId[^>]*>CDR\d+<\/DocId>/, docId);
     }
+    // Comments from the original document should not be copied to
+    // the cloned document.
+    // Note: The regex works because the Comment and Media elements
+    //       are on one line.
+    function removeComment(docText) {
+        return docText.replace(/<Comment.+<\/Comment><\/Media>/, "<\/Media>");
+    }
+    // Adding new TranslationOf element with CDR-ID from parent
+    // document.
+    function addTranslationOf(docText, CdrId, title) {
+        var enCdrId = CdrId;
+        var transElem = "<TranslationOf cdr:ref=\""
+                  + enCdrId
+                  + "\">"
+                  + title
+                  + "</TranslationOf>";
+        return docText.replace(/<\/Media>/, transElem + "<\/Media>");
+    }
+    // Main function to clone the document
     function cloneDoc() {
         var docType = ActiveDocument.doctype;
+
+        // Extract CDR-ID and document title to populate
+        // TranslationOf element.
+        var docCdrId = getDocIdNew();
+        var title = mediaTitle();
+
         if (docType) {
             var rng = ActiveDocument.Range;
             rng.SelectAll();
             rng.Copy();
-            var docText = fixDocId(Application.Clipboard.Text);
+            var curDoc = Application.Clipboard.Text;
+            var newDoc = fixDocId(curDoc);
+            newDoc = removeComment(newDoc);
+            newDoc = addTranslationOf(newDoc, docCdrId, title);
             var xmlText = "<?xml version='1.0'?>\n<!DOCTYPE "
                         + docType.name
                         + " SYSTEM '"
                         + docType.name
                         + ".dtd'>\n"
-                        + docText;
+                        + newDoc;
             var doc = Application.Documents.OpenString(xmlText, 0,
                                                        "newdoc.xml",
                                                        true, true, false);
@@ -5445,7 +5514,10 @@
             if (docElem.hasAttribute("readonly"))
                 docElem.removeAttribute("readonly");
             stripCdrIdAttrs(docElem);
-            // stripDocId(docElem);
+            // Change language attribute for these elements
+            chgLabelLanguage(docElem, "LabelName");
+            chgLabelLanguage(docElem, "ContentDescription");
+            chgLabelLanguage(docElem, "MediaCaption");
         }
     }
     cloneDoc();
