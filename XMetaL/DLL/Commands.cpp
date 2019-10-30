@@ -2507,6 +2507,9 @@ CString getBlobExtension(const CString& docXml, const CString& docType) {
             extension = _T(".doc");
         else if (elemText == _T("application/vnd.ms-excel"))
             extension = _T(".xls");
+        else if (elemText ==
+                 _T("vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+            extension = _T(".xlsx");
         else if (elemText == _T("application/vnd.wordperfect"))
             extension = _T(".wpd");
         else if (elemText == _T("text/html"))
