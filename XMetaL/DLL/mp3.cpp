@@ -166,7 +166,7 @@ bool readTag(MP3INFO* mp3) {
  * Trim whitespace from the end of a null-terminated string.
  */
 void strip(char* s) {
-    int i = strlen(s);
+    size_t i = strlen(s);
     while (i-- && isspace(s[i]))
         s[i] = '\0';
 }

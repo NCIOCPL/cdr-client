@@ -164,7 +164,7 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         const char* commands;
 
         // Use caller's buffer if present.
-        long requestLen = 0;
+        size_t requestLen = 0;
         std::string request; // may not need, but keep in scope when we do
         if (requestBuf) {
             std::string f = cdr::cStringToUtf8(front);

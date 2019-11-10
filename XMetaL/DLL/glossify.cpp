@@ -249,7 +249,7 @@ bool CGlossify::findNextMatch()
 			if (++curChain >= static_cast<int>(chains.size()))
 				return false;
 			chain = &chains[curChain];
-			wordsLeft = chain->words.size();
+			wordsLeft = (int)chain->words.size();
             if (docType == _T("Summary"))
                 gt->clearFlags();
 		}
@@ -313,7 +313,7 @@ bool CGlossify::findNextMatch()
                         range.Select();
 
                         // Skip past the current phrase.
-                        chain->curWord += phrase.size();
+                        chain->curWord += (int)phrase.size();
                         curNode = n;
                         return true;
                     }
