@@ -1,4 +1,4 @@
-PROPERTIES=/p:Configuration=Release /p:Platform=x64
+PROPERTIES=/p:Configuration=Release /p:Platform=Win32
 rebuild:
 	MSBuild.exe CdrClient.vcxproj /t:Rebuild $(PROPERTIES)
 
