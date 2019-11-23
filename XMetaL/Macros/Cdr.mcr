@@ -1817,18 +1817,6 @@
                            "Structure (Custom)", 1, 8,
                            false),
             new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Preview Mailer",
-                           "Preview Mailer",
-                           "Preview Mailer",
-                           "General (Custom)", 3, 3,
-                           false),
-            new CdrCmdItem(null,
                            "Back Out Rejected Markup",
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
@@ -1971,18 +1959,6 @@
                            "Structure (Custom)", 1, 8,
                            false),
             new CdrCmdItem(null,
-                           "Mailer History",
-                           "Mailer History",
-                           "Mailer History",
-                           "CDR", 7, 1,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
                            "Linked Docs Report",
                            "Linked Docs",
                            "Launch Linked Docs Report",
@@ -2040,18 +2016,6 @@
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Mailer History",
-                           "Mailer History",
-                           "Mailer History",
-                           "CDR", 7, 1,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
             new CdrCmdItem(null,
                            "Linked Docs Report",
                            "Linked Docs",
@@ -4365,17 +4329,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Generate Mailer"
-       lang="JScript">
-  <![CDATA[
-    function generateMailer() {
-        var url = CdrCgiBin + "Mailers.py?Session=" + CdrSession;
-        cdrObj.showPage(url);
-    }
-    generateMailer();
-  ]]>
-</MACRO>
-
 <MACRO name="Search PubMed"
        lang="JScript">
   <![CDATA[
@@ -4709,29 +4662,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Mailer History"
-       lang="JScript" >
-  <![CDATA[
-    function mailerHistory() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "MailerHistory.py?Session="
-                + CdrSession
-                + "&DocId="
-                + docId;
-        cdrObj.showPage(url);
-    }
-    mailerHistory();
-  ]]>
-</MACRO>
-
 <MACRO name="Linked Docs Report"
        lang="JScript" >
   <![CDATA[
@@ -4869,29 +4799,6 @@
         cdrObj.showPage(url);
     }
     glossaryPhraseSearch();
-  ]]>
-</MACRO>
-
-<MACRO name="Preview Mailer"
-       lang="JScript" >
-  <![CDATA[
-    function previewMailer() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
-        var ver = getDocVersion()
-        if (ver)
-            url += '&ver=' + ver;
-        cdrObj.showPage(url);
-    }
-    previewMailer();
   ]]>
 </MACRO>
 
