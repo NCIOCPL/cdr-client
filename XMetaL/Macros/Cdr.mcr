@@ -1953,12 +1953,6 @@
                            "CDR", 3, 4,                 // icon set, row, col
                            false),                      // starts new group?
             new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
                            "Linked Docs Report",
                            "Linked Docs",
                            "Launch Linked Docs Report",
