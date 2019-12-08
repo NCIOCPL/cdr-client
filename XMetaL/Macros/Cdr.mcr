@@ -1401,12 +1401,6 @@
                            "Reject current markup change",
                            "CDR", 2, 8,
                            false),
-            new CdrCmdItem("Re&ject All Changes",
-                           "Reject Changes",
-                           "Reject All Changes",
-                           "Reject all markup changes",
-                           "CDR", 2, 9,
-                           false),
             new CdrCmdItem("&Back Out Rejected Changes",
                            "Back Out Rejected Markup",
                            "Back Out Rejected Changes",
@@ -3570,79 +3564,6 @@
 
     if (CanRunMacros())
         doRejectChangeCorrectly();
-
-  ]]>
-</MACRO>
-
-<MACRO  name="Reject Changes"
-        key=""
-        lang="JScript"
-        id="1909"
-        desc="Deletes all marked changes">
-  <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Drop marked changes.
-    //----------------------------------------------------------------------
-    function doRejectAllChanges()
-    {
-        var r = ActiveDocument.Range;
-        r.MoveToDocumentStart();
-        Selection.MoveToDocumentStart();
-        while (r.MoveToElement("Deletion")) {
-            Selection.MoveToElement("Deletion");
-            //Selection.RemoveContainerTags();
-            var rng = r.Duplicate;
-            doRejectDelChange(r);
-        }
-        r.MoveToDocumentStart();
-        while (r.MoveToElement("Insertion")) {
-            r.SelectContainerContents();
-            r.Delete();
-            r.RemoveContainerTags();
-        }
-        r = null;
-    }
-
-
-    function doRejectDelChange(rng_reject) {
-        rng_reject.SelectContainerContents();
-        start = rng_reject.Duplicate;
-        start.Collapse(1);  // set the starting boundary for the search
-        end = rng_reject.Duplicate;
-        end.Collapse(0);  // set the ending boundary for the search
-        rng_reject.RemoveContainerTags();
-        rng_reject = readtree(start, end);
-        rng_reject= null;
-        return;
-    }
-
-    function readtree(startRng, endRng) {
-
-        while (true) {
-
-            // Move to next element
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            }
-            else if (!startRng.IsLessThan(endRng))
-                break;
-            }
-        }
-        startRng = null;
-        return(endRng);
-    }
-
-    if (CanRunMacros()) {
-        var confirm = Application.Confirm("Do you want to reject all " +
-                                          "changes without reviewing them?");
-        if (confirm) {
-            doRejectAllChanges();
-        }
-    }
 
   ]]>
 </MACRO>
