@@ -310,7 +310,7 @@ CString get_legacy_tier(CdrClient* client) {
             client->log(_T("Can't find CdrSettings.xml.\n"), 2);
             return _T("");
         }
-        UINT nread = fread(buf, 1, sizeof(buf) - 1, fp);
+        UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
         fclose(fp);
         CString settings(buf, (int)nread);
         if (settings.Find(_T("<CurrentGroup>PRODUCTION</CurrentGroup>")) >= 0)
@@ -358,7 +358,7 @@ void fix_cdr_settings(CdrClient* client, const CString& tier) {
         client->log(_T("Can't find legacy settings file.\n"), 2);
         return;
     }
-    UINT nread = fread(buf, 1, sizeof(buf) - 1, fp);
+    UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
     fclose(fp);
     CString settings(buf, (int)nread);
     CString current = _T("<CurrentGroup>") + legacy + _T("</CurrentGroup>");

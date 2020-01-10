@@ -1401,12 +1401,6 @@
                            "Reject current markup change",
                            "CDR", 2, 8,
                            false),
-            new CdrCmdItem("Re&ject All Changes",
-                           "Reject Changes",
-                           "Reject All Changes",
-                           "Reject all markup changes",
-                           "CDR", 2, 9,
-                           false),
             new CdrCmdItem("&Back Out Rejected Changes",
                            "Back Out Rejected Markup",
                            "Back Out Rejected Changes",
@@ -1817,18 +1811,6 @@
                            "Structure (Custom)", 1, 8,
                            false),
             new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Preview Mailer",
-                           "Preview Mailer",
-                           "Preview Mailer",
-                           "General (Custom)", 3, 3,
-                           false),
-            new CdrCmdItem(null,
                            "Back Out Rejected Markup",
                            "Back Out Rejected Changes",
                            "Back out rejected tracked changes",
@@ -1965,24 +1947,6 @@
                            "CDR", 3, 4,                 // icon set, row, col
                            false),                      // starts new group?
             new CdrCmdItem(null,
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Publish Preview",
-                           "Structure (Custom)", 1, 8,
-                           false),
-            new CdrCmdItem(null,
-                           "Mailer History",
-                           "Mailer History",
-                           "Mailer History",
-                           "CDR", 7, 1,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
-            new CdrCmdItem(null,
                            "Linked Docs Report",
                            "Linked Docs",
                            "Launch Linked Docs Report",
@@ -2040,18 +2004,6 @@
                            "Generate QC Report",        // Description
                            "CDR", 3, 4,                 // Icon set, row, col.
                            false),                      // Starts new group?
-            new CdrCmdItem(null,
-                           "Mailer History",
-                           "Mailer History",
-                           "Mailer History",
-                           "CDR", 7, 1,
-                           false),
-            new CdrCmdItem(null,
-                           "Generate Mailer",
-                           "Mailer",
-                           "Generate Mailer",
-                           "CDR", 5, 8,
-                           false),
             new CdrCmdItem(null,
                            "Linked Docs Report",
                            "Linked Docs",
@@ -3616,79 +3568,6 @@
   ]]>
 </MACRO>
 
-<MACRO  name="Reject Changes"
-        key=""
-        lang="JScript"
-        id="1909"
-        desc="Deletes all marked changes">
-  <![CDATA[
-
-    //----------------------------------------------------------------------
-    // Drop marked changes.
-    //----------------------------------------------------------------------
-    function doRejectAllChanges()
-    {
-        var r = ActiveDocument.Range;
-        r.MoveToDocumentStart();
-        Selection.MoveToDocumentStart();
-        while (r.MoveToElement("Deletion")) {
-            Selection.MoveToElement("Deletion");
-            //Selection.RemoveContainerTags();
-            var rng = r.Duplicate;
-            doRejectDelChange(r);
-        }
-        r.MoveToDocumentStart();
-        while (r.MoveToElement("Insertion")) {
-            r.SelectContainerContents();
-            r.Delete();
-            r.RemoveContainerTags();
-        }
-        r = null;
-    }
-
-
-    function doRejectDelChange(rng_reject) {
-        rng_reject.SelectContainerContents();
-        start = rng_reject.Duplicate;
-        start.Collapse(1);  // set the starting boundary for the search
-        end = rng_reject.Duplicate;
-        end.Collapse(0);  // set the ending boundary for the search
-        rng_reject.RemoveContainerTags();
-        rng_reject = readtree(start, end);
-        rng_reject= null;
-        return;
-    }
-
-    function readtree(startRng, endRng) {
-
-        while (true) {
-
-            // Move to next element
-            var tempRng = startRng.Duplicate;
-            startRng.GoToNext(0);
-            if (tempRng.isEqual(startRng)) {
-                tempRng = null;
-                break;
-            }
-            else if (!startRng.IsLessThan(endRng))
-                break;
-            }
-        }
-        startRng = null;
-        return(endRng);
-    }
-
-    if (CanRunMacros()) {
-        var confirm = Application.Confirm("Do you want to reject all " +
-                                          "changes without reviewing them?");
-        if (confirm) {
-            doRejectAllChanges();
-        }
-    }
-
-  ]]>
-</MACRO>
-
 <MACRO  name="Find Next"
         key="Ctrl+Alt+N"
         lang="JScript"
@@ -4365,17 +4244,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Generate Mailer"
-       lang="JScript">
-  <![CDATA[
-    function generateMailer() {
-        var url = CdrCgiBin + "Mailers.py?Session=" + CdrSession;
-        cdrObj.showPage(url);
-    }
-    generateMailer();
-  ]]>
-</MACRO>
-
 <MACRO name="Search PubMed"
        lang="JScript">
   <![CDATA[
@@ -4709,29 +4577,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Mailer History"
-       lang="JScript" >
-  <![CDATA[
-    function mailerHistory() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "MailerHistory.py?Session="
-                + CdrSession
-                + "&DocId="
-                + docId;
-        cdrObj.showPage(url);
-    }
-    mailerHistory();
-  ]]>
-</MACRO>
-
 <MACRO name="Linked Docs Report"
        lang="JScript" >
   <![CDATA[
@@ -4869,29 +4714,6 @@
         cdrObj.showPage(url);
     }
     glossaryPhraseSearch();
-  ]]>
-</MACRO>
-
-<MACRO name="Preview Mailer"
-       lang="JScript" >
-  <![CDATA[
-    function previewMailer() {
-        var docId = getDocId();
-        if (!docId) {
-            Application.Alert("Document has not yet been saved in the CDR");
-            return;
-        }
-        if (!CdrSession) {
-            Application.Alert("Not logged into CDR");
-            return;
-        }
-        var url = CdrCgiBin + "SummaryMailerPreview.py?DocId=" + docId;
-        var ver = getDocVersion()
-        if (ver)
-            url += '&ver=' + ver;
-        cdrObj.showPage(url);
-    }
-    previewMailer();
   ]]>
 </MACRO>
 

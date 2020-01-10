@@ -379,7 +379,7 @@ bool getDocTypes(LogonDialog* dialog, CLogonProgress& progressDialog)
         app.SetStatusText(_T("Retrieving information for document type ")
                 + name);
         getDocType(name, progressDialog);
-        progressDialog.m_progressBar.SetPos((100 * ++i) / nameCount);
+        progressDialog.m_progressBar.SetPos((int)((100 * ++i) / nameCount));
     }
     return true;
 }
@@ -476,7 +476,7 @@ STDMETHODIMP CCommands::logon(int *pRet)
         // Get the user's CDR credentials.
         //::AfxMessageBox(_T("Couldn't find ") + manifestName);
         LogonDialog logonDialog;
-        int rc = logonDialog.DoModal();
+        int rc = (int)logonDialog.DoModal();
         switch (rc) {
         case IDOK:
             //::AfxMessageBox(_T("CDR Logon Successful"));
@@ -530,7 +530,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet)
             err = "This session is not logged into the CDR";
         // Ask the user which document to retrieve.
         if (err.IsEmpty()) {
-            int rc = retrieveDialog.DoModal();
+            int rc = (int)retrieveDialog.DoModal();
             switch (rc) {
             case IDOK:
                 if (doRetrieve(retrieveDialog.m_DocId,
@@ -597,7 +597,7 @@ STDMETHODIMP CCommands::search(int *pRet)
             while (err.IsEmpty()) {
 
                 // All the heavy lifting is done in this call.
-                int rc = searchDialog.DoModal();
+                int rc = (int)searchDialog.DoModal();
                 switch (rc) {
                 case IDCANCEL:
                     return S_OK;
@@ -901,7 +901,8 @@ STDMETHODIMP CCommands::save(int *pRet)
             std::string b = cdr::cStringToUtf8(back);
 
             // Calculate how much memory we need (with 1KB padding).
-            int commandSize = f.length() + encodedBlobSize + b.length() + 1024;
+            size_t commandSize = f.length() + encodedBlobSize + b.length()
+                + 1024;
             Buf commandBuf(commandSize);
             memcpy(commandBuf.buf, f.c_str(), f.length());
             char* p = commandBuf.buf + f.length();
@@ -916,7 +917,7 @@ STDMETHODIMP CCommands::save(int *pRet)
                     *pRet = -9;
                     return S_OK;
                 }
-                int actualLen = strlen(p);
+                size_t actualLen = strlen(p);
                 p += written;
             }
 
@@ -1322,11 +1323,11 @@ STDMETHODIMP CCommands::edit(int *pRet)
 
 static int findFirst(const CString& str, LPCTSTR chars, int offset)
 {
-    int strLen = str.GetLength();
-    int numChars = _tcslen(chars);
-    while (offset < strLen) {
+    size_t strLen = str.GetLength();
+    size_t numChars = _tcslen(chars);
+    while ((size_t)offset < strLen) {
         TCHAR ch = str[offset];
-        for (int i = 0; i < numChars; ++i) {
+        for (size_t i = 0; i < numChars; ++i) {
             if (ch == chars[i])
                 return offset;
         }
@@ -2507,6 +2508,9 @@ CString getBlobExtension(const CString& docXml, const CString& docType) {
             extension = _T(".doc");
         else if (elemText == _T("application/vnd.ms-excel"))
             extension = _T(".xls");
+        else if (elemText ==
+                 _T("vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+            extension = _T(".xlsx");
         else if (elemText == _T("application/vnd.wordperfect"))
             extension = _T(".wpd");
         else if (elemText == _T("text/html"))
@@ -2993,14 +2997,14 @@ STDMETHODIMP CCommands::get_selectionCharacterCount(int *pVal)
     ::Selection selection = cdr::getApp().GetSelection();
     CString characters = selection.GetText();
     int n = 0;
-    TCHAR q = _T('');
+    TCHAR q = _T('\0');
     bool in_tag = false;
     for (int i = 0; i < characters.GetLength(); ++i) {
         TCHAR c = characters[i];
         if (in_tag) {
             if (q) {
                 if (c == q)
-                    q = _T('');
+                    q = _T('\0');
             }
             else if (c == _T('>'))
                 in_tag = false;
