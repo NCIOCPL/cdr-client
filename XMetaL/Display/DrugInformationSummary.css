@@ -156,21 +156,25 @@ URL                      :before,
       color: black;  }
 
 
-Para>ResponseToComment, 
+ListItem>ResponseToComment,
+Para>ResponseToComment 
    { font-style: italic; 
      background-color: green; 
      color: white; }
 
-Para>Comment,  
+ListItem>Comment,
+Para>Comment  
    { font-style: italic; 
      background-color: green; 
      color: white; }
 
+ListItem>Comment         :before,
 Para>Comment             :before 
    { color: white; 
      background-color: green; 
      content: "Comment: "; }
 
+ListItem>ResponseToComment:before,
 Para>ResponseToComment   :before 
    { color: white; 
      background-color: green; 
