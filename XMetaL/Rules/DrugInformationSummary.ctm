@@ -155,6 +155,20 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">ProcessingStatus</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ProcessingStatusValue</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">RelatedDocuments</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -180,6 +194,13 @@
   <ElementProperties>
    <Name ns="">SpecificVideoPresentationTemplate</Name>
    <TagColor>#EE9A4D</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">StatusDate</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -396,11 +417,30 @@
                    Optionally enter the date of the last record modification
                    }?></DateLastModified>]]></MiniTemplate>
   </Template>
+
   <Template>
    <Name ns="">ProcessingStatus</Name>
-   <MiniTemplate><![CDATA[<ProcessingStatus><?xm-replace_text {
-                   Optionally select a processing status
-                   }?></ProcessingStatus>]]></MiniTemplate>
+     <MiniTemplate><![CDATA[<ProcessingStatus>
+      <ProcessingStatusValue><?xm-replace_text {
+                   Select a processing status (required)
+                   }?></ProcessingStatusValue>
+      <StatusDate><?xm-replace_text {
+                   Use the tool bar icon to enter today's date (required)
+                   }?></StatusDate>
+      <EnteredBy><?xm-replace_text {
+                   Use the tool bar icon to enter your user name (required)
+                   }?></EnteredBy>
+      <Comment><?xm-replace_text {
+                   Optionally enter a processing status comment
+                   }?></Comment>
+     </ProcessingStatus>]]></MiniTemplate>
   </Template>
+  <Template>
+   <Name ns="">Comment</Name>
+     <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+                   Optionally enter a comment
+                   }?></Comment>]]></MiniTemplate>
+  </Template>
+
  </Templates>
 </DTDExtensions>

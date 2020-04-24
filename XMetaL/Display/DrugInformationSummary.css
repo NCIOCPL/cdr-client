@@ -8,41 +8,41 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
        margin-left: 5px;
        color:black;         }
 
-$COMMENT 
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
+$PROCINS
      { color: blue;
        background-color: white; }
 
 DrugInformationSummary,
-     { background-color: #CCCCFF; 
-       text-decoration: none;    
+     { background-color: #CCCCFF;
+       text-decoration: none;
        color: black; }
 
-
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Audience,
 ApprovedIndication,
 DrugInformationSummary>Comment,
 DrugReference>Comment,
+ProcessingStatus>Comment,
 DateLastModified,
 Description,
 DrugInfoMetaData,
@@ -58,11 +58,13 @@ FDAApproved,
 GlossaryLink,
 Manufacturer,
 Title,
+StatusDate,
 SummarySection,
 SummarySection>Para,
 SummarySection>ItemizedList,
 SummarySection>OrderedList,
 ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
@@ -72,9 +74,9 @@ URL,
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* Container elements are displayed in ALL CAPS */
 /* * = Required field */
 /* & = Optional element */
@@ -86,6 +88,7 @@ Audience                 :before, { content: "Audience *: "; }
 ApprovedIndication       :before, { content: "Appr Indication & +: "; }
 DrugInformationSummary>Comment :before, { content: "Comments &: "; }
 DrugReference>Comment    :before, { content: "Comments & +: "; }
+ProcessingStatus>Comment :before, { content: "Comments & +: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
@@ -100,10 +103,12 @@ EntryDate                :before, { content: "Entry Date *: "; }
 FDAApproved              :before, { content: "FDA Approved *: "; }
 GlossaryLink             :before, { content: "Glossary Link * @: "; }
 Manufacturer             :before, { content: "Manufacturer & @: "; }
+StatusDate               :before, { content: "Status Date *: "; }
 SummarySection           :before, { content: "Drug Info Summary *: "; }
-DrugInformationSummary>Title             
+DrugInformationSummary>Title
                          :before, { content: "Title *: "; }
-ProcessingStatus         :before, { content: "Processing Status &: "; }
+ProcessingStatus         :before, { content: "PROCESSING STATUS BLOCK & +"; }
+ProcessingStatusValue    :before, { content: "Status Value *: "; }
 RefDescription           :before, { content: "Ref Description *: "; }
 RefLink                  :before, { content: "Ref Link *: "; }
 ReviewStatus             :before, { content: "Review Status &: "; }
@@ -111,21 +116,29 @@ TerminologyLink          :before, { content: "Term Link * @: "; }
 URL                      :before, { content: "URL * @: "; }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
-MediaContent, 
+MediaContent
    { border: solid;
-     border-width: thin; 
+     border-width: thin;
      border-color: black;
      margin-top: 1em;
      margin-bottom: 6pt; }
 
- 
+/*
+ProcessingStatus
+   { border-bottom: solid;
+     border-width: 2pt;
+     border-color: black;
+     margin-top: 1em;
+     margin-bottom: 6pt; }
+*/
 
-/***************************************************************************/ 
-/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
-/***************************************************************************/ 
+
+/***************************************************************************/
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */
+/***************************************************************************/
 Audience                 :before,
 ApprovedIndication       :before,
 Comment                  :before,
@@ -145,10 +158,12 @@ GlossaryLink             :before,
 Manufacturer             :before,
 Title                    :before,
 ProcessingStatus         :before,
+ProcessingStatusValue    :before,
 ResponseToComment        :before,
 ReviewStatus             :before,
 RefDescription           :before,
 RefLink                  :before,
+StatusDate               :before,
 SummarySection           :before,
 TerminologyLink          :before,
 URL                      :before,
@@ -157,32 +172,32 @@ URL                      :before,
 
 
 ListItem>ResponseToComment,
-Para>ResponseToComment 
-   { font-style: italic; 
-     background-color: green; 
+Para>ResponseToComment
+   { font-style: italic;
+     background-color: green;
      color: white; }
 
 ListItem>Comment,
-Para>Comment  
-   { font-style: italic; 
-     background-color: green; 
+Para>Comment 
+   { font-style: italic;
+     background-color: green;
      color: white; }
 
 ListItem>Comment         :before,
-Para>Comment             :before 
-   { color: white; 
-     background-color: green; 
+Para>Comment             :before
+   { color: white;
+     background-color: green;
      content: "Comment: "; }
 
 ListItem>ResponseToComment:before,
-Para>ResponseToComment   :before 
-   { color: white; 
-     background-color: green; 
+Para>ResponseToComment   :before
+   { color: white;
+     background-color: green;
      content: "Response: "; }
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 
 Audience,
@@ -198,10 +213,13 @@ DateLastModified,
                         { margin-left: 130pt;
                           text-indent: -126pt; }
 DrugInformationSummary>Comment,
-                        { margin-left: 130pt; 
+                        { margin-left: 130pt;
                           text-indent: -82.5pt; }
 DrugReference>Comment,
-                        { margin-left: 130pt; 
+                        { margin-left: 130pt;
+                          text-indent: -92pt; }
+ProcessingStatus>Comment,
+                        { margin-left: 0pt;
                           text-indent: -92pt; }
 Description,
                         { margin-left: 130pt;
@@ -227,6 +245,9 @@ DrugReferenceType,
 EnteredBy,
                         { margin-left: 130pt;
                           text-indent: -79.5pt; }
+ProcessingStatus>EnteredBy,
+                        { margin-left: 0pt;
+                          text-indent: -40.pt; }
 EntryDate,
                         { margin-left: 130pt;
                           text-indent: -76pt; }
@@ -263,6 +284,9 @@ SummarySection>OrderedList,
 ProcessingStatus,
                         { margin-left: 130pt;
                           text-indent: -125.5pt; }
+ProcessingStatusValue,
+                        { margin-left: 0pt;
+                          text-indent: -88pt; }
 RefDescription,
                         { margin-left: 70pt;
                           text-indent: -104pt; }
@@ -272,6 +296,9 @@ RefLink,
 ReviewStatus,
                         { margin-left: 130pt;
                           text-indent: -103pt; }
+StatusDate,
+                        { margin-left: 0pt;
+                          text-indent: -82pt; }
 TerminologyLink,
                         { margin-left: 130pt;
                           text-indent: -88pt; }
@@ -284,9 +311,9 @@ VideoID
 
 
 
-/***************************************************************************/ 
-/*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS BETWEEN TEXT ELEMENTS                       */
+/***************************************************************************/
 Audience,
 ApprovedIndication,
 DateLastModified,
@@ -301,7 +328,7 @@ EntryDate,
 FDAApproved,
 GlossaryLink,
 Manufacturer,
-ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
@@ -311,29 +338,34 @@ URL,
 
 
 DrugReferenceLink,
+ProcessingStatus>EnteredBy
     { margin-top: 4pt; }
 
 
 EnteredBy,
     { margin-top: 20pt; }
 
+ProcessingStatus
+	{ margin-top: 10pt; }
+
 
 DrugInfoMetaData,
 DrugReference,
 DrugInformationSummary>SummarySection,
+ProcessingStatus,
 Title,
 	{ margin-bottom: 10pt; }
 
 
 SummarySection>Title,
-    { font-size  : 16pt; 
+    { font-size  : 16pt;
       font-weight: bold;
       margin-top : 10pt; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 /* Background color for Fields (Do not include Container Elements here */
 Audience,
 ApprovedIndication,
@@ -346,6 +378,7 @@ DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
 EnteredBy,
+ProcessingStatus>EnteredBy,
 EntryDate,
 FDAApproved,
 GlossaryLink,
@@ -354,10 +387,11 @@ Title,
 Para,
 ItemizedList,
 OrderedList,
-ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
+StatusDate,
 TerminologyLink,
 URL,
    { background-color: white; }
@@ -376,16 +410,20 @@ DrugReferenceLink        :before,
 DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
 EnteredBy                :before,
+ProcessingStatus>EnteredBy
+                         :before,
 EntryDate                :before,
 FDAApproved              :before,
 GlossaryLink             :before,
 Manufacturer             :before,
 Title                    :before,
 ProcessingStatus         :before,
+ProcessingStatusValue    :before,
 RefDescription           :before,
 RefLink                  :before,
 ReviewStatus             :before,
 SummarySection           :before,
+StatusDate               :before,
 TerminologyLink          :before,
 URL                      :before,
    { background-color: #CCCCFF; }

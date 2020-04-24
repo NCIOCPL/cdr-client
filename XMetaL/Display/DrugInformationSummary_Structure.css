@@ -64,10 +64,12 @@ GlossaryLink,
 Manufacturer,
 Title,
 ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
 SectionType,
+StatusDate,
 SummarySection,
 TerminologyLink,
 URL,
@@ -100,13 +102,15 @@ Manufacturer             :before, { content: "Manufacturer"; }
 DrugInformationSummary>Title             
                          :before, { content: "Title"; }
 Para                     :before, { content: counter(para)". Paragraph"; }
-ProcessingStatus         :before, { content: "Processing Status"; }
+ProcessingStatus         :before, { content: "PROCESSING STATUS"; }
+ProcessingStatusValue    :before, { content: "Status Value"; }
 RefDescription           :before, { content: "Ref Description"; }
 RefLink                  :before, { content: "Ref Link"; }
 ReviewStatus             :before, { content: "Review Status"; }
 SectionType              :before, { content: "Section Type"; }
 SectMetaData             :before, { content: "Section Metadata"; }
 TerminologyLink          :before, { content: "Term Link"; }
+StatusDate               :before, { content: "Status Date"; }
 SummarySection           :before, { content: "Drug Info Summary"; }
 SummarySection>Title     :before, { content: "Section Title"; }
 URL                      :before, { content: "URL"; }
@@ -188,12 +192,14 @@ FDAApproved,
 GlossaryLink,
 Manufacturer,
 ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
+StatusDate,
 TerminologyLink,
 DrugInformationSummary>Title,
-URL,
+URL
     { text-indent: 0pt; }
 
 
@@ -205,6 +211,7 @@ ApprovedIndication,
 DrugInformationSummary>Comment,
 DrugReference>Comment,
 Para>Comment,
+ProcessingStatus,Comment,
 ResponseToComment>Comment,
 DateLastModified,
 Description,
@@ -219,10 +226,11 @@ FDAApproved,
 GlossaryLink,
 Manufacturer,
 Title,
-ProcessingStatus,
+ProcessingStatusValue,
 RefDescription,
 RefLink,
 ReviewStatus,
+StatusDate,
 SummarySection,
 TerminologyLink,
 URL,
@@ -253,7 +261,7 @@ FromMethod                        :before,
 Glossary,
 Manufacturer,
 ProcessingStatusDate,
-ProcessingStatusValue,
+ProcessingStatusValue             :before,
 Summary,
 HeightPixels                      :before,
 ImageType                         :before,
@@ -273,6 +281,7 @@ SoundEncoding                     :before,
 SoundType                         :before,
 SourceFilename                    :before,
 SourcePublication                 :before,
+StatusDate                        :before,
 TextDateCreated                   :before,
 Topic                             :before,
 VideoData                         :before,
