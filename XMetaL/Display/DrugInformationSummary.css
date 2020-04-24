@@ -43,6 +43,7 @@ ApprovedIndication,
 DrugInformationSummary>Comment,
 DrugReference>Comment,
 ProcessingStatus>Comment,
+ComprehensiveReviewDate,
 DateLastModified,
 Description,
 DrugInfoMetaData,
@@ -89,6 +90,7 @@ ApprovedIndication       :before, { content: "Appr Indication & +: "; }
 DrugInformationSummary>Comment :before, { content: "Comments &: "; }
 DrugReference>Comment    :before, { content: "Comments & +: "; }
 ProcessingStatus>Comment :before, { content: "Comments & +: "; }
+ComprehensiveReviewDate  :before, { content: "Review Date & @: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
@@ -142,6 +144,7 @@ ProcessingStatus
 Audience                 :before,
 ApprovedIndication       :before,
 Comment                  :before,
+ComprehensiveReviewDate  :before,
 DateLastModified         :before,
 Description              :before,
 DrugInfoMetaData         :before,
@@ -209,6 +212,9 @@ ApprovedIndication,
 Caption
                         { margin-left: 130pt;
                           text-indent: -75pt; }
+ComprehensiveReviewDate
+                        { margin-left: 130pt;
+                          text-indent: -106.5pt; }
 DateLastModified,
                         { margin-left: 130pt;
                           text-indent: -126pt; }
@@ -316,6 +322,7 @@ VideoID
 /***************************************************************************/
 Audience,
 ApprovedIndication,
+ComprehensiveReviewDate,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -370,6 +377,7 @@ SummarySection>Title,
 Audience,
 ApprovedIndication,
 Comment,
+ComprehensiveReviewDate,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -401,6 +409,7 @@ URL,
 Audience                 :before,
 ApprovedIndication       :before,
 Comment                  :before,
+ComprehensiveReviewDate  :before,
 DateLastModified         :before,
 Description              :before,
 DrugInfoMetaData         :before,

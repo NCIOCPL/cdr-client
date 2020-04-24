@@ -28,6 +28,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name>ComprehensiveReviewDate</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <NewLineBeforeEndTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DateCreated</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -309,6 +317,12 @@
     </FollowedByListItem>
   </FollowedByList>
  <Templates>
+  <Template>
+   <Name>ComprehensiveReviewDate</Name>
+   <MiniTemplate><![CDATA[<ComprehensiveReviewDate><?xm-replace_text {
+                   Optionally enter the date of the last full review
+                   }?></ComprehensiveReviewDate>]]></MiniTemplate>
+  </Template>
   <Template>
    <Name ns="">EmbeddedVideo</Name>
    <MiniTemplate><![CDATA[<EmbeddedVideo>
