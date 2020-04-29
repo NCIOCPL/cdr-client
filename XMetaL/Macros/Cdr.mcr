@@ -1045,6 +1045,11 @@
         Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
     }
     Application.AppendMacro("Character Count", "Count Characters");
+    if (!isReadOnly) {
+        Application.AppendMacro("-", "");
+        Application.AppendMacro("Strip cdr:id Attributes",
+                                "Strip ID Attributes");
+    }
   ]]>
 </MACRO>
 
@@ -6114,6 +6119,23 @@
         Application.Alert("Selection contains " + n + " characters.");
     }
     count_characters_in_selection();
+  ]]>
+</MACRO>
+
+<MACRO  name="Strip ID Attributes" lang="JScript">
+  <![CDATA[
+    function strip_id_attributes() {
+        if (cdrDocReadOnly()) {
+            Application.Alert("Document retrieved as read-only.");
+            return;
+        }
+        if (Selection) {
+            if (Selection.ContainerNode) {
+                stripAttributes(Selection.ContainerNode, {"cdr:id":1}, true);
+            }
+        }
+    }
+    strip_id_attributes();
   ]]>
 </MACRO>
 
