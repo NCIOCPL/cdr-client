@@ -4241,7 +4241,7 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
+                + CdrSession + "&DocId=" + docId + "&isqc=true" +
                 "&Filter=set:QC GlossaryTermName with Concept Set";
         cdrObj.showPage(url);
     }
