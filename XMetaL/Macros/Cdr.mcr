@@ -2720,6 +2720,19 @@
                            "CDR2", 2, 5,
                            true),
             new CdrCmdItem(null,
+                           "Open Original English Media Doc",
+                           "English",
+                           "Open original English media doc of which this " +
+                           "is a translation",
+                           "CDR2", 2, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Open Translated Media Doc",
+                           "Spanish",
+                           "Open Spanish translation of this media doc",
+                           "CDR2", 2, 3,
+                           false),
+            new CdrCmdItem(null,
                            "Media Translation Job",
                            "Add Translation Job",
                            "Add/edit translation job for this Media document",
@@ -4963,6 +4976,55 @@
         cdrObj.openCdrDoc(originalId, "Current", false);
     }
     openOriginalEnglishSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Translated Media Doc"
+       lang="JScript" >
+  <![CDATA[
+    function openTranslatedMediaDoc() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var translatedMediaId = cdrObj.getTranslatedDocId(docId);
+        if (!translatedMediaId)
+            return;
+        cdrObj.openCdrDoc(translatedMediaId, "Current", false);
+    }
+    openTranslatedMediaDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Original English Media Doc"
+       lang="JScript" >
+  <![CDATA[
+    function openOriginalEnglishMediaDoc() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = "TranslationOf";
+        var nodes = Application.ActiveDocument.getElementsByTagName(name);
+        if (nodes.length < 1) {
+            Application.Alert("TranslationOf element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var originalId = elem.getAttribute("cdr:ref");
+        if (!originalId) {
+            Application.Alert("ID of original media document not found");
+            return;
+        }
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.openCdrDoc(originalId, "Current", false);
+    }
+    openOriginalEnglishMediaDoc();
   ]]>
 </MACRO>
 
