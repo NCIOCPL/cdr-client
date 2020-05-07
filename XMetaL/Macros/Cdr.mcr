@@ -676,9 +676,6 @@
         else
             url += "&Version=cwd";
 
-        if (ActiveDocument.doctype.name == "Summary")
-            url += "#section/all";
-
         cdrObj.showPage(url);
     }
 
