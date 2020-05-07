@@ -5863,15 +5863,24 @@
             Application.Alert("Malformed document ID: " + newId);
             return;
         }
-        var links = doc.getElementsByTagName("SummaryFragmentRef");
         var replaced = 0;
-        for (var i = 0; i < links.length; ++i) {
-            var linkElement = links.item(i);
-            var linkId = linkElement.getAttribute("cdr:href");
-            if (linkId.substr(0, 13) == oldId) {
-                var newValue = newId + linkId.substr(13);
-                linkElement.setAttribute("cdr:href", newValue);
-                ++replaced;
+        var elements = [
+            ["SummaryFragmentRef", "cdr:href"],
+            ["ReferencedTableNumber", "Target"],
+            ["ReferencedFigureNumber", "Target"]
+        ];
+        for (var e = 0; e < elements.length; ++e) {
+            var name = elements[e][0];
+            var attr = elements[e][1];
+            var links = doc.getElementsByTagName(name);
+            for (var i = 0; i < links.length; ++i) {
+                var linkElement = links.item(i);
+                var linkId = linkElement.getAttribute(attr);
+                if (linkId.substr(0, 13) == oldId) {
+                    var newValue = newId + linkId.substr(13);
+                    linkElement.setAttribute(attr, newValue);
+                    ++replaced;
+                }
             }
         }
         Application.Alert("Swapped " + replaced + " link(s).");
