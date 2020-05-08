@@ -184,6 +184,13 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">ResponseToComment</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">SpecificMediaCaption</Name>
    <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -454,6 +461,12 @@
      <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
                    Optionally enter a comment
                    }?></Comment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">ResponseToComment</Name>
+     <MiniTemplate><![CDATA[<ResponseToComment><?xm-replace_text {
+                   Optionally enter a comment response
+                   }?></ResponseToComment>]]></MiniTemplate>
   </Template>
 
  </Templates>
