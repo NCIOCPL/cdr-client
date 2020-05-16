@@ -4384,12 +4384,6 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
-                "&Filter1=name:Patient+Summary+QC+Report+Filter";
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
                             + "&ReportType=pat&Session="
@@ -4413,12 +4407,6 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
-                "&Filter1=name:Patient+Summary+QC+Report+Filter";
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
                             + "&ReportType=patbu&Session="
