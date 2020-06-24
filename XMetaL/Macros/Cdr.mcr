@@ -676,9 +676,6 @@
         else
             url += "&Version=cwd";
 
-        if (ActiveDocument.doctype.name == "Summary")
-            url += "#section/all";
-
         cdrObj.showPage(url);
     }
 
@@ -1045,6 +1042,11 @@
         Application.AppendMacro("Apply Revision Level", "Apply Revision Level");
     }
     Application.AppendMacro("Character Count", "Count Characters");
+    if (!isReadOnly) {
+        Application.AppendMacro("-", "");
+        Application.AppendMacro("Strip cdr:id Attributes",
+                                "Strip ID Attributes");
+    }
   ]]>
 </MACRO>
 
@@ -2715,6 +2717,19 @@
                            "CDR2", 2, 5,
                            true),
             new CdrCmdItem(null,
+                           "Open Original English Media Doc",
+                           "English",
+                           "Open original English media doc of which this " +
+                           "is a translation",
+                           "CDR2", 2, 4,
+                           true),
+            new CdrCmdItem(null,
+                           "Open Translated Media Doc",
+                           "Spanish",
+                           "Open Spanish translation of this media doc",
+                           "CDR2", 2, 3,
+                           false),
+            new CdrCmdItem(null,
                            "Media Translation Job",
                            "Add Translation Job",
                            "Add/edit translation job for this Media document",
@@ -4236,7 +4251,7 @@
             return;
         }
         var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
+                + CdrSession + "&DocId=" + docId + "&isqc=true" +
                 "&Filter=set:QC GlossaryTermName with Concept Set";
         cdrObj.showPage(url);
     }
@@ -4369,12 +4384,6 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
-                "&Filter1=name:Patient+Summary+QC+Report+Filter";
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
                             + "&ReportType=pat&Session="
@@ -4398,12 +4407,6 @@
             Application.Alert("Not logged into CDR");
             return;
         }
-        /*
-        var url = CdrCgiBin + "Filter.py?Session="
-                + CdrSession + "&DocId=" + docId +
-                "&Filter=name:Summary-Copy+XML+for+Patient+Summary+Report" +
-                "&Filter1=name:Patient+Summary+QC+Report+Filter";
-        */
         var url = CdrCgiBin + "QcReport.py?DocType=Summary&DocId="
                             + docId
                             + "&ReportType=patbu&Session="
@@ -4958,6 +4961,55 @@
         cdrObj.openCdrDoc(originalId, "Current", false);
     }
     openOriginalEnglishSummary();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Translated Media Doc"
+       lang="JScript" >
+  <![CDATA[
+    function openTranslatedMediaDoc() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var docId  = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        var translatedMediaId = cdrObj.getTranslatedDocId(docId);
+        if (!translatedMediaId)
+            return;
+        cdrObj.openCdrDoc(translatedMediaId, "Current", false);
+    }
+    openTranslatedMediaDoc();
+  ]]>
+</MACRO>
+
+<MACRO name="Open Original English Media Doc"
+       lang="JScript" >
+  <![CDATA[
+    function openOriginalEnglishMediaDoc() {
+        if (!Application.ActiveDocument) { return null; }
+        var name = "TranslationOf";
+        var nodes = Application.ActiveDocument.getElementsByTagName(name);
+        if (nodes.length < 1) {
+            Application.Alert("TranslationOf element not found");
+            return;
+        }
+        var elem = nodes.item(0);
+        var originalId = elem.getAttribute("cdr:ref");
+        if (!originalId) {
+            Application.Alert("ID of original media document not found");
+            return;
+        }
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        cdrObj.openCdrDoc(originalId, "Current", false);
+    }
+    openOriginalEnglishMediaDoc();
   ]]>
 </MACRO>
 
@@ -5796,15 +5848,24 @@
             Application.Alert("Malformed document ID: " + newId);
             return;
         }
-        var links = doc.getElementsByTagName("SummaryFragmentRef");
         var replaced = 0;
-        for (var i = 0; i < links.length; ++i) {
-            var linkElement = links.item(i);
-            var linkId = linkElement.getAttribute("cdr:href");
-            if (linkId.substr(0, 13) == oldId) {
-                var newValue = newId + linkId.substr(13);
-                linkElement.setAttribute("cdr:href", newValue);
-                ++replaced;
+        var elements = [
+            ["SummaryFragmentRef", "cdr:href"],
+            ["ReferencedTableNumber", "Target"],
+            ["ReferencedFigureNumber", "Target"]
+        ];
+        for (var e = 0; e < elements.length; ++e) {
+            var name = elements[e][0];
+            var attr = elements[e][1];
+            var links = doc.getElementsByTagName(name);
+            for (var i = 0; i < links.length; ++i) {
+                var linkElement = links.item(i);
+                var linkId = linkElement.getAttribute(attr);
+                if (linkId.substr(0, 13) == oldId) {
+                    var newValue = newId + linkId.substr(13);
+                    linkElement.setAttribute(attr, newValue);
+                    ++replaced;
+                }
             }
         }
         Application.Alert("Swapped " + replaced + " link(s).");
@@ -6114,6 +6175,23 @@
         Application.Alert("Selection contains " + n + " characters.");
     }
     count_characters_in_selection();
+  ]]>
+</MACRO>
+
+<MACRO  name="Strip ID Attributes" lang="JScript">
+  <![CDATA[
+    function strip_id_attributes() {
+        if (cdrDocReadOnly()) {
+            Application.Alert("Document retrieved as read-only.");
+            return;
+        }
+        if (Selection) {
+            if (Selection.ContainerNode) {
+                stripAttributes(Selection.ContainerNode, {"cdr:id":1}, true);
+            }
+        }
+    }
+    strip_id_attributes();
   ]]>
 </MACRO>
 

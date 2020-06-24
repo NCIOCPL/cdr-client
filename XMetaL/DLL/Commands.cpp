@@ -2639,20 +2639,41 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getTranslatedDocId");
-    CString id(*originalId);
-    CString cmd = _T("<CdrReport>")
-                  _T("<ReportName>Translated Summary</ReportName>")
-                  _T("<ReportParams><ReportParam Name='EnglishSummary' ")
-                  _T("Value='") + id + _T("'/></ReportParams>")
-                  _T("</CdrReport>");
-    CString r = CdrSocket::sendCommand(cmd);
-    //::AfxMessageBox(r);
-    cdr::Element e = cdr::Element::extractElement(r, _T("TranslatedSummary"));
+    _Document doc = cdr::getApp().GetActiveDocument();
+    DOMNode docElement = doc.GetDocumentElement();
+    CString docType = docElement.GetNodeName();
+    CString reportName = _T("");
+    CString paramName = _T("");
+    CString resultName = _T("");
     CString translationId;
-    if (e)
-        translationId = e.getString();
-    else
-        cdr::showErrors(r);
+    if (docType == _T("Summary")) {
+        reportName = _T("Translated Summary");
+        paramName = _T("EnglishSummary");
+        resultName = _T("TranslatedSummary");
+    }
+    else if (docType == _T("Media")) {
+        reportName = _T("Translated Media Doc");
+        paramName = _T("EnglishMediaDoc");
+        resultName = _T("TranslatedMediaDoc");
+    }
+    if (reportName.IsEmpty())
+        ::AfxMessageBox(_T("Unsupported document type ") + docType);
+    else {
+        CString id(*originalId);
+        CString cmd =
+            _T("<CdrReport>")
+            _T("<ReportName>") + reportName + _T("</ReportName>")
+            _T("<ReportParams><ReportParam Name='") + paramName + _T("' ")
+            _T("Value='") + id + _T("'/></ReportParams>")
+            _T("</CdrReport>");
+        CString r = CdrSocket::sendCommand(cmd);
+        //::AfxMessageBox(r);
+        cdr::Element e = cdr::Element::extractElement(r, resultName);
+        if (e)
+            translationId = e.getString();
+        else
+            cdr::showErrors(r);
+    }
     //::AfxMessageBox(_T("translationId: ") + translationId);
     translationId.SetSysString(translatedDocId);
 

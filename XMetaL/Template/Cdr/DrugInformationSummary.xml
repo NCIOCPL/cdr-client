@@ -86,9 +86,20 @@
  <DateLastModified><?xm-replace_text {
         Optionally enter the date of the last record modification
         }?></DateLastModified>
- <ProcessingStatus><?xm-replace_text {
-        Optionally select a processing status
-        }?></ProcessingStatus>
+ <ProcessingStatus>
+  <ProcessingStatusValue><?xm-replace_text {
+        Select a processing status (required)
+        }?></ProcessingStatusValue>
+  <StatusDate><?xm-replace_text {
+        Use the tool bar icon to enter today's date (required)
+        }?></StatusDate>
+  <EnteredBy><?xm-replace_text {
+        Use the tool bar icon to enter your user name (required)
+        }?></EnteredBy>
+  <Comment><?xm-replace_text {
+        Optionally enter a processing status comment
+        }?></Comment>
+ </ProcessingStatus>
  <Comment><?xm-replace_text {
         Optionally enter a comment
         }?></Comment>
