@@ -57,6 +57,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name>DrugName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DrugSummaryRef</Name>
    <TagColor>CDCDFF</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -94,6 +102,22 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name>ForeignWord</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>GeneName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Glossary</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -102,6 +126,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">GlossaryTermLink</Name>
+   <TagColor>FF33CC</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -189,6 +214,13 @@
    <IndentContent/>
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
+  </ElementProperties>
+    <ElementProperties>
+   <Name>ScientificName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <IndentContent/>
+   </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">SpecificMediaCaption</Name>
