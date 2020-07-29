@@ -5323,9 +5323,11 @@
     function chgLabelLanguage(doc, languageElem) {
         var elemName = languageElem;
         var labelElems = doc.getElementsByTagName(elemName);
+        // Application.Alert(elemName);
 
+        // Don't try to copy labels if there are none
         if (!labelElems.length) {
-             Application.Alert("No Labels found");
+             // Application.Alert("No labels found");
              return;
         }
 
