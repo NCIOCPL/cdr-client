@@ -2011,13 +2011,7 @@
                            "Linked Docs",
                            "Launch Linked Docs Report",
                            "Integration (Custom)", 3, 9,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert PDQ Board Info",
-                           "PDQ Board",
-                           "Insert PDQ Board Info",
-                           "Databases (Custom)", 7, 5,
-                           true)
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -4482,47 +4476,6 @@
         rng.Select();
     }
     insertMailerResponse();
-  ]]>
-</MACRO>
-
-<MACRO name="Insert PDQ Board Info"
-       lang="JScript" >
-  <![CDATA[
-    function insertPdqBoardInfo() {
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.FindInsertLocation("PDQBoardInformation", false)) {
-            Application.Alert(
-                    "Can't insert PDQBoardInformation element");
-                return;
-        }
-        var newElems = "<PDQBoardInformation>"
-                     + "<BoardManager>"
-                     + "<?xm-replace_text {Enter Board Manager name} ?>"
-                     + "</BoardManager>"
-                     + "<BoardManagerPhone>"
-                     + "<?xm-replace_text {Enter Board Manager phone} ?>"
-                     + "</BoardManagerPhone>"
-                     + "<BoardManagerEmail>"
-                     + "<?xm-replace_text {Enter Board Manager e-mail} ?>"
-                     + "</BoardManagerEmail>"
-                     + "<BoardMeetingDate>"
-                     + "<Year>"
-                     + "<?xm-replace_text {Enter year for set of meeting "
-                     + "dates} ?></Year>"
-                     + "<Date>"
-                     + "<?xm-replace_text {Enter each meeting date for the"
-                     + " year as a separate occurrence} ?>"
-                     + "</Date>"
-                     + "<DayTime>"
-                     + "<?xm-replace_text {Enter meeting day and time}"
-                     + " ?></DayTime>"
-                     + "</BoardMeetingDate>"
-                     + "</PDQBoardInformation>";
-        rng.PasteString(newElems);
-        rng.Select();
-    }
-    insertPdqBoardInfo();
   ]]>
 </MACRO>
 
