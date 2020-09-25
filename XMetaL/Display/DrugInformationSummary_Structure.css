@@ -55,6 +55,7 @@ Description,
 Diagnosis,
 DrugInfoMetaData,
 DrugInfoType,
+DrugType,
 EnteredBy,
 EntryDate,
 FDAApproved,
@@ -94,6 +95,7 @@ DrugReferenceDescription :before, { content: "Description"; }
 DrugReferenceLink        :before, { content: "Link"; }
 DrugReferencePostedDate  :before, { content: "Posted Date"; }
 DrugReferenceType        :before, { content: "Type"; }
+DrugType                 :before, { content: "DrugType"; }
 EnteredBy                :before, { content: "Entered By"; }
 EntryDate                :before, { content: "Entry Date"; }
 FDAApproved              :before, { content: "FDA Approved"; }
@@ -153,6 +155,7 @@ DrugReferenceDescription :before,
 DrugReferenceLink        :before,
 DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
+DrugType                 :before,
 EnteredBy                :before,
 EntryDate                :before,
 FDAApproved              :before,
@@ -186,6 +189,7 @@ DrugReferenceDescription,
 DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
+DrugType,
 EnteredBy,
 EntryDate,
 FDAApproved,
@@ -220,6 +224,7 @@ DrugReferenceDescription,
 DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
+DrugType,
 EnteredBy,
 EntryDate,
 FDAApproved,

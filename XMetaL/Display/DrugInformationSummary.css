@@ -53,6 +53,7 @@ DrugReferenceDescription,
 DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
+DrugType,
 EnteredBy,
 EntryDate,
 FDAApproved,
@@ -100,6 +101,7 @@ DrugReferenceDescription :before, { content: "Description * @: "; }
 DrugReferenceLink        :before, { content: "Link * @: "; }
 DrugReferencePostedDate  :before, { content: "Posted Date &: "; }
 DrugReferenceType        :before, { content: "Type *: "; }
+DrugType                 :before, { content: "DrugType & +: "; }
 EnteredBy                :before, { content: "Entered By *: "; }
 EntryDate                :before, { content: "Entry Date *: "; }
 FDAApproved              :before, { content: "FDA Approved *: "; }
@@ -154,6 +156,7 @@ DrugReferenceDescription :before,
 DrugReferenceLink        :before,
 DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
+DrugType                 :before,
 EnteredBy                :before,
 EntryDate                :before,
 FDAApproved              :before,
@@ -253,6 +256,9 @@ DrugReferencePostedDate,
 DrugReferenceType,
                         { margin-left: 130pt;
                           text-indent: -44pt; }
+DrugType,
+                        { margin-left: 130pt;
+                          text-indent: -87pt; }
 EnteredBy,
                         { margin-left: 130pt;
                           text-indent: -79.5pt; }
@@ -335,6 +341,7 @@ DrugReferenceDescription,
 DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
+DrugType,
 EnteredBy,
 EntryDate,
 FDAApproved,
@@ -390,6 +397,7 @@ DrugReferenceDescription,
 DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
+DrugType,
 EnteredBy,
 ProcessingStatus>EnteredBy,
 EntryDate,
@@ -423,6 +431,7 @@ DrugReferenceDescription :before,
 DrugReferenceLink        :before,
 DrugReferencePostedDate  :before,
 DrugReferenceType        :before,
+DrugType                 :before,
 EnteredBy                :before,
 ProcessingStatus>EnteredBy
                          :before,

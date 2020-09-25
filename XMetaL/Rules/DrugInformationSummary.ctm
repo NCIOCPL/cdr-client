@@ -421,6 +421,12 @@
                    }?></DrugReferenceDescription>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name ns="">DrugType</Name>
+   <MiniTemplate><![CDATA[<DrugType><?xm-replace_text {
+                   Select a drug type
+                   }?></DrugType>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name ns="">GlossaryLink</Name>
    <MiniTemplate><![CDATA[<GlossaryLink><?xm-replace_text {
                    Select a glossary link (required)
