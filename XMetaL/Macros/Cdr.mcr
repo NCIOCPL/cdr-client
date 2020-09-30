@@ -4759,9 +4759,8 @@
                 Selection.GotoPrevious(2);
                 return;
             }
-            Selection.InsertWithTemplate(name);
+            // Selection.InsertWithTemplate(name);
         }
-        //Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
   ]]>
