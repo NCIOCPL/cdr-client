@@ -50,6 +50,8 @@ Audience,
 ApprovedIndication,
 DrugInformationSummary>Comment,
 DrugReference>Comment,
+TypeOfDISChange>Comment,
+Date,
 DateLastModified,
 Description,
 Diagnosis,
@@ -73,7 +75,10 @@ SectionType,
 StatusDate,
 SummarySection,
 TerminologyLink,
+TypeOfDISChange,
+TypeOfDISChangeValue,
 URL,
+User
     { display: block; }
 
 
@@ -84,8 +89,10 @@ AltTitle                 :before, { content: "Alternate Title"; }
 ApprovedIndication       :before, { content: "Approved Indication"; }
 Audience                 :before, { content: "Audience"; }
 DrugInformationSummary>Comment, 
-                         :before, { content: "Comments"; }
-DrugReference>Comment    :before, { content: "Comments"; }
+                         :before, { content: "Comment"; }
+DrugReference>Comment    :before, { content: "Comment"; }
+TypeOfDISChange>Comment  :before, { content: "Comment"; }
+Date                     :before, { content: "Date"; }
 DateLastModified         :before, { content: "Date Last Modified"; }
 Description              :before, { content: "Description"; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA"; }
@@ -112,10 +119,13 @@ ReviewStatus             :before, { content: "Review Status"; }
 SectionType              :before, { content: "Section Type"; }
 SectMetaData             :before, { content: "Section Metadata"; }
 TerminologyLink          :before, { content: "Term Link"; }
+TypeOfDISChange          :before, { content: "TYPE OF CHANGE"; }
+TypeOfDISChangeValue     :before, { content: "Change Value"; }
 StatusDate               :before, { content: "Status Date"; }
 SummarySection           :before, { content: "Drug Info Summary"; }
 SummarySection>Title     :before, { content: "Section Title"; }
 URL                      :before, { content: "URL"; }
+User                     :before, { content: "User"; }
 
 
 /***************************************************************************/ 
@@ -146,6 +156,7 @@ ProcessingStatuses,
 /***************************************************************************/ 
 Audience                 :before,
 ApprovedIndication       :before,
+Date                     :before,
 DateLastModified         :before,
 Description              :before,
 DrugInfoMetaData         :before,
@@ -169,7 +180,10 @@ RefLink                  :before,
 ReviewStatus             :before,
 SummarySection           :before,
 TerminologyLink          :before,
+TypeOfDISChange          :before,
+TypeOfDISChangeValue     :before,
 URL                      :before,
+User                     :before
      { color: black;  
        background-color: white; }
 
@@ -182,6 +196,7 @@ URL                      :before,
 Audience,
 ApprovedIndication,
 Comment,
+Date,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -202,8 +217,11 @@ RefLink,
 ReviewStatus,
 StatusDate,
 TerminologyLink,
+TypeOfDISChange,
+TypeOfDISChangeValue,
 DrugInformationSummary>Title,
-URL
+URL,
+User
     { text-indent: 0pt; }
 
 
@@ -217,6 +235,7 @@ DrugReference>Comment,
 Para>Comment,
 ProcessingStatus,Comment,
 ResponseToComment>Comment,
+Date,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -238,10 +257,11 @@ ReviewStatus,
 StatusDate,
 SummarySection,
 TerminologyLink,
+TypeOfDISChangeValue,
 URL,
+User
      { color: white;
        background-color: white; }
-/*       background-color: green; } */
 
 
 /***************************************************************************/ 
@@ -256,6 +276,7 @@ Category                          :before,
 Comment                           :before,
 ContentDescription                :before,
 Creator                           :before,
+Date                              :before,
 DateCreated                       :before,
 DerivationMethod                  :before,
 Diagnosis                         :before,
@@ -289,10 +310,12 @@ SourcePublication                 :before,
 StatusDate                        :before,
 TextDateCreated                   :before,
 Topic                             :before,
+TypeOfDISChangeValue              :before,
 VideoData                         :before,
 VideaEncoding                     :before,
 VideaType                         :before,
 WidthPixels                       :before,
+User                              :before
    { background-color: white; }
 
 
@@ -309,6 +332,7 @@ Para>Comment,
 ContentDescriptions,
 ContentDescription,
 Creator,
+Date,
 DateCreated,
 DerivationMethod,
 DerivedFrom,
@@ -346,9 +370,12 @@ SourcePublication,
 TextDateCreated,
 Topic,
 Topics,
+TypeOfDISChange,
+TypeOfDISChangeValue,
 VideoData,
 VideaEncoding,
 VideaType,
 WidthPixels,
+User
    { background-color: white; }
 

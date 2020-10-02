@@ -36,6 +36,14 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">Date</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DateCreated</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -89,6 +97,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">EnteredBy</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -189,6 +198,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">ProcessingStatus</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -196,6 +206,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">ProcessingStatusValue</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -248,6 +259,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">StatusDate</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -275,7 +287,31 @@
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
   </ElementProperties>
-   <ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfDISChange</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfDISChangeValue</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">User</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">VideoID</Name>
    <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -505,6 +541,23 @@
      <MiniTemplate><![CDATA[<ResponseToComment><?xm-replace_text {
                    Optionally enter a comment response
                    }?></ResponseToComment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TypeOfDISChange</Name>
+     <MiniTemplate><![CDATA[<TypeOfDISChange>
+      <TypeOfDISChangeValue><?xm-replace_text {
+                   Select a type of change value (required)
+                   }?></TypeOfDISChangeValue>
+      <User><?xm-replace_text {
+                   Use the tool bar icon to enter your user name (required)
+                   }?></User>
+      <Date><?xm-replace_text {
+                   Use the tool bar icon to enter today's date
+                   }?></Date>
+      <Comment><?xm-replace_text {
+                   Optionally enter a comment
+                   }?></Comment>
+     </TypeOfDISChange>]]></MiniTemplate>
   </Template>
 
  </Templates>

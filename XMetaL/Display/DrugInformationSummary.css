@@ -43,7 +43,9 @@ ApprovedIndication,
 DrugInformationSummary>Comment,
 DrugReference>Comment,
 ProcessingStatus>Comment,
+TypeOfDISChange>Comment,
 ComprehensiveReviewDate,
+Date,
 DateLastModified,
 Description,
 DrugInfoMetaData,
@@ -59,12 +61,14 @@ EntryDate,
 FDAApproved,
 GlossaryLink,
 Manufacturer,
-Title,
 StatusDate,
 SummarySection,
 SummarySection>Para,
 SummarySection>ItemizedList,
 SummarySection>OrderedList,
+Title,
+TypeOfDISChange,
+TypeOfDISChangeValue,
 ProcessingStatus,
 ProcessingStatusValue,
 RefDescription,
@@ -72,6 +76,7 @@ RefLink,
 ReviewStatus,
 TerminologyLink,
 URL,
+User
     { display: block; }
 
 
@@ -91,7 +96,9 @@ ApprovedIndication       :before, { content: "Appr Indication & +: "; }
 DrugInformationSummary>Comment :before, { content: "Comments &: "; }
 DrugReference>Comment    :before, { content: "Comments & +: "; }
 ProcessingStatus>Comment :before, { content: "Comments & +: "; }
+TypeOfDISChange>Comment  :before, { content: "Comment & +: "; }
 ComprehensiveReviewDate  :before, { content: "Review Date & @: "; }
+Date                     :before, { content: "Date *: "; }
 DateLastModified         :before, { content: "Date Last Modified &: "; }
 Description              :before, { content: "Description *: "; }
 DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
@@ -116,8 +123,11 @@ ProcessingStatusValue    :before, { content: "Status Value *: "; }
 RefDescription           :before, { content: "Ref Description *: "; }
 RefLink                  :before, { content: "Ref Link *: "; }
 ReviewStatus             :before, { content: "Review Status &: "; }
+TypeOfDISChange          :before, { content: "TYPE OF CHANGE BLOCK & +"; }
+TypeOfDISChangeValue     :before, { content: "Change value *: "; }
 TerminologyLink          :before, { content: "Term Link * @: "; }
 URL                      :before, { content: "URL * @: "; }
+User                     :before, { content: "User *: "; }
 
 
 /***************************************************************************/
@@ -147,6 +157,7 @@ Audience                 :before,
 ApprovedIndication       :before,
 Comment                  :before,
 ComprehensiveReviewDate  :before,
+Date                     :before,
 DateLastModified         :before,
 Description              :before,
 DrugInfoMetaData         :before,
@@ -162,7 +173,6 @@ EntryDate                :before,
 FDAApproved              :before,
 GlossaryLink             :before,
 Manufacturer             :before,
-Title                    :before,
 ProcessingStatus         :before,
 ProcessingStatusValue    :before,
 ResponseToComment        :before,
@@ -172,7 +182,11 @@ RefLink                  :before,
 StatusDate               :before,
 SummarySection           :before,
 TerminologyLink          :before,
+Title                    :before,
+TypeOfDISChange          :before,
+TypeOfDISChangeValue     :before,
 URL                      :before,
+User                     :before
    {  font-weight: bold;
       color: black;  }
 
@@ -223,6 +237,9 @@ Caption
 ComprehensiveReviewDate
                         { margin-left: 130pt;
                           text-indent: -106.5pt; }
+Date,
+                        { margin-left: 0pt;
+                          text-indent: -43pt; }
 DateLastModified,
                         { margin-left: 130pt;
                           text-indent: -126pt; }
@@ -235,6 +252,9 @@ DrugReference>Comment,
 ProcessingStatus>Comment,
                         { margin-left: 0pt;
                           text-indent: -92pt; }
+TypeOfDISChange>Comment,
+                        { margin-left: 0pt;
+                          text-indent: -86pt; }
 Description,
                         { margin-left: 130pt;
                           text-indent: -82pt; }
@@ -319,9 +339,18 @@ StatusDate,
 TerminologyLink,
                         { margin-left: 130pt;
                           text-indent: -88pt; }
+TypeOfDISChange, 
+                        { margin-left: 130pt;
+                          text-indent: -125.5pt; }
+TypeOfDISChangeValue,
+                        { margin-left: 0pt;
+                          text-indent: -95pt; }
 URL,
                         { margin-left: 130pt;
                           text-indent: -56pt; }
+User,
+                        { margin-left: 0pt;
+                          text-indent: -43.5pt; }
 VideoID
                         { margin-left: 130pt;
                           text-indent: -79pt; }
@@ -342,6 +371,7 @@ DrugReferenceLink,
 DrugReferencePostedDate,
 DrugReferenceType,
 DrugType,
+Date,
 EnteredBy,
 EntryDate,
 FDAApproved,
@@ -352,7 +382,9 @@ RefDescription,
 RefLink,
 ReviewStatus,
 TerminologyLink,
+TypeOfDISChangeValue,
 URL,
+User
 	{ margin-bottom: 4pt; }
 
 
@@ -364,7 +396,8 @@ ProcessingStatus>EnteredBy
 EnteredBy,
     { margin-top: 20pt; }
 
-ProcessingStatus
+ProcessingStatus,
+TypeOfDISChange
 	{ margin-top: 10pt; }
 
 
@@ -373,6 +406,7 @@ DrugReference,
 DrugInformationSummary>SummarySection,
 ProcessingStatus,
 Title,
+TypeOfDISChange
 	{ margin-bottom: 10pt; }
 
 
@@ -390,6 +424,7 @@ Audience,
 ApprovedIndication,
 Comment,
 ComprehensiveReviewDate,
+Date,
 DateLastModified,
 Description,
 DrugInfoType,
@@ -414,7 +449,9 @@ RefLink,
 ReviewStatus,
 StatusDate,
 TerminologyLink,
+TypeOfDISChangeValue,
 URL,
+User
    { background-color: white; }
 
 
@@ -423,6 +460,7 @@ Audience                 :before,
 ApprovedIndication       :before,
 Comment                  :before,
 ComprehensiveReviewDate  :before,
+Date                     :before,
 DateLastModified         :before,
 Description              :before,
 DrugInfoMetaData         :before,
@@ -448,5 +486,8 @@ ReviewStatus             :before,
 SummarySection           :before,
 StatusDate               :before,
 TerminologyLink          :before,
+TypeOfDISChange          :before,
+TypeOfDISChangeValue     :before,
 URL                      :before,
+User                     :before
    { background-color: #CCCCFF; }
