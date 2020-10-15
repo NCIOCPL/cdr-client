@@ -977,6 +977,10 @@
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
+            Application.AppendMacro("Glossify Genetics Terms",
+                                    "Glossify Genetics Terms");
+            Application.AppendMacro("Glossify Genetics Terms (include markup)",
+                                    "Glossify Genetics Terms (include markup)");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address",
@@ -4677,7 +4681,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false);
+        cdrObj.glossify(false, "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4687,7 +4691,27 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true);
+        cdrObj.glossify(true, "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, "Genetics");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms (include markup)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, "Genetics");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>

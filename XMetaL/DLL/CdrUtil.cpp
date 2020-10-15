@@ -1293,32 +1293,46 @@ cdr::ValidationErrors::ValidationErrors(const Element& e) {
 }
 
 // static cdr::GlossaryTree* glossaryTree;
-cdr::GlossaryTree* cdr::getGlossaryTree(const CString& language) {
+cdr::GlossaryTree* cdr::getGlossaryTree(const CString& language,
+                                        const CString& dictionary) {
 
+    // Cache the trees.
     // Make sure the memory gets cleaned up so BoundsChecker is happy.
-    struct GlossaryTreeWrapper {
-        GlossaryTreeWrapper() : tree(0) {}
-        ~GlossaryTreeWrapper() { if (tree) delete tree; }
-        cdr::GlossaryTree* tree;
+    struct TreeCache {
+        typedef std::map<CString, cdr::GlossaryTree*> Trees;
+        ~TreeCache() {
+            CString buf;
+            for (auto i = trees.begin(); i != trees.end(); ++i) {
+                buf.Format(_T("deleting %s glossary tree"), i->first);
+                cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
+                delete i->second;
+            }
+        }
+        Trees trees;
     };
-    static GlossaryTreeWrapper englishWrapper;
-    static GlossaryTreeWrapper spanishWrapper;
+    static TreeCache cache;
 
+    // Fetch the tree if we don't already have it.
     // No need for locking; we'll be called in a single thread.
-    if (language == _T("es")) {
-        if (!spanishWrapper.tree) {
-            CString command = _T("<CdrGetSpanishGlossaryMap/>");
-            spanishWrapper.tree = new cdr::GlossaryTree(command);
-        }
-        return spanishWrapper.tree;
+    CString key(language);
+    if (!dictionary.IsEmpty())
+        key += _T("-") + dictionary;
+    if (cache.trees.count(key) == 0) {
+        CString spanish = language == _T("es") ? _T("Spanish") : _T("");
+        CString command;
+        if (dictionary.IsEmpty())
+            command.Format(_T("<CdrGet%sGlossaryMap/>"), spanish);
+        else
+            command.Format(_T("<CdrGet%sGlossaryMap>")
+                           _T("<Dictionary>%s</Dictionary>")
+                           _T("</CdrGet%sGlossaryMap>"),
+                           spanish, dictionary, spanish);
+        cache.trees[key] = new cdr::GlossaryTree(command);
+        CString buf;
+        buf.Format(_T("fetched %s glossary tree"), key);
+        cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
     }
-    else {
-        if (!englishWrapper.tree) {
-            CString command = _T("<CdrGetGlossaryMap/>");
-            englishWrapper.tree = new cdr::GlossaryTree(command);
-        }
-        return englishWrapper.tree;
-    }
+    return cache.trees[key];
 }
 
 static inline unsigned short getNetworkShort(const unsigned char* buf) {

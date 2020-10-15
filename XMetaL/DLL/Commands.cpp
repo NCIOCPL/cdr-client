@@ -2352,11 +2352,12 @@ STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet)
     return S_OK;
 }
 
-STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig)
+STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary)
 {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
     cdr::trace_log("glossify");
-    CGlossify glossify(dig != VARIANT_FALSE);
+    CString dict(*dictionary);
+    CGlossify glossify(dig != VARIANT_FALSE, dict);
     glossify.DoModal();
     return S_OK;
 }

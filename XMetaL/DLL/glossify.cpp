@@ -13,12 +13,13 @@
 const TCHAR* TAG_NAME = _T("GlossaryTermRef");
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
-CGlossify::CGlossify(bool dig, CWnd* pParent /*=NULL*/)
-    : CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0), m_dig(dig)
+CGlossify::CGlossify(bool dig, const CString dict, CWnd* pParent /*=NULL*/)
+: CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0), m_dig(dig),
+    dictionary(dict)
 {
     _Application app = cdr::getApp();
     doc = app.GetActiveDocument();
-	range = doc.GetRange();
+    range = doc.GetRange();
     DOMNode docElement = doc.GetDocumentElement();
     docType = docElement.GetNodeName();
     language = _T("en");
@@ -116,13 +117,13 @@ void CGlossify::OnMarkup()
 void CGlossify::keepDigging(::DOMNode& node, ::_Document& doc) {
     ::DOMNode c = node.GetFirstChild();
     while (c) {
-	CString nodeName = c.GetNodeName();
-	if (nodeName == _T("SummarySection"))
-	    chains.push_back(WordChain(c, doc));
-	else if (nodeName == _T("Insertion") ||
-		 nodeName == _T("Deletion"))
-	    keepDigging(c, doc);
-	c = c.GetNextSibling();
+        CString nodeName = c.GetNodeName();
+        if (nodeName == _T("SummarySection"))
+            chains.push_back(WordChain(c, doc));
+        else if (nodeName == _T("Insertion") ||
+                 nodeName == _T("Deletion"))
+            keepDigging(c, doc);
+        c = c.GetNextSibling();
     }
 }
 
@@ -134,14 +135,14 @@ void CGlossify::findChains(DOMNode& docElem)
         if (docType == _T("Summary")) {
             ::DOMNode c = docElem.GetFirstChild();
             while (c) {
-		CString nodeName = c.GetNodeName();
+                CString nodeName = c.GetNodeName();
                 if (nodeName == _T("SummarySection"))
                     chains.push_back(WordChain(c, doc));
-		else if (m_dig) {
-		    if (nodeName == _T("Insertion") ||
-			nodeName == _T("Deletion"))
-		    keepDigging(c, doc);
-		}
+                else if (m_dig) {
+                    if (nodeName == _T("Insertion") ||
+                        nodeName == _T("Deletion"))
+                        keepDigging(c, doc);
+                }
                 c = c.GetNextSibling();
             }
         }
@@ -221,58 +222,58 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
 
 bool CGlossify::findNextMatch()
 {
-	// We're done if there are no more word chains to look at.
+    // We're done if there are no more word chains to look at.
     if (curChain >= static_cast<int>(chains.size()))
         return false;
 
-	// Try to match the phrases in the document with those in the glossary.
+    // Try to match the phrases in the document with those in the glossary.
     //CString msg;
     //msg.Format(L"language: %s", language);
     //logWrite(msg);
-	cdr::GlossaryTree* gt = cdr::getGlossaryTree(language);
+    cdr::GlossaryTree* gt = cdr::getGlossaryTree(language, dictionary);
 
-	// Pick up where we left off in the current word chain from the doc.
+    // Pick up where we left off in the current word chain from the doc.
     WordChain* chain = &chains[curChain];
 
-	// Remember the path in the glossary tree for the current phrase.
-	std::stack<cdr::GlossaryNode*> phrase;
+    // Remember the path in the glossary tree for the current phrase.
+    std::stack<cdr::GlossaryNode*> phrase;
 
-	// Keep looking until we run out of word chains.
-	while (chain) {
+    // Keep looking until we run out of word chains.
+    while (chain) {
 
         // Start at the root of the tree.
-    	cdr::GlossaryNodeMap* currentNodeMap = &gt->nodeMap;
+        cdr::GlossaryNodeMap* currentNodeMap = &gt->nodeMap;
 
-		// If we're finished with the current chain, move to the next one.
-		int wordsLeft = static_cast<int>(chain->words.size()) - chain->curWord;
-		while (wordsLeft < 1) {
-			if (++curChain >= static_cast<int>(chains.size()))
-				return false;
-			chain = &chains[curChain];
-			wordsLeft = (int)chain->words.size();
+        // If we're finished with the current chain, move to the next one.
+        int wordsLeft = static_cast<int>(chain->words.size()) - chain->curWord;
+        while (wordsLeft < 1) {
+            if (++curChain >= static_cast<int>(chains.size()))
+                return false;
+            chain = &chains[curChain];
+            wordsLeft = (int)chain->words.size();
             if (docType == _T("Summary"))
                 gt->clearFlags();
-		}
+        }
 
-		// Build the longest matching phrase we can from the current position.
-		while (static_cast<int>(phrase.size()) < wordsLeft) {
+        // Build the longest matching phrase we can from the current position.
+        while (static_cast<int>(phrase.size()) < wordsLeft) {
             Word& w = chain->words[chain->curWord + phrase.size()];
-			cdr::GlossaryNodeMap::iterator i = currentNodeMap->find(w.w);
-			if (i == currentNodeMap->end())
-				break;
-			phrase.push(i->second);
+            cdr::GlossaryNodeMap::iterator i = currentNodeMap->find(w.w);
+            if (i == currentNodeMap->end())
+                break;
+            phrase.push(i->second);
             currentNodeMap = &i->second->nodeMap;
-		}
+        }
 
-		// Look for a match with a complete glossary phrase.
-		while (!phrase.empty()) {
+        // Look for a match with a complete glossary phrase.
+        while (!phrase.empty()) {
 
-			// Last word has a doc ID if this is a complete phrase; skip
-			// over it if we've already marked it up for this chain.
-			cdr::GlossaryNode* n = phrase.top();
-			if (n->docId && !n->markedUp) {
+            // Last word has a doc ID if this is a complete phrase; skip
+            // over it if we've already marked it up for this chain.
+            cdr::GlossaryNode* n = phrase.top();
+            if (n->docId && !n->markedUp) {
 
-				// Position the range object to include the phrase.
+                // Position the range object to include the phrase.
                 Word& firstWord = chain->words[chain->curWord];
                 Word& lastWord  = chain->words[chain->curWord +
                                                phrase.size() - 1];
@@ -320,16 +321,16 @@ bool CGlossify::findNextMatch()
                 }
             }
 
-			// Shrink the phrase by one word.
-			phrase.pop();
-		}
+            // Shrink the phrase by one word.
+            phrase.pop();
+        }
 
-		// Can't use the current word in a glossary phrase; skip past it.
-		++chain->curWord;
-	}
+        // Can't use the current word in a glossary phrase; skip past it.
+        ++chain->curWord;
+    }
 
-	// Make lint happy (but we'll never reach here).
-	return false;
+    // Make lint happy (but we'll never reach here).
+    return false;
 }
 
 BOOL CGlossify::OnInitDialog()
@@ -337,7 +338,7 @@ BOOL CGlossify::OnInitDialog()
     CDialog::OnInitDialog();
 
     DOMNode docElement = doc.GetDocumentElement();
-    cdr::getGlossaryTree(language)->clearFlags();
+    cdr::getGlossaryTree(language, dictionary)->clearFlags();
     findChains(docElement);
 
     if (chains.empty()) {
@@ -354,7 +355,7 @@ BOOL CGlossify::OnInitDialog()
 
 void CGlossify::OnBnClickedGlossifyNextSection()
 {
-	// We're done if there are no more word chains to look at.
+    // We're done if there are no more word chains to look at.
     if (curChain < static_cast<int>(chains.size()))
         ++curChain;
     if (!findNextMatch()) {
