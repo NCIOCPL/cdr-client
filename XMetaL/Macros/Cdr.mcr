@@ -2709,6 +2709,12 @@
                            "CDR2", 1, 10,
                            false),
             new CdrCmdItem(null,
+                           "Media Side-by-Side Report",
+                           "Show English-Spanish Images and Labels",
+                           "Generate English-Spanish Side-by-Side Report",
+                           "Structure (Custom)", 5, 9,
+                           false),
+            new CdrCmdItem(null,
                            "Clone Doc",
                            "Clone Document",
                            "Clone Media Document",
@@ -4235,6 +4241,28 @@
   ]]>
 </MACRO>
 
+<MACRO name="Media Side-by-Side Report"
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "MediaQcEnEs.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        //Application.Alert(url);
+        cdrObj.showPage(url);
+    }
+    qcReport();
+  ]]>
+</MACRO>
+
 <MACRO name="TermName with Concept QC Report"
        lang="JScript">
   <![CDATA[
@@ -4755,9 +4783,8 @@
                 Selection.GotoPrevious(2);
                 return;
             }
-            Selection.InsertWithTemplate(name);
+            // Selection.InsertWithTemplate(name);
         }
-        //Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
   ]]>
@@ -5300,9 +5327,11 @@
     function chgLabelLanguage(doc, languageElem) {
         var elemName = languageElem;
         var labelElems = doc.getElementsByTagName(elemName);
+        // Application.Alert(elemName);
 
+        // Don't try to copy labels if there are none
         if (!labelElems.length) {
-             Application.Alert("No Labels found");
+             // Application.Alert("No labels found");
              return;
         }
 

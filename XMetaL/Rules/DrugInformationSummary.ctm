@@ -36,6 +36,14 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">Date</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DateCreated</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -55,6 +63,14 @@
    <IndentContent/>
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>DrugName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">DrugSummaryRef</Name>
@@ -81,6 +97,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">EnteredBy</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -94,6 +111,22 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name>ForeignWord</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>GeneName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Glossary</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -102,6 +135,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">GlossaryTermLink</Name>
+   <TagColor>FF33CC</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -164,6 +198,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">ProcessingStatus</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -171,6 +206,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">ProcessingStatusValue</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -189,6 +225,13 @@
    <IndentContent/>
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
+  </ElementProperties>
+    <ElementProperties>
+   <Name>ScientificName</Name>
+   <TagColor>FEA7A7</TagColor>
+   <PrettyPrintOptions>
+    <IndentContent/>
+   </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">SpecificMediaCaption</Name>
@@ -216,6 +259,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">StatusDate</Name>
+   <TagColor>AED6F1</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -243,7 +287,31 @@
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
   </ElementProperties>
-   <ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfDISChange</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TypeOfDISChangeValue</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">User</Name>
+   <TagColor>#FCF3CF</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">VideoID</Name>
    <TagColor>#EE9A4D</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -421,6 +489,12 @@
                    }?></DrugReferenceDescription>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name ns="">DrugType</Name>
+   <MiniTemplate><![CDATA[<DrugType><?xm-replace_text {
+                   Select a drug type
+                   }?></DrugType>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name ns="">GlossaryLink</Name>
    <MiniTemplate><![CDATA[<GlossaryLink><?xm-replace_text {
                    Select a glossary link (required)
@@ -467,6 +541,23 @@
      <MiniTemplate><![CDATA[<ResponseToComment><?xm-replace_text {
                    Optionally enter a comment response
                    }?></ResponseToComment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TypeOfDISChange</Name>
+     <MiniTemplate><![CDATA[<TypeOfDISChange>
+      <TypeOfDISChangeValue><?xm-replace_text {
+                   Select a type of change value (required)
+                   }?></TypeOfDISChangeValue>
+      <User><?xm-replace_text {
+                   Use the tool bar icon to enter your user name (required)
+                   }?></User>
+      <Date><?xm-replace_text {
+                   Use the tool bar icon to enter today's date
+                   }?></Date>
+      <Comment><?xm-replace_text {
+                   Optionally enter a comment
+                   }?></Comment>
+     </TypeOfDISChange>]]></MiniTemplate>
   </Template>
 
  </Templates>
