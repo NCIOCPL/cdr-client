@@ -1553,3 +1553,325 @@ void cdr::send_trace_log() {
     }
     catch (...) {}
 }
+
+
+// Get started with what we need to build an XML document.
+cdr::DOMBuilder::DOMBuilder(const CString& name)
+    : doc(NULL), root(NULL) {
+
+    HRESULT hr = CoCreateInstance(
+        __uuidof(DOMDocument),
+        NULL,
+        CLSCTX_INPROC_SERVER,
+        IID_PPV_ARGS(&doc)
+        );
+    if (FAILED(hr))
+        throw _T("CoCreateInstance() failed for DOCDocument");
+    doc->put_async(VARIANT_FALSE);
+    doc->put_validateOnParse(VARIANT_FALSE);
+    doc->put_resolveExternals(VARIANT_FALSE);
+    doc->put_preserveWhiteSpace(VARIANT_TRUE);
+    if (!name.IsEmpty())
+        root = child_element(doc, name);
+}
+
+// Clean up resources we manage.
+cdr::DOMBuilder::~DOMBuilder() {
+    if (doc) {
+        doc->Release();
+        doc = NULL;
+    }
+    for (auto& p : nodes) {
+        if (p) {
+            p->Release();
+            p = NULL;
+        }
+    }
+}
+
+// Create a new element with optional text content.
+IXMLDOMElement* cdr::DOMBuilder::element(const CString& name,
+                                         const CString& text) {
+    IXMLDOMElement* e = NULL;
+    BSTR bstr = SysAllocString(name);
+    if (!bstr)
+        throw _T("memory for element name exhausted");
+    HRESULT hr = doc->createElement(bstr, &e);
+    if (FAILED(hr)) {
+        SysFreeString(bstr);
+        throw _T("createElement() failed");
+    }
+    if (!text.IsEmpty()) {
+        try {
+            append_text(e, text);
+        }
+        catch (...) {
+            SysFreeString(bstr);
+            throw;
+        }
+    }
+    SysFreeString(bstr);
+    nodes.push_back(e);
+    return e;
+}
+
+// Assign a value to one of an element's attributes.
+void cdr::DOMBuilder::set(IXMLDOMElement* elem, const CString& name,
+                          const CString& value) {
+    BSTR bstr = SysAllocString(name);
+    if (!bstr)
+        throw _T("memory for attribute name exhausted");
+    IXMLDOMAttribute* attr = NULL;
+    HRESULT hr = doc->createAttribute(bstr, &attr);
+    SysFreeString(bstr);
+    if (FAILED(hr)) {
+        if (attr)
+            attr->Release();
+        throw _T("createAttribute() failed");
+    }
+    bstr = SysAllocString(value);
+    if (!bstr) {
+        attr->Release();
+        throw _T("memory for attribute value exhausted");
+    }
+    VARIANT variant;
+    VariantInit(&variant);
+    V_VT(&variant) = VT_BSTR;
+    V_BSTR(&variant) = bstr;
+    hr = attr->put_value(variant);
+    VariantClear(&variant);
+    SysFreeString(bstr);
+    if (FAILED(hr)) {
+        attr->Release();
+        throw _T("put_value() failed for attribute");
+    }
+    IXMLDOMAttribute* out = NULL;
+    hr = elem->setAttributeNode(attr, &out);
+    attr->Release();
+    if (out)
+        out->Release();
+    if (FAILED(hr))
+        throw _T("setAttributeNode() failed");
+}
+
+// Attach an element to its existing parent.
+void cdr::DOMBuilder::append(IXMLDOMNode* parent, IXMLDOMNode* child) {
+    IXMLDOMNode* out = NULL;
+    HRESULT hr = parent->appendChild(child, &out);
+    if (out)
+        out->Release();
+    if (FAILED(hr))
+        throw _T("appendChild() failed");
+}
+
+// Create a new element and attach it to an existing parent.
+IXMLDOMElement* cdr::DOMBuilder::child_element(IXMLDOMNode* parent,
+                                               const CString& name,
+                                               const CString& text) {
+    IXMLDOMElement* e = element(name, text);
+    append(parent, e);
+    return e;
+}
+
+// Add a new text node to an existing element.
+void cdr::DOMBuilder::append_text(IXMLDOMNode* parent, const CString& text) {
+    BSTR bstr = SysAllocString(text);
+    if (!bstr)
+        throw _T("memory for text exhausted");
+    IXMLDOMText* text_node = NULL;
+    HRESULT hr = doc->createTextNode(bstr, &text_node);
+    if (FAILED(hr)) {
+        SysFreeString(bstr);
+        if (text_node)
+            text_node->Release();
+        throw _T("createTextNode() failed");
+    }
+    try {
+        append(parent, text_node);
+    }
+    catch (...) {
+        SysFreeString(bstr);
+        text_node->Release();
+        throw;
+    }
+    SysFreeString(bstr);
+    text_node->Release();
+}
+
+// Serialize the document to a string.
+CString cdr::DOMBuilder::get_xml() const {
+    BSTR bstr = NULL;
+    HRESULT hr = doc->get_xml(&bstr);
+    if (FAILED(hr)) {
+        if (bstr)
+            SysFreeString(bstr);
+        throw _T("get_xml() failed");
+    }
+    CString xml(bstr);
+    SysFreeString(bstr);
+    return xml;
+}
+
+
+// Get the DOM tree for an XML document.
+cdr::ParsedDOM::ParsedDOM(const CString& xml) : doc(NULL), root(NULL) {
+    HRESULT hr = CoCreateInstance(
+        __uuidof(DOMDocument),
+        NULL,
+        CLSCTX_INPROC_SERVER,
+        IID_PPV_ARGS(&doc)
+        );
+    if (FAILED(hr))
+        throw _T("CoCreateInstance() failed for DOCDocument");
+    doc->put_async(VARIANT_FALSE);
+    doc->put_validateOnParse(VARIANT_FALSE);
+    doc->put_resolveExternals(VARIANT_FALSE);
+    doc->put_preserveWhiteSpace(VARIANT_TRUE);
+    VARIANT_BOOL succeeded = VARIANT_FALSE;
+    BSTR bstr = SysAllocString(xml);
+    if (!bstr)
+        throw _T("memory for XML string exhausted");
+    hr = doc->loadXML(bstr, &succeeded);
+    SysFreeString(bstr);
+    if (FAILED(hr))
+        throw _T("loadXml() failed");
+    if (succeeded == VARIANT_FALSE) {
+        IXMLDOMParseError* parse_error = NULL;
+        hr = doc->get_parseError(&parse_error);
+        if (FAILED(hr))
+            throw _T("XML parse failed but can't get parse error");
+        BSTR reason = NULL;
+        hr = parse_error->get_reason(&reason);
+        if (FAILED(hr))
+            throw _T("XML parse failed but can't get failure reason");
+        CString why(reason);
+        throw why;
+    }
+}
+
+// Clean up the resources we manage.
+cdr::ParsedDOM::~ParsedDOM() {
+    if (doc) {
+        doc->Release();
+        doc = NULL;
+    }
+    for (auto& p : nodes) {
+        if (p) {
+            p->Release();
+            p = NULL;
+        }
+    }
+}
+
+// Find the first element matching an XPath query.
+IXMLDOMElement* cdr::ParsedDOM::find(const CString& xpath) {
+    IXMLDOMElement* root = get_root();
+    BSTR bstr = SysAllocString(xpath);
+    if (!bstr)
+        throw _T("memory exhausted for xpath");
+    IXMLDOMNode* node = NULL;
+    HRESULT hr = root->selectSingleNode(bstr, &node);
+    SysFreeString(bstr);
+    if (FAILED(hr))
+        throw _T("selectSingleNode() failed");
+    if (!node)
+        return NULL;
+    IXMLDOMElement* element;
+    hr = node->QueryInterface(__uuidof(IXMLDOMElement),
+                              (void**)&element);
+    node->Release();
+    if (FAILED(hr))
+        throw _T("QueryInterface failed for IXMLDOMElement");
+    nodes.push_back(element);
+    return element;
+}
+
+// Find all the elements matching an XPath query.
+std::vector<IXMLDOMElement*> cdr::ParsedDOM::find_all(const CString& xpath) {
+    IXMLDOMElement* root = get_root();
+    BSTR bstr = SysAllocString(xpath);
+    if (!bstr)
+        throw _T("memory exhausted for xpath");
+    IXMLDOMNodeList* list = NULL;
+    HRESULT hr = root->selectNodes(bstr, &list);
+    SysFreeString(bstr);
+    if (FAILED(hr))
+        throw _T("selectNodes() failed");
+    IXMLDOMNode* node;
+    hr = list->nextNode(&node);
+    if (FAILED(hr)) {
+        list->Release();
+        throw _T("nextNode() failed for DOM node list");
+    }
+    std::vector<IXMLDOMElement*> elements;
+    while (node) {
+        IXMLDOMElement* e;
+        hr = node->QueryInterface(__uuidof(IXMLDOMElement),
+                                  (void**)&e);
+        node->Release();
+        node = NULL;
+        if (FAILED(hr))
+            throw _T("QueryInterface failed for IXMLDOMElement");
+        nodes.push_back(e);
+        elements.push_back(e);
+        hr = list->nextNode(&node);
+        if (FAILED(hr)) {
+            list->Release();
+            throw _T("nextNode() failed for DOM node list");
+        }
+    }
+    list->Release();
+    return elements;
+}
+
+// Give the caller a pointer to the document's root element.
+IXMLDOMElement* cdr::ParsedDOM::get_root() {
+    if (!root) {
+        HRESULT hr = doc->get_documentElement(&root);
+        if (FAILED(hr))
+            throw _T("get_documentElement() failed");
+        nodes.push_back(root);
+    }
+    return root;
+}
+
+// Get the text content for one of the document's elements.
+CString cdr::ParsedDOM::get_text(IXMLDOMElement* element) {
+    BSTR bstr = NULL;
+    HRESULT hr = element->get_text(&bstr);
+    if (FAILED(hr))
+        throw _T("get_text() failed");
+    CString text(bstr);
+    SysFreeString(bstr);
+    return text;
+}
+
+// Get the string for the name of one of the document's elements.
+CString cdr::ParsedDOM::get_node_name(IXMLDOMNode* node) {
+    BSTR bstr = NULL;
+    HRESULT hr = node->get_nodeName(&bstr);
+    if (FAILED(hr))
+        throw _T("get_nodeName() failed");
+    CString name(bstr);
+    SysFreeString(bstr);
+    return name;
+}
+
+// Get the string for the value of one of an element's attributes.
+CString cdr::ParsedDOM::get(IXMLDOMElement* elem, const CString& name) {
+    BSTR bstr = SysAllocString(name);
+    if (!bstr)
+        throw _T("memory exhausted for attribute name");
+    VARIANT variant;
+    VariantInit(&variant);
+    HRESULT hr = elem->getAttribute(bstr, &variant);
+    SysFreeString(bstr);
+    if (FAILED(hr)) {
+        throw _T("getAttribute failed");
+    }
+    CString value = "";
+    if (variant.vt == VT_BSTR)
+        value = variant.bstrVal;
+    VariantClear(&variant);
+    return value;
+}

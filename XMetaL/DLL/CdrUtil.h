@@ -117,6 +117,167 @@ namespace cdr {
     typedef std::map<CString, ValidValueSet> ValidValueSets;
     typedef std::list<CdrLinkInfo> LinkInfoList;
 
+
+    /**
+     * Wrapper for DOM approach to building up XML documents.
+     *
+     * Enapsulates most of the COM ugliness. All of the resources
+     * for elements/attributes added to the document are owned
+     * and managed by this object.
+     */
+    class DOMBuilder {
+    public:
+
+        /**
+         * Create a new COM object for creating a document.
+         *
+         * If you optionally pass an element name string, it will
+         * be used to start the document off with its root element.
+         */
+        DOMBuilder(const CString& name = _T(""));
+
+        /**
+         * Prohibit copy construction or assignment by value.
+         *
+         * If you really need to pass around this object between
+         * functions or methods, do it by reference or pointer.
+         * We can't have the resources managed by the object
+         * duplicated.
+         */
+        DOMBuilder(const DOMBuilder&) = delete;
+        DOMBuilder& operator=(const DOMBuilder&) = delete;
+
+        /**
+         * Clean up the resources, releasing the COM handles we own.
+         */
+        ~DOMBuilder();
+
+        /**
+         * Create a new element with optional text content.
+         *
+         * The new element is not attached to any parent.
+         */
+        IXMLDOMElement* element(const CString& name,
+                                const CString& text = _T(""));
+
+        /**
+         * Assign a string value to a named attribute of an element.
+         */
+        void set(IXMLDOMElement* element, const CString& name,
+                 const CString& value);
+
+        /**
+         * Attach an element to an existing parent.
+         */
+        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
+
+        /**
+         * Create a new element attached to an existing parent.
+         *
+         * You can submit an optional third argument to set
+         * the new child element's text content.
+         */
+        IXMLDOMElement* child_element(IXMLDOMNode* parent,
+                                      const CString& name,
+                                      const CString& text=_T(""));
+
+        /**
+         * Attach a text node to an existing element.
+         */
+        void append_text(IXMLDOMNode* parent, const CString& text);
+
+        /**
+         * Serialize the document to an XML string.
+         */
+        CString get_xml() const;
+
+        /**
+         * Provide the caller with a handle to the document's root element.
+         */
+        IXMLDOMElement* get_root() { return root; }
+
+    private:
+
+        /**
+         * Resources we need to clean up when we're done.
+         */
+        IXMLDOMDocument* doc;
+        IXMLDOMElement* root;
+        std::vector<IXMLDOMNode*> nodes;
+    };
+
+
+    /**
+     * Wrapper for parsing XML from an in-memory string.
+     *
+     * Enapsulates most of the COM ugliness. All of the resources
+     * for elements/attributes added to the document are owned
+     * and managed by this object.
+     */
+    class ParsedDOM {
+    public:
+
+        /**
+         * Create the DOM object from its serialized XML.
+         */
+        ParsedDOM(const CString& xml);
+
+        /**
+         * Prohibit copy construction or assignment by value.
+         *
+         * If you really need to pass around this object between
+         * functions or methods, do it by reference or pointer.
+         * We can't have the resources managed by the object
+         * duplicated.
+         */
+        ParsedDOM(const ParsedDOM&) = delete;
+        ParsedDOM& operator=(const ParsedDOM&) = delete;
+
+        /**
+         * Clean up the resources, releasing the COM handles we own.
+         */
+        ~ParsedDOM();
+
+        /**
+         * Find a single element matching the supplied XPath string.
+         */
+        IXMLDOMElement* find(const CString& xpath);
+
+        /**
+         * Find all elements matching the supplied XPath string.
+         */
+        std::vector<IXMLDOMElement*> find_all(const CString& xpath);
+
+        /**
+         * Give the caller a pointer to the root element.
+         */
+        IXMLDOMElement* get_root();
+
+        /**
+         * Get the text content string for a specific element.
+         */
+        CString get_text(IXMLDOMElement* element);
+
+        /**
+         * Get the string for a specific DOM node's name.
+         */
+        CString get_node_name(IXMLDOMNode* node);
+
+        /**
+         * Get the value of an element's attribute.
+         */
+        CString get(IXMLDOMElement* elem, const CString& name);
+
+    private:
+
+        /**
+         * Resources we need to clean up when we're done.
+         */
+        IXMLDOMDocument* doc;
+        IXMLDOMElement* root;
+        std::vector<IXMLDOMNode*> nodes;
+    };
+
     struct GlossaryNode;
     typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
     struct GlossaryNode {
