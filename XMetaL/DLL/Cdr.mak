@@ -48,8 +48,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -126,8 +124,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -177,8 +173,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -255,8 +249,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -312,8 +304,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -387,8 +377,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -438,8 +426,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -513,8 +499,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -564,8 +548,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -639,8 +621,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -696,8 +676,6 @@ CLEAN :
 	-@erase "$(INTDIR)\CheckIn.obj"
 	-@erase "$(INTDIR)\Commands.obj"
 	-@erase "$(INTDIR)\EditElement.obj"
-	-@erase "$(INTDIR)\LogonDialog.obj"
-	-@erase "$(INTDIR)\LogonProgress.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
 	-@erase "$(INTDIR)\PersonLocs.obj"
@@ -771,8 +749,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\CheckIn.obj" \
 	"$(INTDIR)\Commands.obj" \
 	"$(INTDIR)\EditElement.obj" \
-	"$(INTDIR)\LogonDialog.obj" \
-	"$(INTDIR)\LogonProgress.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
 	"$(INTDIR)\PersonLocs.obj" \
@@ -915,16 +891,6 @@ SOURCE=.\Commands.cpp
 SOURCE=.\EditElement.cpp
 
 "$(INTDIR)\EditElement.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
-
-
-SOURCE=.\LogonDialog.cpp
-
-"$(INTDIR)\LogonDialog.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
-
-
-SOURCE=.\LogonProgress.cpp
-
-"$(INTDIR)\LogonProgress.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
 
 
 SOURCE=.\OrgLocs.cpp

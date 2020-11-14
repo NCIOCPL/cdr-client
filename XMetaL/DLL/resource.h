@@ -8,7 +8,6 @@
 #define IDR_Commands                    103
 #define IDD_DIALOG1                     201
 #define IDC_EDIT1                       201
-#define IDD_LOGON_DIALOG                201
 #define IDC_EDIT2                       202
 #define IDD_DIALOG2                     202
 #define IDD_RETRIEVE_DIALOG             202
@@ -28,7 +27,6 @@
 #define IDD_SCHEMA_PICKLIST             207
 #define IDC_RADIO4                      207
 #define IDC_COMBO1                      208
-#define IDD_LOGON_PROGRESS              208
 #define IDC_CHECK1                      209
 #define IDD_PROT_UPD_PERSON             209
 #define IDC_CHECK2                      210
@@ -50,7 +48,6 @@
 #define IDD_GLOSSIFY                    219
 #define IDD_GLOSSIFY_DIALOG             219
 #define IDD_REVIEW_MARKUP               220
-#define ID_LOGON_OK                     221
 #define IDC_LINK_TITLE_LABEL            222
 #define IDD_COMMENT                     222
 #define IDD_COMMENT_DIALOG              222

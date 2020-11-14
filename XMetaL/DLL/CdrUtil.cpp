@@ -12,6 +12,7 @@
 #include <map>
 #include <set>
 #include <fstream>
+#include <sstream>
 #include <afxinet.h>
 #include <afxole.h>
 
@@ -27,7 +28,7 @@
 // Local support functions.
 static CString errResponse(const CString& err);
 static bool isUserPath(const CString& path);
-extern void debugLogWrite(const CString& what, const CString& who);
+static std::string log_timestamp();
 
 /**
  * Login token obtained from the CDR server.
@@ -61,23 +62,23 @@ cdr::ValidationErrorSets cdr::validationErrorSets;
 CdrSocket::Init::Init()
 {
     if (WSAStartup(0x0101, &wsaData) != 0) {
-        ::AfxMessageBox(_T("Unable to initialize Windows socket library"));
-        throw _T("Failure initializing Windows socket library");
+        ::AfxMessageBox(L"Unable to initialize Windows socket library");
+        throw L"Failure initializing Windows socket library";
     }
-    const TCHAR* cdrHostEnv = _tgetenv(_T("CDR_HOST"));
-    const TCHAR* apiHostEnv = _tgetenv(_T("API_HOST"));
-    const TCHAR* sessionEnv = _tgetenv(_T("CDRSession"));
-    const TCHAR* cdrTierEnv = _tgetenv(_T("CDR_TIER"));
-    cdrHost = cdrHostEnv ? cdrHostEnv : _T("cdr-dev.cancer.gov");
+    const TCHAR* cdrHostEnv = _tgetenv(L"CDR_HOST");
+    const TCHAR* apiHostEnv = _tgetenv(L"API_HOST");
+    const TCHAR* sessionEnv = _tgetenv(L"CDRSession");
+    const TCHAR* cdrTierEnv = _tgetenv(L"CDR_TIER");
+    cdrHost = cdrHostEnv ? cdrHostEnv : L"cdr-dev.cancer.gov";
     // Do this below until the service-based API is gone from all tiers.
     // apiHost = apiHostEnv ? apiHostEnv : cdrHost;
 
     // Don't do this: it short-circuits needed initialization code.
-    // sessionString = sessionEnv ? sessionEnv : _T("");
+    // sessionString = sessionEnv ? sessionEnv : L"";
 
     if (cdrTierEnv) {
         CString tier_buf;
-        tier_buf.Format(_T("env var CDR_TIER=%s"), cdrTierEnv);
+        tier_buf.Format(L"env var CDR_TIER=%s", cdrTierEnv);
         cdr::trace_log(cdr::cStringToUtf8(tier_buf).c_str());
         tier = cdrTierEnv;
     }
@@ -106,14 +107,14 @@ CdrSocket::Init::Init()
         apiHost = apiHostEnv;
     else {
         if (tier == "PROD")
-            apiHost = _T("cdrapi.cancer.gov");
+            apiHost = L"cdrapi.cancer.gov";
         else {
-            apiHost.Format(_T("cdrapi-%s.cancer.gov"), tier);
+            apiHost.Format(L"cdrapi-%s.cancer.gov", tier);
             apiHost.MakeLower();
         }
     }
     CString buf;
-    buf.Format(_T("cdrhost=%s apihost=%s"), cdrHostEnv, apiHostEnv);
+    buf.Format(L"cdrhost=%s apihost=%s", cdrHostEnv, apiHostEnv);
     cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
 }
 
@@ -154,13 +155,13 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         CWaitCursor wc;
 
         // Wrap the command in a CdrCommandSet element.
-        CString front = _T("<CdrCommandSet>");
+        CString front = L"<CdrCommandSet>";
         if (!sessionString.IsEmpty())
-            front += _T("<SessionId>") + sessionString + _T("</SessionId>");
+            front += L"<SessionId>" + sessionString + L"</SessionId>";
         else if (guest)
-            front += _T("<SessionId>guest</SessionId>");
-        front += _T("<CdrCommand>");
-        CString back = _T("</CdrCommand></CdrCommandSet>");
+            front += L"<SessionId>guest</SessionId>";
+        front += L"<CdrCommand>";
+        CString back = L"</CdrCommand></CdrCommandSet>";
         const char* commands;
 
         // Use caller's buffer if present.
@@ -192,11 +193,11 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         DWORD length = (DWORD)requestLen;
         BOOL success = FALSE;
         INTERNET_PORT port = 443;
-        const TCHAR* verb = _T("POST");
-        const TCHAR* target = _T("/");
-        headers.Format(_T("Content-type: text/xml\n"));
+        const TCHAR* verb = L"POST";
+        const TCHAR* target = L"/";
+        headers.Format(L"Content-type: text/xml\n");
         DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
-        //::AfxMessageBox(_T("sending command to ") + apiHost);
+        //::AfxMessageBox(L"sending command to " + apiHost);
         session.SetOption(INTERNET_OPTION_CONTROL_RECEIVE_TIMEOUT, 180000);
         conn = session.GetHttpConnection(apiHost, port);
         file = conn->OpenRequest(verb, target, NULL, 1, NULL, NULL, flags);
@@ -210,14 +211,14 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
             success = file->SendRequest(headers, (void*)bytes, length);
         }
         if (!success)
-            throw _T("Failure submitting request to server");
+            throw L"Failure submitting request to server";
 
         // Make sure the server thinks we succeeded.
         DWORD result;
         file->QueryInfoStatusCode(result);
         if (result != HTTP_STATUS_OK) {
-            CString err;
-            err.Format(_T("HTTP status code from server: %lu"), result);
+            static wchar_t err[80];
+            swprintf(err, 80, L"HTTP status code from server: %lu", result);
             throw err;
         }
 
@@ -242,15 +243,99 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
         TCHAR message[1024];
         ee->GetErrorMessage(message, 1023);
         CString msg;
-        msg.Format(_T("failure sending command: %s"), message);
-        debugLogWrite(_T("Caught exception in sendCommand()\n"), _T("bkline"));
+        msg.Format(L"failure sending command: %s", message);
+        debug_log("Caught exception in sendCommand()\n");
         //ee->ReportError();
-        debugLogWrite(_T("Reported exception in sendCommand()\n"),
-                      _T("bkline"));
+        debug_log("Reported exception in sendCommand()\n");
         ee->Delete();
         return errResponse(msg);
     }
-    catch (...) { return errResponse(_T("sendCommand: unexpected failure")); }
+    catch (...) { return errResponse(L"sendCommand: unexpected failure"); }
+}
+
+CString CdrSocket::sendCommands(const cdr::CommandSet& commands, char* blob) {
+    try {
+
+        CWaitCursor wc;
+
+        // Serialize the command set.
+        debug_log("top of sendCommands()");
+        std::string xml = cdr::cStringToUtf8(commands.get_xml());
+
+        // Plug in the blob if we have one.
+        if (blob) {
+            auto start = xml.find(BLOB_PLACEHOLDER);
+            if (start == std::string::npos)
+                throw L"missing blob placeholder";
+            auto length = strlen(BLOB_PLACEHOLDER);
+            xml.replace(start, length, blob);
+        }
+
+        // Open an HTTPS connection to the CDR API tunnelling wrapper.
+        CInternetSession session;
+        CString headers = L"Content-type: text/xml\n";
+        CHttpFile* file = NULL;
+        //CStringA::PCXSTR bytes = (CStringA::PCXSTR)xml.c_str();
+        const char* bytes = xml.c_str();
+        DWORD length = (DWORD)xml.length();
+        BOOL success = FALSE;
+        INTERNET_PORT port = 443;
+        const wchar_t* verb = L"POST";
+        const wchar_t* target = L"/";
+        DWORD flags = INTERNET_FLAG_EXISTING_CONNECT | INTERNET_FLAG_SECURE;
+        session.SetOption(INTERNET_OPTION_CONTROL_RECEIVE_TIMEOUT, 180000);
+        CHttpConnection* conn = session.GetHttpConnection(apiHost, port);
+        debug_log("calling conn->OpenRequest()");
+        file = conn->OpenRequest(verb, target, NULL, 1, NULL, NULL, flags);
+        debug_log("back from conn->OpenRequest()");
+
+        // Sometimes this fails the first time; don't give up too quickly.
+        for (int i = 0; !success && i < 3; ++i) {
+            DWORD secFlags;
+            file->QueryOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            secFlags |= SECURITY_IGNORE_ERROR_MASK;
+            file->SetOption(INTERNET_OPTION_SECURITY_FLAGS, secFlags);
+            success = file->SendRequest(headers, (void*)bytes, length);
+        }
+        debug_log("past SendRequest() loop");
+        if (!success)
+            throw L"Failure submitting request to server";
+
+        // Make sure the server thinks we succeeded.
+        DWORD result;
+        file->QueryInfoStatusCode(result);
+        if (result != HTTP_STATUS_OK) {
+            static wchar_t err[80];
+            swprintf(err, 80, L"HTTP status code from server: %lu", result);
+            throw err;
+        }
+
+        // Read the response in chunks.
+        static char buf[1024 * 1024 * 16];
+        UINT nread = file->Read(buf, sizeof buf);
+        std::string temp;
+        while (nread > 0) {
+            temp.append(buf, (size_t)nread);
+            nread = file->Read(buf, sizeof buf);
+        }
+
+        // Clean up communications and decode the response.
+        conn->Close();
+        file->Close();
+        CString response = cdr::utf8ToCString(temp.c_str());
+        return response;
+    }
+    catch (LPCTSTR error) { return errResponse(error); }
+    catch (const CString& err) { return errResponse(err); }
+    catch (CException *ee) {
+        TCHAR message[1024];
+        ee->GetErrorMessage(message, 1023);
+        CString msg;
+        msg.Format(L"failure sending command: %s", message);
+        ee->Delete();
+        return errResponse(msg);
+    }
+    catch (...) { return errResponse(L"sendCommand: unexpected failure"); }
 }
 
 /**
@@ -266,19 +351,19 @@ CString CdrSocket::sendCommand(const CString& cmd, bool guest,
 CString TinyXmlParser::extract(const CString& tag) const
 {
     // Create target strings used in searching for the element's tags.
-    CString open = _T("<") + tag + _T(">");
-    CString close = _T("</") + tag + _T(">");
+    CString open = L"<" + tag + L">";
+    CString close = L"</" + tag + L">";
 
     // Find the tags.
     int pos = xml.Find(open);
     if (pos == -1)
-        return _T("");
+        return L"";
     pos += open.GetLength();
     int endPos = xml.Find(close, pos);
 
     // Make sure we found the element.
     if (endPos == -1 || endPos == pos)
-        return _T("");
+        return L"";
 
     // Pull out the text content.
     return xml.Mid(pos, endPos - pos);
@@ -295,15 +380,15 @@ CString TinyXmlParser::extract(const CString& tag) const
 bool cdr::showErrors(const CString& msg)
 {
     // Find the first Err element.
-    int pos = msg.Find(_T("<Err>"));
+    int pos = msg.Find(L"<Err>");
     int n = 0;
     while (pos != -1) {
 
         // Extract the error message.
         pos += 5;
-        int endPos = msg.Find(_T("</Err>"), pos);
+        int endPos = msg.Find(L"</Err>", pos);
         if (endPos == -1) {
-            ::AfxMessageBox(_T("Missing closing tag for Err element"));
+            ::AfxMessageBox(L"Missing closing tag for Err element");
             break;
         }
         if (pos < endPos) {
@@ -318,11 +403,34 @@ bool cdr::showErrors(const CString& msg)
         }
 
         // Find the next Err element.
-        pos = msg.Find(_T("<Err>"), endPos);
+        pos = msg.Find(L"<Err>", endPos);
     }
 
     // Tell the caller if we displayed any error messages.
     return n > 0;
+}
+
+/**
+ * Show errors returned in the server's response.
+ *
+ *  @param response - parsed response from server
+ *
+ * Return:
+ *   true if any errors were found and displayed.
+ */
+bool cdr::showErrors(cdr::DOM& response) {
+    bool found = false;
+    auto errors = response.find_all("//Errors/Err");
+    for (auto& node : errors) {
+        CString error = response.get_text(node);
+        if (!error.IsEmpty()) {
+            int rc = ::AfxMessageBox(error, MB_OKCANCEL);
+            found = true;
+            if (rc == IDCANCEL)
+                break;
+        }
+    }
+    return found;
 }
 
 bool cdr::showValidationErrors(cdr::ValidationErrors& errors)
@@ -331,7 +439,7 @@ bool cdr::showValidationErrors(cdr::ValidationErrors& errors)
     const cdr::ValidationError* error = errors.getNextError();
     int n = 0;
     while (error) {
-        CString msg = _T("[") + error->eid + _T("] ") + error->message;
+        CString msg = L"[" + error->eid + L"] " + error->message;
         int rc = ::AfxMessageBox(msg, MB_OKCANCEL);
         ++n;
 
@@ -360,18 +468,18 @@ void cdr::extractSearchResults(const CString& xml, DocSet& docSet)
 {
     // Extract the first query result.
     docSet.clear();
-    Element r = Element::extractElement(xml, _T("QueryResult"));
+    Element r = Element::extractElement(xml, L"QueryResult");
 
     // Loop through each QueryResult element.
     while (r) {
-        Element id    = r.extractElement(r.getString(), _T("DocId"));
-        Element type  = r.extractElement(r.getString(), _T("DocType"));
-        Element title = r.extractElement(r.getString(), _T("DocTitle"));
+        Element id    = r.extractElement(r.getString(), L"DocId");
+        Element type  = r.extractElement(r.getString(), L"DocType");
+        Element title = r.extractElement(r.getString(), L"DocTitle");
         SearchResult qr = SearchResult(id.getString(),
                                        type.getString(),
                                        title.getString());
         docSet.push_back(qr);
-        r = r.extractElement(xml, _T("QueryResult"), r.getEndPos());
+        r = r.extractElement(xml, L"QueryResult", r.getEndPos());
     }
 }
 
@@ -412,7 +520,7 @@ int cdr::fillListBox(CListBox& listBox, const DocSet& docSet)
             ++n;
 
             // Append the new string to the list box object.
-            CString str = _T("[") + id + _T("] ") + cdr::decode(title);
+            CString str = L"[" + id + L"] " + cdr::decode(title);
             CSize size  = dc->GetTextExtent(str);
             if (maxWidth < size.cx)
                 maxWidth = size.cx;
@@ -440,7 +548,7 @@ int cdr::fillListBox(CListBox& listBox, const DocSet& docSet)
  */
 _Application cdr::getApp()
 {
-    debugLogWrite(_T("Top of getApp()"), _T("rmk"));
+    debug_log("Top of getApp()");
     _Application app;
     CWinApp* win_app = ::AfxGetApp();
     if (!win_app->m_pMessageFilter) {
@@ -451,21 +559,21 @@ _Application cdr::getApp()
     win_app->m_pMessageFilter->SetMessagePendingDelay(MESSAGE_PENDING_DELAY);
     try {
         COleException e;
-        debugLogWrite(_T("Before CreateDispatch()"), _T("rmk"));
-        if (app.CreateDispatch(_T("XMetaL.Application"), &e)) {
-            debugLogWrite(_T("After CreateDispatch()"), _T("rmk"));
+        debug_log("Before CreateDispatch()");
+        if (app.CreateDispatch(L"XMetaL.Application", &e)) {
+            debug_log("After CreateDispatch()");
             return app;
         }
-        debugLogWrite(_T("After after CreateDispatch()"), _T("rmk"));
+        debug_log("After after CreateDispatch()");
         e.ReportError();
     }
     catch (CException *ee) {
-        debugLogWrite(_T("Caught exception in cdr::getApp()\n"), _T("rmk"));
+        debug_log("Caught exception in cdr::getApp()\n");
         ee->ReportError();
-        debugLogWrite(_T("Reported exception in cdr::getApp()\n"), _T("rmk"));
+        debug_log("Reported exception in cdr::getApp()\n");
         ee->Delete();
     }
-    throw _T("Unable to create XMetaL Application-level automation object");
+    throw L"Unable to create XMetaL Application-level automation object";
 }
 
 /**
@@ -495,9 +603,9 @@ CString cdr::getXmetalPath() {
 CString cdr::getUserPath() {
     static CString userPath;
     if (userPath.IsEmpty()) {
-        CString tail = _T("\\Softquad\\XMetaL\\");
-        TCHAR* vars[] = { _T("LOCALAPPDATA"), _T("APPDATA") };
-        TCHAR* vers[] = { _T("9.0"), _T("4.5") };
+        CString tail = L"\\Softquad\\XMetaL\\";
+        TCHAR* vars[] = { L"LOCALAPPDATA", L"APPDATA" };
+        TCHAR* vers[] = { L"9.0", L"4.5" };
         for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
             TCHAR* dir = _tgetenv(vars[i]);
             if (dir) {
@@ -522,7 +630,7 @@ CString cdr::getUserPath() {
  *  @param  path      fully qualified path string for candidate path
  */
 bool isUserPath(const CString& path) {
-    CString manifest = path + _T("\\CdrManifest.xml");
+    CString manifest = path + L"\\CdrManifest.xml";
     if (!_waccess((LPCTSTR)manifest, 0))
         return true;
     return false;
@@ -540,12 +648,12 @@ bool isUserPath(const CString& path) {
  *  @return             copy of modified string.
  */
 CString cdr::encode(CString str, bool fixQuotes) {
-    str.Replace(_T("&"), _T("&amp;"));
-    str.Replace(_T("<"), _T("&lt;"));
-    str.Replace(_T(">"), _T("&gt;"));
+    str.Replace(L"&", L"&amp;");
+    str.Replace(L"<", L"&lt;");
+    str.Replace(L">", L"&gt;");
     if (fixQuotes) {
-        str.Replace(_T("\""), _T("&quot;"));
-        str.Replace(_T("'"), _T("&apos;"));
+        str.Replace(L"\"", L"&quot;");
+        str.Replace(L"'", L"&apos;");
     }
     return str;
 }
@@ -559,11 +667,11 @@ CString cdr::encode(CString str, bool fixQuotes) {
  */
 CString cdr::decode(CString str)
 {
-    str.Replace(_T("&amp;"), _T("&"));
-    str.Replace(_T("&lt;"), _T("<"));
-    str.Replace(_T("&gt;"), _T(">"));
-    str.Replace(_T("&quot;"), _T("\""));
-    str.Replace(_T("&apos;"), _T("'"));
+    str.Replace(L"&amp;", L"&");
+    str.Replace(L"&lt;", L"<");
+    str.Replace(L"&gt;", L">");
+    str.Replace(L"&quot;", L"\"");
+    str.Replace(L"&apos;", L"'");
     return str;
 }
 
@@ -576,7 +684,7 @@ CString cdr::decode(CString str)
  *                          in SQL Server.
  */
 unsigned long cdr::getDocNo(const CString& docString) {
-    int pos = docString.FindOneOf(_T("0123456789"));
+    int pos = docString.FindOneOf(L"0123456789");
     if (pos == -1)
         return 0L;
     LPCTSTR p = (LPCTSTR)docString;
@@ -639,14 +747,14 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info) {
         if (node.GetNodeType() == 1) {
 
             // If CdrDocCtl, walk through its child nodes.
-            if (node.GetNodeName() == _T("CdrDocCtl")) {
+            if (node.GetNodeName() == L"CdrDocCtl") {
 
                 // Check the ready-for-review flag.  This is where we
                 // stick the document when we pass it off to XMetaL
                 // (so we don't have to worry about formatting it in
                 // the CSS).
                 ::DOMElement cdrDocCtl = node;
-                if (cdrDocCtl.getAttribute(_T("readyForReview")) == _T("Y"))
+                if (cdrDocCtl.getAttribute(L"readyForReview") == L"Y")
                     info.readyForReview = true;
 
                 // MUST do this!  Otherwise XMetaL blows up with a complaint
@@ -659,20 +767,20 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info) {
                     // Only interested in elements (type 1).
                     if (node.GetNodeType() == 1) {
                         CString name = node.GetNodeName();
-                        if (name == _T("DocTitle"))
+                        if (name == L"DocTitle")
                             info.docTitle =
                                 cdr::encode(extractElementText(node));
-                        else if (name == _T("DocId"))
+                        else if (name == L"DocId")
                             info.docId = cdr::trim(extractElementText(node));
 
                         // This is where we find this flag when we get the
                         // document from the CDR Server.
-                        else if (name == _T("ReadyForReview")) {
-                            if (extractElementText(node) == _T("Y"))
+                        else if (name == L"ReadyForReview") {
+                            if (extractElementText(node) == L"Y")
                                 info.readyForReview = true;
                         }
-                        else if (name == _T("DocActiveStatus")) {
-                            if (extractElementText(node) == _T("I"))
+                        else if (name == L"DocActiveStatus") {
+                            if (extractElementText(node) == L"I")
                                 info.blocked = true;
                         }
                     }
@@ -696,13 +804,20 @@ void cdr::extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info) {
  *  @return                 string object representing response buffer.
  */
 CString errResponse(const CString& err) {
-    return _T("<CdrResponseSet><CdrResponse Status='failure'><Errors><Err>")
-        + err + _T("</Err></Errors></CdrResponse></CdrResponseSet>");
+    cdr::DOM dom("CdrResponseSet");
+    auto root = dom.get_root();
+    auto response = dom.child_element(root, "CdrResponse");
+    dom.set(response, "Status", "failure");
+    auto errors = dom.child_element(response, "Errors");
+    dom.child_element(errors, "Err", err);
+    return dom.get_xml();
 }
 
 /**
  * Writes the string equivalent of the XML tree represented by the caller's
- * DOM node.
+ * DOM node. We do this ourselves instead of getting the xml property of
+ * the document so we can cherry-pick, leaving out the bits we added for
+ * XMetaL's benefit (like the CdrDocCtl block and the 'readonly' attributes).
  *
  *  @param  os              reference to output stream on which to write
  *                          the XML string.
@@ -717,16 +832,16 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
     CString name = node.GetNodeName();
 
     // Swallow the CdrDocCtl element.
-    if (nodeType == 1 && name != _T("CdrDocCtl")) {
+    if (nodeType == 1 && name != L"CdrDocCtl") {
 
         // Element node.  Output the start tag.
-        os << _T("<") << (LPCTSTR)name;
+        os << L"<" << (LPCTSTR)name;
         DOMNamedNodeMap attrs = node.GetAttributes();
         int n = attrs.GetLength();
         for (int i = 0; i < n; ++i) {
             DOMNode attr = attrs.item(i);
             CString attrName = attr.GetNodeName();
-            if (attrName != _T("readonly")) {
+            if (attrName != L"readonly") {
                 CString val = attr.GetNodeValue();
 
                 // OK, this is bizarre, but necessary because of a strange
@@ -739,13 +854,13 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
                 // fixes their bugs.  When that happens, take out the
                 // call to cdr::decode() here and things will work the
                 // way they should in _all_ cases.
-                os << _T(" ") << (LPCTSTR)attrName << _T("='")
-                   << (LPCTSTR)cdr::encode(cdr::decode(val), true) << _T("'");
+                os << L" " << (LPCTSTR)attrName << L"='"
+                   << (LPCTSTR)cdr::encode(cdr::decode(val), true) << L"'";
             }
         }
         if (!node.hasChildNodes())
-            os << _T("/");
-        os << _T(">");
+            os << L"/";
+        os << L">";
     }
 
     // If this is a text node (type 3) pump out the characters.
@@ -759,14 +874,14 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
     else if (nodeType == 7) {
 
         CString val = node.GetNodeValue();
-        os << _T("<?") << (LPCTSTR)name << _T(" ") << (LPCTSTR)val << _T("?>");
+        os << L"<?" << (LPCTSTR)name << L" " << (LPCTSTR)val << L"?>";
     }
 
     // Don't lose comments.
     else if (nodeType == 8) {
 
         CString val = node.GetNodeValue();
-        os << _T("<!--") << (LPCTSTR)val << _T("-->");
+        os << L"<!--" << (LPCTSTR)val << L"-->";
     }
 
     // Process any children of the node.
@@ -776,7 +891,7 @@ std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
 
         // If this is an element node, write the closing tag.
         if (nodeType == 1)
-            os << _T("</") << (LPCTSTR)name << _T(">");
+            os << L"</" << (LPCTSTR)name << L">";
     }
 
     // Continue with this node's siblings
@@ -874,16 +989,6 @@ CString cdr::utf8ToCString(const char* s) {
                       | (((unsigned char)s[2]) & 0x3F);
             s += 3;
         }
-#ifndef _UNICODE
-        if ((unsigned short)newStr[j] > 0xFF) {
-            CString err;
-            err.Format(_T("Received Unicode character U%04X which")
-                       _T(" will not fit in the ANSI character set;")
-                       _T(" build DLL with _UNICODE defined."),
-                       (unsigned short)newStr[i]);
-            throw (LPCTSTR)err;
-        }
-#endif
     }
     return CString(newStr.c_str());
 }
@@ -907,7 +1012,7 @@ cdr::Element cdr::Element::extractElement(const CString& s,
     int strLen  = s.GetLength();
 
     // Look for start tag of element.
-    int startPos = s.Find(_T("<") + name, pos);
+    int startPos = s.Find(L"<" + name, pos);
     while (startPos != -1) {
         if (startPos + nameLen + 1 >= strLen)
             return e;
@@ -919,7 +1024,7 @@ cdr::Element cdr::Element::extractElement(const CString& s,
             break;
 
         // Try another position.
-        startPos = s.Find(_T("<") + name, startPos);
+        startPos = s.Find(L"<" + name, startPos);
     }
     if (startPos == -1)
         return e;
@@ -935,11 +1040,11 @@ cdr::Element cdr::Element::extractElement(const CString& s,
 
         // Check for an empty-element tag.
         if (ch == (TCHAR)'/') {
-            startPos = s.Find(_T(">"), startPos);
+            startPos = s.Find(L">", startPos);
             if (startPos == -1)
                 return e;
             e.startPos = e.endPos = startPos + 1;
-            e.str = _T("");
+            e.str = L"";
             return e;
         }
 
@@ -962,8 +1067,8 @@ cdr::Element cdr::Element::extractElement(const CString& s,
             if (ch == (TCHAR)'=' || _istspace(ch)) {
                 attrName = s.Mid(attrNameStart, startPos++ - attrNameStart);
                 if (e.attrs.find(attrName) != e.attrs.end())
-                    throw (LPCTSTR)(_T("Duplicate attribute ") + attrName +
-                                    _T(" in element ") + name);
+                    throw (LPCTSTR)(L"Duplicate attribute " + attrName +
+                                    L" in element " + name);
                 break;
             }
             ++startPos;
@@ -995,7 +1100,7 @@ cdr::Element cdr::Element::extractElement(const CString& s,
     // name.  Should not pose a problem for the uses the client DLL makes of
     // this method, but watch out for future uses.  At that point we may need
     // to link in a real XML parser.
-    int endPos = s.Find(_T("</") + name + _T(">"), startPos);
+    int endPos = s.Find(L"</" + name + L">", startPos);
     if (endPos == -1)
         return e;
     e.str = s.Mid(startPos, endPos - startPos);
@@ -1005,12 +1110,12 @@ cdr::Element cdr::Element::extractElement(const CString& s,
 }
 
 CString cdr::Element::getCdataSection() const {
-    static CString target = _T("<![CDATA[");
+    static CString target = L"<![CDATA[";
     int pos = str.Find(target);
     if (pos == -1)
         return CString();
     pos += target.GetLength();
-    int end = str.Find(_T("]]>"), pos);
+    int end = str.Find(L"]]>", pos);
     if (end == -1)
         return CString();
     return str.Mid(pos, end - pos);
@@ -1020,19 +1125,19 @@ CdrLinkInfo cdr::extractLinkInfo(const CString& str) {
     CdrLinkInfo info;
 
     // Parse out the document ID and text content.
-    int pos = str.Find(_T("["));
+    int pos = str.Find(L"[");
     if (pos == -1) {
-        ::AfxMessageBox(_T("Unable to find link target start delimiter."));
+        ::AfxMessageBox(L"Unable to find link target start delimiter.");
         return info;
     }
-    int endPos = str.Find(_T("]"), ++pos);
+    int endPos = str.Find(L"]", ++pos);
     if (endPos == -1) {
-        ::AfxMessageBox(_T("Unable to find link target end delimiter."));
+        ::AfxMessageBox(L"Unable to find link target end delimiter.");
         return info;
     }
     info.target = str.Mid(pos, endPos - pos);
     pos = endPos + 1;
-    while (pos < str.GetLength() && str[pos] == _T(' '))
+    while (pos < str.GetLength() && str[pos] == L' ')
         ++pos;
     info.data = str.Mid(pos);
     return info;
@@ -1077,7 +1182,7 @@ CdrLinkInfo cdr::extractLinkInfo(const CString& str) {
 
 CString cdr::docIdString(int id) {
     TCHAR buf[40];
-    swprintf(buf, _T("CDR%010d"), id);
+    swprintf(buf, L"CDR%010d", id);
     return buf;
 }
 
@@ -1102,7 +1207,7 @@ CString cdr::suppressLeadingZeros(const CString& s) {
 }
 
 CString cdr::expandLeadingZeros(const CString& s) {
-    CString zeros = _T("0000000000");
+    CString zeros = L"0000000000";
     int i = 0;
     int firstDigit = 0;
     int numDigits = 0;
@@ -1135,11 +1240,11 @@ int cdr::showPage(const CString& url) {
     COleDispatchDriver ie;
     COleException* pe = new COleException;
     try {
-        if (!ie.CreateDispatch(_T("InternetExplorer.Application"), pe)) {
+        if (!ie.CreateDispatch(L"InternetExplorer.Application", pe)) {
             DWORD error = ::GetLastError();
             TCHAR buf[256];
             swprintf(buf,
-               _T("CreateDisplatch: Unable to launch Internet Explorer (%ld)"),
+               L"CreateDisplatch: Unable to launch Internet Explorer (%ld)",
                error);
             ::AfxMessageBox(buf, MB_ICONEXCLAMATION);
             throw pe;
@@ -1148,11 +1253,11 @@ int cdr::showPage(const CString& url) {
     catch (COleDispatchException* pExc) {
         CString s;
         if (!pExc->m_strSource.IsEmpty())
-            s = pExc->m_strSource + _T(" - ");
+            s = pExc->m_strSource + L" - ";
         if (!pExc->m_strDescription.IsEmpty())
             s += pExc->m_strDescription;
         else
-            s += _T("unknown error");
+            s += L"unknown error";
         ::AfxMessageBox(s, MB_OK, pExc->m_strHelpFile.IsEmpty() ? 0
                         : pExc->m_dwHelpContext);
         pExc->Delete();
@@ -1160,7 +1265,7 @@ int cdr::showPage(const CString& url) {
     }
     catch (CException* e) {
         TCHAR b[256];
-        swprintf(b, _T("%S(%d): OLE Exception caught: SCODE = %x"),
+        swprintf(b, L"%S(%d): OLE Exception caught: SCODE = %x",
                  __FILE__, __LINE__, COleException::Process(e));
         ::AfxMessageBox(b, MB_OK);
         e->Delete();
@@ -1168,11 +1273,11 @@ int cdr::showPage(const CString& url) {
     }
     pe->Delete();
     DISPID dispid;
-    OLECHAR* member = _T("Navigate");
+    OLECHAR* member = L"Navigate";
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
         &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
     if (hresult != S_OK) {
-        ::AfxMessageBox(_T("GetIDsOfNames: Unable to launch Internet Explorer"),
+        ::AfxMessageBox(L"GetIDsOfNames: Unable to launch Internet Explorer",
             MB_ICONEXCLAMATION);
         return EXIT_FAILURE;
     }
@@ -1180,13 +1285,13 @@ int cdr::showPage(const CString& url) {
                           VTS_PVARIANT VTS_PVARIANT;
     COleVariant dummy;
     ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-        url, 0L, _T("CdrViewWindow"), &dummy, &dummy);
+        url, 0L, L"CdrViewWindow", &dummy, &dummy);
     return EXIT_SUCCESS;
 }
 #endif
 int cdr::showPage(const CString& url) {
-    CString ie = _T("\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"");
-    CString command = _T("\"") + ie + _T(" \"") + url + _T("\"\"");
+    CString ie = L"\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"";
+    CString command = L"\"" + ie + L" \"" + url + L"\"\"";
     _tsystem(command);
     return EXIT_SUCCESS;
 }
@@ -1198,7 +1303,7 @@ void logWrite(const CString& what) {
     if (!logFile) {
         if (!warned) {
             warned = true;
-            ::AfxMessageBox(_T("Can't open log file"));
+            ::AfxMessageBox(L"Can't open log file");
         }
         return;
     }
@@ -1209,16 +1314,16 @@ void logWrite(const CString& what) {
 cdr::GlossaryTree::GlossaryTree(const CString& command) {
     CString response = CdrSocket::sendCommand(command, true);
     // logWrite(response);
-    cdr::Element termElem = cdr::Element::extractElement(response, _T("Term"));
+    cdr::Element termElem = cdr::Element::extractElement(response, L"Term");
     while (termElem) {
-        LPCTSTR p = (LPCTSTR)termElem.getAttribute(_T("id"));
+        LPCTSTR p = (LPCTSTR)termElem.getAttribute(L"id");
         int docId = _tcstoul(p, 0, 10);
         CString termString = termElem.getString();
         cdr::Element nameElem = cdr::Element::extractElement(termString,
-                                                             _T("Name"));
+                                                             L"Name");
         CString name = cdr::decode(nameElem.getString());
         cdr::Element phraseElem = cdr::Element::extractElement(termString,
-                                                               _T("Phrase"));
+                                                               L"Phrase");
         names[docId] = name;
         while (phraseElem) {
             int numWords = 0;
@@ -1227,7 +1332,7 @@ cdr::GlossaryTree::GlossaryTree(const CString& command) {
             GlossaryNode*    currentNode = 0;
             CString phrase = cdr::decode(phraseElem.getString());
             while (start < phrase.GetLength()) {
-                int end = phrase.Find(_T(" "), start);
+                int end = phrase.Find(L" ", start);
                 CString word;
                 if (end == -1)
                     word = phrase.Mid(start);
@@ -1249,7 +1354,7 @@ cdr::GlossaryTree::GlossaryTree(const CString& command) {
                     break;
                 start = ++end;
             }
-            phraseElem = cdr::Element::extractElement(termString, _T("Phrase"),
+            phraseElem = cdr::Element::extractElement(termString, L"Phrase",
                                                       phraseElem.getEndPos());
             if (currentNode)
                 currentNode->docId = docId;
@@ -1261,7 +1366,7 @@ cdr::GlossaryTree::GlossaryTree(const CString& command) {
                 ++counts[numWords - 1];
             }
         }
-        termElem = cdr::Element::extractElement(response, _T("Term"),
+        termElem = cdr::Element::extractElement(response, L"Term",
                                                 termElem.getEndPos());
     }
 }
@@ -1274,21 +1379,36 @@ cdr::GlossaryTree::~GlossaryTree() {
     }
 }
 
-// Constructor for set of validation error messages.
+// Obsolete constructor for set of validation error messages.
 cdr::ValidationErrors::ValidationErrors(const Element& e) {
     currentError = 0;
-    Element err = Element::extractElement(e.getString(), _T("Err"), 0);
+    Element err = Element::extractElement(e.getString(), L"Err", 0);
     while (err) {
         CString message = err.getString();
-        CString eid = err.getAttribute(_T("eref"));
-        CString etype = err.getAttribute(_T("etype"));
-        CString elevel = err.getAttribute(_T("elevel"));
-        if (etype == _T("validation") || etype == _T("link"))
+        CString eid = err.getAttribute(L"eref");
+        CString etype = err.getAttribute(L"etype");
+        CString elevel = err.getAttribute(L"elevel");
+        if (etype == L"validation" || etype == L"link")
             errors.push_back(cdr::ValidationError(message, eid, elevel));
         else
-            ::AfxMessageBox(message + _T(" (") + elevel + _T(")"));
-        err = Element::extractElement(e.getString(), _T("Err"),
+            ::AfxMessageBox(message + L" (" + elevel + L")");
+        err = Element::extractElement(e.getString(), L"Err",
                                       err.getEndPos());
+    }
+}
+
+cdr::ValidationErrors::ValidationErrors(cdr::DOM& dom) {
+    currentError = 0;
+    auto nodes = dom.find_all("//Errors/Err");
+    for (auto& node : nodes) {
+        CString message = dom.get_text(node);
+        CString eid = dom.get(node, "eref");
+        CString etype = dom.get(node, "etype");
+        CString elevel = dom.get(node, "elevel");
+        if (etype == "validation" || etype == "link")
+            errors.push_back(ValidationError(message, eid, elevel));
+        else
+            ::AfxMessageBox(message + " (" + elevel + ")");
     }
 }
 
@@ -1303,7 +1423,7 @@ cdr::GlossaryTree* cdr::getGlossaryTree(const CString& language,
         ~TreeCache() {
             CString buf;
             for (auto i = trees.begin(); i != trees.end(); ++i) {
-                buf.Format(_T("deleting %s glossary tree"), i->first);
+                buf.Format(L"deleting %s glossary tree", i->first);
                 cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
                 delete i->second;
             }
@@ -1316,20 +1436,20 @@ cdr::GlossaryTree* cdr::getGlossaryTree(const CString& language,
     // No need for locking; we'll be called in a single thread.
     CString key(language);
     if (!dictionary.IsEmpty())
-        key += _T("-") + dictionary;
+        key += L"-" + dictionary;
     if (cache.trees.count(key) == 0) {
-        CString spanish = language == _T("es") ? _T("Spanish") : _T("");
+        CString spanish = language == L"es" ? L"Spanish" : L"";
         CString command;
         if (dictionary.IsEmpty())
-            command.Format(_T("<CdrGet%sGlossaryMap/>"), spanish);
+            command.Format(L"<CdrGet%sGlossaryMap/>", spanish);
         else
-            command.Format(_T("<CdrGet%sGlossaryMap>")
-                           _T("<Dictionary>%s</Dictionary>")
-                           _T("</CdrGet%sGlossaryMap>"),
+            command.Format(L"<CdrGet%sGlossaryMap>"
+                           L"<Dictionary>%s</Dictionary>"
+                           L"</CdrGet%sGlossaryMap>",
                            spanish, dictionary, spanish);
         cache.trees[key] = new cdr::GlossaryTree(command);
         CString buf;
-        buf.Format(_T("fetched %s glossary tree"), key);
+        buf.Format(L"fetched %s glossary tree", key);
         cdr::trace_log(cdr::cStringToUtf8(buf).c_str());
     }
     return cache.trees[key];
@@ -1451,9 +1571,9 @@ bool cdr::replaceElementContent(::DOMElement& elem, const CString& value) {
 }
 
 CString cdr::fetchFromUrl(const CString& url) {
-    CInternetSession session(_T("CDR"));
+    CInternetSession session(L"CDR");
     DWORD flags = INTERNET_FLAG_TRANSFER_BINARY;
-    if (url.Left(5) == _T("https"))
+    if (url.Left(5) == L"https")
         flags |= INTERNET_FLAG_SECURE;
     CStdioFile* file = session.OpenURL(url, 1, flags);
     std::string response;
@@ -1487,6 +1607,42 @@ const char* cdr::get_cdr_trace_log_path() {
     return path;
 }
 
+std::string log_timestamp() {
+    char buf[80];
+    SYSTEMTIME sys_time;
+    ::GetLocalTime(&sys_time);
+    sprintf(buf, "%04d-%02d-%02d %02d:%02d:%02d.%03d",
+            sys_time.wYear,
+            sys_time.wMonth,
+            sys_time.wDay,
+            sys_time.wHour,
+            sys_time.wMinute,
+            sys_time.wSecond,
+            sys_time.wMilliseconds);
+    std::string timestamp(buf);
+    return timestamp;
+}
+
+void debug_log(const CString& what, const CString& who) {
+    if (who != L"bkline")
+        return;
+    try {
+        FILE* logFile = fopen("c:/tmp/debug.log", "a");
+        static bool warned = true; // false;
+        if (!logFile) {
+            if (!warned) {
+                warned = true;
+                ::AfxMessageBox(L"Can't open log file");
+            }
+            return;
+        }
+        fprintf(logFile, "%s %s\n", log_timestamp().c_str(),
+                cdr::cStringToUtf8(what).c_str());
+        fclose(logFile);
+    }
+    catch (...) {}
+}
+
 void cdr::trace_log(const char* what) {
     static bool startup = true;
     if (startup) {
@@ -1494,21 +1650,11 @@ void cdr::trace_log(const char* what) {
         startup = false;
     }
     try {
-        SYSTEMTIME sys_time;
-        ::GetLocalTime(&sys_time);
         const char* path = get_cdr_trace_log_path();
         if (!path)
             return;
         FILE* fp = fopen(path, "ab");
-        fprintf(fp, "%04d-%02d-%02d %02d:%02d:%02d.%03d %s",
-                sys_time.wYear,
-                sys_time.wMonth,
-                sys_time.wDay,
-                sys_time.wHour,
-                sys_time.wMinute,
-                sys_time.wSecond,
-                sys_time.wMilliseconds,
-                what);
+        fprintf(fp, "%s %s", log_timestamp().c_str(), what);
         if (strcmp(what, "logon") == 0) {
             const char* session = getenv("CDRSession");
             const char* user = getenv("CDRUser");
@@ -1544,17 +1690,18 @@ void cdr::send_trace_log() {
         if (log_data.IsEmpty()) {
             return;
         }
-        CString command = _T("<CdrSaveClientTraceLog><LogData>");
+        CString command = L"<CdrSaveClientTraceLog><LogData>";
         command += cdr::encode(log_data);
-        command += _T("</LogData></CdrSaveClientTraceLog>");
+        command += L"</LogData></CdrSaveClientTraceLog>";
         CString response = CdrSocket::sendCommand(command, true);
-        if (response.Find(_T("success")) >= 0)
+        if (response.Find(L"success") >= 0)
             _unlink(path);
     }
     catch (...) {}
 }
 
 
+#if 0
 // Get started with what we need to build an XML document.
 cdr::DOMBuilder::DOMBuilder(const CString& name)
     : doc(NULL), root(NULL) {
@@ -1566,7 +1713,7 @@ cdr::DOMBuilder::DOMBuilder(const CString& name)
         IID_PPV_ARGS(&doc)
         );
     if (FAILED(hr))
-        throw _T("CoCreateInstance() failed for DOCDocument");
+        throw L"CoCreateInstance() failed for DOCDocument";
     doc->put_async(VARIANT_FALSE);
     doc->put_validateOnParse(VARIANT_FALSE);
     doc->put_resolveExternals(VARIANT_FALSE);
@@ -1595,11 +1742,11 @@ IXMLDOMElement* cdr::DOMBuilder::element(const CString& name,
     IXMLDOMElement* e = NULL;
     BSTR bstr = SysAllocString(name);
     if (!bstr)
-        throw _T("memory for element name exhausted");
+        throw L"memory for element name exhausted";
     HRESULT hr = doc->createElement(bstr, &e);
     if (FAILED(hr)) {
         SysFreeString(bstr);
-        throw _T("createElement() failed");
+        throw L"createElement() failed";
     }
     if (!text.IsEmpty()) {
         try {
@@ -1620,19 +1767,19 @@ void cdr::DOMBuilder::set(IXMLDOMElement* elem, const CString& name,
                           const CString& value) {
     BSTR bstr = SysAllocString(name);
     if (!bstr)
-        throw _T("memory for attribute name exhausted");
+        throw L"memory for attribute name exhausted";
     IXMLDOMAttribute* attr = NULL;
     HRESULT hr = doc->createAttribute(bstr, &attr);
     SysFreeString(bstr);
     if (FAILED(hr)) {
         if (attr)
             attr->Release();
-        throw _T("createAttribute() failed");
+        throw L"createAttribute() failed";
     }
     bstr = SysAllocString(value);
     if (!bstr) {
         attr->Release();
-        throw _T("memory for attribute value exhausted");
+        throw L"memory for attribute value exhausted";
     }
     VARIANT variant;
     VariantInit(&variant);
@@ -1643,7 +1790,7 @@ void cdr::DOMBuilder::set(IXMLDOMElement* elem, const CString& name,
     SysFreeString(bstr);
     if (FAILED(hr)) {
         attr->Release();
-        throw _T("put_value() failed for attribute");
+        throw L"put_value() failed for attribute";
     }
     IXMLDOMAttribute* out = NULL;
     hr = elem->setAttributeNode(attr, &out);
@@ -1651,7 +1798,7 @@ void cdr::DOMBuilder::set(IXMLDOMElement* elem, const CString& name,
     if (out)
         out->Release();
     if (FAILED(hr))
-        throw _T("setAttributeNode() failed");
+        throw L"setAttributeNode() failed";
 }
 
 // Attach an element to its existing parent.
@@ -1661,7 +1808,7 @@ void cdr::DOMBuilder::append(IXMLDOMNode* parent, IXMLDOMNode* child) {
     if (out)
         out->Release();
     if (FAILED(hr))
-        throw _T("appendChild() failed");
+        throw L"appendChild() failed";
 }
 
 // Create a new element and attach it to an existing parent.
@@ -1677,14 +1824,14 @@ IXMLDOMElement* cdr::DOMBuilder::child_element(IXMLDOMNode* parent,
 void cdr::DOMBuilder::append_text(IXMLDOMNode* parent, const CString& text) {
     BSTR bstr = SysAllocString(text);
     if (!bstr)
-        throw _T("memory for text exhausted");
+        throw L"memory for text exhausted";
     IXMLDOMText* text_node = NULL;
     HRESULT hr = doc->createTextNode(bstr, &text_node);
     if (FAILED(hr)) {
         SysFreeString(bstr);
         if (text_node)
             text_node->Release();
-        throw _T("createTextNode() failed");
+        throw L"createTextNode() failed";
     }
     try {
         append(parent, text_node);
@@ -1705,7 +1852,7 @@ CString cdr::DOMBuilder::get_xml() const {
     if (FAILED(hr)) {
         if (bstr)
             SysFreeString(bstr);
-        throw _T("get_xml() failed");
+        throw L"get_xml() failed";
     }
     CString xml(bstr);
     SysFreeString(bstr);
@@ -1722,7 +1869,7 @@ cdr::ParsedDOM::ParsedDOM(const CString& xml) : doc(NULL), root(NULL) {
         IID_PPV_ARGS(&doc)
         );
     if (FAILED(hr))
-        throw _T("CoCreateInstance() failed for DOCDocument");
+        throw L"CoCreateInstance() failed for DOCDocument";
     doc->put_async(VARIANT_FALSE);
     doc->put_validateOnParse(VARIANT_FALSE);
     doc->put_resolveExternals(VARIANT_FALSE);
@@ -1730,20 +1877,20 @@ cdr::ParsedDOM::ParsedDOM(const CString& xml) : doc(NULL), root(NULL) {
     VARIANT_BOOL succeeded = VARIANT_FALSE;
     BSTR bstr = SysAllocString(xml);
     if (!bstr)
-        throw _T("memory for XML string exhausted");
+        throw L"memory for XML string exhausted";
     hr = doc->loadXML(bstr, &succeeded);
     SysFreeString(bstr);
     if (FAILED(hr))
-        throw _T("loadXml() failed");
+        throw L"loadXml() failed";
     if (succeeded == VARIANT_FALSE) {
         IXMLDOMParseError* parse_error = NULL;
         hr = doc->get_parseError(&parse_error);
         if (FAILED(hr))
-            throw _T("XML parse failed but can't get parse error");
+            throw L"XML parse failed but can't get parse error";
         BSTR reason = NULL;
         hr = parse_error->get_reason(&reason);
         if (FAILED(hr))
-            throw _T("XML parse failed but can't get failure reason");
+            throw L"XML parse failed but can't get failure reason";
         CString why(reason);
         throw why;
     }
@@ -1764,16 +1911,19 @@ cdr::ParsedDOM::~ParsedDOM() {
 }
 
 // Find the first element matching an XPath query.
-IXMLDOMElement* cdr::ParsedDOM::find(const CString& xpath) {
+IXMLDOMElement* cdr::ParsedDOM::find(const CString& xpath,
+                                     IXMLDOMElement* top) {
+    if (!top)
+        top = get_root();
     IXMLDOMElement* root = get_root();
     BSTR bstr = SysAllocString(xpath);
     if (!bstr)
-        throw _T("memory exhausted for xpath");
+        throw L"memory exhausted for xpath";
     IXMLDOMNode* node = NULL;
-    HRESULT hr = root->selectSingleNode(bstr, &node);
+    HRESULT hr = top->selectSingleNode(bstr, &node);
     SysFreeString(bstr);
     if (FAILED(hr))
-        throw _T("selectSingleNode() failed");
+        throw L"selectSingleNode() failed";
     if (!node)
         return NULL;
     IXMLDOMElement* element;
@@ -1781,27 +1931,29 @@ IXMLDOMElement* cdr::ParsedDOM::find(const CString& xpath) {
                               (void**)&element);
     node->Release();
     if (FAILED(hr))
-        throw _T("QueryInterface failed for IXMLDOMElement");
+        throw L"QueryInterface failed for IXMLDOMElement";
     nodes.push_back(element);
     return element;
 }
 
 // Find all the elements matching an XPath query.
-std::vector<IXMLDOMElement*> cdr::ParsedDOM::find_all(const CString& xpath) {
-    IXMLDOMElement* root = get_root();
+std::vector<IXMLDOMElement*> cdr::ParsedDOM::find_all(const CString& xpath,
+                                                      IXMLDOMElement* top) {
+    if (!top)
+        top = get_root();
     BSTR bstr = SysAllocString(xpath);
     if (!bstr)
-        throw _T("memory exhausted for xpath");
+        throw L"memory exhausted for xpath";
     IXMLDOMNodeList* list = NULL;
-    HRESULT hr = root->selectNodes(bstr, &list);
+    HRESULT hr = top->selectNodes(bstr, &list);
     SysFreeString(bstr);
     if (FAILED(hr))
-        throw _T("selectNodes() failed");
+        throw L"selectNodes() failed";
     IXMLDOMNode* node;
     hr = list->nextNode(&node);
     if (FAILED(hr)) {
         list->Release();
-        throw _T("nextNode() failed for DOM node list");
+        throw L"nextNode() failed for DOM node list";
     }
     std::vector<IXMLDOMElement*> elements;
     while (node) {
@@ -1811,13 +1963,13 @@ std::vector<IXMLDOMElement*> cdr::ParsedDOM::find_all(const CString& xpath) {
         node->Release();
         node = NULL;
         if (FAILED(hr))
-            throw _T("QueryInterface failed for IXMLDOMElement");
+            throw L"QueryInterface failed for IXMLDOMElement";
         nodes.push_back(e);
         elements.push_back(e);
         hr = list->nextNode(&node);
         if (FAILED(hr)) {
             list->Release();
-            throw _T("nextNode() failed for DOM node list");
+            throw L"nextNode() failed for DOM node list";
         }
     }
     list->Release();
@@ -1829,7 +1981,7 @@ IXMLDOMElement* cdr::ParsedDOM::get_root() {
     if (!root) {
         HRESULT hr = doc->get_documentElement(&root);
         if (FAILED(hr))
-            throw _T("get_documentElement() failed");
+            throw L"get_documentElement() failed";
         nodes.push_back(root);
     }
     return root;
@@ -1837,10 +1989,12 @@ IXMLDOMElement* cdr::ParsedDOM::get_root() {
 
 // Get the text content for one of the document's elements.
 CString cdr::ParsedDOM::get_text(IXMLDOMElement* element) {
+    if (!element)
+        return L"";
     BSTR bstr = NULL;
     HRESULT hr = element->get_text(&bstr);
     if (FAILED(hr))
-        throw _T("get_text() failed");
+        throw L"get_text() failed";
     CString text(bstr);
     SysFreeString(bstr);
     return text;
@@ -1851,7 +2005,7 @@ CString cdr::ParsedDOM::get_node_name(IXMLDOMNode* node) {
     BSTR bstr = NULL;
     HRESULT hr = node->get_nodeName(&bstr);
     if (FAILED(hr))
-        throw _T("get_nodeName() failed");
+        throw L"get_nodeName() failed";
     CString name(bstr);
     SysFreeString(bstr);
     return name;
@@ -1861,17 +2015,256 @@ CString cdr::ParsedDOM::get_node_name(IXMLDOMNode* node) {
 CString cdr::ParsedDOM::get(IXMLDOMElement* elem, const CString& name) {
     BSTR bstr = SysAllocString(name);
     if (!bstr)
-        throw _T("memory exhausted for attribute name");
+        throw L"memory exhausted for attribute name";
     VARIANT variant;
     VariantInit(&variant);
     HRESULT hr = elem->getAttribute(bstr, &variant);
     SysFreeString(bstr);
     if (FAILED(hr)) {
-        throw _T("getAttribute failed");
+        throw L"getAttribute failed";
     }
     CString value = "";
     if (variant.vt == VT_BSTR)
         value = variant.bstrVal;
     VariantClear(&variant);
     return value;
+}
+#endif
+
+// Initialize the DOM.
+cdr::DOM::DOM() {
+    HRESULT hr = doc.CoCreateInstance(__uuidof(DOMDocument));
+    if (FAILED(hr))
+        throw L"Unable to initialize DOM";
+    doc->put_async(VARIANT_FALSE);
+    doc->put_validateOnParse(VARIANT_FALSE);
+    doc->put_resolveExternals(VARIANT_FALSE);
+    doc->put_preserveWhiteSpace(VARIANT_TRUE);
+}
+
+// Create the DOM object from its serialized XML.
+cdr::DOM::DOM(const CString& xml) : DOM() {
+    VARIANT_BOOL succeeded = VARIANT_FALSE;
+    CComBSTR bstr(xml);
+    if (FAILED(doc->loadXML(bstr, &succeeded)))
+        throw L"loadXml() failed";
+    if (succeeded == VARIANT_FALSE) {
+        CComPtr<IXMLDOMParseError> parse_error;
+        if (FAILED(doc->get_parseError(&parse_error)))
+            throw L"XML parse failed but can't get parse error";
+        CComBSTR reason;
+        if (FAILED(parse_error->get_reason(&reason)))
+            throw L"XML parse failed but can't get failure reason";
+        CString why(reason);
+        static wchar_t error[1024];
+        wcsncpy(error, why.GetString(), 1023);
+        throw error;
+    }
+}
+
+// Create a DOM object with just a root element.
+cdr::DOM::DOM(const char* root_name) : DOM() {
+    root = child_element(doc, root_name);
+}
+
+// Attach an element to its existing parent.
+void cdr::DOM::append(IXMLDOMNode* parent, IXMLDOMNode* child) {
+    Node out;
+    HRESULT hr = parent->appendChild(child, &out);
+    if (FAILED(hr))
+        throw L"appendChild() failed";
+}
+
+// Add a new text node to an existing element.
+void cdr::DOM::append_text(IXMLDOMNode* parent, const CString& text) {
+    CComBSTR bstr(text);
+    CComPtr<IXMLDOMText> text_node;
+    if (FAILED(doc->createTextNode(bstr, &text_node)))
+        throw L"createTextNode() failed";
+    append(parent, text_node);
+}
+
+// Create a new element and attach it to an existing parent.
+cdr::DOM::Element cdr::DOM::child_element(IXMLDOMNode* parent,
+                                          const CString& name,
+                                          const CString& text) {
+    Element e = element(name, text);
+    append(parent, e);
+    return e;
+}
+
+// Create a new element with optional text content.
+cdr::DOM::Element cdr::DOM::element(const CString& name, const CString& text) {
+    Element e;
+    CComBSTR bstr(name);
+    if (FAILED(doc->createElement(bstr, &e)))
+        throw L"createElement() failed";
+    if (!text.IsEmpty())
+        append_text(e, text);
+    return e;
+}
+
+// Find the first element matching an XPath query.
+cdr::DOM::Element cdr::DOM::find(const CString& xpath, IXMLDOMElement* top) {
+    if (!top)
+        top = get_root();
+    CComBSTR bstr(xpath);
+    Node node;
+    if (FAILED(top->selectSingleNode(bstr, &node)))
+        throw L"selectSingleNode() failed";
+    if (!node)
+        return NULL;
+    Element element;
+    HRESULT hr = node->QueryInterface(__uuidof(IXMLDOMElement),
+                                      (void**)&element);
+    if (FAILED(hr))
+        throw L"QueryInterface failed for IXMLDOMElement";
+    return element;
+}
+
+// Find all the elements matching an XPath query.
+std::vector<cdr::DOM::Element> cdr::DOM::find_all(const CString& xpath,
+                                                  IXMLDOMElement* top) {
+    if (!top)
+        top = get_root();
+    CComBSTR bstr(xpath);
+    NodeList list = NULL;
+    if (FAILED(top->selectNodes(bstr, &list)))
+        throw L"selectNodes() failed";
+    std::vector<Element> elements;
+    for (;;) {
+        Node node;
+        if (FAILED(list->nextNode(&node)))
+            throw L"nextNode() failed for DOM node list";
+        if (!node)
+            return elements;
+        Element e;
+        if (FAILED(node->QueryInterface(__uuidof(IXMLDOMElement), (void**)&e)))
+            throw L"QueryInterface failed for IXMLDOMElement";
+        elements.push_back(e);
+    }
+}
+
+// Get the string for the value of one of an element's attributes.
+CString cdr::DOM::get(IXMLDOMElement* elem, const CString& name) {
+    CComBSTR bstr(name);
+    /*
+    VARIANT variant;
+    VariantInit(&variant);
+    if (FAILED(elem->getAttribute(bstr, &variant)))
+        throw L"getAttribute failed";
+    CString value = "";
+    if (variant.vt == VT_BSTR)
+        value = variant.bstrVal;
+    VariantClear(&variant);
+    return value;
+    */
+    CComVariant variant;
+    if (FAILED(elem->getAttribute(bstr, &variant)))
+        throw L"getAttribute failed";
+    CString value(variant);
+    return value;
+}
+
+// Get the string for the name of one of the document's elements.
+CString cdr::DOM::get_node_name(IXMLDOMNode* node) {
+    CComBSTR bstr;
+    if (FAILED(node->get_nodeName(&bstr)))
+        throw L"get_nodeName() failed";
+    CString name(bstr);
+    return name;
+}
+
+// Give the caller a pointer to the document's root element.
+cdr::DOM::Element cdr::DOM::get_root() {
+    if (!root) {
+        if (FAILED(doc->get_documentElement(&root)))
+            throw L"get_documentElement() failed";
+    }
+    return root;
+}
+
+// Get the text content for one of the document's elements.
+CString cdr::DOM::get_text(IXMLDOMNode* element) {
+    if (!element)
+        return L"";
+    CComBSTR bstr;
+    if (FAILED(element->get_text(&bstr)))
+        throw L"get_text() failed";
+    CString text(bstr);
+    return text;
+}
+
+// Serialize the document to a string.
+CString cdr::DOM::get_xml(IXMLDOMNode* node) const {
+    CComBSTR bstr;
+    if (!node)
+        node = doc;
+    if (FAILED(node->get_xml(&bstr)))
+        throw L"get_xml() failed";
+    CString xml(bstr);
+    return xml;
+}
+
+// Install a node in front of an existing node.
+void cdr::DOM::insert(IXMLDOMNode* parent, IXMLDOMNode* new_node,
+                      IXMLDOMNode* sibling) {
+    Node out;
+    CComVariant reference(sibling);
+    HRESULT hr = parent->insertBefore(new_node, reference, &out);
+    if (FAILED(hr))
+        throw L"insertBefore() failed";
+}
+
+// Assign a value to one of an element's attributes.
+void cdr::DOM::set(IXMLDOMElement* elem, const CString& name,
+                   const CString& value) {
+    CComBSTR bstr_name(name);
+    CComPtr<IXMLDOMAttribute> attr;
+    if (FAILED(doc->createAttribute(bstr_name, &attr)))
+        throw L"createAttribute() failed";
+    CComBSTR bstr_value(value);
+    CComVariant variant(bstr_value);
+    if (FAILED(attr->put_value(variant)))
+        throw L"put_value() failed for attribute";
+    CComPtr<IXMLDOMAttribute> out;
+    if (FAILED(elem->setAttributeNode(attr, &out)))
+        throw L"setAttributeNode() failed";
+}
+
+// Make an existing element node the new root of the DOM document.
+void cdr::DOM::set_root(IXMLDOMElement* new_root) {
+    Element old_root = get_root();
+    if (old_root) {
+        Node out_root;
+        if (FAILED(doc->replaceChild(new_root, old_root, &out_root)))
+            throw L"replaceChild() failed";
+    }
+    else {
+        root = new_root;
+        append(doc, root);
+    }
+}
+
+cdr::CommandSet::CommandSet(const char* name, bool guest)
+    : DOM("CdrCommandSet") {
+    CString session = CdrSocket::getSessionString();
+    if (session.IsEmpty() && guest)
+        session = "guest";
+    if (!session.IsEmpty())
+        child_element(root, "SessionId", session);
+    auto wrapper = child_element(root, "CdrCommand");
+    command = child_element(wrapper, name);
+}
+
+void cdr::CommandSet::add_cdr_document(IXMLDOMElement* parent, DOMNode& doc) {
+    auto child = child_element(parent, "CdrDocXml");
+    std::wostringstream os;
+    os << doc;
+    CComBSTR bstr(os.str().c_str());
+    CComPtr<IXMLDOMCDATASection> cdata;
+    HRESULT hr = this->doc->createCDATASection(bstr, &cdata);
+    if (FAILED(hr))
+        throw L"createCDATASection failed";
+    append(child, cdata);
 }

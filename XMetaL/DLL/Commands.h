@@ -11,7 +11,6 @@
 
 #include "resource.h"       // main symbols
 #include <string>
-#include "LogonDialog.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CCommands
@@ -28,7 +27,6 @@ public:
                            BOOL checkOut,
                            const CString& version = _T("Current"));
     static bool doInsertLink(const CString&);
-    static bool doLogon(LogonDialog* dialog);
     static CString getUsername() { return username; }
 
 BEGIN_COM_MAP(CCommands)
@@ -82,7 +80,6 @@ public:
     STDMETHOD(validate)(/*[out, retval]*/ int* pRet);
     STDMETHOD(valuesForPath)(const BSTR* docId, const BSTR* path, BSTR* values);
 
-    static bool invokedFromClientRefreshTool;
 
 private:
     static CString username;

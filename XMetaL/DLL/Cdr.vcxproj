@@ -801,8 +801,6 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClCompile Include="FindComments.cpp" />
     <ClCompile Include="FindMarkup.cpp" />
     <ClCompile Include="Glossify.cpp" />
-    <ClCompile Include="LogonDialog.cpp" />
-    <ClCompile Include="LogonProgress.cpp" />
     <ClCompile Include="mp3.cpp" />
     <ClCompile Include="OrgLocs.cpp" />
     <ClCompile Include="PassedValidation.cpp" />
@@ -913,8 +911,6 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClInclude Include="FindComments.h" />
     <ClInclude Include="FindMarkup.h" />
     <ClInclude Include="Glossify.h" />
-    <ClInclude Include="LogonDialog.h" />
-    <ClInclude Include="LogonProgress.h" />
     <ClInclude Include="mp3.h" />
     <ClInclude Include="OrgLocs.h" />
     <ClInclude Include="PassedValidation.h" />

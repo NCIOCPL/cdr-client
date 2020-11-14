@@ -19,6 +19,8 @@
 #include <vector>
 #include <winsock.h>
 
+#define BLOB_PLACEHOLDER "@@BLOB-PLACEHOLDER@@"
+
 // Information used to populate the CdrDocCtl element.
 struct CdrDocCtrlInfo {
     CString docType;
@@ -34,46 +36,6 @@ struct CdrLinkInfo {
     CdrLinkInfo() {}
     CString target;
     CString data;
-};
-
-/**
- * Wrapper for socket communication between the CDR client and server.
- *
- * Raw sockets replaced along the way with tunneling through HTTPS (at
- * the insistence of CBIIT), but we kept the name for old times' sake. :-)
- * Now that we're not using sockets directly, we no longer need object
- * instances of this class: everything is static (class-based) now.
- *
- * There are two host names. One (`apiHost`) is used for tunneling
- * CDR client-server commands and the other (`cdrHost`) is used to
- * build links to web admin HTML pages.
- */
-class CdrSocket {
-public:
-    static CString sendCommand(const CString& command, bool = false,
-                               char* cmdBuf = NULL);
-    static void setSessionString(const CString& s) { sessionString = s; }
-    static bool loggedOn() { return !sessionString.IsEmpty(); }
-    static const CString getSessionString() { return sessionString; }
-    static const CString getHostName() { return cdrHost; }
-    static const CString getHostTier() { return tier; }
-    static CString getShortHostName() {
-        int dot = cdrHost.Find(TCHAR('.'));
-        if (dot != -1 && !_istdigit(cdrHost[0]))
-            return cdrHost.Left(dot);
-        return cdrHost;
-    }
-private:
-    struct Init {
-        Init();
-        ~Init();
-        WSAData wsaData;
-        static Init init;
-    };
-    static CString sessionString;
-    static CString cdrHost;
-    static CString apiHost;
-    static CString tier;
 };
 
 /**
@@ -118,95 +80,7 @@ namespace cdr {
     typedef std::list<CdrLinkInfo> LinkInfoList;
 
 
-    /**
-     * Wrapper for DOM approach to building up XML documents.
-     *
-     * Enapsulates most of the COM ugliness. All of the resources
-     * for elements/attributes added to the document are owned
-     * and managed by this object.
-     */
-    class DOMBuilder {
-    public:
-
-        /**
-         * Create a new COM object for creating a document.
-         *
-         * If you optionally pass an element name string, it will
-         * be used to start the document off with its root element.
-         */
-        DOMBuilder(const CString& name = _T(""));
-
-        /**
-         * Prohibit copy construction or assignment by value.
-         *
-         * If you really need to pass around this object between
-         * functions or methods, do it by reference or pointer.
-         * We can't have the resources managed by the object
-         * duplicated.
-         */
-        DOMBuilder(const DOMBuilder&) = delete;
-        DOMBuilder& operator=(const DOMBuilder&) = delete;
-
-        /**
-         * Clean up the resources, releasing the COM handles we own.
-         */
-        ~DOMBuilder();
-
-        /**
-         * Create a new element with optional text content.
-         *
-         * The new element is not attached to any parent.
-         */
-        IXMLDOMElement* element(const CString& name,
-                                const CString& text = _T(""));
-
-        /**
-         * Assign a string value to a named attribute of an element.
-         */
-        void set(IXMLDOMElement* element, const CString& name,
-                 const CString& value);
-
-        /**
-         * Attach an element to an existing parent.
-         */
-        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
-
-        /**
-         * Create a new element attached to an existing parent.
-         *
-         * You can submit an optional third argument to set
-         * the new child element's text content.
-         */
-        IXMLDOMElement* child_element(IXMLDOMNode* parent,
-                                      const CString& name,
-                                      const CString& text=_T(""));
-
-        /**
-         * Attach a text node to an existing element.
-         */
-        void append_text(IXMLDOMNode* parent, const CString& text);
-
-        /**
-         * Serialize the document to an XML string.
-         */
-        CString get_xml() const;
-
-        /**
-         * Provide the caller with a handle to the document's root element.
-         */
-        IXMLDOMElement* get_root() { return root; }
-
-    private:
-
-        /**
-         * Resources we need to clean up when we're done.
-         */
-        IXMLDOMDocument* doc;
-        IXMLDOMElement* root;
-        std::vector<IXMLDOMNode*> nodes;
-    };
-
-
+#if 0
     /**
      * Wrapper for parsing XML from an in-memory string.
      *
@@ -240,13 +114,19 @@ namespace cdr {
 
         /**
          * Find a single element matching the supplied XPath string.
+         *
+         * If no element is specified, the search if from the root element.
          */
-        IXMLDOMElement* find(const CString& xpath);
+        IXMLDOMElement* find(const CString& xpath,
+                             IXMLDOMElement* = nullptr);
 
         /**
          * Find all elements matching the supplied XPath string.
+         *
+         * If no element is specified, the search if from the root element.
          */
-        std::vector<IXMLDOMElement*> find_all(const CString& xpath);
+        std::vector<IXMLDOMElement*> find_all(const CString& xpath,
+                                              IXMLDOMElement* = nullptr);
 
         /**
          * Give the caller a pointer to the root element.
@@ -277,6 +157,245 @@ namespace cdr {
         IXMLDOMElement* root;
         std::vector<IXMLDOMNode*> nodes;
     };
+
+    /**
+     * Wrapper for DOM approach to building up XML documents.
+     *
+     * Enapsulates most of the COM ugliness. All of the resources
+     * for elements/attributes added to the document are owned
+     * and managed by this object.
+     */
+    class DOMBuilder {
+    public:
+
+        /**
+         * Create a new COM object for creating a document.
+         *
+         * If you optionally pass an element name string, it will
+         * be used to start the document off with its root element.
+         */
+        DOMBuilder(const CString& name = L"");
+
+        /**
+         * Prohibit copy construction or assignment by value.
+         *
+         * If you really need to pass around this object between
+         * functions or methods, do it by reference or pointer.
+         * We can't have the resources managed by the object
+         * duplicated.
+         */
+        DOMBuilder(const DOMBuilder&) = delete;
+        DOMBuilder& operator=(const DOMBuilder&) = delete;
+
+        /**
+         * Clean up the resources, releasing the COM handles we own.
+         */
+        ~DOMBuilder();
+
+        /**
+         * Create a new element with optional text content.
+         *
+         * The new element is not attached to any parent.
+         */
+        IXMLDOMElement* element(const CString& name,
+                                const CString& text = L"");
+
+        /**
+         * Assign a string value to a named attribute of an element.
+         */
+        void set(IXMLDOMElement* element, const CString& name,
+                 const CString& value);
+
+        /**
+         * Attach an element to an existing parent.
+         */
+        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
+
+        /**
+         * Create a new element attached to an existing parent.
+         *
+         * You can submit an optional third argument to set
+         * the new child element's text content.
+         */
+        IXMLDOMElement* child_element(IXMLDOMNode* parent,
+                                      const CString& name,
+                                      const CString& text = L"");
+
+        /**
+         * Attach a text node to an existing element.
+         */
+        void append_text(IXMLDOMNode* parent, const CString& text);
+
+        /**
+         * Serialize the document to an XML string.
+         */
+        CString get_xml() const;
+
+        /**
+         * Provide the caller with a handle to the document's root element.
+         */
+        IXMLDOMElement* get_root() { return root; }
+
+    protected:
+
+        /**
+         * Resources we need to clean up when we're done.
+         */
+        IXMLDOMDocument* doc;
+        IXMLDOMElement* root;
+        std::vector<IXMLDOMNode*> nodes;
+    };
+#endif
+
+    class DOM {
+    public:
+
+        /**
+         * Useful type definitions.
+         */
+        typedef CComPtr<IXMLDOMDocument> Document;
+        typedef CComPtr<IXMLDOMElement> Element;
+        typedef CComPtr<IXMLDOMNode> Node;
+        typedef CComPtr<IXMLDOMNodeList> NodeList;
+
+        /**
+         * Initialize the DOM.
+         */
+        DOM();
+
+        /**
+         * Create the DOM object from its serialized XML.
+         */
+        DOM(const CString& xml);
+
+        /**
+         * Create a DOM object with just a root element.
+         */
+        DOM(const char* root_name);
+
+        /**
+         * Prohibit copy construction or assignment by value.
+         *
+         * If you really need to pass around this object between
+         * functions or methods, do it by reference or pointer.
+         */
+        DOM(const DOM&) = delete;
+        DOM& operator=(const DOM&) = delete;
+
+        /**
+         * Attach an element to an existing parent.
+         */
+        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
+
+        /**
+         * Attach a text node to an existing element.
+         */
+        void append_text(IXMLDOMNode* parent, const CString& text);
+
+        /**
+         * Create a new element attached to an existing parent.
+         *
+         * You can submit an optional third argument to set
+         * the new child element's text content.
+         */
+        Element child_element(IXMLDOMNode* parent,
+                              const CString& name,
+                              const CString& text = L"");
+
+        /**
+         * Create a new element with optional text content.
+         *
+         * The new element is not attached to any parent.
+         */
+        Element element(const CString& name, const CString& text = L"");
+
+        /**
+         * Find a single element matching the supplied XPath string.
+         *
+         * If no element is specified, the search if from the root element.
+         */
+        Element find(const CString& xpath, IXMLDOMElement* from = nullptr);
+
+        /**
+         * Find all elements matching the supplied XPath string.
+         *
+         * If no element is specified, the search if from the root element.
+         */
+        std::vector<Element> find_all(const CString& xpath,
+                                      IXMLDOMElement* from = nullptr);
+
+        /**
+         * Get the value of an element's attribute.
+         */
+        CString get(IXMLDOMElement* elem, const CString& name);
+
+        /**
+         * Get the string for a specific DOM node's name.
+         */
+        CString get_node_name(IXMLDOMNode* node);
+
+        /**
+         * Give the caller a pointer to the root element.
+         */
+        Element get_root();
+
+        /**
+         * Get the text content string for a specific element.
+         */
+        CString get_text(IXMLDOMNode* node);
+
+        /**
+         * Serialize the document to an XML string.
+         */
+        CString get_xml(IXMLDOMNode* = nullptr) const;
+
+        /**
+         * Install a node in front of an existing node.
+         */
+        void insert(IXMLDOMNode* parent, IXMLDOMNode* new_node,
+                    IXMLDOMNode* sibling);
+
+        /**
+         * Assign a string value to a named attribute of an element.
+         */
+        void set(IXMLDOMElement* element, const CString& name,
+                 const CString& value);
+
+        /**
+         * Make an existing element node the new root of the DOM document.
+         */
+        void set_root(IXMLDOMElement* new_root);
+
+    protected:
+
+        /**
+         * Internal values.
+         */
+        Document doc;
+        Element root;
+    };
+
+    /**
+     * Shell for a set of commands to be sent to the CDR server.
+     */
+    class CommandSet : public DOM {
+    public:
+
+        /**
+         * Create a DOM builder for a CdrCommandSet XML document.
+         *
+         * Pass the name of the first (and likely only) command in the set.
+         *
+         * Set `guest` to `true` if the session ID hasn't been set yet
+         * and you want a `SessionId` element with "guest" as the value
+         * to be included.
+         */
+        CommandSet(const char* name, bool guest = false);
+        void  add_cdr_document(IXMLDOMElement* parent, DOMNode& doc);
+        // Element get_command() const { return command; }
+        Element command;
+    };
+
 
     struct GlossaryNode;
     typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
@@ -323,10 +442,10 @@ namespace cdr {
     class SearchResult {
     public:
         SearchResult(const CString& id,
-                     const CString& type = _T(""),
-                     const CString& title = _T(""),
+                     const CString& type = L"",
+                     const CString& title = L"",
                      bool           grp = false,
-                     const CString& cMemb = _T(""),
+                     const CString& cMemb = L"",
                      const LinkInfoList& piList = LinkInfoList()) :
                         docId(id),
                         docType(type),
@@ -392,6 +511,7 @@ namespace cdr {
     };
     struct ValidationErrors {
         ValidationErrors::ValidationErrors(const cdr::Element&);
+        ValidationErrors::ValidationErrors(DOM&);
         size_t currentError;
         std::vector<ValidationError> errors;
         const ValidationError* getNextError() {
@@ -407,6 +527,7 @@ namespace cdr {
     int fillListBox(CListBox& listBox, const DocSet& docSet);
     void extractSearchResults(const CString& xml, DocSet& docSet);
     bool showErrors(const CString& msg);
+    bool showErrors(DOM& response);
     bool showValidationErrors(ValidationErrors&);
     _Application getApp();
     CString getXmetalPath();
@@ -434,6 +555,48 @@ namespace cdr {
     void send_trace_log();
     const char* get_cdr_trace_log_path();
 }
+
+/**
+ * Wrapper for socket communication between the CDR client and server.
+ *
+ * Raw sockets replaced along the way with tunneling through HTTPS (at
+ * the insistence of CBIIT), but we kept the name for old times' sake. :-)
+ * Now that we're not using sockets directly, we no longer need object
+ * instances of this class: everything is static (class-based) now.
+ *
+ * There are two host names. One (`apiHost`) is used for tunneling
+ * CDR client-server commands and the other (`cdrHost`) is used to
+ * build links to web admin HTML pages.
+ */
+class CdrSocket {
+public:
+    static CString sendCommand(const CString&, bool = false, char* = NULL);
+    static CString sendCommands(const cdr::CommandSet&, char* = nullptr);
+    static void setSessionString(const CString& s) { sessionString = s; }
+    static bool loggedOn() { return !sessionString.IsEmpty(); }
+    static const CString getSessionString() { return sessionString; }
+    static const CString getHostName() { return cdrHost; }
+    static const CString getHostTier() { return tier; }
+    static CString getShortHostName() {
+        int dot = cdrHost.Find(TCHAR('.'));
+        if (dot != -1 && !_istdigit(cdrHost[0]))
+            return cdrHost.Left(dot);
+        return cdrHost;
+    }
+private:
+    struct Init {
+        Init();
+        ~Init();
+        WSAData wsaData;
+        static Init init;
+    };
+    static CString sessionString;
+    static CString cdrHost;
+    static CString apiHost;
+    static CString tier;
+};
+
+extern void debug_log(const CString& what, const CString& who = L"bkline");
 
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
                                       DOMNode& node);

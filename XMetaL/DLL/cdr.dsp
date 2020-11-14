@@ -315,14 +315,6 @@ SOURCE=.\EditElement.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\LogonDialog.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\LogonProgress.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\OrgLocs.cpp
 # End Source File
 # Begin Source File
@@ -393,14 +385,6 @@ SOURCE=.\Commands.h
 # Begin Source File
 
 SOURCE=.\EditElement.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\LogonDialog.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\LogonProgress.h
 # End Source File
 # Begin Source File
 
