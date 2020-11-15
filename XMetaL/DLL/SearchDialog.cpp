@@ -41,7 +41,7 @@ CSearchDialog::CSearchDialog(const std::list<CString>& typeList,
     : CDialog(CSearchDialog::IDD, pParent), docTypes(typeList)
 {
     //{{AFX_DATA_INIT(CSearchDialog)
-    m_searchString = _T("");
+    m_searchString = L"";
     m_checkOut = FALSE;
     //}}AFX_DATA_INIT
 }
@@ -112,62 +112,60 @@ void CSearchDialog::OnSearchButton()
     UpdateData(true);
 
     // Build the search request.
-    CString cmd = _T("<CdrSearch><Query MaxDocs='100'>");
+    cdr::CommandSet request("CdrSearch");
+    auto query = request.child_element(request.command, "Query");
+    request.set(query, "MaxDocs", "100");
     int curType = m_docTypes.GetCurSel();
     lastSearch.docType = curType;
 
     // Don't do anything unless we have at least a search string or a doc type.
-    // type.
     if (m_searchString.IsEmpty() && curType == 0)
         return;
     lastSearch.searchString = m_searchString;
-    CString op = _T("eq");
+    CString op = L"eq";
     if (m_titleContains.GetCheck() == 1) {
-        op = _T("contains");
+        op = L"contains";
         lastSearch.stringType = LastSearch::CONTAINS;
         if (m_searchString.IsEmpty())
-            m_searchString = _T("%");
+            m_searchString = L"%";
     }
     else if (m_titleStart.GetCheck() == 1) {
-        op = _T("begins");
+        op = L"begins";
         lastSearch.stringType = LastSearch::BEGINS;
         if (m_searchString.IsEmpty())
-            m_searchString = _T("%");
+            m_searchString = L"%";
     }
     else
         lastSearch.stringType = LastSearch::ALL;
-    cmd += _T("<Test>CdrCtl/Title ") + op + _T(" ") +
-        cdr::encode(m_searchString) + _T("</Test>");
+    CString test = L"CdrCtl/Title " + op + L" " + m_searchString;
+    request.child_element(query, "Test", test);
     if (curType > 0) {
         CString val;
         m_docTypes.GetLBText(curType, val);
         if (!val.IsEmpty())
-        cmd += _T("<DocType>") + val + _T("</DocType>");
+            request.child_element(query, "DocType", val);
     }
-    cmd += "</Query></CdrSearch>";
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString rsp = CdrSocket::sendCommand(cmd);
-    int pos = rsp.Find(_T("<QueryResults"));
-    if (pos == -1) {
-        if (!cdr::showErrors(rsp))
-            ::AfxMessageBox(_T("Unknown failure from search"),
-            MB_ICONEXCLAMATION);
+    debug_log(request.get_xml());
+    CString response_xml = CdrSocket::sendCommands(request);
+    cdr::DOM dom(response_xml);
+    if (cdr::showErrors(dom)) {
         EndDialog(IDCANCEL);
         return;
     }
 
     // Populate the dialog's list box with the results.
     m_docList.ResetContent();
-    cdr::extractSearchResults(rsp, lastSearch.docSet);
+    cdr::extractSearchResults(dom, lastSearch.docSet);
     if (cdr::fillListBox(m_docList, lastSearch.docSet) > 0) {
         m_docList.SetCurSel(0);
         m_docList.EnableWindow();
         lastSearch.selection = 0;
     }
     else {
-        ::AfxMessageBox(_T("No documents match this query"));
+        ::AfxMessageBox(L"No documents match this query");
         lastSearch.selection = -1;
     }
 

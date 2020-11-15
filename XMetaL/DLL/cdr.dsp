@@ -319,19 +319,7 @@ SOURCE=.\OrgLocs.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ParticOrgs.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\PassedValidation.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\PersonLocs.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\ProtUpdPerson.cpp
 # End Source File
 # Begin Source File
 
@@ -392,19 +380,7 @@ SOURCE=.\OrgLocs.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\ParticOrgs.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\PassedValidation.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\PersonLocs.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ProtUpdPerson.h
 # End Source File
 # Begin Source File
 

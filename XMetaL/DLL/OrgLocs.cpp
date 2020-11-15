@@ -21,16 +21,14 @@ static char THIS_FILE[] = __FILE__;
 
 COrgLocs::COrgLocs(const CString& id, CString& newTarg,
                    CWnd* pParent /*=NULL*/)
-	: CDialog(COrgLocs::IDD, pParent), docId(id), newTarget(newTarg)
-{
+	: CDialog(COrgLocs::IDD, pParent), docId(id), newTarget(newTarg) {
 	//{{AFX_DATA_INIT(COrgLocs)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
 
-void COrgLocs::DoDataExchange(CDataExchange* pDX)
-{
+void COrgLocs::DoDataExchange(CDataExchange* pDX) {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COrgLocs)
 	DDX_Control(pDX, IDC_LIST1, m_choiceList);
@@ -47,33 +45,37 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // COrgLocs message handlers
 
-BOOL COrgLocs::OnInitDialog() 
-{
+BOOL COrgLocs::OnInitDialog() {
 	CDialog::OnInitDialog();
-	
+
     // Create the command.
-    std::basic_ostringstream<TCHAR> cmd;
-    cmd << _T("<CdrFilter><Filter Name='Org Locations Picklist'/>")
-           _T("<Parms><Parm><Name>docId</Name><Value>")
-        << (LPCTSTR)docId
-        << _T("</Value></Parm></Parms><Document href='")
-        << (LPCTSTR)docId
-        << _T("'/></CdrFilter>");
+    cdr::CommandSet request("CdrFilter");
+    auto filter = request.child_element(request.command, "Filter");
+    request.set(filter, "Name", "Org Locations Picklist");
+    auto params = request.child_element(request.command, "Params");
+    auto param = request.child_element(request.command, "Param");
+    request.set(param, "Name", "docId");
+    request.set(param, "Value", docId);
+    auto document = request.child_element(request.command, "Document");
+    request.set(document, "href", docId);
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString rsp = CdrSocket::sendCommand(cmd.str().c_str());
-    int pos = rsp.Find(_T("<Addresses"));
-    if (pos == -1) {
-        if (!cdr::showErrors(rsp))
-            ::AfxMessageBox(_T("Unknown failure from search for locations"),
-                            MB_ICONEXCLAMATION);
+    CString rsp = CdrSocket::sendCommands(request);
+    cdr::DOM dom(rsp);
+    if (cdr::showErrors(dom)) {
         EndDialog(IDCANCEL);
         return TRUE;
     }
 
     // Populate the list control.
-    extractChoices(rsp);
+    docSet.clear();
+    auto nodes = dom.find_all("//Address");
+    for (auto& node : nodes) {
+        CString id = dom.get_text(dom.find("Link", node));
+        CString title = dom.get_text(dom.find("Data", node));
+        docSet.push_back(cdr::SearchResult(id, L"Organization", title));
+    }
     if (cdr::fillListBox(m_choiceList, docSet) > 0) {
 		m_choiceList.SetCurSel(0);
 		m_choiceList.EnableWindow();
@@ -82,13 +84,13 @@ BOOL COrgLocs::OnInitDialog()
 		::AfxMessageBox(_T("No locations found"));
         EndDialog(IDCANCEL);
     }
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void COrgLocs::OnOK() 
-{
+void COrgLocs::OnOK() {
+
 	// Find out which candidate document the user selected.
 	int curSel = m_choiceList.GetCurSel();
 
@@ -103,22 +105,6 @@ void COrgLocs::OnOK()
     }
 }
 
-void COrgLocs::OnDblclkList1() 
-{
+void COrgLocs::OnDblclkList1() {
 	OnOK();
-}
-
-
-void COrgLocs::extractChoices(const CString& rsp)
-{
-    docSet.clear();
-    cdr::Element r = cdr::Element::extractElement(rsp, _T("Address"));
-    while (r) {
-        cdr::Element id      = r.extractElement(r.getString(), _T("Link"));
-        cdr::Element title   = r.extractElement(r.getString(), _T("Data"));
-        cdr::SearchResult qr = cdr::SearchResult(
-                id.getString(), _T("Organization"), title.getString());
-        docSet.push_back(qr);
-        r = r.extractElement(rsp, _T("Address"), r.getEndPos());
-    }
 }

@@ -28,11 +28,8 @@
 #define IDC_RADIO4                      207
 #define IDC_COMBO1                      208
 #define IDC_CHECK1                      209
-#define IDD_PROT_UPD_PERSON             209
 #define IDC_CHECK2                      210
-#define IDD_PERSON_LOCS                 210
 #define IDC_BUTTON3                     210
-#define IDD_PARTIC_ORGS                 211
 #define IDD_ORG_LOCS                    212
 #define IDC_CHECK3                      213
 #define IDD_CHECK_IN                    213

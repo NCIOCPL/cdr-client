@@ -48,7 +48,6 @@ private:
     CString docId;
     cdr::DocSet docSet;
     CString& newTarget;
-    void extractChoices(const CString&);
 };
 
 //{{AFX_INSERT_LOCATION}}

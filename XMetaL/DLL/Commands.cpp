@@ -190,7 +190,7 @@ STDMETHODIMP CCommands::advancedSearch(int *retVal) {
         ::AfxMessageBox(L"Unable to launch Internet Explorer");
         return S_OK;
     }
-    CString url = L"http://"
+    CString url = L"https://"
                 + CdrSocket::getHostName()
                 + L"/cgi-bin/cdr/AdvancedSearch.py?Session="
                 + CdrSocket::getSessionString();
@@ -1784,7 +1784,7 @@ STDMETHODIMP CCommands::save(int *pRet) {
             }
 
             // Add the XML for the document, now that it's been tweaked.
-            request.add_cdr_document(cdr_doc, docElement);
+            request.add_cdr_document(cdr_doc, doc);
 
             // Use a local buffer type to ensure memory release even if an
             // exception occurs.
@@ -1813,22 +1813,9 @@ STDMETHODIMP CCommands::save(int *pRet) {
                     return S_OK;
                 }
             }
-            //------------------------------------------------------------
-            // This has been rewritten to work around a bug in the Microsoft
-            // runtime, which fails to request additional memory from the
-            // operating system when the heap which it is managing itself
-            // is unable to fulfil a memory allocation request.  We need
-            // to calculate the amount of memory to allocate for the
-            // save command's buffer and only create a single copy of
-            // that command.  If even this fails, we may resort to
-            // using our own base-64 encoding directly from the blob
-            // file instead of reading the blob's bytes into a separate
-            // buffer.  We allocate an additional kilobyte for the
-            // buffer to provide room for the sendCommand() method
-            // to wrap the command in the CdrCommandSet element.
-            //------------------------------------------------------------
+
+            // Encode the blob if we have one.
             int encodedBlobSize = 0;
-            CString back;
             if (blobSize)
                 encodedBlobSize = Base64EncodeGetRequiredLength(blobSize);
             Buf encodedBlobBuffer(encodedBlobSize + 1);
@@ -2090,7 +2077,7 @@ STDMETHODIMP CCommands::validate(int *pRet) {
             if (!ctrlInfo.docId.IsEmpty())
                 request.child_element(doc_ctl, "DocId", ctrlInfo.docId);
             request.child_element(doc_ctl, "DocTitle", ctrlInfo.docTitle);
-            request.add_cdr_document(cdr_doc, docElement);
+            request.add_cdr_document(cdr_doc, doc);
 
             // Submit the validate command to the server.
             CString response_xml = CdrSocket::sendCommands(request);
@@ -2565,7 +2552,7 @@ static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
         char name[1024];
         time_t now = time(NULL);
         sprintf(name, "response-%lld.xml", (long long)now);
-        std::ofstream responseStream(name);
+        std::ofstream responseStream(name, std::ios::binary);
         if (responseStream)
             responseStream << cdr::cStringToUtf8(response.get_xml()).c_str();
         err = response.get_text(response.find("//Errors/Err"));
@@ -2603,7 +2590,7 @@ static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
     // Write out the document to the file system.
     if (!docXml.IsEmpty()) {
         std::string pathName = cdr::cStringToUtf8(docPath);
-        std::ofstream xmlStream(pathName.c_str());
+        std::ofstream xmlStream(pathName.c_str(), std::ios::binary);
         if (!xmlStream)
             err.Format(L"Can't write xml document at %s", (LPCTSTR)docPath);
         else {

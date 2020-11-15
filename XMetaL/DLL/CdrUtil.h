@@ -38,36 +38,6 @@ struct CdrLinkInfo {
     CString data;
 };
 
-/**
- * XML parsing on the cheap.  Replace with the real thing if necessary.
- * We considered linking in Microsoft's XML DOM libraries, but we were
- * a little apprehensive about problems we might run into if XMetaL is
- * using those libraries underneath its own APIs, and isn't careful
- * about playing nice with other threads and code which might call
- * the Microsoft libraries directly.  Unfortunately, SoftQuad didn't
- * document its use of an underlying XML parser, and didn't expose
- * a parse function we could use for our own XML documents.  At the
- * time this code was first written, Microsoft's XML libraries were
- * young enough, and our own experience with green Microsoft libraries
- * painful enough, that we consciously made the decision to roll
- * our own "parser" and use it for what we get back from the CDR
- * client/server interface.  As cheesy as the results are, this
- * has worked flawlessly for years, and shouldn't involve an enormous
- * amount of work to replace with a real parser in the (now) unlikely
- * event that compelling incentives for doing so come along.
- *
- * In particular, note that a limitation of this parser is that
- * it does not handle nested elements with the same name correctly.
- * The DLL does not currently need support for such constructions,
- * but if we ever do, we'll need to switch to a real XML parser.
- */
-class TinyXmlParser {
-public:
-    TinyXmlParser(const CString& s) : xml(s) {}
-    CString extract(const CString& tag) const;
-private:
-    CString xml;
-};
 
 namespace cdr {
 
@@ -80,173 +50,12 @@ namespace cdr {
     typedef std::list<CdrLinkInfo> LinkInfoList;
 
 
-#if 0
     /**
-     * Wrapper for parsing XML from an in-memory string.
-     *
-     * Enapsulates most of the COM ugliness. All of the resources
-     * for elements/attributes added to the document are owned
-     * and managed by this object.
+     * You would think we could just use the DOM functionality exposed
+     * by SoftQuad, but unfortunately, their implementation is broken.
+     * Cloning the document fails, and getting the serialized XML for
+     * a DOM node isn't supported. So here is our own wrapper for MSXML.
      */
-    class ParsedDOM {
-    public:
-
-        /**
-         * Create the DOM object from its serialized XML.
-         */
-        ParsedDOM(const CString& xml);
-
-        /**
-         * Prohibit copy construction or assignment by value.
-         *
-         * If you really need to pass around this object between
-         * functions or methods, do it by reference or pointer.
-         * We can't have the resources managed by the object
-         * duplicated.
-         */
-        ParsedDOM(const ParsedDOM&) = delete;
-        ParsedDOM& operator=(const ParsedDOM&) = delete;
-
-        /**
-         * Clean up the resources, releasing the COM handles we own.
-         */
-        ~ParsedDOM();
-
-        /**
-         * Find a single element matching the supplied XPath string.
-         *
-         * If no element is specified, the search if from the root element.
-         */
-        IXMLDOMElement* find(const CString& xpath,
-                             IXMLDOMElement* = nullptr);
-
-        /**
-         * Find all elements matching the supplied XPath string.
-         *
-         * If no element is specified, the search if from the root element.
-         */
-        std::vector<IXMLDOMElement*> find_all(const CString& xpath,
-                                              IXMLDOMElement* = nullptr);
-
-        /**
-         * Give the caller a pointer to the root element.
-         */
-        IXMLDOMElement* get_root();
-
-        /**
-         * Get the text content string for a specific element.
-         */
-        CString get_text(IXMLDOMElement* element);
-
-        /**
-         * Get the string for a specific DOM node's name.
-         */
-        CString get_node_name(IXMLDOMNode* node);
-
-        /**
-         * Get the value of an element's attribute.
-         */
-        CString get(IXMLDOMElement* elem, const CString& name);
-
-    private:
-
-        /**
-         * Resources we need to clean up when we're done.
-         */
-        IXMLDOMDocument* doc;
-        IXMLDOMElement* root;
-        std::vector<IXMLDOMNode*> nodes;
-    };
-
-    /**
-     * Wrapper for DOM approach to building up XML documents.
-     *
-     * Enapsulates most of the COM ugliness. All of the resources
-     * for elements/attributes added to the document are owned
-     * and managed by this object.
-     */
-    class DOMBuilder {
-    public:
-
-        /**
-         * Create a new COM object for creating a document.
-         *
-         * If you optionally pass an element name string, it will
-         * be used to start the document off with its root element.
-         */
-        DOMBuilder(const CString& name = L"");
-
-        /**
-         * Prohibit copy construction or assignment by value.
-         *
-         * If you really need to pass around this object between
-         * functions or methods, do it by reference or pointer.
-         * We can't have the resources managed by the object
-         * duplicated.
-         */
-        DOMBuilder(const DOMBuilder&) = delete;
-        DOMBuilder& operator=(const DOMBuilder&) = delete;
-
-        /**
-         * Clean up the resources, releasing the COM handles we own.
-         */
-        ~DOMBuilder();
-
-        /**
-         * Create a new element with optional text content.
-         *
-         * The new element is not attached to any parent.
-         */
-        IXMLDOMElement* element(const CString& name,
-                                const CString& text = L"");
-
-        /**
-         * Assign a string value to a named attribute of an element.
-         */
-        void set(IXMLDOMElement* element, const CString& name,
-                 const CString& value);
-
-        /**
-         * Attach an element to an existing parent.
-         */
-        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
-
-        /**
-         * Create a new element attached to an existing parent.
-         *
-         * You can submit an optional third argument to set
-         * the new child element's text content.
-         */
-        IXMLDOMElement* child_element(IXMLDOMNode* parent,
-                                      const CString& name,
-                                      const CString& text = L"");
-
-        /**
-         * Attach a text node to an existing element.
-         */
-        void append_text(IXMLDOMNode* parent, const CString& text);
-
-        /**
-         * Serialize the document to an XML string.
-         */
-        CString get_xml() const;
-
-        /**
-         * Provide the caller with a handle to the document's root element.
-         */
-        IXMLDOMElement* get_root() { return root; }
-
-    protected:
-
-        /**
-         * Resources we need to clean up when we're done.
-         */
-        IXMLDOMDocument* doc;
-        IXMLDOMElement* root;
-        std::vector<IXMLDOMNode*> nodes;
-    };
-#endif
-
     class DOM {
     public:
 
@@ -391,8 +200,7 @@ namespace cdr {
          * to be included.
          */
         CommandSet(const char* name, bool guest = false);
-        void  add_cdr_document(IXMLDOMElement* parent, DOMNode& doc);
-        // Element get_command() const { return command; }
+        void  add_cdr_document(IXMLDOMElement* parent, _Document& doc);
         Element command;
     };
 
@@ -405,35 +213,28 @@ namespace cdr {
         GlossaryNodeMap nodeMap;
         GlossaryNode() : docId(0), markedUp(false) {}
         ~GlossaryNode() {
-            // std::cout << "~GlossaryNode\n";
-            GlossaryNodeMap::iterator i = nodeMap.begin();
-            while (i != nodeMap.end()) {
-                // std::cout << "deleting node for " << i->first << '\n';
-                delete i->second;
-                ++i;
-            }
+            for (auto& n : nodeMap)
+                delete n.second;
         }
         void clearFlags() {
             markedUp = false;
-            GlossaryNodeMap::iterator i = nodeMap.begin();
-            while (i != nodeMap.end()) {
-                i->second->clearFlags();
-                ++i;
-            }
+            for (auto& n : nodeMap)
+                n.second->clearFlags();
         }
     };
     struct GlossaryTree {
-        GlossaryTree(const CString& command);
+        GlossaryTree(const CString& language, const CString& dictionary);
         ~GlossaryTree();
         void clearFlags() {
-            GlossaryNodeMap::iterator i = nodeMap.begin();
-            while (i != nodeMap.end()) {
-                i->second->clearFlags();
-                ++i;
-            }
+            for (auto& n : nodeMap)
+                n.second->clearFlags();
         }
         GlossaryNodeMap nodeMap;
+
+        // TODO: useless, drop.
         std::vector<int> counts;
+
+        // Map of CDR GlossaryTermName document to preferred name string.
         std::map<int, CString> names;
     };
     GlossaryTree* getGlossaryTree(const CString& language,
@@ -472,27 +273,6 @@ namespace cdr {
     };
     typedef std::list<SearchResult> DocSet;
 
-    class Element {
-    public:
-        static Element extractElement(const CString&,
-                                      const CString&,
-                                      int pos = 0);
-        CString getString() const { return str; }
-        int     getStartPos() const { return startPos; }
-        int     getEndPos() const { return endPos; }
-        CString getAttribute(const CString& name) const;
-        CString getCdataSection() const;
-        operator void*() const { return startPos != endPos ? (void *)this : 0; }
-        int  operator!() const { return startPos == endPos; }
-    private:
-        typedef std::map<CString, CString> Attrs;
-        Element() : startPos(0), endPos(0) {}
-        Attrs   attrs;
-        CString str;
-        int     startPos;
-        int     endPos;
-    };
-
     // Used to find size of image.
     struct ImageDimensions {
         unsigned long height;
@@ -510,7 +290,6 @@ namespace cdr {
         CString elevel;
     };
     struct ValidationErrors {
-        ValidationErrors::ValidationErrors(const cdr::Element&);
         ValidationErrors::ValidationErrors(DOM&);
         size_t currentError;
         std::vector<ValidationError> errors;
@@ -524,36 +303,35 @@ namespace cdr {
     extern ValidationErrorSets validationErrorSets;
 
     // Common utility functions.
+    std::string cStringToUtf8(const CString& str);
+    CString decode(CString str);
+    CString docIdString(int);
+    CString expandLeadingZeros(const CString&);
+    void extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info);
+    CString extractElementText(DOMNode node);
+    CdrLinkInfo extractLinkInfo(const CString& str);
+    void extractSearchResults(DOM& dom, DocSet& docSet);
+    CString fetchFromUrl(const CString&);
     int fillListBox(CListBox& listBox, const DocSet& docSet);
-    void extractSearchResults(const CString& xml, DocSet& docSet);
-    bool showErrors(const CString& msg);
-    bool showErrors(DOM& response);
-    bool showValidationErrors(ValidationErrors&);
+    ::Range findOrCreateChild(::Range parent, const CString& elemName);
     _Application getApp();
+    int getAudioSeconds(CFile& file);
+    unsigned long getDocNo(const CString& docString);
+    ::Range getElemRange(const CString& elemName);
+    bool getImageDimensions(CFile& file, ImageDimensions& dim);
+    const char* get_cdr_trace_log_path();
     CString getXmetalPath();
     CString getUserPath();
     CString encode(CString str, bool fixQuotes = false);
-    CString decode(CString str);
-    unsigned long getDocNo(const CString& docString);
-    CString extractElementText(DOMNode node);
-    CString trim(const CString& s);
-    void extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info);
-    CString utf8ToCString(const char* s);
-    std::string cStringToUtf8(const CString& str);
-    CdrLinkInfo extractLinkInfo(const CString& str);
-    ::Range getElemRange(const CString& elemName);
-    ::Range findOrCreateChild(::Range parent, const CString& elemName);
-    CString docIdString(int);
-    int showPage(const CString& url);
-    CString suppressLeadingZeros(const CString&);
-    CString expandLeadingZeros(const CString&);
     bool replaceElementContent(::DOMElement&, const CString&);
-    bool getImageDimensions(CFile& file, ImageDimensions& dim);
-    int getAudioSeconds(CFile& file);
-    CString fetchFromUrl(const CString&);
-    void trace_log(const char* what);
     void send_trace_log();
-    const char* get_cdr_trace_log_path();
+    bool showErrors(DOM& response);
+    int showPage(const CString& url);
+    bool showValidationErrors(ValidationErrors&);
+    CString suppressLeadingZeros(const CString&);
+    void trace_log(const char* what);
+    CString trim(const CString& s);
+    CString utf8ToCString(const char* s);
 }
 
 /**
@@ -570,7 +348,6 @@ namespace cdr {
  */
 class CdrSocket {
 public:
-    static CString sendCommand(const CString&, bool = false, char* = NULL);
     static CString sendCommands(const cdr::CommandSet&, char* = nullptr);
     static void setSessionString(const CString& s) { sessionString = s; }
     static bool loggedOn() { return !sessionString.IsEmpty(); }
@@ -598,7 +375,8 @@ private:
 
 extern void debug_log(const CString& what, const CString& who = L"bkline");
 
+#if 0
 std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
                                       DOMNode& node);
-
+#endif
 #endif

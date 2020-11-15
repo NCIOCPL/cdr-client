@@ -50,7 +50,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -126,7 +125,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -175,7 +173,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -251,7 +248,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -306,7 +302,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -379,7 +374,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -428,7 +422,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -501,7 +494,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -550,7 +542,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -623,7 +614,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -678,7 +668,6 @@ CLEAN :
 	-@erase "$(INTDIR)\EditElement.obj"
 	-@erase "$(INTDIR)\OrgLocs.obj"
 	-@erase "$(INTDIR)\PassedValidation.obj"
-	-@erase "$(INTDIR)\PersonLocs.obj"
 	-@erase "$(INTDIR)\RetrieveDialog.obj"
 	-@erase "$(INTDIR)\SaveDialog.obj"
 	-@erase "$(INTDIR)\SchemaPicklist.obj"
@@ -751,7 +740,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\EditElement.obj" \
 	"$(INTDIR)\OrgLocs.obj" \
 	"$(INTDIR)\PassedValidation.obj" \
-	"$(INTDIR)\PersonLocs.obj" \
 	"$(INTDIR)\RetrieveDialog.obj" \
 	"$(INTDIR)\SaveDialog.obj" \
 	"$(INTDIR)\SchemaPicklist.obj" \
@@ -901,11 +889,6 @@ SOURCE=.\OrgLocs.cpp
 SOURCE=.\PassedValidation.cpp
 
 "$(INTDIR)\PassedValidation.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
-
-
-SOURCE=.\PersonLocs.cpp
-
-"$(INTDIR)\PersonLocs.obj" : $(SOURCE) "$(INTDIR)" "$(INTDIR)\Cdr.pch"
 
 
 SOURCE=.\RetrieveDialog.cpp
