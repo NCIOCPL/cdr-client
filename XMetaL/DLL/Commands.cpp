@@ -1784,7 +1784,8 @@ STDMETHODIMP CCommands::save(int *pRet) {
             }
 
             // Add the XML for the document, now that it's been tweaked.
-            request.add_cdr_document(cdr_doc, doc);
+            CString original_xml = doc.GetXml();
+            request.add_cdr_document(cdr_doc, original_xml);
 
             // Use a local buffer type to ensure memory release even if an
             // exception occurs.
@@ -2077,7 +2078,8 @@ STDMETHODIMP CCommands::validate(int *pRet) {
             if (!ctrlInfo.docId.IsEmpty())
                 request.child_element(doc_ctl, "DocId", ctrlInfo.docId);
             request.child_element(doc_ctl, "DocTitle", ctrlInfo.docTitle);
-            request.add_cdr_document(cdr_doc, doc);
+            CString original_xml = doc.GetXml();
+            request.add_cdr_document(cdr_doc, original_xml);
 
             // Submit the validate command to the server.
             CString response_xml = CdrSocket::sendCommands(request);

@@ -1350,23 +1350,20 @@ void cdr::DOM::set_root(IXMLDOMElement* new_root) {
     }
 }
 
-cdr::CommandSet::CommandSet(const char* name, bool guest)
-    : DOM("CdrCommandSet") {
+cdr::CommandSet::CommandSet(const char* name) : DOM("CdrCommandSet") {
     CString session = CdrSocket::getSessionString();
-    if (session.IsEmpty() && guest)
+    if (session.IsEmpty())
         session = "guest";
-    if (!session.IsEmpty())
-        child_element(root, "SessionId", session);
+    child_element(root, "SessionId", session);
     auto wrapper = child_element(root, "CdrCommand");
     command = child_element(wrapper, name);
 }
 
 void cdr::CommandSet::add_cdr_document(IXMLDOMElement* parent,
-                                       _Document& doc) {
+                                       const CString& original) {
 
-    // Serialize the original document and use it to generate a new DOM.
-    CString original_xml = doc.GetXml();
-    DOM new_dom(original_xml);
+    // Generate a new DOM from the serialized original document.
+    DOM new_dom(original);
 
     // Strip the CdrDocCtl block.
     auto doomed = new_dom.find("CdrDocCtl");
@@ -1389,7 +1386,6 @@ void cdr::CommandSet::add_cdr_document(IXMLDOMElement* parent,
     auto child = child_element(parent, "CdrDocXml");
     CString doc_xml = new_dom.get_xml();
     doc_xml.Remove(L'\r');
-    debug_log(doc_xml);
     CComBSTR bstr(doc_xml);
     CComPtr<IXMLDOMCDATASection> cdata;
     HRESULT hr = this->doc->createCDATASection(bstr, &cdata);

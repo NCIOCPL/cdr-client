@@ -194,13 +194,19 @@ namespace cdr {
          * Create a DOM builder for a CdrCommandSet XML document.
          *
          * Pass the name of the first (and likely only) command in the set.
-         *
-         * Set `guest` to `true` if the session ID hasn't been set yet
-         * and you want a `SessionId` element with "guest" as the value
-         * to be included.
          */
-        CommandSet(const char* name, bool guest = false);
-        void  add_cdr_document(IXMLDOMElement* parent, _Document& doc);
+        CommandSet(const char* name);
+
+        /**
+         * Add a modified copy of the active document to the DOM.
+         *
+         *  @param parent   - the node in the `CommandSet` DOM to which a
+         *                    CDATA section will be attached with the doc XML
+         *  @param original - serialized XML for XMetaL's active document
+         */
+        void add_cdr_document(IXMLDOMElement* parent, const CString& original);
+
+        // The child of `CdrCommand` node for the specific command.
         Element command;
     };
 
