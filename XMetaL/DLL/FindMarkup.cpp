@@ -44,44 +44,44 @@ void CFindMarkup::OnBnClickedPrevMarkup() {
 }
 
 void CFindMarkup::findMarkup(bool forward) {
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
     ::Range delElem = doc.GetRange();
     ::Range insElem = doc.GetRange();
-    CString desiredLevel = _T("approved");
+    CString desiredLevel = L"approved";
     int levelId = GetCheckedRadioButton(IDC_FIND_MARKUP_PUBLISH,
                                         IDC_FIND_MARKUP_PROPOSED);
     switch (levelId) {
-        case IDC_FIND_MARKUP_PUBLISH: desiredLevel = _T("publish"); break;
-        case IDC_FIND_MARKUP_PROPOSED: desiredLevel = _T("proposed"); break;
-        default: desiredLevel = _T("approved"); break;
+        case IDC_FIND_MARKUP_PUBLISH: desiredLevel = L"publish"; break;
+        case IDC_FIND_MARKUP_PROPOSED: desiredLevel = L"proposed"; break;
+        default: desiredLevel = L"approved"; break;
     }
     bool keepGoing = true;
     while (keepGoing) {
         delElem.Collapse(1);
         insElem.Collapse(1);
-        BOOL foundDel = delElem.MoveToElement(_T("Deletion"), forward);
-        BOOL foundIns = insElem.MoveToElement(_T("Insertion"), forward);
+        BOOL foundDel = delElem.MoveToElement(L"Deletion", forward);
+        BOOL foundIns = insElem.MoveToElement(L"Insertion", forward);
         while (foundDel) {
             ::DOMElement e = delElem.GetContainerNode();
-            CString level = e.getAttribute(_T("RevisionLevel"));
+            CString level = e.getAttribute(L"RevisionLevel");
             if (level == desiredLevel)
                 break;
             delElem.Collapse(1);
-            foundDel = delElem.MoveToElement(_T("Deletion"), forward);
+            foundDel = delElem.MoveToElement(L"Deletion", forward);
         }
         while (foundIns) {
             ::DOMElement e = insElem.GetContainerNode();
-            CString level = e.getAttribute(_T("RevisionLevel"));
+            CString level = e.getAttribute(L"RevisionLevel");
             if (level == desiredLevel)
                 break;
             insElem.Collapse(1);
-            foundIns = insElem.MoveToElement(_T("Insertion"), forward);
+            foundIns = insElem.MoveToElement(L"Insertion", forward);
         }
         if (!foundIns && !foundDel) {
-            CString prompt = _T("End of document; wrap from top?");
+            CString prompt = L"End of document; wrap from top?";
             if (!forward)
-                prompt = _T("Beginning of document; wrap from bottom?");
+                prompt = L"Beginning of document; wrap from bottom?";
             int answer = ::AfxMessageBox(prompt, MB_YESNO);
             keepGoing = answer == IDYES;
             if (keepGoing) {

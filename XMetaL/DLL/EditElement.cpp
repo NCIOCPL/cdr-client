@@ -110,9 +110,9 @@ void CEditElement::OnOK() {
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "TitlePattern");
         request.set(param, "Value", m_title);
-        response_xml = CdrSocket::sendCommands(request);
+        response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
-        if (cdr::showErrors(dom)) {
+        if (cdr::show_errors(dom)) {
             EndDialog(IDCANCEL);
             return;
         }
@@ -125,16 +125,16 @@ void CEditElement::OnOK() {
         request.child_element(command, "SourceDocType", docType);
         request.child_element(command, "SourceElementType", element);
         request.child_element(command, "TargetTitlePattern", m_title + L"%");
-        response_xml = CdrSocket::sendCommands(request);
+        response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
-        if (cdr::showErrors(dom)) {
+        if (cdr::show_errors(dom)) {
             EndDialog(IDCANCEL);
             return;
         }
-        cdr::extractSearchResults(dom, docSet);
+        cdr::extract_search_results(dom, docSet);
     }
 
-    if (cdr::fillListBox(m_linkList, docSet) > 0) {
+    if (cdr::fill_list_box(m_linkList, docSet) > 0) {
         m_linkList.SetCurSel(0);
         m_linkList.EnableWindow();
     }
@@ -163,7 +163,7 @@ void CEditElement::OnSelectButton() {
             case GP_SYNDROME:
                 CCommands::doInsertLink(str);
                 while (++i < selCount) {
-                    ::Selection selection = cdr::getApp().GetSelection();
+                    ::Selection selection = cdr::get_app().GetSelection();
                     if (!selection.FindInsertLocation(element, TRUE)) {
                         ::AfxMessageBox(TOOMANY);
                         break;
@@ -185,7 +185,7 @@ void CEditElement::OnSelectButton() {
 }
 
 bool CEditElement::insertOrgLocation(const CString& str) {
-    CdrLinkInfo linkInfo = cdr::extractLinkInfo(str);
+    CdrLinkInfo linkInfo = cdr::extract_link_info(str);
     CString newTarget;
     COrgLocs orgLocs(linkInfo.target, newTarget);
     if (orgLocs.DoModal() == IDOK) {
@@ -230,9 +230,9 @@ void CEditElement::OnButton2() {
         return;
     }
     CString url = L"https://"
-                + CdrSocket::getHostName()
+                + CdrSocket::get_host_name()
                 + L"/cgi-bin/cdr/QcReport.py?Session="
-                + CdrSocket::getSessionString()
+                + CdrSocket::get_session_string()
                 + L"&DocId="
                 + info.Mid(pos, endPos - pos);
     DISPID dispid;
@@ -265,7 +265,7 @@ BOOL CEditElement::OnInitDialog()
     CDialog::OnInitDialog();
 
     // Find the source element for the link.
-    ::Range selection = cdr::getApp().GetSelection();
+    ::Range selection = cdr::get_app().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
     while (elem && elem.GetNodeType() != 1) // DOMElement
         elem = elem.GetParentNode();

@@ -61,9 +61,9 @@ BOOL COrgLocs::OnInitDialog() {
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString rsp = CdrSocket::sendCommands(request);
+    CString rsp = CdrSocket::send_commands(request);
     cdr::DOM dom(rsp);
-    if (cdr::showErrors(dom)) {
+    if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
         return TRUE;
     }
@@ -76,12 +76,12 @@ BOOL COrgLocs::OnInitDialog() {
         CString title = dom.get_text(dom.find("Data", node));
         docSet.push_back(cdr::SearchResult(id, L"Organization", title));
     }
-    if (cdr::fillListBox(m_choiceList, docSet) > 0) {
+    if (cdr::fill_list_box(m_choiceList, docSet) > 0) {
 		m_choiceList.SetCurSel(0);
 		m_choiceList.EnableWindow();
 	}
 	else {
-		::AfxMessageBox(_T("No locations found"));
+		::AfxMessageBox(L"No locations found");
         EndDialog(IDCANCEL);
     }
 
@@ -99,7 +99,7 @@ void COrgLocs::OnOK() {
         CWaitCursor wc;
         CString str;
 		m_choiceList.GetText(curSel, str);
-        CdrLinkInfo info = cdr::extractLinkInfo(str);
+        CdrLinkInfo info = cdr::extract_link_info(str);
         newTarget = info.target;
         EndDialog(IDOK);
     }

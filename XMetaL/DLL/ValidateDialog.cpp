@@ -60,5 +60,5 @@ void CValidateDialog::OnOK()
     if (m_linkValidation || m_schemaValidation)
     	CDialog::OnOK();
     else
-        ::AfxMessageBox(_T("No validation type selected"));
+        ::AfxMessageBox(L"No validation type selected");
 }

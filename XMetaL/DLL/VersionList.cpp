@@ -58,9 +58,9 @@ BOOL CVersionList::OnInitDialog()
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString response_xml = CdrSocket::sendCommands(request);
+    CString response_xml = CdrSocket::send_commands(request);
     cdr::DOM dom(response_xml);
-    if (cdr::showErrors(dom)) {
+    if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
         return TRUE;
     }
@@ -107,14 +107,14 @@ void CVersionList::OnOK()
         //::AfxMessageBox(str);
 
         // Find the delimiters.
-        int left = str.Find(_T("["));
+        int left = str.Find(L"[");
         if (left == -1) {
-            ::AfxMessageBox(_T("Unable to find left version delimiter."));
+            ::AfxMessageBox(L"Unable to find left version delimiter.");
             return;
         }
-        int right = str.Find(_T("]"), ++left);
+        int right = str.Find(L"]", ++left);
         if (right == -1) {
-            ::AfxMessageBox(_T("Unable to find right version delimiter."));
+            ::AfxMessageBox(L"Unable to find right version delimiter.");
             return;
         }
         CString version = str.Mid(left, right - left);

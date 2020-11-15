@@ -41,7 +41,7 @@ public:
     // elements. Default is to glossify only SummarySections
     // which are actually top-level children of the
     // document's root element.
-    CGlossify(bool dig=false, CString dictionary = _T(""),
+    CGlossify(bool dig=false, CString dictionary = L"",
               CWnd* pParent = NULL);
     virtual ~CGlossify();
 

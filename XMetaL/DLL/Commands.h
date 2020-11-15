@@ -25,7 +25,7 @@ public:
     CCommands() {}
     static bool doRetrieve(const CString& id,
                            BOOL checkOut,
-                           const CString& version = _T("Current"));
+                           const CString& version = L"Current");
     static bool doInsertLink(const CString&);
     static CString getUsername() { return username; }
 

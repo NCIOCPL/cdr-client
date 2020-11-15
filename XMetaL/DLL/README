@@ -13,7 +13,7 @@ directly in your text editor:
       AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
       CString url(*url_);
-      CString json = _T("{'42': 'f\\u00fcr Elise', '23': 'foo'}");
+      CString json = L"{'42': 'f\\u00fcr Elise', '23': 'foo'}";
       json.SetSysString(response);
 
       return S_OK;

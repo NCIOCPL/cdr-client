@@ -23,11 +23,11 @@
 
 // Information used to populate the CdrDocCtl element.
 struct CdrDocCtrlInfo {
-    CString docType;
-    CString docId;
-    CString docTitle;
+    CString doc_type;
+    CString doc_id;
+    CString doc_title;
     bool    blocked;
-    bool    readyForReview;
+    bool    ready_for_review;
 };
 
 // Link ID, title, etc.
@@ -74,11 +74,17 @@ namespace cdr {
 
         /**
          * Create the DOM object from its serialized XML.
+         *
+         *  @param xml - Unicode string containing a serialized document
          */
         DOM(const CString& xml);
 
         /**
          * Create a DOM object with just a root element.
+         *
+         *  @param root_name - ASCII c-style string for the root element's name
+         *                     (don't use wchar_t* or CString, because that
+         *                     will route to the previous constructor)
          */
         DOM(const char* root_name);
 
@@ -93,19 +99,27 @@ namespace cdr {
 
         /**
          * Attach an element to an existing parent.
+         *
+         *  @param parent - pointer to the parent node we attach to
+         *  @param child  - pointer to the node being attached to the parent
          */
         void append(IXMLDOMNode* parent, IXMLDOMNode* child);
 
         /**
          * Attach a text node to an existing element.
+         *
+         *  @param parent - pointer to the parent node we attach to
+         *  @param text   - Unicode string for the value being attached
          */
         void append_text(IXMLDOMNode* parent, const CString& text);
 
         /**
          * Create a new element attached to an existing parent.
          *
-         * You can submit an optional third argument to set
-         * the new child element's text content.
+         *  @param parent - pointer to the parent node we attach to
+         *  @param name   - string for the new element's name
+         *  @param text   - optional string value to be used to set the
+         *                  text content of the new element
          */
         Element child_element(IXMLDOMNode* parent,
                               const CString& name,
@@ -115,6 +129,10 @@ namespace cdr {
          * Create a new element with optional text content.
          *
          * The new element is not attached to any parent.
+         *
+         *  @param name   - string for the new element's name
+         *  @param text   - optional string value to be used to set the
+         *                  text content of the new element
          */
         Element element(const CString& name, const CString& text = L"");
 
@@ -122,6 +140,9 @@ namespace cdr {
          * Find a single element matching the supplied XPath string.
          *
          * If no element is specified, the search if from the root element.
+         *
+         *  @param xpath - string for the search
+         *  @param from  - optional node from which to start the search
          */
         Element find(const CString& xpath, IXMLDOMElement* from = nullptr);
 
@@ -129,17 +150,25 @@ namespace cdr {
          * Find all elements matching the supplied XPath string.
          *
          * If no element is specified, the search if from the root element.
+         *
+         *  @param xpath - string for the search
+         *  @param from  - optional node from which to start the search
          */
         std::vector<Element> find_all(const CString& xpath,
                                       IXMLDOMElement* from = nullptr);
 
         /**
          * Get the value of an element's attribute.
+         *
+         *  @param elem - pointer to the element whose attribute value we want
+         *  @param name - string naming the attribute whose value we want
          */
         CString get(IXMLDOMElement* elem, const CString& name);
 
         /**
          * Get the string for a specific DOM node's name.
+         *
+         *  @node - address of the DOM node whose name we want
          */
         CString get_node_name(IXMLDOMNode* node);
 
@@ -150,37 +179,55 @@ namespace cdr {
 
         /**
          * Get the text content string for a specific element.
+         *
+         *  @node - address of the DOM node whose text content we want
          */
         CString get_text(IXMLDOMNode* node);
 
         /**
          * Serialize the document to an XML string.
+         *
+         *  @node - address of the DOM node whose XML serialization we want
          */
         CString get_xml(IXMLDOMNode* = nullptr) const;
 
         /**
          * Install a node in front of an existing node.
+         *
+         *  @param parent   - pointer to the parent node we attach to
+         *  @param new_node - pointer to the node we are inserting
+         *  @param sibling  - pointer to the node in front of which we insert
          */
         void insert(IXMLDOMNode* parent, IXMLDOMNode* new_node,
                     IXMLDOMNode* sibling);
 
         /**
          * Assign a string value to a named attribute of an element.
+         *
+         *  @param element - address of the element whose attribute we set
+         *  @param name    - string for the name of the attribute to be set
+         *  @param value   - string for the value we assign to the attribute
          */
         void set(IXMLDOMElement* element, const CString& name,
                  const CString& value);
 
         /**
          * Make an existing element node the new root of the DOM document.
+         *
+         *  @param new_root - address of the element which will be the new root
          */
         void set_root(IXMLDOMElement* new_root);
 
     protected:
 
         /**
-         * Internal values.
+         * The DOM tree for the XML document.
          */
         Document doc;
+
+        /**
+         * The top-level element for the document (the "document element").
+         */
         Element root;
     };
 
@@ -200,6 +247,10 @@ namespace cdr {
         /**
          * Add a modified copy of the active document to the DOM.
          *
+         * Modifications include:
+         *  - removal of the `CdrDocCtl` block
+         *  - stripping of any `readonly` attributes
+         *
          *  @param parent   - the node in the `CommandSet` DOM to which a
          *                    CDATA section will be attached with the doc XML
          *  @param original - serialized XML for XMetaL's active document
@@ -210,40 +261,42 @@ namespace cdr {
         Element command;
     };
 
-
+    // Forward reference.
     struct GlossaryNode;
+
+    // Map of words in glossary terms to the terms from which they come.
     typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
     struct GlossaryNode {
-        int             docId;
-        bool            markedUp;
-        GlossaryNodeMap nodeMap;
-        GlossaryNode() : docId(0), markedUp(false) {}
+        int             doc_id;
+        bool            marked_up;
+        GlossaryNodeMap node_map;
+        GlossaryNode() : doc_id(0), marked_up(false) {}
         ~GlossaryNode() {
-            for (auto& n : nodeMap)
+            for (auto& n : node_map)
                 delete n.second;
         }
-        void clearFlags() {
-            markedUp = false;
-            for (auto& n : nodeMap)
-                n.second->clearFlags();
+        void clear_flags() {
+            marked_up = false;
+            for (auto& n : node_map)
+                n.second->clear_flags();
         }
     };
     struct GlossaryTree {
         GlossaryTree(const CString& language, const CString& dictionary);
         ~GlossaryTree();
-        void clearFlags() {
-            for (auto& n : nodeMap)
-                n.second->clearFlags();
+        void clear_flags() {
+            for (auto& n : node_map)
+                n.second->clear_flags();
         }
-        GlossaryNodeMap nodeMap;
+        GlossaryNodeMap node_map;
 
         // TODO: useless, drop.
-        std::vector<int> counts;
+        // std::vector<int> counts;
 
         // Map of CDR GlossaryTermName document to preferred name string.
         std::map<int, CString> names;
     };
-    GlossaryTree* getGlossaryTree(const CString& language,
+    GlossaryTree* get_glossary_tree(const CString& language,
                                   const CString& dictionary);
 
     class SearchResult {
@@ -252,29 +305,29 @@ namespace cdr {
                      const CString& type = L"",
                      const CString& title = L"",
                      bool           grp = false,
-                     const CString& cMemb = L"",
-                     const LinkInfoList& piList = LinkInfoList()) :
-                        docId(id),
-                        docType(type),
-                        docTitle(title),
+                     const CString& memb = L"",
+                     const LinkInfoList& pi_list = LinkInfoList()) :
+                        doc_id(id),
+                        doc_type(type),
+                        doc_title(title),
                         group(grp),
-                        coopMembership(cMemb),
-                        principalInvestigators(piList) {}
-        CString getDocId()    const { return docId; }
-        CString getDocType()  const { return docType; }
-        CString getDocTitle() const { return docTitle; }
-        bool    isGroup()     const { return group; }
-        CString getCoopMemb() const { return coopMembership; }
-        const LinkInfoList& getPiList() const { return principalInvestigators; }
+                        coop_membership(memb),
+                        principal_investigators(pi_list) {}
+        CString get_doc_id()              const { return doc_id; }
+        CString get_doc_type()            const { return doc_type; }
+        CString get_doc_title()           const { return doc_title; }
+        bool    is_group()                const { return group; }
+        CString get_coop_membership()     const { return coop_membership; }
+        const LinkInfoList& get_pi_list() const { return principal_investigators; }
         bool    operator==(const SearchResult& sr)  const
-            { return sr.docId == docId; }
+            { return sr.doc_id == doc_id; }
     private:
-        CString         docId;
-        CString         docType;
-        CString         docTitle;
+        CString         doc_id;
+        CString         doc_type;
+        CString         doc_title;
         bool            group;
-        CString         coopMembership;
-        LinkInfoList    principalInvestigators;
+        CString         coop_membership;
+        LinkInfoList    principal_investigators;
 
     };
     typedef std::list<SearchResult> DocSet;
@@ -297,47 +350,45 @@ namespace cdr {
     };
     struct ValidationErrors {
         ValidationErrors::ValidationErrors(DOM&);
-        size_t currentError;
+        size_t current_error;
         std::vector<ValidationError> errors;
-        const ValidationError* getNextError() {
-            if (currentError >= errors.size())
+        const ValidationError* get_next_error() {
+            if (current_error >= errors.size())
                 return NULL;
-            return &errors[currentError++];
+            return &errors[current_error++];
         }
     };
     typedef std::map<CString, cdr::ValidationErrors*> ValidationErrorSets;
-    extern ValidationErrorSets validationErrorSets;
+    extern ValidationErrorSets validation_error_sets;
 
     // Common utility functions.
-    std::string cStringToUtf8(const CString& str);
-    CString decode(CString str);
-    CString docIdString(int);
-    CString expandLeadingZeros(const CString&);
-    void extractCtlInfo(DOMNode node, CdrDocCtrlInfo& info);
-    CString extractElementText(DOMNode node);
-    CdrLinkInfo extractLinkInfo(const CString& str);
-    void extractSearchResults(DOM& dom, DocSet& docSet);
-    CString fetchFromUrl(const CString&);
-    int fillListBox(CListBox& listBox, const DocSet& docSet);
-    ::Range findOrCreateChild(::Range parent, const CString& elemName);
-    _Application getApp();
-    int getAudioSeconds(CFile& file);
-    unsigned long getDocNo(const CString& docString);
-    ::Range getElemRange(const CString& elemName);
-    bool getImageDimensions(CFile& file, ImageDimensions& dim);
+    std::string cstring_to_utf8(const CString& str);
+    CString doc_id_string(int);
+    CString expand_leading_zeros(const CString&);
+    void extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info);
+    CString extract_element_text(DOMNode node);
+    CdrLinkInfo extract_link_info(const CString& str);
+    void extract_search_results(DOM& dom, DocSet& docSet);
+    CString fetch_from_url(const CString&);
+    int fill_list_box(CListBox& listBox, const DocSet& docSet);
+    ::Range find_or_create_child(::Range parent, const CString& elemName);
+    _Application get_app();
+    int get_audio_seconds(CFile& file);
     const char* get_cdr_trace_log_path();
-    CString getXmetalPath();
-    CString getUserPath();
-    CString encode(CString str, bool fixQuotes = false);
-    bool replaceElementContent(::DOMElement&, const CString&);
+    unsigned long get_doc_no(const CString& docString);
+    ::Range get_elem_range(const CString& elemName);
+    bool get_image_dimensions(CFile& file, ImageDimensions& dim);
+    CString get_user_path();
+    CString get_xmetal_path();
+    bool replace_element_content(::DOMElement&, const CString&);
     void send_trace_log();
-    bool showErrors(DOM& response);
-    int showPage(const CString& url);
-    bool showValidationErrors(ValidationErrors&);
-    CString suppressLeadingZeros(const CString&);
+    bool show_errors(DOM& response);
+    int show_page(const CString& url);
+    bool show_validation_errors(ValidationErrors&);
+    CString suppress_leading_zeros(const CString&);
     void trace_log(const char* what);
     CString trim(const CString& s);
-    CString utf8ToCString(const char* s);
+    CString utf8_to_cstring(const char* s);
 }
 
 /**
@@ -348,41 +399,37 @@ namespace cdr {
  * Now that we're not using sockets directly, we no longer need object
  * instances of this class: everything is static (class-based) now.
  *
- * There are two host names. One (`apiHost`) is used for tunneling
- * CDR client-server commands and the other (`cdrHost`) is used to
+ * There are two host names. One (`api_host`) is used for tunneling
+ * CDR client-server commands and the other (`cdr_host`) is used to
  * build links to web admin HTML pages.
  */
 class CdrSocket {
 public:
-    static CString sendCommands(const cdr::CommandSet&, char* = nullptr);
-    static void setSessionString(const CString& s) { sessionString = s; }
-    static bool loggedOn() { return !sessionString.IsEmpty(); }
-    static const CString getSessionString() { return sessionString; }
-    static const CString getHostName() { return cdrHost; }
-    static const CString getHostTier() { return tier; }
-    static CString getShortHostName() {
-        int dot = cdrHost.Find(TCHAR('.'));
-        if (dot != -1 && !_istdigit(cdrHost[0]))
-            return cdrHost.Left(dot);
-        return cdrHost;
+    static CString send_commands(const cdr::CommandSet&, char* = nullptr);
+    static void set_session_string(const CString& s) { session_string = s; }
+    static bool logged_on() { return !session_string.IsEmpty(); }
+    static const CString get_session_string() { return session_string; }
+    static const CString get_host_name() { return cdr_host; }
+    static const CString get_host_tier() { return tier; }
+    static CString get_short_host_name() {
+        int dot = cdr_host.Find(L'.');
+        if (dot != -1 && !iswdigit(cdr_host[0]))
+            return cdr_host.Left(dot);
+        return cdr_host;
     }
 private:
     struct Init {
         Init();
         ~Init();
-        WSAData wsaData;
+        WSAData wsa_data;
         static Init init;
     };
-    static CString sessionString;
-    static CString cdrHost;
-    static CString apiHost;
+    static CString session_string;
+    static CString cdr_host;
+    static CString api_host;
     static CString tier;
 };
 
 extern void debug_log(const CString& what, const CString& who = L"bkline");
 
-#if 0
-std::basic_ostream<TCHAR>& operator<<(std::basic_ostream<TCHAR>& os,
-                                      DOMNode& node);
-#endif
 #endif

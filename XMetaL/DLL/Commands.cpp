@@ -8,7 +8,7 @@
  * JIRA::OCECDR-3732 - custom support for genetics syndrome picklist
  */
 
-// Microsoft insists that this come first. :-(
+// Microsoft insists that this come first. ¯\_(ツ)_/¯
 #include "stdafx.h"
 
 // System headers.
@@ -52,28 +52,28 @@
 
 
 // Local functions.
-static void     clearErrorList();
-static CString  getBlobExtension(const CString& doc, const CString& type);
-static void     getBlobFromFile(char*, CFile&, int);
-static CString  getFullDocPath(_Document*);
+static void     clear_error_list();
+static CString  get_blob_extension(const CString& doc, const CString& type);
+static void     get_blob_from_file(char*, CFile&, int);
+static CString  get_full_doc_path(_Document*);
 static cdr::StringList*
-                getSchemaValidValues(const CString, const CString);
-static void     insertAudioSeconds(::DOMNode&, CFile&);
-static void     insertImageDimensions(::DOMNode&, CFile&);
-static bool     inSpanishSummary();
-static bool     isLinkingElement(const CString&, const CString&);
-static void     loadDocTypes();
-static bool     openDoc(cdr::DOM&, const CString&, BOOL, const CString&);
-static void     removeDoc(const CString&);
-static bool     replaceAudioSeconds(::DOMNode&, CString);
-static bool     replaceImageDimensions(::DOMNode&, CString, CString);
-static void     setTitleBar();
-static CString  stringFromVariant(const VARIANT FAR&);
+                get_schema_valid_values(const CString, const CString);
+static void     insert_audio_seconds(::DOMNode&, CFile&);
+static void     insert_image_dimensions(::DOMNode&, CFile&);
+static bool     is_spanish_summary();
+static bool     is_linking_element(const CString&, const CString&);
+static void     load_doc_types();
+static bool     open_doc(cdr::DOM&, const CString&, BOOL, const CString&);
+static void     remove_doc(const CString&);
+static bool     replace_audio_seconds(::DOMNode&, CString);
+static bool     replace_image_dimensions(::DOMNode&, CString, CString);
+static void     set_title_bar();
+static CString  string_from_variant(const VARIANT FAR&);
 
 // Local data.
-static cdr::StringList      docTypeStrings;
-static cdr::ValidValueSets  validValueSets;
-static cdr::ElementSets     linkingElements;
+static cdr::StringList      doc_type_strings;
+static cdr::ValidValueSets  valid_value_sets;
+static cdr::ElementSets     linking_elements;
 
 // Global data.
 CString CCommands::username;
@@ -107,8 +107,8 @@ STDMETHODIMP CCommands::acceptOrRejectMarkup(void) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("acceptOrRejectMarkup");
-    CReviewMarkup markupReviewDialog;
-    markupReviewDialog.DoModal();
+    CReviewMarkup dialog;
+    dialog.DoModal();
 
     return S_OK;
 }
@@ -122,7 +122,7 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
     cdr::trace_log("addGlossaryPhrase");
 
     // Find the element with the current focus.
-    ::Selection selection = cdr::getApp().GetSelection();
+    ::Selection selection = cdr::get_app().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
 
     // Make sure we have a glossary term reference.
@@ -132,17 +132,17 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
     }
 
     // Extract the document ID (if there is one).
-    CString docIdElem;
-    CString docId = elem.getAttribute(L"cdr:href");
-    if (!docId.IsEmpty())
-        docIdElem = L"<CdrId>" + docId + L"</CdrId>";
+    CString doc_id_elem;
+    CString doc_id = elem.getAttribute(L"cdr:href");
+    if (!doc_id.IsEmpty())
+        doc_id_elem = L"<CdrId>" + doc_id + L"</CdrId>";
 
     // Extract the text content of the element & determine usage.
     selection.SelectContainerContents();
     CString value = selection.GetText();
     CString usage = L"GlossaryTerm Phrases";
     CString language = L"English";
-    if (inSpanishSummary()) {
+    if (is_spanish_summary()) {
         usage = L"Spanish GlossaryTerm Phrases";
         language = L"Spanish";
     }
@@ -153,12 +153,12 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
         auto command = request.command;
         request.child_element(command, "Usage", usage);
         request.child_element(command, "Value", value);
-        if (!docId.IsEmpty())
-            request.child_element(command, "CdrId", docId);
+        if (!doc_id.IsEmpty())
+            request.child_element(command, "CdrId", doc_id);
         CWaitCursor wc;
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM response(response_xml);
-        if (!cdr::showErrors(response))
+        if (!cdr::show_errors(response))
             ::AfxMessageBox(language + L" glossary phrase added "
                             L"to external mapping table.");
     }
@@ -178,11 +178,11 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
 /**
  * Launch Internet Explorer with the Advanced Search admin menu.
  *
- *  @param retVal - pointer to the return value
+ *  @param ret_val - pointer to the return value
  */
-STDMETHODIMP CCommands::advancedSearch(int *retVal) {
+STDMETHODIMP CCommands::advancedSearch(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
-    *retVal = EXIT_FAILURE;
+    *ret_val = EXIT_FAILURE;
 
     cdr::trace_log("advancedSearch");
     COleDispatchDriver ie;
@@ -191,9 +191,9 @@ STDMETHODIMP CCommands::advancedSearch(int *retVal) {
         return S_OK;
     }
     CString url = L"https://"
-                + CdrSocket::getHostName()
+                + CdrSocket::get_host_name()
                 + L"/cgi-bin/cdr/AdvancedSearch.py?Session="
-                + CdrSocket::getSessionString();
+                + CdrSocket::get_session_string();
     DISPID dispid;
     OLECHAR* member = L"Navigate";
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
@@ -207,47 +207,47 @@ STDMETHODIMP CCommands::advancedSearch(int *retVal) {
     COleVariant dummy;
     ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
         url, 0L, L"CdrAdvSearch", &dummy, &dummy);
-    *retVal = EXIT_SUCCESS;
+    *ret_val = EXIT_SUCCESS;
     return S_OK;
 }
 
 /**
  * Unlock the currently active checked-out CDR document.
  *
- *  @param pRet - pointer to the return value
+ *  @param ret_val - pointer to the return value
  */
-STDMETHODIMP CCommands::checkIn(int *pRet) {
+STDMETHODIMP CCommands::checkIn(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("checkIn");
-    *pRet = 1;
+    *ret_val = 1;
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
 
         // Get the currently active document.
-        _Document doc = cdr::getApp().GetActiveDocument();
+        _Document doc = cdr::get_app().GetActiveDocument();
         if (!doc) {
             ::AfxMessageBox(L"There is no active document.");
             return S_OK;
         }
 
         // Extract control information from the document.
-        DOMNode docElement = doc.GetDocumentElement();
-        CdrDocCtrlInfo ctrlInfo;
-        cdr::extractCtlInfo(docElement, ctrlInfo);
-        if (ctrlInfo.docId.IsEmpty()) {
+        DOMNode doc_element = doc.GetDocumentElement();
+        CdrDocCtrlInfo ctrl_info;
+        cdr::extract_ctl_info(doc_element, ctrl_info);
+        if (ctrl_info.doc_id.IsEmpty()) {
             ::AfxMessageBox(L"Document has never been stored in the CDR.");
             return S_OK;
         }
 
         // Ask the user for confirmation.
-        CCheckIn checkIn;
-        switch (checkIn.DoModal()) {
+        CCheckIn check_in;
+        switch (check_in.DoModal()) {
         case IDOK:
         {
             // Build the check-in command.
@@ -255,23 +255,23 @@ STDMETHODIMP CCommands::checkIn(int *pRet) {
             auto command = request.command;
             request.set(command, "Abandon", "Y");
             request.set(command, "ForceCheckIn", "Y");
-            request.child_element(command, "DocumentId", ctrlInfo.docId);
-            if (!checkIn.m_comment.IsEmpty())
-                request.child_element(command, "Comment", checkIn.m_comment);
+            request.child_element(command, "DocumentId", ctrl_info.doc_id);
+            if (!check_in.m_comment.IsEmpty())
+                request.child_element(command, "Comment", check_in.m_comment);
 
             // Submit the check-in command to the server.
             CWaitCursor wc;
-            CString response_xml = CdrSocket::sendCommands(request);
+            CString response_xml = CdrSocket::send_commands(request);
             cdr::DOM dom(response_xml);
             auto response = dom.find("CdrResponse");
             if (response) {
-                if (!cdr::showErrors(dom)) {
+                if (!cdr::show_errors(dom)) {
                     if (dom.get(response, "Status") != "success")
                         ::AfxMessageBox(L"Unexplained failure");
                     else {
-                        *pRet = 0;
+                        *ret_val = 0;
                         doc.Close(2); // 2=don't save changes
-                        removeDoc(ctrlInfo.docId);
+                        remove_doc(ctrl_info.doc_id);
                     }
                 }
             }
@@ -349,51 +349,51 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
  */
 bool CCommands::doInsertLink(const CString& info) {
     bool inserted = false;
-    CdrLinkInfo linkInfo = cdr::extractLinkInfo(info);
-    if (linkInfo.target.IsEmpty())
+    CdrLinkInfo link_info = cdr::extract_link_info(info);
+    if (link_info.target.IsEmpty())
         return inserted;
 
     // Find the source element for the link.
-    ::Range selection = cdr::getApp().GetSelection();
+    ::Range selection = cdr::get_app().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
     while (elem && elem.GetNodeType() != 1) // DOMElement
         elem = elem.GetParentNode();
     if (elem) {
 
         // Determine whether this is a cdr:ref or cdr:href link.
-        ::_Document doc = cdr::getApp().GetActiveDocument();
-        ::DOMDocumentType docType = doc.GetDoctype();
-        CString attrName;
-        if (docType.GetHasAttribute(elem.GetNodeName(), L"cdr:ref"))
-            attrName = L"cdr:ref";
+        ::_Document doc = cdr::get_app().GetActiveDocument();
+        ::DOMDocumentType doc_type = doc.GetDoctype();
+        CString attr_name;
+        if (doc_type.GetHasAttribute(elem.GetNodeName(), L"cdr:ref"))
+            attr_name = L"cdr:ref";
         else
-            attrName = L"cdr:href";
+            attr_name = L"cdr:href";
 
         // Plug in the link attribute.
-        elem.setAttribute(attrName, linkInfo.target);
+        elem.setAttribute(attr_name, link_info.target);
 
         // If this is a cdr:href link, that's all we need to do.
-        if (attrName == L"cdr:href")
+        if (attr_name == L"cdr:href")
             return true;
 
         // Find the text node for the element.
-        ::DOMText textNode = elem.GetFirstChild();
-        while (textNode && textNode.GetNodeType() != 3) { // DOMText
-            ::DOMText nextNode = textNode.GetNextSibling();
-            if (textNode.GetNodeType() == 7) { // PI
-                ::DOMProcessingInstruction pi(textNode);
+        ::DOMText text_node = elem.GetFirstChild();
+        while (text_node && text_node.GetNodeType() != 3) { // DOMText
+            ::DOMText next_node = text_node.GetNextSibling();
+            if (text_node.GetNodeType() == 7) { // PI
+                ::DOMProcessingInstruction pi(text_node);
                 pi.m_bAutoRelease = 0;
                 if (pi.GetTarget() == L"xm-replace_text")
                     ::DOMNode dummy = elem.removeChild(pi);
             }
-            textNode = nextNode;
+            text_node = next_node;
         }
-        if (textNode)
-            textNode.SetData(linkInfo.data);
+        if (text_node)
+            text_node.SetData(link_info.data);
         else {
-            ::_Document curDoc = cdr::getApp().GetActiveDocument();
-            textNode = curDoc.createTextNode(linkInfo.data);
-            ::DOMNode dummy = elem.appendChild(textNode);
+            ::_Document current_doc = cdr::get_app().GetActiveDocument();
+            text_node = current_doc.createTextNode(link_info.data);
+            ::DOMNode dummy = elem.appendChild(text_node);
         }
         inserted = true;
     }
@@ -412,28 +412,29 @@ bool CCommands::doInsertLink(const CString& info) {
  * Exceptions are caught by the callers.
  *
  *  @param  id              reference to CDR document ID.
- *  @return                 <code>true</code> if document retrieved
- *                          successfully.
+ *  @param  check_out       if true, lock the document for editing
+ *  @param  version         which version to retrieve
+ *  @return                 true if document retrieved successfully.
  */
 bool CCommands::doRetrieve(const CString& id,
-                           BOOL checkOut,
+                           BOOL check_out,
                            const CString& version) {
 
     // Make sure the document isn't already open.
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     Documents docs = app.GetDocuments();
-    unsigned int docNo = cdr::getDocNo(id);
+    unsigned int doc_no = cdr::get_doc_no(id);
     CString match;
     if (version != L"Current")
-        match.Format(L"CDR%u-V%s ", docNo, version);
+        match.Format(L"CDR%u-V%s ", doc_no, version);
     else
-        match.Format(L"CDR%u ", docNo);
-    int matchLen = match.GetLength();
+        match.Format(L"CDR%u ", doc_no);
+    int match_len = match.GetLength();
     for (long i = docs.GetCount(); i > 0; --i) {
         COleVariant vi;
         vi = i;
         _Document doc = docs.item(&vi);
-        if (doc.GetTitle().Left(matchLen) == match) {
+        if (doc.GetTitle().Left(match_len) == match) {
             if (!doc.GetSaved()) {
                 int rc = ::AfxMessageBox(L"A modified copy of " + match +
                     L"is already open.\n" +
@@ -447,18 +448,18 @@ bool CCommands::doRetrieve(const CString& id,
     }
 
     // Make canonical document ID.
-    CString docId = cdr::docIdString(docNo);
+    CString doc_id = cdr::doc_id_string(doc_no);
 
     // Ask the server for the document.
     cdr::CommandSet request("CdrGetDoc");
     auto command = request.command;
     request.set(command, "includeBlob", "N");
-    request.child_element(command, "DocId", docId);
-    request.child_element(command, "Lock", checkOut ? "Y" : "N");
+    request.child_element(command, "DocId", doc_id);
+    request.child_element(command, "Lock", check_out ? "Y" : "N");
     request.child_element(command, "DocVersion", version);
-    CString response = CdrSocket::sendCommands(request);
+    CString response = CdrSocket::send_commands(request);
     cdr::DOM dom(response);
-    return openDoc(dom, docId, checkOut, version);
+    return open_doc(dom, doc_id, check_out, version);
 }
 
 /**
@@ -467,60 +468,62 @@ bool CCommands::doRetrieve(const CString& id,
  * type. Yes, it's an odd name for this method. Why it was chosen is lost
  * in the sands of time.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::edit(int *pRet) {
+STDMETHODIMP CCommands::edit(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("edit");
-    *pRet = 1;
+    *ret_val = 1;
 
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
 
         // Find the currently active document.
-        _Document doc = cdr::getApp().GetActiveDocument();
+        _Document doc = cdr::get_app().GetActiveDocument();
 
         // Extract the control information from the document.
-        DOMNode docElement = doc.GetDocumentElement();
-        CdrDocCtrlInfo ctrlInfo;
-        cdr::extractCtlInfo(docElement, ctrlInfo);
-        CString docType = docElement.GetNodeName();
+        DOMNode doc_element = doc.GetDocumentElement();
+        CdrDocCtrlInfo ctrl_info;
+        cdr::extract_ctl_info(doc_element, ctrl_info);
+        CString doc_type = doc_element.GetNodeName();
 
         // Find the element with the current focus.
-        ::Selection selection = cdr::getApp().GetSelection();
-        CString elemName = selection.GetContainerName();
+        ::Selection selection = cdr::get_app().GetSelection();
+        CString elem_name = selection.GetContainerName();
 
         // See if we have a valid-values set for this element.
-        const cdr::StringList* validValues = getSchemaValidValues(docType,
-                                                                  elemName);
-        if (validValues) {
-            CSchemaPicklist schemaPicklist(validValues, L"", elemName);
-            if (schemaPicklist.DoModal() == IDOK)
-                *pRet = 0;
+        const cdr::StringList* valid_values = get_schema_valid_values(
+            doc_type,
+            elem_name
+        );
+        if (valid_values) {
+            CSchemaPicklist picklist(valid_values, L"", elem_name);
+            if (picklist.DoModal() == IDOK)
+                *ret_val = 0;
             return S_OK;
         }
 
         // Check for custom flavors of this command.
-        CEditElement::Type editType = CEditElement::NORMAL;
-        if (docType == L"Person") {
-            if (elemName  == L"OrganizationLocation") {
+        CEditElement::Type edit_type = CEditElement::NORMAL;
+        if (doc_type == L"Person") {
+            if (elem_name  == L"OrganizationLocation") {
                 if (selection.GetIsParentElement(L"OtherPracticeLocation"))
-                    editType = CEditElement::ORG_LOCATION;
+                    edit_type = CEditElement::ORG_LOCATION;
             }
-            else if (elemName == L"FamilialCancerSyndrome")
-                editType = CEditElement::GP_SYNDROME;
+            else if (elem_name == L"FamilialCancerSyndrome")
+                edit_type = CEditElement::GP_SYNDROME;
         }
 
         // Most of the real work is done inside this call.
-        CEditElement editDialog(docType, elemName, editType);
-        if (editDialog.DoModal() == IDOK)
-            *pRet = 0;
+        CEditElement edit_dialog(doc_type, elem_name, edit_type);
+        if (edit_dialog.DoModal() == IDOK)
+            *ret_val = 0;
     }
     catch (::CException* e) {
         e->ReportError();
@@ -564,7 +567,7 @@ STDMETHODIMP CCommands::fetchFromUrl(const BSTR* url_, BSTR* response_) {
     CString url(*url_);
     CString response;
     try {
-        response = cdr::fetchFromUrl(url);
+        response = cdr::fetch_from_url(url);
     }
     catch (...) {
         ::AfxMessageBox(L"Unable to open " + url);
@@ -578,15 +581,15 @@ STDMETHODIMP CCommands::fetchFromUrl(const BSTR* url_, BSTR* response_) {
 /**
  * Fetch the PDQBoardMemberInfo document ID for the current Person document.
  *
- *  @param personId - string containing the CDR ID of the active Person doc
- *  @param boardMemberId - return string for the linked document
+ *  @param person_id - string containing the CDR ID of the active Person doc
+ *  @param board_member_id - return string for the linked document
  */
-STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
-                                         BSTR* boardMemberId) {
+STDMETHODIMP CCommands::getBoardMemberId(const BSTR* person_id,
+                                         BSTR* board_member_id) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getBoardMemberId");
-    CString id(*personId);
+    CString id(*person_id);
     try {
         cdr::CommandSet request("CdrReport");
         auto command = request.command;
@@ -595,12 +598,12 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "PersonId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
         CString member_id = dom.get_text(dom.find("//BoardMember"));
         if (member_id.IsEmpty())
-            cdr::showErrors(dom);
-        member_id.SetSysString(boardMemberId);
+            cdr::show_errors(dom);
+        member_id.SetSysString(board_member_id);
     }
     catch (::CException* e) {
         e->ReportError();
@@ -619,16 +622,16 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* personId,
 /**
  * Fetch the ID of the term name documents associated with this concept doc.
  *
- *  @param conceptId   - string containing the CDR ID for the active
- *                       GlossaryTermConcept document
- *  @param termNameIds - string of term name document IDs, space delimited
+ *  @param concept_id    - string containing the CDR ID for the active
+ *                         GlossaryTermConcept document
+ *  @param term_name_ids - string of term name document IDs, space delimited
  */
-STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
-                                               BSTR* termNameIds) {
+STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* concept_id,
+                                               BSTR* term_name_ids) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getGlossaryTermNameIds");
-    CString id(*conceptId);
+    CString id(*concept_id);
     CString ids;
     try {
         cdr::CommandSet request("CdrReport");
@@ -638,9 +641,9 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "ConceptId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
-        if (!cdr::showErrors(dom)) {
+        if (!cdr::show_errors(dom)) {
             auto nodes = dom.find_all("//GlossaryTermName");
             CString sep;
             for (auto& node : nodes) {
@@ -659,24 +662,24 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* conceptId,
     catch (...) {
         ::AfxMessageBox(L"Unexpected exception encountered.");
     }
-    ids.SetSysString(termNameIds);
+    ids.SetSysString(term_name_ids);
     return S_OK;
 }
 
 /**
  * Fetch the term names associated with the current glossary concept doc.
  *
- *  @param conceptId - string containing the CDR ID for the active
+ *  @param concept_id - string containing the CDR ID for the active
  *                     GlossaryTermConcept document
- *  @param termNames - string returned to the caller showing all of the
+ *  @param term_names - string returned to the caller showing all of the
  *                     term names linked to this concept document
  */
-STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId,
-                                             BSTR* termNames) {
+STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* concept_id,
+                                             BSTR* term_names) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getGlossaryTermNames");
-    CString id(*conceptId);
+    CString id(*concept_id);
     CString names;
     try {
         cdr::CommandSet request("CdrReport");
@@ -686,9 +689,9 @@ STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "ConceptId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
-        if (!cdr::showErrors(dom)) {
+        if (!cdr::show_errors(dom)) {
             auto nodes = dom.find_all("//GlossaryTermName");
             CString sep(L"    ");
             for (auto& node : nodes) {
@@ -707,21 +710,21 @@ STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* conceptId,
     catch (...) {
         ::AfxMessageBox(L"Unexpected exception encountered.");
     }
-    names.SetSysString(termNames);
+    names.SetSysString(term_names);
     return S_OK;
 }
 
 /**
  * String property for the current CDR server's host name.
  *
- *  @param pVal - address where the return string is passed back
+ *  @param ret_val - address where the return string is passed back
  */
-STDMETHODIMP CCommands::get_hostname(BSTR *pVal) {
+STDMETHODIMP CCommands::get_hostname(BSTR *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("get_hostname");
-    CString hostname = CdrSocket::getHostName();
-    hostname.SetSysString(pVal);
+    CString hostname = CdrSocket::get_host_name();
+    hostname.SetSysString(ret_val);
 
     return S_OK;
 }
@@ -729,49 +732,49 @@ STDMETHODIMP CCommands::get_hostname(BSTR *pVal) {
 /**
  * Provide information about the next validation error.
  *
- *  @param valError - string with location and error message
+ *  @param val_error - string with location and error message
  *                    delimited by '|'
  */
-STDMETHODIMP CCommands::getNextValidationError(BSTR* valError) {
+STDMETHODIMP CCommands::getNextValidationError(BSTR* val_error) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getNextValidationError");
     CString result;
-    _Document doc = cdr::getApp().GetActiveDocument();
+    _Document doc = cdr::get_app().GetActiveDocument();
     if (!doc) {
         result = L"0|No document is currently active";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
-    CString path = getFullDocPath(&doc);
+    CString path = get_full_doc_path(&doc);
     debug_log("looking up next validation error for " + path);
     if (path.IsEmpty()) {
         result = L"0|No validation results available";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
     cdr::ValidationErrorSets::iterator iter =
-        cdr::validationErrorSets.find(path);
-    if (iter == cdr::validationErrorSets.end()) {
+        cdr::validation_error_sets.find(path);
+    if (iter == cdr::validation_error_sets.end()) {
         result = L"0|No validation results available";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
     cdr::ValidationErrors* errors = iter->second;
     if (errors->errors.size() < 1) {
         result = L"0|No validation errors found";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
-    if (errors->currentError >= errors->errors.size()) {
+    if (errors->current_error >= errors->errors.size()) {
         result = L"0|No more validation errors found";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
-    const cdr::ValidationError* error = errors->getNextError();
+    const cdr::ValidationError* error = errors->get_next_error();
     if (!error) {
         result = L"0|No more validation errors found";
-        result.SetSysString(valError);
+        result.SetSysString(val_error);
         return S_OK;
     }
     CString eid = error->eid;
@@ -780,7 +783,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError) {
     result = eid + L"|" + error->message;
     if (!error->elevel.IsEmpty())
         result += L" (" + error->elevel + L")";
-    result.SetSysString(valError);
+    result.SetSysString(val_error);
     return S_OK;
 }
 
@@ -791,49 +794,49 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* valError) {
  * linked from the current selection and inserts it so the user can
  * overide some of that information. See Jira ticket OCECDR-119.
  *
- *  @param pRet - pointer to the return value
+ *  @param ret_val - pointer to the return value
  */
-STDMETHODIMP CCommands::getOrgAddress(int *pRet) {
+STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("getOrgAddress");
     // Initial pessimism.
-    *pRet = 1;
+    *ret_val = 1;
 
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
 
         // Find the LeadOrgPersonnel element location.
-        ::Range oplLoc = cdr::getElemRange(L"OtherPracticeLocation");
-        if (!oplLoc) {
+        ::Range op_loc = cdr::get_elem_range(L"OtherPracticeLocation");
+        if (!op_loc) {
             ::AfxMessageBox(L"OtherPracticeLocation for "
                             L"current location not found");
             return S_OK;
         }
 
         // Find the adddress fragment link.
-        ::DOMElement oplElem = oplLoc.GetContainerNode();
-        if (!oplElem || oplElem.GetNodeName() != L"OtherPracticeLocation")
+        ::DOMElement op_elem = op_loc.GetContainerNode();
+        if (!op_elem || op_elem.GetNodeName() != L"OtherPracticeLocation")
         {
             ::AfxMessageBox(L"Unable to find OtherPracticeLocation "
                             L"element");
             return S_OK;
         }
-        ::DOMNodeList nodeList =
-            oplElem.getElementsByTagName(L"OrganizationLocation");
-        if (nodeList.GetLength() < 1) {
+        ::DOMNodeList node_list =
+            op_elem.getElementsByTagName(L"OrganizationLocation");
+        if (node_list.GetLength() < 1) {
             ::AfxMessageBox(L"Unable to find OrganizationLocation element");
 
             return S_OK;
         }
-        ::DOMElement orgLocElem = nodeList.item(0);
-        CString addrLink = orgLocElem.getAttribute(L"cdr:ref");
-        if (addrLink.IsEmpty()) {
+        ::DOMElement org_loc_elem = node_list.item(0);
+        CString addr_link = org_loc_elem.getAttribute(L"cdr:ref");
+        if (addr_link.IsEmpty()) {
             ::AfxMessageBox(L"Missing or empty cdr:ref attribute "
                             L"for address link");
 
@@ -841,13 +844,13 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet) {
         }
 
         // Break the link into its two parts.
-        int delimPos = addrLink.Find(L"#");
-        if (delimPos < 1 || delimPos == addrLink.GetLength() - 1) {
-            ::AfxMessageBox(L"Malformed fragment link: " + addrLink);
+        int delim_pos = addr_link.Find(L"#");
+        if (delim_pos < 1 || delim_pos == addr_link.GetLength() - 1) {
+            ::AfxMessageBox(L"Malformed fragment link: " + addr_link);
             return S_OK;
         }
-        CString docId = addrLink.Left(delimPos);
-        CString fragId = addrLink.Mid(delimPos + 1);
+        CString doc_id = addr_link.Left(delim_pos);
+        CString frag_id = addr_link.Mid(delim_pos + 1);
 
         // Ask the server for the full address.
         cdr::CommandSet request("CdrFilter");
@@ -857,19 +860,19 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet) {
         auto parms = request.child_element(command, "Parms");
         auto parm = request.child_element(parms, "Parm");
         request.child_element(parm, "Name", "fragId");
-        request.child_element(parm, "Value", fragId);
+        request.child_element(parm, "Value", frag_id);
         auto document_element = request.child_element(command, "Document");
-        request.set(document_element, "href", docId);
+        request.set(document_element, "href", doc_id);
 
         // Submit the request to the CDR server.
         CWaitCursor wc;
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
 
         // Extract the address elements.
         cdr::DOM response(response_xml);
         CString doc_xml = response.get_text(response.find("Document"));
         if (doc_xml.IsEmpty()) {
-            if (!cdr::showErrors(response))
+            if (!cdr::show_errors(response))
                 ::AfxMessageBox(L"Unknown failure from filter");
             return S_OK;
         }
@@ -891,20 +894,20 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet) {
             new_dom.append(spa, child);
 
         // Find the proper location for the address.
-        ::Range spaLoc = cdr::findOrCreateChild(oplLoc,
+        ::Range spa_loc = cdr::find_or_create_child(op_loc,
                                                 L"SpecificPostalAddress");
-        if (!spaLoc) {
+        if (!spa_loc) {
             ::AfxMessageBox(L"Failure creating SpecificPostalAddress element");
             return S_OK;
         }
 
         // Plug in our own data.
         CString spa_xml = new_dom.get_xml(spa);
-        if (!spaLoc.GetCanPaste(spa_xml, FALSE))
+        if (!spa_loc.GetCanPaste(spa_xml, FALSE))
             ::AfxMessageBox(L"Unable to insert " + spa_xml);
         else {
-            spaLoc.PasteString(spa_xml);
-            *pRet = 0;
+            spa_loc.PasteString(spa_xml);
+            *ret_val = 0;
         }
 
     }
@@ -925,15 +928,15 @@ STDMETHODIMP CCommands::getOrgAddress(int *pRet) {
 /**
  * Get the patient document ID for the summary matching this HP summary.
  *
- *  @param hpDocId - string for the health profession summary ID
- *  @param patientDocId - string for the return value
+ *  @param hp_doc_id - string for the health profession summary ID
+ *  @param patient_doc_id - string for the return value
  */
-STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId,
-                                        BSTR* patientDocId) {
+STDMETHODIMP CCommands::getPatientDocId(const BSTR* hp_doc_id,
+                                        BSTR* patient_doc_id) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getPatientDocId");
-    CString id(*hpDocId);
+    CString id(*hp_doc_id);
 
     try {
         cdr::CommandSet request("CdrReport");
@@ -943,15 +946,15 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "HPSummary");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM response_dom(response_xml);
         auto node = response_dom.find("//PatientSummary");
         if (node) {
             CString patient_id = response_dom.get_text(node);
-            patient_id.SetSysString(patientDocId);
+            patient_id.SetSysString(patient_doc_id);
         }
         else
-            cdr::showErrors(response_dom);
+            cdr::show_errors(response_dom);
     }
     catch (::CException* e) {
         e->ReportError();
@@ -970,34 +973,34 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hpDocId,
 /*
  * Count the non-markup characters in the current selection.
  *
- *  @param  pVal - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::get_selectionCharacterCount(int *pVal) {
+STDMETHODIMP CCommands::get_selectionCharacterCount(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-    ::Selection selection = cdr::getApp().GetSelection();
+    ::Selection selection = cdr::get_app().GetSelection();
     CString characters = selection.GetText();
     int n = 0;
-    TCHAR q = L'\0';
+    wchar_t q = L'\0';
     bool in_tag = false;
     for (int i = 0; i < characters.GetLength(); ++i) {
-        TCHAR c = characters[i];
+        wchar_t c = characters[i];
         if (in_tag) {
             if (q) {
                 if (c == q)
-                    q = _T('\0');
+                    q = L'\0';
             }
-            else if (c == _T('>'))
+            else if (c == L'>')
                 in_tag = false;
-            else if (c == _T('"') || c == _T('\''))
+            else if (c == L'"' || c == L'\'')
                 q = c;
         }
-        else if (c == _T('<'))
+        else if (c == L'<')
             in_tag = true;
         else
             ++n;
     }
-    *pVal = n;
+    *ret_val = n;
 
     return S_OK;
 }
@@ -1005,14 +1008,14 @@ STDMETHODIMP CCommands::get_selectionCharacterCount(int *pVal) {
 /**
  * Property for the current login's session ID string.
  *
- *  @param pVal - pointer to the returned string value
+ *  @param ret_val - pointer to the returned string value
  */
-STDMETHODIMP CCommands::get_session(BSTR *pVal) {
+STDMETHODIMP CCommands::get_session(BSTR *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("get_session");
-    CString session = CdrSocket::getSessionString();
-    session.SetSysString(pVal);
+    CString session = CdrSocket::get_session_string();
+    session.SetSysString(ret_val);
 
     return S_OK;
 }
@@ -1020,50 +1023,50 @@ STDMETHODIMP CCommands::get_session(BSTR *pVal) {
 /**
  * Find the CDR ID of the current English summary's translation.
  *
- *  @param originalId      - string containing the CDR ID of the active doc
- *  @param translatedDocId - return string for the Spanish summary document
+ *  @param original_id      - string containing the CDR ID of the active doc
+ *  @param translated_doc_id - return string for the Spanish summary document
  */
-STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
-                                           BSTR* translatedDocId) {
+STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* original_id,
+                                           BSTR* translated_doc_id) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getTranslatedDocId");
-    _Document doc = cdr::getApp().GetActiveDocument();
-    DOMNode docElement = doc.GetDocumentElement();
-    CString docType = docElement.GetNodeName();
-    CString reportName = L"";
-    CString paramName = L"";
+    _Document doc = cdr::get_app().GetActiveDocument();
+    DOMNode doc_element = doc.GetDocumentElement();
+    CString doc_type = doc_element.GetNodeName();
+    CString report_name = L"";
+    CString param_name = L"";
     CString xpath = L"";
-    CString translationId;
-    if (docType == L"Summary") {
-        reportName = L"Translated Summary";
-        paramName = L"EnglishSummary";
+    CString translation_id;
+    if (doc_type == L"Summary") {
+        report_name = L"Translated Summary";
+        param_name = L"EnglishSummary";
         xpath = L"//TranslatedSummary";
     }
-    else if (docType == L"Media") {
-        reportName = L"Translated Media Doc";
-        paramName = L"EnglishMediaDoc";
+    else if (doc_type == L"Media") {
+        report_name = L"Translated Media Doc";
+        param_name = L"EnglishMediaDoc";
         xpath = L"//TranslatedMediaDoc";
     }
-    if (reportName.IsEmpty())
-        ::AfxMessageBox(L"Unsupported document type " + docType);
+    if (report_name.IsEmpty())
+        ::AfxMessageBox(L"Unsupported document type " + doc_type);
     else {
-        CString id(*originalId);
+        CString id(*original_id);
         try {
             cdr::CommandSet request("CdrReport");
             auto command = request.command;
-            request.child_element(command, "ReportName", reportName);
+            request.child_element(command, "ReportName", report_name);
             auto params = request.child_element(command, "ReportParams");
             auto param = request.child_element(params, "ReportParam");
-            request.set(param, "Name", paramName);
+            request.set(param, "Name", param_name);
             request.set(param, "Value", id);
-            CString response_xml = CdrSocket::sendCommands(request);
+            CString response_xml = CdrSocket::send_commands(request);
             cdr::DOM response_dom(response_xml);
             auto node = response_dom.find(xpath);
             if (node)
-                translationId = response_dom.get_text(node);
+                translation_id = response_dom.get_text(node);
             else
-                cdr::showErrors(response_dom);
+                cdr::show_errors(response_dom);
         }
         catch (::CException* e) {
             e->ReportError();
@@ -1076,7 +1079,7 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
             ::AfxMessageBox(L"Unexpected error retrieving patient ID");
         }
     }
-    translationId.SetSysString(translatedDocId);
+    translation_id.SetSysString(translated_doc_id);
 
     return S_OK;
 }
@@ -1084,13 +1087,13 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* originalId,
 /**
  * String property for the current user's CDR account name.
  *
- *  @param pVal - pointer for return value
+ *  @param ret_val - pointer for return value
  */
-STDMETHODIMP CCommands::get_username(BSTR *pVal) {
+STDMETHODIMP CCommands::get_username(BSTR *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("get_username");
-    username.SetSysString(pVal);
+    username.SetSysString(ret_val);
 
     return S_OK;
 }
@@ -1098,14 +1101,14 @@ STDMETHODIMP CCommands::get_username(BSTR *pVal) {
 /**
  * String property for the client user directory.
  *
- *  @param pVal - pointer for return value
+ *  @param ret_val - pointer for return value
  */
-STDMETHODIMP CCommands::get_userPath(BSTR* pVal) {
+STDMETHODIMP CCommands::get_userPath(BSTR* ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("get_userPath");
-    CString userPath = cdr::getUserPath();
-    userPath.SetSysString(pVal);
+    CString user_path = cdr::get_user_path();
+    user_path.SetSysString(ret_val);
 
     return S_OK;
 }
@@ -1131,49 +1134,49 @@ STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary) {
 /**
  * Let the caller know if the current element is blocked from modification.
  *
- *  @param docType  - string for the active document's document type
- *  @param elemName - string for the tag name of the current element
- *  @param pVal     - pointer to the returned Boolean value
+ *  @param doc_type  - string for the active document's document type
+ *  @param elem_name - string for the tag name of the current element
+ *  @param ret_val     - pointer to the returned Boolean value
  */
-STDMETHODIMP CCommands::isReadOnly(const BSTR *docType,
-                                   const BSTR *elemName,
-                                   BOOL *pVal) {
+STDMETHODIMP CCommands::isReadOnly(const BSTR *doc_type,
+                                   const BSTR *elem_name,
+                                   BOOL *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("isReadOnly");
     // Initial assumption: the element is not read-only.
-    *pVal = FALSE;
-    CString dt(*docType);
-    CString el(*elemName);
-    cdr::StringList* vvList = getSchemaValidValues(dt, el);
-    if (vvList && !vvList->empty())
-        *pVal = TRUE;
-    else if (isLinkingElement(dt, el))
-        *pVal = TRUE;
+    *ret_val = FALSE;
+    CString dt(*doc_type);
+    CString el(*elem_name);
+    cdr::StringList* vv_list = get_schema_valid_values(dt, el);
+    if (vv_list && !vv_list->empty())
+        *ret_val = TRUE;
+    else if (is_linking_element(dt, el))
+        *ret_val = TRUE;
     // Stopgap until readonly attributes are in place.
     else if (el == "DocId" || el == "DocType")
-        *pVal = TRUE;
+        *ret_val = TRUE;
     return S_OK;
 }
 
 /**
  * Execute the application associated with the active doc's attachment.
  *
- *  @param docId  - string with the CDR ID for the active document
- *  @param docVer - string with the optional version
+ *  @param doc_id  - string with the CDR ID for the active document
+ *  @param doc_ver - string with the optional version
  */
-STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
+STDMETHODIMP CCommands::launchBlob(const BSTR* doc_id, const BSTR* doc_ver) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("launchBlob");
-    CString id(*docId);
-    CString ver(*docVer);
-    CString fileName;
+    CString id(*doc_id);
+    CString ver(*doc_ver);
+    CString filename;
     std::ios_base::openmode mode = std::ios_base::binary | std::ios_base::out;
-    int intId = cdr::getDocNo(id);
-    fileName.Format(L"CDR%d", intId);
+    int int_id = cdr::get_doc_no(id);
+    filename.Format(L"CDR%d", int_id);
     if (!ver.IsEmpty())
-        fileName += L"-" + ver;
+        filename += L"-" + ver;
     else
         ver = L"Current";
 
@@ -1186,7 +1189,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
         request.child_element(command, "DocId", id);
         request.child_element(command, "Lock", "N");
         request.child_element(command, "DocVersion", ver);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
 
         // If parsing the response with the embedded blob puts too
         // much of a strain on resources, we may have to revert to
@@ -1194,7 +1197,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
         cdr::DOM response_dom(response_xml);
         auto doc_element = response_dom.find("//CdrDoc");
         if (!doc_element) {
-            cdr::showErrors(response_dom);
+            cdr::show_errors(response_dom);
             return S_OK;
         }
         CString doc_type = response_dom.get(doc_element, "Type");
@@ -1221,7 +1224,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
         };
         int dst_len = ::Base64DecodeGetRequiredLength(blob_len);
         Buf blob((size_t)dst_len);
-        auto bytes = cdr::cStringToUtf8(doc_blob).c_str();
+        auto bytes = cdr::cstring_to_utf8(doc_blob).c_str();
         if (!::Base64Decode(bytes, blob_len, (BYTE*)blob.buf, &dst_len)) {
             ::AfxMessageBox(L"Failure decoding blob file");
             return S_OK;
@@ -1229,17 +1232,17 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
 
 
         // Save the file.
-        CString path = cdr::getUserPath() + L"\\Cdr\\Media";
+        CString path = cdr::get_user_path() + L"\\Cdr\\Media";
         ::CreateDirectory((LPCTSTR)path, NULL);
-        path += L"\\" + fileName;
-        CString ext = getBlobExtension(xml, doc_type);
+        path += L"\\" + filename;
+        CString ext = get_blob_extension(xml, doc_type);
         if (ext.IsEmpty()) {
             ::AfxMessageBox(L"Unable to determine filename extension");
             return S_OK;
         }
         path += ext;
-        std::string pathName = cdr::cStringToUtf8(path);
-        std::ofstream ofs(pathName.c_str(), mode);
+        std::string path_name = cdr::cstring_to_utf8(path);
+        std::ofstream ofs(path_name.c_str(), mode);
         if (!ofs) {
             ::AfxMessageBox(L"Unable to write " + path);
             return S_OK;
@@ -1268,26 +1271,26 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* docId, const BSTR* docVer) {
  * Ask the CDR server to log some troubleshooting information.
  *
  *  @param description - string to be logged
- *  @param pRet - pointer to the COM return value
+ *  @param ret_val - pointer to the COM return value
  */
-STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* pRet) {
+STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("logClientEvent");
-    *pRet = 0;
+    *ret_val = 0;
     CString desc(*description);
     try {
         cdr::CommandSet request("CdrLogClientEvent");
         request.child_element(request.command, "EventDescription", desc);
-        CString response_xml = CdrSocket::sendCommands(request);
+        CString response_xml = CdrSocket::send_commands(request);
         cdr::DOM dom(response_xml);
         auto node = dom.find("//EventId");
         if (node) {
             wchar_t* end;
-            *pRet = (int)wcstol(dom.get_text(node).GetString(), &end, 10);
+            *ret_val = (int)wcstol(dom.get_text(node).GetString(), &end, 10);
         }
         else
-            cdr::showErrors(dom);
+            cdr::show_errors(dom);
     }
     catch (::CException* e) {
         e->ReportError();
@@ -1306,13 +1309,13 @@ STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* pRet) {
 /**
  * Log out of the CDR server.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::logoff(int *pRet) {
+STDMETHODIMP CCommands::logoff(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("logoff");
-    *pRet = 1;
+    *ret_val = 1;
 
     // Show the user the list of documents she still has checked out.
     if (!username.IsEmpty()) {
@@ -1324,7 +1327,7 @@ STDMETHODIMP CCommands::logoff(int *pRet) {
             auto param = request.child_element(params, "Param");
             request.set(param, "Name", "UserId");
             request.set(param, "Value", username);
-            CString response_xml = CdrSocket::sendCommands(request);
+            CString response_xml = CdrSocket::send_commands(request);
             cdr::DOM dom(response_xml);
             CString ids;
             CString sep;
@@ -1357,19 +1360,19 @@ STDMETHODIMP CCommands::logoff(int *pRet) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             return S_OK;
         }
 
         // Submit the logoff request to the server.
         cdr::CommandSet request("CdrLogoff");
-        CdrSocket::sendCommands(request);
-        *pRet = 0;
+        CdrSocket::send_commands(request);
+        *ret_val = 0;
     }
     catch (...) {}
 
     // Clear the session string so we'll know that we're no longer logged in.
-    CdrSocket::setSessionString("");
+    CdrSocket::set_session_string("");
     return S_OK;
 }
 
@@ -1382,24 +1385,24 @@ STDMETHODIMP CCommands::logoff(int *pRet) {
  * some miscellaneous prep work, like loading the CDR document type
  * information from the disk.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::logon(int *pRet) {
+STDMETHODIMP CCommands::logon(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     // Start off assuming the worst.
-    *pRet = 1;
+    *ret_val = 1;
     cdr::trace_log("logon");
 
     try {
 
         // Make sure the user isn't already logged on.
-        if (CdrSocket::loggedOn())
+        if (CdrSocket::logged_on())
             return S_OK;
 
         // Make sure the client machine has the refresh utility installed.
-        CString manifestName = cdr::getUserPath() + L"\\CdrManifest.xml";
-        if (_waccess((LPCTSTR)manifestName, 0)) {
+        CString manifest_name = cdr::get_user_path() + L"\\CdrManifest.xml";
+        if (_waccess((LPCTSTR)manifest_name, 0)) {
             ::AfxMessageBox(L"Client files missing");
             return S_OK;
         }
@@ -1408,29 +1411,29 @@ STDMETHODIMP CCommands::logon(int *pRet) {
         // variables aren't set, the user wants to run XMetaL in a
         // standalone session.
         username = L"";
-        const char* sessId = getenv("CDRSession");
-        const char* userId = getenv("CDRUser");
-        if (!sessId || !userId)
+        const char* sess_id = getenv("CDRSession");
+        const char* user_id = getenv("CDRUser");
+        if (!sess_id || !user_id)
             return S_OK;
-        username = userId;
-        CdrSocket::setSessionString(sessId);
+        username = user_id;
+        CdrSocket::set_session_string(sess_id);
 
         // Identify who and where we are.
         setTitleBar();
 
         // Make the document directories if they aren't already there.
-        CString cdrPath = cdr::getUserPath() + L"\\Cdr";
-        CString roPath  = cdrPath + L"\\ReadOnly";
-        CString coPath  = cdrPath + L"\\Checkout";
-        CString mePath  = cdrPath + L"\\Media";
-        _wmkdir((LPCTSTR)cdrPath);
-        _wmkdir((LPCTSTR)roPath);
-        _wmkdir((LPCTSTR)coPath);
-        _wmkdir((LPCTSTR)mePath);
+        CString cdr_path = cdr::get_user_path() + L"\\Cdr";
+        CString ro_path  = cdr_path + L"\\ReadOnly";
+        CString co_path  = cdr_path + L"\\Checkout";
+        CString me_path  = cdr_path + L"\\Media";
+        _wmkdir((LPCTSTR)cdr_path);
+        _wmkdir((LPCTSTR)ro_path);
+        _wmkdir((LPCTSTR)co_path);
+        _wmkdir((LPCTSTR)me_path);
 
         // Get the document type information we need.
-        loadDocTypes();
-        *pRet = 0;
+        load_doc_types();
+        *ret_val = 0;
     }
 
     // Handle any extraordinary error conditions.
@@ -1478,18 +1481,18 @@ STDMETHODIMP CCommands::navigateMarkup(void) {
 /**
  * Fetch and open the requested CDR document.
  *
- *  @param docId    - string for the CDR ID of the requested document
- *  @param docVer   - optional string for the version of the document to open
- *  @param checkOut - if VARIANT_TRUE then lock the document
+ *  @param doc_id    - string for the CDR ID of the requested document
+ *  @param doc_ver   - optional string for the version of the document to open
+ *  @param check_out  - if VARIANT_TRUE then lock the document
  */
-STDMETHODIMP CCommands::openCdrDoc(const BSTR* docId, const BSTR* docVer,
-                                   VARIANT_BOOL checkOut) {
+STDMETHODIMP CCommands::openCdrDoc(const BSTR* doc_id, const BSTR* doc_ver,
+                                   VARIANT_BOOL check_out) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("openCdrDoc");
-    CString id(*docId);
-    CString ver(*docVer);
-    BOOL co(checkOut);
+    CString id(*doc_id);
+    CString ver(*doc_ver);
+    BOOL co(check_out);
     try {
         doRetrieve(id, co, ver);
     }
@@ -1511,30 +1514,30 @@ STDMETHODIMP CCommands::openCdrDoc(const BSTR* docId, const BSTR* docVer,
  * Set link attribute and denormalized text for current linking element.
  *
  *  @param link - string containing the document ID for the link
- *  @param pRet - pointer to the method's COM return value
+ *  @param ret_val - pointer to the method's COM return value
  */
-STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
+STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("pasteDocLink");
-    *pRet = 1;
-    CString docLink(*link);
+    *ret_val = 1;
+    CString doc_link(*link);
 
     // Make sure the user is logged on to the CDR.
-    if (!CdrSocket::loggedOn()) {
+    if (!CdrSocket::logged_on()) {
         ::AfxMessageBox(L"This session is not logged into the CDR");
         return S_OK;
     }
 
     // Find the currently active document.
-    _Document doc = cdr::getApp().GetActiveDocument();
+    _Document doc = cdr::get_app().GetActiveDocument();
 
     // Get the current element and the doc type.
-    DOMNode docElement = doc.GetDocumentElement();
-    CString docType = docElement.GetNodeName();
-    ::Range selection = cdr::getApp().GetSelection();
+    DOMNode doc_element = doc.GetDocumentElement();
+    CString doc_type = doc_element.GetNodeName();
+    ::Range selection = cdr::get_app().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
-    CString elemName  = elem.GetNodeName();
+    CString elem_name  = elem.GetNodeName();
     while (elem && elem.GetNodeType() != 1) // DOMElement
         elem = elem.GetParentNode();
     if (elem) {
@@ -1545,8 +1548,8 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
             if (dt.GetHasAttribute(elem.GetNodeName(), L"cdr:href")) {
 
                 // If this is a cdr:href link, this is all we need to do.
-                elem.setAttribute(L"cdr:href", docLink);
-                *pRet = 0;
+                elem.setAttribute(L"cdr:href", doc_link);
+                *ret_val = 0;
                 return S_OK;
             }
 
@@ -1554,21 +1557,21 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
             if (dt.GetHasAttribute(elem.GetNodeName(), L"Target")) {
 
                 // If this is a Target link, this is all we need to do.
-                elem.setAttribute(L"Target", docLink);
-                *pRet = 0;
+                elem.setAttribute(L"Target", doc_link);
+                *ret_val = 0;
                 return S_OK;
             }
 
             // Ask the server for the denormalized data.
             cdr::CommandSet request("CdrPasteLink");
             auto command = request.command;
-            request.child_element(command, "SourceDocType", docType);
-            request.child_element(command, "SourceElementType", elemName);
-            request.child_element(command, "TargetDocId", docLink);
+            request.child_element(command, "SourceDocType", doc_type);
+            request.child_element(command, "SourceElementType", elem_name);
+            request.child_element(command, "TargetDocId", doc_link);
             CWaitCursor wc;
-            CString response_xml = CdrSocket::sendCommands(request);
+            CString response_xml = CdrSocket::send_commands(request);
             cdr::DOM dom(response_xml);
-            if (cdr::showErrors(dom))
+            if (cdr::show_errors(dom))
                 return S_OK;
             auto node = dom.find("//DenormalizedContent");
             if (!node) {
@@ -1582,19 +1585,19 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
             }
 
             // Plug in the link attribute.
-            elem.setAttribute(L"cdr:ref", docLink);
+            elem.setAttribute(L"cdr:ref", doc_link);
 
             // Clear out the existing children.
             ::DOMNode child = elem.GetFirstChild();
             while (child) {
-                ::DOMNode nextChild = child.GetNextSibling();
+                ::DOMNode next_child = child.GetNextSibling();
                 ::DOMNode dummy = elem.removeChild(child);
-                child = nextChild;
+                child = next_child;
             }
 
             // Pop in the new content.
-            ::DOMText textNode = doc.createTextNode(data);
-            ::DOMNode dummy = elem.appendChild(textNode);
+            ::DOMText text_node = doc.createTextNode(data);
+            ::DOMNode dummy = elem.appendChild(text_node);
         }
         catch (::CException* e) {
             e->ReportError();
@@ -1608,7 +1611,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
         }
 
     }
-    *pRet = 0;
+    *ret_val = 0;
 
     return S_OK;
 }
@@ -1617,7 +1620,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *pRet) {
  * Retrieves the CDR document represented by the document ID obtained
  * from the user.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
 STDMETHODIMP CCommands::retrieve(int *pRet) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
@@ -1631,7 +1634,7 @@ STDMETHODIMP CCommands::retrieve(int *pRet) {
         RetrieveDialog dialog;
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn())
+        if (!CdrSocket::logged_on())
             err = "This session is not logged into the CDR";
         // Ask the user which document to retrieve.
         if (err.IsEmpty()) {
@@ -1670,115 +1673,113 @@ STDMETHODIMP CCommands::retrieve(int *pRet) {
 /**
  * Save the currently active document in the CDR repository.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::save(int *pRet) {
+STDMETHODIMP CCommands::save(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("save");
-    *pRet = 1;
+    *ret_val = 1;
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
 
         // Get the currently active document.
-        _Document doc = cdr::getApp().GetActiveDocument();
+        _Document doc = cdr::get_app().GetActiveDocument();
         if (!doc) {
             ::AfxMessageBox(L"There is no active document.");
             return S_OK;
         }
 
         // Extract control information from the document.
-        DOMNode docElement = doc.GetDocumentElement();
-        CdrDocCtrlInfo ctrlInfo;
-        cdr::extractCtlInfo(docElement, ctrlInfo);
-        CString docTitle = ctrlInfo.docTitle;
-        if (docTitle.IsEmpty())
-            docTitle = L"Server will replace this dummy title";
+        DOMNode doc_element = doc.GetDocumentElement();
+        CdrDocCtrlInfo ctrl_info;
+        cdr::extract_ctl_info(doc_element, ctrl_info);
+        CString doc_title = ctrl_info.doc_title;
+        if (doc_title.IsEmpty())
+            doc_title = L"Server will replace this dummy title";
 
         // Ask the user for options to be used for the operation.
-        bool blobPossible = false;
-        if (ctrlInfo.docType == L"Media" ||
-            ctrlInfo.docType == L"SupplementaryInfo")
-            blobPossible = true;
-        CSaveDialog saveDialog(ctrlInfo.readyForReview, blobPossible);
-        switch (saveDialog.DoModal()) {
+        bool blob_possible = false;
+        if (ctrl_info.doc_type == L"Media" ||
+            ctrl_info.doc_type == L"SupplementaryInfo")
+            blob_possible = true;
+        CSaveDialog save_dialog(ctrl_info.ready_for_review, blob_possible);
+        switch (save_dialog.DoModal()) {
         case IDOK:
         {
             CWaitCursor wc;
-            clearErrorList();
+            clear_error_list();
             cdr::ValidationErrors* val_errors = NULL;
 
             // Build the save command.
-            CString& docId = ctrlInfo.docId;
-            const char* unlock = saveDialog.m_checkIn ? "Y" : "N";
-            CString& comment = saveDialog.m_comment;
-            const char* tag = docId.IsEmpty() ? "CdrAddDoc" : "CdrRepDoc";
+            CString& doc_id = ctrl_info.doc_id;
+            const char* unlock = save_dialog.m_checkIn ? "Y" : "N";
+            CString& comment = save_dialog.m_comment;
+            const char* tag = doc_id.IsEmpty() ? "CdrAddDoc" : "CdrRepDoc";
             cdr::CommandSet request(tag);
             auto command = request.command;
             request.child_element(command, "CheckIn", unlock);
-            if (saveDialog.m_createVersion) {
+            if (save_dialog.m_createVersion) {
                 auto version = request.child_element(command, "Version", "Y");
-                const char* pub = saveDialog.m_versionPublishable ? "Y" : "N";
+                const char* pub = save_dialog.m_versionPublishable ? "Y" : "N";
                 request.set(version, "Publishable", pub);
             }
             else
                 request.child_element(command, "Version", "N");
-            const char* validate = saveDialog.m_validate ? "Y" : "N";
+            const char* validate = save_dialog.m_validate ? "Y" : "N";
             auto val = request.child_element(command, "Validate", validate);
             request.set(val, "ErrorLocators", "Y");
             request.child_element(command, "Echo", "Y");
             if (!comment.IsEmpty())
                 request.child_element(command, "Reason", comment);
             auto cdr_doc = request.child_element(command, "CdrDoc");
-            request.set(cdr_doc, "Type", ctrlInfo.docType);
-            if (!ctrlInfo.docId.IsEmpty())
-                request.set(cdr_doc, "Id", ctrlInfo.docId);
+            request.set(cdr_doc, "Type", ctrl_info.doc_type);
+            if (!ctrl_info.doc_id.IsEmpty())
+                request.set(cdr_doc, "Id", ctrl_info.doc_id);
             auto ctl = request.child_element(cdr_doc, "CdrDocCtl");
-            if (!ctrlInfo.docId.IsEmpty())
-                request.child_element(ctl, "DocId", ctrlInfo.docId);
-            request.child_element(ctl, "DocType", ctrlInfo.docType);
-            request.child_element(ctl, "DocTitle", ctrlInfo.docTitle);
-            if (saveDialog.m_docInactive)
+            if (!ctrl_info.doc_id.IsEmpty())
+                request.child_element(ctl, "DocId", ctrl_info.doc_id);
+            request.child_element(ctl, "DocType", ctrl_info.doc_type);
+            request.child_element(ctl, "DocTitle", ctrl_info.doc_title);
+            if (save_dialog.m_docInactive)
                 request.child_element(ctl, "DocActiveStatus", "I");
-            char* review = saveDialog.m_readyForReview ? "Y" : "N";
+            char* review = save_dialog.m_readyForReview ? "Y" : "N";
             request.child_element(ctl, "DocNeedsReview", review);
             if (!comment.IsEmpty())
                 request.child_element(ctl, "DocComment", comment);
 
             // Handle blob if present.
             char* blob = nullptr;
-            int blobSize = 0;
-            CFile blobFile;
-            CString blobFilename = saveDialog.m_blobFilenameString;
-            if (!blobFilename.IsEmpty()) {
+            int blob_size = 0;
+            CFile blob_file;
+            CString blob_filename = save_dialog.m_blobFilenameString;
+            if (!blob_filename.IsEmpty()) {
                 UINT flags = CFile::modeRead | CFile::shareDenyNone;
-                if (!blobFile.Open((LPCTSTR)blobFilename, flags)) {
-                    CString msg = "Failure loading " + blobFilename;
+                if (!blob_file.Open((LPCTSTR)blob_filename, flags)) {
+                    CString msg = "Failure loading " + blob_filename;
                     ::AfxMessageBox(msg);
                     return S_OK;
                 }
-                blobSize = (int)blobFile.GetLength();
-                if (ctrlInfo.docType == L"Media") {
+                blob_size = (int)blob_file.GetLength();
+                if (ctrl_info.doc_type == L"Media") {
                     try {
                         // Harmless if blob isn't an image.
-                        insertImageDimensions(docElement, blobFile);
+                        insert_image_dimensions(doc_element, blob_file);
                     }
                     catch (...) {
-                        TCHAR* msg = L"Unable to set image dimensions";
-                        ::AfxMessageBox(msg);
+                        ::AfxMessageBox(L"Unable to set image dimensions");
                     }
                     try {
                         // Shouldn't be a problem if this isn't an audio file.
-                        insertAudioSeconds(docElement, blobFile);
+                        insert_audio_seconds(doc_element, blob_file);
                     }
                     catch (...) {
-                        TCHAR* msg = L"Unable to set RunSeconds";
-                        ::AfxMessageBox(msg);
+                        ::AfxMessageBox(L"Unable to set RunSeconds");
                     }
                 }
             }
@@ -1794,14 +1795,14 @@ STDMETHODIMP CCommands::save(int *pRet) {
                 ~Buf() { delete [] buf; }
                 char* buf;
             };
-            Buf blobBuf(blobSize);
-            if (blobSize > 0) {
+            Buf blob_buf(blob_size);
+            if (blob_size > 0) {
                 try {
-                    getBlobFromFile(blobBuf.buf, blobFile, blobSize);
+                    get_blob_from_file(blob_buf.buf, blob_file, blob_size);
                 }
                 catch (::CException* e) {
                     CString msg;
-                    msg.Format(L"Failure loading %s", blobFilename);
+                    msg.Format(L"Failure loading %s", blob_filename);
                     ::AfxMessageBox(msg);
                     e->ReportError();
                     e->Delete();
@@ -1809,22 +1810,22 @@ STDMETHODIMP CCommands::save(int *pRet) {
                 }
                 catch (...) {
                     CString msg;
-                    msg.Format(L"Unknown failure loading %s", blobFilename);
+                    msg.Format(L"Unknown failure loading %s", blob_filename);
                     ::AfxMessageBox(msg);
                     return S_OK;
                 }
             }
 
             // Encode the blob if we have one.
-            int encodedBlobSize = 0;
-            if (blobSize)
-                encodedBlobSize = Base64EncodeGetRequiredLength(blobSize);
-            Buf encodedBlobBuffer(encodedBlobSize + 1);
-            if (encodedBlobSize) {
-                int written = encodedBlobSize;
-                const BYTE* source = (const BYTE*)blobBuf.buf;
-                blob = encodedBlobBuffer.buf;
-                BOOL ok = Base64Encode(source, blobSize, blob, &written);
+            int encoded_blob_size = 0;
+            if (blob_size)
+                encoded_blob_size = Base64EncodeGetRequiredLength(blob_size);
+            Buf encoded_blob_buffer(encoded_blob_size + 1);
+            if (encoded_blob_size) {
+                int written = encoded_blob_size;
+                const BYTE* source = (const BYTE*)blob_buf.buf;
+                blob = encoded_blob_buffer.buf;
+                BOOL ok = Base64Encode(source, blob_size, blob, &written);
                 if (!ok) {
                     ::AfxMessageBox(L"failure encoding blob");
                     return S_OK;
@@ -1835,13 +1836,13 @@ STDMETHODIMP CCommands::save(int *pRet) {
 
             // Submit the save command to the server.
             CTime start_time = CTime::GetCurrentTime();
-            CString response = CdrSocket::sendCommands(request, blob);
+            CString response = CdrSocket::send_commands(request, blob);
             cdr::DOM response_dom(response);
             CTime end_time = CTime::GetCurrentTime();
             CTimeSpan elapsed_time = end_time - start_time;
             auto cdr_response = response_dom.find("CdrResponse");
             if (response_dom.get(cdr_response, "Status") != L"success") {
-                if (!cdr::showErrors(response_dom)) {
+                if (!cdr::show_errors(response_dom)) {
                     debug_log(response);
                     ::AfxMessageBox(L"Failure without explanation");
                 }
@@ -1849,12 +1850,12 @@ STDMETHODIMP CCommands::save(int *pRet) {
             else {
 
                 // Show the user any validation errors.
-                *pRet = 0;
+                *ret_val = 0;
                 val_errors = new cdr::ValidationErrors(response_dom);
-                *pRet = (int)val_errors->errors.size();
-                if (!*pRet) {
-                    if (saveDialog.m_validate) {
-                        CPassedValidation dlg(ctrlInfo.docId);
+                *ret_val = (int)val_errors->errors.size();
+                if (!*ret_val) {
+                    if (save_dialog.m_validate) {
+                        CPassedValidation dlg(ctrl_info.doc_id);
                         dlg.DoModal();
                     }
                     delete val_errors;
@@ -1871,22 +1872,22 @@ STDMETHODIMP CCommands::save(int *pRet) {
                     doc.Close(2); // 2=don't save changes.
                     CString msg = elapsed_time.Format(
                         L"Document stored successfully (elapsed: %M:%S)");
-                    if (ctrlInfo.docId.IsEmpty())
+                    if (ctrl_info.doc_id.IsEmpty())
                         msg += L"\nIt is now checked out to you.\n"
                             L"Please check in when processing is complete.";
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
-                    if (!saveDialog.m_checkIn) {
-                        openDoc(response_dom, doc_id, true, L"Current");
+                    if (!save_dialog.m_checkIn) {
+                        open_doc(response_dom, doc_id, true, L"Current");
                         if (val_errors) {
-                            doc = cdr::getApp().GetActiveDocument();
-                            CString path = getFullDocPath(&doc);
-                            cdr::validationErrorSets[path] = val_errors;
+                            doc = cdr::get_app().GetActiveDocument();
+                            CString path = get_full_doc_path(&doc);
+                            cdr::validation_error_sets[path] = val_errors;
                         }
                     }
                     else {
                         delete val_errors;
                         val_errors = nullptr;
-                        removeDoc(doc_id);
+                        remove_doc(doc_id);
                     }
                 }
             }
@@ -1922,36 +1923,36 @@ STDMETHODIMP CCommands::save(int *pRet) {
  * Submits a search request (obtained from the user) to the CDR server
  * and allows the user to retrieve one of the documents found.
  *
- *  @param  pRet - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation.
  */
-STDMETHODIMP CCommands::search(int *pRet) {
+STDMETHODIMP CCommands::search(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("search");
-    *pRet = 1;
+    *ret_val = 1;
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
 
         // Make sure the document type names got loaded.
-        if (docTypeStrings.empty()) {
+        if (doc_type_strings.empty()) {
             ::AfxMessageBox(L"Document type information missing");
             return S_OK;
         }
 
         // Put up the dialog window.
-        CSearchDialog searchDialog(docTypeStrings);
+        CSearchDialog search_dialog(doc_type_strings);
 
         // All the heavy lifting is done in this call.
-        int rc = (int)searchDialog.DoModal();
+        int rc = (int)search_dialog.DoModal();
 
         // Cancel means we're done, even for success. :-)
         if (rc == IDCANCEL)
-            *pRet = 0;
+            *ret_val = 0;
         else
             ::AfxMessageBox(L"Internal error");
     }
@@ -1975,11 +1976,11 @@ STDMETHODIMP CCommands::search(int *pRet) {
 STDMETHODIMP CCommands::setTitleBar(void) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-    //cdr::trace_log("setTitleBar"); XXX too noisy; clutters the log
+    //cdr::trace_log("set_title_bar"); XXX too noisy; clutters the log
     CWnd* w = ::AfxGetMainWnd();
     if (w) {
         CString title;
-        title.Format(L"CDR Editor (%s)", CdrSocket::getHostTier());
+        title.Format(L"CDR Editor (%s)", CdrSocket::get_host_tier());
         w->SetWindowText(title);
     }
 
@@ -1990,39 +1991,39 @@ STDMETHODIMP CCommands::setTitleBar(void) {
  * Launch Internet Explorer (!) for a specific URL.
  *
  *  @param url  - string for the address the user has requested
- *  @param pRet - pointer to the method's return value
+ *  @param ret_val - pointer to the method's return value
  */
-STDMETHODIMP CCommands::showPage(const BSTR* url,  int* pRet) {
+STDMETHODIMP CCommands::showPage(const BSTR* url,  int* ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("showPage");
-    CString urlString(*url);
-    *pRet = cdr::showPage(urlString);
+    CString url_string(*url);
+    *ret_val = cdr::show_page(url_string);
     return S_OK;
 }
 
 /**
  * Ask the CDR server to validate the currently active document.
  *
- *  @param  pRet - address of value returned for Microsoft Automation
+ *  @param  ret_val - address of value returned for Microsoft Automation
  *                 (-1 for failure, otherwise number of validation errors
  *                 and/or warnings found).
  */
-STDMETHODIMP CCommands::validate(int *pRet) {
+STDMETHODIMP CCommands::validate(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("validate");
-    *pRet = -1;
+    *ret_val = -1;
 
     // Find the currently active document.
-    _Document doc = cdr::getApp().GetActiveDocument();
+    _Document doc = cdr::get_app().GetActiveDocument();
 
     // Extract the document's control information.
-    DOMNode docElement = doc.GetDocumentElement();
-    CdrDocCtrlInfo ctrlInfo;
-    cdr::ValidationErrors* valErrors = NULL;
-    cdr::extractCtlInfo(docElement, ctrlInfo);
-    if (ctrlInfo.docId.IsEmpty()) {
+    DOMNode doc_element = doc.GetDocumentElement();
+    CdrDocCtrlInfo ctrl_info;
+    cdr::ValidationErrors* val_errors = NULL;
+    cdr::extract_ctl_info(doc_element, ctrl_info);
+    if (ctrl_info.doc_id.IsEmpty()) {
         ::AfxMessageBox(L"Document has never been saved");
         return S_OK;
     }
@@ -2030,7 +2031,7 @@ STDMETHODIMP CCommands::validate(int *pRet) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::loggedOn()) {
+        if (!CdrSocket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -2042,9 +2043,9 @@ STDMETHODIMP CCommands::validate(int *pRet) {
         {
             CWaitCursor wc;
 
-            clearErrorList();
+            clear_error_list();
 
-            CString docType = docElement.GetNodeName();
+            CString doc_type = doc_element.GetNodeName();
 
             // Dialog box ensures that at least one is true.
             CString validation_types;
@@ -2067,45 +2068,45 @@ STDMETHODIMP CCommands::validate(int *pRet) {
             // Build the validate command.
             cdr::CommandSet request("CdrValidateDoc");
             auto command = request.command;
-            request.set(command, "DocType", docType);
+            request.set(command, "DocType", doc_type);
             request.set(command, "ErrorLocators", "Y");
             request.set(command, "ValidationTypes", validation_types);
-            request.set(command, "Id", ctrlInfo.docId);
+            request.set(command, "Id", ctrl_info.doc_id);
             auto cdr_doc = request.child_element(command, "CdrDoc");
-            request.set(cdr_doc, "Type", docType);
+            request.set(cdr_doc, "Type", doc_type);
             request.set(cdr_doc, "RevisionFilterLevel", filter_level);
             auto doc_ctl = request.child_element(cdr_doc, "CdrDocCtl");
-            if (!ctrlInfo.docId.IsEmpty())
-                request.child_element(doc_ctl, "DocId", ctrlInfo.docId);
-            request.child_element(doc_ctl, "DocTitle", ctrlInfo.docTitle);
+            if (!ctrl_info.doc_id.IsEmpty())
+                request.child_element(doc_ctl, "DocId", ctrl_info.doc_id);
+            request.child_element(doc_ctl, "DocTitle", ctrl_info.doc_title);
             CString original_xml = doc.GetXml();
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Submit the validate command to the server.
-            CString response_xml = CdrSocket::sendCommands(request);
+            CString response_xml = CdrSocket::send_commands(request);
             cdr::DOM response_dom(response_xml);
-            valErrors = new cdr::ValidationErrors(response_dom);
-            *pRet = (int)valErrors->errors.size();
-            if (*pRet) {
-                CString path = getFullDocPath(&doc);
+            val_errors = new cdr::ValidationErrors(response_dom);
+            *ret_val = (int)val_errors->errors.size();
+            if (*ret_val) {
+                CString path = get_full_doc_path(&doc);
                 CString msg;
-                msg.Format(L"saving %d errors for %s", *pRet, path);
+                msg.Format(L"saving %d errors for %s", *ret_val, path);
                 debug_log(msg);
-                cdr::validationErrorSets[path] = valErrors;
+                cdr::validation_error_sets[path] = val_errors;
                 CString version = L"Current";
-                bool checkOut = path.Find(L"Checkout") != -1;
-                int verPos = path.Find(L"-V");
-                if (verPos != -1) {
-                    version = path.Mid(verPos + 2);
+                bool check_out = path.Find(L"Checkout") != -1;
+                int ver_pos = path.Find(L"-V");
+                if (ver_pos != -1) {
+                    version = path.Mid(ver_pos + 2);
                     version = version.Left(version.GetLength() - 4);
                 }
                 doc.Close(2); // 2=don't save changes.
-                openDoc(response_dom, ctrlInfo.docId, checkOut, version);
+                open_doc(response_dom, ctrl_info.doc_id, check_out, version);
             }
             else {
-                delete valErrors;
-                valErrors = nullptr;
-                CPassedValidation dlg(ctrlInfo.docId);
+                delete val_errors;
+                val_errors = nullptr;
+                CPassedValidation dlg(ctrl_info.doc_id);
                 dlg.DoModal();
             }
             break;
@@ -2136,21 +2137,21 @@ STDMETHODIMP CCommands::validate(int *pRet) {
  * return an array of strings from a COM object, I was unable
  * to find documentation for this feature.
  *
- *  @param docId  - CDR document ID string in canonical form
+ *  @param doc_id  - CDR document ID string in canonical form
  *  @param path   - string for location in the document to search
  *  @param values - pointer to string for return value
  */
-STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
+STDMETHODIMP CCommands::valuesForPath(const BSTR* doc_id, const BSTR* path,
                                       BSTR* values) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("valuesForPath");
     CString RS = L"\x0E";
-    CString id(*docId);
+    CString id(*doc_id);
     CString p(*path);
     cdr::CommandSet request("CdrReport");
     auto command = request.command;
-    request.child_element(command, "ReportName", L"Values For Path");
+    request.child_element(command, "ReportName", "Values For Path");
     auto params = request.child_element(command, "ReportParams");
     auto param1 = request.child_element(params, "ReportParam");
     auto param2 = request.child_element(params, "ReportParam");
@@ -2158,7 +2159,7 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
     request.set(param1, "Value", id);
     request.set(param2, "Name", "Path");
     request.set(param2, "Value", p);
-    CString response_xml = CdrSocket::sendCommands(request);
+    CString response_xml = CdrSocket::send_commands(request);
     cdr::DOM dom(response_xml);
     auto nodes = dom.find_all("//Value");
     CString result = L"";
@@ -2183,16 +2184,16 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* docId, const BSTR* path,
  * Called by:
  *   CCommands::save()
  */
-static void clearErrorList() {
-    _Document doc = cdr::getApp().GetActiveDocument();
+static void clear_error_list() {
+    _Document doc = cdr::get_app().GetActiveDocument();
     if (doc) {
-        CString path = getFullDocPath(&doc);
+        CString path = get_full_doc_path(&doc);
         if (!path.IsEmpty()) {
             cdr::ValidationErrorSets::iterator iter =
-                cdr::validationErrorSets.find(path);
-            if (iter != cdr::validationErrorSets.end()) {
+                cdr::validation_error_sets.find(path);
+            if (iter != cdr::validation_error_sets.end()) {
                 delete iter->second;
-                cdr::validationErrorSets.erase(iter);
+                cdr::validation_error_sets.erase(iter);
             }
         }
     }
@@ -2204,18 +2205,18 @@ static void clearErrorList() {
  * Called by:
  *   CCommands::launchBlob()
  *
- *  @param docXml  - string containing the document's serialized XML
- *  @param docType - string containing the document's type name
+ *  @param doc_xml  - string containing the document's serialized XML
+ *  @param doc_type - string containing the document's type name
  *
  * Return:
  *   string (with leading period) for the attachment's file name if knowable,
  *   otherwise empty string
  */
-static CString getBlobExtension(const CString& docXml,
-                                const CString& docType) {
+static CString get_blob_extension(const CString& doc_xml,
+                                const CString& doc_type) {
     CString extension;
-    cdr::DOM dom(docXml);
-    if (docType == L"Media") {
+    cdr::DOM dom(doc_xml);
+    if (doc_type == L"Media") {
         auto node = dom.find("//ImageEncoding");
         if (!node)
             node = dom.find("//VideoEncoding");
@@ -2224,7 +2225,7 @@ static CString getBlobExtension(const CString& docXml,
         if (node)
             extension = L"." + dom.get_text(node);
     }
-    else if (docType == L"SupplementaryInfo") {
+    else if (doc_type == L"SupplementaryInfo") {
         CString mime_type = dom.get_text(dom.find("MimeType"));
         if (mime_type == L"application/pdf")
             extension = L".pdf";
@@ -2261,13 +2262,13 @@ static CString getBlobExtension(const CString& docXml,
  *  @param file - reference to object used to read the file's bytes
  *  @param len  - integer containing the number of bytes to be read
  */
-static void getBlobFromFile(char* buf, CFile& file, int len) {
-    int totalRead = 0;
-    while (totalRead < len) {
-        int bytesRead = file.Read(buf + totalRead, len - totalRead);
-        if (bytesRead < 1)
+static void get_blob_from_file(char* buf, CFile& file, int len) {
+    int total_read = 0;
+    while (total_read < len) {
+        int bytes_read = file.Read(buf + total_read, len - total_read);
+        if (bytes_read < 1)
             throw L"Failure reading from blob file";
-        totalRead += bytesRead;
+        total_read += bytes_read;
     }
 }
 
@@ -2278,14 +2279,14 @@ static void getBlobFromFile(char* buf, CFile& file, int len) {
  *   CCommands::getNextValidationError()
  *   CCommands::save()
  *   CCommands::validate()
- *   clearErrorList()
+ *   clear_error_list()
  *
  *  @param doc - pointer to the document of interest
  *
  * Return:
  *   string for the document's location on disk
  */
-static CString getFullDocPath(_Document* doc) {
+static CString get_full_doc_path(_Document* doc) {
     return doc->GetPath() + L"\\" + doc->GetName();
 }
 
@@ -2296,21 +2297,21 @@ static CString getFullDocPath(_Document* doc) {
  *   CCommands::edit()
  *   CCommands::isReadOnly()
  *
- *  @param docType - string for the name of the active document's type
+ *  @param doc_type - string for the name of the active document's type
  *  @param path    - identification of the currently selected element
  *
  * Return:
  *   pointer to a set of valid values if applicable, otherwise nullptr
  */
-static cdr::StringList* getSchemaValidValues(const CString docType,
+static cdr::StringList* get_schema_valid_values(const CString doc_type,
                                              const CString path)
 {
-    if (validValueSets.find(docType) == validValueSets.end())
+    if (valid_value_sets.find(doc_type) == valid_value_sets.end())
         return nullptr;
-    cdr::ValidValueSet& vvSet = validValueSets[docType];
-    if (vvSet.find(path) == vvSet.end())
+    cdr::ValidValueSet& vv_set = valid_value_sets[doc_type];
+    if (vv_set.find(path) == vv_set.end())
         return nullptr;
-    return &vvSet[path];
+    return &vv_set[path];
 }
 
 /**
@@ -2319,25 +2320,25 @@ static cdr::StringList* getSchemaValidValues(const CString docType,
  * Called by:
  *   CCommands::save()
  *
- *  @param docElement - reference to element in which the duration is set
+ *  @param doc_element - reference to element in which the duration is set
  *  @param file       - reference to the object used to read the file's bytes
  */
-static void insertAudioSeconds(::DOMNode& docElement, CFile& file) {
+static void insert_audio_seconds(::DOMNode& doc_element, CFile& file) {
 
     // Start by blanking out the existing value, to prevent leaving
     // invalid information in the event that we're unable to determine
     // the correct new information.  If the element is not already
     // present, we do nothing.
     debug_log("clearing out AudioSeconds");
-    if (!replaceAudioSeconds(docElement, L""))
+    if (!replace_audio_seconds(doc_element, L""))
         return;
 
-    int seconds = cdr::getAudioSeconds(file);
+    int seconds = cdr::get_audio_seconds(file);
     if (seconds >= 0) {
         CString s;
         s.Format(L"%d", seconds);
         debug_log(L"setting AudioSeconds to " + s);
-        replaceAudioSeconds(docElement, s);
+        replace_audio_seconds(doc_element, s);
     }
 }
 
@@ -2347,24 +2348,24 @@ static void insertAudioSeconds(::DOMNode& docElement, CFile& file) {
  * Called by:
  *   CCommands::save()
  *
- *  @param docElement - reference to element in which the dimensions are set
+ *  @param doc_element - reference to element in which the dimensions are set
  *  @param file       - reference to the object used to read the file's bytes
  */
-static void insertImageDimensions(::DOMNode& docElement, CFile& file) {
+static void insert_image_dimensions(::DOMNode& doc_element, CFile& file) {
 
     // Start by blanking out the existing values, to prevent leaving
     // invalid information in the event that we're unable to determine
     // the correct new information.  If the dimension elements are not
     // already present, we do nothing.
-    if (!replaceImageDimensions(docElement, L"", L""))
+    if (!replace_image_dimensions(doc_element, L"", L""))
         return;
 
     cdr::ImageDimensions dim;
-    if (cdr::getImageDimensions(file, dim)) {
+    if (cdr::get_image_dimensions(file, dim)) {
         CString height, width;
         height.Format(L"%ld", dim.height);
         width.Format(L"%ld", dim.width);
-        replaceImageDimensions(docElement, height, width);
+        replace_image_dimensions(doc_element, height, width);
     }
 
     // Restore file position for loading the entire blob.
@@ -2380,19 +2381,19 @@ static void insertImageDimensions(::DOMNode& docElement, CFile& file) {
  * Return:
  *   true iff the SummaryLanguage element has the text value "Spanish"
  */
-static bool inSpanishSummary() {
-    _Application app = cdr::getApp();
+static bool is_spanish_summary() {
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
-    DOMNode docElement = doc.GetDocumentElement();
-    CString docType = docElement.GetNodeName();
-    if (docType == L"Summary") {
-        ::DOMNode c = docElement.GetFirstChild();
+    DOMNode doc_element = doc.GetDocumentElement();
+    CString doc_type = doc_element.GetNodeName();
+    if (doc_type == L"Summary") {
+        ::DOMNode c = doc_element.GetFirstChild();
         while (c) {
             if (c.GetNodeName() == L"SummaryMetaData") {
                 ::DOMNode gc = c.GetFirstChild();
                 while (gc) {
                     if (gc.GetNodeName() == L"SummaryLanguage") {
-                        CString value = cdr::extractElementText(gc);
+                        CString value = cdr::extract_element_text(gc);
                         if (value == L"Spanish")
                             return true;
                     }
@@ -2413,18 +2414,18 @@ static bool inSpanishSummary() {
  * Called by:
  *   CCommands::isReadOnly()
  *
- *  @param  docType     string representing the document type.
- *  @param  elemName    string naming the element.
+ *  @param  doc_type     string representing the document type.
+ *  @param  elem_name    string naming the element.
  *  @return             <code>true</code> iff the element can link to
  *                      another document or fragment.
  */
-static bool isLinkingElement(const CString& docType,
-                             const CString& elemName)
+static bool is_linking_element(const CString& doc_type,
+                             const CString& elem_name)
 {
-    if (linkingElements.find(docType) == linkingElements.end())
+    if (linking_elements.find(doc_type) == linking_elements.end())
         return false;
-    cdr::StringSet& ss = linkingElements[docType];
-    return ss.find(elemName) != ss.end();
+    cdr::StringSet& ss = linking_elements[doc_type];
+    return ss.find(elem_name) != ss.end();
 }
 
 /**
@@ -2433,11 +2434,11 @@ static bool isLinkingElement(const CString& docType,
  * Called by:
  *   CCommands::logon()
  *
- * Populates file-scope collections docTypeStrings and validValueSets.
+ * Populates file-scope collections doc_type_strings and valid_value_sets.
  *
  * Throws a string-based exception if reading or parsing fails.
  */
-static void loadDocTypes() {
+static void load_doc_types() {
 
     // Use a local buffer type to ensure memory release even if an
     // exception occurs.
@@ -2447,26 +2448,26 @@ static void loadDocTypes() {
         char* buf;
     };
     CFile file;
-    CString path = cdr::getUserPath() + L"\\CdrDocTypes.xml";
+    CString path = cdr::get_user_path() + L"\\CdrDocTypes.xml";
     file.Open((LPCTSTR)path, CFile::modeRead);
-    int nBytes = (int)file.GetLength();
-    if (nBytes <= 0)
+    int n_bytes = (int)file.GetLength();
+    if (n_bytes <= 0)
         throw L"Missing document type information";
 
-    Buf b((size_t)nBytes);
-    int totalRead = 0;
-    while (totalRead < nBytes) {
-        int bytesRead = file.Read(b.buf + totalRead, nBytes - totalRead);
-        if (bytesRead < 1)
+    Buf b((size_t)n_bytes);
+    int total_read = 0;
+    while (total_read < n_bytes) {
+        int bytes_read = file.Read(b.buf + total_read, n_bytes - total_read);
+        if (bytes_read < 1)
             throw L"Failure reading from CdrDocTypes.xml";
-        totalRead += bytesRead;
+        total_read += bytes_read;
     }
-    CString info = cdr::utf8ToCString(b.buf);
+    CString info = cdr::utf8_to_cstring(b.buf);
 
     // Populate these maps.
-    docTypeStrings.clear();
-    validValueSets.clear();
-    docTypeStrings.push_back(L"Any Type");
+    doc_type_strings.clear();
+    valid_value_sets.clear();
+    doc_type_strings.push_back(L"Any Type");
 
     // Loop through the document types.
     cdr::DOM dom(info);
@@ -2474,7 +2475,7 @@ static void loadDocTypes() {
     for (auto& response : responses) {
         if (dom.get(response, "Format") == L"xml") {
             CString doc_type = dom.get(response, "Type");
-            docTypeStrings.push_back(doc_type);
+            doc_type_strings.push_back(doc_type);
             cdr::ValidValueSet vv_set;
             auto enum_sets = dom.find_all("EnumSet", response);
             for (auto& enum_set : enum_sets) {
@@ -2484,11 +2485,11 @@ static void loadDocTypes() {
                     auto elements = dom.find_all("ValidValue", enum_set);
                     for (auto& vv : elements) {
                         CString value = dom.get_text(vv);
-                        values.push_back(cdr::decode(value));
+                        values.push_back(value);
                     }
                 }
             }
-            validValueSets[doc_type] = vv_set;
+            valid_value_sets[doc_type] = vv_set;
             cdr::StringSet names;
             CString path = L"LinkingElements/LinkingElement";
             auto elements = dom.find_all(path, response);
@@ -2497,7 +2498,7 @@ static void loadDocTypes() {
                 if (!name.IsEmpty())
                     names.insert(name);
             }
-            linkingElements[doc_type] = names;
+            linking_elements[doc_type] = names;
         }
     }
 }
@@ -2510,118 +2511,117 @@ static void loadDocTypes() {
  *   CCommands::save()
  *   CCommands::validate()
  *
- *  @param response     - parsed response from the CDR server
- *  @param docId    - string containing the CDR ID of the retrieved document
- *  @param checkOut - TRUE if the document was locked for editing
- *  @paranversion   - string with the version number (or "Current")
+ *  @param response  - parsed response from the CDR server
+ *  @param doc_id    - string containing the CDR ID of the retrieved document
+ *  @param check_out - TRUE if the document was locked for editing
+ *  @param version   - string with the version number (or "Current")
  */
-static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
+static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
                     const CString& version) {
 
     // Create local variables needed by the method.
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     Documents docs = app.GetDocuments();
-    unsigned int docNo = cdr::getDocNo(docId);
+    unsigned int doc_no = cdr::get_doc_no(doc_id);
     CString err;
     CString blocked = L"N";
-    CString docType;
-    CString docPath;
-    CString retrievedDocTitle;
-    CString docTitle;
-    CString cdrPath = cdr::getUserPath() + L"\\Cdr";
+    CString doc_type;
+    CString doc_path;
+    CString retrieved_doc_title;
+    CString doc_title;
+    CString cdr_path = cdr::get_user_path() + L"\\Cdr";
 
     // Find out if the document has been marked ReadyForReview.
-    CString readyForReview = L"N";
-    auto rrElement = response.find("//ReadyForReview");
-    if (rrElement && response.get_text(rrElement) == L"Y")
-        readyForReview = L"Y";
+    CString ready_for_review = L"N";
+    auto rr_element = response.find("//ReadyForReview");
+    if (rr_element && response.get_text(rr_element) == L"Y")
+        ready_for_review = L"Y";
 
     // Build up path string.
-    CString verPart = L"";
+    CString ver_part = L"";
     if (version != L"Current")
-        verPart.Format(L"-V%s", version);
-    docPath.Format(L"%s\\%s\\CDR%u%s.xml",
-                   (LPCTSTR)cdrPath,
-                   checkOut ? L"Checkout" : L"ReadOnly",
-                   docNo,
-                   (LPCTSTR)verPart);
+        ver_part.Format(L"-V%s", version);
+    doc_path.Format(L"%s\\%s\\CDR%u%s.xml",
+                   (LPCTSTR)cdr_path,
+                   check_out ? L"Checkout" : L"ReadOnly",
+                   doc_no,
+                   (LPCTSTR)ver_part);
 
     // See if we got the document we asked for.
-    auto cdrDocBlock = response.find("//CdrDoc");
-    if (!cdrDocBlock) {
+    auto cdr_doc_block = response.find("//CdrDoc");
+    if (!cdr_doc_block) {
 
         // Log the response so we can examine it.
         char name[1024];
         time_t now = time(NULL);
         sprintf(name, "response-%lld.xml", (long long)now);
-        std::ofstream responseStream(name, std::ios::binary);
-        if (responseStream)
-            responseStream << cdr::cStringToUtf8(response.get_xml()).c_str();
+        std::ofstream response_stream(name, std::ios::binary);
+        if (response_stream)
+            response_stream << cdr::cstring_to_utf8(response.get_xml()).c_str();
         err = response.get_text(response.find("//Errors/Err"));
         if (err.IsEmpty())
             err = L"Unknown failure retrieving document from CDR";
     }
     else {
 
-        docType = response.get(cdrDocBlock, "Type");
-        auto titleElement = response.find("DocTitle", cdrDocBlock);
-        if (titleElement) {
-            docTitle = response.get_text(titleElement);
-            CString titleStart = docTitle.Left(15); // OCECDR-3914
-            if (titleStart.GetLength() < docTitle.GetLength())
-                titleStart += L'\x2026';
-            retrievedDocTitle.Format(L"CDR%u%s%s - %s", docNo,
-                                     (LPCTSTR)verPart,
-                                     checkOut ? L"" : L" [RO]",
-                                     (LPCTSTR)cdr::decode(titleStart));
+        doc_type = response.get(cdr_doc_block, "Type");
+        auto doc_control = response.find("CdrDocCtl", cdr_doc_block);
+        auto title_element = response.find("DocTitle", doc_control);
+        if (title_element) {
+            doc_title = response.get_text(title_element);
+            CString title_start = doc_title.Left(15); // OCECDR-3914
+            if (title_start.GetLength() < doc_title.GetLength())
+                title_start += L'\x2026';
+            retrieved_doc_title.Format(L"CDR%u%s%s - %s", doc_no, ver_part,
+                                     check_out ? L"" : L" [RO]", title_start);
         }
-        auto statusElement = response.find("DocActiveStatus", cdrDocBlock);
-        if (response.get_text(statusElement) == L"I")
+        auto status_element = response.find("DocActiveStatus", doc_control);
+        if (response.get_text(status_element) == L"I")
             blocked = L"Y";
     }
 
     // Extract the DocXml.
-    CString docXml;
-    if (err.IsEmpty() && docType.IsEmpty())
+    CString doc_xml;
+    if (err.IsEmpty() && doc_type.IsEmpty())
         err = L"Missing Type attribute in CdrDoc element";
     if (err.IsEmpty()) {
-        auto xmlElem = response.find("CdrDocXml", cdrDocBlock);
-        docXml = response.get_text(xmlElem);
+        auto xml_elem = response.find("CdrDocXml", cdr_doc_block);
+        doc_xml = response.get_text(xml_elem);
     }
 
     // Write out the document to the file system.
-    if (!docXml.IsEmpty()) {
-        std::string pathName = cdr::cStringToUtf8(docPath);
-        std::ofstream xmlStream(pathName.c_str(), std::ios::binary);
-        if (!xmlStream)
-            err.Format(L"Can't write xml document at %s", (LPCTSTR)docPath);
+    if (!doc_xml.IsEmpty()) {
+        std::string path_name = cdr::cstring_to_utf8(doc_path);
+        std::ofstream xml_stream(path_name.c_str(), std::ios::binary);
+        if (!xml_stream)
+            err.Format(L"Can't write xml document at %s", (LPCTSTR)doc_path);
         else {
 
             // Do some massaging (primarily insertion of the control block).
             try {
-                cdr::DOM dom(docXml.Trim());
+                cdr::DOM dom(doc_xml.Trim());
                 auto root = dom.get_root();
-                if (!checkOut)
+                if (!check_out)
                     dom.set(root, "readonly", "yes");
                 CString tag = dom.get_node_name(root);
-                if (tag != docType) {
+                if (tag != doc_type) {
                     CString msg;
-                    msg.Format(L"Got %s doc instead of %s", tag, docType);
+                    msg.Format(L"Got %s doc instead of %s", tag, doc_type);
                     ::AfxMessageBox(msg);
                     return false;
                 }
-                auto docCtl = dom.element("CdrDocCtl");
-                dom.set(docCtl, "readyForReview", readyForReview);
-                dom.set(docCtl, "blocked", blocked);
-                dom.child_element(docCtl, "DocId", docId);
-                dom.child_element(docCtl, "DocTitle", docTitle);
-                dom.insert(root, docCtl, dom.find("*", root));
-                CString xmlDecl = L"<?xml version=\"1.0\"?>\n";
+                auto doc_ctl = dom.element("CdrDocCtl");
+                dom.set(doc_ctl, "readyForReview", ready_for_review);
+                dom.set(doc_ctl, "blocked", blocked);
+                dom.child_element(doc_ctl, "DocId", doc_id);
+                dom.child_element(doc_ctl, "DocTitle", doc_title);
+                dom.insert(root, doc_ctl, dom.find("*", root));
+                CString xml_decl = L"<?xml version=\"1.0\"?>\n";
                 CString dtd;
-                CString dt(docType);
+                CString dt(doc_type);
                 dtd.Format(L"<!DOCTYPE %s SYSTEM '%s.dtd'>\n", dt, dt);
-                CString newXml = xmlDecl + dtd + dom.get_xml(root);
-                xmlStream << cdr::cStringToUtf8(newXml).c_str();
+                CString new_xml = xml_decl + dtd + dom.get_xml(root);
+                xml_stream << cdr::cstring_to_utf8(new_xml).c_str();
             }
             catch (::CException* e) {
                 e->ReportError();
@@ -2647,9 +2647,9 @@ static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
 
         // Open the document and set its title bar string.
         try {
-            _Document doc = docs.Open((LPCTSTR)docPath, 1);
+            _Document doc = docs.Open((LPCTSTR)doc_path, 1);
             if (doc) {
-                doc.SetTitle(retrievedDocTitle);
+                doc.SetTitle(retrieved_doc_title);
                 return true;
             }
         }
@@ -2672,7 +2672,7 @@ static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
             ::AfxMessageBox(L"Unexpected exception retrieving document");
         }
     }
-    debug_log(L"leaving openDoc() in defeat");
+    debug_log(L"leaving open_doc() in defeat");
     return false;
 }
 
@@ -2685,16 +2685,16 @@ static bool openDoc(cdr::DOM& response, const CString& docId, BOOL checkOut,
  *   CCommands::checkIn()
  *   CCommands::save()
  *
- *  @param docId - string containing the CDR ID for the document to be
+ *  @param doc_id - string containing the CDR ID for the document to be
  *                 removed
  */
-static void removeDoc(const CString& docId) {
-    unsigned int docNo = cdr::getDocNo(docId);
-    CString cdrPath = cdr::getUserPath() + L"\\Cdr";
-    CString docPath;
-    docPath.Format(L"%s\\Checkout\\CDR%u.xml", (LPCTSTR)cdrPath, docNo);
+static void remove_doc(const CString& doc_id) {
+    unsigned int doc_no = cdr::get_doc_no(doc_id);
+    CString cdr_path = cdr::get_user_path() + L"\\Cdr";
+    CString doc_path;
+    doc_path.Format(L"%s\\Checkout\\CDR%u.xml", (LPCTSTR)cdr_path, doc_no);
     try {
-        CFile::Remove((LPCTSTR)docPath);
+        CFile::Remove((LPCTSTR)doc_path);
     }
     catch (...) {}
 }
@@ -2703,21 +2703,21 @@ static void removeDoc(const CString& docId) {
  * Set the duration of a SoundData block.
  *
  * Called by:
- *   insertAudioSeconds()
+ *   insert_audio_seconds()
  *
- *  @param docElement - reference to node whose duration we set
+ *  @param doc_element - reference to node whose duration we set
  *  @param seconds    - string containing the number of runtime seconds
  */
-static bool replaceAudioSeconds(::DOMNode& docElement, CString seconds) {
-    ::DOMElement& elem = (::DOMElement&)docElement;
-    ::DOMNodeList nodeList = elem.getElementsByTagName(L"SoundData");
-    if (nodeList == 0 || nodeList.GetLength() < 1)
+static bool replace_audio_seconds(::DOMNode& doc_element, CString seconds) {
+    ::DOMElement& elem = (::DOMElement&)doc_element;
+    ::DOMNodeList node_list = elem.getElementsByTagName(L"SoundData");
+    if (node_list == 0 || node_list.GetLength() < 1)
         return false;
-    ::DOMElement dimElem = nodeList.item(0);
-    ::DOMElement child = dimElem.GetFirstChild();
+    ::DOMElement sound_data = node_list.item(0);
+    ::DOMElement child = sound_data.GetFirstChild();
     while (child != 0) {
         if (child.GetNodeName() == L"RunSeconds") {
-            cdr::replaceElementContent(child, seconds);
+            cdr::replace_element_content(child, seconds);
             debug_log("found and replaced RunSeconds value");
             return true;
         }
@@ -2731,67 +2731,31 @@ static bool replaceAudioSeconds(::DOMNode& docElement, CString seconds) {
  * Set height and width for an image element.
  *
  * Called by:
- *   insertImageDimensions()
+ *   insert_image_dimensions()
  *
- *  @param docElement - reference to node whose dimensions we set
- *  @param height     - string for the height of the image
- *  @param width      - string for the width of the image
+ *  @param doc_element - reference to node whose dimensions we set
+ *  @param height      - string for the height of the image
+ *  @param width       - string for the width of the image
  */
-static bool replaceImageDimensions(::DOMNode& docElement,
+static bool replace_image_dimensions(::DOMNode& doc_element,
                                    CString height, CString width) {
-    ::DOMElement& elem = (::DOMElement&)docElement;
-    ::DOMNodeList nodeList = elem.getElementsByTagName(L"ImageDimensions");
-    if (nodeList == 0 || nodeList.GetLength() < 1)
+    ::DOMElement& elem = (::DOMElement&)doc_element;
+    ::DOMNodeList node_list = elem.getElementsByTagName(L"ImageDimensions");
+    if (node_list == 0 || node_list.GetLength() < 1)
         return false;
-    ::DOMElement dimElem = nodeList.item(0);
-    ::DOMElement child = dimElem.GetFirstChild();
-    bool foundHeight = false, foundWidth = false;
+    ::DOMElement dim_elem = node_list.item(0);
+    ::DOMElement child = dim_elem.GetFirstChild();
+    bool found_height = false, found_width = false;
     while (child != 0) {
         if (child.GetNodeName() == L"HeightPixels") {
-            cdr::replaceElementContent(child, height);
-            foundHeight = true;
+            cdr::replace_element_content(child, height);
+            found_height = true;
         }
         else if (child.GetNodeName() == L"WidthPixels") {
-            cdr::replaceElementContent(child, width);
-            foundWidth = true;
+            cdr::replace_element_content(child, width);
+            found_width = true;
         }
         child = child.GetNextSibling();
     }
-    return foundHeight && foundWidth;
-}
-
-/**
- * PROBABLY DON'T NEED THIS. XXX
- */
-static void setTitleBar() {
-    CWnd* w = ::AfxGetMainWnd();
-    if (w) {
-        CString title;
-        title.Format(L"CDR Editor (%s)", CdrSocket::getHostTier());
-        w->SetWindowText(title);
-    }
-}
-
-/**
- * Converts a reference to an OLE VARIANT object to an MFC
- * string.  Recurses if necessary to handle additional levels
- * of indirection.
- *
- * XXX NOT USED
- *
- *  @param  v                   reference to OLE VARIANT object.
- *  @return                     newly created MFC CString object.
- */
-static CString stringFromVariant(const VARIANT FAR& v)
-{
-    switch (v.vt) {
-    case VT_BYREF | VT_VARIANT:
-        return stringFromVariant(*v.pvarVal);
-    case VT_BSTR:
-        return CString(v.bstrVal);
-    case VT_BYREF | VT_BSTR:
-        return CString(*v.pbstrVal);
-    default:
-        return "";
-    }
+    return found_height && found_width;
 }

@@ -149,17 +149,17 @@ void CSearchDialog::OnSearchButton()
     // Submit the request to the CDR server.
     CWaitCursor wc;
     debug_log(request.get_xml());
-    CString response_xml = CdrSocket::sendCommands(request);
+    CString response_xml = CdrSocket::send_commands(request);
     cdr::DOM dom(response_xml);
-    if (cdr::showErrors(dom)) {
+    if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
         return;
     }
 
     // Populate the dialog's list box with the results.
     m_docList.ResetContent();
-    cdr::extractSearchResults(dom, lastSearch.docSet);
-    if (cdr::fillListBox(m_docList, lastSearch.docSet) > 0) {
+    cdr::extract_search_results(dom, lastSearch.docSet);
+    if (cdr::fill_list_box(m_docList, lastSearch.docSet) > 0) {
         m_docList.SetCurSel(0);
         m_docList.EnableWindow();
         lastSearch.selection = 0;
@@ -212,7 +212,7 @@ BOOL CSearchDialog::OnInitDialog()
             m_titleEquals.SetCheck(1);
             break;
         }
-        int num = cdr::fillListBox(m_docList, lastSearch.docSet);
+        int num = cdr::fill_list_box(m_docList, lastSearch.docSet);
         if (lastSearch.selection >= 0 && lastSearch.selection < num)
             m_docList.SetCurSel(lastSearch.selection);
         m_docList.EnableWindow();
@@ -239,10 +239,10 @@ void CSearchDialog::OnVersionsButton()
     if (curSel >= 0) {
         CString str;
         m_docList.GetText(curSel, str);
-        unsigned int docNo = cdr::getDocNo(str);
+        unsigned int docNo = cdr::get_doc_no(str);
 
         // Make canonical document ID.
-        CString docId = cdr::docIdString(docNo);
+        CString docId = cdr::doc_id_string(docNo);
         CVersionList versionList(docId);
         if (versionList.DoModal() == IDOK)
             EndDialog(IDCANCEL);

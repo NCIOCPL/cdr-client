@@ -47,12 +47,12 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSchemaPicklist message handlers
 
-void CSchemaPicklist::OnDblclkList1() 
+void CSchemaPicklist::OnDblclkList1()
 {
-    OnOK();    
+    OnOK();
 }
 
-void CSchemaPicklist::OnOK() 
+void CSchemaPicklist::OnOK()
 {
     int selCount = m_listBox.GetSelCount();
     if (selCount > 0) {
@@ -64,7 +64,7 @@ void CSchemaPicklist::OnOK()
         int curSel = selections[i];
         CString str;
         m_listBox.GetText(curSel, str);
-        ::Selection selection = cdr::getApp().GetSelection();
+        ::Selection selection = cdr::get_app().GetSelection();
         selection.SetReadOnlyContainer(FALSE);
 		selection.SelectContainerContents();
         ::DOMElement elem = selection.GetContainerNode();
@@ -86,32 +86,10 @@ void CSchemaPicklist::OnOK()
                 textNode = nextNode;
             }
             if (!found) {
-                ::_Document curDoc = cdr::getApp().GetActiveDocument();
+                ::_Document curDoc = cdr::get_app().GetActiveDocument();
                 ::DOMText newNode = curDoc.createTextNode(str);
                 elem.appendChild(newNode);
                 newNode.m_lpDispatch->Release(); // XXX Surprise! We need this!
-            }
-
-            // Added in response to request for issue #529.
-            if (elemName == _T("ProtocolPhase") ||
-                elemName == _T("ProtocolDesign"))
-            {
-                while (++i < selCount) {
-                    ::Selection sel = cdr::getApp().GetSelection();
-                    if (!sel.FindInsertLocation(elemName, TRUE)) {
-                        ::AfxMessageBox(_T("You selected more items than ")
-                                        _T("are allowed at this position."));
-                        break;
-                    }
-                    sel.InsertElement(elemName);
-                    sel.MoveToElement(elemName, TRUE);
-                    curSel = selections[i];
-                    m_listBox.GetText(curSel, str);
-                    sel.SelectContainerContents();
-					sel.SetReadOnlyContainer(FALSE);
-                    sel.SetText(str);
-					sel.SetReadOnlyContainer(TRUE);
-                }
             }
         }
         selection.SetReadOnlyContainer(TRUE);
@@ -119,16 +97,16 @@ void CSchemaPicklist::OnOK()
     }
 }
 
-BOOL CSchemaPicklist::OnInitDialog() 
+BOOL CSchemaPicklist::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    SetWindowText(_T("Valid Values for Element ") + elemName);    
+    SetWindowText(L"Valid Values for Element " + elemName);
     cdr::StringList::const_iterator i = vvSet->begin();
     while (i != vvSet->end())
         m_listBox.AddString(*i++);
     if (!curVal.IsEmpty())
         m_listBox.SelectString(-1, curVal);
-    
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }

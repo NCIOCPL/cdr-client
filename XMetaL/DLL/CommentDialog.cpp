@@ -43,14 +43,14 @@ void CCommentDialog::OnBnClickedOk()
         m_comment.GetWindowText(comment);
 
         // Find the linking element.
-        ::Range selection = cdr::getApp().GetSelection();
+        ::Range selection = cdr::get_app().GetSelection();
         ::DOMElement elem = selection.GetContainerNode();
         while (elem && elem.GetNodeType() != 1) // DOMElement
             elem = elem.GetParentNode();
         if (elem) {
 
             // Set the comment attribute.
-            elem.setAttribute(_T("comment"), comment);
+            elem.setAttribute(L"comment", comment);
         }
     }
     OnOK();
@@ -61,14 +61,14 @@ BOOL CCommentDialog::OnInitDialog()
     CDialog::OnInitDialog();
 
     // Find the linking element.
-    ::Range selection = cdr::getApp().GetSelection();
+    ::Range selection = cdr::get_app().GetSelection();
     ::DOMElement elem = selection.GetContainerNode();
     while (elem && elem.GetNodeType() != 1) // DOMElement
         elem = elem.GetParentNode();
     if (elem) {
 
         // Find the comment attribute.
-        CString comment = elem.getAttribute(_T("comment"));
+        CString comment = elem.getAttribute(L"comment");
         m_comment.SetWindowText(comment);
         if (readOnly)
             m_comment.SetReadOnly();

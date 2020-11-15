@@ -20,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 // CSaveDialog dialog
 
 
-CSaveDialog::CSaveDialog(bool readyForReview, 
+CSaveDialog::CSaveDialog(bool readyForReview,
                          bool blobPossible /*=false*/,
                          CWnd* pParent /*=NULL*/)
     : CDialog(CSaveDialog::IDD, pParent)
@@ -28,7 +28,7 @@ CSaveDialog::CSaveDialog(bool readyForReview,
     //{{AFX_DATA_INIT(CSaveDialog)
     m_validate = FALSE;
     m_checkIn = FALSE;
-    m_comment = _T("");
+    m_comment = L"";
     m_createVersion = FALSE;
     m_versionPublishable = FALSE;
     m_docInactive = FALSE;

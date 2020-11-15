@@ -15,7 +15,7 @@ static char THIS_FILE[] = __FILE__;
 // CPassedValidation dialog
 
 
-CPassedValidation::CPassedValidation(const CString& id, 
+CPassedValidation::CPassedValidation(const CString& id,
 									 CWnd* pParent /*=NULL*/)
 	: CDialog(CPassedValidation::IDD, pParent), docId(id)
 {
@@ -40,11 +40,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CPassedValidation message handlers
 
-BOOL CPassedValidation::OnInitDialog() 
+BOOL CPassedValidation::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	
-	SetWindowText(_T("Validation for ") + docId);
+
+	SetWindowText(L"Validation for " + docId);
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

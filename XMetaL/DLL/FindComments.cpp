@@ -43,7 +43,7 @@ void CFindComments::OnBnClickedPrevComment() {
 }
 
 void CFindComments::findComment(bool forward) {
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
     ::Range element = doc.GetRange();
     CString name;
@@ -52,39 +52,39 @@ void CFindComments::findComment(bool forward) {
                                        IDC_FIND_COMMENTS_PERMANENT);
     switch (option) {
     case IDC_FIND_COMMENTS_ADVISORY:
-        name = _T("source");
-        value = _T("advisory-board");
+        name = L"source";
+        value = L"advisory-board";
         break;
     case IDC_FIND_COMMENTS_INTERNAL:
-        name = _T("audience");
-        value = _T("Internal");
+        name = L"audience";
+        value = L"Internal";
         break;
     case IDC_FIND_COMMENTS_EXTERNAL:
-        name = _T("audience");
-        value = _T("External");
+        name = L"audience";
+        value = L"External";
         break;
     case IDC_FIND_COMMENTS_PERMANENT:
     default:
-        name = _T("duration");
-        value = _T("permanent");
+        name = L"duration";
+        value = L"permanent";
         break;
     }
     bool keepGoing = true;
     while (keepGoing) {
         element.Collapse(1);
-        BOOL foundComment = element.MoveToElement(_T("Comment"), forward);
+        BOOL foundComment = element.MoveToElement(L"Comment", forward);
         while (foundComment) {
             ::DOMElement e = element.GetContainerNode();
             CString v = e.getAttribute(name);
             if (v == value)
                 break;
             element.Collapse(1);
-            foundComment = element.MoveToElement(_T("Comment"), forward);
+            foundComment = element.MoveToElement(L"Comment", forward);
         }
         if (!foundComment) {
-            CString prompt = _T("End of document; wrap from top?");
+            CString prompt = L"End of document; wrap from top?";
             if (!forward)
-                prompt = _T("Beginning of document; wrap from bottom?");
+                prompt = L"Beginning of document; wrap from bottom?";
             int answer = ::AfxMessageBox(prompt, MB_YESNO);
             keepGoing = answer == IDYES;
             if (keepGoing) {
