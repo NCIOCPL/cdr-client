@@ -156,7 +156,7 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
         if (!doc_id.IsEmpty())
             request.child_element(command, "CdrId", doc_id);
         CWaitCursor wc;
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM response(response_xml);
         if (!cdr::show_errors(response))
             ::AfxMessageBox(language + L" glossary phrase added "
@@ -191,9 +191,9 @@ STDMETHODIMP CCommands::advancedSearch(int *ret_val) {
         return S_OK;
     }
     CString url = L"https://"
-                + CdrSocket::get_host_name()
+                + cdr::Socket::get_host_name()
                 + L"/cgi-bin/cdr/AdvancedSearch.py?Session="
-                + CdrSocket::get_session_string();
+                + cdr::Socket::get_session_string();
     DISPID dispid;
     OLECHAR* member = L"Navigate";
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
@@ -224,7 +224,7 @@ STDMETHODIMP CCommands::checkIn(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -261,7 +261,7 @@ STDMETHODIMP CCommands::checkIn(int *ret_val) {
 
             // Submit the check-in command to the server.
             CWaitCursor wc;
-            CString response_xml = CdrSocket::send_commands(request);
+            CString response_xml = cdr::Socket::send_commands(request);
             cdr::DOM dom(response_xml);
             auto response = dom.find("CdrResponse");
             if (response) {
@@ -312,7 +312,7 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
     try {
         RevisionLevel dialog;
         if (dialog.DoModal() == IDOK) {
-            switch (dialog.mRevisionLevel) {
+            switch (dialog.m_revision_level) {
             case 3:
                 level = L"rejected";
                 break;
@@ -457,7 +457,7 @@ bool CCommands::doRetrieve(const CString& id,
     request.child_element(command, "DocId", doc_id);
     request.child_element(command, "Lock", check_out ? "Y" : "N");
     request.child_element(command, "DocVersion", version);
-    CString response = CdrSocket::send_commands(request);
+    CString response = cdr::Socket::send_commands(request);
     cdr::DOM dom(response);
     return open_doc(dom, doc_id, check_out, version);
 }
@@ -479,7 +479,7 @@ STDMETHODIMP CCommands::edit(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -538,7 +538,7 @@ STDMETHODIMP CCommands::edit(int *ret_val) {
 /**
  * Provide GUI interface for editing the comment attribute of the current node.
  *
- *  @param readOnly - if VARIANT_TRUE just show the user the comment string
+ *  @param read_only - if VARIANT_TRUE just show the user the comment string
  *                    but don't let her edit it.
  */
 STDMETHODIMP CCommands::editComment(VARIANT_BOOL readOnly) {
@@ -598,7 +598,7 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* person_id,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "PersonId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         CString member_id = dom.get_text(dom.find("//BoardMember"));
         if (member_id.IsEmpty())
@@ -641,7 +641,7 @@ STDMETHODIMP CCommands::getGlossaryTermNameIds(const BSTR* concept_id,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "ConceptId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         if (!cdr::show_errors(dom)) {
             auto nodes = dom.find_all("//GlossaryTermName");
@@ -689,7 +689,7 @@ STDMETHODIMP CCommands::getGlossaryTermNames(const BSTR* concept_id,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "ConceptId");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         if (!cdr::show_errors(dom)) {
             auto nodes = dom.find_all("//GlossaryTermName");
@@ -723,7 +723,7 @@ STDMETHODIMP CCommands::get_hostname(BSTR *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("get_hostname");
-    CString hostname = CdrSocket::get_host_name();
+    CString hostname = cdr::Socket::get_host_name();
     hostname.SetSysString(ret_val);
 
     return S_OK;
@@ -747,7 +747,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* val_error) {
         return S_OK;
     }
     CString path = get_full_doc_path(&doc);
-    debug_log("looking up next validation error for " + path);
+    cdr::debug_log("looking up next validation error for " + path);
     if (path.IsEmpty()) {
         result = L"0|No validation results available";
         result.SetSysString(val_error);
@@ -806,7 +806,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -866,7 +866,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
 
         // Submit the request to the CDR server.
         CWaitCursor wc;
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
 
         // Extract the address elements.
         cdr::DOM response(response_xml);
@@ -946,7 +946,7 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hp_doc_id,
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "HPSummary");
         request.set(param, "Value", id);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM response_dom(response_xml);
         auto node = response_dom.find("//PatientSummary");
         if (node) {
@@ -1014,7 +1014,7 @@ STDMETHODIMP CCommands::get_session(BSTR *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("get_session");
-    CString session = CdrSocket::get_session_string();
+    CString session = cdr::Socket::get_session_string();
     session.SetSysString(ret_val);
 
     return S_OK;
@@ -1060,7 +1060,7 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* original_id,
             auto param = request.child_element(params, "ReportParam");
             request.set(param, "Name", param_name);
             request.set(param, "Value", id);
-            CString response_xml = CdrSocket::send_commands(request);
+            CString response_xml = cdr::Socket::send_commands(request);
             cdr::DOM response_dom(response_xml);
             auto node = response_dom.find(xpath);
             if (node)
@@ -1189,7 +1189,7 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* doc_id, const BSTR* doc_ver) {
         request.child_element(command, "DocId", id);
         request.child_element(command, "Lock", "N");
         request.child_element(command, "DocVersion", ver);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
 
         // If parsing the response with the embedded blob puts too
         // much of a strain on resources, we may have to revert to
@@ -1282,7 +1282,7 @@ STDMETHODIMP CCommands::logClientEvent(const BSTR* description, int* ret_val) {
     try {
         cdr::CommandSet request("CdrLogClientEvent");
         request.child_element(request.command, "EventDescription", desc);
-        CString response_xml = CdrSocket::send_commands(request);
+        CString response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         auto node = dom.find("//EventId");
         if (node) {
@@ -1327,7 +1327,7 @@ STDMETHODIMP CCommands::logoff(int *ret_val) {
             auto param = request.child_element(params, "Param");
             request.set(param, "Name", "UserId");
             request.set(param, "Value", username);
-            CString response_xml = CdrSocket::send_commands(request);
+            CString response_xml = cdr::Socket::send_commands(request);
             cdr::DOM dom(response_xml);
             CString ids;
             CString sep;
@@ -1360,19 +1360,19 @@ STDMETHODIMP CCommands::logoff(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             return S_OK;
         }
 
         // Submit the logoff request to the server.
         cdr::CommandSet request("CdrLogoff");
-        CdrSocket::send_commands(request);
+        cdr::Socket::send_commands(request);
         *ret_val = 0;
     }
     catch (...) {}
 
     // Clear the session string so we'll know that we're no longer logged in.
-    CdrSocket::set_session_string("");
+    cdr::Socket::set_session_string("");
     return S_OK;
 }
 
@@ -1397,7 +1397,7 @@ STDMETHODIMP CCommands::logon(int *ret_val) {
     try {
 
         // Make sure the user isn't already logged on.
-        if (CdrSocket::logged_on())
+        if (cdr::Socket::logged_on())
             return S_OK;
 
         // Make sure the client machine has the refresh utility installed.
@@ -1416,7 +1416,7 @@ STDMETHODIMP CCommands::logon(int *ret_val) {
         if (!sess_id || !user_id)
             return S_OK;
         username = user_id;
-        CdrSocket::set_session_string(sess_id);
+        cdr::Socket::set_session_string(sess_id);
 
         // Identify who and where we are.
         setTitleBar();
@@ -1524,7 +1524,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
     CString doc_link(*link);
 
     // Make sure the user is logged on to the CDR.
-    if (!CdrSocket::logged_on()) {
+    if (!cdr::Socket::logged_on()) {
         ::AfxMessageBox(L"This session is not logged into the CDR");
         return S_OK;
     }
@@ -1569,7 +1569,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
             request.child_element(command, "SourceElementType", elem_name);
             request.child_element(command, "TargetDocId", doc_link);
             CWaitCursor wc;
-            CString response_xml = CdrSocket::send_commands(request);
+            CString response_xml = cdr::Socket::send_commands(request);
             cdr::DOM dom(response_xml);
             if (cdr::show_errors(dom))
                 return S_OK;
@@ -1634,14 +1634,14 @@ STDMETHODIMP CCommands::retrieve(int *pRet) {
         RetrieveDialog dialog;
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on())
+        if (!cdr::Socket::logged_on())
             err = "This session is not logged into the CDR";
         // Ask the user which document to retrieve.
         if (err.IsEmpty()) {
             int rc = (int)dialog.DoModal();
             switch (rc) {
             case IDOK:
-                if (doRetrieve(dialog.m_DocId, dialog.m_CheckOut))
+                if (doRetrieve(dialog.m_doc_id, dialog.m_check_out))
                     *pRet = 0;
                 break;
             case IDCANCEL:
@@ -1683,7 +1683,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -1724,9 +1724,9 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             cdr::CommandSet request(tag);
             auto command = request.command;
             request.child_element(command, "CheckIn", unlock);
-            if (save_dialog.m_createVersion) {
+            if (save_dialog.m_create_version) {
                 auto version = request.child_element(command, "Version", "Y");
-                const char* pub = save_dialog.m_versionPublishable ? "Y" : "N";
+                const char* pub = save_dialog.m_version_publishable ? "Y" : "N";
                 request.set(version, "Publishable", pub);
             }
             else
@@ -1746,9 +1746,9 @@ STDMETHODIMP CCommands::save(int *ret_val) {
                 request.child_element(ctl, "DocId", ctrl_info.doc_id);
             request.child_element(ctl, "DocType", ctrl_info.doc_type);
             request.child_element(ctl, "DocTitle", ctrl_info.doc_title);
-            if (save_dialog.m_docInactive)
+            if (save_dialog.m_doc_inactive)
                 request.child_element(ctl, "DocActiveStatus", "I");
-            char* review = save_dialog.m_readyForReview ? "Y" : "N";
+            char* review = save_dialog.m_ready_for_review ? "Y" : "N";
             request.child_element(ctl, "DocNeedsReview", review);
             if (!comment.IsEmpty())
                 request.child_element(ctl, "DocComment", comment);
@@ -1757,7 +1757,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             char* blob = nullptr;
             int blob_size = 0;
             CFile blob_file;
-            CString blob_filename = save_dialog.m_blobFilenameString;
+            CString blob_filename = save_dialog.m_blob_filename_string;
             if (!blob_filename.IsEmpty()) {
                 UINT flags = CFile::modeRead | CFile::shareDenyNone;
                 if (!blob_file.Open((LPCTSTR)blob_filename, flags)) {
@@ -1836,14 +1836,14 @@ STDMETHODIMP CCommands::save(int *ret_val) {
 
             // Submit the save command to the server.
             CTime start_time = CTime::GetCurrentTime();
-            CString response = CdrSocket::send_commands(request, blob);
+            CString response = cdr::Socket::send_commands(request, blob);
             cdr::DOM response_dom(response);
             CTime end_time = CTime::GetCurrentTime();
             CTimeSpan elapsed_time = end_time - start_time;
             auto cdr_response = response_dom.find("CdrResponse");
             if (response_dom.get(cdr_response, "Status") != L"success") {
                 if (!cdr::show_errors(response_dom)) {
-                    debug_log(response);
+                    cdr::debug_log(response);
                     ::AfxMessageBox(L"Failure without explanation");
                 }
             }
@@ -1933,7 +1933,7 @@ STDMETHODIMP CCommands::search(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -1980,7 +1980,7 @@ STDMETHODIMP CCommands::setTitleBar(void) {
     CWnd* w = ::AfxGetMainWnd();
     if (w) {
         CString title;
-        title.Format(L"CDR Editor (%s)", CdrSocket::get_host_tier());
+        title.Format(L"CDR Editor (%s)", cdr::Socket::get_host_tier());
         w->SetWindowText(title);
     }
 
@@ -2031,7 +2031,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
     try {
 
         // Make sure the user is logged on to the CDR.
-        if (!CdrSocket::logged_on()) {
+        if (!cdr::Socket::logged_on()) {
             ::AfxMessageBox(L"This session is not logged into the CDR");
             return S_OK;
         }
@@ -2049,8 +2049,8 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
 
             // Dialog box ensures that at least one is true.
             CString validation_types;
-            if (dlg.m_schemaValidation) {
-                if (dlg.m_linkValidation)
+            if (dlg.m_schema_validation) {
+                if (dlg.m_link_validation)
                     validation_types = L"Schema Links";
                 else
                     validation_types = L"Schema";
@@ -2060,9 +2060,9 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
 
             // Figure out how to resolve Insertion/Deletion markup.
             CString filter_level = L"3";
-            if (dlg.m_includeProposedAndApprovedMarkup)
+            if (dlg.m_include_proposed_and_approved_markup)
                 filter_level = L"1";
-            else if (dlg.m_includeApprovedMarkup)
+            else if (dlg.m_include_approved_markup)
                 filter_level = L"2";
 
             // Build the validate command.
@@ -2083,7 +2083,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Submit the validate command to the server.
-            CString response_xml = CdrSocket::send_commands(request);
+            CString response_xml = cdr::Socket::send_commands(request);
             cdr::DOM response_dom(response_xml);
             val_errors = new cdr::ValidationErrors(response_dom);
             *ret_val = (int)val_errors->errors.size();
@@ -2091,7 +2091,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
                 CString path = get_full_doc_path(&doc);
                 CString msg;
                 msg.Format(L"saving %d errors for %s", *ret_val, path);
-                debug_log(msg);
+                cdr::debug_log(msg);
                 cdr::validation_error_sets[path] = val_errors;
                 CString version = L"Current";
                 bool check_out = path.Find(L"Checkout") != -1;
@@ -2159,7 +2159,7 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* doc_id, const BSTR* path,
     request.set(param1, "Value", id);
     request.set(param2, "Name", "Path");
     request.set(param2, "Value", p);
-    CString response_xml = CdrSocket::send_commands(request);
+    CString response_xml = cdr::Socket::send_commands(request);
     cdr::DOM dom(response_xml);
     auto nodes = dom.find_all("//Value");
     CString result = L"";
@@ -2329,7 +2329,7 @@ static void insert_audio_seconds(::DOMNode& doc_element, CFile& file) {
     // invalid information in the event that we're unable to determine
     // the correct new information.  If the element is not already
     // present, we do nothing.
-    debug_log("clearing out AudioSeconds");
+    cdr::debug_log("clearing out AudioSeconds");
     if (!replace_audio_seconds(doc_element, L""))
         return;
 
@@ -2337,7 +2337,7 @@ static void insert_audio_seconds(::DOMNode& doc_element, CFile& file) {
     if (seconds >= 0) {
         CString s;
         s.Format(L"%d", seconds);
-        debug_log(L"setting AudioSeconds to " + s);
+        cdr::debug_log(L"setting AudioSeconds to " + s);
         replace_audio_seconds(doc_element, s);
     }
 }
@@ -2672,7 +2672,7 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
             ::AfxMessageBox(L"Unexpected exception retrieving document");
         }
     }
-    debug_log(L"leaving open_doc() in defeat");
+    cdr::debug_log(L"leaving open_doc() in defeat");
     return false;
 }
 
@@ -2718,12 +2718,12 @@ static bool replace_audio_seconds(::DOMNode& doc_element, CString seconds) {
     while (child != 0) {
         if (child.GetNodeName() == L"RunSeconds") {
             cdr::replace_element_content(child, seconds);
-            debug_log("found and replaced RunSeconds value");
+            cdr::debug_log("found and replaced RunSeconds value");
             return true;
         }
         child = child.GetNextSibling();
     }
-    debug_log("couldn't find RunSeconds element");
+    cdr::debug_log("couldn't find RunSeconds element");
     return false;
 }
 

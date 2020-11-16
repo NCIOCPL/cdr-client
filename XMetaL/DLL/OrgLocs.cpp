@@ -19,19 +19,19 @@ static char THIS_FILE[] = __FILE__;
 // COrgLocs dialog
 
 
-COrgLocs::COrgLocs(const CString& id, CString& newTarg,
-                   CWnd* pParent /*=NULL*/)
-	: CDialog(COrgLocs::IDD, pParent), docId(id), newTarget(newTarg) {
+COrgLocs::COrgLocs(const CString& id, CString& new_targ,
+                   CWnd* parent /*=NULL*/)
+	: CDialog(COrgLocs::IDD, parent), doc_id(id), new_target(new_targ) {
 	//{{AFX_DATA_INIT(COrgLocs)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
 
 
-void COrgLocs::DoDataExchange(CDataExchange* pDX) {
-	CDialog::DoDataExchange(pDX);
+void COrgLocs::DoDataExchange(CDataExchange* dx) {
+	CDialog::DoDataExchange(dx);
 	//{{AFX_DATA_MAP(COrgLocs)
-	DDX_Control(pDX, IDC_LIST1, m_choiceList);
+	DDX_Control(dx, IDC_LIST1, m_choice_list);
 	//}}AFX_DATA_MAP
 }
 
@@ -55,13 +55,13 @@ BOOL COrgLocs::OnInitDialog() {
     auto params = request.child_element(request.command, "Params");
     auto param = request.child_element(request.command, "Param");
     request.set(param, "Name", "docId");
-    request.set(param, "Value", docId);
+    request.set(param, "Value", doc_id);
     auto document = request.child_element(request.command, "Document");
-    request.set(document, "href", docId);
+    request.set(document, "href", doc_id);
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString rsp = CdrSocket::send_commands(request);
+    CString rsp = cdr::Socket::send_commands(request);
     cdr::DOM dom(rsp);
     if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
@@ -69,16 +69,16 @@ BOOL COrgLocs::OnInitDialog() {
     }
 
     // Populate the list control.
-    docSet.clear();
+    doc_set.clear();
     auto nodes = dom.find_all("//Address");
     for (auto& node : nodes) {
         CString id = dom.get_text(dom.find("Link", node));
         CString title = dom.get_text(dom.find("Data", node));
-        docSet.push_back(cdr::SearchResult(id, L"Organization", title));
+        doc_set.push_back(cdr::SearchResult(id, L"Organization", title));
     }
-    if (cdr::fill_list_box(m_choiceList, docSet) > 0) {
-		m_choiceList.SetCurSel(0);
-		m_choiceList.EnableWindow();
+    if (cdr::fill_list_box(m_choice_list, doc_set) > 0) {
+		m_choice_list.SetCurSel(0);
+		m_choice_list.EnableWindow();
 	}
 	else {
 		::AfxMessageBox(L"No locations found");
@@ -92,15 +92,15 @@ BOOL COrgLocs::OnInitDialog() {
 void COrgLocs::OnOK() {
 
 	// Find out which candidate document the user selected.
-	int curSel = m_choiceList.GetCurSel();
+	int cur_sel = m_choice_list.GetCurSel();
 
     // Don't do anything if there is no selection.
-    if (curSel >= 0) {
+    if (cur_sel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_choiceList.GetText(curSel, str);
+		m_choice_list.GetText(cur_sel, str);
         CdrLinkInfo info = cdr::extract_link_info(str);
-        newTarget = info.target;
+        new_target = info.target;
         EndDialog(IDOK);
     }
 }

@@ -36,14 +36,14 @@ static char THIS_FILE[] = __FILE__;
  *
  *  @param  t           reference to string identifying document type.
  *  @param  e           reference to string containing current element tag.
- *  @param  pParent     address of parent window.
+ *  @param  parent      address of parent window.
  */
 CEditElement::CEditElement(const CString& t,
                            const CString& e,
-                           Type elemType,
-                           CWnd* pParent /*=NULL*/)
-    : CDialog(CEditElement::IDD, pParent), docType(t), element(e),
-      type(elemType) {
+                           Type elem_type,
+                           CWnd* parent /*=NULL*/)
+    : CDialog(CEditElement::IDD, parent), doc_type(t), element(e),
+      type(elem_type) {
     //{{AFX_DATA_INIT(CEditElement)
     m_title = L"";
     //}}AFX_DATA_INIT
@@ -54,7 +54,7 @@ void CEditElement::DoDataExchange(CDataExchange* pDX) {
     CDialog::DoDataExchange(pDX);
     //{{AFX_DATA_MAP(CEditElement)
     DDX_Control(pDX, IDC_LINK_TITLE_LABEL, m_label);
-    DDX_Control(pDX, IDC_LIST1, m_linkList);
+    DDX_Control(pDX, IDC_LIST1, m_link_list);
     DDX_Text(pDX, IDC_EDIT1, m_title);
     //}}AFX_DATA_MAP
 }
@@ -110,33 +110,33 @@ void CEditElement::OnOK() {
         auto param = request.child_element(params, "ReportParam");
         request.set(param, "Name", "TitlePattern");
         request.set(param, "Value", m_title);
-        response_xml = CdrSocket::send_commands(request);
+        response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         if (cdr::show_errors(dom)) {
             EndDialog(IDCANCEL);
             return;
         }
-        extractGeneticsSyndromes(dom);
+        extract_genetics_syndromes(dom);
     }
     else {
         cdr::CommandSet request("CdrSearchLinks");
         command = request.command;
         request.set(command, "MaxDocs", "150");
-        request.child_element(command, "SourceDocType", docType);
+        request.child_element(command, "SourceDocType", doc_type);
         request.child_element(command, "SourceElementType", element);
         request.child_element(command, "TargetTitlePattern", m_title + L"%");
-        response_xml = CdrSocket::send_commands(request);
+        response_xml = cdr::Socket::send_commands(request);
         cdr::DOM dom(response_xml);
         if (cdr::show_errors(dom)) {
             EndDialog(IDCANCEL);
             return;
         }
-        cdr::extract_search_results(dom, docSet);
+        cdr::extract_search_results(dom, doc_set);
     }
 
-    if (cdr::fill_list_box(m_linkList, docSet) > 0) {
-        m_linkList.SetCurSel(0);
-        m_linkList.EnableWindow();
+    if (cdr::fill_list_box(m_link_list, doc_set) > 0) {
+        m_link_list.SetCurSel(0);
+        m_link_list.EnableWindow();
     }
     else
         ::AfxMessageBox(L"No documents match this query");
@@ -148,21 +148,21 @@ void CEditElement::OnOK() {
 void CEditElement::OnSelectButton() {
 
     // Find out which candidate documents the user selected.
-    int selCount = m_linkList.GetSelCount();
-    if (selCount > 0) {
+    int sel_count = m_link_list.GetSelCount();
+    if (sel_count > 0) {
         CWaitCursor wc;
         CArray<int, int> selections;
-        selections.SetSize(selCount);
-        m_linkList.GetSelItems(selCount, selections.GetData());
+        selections.SetSize(sel_count);
+        m_link_list.GetSelItems(sel_count, selections.GetData());
         CString str;
         int i = 0;
-        int curSel = selections[i];
-        m_linkList.GetText(curSel, str);
+        int cur_sel = selections[i];
+        m_link_list.GetText(cur_sel, str);
         switch (type) {
             case NORMAL:
             case GP_SYNDROME:
                 CCommands::doInsertLink(str);
-                while (++i < selCount) {
+                while (++i < sel_count) {
                     ::Selection selection = cdr::get_app().GetSelection();
                     if (!selection.FindInsertLocation(element, TRUE)) {
                         ::AfxMessageBox(TOOMANY);
@@ -170,13 +170,13 @@ void CEditElement::OnSelectButton() {
                     }
                     selection.InsertElement(element);
                     selection.MoveToElement(element, TRUE);
-                    curSel = selections[i];
-                    m_linkList.GetText(curSel, str);
+                    cur_sel = selections[i];
+                    m_link_list.GetText(cur_sel, str);
                     CCommands::doInsertLink(str);
                 }
                 break;
             case ORG_LOCATION:
-                if (!insertOrgLocation(str))
+                if (!insert_org_location(str))
                     return;
                 break;
         }
@@ -184,12 +184,12 @@ void CEditElement::OnSelectButton() {
     }
 }
 
-bool CEditElement::insertOrgLocation(const CString& str) {
-    CdrLinkInfo linkInfo = cdr::extract_link_info(str);
-    CString newTarget;
-    COrgLocs orgLocs(linkInfo.target, newTarget);
-    if (orgLocs.DoModal() == IDOK) {
-        CCommands::doInsertLink(L"[" + newTarget + L"] " + linkInfo.data);
+bool CEditElement::insert_org_location(const CString& str) {
+    CdrLinkInfo link_info = cdr::extract_link_info(str);
+    CString new_target;
+    COrgLocs org_locs(link_info.target, new_target);
+    if (org_locs.DoModal() == IDOK) {
+        CCommands::doInsertLink(L"[" + new_target + L"] " + link_info.data);
         return true;
     }
     return false;
@@ -210,31 +210,31 @@ void CEditElement::OnButton2() {
         ::AfxMessageBox(L"Unable to launch Internet Explorer");
         return;
     }
-    int curSel = m_linkList.GetCurSel();
+    int cur_sel = m_link_list.GetCurSel();
 
     // Don't do anything if there is no selection.
-    if (curSel < 0)
+    if (cur_sel < 0)
         return;
 
     // Parse out the document ID.
     CString info;
-    m_linkList.GetText(curSel, info);
+    m_link_list.GetText(cur_sel, info);
     int pos = info.Find(L"[");
     if (pos == -1) {
         ::AfxMessageBox(L"Unable to find document ID start delimiter.");
         return;
     }
-    int endPos = info.Find(L"]", ++pos);
-    if (endPos == -1) {
+    int end_pos = info.Find(L"]", ++pos);
+    if (end_pos == -1) {
         ::AfxMessageBox(L"Unable to find document ID end delimiter.");
         return;
     }
     CString url = L"https://"
-                + CdrSocket::get_host_name()
+                + cdr::Socket::get_host_name()
                 + L"/cgi-bin/cdr/QcReport.py?Session="
-                + CdrSocket::get_session_string()
+                + cdr::Socket::get_session_string()
                 + L"&DocId="
-                + info.Mid(pos, endPos - pos);
+                + info.Mid(pos, end_pos - pos);
     DISPID dispid;
     OLECHAR* member = L"Navigate";
     HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
@@ -250,13 +250,13 @@ void CEditElement::OnButton2() {
         url, 0L, L"CdrViewWindow", &dummy, &dummy);
 }
 
-void CEditElement::extractGeneticsSyndromes(cdr::DOM& dom) {
-    docSet.clear();
+void CEditElement::extract_genetics_syndromes(cdr::DOM& dom) {
+    doc_set.clear();
     auto nodes = dom.find_all("//ReportRow");
     for (auto& node : nodes) {
         CString id = dom.get_text(dom.find("DocId", node));
         CString title = dom.get_text(dom.find("DocTitle", node));
-        docSet.push_back(cdr::SearchResult(id, L"Term", title));
+        doc_set.push_back(cdr::SearchResult(id, L"Term", title));
     }
 }
 
@@ -272,11 +272,11 @@ BOOL CEditElement::OnInitDialog()
     if (elem) {
 
         // Find the text node for the element.
-        ::DOMText textNode = elem.GetFirstChild();
-        while (textNode && textNode.GetNodeType() != 3) // DOMText
-            textNode = textNode.GetNextSibling();
-        if (textNode)
-            m_title = textNode.GetData();
+        ::DOMText text_node = elem.GetFirstChild();
+        while (text_node && text_node.GetNodeType() != 3) // DOMText
+            text_node = text_node.GetNextSibling();
+        if (text_node)
+            m_title = text_node.GetData();
     }
 
     /*
@@ -286,8 +286,8 @@ BOOL CEditElement::OnInitDialog()
      *              DEFAULT_PITCH | FF_SWISS, "Arial");
      */
 
-    if (biggerFont.CreatePointFont(100, L"Arial"))
-        m_linkList.SetFont(&biggerFont);
+    if (bigger_font.CreatePointFont(100, L"Arial"))
+        m_link_list.SetFont(&bigger_font);
     UpdateData(FALSE);
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
@@ -296,17 +296,17 @@ BOOL CEditElement::OnInitDialog()
 void CEditElement::OnLbnSelchangeList1()
 {
     if (type != NORMAL && type != GP_SYNDROME) {
-        int sel = m_linkList.GetCurSel();
-        int selCount = m_linkList.GetSelCount();
-        while (selCount > 1) {
+        int sel = m_link_list.GetCurSel();
+        int sel_count = m_link_list.GetSelCount();
+        while (sel_count > 1) {
             int selections[2];
-            m_linkList.GetSelItems(2, selections);
+            m_link_list.GetSelItems(2, selections);
             for (int i = 0; i < 2; ++i) {
                 int j = selections[i];
                 if (j != sel)
-                    m_linkList.SetSel(j, FALSE);
+                    m_link_list.SetSel(j, FALSE);
             }
-            selCount = m_linkList.GetSelCount();
+            sel_count = m_link_list.GetSelCount();
         }
     }
 }

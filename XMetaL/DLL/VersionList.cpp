@@ -20,8 +20,8 @@ static char THIS_FILE[] = __FILE__;
 // CVersionList dialog
 
 
-CVersionList::CVersionList(const CString& id, CWnd* pParent /*=NULL*/)
-	: docId(id), CDialog(CVersionList::IDD, pParent)
+CVersionList::CVersionList(const CString& id, CWnd* parent /*=NULL*/)
+	: doc_id(id), CDialog(CVersionList::IDD, parent)
 {
 	//{{AFX_DATA_INIT(CVersionList)
 		// NOTE: the ClassWizard will add member initialization here
@@ -29,11 +29,11 @@ CVersionList::CVersionList(const CString& id, CWnd* pParent /*=NULL*/)
 }
 
 
-void CVersionList::DoDataExchange(CDataExchange* pDX)
+void CVersionList::DoDataExchange(CDataExchange* dx)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange(dx);
 	//{{AFX_DATA_MAP(CVersionList)
-	DDX_Control(pDX, IDC_LIST1, m_choiceList);
+	DDX_Control(dx, IDC_LIST1, m_choice_list);
 	//}}AFX_DATA_MAP
 }
 
@@ -54,11 +54,11 @@ BOOL CVersionList::OnInitDialog()
     // Create the command.
     cdr::CommandSet request("CdrListVersions");
     auto command = request.command;
-    request.child_element(command, "DocId", docId);
+    request.child_element(command, "DocId", doc_id);
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString response_xml = CdrSocket::send_commands(request);
+    CString response_xml = cdr::Socket::send_commands(request);
     cdr::DOM dom(response_xml);
     if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
@@ -84,10 +84,10 @@ BOOL CVersionList::OnInitDialog()
                 while (cmt.Replace(L"  ", L" ") > 0)
                     ;
             }
-            m_choiceList.AddString(L"[" + num + L"] " + dat + cmt);
+            m_choice_list.AddString(L"[" + num + L"] " + dat + cmt);
         }
-		m_choiceList.SetCurSel(0);
-		m_choiceList.EnableWindow();
+		m_choice_list.SetCurSel(0);
+		m_choice_list.EnableWindow();
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -97,13 +97,13 @@ BOOL CVersionList::OnInitDialog()
 void CVersionList::OnOK()
 {
 	// Find out which version the user selected.
-	int curSel = m_choiceList.GetCurSel();
+	int cur_sel = m_choice_list.GetCurSel();
 
     // Don't do anything if there is no selection.
-    if (curSel >= 0) {
+    if (cur_sel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_choiceList.GetText(curSel, str);
+		m_choice_list.GetText(cur_sel, str);
         //::AfxMessageBox(str);
 
         // Find the delimiters.
@@ -120,7 +120,7 @@ void CVersionList::OnOK()
         CString version = str.Mid(left, right - left);
 
         // Retrieve the version as read-only.
-        if (CCommands::doRetrieve(docId, FALSE, version))
+        if (CCommands::doRetrieve(doc_id, FALSE, version))
             EndDialog(IDOK);
     }
 }

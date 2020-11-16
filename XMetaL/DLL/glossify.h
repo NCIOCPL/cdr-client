@@ -28,7 +28,7 @@ private:
     typedef std::vector<Word> WordVector;
     struct WordChain {
         WordVector words;
-        int        curWord;
+        int        cur_word;
         WordChain(::DOMNode node, ::_Document doc);
     };
     typedef std::vector<WordChain> WordChains;
@@ -42,28 +42,28 @@ public:
     // which are actually top-level children of the
     // document's root element.
     CGlossify(bool dig=false, CString dictionary = L"",
-              CWnd* pParent = NULL);
+              CWnd* parent = NULL);
     virtual ~CGlossify();
 
 // Dialog Data
     enum { IDD = IDD_GLOSSIFY_DIALOG };
 
 protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 
     DECLARE_MESSAGE_MAP()
 private:
     CEdit                m_phrase;
     CEdit                m_markup;
-    CString              docType;
+    CString              doc_type;
     ::_Document          doc;
     ::Range              range;
     WordChains           chains;
-    int                  curChain;
-    cdr::GlossaryNode*   curNode;
-    void                 findChains(DOMNode& n);
-    void                 keepDigging(::DOMNode& n, ::_Document& doc);
-    bool                 findNextMatch();
+    int                  cur_chain;
+    cdr::GlossaryNode*   cur_node;
+    void                 find_chains(DOMNode& n);
+    void                 keep_digging(::DOMNode& n, ::_Document& doc);
+    bool                 find_next_match();
     CString              language;
     CString              dictionary;
     bool                 m_dig;

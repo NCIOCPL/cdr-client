@@ -16,17 +16,17 @@ static char THIS_FILE[] = __FILE__;
 
 
 CPassedValidation::CPassedValidation(const CString& id,
-									 CWnd* pParent /*=NULL*/)
-	: CDialog(CPassedValidation::IDD, pParent), docId(id)
+									 CWnd* parent /*=NULL*/)
+	: CDialog(CPassedValidation::IDD, parent), doc_id(id)
 {
 	//{{AFX_DATA_INIT(CPassedValidation)
 	//}}AFX_DATA_INIT
 }
 
 
-void CPassedValidation::DoDataExchange(CDataExchange* pDX)
+void CPassedValidation::DoDataExchange(CDataExchange* dx)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange(dx);
 	//{{AFX_DATA_MAP(CPassedValidation)
 	//}}AFX_DATA_MAP
 }
@@ -44,7 +44,7 @@ BOOL CPassedValidation::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	SetWindowText(L"Validation for " + docId);
+	SetWindowText(L"Validation for " + doc_id);
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

@@ -16,12 +16,12 @@ class CVersionList : public CDialog
 {
 // Construction
 public:
-	CVersionList(const CString& docId, CWnd* pParent = NULL);
+	CVersionList(const CString& doc_id, CWnd* parent = NULL);
 
 // Dialog Data
 	//{{AFX_DATA(CVersionList)
 	enum { IDD = IDD_VERSION_LIST };
-	CListBox	m_choiceList;
+	CListBox	m_choice_list;
 	//}}AFX_DATA
 
 
@@ -29,12 +29,12 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CVersionList)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation
 private:
-    CString docId;
+    CString doc_id;
 
 protected:
 

@@ -12,20 +12,20 @@
 // CCommentDialog dialog
 
 IMPLEMENT_DYNAMIC(CCommentDialog, CDialog)
-CCommentDialog::CCommentDialog(BOOL ro /*=false*/, CWnd* pParent /*=NULL*/)
-	: CDialog(CCommentDialog::IDD, pParent)
+CCommentDialog::CCommentDialog(BOOL ro /*=false*/, CWnd* parent /*=NULL*/)
+	: CDialog(CCommentDialog::IDD, parent)
 {
-    readOnly = ro;
+    read_only = ro;
 }
 
 CCommentDialog::~CCommentDialog()
 {
 }
 
-void CCommentDialog::DoDataExchange(CDataExchange* pDX)
+void CCommentDialog::DoDataExchange(CDataExchange* dx)
 {
-    CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_COMMENT_BOX, m_comment);
+    CDialog::DoDataExchange(dx);
+    DDX_Control(dx, IDC_COMMENT_BOX, m_comment);
 }
 
 
@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 
 void CCommentDialog::OnBnClickedOk()
 {
-    if (!readOnly) {
+    if (!read_only) {
         CString comment;
         m_comment.GetWindowText(comment);
 
@@ -70,7 +70,7 @@ BOOL CCommentDialog::OnInitDialog()
         // Find the comment attribute.
         CString comment = elem.getAttribute(L"comment");
         m_comment.SetWindowText(comment);
-        if (readOnly)
+        if (read_only)
             m_comment.SetReadOnly();
     }
 

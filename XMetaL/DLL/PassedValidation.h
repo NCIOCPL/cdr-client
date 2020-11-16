@@ -15,7 +15,7 @@ class CPassedValidation : public CDialog
 // Construction
 public:
 	CPassedValidation(const CString& id,
-					  CWnd* pParent = NULL);   // standard constructor
+					  CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CPassedValidation)
@@ -40,7 +40,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	CString docId;
+	CString doc_id;
 };
 
 //{{AFX_INSERT_LOCATION}}

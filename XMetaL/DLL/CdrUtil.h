@@ -120,6 +120,7 @@ namespace cdr {
          *  @param name   - string for the new element's name
          *  @param text   - optional string value to be used to set the
          *                  text content of the new element
+         *  @return       - `CComPtr` for newly created element
          */
         Element child_element(IXMLDOMNode* parent,
                               const CString& name,
@@ -133,6 +134,7 @@ namespace cdr {
          *  @param name   - string for the new element's name
          *  @param text   - optional string value to be used to set the
          *                  text content of the new element
+         *  @return       - `CComPtr` for newly created element
          */
         Element element(const CString& name, const CString& text = L"");
 
@@ -143,6 +145,7 @@ namespace cdr {
          *
          *  @param xpath - string for the search
          *  @param from  - optional node from which to start the search
+         *  @return      - `CComPtr` for found element or `nullptr` if none
          */
         Element find(const CString& xpath, IXMLDOMElement* from = nullptr);
 
@@ -153,6 +156,7 @@ namespace cdr {
          *
          *  @param xpath - string for the search
          *  @param from  - optional node from which to start the search
+         *  @return      - sequence of `CComPtr`s for matching elements
          */
         std::vector<Element> find_all(const CString& xpath,
                                       IXMLDOMElement* from = nullptr);
@@ -162,32 +166,38 @@ namespace cdr {
          *
          *  @param elem - pointer to the element whose attribute value we want
          *  @param name - string naming the attribute whose value we want
+         *  @return     - string for attribute value
          */
         CString get(IXMLDOMElement* elem, const CString& name);
 
         /**
          * Get the string for a specific DOM node's name.
          *
-         *  @node - address of the DOM node whose name we want
+         *  @param node - address of the DOM node whose name we want
+         *  @return     - node name string
          */
         CString get_node_name(IXMLDOMNode* node);
 
         /**
          * Give the caller a pointer to the root element.
+         *
+         *  @return - `CComPtr` for the root element
          */
         Element get_root();
 
         /**
          * Get the text content string for a specific element.
          *
-         *  @node - address of the DOM node whose text content we want
+         *  @param node - address of DOM node whose text content we want
+         *  @return     - text content for element node
          */
         CString get_text(IXMLDOMNode* node);
 
         /**
          * Serialize the document to an XML string.
          *
-         *  @node - address of the DOM node whose XML serialization we want
+         *  @param node - address of DOM node whose XML serialization we want
+         *  @return     - string for the serialized node
          */
         CString get_xml(IXMLDOMNode* = nullptr) const;
 
@@ -290,14 +300,19 @@ namespace cdr {
         }
         GlossaryNodeMap node_map;
 
-        // TODO: useless, drop.
-        // std::vector<int> counts;
-
         // Map of CDR GlossaryTermName document to preferred name string.
         std::map<int, CString> names;
     };
-    GlossaryTree* get_glossary_tree(const CString& language,
-                                  const CString& dictionary);
+
+    /**
+     * Cached glossary tree maps.
+     */
+    struct GlossaryTrees {
+        typedef std::map<CString, cdr::GlossaryTree*> Cache;
+        ~GlossaryTrees();
+        static GlossaryTree* get_glossary_tree(const CString&, const CString&);
+        static Cache cache;
+    };
 
     class SearchResult {
     public:
@@ -318,8 +333,9 @@ namespace cdr {
         CString get_doc_title()           const { return doc_title; }
         bool    is_group()                const { return group; }
         CString get_coop_membership()     const { return coop_membership; }
-        const LinkInfoList& get_pi_list() const { return principal_investigators; }
-        bool    operator==(const SearchResult& sr)  const
+        const LinkInfoList& get_pi_list() const
+            { return principal_investigators; }
+        bool operator==(const SearchResult& sr) const
             { return sr.doc_id == doc_id; }
     private:
         CString         doc_id;
@@ -336,6 +352,45 @@ namespace cdr {
     struct ImageDimensions {
         unsigned long height;
         unsigned long width;
+    };
+
+    /**
+     * Wrapper for socket communication between the CDR client and server.
+     *
+     * Raw sockets replaced along the way with tunneling through HTTPS (at
+     * the insistence of CBIIT), but we kept the name for old times' sake. :-)
+     * Now that we're not using sockets directly, we no longer need object
+     * instances of this class: everything is static (class-based) now.
+     *
+     * There are two host names. One (`api_host`) is used for tunneling
+     * CDR client-server commands and the other (`cdr_host`) is used to
+     * build links to web admin HTML pages.
+     */
+    class Socket {
+    public:
+        static CString send_commands(const CommandSet&, char* = nullptr);
+        static void set_session_string(const CString& s) { session_string = s; }
+        static bool logged_on() { return !session_string.IsEmpty(); }
+        static const CString get_session_string() { return session_string; }
+        static const CString get_host_name() { return cdr_host; }
+        static const CString get_host_tier() { return tier; }
+        static CString get_short_host_name() {
+            int dot = cdr_host.Find(L'.');
+            if (dot != -1 && !iswdigit(cdr_host[0]))
+                return cdr_host.Left(dot);
+            return cdr_host;
+        }
+    private:
+        struct Init {
+            Init();
+            ~Init();
+            WSAData wsa_data;
+            static Init init;
+        };
+        static CString session_string;
+        static CString cdr_host;
+        static CString api_host;
+        static CString tier;
     };
 
     // Set of errors returned from CDR document validation.
@@ -363,6 +418,7 @@ namespace cdr {
 
     // Common utility functions.
     std::string cstring_to_utf8(const CString& str);
+    void debug_log(const CString& what, const CString& who = L"bkline");
     CString doc_id_string(int);
     CString expand_leading_zeros(const CString&);
     void extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info);
@@ -390,46 +446,5 @@ namespace cdr {
     CString trim(const CString& s);
     CString utf8_to_cstring(const char* s);
 }
-
-/**
- * Wrapper for socket communication between the CDR client and server.
- *
- * Raw sockets replaced along the way with tunneling through HTTPS (at
- * the insistence of CBIIT), but we kept the name for old times' sake. :-)
- * Now that we're not using sockets directly, we no longer need object
- * instances of this class: everything is static (class-based) now.
- *
- * There are two host names. One (`api_host`) is used for tunneling
- * CDR client-server commands and the other (`cdr_host`) is used to
- * build links to web admin HTML pages.
- */
-class CdrSocket {
-public:
-    static CString send_commands(const cdr::CommandSet&, char* = nullptr);
-    static void set_session_string(const CString& s) { session_string = s; }
-    static bool logged_on() { return !session_string.IsEmpty(); }
-    static const CString get_session_string() { return session_string; }
-    static const CString get_host_name() { return cdr_host; }
-    static const CString get_host_tier() { return tier; }
-    static CString get_short_host_name() {
-        int dot = cdr_host.Find(L'.');
-        if (dot != -1 && !iswdigit(cdr_host[0]))
-            return cdr_host.Left(dot);
-        return cdr_host;
-    }
-private:
-    struct Init {
-        Init();
-        ~Init();
-        WSAData wsa_data;
-        static Init init;
-    };
-    static CString session_string;
-    static CString cdr_host;
-    static CString api_host;
-    static CString tier;
-};
-
-extern void debug_log(const CString& what, const CString& who = L"bkline");
 
 #endif

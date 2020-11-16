@@ -13,18 +13,18 @@
 const wchar_t* TAG_NAME = L"GlossaryTermRef";
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
-CGlossify::CGlossify(bool dig, const CString dict, CWnd* pParent /*=NULL*/)
-: CDialog(CGlossify::IDD, pParent), curChain(0), curNode(0), m_dig(dig),
+CGlossify::CGlossify(bool dig, const CString dict, CWnd* parent /*=NULL*/)
+: CDialog(CGlossify::IDD, parent), cur_chain(0), cur_node(0), m_dig(dig),
     dictionary(dict)
 {
     _Application app = cdr::get_app();
     doc = app.GetActiveDocument();
     range = doc.GetRange();
-    DOMNode docElement = doc.GetDocumentElement();
-    docType = docElement.GetNodeName();
+    DOMNode doc_element = doc.GetDocumentElement();
+    doc_type = doc_element.GetNodeName();
     language = L"en";
-    if (docType == L"Summary") {
-        ::DOMNode c = docElement.GetFirstChild();
+    if (doc_type == L"Summary") {
+        ::DOMNode c = doc_element.GetFirstChild();
         while (c) {
             if (c.GetNodeName() == L"SummaryMetaData") {
                 ::DOMNode gc = c.GetFirstChild();
@@ -48,11 +48,11 @@ CGlossify::~CGlossify()
 {
 }
 
-void CGlossify::DoDataExchange(CDataExchange* pDX)
+void CGlossify::DoDataExchange(CDataExchange* dx)
 {
-    CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_EDIT1, m_phrase);
-    DDX_Control(pDX, IDC_EDIT2, m_markup);
+    CDialog::DoDataExchange(dx);
+    DDX_Control(dx, IDC_EDIT1, m_phrase);
+    DDX_Control(dx, IDC_EDIT2, m_markup);
 }
 
 
@@ -69,9 +69,9 @@ END_MESSAGE_MAP()
 
 void CGlossify::OnSkip()
 {
-    if (curNode)
-        curNode->marked_up = true;
-    if (!findNextMatch()) {
+    if (cur_node)
+        cur_node->marked_up = true;
+    if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
     }
@@ -79,7 +79,7 @@ void CGlossify::OnSkip()
 
 void CGlossify::OnBnClickedGlossifySkipFirst()
 {
-    if (!findNextMatch()) {
+    if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
     }
@@ -92,8 +92,8 @@ void CGlossify::OnDone()
 
 void CGlossify::OnMarkup()
 {
-    if (curNode)
-        curNode->marked_up = true;
+    if (cur_node)
+        cur_node->marked_up = true;
     CString val;
     m_markup.GetWindowText(val);
     int semicolon = val.Find(';');
@@ -102,7 +102,7 @@ void CGlossify::OnMarkup()
     range.Surround(TAG_NAME);
 
     range.SetContainerAttribute(L"cdr:href", val);
-    if (!findNextMatch()) {
+    if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
     }
@@ -114,34 +114,34 @@ void CGlossify::OnMarkup()
  * elements to find what would otherwise be top-level
  * SummarySection elements.
  */
-void CGlossify::keepDigging(::DOMNode& node, ::_Document& doc) {
+void CGlossify::keep_digging(::DOMNode& node, ::_Document& doc) {
     ::DOMNode c = node.GetFirstChild();
     while (c) {
-        CString nodeName = c.GetNodeName();
-        if (nodeName == L"SummarySection")
+        CString node_name = c.GetNodeName();
+        if (node_name == L"SummarySection")
             chains.push_back(WordChain(c, doc));
-        else if (nodeName == L"Insertion" ||
-                 nodeName == L"Deletion")
-            keepDigging(c, doc);
+        else if (node_name == L"Insertion" ||
+                 node_name == L"Deletion")
+            keep_digging(c, doc);
         c = c.GetNextSibling();
     }
 }
 
-void CGlossify::findChains(DOMNode& docElem)
+void CGlossify::find_chains(DOMNode& doc_elem)
 {
     _Document doc = cdr::get_app().GetActiveDocument();
     doc.SetFormattingUpdating(FALSE);
     try {
-        if (docType == L"Summary") {
-            ::DOMNode c = docElem.GetFirstChild();
+        if (doc_type == L"Summary") {
+            ::DOMNode c = doc_elem.GetFirstChild();
             while (c) {
-                CString nodeName = c.GetNodeName();
-                if (nodeName == L"SummarySection")
+                CString node_name = c.GetNodeName();
+                if (node_name == L"SummarySection")
                     chains.push_back(WordChain(c, doc));
                 else if (m_dig) {
-                    if (nodeName == L"Insertion" ||
-                        nodeName == L"Deletion")
-                        keepDigging(c, doc);
+                    if (node_name == L"Insertion" ||
+                        node_name == L"Deletion")
+                        keep_digging(c, doc);
                 }
                 c = c.GetNextSibling();
             }
@@ -151,7 +151,7 @@ void CGlossify::findChains(DOMNode& docElem)
     doc.SetFormattingUpdating(TRUE);
 }
 
-static CString normalizeWord(const CString& s) {
+static CString normalize_word(const CString& s) {
     CString w = s;
     wchar_t* chars = L"'\".,?!:;()[]{}<>\x201C\x201D";
     for (size_t i = 0; chars[i]; ++i)
@@ -176,27 +176,28 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
     {
         if (!range.GetIsLessThan(end, FALSE))
             break;
-        CString s = normalizeWord(range.GetText());
+        CString s = normalize_word(range.GetText());
         if (!s.IsEmpty()) {
             ::Range r = range.GetDuplicate();
             Word w = Word(r, s);
             words.push_back(w);
         }
     }
-    curWord = 0;
+    cur_word = 0;
 }
 
-bool CGlossify::findNextMatch()
+bool CGlossify::find_next_match()
 {
     // We're done if there are no more word chains to look at.
-    if (curChain >= static_cast<int>(chains.size()))
+    if (cur_chain >= static_cast<int>(chains.size()))
         return false;
 
     // Try to match the phrases in the document with those in the glossary.
-    cdr::GlossaryTree* gt = cdr::get_glossary_tree(language, dictionary);
+    cdr::GlossaryTree* gt = cdr::GlossaryTrees::get_glossary_tree(language, 
+                                                                  dictionary);
 
     // Pick up where we left off in the current word chain from the doc.
-    WordChain* chain = &chains[curChain];
+    WordChain* chain = &chains[cur_chain];
 
     // Remember the path in the glossary tree for the current phrase.
     std::stack<cdr::GlossaryNode*> phrase;
@@ -205,27 +206,28 @@ bool CGlossify::findNextMatch()
     while (chain) {
 
         // Start at the root of the tree.
-        cdr::GlossaryNodeMap* currentNodeMap = &gt->node_map;
+        cdr::GlossaryNodeMap* current_node_map = &gt->node_map;
 
         // If we're finished with the current chain, move to the next one.
-        int wordsLeft = static_cast<int>(chain->words.size()) - chain->curWord;
-        while (wordsLeft < 1) {
-            if (++curChain >= static_cast<int>(chains.size()))
+        int words_left = static_cast<int>(chain->words.size()) - 
+            chain->cur_word;
+        while (words_left < 1) {
+            if (++cur_chain >= static_cast<int>(chains.size()))
                 return false;
-            chain = &chains[curChain];
-            wordsLeft = (int)chain->words.size();
-            if (docType == L"Summary")
+            chain = &chains[cur_chain];
+            words_left = (int)chain->words.size();
+            if (doc_type == L"Summary")
                 gt->clear_flags();
         }
 
         // Build the longest matching phrase we can from the current position.
-        while (static_cast<int>(phrase.size()) < wordsLeft) {
-            Word& w = chain->words[chain->curWord + phrase.size()];
-            cdr::GlossaryNodeMap::iterator i = currentNodeMap->find(w.w);
-            if (i == currentNodeMap->end())
+        while (static_cast<int>(phrase.size()) < words_left) {
+            Word& w = chain->words[chain->cur_word + phrase.size()];
+            cdr::GlossaryNodeMap::iterator i = current_node_map->find(w.w);
+            if (i == current_node_map->end())
                 break;
             phrase.push(i->second);
-            currentNodeMap = &i->second->node_map;
+            current_node_map = &i->second->node_map;
         }
 
         // Look for a match with a complete glossary phrase.
@@ -237,12 +239,12 @@ bool CGlossify::findNextMatch()
             if (n->doc_id && !n->marked_up) {
 
                 // Position the range object to include the phrase.
-                Word& firstWord = chain->words[chain->curWord];
-                Word& lastWord  = chain->words[chain->curWord +
+                Word& first_word = chain->words[chain->cur_word];
+                Word& last_word  = chain->words[chain->cur_word +
                                                phrase.size() - 1];
-                range = firstWord.r.GetDuplicate();
+                range = first_word.r.GetDuplicate();
                 bool glossifiable = true;
-                if (!range.ExtendTo(lastWord.r))
+                if (!range.ExtendTo(last_word.r))
                     glossifiable = false;
 
                 // Make sure the phrase can be marked up.
@@ -251,34 +253,34 @@ bool CGlossify::findNextMatch()
 
                 // Populate the controls of the dialog box.
                 if (glossifiable) {
-                    CString cdrId;
-                    CString phraseText = range.GetText();
-                    int i = phraseText.GetLength();
-                    const wchar_t* endPunct = L".;:,";
+                    CString cdr_id;
+                    CString phrase_text = range.GetText();
+                    int i = phrase_text.GetLength();
+                    const wchar_t* end_punct = L".;:,";
 
                     // Back up in front of trailing punctuation.
-                    if (i > 0 && _tcschr(endPunct, phraseText[i - 1])) {
-                        ::Range endPoint = lastWord.r.GetDuplicate();
-                        endPoint.Collapse(0);
-                        while (i-- > 0 && _tcschr(endPunct, phraseText[i]))
-                            endPoint.MoveLeft(0); // Broken; bug in XMetaL.
-                        phraseText.TrimRight(endPunct);
-                        range = firstWord.r.GetDuplicate();
-                        if (!range.ExtendTo(endPoint))
+                    if (i > 0 && _tcschr(end_punct, phrase_text[i - 1])) {
+                        ::Range end_point = last_word.r.GetDuplicate();
+                        end_point.Collapse(0);
+                        while (i-- > 0 && _tcschr(end_punct, phrase_text[i]))
+                            end_point.MoveLeft(0); // Broken; bug in XMetaL.
+                        phrase_text.TrimRight(end_punct);
+                        range = first_word.r.GetDuplicate();
+                        if (!range.ExtendTo(end_point))
                             glossifiable = false;
                         else if (!range.GetCanSurround(TAG_NAME))
                             glossifiable = false;
                     }
                     if (glossifiable) {
                         CString name = gt->names[n->doc_id];
-                        cdrId.Format(L"CDR%010d; %s", n->doc_id, name);
-                        m_phrase.SetWindowText(phraseText);
-                        m_markup.SetWindowText(cdrId);
+                        cdr_id.Format(L"CDR%010d; %s", n->doc_id, name);
+                        m_phrase.SetWindowText(phrase_text);
+                        m_markup.SetWindowText(cdr_id);
                         range.Select();
 
                         // Skip past the current phrase.
-                        chain->curWord += (int)phrase.size();
-                        curNode = n;
+                        chain->cur_word += (int)phrase.size();
+                        cur_node = n;
                         return true;
                     }
                 }
@@ -289,7 +291,7 @@ bool CGlossify::findNextMatch()
         }
 
         // Can't use the current word in a glossary phrase; skip past it.
-        ++chain->curWord;
+        ++chain->cur_word;
     }
 
     // Make lint happy (but we'll never reach here).
@@ -300,15 +302,15 @@ BOOL CGlossify::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    DOMNode docElement = doc.GetDocumentElement();
-    cdr::get_glossary_tree(language, dictionary)->clear_flags();
-    findChains(docElement);
+    DOMNode doc_element = doc.GetDocumentElement();
+    cdr::GlossaryTrees::get_glossary_tree(language, dictionary)->clear_flags();
+    find_chains(doc_element);
 
     if (chains.empty()) {
         ::AfxMessageBox(L"No glossifiable sections found");
         OnCancel();
     }
-    if (!findNextMatch()) {
+    if (!find_next_match()) {
         ::AfxMessageBox(L"No glossifiable phrases found");
         OnCancel();
     }
@@ -319,9 +321,9 @@ BOOL CGlossify::OnInitDialog()
 void CGlossify::OnBnClickedGlossifyNextSection()
 {
     // We're done if there are no more word chains to look at.
-    if (curChain < static_cast<int>(chains.size()))
-        ++curChain;
-    if (!findNextMatch()) {
+    if (cur_chain < static_cast<int>(chains.size()))
+        ++cur_chain;
+    if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
     }

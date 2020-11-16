@@ -16,15 +16,15 @@ class CSchemaPicklist : public CDialog
 {
 // Construction
 public:
-    CSchemaPicklist(const cdr::StringList* vvSet_,
-                    const CString& curVal_,
-                    const CString& elemName_,
-                    CWnd* pParent = NULL);   // standard constructor
+    CSchemaPicklist(const cdr::StringList* values,
+                    const CString& current_value,
+                    const CString& element_name,
+                    CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CSchemaPicklist)
 	enum { IDD = IDD_SCHEMA_PICKLIST };
-	CListBox	m_listBox;
+	CListBox	m_list_box;
 	//}}AFX_DATA
 
 
@@ -32,7 +32,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CSchemaPicklist)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -47,9 +47,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-    const cdr::StringList* vvSet;
-    const CString& curVal;
-    const CString& elemName;
+    const cdr::StringList* vv_set;
+    const CString& cur_val;
+    const CString& elem_name;
 };
 
 //{{AFX_INSERT_LOCATION}}

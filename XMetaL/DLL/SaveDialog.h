@@ -15,8 +15,8 @@ class CSaveDialog : public CDialog
 {
 // Construction
 public:
-    CSaveDialog(bool readyForReview, bool blobPossible = false, 
-                CWnd* pParent = NULL);
+    CSaveDialog(bool ready_for_review, bool blob_possible = false, 
+                CWnd* parent = NULL);
 
 // Dialog Data
     //{{AFX_DATA(CSaveDialog)
@@ -24,10 +24,10 @@ public:
     BOOL    m_validate;
     BOOL    m_checkIn;
     CString m_comment;
-    BOOL    m_createVersion;
-    BOOL    m_versionPublishable;
-    BOOL    m_docInactive;
-    BOOL    m_readyForReview;
+    BOOL    m_create_version;
+    BOOL    m_version_publishable;
+    BOOL    m_doc_inactive;
+    BOOL    m_ready_for_review;
     //}}AFX_DATA
 
 
@@ -35,7 +35,7 @@ public:
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CSaveDialog)
     protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
     //}}AFX_VIRTUAL
 
 // Implementation
@@ -50,17 +50,17 @@ public:
     afx_msg void OnBnClickedCheck3();
     afx_msg void OnBnClickedCheck1();
 private:
-    void fixCheckBoxes();
+    void fix_checkboxes();
 public:
     virtual BOOL OnInitDialog();
 private:
-    CButton m_readyForReviewCheckbox;
-    bool    m_blobPossible;
+    CButton m_ready_for_review_checkbox;
+    bool    m_blob_possible;
 public:
     afx_msg void OnBnClickedMediaFileBrowse();
-    CEdit m_blobFilename;
-    CString m_blobFilenameString;
-    CButton m_browseButton;
+    CEdit m_blob_filename;
+    CString m_blob_filename_string;
+    CButton m_browse_button;
 };
 
 //{{AFX_INSERT_LOCATION}}

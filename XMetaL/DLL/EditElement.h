@@ -25,7 +25,7 @@ public:
 	//{{AFX_DATA(CEditElement)
 	enum { IDD = IDD_LINK_EDIT_DIALOG };
 	CStatic	m_label;
-	CListBox	m_linkList;
+	CListBox	m_link_list;
 	CString	m_title;
 	//}}AFX_DATA
 
@@ -51,13 +51,13 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-    CString         docType;
+    CString         doc_type;
     CString         element;
     Type            type;
-    cdr::DocSet     docSet;
-    bool            insertOrgLocation(const CString& str);
-    void            extractGeneticsSyndromes(cdr::DOM& dom);
-    CFont           biggerFont;
+    cdr::DocSet     doc_set;
+    bool            insert_org_location(const CString& str);
+    void            extract_genetics_syndromes(cdr::DOM& dom);
+    CFont           bigger_font;
 public:
     afx_msg void OnLbnSelchangeList1();
 };
