@@ -2,7 +2,7 @@
 
 
 // Note: Proxy/Stub Information
-//      To build a separate proxy/stub DLL, 
+//      To build a separate proxy/stub DLL,
 //      run nmake -f Cdrps.mk in the project directory.
 
 #include "stdafx.h"
@@ -93,5 +93,3 @@ STDAPI DllUnregisterServer(void)
 {
     return _Module.UnregisterServer(TRUE);
 }
-
-

@@ -15,8 +15,7 @@ const wchar_t* TAG_NAME = L"GlossaryTermRef";
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
 CGlossify::CGlossify(bool dig, const CString dict, CWnd* parent /*=NULL*/)
 : CDialog(CGlossify::IDD, parent), cur_chain(0), cur_node(0), m_dig(dig),
-    dictionary(dict)
-{
+    dictionary(dict) {
     _Application app = cdr::get_app();
     doc = app.GetActiveDocument();
     range = doc.GetRange();
@@ -44,12 +43,9 @@ CGlossify::CGlossify(bool dig, const CString dict, CWnd* parent /*=NULL*/)
     }
 }
 
-CGlossify::~CGlossify()
-{
-}
+CGlossify::~CGlossify() {}
 
-void CGlossify::DoDataExchange(CDataExchange* dx)
-{
+void CGlossify::DoDataExchange(CDataExchange* dx) {
     CDialog::DoDataExchange(dx);
     DDX_Control(dx, IDC_EDIT1, m_phrase);
     DDX_Control(dx, IDC_EDIT2, m_markup);
@@ -67,8 +63,7 @@ END_MESSAGE_MAP()
 
 // CGlossify message handlers
 
-void CGlossify::OnSkip()
-{
+void CGlossify::OnSkip() {
     if (cur_node)
         cur_node->marked_up = true;
     if (!find_next_match()) {
@@ -77,21 +72,18 @@ void CGlossify::OnSkip()
     }
 }
 
-void CGlossify::OnBnClickedGlossifySkipFirst()
-{
+void CGlossify::OnBnClickedGlossifySkipFirst() {
     if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
     }
 }
 
-void CGlossify::OnDone()
-{
+void CGlossify::OnDone() {
     OnCancel();
 }
 
-void CGlossify::OnMarkup()
-{
+void CGlossify::OnMarkup() {
     if (cur_node)
         cur_node->marked_up = true;
     CString val;
@@ -127,8 +119,7 @@ void CGlossify::keep_digging(::DOMNode& node, ::_Document& doc) {
     }
 }
 
-void CGlossify::find_chains(DOMNode& doc_elem)
-{
+void CGlossify::find_chains(DOMNode& doc_elem) {
     _Document doc = cdr::get_app().GetActiveDocument();
     doc.SetFormattingUpdating(FALSE);
     try {
@@ -151,29 +142,39 @@ void CGlossify::find_chains(DOMNode& doc_elem)
     doc.SetFormattingUpdating(TRUE);
 }
 
-static CString normalize_word(const CString& s) {
-    CString w = s;
+/**
+ * Strip punctuation and uppercase a word from the document's text.
+ *
+ * @param word - string found by tokenizing text on whitespace delimiters
+ * @return     - normalized string
+ */
+static CString normalize_word(const CString& word) {
+    CString w = word;
     wchar_t* chars = L"'\".,?!:;()[]{}<>\x201C\x201D";
     for (size_t i = 0; chars[i]; ++i)
         w.Remove(chars[i]);
+    // MakeUpper is badly broken for Unicode; BAD Microsoft!
+    // w.MakeUpper();
     wchar_t* p = w.GetBuffer(w.GetLength());
     CharUpperBuff(p, w.GetLength());
     w.ReleaseBuffer();
-    // MakeUpper is badly broken for Unicode; BAD Microsoft!
-    // w.MakeUpper();
     return w;
 }
 
-CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
-{
+/**
+ * Find all the sequences of consecutive non-whitespace characters in a node.
+ *
+ * @param node - block from the document whose text content we examine
+ * @param doc  - XMetaL document object in which the node was found
+ */
+CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc) {
     ::Range range = doc.GetRange();
     ::Range end   = doc.GetRange();
     ::Find find = range.GetFind();
     range.SelectBeforeNode(node);
     end.SelectAfterNode(node);
     while (find.Execute(L"[^-\n\r\t ]+", L"", L"",
-                        TRUE, FALSE, TRUE, TRUE, FALSE, 0, FALSE))
-    {
+                        TRUE, FALSE, TRUE, TRUE, FALSE, 0, FALSE)) {
         if (!range.GetIsLessThan(end, FALSE))
             break;
         CString s = normalize_word(range.GetText());
@@ -186,14 +187,17 @@ CGlossify::WordChain::WordChain(::DOMNode node, ::_Document doc)
     cur_word = 0;
 }
 
-bool CGlossify::find_next_match()
-{
+/**
+ *
+ */
+bool CGlossify::find_next_match() {
+
     // We're done if there are no more word chains to look at.
     if (cur_chain >= static_cast<int>(chains.size()))
         return false;
 
     // Try to match the phrases in the document with those in the glossary.
-    cdr::GlossaryTree* gt = cdr::GlossaryTrees::get_glossary_tree(language, 
+    cdr::GlossaryTree* gt = cdr::GlossaryTrees::get_glossary_tree(language,
                                                                   dictionary);
 
     // Pick up where we left off in the current word chain from the doc.
@@ -209,7 +213,7 @@ bool CGlossify::find_next_match()
         cdr::GlossaryNodeMap* current_node_map = &gt->node_map;
 
         // If we're finished with the current chain, move to the next one.
-        int words_left = static_cast<int>(chain->words.size()) - 
+        int words_left = static_cast<int>(chain->words.size()) -
             chain->cur_word;
         while (words_left < 1) {
             if (++cur_chain >= static_cast<int>(chains.size()))
@@ -298,8 +302,7 @@ bool CGlossify::find_next_match()
     return false;
 }
 
-BOOL CGlossify::OnInitDialog()
-{
+BOOL CGlossify::OnInitDialog() {
     CDialog::OnInitDialog();
 
     DOMNode doc_element = doc.GetDocumentElement();
@@ -318,8 +321,8 @@ BOOL CGlossify::OnInitDialog()
     // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CGlossify::OnBnClickedGlossifyNextSection()
-{
+void CGlossify::OnBnClickedGlossifyNextSection() {
+
     // We're done if there are no more word chains to look at.
     if (cur_chain < static_cast<int>(chains.size()))
         ++cur_chain;

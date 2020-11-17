@@ -15,7 +15,7 @@ class CSaveDialog : public CDialog
 {
 // Construction
 public:
-    CSaveDialog(bool ready_for_review, bool blob_possible = false, 
+    CSaveDialog(bool ready_for_review, bool blob_possible = false,
                 CWnd* parent = NULL);
 
 // Dialog Data

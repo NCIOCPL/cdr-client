@@ -228,7 +228,7 @@ int getNextHeader(MP3INFO* mp3) {
     int skipBytes = 0;
     for (;;) {
         unsigned char c = 0;
-        while (mp3->fp->Read(&c, 1) == 1 && c != 0xFF && 
+        while (mp3->fp->Read(&c, 1) == 1 && c != 0xFF &&
                           (long)mp3->fp->GetPosition() < mp3->dataSize)
             skipBytes++;
         if (c == 0xFF) {
@@ -253,7 +253,7 @@ int getNextHeader(MP3INFO* mp3) {
 
 /*
  * Read and parse the frame header at the current position.
- * Return the number of bytes in the frame, or 0 if valid 
+ * Return the number of bytes in the frame, or 0 if valid
  * frame header not found.
  */
 int getHeader(CFile* fp, MP3HEADER* h) {

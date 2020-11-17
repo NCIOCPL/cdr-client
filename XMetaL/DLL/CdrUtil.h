@@ -276,6 +276,10 @@ namespace cdr {
 
     // Map of words in glossary terms to the terms from which they come.
     typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
+
+    /**
+     *
+     */
     struct GlossaryNode {
         int             doc_id;
         bool            marked_up;
@@ -434,14 +438,12 @@ namespace cdr {
     unsigned long get_doc_no(const CString& docString);
     ::Range get_elem_range(const CString& elemName);
     bool get_image_dimensions(CFile& file, ImageDimensions& dim);
-    CString get_user_path();
-    CString get_xmetal_path();
+    const CString& get_user_path();
+    const CString& get_xmetal_path();
     bool replace_element_content(::DOMElement&, const CString&);
     void send_trace_log();
     bool show_errors(DOM& response);
     int show_page(const CString& url);
-    bool show_validation_errors(ValidationErrors&);
-    CString suppress_leading_zeros(const CString&);
     void trace_log(const char* what);
     CString trim(const CString& s);
     CString utf8_to_cstring(const char* s);

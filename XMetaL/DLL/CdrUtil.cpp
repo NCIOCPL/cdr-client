@@ -35,18 +35,59 @@ static std::string log_timestamp();
 ///                          INLINE FUNCTIONS
 //////////////////////////////////////////////////////////////////////
 
+/**
+ * Cast a wide character to a 16-bit unsigned integer.
+ *
+ * Called by:
+ *   cstring_to_utf8()
+ *
+ * @param c - wide character to be cast
+ * @return  - 16-bit unsigned integer value
+ */
 inline unsigned short char_to_unsigned_short(wchar_t c) {
     return static_cast<unsigned short>(c);
 }
 
+/**
+ * Extract the 16-bit unsigned integer value from two memory bytes.
+ *
+ * Called by:
+ *   get_image_dimensions()
+ *
+ * @param buf - pointer to two consecutive memory bytes representing
+ *              an unsigned integer in big-endian order (commonly
+ *              referred to as "network" order)
+ * @return    - 16-bit unsigned integer value
+ */
 static inline unsigned short get_network_short(const unsigned char* buf) {
     return (((unsigned short)buf[0]) << 8) + (unsigned short)buf[1];
 }
 
+/**
+ * Extract the 16-bit unsigned integer value from two memory bytes.
+ *
+ * Called by:
+ *   get_image_dimensions()
+ *
+ * @param buf - pointer to two consecutive memory bytes representing
+ *              an unsigned integer in little-endian order
+ * @return    - 16-bit unsigned integer value
+ */
 static inline unsigned short get_little_endian_short(const unsigned char* buf) {
     return (((unsigned short)buf[1]) << 8) + (unsigned short)buf[0];
 }
 
+/**
+ * Extract the 32-bit unsigned integer value from four memory bytes.
+ *
+ * Called by:
+ *   get_image_dimensions()
+ *
+ * @param buf - pointer to four consecutive memory bytes representing
+ *              an unsigned integer in big-endian order (commonly
+ *              referred to as "network" order)
+ * @return    - 32-bit unsigned integer value
+ */
 static inline unsigned long get_network_long(const unsigned char* buf) {
     return (((unsigned long)buf[0]) << 24) +
            (((unsigned long)buf[1]) << 16) +
@@ -62,6 +103,8 @@ static inline unsigned long get_network_long(const unsigned char* buf) {
 /**
  * Create a DOM builder for a CdrCommandSet XML document.
  *
+ * Called by every method which sends a command to the CDR server.
+ *
  *  @param name - string for the command's name
  */
 cdr::CommandSet::CommandSet(const char* name) : DOM("CdrCommandSet") {
@@ -75,6 +118,10 @@ cdr::CommandSet::CommandSet(const char* name) : DOM("CdrCommandSet") {
 
 /**
  * Add a modified copy of the active document to the DOM.
+ *
+ * Called by:
+ *   CCommands::save()
+ *   CCommands::validate()
  *
  * Modifications include:
  *  - removal of the `CdrDocCtl` block
@@ -123,6 +170,8 @@ void cdr::CommandSet::add_cdr_document(IXMLDOMElement* parent,
 
 /**
  * Initialize the DOM for a new XML document.
+ *
+ * Invoked by the other two overloaded constructors.
  */
 cdr::DOM::DOM() {
     HRESULT hr = doc.CoCreateInstance(__uuidof(DOMDocument));
@@ -136,6 +185,10 @@ cdr::DOM::DOM() {
 
 /**
  * Create the DOM object from its serialized XML.
+ *
+ * Heavily used throught the DLL code, including by every
+ * method which needs to parse a command response returned
+ * by the CDR server.
  *
  * @param xml - serialized XML from which the DOM object is generated
  */
@@ -161,6 +214,8 @@ cdr::DOM::DOM(const CString& xml) : DOM() {
 /**
  * Create a DOM object with just a root element.
  *
+ * Invoked by the cdr::CommandSet constructor.
+ *
  * @param root_name - name of the element to use as the document element.
  */
 cdr::DOM::DOM(const char* root_name) : DOM() {
@@ -169,6 +224,13 @@ cdr::DOM::DOM(const char* root_name) : DOM() {
 
 /**
  * Attach an element to an existing parent.
+ *
+ * Called by:
+ *   cdr::CommandSet::add_cdr_document()
+ *   cdr::DOM::append_text()
+ *   cdr::DOM::child_element()
+ *   cdr::DOM::set_root()
+ *   CCommands::getOrgAddress()
  *
  *  @param parent - pointer to the parent node we attach to
  *  @param child  - pointer to the node being attached to the parent
@@ -183,6 +245,9 @@ void cdr::DOM::append(IXMLDOMNode* parent, IXMLDOMNode* child) {
 /**
  * Attach a text node to an existing element.
  *
+ * Called by:
+ *   cdr::DOM::element()
+ *
  *  @param parent - pointer to the parent node we attach to
  *  @param text   - Unicode string for the value being attached
  */
@@ -196,6 +261,8 @@ void cdr::DOM::append_text(IXMLDOMNode* parent, const CString& text) {
 
 /**
  * Create a new element attached to an existing parent.
+ *
+ * Called by dozens of methods throughout the DLL code.
  *
  *  @param parent - pointer to the parent node we attach to
  *  @param name   - string for the new element's name
@@ -216,6 +283,10 @@ cdr::DOM::Element cdr::DOM::child_element(IXMLDOMNode* parent,
  *
  * The new element is not attached to any parent.
  *
+ * Called by:
+ *   cdr::DOM::child_element()
+ *   open_doc() in Commands.cpp
+ *
  *  @param name   - string for the new element's name
  *  @param text   - optional string value to be used to set the
  *                  text content of the new element
@@ -235,6 +306,8 @@ cdr::DOM::Element cdr::DOM::element(const CString& name, const CString& text) {
  * Find a single element matching the supplied XPath string.
  *
  * If no element is specified, the search if from the root element.
+ *
+ * Called by dozens of methods throughout the DLL code.
  *
  *  @param xpath - string for the search
  *  @param from  - optional node from which to start the search
@@ -261,6 +334,8 @@ cdr::DOM::Element cdr::DOM::find(const CString& xpath, IXMLDOMElement* top) {
  * Find all elements matching the supplied XPath string.
  *
  * If no element is specified, the search if from the root element.
+ *
+ * Called extensively throughout the DLL code.
  *
  *  @param xpath - string for the search
  *  @param from  - optional node from which to start the search
@@ -291,6 +366,8 @@ std::vector<cdr::DOM::Element> cdr::DOM::find_all(const CString& xpath,
 /**
  * Get the value of an element's attribute.
  *
+ * Called by about a dozen places throughout the DLL code base.
+ *
  *  @param elem - pointer to the element whose attribute value we want
  *  @param name - string naming the attribute whose value we want
  *  @return     - string for attribute value
@@ -307,6 +384,9 @@ CString cdr::DOM::get(IXMLDOMElement* elem, const CString& name) {
 /**
  * Get the string for a specific DOM node's name.
  *
+ * Called by:
+ *   open_doc() in Commands.cpp
+ *
  *  @param node - address of the DOM node whose name we want
  *  @return     - pointer to the root element
  */
@@ -321,6 +401,8 @@ CString cdr::DOM::get_node_name(IXMLDOMNode* node) {
 /**
  * Give the caller a pointer to the root element.
  *
+ * Called by about a dozen places throughout the DLL code.
+ *
  *  @return - `CComPtr` for the root element
  */
 cdr::DOM::Element cdr::DOM::get_root() {
@@ -333,6 +415,8 @@ cdr::DOM::Element cdr::DOM::get_root() {
 
 /**
  * Get the text content string for a specific element.
+ *
+ * Called many places throughout the code.
  *
  *  @param node - address of the DOM node whose text content we want
  *  @return     - text content for element node
@@ -350,6 +434,14 @@ CString cdr::DOM::get_text(IXMLDOMNode* element) {
 /**
  * Serialize the document to an XML string.
  *
+ * Called by:
+ *   CSearchDialog::OnSearchButton()
+ *   cdr::CommandSet::add_cdr_document()
+ *   err_response() in CdrUtil.cpp
+ *   CCommands::getOrgAddress()
+ *   open_doc() in Commands.cpp
+ *   cdr::Socket::send_commands()
+ *
  *  @param node - address of the DOM node whose XML serialization we want
  *  @return     - string for the serialized node
  */
@@ -366,6 +458,9 @@ CString cdr::DOM::get_xml(IXMLDOMNode* node) const {
 /**
  * Install a node in front of an existing node.
  *
+ * Called by:
+ *   open_doc() in Commands.cpp
+ *
  *  @param parent   - pointer to the parent node we attach to
  *  @param new_node - pointer to the node we are inserting
  *  @param sibling  - pointer to the node in front of which we insert
@@ -379,7 +474,15 @@ void cdr::DOM::insert(IXMLDOMNode* parent, IXMLDOMNode* new_node,
         throw L"insertBefore() failed";
 }
 
-// Assign a value to one of an element's attributes.
+/**
+ * Assign a string value to a named attribute of an element.
+ *
+ * Used extensively throughout the code.
+ *
+ *  @param element - address of the element whose attribute we set
+ *  @param name    - string for the name of the attribute to be set
+ *  @param value   - string for the value we assign to the attribute
+ */
 void cdr::DOM::set(IXMLDOMElement* elem, const CString& name,
                    const CString& value) {
     CComBSTR bstr_name(name);
@@ -395,7 +498,13 @@ void cdr::DOM::set(IXMLDOMElement* elem, const CString& name,
         throw L"setAttributeNode() failed";
 }
 
-// Make an existing element node the new root of the DOM document.
+/**
+ * Make an existing element node the new root of the DOM document.
+ *
+ * Not currently called anywhere in the code, so may be removed.
+ *
+ *  @param new_root - address of the element which will be the new root
+ */
 void cdr::DOM::set_root(IXMLDOMElement* new_root) {
     Element old_root = get_root();
     if (old_root) {
@@ -411,30 +520,42 @@ void cdr::DOM::set_root(IXMLDOMElement* new_root) {
 
 /**
  * Fetch glossary information from the CDR server.
+ *
+ * Called by:
+ *   cdr::GlossaryTrees::get_glossary_tree()
+ *
+ * @param language   - "es" or "en"
+ * @param dictionary - optional string for restricting the terms retrieved
+ *                     to those used by a specific dictionary (e.g. Genetics)
  */
 cdr::GlossaryTree::GlossaryTree(const CString& language,
                                 const CString& dictionary) {
+
+    // Prepare the command we'll send to the CDR server.
     char* tag = "CdrGetGlossaryMap";
     if (language == L"es")
         tag = "CdrGetSpanishGlossaryMap";
     cdr::CommandSet request(tag);
     if (!dictionary.IsEmpty())
         request.child_element(request.command, "Dictionary", dictionary);
+
+    // Walk through all the `Term` elements in the server's response.
     CString response_xml = cdr::Socket::send_commands(request);
     cdr::DOM dom(response_xml);
-    auto nodes = dom.find_all("//Term");
-    std::wistringstream iss;
-    for (auto& node : nodes) {
-        int id = (int)get_doc_no(dom.get(node, "id").GetString());
-        CString name = dom.get_text(dom.find("Name", node));
+    auto terms = dom.find_all("//Term");
+    for (auto& term : terms) {
+        int id = (int)get_doc_no(dom.get(term, "id").GetString());
+        CString name = dom.get_text(dom.find("Name", term));
         names[id] = name;
-        auto phrase_nodes = dom.find_all("Phrase", node);
-        for (auto& phrase_node : phrase_nodes) {
+        auto phrases = dom.find_all("Phrase", term);
+        for (auto& phrase : phrases) {
+
+            // It's not the most obvious solution, but the extraction
+            // operator of the standard streams does exactly what we need
+            // by default for tokenizing words on whitespace.
+            std::wistringstream iss(dom.get_text(phrase).GetString());
             GlossaryNodeMap* current_map = &node_map;
             GlossaryNode* current_node = nullptr;
-            iss.str(dom.get_text(phrase_node).GetString());
-            iss.clear();
-            iss.seekg(0);
             std::wstring s;
             while (iss >> s) {
                 CString word(s.c_str());
@@ -445,13 +566,17 @@ cdr::GlossaryTree::GlossaryTree(const CString& language,
                     current_node = iter->second;
                 current_map = &current_node->node_map;
             }
+
+            // Only the last word in the phrase gets the term document's ID.
             if (current_node)
                 current_node->doc_id = id;
         }
     }
 }
 
-// Clean up resources used by a `GlossaryTree` object.
+/**
+ * Clean up resources used by a `GlossaryTree` object.
+ */
 cdr::GlossaryTree::~GlossaryTree() {
     GlossaryNodeMap::iterator i = node_map.begin();
     while (i != node_map.end()) {
@@ -460,10 +585,14 @@ cdr::GlossaryTree::~GlossaryTree() {
     }
 }
 
-// Static cache of glossary tree maps.
+/**
+ * Static cache of glossary tree maps.
+ */
 cdr::GlossaryTrees::Cache cdr::GlossaryTrees::cache;
 
-// Keep BoundsChecker happy by cleaning up after ourselves.
+/**
+ * Keep BoundsChecker happy by cleaning up after ourselves.
+ */
 cdr::GlossaryTrees::~GlossaryTrees() {
     CString buf;
     for (auto i = cache.begin(); i != cache.end(); ++i) {
@@ -475,6 +604,10 @@ cdr::GlossaryTrees::~GlossaryTrees() {
 
 /**
  * Find or load and cache one of the glossary term trees.
+ *
+ * Called by:
+ *   CGlossify::OnInitDialog()
+ *   CGlossify::find_next_match()
  *
  *  @param language   - en or es
  *  @param dictionary - optional string for limiting tree
@@ -521,12 +654,16 @@ CString cdr::Socket::tier;
 /**
  * Send a client request to the CDR Server.
  *
+ * Called extensively, including by every method invoking a CDR client-
+ * server API command.
+ *
  *  @param commands - DOM object for the XML command set to be submitted
  *  @param blob     - optional bytes for a media attachment
  *
  *  @return           serialized XML for the server's response
  */
-CString cdr::Socket::send_commands(const cdr::CommandSet& commands, char* blob) {
+CString cdr::Socket::send_commands(const cdr::CommandSet& commands,
+                                   char* blob) {
     try {
 
         CWaitCursor wc;
@@ -617,6 +754,8 @@ cdr::Socket::Init cdr::Socket::Init::init;
 
 /**
  * Initialize the Winsock package and figure out which tier we're talking to.
+ *
+ * Invoked for the singleton immediately above.
  */
 cdr::Socket::Init::Init()
 {
@@ -666,11 +805,19 @@ cdr::Socket::Init::Init()
 /**
  * Performs cleanup of the Winsock package.
  */
-cdr::Socket::Init::~Init()
-{
+cdr::Socket::Init::~Init() {
     WSACleanup();
 }
 
+/**
+ * Extract the validation errors from `Errors/Err` elements in the response.
+ *
+ * Called by:
+ *   CCommands::save()
+ *   CCommands::validate()
+ *
+ * @param dom - parsed response from the CDR server.
+ */
 cdr::ValidationErrors::ValidationErrors(cdr::DOM& dom) {
     current_error = 0;
     auto nodes = dom.find_all("//Errors/Err");
@@ -698,6 +845,19 @@ cdr::ValidationErrorSets cdr::validation_error_sets;
 
 /**
  * Creates UTF-8 version of CString.  Ignores UCS code points beyond 0xFFFF.
+ *
+ * Called by:
+ *   cdr::Socket::Init()
+ *   cdr::debug_log()
+ *   cdr::get_cdr_trace_log_path()
+ *   cdr::GlossaryTrees::get_glossary_tree()
+ *   cdr::GlossaryTrees::~GlossaryTrees()
+ *   cdr::Socket::send_commands()
+ *   CCommands::launchBlob()
+ *   open_doc() in Commands.cpp
+ *
+ * @param str - Unicode string to be converted
+ * @return    - UTF-8 encoding of the caller's string
  */
 std::string cdr::cstring_to_utf8(const CString& str) {
     // Calculate storage requirement.
@@ -736,9 +896,17 @@ std::string cdr::cstring_to_utf8(const CString& str) {
     return utf8;
 }
 
-// Developer-oriented logging for troubleshooting.
+/**
+ * Log developer-oriented information useful for troubleshooting.
+ *
+ * Called by various places throughout the code, changing as
+ * dictated by what needs to be debugged at any given moment.
+ *
+ * @param what - string for the information being logged
+ * @param who  - if set to a user other than the current user, do nothing
+ */
 void cdr::debug_log(const CString& what, const CString& who) {
-    if (who != L"bkline")
+    if (!who.IsEmpty() && who != L"bkline")
         return;
     try {
         FILE* log_file = fopen("c:/tmp/debug.log", "ab");
@@ -757,39 +925,30 @@ void cdr::debug_log(const CString& what, const CString& who) {
     catch (...) {}
 }
 
+/**
+ * Create the canonical form of a CDR document ID.
+ *
+ * Called by:
+ *   CSearchDialog::OnVersionsButton()
+ *   CCommands::doRetrieve()
+ *
+ * @param id - integer for the unique document ID
+ * @return   - string version of the ID, in the form "CDR0000012345"
+ */
 CString cdr::doc_id_string(int id) {
     wchar_t buf[40];
     swprintf(buf, L"CDR%010d", id);
     return buf;
 }
 
-CString cdr::expand_leading_zeros(const CString& s) {
-    CString zeros = L"0000000000";
-    int i = 0;
-    int first_digit = 0;
-    int num_digits = 0;
-    while (i < s.GetLength()) {
-        if (_istdigit(s.GetAt(i))) {
-            first_digit = i++;
-            num_digits = 1;
-            break;
-        }
-        ++i;
-    }
-    while (i < s.GetLength()) {
-        if (!_istdigit(s.GetAt(i)))
-            break;
-        ++i;
-        ++num_digits;
-    }
-    if (num_digits >= 10 || num_digits < 1)
-        return s;
-    int zeros_needed = 10 - num_digits;
-    return s.Left(first_digit) + zeros.Left(zeros_needed) + s.Mid(first_digit);
-}
-
 /**
  * Pulls out the document's type, title, and ID from its XML representation.
+ *
+ * Called by:
+ *   CCommands::checkIn()
+ *   CCommands::edit()
+ *   CCommands::save()
+ *   CCommands::validate()
  *
  *  @param  node            reference to DOM node object for document.
  *  @param  info            reference to control information object to be
@@ -861,6 +1020,11 @@ void cdr::extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info) {
 /**
  * Extracts and concatenates the text content for an element.
  *
+ * Called by:
+ *   CGlossify::CGlossify()
+ *   cdr::extract_ctl_info()
+ *   is_spanish_summary() in Commands.cpp
+ *
  *  @param  node            DOM node object for element.
  *  @return                 string object containing concatenated text
  *                          content for element.
@@ -878,6 +1042,17 @@ CString cdr::extract_element_text(DOMNode node) {
     return s;
 }
 
+/**
+ * Create a `CdrLinkInfo` object using information parsed from a string.
+ *
+ * Called by:
+ *   COrgLocs::OnOK()
+ *   CCommands::doInsertLink()
+ *   CEditElement::insert_org_location()
+ *
+ * @param str - information in the form "[id] text-content"
+ * @return    - object with `target` and `data` members
+ */
 CdrLinkInfo cdr::extract_link_info(const CString& str) {
     CdrLinkInfo info;
 
@@ -904,6 +1079,10 @@ CdrLinkInfo cdr::extract_link_info(const CString& str) {
  * Extracts document information from the XML containing the CDR
  * server's response.
  *
+ * Called by:
+ *   CEditElement::OnOK()
+ *   CSearchDialog::OnSearchButton()
+ *
  *  @param  dom             reference to parsed server query response
  *  @param  doc_set          reference to set we will populate
  */
@@ -920,7 +1099,15 @@ void cdr::extract_search_results(DOM& dom, DocSet& docSet)
     }
 }
 
-// Fetch data from a web service.
+/**
+ * Fetch data from a web service.
+ *
+ * Called by:
+ *   CCommands::fetchFromUrl()
+ *
+ * @param url - string for the service's end point
+ * @return    - string returned by the service
+ */
 CString cdr::fetch_from_url(const CString& url) {
     CInternetSession session(L"CDR");
     DWORD flags = INTERNET_FLAG_TRANSFER_BINARY;
@@ -943,6 +1130,12 @@ CString cdr::fetch_from_url(const CString& url) {
  * Populates the caller's list box object with strings drawn from the query
  * result information passed in.
  *
+ * Called by:
+ *   CEditElement::OnOK()
+ *   COrgLocs::OnInitDialog()
+ *   CSearchDialog::OnSearchButton()
+ *   CSearchDialog::OnInitDialog()
+ *
  *  @param  list_box        reference to caller's list box, to which
  *                          we add strings identifying each document
  *                          in the server's response.
@@ -950,8 +1143,8 @@ CString cdr::fetch_from_url(const CString& url) {
  *  @return                 number of strings added to list box, or -1
  *                          in the event of an error.
  */
-int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set)
-{
+int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set) {
+
     // Start with a clean slate.
     list_box.ResetContent();
     int n         = 0;
@@ -996,29 +1189,43 @@ int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set)
     return n;
 }
 
-::Range cdr::find_or_create_child(::Range parent, const CString& elemName) {
+/**
+ * Find a node by name in the document selection, or create one if not found.
+ *
+ * Called by:
+ *   CCommands::getOrgAddress()
+ *
+ * @param parent    - `Range` object from XMetaL's DOM API
+ * @param elem_name - string for the desired element's tag name
+ * @return          - `Range` object for the found or created element
+ *                    (empty if the element isn't allowed in this location)
+ */
+::Range cdr::find_or_create_child(::Range parent, const CString& elem_name) {
+
     // Try to find an existing occurrence first.
     parent.SelectContainerContents();
     ::Range child = parent.GetDuplicate();
     child.Collapse(1);
-    if (child.MoveToElement(elemName, TRUE)) {
+    if (child.MoveToElement(elem_name, TRUE)) {
         if (parent.GetContains(child, FALSE))
             return child;
     }
 
     // Didn't find one; try to create a new one.
     parent.Collapse(1);
-    if (parent.FindInsertLocation(elemName, TRUE)) {
-        parent.InsertElement(elemName);
+    if (parent.FindInsertLocation(elem_name, TRUE)) {
+        parent.InsertElement(elem_name);
         return parent;
     }
 
-    // Bust.  Can't find *or* create the element!
+    // Bust. Can't find *or* create the element!
     return ::Range();
 }
 
 /**
  * Obtains an Automation dispatch object for the running XMetaL application.
+ *
+ * Called from many methods throughout the code base.
  *
  *  @return             new object to be used for invoking application-
  *                      level XMetaL methods.
@@ -1052,8 +1259,15 @@ _Application cdr::get_app()
     throw L"Unable to create XMetaL Application-level automation object";
 }
 
-// Parses mp3 file to determine the duration in seconds.
-// Returns the number of seconds if successful, otherwise -1.
+/**
+ * Parse beginning of mp3 file to determine the duration in seconds.
+ *
+ * Called by:
+ *   insert_audio_seconds() in Commands.cpp
+ *
+ * @param file - reference to `CFile` object to be read
+ * @return     - run-time seconds if successful, otherwise -1
+ */
 int cdr::get_audio_seconds(CFile& file) {
     MP3INFO mp3;
     if (getMp3Info(&mp3, file))
@@ -1061,7 +1275,15 @@ int cdr::get_audio_seconds(CFile& file) {
     return -1;
 }
 
-// Figure out where the user's trace log lives.
+/**
+ * Figure out where the user's trace log lives.
+ *
+ * Called by:
+ *   cdr::send_trace_log()
+ *   cdr::trace_log()
+ *
+ * @return  - address of static c-style string with the full log file path
+ */
 const char* cdr::get_cdr_trace_log_path() {
     static char* path = 0;
     if (!path) {
@@ -1085,6 +1307,14 @@ const char* cdr::get_cdr_trace_log_path() {
  * Extracts document number from CDR ID string, which is generally
  * in the form "CDR\d\d\d\d\d\d\d\d\d\d".
  *
+ * Called by:
+ *   cdr::GlossaryTree::GlossaryTree()
+ *   CSearchDialog::OnVersionsButton()
+ *   CCommands::doRetrieve()
+ *   CCommands::launchBlob()
+ *   open_doc() in Commands.cpp
+ *   remove_doc() in Commands.cpp
+ *
  *  @param  doc_string       reference to document ID string.
  *  @return                 integer representing document's primary key
  *                          in SQL Server.
@@ -1097,24 +1327,44 @@ unsigned long cdr::get_doc_no(const CString& doc_string) {
     return _tcstoul(p + pos, 0, 10);
 }
 
-::Range cdr::get_elem_range(const CString& elemName) {
+/**
+ * Find a parent element of the current editing location by name.
+ *
+ * Called by:
+ *   CCommands::getOrgAddress()
+ *
+ * @param elem_name - string naming the element we're looking for
+ * @return          - `Range` object from the XMetaL DOM API for the
+ *                    sought element (empty if not found)
+ */
+::Range cdr::get_elem_range(const CString& elem_name) {
     // Find out where we are.
     ::_Document active_doc = get_app().GetActiveDocument();
     ::Range rng = active_doc.GetRange();
 
     // Make sure what we find is an ancestor of the current element.
-    if (!rng.GetIsParentElement(elemName))
+    if (!rng.GetIsParentElement(elem_name))
         return ::Range();
 
     // Move.
-    if (!rng.MoveToElement(elemName, FALSE))
+    if (!rng.MoveToElement(elem_name, FALSE))
         return ::Range();
 
     return rng;
 }
 
-// Fills in dim structure with height and width of image if possible.
-// We only support the image types stored in the CDR.
+/**
+ * Determine the width and height of the image stored in a file.
+ *
+ * We only support the image types stored in the CDR (GIF, PNG, and JPEG).
+ *
+ * Called by:
+ *   cdr::insert_image_dimensions()
+ *
+ * @param file - open `CFile` object from which the file's bytes can be read
+ * @param dim  - `ImageDimensions` object to be populated
+ * @return     - `true` if we were successful; otherwise `false`
+ */
 bool cdr::get_image_dimensions(CFile& file, ImageDimensions& dim) {
 
     // Get the first byte, which will give us a clue about which type we have.
@@ -1190,10 +1440,19 @@ bool cdr::get_image_dimensions(CFile& file, ImageDimensions& dim) {
  * Finds the user-specific location where client files for the application
  * are stored.
  *
+ * Called by:
+ *   cdr::get_cdr_trace_log_path()
+ *   CCommands::get_userPath()
+ *   CCommands::launchBlob()
+ *   load_doc_types() in Commands.cpp
+ *   CCommands::logon()
+ *   open_doc() in Commands.cpp
+ *   remove_doc() in Commands.cpp
+ *
  *  @return             reference to string containing location for client
  *                      files.
  */
-CString cdr::get_user_path() {
+const CString& cdr::get_user_path() {
     static CString user_path;
     if (user_path.IsEmpty()) {
         CString tail = L"\\Softquad\\XMetaL\\";
@@ -1220,10 +1479,13 @@ CString cdr::get_user_path() {
  * Finds the location where the currently running XMetaL application is
  * installed.
  *
+ * Called by:
+ *   cdr::get_user_path()
+ *
  *  @return             reference to string containing path for base XMetaL
  *                      folder.
  */
-CString cdr::get_xmetal_path() {
+const CString& cdr::get_xmetal_path() {
     static CString xmetal_path;
     if (xmetal_path.IsEmpty()) {
         _Application app = get_app();
@@ -1233,7 +1495,19 @@ CString cdr::get_xmetal_path() {
     return xmetal_path;
 }
 
-// Assumes text-only content; no mixed-content markup allowed!
+/**
+ * Replace the text content of an element.
+ *
+ * Assumes text-only content; no mixed-content markup allowed!
+ *
+ * Called by:
+ *   replace_audio_seconds() in Commands.cpp
+ *   replace_image_dimensions() in Commands.cpp
+ *
+ * @param elem  - reference to `DOMElement` from the XMetaL DOM API
+ * @param value - replacement text content
+ * @return      - true
+ */
 bool cdr::replace_element_content(::DOMElement& elem, const CString& value) {
 
     // Clear out all the child nodes.
@@ -1251,6 +1525,12 @@ bool cdr::replace_element_content(::DOMElement& elem, const CString& value) {
     return true;
 }
 
+/**
+ * Pack up the user's trace log, send it to the CDR server, and drop the file.
+ *
+ * Called by:
+ *   cdr::trace_log()
+ */
 void cdr::send_trace_log() {
     try {
         const char* path = get_cdr_trace_log_path();
@@ -1284,6 +1564,16 @@ void cdr::send_trace_log() {
 /**
  * Show errors returned in the server's response.
  *
+ * Typical use:
+ *
+ *       CString response_xml = cdr::Session::send_commands(request);
+ *       cdr::DOM response(response_xml);
+ *       if (!show_erors(response) {
+ *           process_the(response);
+ *       }
+ *
+ * Invoked extensively throughout the code base.
+ *
  *  @param response - parsed response from server
  *
  * Return:
@@ -1304,56 +1594,36 @@ bool cdr::show_errors(cdr::DOM& response) {
     return found;
 }
 
+/**
+ * Open Internet Explorer and navigate to the caller's URL.
+ *
+ * Yes, it is strange that we're launching an unsupported browser.
+ * This feature was originally implemented when IE had around 95%
+ * of the browser market share, so with all its flaws, we didn't
+ * have a lot of good options. We have explored (ha-ha) revisiting
+ * this decision with the users, but so far they have insisted that
+ * at least for now, we'll stick with what they've been using.
+ *
+ * Called by:
+ *   CCommands::showPage()
+ *
+ * @param url - string for the address of the requested page
+ * @return    - EXIT_SUCCESS
+ */
 int cdr::show_page(const CString& url) {
     CString ie = L"\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"";
     CString command = L"\"" + ie + L" \"" + url + L"\"\"";
-    _tsystem(command);
+    _wsystem(command);
     return EXIT_SUCCESS;
 }
 
-bool cdr::show_validation_errors(cdr::ValidationErrors& errors)
-{
-    // Walk through the errors.
-    const cdr::ValidationError* error = errors.get_next_error();
-    int n = 0;
-    while (error) {
-        CString msg = L"[" + error->eid + L"] " + error->message;
-        int rc = ::AfxMessageBox(msg, MB_OKCANCEL);
-        ++n;
-
-        // Let the user bail out to avoid seeing cascading error messages.
-        if (rc == IDCANCEL) {
-            errors.current_error--;
-            break;
-        }
-        error = errors.get_next_error();
-    }
-
-    // Tell the caller if we displayed any error messages.
-    return n > 0;
-}
-
-CString cdr::suppress_leading_zeros(const CString& s) {
-    int i = 0;
-    while (i < s.GetLength()) {
-        if (_istdigit(s.GetAt(i))) {
-            if (s.GetAt(i) != '0')
-                return s;
-            break;
-        }
-        ++i;
-    }
-    int keepOnLeft = i++;
-    while (i < s.GetLength()) {
-        if (s.GetAt(i) != '0')
-            break;
-        ++i;
-    }
-    int keep_on_right = s.GetLength() - i;
-    return s.Left(keepOnLeft) + s.Right(keep_on_right);
-}
-
-// Logging performed for all users.
+/**
+ * Log high-level information about each command the user invokes.
+ *
+ * Invoked by almost every command exposed by the DLL publicly.
+ *
+ * @param what - identification of the action being logged
+ */
 void cdr::trace_log(const char* what) {
     static bool startup = true;
     if (startup) {
@@ -1384,6 +1654,9 @@ void cdr::trace_log(const char* what) {
 /**
  * Strips leading and trailing whitespace from the caller's string.
  *
+ * Called by:
+ *   cdr::extract_ctl_info()
+ *
  *  @param  s           reference to string to be trimmed.
  *  @return             new string object containing trimmed string.
  */
@@ -1396,6 +1669,15 @@ CString cdr::trim(const CString& s) {
 
 /**
  * Converts string from UTF-8 to UTF-16.  Ignores values beyond U+FFFF.
+ *
+ * Called by:
+ *   cdr::fetch_from_url()
+ *   load_doc_types() in Commands.cpp
+ *   cdr::Socket::send_commands()
+ *   cdr::send_trace_log()
+ *
+ * @param s - UTF-8 byte string to be converted
+ * @return  - decoded Unicode string
  */
 CString cdr::utf8_to_cstring(const char* s) {
     // Calculate storage requirement.
@@ -1442,6 +1724,9 @@ CString cdr::utf8_to_cstring(const char* s) {
  * appropriate for simulating a buffer returned by the CDR server, in the
  * event of a failure to communicate with the server.
  *
+ * Called by:
+ *   cdr::Socket::send_commands()
+ *
  *  @param  err             error message to be packed inside the buffer.
  *  @return                 string object representing response buffer.
  */
@@ -1459,6 +1744,9 @@ CString err_response(const CString& err) {
  * Test a candidate path to determine whether it can be used to store
  * client files for our application.
  *
+ * Called by:
+ *   cdr::get_user_path()
+ *
  *  @param  path      fully qualified path string for candidate path
  */
 bool is_user_path(const CString& path) {
@@ -1468,7 +1756,15 @@ bool is_user_path(const CString& path) {
     return false;
 }
 
-// String suitable for time-stamping logging entries.
+/**
+ * Create a string suitable for time-stamping logging entries.
+ *
+ * Called by:
+ *   cdr::debug_log()
+ *   cdr::trace_log()
+ *
+ * @return - string in the form YYYY-MM-DD MM:HH:SS.sss
+ */
 std::string log_timestamp() {
     char buf[80];
     SYSTEMTIME sys_time;

@@ -13,8 +13,8 @@ class CGlossify : public CDialog
 
 private:
     struct Word {
-        CString            w;
-        ::Range            r;
+        CString w;
+        ::Range r;
         Word(::Range r_) {
             r = r_;
             w = r.GetText();
