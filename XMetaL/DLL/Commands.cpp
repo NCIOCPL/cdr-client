@@ -17,6 +17,7 @@
 #include <list>
 #include <map>
 #include <process.h>
+#include <regex>
 #include <string>
 #include <sstream>
 #include <wchar.h>
@@ -61,7 +62,6 @@ static cdr::StringList*
 static void     insert_audio_seconds(::DOMNode&, CFile&);
 static void     insert_image_dimensions(::DOMNode&, CFile&);
 static bool     is_spanish_summary();
-static bool     is_linking_element(const CString&, const CString&);
 static void     load_doc_types();
 static bool     open_doc(cdr::DOM&, const CString&, BOOL, const CString&);
 static void     remove_doc(const CString&);
@@ -342,6 +342,10 @@ STDMETHODIMP CCommands::chooseRevisionLevel(BSTR* response_) {
  * as the text content of the current element.  Private support
  * method.
  *
+ * Called by:
+ *   CEditElement::OnSelectButton()
+ *   CEditElement::insert_org_location()
+ *
  *  @param  info    string returned by server containing document
  *                  ID and denormalized value for a link target;
  *                  the format of this string is "[id] text-content".
@@ -556,6 +560,10 @@ STDMETHODIMP CCommands::editComment(VARIANT_BOOL readOnly) {
  * Support for fetching information from the CDR web server.  Allows
  * us to implement simpler enhancements which would otherwise require
  * a rebuild of the CDR server.
+ *
+ * Called by the `objectFromUrl()` function in the JavaScript macro
+ * file, but that function is currently unused. Leaving this is place
+ * anyway for how, as it seems generally useful.
  *
  *  @param response_ - return value for string fetched from server
  */
@@ -853,7 +861,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         CString frag_id = addr_link.Mid(delim_pos + 1);
 
         // Ask the server for the full address.
-        cdr::CommandSet request("CdrFilter");
+        cdr::CommandSet request{"CdrFilter"};
         auto command = request.command;
         auto filter_element = request.child_element(command, "Filter");
         request.set(filter_element, "Name", "Organization Address Fragment");
@@ -869,44 +877,68 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         CString response_xml = cdr::Socket::send_commands(request);
 
         // Extract the address elements.
-        cdr::DOM response(response_xml);
-        CString doc_xml = response.get_text(response.find("Document"));
+        cdr::DOM response{response_xml};
+        CString doc_xml = response.get_text(response.find("//Document"));
         if (doc_xml.IsEmpty()) {
             if (!cdr::show_errors(response))
-                ::AfxMessageBox(L"Unknown failure from filter");
+                ::AfxMessageBox(L"Unknown failure from filter request");
             return S_OK;
         }
-        cdr::DOM dom(doc_xml);
-        auto postal_address = dom.find("PostalAddress");
+        cdr::DOM addr_elems{doc_xml};
+        auto postal_address = addr_elems.find("PostalAddress");
         if (!postal_address) {
             ::AfxMessageBox(L"PostalAddress not found");
             return S_OK;
         }
-        auto children = dom.find_all("*", postal_address);
-        CString address_type = dom.get(postal_address, "AddressType");
+        auto children = addr_elems.find_all("*", postal_address);
+        CString address_type = addr_elems.get(postal_address, "AddressType");
         if (address_type.IsEmpty())
             address_type = L"US";
-        cdr::DOM new_dom("SpecificPostalAddress");
-        auto spa = new_dom.get_root();
-        new_dom.set(spa, "AddressType", address_type);
-        new_dom.set(spa, "xmlns:cdr", "cips.nci.nih.gov/cdr");
+
+        // Create and populate a new DOM object.
+        cdr::DOM dom{"wrapper"};
+        auto wrapper = dom.get_root();
+        dom.set(wrapper, "xmlns:cdr", "cips.nci.nih.gov/cdr");
+        CString tag = L"SpecificPostalAddress";
+        auto specific_postal_address = dom.child_element(wrapper, tag);
+        dom.set(specific_postal_address, "AddressType", address_type);
         for (auto& child : children)
-            new_dom.append(spa, child);
+            dom.append(specific_postal_address, child);
+
+        // The reason we enclosed the new SpecificPostalAddress element
+        // in a wrapper element is that we needed to attach the namespace
+        // declaration to that wrapper so we can pull out the block we
+        // really want without the namespace declaration. The problem is
+        // that the DOM implementation we're using understands namespaces
+        // but XMetaL's DOM API thinks xmlns:cdr="..." is just another
+        // attribute, and won't let us paste in the XML fragment string
+        // with that "attribute" because the DTD it's using doesn't allow
+        // it. So we have to use a regular expression to pull out what we
+        // want. Not ideal, but it's pretty safe, as the regular expression
+        // isn't doing anything super tricky.
+        std::wstring s{dom.get_xml().GetString()};
+        std::wregex e{L"<SpecificPostalAddress.+</SpecificPostalAddress>"};
+        std::wsmatch m;
+        if (!std::regex_search(s, m, e)) {
+            ::AfxMessageBox(L"Internal failure for " + tag);
+            return S_OK;
+        }
+        CString fragment{m[0].str().c_str()};
 
         // Find the proper location for the address.
-        ::Range spa_loc = cdr::find_or_create_child(op_loc,
-                                                L"SpecificPostalAddress");
-        if (!spa_loc) {
-            ::AfxMessageBox(L"Failure creating SpecificPostalAddress element");
+        ::Range location = cdr::find_or_create_child(op_loc, tag);
+        if (!location) {
+            ::AfxMessageBox(L"Failure creating " + tag + L" element");
             return S_OK;
         }
 
         // Plug in our own data.
-        CString spa_xml = new_dom.get_xml(spa);
-        if (!spa_loc.GetCanPaste(spa_xml, FALSE))
-            ::AfxMessageBox(L"Unable to insert " + spa_xml);
+        location.SelectElement();
+        location.Select();
+        if (!location.GetCanPaste(fragment, FALSE))
+            ::AfxMessageBox(L"Unable to insert " + fragment);
         else {
-            spa_loc.PasteString(spa_xml);
+            location.PasteString(fragment);
             *ret_val = 0;
         }
 
@@ -940,7 +972,7 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hp_doc_id,
 
     try {
         cdr::CommandSet request("CdrReport");
-        auto command = request.get_root();
+        auto command = request.command;
         request.child_element(command, "ReportName", "Patient Summary");
         auto params = request.child_element(command, "ReportParams");
         auto param = request.child_element(params, "ReportParam");
@@ -1132,34 +1164,6 @@ STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary) {
 }
 
 /**
- * Let the caller know if the current element is blocked from modification.
- *
- *  @param doc_type  - string for the active document's document type
- *  @param elem_name - string for the tag name of the current element
- *  @param ret_val     - pointer to the returned Boolean value
- */
-STDMETHODIMP CCommands::isReadOnly(const BSTR *doc_type,
-                                   const BSTR *elem_name,
-                                   BOOL *ret_val) {
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-
-    cdr::trace_log("isReadOnly");
-    // Initial assumption: the element is not read-only.
-    *ret_val = FALSE;
-    CString dt(*doc_type);
-    CString el(*elem_name);
-    cdr::StringList* vv_list = get_schema_valid_values(dt, el);
-    if (vv_list && !vv_list->empty())
-        *ret_val = TRUE;
-    else if (is_linking_element(dt, el))
-        *ret_val = TRUE;
-    // Stopgap until readonly attributes are in place.
-    else if (el == "DocId" || el == "DocType")
-        *ret_val = TRUE;
-    return S_OK;
-}
-
-/**
  * Execute the application associated with the active doc's attachment.
  *
  *  @param doc_id  - string with the CDR ID for the active document
@@ -1269,6 +1273,9 @@ STDMETHODIMP CCommands::launchBlob(const BSTR* doc_id, const BSTR* doc_ver) {
 
 /**
  * Ask the CDR server to log some troubleshooting information.
+ *
+ * Currently only invoked by the macros when the user invokes the
+ * native XMetaL Save or Save As command (rather than CDR Save).
  *
  *  @param description - string to be logged
  *  @param ret_val - pointer to the COM return value
@@ -2137,6 +2144,9 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
  * return an array of strings from a COM object, I was unable
  * to find documentation for this feature.
  *
+ * Not called from anywhere any more, but I'm keeping it because
+ * it seems like useful general-purpose functionality.
+ *
  *  @param doc_id  - CDR document ID string in canonical form
  *  @param path   - string for location in the document to search
  *  @param values - pointer to string for return value
@@ -2295,7 +2305,6 @@ static CString get_full_doc_path(_Document* doc) {
  *
  * Called by:
  *   CCommands::edit()
- *   CCommands::isReadOnly()
  *
  *  @param doc_type - string for the name of the active document's type
  *  @param path    - identification of the currently selected element
@@ -2404,28 +2413,6 @@ static bool is_spanish_summary() {
         }
     }
     return false;
-}
-
-/**
- * Determines whether a given element in a particular document type can
- * link to another document or fragment.  Do this by checking the set of
- * linking elements we downloaded at startup.
- *
- * Called by:
- *   CCommands::isReadOnly()
- *
- *  @param  doc_type     string representing the document type.
- *  @param  elem_name    string naming the element.
- *  @return             <code>true</code> iff the element can link to
- *                      another document or fragment.
- */
-static bool is_linking_element(const CString& doc_type,
-                             const CString& elem_name)
-{
-    if (linking_elements.find(doc_type) == linking_elements.end())
-        return false;
-    cdr::StringSet& ss = linking_elements[doc_type];
-    return ss.find(elem_name) != ss.end();
 }
 
 /**

@@ -74,8 +74,6 @@ void CSchemaPicklist::OnOK()
         if (elem) {
             bool found = false;
             ::DOMText text_node = elem.GetFirstChild();
-
-            // See warning in Command.cpp for doInsertLink().
             while (text_node) {
                 ::DOMText next_node = text_node.GetNextSibling();
                 if (text_node.GetNodeType() == 3) { // DOMText
@@ -89,7 +87,7 @@ void CSchemaPicklist::OnOK()
                 ::_Document cur_doc = cdr::get_app().GetActiveDocument();
                 ::DOMText new_node = cur_doc.createTextNode(str);
                 elem.appendChild(new_node);
-                new_node.m_lpDispatch->Release(); // XXX Surprise! We need this!
+                new_node.m_lpDispatch->Release();
             }
         }
         selection.SetReadOnlyContainer(TRUE);

@@ -63,7 +63,6 @@ public:
     STDMETHOD(get_userPath)(BSTR* pVal);
     STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(glossify)(VARIANT_BOOL dig, const BSTR* dictionary);
-    STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
     STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
