@@ -10,6 +10,7 @@
 // Local headers.
 #include "stdafx.h"
 #include "xmetal90.h"
+#include "cdrdom.h"
 
 // System headers.
 #include <string>
@@ -51,224 +52,15 @@ namespace cdr {
 
 
     /**
-     * You would think we could just use the DOM functionality exposed
-     * by SoftQuad, but unfortunately, their implementation is broken.
-     * Cloning the document fails, and getting the serialized XML for
-     * a DOM node isn't supported. So here is our own wrapper for MSXML.
+     * Wrapper around base class, picking up the session ID.
+     *
+     * This piece of the functionality was factored out in order to be
+     * able to test the base class without introducing dependencies in
+     * the test harness on the "Socket" class and its dependencies.
      */
-    class DOM {
+    class CommandSet : public CommandSetBase {
     public:
-
-        /**
-         * Useful type definitions.
-         */
-        typedef CComPtr<IXMLDOMDocument> Document;
-        typedef CComPtr<IXMLDOMElement> Element;
-        typedef CComPtr<IXMLDOMNode> Node;
-        typedef CComPtr<IXMLDOMNodeList> NodeList;
-
-        /**
-         * Initialize the DOM.
-         */
-        DOM();
-
-        /**
-         * Create the DOM object from its serialized XML.
-         *
-         *  @param xml - Unicode string containing a serialized document
-         */
-        DOM(const CString& xml);
-
-        /**
-         * Create a DOM object with just a root element.
-         *
-         *  @param root_name - ASCII c-style string for the root element's name
-         *                     (don't use wchar_t* or CString, because that
-         *                     will route to the previous constructor)
-         */
-        DOM(const char* root_name);
-
-        /**
-         * Prohibit copy construction or assignment by value.
-         *
-         * If you really need to pass around this object between
-         * functions or methods, do it by reference or pointer.
-         */
-        DOM(const DOM&) = delete;
-        DOM& operator=(const DOM&) = delete;
-
-        /**
-         * Attach an element to an existing parent.
-         *
-         *  @param parent - pointer to the parent node we attach to
-         *  @param child  - pointer to the node being attached to the parent
-         */
-        void append(IXMLDOMNode* parent, IXMLDOMNode* child);
-
-        /**
-         * Attach a text node to an existing element.
-         *
-         *  @param parent - pointer to the parent node we attach to
-         *  @param text   - Unicode string for the value being attached
-         */
-        void append_text(IXMLDOMNode* parent, const CString& text);
-
-        /**
-         * Create a new element attached to an existing parent.
-         *
-         *  @param parent - pointer to the parent node we attach to
-         *  @param name   - string for the new element's name
-         *  @param text   - optional string value to be used to set the
-         *                  text content of the new element
-         *  @return       - `CComPtr` for newly created element
-         */
-        Element child_element(IXMLDOMNode* parent,
-                              const CString& name,
-                              const CString& text = L"");
-
-        /**
-         * Create a new element with optional text content.
-         *
-         * The new element is not attached to any parent.
-         *
-         *  @param name   - string for the new element's name
-         *  @param text   - optional string value to be used to set the
-         *                  text content of the new element
-         *  @return       - `CComPtr` for newly created element
-         */
-        Element element(const CString& name, const CString& text = L"");
-
-        /**
-         * Find a single element matching the supplied XPath string.
-         *
-         * If no element is specified, the search if from the root element.
-         *
-         *  @param xpath - string for the search
-         *  @param from  - optional node from which to start the search
-         *  @return      - `CComPtr` for found element or `nullptr` if none
-         */
-        Element find(const CString& xpath, IXMLDOMElement* from = nullptr);
-
-        /**
-         * Find all elements matching the supplied XPath string.
-         *
-         * If no element is specified, the search if from the root element.
-         *
-         *  @param xpath - string for the search
-         *  @param from  - optional node from which to start the search
-         *  @return      - sequence of `CComPtr`s for matching elements
-         */
-        std::vector<Element> find_all(const CString& xpath,
-                                      IXMLDOMElement* from = nullptr);
-
-        /**
-         * Get the value of an element's attribute.
-         *
-         *  @param elem - pointer to the element whose attribute value we want
-         *  @param name - string naming the attribute whose value we want
-         *  @return     - string for attribute value
-         */
-        CString get(IXMLDOMElement* elem, const CString& name);
-
-        /**
-         * Get the string for a specific DOM node's name.
-         *
-         *  @param node - address of the DOM node whose name we want
-         *  @return     - node name string
-         */
-        CString get_node_name(IXMLDOMNode* node);
-
-        /**
-         * Give the caller a pointer to the root element.
-         *
-         *  @return - `CComPtr` for the root element
-         */
-        Element get_root();
-
-        /**
-         * Get the text content string for a specific element.
-         *
-         *  @param node - address of DOM node whose text content we want
-         *  @return     - text content for element node
-         */
-        CString get_text(IXMLDOMNode* node);
-
-        /**
-         * Serialize the document to an XML string.
-         *
-         *  @param node - address of DOM node whose XML serialization we want
-         *  @return     - string for the serialized node
-         */
-        CString get_xml(IXMLDOMNode* = nullptr) const;
-
-        /**
-         * Install a node in front of an existing node.
-         *
-         *  @param parent   - pointer to the parent node we attach to
-         *  @param new_node - pointer to the node we are inserting
-         *  @param sibling  - pointer to the node in front of which we insert
-         */
-        void insert(IXMLDOMNode* parent, IXMLDOMNode* new_node,
-                    IXMLDOMNode* sibling);
-
-        /**
-         * Assign a string value to a named attribute of an element.
-         *
-         *  @param element - address of the element whose attribute we set
-         *  @param name    - string for the name of the attribute to be set
-         *  @param value   - string for the value we assign to the attribute
-         */
-        void set(IXMLDOMElement* element, const CString& name,
-                 const CString& value);
-
-        /**
-         * Make an existing element node the new root of the DOM document.
-         *
-         *  @param new_root - address of the element which will be the new root
-         */
-        void set_root(IXMLDOMElement* new_root);
-
-    protected:
-
-        /**
-         * The DOM tree for the XML document.
-         */
-        Document doc;
-
-        /**
-         * The top-level element for the document (the "document element").
-         */
-        Element root;
-    };
-
-    /**
-     * Shell for a set of commands to be sent to the CDR server.
-     */
-    class CommandSet : public DOM {
-    public:
-
-        /**
-         * Create a DOM builder for a CdrCommandSet XML document.
-         *
-         * Pass the name of the first (and likely only) command in the set.
-         */
         CommandSet(const char* name);
-
-        /**
-         * Add a modified copy of the active document to the DOM.
-         *
-         * Modifications include:
-         *  - removal of the `CdrDocCtl` block
-         *  - stripping of any `readonly` attributes
-         *
-         *  @param parent   - the node in the `CommandSet` DOM to which a
-         *                    CDATA section will be attached with the doc XML
-         *  @param original - serialized XML for XMetaL's active document
-         */
-        void add_cdr_document(IXMLDOMElement* parent, const CString& original);
-
-        // The child of `CdrCommand` node for the specific command.
-        Element command;
     };
 
     // Forward reference.
@@ -278,7 +70,38 @@ namespace cdr {
     typedef std::map<CString, GlossaryNode*> GlossaryNodeMap;
 
     /**
+     * Representation of a single word token found in all of the glossary
+     * term phrases which share the same N initial words, where this word
+     * is the Nth word in those phrases. If there are more words to come
+     * in any given phrase, the next word in the phrase will be found as
+     * a key in this node's node_map, so the phrases are represented by
+     * linked chains of `GlossaryNode` objects. If a given word is the
+     * final (possibly only) word in a glossary term phrase, its GlossaryNode
+     * object will have the `doc_id` member set to the `GlossaryTermName`
+     * document's CDR ID. Otherwise that member will be set to 0.
      *
+     * For example, imagine glossary which contained only three terms:
+     *   CDR12345 cancer
+     *   CDR12346 cancer diagnosis
+     *   CDR12346 cancer prevention
+     *
+     * The `node_map` member of the `GlossaryTree` object for that glossary
+     * would have a single entry, indexed by the string "CANCER" (the name
+     * tokens are normalized to ignore case). The `GlossaryTerm` value for
+     * that entry would have the `doc_id` member set to 12345 (because the
+     * first term's final (and only) normalized word is "CANCER"), and its
+     * own `node_map` would have two entries, indexed by "DIAGNOSIS" and
+     * "PREVENTION" respectively, with the `doc_id` of the `GlossaryNode`
+     * values for those entries set to 12346 or 12347, representing the
+     * second and third terms in the glossary. The `node_map` members for
+     * those two entries would be empty.
+     *
+     * We also track whether a term has already been used to "glossify"
+     * a matching string in the section of a document being edited, so the
+     * user can have the software skip over subsequent occurrence of the
+     * term within that section of the document. When we move to the next
+     * section of the document, or to an entirely different document, we
+     * clear out those `marked_up` flags so we can start afresh.
      */
     struct GlossaryNode {
         int             doc_id;
@@ -348,7 +171,6 @@ namespace cdr {
         bool            group;
         CString         coop_membership;
         LinkInfoList    principal_investigators;
-
     };
     typedef std::list<SearchResult> DocSet;
 

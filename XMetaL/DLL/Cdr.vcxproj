@@ -793,6 +793,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cdr.cpp" />
+    <ClCompile Include="cdrdom.cpp" />
     <ClCompile Include="CdrUtil.cpp" />
     <ClCompile Include="CheckIn.cpp" />
     <ClCompile Include="Commands.cpp" />
@@ -902,6 +903,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cdrdom.h" />
     <ClInclude Include="CdrUtil.h" />
     <ClInclude Include="CheckIn.h" />
     <ClInclude Include="Commands.h" />

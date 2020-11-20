@@ -1158,6 +1158,10 @@ STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
     cdr::trace_log("glossify");
     CString dict(*dictionary);
+    if (dict.IsEmpty())
+        cdr::debug_log(L"glossifying current document");
+    else
+        cdr::debug_log(L"bringing up the glossify dialog box");
     CGlossify glossify(dig != VARIANT_FALSE, dict);
     glossify.DoModal();
     return S_OK;
