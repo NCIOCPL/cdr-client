@@ -977,6 +977,10 @@
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
+            Application.AppendMacro("Glossify Genetics Terms",
+                                    "Glossify Genetics Terms");
+            Application.AppendMacro("Glossify Genetics Terms (include markup)",
+                                    "Glossify Genetics Terms (include markup)");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address",
@@ -2011,13 +2015,7 @@
                            "Linked Docs",
                            "Launch Linked Docs Report",
                            "Integration (Custom)", 3, 9,
-                           false),
-            new CdrCmdItem(null,
-                           "Insert PDQ Board Info",
-                           "PDQ Board",
-                           "Insert PDQ Board Info",
-                           "Databases (Custom)", 7, 5,
-                           true)
+                           false)
         );
         var cmdBars = Application.CommandBars;
         var cmdBar  = null;
@@ -2709,6 +2707,12 @@
                            "Media QC Report",
                            "Generate QC Report",
                            "CDR2", 1, 10,
+                           false),
+            new CdrCmdItem(null,
+                           "Media Side-by-Side Report",
+                           "Show English-Spanish Images and Labels",
+                           "Generate English-Spanish Side-by-Side Report",
+                           "Structure (Custom)", 5, 9,
                            false),
             new CdrCmdItem(null,
                            "Clone Doc",
@@ -4237,6 +4241,28 @@
   ]]>
 </MACRO>
 
+<MACRO name="Media Side-by-Side Report"
+       lang="JScript">
+  <![CDATA[
+    function qcReport() {
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Document has not yet been saved in the CDR");
+            return;
+        }
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var url = CdrCgiBin + "MediaQcEnEs.py?Session="
+                + CdrSession + "&DocId=" + docId;
+        //Application.Alert(url);
+        cdrObj.showPage(url);
+    }
+    qcReport();
+  ]]>
+</MACRO>
+
 <MACRO name="TermName with Concept QC Report"
        lang="JScript">
   <![CDATA[
@@ -4485,47 +4511,6 @@
   ]]>
 </MACRO>
 
-<MACRO name="Insert PDQ Board Info"
-       lang="JScript" >
-  <![CDATA[
-    function insertPdqBoardInfo() {
-        var rng = ActiveDocument.Range;
-        rng.MoveToDocumentEnd();
-        if (!rng.FindInsertLocation("PDQBoardInformation", false)) {
-            Application.Alert(
-                    "Can't insert PDQBoardInformation element");
-                return;
-        }
-        var newElems = "<PDQBoardInformation>"
-                     + "<BoardManager>"
-                     + "<?xm-replace_text {Enter Board Manager name} ?>"
-                     + "</BoardManager>"
-                     + "<BoardManagerPhone>"
-                     + "<?xm-replace_text {Enter Board Manager phone} ?>"
-                     + "</BoardManagerPhone>"
-                     + "<BoardManagerEmail>"
-                     + "<?xm-replace_text {Enter Board Manager e-mail} ?>"
-                     + "</BoardManagerEmail>"
-                     + "<BoardMeetingDate>"
-                     + "<Year>"
-                     + "<?xm-replace_text {Enter year for set of meeting "
-                     + "dates} ?></Year>"
-                     + "<Date>"
-                     + "<?xm-replace_text {Enter each meeting date for the"
-                     + " year as a separate occurrence} ?>"
-                     + "</Date>"
-                     + "<DayTime>"
-                     + "<?xm-replace_text {Enter meeting day and time}"
-                     + " ?></DayTime>"
-                     + "</BoardMeetingDate>"
-                     + "</PDQBoardInformation>";
-        rng.PasteString(newElems);
-        rng.Select();
-    }
-    insertPdqBoardInfo();
-  ]]>
-</MACRO>
-
 <MACRO name="Set Non-Public"
        lang="JScript" >
   <![CDATA[
@@ -4724,7 +4709,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false);
+        cdrObj.glossify(false, "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4734,7 +4719,27 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true);
+        cdrObj.glossify(true, "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, "Genetics");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms (include markup)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, "Genetics");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4778,9 +4783,8 @@
                 Selection.GotoPrevious(2);
                 return;
             }
-            Selection.InsertWithTemplate(name);
+            // Selection.InsertWithTemplate(name);
         }
-        //Selection.InsertWithTemplate(name);
     }
     onElementListInsert()
   ]]>
@@ -5323,9 +5327,11 @@
     function chgLabelLanguage(doc, languageElem) {
         var elemName = languageElem;
         var labelElems = doc.getElementsByTagName(elemName);
+        // Application.Alert(elemName);
 
+        // Don't try to copy labels if there are none
         if (!labelElems.length) {
-             Application.Alert("No Labels found");
+             // Application.Alert("No labels found");
              return;
         }
 

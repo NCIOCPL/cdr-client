@@ -156,7 +156,8 @@ namespace cdr {
         std::vector<int> counts;
         std::map<int, CString> names;
     };
-    GlossaryTree* getGlossaryTree(const CString& language);
+    GlossaryTree* getGlossaryTree(const CString& language,
+                                  const CString& dictionary);
 
     class SearchResult {
     public:

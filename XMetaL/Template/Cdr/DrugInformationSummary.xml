@@ -22,6 +22,9 @@
   <Audience>Patients</Audience>
   <DrugInfoType>Brief</DrugInfoType>
   <FDAApproved>Yes</FDAApproved>
+  <DrugType><?xm-replace_text {
+         Select a drug type
+         }?></DrugType>
   <ApprovedIndication><?xm-replace_text {
          Select approved indication
          }?></ApprovedIndication>
