@@ -41,8 +41,8 @@ public:
     // elements. Default is to glossify only SummarySections
     // which are actually top-level children of the
     // document's root element.
-    CGlossify(bool dig=false, CString dictionary = L"",
-              CWnd* parent = NULL);
+    CGlossify(bool dig=false, const CString dictionary = L"",
+              const CString audience = L"", CWnd* parent = NULL);
     virtual ~CGlossify();
 
 // Dialog Data
@@ -66,6 +66,7 @@ private:
     bool                 find_next_match();
     CString              language;
     CString              dictionary;
+    CString              audience;
     bool                 m_dig;
 public:
     afx_msg void OnSkip();

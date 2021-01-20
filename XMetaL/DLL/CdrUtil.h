@@ -119,7 +119,8 @@ namespace cdr {
         }
     };
     struct GlossaryTree {
-        GlossaryTree(const CString& language, const CString& dictionary);
+        GlossaryTree(const CString& language, const CString& dictionary,
+                     const CString& audience);
         ~GlossaryTree();
         void clear_flags() {
             for (auto& n : node_map)
@@ -137,7 +138,8 @@ namespace cdr {
     struct GlossaryTrees {
         typedef std::map<CString, cdr::GlossaryTree*> Cache;
         ~GlossaryTrees();
-        static GlossaryTree* get_glossary_tree(const CString&, const CString&);
+        static GlossaryTree* get_glossary_tree(const CString&, const CString&,
+                                               const CString&);
         static Cache cache;
     };
 

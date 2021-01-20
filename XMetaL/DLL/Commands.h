@@ -62,7 +62,7 @@ public:
     STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(get_userPath)(BSTR* pVal);
     STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
-    STDMETHOD(glossify)(VARIANT_BOOL dig, const BSTR* dictionary);
+    STDMETHOD(glossify)(VARIANT_BOOL dig, const BSTR* dictionary, const BSTR* audience);
     STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);

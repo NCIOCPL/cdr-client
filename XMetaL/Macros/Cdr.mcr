@@ -981,6 +981,10 @@
                                     "Glossify Genetics Terms");
             Application.AppendMacro("Glossify Genetics Terms (include markup)",
                                     "Glossify Genetics Terms (include markup)");
+            Application.AppendMacro("Glossify Patient Terms",
+                                    "Glossify Patient Terms");
+            Application.AppendMacro("Glossify Patient Terms (include markup)",
+                                    "Glossify Patient Terms (include markup)");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address",
@@ -4709,7 +4713,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "");
+        cdrObj.glossify(false, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4719,7 +4723,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "");
+        cdrObj.glossify(true, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4729,7 +4733,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "Genetics");
+        cdrObj.glossify(false, "Genetics", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4739,7 +4743,27 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "Genetics");
+        cdrObj.glossify(true, "Genetics", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, "", "Patient");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms (include markup)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, "", "Patient");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>

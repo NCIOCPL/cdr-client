@@ -13,9 +13,10 @@
 const wchar_t* TAG_NAME = L"GlossaryTermRef";
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
-CGlossify::CGlossify(bool dig, const CString dict, CWnd* parent /*=NULL*/)
+CGlossify::CGlossify(bool dig, const CString dict,
+                     const CString aud, CWnd* parent /*=NULL*/)
 : CDialog(CGlossify::IDD, parent), cur_chain(0), cur_node(0), m_dig(dig),
-    dictionary(dict) {
+    dictionary(dict), audience(aud) {
     _Application app = cdr::get_app();
     doc = app.GetActiveDocument();
     range = doc.GetRange();
@@ -198,7 +199,8 @@ bool CGlossify::find_next_match() {
 
     // Try to match the phrases in the document with those in the glossary.
     cdr::GlossaryTree* gt = cdr::GlossaryTrees::get_glossary_tree(language,
-                                                                  dictionary);
+                                                                  dictionary,
+                                                                  audience);
 
     // Pick up where we left off in the current word chain from the doc.
     WordChain* chain = &chains[cur_chain];
@@ -306,7 +308,8 @@ BOOL CGlossify::OnInitDialog() {
     CDialog::OnInitDialog();
 
     DOMNode doc_element = doc.GetDocumentElement();
-    cdr::GlossaryTrees::get_glossary_tree(language, dictionary)->clear_flags();
+    cdr::GlossaryTrees::get_glossary_tree(language, dictionary,
+                                          audience)->clear_flags();
     find_chains(doc_element);
 
     if (chains.empty()) {

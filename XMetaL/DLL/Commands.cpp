@@ -1153,16 +1153,20 @@ STDMETHODIMP CCommands::get_userPath(BSTR* ret_val) {
  *                      or Deletion elements
  *  @param dictionary - optional string narrowing the scope to terms for
  *                      a single dictionary
+ *  @param audience   - optional string narrowing the scope to terms for
+ *                      a single audience
  */
-STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary) {
+STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary,
+                                 const BSTR* audience) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
     cdr::trace_log("glossify");
     CString dict(*dictionary);
+    CString aud(*audience);
     if (dict.IsEmpty())
         cdr::debug_log(L"glossifying current document");
     else
         cdr::debug_log(L"bringing up the glossify dialog box");
-    CGlossify glossify(dig != VARIANT_FALSE, dict);
+    CGlossify glossify(dig != VARIANT_FALSE, dict, aud);
     glossify.DoModal();
     return S_OK;
 }

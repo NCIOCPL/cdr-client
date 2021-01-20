@@ -132,10 +132,14 @@ cdr::GlossaryTree::~GlossaryTree() {
  *
  * @param language   - "es" or "en"
  * @param dictionary - optional string for restricting the terms retrieved
- *                     to those used by a specific dictionary (e.g. Genetics)
+ *                     to those used by a specific dictionary (e.g., Genetics)
+ * @param audience   - optional string for restricting the terms retrieved
+ *                     to those intended for a particular audience (e.g.,
+ *                     Patient)
  */
 cdr::GlossaryTree::GlossaryTree(const CString& language,
-    const CString& dictionary) {
+                                const CString& dictionary,
+                                const CString& audience) {
 
     // Prepare the command we'll send to the CDR server.
     char* tag = "CdrGetGlossaryMap";
@@ -144,6 +148,8 @@ cdr::GlossaryTree::GlossaryTree(const CString& language,
     cdr::CommandSet request(tag);
     if (!dictionary.IsEmpty())
         request.child_element(request.command, "Dictionary", dictionary);
+    if (!audience.IsEmpty())
+        request.child_element(request.command, "Audience", audience);
 
     // Walk through all the `Term` elements in the server's response.
     CString response_xml = cdr::Socket::send_commands(request);
@@ -207,22 +213,24 @@ cdr::GlossaryTrees::~GlossaryTrees() {
  *  @param language   - en or es
  *  @param dictionary - optional string for limiting tree
  *                      to terms for a specific dictionary
+ *  @param audience   - optional string for limiting tree
+ *                      to terms for a specific audience
  *
  * Return:
  *   address of the matching glossary term tree
  */
 cdr::GlossaryTree* cdr::GlossaryTrees::get_glossary_tree(
     const CString& language,
-    const CString& dictionary
+    const CString& dictionary,
+    const CString& audience
 ) {
 
     // Fetch the tree if we don't already have it.
     // No need for locking; we'll be called in a single thread.
-    CString key(language);
-    if (!dictionary.IsEmpty())
-        key += L"-" + dictionary;
+    CString key;
+    key.Format(L"%s-%s-%s", language, dictionary, audience);
     if (cache.count(key) == 0) {
-        cache[key] = new GlossaryTree(language, dictionary);
+        cache[key] = new GlossaryTree(language, dictionary, audience);
         CString buf;
         buf.Format(L"fetched %s glossary tree", key);
         cdr::trace_log(cdr::cstring_to_utf8(buf).c_str());
