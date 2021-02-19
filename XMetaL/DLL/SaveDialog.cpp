@@ -50,9 +50,7 @@ void CSaveDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Check(pDX, IDC_CHECK3, m_create_version);
     DDX_Check(pDX, IDC_CHECK4, m_version_publishable);
     DDX_Check(pDX, IDC_CHECK5, m_doc_inactive);
-    DDX_Check(pDX, IDC_CHECK6, m_ready_for_review);
     //}}AFX_DATA_MAP
-    DDX_Control(pDX, IDC_CHECK6, m_ready_for_review_checkbox);
     DDX_Control(pDX, IDC_MEDIA_FILENAME, m_blob_filename);
     DDX_Control(pDX, IDC_MEDIA_FILE_BROWSE, m_browse_button);
 }
