@@ -57,12 +57,14 @@ static void     clear_error_list();
 static CString  get_blob_extension(const CString& doc, const CString& type);
 static void     get_blob_from_file(char*, CFile&, int);
 static CString  get_full_doc_path(_Document*);
+static CString  get_location_id();
 static cdr::StringList*
                 get_schema_valid_values(const CString, const CString);
 static void     insert_audio_seconds(::DOMNode&, CFile&);
 static void     insert_image_dimensions(::DOMNode&, CFile&);
 static bool     is_spanish_summary();
 static void     load_doc_types();
+static bool     move_to_location_id(const CString&, ::DOMNode&);
 static bool     open_doc(cdr::DOM&, const CString&, BOOL, const CString&);
 static void     remove_doc(const CString&);
 static bool     replace_audio_seconds(::DOMNode&, CString);
@@ -1850,6 +1852,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             }
 
             // Submit the save command to the server.
+            CString loc_id = get_location_id();
             CTime start_time = CTime::GetCurrentTime();
             CString response = cdr::Socket::send_commands(request, blob);
             cdr::DOM response_dom(response);
@@ -1893,10 +1896,15 @@ STDMETHODIMP CCommands::save(int *ret_val) {
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
                     if (!save_dialog.m_checkIn) {
                         open_doc(response_dom, doc_id, true, L"Current");
+                        doc = cdr::get_app().GetActiveDocument();
                         if (val_errors) {
-                            doc = cdr::get_app().GetActiveDocument();
                             CString path = get_full_doc_path(&doc);
                             cdr::validation_error_sets[path] = val_errors;
+                        }
+                        if (!loc_id.IsEmpty()) {
+                            ::DOMNode elem = doc.GetDocumentElement();
+                            if (!move_to_location_id(loc_id, elem))
+                                ::AfxMessageBox(L"didn't find " + loc_id);
                         }
                     }
                     else {
@@ -2231,7 +2239,7 @@ static void clear_error_list() {
  *   otherwise empty string
  */
 static CString get_blob_extension(const CString& doc_xml,
-                                const CString& doc_type) {
+                                  const CString& doc_type) {
     CString extension;
     cdr::DOM dom(doc_xml);
     if (doc_type == L"Media") {
@@ -2306,6 +2314,34 @@ static void get_blob_from_file(char* buf, CFile& file, int len) {
  */
 static CString get_full_doc_path(_Document* doc) {
     return doc->GetPath() + L"\\" + doc->GetName();
+}
+
+/**
+ * Get the cdr:id attribute value for the current location.
+ *
+ * Recursively crawl up toward the document root until we find an
+ * enclosing element with such an attribute. If there isn't such
+ * an element, return an empty string.
+ *
+ * Called by:
+ *   CCommands::save()
+ *
+ * Return:
+ *   string for the location's nearest cdr:id attribute value
+ */
+static CString get_location_id() {
+
+    ::Range selection = cdr::get_app().GetSelection();
+    ::DOMElement elem = selection.GetContainerNode();
+    while (elem) {
+        if (elem.GetNodeType() == 1) { // DOMElement
+            CString id = elem.getAttribute(L"cdr:id");
+            if (!id.IsEmpty())
+                return id;
+        }
+        elem = elem.GetParentNode();
+    }
+    return L"";
 }
 
 /**
@@ -2496,6 +2532,47 @@ static void load_doc_types() {
             linking_elements[doc_type] = names;
         }
     }
+}
+
+/**
+ * Restore the user's position after a document save.
+ *
+ * Invoked recursively by CCommands::save() crawling down from the top of
+ * the document until we find the matching cdr:id representing where the
+ * user's cursor was prior to the save. We have to do it like this, because
+ * our DTD doesn't use "ID" as the type of the cdr:id attribute.
+ *
+ * Note that we have to set the m_bAutoRelease flag of the DOMElement object
+ * to which we assign the DOMNode, so XMetaL's DOM implementation doesn't blow
+ * up with a complaint about a "pure virtual function."
+ *
+ * See https://tracker.nci.nih.gov/browse/OCECDR-4933.
+ *
+ *  @param id    - string value of the cdr:id attribute for the saved position
+ *  @param node  - candidate node to examine (recursively)
+ *
+ * Return:
+ *   true if we found the target location and moved there; otherwise false
+ */
+static bool move_to_location_id(const CString& id, ::DOMNode& node) {
+    if (node.GetNodeType() == 1) { // ELEMENT
+        ::DOMElement elem = node;
+        elem.m_bAutoRelease = 0; // Avoid "pure virtual function" exception!!!
+        CString value = elem.getAttribute(L"cdr:id");
+        if (value == id) {
+            ::Selection selection = cdr::get_app().GetSelection();
+            selection.SelectNodeContents(node);
+            selection.MoveLeft(0);
+            return true;
+        }
+        ::DOMNode child = node.GetFirstChild();
+        while (child) {
+            if (move_to_location_id(id, child))
+                return true;
+            child = child.GetNextSibling();
+        }
+    }
+    return false;
 }
 
 /**
