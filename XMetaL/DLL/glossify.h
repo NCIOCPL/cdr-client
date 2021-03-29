@@ -75,4 +75,5 @@ public:
     virtual BOOL OnInitDialog();
     afx_msg void OnBnClickedGlossifySkipFirst();
     afx_msg void OnBnClickedGlossifyNextSection();
+    afx_msg void OnBnClickedGlossifyPreview();
 };

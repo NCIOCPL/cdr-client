@@ -90,6 +90,7 @@ END
 
 IDR_Commands            REGISTRY                "Commands.rgs"
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
@@ -213,7 +214,7 @@ CAPTION "Dialog"
 FONT 8, "MS Sans Serif"
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,144,7,50,14
-    CONTROL         217,IDC_SUCCESS_ICON,"Static",SS_BITMAP,15,7,42,37
+    CONTROL         IDC_PROGRESS1,IDC_SUCCESS_ICON,"Static",SS_BITMAP,15,7,42,37
     LTEXT           "Document passes validation.",IDC_TEXT_MESSAGE,51,28,99,10
 END
 
@@ -227,7 +228,7 @@ BEGIN
     LISTBOX         IDC_LIST1,17,15,341,49,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_GLOSSIFY_DIALOG DIALOGEX 0, 0, 327, 79
+IDD_GLOSSIFY_DIALOG DIALOGEX 0, 0, 389, 79
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
@@ -236,11 +237,12 @@ BEGIN
     PUSHBUTTON      "Done",IDCANCEL,200,52,50,14
     RTEXT           "Phrase",IDC_STATIC,19,16,32,13
     RTEXT           "Term",IDC_STATIC,16,32,35,11
-    EDITTEXT        IDC_EDIT1,59,14,236,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_EDIT2,59,30,236,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT1,59,14,311,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EDIT2,59,30,311,14,ES_AUTOHSCROLL | ES_READONLY
     DEFPUSHBUTTON   "Skip",IDOK2,69,52,50,14
     PUSHBUTTON      "Skip This Time",IDC_GLOSSIFY_SKIP_FIRST,124,52,71,14
     PUSHBUTTON      "Next Section",IDC_GLOSSIFY_NEXT_SECTION,255,52,60,14
+    PUSHBUTTON      "Preview",IDC_GLOSSIFY_PREVIEW,321,52,50,14
 END
 
 IDD_REVIEW_MARKUP DIALOGEX 0, 0, 186, 178
@@ -415,7 +417,7 @@ BEGIN
     IDD_GLOSSIFY_DIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 320
+        RIGHTMARGIN, 382
         TOPMARGIN, 7
         BOTTOMMARGIN, 72
     END
@@ -454,6 +456,18 @@ END
 
 IDB_CERTIFICATE         BITMAP                  "certific.bmp"
 
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_GLOSSIFY_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
@@ -479,4 +493,3 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
-

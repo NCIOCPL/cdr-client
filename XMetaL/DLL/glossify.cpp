@@ -3,10 +3,9 @@
 
 #include "stdafx.h"
 #include "Cdr.h"
-#include "Glossify.h"
 #include <stack>
 #include <windows.h>
-#include ".\glossify.h"
+#include "glossify.h"
 
 // CGlossify dialog
 
@@ -59,6 +58,7 @@ BEGIN_MESSAGE_MAP(CGlossify, CDialog)
     ON_BN_CLICKED(IDOK, OnMarkup)
     ON_BN_CLICKED(IDC_GLOSSIFY_SKIP_FIRST, OnBnClickedGlossifySkipFirst)
     ON_BN_CLICKED(IDC_GLOSSIFY_NEXT_SECTION, OnBnClickedGlossifyNextSection)
+    ON_BN_CLICKED(IDC_GLOSSIFY_PREVIEW, &CGlossify::OnBnClickedGlossifyPreview)
 END_MESSAGE_MAP()
 
 
@@ -332,5 +332,16 @@ void CGlossify::OnBnClickedGlossifyNextSection() {
     if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");
         OnOK();
+    }
+}
+
+void CGlossify::OnBnClickedGlossifyPreview() {
+    if (cur_node) {
+        CString url;
+        const CString host = cdr::Socket::get_host_name();
+        url.Format(L"https://%s/cgi-bin/cdr/PublishPreview.py?DocId=%d",
+                   host, cur_node->doc_id);
+        //::AfxMessageBox(url);
+        cdr::show_page(url);
     }
 }
