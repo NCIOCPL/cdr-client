@@ -1,12 +1,11 @@
 /*
- * Implementation of dialog object for performing a CDR document search.
+ * Implementation of dialog object for saving the current CDR document.
  */
 
 // Local headers.
 #include "stdafx.h"
 #include "resource.h"
 #include "SaveDialog.h"
-#include ".\savedialog.h"
 
 #include <afxdlgs.h>
 
@@ -15,6 +14,7 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CSaveDialog dialog
