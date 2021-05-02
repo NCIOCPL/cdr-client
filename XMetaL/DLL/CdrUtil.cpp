@@ -29,7 +29,9 @@
 static CString err_response(const CString& err);
 static bool is_user_path(const CString& path);
 static std::string log_timestamp();
-
+static CString xml_decode(CString str);
+static CString xml_encode(CString str, bool fixQuotes=false);
+static std::wostringstream& operator<<(std::wostringstream& os, DOMNode& node);
 
 //////////////////////////////////////////////////////////////////////
 ///                          INLINE FUNCTIONS
@@ -1165,6 +1167,28 @@ void cdr::send_trace_log() {
 }
 
 /**
+ * Serialize a document from XMetaL's DOM.
+ *
+ * This is necessary because of bugs in the XMetaL implementation of the
+ * document object's `xml` property, which (at least in the C++ `GetXml()`
+ * version) mangles whitespace inside text nodes.
+ *
+ * Called by:
+ *  CCommands::save()
+ *  CCommands::validate()
+ *
+ * @param doc - pointer to current XMetaL document
+ * @return    - serialization of the document
+ */
+CString cdr::serialize(_Document* doc) {
+    std::wostringstream os;
+    DOMNode root = doc->GetDocumentElement();
+    os << root;
+    CString xml(os.str().c_str());
+    return xml;
+}
+
+/**
  * Show errors returned in the server's response.
  *
  * Typical use:
@@ -1382,4 +1406,136 @@ std::string log_timestamp() {
             sys_time.wMilliseconds);
     std::string timestamp(buf);
     return timestamp;
+}
+
+/**
+ * Reverses the XML encoding process, replacing builtin entity
+ * references with the corresponding characters.
+ *
+ * Called by:
+ *   operator<<() below
+ *
+ *  @param  str         caller's string object to be modified in place.
+ *  @return             copy of modified string.
+ */
+CString xml_decode(CString str) {
+    str.Replace(L"&amp;", L"&");
+    str.Replace(L"&lt;", L"<");
+    str.Replace(L"&gt;", L">");
+    str.Replace(L"&quot;", L"\"");
+    str.Replace(L"&apos;", L"'");
+    return str;
+}
+
+/**
+ * Alters the caller's string in place, making it suitable to
+ * serve as XML text content, replacing reserved characters with
+ * their built-in entity reference equivalents.
+ *
+ * Called by:
+ *   operator<<() below
+ *
+ *  @param  str         caller's string object to be modified in place.
+ *  @param  fixQuotes   <code>true</code> iff single- and double-quote
+ *                      marks should be replaced; otherwise <code>false</code>
+ *                      (the default).
+ *  @return             copy of modified string.
+ */
+CString xml_encode(CString str, bool fixQuotes) {
+    str.Replace(L"&", L"&amp;");
+    str.Replace(L"<", L"&lt;");
+    str.Replace(L">", L"&gt;");
+    if (fixQuotes) {
+        str.Replace(L"\"", L"&quot;");
+        str.Replace(L"'", L"&apos;");
+    }
+    return str;
+}
+
+/**
+ * Writes the string equivalent of the XML tree represented by the caller's
+ * DOM node.
+ *
+ * Called by:
+ *   cdr::get_xml()
+ *
+ *  @param  os              reference to output stream on which to write
+ *                          the XML string.
+ *  @param  node            reference to the DOM node to be written out.
+ *  @return                 reference to output stream.
+ */
+std::wostringstream& operator<<(std::wostringstream& os, DOMNode& node) {
+
+    // Obtain some local copies of the node's properties.
+    int node_type = node.GetNodeType();
+    CString name = node.GetNodeName();
+
+    // Swallow the CdrDocCtl element.
+    if (node_type == 1 && name != L"CdrDocCtl") {
+
+        // Element node.  Output the start tag.
+        os << L"<" << (LPCWSTR)name;
+        DOMNamedNodeMap attrs = node.GetAttributes();
+        int n = attrs.GetLength();
+        for (int i = 0; i < n; ++i) {
+            DOMNode attr = attrs.item(i);
+            CString attr_name = attr.GetNodeName();
+            if (attr_name != L"readonly") {
+                CString val = attr.GetNodeValue();
+
+                // OK, this is bizarre, but necessary because of a strange
+                // pair of bugs in XMetaL.  XXX This runs the risk of
+                // stepping on the intentions of the user, in the rare
+                // (probably so rare that it will never happen) case in
+                // which she really wants to end up with an EntityRef as
+                // the _value_ (not just the representation) of the
+                // attribute.  No way around this problem until the vendor
+                // fixes the bugs.  When that happens, take out the
+                // call to xml_decode() here and things will work the
+                // way they should in _all_ cases.
+                os << L" " << (LPCWSTR)attr_name << L"='"
+                   << (LPCWSTR)xml_encode(xml_decode(val), true) << L"'";
+            }
+        }
+        if (!node.hasChildNodes())
+            os << L"/";
+        os << L">";
+    }
+
+    // If this is a text node (type 3) pump out the characters.
+    else if (node_type == 3) {
+
+        CString val = node.GetNodeValue();
+        os << (LPCWSTR)xml_encode(val);
+    }
+
+    // Handle processing instructions.
+    else if (node_type == 7) {
+
+        CString val = node.GetNodeValue();
+        os << L"<?" << (LPCWSTR)name << L" " << (LPCWSTR)val << L"?>";
+    }
+
+    // Don't lose comments.
+    else if (node_type == 8) {
+
+        CString val = node.GetNodeValue();
+        os << L"<!--" << (LPCWSTR)val << L"-->";
+    }
+
+    // Process any children of the node.
+    if (node.hasChildNodes() && name != "CdrDocCtl") {
+        DOMNode n = node.GetFirstChild();
+        os << n;
+
+        // If this is an element node, write the closing tag.
+        if (node_type == 1)
+            os << L"</" << (LPCWSTR)name << L">";
+    }
+
+    // Continue with this node's siblings
+    DOMNode sibling = node.GetNextSibling();
+    if (sibling)
+        os << sibling;
+    return os;
 }

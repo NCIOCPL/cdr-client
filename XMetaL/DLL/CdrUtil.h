@@ -264,6 +264,7 @@ namespace cdr {
     bool get_image_dimensions(CFile& file, ImageDimensions& dim);
     const CString& get_user_path();
     const CString& get_xmetal_path();
+    CString serialize(_Document* doc);
     bool replace_element_content(::DOMElement&, const CString&);
     void send_trace_log();
     bool show_errors(DOM& response);

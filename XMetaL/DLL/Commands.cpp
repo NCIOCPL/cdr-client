@@ -1802,7 +1802,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             }
 
             // Add the XML for the document, now that it's been tweaked.
-            CString original_xml = doc.GetXml();
+            CString original_xml = cdr::serialize(&doc);
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Use a local buffer type to ensure memory release even if an
@@ -2102,7 +2102,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
             if (!ctrl_info.doc_id.IsEmpty())
                 request.child_element(doc_ctl, "DocId", ctrl_info.doc_id);
             request.child_element(doc_ctl, "DocTitle", ctrl_info.doc_title);
-            CString original_xml = doc.GetXml();
+            CString original_xml = cdr::serialize(&doc);
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Submit the validate command to the server.

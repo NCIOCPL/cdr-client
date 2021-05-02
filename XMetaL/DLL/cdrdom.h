@@ -10,8 +10,13 @@ namespace cdr {
     /**
      * You would think we could just use the DOM functionality exposed
      * by SoftQuad, but unfortunately, their implementation is broken.
-     * Cloning the document fails, and getting the serialized XML for
-     * a DOM node isn't supported. So here is our own wrapper for MSXML.
+     * Cloning the document fails, getting the serialized XML for a DOM
+     * node isn't supported, and their implementation of serialization for
+     * the entire document corrupts the document by mangling whitespace
+     * within text nodes which also contain non-space characters. So here
+     * is our own wrapper for MSXML, which we use for communicating with
+     * the CDR server. We still have to use the XMetaL DOM implementation
+     * when we're manipulating the document currently being edited.
      */
     class DOM {
     public:
