@@ -147,7 +147,7 @@ Captions                  :before { content: "CAPTIONS & ";}
 Categories                :before { content: "CATEGORIES * ";}
 Category                  :before { content: "Category * +: ";}
 CitationLink              :before { content: "Citation & + @: ";}
-Comment                   :before { content: "Comments &: "; }
+Comment                   :before { content: "Comments & @: "; }
 ContentDescriptions       :before { content: "CONTENT DESCRIPTIONS * ";}
 ContentDescription        :before { content: "Cont. Descr. * + @: ";}
 Creator                   :before { content: "Creator &: ";}
@@ -157,7 +157,7 @@ DefaultVideoPresentationTemplate
                           :before { content: "Display &: ";}
 DerivedFrom               :before { content: "DERIVED FROM * + ";}
 Diagnoses                 :before { content: "DIAGNOSES & ";}
-Diagnosis                 :before { content: "Diagnosis * +: ";}
+Diagnosis                 :before { content: "Diagnosis * + @: ";}
 DocTitle                  :before { content: "Doc Title: "; }
 EnteredBy                 :before { content: "Entered By *: ";}
 ExternalRef               :before { content: "ExternalRef & + @: ";}
@@ -199,7 +199,7 @@ SourcePublication         :before { content: "Src Publication &: ";}
 Summary                   :before { content: "Summary * @: ";}
 SupplementaryInfoLink     :before { content: "Sup Info Link * + @: ";}
 TextDateCreated           :before { content: "Txt Date Created &: ";}
-Topic                     :before { content: "Topic * +: ";}
+Topic                     :before { content: "Topic * + @: ";}
 Topics                    :before { content: "TOPICS & ";}
 TranslationOf             :before { content: "Translation of & @: ";},
 VideoData                 :before { content: "VIDEO DATA * ";}
@@ -347,10 +347,10 @@ Category,
                           text-indent: -78pt; }
 Comment,        
                         { margin-left: 120pt; 
-                          text-indent: -82.5pt; }
+                          text-indent: -79pt; }
 ProcessingStatus>Comment,        
                         { margin-left: 110pt; 
-                          text-indent: -82.5pt; }
+                          text-indent: -98pt; }
 ContentDescription,
                         { margin-left: 120pt;
                           text-indent: -111pt; }
@@ -371,7 +371,7 @@ DerivationMethod,
                           text-indent: 0pt; }
 Diagnosis,
                         { margin-left: 120pt;
-                          text-indent: -83pt; }
+                          text-indent: -98pt; }
 DocTitle,
                         { margin-left: 120pt; 
                           text-indent: -100pt; }
@@ -468,7 +468,7 @@ TextDateCreated,
                           text-indent: -115.5pt; }
 Topic,
                         { margin-left: 120pt;
-                          text-indent: -57.5pt; }
+                          text-indent: -73pt; }
 TranslationOf
                         { margin-left: 120pt;
                           text-indent: -114pt; }
