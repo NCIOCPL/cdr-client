@@ -3,8 +3,7 @@
 <DTDExtensions>
   <ElementPropertiesList>
     <GlobalPrettyPrintOptions>
-      <IndentAmount>2</IndentAmount>
-      <MaxLineLength>80</MaxLineLength>
+      <NoPrettyPrinting/>
     </GlobalPrettyPrintOptions>
     <ElementProperties>
       <Name>Address</Name>
