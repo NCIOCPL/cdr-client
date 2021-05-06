@@ -38,7 +38,7 @@ After making all of the necessary changes to the CTM Rules file, copy the new `<
 Once the CTM file has been copied, start XMetaL for the rules and template files to be reloaded. These files only get loaded once per session when the program is started.
 
 ### Moving Changes to the Server
-When everything has been updated and looks good you'll have to copy the changes to the development server for CIAT to review. Once you copied the files you must run the manifestmaker or nobody will be able to start XMetaL until it did run. Log on to the DEV server to submit the appropriate commands.
+When everything has been updated and looks good you'll have to copy the changes to the development server for CIAT to review. Once you have copied the files you must run the manifestmaker or nobody will be able to start XMetaL until it did run. Log on to the DEV server to submit the appropriate commands.
 
 ### Modifying an Existing CTM File
 
