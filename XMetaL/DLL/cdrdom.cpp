@@ -388,7 +388,7 @@ void cdr::CommandSetBase::add_cdr_document(IXMLDOMElement* parent,
 
     // Create, populate, and append the CdrDocXml element.
     auto child = child_element(parent, "CdrDocXml");
-    CString doc_xml = new_dom.get_xml();
+    CString doc_xml = new_dom.get_xml(new_dom.get_root());
     doc_xml.Remove(L'\r');
     CComBSTR bstr(doc_xml);
     CComPtr<IXMLDOMCDATASection> cdata;
