@@ -19,7 +19,7 @@ folder to your git repository working folder
   /h/git/cdr-client/XMetaL/Rules
 ```
 
-Open the new `<doctype>.ctm` file and ensure that the following option is included.  **Every *.ctm file must include this option**:
+Open the new `<doctype>.ctm` file and ensure that the following option is included. If it's not part of the rules you need to add it. **Every `<doctype>.ctm` file must include this option**:
 
 ```
   <GlobalPrettyPrintOptions>
