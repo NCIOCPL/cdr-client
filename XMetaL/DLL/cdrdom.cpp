@@ -210,6 +210,8 @@ CString cdr::DOM::get(IXMLDOMElement* elem, const CString& name) {
     CComVariant variant;
     if (FAILED(elem->getAttribute(bstr, &variant)))
         throw L"getAttribute failed";
+    if (variant.vt != VT_BSTR)
+        return L"";
     CString value(variant);
     return value;
 }

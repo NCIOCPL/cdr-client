@@ -201,9 +201,9 @@ static void test6() {
     auto cdr_doc = request.child_element(request.command, "CdrDoc");
     request.add_cdr_document(cdr_doc, doc_xml);
     CString command_string = request.get_xml();
-    assert(command_string.Find(L"<!DOCTYPE Media") != -1);
+    assert(command_string.Find(L"<!DOCTYPE Media") == -1);
     assert(command_string.Find(L"<![CDATA[") != -1);
-    assert(command_string.GetLength() == 991);
+    assert(command_string.GetLength() == 929);
 }
 
 static void test7() {
@@ -230,6 +230,8 @@ static void test7() {
     auto postal_address = addr_elems.find("PostalAddress");
     assert(postal_address);
     auto children = addr_elems.find_all("*", postal_address);
+    CString whatever = addr_elems.get(postal_address, "whatever");
+    assert(whatever.IsEmpty());
     CString address_type = addr_elems.get(postal_address, "AddressType");
     cdr::DOM dom("wrapper");
     auto wrapper = dom.get_root();
