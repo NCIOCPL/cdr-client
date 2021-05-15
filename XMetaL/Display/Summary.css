@@ -131,71 +131,71 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
-@import "CdrCommonSchema.css";  
+@import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 14pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
 
-$COMMENT 
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
+$PROCINS
      { color: navy;
        font-weight: normal;
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 AltTitle,
-Board, 
-BoardMember, 
+Board,
+BoardMember,
 ChangeDate,
 TypeOfSummaryChange > Comment,
 ComprehensiveReviewDate,
 Date,
 DateLastModified,
-Diagnosis, 
+Diagnosis,
 Drug,
 EnteredBy,
 Intervention,
-KeyPoint, 
-MainTopics, 
+KeyPoint,
+MainTopics,
 MobileURL,
 PatientVersionOf,
 PDQBoard,
-PdqKey /* in both Summary and SummarySection */, 
-PMID, 
+PdqKey /* in both Summary and SummarySection */,
+PMID,
 PurposeText,
 ReplacementFor,
-SecondaryTopics, 
+SecondaryTopics,
 SectMetaData,
 SectionType,
-SummaryAudience, 
+SummaryAudience,
 SummaryDescription,
 SummaryKeyWord,
 SummaryKeyWords,
-SummaryLanguage, 
-SummaryMetaData, 
+SummaryLanguage,
+SummaryMetaData,
 SummaryModuleLink,
-SummarySection, 
+SummarySection,
 SummarySection>Comment,
-SummaryTitle, 
-SummaryType, 
+SummaryTitle,
+SummaryType,
 SummaryURL,
 Term,
-Title, 
+Title,
 TranslationOf,
 TypeOfChange,
 TypeOfSummaryChange,
@@ -223,9 +223,9 @@ SecondaryTopics > Term
     { font-weight: bold; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
@@ -291,25 +291,25 @@ ComprehensiveReviewDate,
 WillReplace
                            { margin-left:  135pt; }
 SummaryAbstract>Para,
-TranslationOf              { text-indent: -138pt; } 
-PatientVersionOf           { text-indent: -136.5pt; } 
-ReplacementFor             { text-indent: -160pt; } 
-DateLastModified           { text-indent: -118pt; } 
-ComprehensiveReviewDate    { text-indent: -126pt; } 
+TranslationOf              { text-indent: -138pt; }
+PatientVersionOf           { text-indent: -136.5pt; }
+ReplacementFor             { text-indent: -160pt; }
+DateLastModified           { text-indent: -118pt; }
+ComprehensiveReviewDate    { text-indent: -126pt; }
 SummaryAbstract>Para       { text-indent: 0pt; }
 WillReplace                { text-indent: -125pt; }
 
-/***************************************************************************/ 
-/*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                      DOCUMENT, ID, AND SUMMARY META DATA                */
+/***************************************************************************/
 SummaryMetaData,
 TypeOfSummaryChange
-    { border: solid; 
+    { border: solid;
       border-color: black;
       border-width: thin;
       font-weight: normal;
       margin-top: 1em;
-      margin-bottom: 1em; 
+      margin-bottom: 1em;
       background-color: #CCCCFF; }
 
 TypeOfSummaryChange      :before
@@ -319,11 +319,11 @@ SummaryMetaData,
     { font-size: 12pt; }
 
 MobileURL                    :before,
-PMID              			  :before, 
-SummaryAudience              :before, 
+PMID              			  :before,
+SummaryAudience              :before,
 SummaryDescription           :before,
 SummaryLanguage              :before,
-SummaryType                  :before, 
+SummaryType                  :before,
 SummaryKeyWord               :before,
 SummaryAbstract              :before,
 SummaryURL                   :before
@@ -351,7 +351,7 @@ TypeOfSummaryChangeValue     :before,
 User                         :before,
 VideoID                      :before
     { font-weight: bold;
-      font-size: 12pt; 
+      font-size: 12pt;
       color: black; }
 
 BoardMember,
@@ -359,7 +359,7 @@ BoardMember,
 
 PDQBoard,
 SummaryKeyWords
-    { margin-top: 1em; 
+    { margin-top: 1em;
       margin-bottom: 1em;  }
 
 
@@ -367,19 +367,19 @@ SecondaryTopics>Term,
     { prefix-format: "[ %attribute-list; ]"; }
 
 
-/***************************************************************************/ 
-/*                            SUMMARY TITLE                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            SUMMARY TITLE                                */
+/***************************************************************************/
 SummaryTitle,
      { font-size: 20pt;
        font-weight: bold;
        margin-top: 12pt; }
 
 
-/***************************************************************************/ 
-/*                 SUMMARY SECTION TITLES, INDENTS, SUBSECTIONS            */ 
-/***************************************************************************/ 
-KeyPoint, 
+/***************************************************************************/
+/*                 SUMMARY SECTION TITLES, INDENTS, SUBSECTIONS            */
+/***************************************************************************/
+KeyPoint,
 KeyPoint                     :before,
 ComprehensiveReviewDate      :before,
 DateLastModified             :before,
@@ -389,7 +389,7 @@ ReplacementFor               :before,
 /*TypeOfSummaryChange          :before
      { font-weight: bold;
        font-size: 12pt;
-       color: black;  
+       color: black;
        margin-top: 15pt;
        margin-bottom: 10pt; }
 */
@@ -411,31 +411,37 @@ PdqKey,
 PMID,
      { margin-bottom: 10pt;  }
 
-SummaryAbstract>Para, 
+SummaryAbstract>Para,
      { margin-left: 20pt;
        margin-bottom: .5em; }
-	   
+
 SummaryModuleLink
      { font-weight: bold;
        margin-bottom: 10pt;
        margin-top: 10pt;
        background-color: #B2FF65; }
 
+SummaryModuleLink[UsedFor='qc-only']
+     { font-weight: bold;
+       border-style: solid;
+       border-color: red;
+       border-width: 5px; }
+
 SummarySection>AltTitle,
      { font-weight: bold;
        font-size: 14pt;
        color: blue; }
 
-SummarySection>Para, 
+SummarySection>Para,
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
-SummarySection>Title, 
+SummarySection>Title,
      { font-weight: bold;
        font-size: 16pt;
        color: blue; }
 
-Title, 
+Title,
      { font-size: 14pt;
        font-weight: bold;
        text-align: left; }
@@ -541,7 +547,7 @@ Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Insertion[RevisionLevel='publish']>SummarySection:before,
-    { color:            #8B0000; 
+    { color:            #8B0000;
       background-color: #FFEBCD; }
 
 
@@ -680,7 +686,7 @@ Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion>SummarySection:before,
-    { text-decoration: 
+    { text-decoration:
       line-through; color: red; }
 
 
@@ -727,8 +733,8 @@ Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion[RevisionLevel='publish']>SummarySection:before,
-    { text-decoration: line-through; 
-      color:            #8B0000; 
+    { text-decoration: line-through;
+      color:            #8B0000;
       background-color: #FFEBCD; }
 
 
@@ -775,7 +781,7 @@ Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
 Deletion[RevisionLevel='rejected']>SummarySection:before,
-    { text-decoration: line-through; 
+    { text-decoration: line-through;
       color:            #8B0000; }
 
 
@@ -828,96 +834,96 @@ Deletion[RevisionLevel='proposed']>SummarySection:before,
 /* InLine comments and responses are receiving special labels */
 /* according to the attributes the element carries            */
 /* ---------------------------------------------------------- */
-Comment,  
-    { font-style: italic; 
-      background-color: green; 
+Comment,
+    { font-style: italic;
+      background-color: green;
       color: white; }
 
-ResponseToComment, 
-    { font-style: italic; 
-      background-color: green; 
+ResponseToComment,
+    { font-style: italic;
+      background-color: green;
       color: white; }
 
-Comment                      :before 
-    { color: white; 
-      background-color: green; 
+Comment                      :before
+    { color: white;
+      background-color: green;
       content: "Comment: "; }
 
-Comment[source='advisory-board']:before 
-    { color: white; 
-      background-color: green; 
+Comment[source='advisory-board']:before
+    { color: white;
+      background-color: green;
       content: "AB-Comment: "; }
 
-Comment[duration='permanent']:before 
-    { color: white; 
-      background-color: green; 
+Comment[duration='permanent']:before
+    { color: white;
+      background-color: green;
       content: "Permanent-Comment: "; }
 
-Comment[source='advisory-board'][duration='permanent']:before 
-    { color: white; 
-      background-color: green; 
+Comment[source='advisory-board'][duration='permanent']:before
+    { color: white;
+      background-color: green;
       content: "Permanent-AB-Comment: "; }
 
-Comment[audience='Internal'] :after 
-    { color: white; 
-      background-color: green; 
+Comment[audience='Internal'] :after
+    { color: white;
+      background-color: green;
       content: " (Internal)"; }
 
-Comment[audience='External'] :after 
-    { color: white; 
-      background-color: green; 
+Comment[audience='External'] :after
+    { color: white;
+      background-color: green;
       content: " (External)"; }
 
-ResponseToComment            :before 
-    { color: white; 
-      background-color: green; 
+ResponseToComment            :before
+    { color: white;
+      background-color: green;
       content: "Response: "; }
-ResponseToComment[source='advisory-board']:before 
-    { color: white; 
-      background-color: green; 
+ResponseToComment[source='advisory-board']:before
+    { color: white;
+      background-color: green;
       content: "AB-Response: "; }
-ResponseToComment[duration='permanent']:before 
-    { color: white; 
-      background-color: green; 
+ResponseToComment[duration='permanent']:before
+    { color: white;
+      background-color: green;
       content: "Permanent-Response: "; }
-ResponseToComment[source='advisory-board'][duration='permanent']:before 
-    { color: white; 
-      background-color: green; 
+ResponseToComment[source='advisory-board'][duration='permanent']:before
+    { color: white;
+      background-color: green;
       content: "Permanent-AB-Response: "; }
-ResponseToComment            :after 
-    { color: white; 
-      background-color: green; 
+ResponseToComment            :after
+    { color: white;
+      background-color: green;
       content: " (" attr(audience) ")"; }
 
 SummarySection>Comment
-    { color: white; 
+    { color: white;
       background-color: green;
       margin-top: 15pt;
       margin-bottom: 10pt; }
 
 
-/***************************************************************************/ 
-/*                         SECTION META DATA                               */ 
-/***************************************************************************/ 
-SectMetaData, 
+/***************************************************************************/
+/*                         SECTION META DATA                               */
+/***************************************************************************/
+SectMetaData,
      { text-align: right;
        font-weight: lighter;
        font-style: oblique;
        color: blue; }
 
 
-/***************************************************************************/ 
-/*                               TABLES                                    */ 
-/***************************************************************************/ 
-SummarySection>Table, 
+/***************************************************************************/
+/*                               TABLES                                    */
+/***************************************************************************/
+SummarySection>Table,
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
 
 
-/***************************************************************************/ 
-/*                               FORM DATA                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               FORM DATA                                 */
+/***************************************************************************/
 Board                        :before,
 BoardMember                  :before,
 ChangeDate                   :before,
@@ -980,92 +986,92 @@ VideoID                      :before
 
 /* Key element for length = SummaryLanguage                               */
 
-Board,    
-                             { margin-left: 135pt; 
+Board,
+                             { margin-left: 135pt;
                                text-indent: -123.5pt;}
-BoardMember,    
-                             { margin-left: 135pt; 
+BoardMember,
+                             { margin-left: 135pt;
                                text-indent: -129pt;}
-ChangeDate    
-                             { margin-left: -10pt; 
+ChangeDate
+                             { margin-left: -10pt;
                                text-indent: -90pt;}
 TypeOfSummaryChangeValue
-                             { margin-left: 135pt; 
+                             { margin-left: 135pt;
                                text-indent: -91.5pt;}
 User
-                             { margin-left: 135pt; 
+                             { margin-left: 135pt;
                                text-indent: -90pt;}
 Date
-                             { margin-left: 135pt; 
+                             { margin-left: 135pt;
                                text-indent: -90pt;}
-TypeOfSummaryChange > Comment    
-                             { margin-left: 135pt; 
+TypeOfSummaryChange > Comment
+                             { margin-left: 135pt;
                                text-indent: -91pt;}
-EnteredBy    
-                             { margin-left: -10pt; 
+EnteredBy
+                             { margin-left: -10pt;
                                text-indent: -79.5pt;}
-MobileURL,    
+MobileURL,
                              { margin-left: 135pt;
                                text-indent: -101pt; }
 PMID
-                             { margin-left: 87pt; 
+                             { margin-left: 87pt;
                                text-indent: -2pt;}
 PurposeText
-				             { margin-left: 135pt; 
+				             { margin-left: 135pt;
                                text-indent: -97pt;}
 					
-SummaryAbstract  	         { margin-left: 155pt; 
+SummaryAbstract  	         { margin-left: 155pt;
                                text-indent: 95pt;}
 							
-SummaryAudience,    
-                             { margin-left: 88pt; 
+SummaryAudience,
+                             { margin-left: 88pt;
                                text-indent: -80pt;}
-SummaryDescription,    
+SummaryDescription,
                              { margin-left: 135pt;
                                text-indent: -107pt; }
-SummaryKeyWord,    
+SummaryKeyWord,
                              { margin-left: 145pt;
                                text-indent: -80pt; }
-SummaryLanguage,    
-                             { margin-left: 135pt; 
+SummaryLanguage,
+                             { margin-left: 135pt;
                                text-indent: -131pt;}
-SummaryType,    
+SummaryType,
                              { margin-left: 135pt;
                                text-indent: -102pt; }
-SummaryURL,    
+SummaryURL,
                              { margin-left: 135pt;
                                text-indent: -114pt; }
-MainTopics>Term,    
+MainTopics>Term,
                              { margin-left: 135pt;
                                text-indent: -109.5pt; }
-SecondaryTopics>Term,    
-                             { margin-left: 135pt; 
+SecondaryTopics>Term,
+                             { margin-left: 135pt;
                                text-indent: -134pt; }
-TypeOfChange    
-                             { margin-left: -10pt; 
+TypeOfChange
+                             { margin-left: -10pt;
                                text-indent: -92pt;}
 
 Caption,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -65pt; }
 MediaID,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -79.5pt; }
 VideoID,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -79pt; }
 SpecificMediaTitle,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -44pt; }
 SpecificMediaCaption,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -65pt; }
 SpecificVideoPresentationTemplate,
-                             { margin-left: 100pt; 
+                             { margin-left: 100pt;
                                text-indent: -63pt; }
 
 MediaLink, EmbeddedVideo
-    { border: solid; 
+    { border: solid;
       border-color: black;
       border-width: thin;
       margin-top: 6pt;
@@ -1116,23 +1122,23 @@ TypeOfSummaryChange > Comment
 /* green                 - for proposed mark-up            */
 /* red                   - for approved mark-up            */
 /* --------------------------------------------------------*/
-Insertion[RevisionLevel='publish']               { color:            #8B0000; 
+Insertion[RevisionLevel='publish']               { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Deletion[RevisionLevel='publish']                { color:            #8B0000; 
+Deletion[RevisionLevel='publish']                { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Insertion[RevisionLevel='publish'] > Comment     { color:            #8B0000; 
+Insertion[RevisionLevel='publish'] > Comment     { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Insertion[RevisionLevel='publish'] > ResponseToComment 
-                                                 { color:            #8B0000; 
+Insertion[RevisionLevel='publish'] > ResponseToComment
+                                                 { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Deletion[RevisionLevel='publish']  > Comment     { color:            #8B0000; 
+Deletion[RevisionLevel='publish']  > Comment     { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Deletion[RevisionLevel='publish']  > ResponseToComment 
-                                                 { color:            #8B0000; 
+Deletion[RevisionLevel='publish']  > ResponseToComment
+                                                 { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Insertion[RevisionLevel='publish'] > *           { color:            #8B0000; 
+Insertion[RevisionLevel='publish'] > *           { color:            #8B0000;
                                                    background-color: #FFEBCD; }
-Deletion[RevisionLevel='publish']  > *           { color:            #8B0000; 
+Deletion[RevisionLevel='publish']  > *           { color:            #8B0000;
                                                    background-color: #FFEBCD; }
 
 
