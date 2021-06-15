@@ -1,12 +1,11 @@
 /*
- * Implementation of dialog object for performing a CDR document search.
+ * Implementation of dialog object for saving the current CDR document.
  */
 
 // Local headers.
 #include "stdafx.h"
 #include "resource.h"
 #include "SaveDialog.h"
-#include ".\savedialog.h"
 
 #include <afxdlgs.h>
 
@@ -16,26 +15,27 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+
 /////////////////////////////////////////////////////////////////////////////
 // CSaveDialog dialog
 
 
-CSaveDialog::CSaveDialog(bool readyForReview, 
-                         bool blobPossible /*=false*/,
-                         CWnd* pParent /*=NULL*/)
-    : CDialog(CSaveDialog::IDD, pParent)
+CSaveDialog::CSaveDialog(bool ready_for_review,
+                         bool blob_possible /*=false*/,
+                         CWnd* parent /*=NULL*/)
+    : CDialog(CSaveDialog::IDD, parent)
 {
     //{{AFX_DATA_INIT(CSaveDialog)
     m_validate = FALSE;
     m_checkIn = FALSE;
-    m_comment = _T("");
-    m_createVersion = FALSE;
-    m_versionPublishable = FALSE;
-    m_docInactive = FALSE;
-    m_readyForReview = FALSE;
+    m_comment = L"";
+    m_create_version = FALSE;
+    m_version_publishable = FALSE;
+    m_doc_inactive = FALSE;
+    m_ready_for_review = FALSE;
     //}}AFX_DATA_INIT
-    m_readyForReview = readyForReview;
-    m_blobPossible = blobPossible;
+    m_ready_for_review = ready_for_review;
+    m_blob_possible = blob_possible;
 }
 
 
@@ -47,14 +47,12 @@ void CSaveDialog::DoDataExchange(CDataExchange* pDX)
     DDX_Check(pDX, IDC_CHECK2, m_checkIn);
     DDX_Text(pDX, IDC_EDIT2, m_comment);
     DDV_MaxChars(pDX, m_comment, 4000);
-    DDX_Check(pDX, IDC_CHECK3, m_createVersion);
-    DDX_Check(pDX, IDC_CHECK4, m_versionPublishable);
-    DDX_Check(pDX, IDC_CHECK5, m_docInactive);
-    DDX_Check(pDX, IDC_CHECK6, m_readyForReview);
+    DDX_Check(pDX, IDC_CHECK3, m_create_version);
+    DDX_Check(pDX, IDC_CHECK4, m_version_publishable);
+    DDX_Check(pDX, IDC_CHECK5, m_doc_inactive);
     //}}AFX_DATA_MAP
-    DDX_Control(pDX, IDC_CHECK6, m_readyForReviewCheckbox);
-    DDX_Control(pDX, IDC_MEDIA_FILENAME, m_blobFilename);
-    DDX_Control(pDX, IDC_MEDIA_FILE_BROWSE, m_browseButton);
+    DDX_Control(pDX, IDC_MEDIA_FILENAME, m_blob_filename);
+    DDX_Control(pDX, IDC_MEDIA_FILE_BROWSE, m_browse_button);
 }
 
 
@@ -72,25 +70,25 @@ END_MESSAGE_MAP()
 
 void CSaveDialog::OnBnClickedCheck4()
 {
-    fixCheckBoxes();
+    fix_checkboxes();
 }
 
 void CSaveDialog::OnBnClickedCheck3()
 {
-    fixCheckBoxes();
+    fix_checkboxes();
 }
 
 void CSaveDialog::OnBnClickedCheck1()
 {
-    fixCheckBoxes();
+    fix_checkboxes();
 }
 
-void CSaveDialog::fixCheckBoxes()
+void CSaveDialog::fix_checkboxes()
 {
     UpdateData(TRUE);
-    if (m_versionPublishable &&
-        (!m_createVersion || !m_validate)) {
-        m_createVersion = TRUE;
+    if (m_version_publishable &&
+        (!m_create_version || !m_validate)) {
+        m_create_version = TRUE;
         m_validate = TRUE;
         UpdateData(FALSE);
     }
@@ -100,12 +98,12 @@ BOOL CSaveDialog::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    if (m_readyForReview)
-        m_readyForReviewCheckbox.EnableWindow(FALSE);
+    if (m_ready_for_review)
+        m_ready_for_review_checkbox.EnableWindow(FALSE);
 
-    if (!m_blobPossible) {
-        m_browseButton.EnableWindow(FALSE);
-        this->m_blobFilename.EnableWindow(FALSE);
+    if (!m_blob_possible) {
+        m_browse_button.EnableWindow(FALSE);
+        this->m_blob_filename.EnableWindow(FALSE);
     }
 
     return TRUE;  // return TRUE unless you set the focus to a control
@@ -116,7 +114,7 @@ void CSaveDialog::OnBnClickedMediaFileBrowse()
 {
     CFileDialog fileDialog(TRUE);
     if (fileDialog.DoModal() == IDOK) {
-        m_blobFilenameString = fileDialog.GetPathName();
-        m_blobFilename.SetWindowText(m_blobFilenameString);
+        m_blob_filename_string = fileDialog.GetPathName();
+        m_blob_filename.SetWindowText(m_blob_filename_string);
     }
 }

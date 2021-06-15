@@ -19,7 +19,7 @@ CCheckIn::CCheckIn(CWnd* pParent /*=NULL*/)
 	: CDialog(CCheckIn::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CCheckIn)
-	m_comment = _T("");
+	m_comment = L"";
 	//}}AFX_DATA_INIT
 }
 

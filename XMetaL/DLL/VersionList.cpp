@@ -20,8 +20,8 @@ static char THIS_FILE[] = __FILE__;
 // CVersionList dialog
 
 
-CVersionList::CVersionList(const CString& id, CWnd* pParent /*=NULL*/)
-	: docId(id), CDialog(CVersionList::IDD, pParent)
+CVersionList::CVersionList(const CString& id, CWnd* parent /*=NULL*/)
+	: doc_id(id), CDialog(CVersionList::IDD, parent)
 {
 	//{{AFX_DATA_INIT(CVersionList)
 		// NOTE: the ClassWizard will add member initialization here
@@ -29,11 +29,11 @@ CVersionList::CVersionList(const CString& id, CWnd* pParent /*=NULL*/)
 }
 
 
-void CVersionList::DoDataExchange(CDataExchange* pDX)
+void CVersionList::DoDataExchange(CDataExchange* dx)
 {
-	CDialog::DoDataExchange(pDX);
+	CDialog::DoDataExchange(dx);
 	//{{AFX_DATA_MAP(CVersionList)
-	DDX_Control(pDX, IDC_LIST1, m_choiceList);
+	DDX_Control(dx, IDC_LIST1, m_choice_list);
 	//}}AFX_DATA_MAP
 }
 
@@ -47,92 +47,80 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CVersionList message handlers
 
-BOOL CVersionList::OnInitDialog() 
+BOOL CVersionList::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-	
+
     // Create the command.
-    std::basic_ostringstream<TCHAR> cmd;
-    cmd << _T("<CdrListVersions><DocId>")
-        << (LPCTSTR)docId
-        << _T("</DocId></CdrListVersions>");
+    cdr::CommandSet request("CdrListVersions");
+    auto command = request.command;
+    request.child_element(command, "DocId", doc_id);
 
     // Submit the request to the CDR server.
     CWaitCursor wc;
-    CString rsp = CdrSocket::sendCommand(cmd.str().c_str());
-    int pos = rsp.Find(_T("<Errors"));
-    if (pos != -1) {
-        if (!cdr::showErrors(rsp))
-            ::AfxMessageBox(_T("Unknown failure retrieving versions"),
-                            MB_ICONEXCLAMATION);
+    CString response_xml = cdr::Socket::send_commands(request);
+    cdr::DOM dom(response_xml);
+    if (cdr::show_errors(dom)) {
         EndDialog(IDCANCEL);
         return TRUE;
     }
 
     // Populate the list control.
-    int numVersions = 0;
-    cdr::Element v = cdr::Element::extractElement(rsp, _T("Version"));
-    while (v) {
-        cdr::Element num      = v.extractElement(v.getString(), _T("Num"));
-        cdr::Element comment  = v.extractElement(v.getString(), _T("Comment"));
-        cdr::Element date     = v.extractElement(v.getString(), _T("Date"));
-        CString commentString = comment ? comment.getString() : _T("No comment");
-		CString dateString    = date ? date.getString().Left(11) : _T("");
-        commentString.Replace(_T("\r"), _T(" "));
-        commentString.Replace(_T("\n"), _T(" "));
-        while (commentString.Replace(_T("  "), _T(" ")) > 0)
-            ;
-        CString str           = _T("[") 
-                              + num.getString()
-                              + _T("] ")
-							  + dateString
-                              + commentString;
-        m_choiceList.AddString(str);
-        ++numVersions;
-        v = v.extractElement(rsp, _T("Version"), v.getEndPos());
-    }
-
-    // Make sure we have at least one version.
-	if (!numVersions) {
-		::AfxMessageBox(_T("No versions found"));
+    auto nodes = dom.find_all("//Version");
+    if (!nodes.size()) {
+        ::AfxMessageBox(L"No versions found");
         EndDialog(IDCANCEL);
     }
     else {
-		m_choiceList.SetCurSel(0);
-		m_choiceList.EnableWindow();
+        for (auto& node : nodes) {
+            CString num = dom.get_text(dom.find("Num", node));
+            CString cmt = dom.get_text(dom.find("Comment", node));
+            CString dat = dom.get_text(dom.find("Date", node)).Left(11);
+            if (cmt.IsEmpty())
+                cmt = L"No comment";
+            else {
+                cmt.Replace(L"\r", L" ");
+                cmt.Replace(L"\n", L" ");
+                while (cmt.Replace(L"  ", L" ") > 0)
+                    ;
+            }
+            m_choice_list.AddString(L"[" + num + L"] " + dat + cmt);
+        }
+		m_choice_list.SetCurSel(0);
+		m_choice_list.EnableWindow();
 	}
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CVersionList::OnOK() 
+void CVersionList::OnOK()
 {
 	// Find out which version the user selected.
-	int curSel = m_choiceList.GetCurSel();
+	int cur_sel = m_choice_list.GetCurSel();
 
     // Don't do anything if there is no selection.
-    if (curSel >= 0) {
+    if (cur_sel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_choiceList.GetText(curSel, str);
+		m_choice_list.GetText(cur_sel, str);
         //::AfxMessageBox(str);
 
         // Find the delimiters.
-        int left = str.Find(_T("["));
+        int left = str.Find(L"[");
         if (left == -1) {
-            ::AfxMessageBox(_T("Unable to find left version delimiter."));
+            ::AfxMessageBox(L"Unable to find left version delimiter.");
             return;
         }
-        int right = str.Find(_T("]"), ++left);
+        int right = str.Find(L"]", ++left);
         if (right == -1) {
-            ::AfxMessageBox(_T("Unable to find right version delimiter."));
+            ::AfxMessageBox(L"Unable to find right version delimiter.");
             return;
         }
         CString version = str.Mid(left, right - left);
 
         // Retrieve the version as read-only.
-        if (CCommands::doRetrieve(docId, FALSE, version))
+        if (CCommands::doRetrieve(doc_id, FALSE, version))
             EndDialog(IDOK);
     }
 }
@@ -141,7 +129,7 @@ void CVersionList::OnOK()
  * Allows the user to double-click on a search result as an alternative
  * to the Retrieve button.
  */
-void CVersionList::OnDblclkList1() 
+void CVersionList::OnDblclkList1()
 {
 	OnOK();
 }

@@ -11,9 +11,9 @@
 
 IMPLEMENT_DYNAMIC(RevisionLevel, CDialogEx)
 
-RevisionLevel::RevisionLevel(CWnd* pParent /*=NULL*/)
-    : CDialogEx(RevisionLevel::IDD, pParent)
-    , mRevisionLevel(0)
+RevisionLevel::RevisionLevel(CWnd* parent /*=NULL*/)
+    : CDialogEx(RevisionLevel::IDD, parent)
+    , m_revision_level(0)
 {
 
 }
@@ -22,10 +22,10 @@ RevisionLevel::~RevisionLevel()
 {
 }
 
-void RevisionLevel::DoDataExchange(CDataExchange* pDX)
+void RevisionLevel::DoDataExchange(CDataExchange* dx)
 {
-    CDialogEx::DoDataExchange(pDX);
-    DDX_Radio(pDX, IDC_RADIO1, mRevisionLevel);
+    CDialogEx::DoDataExchange(dx);
+    DDX_Radio(dx, IDC_RADIO1, m_revision_level);
 }
 
 

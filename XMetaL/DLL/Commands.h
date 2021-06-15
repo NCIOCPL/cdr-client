@@ -11,7 +11,6 @@
 
 #include "resource.h"       // main symbols
 #include <string>
-#include "LogonDialog.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CCommands
@@ -26,9 +25,8 @@ public:
     CCommands() {}
     static bool doRetrieve(const CString& id,
                            BOOL checkOut,
-                           const CString& version = _T("Current"));
+                           const CString& version = L"Current");
     static bool doInsertLink(const CString&);
-    static bool doLogon(LogonDialog* dialog);
     static CString getUsername() { return username; }
 
 BEGIN_COM_MAP(CCommands)
@@ -64,8 +62,7 @@ public:
     STDMETHOD(get_session)(/*[out, retval]*/ BSTR *pVal);
     STDMETHOD(get_userPath)(BSTR* pVal);
     STDMETHOD(get_username)(/*[out, retval]*/ BSTR *pVal);
-    STDMETHOD(glossify)(VARIANT_BOOL dig, const BSTR* dictionary);
-    STDMETHOD(isReadOnly)(/*[in]*/ const BSTR* docType, /*[in]*/ const BSTR* elemName, /*[out retval]*/ BOOL* pVal);
+    STDMETHOD(glossify)(VARIANT_BOOL dig, const BSTR* dictionary, const BSTR* audience);
     STDMETHOD(launchBlob)(const BSTR* docId, const BSTR* docVer);
     STDMETHOD(logClientEvent)(const BSTR* description, int* pRet);
     STDMETHOD(logoff)(/*[out, retval]*/ int* pRet);
@@ -82,7 +79,6 @@ public:
     STDMETHOD(validate)(/*[out, retval]*/ int* pRet);
     STDMETHOD(valuesForPath)(const BSTR* docId, const BSTR* path, BSTR* values);
 
-    static bool invokedFromClientRefreshTool;
 
 private:
     static CString username;

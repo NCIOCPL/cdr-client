@@ -8,7 +8,6 @@
 #define IDR_Commands                    103
 #define IDD_DIALOG1                     201
 #define IDC_EDIT1                       201
-#define IDD_LOGON_DIALOG                201
 #define IDC_EDIT2                       202
 #define IDD_DIALOG2                     202
 #define IDD_RETRIEVE_DIALOG             202
@@ -28,13 +27,9 @@
 #define IDD_SCHEMA_PICKLIST             207
 #define IDC_RADIO4                      207
 #define IDC_COMBO1                      208
-#define IDD_LOGON_PROGRESS              208
 #define IDC_CHECK1                      209
-#define IDD_PROT_UPD_PERSON             209
 #define IDC_CHECK2                      210
-#define IDD_PERSON_LOCS                 210
 #define IDC_BUTTON3                     210
-#define IDD_PARTIC_ORGS                 211
 #define IDD_ORG_LOCS                    212
 #define IDC_CHECK3                      213
 #define IDD_CHECK_IN                    213
@@ -50,13 +45,14 @@
 #define IDD_GLOSSIFY                    219
 #define IDD_GLOSSIFY_DIALOG             219
 #define IDD_REVIEW_MARKUP               220
-#define ID_LOGON_OK                     221
 #define IDC_LINK_TITLE_LABEL            222
 #define IDD_COMMENT                     222
 #define IDD_COMMENT_DIALOG              222
 #define IDD_REVISION_LEVEL              223
 #define IDC_TEXT_MESSAGE                224
+#define IDD_FIND_MARKUP_DIALOG          224
 #define IDC_SUCCESS_ICON                225
+#define IDD_FIND_COMMENTS_DIALOG        225
 #define IDC_GLOSSIFY_SKIP_FIRST         226
 #define IDC_ALL                         227
 #define IDC_PUBLISH                     228
@@ -74,27 +70,26 @@
 #define IDC_MEDIA_FILE_BROWSE           240
 #define IDC_GLOSSIFY_NEXT_SECTION       242
 #define IDC_COMMENT_BOX                 243
-#define IDD_FIND_MARKUP_DIALOG          224
 #define IDC_FIND_MARKUP_PUBLISH         244
 #define IDC_FIND_MARKUP_APPROVED        245
 #define IDC_FIND_MARKUP_PROPOSED        246
 #define IDC_FIND_MARKUP_NEXT            247
 #define IDC_FIND_MARKUP_PREV            248
-#define IDD_FIND_COMMENTS_DIALOG        225
 #define IDC_FIND_COMMENTS_ADVISORY      249
 #define IDC_FIND_COMMENTS_INTERNAL      250
 #define IDC_FIND_COMMENTS_EXTERNAL      251
 #define IDC_FIND_COMMENTS_PERMANENT     252
 #define IDC_FIND_COMMENTS_NEXT          253
 #define IDC_FIND_COMMENTS_PREV          254
+#define IDC_GLOSSIFY_PREVIEW            255
 
 // Next default values for new objects
 //
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        226
+#define _APS_NEXT_RESOURCE_VALUE        227
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         255
+#define _APS_NEXT_CONTROL_VALUE         256
 #define _APS_NEXT_SYMED_VALUE           104
 #endif
 #endif

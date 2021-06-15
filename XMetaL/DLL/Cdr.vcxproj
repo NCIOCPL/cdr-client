@@ -793,6 +793,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cdr.cpp" />
+    <ClCompile Include="cdrdom.cpp" />
     <ClCompile Include="CdrUtil.cpp" />
     <ClCompile Include="CheckIn.cpp" />
     <ClCompile Include="Commands.cpp" />
@@ -801,12 +802,9 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClCompile Include="FindComments.cpp" />
     <ClCompile Include="FindMarkup.cpp" />
     <ClCompile Include="Glossify.cpp" />
-    <ClCompile Include="LogonDialog.cpp" />
-    <ClCompile Include="LogonProgress.cpp" />
     <ClCompile Include="mp3.cpp" />
     <ClCompile Include="OrgLocs.cpp" />
     <ClCompile Include="PassedValidation.cpp" />
-    <ClCompile Include="PersonLocs.cpp" />
     <ClCompile Include="RetrieveDialog.cpp" />
     <ClCompile Include="ReviewMarkup.cpp" />
     <ClCompile Include="RevisionLevel.cpp" />
@@ -905,6 +903,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cdrdom.h" />
     <ClInclude Include="CdrUtil.h" />
     <ClInclude Include="CheckIn.h" />
     <ClInclude Include="Commands.h" />
@@ -913,12 +912,9 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClInclude Include="FindComments.h" />
     <ClInclude Include="FindMarkup.h" />
     <ClInclude Include="Glossify.h" />
-    <ClInclude Include="LogonDialog.h" />
-    <ClInclude Include="LogonProgress.h" />
     <ClInclude Include="mp3.h" />
     <ClInclude Include="OrgLocs.h" />
     <ClInclude Include="PassedValidation.h" />
-    <ClInclude Include="PersonLocs.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="RetrieveDialog.h" />
     <ClInclude Include="ReviewMarkup.h" />

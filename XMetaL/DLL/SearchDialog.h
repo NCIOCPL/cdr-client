@@ -17,22 +17,22 @@ class CSearchDialog : public CDialog
 {
 // Construction
 public:
-	CSearchDialog(const std::list<CString>& docTypes,
-		          CWnd* pParent = NULL);   // standard constructor
+	CSearchDialog(const std::list<CString>& doc_types,
+		          CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CSearchDialog)
 	enum { IDD = IDD_SEARCH_DIALOG };
-	CComboBox	m_docTypes;
-	CListBox	m_docList;
-	CButton	m_retrieveButton;
-	CButton	m_searchButton;
-	CButton	m_cancelButton;
-	CButton	m_titleEquals;
-	CButton	m_titleContains;
-	CButton	m_titleStart;
-	CString	m_searchString;
-	BOOL	m_checkOut;
+	CComboBox	m_doc_types;
+	CListBox	m_doc_list;
+	CButton	m_retrieve_button;
+	CButton	m_search_button;
+	CButton	m_cancel_button;
+	CButton	m_title_equals;
+	CButton	m_title_contains;
+	CButton	m_title_start;
+	CString	m_search_string;
+	BOOL	m_check_out;
 	//}}AFX_DATA
 
 
@@ -59,7 +59,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	const std::list<CString>& docTypes;
+	const std::list<CString>& doc_types;
 };
 
 //{{AFX_INSERT_LOCATION}}

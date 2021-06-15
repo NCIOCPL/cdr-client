@@ -28,7 +28,7 @@ bool getImageDimensions(const unsigned char* buf, int len, Dimensions& dim) {
     }
 
     // Try PNG
-    if (len >= 24      && buf[0]  == 137 && 
+    if (len >= 24      && buf[0]  == 137 &&
         buf[1]  == 'P' && buf[2]  == 'N' && buf[3]  == 'G' &&
         buf[4]  == 13  && buf[5]  == 10  && buf[6]  == 26  && buf[7]  == 10 &&
         buf[12] == 'I' && buf[13] == 'H' && buf[14] == 'D' && buf[15] == 'R') {

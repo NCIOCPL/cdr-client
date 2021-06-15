@@ -16,13 +16,13 @@ class COrgLocs : public CDialog
 {
 // Construction
 public:
-	COrgLocs(const CString& docId, CString& newTarg,
-             CWnd* pParent = NULL);   // standard constructor
+	COrgLocs(const CString& doc_id, CString& new_targ,
+             CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(COrgLocs)
 	enum { IDD = IDD_ORG_LOCS };
-	CListBox	m_choiceList;
+	CListBox	m_choice_list;
 	//}}AFX_DATA
 
 
@@ -45,10 +45,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-    CString docId;
-    cdr::DocSet docSet;
-    CString& newTarget;
-    void extractChoices(const CString&);
+    CString doc_id;
+    cdr::DocSet doc_set;
+    CString& new_target;
 };
 
 //{{AFX_INSERT_LOCATION}}

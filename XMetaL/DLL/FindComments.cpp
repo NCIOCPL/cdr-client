@@ -9,8 +9,8 @@
 // CFindComments dialog
 
 IMPLEMENT_DYNAMIC(CFindComments, CDialog)
-CFindComments::CFindComments(CWnd* pParent /*=NULL*/)
-	: CDialog(CFindComments::IDD, pParent)
+CFindComments::CFindComments(CWnd* parent /*=NULL*/)
+	: CDialog(CFindComments::IDD, parent)
 {
 }
 
@@ -18,11 +18,11 @@ CFindComments::~CFindComments()
 {
 }
 
-void CFindComments::DoDataExchange(CDataExchange* pDX)
+void CFindComments::DoDataExchange(CDataExchange* dx)
 {
-    CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_FIND_COMMENTS_NEXT, nextButton);
-    DDX_Control(pDX, IDC_FIND_COMMENTS_PREV, prevButton);
+    CDialog::DoDataExchange(dx);
+    DDX_Control(dx, IDC_FIND_COMMENTS_NEXT, next_button);
+    DDX_Control(dx, IDC_FIND_COMMENTS_PREV, prev_button);
 }
 
 
@@ -35,15 +35,15 @@ END_MESSAGE_MAP()
 // CFindComments message handlers
 
 void CFindComments::OnBnClickedNextComment() {
-    findComment(true);
+    find_comment(true);
 }
 
 void CFindComments::OnBnClickedPrevComment() {
-    findComment(false);
+    find_comment(false);
 }
 
-void CFindComments::findComment(bool forward) {
-    _Application app = cdr::getApp();
+void CFindComments::find_comment(bool forward) {
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
     ::Range element = doc.GetRange();
     CString name;
@@ -52,42 +52,42 @@ void CFindComments::findComment(bool forward) {
                                        IDC_FIND_COMMENTS_PERMANENT);
     switch (option) {
     case IDC_FIND_COMMENTS_ADVISORY:
-        name = _T("source");
-        value = _T("advisory-board");
+        name = L"source";
+        value = L"advisory-board";
         break;
     case IDC_FIND_COMMENTS_INTERNAL:
-        name = _T("audience");
-        value = _T("Internal");
+        name = L"audience";
+        value = L"Internal";
         break;
     case IDC_FIND_COMMENTS_EXTERNAL:
-        name = _T("audience");
-        value = _T("External");
+        name = L"audience";
+        value = L"External";
         break;
     case IDC_FIND_COMMENTS_PERMANENT:
     default:
-        name = _T("duration");
-        value = _T("permanent");
+        name = L"duration";
+        value = L"permanent";
         break;
     }
-    bool keepGoing = true;
-    while (keepGoing) {
+    bool keep_going = true;
+    while (keep_going) {
         element.Collapse(1);
-        BOOL foundComment = element.MoveToElement(_T("Comment"), forward);
-        while (foundComment) {
+        BOOL found_comment = element.MoveToElement(L"Comment", forward);
+        while (found_comment) {
             ::DOMElement e = element.GetContainerNode();
             CString v = e.getAttribute(name);
             if (v == value)
                 break;
             element.Collapse(1);
-            foundComment = element.MoveToElement(_T("Comment"), forward);
+            found_comment = element.MoveToElement(L"Comment", forward);
         }
-        if (!foundComment) {
-            CString prompt = _T("End of document; wrap from top?");
+        if (!found_comment) {
+            CString prompt = L"End of document; wrap from top?";
             if (!forward)
-                prompt = _T("Beginning of document; wrap from bottom?");
+                prompt = L"Beginning of document; wrap from bottom?";
             int answer = ::AfxMessageBox(prompt, MB_YESNO);
-            keepGoing = answer == IDYES;
-            if (keepGoing) {
+            keep_going = answer == IDYES;
+            if (keep_going) {
                 if (forward)
                     element.MoveToDocumentStart();
                 else
@@ -95,7 +95,7 @@ void CFindComments::findComment(bool forward) {
             }
         }
         else {
-            keepGoing = false;
+            keep_going = false;
             element.SelectContainerContents();
             element.Select();
         }

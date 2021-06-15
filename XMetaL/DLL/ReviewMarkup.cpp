@@ -10,8 +10,8 @@
 // CReviewMarkup dialog
 
 IMPLEMENT_DYNAMIC(CReviewMarkup, CDialog)
-CReviewMarkup::CReviewMarkup(CWnd* pParent /*=NULL*/)
-	: CDialog(CReviewMarkup::IDD, pParent)
+CReviewMarkup::CReviewMarkup(CWnd* parent /*=NULL*/)
+	: CDialog(CReviewMarkup::IDD, parent)
 {
 }
 
@@ -19,16 +19,16 @@ CReviewMarkup::~CReviewMarkup()
 {
 }
 
-void CReviewMarkup::DoDataExchange(CDataExchange* pDX)
+void CReviewMarkup::DoDataExchange(CDataExchange* dx)
 {
-    CDialog::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_MARKUP_USER, markupUser);
-    DDX_Control(pDX, IDC_MARKUP_DATE, markupDate);
-    DDX_Control(pDX, IDC_MARKUP_CONTENT, markupContent);
-    DDX_Control(pDX, IDC_ACCEPT, acceptButton);
-    DDX_Control(pDX, IDC_REJECT, rejectButton);
-    DDX_Control(pDX, IDC_REVIEW_LEVEL, reviewLevel);
-    DDX_Control(pDX, IDC_MARKUP_SOURCE, markupSource);
+    CDialog::DoDataExchange(dx);
+    DDX_Control(dx, IDC_MARKUP_USER, markup_user);
+    DDX_Control(dx, IDC_MARKUP_DATE, markup_date);
+    DDX_Control(dx, IDC_MARKUP_CONTENT, markup_content);
+    DDX_Control(dx, IDC_ACCEPT, accept_button);
+    DDX_Control(dx, IDC_REJECT, reject_button);
+    DDX_Control(dx, IDC_REVIEW_LEVEL, review_level);
+    DDX_Control(dx, IDC_MARKUP_SOURCE, markup_source);
 }
 
 
@@ -43,107 +43,107 @@ END_MESSAGE_MAP()
 
 void CReviewMarkup::OnBnClickedNextMarkup()
 {
-    if (!findNextMarkup() && false)
+    if (!find_next_markup() && false)
         EndDialog(IDCANCEL);
 }
 
-static CString extractDate(CString& dateTime) {
-    if (dateTime.IsEmpty())
-        return dateTime;
-    int comma = dateTime.Find(_T(","));
+static CString extract_date(CString& date_time) {
+    if (date_time.IsEmpty())
+        return date_time;
+    int comma = date_time.Find(L",");
     if (comma == -1)
-        return dateTime;
-    comma = dateTime.Find(_T(","), comma + 1);
+        return date_time;
+    comma = date_time.Find(L",", comma + 1);
     if (comma == -1)
-        return dateTime;
-    return dateTime.Left(comma + 6);
+        return date_time;
+    return date_time.Left(comma + 6);
 }
 
-bool CReviewMarkup::findNextMarkup() {
+bool CReviewMarkup::find_next_markup() {
     bool result = true;
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
-    ::Range delElem = doc.GetRange();
-    ::Range insElem = doc.GetRange();
-    CString desiredLevel = _T("approved");
-    CString user = _T("");
-    CString date = _T("");
-    CString content = _T("");
-    CString markupLevel = _T("");
-    CString markupSourceValue = _T("");
-    int levelId = GetCheckedRadioButton(IDC_ALL, IDC_PROPOSED);
-    switch (levelId) {
-        case IDC_ALL: desiredLevel = _T("all"); break;
-        case IDC_PUBLISH: desiredLevel = _T("publish"); break;
-        case IDC_PROPOSED: desiredLevel = _T("proposed"); break;
-        default: desiredLevel = _T("approved"); break;
+    ::Range del_elem = doc.GetRange();
+    ::Range ins_elem = doc.GetRange();
+    CString desired_level = L"approved";
+    CString user = L"";
+    CString date = L"";
+    CString content = L"";
+    CString markup_level = L"";
+    CString markup_source_value = L"";
+    int level_id = GetCheckedRadioButton(IDC_ALL, IDC_PROPOSED);
+    switch (level_id) {
+        case IDC_ALL: desired_level = L"all"; break;
+        case IDC_PUBLISH: desired_level = L"publish"; break;
+        case IDC_PROPOSED: desired_level = L"proposed"; break;
+        default: desired_level = L"approved"; break;
     }
-    BOOL keepGoing = TRUE;
-    while (keepGoing) {
-        delElem.Collapse(1);
-        insElem.Collapse(1);
-        BOOL foundDel = delElem.MoveToElement(_T("Deletion"), TRUE);
-        BOOL foundIns = insElem.MoveToElement(_T("Insertion"), TRUE);
-        while (foundDel && desiredLevel != _T("all")) {
-            ::DOMElement e = delElem.GetContainerNode();
-            CString lvl = e.getAttribute(_T("RevisionLevel"));
-            if (lvl == desiredLevel)
+    BOOL keep_going = TRUE;
+    while (keep_going) {
+        del_elem.Collapse(1);
+        ins_elem.Collapse(1);
+        BOOL found_del = del_elem.MoveToElement(L"Deletion", TRUE);
+        BOOL found_ins = ins_elem.MoveToElement(L"Insertion", TRUE);
+        while (found_del && desired_level != L"all") {
+            ::DOMElement e = del_elem.GetContainerNode();
+            CString lvl = e.getAttribute(L"RevisionLevel");
+            if (lvl == desired_level)
                 break;
-            delElem.Collapse(1);
-            foundDel = delElem.MoveToElement(_T("Deletion"), TRUE);
+            del_elem.Collapse(1);
+            found_del = del_elem.MoveToElement(L"Deletion", TRUE);
         }
-        while (foundIns && desiredLevel != _T("all")) {
-            ::DOMElement e = insElem.GetContainerNode();
-            CString lvl = e.getAttribute(_T("RevisionLevel"));
-            if (lvl == desiredLevel)
+        while (found_ins && desired_level != L"all") {
+            ::DOMElement e = ins_elem.GetContainerNode();
+            CString lvl = e.getAttribute(L"RevisionLevel");
+            if (lvl == desired_level)
                 break;
-            insElem.Collapse(1);
-            foundIns = insElem.MoveToElement(_T("Insertion"), TRUE);
+            ins_elem.Collapse(1);
+            found_ins = ins_elem.MoveToElement(L"Insertion", TRUE);
         }
-        if (!foundIns && !foundDel) {
-            int answer = ::AfxMessageBox(_T("End of doc; start from top?"), MB_YESNO);
-            keepGoing = answer == IDYES;
-            if (keepGoing) {
-                delElem.MoveToDocumentStart();
-                insElem.MoveToDocumentStart();
+        if (!found_ins && !found_del) {
+            int answer = ::AfxMessageBox(L"End of doc; start from top?", MB_YESNO);
+            keep_going = answer == IDYES;
+            if (keep_going) {
+                del_elem.MoveToDocumentStart();
+                ins_elem.MoveToDocumentStart();
             }
             else
                 result = false;
         }
         else {
-            keepGoing = FALSE;
-            ::Range* whichRange = NULL;
-            if (!foundDel)
-                whichRange = &insElem;
-            else if (!foundIns)
-                whichRange = &delElem;
-            else if (insElem.GetIsGreaterThan(delElem, FALSE))
-                whichRange = &delElem;
+            keep_going = FALSE;
+            ::Range* which_range = NULL;
+            if (!found_del)
+                which_range = &ins_elem;
+            else if (!found_ins)
+                which_range = &del_elem;
+            else if (ins_elem.GetIsGreaterThan(del_elem, FALSE))
+                which_range = &del_elem;
             else
-                whichRange = &insElem;
-            whichRange->SelectContainerContents();
-            whichRange->Select();
-            ::DOMElement e = whichRange->GetContainerNode();
-            user = e.getAttribute(_T("UserName"));
-            date = extractDate(e.getAttribute(_T("Time")));
-            markupLevel = e.getAttribute(_T("RevisionLevel"));
-            markupSourceValue = e.getAttribute(_T("Source"));
-            if (markupSourceValue == _T("advisory-board"))
-                markupSourceValue = _T("Advisory Board");
+                which_range = &ins_elem;
+            which_range->SelectContainerContents();
+            which_range->Select();
+            ::DOMElement e = which_range->GetContainerNode();
+            user = e.getAttribute(L"UserName");
+            date = extract_date(e.getAttribute(L"Time"));
+            markup_level = e.getAttribute(L"RevisionLevel");
+            markup_source_value = e.getAttribute(L"Source");
+            if (markup_source_value == L"advisory-board")
+                markup_source_value = L"Advisory Board";
             else
-                markupSourceValue = _T("Editorial Board");
-            content = whichRange->GetText();
+                markup_source_value = L"Editorial Board";
+            content = which_range->GetText();
             if (content.GetLength() > 25)
-                content = content.Left(25) + _T(" ...");
+                content = content.Left(25) + L" ...";
         }
     }
-    markupUser.SetWindowText(user);
-    markupDate.SetWindowText(date);
-    markupSource.SetWindowText(markupSourceValue);
-    markupContent.SetWindowText(content);
-    reviewLevel.SetWindowText(markupLevel);
-    acceptButton.EnableWindow(result);
-    rejectButton.EnableWindow(result);
+    markup_user.SetWindowText(user);
+    markup_date.SetWindowText(date);
+    markup_source.SetWindowText(markup_source_value);
+    markup_content.SetWindowText(content);
+    review_level.SetWindowText(markup_level);
+    accept_button.EnableWindow(result);
+    reject_button.EnableWindow(result);
     return result;
 }
 
@@ -151,13 +151,13 @@ BOOL CReviewMarkup::OnInitDialog()
 {
     CDialog::OnInitDialog();
     CheckRadioButton(IDC_ALL, IDC_PROPOSED, IDC_APPROVED);
-    this->markupUser.SetWindowText(_T(""));
-    this->markupDate.SetWindowText(_T(""));
-    this->markupContent.SetWindowText(_T(""));
-    this->reviewLevel.SetWindowText(_T(""));
-    this->markupSource.SetWindowText(_T(""));
-    this->acceptButton.EnableWindow(FALSE);
-    this->rejectButton.EnableWindow(FALSE);
+    this->markup_user.SetWindowText(L"");
+    this->markup_date.SetWindowText(L"");
+    this->markup_content.SetWindowText(L"");
+    this->review_level.SetWindowText(L"");
+    this->markup_source.SetWindowText(L"");
+    this->accept_button.EnableWindow(FALSE);
+    this->reject_button.EnableWindow(FALSE);
     return TRUE;
 }
 
@@ -168,37 +168,37 @@ BOOL CReviewMarkup::OnInitDialog()
 //----------------------------------------------------------------------
 void CReviewMarkup::OnBnClickedAccept()
 {
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
     ::Range range = doc.GetRange();
-    CString elemName = range.GetElementName(0);
-    if (elemName == _T("Insertion"))
+    CString elem_name = range.GetElementName(0);
+    if (elem_name == L"Insertion")
         range.RemoveContainerTags();
-    else if (elemName == _T("Deletion")) {
+    else if (elem_name == L"Deletion") {
         range.SelectContainerContents();
         range.Delete();
         range.RemoveContainerTags();
     }
-    findNextMarkup();
+    find_next_markup();
 }
 
 //----------------------------------------------------------------------
-// Rejects the current marked change i.e. if the selection is inside an 
-// Insertion the contents are removed and if the contents are inside an 
+// Rejects the current marked change i.e. if the selection is inside an
+// Insertion the contents are removed and if the contents are inside an
 // Deletion they are merged back with the document.
 //----------------------------------------------------------------------
 void CReviewMarkup::OnBnClickedReject()
 {
-    _Application app = cdr::getApp();
+    _Application app = cdr::get_app();
     ::_Document doc = app.GetActiveDocument();
     ::Range range = doc.GetRange();
-    CString elemName = range.GetElementName(0);
-    if (elemName == _T("Deletion"))
+    CString elem_name = range.GetElementName(0);
+    if (elem_name == L"Deletion")
         range.RemoveContainerTags();
-    else if (elemName == _T("Insertion")) {
+    else if (elem_name == L"Insertion") {
         range.SelectContainerContents();
         range.Delete();
         range.RemoveContainerTags();
     }
-    findNextMarkup();
+    find_next_markup();
 }

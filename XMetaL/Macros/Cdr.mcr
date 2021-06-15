@@ -504,9 +504,9 @@
         if (ActiveDocument.documentElement.getAttribute("readonly") == "yes")
                                                       { return 1; }
         if (ActiveDocument.doctype == null)           { return 0; }
+        if (Selection == null)                        { return 0; }
         if (Selection.ContainerNode == null)          { return 0; }
         if (Selection.ContainerNode.nodeName == null) { return 0; }
-        if (Selection == null)                        { return 0; }
         if (cdrObj == null)                           { return 0; }
         var dtName = ActiveDocument.doctype.name;
         var elName = Selection.ContainerNode.nodeName;
@@ -981,6 +981,10 @@
                                     "Glossify Genetics Terms");
             Application.AppendMacro("Glossify Genetics Terms (include markup)",
                                     "Glossify Genetics Terms (include markup)");
+            Application.AppendMacro("Glossify Patient Terms",
+                                    "Glossify Patient Terms");
+            Application.AppendMacro("Glossify Patient Terms (include markup)",
+                                    "Glossify Patient Terms (include markup)");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address",
@@ -1871,7 +1875,6 @@
                            "Request a report on the translation job queue",
                            "Databases (Custom)", 6, 6,
                            false),
-            /* Next 3 for OCECDR-4188 */
             new CdrCmdItem(null,
                            "Glossify Document",
                            "Glossify Document",
@@ -1883,6 +1886,30 @@
                            "Glossify Document (include all sections in markup)",
                            "Glossify Document (include all sections in markup)",
                            "General (Custom)", 5, 7,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossify Genetics Terms",
+                           "Glossify Genetics Terms",
+                           "Glossify Genetics Terms",
+                           "General (Custom)", 7, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossify Genetics Terms (include markup)",
+                           "Glossify Genetics Terms (include markup)",
+                           "Glossify Genetics Terms (include markup)",
+                           "General (Custom)", 7, 8,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossify Patient Terms",
+                           "Glossify Patient Terms",
+                           "Glossify Patient Terms",
+                           "General (Custom)", 7, 4,
+                           false),
+            new CdrCmdItem(null,
+                           "Glossify Patient Terms (include markup)",
+                           "Glossify Patient Terms (include markup)",
+                           "Glossify Patient Terms (include markup)",
+                           "General (Custom)", 7, 8,
                            false),
             new CdrCmdItem(null,
                            "Insert TypeOfChange",
@@ -3083,30 +3110,10 @@
         if (cdrObj == null)
             Application.Alert("You are not logged on to the CDR");
         else {
-            var answer = true;
-            var docType = ActiveDocument.doctype;
-            // Application.Alert(docType.name);
-            if (docType && docType.name == "InScopeProtocol") {
-                var doc = Application.ActiveDocument;
-                var nodes = doc.getElementsByTagName("Outcome");
-                // for (var node in nodes) {
-                if (nodes.length > 0) {
-                    var elem = nodes.item(0);
-                    var val = getTextContent(elem);
-                    //Application.Alert(val.length);
-                    if (val.length > 254) {
-                        var msg = "Outcome text has " + val.length
-                                + " characters.\nSave anyway?"
-                        answer = Application.Confirm(msg);
-                   }
-                }
-            }
-            if (answer) {
-                var result = cdrObj.save();
-                if (result > 0) {
-                    Application.Alert("Found " + result +
-                                      " validation errors/warnings");
-                }
+            var result = cdrObj.save();
+            if (result > 0) {
+                Application.Alert("Found " + result +
+                                  " validation errors/warnings");
             }
         }
     }
@@ -4266,7 +4273,7 @@
 <MACRO name="TermName with Concept QC Report"
        lang="JScript">
   <![CDATA[
-    function protocolAdminQcReport() {
+    function termNameWithConceptQcReport() {
         var docId = getDocId();
         if (!docId) {
             Application.Alert("Document has not yet been saved in the CDR");
@@ -4281,7 +4288,7 @@
                 "&Filter=set:QC GlossaryTermName with Concept Set";
         cdrObj.showPage(url);
     }
-    protocolAdminQcReport();
+    termNameWithConceptQcReport();
   ]]>
 </MACRO>
 
@@ -4709,7 +4716,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "");
+        cdrObj.glossify(false, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4719,7 +4726,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "");
+        cdrObj.glossify(true, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4729,7 +4736,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "Genetics");
+        cdrObj.glossify(false, "Genetics", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4739,7 +4746,27 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "Genetics");
+        cdrObj.glossify(true, "Genetics", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, "", "Patient");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms (include markup)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, "", "Patient");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>

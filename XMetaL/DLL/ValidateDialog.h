@@ -14,13 +14,13 @@ class CValidateDialog : public CDialog
 {
 // Construction
 public:
-	CValidateDialog(CWnd* pParent = NULL);   // standard constructor
+	CValidateDialog(CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
 	//{{AFX_DATA(CValidateDialog)
 	enum { IDD = IDD_VALIDATE_DIALOG };
-	BOOL	m_schemaValidation;
-	BOOL	m_linkValidation;
+	BOOL	m_schema_validation;
+	BOOL	m_link_validation;
 	//}}AFX_DATA
 
 
@@ -28,7 +28,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CValidateDialog)
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -40,8 +40,8 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	BOOL m_includeApprovedMarkup;
-	BOOL m_includeProposedAndApprovedMarkup;
+	BOOL m_include_approved_markup;
+	BOOL m_include_proposed_and_approved_markup;
 };
 
 //{{AFX_INSERT_LOCATION}}

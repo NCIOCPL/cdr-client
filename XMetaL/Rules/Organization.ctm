@@ -2,6 +2,10 @@
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
  <ElementPropertiesList>
+    <!-- 
+        Do not remove following option or validation might fail!!!
+        The option preserves inline whitespace.
+    -->
   <GlobalPrettyPrintOptions>
    <NoPrettyPrinting/>
   </GlobalPrettyPrintOptions>

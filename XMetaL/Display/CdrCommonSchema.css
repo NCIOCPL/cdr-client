@@ -261,6 +261,8 @@ DatedAction>Comment          :before { content: "Comments &: "; }
 /* Misc styles    */
 
 CitationLink                 :before { content: " [Citation] "; }
+CitationLink[KeyReference="Yes"]
+                             :before { content: " [Key-Citation] "; }
 CitationReference            :before { content: " [Citation] ";}
 Note                         :before { content: " [Note: "; }
 Note                         :after  { content: "] "; }
@@ -557,6 +559,9 @@ SummaryLink,
 SummaryRef,
     { text-decoration: underline;
       color: blue; }
+
+CitationLink[KeyReference="Yes"]:before,
+    { background-color: yellow; }
 
 ProtocolLink,
 ProtocolRef,

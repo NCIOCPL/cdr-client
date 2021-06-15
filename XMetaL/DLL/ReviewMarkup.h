@@ -10,30 +10,30 @@ class CReviewMarkup : public CDialog
 	DECLARE_DYNAMIC(CReviewMarkup)
 
 public:
-	CReviewMarkup(CWnd* pParent = NULL);   // standard constructor
+	CReviewMarkup(CWnd* parent = NULL);   // standard constructor
 	virtual ~CReviewMarkup();
 
 // Dialog Data
 	enum { IDD = IDD_REVIEW_MARKUP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CStatic markupUser;
-    CStatic markupDate;
-    CStatic markupContent;
-    CButton acceptButton;
-    CButton rejectButton;
+    CStatic markup_user;
+    CStatic markup_date;
+    CStatic markup_content;
+    CButton accept_button;
+    CButton reject_button;
     afx_msg void OnBnClickedNextMarkup();
     virtual BOOL OnInitDialog();
 
 private:
-    bool findNextMarkup();
+    bool find_next_markup();
 public:
-    CStatic reviewLevel;
+    CStatic review_level;
     afx_msg void OnBnClickedAccept();
     afx_msg void OnBnClickedReject();
-    CStatic markupSource;
+    CStatic markup_source;
 };

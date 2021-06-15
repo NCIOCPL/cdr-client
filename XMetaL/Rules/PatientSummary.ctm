@@ -2,9 +2,12 @@
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
   <ElementPropertiesList>
+    <!-- 
+        Do not remove following option or validation might fail!!!
+        The option preserves inline whitespace.
+    -->
     <GlobalPrettyPrintOptions>
-      <IndentAmount>2</IndentAmount>
-      <MaxLineLength>80</MaxLineLength>
+      <NoPrettyPrinting/>
     </GlobalPrettyPrintOptions>
     <ElementProperties>
       <Name>Address</Name>

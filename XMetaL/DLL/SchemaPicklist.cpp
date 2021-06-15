@@ -16,12 +16,12 @@ static char THIS_FILE[] = __FILE__;
 // CSchemaPicklist dialog
 
 
-CSchemaPicklist::CSchemaPicklist(const cdr::StringList* vvSet_,
-                                 const CString& curVal_,
-                                 const CString& elemName_,
+CSchemaPicklist::CSchemaPicklist(const cdr::StringList* values,
+                                 const CString& current_value,
+                                 const CString& element_name,
                                  CWnd* pParent /*=NULL*/)
-    : CDialog(CSchemaPicklist::IDD, pParent), vvSet(vvSet_),
-      curVal(curVal_), elemName(elemName_)
+    : CDialog(CSchemaPicklist::IDD, pParent), vv_set(values),
+      cur_val(current_value), elem_name(element_name)
 {
     //{{AFX_DATA_INIT(CSchemaPicklist)
         // NOTE: the ClassWizard will add member initialization here
@@ -29,11 +29,11 @@ CSchemaPicklist::CSchemaPicklist(const cdr::StringList* vvSet_,
 }
 
 
-void CSchemaPicklist::DoDataExchange(CDataExchange* pDX)
+void CSchemaPicklist::DoDataExchange(CDataExchange* dx)
 {
-    CDialog::DoDataExchange(pDX);
+    CDialog::DoDataExchange(dx);
     //{{AFX_DATA_MAP(CSchemaPicklist)
-    DDX_Control(pDX, IDC_LIST1, m_listBox);
+    DDX_Control(dx, IDC_LIST1, m_list_box);
     //}}AFX_DATA_MAP
 }
 
@@ -47,24 +47,24 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSchemaPicklist message handlers
 
-void CSchemaPicklist::OnDblclkList1() 
+void CSchemaPicklist::OnDblclkList1()
 {
-    OnOK();    
+    OnOK();
 }
 
-void CSchemaPicklist::OnOK() 
+void CSchemaPicklist::OnOK()
 {
-    int selCount = m_listBox.GetSelCount();
-    if (selCount > 0) {
+    int sel_count = m_list_box.GetSelCount();
+    if (sel_count > 0) {
         CWaitCursor wc;
         CArray<int, int> selections;
-        selections.SetSize(selCount);
-        m_listBox.GetSelItems(selCount, selections.GetData());
+        selections.SetSize(sel_count);
+        m_list_box.GetSelItems(sel_count, selections.GetData());
         int i = 0;
-        int curSel = selections[i];
+        int current_selection = selections[i];
         CString str;
-        m_listBox.GetText(curSel, str);
-        ::Selection selection = cdr::getApp().GetSelection();
+        m_list_box.GetText(current_selection, str);
+        ::Selection selection = cdr::get_app().GetSelection();
         selection.SetReadOnlyContainer(FALSE);
 		selection.SelectContainerContents();
         ::DOMElement elem = selection.GetContainerNode();
@@ -73,45 +73,21 @@ void CSchemaPicklist::OnOK()
             elem = elem.GetParentNode();
         if (elem) {
             bool found = false;
-            ::DOMText textNode = elem.GetFirstChild();
-
-            // See warning in Command.cpp for doInsertLink().
-            while (textNode) {
-                ::DOMText nextNode = textNode.GetNextSibling();
-                if (textNode.GetNodeType() == 3) { // DOMText
-                    textNode.SetData(str);
+            ::DOMText text_node = elem.GetFirstChild();
+            while (text_node) {
+                ::DOMText next_node = text_node.GetNextSibling();
+                if (text_node.GetNodeType() == 3) { // DOMText
+                    text_node.SetData(str);
                     str = L"";
                     found = true;
                 }
-                textNode = nextNode;
+                text_node = next_node;
             }
             if (!found) {
-                ::_Document curDoc = cdr::getApp().GetActiveDocument();
-                ::DOMText newNode = curDoc.createTextNode(str);
-                elem.appendChild(newNode);
-                newNode.m_lpDispatch->Release(); // XXX Surprise! We need this!
-            }
-
-            // Added in response to request for issue #529.
-            if (elemName == _T("ProtocolPhase") ||
-                elemName == _T("ProtocolDesign"))
-            {
-                while (++i < selCount) {
-                    ::Selection sel = cdr::getApp().GetSelection();
-                    if (!sel.FindInsertLocation(elemName, TRUE)) {
-                        ::AfxMessageBox(_T("You selected more items than ")
-                                        _T("are allowed at this position."));
-                        break;
-                    }
-                    sel.InsertElement(elemName);
-                    sel.MoveToElement(elemName, TRUE);
-                    curSel = selections[i];
-                    m_listBox.GetText(curSel, str);
-                    sel.SelectContainerContents();
-					sel.SetReadOnlyContainer(FALSE);
-                    sel.SetText(str);
-					sel.SetReadOnlyContainer(TRUE);
-                }
+                ::_Document cur_doc = cdr::get_app().GetActiveDocument();
+                ::DOMText new_node = cur_doc.createTextNode(str);
+                elem.appendChild(new_node);
+                new_node.m_lpDispatch->Release();
             }
         }
         selection.SetReadOnlyContainer(TRUE);
@@ -119,16 +95,16 @@ void CSchemaPicklist::OnOK()
     }
 }
 
-BOOL CSchemaPicklist::OnInitDialog() 
+BOOL CSchemaPicklist::OnInitDialog()
 {
     CDialog::OnInitDialog();
-    SetWindowText(_T("Valid Values for Element ") + elemName);    
-    cdr::StringList::const_iterator i = vvSet->begin();
-    while (i != vvSet->end())
-        m_listBox.AddString(*i++);
-    if (!curVal.IsEmpty())
-        m_listBox.SelectString(-1, curVal);
-    
+    SetWindowText(L"Valid Values for Element " + elem_name);
+    cdr::StringList::const_iterator i = vv_set->begin();
+    while (i != vv_set->end())
+        m_list_box.AddString(*i++);
+    if (!cur_val.IsEmpty())
+        m_list_box.SelectString(-1, cur_val);
+
     return TRUE;  // return TRUE unless you set the focus to a control
                   // EXCEPTION: OCX Property Pages should return FALSE
 }

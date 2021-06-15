@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE Media SYSTEM "Media.dtd">
+<Media xmlns:cdr="cips.nci.nih.gov/cdr" Usage="Internal"> 
+ <CdrDocCtl readyForReview="N" blocked="N"><DocId>CDR0000803006</DocId><DocTitle/></CdrDocCtl><MediaTitle>Test of DLL rewrite</MediaTitle>
+ <PhysicalMedia>
+  <SoundData>
+   <SoundType>Speech</SoundType>
+   <SoundEncoding>MP3</SoundEncoding>
+   <RunSeconds>66</RunSeconds>
+  </SoundData>
+ </PhysicalMedia>
+ <MediaSource>
+  <OriginalSource>
+   <Creator>Kathleen Miller</Creator>
+   <DateCreated>2020-11-14</DateCreated>
+   <SourceFilename>goldberg.mp3</SourceFilename>
+  </OriginalSource>
+ </MediaSource>
+ <MediaContent>
+  <Categories>
+   <Category>test or procedure</Category>
+  </Categories>
+  <ContentDescriptions>
+   <ContentDescription audience="Health_professionals" language="en">Board Meeting</ContentDescription>
+  </ContentDescriptions>
+ </MediaContent>
+</Media>

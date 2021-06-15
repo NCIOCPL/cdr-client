@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <!-- Created by XMetaL style generator. (c)2004 Blast Radius. All rights reserved. -->
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions Version="2.0">
@@ -11,9 +11,12 @@
   </TranslatedTermDefinition>
  </ParentList>
  <ElementPropertiesList>
+    <!-- 
+        Do not remove following option or validation might fail!!!
+        The option preserves inline whitespace.
+    -->
   <GlobalPrettyPrintOptions>
-   <IndentAmount>10</IndentAmount>
-   <MaxLineLength>60</MaxLineLength>
+   <NoPrettyPrinting/>
   </GlobalPrettyPrintOptions>
   <ElementProperties>
    <Name ns="">Audience</Name>

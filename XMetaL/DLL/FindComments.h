@@ -10,7 +10,7 @@ class CFindComments : public CDialog
 	DECLARE_DYNAMIC(CFindComments)
 
 public:
-	CFindComments(CWnd* pParent = NULL);   // standard constructor
+	CFindComments(CWnd* parent = NULL);   // standard constructor
 	virtual ~CFindComments();
 
 // Dialog Data
@@ -21,8 +21,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CButton nextButton;
-    CButton prevButton;
+    CButton next_button;
+    CButton prev_button;
     afx_msg void OnBnClickedNextComment();
     afx_msg void OnBnClickedPrevComment();
     virtual BOOL OnInitDialog();
@@ -31,5 +31,5 @@ public:
     virtual void OnCancel();
 
 private:
-    void findComment(bool);
+    void find_comment(bool);
 };

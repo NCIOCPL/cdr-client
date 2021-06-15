@@ -10,7 +10,7 @@ class CFindMarkup : public CDialog
 	DECLARE_DYNAMIC(CFindMarkup)
 
 public:
-	CFindMarkup(CWnd* pParent = NULL);   // standard constructor
+	CFindMarkup(CWnd* parent = NULL);   // standard constructor
 	virtual ~CFindMarkup();
 
 // Dialog Data
@@ -21,8 +21,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CButton nextButton;
-    CButton prevButton;
+    CButton next_button;
+    CButton prev_button;
     afx_msg void OnBnClickedNextMarkup();
     afx_msg void OnBnClickedPrevMarkup();
     virtual BOOL OnInitDialog();
@@ -31,5 +31,5 @@ public:
     virtual void OnCancel();
 
 private:
-    void findMarkup(bool);
+    void find_markup(bool);
 };

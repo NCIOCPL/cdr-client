@@ -2,6 +2,9 @@
 <!DOCTYPE DTDExtensions SYSTEM "ctm.dtd">
 <DTDExtensions>
   <ElementPropertiesList>
+    <GlobalPrettyPrintOptions>
+      <NoPrettyPrinting/>
+    </GlobalPrettyPrintOptions>
     <ElementProperties>
       <Name>Person</Name>
       <PrettyPrintOptions>
