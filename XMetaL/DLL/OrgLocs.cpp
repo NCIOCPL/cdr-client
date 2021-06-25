@@ -53,7 +53,7 @@ BOOL COrgLocs::OnInitDialog() {
     auto filter = request.child_element(request.command, "Filter");
     request.set(filter, "Name", "Org Locations Picklist");
     auto params = request.child_element(request.command, "Params");
-    auto param = request.child_element(request.command, "Param");
+    auto param = request.child_element(params, "Param");
     request.set(param, "Name", "docId");
     request.set(param, "Value", doc_id);
     auto document = request.child_element(request.command, "Document");
@@ -67,13 +67,15 @@ BOOL COrgLocs::OnInitDialog() {
         EndDialog(IDCANCEL);
         return TRUE;
     }
+    CString doc_xml = dom.get_text(dom.find("//Document"));
+    cdr::DOM addresses(doc_xml);
 
     // Populate the list control.
     doc_set.clear();
-    auto nodes = dom.find_all("//Address");
+    auto nodes = addresses.find_all("//Address");
     for (auto& node : nodes) {
-        CString id = dom.get_text(dom.find("Link", node));
-        CString title = dom.get_text(dom.find("Data", node));
+        CString id = addresses.get_text(addresses.find("Link", node));
+        CString title = addresses.get_text(addresses.find("Data", node));
         doc_set.push_back(cdr::SearchResult(id, L"Organization", title));
     }
     if (cdr::fill_list_box(m_choice_list, doc_set) > 0) {
