@@ -2489,8 +2489,11 @@ static void load_doc_types() {
     int n_bytes = (int)file.GetLength();
     if (n_bytes <= 0)
         throw L"Missing document type information";
+    CString debug_msg;
+    debug_msg.Format(L"reading %d bytes from %s", n_bytes, path);
+    cdr::debug_log(debug_msg);
 
-    Buf b((size_t)n_bytes);
+    Buf b((size_t)(n_bytes + 1));
     int total_read = 0;
     while (total_read < n_bytes) {
         int bytes_read = file.Read(b.buf + total_read, n_bytes - total_read);
