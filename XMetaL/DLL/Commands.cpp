@@ -1690,13 +1690,18 @@ STDMETHODIMP CCommands::retrieve(int *pRet) {
 /**
  * Save the currently active document in the CDR repository.
  *
- *  @param  ret_val - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation
+ *                    0 = success
+ *                   -1 = failure
+ *                   -2 = cancelled
+ *                    anything else represents the number of errors/warnings
+                      found
  */
 STDMETHODIMP CCommands::save(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("save");
-    *ret_val = 1;
+    *ret_val = -1;
     try {
 
         // Make sure the user is logged on to the CDR.
@@ -1868,7 +1873,6 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             else {
 
                 // Show the user any validation errors.
-                *ret_val = 0;
                 val_errors = new cdr::ValidationErrors(response_dom);
                 *ret_val = (int)val_errors->errors.size();
                 if (!*ret_val) {
@@ -1917,6 +1921,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             break;
         }
         case IDCANCEL:
+            *ret_val = -2;
             break;
         }
     }
