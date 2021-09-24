@@ -52,10 +52,10 @@ BOOL COrgLocs::OnInitDialog() {
     cdr::CommandSet request("CdrFilter");
     auto filter = request.child_element(request.command, "Filter");
     request.set(filter, "Name", "Org Locations Picklist");
-    auto params = request.child_element(request.command, "Params");
-    auto param = request.child_element(params, "Param");
-    request.set(param, "Name", "docId");
-    request.set(param, "Value", doc_id);
+    auto parms = request.child_element(request.command, "Parms");
+    auto parm = request.child_element(parms, "Parm");
+    request.child_element(parm, "Name", "docId");
+    request.child_element(parm, "Value", doc_id);
     auto document = request.child_element(request.command, "Document");
     request.set(document, "href", doc_id);
 
