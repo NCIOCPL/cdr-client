@@ -22,29 +22,29 @@ public:
                     CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CSchemaPicklist)
-	enum { IDD = IDD_SCHEMA_PICKLIST };
-	CListBox	m_list_box;
-	//}}AFX_DATA
+    //{{AFX_DATA(CSchemaPicklist)
+    enum { IDD = IDD_SCHEMA_PICKLIST };
+    CListBox    m_list_box;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CSchemaPicklist)
-	protected:
-	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CSchemaPicklist)
+    protected:
+    virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CSchemaPicklist)
-	afx_msg void OnDblclkList1();
-	virtual void OnOK();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(CSchemaPicklist)
+    afx_msg void OnDblclkList1();
+    virtual void OnOK();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
     const cdr::StringList* vv_set;

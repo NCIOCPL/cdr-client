@@ -7,19 +7,19 @@
 
 class CFindComments : public CDialog
 {
-	DECLARE_DYNAMIC(CFindComments)
+    DECLARE_DYNAMIC(CFindComments)
 
 public:
-	CFindComments(CWnd* parent = NULL);   // standard constructor
-	virtual ~CFindComments();
+    CFindComments(CWnd* parent = NULL);   // standard constructor
+    virtual ~CFindComments();
 
 // Dialog Data
-	enum { IDD = IDD_FIND_COMMENTS_DIALOG };
+    enum { IDD = IDD_FIND_COMMENTS_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 public:
     CButton next_button;
     CButton prev_button;

@@ -14,30 +14,30 @@ class RetrieveDialog : public CDialog
 {
 // Construction
 public:
-	RetrieveDialog(CWnd* parent = NULL);   // standard constructor
+    RetrieveDialog(CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(RetrieveDialog)
-	enum { IDD = IDD_RETRIEVE_DIALOG };
-	CString	m_doc_id;
-	BOOL	m_check_out;
-	//}}AFX_DATA
+    //{{AFX_DATA(RetrieveDialog)
+    enum { IDD = IDD_RETRIEVE_DIALOG };
+    CString    m_doc_id;
+    BOOL    m_check_out;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(RetrieveDialog)
-	protected:
-	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(RetrieveDialog)
+    protected:
+    virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(RetrieveDialog)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(RetrieveDialog)
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 //{{AFX_INSERT_LOCATION}}

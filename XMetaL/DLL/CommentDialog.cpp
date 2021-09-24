@@ -13,7 +13,7 @@
 
 IMPLEMENT_DYNAMIC(CCommentDialog, CDialog)
 CCommentDialog::CCommentDialog(BOOL ro /*=false*/, CWnd* parent /*=NULL*/)
-	: CDialog(CCommentDialog::IDD, parent)
+    : CDialog(CCommentDialog::IDD, parent)
 {
     read_only = ro;
 }

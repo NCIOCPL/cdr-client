@@ -11,7 +11,7 @@
 
 IMPLEMENT_DYNAMIC(CReviewMarkup, CDialog)
 CReviewMarkup::CReviewMarkup(CWnd* parent /*=NULL*/)
-	: CDialog(CReviewMarkup::IDD, parent)
+    : CDialog(CReviewMarkup::IDD, parent)
 {
 }
 

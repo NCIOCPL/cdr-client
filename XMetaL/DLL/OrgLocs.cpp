@@ -21,32 +21,32 @@ static char THIS_FILE[] = __FILE__;
 
 COrgLocs::COrgLocs(const CString& id, CString& new_targ,
                    CWnd* parent /*=NULL*/)
-	: CDialog(COrgLocs::IDD, parent), doc_id(id), new_target(new_targ) {
-	//{{AFX_DATA_INIT(COrgLocs)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+    : CDialog(COrgLocs::IDD, parent), doc_id(id), new_target(new_targ) {
+    //{{AFX_DATA_INIT(COrgLocs)
+        // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
 
 void COrgLocs::DoDataExchange(CDataExchange* dx) {
-	CDialog::DoDataExchange(dx);
-	//{{AFX_DATA_MAP(COrgLocs)
-	DDX_Control(dx, IDC_LIST1, m_choice_list);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(dx);
+    //{{AFX_DATA_MAP(COrgLocs)
+    DDX_Control(dx, IDC_LIST1, m_choice_list);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(COrgLocs, CDialog)
-	//{{AFX_MSG_MAP(COrgLocs)
-	ON_LBN_DBLCLK(IDC_LIST1, OnDblclkList1)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(COrgLocs)
+    ON_LBN_DBLCLK(IDC_LIST1, OnDblclkList1)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // COrgLocs message handlers
 
 BOOL COrgLocs::OnInitDialog() {
-	CDialog::OnInitDialog();
+    CDialog::OnInitDialog();
 
     // Create the command.
     cdr::CommandSet request("CdrFilter");
@@ -79,28 +79,28 @@ BOOL COrgLocs::OnInitDialog() {
         doc_set.push_back(cdr::SearchResult(id, L"Organization", title));
     }
     if (cdr::fill_list_box(m_choice_list, doc_set) > 0) {
-		m_choice_list.SetCurSel(0);
-		m_choice_list.EnableWindow();
-	}
-	else {
-		::AfxMessageBox(L"No locations found");
+        m_choice_list.SetCurSel(0);
+        m_choice_list.EnableWindow();
+    }
+    else {
+        ::AfxMessageBox(L"No locations found");
         EndDialog(IDCANCEL);
     }
 
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void COrgLocs::OnOK() {
 
-	// Find out which candidate document the user selected.
-	int cur_sel = m_choice_list.GetCurSel();
+    // Find out which candidate document the user selected.
+    int cur_sel = m_choice_list.GetCurSel();
 
     // Don't do anything if there is no selection.
     if (cur_sel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_choice_list.GetText(cur_sel, str);
+        m_choice_list.GetText(cur_sel, str);
         CdrLinkInfo info = cdr::extract_link_info(str);
         new_target = info.target;
         EndDialog(IDOK);
@@ -108,5 +108,5 @@ void COrgLocs::OnOK() {
 }
 
 void COrgLocs::OnDblclkList1() {
-	OnOK();
+    OnOK();
 }

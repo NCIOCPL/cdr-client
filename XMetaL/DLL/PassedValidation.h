@@ -14,33 +14,33 @@ class CPassedValidation : public CDialog
 {
 // Construction
 public:
-	CPassedValidation(const CString& id,
-					  CWnd* parent = NULL);   // standard constructor
+    CPassedValidation(const CString& id,
+                      CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CPassedValidation)
-	enum { IDD = IDD_VALIDATION_PASSED };
-	//}}AFX_DATA
+    //{{AFX_DATA(CPassedValidation)
+    enum { IDD = IDD_VALIDATION_PASSED };
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPassedValidation)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CPassedValidation)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CPassedValidation)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(CPassedValidation)
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
-	CString doc_id;
+    CString doc_id;
 };
 
 //{{AFX_INSERT_LOCATION}}

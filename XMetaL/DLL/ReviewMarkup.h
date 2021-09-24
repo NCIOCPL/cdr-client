@@ -7,19 +7,19 @@
 
 class CReviewMarkup : public CDialog
 {
-	DECLARE_DYNAMIC(CReviewMarkup)
+    DECLARE_DYNAMIC(CReviewMarkup)
 
 public:
-	CReviewMarkup(CWnd* parent = NULL);   // standard constructor
-	virtual ~CReviewMarkup();
+    CReviewMarkup(CWnd* parent = NULL);   // standard constructor
+    virtual ~CReviewMarkup();
 
 // Dialog Data
-	enum { IDD = IDD_REVIEW_MARKUP };
+    enum { IDD = IDD_REVIEW_MARKUP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* dx);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 public:
     CStatic markup_user;
     CStatic markup_date;

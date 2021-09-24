@@ -21,27 +21,27 @@ static char THIS_FILE[] = __FILE__;
 
 
 CVersionList::CVersionList(const CString& id, CWnd* parent /*=NULL*/)
-	: doc_id(id), CDialog(CVersionList::IDD, parent)
+    : doc_id(id), CDialog(CVersionList::IDD, parent)
 {
-	//{{AFX_DATA_INIT(CVersionList)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
+    //{{AFX_DATA_INIT(CVersionList)
+        // NOTE: the ClassWizard will add member initialization here
+    //}}AFX_DATA_INIT
 }
 
 
 void CVersionList::DoDataExchange(CDataExchange* dx)
 {
-	CDialog::DoDataExchange(dx);
-	//{{AFX_DATA_MAP(CVersionList)
-	DDX_Control(dx, IDC_LIST1, m_choice_list);
-	//}}AFX_DATA_MAP
+    CDialog::DoDataExchange(dx);
+    //{{AFX_DATA_MAP(CVersionList)
+    DDX_Control(dx, IDC_LIST1, m_choice_list);
+    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CVersionList, CDialog)
-	//{{AFX_MSG_MAP(CVersionList)
-	ON_LBN_DBLCLK(IDC_LIST1, OnDblclkList1)
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(CVersionList)
+    ON_LBN_DBLCLK(IDC_LIST1, OnDblclkList1)
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 BOOL CVersionList::OnInitDialog()
 {
-	CDialog::OnInitDialog();
+    CDialog::OnInitDialog();
 
     // Create the command.
     cdr::CommandSet request("CdrListVersions");
@@ -86,24 +86,24 @@ BOOL CVersionList::OnInitDialog()
             }
             m_choice_list.AddString(L"[" + num + L"] " + dat + cmt);
         }
-		m_choice_list.SetCurSel(0);
-		m_choice_list.EnableWindow();
-	}
+        m_choice_list.SetCurSel(0);
+        m_choice_list.EnableWindow();
+    }
 
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
+    return TRUE;  // return TRUE unless you set the focus to a control
+                  // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void CVersionList::OnOK()
 {
-	// Find out which version the user selected.
-	int cur_sel = m_choice_list.GetCurSel();
+    // Find out which version the user selected.
+    int cur_sel = m_choice_list.GetCurSel();
 
     // Don't do anything if there is no selection.
     if (cur_sel >= 0) {
         CWaitCursor wc;
         CString str;
-		m_choice_list.GetText(cur_sel, str);
+        m_choice_list.GetText(cur_sel, str);
         //::AfxMessageBox(str);
 
         // Find the delimiters.
@@ -131,5 +131,5 @@ void CVersionList::OnOK()
  */
 void CVersionList::OnDblclkList1()
 {
-	OnOK();
+    OnOK();
 }

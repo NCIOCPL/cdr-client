@@ -10,7 +10,7 @@
 
 IMPLEMENT_DYNAMIC(CFindComments, CDialog)
 CFindComments::CFindComments(CWnd* parent /*=NULL*/)
-	: CDialog(CFindComments::IDD, parent)
+    : CDialog(CFindComments::IDD, parent)
 {
 }
 
