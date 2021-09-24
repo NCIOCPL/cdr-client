@@ -254,7 +254,7 @@ PatientVersionOf             :before { content: "Patient Version of & @: "; }
 PdqKey                       :before { content: "PDQ Key &: "; }
 PMID                         :before { content: "PMID &: "; }
 PurposeText                  :before { content: "Purpose Text &: "; }
-ReplacementFor               :before { content: "Replacement for & @: "; }
+ReplacementFor               :before { content: "Replcmnt for & @: "; }
 SecondaryTopics>Term         :before { content: "Second. Topics & + @: " }
 SpecificMediaCaption         :before { content: "Caption &: " ; }
 SpecificMediaTitle           :before { content: "Title &: " ; }
@@ -293,7 +293,7 @@ WillReplace
 SummaryAbstract>Para,
 TranslationOf              { text-indent: -138pt; }
 PatientVersionOf           { text-indent: -136.5pt; }
-ReplacementFor             { text-indent: -160pt; }
+ReplacementFor             { text-indent: -130pt; }
 DateLastModified           { text-indent: -118pt; }
 ComprehensiveReviewDate    { text-indent: -126pt; }
 SummaryAbstract>Para       { text-indent: 0pt; }
@@ -319,7 +319,7 @@ SummaryMetaData,
     { font-size: 12pt; }
 
 MobileURL                    :before,
-PMID              			  :before,
+PMID              			 :before,
 SummaryAudience              :before,
 SummaryDescription           :before,
 SummaryLanguage              :before,
