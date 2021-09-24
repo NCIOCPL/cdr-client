@@ -1340,8 +1340,8 @@ STDMETHODIMP CCommands::logoff(int *ret_val) {
             cdr::CommandSet request("CdrReport");
             auto command = request.command;
             request.child_element(command, "ReportName", "Locked Documents");
-            auto params = request.child_element(command, "Params");
-            auto param = request.child_element(params, "Param");
+            auto params = request.child_element(command, "ReportParams");
+            auto param = request.child_element(params, "ReportParam");
             request.set(param, "Name", "UserId");
             request.set(param, "Value", username);
             CString response_xml = cdr::Socket::send_commands(request);
