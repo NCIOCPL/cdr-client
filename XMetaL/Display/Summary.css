@@ -128,7 +128,7 @@
 /*      CSS based on PatientSummary.css written by RTubby and revised    */
 /*      by EBator for data entry purposes.                               */
 /*                                                                       */
-/*                                                                       */
+/*                                                                    */
 /*************************************************************************/
 
 /**************************************************************************/
@@ -154,6 +154,38 @@ $PROCINS
        font-weight: normal;
        background-color: white; }
 
+/***************************************************************************/
+/*              Modified Display for SVPC Elements                         */
+/* SVPC summaries are regular summaries created by splitting a larger      */
+/* document and identified by the Summary[SVPC="Yes"] attribute.  Users    */
+/* want these summaries to be displayed differently from the non-SVPC docs */
+/***************************************************************************/
+/*  Smaple: 256491  */
+Summary[SVPC="Yes"]
+   { background-color: #FFF5EE; }  /* color name: SeaShell */
+
+Summary[SVPC="Yes"] SummaryMetaData,
+Summary[SVPC="Yes"] SummaryMetaData *:before,
+Summary[SVPC="Yes"] SummaryMetaData PDQBoard,
+Summary[SVPC="Yes"] SummaryMetaData MainTopics,
+Summary[SVPC="Yes"] SummaryMetaData SecondaryTopics,
+Summary[SVPC="Yes"] CdrDocCtl,
+Summary[SVPC="Yes"] CdrDocCtl *:before
+   { background-color: #FFCCFF; }
+
+Summary[SVPC="Yes"] SummaryMetaData Comment:before,
+Summary[SVPC="Yes"] SummaryMetaData ResponseToComment:before
+   { background-color: green; 
+     color: white; }
+
+Summary[SVPC="Yes"] :before
+   { content: "Single View Patient Content (SVPC)";
+     font-size: 20pt;
+     font-weight: bold;
+     color: #702070; }
+
+Summary
+   { background-color: white; }
 
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
