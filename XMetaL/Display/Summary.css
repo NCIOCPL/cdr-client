@@ -161,7 +161,8 @@ $PROCINS
 /* want these summaries to be displayed differently from the non-SVPC docs */
 /***************************************************************************/
 /*  Smaple: 256491  */
-Summary[SVPC="Yes"]
+Summary[SVPC="Yes"],
+Summary[SVPCMerge="Yes"]
    { background-color: #FFF5EE; }  /* color name: SeaShell */
 
 Summary[SVPC="Yes"] SummaryMetaData,
@@ -173,8 +174,19 @@ Summary[SVPC="Yes"] CdrDocCtl,
 Summary[SVPC="Yes"] CdrDocCtl *:before
    { background-color: #FFCCFF; }
 
+Summary[SVPCMerge="Yes"] SummaryMetaData,
+Summary[SVPCMerge="Yes"] SummaryMetaData *:before,
+Summary[SVPCMerge="Yes"] SummaryMetaData PDQBoard,
+Summary[SVPCMerge="Yes"] SummaryMetaData MainTopics,
+Summary[SVPCMerge="Yes"] SummaryMetaData SecondaryTopics,
+Summary[SVPCMerge="Yes"] CdrDocCtl,
+Summary[SVPCMerge="Yes"] CdrDocCtl *:before
+   { background-color: #EEFFCC; }
+
 Summary[SVPC="Yes"] SummaryMetaData Comment:before,
+Summary[SVPCMerge="Yes"] SummaryMetaData Comment:before,
 Summary[SVPC="Yes"] SummaryMetaData ResponseToComment:before
+Summary[SVPCMerge="Yes"] SummaryMetaData ResponseToComment:before
    { background-color: green; 
      color: white; }
 
@@ -183,6 +195,12 @@ Summary[SVPC="Yes"] :before
      font-size: 20pt;
      font-weight: bold;
      color: #702070; }
+
+Summary[SVPCMerge="Yes"] :before
+   { content: "Merged Partner Patient Content (SVPC)";
+     font-size: 20pt;
+     font-weight: bold;
+     color: black; }
 
 Summary
    { background-color: white; }
@@ -286,7 +304,7 @@ PatientVersionOf             :before { content: "Patient Version of & @: "; }
 PdqKey                       :before { content: "PDQ Key &: "; }
 PMID                         :before { content: "PMID &: "; }
 PurposeText                  :before { content: "Purpose Text &: "; }
-ReplacementFor               :before { content: "Replacement for & @: "; }
+ReplacementFor               :before { content: "Replcmnt for & @: "; }
 SecondaryTopics>Term         :before { content: "Second. Topics & + @: " }
 SpecificMediaCaption         :before { content: "Caption &: " ; }
 SpecificMediaTitle           :before { content: "Title &: " ; }
@@ -325,7 +343,7 @@ WillReplace
 SummaryAbstract>Para,
 TranslationOf              { text-indent: -138pt; }
 PatientVersionOf           { text-indent: -136.5pt; }
-ReplacementFor             { text-indent: -160pt; }
+ReplacementFor             { text-indent: -130pt; }
 DateLastModified           { text-indent: -118pt; }
 ComprehensiveReviewDate    { text-indent: -126pt; }
 SummaryAbstract>Para       { text-indent: 0pt; }
