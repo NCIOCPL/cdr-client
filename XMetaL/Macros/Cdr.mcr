@@ -1833,6 +1833,18 @@
                            "Databases (Custom)", 7, 4,
                            true),
             new CdrCmdItem(null,
+                           "View SVPC Docs",
+                           "View SVPC Docs",
+                           "View SVPC Documents",
+                           "CDR", 5, 1,
+                           false),
+            new CdrCmdItem(null,
+                           "Edit SVPC Docs",
+                           "Edit SVPC Docs",
+                           "Edit SVPC Documents",
+                           "CDR", 5, 4,
+                           false),
+            new CdrCmdItem(null,
                            "Open Patient Summary",
                            "Patient",
                            "Open patient version of this summary",
@@ -5284,6 +5296,68 @@
         }
     }
     editGlossaryTermNameDocs();
+  ]]>
+</MACRO>
+
+<MACRO name="View SVPC Docs"
+       lang="JScript" >
+  <![CDATA[
+    function viewSVPCDocs() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var root = Application.ActiveDocument.documentElement;
+        if (root.nodeName != 'Summary') {
+            Application.Alert("This is not a Summary document.");
+            return;
+        }
+        var children = root.childNodes;
+        var count = 0;
+        for (var i = 0; i < children.length; ++i) {
+            var child = children.item(i);
+            if (child.nodeName == "SummaryModuleLink") {
+                var svpcId = child.getAttribute("cdr:ref");
+                cdrObj.openCdrDoc(svpcId, "Current", false);
+                ++count;
+            }
+        }
+        if (!count) {
+            Application.Alert("No linked SVPC summaries found.");
+        }
+    }
+    viewSVPCDocs();
+  ]]>
+</MACRO>
+
+<MACRO name="Edit SVPC Docs"
+       lang="JScript" >
+  <![CDATA[
+    function editSVPCDocs() {
+        if (cdrObj == null) {
+            Application.Alert("You are not logged on to the CDR");
+            return;
+        }
+        var root = Application.ActiveDocument.documentElement;
+        if (root.nodeName != 'Summary') {
+            Application.Alert("This is not a Summary document.");
+            return;
+        }
+        var children = root.childNodes;
+        var count = 0;
+        for (var i = 0; i < children.length; ++i) {
+            var child = children.item(i);
+            if (child.nodeName == "SummaryModuleLink") {
+                var svpcId = child.getAttribute("cdr:ref");
+                cdrObj.openCdrDoc(svpcId, "Current", true);
+                ++count;
+            }
+        }
+        if (!count) {
+            Application.Alert("No linked SVPC summaries found.");
+        }
+    }
+    editSVPCDocs();
   ]]>
 </MACRO>
 
