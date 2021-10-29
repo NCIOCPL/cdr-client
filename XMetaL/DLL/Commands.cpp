@@ -630,7 +630,7 @@ STDMETHODIMP CCommands::getBoardMemberId(const BSTR* person_id,
 }
 
 /**
- * Fetch the ID of the term name documents associated with this concept doc.
+ * Fetch the IDs of the term name documents associated with this concept doc.
  *
  *  @param concept_id    - string containing the CDR ID for the active
  *                         GlossaryTermConcept document
