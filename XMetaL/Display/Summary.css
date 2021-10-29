@@ -162,7 +162,7 @@ $PROCINS
 /***************************************************************************/
 /*  Smaple: 256491  */
 Summary[SVPC="Yes"],
-Summary[SVPCMerge="Yes"]
+Summary[PartnerMergeSet="Yes"]
    { background-color: #FFF5EE; }  /* color name: SeaShell */
 
 Summary[SVPC="Yes"] SummaryMetaData,
@@ -174,19 +174,19 @@ Summary[SVPC="Yes"] CdrDocCtl,
 Summary[SVPC="Yes"] CdrDocCtl *:before
    { background-color: #FFCCFF; }
 
-Summary[SVPCMerge="Yes"] SummaryMetaData,
-Summary[SVPCMerge="Yes"] SummaryMetaData *:before,
-Summary[SVPCMerge="Yes"] SummaryMetaData PDQBoard,
-Summary[SVPCMerge="Yes"] SummaryMetaData MainTopics,
-Summary[SVPCMerge="Yes"] SummaryMetaData SecondaryTopics,
-Summary[SVPCMerge="Yes"] CdrDocCtl,
-Summary[SVPCMerge="Yes"] CdrDocCtl *:before
+Summary[PartnerMergeSet="Yes"] SummaryMetaData,
+Summary[PartnerMergeSet="Yes"] SummaryMetaData *:before,
+Summary[PartnerMergeSet="Yes"] SummaryMetaData PDQBoard,
+Summary[PartnerMergeSet="Yes"] SummaryMetaData MainTopics,
+Summary[PartnerMergeSet="Yes"] SummaryMetaData SecondaryTopics,
+Summary[PartnerMergeSet="Yes"] CdrDocCtl,
+Summary[PartnerMergeSet="Yes"] CdrDocCtl *:before
    { background-color: #EEFFCC; }
 
 Summary[SVPC="Yes"] SummaryMetaData Comment:before,
-Summary[SVPCMerge="Yes"] SummaryMetaData Comment:before,
+Summary[PartnerMergeSet="Yes"] SummaryMetaData Comment:before,
 Summary[SVPC="Yes"] SummaryMetaData ResponseToComment:before
-Summary[SVPCMerge="Yes"] SummaryMetaData ResponseToComment:before
+Summary[PartnerMergeSet="Yes"] SummaryMetaData ResponseToComment:before
    { background-color: green; 
      color: white; }
 
@@ -196,7 +196,7 @@ Summary[SVPC="Yes"] :before
      font-weight: bold;
      color: #702070; }
 
-Summary[SVPCMerge="Yes"] :before
+Summary[PartnerMergeSet="Yes"] :before
    { content: "Merged Partner Patient Content (SVPC)";
      font-size: 20pt;
      font-weight: bold;
