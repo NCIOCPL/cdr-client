@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE Summary SYSTEM "Summary.dtd">
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr" AvailableAsModule="Yes" 
+                                                       SVPC="Yes" 
+                                  SuppressOnThisPageSection="Yes">
+ <CdrDocCtl>
+  <DocId><?xm-replace_text {
+         The document ID will be assigned automatically
+         }?></DocId>
+  <DocTitle><?xm-replace_text {
+         The document title will be constructed automatically
+         }?></DocTitle>
+ </CdrDocCtl>
+ <SummaryMetaData>
+  <SummaryType><?xm-replace_text {
+         Select a summary type (required)
+         }?></SummaryType>
+  <SummaryAudience>Patients</SummaryAudience>
+  <SummaryLanguage>English</SummaryLanguage>
+  <SummaryDescription><?xm-replace_text {
+         Enter a summary description (required)
+         }?></SummaryDescription>
+  <SummaryURL><?xm-replace_text {
+         Enter pretty URL for Cancer.gov (required)
+         }?></SummaryURL>
+  <MainTopics>
+   <Term><?xm-replace_text {
+         Optionally select a terminology link
+         }?></Term>
+  </MainTopics>
+  <PurposeText><?xm-replace_text {
+         Enter the summaries purpose text
+         }?></PurposeText>
+  <SummaryKeyWords>
+   <SummaryKeyWord><?xm-replace_text {
+         Optionally enter a keyword
+         }?></SummaryKeyWord>
+  </SummaryKeyWords>
+ </SummaryMetaData>
+ <SummaryTitle><?xm-replace_text {
+         Summary title
+         }?></SummaryTitle>
+ <AltTitle><?xm-replace_text {
+         Alternate Summary title
+         }?></AltTitle>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Introductory Text</SectionType>
+  </SectMetaData>
+  <Para><?xm-replace_text {
+         Paragraph
+         }?></Para>
+ </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <Diagnosis><?xm-replace_text {
+         Optionally select a diagnosis
+         }?></Diagnosis>
+   <SectionType><?xm-replace_text {
+         Optionally select a section type
+         }?></SectionType>
+  </SectMetaData>
+  <Title><?xm-replace_text {
+         Section title
+         }?></Title>
+  <AltTitle><?xm-replace_text {
+         Optional alternate title
+         }?></AltTitle>
+  <Para><?xm-replace_text {
+         Paragraph
+         }?></Para>
+ </SummarySection>
+ <DateLastModified><?xm-replace_text {
+         Optionally enter the date of the last record modification
+         }?></DateLastModified>
+</Summary>
