@@ -28,9 +28,6 @@
          Optionally select a terminology link
          }?></Term>
   </MainTopics>
-  <PurposeText><?xm-replace_text {
-         Enter the summaries purpose text
-         }?></PurposeText>
   <SummaryKeyWords>
    <SummaryKeyWord><?xm-replace_text {
          Optionally enter a keyword
