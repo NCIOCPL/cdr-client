@@ -977,14 +977,16 @@
         if (Selection.IsParentElement("GlossaryTermRef"))
             Application.AppendMacro("Add Glossary Phrase",
                                     "Add Glossary Phrase");
-            Application.AppendMacro("Glossify Genetics Terms",
-                                    "Glossify Genetics Terms");
-            Application.AppendMacro("Glossify Genetics Terms (include markup)",
-                                    "Glossify Genetics Terms (include markup)");
-            Application.AppendMacro("Glossify Patient Terms",
-                                    "Glossify Patient Terms");
-            Application.AppendMacro("Glossify Patient Terms (include markup)",
-                                    "Glossify Patient Terms (include markup)");
+        Application.AppendMacro("Glossify Genetics Terms",
+                                "Glossify Genetics Terms");
+        Application.AppendMacro("Glossify Genetics Terms (include markup)",
+                                "Glossify Genetics Terms (include markup)");
+        Application.AppendMacro("Glossify Patient Terms",
+                                "Glossify Patient Terms");
+        Application.AppendMacro("Glossify Patient Terms (include markup)",
+                                "Glossify Patient Terms (include markup)");
+        Application.AppendMacro("Update SummaryRef Titles",
+                                "Update SummaryRef Titles");
     }
     if (docType.name == "Person") {
         Application.AppendMacro("Retrieve Org Postal Address",
@@ -6225,6 +6227,33 @@
         }
     }
     strip_id_attributes();
+  ]]>
+</MACRO>
+
+<MACRO  name="Update SummaryRef Titles" lang="JScript">
+  <![CDATA[
+    function updateSummaryRefTitles() {
+        if (!CdrSession) {
+            Application.Alert("Not logged into CDR");
+            return;
+        }
+        var doc = Application.ActiveDocument;
+        var docId = getDocId();
+        if (!docId) {
+            Application.Alert("Summary document has not yet been saved.");
+            return;
+        }
+        if (docId.length != 13 || docId.substr(0, 3) != "CDR") {
+            Application.Alert("Malformed document ID: " + docId);
+            return;
+        }
+        docId = parseInt(docId.substr(4), 10);
+        var url = CdrCgiBin + "UpdateSummaryRefTitles.py?Session="
+                            + CdrSession
+                            + "&id=" + docId;
+        cdrObj.showPage(url);
+    }
+    updateSummaryRefTitles();
   ]]>
 </MACRO>
 
