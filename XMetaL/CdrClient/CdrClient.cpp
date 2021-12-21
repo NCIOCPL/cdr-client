@@ -1444,7 +1444,8 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
     if (docElemName == _T("ERROR")) {
         CString errorMessage =
             getTextContent((CComPtr<IXMLDOMNode>)docElem);
-        throw _T("Failure assembling update package"); //errorMessage;
+        AfxMessageBox(errorMessage);
+        throw _T("Failure assembling update package");
     }
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
