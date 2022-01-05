@@ -285,7 +285,7 @@ TableNumber                  :before { content: "[#]"; }
 ReferencedTableNumber        :before { content: "[#]"; }
 FigureNumber                 :before { content: "[#]"; }
 ReferencedFigureNumber       :before { content: "[#]"; }
-Board                        :before { content: "Summary Board * @: "; }
+Board                        :before { content: "Summary Board @: "; }
 BoardMember                  :before { content: "Board Member & + @: "; }
 Caption                      :before { content: "Caption &: "; }
 ChangeDate                   :before { content: "Change Date *: "; }
@@ -1038,7 +1038,7 @@ VideoID                      :before
 
 Board,
                              { margin-left: 135pt;
-                               text-indent: -123.5pt;}
+                               text-indent: -116pt;}
 BoardMember,
                              { margin-left: 135pt;
                                text-indent: -129pt;}
