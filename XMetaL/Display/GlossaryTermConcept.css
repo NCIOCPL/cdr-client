@@ -100,7 +100,15 @@ PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
 RelatedDrugSummaryLink       :before { content: "Rel Drug Link & + @: "; }
 RelatedExternalRef           :before { content: "Rel Ext Ref & + @: "; }
-RelatedExternalRef           :after  { content: " (Source='" attr(SourceKey) "')"; }
+RelatedExternalRef           :after  { content: " "; }
+RelatedExternalRef[SourceKey='MedlinePlus']
+                             :after  { content: " (MedlinePlus)"; }
+RelatedExternalRef[SourceKey='GARD']
+                             :after  { content: " (Genetic and Rare Diseases Information Center)"; }
+RelatedExternalRef[SourceKey='NHGRI']
+                             :after  { content: " (National Human Genome Research Institute)"; }
+RelatedExternalRef[SourceKey='CDC']
+                             :after  { content: " (Centers for Disease Control and Prevention)"; }
 RelatedGlossaryTermNameLink  :before { content: "Rel Gloss Link & + @: "; }
 RelatedSummaryRef            :before { content: "Rel Sum Ref & + @: "; }
 ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
