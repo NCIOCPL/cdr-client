@@ -42,12 +42,6 @@ static CString tryXmetalPath(TCHAR* tail, CdrClient*);
 static void usage();
 static DWORD find_process_id(const CString name);
 
-// Needed only until the transition to Gauss is complete.
-static void fix_cdr_settings(CdrClient*, const CString&);
-static long long get_file_time(const char*);
-static bool legacy_file_newer(CdrClient*);
-static CString get_legacy_tier(CdrClient*);
-
 /*
  * CdrClient class implementation.
  */
@@ -221,13 +215,6 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
             currentGroup = getTextContent(node);
         node = getNextSibling(node);
     }
-    if (!currentGroup.IsEmpty()) {
-        if (legacy_file_newer(client)) {
-            CString tier = get_legacy_tier(client);
-            if (!tier.IsEmpty())
-                currentGroup = tier;
-        }
-    }
 }
 
 /*
@@ -237,17 +224,6 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
  * representing decimal port numbers).
  */
 void ServerSettings::serialize(const CString& name, CdrClient* client) const {
-
-    // Temporary code to ease the transition between tiers which
-    // have upgraded to Gauss and those which have not yet upgraded.
-    // Do this first, so that the legacy settings file will only
-    // have a newer timestamp than the new tier settings file when
-    // we're switching to a tier that's been upgraded to Gauss from
-    // one which hasn't yet.
-    try {
-        fix_cdr_settings(client, currentGroup);
-    }
-    catch(...) {}
 
     // Now update the new four-tier settings file.
     CStdioFile file;
@@ -272,124 +248,6 @@ void ServerSettings::serialize(const CString& name, CdrClient* client) const {
         serverGroups[i].serialize(file);
     file.WriteString(_T("</CDRServerSettings>\n"));
     file.Close();
-}
-
-long long get_file_time(const char* name) {
-    try {
-        struct _stat buf;
-        int result = _stat(name, &buf);
-        if (result)
-            return -1;
-        return buf.st_mtime;
-    }
-    catch (...) { return -1; }
-}
-
-bool legacy_file_newer(CdrClient* client) {
-    try {
-        long long legacy_time = get_file_time("CdrSettings.xml");
-        if (legacy_time == -1) {
-            client->log(_T("Can't stat CdrSettings.xml.\n"), 2);
-            return false;
-        }
-        CString buf;
-        buf.Format(_T("Timestamp for CdrSettings.xml: %llu.\n"), legacy_time);
-        client->log(buf, 2);
-        long long tiers_time = get_file_time("CdrTiers.xml");
-        buf.Format(_T("Timestamp for CdrTiers.xml: %llu.\n"), tiers_time);
-        client->log(buf, 2);
-        return legacy_time > tiers_time;
-    }
-    catch (...) { return false; }
-}
-
-CString get_legacy_tier(CdrClient* client) {
-    try {
-        client->log(_T("Extracting legacy tier from CdrSettings.xml.\n"), 2);
-        static char buf[2048];
-        FILE* fp = fopen("CdrSettings.xml", "rb");
-        if (!fp) {
-            client->log(_T("Can't find CdrSettings.xml.\n"), 2);
-            return _T("");
-        }
-        UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
-        fclose(fp);
-        CString settings(buf, (int)nread);
-        if (settings.Find(_T("<CurrentGroup>PRODUCTION</CurrentGroup>")) >= 0)
-            return _T("PROD");
-        if (settings.Find(_T("<CurrentGroup>DEV</CurrentGroup>")) >= 0)
-            return _T("DEV");
-        if (settings.Find(_T("cdr-qa")) >= 0)
-            return _T("QA");
-        return _T("STAGE");
-    }
-    catch(...) { return _T(""); }
-}
-
-/*
- * Adjust the legacy settings file
- *
- * We do this in case we're switching to a tier which hasn't yet
- * upgraded to Gauss. If we re-launch ourselves after such a switch
- * this will ensure that the old loader lands on the right CDR server.
- *
- * The CdrSettings.xml file has always been well under 1,000 bytes,
- * and we won't need this code after the transition to Gauss is complete,
- * otherwise I would use a more robust loop to make sure we got the whole
- * file.
- *
- * Pass:
- *   client - pointer to `CdrClient` object so we can log what we're doing
- *   tier - CString for current group (e.g. DEV, QA, etc.)
- *
- * Return:
- *  none
- */
-void fix_cdr_settings(CdrClient* client, const CString& tier) {
-    client->log(_T("Adjusting legacy settings file.\n"), 2);
-    CString legacy(tier);
-    if (tier == _T("QA") || tier == _T("STAGE"))
-        legacy = _T("TEST");
-    if (tier == _T("PROD"))
-        legacy = _T("PRODUCTION");
-    client->log(_T("Ensuring that the legacy settings point to ") +
-                legacy + _T(".\n"), 2);
-    static char buf[2048];
-    FILE* fp = fopen("CdrSettings.xml", "rb");
-    if (!fp) {
-        client->log(_T("Can't find legacy settings file.\n"), 2);
-        return;
-    }
-    UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
-    fclose(fp);
-    CString settings(buf, (int)nread);
-    CString current = _T("<CurrentGroup>") + legacy + _T("</CurrentGroup>");
-    // don't stop here even if group matches -- we have to make sure that
-    // TEST points to the right server
-    //if (settings.Find((LPCTSTR)current) >= 0) {
-    //    client->log(_T("Legacy group already set to ") + legacy +
-    //                _T(".\n"), 2);
-    //    return;
-    //}
-    settings.Replace(_T("<CurrentGroup>PRODUCTION</CurrentGroup>"),
-                     (LPCTSTR)current);
-    settings.Replace(_T("<CurrentGroup>TEST</CurrentGroup>"),
-                     (LPCTSTR)current);
-    settings.Replace(_T("<CurrentGroup>DEV</CurrentGroup>"),
-                     (LPCTSTR)current);
-    if (tier == _T("QA")) {
-        settings.Replace(_T("cdr-stage"), _T("cdr-qa"));
-        client->log(_T("Replaced 'cdr-stage' with 'cdr-qa'.\n"), 2);
-    }
-    if (tier == _T("STAGE")) {
-        settings.Replace(_T("cdr-qa"), _T("cdr-stage"));
-        client->log(_T("Replaced 'cdr-qa' with 'cdr-stage'.\n"), 2);
-    }
-    fp = fopen("CdrSettings.xml", "wb");
-    CT2A newbuf(settings);
-    fwrite(newbuf, 1, settings.GetLength(), fp);
-    fclose(fp);
-    client->log(_T("Wrote new CdrSettings.xml.\n"));
 }
 
 /*
