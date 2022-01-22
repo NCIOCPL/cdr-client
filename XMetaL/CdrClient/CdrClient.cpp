@@ -13,6 +13,7 @@
 #include <winsock.h>
 #include <wininet.h>
 #include <wincrypt.h>
+#include <tlhelp32.h>
 #include <atlenc.h>
 #include <direct.h>
 #include <sys/types.h>
@@ -39,6 +40,7 @@ static CString getAttribute(CComPtr<IXMLDOMNode>& elem, const TCHAR* name);
 static CString findXmetalProgram(CdrClient*);
 static CString tryXmetalPath(TCHAR* tail, CdrClient*);
 static void usage();
+static DWORD find_process_id(const CString name);
 
 // Needed only until the transition to Gauss is complete.
 static void fix_cdr_settings(CdrClient*, const CString&);
@@ -1658,6 +1660,12 @@ void CdrClient::launchClient() {
     CString programName = findXmetalProgram(this);
     if (programName.IsEmpty())
         throw _T("Unable to find XMetaL program");
+    int position = programName.ReverseFind(_T('\\'));
+    if (position == -1)
+        throw _T("Unable to find a full path for XMetaL");
+    CString name = programName.Right(programName.GetLength() - ++position);
+    if (find_process_id(name))
+        throw _T("XMetaL is already running");
     TCHAR* args[2] = { _T("XMetaL") };
     log(_T("Launching ") + programName + _T("\n"), 1);
     int err = (int)_texecve(programName.GetBuffer(), args, NULL);
@@ -1926,4 +1934,33 @@ std::string LogFile::cStringToUtf8(const CString& str) {
 void CdrClient::log(const CString& what, int level) {
     if (level <= commandLineOptions.clientDebugLevel)
         logger->write(what);
+}
+
+/*
+ * See if a process is running.
+ */
+DWORD find_process_id(const CString process_name) {
+
+    PROCESSENTRY32 process_info;
+    process_info.dwSize = sizeof(process_info);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    if (snapshot == INVALID_HANDLE_VALUE)
+        return 0;
+
+    Process32First(snapshot, &process_info);
+    if (process_name == process_info.szExeFile) {
+        CloseHandle(snapshot);
+        return process_info.th32ProcessID;
+    }
+
+    while (Process32Next(snapshot, &process_info)) {
+        if (process_name == process_info.szExeFile) {
+            CloseHandle(snapshot);
+            return process_info.th32ProcessID;
+        }
+    }
+
+    CloseHandle(snapshot);
+    return 0;
 }
