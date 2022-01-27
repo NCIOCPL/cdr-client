@@ -27,6 +27,7 @@
 
 // Local support functions.
 static CString err_response(const CString& err);
+static CString find_chrome();
 static bool is_user_path(const CString& path);
 static std::string log_timestamp();
 
@@ -1197,26 +1198,42 @@ bool cdr::show_errors(cdr::DOM& response) {
 }
 
 /**
- * Open Internet Explorer and navigate to the caller's URL.
- *
- * Yes, it is strange that we're launching an unsupported browser.
- * This feature was originally implemented when IE had around 95%
- * of the browser market share, so with all its flaws, we didn't
- * have a lot of good options. We have explored (ha-ha) revisiting
- * this decision with the users, but so far they have insisted that
- * at least for now, we'll stick with what they've been using.
+ * Open Google's Chrome browser and navigate to the caller's URL.
  *
  * Called by:
  *   CCommands::showPage()
  *
  * @param url - string for the address of the requested page
- * @return    - EXIT_SUCCESS
+ * @return    - EXIT_SUCCESS or EXIT_FAILURE
  */
 int cdr::show_page(const CString& url) {
-    CString ie = L"\"%ProgramFiles%\\Internet Explorer\\iexplore.exe\"";
-    CString command = L"\"" + ie + L" \"" + url + L"\"\"";
-    _wsystem(command);
-    return EXIT_SUCCESS;
+    wchar_t* cmd = new wchar_t[url.GetLength() + 10];
+    swprintf(cmd, url.GetLength() + 10, L"chrome %ls", (const wchar_t*)url);
+    CString chrome = find_chrome();
+    if (chrome.IsEmpty()) {
+        ::AfxMessageBox(L"Unable to find Chrome browser");
+        return EXIT_FAILURE;
+    }
+    PROCESS_INFORMATION process_information;
+    STARTUPINFO startup_information;
+    memset(&process_information, 0, sizeof(process_information));
+    memset(&startup_information, 0, sizeof(startup_information));
+    startup_information.cb = sizeof(startup_information);
+    BOOL result = CreateProcess(chrome, cmd, NULL, NULL, FALSE,
+                                NORMAL_PRIORITY_CLASS|CREATE_NEW_PROCESS_GROUP,
+                                NULL, NULL,
+                                &startup_information, &process_information);
+    if (result) {
+        CloseHandle(process_information.hProcess);
+        CloseHandle(process_information.hThread);
+        delete[] cmd;
+        return EXIT_SUCCESS;
+    }
+    else {
+        ::AfxMessageBox(L"CreateProcess() for Chrome browser failed");
+        delete[] cmd;
+        return EXIT_FAILURE;
+    }
 }
 
 /**
@@ -1340,6 +1357,35 @@ CString err_response(const CString& err) {
     auto errors = dom.child_element(response, "Errors");
     dom.child_element(errors, "Err", err);
     return dom.get_xml();
+}
+
+/**
+ * Locate chrome.exe on the user's Windows computer.
+ *
+ * Called by:
+ *   cdr::show_page()
+ *
+ * @return    string object containing path to chrome.exe, or empty string
+ *            if the program cannot be found
+ */
+CString find_chrome() {
+    wchar_t* vars[] = {
+        L"ProgramFiles(x86)",
+        L"ProgramFiles",
+        L"APPDATA",
+        L"LOCALAPPDATA"
+    };
+    CString tail = L"\\Google\\Chrome\\Application\\chrome.exe";
+    for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
+        wchar_t* dir = _wgetenv(vars[i]);
+        if (dir) {
+            CString path = dir + tail;
+            if (!_waccess((const wchar_t*)path, 0)) {
+                return path;
+            }
+        }
+    }
+    return L"";
 }
 
 /**
