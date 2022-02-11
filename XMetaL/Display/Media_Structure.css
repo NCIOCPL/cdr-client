@@ -48,6 +48,7 @@ $PROCINS
 /*                           BLOCK ELEMENTS                                */ 
 /***************************************************************************/ 
 Acknowledgement,
+Age,
 AlternativeText,
 ApprovedUse,
 Audience,
@@ -62,12 +63,14 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DemographicInformation,
 DerivationMethod,
 DefaultVideoPresentationTemplate,
 DerivedFrom,
 Diagnoses,
 Diagnosis,
 DocTitle,
+Ethnicity,
 ExternalRef,
 FromCdrMedia,
 FromExternalFile,
@@ -105,9 +108,12 @@ ProcessingStatusDate,
 ProcessingStatuses,
 ProcessingStatusValue,
 ProposedUse,
+Race,
 RunSeconds,
 RelatedDocuments,
 RequestedBy,
+Sex,
+SkinTone,
 SpanishTranslationPermissionRequested,
 SpanishTranslationPermissionResponse,
 SoundData,
@@ -134,6 +140,7 @@ WidthPixels,
 /*                       BEFORE AND AFTER TAGS                             */ 
 /***************************************************************************/ 
 Acknowledgement           :before { content: "Acknowledgement "; }
+Age                       :before { content: "Age "; }
 AlternativeText           :before { content: "Alternative Text "; }
 Audience                  :before { content: "Audience "; }
 Color                     :before { content: "Color "; }
@@ -149,12 +156,14 @@ DateCreated               :before { content: "Date Created "; }
 DateLastModified          :before { content: "Last Modified "; }
 DefaultVideoPresentationTemplate
                           :before { content: "Display "; }
+DemographicInformation    :before { content: "DEMOGRAPHIC INFORMATION "; }
 DerivedFrom               :before { content: "DERIVED FROM "; }
 Diagnoses                 :before { content: "DIAGNOSES "; }
 Diagnosis                 :before { content: "Diagnosis "; }
 DocTitle                  :before { content: "Doc Title "; }
 ProcessingStatus>EnteredBy:before,
                                   { content: "Entered By "; }
+Ethnicity                 :before { content: "Ethnicity "; }
 ExternalRef               :before { content: "ExternalRef "; }
 FromCdrMedia              :before { content: "FROM CDR MEDIA "; }
 FromExternalFile          :before { content: "From External File "; }
@@ -197,9 +206,12 @@ ProcessingStatusDate      :before { content: "Status Date"; }
 ProcessingStatuses        :before { content: "PROCESSING STATUSES "; }
 ProcessingStatusValue     :before { content: "Status Value"; }
 ProposedUse               :before { content: "PROPOSED USE "; }
+Race                      :before { content: "Race "; }
 RelatedDocuments          :before { content: "RELATED DOCUMENTS"; }
 RequestedBy               :before { content: "Requested By"; }
 RunSeconds                :before { content: "Run (sec) "; }
+Sex                       :before { content: "Sex "; }
+SkinTone                  :before { content: "Skin Tone "; }
 SoundData                 :before { content: "Sound Data "; }
 SoundEncoding             :before { content: "Sound Encoding "; }
 SoundType                 :before { content: "Sound Type "; }
@@ -222,6 +234,7 @@ WidthPixels               :before { content: "Width (Pixels) "; }
 /***************************************************************************/
 /*                      DOCUMENT TITLE AND ID                              */
 /***************************************************************************/
+DemographicInformation,
 MediaSource, 
 MediaContent,
 PhysicalMedia, 
@@ -236,6 +249,7 @@ RelatedDocuments,
 Captions                               :before,
 Categories                             :before,
 ContentDescriptions                    :before,
+DemographicInformation                 :before,
 DerivedFrom                            :before,
 Diagnoses                              :before,
 FromObject                             :before,
@@ -259,6 +273,7 @@ Topics                                 :before,
 /*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
 /***************************************************************************/ 
 Acknowledgement                        :before,
+Age                                    :before,
 AlternativeText                        :before,
 Audience                               :before,
 Color                                  :before,
@@ -274,11 +289,13 @@ DateCreated                            :before,
 DateLastModified                       :before,
 DerivationMethod                       :before,
 DefaultVideoPresentation Template      :before,
+DemographicInformation                 :before,
 DerivedFrom                            :before,
 Diagnoses                              :before,
 Diagnosis                              :before,
 DocTitle                               :before,
 ProcessingStatus>EnteredBy             :before,
+Ethnicity                              :before,
 ExternalRef                            :before,
 FromCdrMedia                           :before,
 FromExternalFile                       :before,
@@ -316,9 +333,12 @@ PublisherPermissionText                :before,
 PhysicalMedia                          :before,
 ProcessingStatusDate                   :before,
 ProcessingStatusValue                  :before,
+Race                                   :before,
 RelatedDocuments                       :before,
 RequestedBy                            :before,
 RunSeconds                             :before,
+Sex                                    :before,
+SkinTone                               :before,
 SoundData                              :before,
 SoundEncoding                          :before,
 SoundType                              :before,
@@ -345,6 +365,7 @@ WidthPixels                            :before,
 /***************************************************************************/
 /* Remove negative text-indent settings  */
 Acknowledgement,
+Age,
 AlternativeText,
 Audience,
 Color,
@@ -359,6 +380,7 @@ DefaultVideoPresentationTemplate,
 DerivationMethod,
 Diagnosis,
 DocTitle,
+Ethnicity,
 ExternalRef,
 FromCdrMedia,
 FromExternalFile,
@@ -389,8 +411,11 @@ SpanishTranslationPermissionResponse,
 PublisherPermissionText,
 ProcessingStatusDate,
 ProcessingStatusValue,
+Race,
 RequestedBy,
 RunSeconds,
+Sex,
+SkinTone,
 SoundData,
 SoundEncoding,
 SoundType,
@@ -413,6 +438,7 @@ WidthPixels,
 /*                            HIDE TEXT                                    */
 /***************************************************************************/
 Acknowledgement,
+Age,
 AlternativeText,
 Audience,
 Color,
@@ -428,6 +454,7 @@ DerivationMethod,
 Diagnosis,
 DocTitle,
 ProcessingStatus>EnteredBy,
+Ethnicity,
 ExternalRef,
 Glossary,
 FromCdrMedia,
@@ -457,8 +484,11 @@ SpanishTranslationPermissionResponse,
 PublisherPermissionText,
 ProcessingStatusDate,
 ProcessingStatusValue,
+Race,
 RequestedBy,
 RunSeconds,
+Sex,
+SkinTone,
 SoundData,
 SoundEncoding,
 SoundType,
@@ -484,6 +514,7 @@ WidthPixels,
 /***************************************************************************/ 
 /* Background color for Fields (Do not include Container Elements here */
 AlternativeText                        :before,
+Age                                    :before,
 Audience                               :before,
 Color                                  :before,
 Category                               :before,
@@ -497,6 +528,7 @@ DefaultVideoPresentationTemplate       :before,
 DerivationMethod                       :before,
 Diagnosis                              :before,
 DocTitle                               :before,
+Ethnicity                              :before,
 FromCdrMedia                           :before,
 FromExternalFile                       :before,
 FromMethod                             :before,
@@ -527,8 +559,11 @@ SpanishTranslationPermissionRequested  :before,
 SpanishTranslationPermissionResponse   :before,
 PublisherPermissionText                :before,
 PhysicalMedia                          :before,
+Race                                   :before,
 RequestedBy                            :before,
 RunSeconds                             :before,
+Sex                                    :before,
+SkinTone                               :before,
 SoundData                              :before,
 SoundEncoding                          :before,
 SoundType                              :before,
@@ -545,6 +580,7 @@ WidthPixels                            :before,
 
 
 Acknowledgement,
+Age,
 AlternativeText,
 Audience,
 Color,
@@ -559,11 +595,13 @@ Creator,
 DateCreated,
 DateLastModified,
 DefaultVideoPresentationTemplate,
+DemographicInformation,
 DerivationMethod,
 DerivedFrom,
 Diagnoses,
 Diagnosis,
 DocTitle,
+Ethnicity,
 FromCdrMedia,
 FromExternalFile,
 FromMethod,
@@ -587,8 +625,11 @@ MediaTitle,
 MinWidthPixels,
 OriginalSource,
 PhysicalMedia,
+Race,
 RequestedBy,
 RunSeconds,
+Sex,
+SkinTone,
 SoundData,
 SoundEncoding,
 SoundType,

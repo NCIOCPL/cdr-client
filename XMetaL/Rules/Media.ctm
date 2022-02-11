@@ -18,6 +18,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">Age</Name>
+   <TagColor>#FFD1CB</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">AltTitle</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -33,6 +41,14 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">Answer</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">ApprovedUse</Name>
+   <TagColor>#FE2E2E</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -196,6 +212,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">DemographicInformation</Name>
+   <TagColor>#FFD1CB</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DerivedFrom</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -281,6 +305,14 @@
   </ElementProperties>
   <ElementProperties>
    <Name ns="">EnteredBy</Name>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Ethnicity</Name>
+   <TagColor>#FFD1CB</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -627,8 +659,24 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
-   <Name ns="">ApprovedUse</Name>
-   <TagColor>#FE2E2E</TagColor>
+   <Name ns="">Race</Name>
+   <TagColor>#FFD1CB</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">Sex</Name>
+   <TagColor>#FFD1CB</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">SkinTone</Name>
+   <TagColor>#FFD1CB</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
    <NewLineBeforeEndTag/>
@@ -1302,6 +1350,26 @@
                    Optionally enter a comment
                    }?></Comment>
   </OriginalSource>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DemographicInformation</Name>
+   <MiniTemplate><![CDATA[<DemographicInformation>
+  <Age><?xm-replace_text {
+         Optionally select the age group
+         }?></Age>
+  <Sex><?xm-replace_text {
+         Optionally select the sex
+         }?></Sex>
+  <Race><?xm-replace_text {
+         Optionally select the race
+         }?></Race>
+  <SkinTone><?xm-replace_text {
+         Optionally select the skin tone
+         }?></SkinTone>
+  <Ethnicity><?xm-replace_text {
+         Optionally select the ethnicity
+         }?></Ethnicity>
+ </DemographicInformation>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">Creator</Name>
