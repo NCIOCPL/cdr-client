@@ -178,42 +178,6 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
 }
 
 /**
- * Launch Internet Explorer with the Advanced Search admin menu.
- *
- *  @param ret_val - pointer to the return value
- */
-STDMETHODIMP CCommands::advancedSearch(int *ret_val) {
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-    *ret_val = EXIT_FAILURE;
-
-    cdr::trace_log("advancedSearch");
-    COleDispatchDriver ie;
-    if (!ie.CreateDispatch(L"InternetExplorer.Application")) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return S_OK;
-    }
-    CString url = L"https://"
-                + cdr::Socket::get_host_name()
-                + L"/cgi-bin/cdr/AdvancedSearch.py?Session="
-                + cdr::Socket::get_session_string();
-    DISPID dispid;
-    OLECHAR* member = L"Navigate";
-    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
-        &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
-    if (hresult != S_OK) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return S_OK;
-    }
-    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR
-                          VTS_PVARIANT VTS_PVARIANT;
-    COleVariant dummy;
-    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-        url, 0L, L"CdrAdvSearch", &dummy, &dummy);
-    *ret_val = EXIT_SUCCESS;
-    return S_OK;
-}
-
-/**
  * Unlock the currently active checked-out CDR document.
  *
  *  @param ret_val - pointer to the return value

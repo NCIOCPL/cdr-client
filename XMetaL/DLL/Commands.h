@@ -44,7 +44,6 @@ DECLARE_REGISTRY_RESOURCEID(IDR_Commands)
 public:
     STDMETHOD(acceptOrRejectMarkup)(void);
     STDMETHOD(addGlossaryPhrase)(void);
-    STDMETHOD(advancedSearch)(/*[out, retval]*/ int* retVal);
     STDMETHOD(checkIn)(/*[out, retval]*/ int* pRet);
     STDMETHOD(chooseRevisionLevel)(BSTR* response_);
     STDMETHOD(edit)(/*[out, retval]*/ int* pRet);

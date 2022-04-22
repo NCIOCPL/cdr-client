@@ -22,7 +22,6 @@ import "oaidl.idl";import "ocidl.idl";
         [id(10), helpstring("method validate")] HRESULT validate([out, retval] int* pRet);
         [id(11), helpstring("method logoff")] HRESULT logoff([out, retval] int* pRet);
         [id(12), helpstring("method edit")] HRESULT edit([out, retval] int* pRet);
-        [id(14), helpstring("method advancedSearch")] HRESULT advancedSearch([out, retval] int* retVal);
         [propget, id(15), helpstring("Name of account used to log into the CDR")] HRESULT username([out, retval] BSTR *pVal);
         [id(20), helpstring("method getOrgAddress")] HRESULT getOrgAddress([out, retval] int* pRet);
         [id(21), helpstring("method pasteDocLink")] HRESULT pasteDocLink(const BSTR*val, [out, retval] int* pRet);
