@@ -42,11 +42,17 @@ ContactName,
 ContactPerson,
 ContactPersons,
 ContactRole,
+ContentTranslation,
 DateLastModified,
+Display,
+DisplayOfSummaries,
 DistributionMethod,
 DistributionMethods,
+DocType,
+ExternalGmailAddress,
 FormerName,
 FtpInformation,
+InterestedDocTypes,
 LicenseeDepartment,
 LicenseeInformation,
 LicenseeNameInformation,
@@ -59,9 +65,11 @@ OtherNames,
 Password,
 ProductionActivation,
 ProductionInactivation,
+SecondaryUserName,
 TestActivation,
 TestExtension,
 TestInactivation,
+UsageDescription,
 UserName,
     { display: block; }
 
@@ -87,11 +95,17 @@ ContactPerson[Type="S"]:before { content: "CONTACT PERSON & @ (Secondary)"; }
 ContactPerson[Type="I"]:before { content: "CONTACT PERSON & @ (Internal)"; }
 ContactPerson[Type="D"]:before { content: "CONTACT PERSON & @ (Deleted)"; }
 ContactPersons         :before { content: "CONTACT PERSONS * +"; }
-ContactRole            :before { content: "Role &: "; }
+ContactRole            :before { content: "Role + &: "; }
+ContentTranslation     :before { content: "Translation + &: "; }
 DateLastModified       :before { content: "Date Last Modified &: "; }
+Display                :before { Content: "Display + &: "; }
+DisplayOfSummaries     :before { Content: "DISPLAY OF SUMMARIES &"; }
 DistributionMethod     :before { content: "- "; }
 DistributionMethods    :before { content: "DISTRIBUTION METHODS * "; }
+DocType                :before { content: "Doc Type + &: "; }
+ExternalGmailAddress   :before { content: "External Email &: "; }
 FtpInformation         :before { content: "FTP INFORMATION &: "; }
+InterestedDocTypes     :before { Content: "DOC TYPES &"; }
 LicenseeDepartment     :before { content: "Department &: "; }
 LicenseeInformation    :before { content: "LICENSEE INFORMATION *"; }
 LicenseeNameInformation:before { content: "LICENSEE NAME INFORMATION &: "; }
@@ -113,9 +127,11 @@ PostalAddress[AddressType="Non-US"]
                        :before { content: "POSTAL ADDRESS & @ (Non-US)"; }
 ProductionActivation   :before { content: "Prod Activation &: "; }
 ProductionInactivation :before { content: "Prod Inactivation &: "; }
+SecondaryUserName      :before { content: "2nd User Name &: "; }
 TestActivation         :before { content: "Test Activation *: "; }
 TestExtension          :before { content: "Test Extension &: "; }
 TestInactivation       :before { content: "Test Inactivation &: "; }
+UsageDescription       :before { Content: "Usage Description &: "; }
 UserName               :before { content: "User Name &: "; }
 
 
@@ -126,7 +142,9 @@ ApplicationInformation,
 ContactDetail,
 ContactPerson,
 ContactPersons,
+DisplayOfSummaries,
 FtpInformation,
+InterestedDocTypes,
 LicenseeInformation,
 LicenseeNameInformation,
 LicenseeStatusDates,
@@ -137,6 +155,8 @@ Statistics,
 
 ApplicationInformation>Audiences,
 ContactDetail,
+DisplayOfSummaries,
+InterestedDocTypes,
 LicenseeStatusDates,
 LicenseeType,
 Statistics,
@@ -171,11 +191,17 @@ ContactName            :before,
 ContactPerson          :before,
 ContactPersons         :before,
 ContactRole            :before,
+ContentTranslation     :before,
 DateLastModified       :before,
+Display                :before,
+DisplayOfSummaries     :before,
 DistributionMethod     :before,
 DistributionMethods    :before,
+DocType                :before,
+ExternalGmailAddress   :before,
 FormerName             :before,
 FtpInformation         :before,
+InterestedDocTypes     :before,
 LicenseeDepartment     :before,
 LicenseeInformation    :before,
 LicenseeNameInformation:before,
@@ -189,9 +215,11 @@ OtherNames             :before,
 Password               :before,
 ProductionActivation   :before,
 ProductionInactivation :before,
+SecondaryUserName      :before,
 TestActivation         :before,
 TestExtension          :before,
 TestInactivation       :before,
+UsageDescription       :before,
 UserName               :before,
     {  font-weight: bold;
        color: black;       }
@@ -237,6 +265,22 @@ LicenseeStatus,
 LicenseeType,
     { margin-left: 130pt;
       text-indent:-103.5pt; }  
+ContentTranslation,
+    { margin-left: 130pt;
+      text-indent: -93pt; }  
+UsageDescription,
+    { margin-left: 130pt;
+      text-indent:-125pt; }  
+InterestedDocTypes,
+    { margin-left: 30pt; }  
+DocType,
+    { margin-left: 100pt;
+      text-indent:-84pt; }  
+DisplayOfSummaries,
+    { margin-left: 30pt; }  
+Display,
+    { margin-left: 100pt;
+      text-indent:-73pt; }  
 
 LicenseeStatusDates,
     { margin-left: 30pt; }
@@ -259,6 +303,12 @@ LicenseeStatusDates,
   UserName,
     { margin-left: 130pt;
       text-indent: -83pt; }  
+  SecondaryUserName,
+    { margin-left: 130pt;
+      text-indent: -109pt; }  
+  ExternalGmailAddress,
+    { margin-left: 130pt;
+      text-indent: -103pt; }  
   Password,
     { margin-left: 130pt;
       text-indent: -78pt; }  
@@ -274,7 +324,7 @@ ContactDetail,  ContactPerson,
       text-indent: -49pt; }  
   ContactRole,
     { margin-left: 100pt;
-      text-indent: -46pt; }  
+      text-indent: -57pt; }  
 
 /* Technical Contacts Group */
 ApplicationInformation,
@@ -312,8 +362,12 @@ Audience,
 Comment,
 ContactName,
 ContactRole,
+ContentTranslation,
 DateLastModified,
+Display,
 DistributionMethod,
+DocType,
+ExternalGmailAddress,
 FormerName,
 LicenseeDepartment,
 LicenseeInformation,
@@ -322,12 +376,14 @@ LicenseeType,
 OfficialName,
 OrganizationType,
 Password,
-UserName,
 ProductionActivation,
 ProductionInactivation,
+SecondaryUserName,
 TestActivation,
 TestExtension,
 TestInactivation,
+UsageDescription,
+UserName,
 Web,
     { margin-bottom: 4pt; }
 
@@ -342,8 +398,12 @@ Audience,
 Comment,
 ContactName,
 ContactRole,
+ContentTranslation,
 DateLastModified,
+Display,
 DistributionMethod,
+DocType,
+ExternalGmailAddress,
 FormerName,
 LicenseeDepartment,
 LicenseeStatus,
@@ -352,12 +412,14 @@ Name,
 OfficialName,
 OrganizationType,
 Password,
+SecondaryUserName,
 UserName,
 ProductionActivation,
 ProductionInactivation,
 TestActivation,
 TestExtension,
 TestInactivation,
+UsageDescription,
 Web,
     { background-color: white; }
 
@@ -368,8 +430,12 @@ Audience               :before,
 Comment                :before,
 ContactName            :before,
 ContactRole            :before,
+ContentTranslation     :before,
 DateLastModified       :before,
+Display                :before,
 DistributionMethod     :before,
+DocType                :before,
+ExternalGmailAddress   :before,
 LicenseeDepartment     :before,
 LicenseeStatus         :before,
 LicenseeType           :before,
@@ -380,8 +446,10 @@ Password               :before,
 UserName               :before,
 ProductionActivation   :before,
 ProductionInactivation :before,
+SecondaryUserName      :before,
 TestActivation         :before,
 TestExtension          :before,
 TestInactivation       :before,
+UsageDescription       :before,
 Web                    :before,
     { background-color: #CCCCFF; }
