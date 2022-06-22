@@ -102,12 +102,13 @@ CdrClient::~CdrClient() {
  * is the main entry point for the program's processing logic.
  *
  *   0. Invoke the base class's version of this method.
- *   1. Read the options from the application's settings file.
- *   2. Parse the command-line arguments.
- *   3. If we aren't already logged into the CDR, do it.
- *   4. Clear out files we don't want to keep.
- *   5. Install any new files from the server and delete obsolete files.
- *   6. If this program was replaced, launch the new version; otherwise
+ *   1. Make sure there isn't already an instance of XMetaL running.
+ *   2. Read the options from the application's settings file.
+ *   3. Parse the command-line arguments.
+ *   4. If we aren't already logged into the CDR, do it.
+ *   5. Clear out files we don't want to keep.
+ *   6. Install any new files from the server and delete obsolete files.
+ *   7. If this program was replaced, launch the new version; otherwise
  *      register the CDR DLL and launch XMetaL.
  */
 BOOL CdrClient::InitInstance() {
@@ -123,26 +124,29 @@ BOOL CdrClient::InitInstance() {
         // 0. Invoke the base class's version of this method.
         CWinApp::InitInstance();
 
-        // 1. Read the settings from the application's state file.
+        // 1. Make sure there isn't already an instance of XMetaL running.
+        check_for_running_instance();
+
+        // 2. Read the settings from the application's state file.
         serverSettings = new ServerSettings(xmlDomParser, this);
         log(_T("Settings loaded -- tier is '") +
             serverSettings->currentGroup + _T("'.\n"));
 
-        // 2. Parse the command-line arguments.
+        // 3. Parse the command-line arguments.
         ParseCommandLine(commandLineOptions);
         logOptions();
 
-        // 3. If we aren't already logged into the CDR, do it.
+        // 4. If we aren't already logged into the CDR, do it.
         if (!createCdrSession())
             return FALSE;
 
-        // 4. Clear out temporary caches and unwanted XMetaL files.
+        // 5. Clear out temporary caches and unwanted XMetaL files.
         clearCaches();
 
-        // 5. Install any new files from the server and delete obsolete files.
+        // 6. Install any new files from the server and delete obsolete files.
         refreshFiles();
 
-        // 6. Launch new version of this program, if any; else start XMetal.
+        // 7. Launch new version of this program, if any; else start XMetal.
         if (loaderReplaced)
             runAgain();
         else
@@ -1518,12 +1522,6 @@ void CdrClient::launchClient() {
     CString programName = findXmetalProgram(this);
     if (programName.IsEmpty())
         throw _T("Unable to find XMetaL program");
-    int position = programName.ReverseFind(_T('\\'));
-    if (position == -1)
-        throw _T("Unable to find a full path for XMetaL");
-    CString name = programName.Right(programName.GetLength() - ++position);
-    if (find_process_id(name))
-        throw _T("XMetaL is already running");
     TCHAR* args[2] = { _T("XMetaL") };
     log(_T("Launching ") + programName + _T("\n"), 1);
     int err = (int)_texecve(programName.GetBuffer(), args, NULL);
@@ -1821,4 +1819,21 @@ DWORD find_process_id(const CString process_name) {
 
     CloseHandle(snapshot);
     return 0;
+}
+
+/**
+ * Ensure that we don't already have a running instance of XMetaL.
+ *
+ * See https://tracker.nci.nih.gov/browse/OCECDR-5006.
+ */
+void check_for_running_instance() {
+    CString program_name = findXmetalProgram(this);
+    if (program_name.IsEmpty())
+        throw _T("Unable to find XMetaL program");
+    int position = program_name.ReverseFind(_T('\\'));
+    if (position == -1)
+        throw _T("Unable to find a full path for XMetaL");
+    CString name = program_name.Right(program_name.GetLength() - ++position);
+    if (find_process_id(name))
+        throw _T("XMetaL is already running");
 }
