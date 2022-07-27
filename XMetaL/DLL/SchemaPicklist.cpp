@@ -66,9 +66,9 @@ void CSchemaPicklist::OnOK()
         m_list_box.GetText(current_selection, str);
         ::Selection selection = cdr::get_app().GetSelection();
         selection.SetReadOnlyContainer(FALSE);
-		selection.SelectContainerContents();
+        selection.SelectContainerContents();
         ::DOMElement elem = selection.GetContainerNode();
-		selection.Delete();
+        selection.Delete();
         while (elem && elem.GetNodeType() != 1) // DOMElement
             elem = elem.GetParentNode();
         if (elem) {

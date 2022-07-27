@@ -7,19 +7,19 @@
 
 class CFindMarkup : public CDialog
 {
-	DECLARE_DYNAMIC(CFindMarkup)
+    DECLARE_DYNAMIC(CFindMarkup)
 
 public:
-	CFindMarkup(CWnd* parent = NULL);   // standard constructor
-	virtual ~CFindMarkup();
+    CFindMarkup(CWnd* parent = NULL);   // standard constructor
+    virtual ~CFindMarkup();
 
 // Dialog Data
-	enum { IDD = IDD_FIND_MARKUP_DIALOG };
+    enum { IDD = IDD_FIND_MARKUP_DIALOG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
 public:
     CButton next_button;
     CButton prev_button;

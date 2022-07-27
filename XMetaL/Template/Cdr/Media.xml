@@ -49,6 +49,23 @@
          }?></SourceFilename>
   </OriginalSource>
  </MediaSource>
+ <DemographicInformation>
+  <Age><?xm-replace_text {
+         Optionally select the age group
+         }?></Age>
+  <Sex><?xm-replace_text {
+         Optionally select the sex
+         }?></Sex>
+  <Race><?xm-replace_text {
+         Optionally select the race
+         }?></Race>
+  <SkinTone><?xm-replace_text {
+         Optionally select the skin tone
+         }?></SkinTone>
+  <Ethnicity><?xm-replace_text {
+         Optionally select the ethnicity
+         }?></Ethnicity>
+ </DemographicInformation>
  <MediaContent>
   <Categories>
    <Category><?xm-replace_text {

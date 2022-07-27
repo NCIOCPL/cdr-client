@@ -13,6 +13,7 @@
 #include <winsock.h>
 #include <wininet.h>
 #include <wincrypt.h>
+#include <tlhelp32.h>
 #include <atlenc.h>
 #include <direct.h>
 #include <sys/types.h>
@@ -39,12 +40,7 @@ static CString getAttribute(CComPtr<IXMLDOMNode>& elem, const TCHAR* name);
 static CString findXmetalProgram(CdrClient*);
 static CString tryXmetalPath(TCHAR* tail, CdrClient*);
 static void usage();
-
-// Needed only until the transition to Gauss is complete.
-static void fix_cdr_settings(CdrClient*, const CString&);
-static long long get_file_time(const char*);
-static bool legacy_file_newer(CdrClient*);
-static CString get_legacy_tier(CdrClient*);
+static DWORD find_process_id(const CString name);
 
 /*
  * CdrClient class implementation.
@@ -106,12 +102,13 @@ CdrClient::~CdrClient() {
  * is the main entry point for the program's processing logic.
  *
  *   0. Invoke the base class's version of this method.
- *   1. Read the options from the application's settings file.
- *   2. Parse the command-line arguments.
- *   3. If we aren't already logged into the CDR, do it.
- *   4. Clear out files we don't want to keep.
- *   5. Install any new files from the server and delete obsolete files.
- *   6. If this program was replaced, launch the new version; otherwise
+ *   1. Make sure there isn't already an instance of XMetaL running.
+ *   2. Read the options from the application's settings file.
+ *   3. Parse the command-line arguments.
+ *   4. If we aren't already logged into the CDR, do it.
+ *   5. Clear out files we don't want to keep.
+ *   6. Install any new files from the server and delete obsolete files.
+ *   7. If this program was replaced, launch the new version; otherwise
  *      register the CDR DLL and launch XMetaL.
  */
 BOOL CdrClient::InitInstance() {
@@ -127,26 +124,29 @@ BOOL CdrClient::InitInstance() {
         // 0. Invoke the base class's version of this method.
         CWinApp::InitInstance();
 
-        // 1. Read the settings from the application's state file.
+        // 1. Make sure there isn't already an instance of XMetaL running.
+        check_for_running_instance();
+
+        // 2. Read the settings from the application's state file.
         serverSettings = new ServerSettings(xmlDomParser, this);
         log(_T("Settings loaded -- tier is '") +
             serverSettings->currentGroup + _T("'.\n"));
 
-        // 2. Parse the command-line arguments.
+        // 3. Parse the command-line arguments.
         ParseCommandLine(commandLineOptions);
         logOptions();
 
-        // 3. If we aren't already logged into the CDR, do it.
+        // 4. If we aren't already logged into the CDR, do it.
         if (!createCdrSession())
             return FALSE;
 
-        // 4. Clear out temporary caches and unwanted XMetaL files.
+        // 5. Clear out temporary caches and unwanted XMetaL files.
         clearCaches();
 
-        // 5. Install any new files from the server and delete obsolete files.
+        // 6. Install any new files from the server and delete obsolete files.
         refreshFiles();
 
-        // 6. Launch new version of this program, if any; else start XMetal.
+        // 7. Launch new version of this program, if any; else start XMetal.
         if (loaderReplaced)
             runAgain();
         else
@@ -219,13 +219,6 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
             currentGroup = getTextContent(node);
         node = getNextSibling(node);
     }
-    if (!currentGroup.IsEmpty()) {
-        if (legacy_file_newer(client)) {
-            CString tier = get_legacy_tier(client);
-            if (!tier.IsEmpty())
-                currentGroup = tier;
-        }
-    }
 }
 
 /*
@@ -235,17 +228,6 @@ ServerSettings::ServerSettings(CComPtr<IXMLDOMDocument>& xmlDomParser,
  * representing decimal port numbers).
  */
 void ServerSettings::serialize(const CString& name, CdrClient* client) const {
-
-    // Temporary code to ease the transition between tiers which
-    // have upgraded to Gauss and those which have not yet upgraded.
-    // Do this first, so that the legacy settings file will only
-    // have a newer timestamp than the new tier settings file when
-    // we're switching to a tier that's been upgraded to Gauss from
-    // one which hasn't yet.
-    try {
-        fix_cdr_settings(client, currentGroup);
-    }
-    catch(...) {}
 
     // Now update the new four-tier settings file.
     CStdioFile file;
@@ -270,124 +252,6 @@ void ServerSettings::serialize(const CString& name, CdrClient* client) const {
         serverGroups[i].serialize(file);
     file.WriteString(_T("</CDRServerSettings>\n"));
     file.Close();
-}
-
-long long get_file_time(const char* name) {
-    try {
-        struct _stat buf;
-        int result = _stat(name, &buf);
-        if (result)
-            return -1;
-        return buf.st_mtime;
-    }
-    catch (...) { return -1; }
-}
-
-bool legacy_file_newer(CdrClient* client) {
-    try {
-        long long legacy_time = get_file_time("CdrSettings.xml");
-        if (legacy_time == -1) {
-            client->log(_T("Can't stat CdrSettings.xml.\n"), 2);
-            return false;
-        }
-        CString buf;
-        buf.Format(_T("Timestamp for CdrSettings.xml: %llu.\n"), legacy_time);
-        client->log(buf, 2);
-        long long tiers_time = get_file_time("CdrTiers.xml");
-        buf.Format(_T("Timestamp for CdrTiers.xml: %llu.\n"), tiers_time);
-        client->log(buf, 2);
-        return legacy_time > tiers_time;
-    }
-    catch (...) { return false; }
-}
-
-CString get_legacy_tier(CdrClient* client) {
-    try {
-        client->log(_T("Extracting legacy tier from CdrSettings.xml.\n"), 2);
-        static char buf[2048];
-        FILE* fp = fopen("CdrSettings.xml", "rb");
-        if (!fp) {
-            client->log(_T("Can't find CdrSettings.xml.\n"), 2);
-            return _T("");
-        }
-        UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
-        fclose(fp);
-        CString settings(buf, (int)nread);
-        if (settings.Find(_T("<CurrentGroup>PRODUCTION</CurrentGroup>")) >= 0)
-            return _T("PROD");
-        if (settings.Find(_T("<CurrentGroup>DEV</CurrentGroup>")) >= 0)
-            return _T("DEV");
-        if (settings.Find(_T("cdr-qa")) >= 0)
-            return _T("QA");
-        return _T("STAGE");
-    }
-    catch(...) { return _T(""); }
-}
-
-/*
- * Adjust the legacy settings file
- *
- * We do this in case we're switching to a tier which hasn't yet
- * upgraded to Gauss. If we re-launch ourselves after such a switch
- * this will ensure that the old loader lands on the right CDR server.
- *
- * The CdrSettings.xml file has always been well under 1,000 bytes,
- * and we won't need this code after the transition to Gauss is complete,
- * otherwise I would use a more robust loop to make sure we got the whole
- * file.
- *
- * Pass:
- *   client - pointer to `CdrClient` object so we can log what we're doing
- *   tier - CString for current group (e.g. DEV, QA, etc.)
- *
- * Return:
- *  none
- */
-void fix_cdr_settings(CdrClient* client, const CString& tier) {
-    client->log(_T("Adjusting legacy settings file.\n"), 2);
-    CString legacy(tier);
-    if (tier == _T("QA") || tier == _T("STAGE"))
-        legacy = _T("TEST");
-    if (tier == _T("PROD"))
-        legacy = _T("PRODUCTION");
-    client->log(_T("Ensuring that the legacy settings point to ") +
-                legacy + _T(".\n"), 2);
-    static char buf[2048];
-    FILE* fp = fopen("CdrSettings.xml", "rb");
-    if (!fp) {
-        client->log(_T("Can't find legacy settings file.\n"), 2);
-        return;
-    }
-    UINT nread = (UINT)fread(buf, 1, sizeof(buf) - 1, fp);
-    fclose(fp);
-    CString settings(buf, (int)nread);
-    CString current = _T("<CurrentGroup>") + legacy + _T("</CurrentGroup>");
-    // don't stop here even if group matches -- we have to make sure that
-    // TEST points to the right server
-    //if (settings.Find((LPCTSTR)current) >= 0) {
-    //    client->log(_T("Legacy group already set to ") + legacy +
-    //                _T(".\n"), 2);
-    //    return;
-    //}
-    settings.Replace(_T("<CurrentGroup>PRODUCTION</CurrentGroup>"),
-                     (LPCTSTR)current);
-    settings.Replace(_T("<CurrentGroup>TEST</CurrentGroup>"),
-                     (LPCTSTR)current);
-    settings.Replace(_T("<CurrentGroup>DEV</CurrentGroup>"),
-                     (LPCTSTR)current);
-    if (tier == _T("QA")) {
-        settings.Replace(_T("cdr-stage"), _T("cdr-qa"));
-        client->log(_T("Replaced 'cdr-stage' with 'cdr-qa'.\n"), 2);
-    }
-    if (tier == _T("STAGE")) {
-        settings.Replace(_T("cdr-qa"), _T("cdr-stage"));
-        client->log(_T("Replaced 'cdr-qa' with 'cdr-stage'.\n"), 2);
-    }
-    fp = fopen("CdrSettings.xml", "wb");
-    CT2A newbuf(settings);
-    fwrite(newbuf, 1, settings.GetLength(), fp);
-    fclose(fp);
-    client->log(_T("Wrote new CdrSettings.xml.\n"));
 }
 
 /*
@@ -1444,7 +1308,8 @@ Updates::Updates(CComPtr<IXMLDOMDocument>& xmlParser,
     if (docElemName == _T("ERROR")) {
         CString errorMessage =
             getTextContent((CComPtr<IXMLDOMNode>)docElem);
-        throw _T("Failure assembling update package"); //errorMessage;
+        AfxMessageBox(errorMessage);
+        throw _T("Failure assembling update package");
     }
     CComPtr<IXMLDOMNode> node = getFirstChild((CComPtr<IXMLDOMNode>)docElem);
     while (node) {
@@ -1925,4 +1790,50 @@ std::string LogFile::cStringToUtf8(const CString& str) {
 void CdrClient::log(const CString& what, int level) {
     if (level <= commandLineOptions.clientDebugLevel)
         logger->write(what);
+}
+
+/*
+ * See if a process is running.
+ */
+DWORD find_process_id(const CString process_name) {
+
+    PROCESSENTRY32 process_info;
+    process_info.dwSize = sizeof(process_info);
+
+    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+    if (snapshot == INVALID_HANDLE_VALUE)
+        return 0;
+
+    Process32First(snapshot, &process_info);
+    if (process_name == process_info.szExeFile) {
+        CloseHandle(snapshot);
+        return process_info.th32ProcessID;
+    }
+
+    while (Process32Next(snapshot, &process_info)) {
+        if (process_name == process_info.szExeFile) {
+            CloseHandle(snapshot);
+            return process_info.th32ProcessID;
+        }
+    }
+
+    CloseHandle(snapshot);
+    return 0;
+}
+
+/**
+ * Ensure that we don't already have a running instance of XMetaL.
+ *
+ * See https://tracker.nci.nih.gov/browse/OCECDR-5006.
+ */
+void check_for_running_instance() {
+    CString program_name = findXmetalProgram(this);
+    if (program_name.IsEmpty())
+        throw _T("Unable to find XMetaL program");
+    int position = program_name.ReverseFind(_T('\\'));
+    if (position == -1)
+        throw _T("Unable to find a full path for XMetaL");
+    CString name = program_name.Right(program_name.GetLength() - ++position);
+    if (find_process_id(name))
+        throw _T("XMetaL is already running");
 }

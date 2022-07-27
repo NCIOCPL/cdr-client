@@ -100,6 +100,21 @@ PronunciationResource        :before { content: "Pron Resource & +: "; }
 RelatedInformation           :before { content: "RELATED INFORMATION &"; }
 RelatedDrugSummaryLink       :before { content: "Rel Drug Link & + @: "; }
 RelatedExternalRef           :before { content: "Rel Ext Ref & + @: "; }
+RelatedExternalRef           :after  { content: " "; }
+RelatedExternalRef[SourceKey='MedlinePlus']
+                             :after  { content: " (MedlinePlus)"; }
+RelatedExternalRef[SourceKey='GARD']
+                             :after  { content: " (Genetic and Rare Diseases Information Center)"; }
+RelatedExternalRef[SourceKey='GARD'][UseWith='es']
+                             :after  { content: " (Centro de Información sobre Enfermedades Genéticas y Raras)"; }
+RelatedExternalRef[SourceKey='NHGRI']
+                             :after  { content: " (National Human Genome Research Institute)"; }
+RelatedExternalRef[SourceKey='NHGRI'][UseWith='es']
+                             :after  { content: " (Instituto Nacional de Investigación del Genoma Humano)"; }
+RelatedExternalRef[SourceKey='CDC']
+                             :after  { content: " (Centers for Disease Control and Prevention)"; }
+RelatedExternalRef[SourceKey='CDC'][UseWith='es']
+                             :after  { content: " (Centros para el Control y la Prevención de Enfermedades)"; }
 RelatedGlossaryTermNameLink  :before { content: "Rel Gloss Link & + @: "; }
 RelatedSummaryRef            :before { content: "Rel Sum Ref & + @: "; }
 ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
@@ -160,6 +175,7 @@ PronunciationResource        :before,
 RelatedInformation           :before,
 RelatedDrugSummaryLink       :before,
 RelatedExternalRef           :before,
+RelatedExternalRef           :after,
 RelatedSummaryRef            :before,
 RelatedGlossaryTermNameLink  :before,
 ReplacementText              :before,

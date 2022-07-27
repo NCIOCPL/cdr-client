@@ -10,7 +10,7 @@
 
 IMPLEMENT_DYNAMIC(CFindMarkup, CDialog)
 CFindMarkup::CFindMarkup(CWnd* parent /*=NULL*/)
-	: CDialog(CFindMarkup::IDD, parent)
+    : CDialog(CFindMarkup::IDD, parent)
 {
 }
 

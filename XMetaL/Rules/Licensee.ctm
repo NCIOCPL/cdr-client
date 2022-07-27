@@ -17,39 +17,16 @@
      <ContactName><?xm-replace_text {
          Enter the contact name (required)
          }?></ContactName>
-     <ContactType><?xm-replace_text {
-         Enter the contact type (required)
-         }?></ContactType>
+     <ContactRole><?xm-replace_text {
+         Enter the contact role (required)
+         }?></ContactRole>
      <ContactDetail>
-     <PostalAddress>
-      <Street><?xm-replace_text {
-         Enter the street
-         }?></Street>
-      <City><?xm-replace_text {
-         Enter the City
-         }?></City>
-      <PoliticalSubUnit_State><?xm-replace_text {
-         Enter the PoliticalSubUnit_State
-         }?></PoliticalSubUnit_State>
-      <Country><?xm-replace_text {
-         Enter the Country
-         }?></Country>
-      <PostalCode_ZIP><?xm-replace_text {
-         Enter the PostalCode_ZIP
-         }?></PostalCode_ZIP>
-     </PostalAddress>
      <Phone><?xm-replace_text {
          Enter the Phone
          }?></Phone>
-     <Fax><?xm-replace_text {
-         Enter the Fax
-         }?></Fax>
      <Email><?xm-replace_text {
          Enter the Email
          }?></Email>
-     <WebSite><?xm-replace_text {
-         Enter the WebSite
-         }?></WebSite>
     </ContactDetail>
     </ContactPerson>]]></MiniTemplate>
   </Template>
@@ -76,9 +53,6 @@
      <Phone><?xm-replace_text {
          Enter the Phone
          }?></Phone>
-     <Fax><?xm-replace_text {
-         Enter the Fax
-         }?></Fax>
      <Email><?xm-replace_text {
          Enter the Email
          }?></Email>
@@ -86,6 +60,30 @@
          Enter the WebSite
          }?></WebSite>
     </ContactDetail>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>FtpInformation</Name>
+   <MiniTemplate><![CDATA[<FtpInformation>
+     <UserName><?xm-replace_text {
+         Enter the street
+         }?></UserName>
+      <SecondaryUserName><?xm-replace_text {
+         Enter the City
+         }?></SecondaryUserName>
+      <ExternalGmailAddress><?xm-replace_text {
+         Enter the PoliticalSubUnit_State
+         }?></ExternalGmailAddress>
+      <AccountBlocked>No</AccountBlocked>
+    </FtpInformation>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>InterestedDocTypes</Name>
+   <MiniTemplate><![CDATA[<InterestedDocTypes>
+     <DocType>Summary</DocType>
+     <DocType><?xm-replace_text {
+         Enter the contact role (required)
+         }?></DocType>
+    </InterestedDocTypes>]]></MiniTemplate>
   </Template>
   <Template>
    <Name>OtherNames</Name>
@@ -121,6 +119,124 @@
          Enter the PostalCode_ZIP
          }?></PostalCode_ZIP>
      </PostalAddress>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>AccountBlocked</Name>
+   <MiniTemplate><![CDATA[<AccountBlocked>No</AccountBlocked>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>City</Name>
+   <MiniTemplate><![CDATA[<City><?xm-replace_text {
+         Enter the city
+         }?></City>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ContactName</Name>
+   <MiniTemplate><![CDATA[<ContactName><?xm-replace_text {
+         Enter person name
+         }?></ContactName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ContactRole</Name>
+   <MiniTemplate><![CDATA[<ContactRole><?xm-replace_text {
+         Select the contact role
+         }?></ContactRole>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>DateLastModified</Name>
+   <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
+         Optionally enter the modification date
+         }?></DateLastModified>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Display</Name>
+   <MiniTemplate><![CDATA[<Display><?xm-replace_text {
+         Optionally select how summaries are being displayed on partner website
+         }?></Display>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>DocType</Name>
+   <MiniTemplate><![CDATA[<DocType><?xm-replace_text {
+         Select the docType used
+         }?></DocType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Email</Name>
+   <MiniTemplate><![CDATA[<Email><?xm-replace_text {
+         Enter the Email
+         }?></Email>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>ExternalGmailAddress</Name>
+   <MiniTemplate><![CDATA[<ExternalGmailAddress><?xm-replace_text {
+         Enter external Gmail address registered with organization
+         }?></ExternalGmailAddress>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>LicenseeDepartment</Name>
+   <MiniTemplate><![CDATA[<LicenseeDepartment><?xm-replace_text {
+         Optionally enter the organizational department
+         }?></LicenseeDepartment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Name</Name>
+   <MiniTemplate><![CDATA[<Name><?xm-replace_text {
+         Enter the official organization name (required)
+         }?></Name>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>OrganizationType</Name>
+   <MiniTemplate><![CDATA[<OrganizationType><?xm-replace_text {
+         Select the organization type (profit/non-profit) (required)
+         }?></OrganizationType>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Phone</Name>
+   <MiniTemplate><![CDATA[<Phone><?xm-replace_text {
+         Enter the Phone
+         }?></Phone>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PoliticalSubUnit_State</Name>
+   <MiniTemplate><![CDATA[<PoliticalSubUnit_State><?xm-replace_text {
+         Enter the state
+         }?></PoliticalSubUnit_State>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PostalCode_ZIP</Name>
+   <MiniTemplate><![CDATA[<PostalCode_ZIP><?xm-replace_text {
+         Enter the ZIP or postal code
+         }?></PostalCode_ZIP>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>SecondaryUserName</Name>
+   <MiniTemplate><![CDATA[<SecondaryUserName><?xm-replace_text {
+         Enter secondary userID
+         }?></SecondaryUserName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Street</Name>
+   <MiniTemplate><![CDATA[<Street><?xm-replace_text {
+         Enter the street
+         }?></Street>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>UsageDescription</Name>
+   <MiniTemplate><![CDATA[<UsageDescription><?xm-replace_text {
+         Enter short description of intented use of XML data
+         }?></UsageDescription>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>UserName</Name>
+   <MiniTemplate><![CDATA[<UserName><?xm-replace_text {
+         Enter userID for organization
+         }?></UserName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>WebSite</Name>
+   <MiniTemplate><![CDATA[<WebSite><?xm-replace_text {
+         Enter the WebSite
+         }?></WebSite>]]></MiniTemplate>
   </Template>
  </Templates>
 </DTDExtensions>

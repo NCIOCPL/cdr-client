@@ -203,13 +203,13 @@ void CEditElement::OnDblclkLink() {
     OnSelectButton();
 }
 
+/**
+ * Show the user the QC report for the selected document.
+ */
 void CEditElement::OnButton2() {
+
+    // Get the data from the form.
     UpdateData(true);
-    COleDispatchDriver ie;
-    if (!ie.CreateDispatch(L"InternetExplorer.Application")) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return;
-    }
     int cur_sel = m_link_list.GetCurSel();
 
     // Don't do anything if there is no selection.
@@ -229,25 +229,15 @@ void CEditElement::OnButton2() {
         ::AfxMessageBox(L"Unable to find document ID end delimiter.");
         return;
     }
+
+    // Create the URL and launch the browser with it.
     CString url = L"https://"
                 + cdr::Socket::get_host_name()
                 + L"/cgi-bin/cdr/QcReport.py?Session="
                 + cdr::Socket::get_session_string()
                 + L"&DocId="
                 + info.Mid(pos, end_pos - pos);
-    DISPID dispid;
-    OLECHAR* member = L"Navigate";
-    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
-        &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
-    if (hresult != S_OK) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return;
-    }
-    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR
-                          VTS_PVARIANT VTS_PVARIANT;
-    COleVariant dummy;
-    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-        url, 0L, L"CdrViewWindow", &dummy, &dummy);
+    cdr::show_page(url);
 }
 
 void CEditElement::extract_genetics_syndromes(cdr::DOM& dom) {

@@ -22,33 +22,33 @@ public:
                  CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(CEditElement)
-	enum { IDD = IDD_LINK_EDIT_DIALOG };
-	CStatic	m_label;
-	CListBox	m_link_list;
-	CString	m_title;
-	//}}AFX_DATA
+    //{{AFX_DATA(CEditElement)
+    enum { IDD = IDD_LINK_EDIT_DIALOG };
+    CStatic    m_label;
+    CListBox    m_link_list;
+    CString    m_title;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CEditElement)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CEditElement)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CEditElement)
-	virtual void OnOK();
-	afx_msg void OnSelectButton();
-	afx_msg void OnDblclkLink();
-	afx_msg void OnButton2();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(CEditElement)
+    virtual void OnOK();
+    afx_msg void OnSelectButton();
+    afx_msg void OnDblclkLink();
+    afx_msg void OnButton2();
+    virtual BOOL OnInitDialog();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
     CString         doc_type;

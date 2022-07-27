@@ -16,33 +16,33 @@ class COrgLocs : public CDialog
 {
 // Construction
 public:
-	COrgLocs(const CString& doc_id, CString& new_targ,
+    COrgLocs(const CString& doc_id, CString& new_targ,
              CWnd* parent = NULL);   // standard constructor
 
 // Dialog Data
-	//{{AFX_DATA(COrgLocs)
-	enum { IDD = IDD_ORG_LOCS };
-	CListBox	m_choice_list;
-	//}}AFX_DATA
+    //{{AFX_DATA(COrgLocs)
+    enum { IDD = IDD_ORG_LOCS };
+    CListBox    m_choice_list;
+    //}}AFX_DATA
 
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(COrgLocs)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(COrgLocs)
+    protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+    //}}AFX_VIRTUAL
 
 // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(COrgLocs)
-	virtual BOOL OnInitDialog();
-	virtual void OnOK();
-	afx_msg void OnDblclkList1();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    // Generated message map functions
+    //{{AFX_MSG(COrgLocs)
+    virtual BOOL OnInitDialog();
+    virtual void OnOK();
+    afx_msg void OnDblclkList1();
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 
 private:
     CString doc_id;

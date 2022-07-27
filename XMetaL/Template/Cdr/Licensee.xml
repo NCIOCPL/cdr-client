@@ -44,9 +44,6 @@
      <Phone><?xm-replace_text {
          Enter the Phone
          }?></Phone>
-     <Fax><?xm-replace_text {
-         Enter the Fax
-         }?></Fax>
      <Email><?xm-replace_text {
          Enter the Email
          }?></Email>
@@ -60,56 +57,45 @@
    <LicenseeStatus><?xm-replace_text {
          Select the licensee status (required)
          }?></LicenseeStatus>
+   <UsageDescription><?xm-replace_text {
+       Enter short description of intented usage of XML data (required)
+         }?></UsageDescription>
+   <InterestedDocTypes>
+      <DocType>Summary</DocType>
+      <DocType><?xm-replace_text {
+         Select from the list of doc types partner is interested in using
+         }?></DocType>
+   </InterestedDocTypes>
    <LicenseeStatusDates>
       <TestActivation><?xm-replace_text {
          Enter the date the test license has been activated
          }?></TestActivation>
    </LicenseeStatusDates>
+   <Comment><?xm-replace_text {
+         Remove this element and enter Your comment here
+         }?></Comment>
  </LicenseeInformation>
  <ContactPersons>
    <ContactPerson>
      <ContactName><?xm-replace_text {
-     Enter the person's name
+     Enter person name
      }?></ContactName>
      <ContactRole><?xm-replace_text {
      Select the contact type
      }?></ContactRole>
    <ContactDetail>
-    <PostalAddress AddressType="US">
-     <Street><?xm-replace_text {
-         Enter the street
-         }?></Street>
-     <City><?xm-replace_text {
-         Enter the City
-         }?></City>
-     <PoliticalSubUnit_State><?xm-replace_text {
-         Enter the PoliticalSubUnit_State
-         }?></PoliticalSubUnit_State>
-     <Country><?xm-replace_text {
-         Enter the Country
-         }?></Country>
-     <PostalCode_ZIP><?xm-replace_text {
-         Enter the PostalCode_ZIP
-         }?></PostalCode_ZIP>
-    </PostalAddress>
      <Phone><?xm-replace_text {
          Enter the Phone
          }?></Phone>
-     <Fax><?xm-replace_text {
-         Enter the Fax
-         }?></Fax>
      <Email><?xm-replace_text {
          Enter the Email
          }?></Email>
-     <WebSite><?xm-replace_text {
-         Enter the WebSite
-         }?></WebSite>
    </ContactDetail>
    </ContactPerson>
  </ContactPersons>
  <FtpInformation>
     <UserName><?xm-replace_text {
-       Enter the organization's user name
+       Enter userID for organization
        }?></UserName>
     <AccountBlocked>No</AccountBlocked>
  </FtpInformation>

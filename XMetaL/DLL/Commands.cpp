@@ -178,42 +178,6 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
 }
 
 /**
- * Launch Internet Explorer with the Advanced Search admin menu.
- *
- *  @param ret_val - pointer to the return value
- */
-STDMETHODIMP CCommands::advancedSearch(int *ret_val) {
-    AFX_MANAGE_STATE(AfxGetStaticModuleState())
-    *ret_val = EXIT_FAILURE;
-
-    cdr::trace_log("advancedSearch");
-    COleDispatchDriver ie;
-    if (!ie.CreateDispatch(L"InternetExplorer.Application")) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return S_OK;
-    }
-    CString url = L"https://"
-                + cdr::Socket::get_host_name()
-                + L"/cgi-bin/cdr/AdvancedSearch.py?Session="
-                + cdr::Socket::get_session_string();
-    DISPID dispid;
-    OLECHAR* member = L"Navigate";
-    HRESULT hresult = ie.m_lpDispatch->GetIDsOfNames(IID_NULL,
-        &member, 1, LOCALE_SYSTEM_DEFAULT, &dispid);
-    if (hresult != S_OK) {
-        ::AfxMessageBox(L"Unable to launch Internet Explorer");
-        return S_OK;
-    }
-    static BYTE parms[] = VTS_BSTR VTS_I4 VTS_BSTR
-                          VTS_PVARIANT VTS_PVARIANT;
-    COleVariant dummy;
-    ie.InvokeHelper(dispid, DISPATCH_METHOD, VT_EMPTY, NULL, parms,
-        url, 0L, L"CdrAdvSearch", &dummy, &dummy);
-    *ret_val = EXIT_SUCCESS;
-    return S_OK;
-}
-
-/**
  * Unlock the currently active checked-out CDR document.
  *
  *  @param ret_val - pointer to the return value
@@ -1340,8 +1304,8 @@ STDMETHODIMP CCommands::logoff(int *ret_val) {
             cdr::CommandSet request("CdrReport");
             auto command = request.command;
             request.child_element(command, "ReportName", "Locked Documents");
-            auto params = request.child_element(command, "Params");
-            auto param = request.child_element(params, "Param");
+            auto params = request.child_element(command, "ReportParams");
+            auto param = request.child_element(params, "ReportParam");
             request.set(param, "Name", "UserId");
             request.set(param, "Value", username);
             CString response_xml = cdr::Socket::send_commands(request);
@@ -1690,13 +1654,18 @@ STDMETHODIMP CCommands::retrieve(int *pRet) {
 /**
  * Save the currently active document in the CDR repository.
  *
- *  @param  ret_val - address of value returned for Microsoft Automation.
+ *  @param  ret_val - address of value returned for Microsoft Automation
+ *                    0 = success
+ *                   -1 = failure
+ *                   -2 = cancelled
+ *                    anything else represents the number of errors/warnings
+                      found
  */
 STDMETHODIMP CCommands::save(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
     cdr::trace_log("save");
-    *ret_val = 1;
+    *ret_val = -1;
     try {
 
         // Make sure the user is logged on to the CDR.
@@ -1868,7 +1837,6 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             else {
 
                 // Show the user any validation errors.
-                *ret_val = 0;
                 val_errors = new cdr::ValidationErrors(response_dom);
                 *ret_val = (int)val_errors->errors.size();
                 if (!*ret_val) {
@@ -1917,6 +1885,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             break;
         }
         case IDCANCEL:
+            *ret_val = -2;
             break;
         }
     }
@@ -2484,8 +2453,11 @@ static void load_doc_types() {
     int n_bytes = (int)file.GetLength();
     if (n_bytes <= 0)
         throw L"Missing document type information";
+    CString debug_msg;
+    debug_msg.Format(L"reading %d bytes from %s", n_bytes, path);
+    cdr::debug_log(debug_msg);
 
-    Buf b((size_t)n_bytes);
+    Buf b((size_t)(n_bytes + 1));
     int total_read = 0;
     while (total_read < n_bytes) {
         int bytes_read = file.Read(b.buf + total_read, n_bytes - total_read);

@@ -53,11 +53,17 @@ ContactName,
 ContactPerson,
 ContactPersons,
 ContactRole,
+ContentTranslation,
 DateLastModified,
+Display,
+DisplayOfSummaries,
 DistributionMethod,
 DistributionMethods,
+DocType,
+ExternalGmailAddress,
 FormerName,
 FtpInformation,
+InterestedDocTypes,
 LicenseeDepartment,
 LicenseeInformation,
 LicenseeNameInformation,
@@ -70,9 +76,11 @@ OtherNames,
 Password,
 ProductionActivation,
 ProductionInactivation,
+SecondaryUserName,
 TestActivation,
 TestExtension,
 TestInactivation,
+UsageDescription,
 UserName,
     { display: block; }
 
@@ -86,40 +94,48 @@ UserName,
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
-AccountBlocked         :before { content: "Account Blocked "; }
-ApplicationInformation :before { content: "APPLICATION INFORMATION "; }
-Audiences              :before { content: "AUDIENCES "; }
-Audience               :before { content: "Audience "; }
-Comment                :before { content: "Comment "; }
-ContactDetail          :before { content: "CONTACT DETAIL "; }
-ContactName            :before { content: "Name "; }
-ContactPerson          :before { content: "CONTACT PERSON "; }
-ContactPersons         :before { content: "CONTACT PERSONS "; }
-ContactRole            :before { content: "Role "; }
-DateLastModified       :before { content: "Date Last Modified "; }
-DistributionMethod     :before { content: "Distribution Method "; }
-DistributionMethods    :before { content: "DISTRIBUTION METHODS "; }
-FtpInformation         :before { content: "FTP INFORMATION "; }
-LicenseeDepartment     :before { content: "Department "; }
-LicenseeInformation    :before { content: "LICENSEE INFORMATION "; }
-LicenseeNameInformation:before { content: "LICENSEE NAME INFORMATION "; }
-LicenseeStatus         :before { content: "Status "; }
-LicenseeStatusDates    :before { content: "STATUS DATES "; }
-LicenseeType           :before { content: "Licensee Type "; }
+AccountBlocked          :before { content: "Account Blocked"; }
+ApplicationInformation  :before { content: "APPLICATION INFORMATION"; }
+Audiences               :before { content: "AUDIENCES"; }
+Audience                :before { content: "Audience"; }
+Comment                 :before { content: "Comment"; }
+ContactDetail           :before { content: "CONTACT DETAIL"; }
+ContactName             :before { content: "Name"; }
+ContactPerson           :before { content: "CONTACT PERSON"; }
+ContactPersons          :before { content: "CONTACT PERSONS"; }
+ContactRole             :before { content: "Role"; }
+ContentTranslation      :before { content: "Translation"; }
+DateLastModified        :before { content: "Date Last Modified"; }
+Display                 :before { content: "Display"; }
+DisplayOfSummaries      :before { content: "DISPLAY OF SUMMARIES"; }
+DistributionMethod      :before { content: "Distribution Method"; }
+DistributionMethods     :before { content: "DISTRIBUTION METHODS"; }
+DocType                 :before { content: "Doc Type"; }
+ExternalGmailAddress    :before { content: "External Email"; }
+FtpInformation          :before { content: "FTP INFORMATION"; }
+InterestedDocTypes      :before { content: "DOC TYPES"; }
+LicenseeDepartment      :before { content: "Department"; }
+LicenseeInformation     :before { content: "LICENSEE INFORMATION"; }
+LicenseeNameInformation :before { content: "LICENSEE NAME INFORMATION"; }
+LicenseeStatus          :before { content: "Status"; }
+LicenseeStatusDates     :before { content: "STATUS DATES"; }
+LicenseeType            :before { content: "Licensee Type"; }
 ApplicationInformation>Name 
-                       :before { content: "Application Info "; }
-OfficialName>Name      :before { content: "Official Name "; }
-AlternateName>Name     :before { content: "Alternate Name "; }
-FormerName>Name        :before { content: "Former Name "; }
-OrganizationType       :before { content: "Org Type "; }
-OtherNames             :before { content: "Other Names "; }
-Password               :before { content: "Password "; }
-ProductionActivation   :before { content: "Prod Activation "; }
-ProductionInactivation :before { content: "Prod Inactivation "; }
-TestActivation         :before { content: "Test Activation "; }
-TestExtension          :before { content: "Test Extension "; }
-TestInactivation       :before { content: "Test Inactivation "; }
-UserName               :before { content: "User Name "; }
+                        :before { content: "Application Info"; }
+OfficialName>Name       :before { content: "Official Name"; }
+AlternateName>Name      :before { content: "Alternate Name"; }
+FormerName>Name         :before { content: "Former Name"; }
+OrganizationType        :before { content: "Org Type"; }
+OtherNames              :before { content: "Other Names"; }
+Password                :before { content: "Password"; }
+ProductionActivation    :before { content: "Prod Activation"; }
+ProductionInactivation  :before { content: "Prod Inactivation"; }
+SecondaryUserName       :before { content: "2nd User Name"; }
+TestActivation          :before { content: "Test Activation"; }
+TestExtension           :before { content: "Test Extension"; }
+TestInactivation        :before { content: "Test Inactivation"; }
+UsageDescription        :before { content: "Usage Description"; }
+UserName                :before { content: "User Name"; }
 
 
 /***************************************************************************/
@@ -157,39 +173,39 @@ PubmedData              :before,
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
-AccountBlocked         :before,
-AlternateName          :before,
-ApplicationInformation :before,
-Audience               :before,
-Audiences              :before,
-Comment                :before,
-ContactDetail          :before,
-ContactName            :before,
-ContactPerson          :before,
-ContactPersons         :before,
-ContactRole            :before,
-DateLastModified       :before,
-DistributionMethod     :before,
-DistributionMethods    :before,
-FormerName             :before,
-FtpInformation         :before,
-LicenseeDepartment     :before,
-LicenseeInformation    :before,
-LicenseeNameInformation:before,
-LicenseeStatus         :before,
-LicenseeStatusDates    :before,
-LicenseeType           :before,
-Name                   :before,
-OfficialName           :before,
-OrganizationType       :before,
-OtherNames             :before,
-Password               :before,
-ProductionActivation   :before,
-ProductionInactivation :before,
-TestActivation         :before,
-TestExtension          :before,
-TestInactivation       :before,
-UserName               :before,
+AccountBlocked          :before,
+AlternateName           :before,
+ApplicationInformation  :before,
+Audience                :before,
+Audiences               :before,
+Comment                 :before,
+ContactDetail           :before,
+ContactName             :before,
+ContactPerson           :before,
+ContactPersons          :before,
+ContactRole             :before,
+DateLastModified        :before,
+DistributionMethod      :before,
+DistributionMethods     :before,
+FormerName              :before,
+FtpInformation          :before,
+LicenseeDepartment      :before,
+LicenseeInformation     :before,
+LicenseeNameInformation :before,
+LicenseeStatus          :before,
+LicenseeStatusDates     :before,
+LicenseeType            :before,
+Name                    :before,
+OfficialName            :before,
+OrganizationType        :before,
+OtherNames              :before,
+Password                :before,
+ProductionActivation    :before,
+ProductionInactivation  :before,
+TestActivation          :before,
+TestExtension           :before,
+TestInactivation        :before,
+UserName                :before,
     {  color: black;  }
 
 
@@ -213,8 +229,11 @@ Comment,
 ContactDetail>*,
 ContactRole,
 DateLastModified,
+Display,
 DistributionMethod,
 DistributionMethods,
+DocType,
+ExternalGmailAddress,
 FormerName,
 LicenseeDepartment,
 LicenseeType,
@@ -226,9 +245,11 @@ Password,
 PostalAddress>*,
 ProductionActivation,
 ProductionInactivation,
+SecondaryUserName,
 TestActivation,
 TestExtension,
 TestInactivation,
+UsageDescription,
 UserName,
     { color: white;
       background-color: white; }
@@ -237,41 +258,47 @@ UserName,
 /*                               COLOR                                     */
 /***************************************************************************/
 Licensee,
-AccountBlocked       :before,
-AlternateName        :before,
-ApplicationInformation:before,
-Audience             :before,
-Audiences            :before,
-Comment              :before,
-ContactDetail>*      :before,
-ContactRole          :before,
-DateLastModified     :before,
-DistributionMethod   :before,
-DistributionMethods  :before,
-FormerName           :before,
-LicenseeDepartment   :before,
-LicenseeType         :before,
-LicenseeStatus       :before,
-Name                 :before,
-OfficialName         :before,
-OrganizationType     :before,
-Password             :before,
-PostalAddress>*      :before,
-Season               :before,
-ProductionActivation :before,
-ProductionInactivation:before,
-TestActivation       :before,
-TestExtension        :before,
-TestInactivation     :before,
-UserName             :before,
+AccountBlocked          :before,
+AlternateName           :before,
+ApplicationInformation  :before,
+Audience                :before,
+Audiences               :before,
+Comment                 :before,
+ContactDetail>*         :before,
+ContactRole             :before,
+ContentTranslation      :before,
+DateLastModified        :before,
+Display                 :before,
+DistributionMethod      :before,
+DistributionMethods     :before,
+DocType                 :before,
+ExternalGmailAddress    :before,
+FormerName              :before,
+LicenseeDepartment      :before,
+LicenseeType            :before,
+LicenseeStatus          :before,
+Name                    :before,
+OfficialName            :before,
+OrganizationType        :before,
+Password                :before,
+PostalAddress>*         :before,
+Season                  :before,
+ProductionActivation    :before,
+ProductionInactivation  :before,
+SecondaryUserName       :before,
+TestActivation          :before,
+TestExtension           :before,
+TestInactivation        :before,
+UsageDescription        :before,
+UserName                :before,
     { background-color: white; }
 
     { font-weight: bold; }
 
-VerificationDetails  :before,
+VerificationDetails     :before,
     { background-color: #CCCCFF; }  /*light blue*/
 
 
-Volume               :before,
+Volume                  :before,
     { background-color: #CCFFCC; }  /*light green*/
 
