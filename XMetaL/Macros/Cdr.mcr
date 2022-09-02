@@ -4165,7 +4165,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId
-                + "&Filter=name:Licensee QC Report Filter";
+                + "&Filter=name:Licensee+QC+Report+Filter";
         cdrObj.showPage(url);
     }
     qcReport();
@@ -4187,7 +4187,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId
-                + "&Filter=name:Country QC Report Filter";
+                + "&Filter=name:Country+QC+Report+Filter";
         cdrObj.showPage(url);
     }
     qcReport();
@@ -4209,7 +4209,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId
-                + "&Filter=name:TermSet QC Report Filter";
+                + "&Filter=name:TermSet+QC+Report+Filter";
         cdrObj.showPage(url);
     }
     qcReport();
@@ -4299,7 +4299,7 @@
         }
         var url = CdrCgiBin + "Filter.py?Session="
                 + CdrSession + "&DocId=" + docId + "&isqc=true" +
-                "&Filter=set:QC GlossaryTermName with Concept Set";
+                "&Filter=set:QC+GlossaryTermName+with+Concept+Set";
         cdrObj.showPage(url);
     }
     termNameWithConceptQcReport();
