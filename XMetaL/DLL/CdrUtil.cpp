@@ -1372,6 +1372,7 @@ CString find_chrome() {
     wchar_t* vars[] = {
         L"ProgramFiles(x86)",
         L"ProgramFiles",
+        L"ProgramW6432",
         L"APPDATA",
         L"LOCALAPPDATA"
     };
@@ -1380,6 +1381,7 @@ CString find_chrome() {
         wchar_t* dir = _wgetenv(vars[i]);
         if (dir) {
             CString path = dir + tail;
+            cdr::debug_log(L"Trying " + path);
             if (!_waccess((const wchar_t*)path, 0)) {
                 return path;
             }
