@@ -1016,6 +1016,8 @@
     }
     if (rng.FindInsertLocation("Comment")) {
         Application.AppendMacro("Insert Comment", "Insert Comment");
+        Application.AppendMacro("Insert Comment For Translators",
+                                "Insert Comment For Translators");
     }
     if (rng.FindInsertLocation("ResponseToComment")) {
         Application.AppendMacro("Insert ResponseToComment",
@@ -5755,6 +5757,34 @@
         rng.Select();
     }
     insertComment();
+  ]]>
+</MACRO>
+
+<MACRO name="Insert Comment For Translators"
+       lang="JScript">
+  <![CDATA[
+    function insertCommentForTranslators() {
+        var rng = ActiveDocument.Range;
+        // rng.MoveToDocumentEnd();
+        if (!rng.FindInsertLocation("Comment")) {
+            Application.Alert("Can't insert Comment element " +
+                              "under current position.");
+            return;
+        }
+        var newElem = '<Comment user="'
+                    + CdrUserName
+                    + '" audience="Internal" '
+                    + 'specific-internal-audience="translators" date="'
+                    + getCurDateString()
+                    + '"><?xm-replace_text { Your comment here }?></Comment>';
+        rng.PasteString(newElem);
+        rng.MoveToElement("Comment", false);
+        rng.SelectElement();
+        rng.Collapse(1);
+        rng.MoveRight();
+        rng.Select();
+    }
+    insertCommentForTranslators();
   ]]>
 </MACRO>
 
