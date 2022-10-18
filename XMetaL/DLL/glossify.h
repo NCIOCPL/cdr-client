@@ -41,7 +41,8 @@ public:
     // elements. Default is to glossify only SummarySections
     // which are actually top-level children of the
     // document's root element.
-    CGlossify(bool dig=false, const CString dictionary = L"",
+    CGlossify(bool dig=false, bool insertion=false,
+              const CString dictionary = L"",
               const CString audience = L"", CWnd* parent = NULL);
     virtual ~CGlossify();
 
@@ -68,6 +69,7 @@ private:
     CString              dictionary;
     CString              audience;
     bool                 m_dig;
+    bool                 m_insertion;
 public:
     afx_msg void OnSkip();
     afx_msg void OnDone();

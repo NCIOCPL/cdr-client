@@ -12,10 +12,10 @@
 const wchar_t* TAG_NAME = L"GlossaryTermRef";
 
 IMPLEMENT_DYNAMIC(CGlossify, CDialog)
-CGlossify::CGlossify(bool dig, const CString dict,
+CGlossify::CGlossify(bool dig, bool insertion, const CString dict,
                      const CString aud, CWnd* parent /*=NULL*/)
 : CDialog(CGlossify::IDD, parent), cur_chain(0), cur_node(0), m_dig(dig),
-    dictionary(dict), audience(aud) {
+    dictionary(dict), audience(aud), m_insertion(insertion) {
     _Application app = cdr::get_app();
     doc = app.GetActiveDocument();
     range = doc.GetRange();
@@ -92,8 +92,10 @@ void CGlossify::OnMarkup() {
     int semicolon = val.Find(';');
     if (semicolon != -1)
         val = val.Left(semicolon);
+    if (m_insertion) {
+        range.Surround(L"Insertion");
+    }
     range.Surround(TAG_NAME);
-
     range.SetContainerAttribute(L"cdr:href", val);
     if (!find_next_match()) {
         ::AfxMessageBox(L"No more glossary phrases found");

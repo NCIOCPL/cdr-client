@@ -29,7 +29,7 @@ import "oaidl.idl";import "ocidl.idl";
         [id(23), helpstring("method checkIn")] HRESULT checkIn([out, retval] int* pRet);
         [propget, id(24), helpstring("DNS name for CDR host")] HRESULT hostname([out, retval] BSTR *pVal);
         [id(25), helpstring("method showPage")] HRESULT showPage([in] const BSTR* url, [out,retval]  int* pRet);
-        [id(26), helpstring("method glossify")] HRESULT glossify([in] VARIANT_BOOL dig, [in] const BSTR* dictionary, [in] const BSTR* audience);
+        [id(26), helpstring("method glossify")] HRESULT glossify([in] VARIANT_BOOL dig, [in] VARIANT_BOOL insertion, [in] const BSTR* dictionary, [in] const BSTR* audience);
         [id(27), helpstring("method addGlossaryPhrase")] HRESULT addGlossaryPhrase(void);
         [id(28), helpstring("method setTitleBar")] HRESULT setTitleBar(void);
         [id(29), helpstring("method acceptOrRejectMarkup")] HRESULT acceptOrRejectMarkup(void);

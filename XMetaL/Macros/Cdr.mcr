@@ -985,6 +985,27 @@
                                 "Glossify Patient Terms");
         Application.AppendMacro("Glossify Patient Terms (include markup)",
                                 "Glossify Patient Terms (include markup)");
+
+        Application.AppendMacro("Glossify Document (wrap with Insertion)",
+                                "Glossify Document (wrap with Insertion)");
+        Application.AppendMacro(
+            "Glossify Document (dig and wrap with Insertion)",
+            "Glossify Document (dig and wrap with Insertion)"
+        );
+        Application.AppendMacro(
+            "Glossify Genetics Terms (wrap with Insertion)",
+            "Glossify Genetics Terms (wrap with Insertion)"
+        );
+        Application.AppendMacro(
+            "Glossify Genetics Terms (include markup and wrap with Insertion)",
+            "Glossify Genetics Terms (include markup and wrap with Insertion)"
+        );
+        Application.AppendMacro("Glossify Patient Terms (wrap with Insertion)",
+                                "Glossify Patient Terms (wrap with Insertion)");
+        Application.AppendMacro(
+            "Glossify Patient Terms (include markup and wrap with Insertion)",
+            "Glossify Patient Terms (include markup and wrap with Insertion)"
+        );
         Application.AppendMacro("Update SummaryRef Titles",
                                 "Update SummaryRef Titles");
     }
@@ -4732,7 +4753,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "", "");
+        cdrObj.glossify(false, false, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4742,7 +4763,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "", "");
+        cdrObj.glossify(true, false, "", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4752,7 +4773,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "Genetics", "");
+        cdrObj.glossify(false, false, "Genetics", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4762,7 +4783,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "Genetics", "");
+        cdrObj.glossify(true, false, "Genetics", "");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4772,7 +4793,7 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(false, "", "Patient");
+        cdrObj.glossify(false, false, "", "Patient");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>
@@ -4782,7 +4803,67 @@
        lang="JScript" >
   <![CDATA[
     if (!cdrDocReadOnly()) {
-        cdrObj.glossify(true, "", "Patient");
+        cdrObj.glossify(true, false, "", "Patient");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Document (wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, true, "", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Document (dig and wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, true, "", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms (wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, true, "Genetics", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Genetics Terms (include markup and wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, true, "Genetics", "");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms (wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(false, true, "", "Patient");
+        ActiveDocument.FormattingUpdating = true;
+    }
+  ]]>
+</MACRO>
+
+<MACRO name="Glossify Patient Terms (include markup and wrap with Insertion)"
+       lang="JScript" >
+  <![CDATA[
+    if (!cdrDocReadOnly()) {
+        cdrObj.glossify(true, true, "", "Patient");
         ActiveDocument.FormattingUpdating = true;
     }
   ]]>

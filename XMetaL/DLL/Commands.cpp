@@ -1117,12 +1117,15 @@ STDMETHODIMP CCommands::get_userPath(BSTR* ret_val) {
  *  @param dig        - flag indicating whether we should recurse, looking
  *                      for top-level summary sections wrapped in Insertion
  *                      or Deletion elements
+ *  @param insertion  - flag indicating whether to add an Insertion wrapper
  *  @param dictionary - optional string narrowing the scope to terms for
  *                      a single dictionary
  *  @param audience   - optional string narrowing the scope to terms for
  *                      a single audience
  */
-STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary,
+STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig,
+                                 VARIANT_BOOL insertion,
+                                 const BSTR* dictionary,
                                  const BSTR* audience) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
     cdr::trace_log("glossify");
@@ -1132,7 +1135,8 @@ STDMETHODIMP CCommands::glossify(VARIANT_BOOL dig, const BSTR* dictionary,
         cdr::debug_log(L"glossifying current document");
     else
         cdr::debug_log(L"bringing up the glossify dialog box");
-    CGlossify glossify(dig != VARIANT_FALSE, dict, aud);
+    CGlossify glossify(dig != VARIANT_FALSE, insertion != VARIANT_FALSE, dict,
+                       aud);
     glossify.DoModal();
     return S_OK;
 }
