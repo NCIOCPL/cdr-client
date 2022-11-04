@@ -421,6 +421,7 @@ bool CCommands::doRetrieve(const CString& id,
     CString doc_id = cdr::doc_id_string(doc_no);
 
     // Ask the server for the document.
+    cdr::trace_log("invoking CdrGetDoc");
     cdr::CommandSet request("CdrGetDoc");
     auto command = request.command;
     request.set(command, "includeBlob", "N");
@@ -428,7 +429,9 @@ bool CCommands::doRetrieve(const CString& id,
     request.child_element(command, "Lock", check_out ? "Y" : "N");
     request.child_element(command, "DocVersion", version);
     CString response = cdr::Socket::send_commands(request);
+    cdr::trace_log("parsing response");
     cdr::DOM dom(response);
+    cdr::trace_log("opening document");
     return open_doc(dom, doc_id, check_out, version);
 }
 
@@ -2568,6 +2571,7 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
                     const CString& version) {
 
     // Create local variables needed by the method.
+    cdr::trace_log("top of open_doc()");
     _Application app = cdr::get_app();
     Documents docs = app.GetDocuments();
     unsigned int doc_no = cdr::get_doc_no(doc_id);
@@ -2629,6 +2633,7 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
     }
 
     // Extract the DocXml.
+    cdr::trace_log("extracting the DocXml");
     CString doc_xml;
     if (err.IsEmpty() && doc_type.IsEmpty())
         err = L"Missing Type attribute in CdrDoc element";
@@ -2647,6 +2652,7 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
 
             // Do some massaging (primarily insertion of the control block).
             try {
+                cdr::trace_log("parsing the document");
                 cdr::DOM dom(doc_xml.Trim());
                 auto root = dom.get_root();
                 if (!check_out)
@@ -2698,6 +2704,7 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
             _Document doc = docs.Open((LPCTSTR)doc_path, 1);
             if (doc) {
                 doc.SetTitle(retrieved_doc_title);
+                cdr::trace_log("document opened successfully");
                 return true;
             }
         }

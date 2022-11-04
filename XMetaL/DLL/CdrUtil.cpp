@@ -893,9 +893,9 @@ const char* cdr::get_cdr_trace_log_path() {
         try {
             char* name = "cdr-dll-trace.log";
             CString user_path = cdr::get_user_path();
-            size_t extra = 2; // 1 for path separator + 1 for null byte
-            size_t len = user_path.GetLength() + strlen(name) + extra;
             const std::string p = cdr::cstring_to_utf8(user_path);
+            size_t extra = 2; // 1 for path separator + 1 for null byte
+            size_t len = p.length() + strlen(name) + extra;
             path = new char[len];
             if (!path)
                 return 0;
@@ -1219,10 +1219,16 @@ int cdr::show_page(const CString& url) {
     memset(&process_information, 0, sizeof(process_information));
     memset(&startup_information, 0, sizeof(startup_information));
     startup_information.cb = sizeof(startup_information);
+    CString buf;
+    buf.Format(L"launching Chrome with URL %s", url);
+    cdr::trace_log(cdr::cstring_to_utf8(buf).c_str());
     BOOL result = CreateProcess(chrome, cmd, NULL, NULL, FALSE,
                                 NORMAL_PRIORITY_CLASS|CREATE_NEW_PROCESS_GROUP,
                                 NULL, NULL,
                                 &startup_information, &process_information);
+    CString buf2;
+    buf2.Format(L"back from launching %s", chrome);
+    cdr::trace_log(cdr::cstring_to_utf8(buf2).c_str());
     if (result) {
         CloseHandle(process_information.hProcess);
         CloseHandle(process_information.hThread);
