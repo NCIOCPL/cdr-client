@@ -1022,9 +1022,9 @@ STDMETHODIMP CCommands::get_session(BSTR *ret_val) {
 }
 
 /**
- * Find the CDR ID of the current English summary's translation.
+ * Find the CDR ID of the current English CDR document's translation.
  *
- *  @param original_id      - string containing the CDR ID of the active doc
+ *  @param original_id       - string containing the CDR ID of the English doc
  *  @param translated_doc_id - return string for the Spanish summary document
  */
 STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* original_id,
@@ -1032,53 +1032,33 @@ STDMETHODIMP CCommands::getTranslatedDocId(const BSTR* original_id,
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
     cdr::trace_log("getTranslatedDocId");
-    _Document doc = cdr::get_app().GetActiveDocument();
-    DOMNode doc_element = doc.GetDocumentElement();
-    CString doc_type = doc_element.GetNodeName();
-    CString report_name = L"";
-    CString param_name = L"";
-    CString xpath = L"";
     CString translation_id;
-    if (doc_type == L"Summary") {
-        report_name = L"Translated Summary";
-        param_name = L"EnglishSummary";
-        xpath = L"//TranslatedSummary";
+    CString id(*original_id);
+    try {
+        cdr::CommandSet request("CdrReport");
+        auto command = request.command;
+        request.child_element(command, "ReportName", "Translated Document");
+        auto params = request.child_element(command, "ReportParams");
+        auto param = request.child_element(params, "ReportParam");
+        request.set(param, "Name", "EnglishDocId");
+        request.set(param, "Value", id);
+        CString response_xml = cdr::Socket::send_commands(request);
+        cdr::DOM response_dom(response_xml);
+        auto node = response_dom.find("//TranslatedDocId");
+        if (node)
+            translation_id = response_dom.get_text(node);
+        else
+            cdr::show_errors(response_dom);
     }
-    else if (doc_type == L"Media") {
-        report_name = L"Translated Media Doc";
-        param_name = L"EnglishMediaDoc";
-        xpath = L"//TranslatedMediaDoc";
+    catch (::CException* e) {
+        e->ReportError();
+        e->Delete();
     }
-    if (report_name.IsEmpty())
-        ::AfxMessageBox(L"Unsupported document type " + doc_type);
-    else {
-        CString id(*original_id);
-        try {
-            cdr::CommandSet request("CdrReport");
-            auto command = request.command;
-            request.child_element(command, "ReportName", report_name);
-            auto params = request.child_element(command, "ReportParams");
-            auto param = request.child_element(params, "ReportParam");
-            request.set(param, "Name", param_name);
-            request.set(param, "Value", id);
-            CString response_xml = cdr::Socket::send_commands(request);
-            cdr::DOM response_dom(response_xml);
-            auto node = response_dom.find(xpath);
-            if (node)
-                translation_id = response_dom.get_text(node);
-            else
-                cdr::show_errors(response_dom);
-        }
-        catch (::CException* e) {
-            e->ReportError();
-            e->Delete();
-        }
-        catch (const wchar_t* e) {
-            ::AfxMessageBox(e);
-        }
-        catch (...) {
-            ::AfxMessageBox(L"Unexpected error retrieving patient ID");
-        }
+    catch (const wchar_t* e) {
+        ::AfxMessageBox(e);
+    }
+    catch (...) {
+        ::AfxMessageBox(L"Unexpected error retrieving translated document ID");
     }
     translation_id.SetSysString(translated_doc_id);
 

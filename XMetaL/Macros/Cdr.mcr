@@ -6045,27 +6045,27 @@
   <![CDATA[
     function spanishLinkIdSwap() {
         var doc = Application.ActiveDocument;
-        var translationOf = getSingleElement(doc, "TranslationOf");
-        if (!translationOf) {
+        var translation_of = getSingleElement(doc, "TranslationOf");
+        if (!translation_of) {
             Application.Alert("TranslationOf element not found.");
             return;
         }
-        var oldId = translationOf.getAttribute('cdr:ref');
-        var newId = getDocId();
-        if (!oldId) {
+        var old_id = translation_of.getAttribute('cdr:ref');
+        var new_id = getDocId();
+        if (!old_id) {
             Application.Alert("TranslationOf document ID not found.");
             return;
         }
-        if (oldId.length != 13 || oldId.substr(0, 3) != 'CDR') {
-            Application.Alert("Malformed TranslationOf document ID: " + oldId);
+        if (old_id.length != 13 || old_id.substr(0, 3) != 'CDR') {
+            Application.Alert("Malformed TranslationOf ID: " + old_id);
             return;
         }
-        if (!newId) {
+        if (!new_id) {
             Application.Alert("Summary has not yet been saved.");
             return;
         }
-        if (newId.length != 13 || newId.substr(0, 3) != 'CDR') {
-            Application.Alert("Malformed document ID: " + newId);
+        if (new_id.length != 13 || new_id.substr(0, 3) != 'CDR') {
+            Application.Alert("Malformed document ID: " + new_id);
             return;
         }
         var replaced = 0;
@@ -6079,14 +6079,35 @@
             var attr = elements[e][1];
             var links = doc.getElementsByTagName(name);
             for (var i = 0; i < links.length; ++i) {
-                var linkElement = links.item(i);
-                var linkId = linkElement.getAttribute(attr);
-                if (linkId.substr(0, 13) == oldId) {
-                    var newValue = newId + linkId.substr(13);
-                    linkElement.setAttribute(attr, newValue);
+                var link_element = links.item(i);
+                var link_id = link_element.getAttribute(attr);
+                if (link_id.substr(0, 13) == old_id) {
+                    var new_value = new_id + link_id.substr(13);
+                    link_element.setAttribute(attr, new_value);
                     ++replaced;
                 }
             }
+        }
+        var other_elements = [
+            ["MediaID", "cdr:ref"],
+            ["MiscellaneousDocLink", "cdr:ref"],
+            ["SummaryRef", "cdr:href"]
+        ];
+        // JavaScript is a little wonky on variable scope.
+        for (e = 0; e < other_elements.length; ++e) {
+           var name = other_elements[e][0];
+           var attr = other_elements[e][1];
+           var links = doc.getElementsByTagName(name);
+           for (var i = 0; i < links.length; ++i) {
+               var link_element = links.item(i);
+               var link_id = link_element.getAttribute(attr);
+               var translated_id = cdrObj.getTranslatedDocId(link_id);
+               if (translated_id) {
+                   var new_value = translated_id + link_id.substr(13);
+                   link_element.setAttribute(attr, new_value);
+                   ++replaced;
+               }
+           }
         }
         Application.Alert("Swapped " + replaced + " link(s).");
     }
