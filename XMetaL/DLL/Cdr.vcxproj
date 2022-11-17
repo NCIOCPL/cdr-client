@@ -63,6 +63,7 @@
     <SccLocalPath />
     <Keyword>AtlProj</Keyword>
     <ProjectGuid>{91C379FA-46F0-88FB-C343-452F425CBF5E}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release MinSize|Win32'" Label="Configuration">
@@ -259,6 +260,10 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|x64'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|x64'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinDependency|x64'">
+    <OutDir>$(SolutionDir)ReleaseUMinDependency\</OutDir>
+    <IntDir>ReleaseUMinDependency\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|Win32'">
     <ClCompile>
@@ -510,9 +515,8 @@ echo Warning : Cannot register Unicode DLL on Windows 95
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </ClCompile>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>.\ReleaseUMinDependency/Cdr.dll</OutputFile>
+      <OutputFile>./ReleaseUMinDependency/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ModuleDefinitionFile>.\Cdr.def</ModuleDefinitionFile>
       <ProgramDatabaseFile>.\ReleaseUMinDependency/Cdr.pdb</ProgramDatabaseFile>
@@ -833,6 +837,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <None Include="Cdr.def" />
     <None Include="certific.bmp" />
     <None Include="Commands.rgs" />
+    <None Include="D:\VisualStudio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="Cdr.idl">

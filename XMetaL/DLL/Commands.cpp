@@ -2427,6 +2427,8 @@ static bool is_spanish_summary() {
  */
 static void load_doc_types() {
 
+    cdr::debug_log("top of load_doc_types");
+
     // Use a local buffer type to ensure memory release even if an
     // exception occurs.
     struct Buf {

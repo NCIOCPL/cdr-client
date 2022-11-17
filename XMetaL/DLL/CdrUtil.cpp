@@ -19,9 +19,6 @@
 // Use HTTPS instead of CDR custom port (2019).
 #define TUNNELING
 
-// How patient we should be for launching IE (in milliseconds).
-#define MESSAGE_PENDING_DELAY 20000
-
 // Prevent annoying warning from compiler about Microsoft's own bugs.
 #pragma warning(disable : 4503)
 
@@ -362,6 +359,7 @@ cdr::Socket::Init cdr::Socket::Init::init;
  */
 cdr::Socket::Init::Init()
 {
+    CoInitialize(NULL);
     if (WSAStartup(0x0101, &wsa_data) != 0) {
         ::AfxMessageBox(L"Unable to initialize Windows socket library");
         throw L"Failure initializing Windows socket library";
@@ -410,6 +408,7 @@ cdr::Socket::Init::Init()
  */
 cdr::Socket::Init::~Init() {
     WSACleanup();
+    CoUninitialize();
 }
 
 /**
@@ -838,25 +837,18 @@ _Application cdr::get_app()
     cdr::debug_log("Top of getApp()");
     _Application app;
     CWinApp* win_app = ::AfxGetApp();
-    if (!win_app->m_pMessageFilter) {
-        win_app->m_pMessageFilter = new COleMessageFilter();
-        win_app->m_pMessageFilter->Register();
-    }
-    win_app->m_pMessageFilter->SetMessagePendingDelay(MESSAGE_PENDING_DELAY);
     try {
         COleException e;
-        cdr::debug_log("Before CreateDispatch()");
         if (app.CreateDispatch(L"XMetaL.Application", &e)) {
-            cdr::debug_log("After CreateDispatch()");
             return app;
         }
-        cdr::debug_log("After after CreateDispatch()");
+        cdr::debug_log("XMetaL.Application dispatch registration not found");
+        ::AfxMessageBox(L"XMetaL is not installed on this machine");
         e.ReportError();
     }
     catch (CException *ee) {
-        cdr::debug_log("Caught exception in cdr::getApp()\n");
+        cdr::debug_log("Caught CException in cdr::getApp()");
         ee->ReportError();
-        cdr::debug_log("Reported exception in cdr::getApp()\n");
         ee->Delete();
     }
     throw L"Unable to create XMetaL Application-level automation object";
@@ -1059,8 +1051,8 @@ const CString& cdr::get_user_path() {
     static CString user_path;
     if (user_path.IsEmpty()) {
         CString tail = L"\\Softquad\\XMetaL\\";
-        wchar_t* vars[] = { L"LOCALAPPDATA", L"APPDATA" };
-        wchar_t* vers[] = { L"9.0", L"4.5" };
+        wchar_t* vars[] = { L"APPDATA", L"LOCALAPPDATA" };
+        wchar_t* vers[] = { L"17.0", L"9.0" };
         for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
             wchar_t* dir = _tgetenv(vars[i]);
             if (dir) {
@@ -1068,6 +1060,7 @@ const CString& cdr::get_user_path() {
                     CString candidate = CString(dir) + tail + CString(vers[j]);
                     if (is_user_path(candidate)) {
                         user_path = candidate;
+                        cdr::debug_log("found user path " + user_path);
                         return user_path;
                     }
                 }
@@ -1075,6 +1068,7 @@ const CString& cdr::get_user_path() {
         }
         user_path = cdr::get_xmetal_path();
     }
+    cdr::debug_log("user_path is " + user_path);
     return user_path;
 }
 

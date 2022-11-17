@@ -36,6 +36,7 @@ Global
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Template|x64.ActiveCfg = Template|x64
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Template|x64.Build.0 = Template|x64
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Unicode Debug|x64.ActiveCfg = Unicode Debug|x64
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Unicode Debug|x64.Build.0 = Unicode Debug|x64
 		{91C379FA-46F0-88FB-C343-452F425CBF5E}.Unicode Release MinDependency|Win32.ActiveCfg = Unicode Release MinDependency|Win32
