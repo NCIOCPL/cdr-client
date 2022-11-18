@@ -2,13 +2,13 @@
 # Rules for building standalone tools supporting the CDR XMetaL client.
 #----------------------------------------------------------------------
 
-all: InstallCDRClientFiles.exe PatchXMetaL9.exe
+all: InstallCDRClientFiles.exe regcdrdll.exe
 
 InstallCDRClientFiles.exe: InstallCDRClientFiles.c
-	cl InstallCDRClientFiles.c
+	cl /EHsc InstallCDRClientFiles.c
 
-PatchXMetaL9.exe: PatchXMetaL9.c
-	cl PatchXMetaL9.c
+regcdrdll.exe: regcdrdll.cpp
+	cl /EHsc regcdrdll.cpp
 
 clean:
 	rm -f *~ *.obj *.exe
