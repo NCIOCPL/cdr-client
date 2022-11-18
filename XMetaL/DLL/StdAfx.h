@@ -28,4 +28,17 @@ extern CComModule _Module;
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
+#include "CApplication.h"
+#include "CDocument0.h"
+#include "CDocuments.h"
+#include "CDOMDocumentType.h"
+#include "CDOMElement.h"
+#include "CDOMNode.h"
+#include "CDOMNodeList.h"
+#include "CDOMProcessingInstruction.h"
+#include "CDOMText.h"
+#include "CFind.h"
+#include "CRange.h"
+#include "CSelection.h"
+
 #endif // !defined(AFX_STDAFX_H__DA207D44_E31F_45B2_AF99_4802E6FD030B__INCLUDED)

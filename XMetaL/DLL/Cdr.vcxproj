@@ -296,7 +296,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\ReleaseUMinSize/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -344,7 +344,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\ReleaseUMinSize/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -428,7 +428,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\ReleaseMinDependency/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -609,7 +609,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\DebugU/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -693,7 +693,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\Debug/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -778,7 +778,7 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
       <Outputs>$(OutDir)regsvr32.trg;%(Outputs)</Outputs>
     </CustomBuildStep>
     <Link>
-      <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions>
+      <!-- <AdditionalOptions>/MACHINE:I386 %(AdditionalOptions)</AdditionalOptions> -->
       <AdditionalDependencies>wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\ReleaseMinSize/Cdr.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -831,7 +831,6 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ClCompile>
     <ClCompile Include="ValidateDialog.cpp" />
     <ClCompile Include="VersionList.cpp" />
-    <ClCompile Include="xmetal90.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Cdr.def" />
@@ -908,11 +907,23 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+	<ClInclude Include="CApplication.h" />
+	<ClInclude Include="CDocument0.h" />
+	<ClInclude Include="CDocuments.h" />
+	<ClInclude Include="CDOMDocumentType.h" />
+	<ClInclude Include="CDOMElement.h" />
+	<ClInclude Include="CDOMNode.h" />
+	<ClInclude Include="CDOMNodeList.h" />
+	<ClInclude Include="CDOMProcessingInstruction.h" />
+	<ClInclude Include="CDOMText.h" />
     <ClInclude Include="cdrdom.h" />
     <ClInclude Include="CdrUtil.h" />
+	<ClInclude Include="CFind.h" />
     <ClInclude Include="CheckIn.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="CommentDialog.h" />
+	<ClInclude Include="CRange.h" />
+	<ClInclude Include="CSelection.h" />
     <ClInclude Include="EditElement.h" />
     <ClInclude Include="FindComments.h" />
     <ClInclude Include="FindMarkup.h" />
@@ -930,7 +941,6 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="ValidateDialog.h" />
     <ClInclude Include="VersionList.h" />
-    <ClInclude Include="xmetal90.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

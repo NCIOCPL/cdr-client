@@ -162,12 +162,13 @@ public:
     virtual BOOL InitInstance();
 
     // XMetaL version we're running.
-    typedef enum { XM45 = 45, XM70 = 70, XM90 = 90 } XMVER;
+    typedef enum { XM9 = 9, XM17 = 17 } XMVER;
     XMVER xmver;
     CString sendHttpCommand(const CString& cmd, const TCHAR* target = CLREFR);
 
 private:
     // Implementation.
+    void checkForRunningInstance();
     void extractServerSettings();
     bool createCdrSession();
     void clearCaches();

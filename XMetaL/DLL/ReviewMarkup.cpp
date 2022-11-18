@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "Cdr.h"
 #include "ReviewMarkup.h"
-#include ".\reviewmarkup.h"
 
 
 // CReviewMarkup dialog
@@ -61,10 +60,10 @@ static CString extract_date(CString& date_time) {
 
 bool CReviewMarkup::find_next_markup() {
     bool result = true;
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    ::Range del_elem = doc.GetRange();
-    ::Range ins_elem = doc.GetRange();
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CRange del_elem = doc.get_Range();
+    ::CRange ins_elem = doc.get_Range();
     CString desired_level = L"approved";
     CString user = L"";
     CString date = L"";
@@ -85,7 +84,7 @@ bool CReviewMarkup::find_next_markup() {
         BOOL found_del = del_elem.MoveToElement(L"Deletion", TRUE);
         BOOL found_ins = ins_elem.MoveToElement(L"Insertion", TRUE);
         while (found_del && desired_level != L"all") {
-            ::DOMElement e = del_elem.GetContainerNode();
+            ::CDOMElement e = del_elem.get_ContainerNode();
             CString lvl = e.getAttribute(L"RevisionLevel");
             if (lvl == desired_level)
                 break;
@@ -93,7 +92,7 @@ bool CReviewMarkup::find_next_markup() {
             found_del = del_elem.MoveToElement(L"Deletion", TRUE);
         }
         while (found_ins && desired_level != L"all") {
-            ::DOMElement e = ins_elem.GetContainerNode();
+            ::CDOMElement e = ins_elem.get_ContainerNode();
             CString lvl = e.getAttribute(L"RevisionLevel");
             if (lvl == desired_level)
                 break;
@@ -112,18 +111,18 @@ bool CReviewMarkup::find_next_markup() {
         }
         else {
             keep_going = FALSE;
-            ::Range* which_range = NULL;
+            ::CRange* which_range = NULL;
             if (!found_del)
                 which_range = &ins_elem;
             else if (!found_ins)
                 which_range = &del_elem;
-            else if (ins_elem.GetIsGreaterThan(del_elem, FALSE))
+            else if (ins_elem.get_IsGreaterThan(del_elem, FALSE))
                 which_range = &del_elem;
             else
                 which_range = &ins_elem;
             which_range->SelectContainerContents();
             which_range->Select();
-            ::DOMElement e = which_range->GetContainerNode();
+            ::CDOMElement e = which_range->get_ContainerNode();
             user = e.getAttribute(L"UserName");
             date = extract_date(e.getAttribute(L"Time"));
             markup_level = e.getAttribute(L"RevisionLevel");
@@ -132,7 +131,7 @@ bool CReviewMarkup::find_next_markup() {
                 markup_source_value = L"Advisory Board";
             else
                 markup_source_value = L"Editorial Board";
-            content = which_range->GetText();
+            content = which_range->get_Text();
             if (content.GetLength() > 25)
                 content = content.Left(25) + L" ...";
         }
@@ -168,10 +167,10 @@ BOOL CReviewMarkup::OnInitDialog()
 //----------------------------------------------------------------------
 void CReviewMarkup::OnBnClickedAccept()
 {
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    ::Range range = doc.GetRange();
-    CString elem_name = range.GetElementName(0);
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CRange range = doc.get_Range();
+    CString elem_name = range.get_ElementName(0);
     if (elem_name == L"Insertion")
         range.RemoveContainerTags();
     else if (elem_name == L"Deletion") {
@@ -189,10 +188,10 @@ void CReviewMarkup::OnBnClickedAccept()
 //----------------------------------------------------------------------
 void CReviewMarkup::OnBnClickedReject()
 {
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    ::Range range = doc.GetRange();
-    CString elem_name = range.GetElementName(0);
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CRange range = doc.get_Range();
+    CString elem_name = range.get_ElementName(0);
     if (elem_name == L"Deletion")
         range.RemoveContainerTags();
     else if (elem_name == L"Insertion") {

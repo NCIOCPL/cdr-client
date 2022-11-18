@@ -556,66 +556,70 @@ CString cdr::doc_id_string(int id) {
  *  @param  info            reference to control information object to be
  *                          populated.
  */
-void cdr::extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info) {
+void cdr::extract_ctl_info(::CDOMNode& node, CdrDocCtrlInfo& info) {
+
     // Initialize flags to defaults.
     info.ready_for_review = false;
-    info.blocked        = false;
+    info.blocked          = false;
 
     // Get type from doc element name
-    info.doc_type = node.GetNodeName();
+    info.doc_type = node.get_nodeName();
+    ::CDOMNode child = node.get_firstChild();
 
     // Rest is in CdrDocCtl, a child of the doc element.
-    node = node.GetFirstChild();
-    while (node) {
+    while (child) {
 
         // Look for an element.
-        if (node.GetNodeType() == 1) {
+        if (child.get_nodeType() == 1) {
 
             // If CdrDocCtl, walk through its child nodes.
-            if (node.GetNodeName() == L"CdrDocCtl") {
+            if (child.get_nodeName() == L"CdrDocCtl") {
 
                 // Check the ready-for-review flag.  This is where we
                 // stick the document when we pass it off to XMetaL
                 // (so we don't have to worry about formatting it in
                 // the CSS).
-                ::DOMElement cdr_doc_ctl = node;
-                if (cdr_doc_ctl.getAttribute(L"readyForReview") == L"Y")
+                ::CDOMElement cdr_doc_ctl = (::CDOMElement)child;
+                wchar_t* rr = L"readyForReview";
+                CString val = cdr_doc_ctl.getAttribute(rr);
+                if (val == L"Y")
                     info.ready_for_review = true;
 
                 // MUST do this!  Otherwise XMetaL blows up with a complaint
                 // about a pure virtual function!
                 cdr_doc_ctl.m_bAutoRelease = 0;
 
-                node = node.GetFirstChild();
-                while (node) {
+                CDOMNode grandchild = child.get_firstChild();
+                while (grandchild) {
 
                     // Only interested in elements (type 1).
-                    if (node.GetNodeType() == 1) {
-                        CString name = node.GetNodeName();
+                    if (grandchild.get_nodeType() == 1) {
+                        CString text = extract_element_text(grandchild);
+                        CString name = grandchild.get_nodeName();
                         if (name == L"DocTitle")
-                            info.doc_title = extract_element_text(node);
+                            info.doc_title = text;
                         else if (name == L"DocId")
-                            info.doc_id = cdr::trim(extract_element_text(node));
+                            info.doc_id = cdr::trim(text);
 
                         // This is where we find this flag when we get the
                         // document from the CDR Server.
                         else if (name == L"ReadyForReview") {
-                            if (extract_element_text(node) == L"Y")
+                            if (text == L"Y")
                                 info.ready_for_review = true;
                         }
                         else if (name == L"DocActiveStatus") {
-                            if (extract_element_text(node) == L"I")
+                            if (text == L"I")
                                 info.blocked = true;
                         }
                     }
-                    node = node.GetNextSibling();
+                    child = child.get_nextSibling();
                 }
 
                 // Once we've seen CdrDocCtl, we're done.
                 break;
             }
         }
-        node = node.GetNextSibling();
+        child = child.get_nextSibling();
     }
 }
 
@@ -631,15 +635,15 @@ void cdr::extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info) {
  *  @return                 string object containing concatenated text
  *                          content for element.
  */
-CString cdr::extract_element_text(DOMNode node) {
+CString cdr::extract_element_text(::CDOMNode& node) {
     CString s;
-    node = node.GetFirstChild();
-    while (node) {
+    ::CDOMNode child = node.get_firstChild();
+    while (child) {
         // Text nodes only.
-        if (node.GetNodeType() == 3) {
-            s += node.GetNodeValue();
+        if (child.get_nodeType() == 3) {
+            s += child.get_nodeValue();
         }
-        node = node.GetNextSibling();
+        child = child.get_nextSibling();
     }
     return s;
 }
@@ -802,14 +806,14 @@ int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set) {
  * @return          - `Range` object for the found or created element
  *                    (empty if the element isn't allowed in this location)
  */
-::Range cdr::find_or_create_child(::Range parent, const CString& elem_name) {
+::CRange cdr::find_or_create_child(::CRange& parent, const CString& elem_name) {
 
     // Try to find an existing occurrence first.
     parent.SelectContainerContents();
-    ::Range child = parent.GetDuplicate();
+    ::CRange child = parent.get_Duplicate();
     child.Collapse(1);
     if (child.MoveToElement(elem_name, TRUE)) {
-        if (parent.GetContains(child, FALSE))
+        if (parent.get_Contains(child, FALSE))
             return child;
     }
 
@@ -817,11 +821,11 @@ int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set) {
     parent.Collapse(1);
     if (parent.FindInsertLocation(elem_name, TRUE)) {
         parent.InsertElement(elem_name);
-        return parent;
+        return parent.get_Duplicate();
     }
 
     // Bust. Can't find *or* create the element!
-    return ::Range();
+    return ::CRange();
 }
 
 /**
@@ -832,10 +836,10 @@ int cdr::fill_list_box(CListBox& list_box, const DocSet& doc_set) {
  *  @return             new object to be used for invoking application-
  *                      level XMetaL methods.
  */
-_Application cdr::get_app()
+::CApplication cdr::get_app()
 {
     cdr::debug_log("Top of getApp()");
-    _Application app;
+    ::CApplication app;
     CWinApp* win_app = ::AfxGetApp();
     try {
         COleException e;
@@ -910,7 +914,7 @@ const char* cdr::get_cdr_trace_log_path() {
  *   open_doc() in Commands.cpp
  *   remove_doc() in Commands.cpp
  *
- *  @param  doc_string       reference to document ID string.
+ *  @param  doc_string      reference to document ID string.
  *  @return                 integer representing document's primary key
  *                          in SQL Server.
  */
@@ -929,21 +933,21 @@ unsigned long cdr::get_doc_no(const CString& doc_string) {
  *   CCommands::getOrgAddress()
  *
  * @param elem_name - string naming the element we're looking for
- * @return          - `Range` object from the XMetaL DOM API for the
+ * @return          - `CRange` object from the XMetaL DOM API for the
  *                    sought element (empty if not found)
  */
-::Range cdr::get_elem_range(const CString& elem_name) {
+::CRange cdr::get_elem_range(const CString& elem_name) {
     // Find out where we are.
-    ::_Document active_doc = get_app().GetActiveDocument();
-    ::Range rng = active_doc.GetRange();
+    ::CDocument0 active_doc = get_app().get_ActiveDocument();
+    ::CRange rng = active_doc.get_Range();
 
     // Make sure what we find is an ancestor of the current element.
-    if (!rng.GetIsParentElement(elem_name))
-        return ::Range();
+    if (!rng.get_IsParentElement(elem_name))
+        return ::CRange();
 
     // Move.
     if (!rng.MoveToElement(elem_name, FALSE))
-        return ::Range();
+        return ::CRange();
 
     return rng;
 }
@@ -1085,9 +1089,9 @@ const CString& cdr::get_user_path() {
 const CString& cdr::get_xmetal_path() {
     static CString xmetal_path;
     if (xmetal_path.IsEmpty()) {
-        _Application app = get_app();
+        ::CApplication app = get_app();
         if (app)
-            xmetal_path = app.GetPath();
+            xmetal_path = app.get_Path();
     }
     return xmetal_path;
 }
@@ -1101,24 +1105,24 @@ const CString& cdr::get_xmetal_path() {
  *   replace_audio_seconds() in Commands.cpp
  *   replace_image_dimensions() in Commands.cpp
  *
- * @param elem  - reference to `DOMElement` from the XMetaL DOM API
+ * @param elem  - reference to `CDOMElement` from the XMetaL DOM API
  * @param value - replacement text content
  * @return      - true
  */
-bool cdr::replace_element_content(::DOMElement& elem, const CString& value) {
+bool cdr::replace_element_content(::CDOMElement& elem, const CString& value) {
 
     // Clear out all the child nodes.
-    ::DOMNode child = elem.GetFirstChild();
+    ::CDOMNode child = elem.get_firstChild();
     while (child) {
-        ::DOMNode nextChild = child.GetNextSibling();
-        ::DOMNode dummy = elem.removeChild(child);
+        ::CDOMNode nextChild = child.get_nextSibling();
+        ::CDOMNode dummy = elem.removeChild(child);
         child = nextChild;
     }
 
     // Pop in a new text node.
-    ::_Document cur_doc = cdr::get_app().GetActiveDocument();
-    ::DOMNode text_node = cur_doc.createTextNode(value);
-    ::DOMNode dummy = elem.appendChild(text_node);
+    ::CDocument0 cur_doc = cdr::get_app().get_ActiveDocument();
+    ::CDOMNode text_node = cur_doc.createTextNode(value);
+    ::CDOMNode dummy = elem.appendChild(text_node);
     return true;
 }
 

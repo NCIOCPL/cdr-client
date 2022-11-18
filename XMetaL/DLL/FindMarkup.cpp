@@ -44,10 +44,10 @@ void CFindMarkup::OnBnClickedPrevMarkup() {
 }
 
 void CFindMarkup::find_markup(bool forward) {
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    ::Range del_elem = doc.GetRange();
-    ::Range ins_elem = doc.GetRange();
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CRange del_elem = doc.get_Range();
+    ::CRange ins_elem = doc.get_Range();
     CString desired_level = L"approved";
     int level_id = GetCheckedRadioButton(IDC_FIND_MARKUP_PUBLISH,
                                         IDC_FIND_MARKUP_PROPOSED);
@@ -63,7 +63,7 @@ void CFindMarkup::find_markup(bool forward) {
         BOOL found_del = del_elem.MoveToElement(L"Deletion", forward);
         BOOL found_ins = ins_elem.MoveToElement(L"Insertion", forward);
         while (found_del) {
-            ::DOMElement e = del_elem.GetContainerNode();
+            ::CDOMElement e = del_elem.get_ContainerNode();
             CString level = e.getAttribute(L"RevisionLevel");
             if (level == desired_level)
                 break;
@@ -71,7 +71,7 @@ void CFindMarkup::find_markup(bool forward) {
             found_del = del_elem.MoveToElement(L"Deletion", forward);
         }
         while (found_ins) {
-            ::DOMElement e = ins_elem.GetContainerNode();
+            ::CDOMElement e = ins_elem.get_ContainerNode();
             CString level = e.getAttribute(L"RevisionLevel");
             if (level == desired_level)
                 break;
@@ -97,13 +97,13 @@ void CFindMarkup::find_markup(bool forward) {
         }
         else {
             keep_going = false;
-            ::Range* which_range = &ins_elem;
+            ::CRange* which_range = &ins_elem;
             if (!found_ins)
                 which_range = &del_elem;
             else if (found_del) {
-                if (forward && ins_elem.GetIsGreaterThan(del_elem, FALSE))
+                if (forward && ins_elem.get_IsGreaterThan(del_elem, FALSE))
                     which_range = &del_elem;
-                else if (!forward && del_elem.GetIsGreaterThan(ins_elem, FALSE))
+                else if (!forward && del_elem.get_IsGreaterThan(ins_elem, FALSE))
                     which_range = &del_elem;
             }
             which_range->SelectContainerContents();

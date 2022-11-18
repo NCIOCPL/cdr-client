@@ -163,7 +163,7 @@ void CEditElement::OnSelectButton() {
             case GP_SYNDROME:
                 CCommands::doInsertLink(str);
                 while (++i < sel_count) {
-                    ::Selection selection = cdr::get_app().GetSelection();
+                    ::CSelection selection = cdr::get_app().get_Selection();
                     if (!selection.FindInsertLocation(element, TRUE)) {
                         ::AfxMessageBox(TOOMANY);
                         break;
@@ -255,18 +255,18 @@ BOOL CEditElement::OnInitDialog()
     CDialog::OnInitDialog();
 
     // Find the source element for the link.
-    ::Range selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
-    while (elem && elem.GetNodeType() != 1) // DOMElement
-        elem = elem.GetParentNode();
+    ::CRange selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
+    while (elem && elem.get_nodeType() != 1) // DOMElement
+        elem = elem.get_parentNode();
     if (elem) {
 
         // Find the text node for the element.
-        ::DOMText text_node = elem.GetFirstChild();
-        while (text_node && text_node.GetNodeType() != 3) // DOMText
-            text_node = text_node.GetNextSibling();
+        ::CDOMText text_node = elem.get_firstChild();
+        while (text_node && text_node.get_nodeType() != 3) // DOMText
+            text_node = text_node.get_nextSibling();
         if (text_node)
-            m_title = text_node.GetData();
+            m_title = text_node.get_data();
     }
 
     /*

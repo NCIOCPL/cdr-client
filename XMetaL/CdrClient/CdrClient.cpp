@@ -64,10 +64,7 @@ CdrClient::CdrClient() : loaderReplaced(false),
     CoInitialize(NULL);
     xmlDomParser.CoCreateInstance(__uuidof(DOMDocument));
 
-    // Default XMetaL version is what we used before we
-    // started putting our client files in the user's
-    // private area of the file system.
-    xmver = XM45;
+    // Figure out which version of XMetaL is running.
     TCHAR buf[256];
     TCHAR* temp = _tgetcwd(buf, sizeof buf / sizeof buf[0]);
     if (!temp) {
@@ -78,10 +75,15 @@ CdrClient::CdrClient() : loaderReplaced(false),
     CString cwd = buf;
     cwd.MakeLower();
     if (cwd.Find(_T("softquad")) >= 0) {
-        if (cwd.Find(_T("7.0")) >= 0)
-            xmver = XM70;
-        else if (cwd.Find(_T("9.0")) >= 0)
-            xmver = XM90;
+        if (cwd.Find(_T("9.0")) >= 0)
+            xmver = XM9;
+        else if (cwd.Find(_T("17.0")) >= 0)
+            xmver = XM17;
+        else {
+            CString msg;
+            msg.Format(_T("Unsupported XMetaL version %s"), buf);
+            throw msg;
+        }
     }
 }
 
@@ -125,7 +127,7 @@ BOOL CdrClient::InitInstance() {
         CWinApp::InitInstance();
 
         // 1. Make sure there isn't already an instance of XMetaL running.
-        check_for_running_instance();
+        checkForRunningInstance();
 
         // 2. Read the settings from the application's state file.
         serverSettings = new ServerSettings(xmlDomParser, this);
@@ -418,15 +420,7 @@ void CdrClient::logOptions() {
                commandLineOptions.serverDebugLevel);
     log(buf, 2);
     log(_T("Tier is '") + serverSettings->currentGroup + _T("'.\n"), 1);
-    TCHAR* v = _T("4.5");
-    switch (xmver) {
-    case XM70:
-        v = _T("7.0");
-        break;
-    case XM90:
-        v = _T("9.0");
-        break;
-    }
+    TCHAR* v = xmver == XM17 ? _T("17.0") : _T("9.0");
     buf.Format(_T("Running XMetaL version %s\n"), v);
     log(buf, 0);
 }
@@ -1096,6 +1090,8 @@ bool File::skipValidation() const {
         return true;
     if (lowerName.Find(manifestFile) != -1)
         return true;
+    if (lowerName.Find(_T("cdr.dll")) != -1)
+        return true;
     if (lowerName.Find(_T("cdrclient-20")) != -1) {
         if (lowerName.Find(_T(".exe")) != -1)
             return true;
@@ -1486,35 +1482,34 @@ void CdrClient::getNewFiles(const std::string& bytes, CdrProgressDlg& dialog) {
  * succeed.
  */
 void CdrClient::launchClient() {
-    CString msg;
-    int rc;
 
     // If we're running a later version of XMetaL than the one
     // most users are running, swap in a DLL to match.
-    if (xmver == XM90 && !_waccess(_T(".\\CDR\\cdr.xm9"), 0)) {
+    if (xmver == XM17 && !_waccess(_T(".\\CDR\\cdr.xm17"), 0)) {
+        log(_T("Swapping in DLL for XMetaL 17.0\n"));
+        system(".\\regcdrdll --unregister Cdr\\Cdr.dll");
+        BOOL success = CopyFileA("CDR\\Cdr.xm17", "CDR\\Cdr.dll", FALSE);
+        if (!success)
+            throw _T("Failure swapping DLL for XMetaL 17.0");
+    }
+
+    // Make it possible to switch back and forth.
+    if (xmver == XM9 && !_waccess(_T(".\\CDR\\cdr.xm9"), 0)) {
         log(_T("Swapping in DLL for XMetaL 9.0\n"));
+        system(".\\RegSvrEx /u CDR\\Cdr.dll");
         BOOL success = CopyFileA("CDR\\Cdr.xm9", "CDR\\Cdr.dll", FALSE);
         if (!success)
             throw _T("Failure swapping DLL for XMetaL 9.0");
     }
 
-    // Make it possible to switch back and forth.
-    if (xmver == XM45 && !_waccess(_T(".\\CDR\\cdr.xm45"), 0)) {
-        log(_T("Swapping in DLL for XMetaL 4.5\n"));
-        BOOL success = CopyFileA("CDR\\Cdr.xm45", "CDR\\Cdr.dll", FALSE);
-        if (!success)
-            throw _T("Failure swapping DLL for XMetaL 4.5");
-    }
-
-    // If we have the tool which supports registration of the DLL
-    // without requiring administrative privileges, use it instead
-    // of Microsoft's.
-    char* regCmd = "regsvr32 /s CDR\\Cdr.dll";
-    if (!_waccess(_T(".\\RegSvrEx.exe"), 0))
-        regCmd = ".\\RegSvrEx /c CDR\\Cdr.dll";
-    msg.Format(_T("Registering DLL: %S\n"), regCmd);
+    // Fall back on a 32-bit registration tool if we're running XMetaL 9.0.
+    char* cmd = ".\\regcdrdll Cdr\\Cdr.dll";
+    if (xmver == XM9)
+        cmd = ".\\RegSvrEx /c CDR\\Cdr.dll";
+    CString msg;
+    msg.Format(_T("Registering DLL: %S\n"), cmd);
     log(msg, 1);
-    rc = system(regCmd);
+    int rc = system(cmd);
     if (rc) {
         msg.Format(_T("Failure registering Cdr.dll: %S"), strerror(errno));
         throw msg;
@@ -1532,29 +1527,19 @@ void CdrClient::launchClient() {
 /*
  * Returns the path to the XMetaL executable program to be
  * launched; or an empty string if no appropriate path is found.
- * Note that until XM70_SUPPORTED is defined, xmver will always
- * be XM45.  We have deferred work on determining whether an
- * upgrade to XMetaL 7.0 is feasible.
- *
- * RMK 2014-04-12: JIRA ticket OCECDR-3749 has been created to
- * resume the work on investigating the feasibility of upgrading
- * the XMetaL client to the latest version, which is now 9.0.
  */
 CString findXmetalProgram(CdrClient* client) {
     client->log(_T("Top of findXmetalProgram\n"), 3);
-    TCHAR* xm45 = _T("\\Blast Radius\\XMetaL 4.5\\Author\\xmetal45.exe");
-    TCHAR* xm70 = _T("\\XMetaL 7.0\\Author\\xmetal70.exe");
-    TCHAR* xm90 = _T("\\XMetaL 9.0\\Author\\xmetal90.exe");
+    TCHAR* xm17 = _T("\\XMetaL 17.0\\Author\\xmetal.exe");
+    TCHAR* xm9 = _T("\\XMetaL 9.0\\Author\\xmetal90.exe");
     CString msg;
     switch (client->xmver) {
-    case CdrClient::XM45:
-        return tryXmetalPath(xm45, client);
-    case CdrClient::XM70:
-        return tryXmetalPath(xm70, client);
-    case CdrClient::XM90:
-        return tryXmetalPath(xm90, client);
+    case CdrClient::XM17:
+        return tryXmetalPath(xm17, client);
+    case CdrClient::XM9:
+        return tryXmetalPath(xm9, client);
     default:
-        msg.Format(_T("Unrecognized XMetaL version %s"), client->xmver);
+        msg.Format(_T("Unrecognized XMetaL version %d"), client->xmver);
         throw msg;
     }
 }
@@ -1567,7 +1552,11 @@ CString findXmetalProgram(CdrClient* client) {
  * so we have to try both.
  */
 CString tryXmetalPath(TCHAR* t, CdrClient* client) {
-    TCHAR* vars[] = { _T("ProgramFiles(x86)"), _T("ProgramFiles") };
+    TCHAR* vars[] = {
+        _T("ProgramFiles(x86)"),
+        _T("ProgramFiles"),
+        _T("ProgramW6432")
+    };
     CString tail = t;
     for (size_t i = 0; i < sizeof vars / sizeof vars[0]; ++i) {
         TCHAR* dir = _tgetenv(vars[i]);
@@ -1792,6 +1781,23 @@ void CdrClient::log(const CString& what, int level) {
         logger->write(what);
 }
 
+/**
+ * Ensure that we don't already have a running instance of XMetaL.
+ *
+ * See https://tracker.nci.nih.gov/browse/OCECDR-5006.
+ */
+void CdrClient::checkForRunningInstance() {
+    CString program_name = findXmetalProgram(this);
+    if (program_name.IsEmpty())
+        throw _T("Unable to find XMetaL program");
+    int position = program_name.ReverseFind(_T('\\'));
+    if (position == -1)
+        throw _T("Unable to find a full path for XMetaL");
+    CString name = program_name.Right(program_name.GetLength() - ++position);
+    if (find_process_id(name))
+        throw _T("XMetaL is already running");
+}
+
 /*
  * See if a process is running.
  */
@@ -1819,21 +1825,4 @@ DWORD find_process_id(const CString process_name) {
 
     CloseHandle(snapshot);
     return 0;
-}
-
-/**
- * Ensure that we don't already have a running instance of XMetaL.
- *
- * See https://tracker.nci.nih.gov/browse/OCECDR-5006.
- */
-void check_for_running_instance() {
-    CString program_name = findXmetalProgram(this);
-    if (program_name.IsEmpty())
-        throw _T("Unable to find XMetaL program");
-    int position = program_name.ReverseFind(_T('\\'));
-    if (position == -1)
-        throw _T("Unable to find a full path for XMetaL");
-    CString name = program_name.Right(program_name.GetLength() - ++position);
-    if (find_process_id(name))
-        throw _T("XMetaL is already running");
 }

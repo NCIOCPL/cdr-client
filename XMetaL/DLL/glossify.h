@@ -14,13 +14,13 @@ class CGlossify : public CDialog
 private:
     struct Word {
         CString w;
-        ::Range r;
-        Word(::Range r_) {
+        ::CRange r;
+        Word(::CRange r_) {
             r = r_;
-            w = r.GetText();
+            w = r.get_Text();
             w.MakeUpper();
         }
-        Word(::Range r_, CString s_) {
+        Word(::CRange r_, CString s_) {
             r = r_;
             w = s_;
         }
@@ -29,7 +29,7 @@ private:
     struct WordChain {
         WordVector words;
         int        cur_word;
-        WordChain(::DOMNode node, ::_Document doc);
+        WordChain(::CDOMNode node, ::CDocument0 doc);
     };
     typedef std::vector<WordChain> WordChains;
 
@@ -57,13 +57,13 @@ private:
     CEdit                m_phrase;
     CEdit                m_markup;
     CString              doc_type;
-    ::_Document          doc;
-    ::Range              range;
+    ::CDocument0         doc;
+    ::CRange             range;
     WordChains           chains;
     int                  cur_chain;
     cdr::GlossaryNode*   cur_node;
-    void                 find_chains(DOMNode& n);
-    void                 keep_digging(::DOMNode& n, ::_Document& doc);
+    void                 find_chains(::CDOMNode& n);
+    void                 keep_digging(::CDOMNode& n, ::CDocument0& doc);
     bool                 find_next_match();
     CString              language;
     CString              dictionary;

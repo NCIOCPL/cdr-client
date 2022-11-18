@@ -12,6 +12,7 @@
 
 #include "Cdr_i.c"
 #include "Commands.h"
+#include "CdrUtil.h"
 
 
 CComModule _Module;
@@ -25,25 +26,25 @@ class CCdrApp : public CWinApp
 public:
 
 // Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CCdrApp)
-	public:
+    // ClassWizard generated virtual function overrides
+    //{{AFX_VIRTUAL(CCdrApp)
+    public:
     virtual BOOL InitInstance();
     virtual int ExitInstance();
-	//}}AFX_VIRTUAL
+    //}}AFX_VIRTUAL
 
-	//{{AFX_MSG(CCdrApp)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+    //{{AFX_MSG(CCdrApp)
+        // NOTE - the ClassWizard will add and remove member functions here.
+        //    DO NOT EDIT what you see in these blocks of generated code !
+    //}}AFX_MSG
+    DECLARE_MESSAGE_MAP()
 };
 
 BEGIN_MESSAGE_MAP(CCdrApp, CWinApp)
-	//{{AFX_MSG_MAP(CCdrApp)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
+    //{{AFX_MSG_MAP(CCdrApp)
+        // NOTE - the ClassWizard will add and remove mapping macros here.
+        //    DO NOT EDIT what you see in these blocks of generated code!
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 CCdrApp theApp;
@@ -51,7 +52,12 @@ CCdrApp theApp;
 BOOL CCdrApp::InitInstance()
 {
     _Module.Init(ObjectMap, m_hInstance, &LIBID_CDRLib);
-    return CWinApp::InitInstance();
+    BOOL success = CWinApp::InitInstance();
+    if (success)
+        cdr::debug_log("CWinApp::InitInstance() succeeded");
+    else
+        cdr::debug_log("CWinApp::InitInstance() failed");
+    return success;
 }
 
 int CCdrApp::ExitInstance()
@@ -83,7 +89,12 @@ STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 STDAPI DllRegisterServer(void)
 {
     // registers object, typelib and all interfaces in typelib
-    return _Module.RegisterServer(TRUE);
+    AtlSetPerUserRegistration(true);
+    HRESULT hr = _Module.RegisterServer(TRUE);
+    CString msg;
+    msg.Format(L"RegisterServer() returned %lx", hr);
+    cdr::debug_log(msg);
+    return hr;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -91,5 +102,10 @@ STDAPI DllRegisterServer(void)
 
 STDAPI DllUnregisterServer(void)
 {
-    return _Module.UnregisterServer(TRUE);
+    AtlSetPerUserRegistration(true);
+    HRESULT hr = _Module.UnregisterServer(TRUE);
+    CString msg;
+    msg.Format(L"UnregisterServer() returned %lx", hr);
+    cdr::debug_log(msg);
+    return hr;
 }

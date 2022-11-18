@@ -43,9 +43,9 @@ void CFindComments::OnBnClickedPrevComment() {
 }
 
 void CFindComments::find_comment(bool forward) {
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    ::Range element = doc.GetRange();
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CRange element = doc.get_Range();
     CString name;
     CString value;
     int option = GetCheckedRadioButton(IDC_FIND_COMMENTS_ADVISORY,
@@ -74,7 +74,7 @@ void CFindComments::find_comment(bool forward) {
         element.Collapse(1);
         BOOL found_comment = element.MoveToElement(L"Comment", forward);
         while (found_comment) {
-            ::DOMElement e = element.GetContainerNode();
+            ::CDOMElement e = element.get_ContainerNode();
             CString v = e.getAttribute(name);
             if (v == value)
                 break;

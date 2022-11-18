@@ -56,20 +56,19 @@
 static void     clear_error_list();
 static CString  get_blob_extension(const CString& doc, const CString& type);
 static void     get_blob_from_file(char*, CFile&, int);
-static CString  get_full_doc_path(_Document*);
+static CString  get_full_doc_path(::CDocument0*);
 static CString  get_location_id();
 static cdr::StringList*
                 get_schema_valid_values(const CString, const CString);
-static void     insert_audio_seconds(::DOMNode&, CFile&);
-static void     insert_image_dimensions(::DOMNode&, CFile&);
+static void     insert_audio_seconds(::CDOMNode&, CFile&);
+static void     insert_image_dimensions(::CDOMNode&, CFile&);
 static bool     is_spanish_summary();
 static void     load_doc_types();
-static bool     move_to_location_id(const CString&, ::DOMNode&);
+static bool     move_to_location_id(const CString&, ::CDOMNode&);
 static bool     open_doc(cdr::DOM&, const CString&, BOOL, const CString&);
 static void     remove_doc(const CString&);
-static bool     replace_audio_seconds(::DOMNode&, CString);
-static bool     replace_image_dimensions(::DOMNode&, CString, CString);
-static void     set_title_bar();
+static bool     replace_audio_seconds(::CDOMNode&, CString);
+static bool     replace_image_dimensions(::CDOMNode&, CString, CString);
 static CString  string_from_variant(const VARIANT FAR&);
 
 // Local data.
@@ -124,11 +123,11 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
     cdr::trace_log("addGlossaryPhrase");
 
     // Find the element with the current focus.
-    ::Selection selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
+    ::CSelection selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
 
     // Make sure we have a glossary term reference.
-    if (!elem || elem.GetNodeName() != L"GlossaryTermRef") {
+    if (!elem || elem.get_nodeName() != L"GlossaryTermRef") {
         ::AfxMessageBox(L"No GlossaryTermRef at current location");
         return S_OK;
     }
@@ -141,7 +140,7 @@ STDMETHODIMP CCommands::addGlossaryPhrase(void) {
 
     // Extract the text content of the element & determine usage.
     selection.SelectContainerContents();
-    CString value = selection.GetText();
+    CString value = selection.get_Text();
     CString usage = L"GlossaryTerm Phrases";
     CString language = L"English";
     if (is_spanish_summary()) {
@@ -196,14 +195,14 @@ STDMETHODIMP CCommands::checkIn(int *ret_val) {
         }
 
         // Get the currently active document.
-        _Document doc = cdr::get_app().GetActiveDocument();
+        CDocument0 doc = cdr::get_app().get_ActiveDocument();
         if (!doc) {
             ::AfxMessageBox(L"There is no active document.");
             return S_OK;
         }
 
         // Extract control information from the document.
-        DOMNode doc_element = doc.GetDocumentElement();
+        ::CDOMNode doc_element = doc.get_documentElement();
         CdrDocCtrlInfo ctrl_info;
         cdr::extract_ctl_info(doc_element, ctrl_info);
         if (ctrl_info.doc_id.IsEmpty()) {
@@ -324,17 +323,17 @@ bool CCommands::doInsertLink(const CString& info) {
         return inserted;
 
     // Find the source element for the link.
-    ::Range selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
-    while (elem && elem.GetNodeType() != 1) // DOMElement
-        elem = elem.GetParentNode();
+    ::CRange selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
+    while (elem && elem.get_nodeType() != 1) // DOMElement
+        elem = elem.get_parentNode();
     if (elem) {
 
         // Determine whether this is a cdr:ref or cdr:href link.
-        ::_Document doc = cdr::get_app().GetActiveDocument();
-        ::DOMDocumentType doc_type = doc.GetDoctype();
+        ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
+        ::CDOMDocumentType doc_type = doc.get_doctype();
         CString attr_name;
-        if (doc_type.GetHasAttribute(elem.GetNodeName(), L"cdr:ref"))
+        if (doc_type.get_hasAttribute(elem.get_nodeName(), L"cdr:ref"))
             attr_name = L"cdr:ref";
         else
             attr_name = L"cdr:href";
@@ -347,23 +346,23 @@ bool CCommands::doInsertLink(const CString& info) {
             return true;
 
         // Find the text node for the element.
-        ::DOMText text_node = elem.GetFirstChild();
-        while (text_node && text_node.GetNodeType() != 3) { // DOMText
-            ::DOMText next_node = text_node.GetNextSibling();
-            if (text_node.GetNodeType() == 7) { // PI
-                ::DOMProcessingInstruction pi(text_node);
+        ::CDOMText text_node = elem.get_firstChild();
+        while (text_node && text_node.get_nodeType() != 3) { // DOMText
+            ::CDOMText next_node = text_node.get_nextSibling();
+            if (text_node.get_nodeType() == 7) { // PI
+                ::CDOMProcessingInstruction pi(text_node);
                 pi.m_bAutoRelease = 0;
-                if (pi.GetTarget() == L"xm-replace_text")
-                    ::DOMNode dummy = elem.removeChild(pi);
+                if (pi.get_target() == L"xm-replace_text")
+                    ::CDOMNode dummy = elem.removeChild(pi);
             }
             text_node = next_node;
         }
         if (text_node)
-            text_node.SetData(link_info.data);
+            text_node.put_data(link_info.data);
         else {
-            ::_Document current_doc = cdr::get_app().GetActiveDocument();
+            ::CDocument0 current_doc = cdr::get_app().get_ActiveDocument();
             text_node = current_doc.createTextNode(link_info.data);
-            ::DOMNode dummy = elem.appendChild(text_node);
+            ::CDOMNode dummy = elem.appendChild(text_node);
         }
         inserted = true;
     }
@@ -391,8 +390,8 @@ bool CCommands::doRetrieve(const CString& id,
                            const CString& version) {
 
     // Make sure the document isn't already open.
-    _Application app = cdr::get_app();
-    Documents docs = app.GetDocuments();
+    ::CApplication app = cdr::get_app();
+    CDocuments docs = app.get_Documents();
     unsigned int doc_no = cdr::get_doc_no(id);
     CString match;
     if (version != L"Current")
@@ -400,12 +399,12 @@ bool CCommands::doRetrieve(const CString& id,
     else
         match.Format(L"CDR%u ", doc_no);
     int match_len = match.GetLength();
-    for (long i = docs.GetCount(); i > 0; --i) {
+    for (long i = docs.get_count(); i > 0; --i) {
         COleVariant vi;
         vi = i;
-        _Document doc = docs.item(&vi);
-        if (doc.GetTitle().Left(match_len) == match) {
-            if (!doc.GetSaved()) {
+        ::CDocument0 doc = docs.item(&vi);
+        if (doc.get_Title().Left(match_len) == match) {
+            if (!doc.get_Saved()) {
                 int rc = ::AfxMessageBox(L"A modified copy of " + match +
                     L"is already open.\n" +
                     L"Do you want to abandon the changes?",
@@ -458,17 +457,17 @@ STDMETHODIMP CCommands::edit(int *ret_val) {
         }
 
         // Find the currently active document.
-        _Document doc = cdr::get_app().GetActiveDocument();
+        ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
 
         // Extract the control information from the document.
-        DOMNode doc_element = doc.GetDocumentElement();
+        ::CDOMNode doc_element = doc.get_documentElement();
         CdrDocCtrlInfo ctrl_info;
         cdr::extract_ctl_info(doc_element, ctrl_info);
-        CString doc_type = doc_element.GetNodeName();
+        CString doc_type = doc_element.get_nodeName();
 
         // Find the element with the current focus.
-        ::Selection selection = cdr::get_app().GetSelection();
-        CString elem_name = selection.GetContainerName();
+        ::CSelection selection = cdr::get_app().get_Selection();
+        CString elem_name = selection.get_ContainerName();
 
         // See if we have a valid-values set for this element.
         const cdr::StringList* valid_values = get_schema_valid_values(
@@ -486,7 +485,7 @@ STDMETHODIMP CCommands::edit(int *ret_val) {
         CEditElement::Type edit_type = CEditElement::NORMAL;
         if (doc_type == L"Person") {
             if (elem_name  == L"OrganizationLocation") {
-                if (selection.GetIsParentElement(L"OtherPracticeLocation"))
+                if (selection.get_IsParentElement(L"OtherPracticeLocation"))
                     edit_type = CEditElement::ORG_LOCATION;
             }
             else if (elem_name == L"FamilialCancerSyndrome")
@@ -717,7 +716,7 @@ STDMETHODIMP CCommands::getNextValidationError(BSTR* val_error) {
 
     cdr::trace_log("getNextValidationError");
     CString result;
-    _Document doc = cdr::get_app().GetActiveDocument();
+    ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
     if (!doc) {
         result = L"0|No document is currently active";
         result.SetSysString(val_error);
@@ -789,7 +788,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         }
 
         // Find the LeadOrgPersonnel element location.
-        ::Range op_loc = cdr::get_elem_range(L"OtherPracticeLocation");
+        ::CRange op_loc = cdr::get_elem_range(L"OtherPracticeLocation");
         if (!op_loc) {
             ::AfxMessageBox(L"OtherPracticeLocation for "
                             L"current location not found");
@@ -797,21 +796,21 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         }
 
         // Find the adddress fragment link.
-        ::DOMElement op_elem = op_loc.GetContainerNode();
-        if (!op_elem || op_elem.GetNodeName() != L"OtherPracticeLocation")
+        ::CDOMElement op_elem = op_loc.get_ContainerNode();
+        if (!op_elem || op_elem.get_nodeName() != L"OtherPracticeLocation")
         {
             ::AfxMessageBox(L"Unable to find OtherPracticeLocation "
                             L"element");
             return S_OK;
         }
-        ::DOMNodeList node_list =
+        ::CDOMNodeList node_list =
             op_elem.getElementsByTagName(L"OrganizationLocation");
-        if (node_list.GetLength() < 1) {
+        if (node_list.get_length() < 1) {
             ::AfxMessageBox(L"Unable to find OrganizationLocation element");
 
             return S_OK;
         }
-        ::DOMElement org_loc_elem = node_list.item(0);
+        ::CDOMElement org_loc_elem = node_list.item(0);
         CString addr_link = org_loc_elem.getAttribute(L"cdr:ref");
         if (addr_link.IsEmpty()) {
             ::AfxMessageBox(L"Missing or empty cdr:ref attribute "
@@ -895,7 +894,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         CString fragment{m[0].str().c_str()};
 
         // Find the proper location for the address.
-        ::Range location = cdr::find_or_create_child(op_loc, tag);
+        ::CRange location = cdr::find_or_create_child(op_loc, tag);
         if (!location) {
             ::AfxMessageBox(L"Failure creating " + tag + L" element");
             return S_OK;
@@ -904,7 +903,7 @@ STDMETHODIMP CCommands::getOrgAddress(int *ret_val) {
         // Plug in our own data.
         location.SelectElement();
         location.Select();
-        if (!location.GetCanPaste(fragment, FALSE))
+        if (!location.get_CanPaste(fragment, FALSE))
             ::AfxMessageBox(L"Unable to insert " + fragment);
         else {
             location.PasteString(fragment);
@@ -979,8 +978,8 @@ STDMETHODIMP CCommands::getPatientDocId(const BSTR* hp_doc_id,
 STDMETHODIMP CCommands::get_selectionCharacterCount(int *ret_val) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-    ::Selection selection = cdr::get_app().GetSelection();
-    CString characters = selection.GetText();
+    ::CSelection selection = cdr::get_app().get_Selection();
+    CString characters = selection.get_Text();
     int n = 0;
     wchar_t q = L'\0';
     bool in_tag = false;
@@ -1498,22 +1497,22 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
     }
 
     // Find the currently active document.
-    _Document doc = cdr::get_app().GetActiveDocument();
+    ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
 
     // Get the current element and the doc type.
-    DOMNode doc_element = doc.GetDocumentElement();
-    CString doc_type = doc_element.GetNodeName();
-    ::Range selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
-    CString elem_name  = elem.GetNodeName();
-    while (elem && elem.GetNodeType() != 1) // DOMElement
-        elem = elem.GetParentNode();
+    CDOMNode doc_element = doc.get_documentElement();
+    CString doc_type = doc_element.get_nodeName();
+    ::CRange selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
+    CString elem_name  = elem.get_nodeName();
+    while (elem && elem.get_nodeType() != 1) // DOMElement
+        elem = elem.get_parentNode();
     if (elem) {
         try {
 
             // Determine whether this is a cdr:ref or cdr:href link.
-            ::DOMDocumentType dt = doc.GetDoctype();
-            if (dt.GetHasAttribute(elem.GetNodeName(), L"cdr:href")) {
+            ::CDOMDocumentType dt = doc.get_doctype();
+            if (dt.get_hasAttribute(elem.get_nodeName(), L"cdr:href")) {
 
                 // If this is a cdr:href link, this is all we need to do.
                 elem.setAttribute(L"cdr:href", doc_link);
@@ -1522,7 +1521,7 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
             }
 
             // BZIssue::5172 - Add support for Target attribute.
-            if (dt.GetHasAttribute(elem.GetNodeName(), L"Target")) {
+            if (dt.get_hasAttribute(elem.get_nodeName(), L"Target")) {
 
                 // If this is a Target link, this is all we need to do.
                 elem.setAttribute(L"Target", doc_link);
@@ -1556,16 +1555,16 @@ STDMETHODIMP CCommands::pasteDocLink(const BSTR* link, int *ret_val) {
             elem.setAttribute(L"cdr:ref", doc_link);
 
             // Clear out the existing children.
-            ::DOMNode child = elem.GetFirstChild();
+            ::CDOMNode child = elem.get_firstChild();
             while (child) {
-                ::DOMNode next_child = child.GetNextSibling();
-                ::DOMNode dummy = elem.removeChild(child);
+                ::CDOMNode next_child = child.get_nextSibling();
+                ::CDOMNode dummy = elem.removeChild(child);
                 child = next_child;
             }
 
             // Pop in the new content.
-            ::DOMText text_node = doc.createTextNode(data);
-            ::DOMNode dummy = elem.appendChild(text_node);
+            ::CDOMText text_node = doc.createTextNode(data);
+            ::CDOMNode dummy = elem.appendChild(text_node);
         }
         catch (::CException* e) {
             e->ReportError();
@@ -1662,14 +1661,14 @@ STDMETHODIMP CCommands::save(int *ret_val) {
         }
 
         // Get the currently active document.
-        _Document doc = cdr::get_app().GetActiveDocument();
+        ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
         if (!doc) {
             ::AfxMessageBox(L"There is no active document.");
             return S_OK;
         }
 
         // Extract control information from the document.
-        DOMNode doc_element = doc.GetDocumentElement();
+        ::CDOMNode doc_element = doc.get_documentElement();
         CdrDocCtrlInfo ctrl_info;
         cdr::extract_ctl_info(doc_element, ctrl_info);
         CString doc_title = ctrl_info.doc_title;
@@ -1758,7 +1757,7 @@ STDMETHODIMP CCommands::save(int *ret_val) {
             }
 
             // Add the XML for the document, now that it's been tweaked.
-            CString original_xml = doc.GetXml();
+            CString original_xml = doc.get_xml();
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Use a local buffer type to ensure memory release even if an
@@ -1851,13 +1850,13 @@ STDMETHODIMP CCommands::save(int *ret_val) {
                     ::AfxMessageBox(msg, MB_ICONINFORMATION);
                     if (!save_dialog.m_checkIn) {
                         open_doc(response_dom, doc_id, true, L"Current");
-                        doc = cdr::get_app().GetActiveDocument();
+                        doc = cdr::get_app().get_ActiveDocument();
                         if (val_errors) {
                             CString path = get_full_doc_path(&doc);
                             cdr::validation_error_sets[path] = val_errors;
                         }
                         if (!loc_id.IsEmpty()) {
-                            ::DOMNode elem = doc.GetDocumentElement();
+                            ::CDOMNode elem = doc.get_documentElement();
                             if (!move_to_location_id(loc_id, elem))
                                 ::AfxMessageBox(L"didn't find " + loc_id);
                         }
@@ -1955,7 +1954,6 @@ STDMETHODIMP CCommands::search(int *ret_val) {
 STDMETHODIMP CCommands::setTitleBar(void) {
     AFX_MANAGE_STATE(AfxGetStaticModuleState());
 
-    //cdr::trace_log("set_title_bar"); XXX too noisy; clutters the log
     CWnd* w = ::AfxGetMainWnd();
     if (w) {
         CString title;
@@ -1995,10 +1993,10 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
     *ret_val = -1;
 
     // Find the currently active document.
-    _Document doc = cdr::get_app().GetActiveDocument();
+    ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
 
     // Extract the document's control information.
-    DOMNode doc_element = doc.GetDocumentElement();
+    ::CDOMNode doc_element = doc.get_documentElement();
     CdrDocCtrlInfo ctrl_info;
     cdr::ValidationErrors* val_errors = NULL;
     cdr::extract_ctl_info(doc_element, ctrl_info);
@@ -2024,7 +2022,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
 
             clear_error_list();
 
-            CString doc_type = doc_element.GetNodeName();
+            CString doc_type = doc_element.get_nodeName();
 
             // Dialog box ensures that at least one is true.
             CString validation_types;
@@ -2058,7 +2056,7 @@ STDMETHODIMP CCommands::validate(int *ret_val) {
             if (!ctrl_info.doc_id.IsEmpty())
                 request.child_element(doc_ctl, "DocId", ctrl_info.doc_id);
             request.child_element(doc_ctl, "DocTitle", ctrl_info.doc_title);
-            CString original_xml = doc.GetXml();
+            CString original_xml = doc.get_xml();
             request.add_cdr_document(cdr_doc, original_xml);
 
             // Submit the validate command to the server.
@@ -2167,7 +2165,7 @@ STDMETHODIMP CCommands::valuesForPath(const BSTR* doc_id, const BSTR* path,
  *   CCommands::save()
  */
 static void clear_error_list() {
-    _Document doc = cdr::get_app().GetActiveDocument();
+    ::CDocument0 doc = cdr::get_app().get_ActiveDocument();
     if (doc) {
         CString path = get_full_doc_path(&doc);
         if (!path.IsEmpty()) {
@@ -2268,8 +2266,8 @@ static void get_blob_from_file(char* buf, CFile& file, int len) {
  * Return:
  *   string for the document's location on disk
  */
-static CString get_full_doc_path(_Document* doc) {
-    return doc->GetPath() + L"\\" + doc->GetName();
+static CString get_full_doc_path(::CDocument0* doc) {
+    return doc->get_Path() + L"\\" + doc->get_name();
 }
 
 /**
@@ -2287,15 +2285,15 @@ static CString get_full_doc_path(_Document* doc) {
  */
 static CString get_location_id() {
 
-    ::Range selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
+    ::CRange selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
     while (elem) {
-        if (elem.GetNodeType() == 1) { // DOMElement
+        if (elem.get_nodeType() == 1) { // DOMElement
             CString id = elem.getAttribute(L"cdr:id");
             if (!id.IsEmpty())
                 return id;
         }
-        elem = elem.GetParentNode();
+        elem = elem.get_parentNode();
     }
     return L"";
 }
@@ -2332,7 +2330,7 @@ static cdr::StringList* get_schema_valid_values(const CString doc_type,
  *  @param doc_element - reference to element in which the duration is set
  *  @param file       - reference to the object used to read the file's bytes
  */
-static void insert_audio_seconds(::DOMNode& doc_element, CFile& file) {
+static void insert_audio_seconds(::CDOMNode& doc_element, CFile& file) {
 
     // Start by blanking out the existing value, to prevent leaving
     // invalid information in the event that we're unable to determine
@@ -2360,7 +2358,7 @@ static void insert_audio_seconds(::DOMNode& doc_element, CFile& file) {
  *  @param doc_element - reference to element in which the dimensions are set
  *  @param file       - reference to the object used to read the file's bytes
  */
-static void insert_image_dimensions(::DOMNode& doc_element, CFile& file) {
+static void insert_image_dimensions(::CDOMNode& doc_element, CFile& file) {
 
     // Start by blanking out the existing values, to prevent leaving
     // invalid information in the event that we're unable to determine
@@ -2391,25 +2389,25 @@ static void insert_image_dimensions(::DOMNode& doc_element, CFile& file) {
  *   true iff the SummaryLanguage element has the text value "Spanish"
  */
 static bool is_spanish_summary() {
-    _Application app = cdr::get_app();
-    ::_Document doc = app.GetActiveDocument();
-    DOMNode doc_element = doc.GetDocumentElement();
-    CString doc_type = doc_element.GetNodeName();
+    ::CApplication app = cdr::get_app();
+    ::CDocument0 doc = app.get_ActiveDocument();
+    ::CDOMNode doc_element = doc.get_documentElement();
+    CString doc_type = doc_element.get_nodeName();
     if (doc_type == L"Summary") {
-        ::DOMNode c = doc_element.GetFirstChild();
+        ::CDOMNode c = doc_element.get_firstChild();
         while (c) {
-            if (c.GetNodeName() == L"SummaryMetaData") {
-                ::DOMNode gc = c.GetFirstChild();
+            if (c.get_nodeName() == L"SummaryMetaData") {
+                ::CDOMNode gc = c.get_firstChild();
                 while (gc) {
-                    if (gc.GetNodeName() == L"SummaryLanguage") {
+                    if (gc.get_nodeName() == L"SummaryLanguage") {
                         CString value = cdr::extract_element_text(gc);
                         if (value == L"Spanish")
                             return true;
                     }
-                    gc = gc.GetNextSibling();
+                    gc = gc.get_nextSibling();
                 }
             }
-            c = c.GetNextSibling();
+            c = c.get_nextSibling();
         }
     }
     return false;
@@ -2515,22 +2513,22 @@ static void load_doc_types() {
  * Return:
  *   true if we found the target location and moved there; otherwise false
  */
-static bool move_to_location_id(const CString& id, ::DOMNode& node) {
-    if (node.GetNodeType() == 1) { // ELEMENT
-        ::DOMElement elem = node;
+static bool move_to_location_id(const CString& id, ::CDOMNode& node) {
+    if (node.get_nodeType() == 1) { // ELEMENT
+        ::CDOMElement elem = node;
         elem.m_bAutoRelease = 0; // Avoid "pure virtual function" exception!!!
         CString value = elem.getAttribute(L"cdr:id");
         if (value == id) {
-            ::Selection selection = cdr::get_app().GetSelection();
+            ::CSelection selection = cdr::get_app().get_Selection();
             selection.SelectNodeContents(node);
             selection.MoveLeft(0);
             return true;
         }
-        ::DOMNode child = node.GetFirstChild();
+        ::CDOMNode child = node.get_firstChild();
         while (child) {
             if (move_to_location_id(id, child))
                 return true;
-            child = child.GetNextSibling();
+            child = child.get_nextSibling();
         }
     }
     return false;
@@ -2554,8 +2552,8 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
 
     // Create local variables needed by the method.
     cdr::trace_log("top of open_doc()");
-    _Application app = cdr::get_app();
-    Documents docs = app.GetDocuments();
+    ::CApplication app = cdr::get_app();
+    ::CDocuments docs = app.get_Documents();
     unsigned int doc_no = cdr::get_doc_no(doc_id);
     CString err;
     CString blocked = L"N";
@@ -2683,9 +2681,9 @@ static bool open_doc(cdr::DOM& response, const CString& doc_id, BOOL check_out,
 
         // Open the document and set its title bar string.
         try {
-            _Document doc = docs.Open((LPCTSTR)doc_path, 1);
+            ::CDocument0 doc = docs.Open((LPCTSTR)doc_path, 1);
             if (doc) {
-                doc.SetTitle(retrieved_doc_title);
+                doc.put_Title(retrieved_doc_title);
                 cdr::trace_log("document opened successfully");
                 return true;
             }
@@ -2745,20 +2743,20 @@ static void remove_doc(const CString& doc_id) {
  *  @param doc_element - reference to node whose duration we set
  *  @param seconds    - string containing the number of runtime seconds
  */
-static bool replace_audio_seconds(::DOMNode& doc_element, CString seconds) {
-    ::DOMElement& elem = (::DOMElement&)doc_element;
-    ::DOMNodeList node_list = elem.getElementsByTagName(L"SoundData");
-    if (node_list == 0 || node_list.GetLength() < 1)
+static bool replace_audio_seconds(::CDOMNode& doc_element, CString seconds) {
+    ::CDOMElement& elem = (::CDOMElement&)doc_element;
+    ::CDOMNodeList node_list = elem.getElementsByTagName(L"SoundData");
+    if (node_list == 0 || node_list.get_length() < 1)
         return false;
-    ::DOMElement sound_data = node_list.item(0);
-    ::DOMElement child = sound_data.GetFirstChild();
+    ::CDOMElement sound_data = node_list.item(0);
+    ::CDOMElement child = sound_data.get_firstChild();
     while (child != 0) {
-        if (child.GetNodeName() == L"RunSeconds") {
+        if (child.get_nodeName() == L"RunSeconds") {
             cdr::replace_element_content(child, seconds);
             cdr::debug_log("found and replaced RunSeconds value");
             return true;
         }
-        child = child.GetNextSibling();
+        child = child.get_nextSibling();
     }
     cdr::debug_log("couldn't find RunSeconds element");
     return false;
@@ -2774,25 +2772,25 @@ static bool replace_audio_seconds(::DOMNode& doc_element, CString seconds) {
  *  @param height      - string for the height of the image
  *  @param width       - string for the width of the image
  */
-static bool replace_image_dimensions(::DOMNode& doc_element,
+static bool replace_image_dimensions(::CDOMNode& doc_element,
                                    CString height, CString width) {
-    ::DOMElement& elem = (::DOMElement&)doc_element;
-    ::DOMNodeList node_list = elem.getElementsByTagName(L"ImageDimensions");
-    if (node_list == 0 || node_list.GetLength() < 1)
+    ::CDOMElement& elem = (::CDOMElement&)doc_element;
+    ::CDOMNodeList node_list = elem.getElementsByTagName(L"ImageDimensions");
+    if (node_list == 0 || node_list.get_length() < 1)
         return false;
-    ::DOMElement dim_elem = node_list.item(0);
-    ::DOMElement child = dim_elem.GetFirstChild();
+    ::CDOMElement dim_elem = node_list.item(0);
+    ::CDOMElement child = dim_elem.get_firstChild();
     bool found_height = false, found_width = false;
     while (child != 0) {
-        if (child.GetNodeName() == L"HeightPixels") {
+        if (child.get_nodeName() == L"HeightPixels") {
             cdr::replace_element_content(child, height);
             found_height = true;
         }
-        else if (child.GetNodeName() == L"WidthPixels") {
+        else if (child.get_nodeName() == L"WidthPixels") {
             cdr::replace_element_content(child, width);
             found_width = true;
         }
-        child = child.GetNextSibling();
+        child = child.get_nextSibling();
     }
     return found_height && found_width;
 }

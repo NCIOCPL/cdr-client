@@ -64,33 +64,33 @@ void CSchemaPicklist::OnOK()
         int current_selection = selections[i];
         CString str;
         m_list_box.GetText(current_selection, str);
-        ::Selection selection = cdr::get_app().GetSelection();
-        selection.SetReadOnlyContainer(FALSE);
+        ::CSelection selection = cdr::get_app().get_Selection();
+        selection.put_ReadOnlyContainer(FALSE);
         selection.SelectContainerContents();
-        ::DOMElement elem = selection.GetContainerNode();
+        ::CDOMElement elem = selection.get_ContainerNode();
         selection.Delete();
-        while (elem && elem.GetNodeType() != 1) // DOMElement
-            elem = elem.GetParentNode();
+        while (elem && elem.get_nodeType() != 1) // DOM element
+            elem = elem.get_parentNode();
         if (elem) {
             bool found = false;
-            ::DOMText text_node = elem.GetFirstChild();
+            ::CDOMText text_node = elem.get_firstChild();
             while (text_node) {
-                ::DOMText next_node = text_node.GetNextSibling();
-                if (text_node.GetNodeType() == 3) { // DOMText
-                    text_node.SetData(str);
+                ::CDOMText next_node = text_node.get_nextSibling();
+                if (text_node.get_nodeType() == 3) { // DOMText
+                    text_node.put_data(str);
                     str = L"";
                     found = true;
                 }
                 text_node = next_node;
             }
             if (!found) {
-                ::_Document cur_doc = cdr::get_app().GetActiveDocument();
-                ::DOMText new_node = cur_doc.createTextNode(str);
+                ::CDocument0 cur_doc = cdr::get_app().get_ActiveDocument();
+                ::CDOMText new_node = cur_doc.createTextNode(str);
                 elem.appendChild(new_node);
                 new_node.m_lpDispatch->Release();
             }
         }
-        selection.SetReadOnlyContainer(TRUE);
+        selection.put_ReadOnlyContainer(TRUE);
         EndDialog(IDOK);
     }
 }

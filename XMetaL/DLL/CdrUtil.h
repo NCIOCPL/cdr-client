@@ -9,7 +9,6 @@
 
 // Local headers.
 #include "stdafx.h"
-#include "xmetal90.h"
 #include "cdrdom.h"
 
 // System headers.
@@ -249,22 +248,22 @@ namespace cdr {
     void debug_log(const CString& what, const CString& who = L"bkline");
     CString doc_id_string(int);
     CString expand_leading_zeros(const CString&);
-    void extract_ctl_info(DOMNode node, CdrDocCtrlInfo& info);
-    CString extract_element_text(DOMNode node);
+    void extract_ctl_info(::CDOMNode& node, CdrDocCtrlInfo& info);
+    CString extract_element_text(::CDOMNode& node);
     CdrLinkInfo extract_link_info(const CString& str);
     void extract_search_results(DOM& dom, DocSet& docSet);
     CString fetch_from_url(const CString&);
     int fill_list_box(CListBox& listBox, const DocSet& docSet);
-    ::Range find_or_create_child(::Range parent, const CString& elemName);
-    _Application get_app();
+    ::CRange find_or_create_child(::CRange& parent, const CString& elemName);
+    ::CApplication get_app();
     int get_audio_seconds(CFile& file);
     const char* get_cdr_trace_log_path();
     unsigned long get_doc_no(const CString& docString);
-    ::Range get_elem_range(const CString& elemName);
+    ::CRange get_elem_range(const CString& elemName);
     bool get_image_dimensions(CFile& file, ImageDimensions& dim);
     const CString& get_user_path();
     const CString& get_xmetal_path();
-    bool replace_element_content(::DOMElement&, const CString&);
+    bool replace_element_content(::CDOMElement&, const CString&);
     void send_trace_log();
     bool show_errors(DOM& response);
     int show_page(const CString& url);

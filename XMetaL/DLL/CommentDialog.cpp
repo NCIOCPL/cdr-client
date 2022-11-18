@@ -43,10 +43,10 @@ void CCommentDialog::OnBnClickedOk()
         m_comment.GetWindowText(comment);
 
         // Find the linking element.
-        ::Range selection = cdr::get_app().GetSelection();
-        ::DOMElement elem = selection.GetContainerNode();
-        while (elem && elem.GetNodeType() != 1) // DOMElement
-            elem = elem.GetParentNode();
+        ::CRange selection = cdr::get_app().get_Selection();
+        ::CDOMElement elem = selection.get_ContainerNode();
+        while (elem && elem.get_nodeType() != 1) // DOMElement
+            elem = elem.get_parentNode();
         if (elem) {
 
             // Set the comment attribute.
@@ -61,10 +61,10 @@ BOOL CCommentDialog::OnInitDialog()
     CDialog::OnInitDialog();
 
     // Find the linking element.
-    ::Range selection = cdr::get_app().GetSelection();
-    ::DOMElement elem = selection.GetContainerNode();
-    while (elem && elem.GetNodeType() != 1) // DOMElement
-        elem = elem.GetParentNode();
+    ::CRange selection = cdr::get_app().get_Selection();
+    ::CDOMElement elem = selection.get_ContainerNode();
+    while (elem && elem.get_nodeType() != 1) // DOMElement
+        elem = elem.get_parentNode();
     if (elem) {
 
         // Find the comment attribute.
