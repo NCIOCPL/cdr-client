@@ -129,7 +129,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseOfMfc>Static</UseOfMfc>
     <UseOfAtl>Static</UseOfAtl>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Release MinSize|Win32'" Label="Configuration">
@@ -907,23 +907,23 @@ echo regsvr32 exec. time &gt; "$(OutDir)regsvr32.trg"
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-	<ClInclude Include="CApplication.h" />
-	<ClInclude Include="CDocument0.h" />
-	<ClInclude Include="CDocuments.h" />
-	<ClInclude Include="CDOMDocumentType.h" />
-	<ClInclude Include="CDOMElement.h" />
-	<ClInclude Include="CDOMNode.h" />
-	<ClInclude Include="CDOMNodeList.h" />
-	<ClInclude Include="CDOMProcessingInstruction.h" />
-	<ClInclude Include="CDOMText.h" />
+    <ClInclude Include="CApplication.h" />
+    <ClInclude Include="CDocument0.h" />
+    <ClInclude Include="CDocuments.h" />
+    <ClInclude Include="CDOMDocumentType.h" />
+    <ClInclude Include="CDOMElement.h" />
+    <ClInclude Include="CDOMNode.h" />
+    <ClInclude Include="CDOMNodeList.h" />
+    <ClInclude Include="CDOMProcessingInstruction.h" />
+    <ClInclude Include="CDOMText.h" />
     <ClInclude Include="cdrdom.h" />
     <ClInclude Include="CdrUtil.h" />
-	<ClInclude Include="CFind.h" />
+    <ClInclude Include="CFind.h" />
     <ClInclude Include="CheckIn.h" />
     <ClInclude Include="Commands.h" />
     <ClInclude Include="CommentDialog.h" />
-	<ClInclude Include="CRange.h" />
-	<ClInclude Include="CSelection.h" />
+    <ClInclude Include="CRange.h" />
+    <ClInclude Include="CSelection.h" />
     <ClInclude Include="EditElement.h" />
     <ClInclude Include="FindComments.h" />
     <ClInclude Include="FindMarkup.h" />
