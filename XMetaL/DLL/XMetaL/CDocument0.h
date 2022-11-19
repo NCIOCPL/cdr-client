@@ -1,6 +1,6 @@
 // Machine generated IDispatch wrapper class(es) created with Add Class from Typelib Wizard
 
-// #import "...\\xmetal.tlb" no_namespace
+#import "XMetaL/xmetal.tlb" no_namespace
 // CDocument0 wrapper class
 
 class CDocument0 : public COleDispatchDriver

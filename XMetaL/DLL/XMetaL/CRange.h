@@ -1,6 +1,6 @@
 // Machine generated IDispatch wrapper class(es) created with Add Class from Typelib Wizard
 
-// #import "...\\xmetal.tlb" no_namespace
+#import "XMetaL/xmetal.tlb" no_namespace
 // CRange wrapper class
 
 class CRange : public COleDispatchDriver
