@@ -1787,6 +1787,18 @@ void CdrClient::log(const CString& what, int level) {
  * See https://tracker.nci.nih.gov/browse/OCECDR-5006.
  */
 void CdrClient::checkForRunningInstance() {
+
+    // Suppress this check on the shared host used for testing XMetaL 17.0.
+    TCHAR* computer_name_env = _tgetenv(_T("COMPUTERNAME"));
+    if (computer_name_env) {
+        CString computer_name = computer_name_env;
+        computer_name.MakeLower();
+        if (computer_name.Find(_T("ncits-d170-v")) >= 0) {
+            return;
+        }
+    }
+
+    // We're on a single-user machine, so do the check.
     CString program_name = findXmetalProgram(this);
     if (program_name.IsEmpty())
         throw _T("Unable to find XMetaL program");
