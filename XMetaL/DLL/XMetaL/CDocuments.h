@@ -105,7 +105,7 @@ public:
 	__int64 TabGroupCommand(__int64 tabGroup, __int64 tabCommand)
 	{
 		__int64 result;
-		static BYTE parms[] = VTS_I8 VTS_I8;
+		static BYTE parms[] = VTS_UNKNOWN VTS_UNKNOWN;
 		InvokeHelper(0xd, DISPATCH_METHOD, VT_I8, (void*)&result, parms, tabGroup, tabCommand);
 		return result;
 	}

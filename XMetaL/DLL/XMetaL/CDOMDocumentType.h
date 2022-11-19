@@ -259,13 +259,11 @@ public:
 		static BYTE parms[] = VTS_BSTR VTS_BSTR VTS_BSTR VTS_I4 VTS_I4 VTS_BSTR;
 		InvokeHelper(0x13f, DISPATCH_METHOD, VT_EMPTY, NULL, parms, ElementName, attrName, helpString, attrType, dfltType, attValueDefault);
 	}
-#if 0
 	void addEnumeratedAttribute(LPCTSTR ElementName, LPCTSTR attrName, LPCTSTR helpString, long attrType, long dfltType, LPCTSTR attValueSpec, SAFEARRAY * EnumValues)
 	{
-		static BYTE parms[] = VTS_BSTR VTS_BSTR VTS_BSTR VTS_I4 VTS_I4 VTS_BSTR VTS_NONE;
+		static BYTE parms[] = VTS_BSTR VTS_BSTR VTS_BSTR VTS_I4 VTS_I4 VTS_BSTR VTS_UNKNOWN;
 		InvokeHelper(0x140, DISPATCH_METHOD, VT_EMPTY, NULL, parms, ElementName, attrName, helpString, attrType, dfltType, attValueSpec, EnumValues);
 	}
-#endif
 	void addInPlaceControlOverride(LPCTSTR selector, LPCTSTR progID, LPCTSTR scriptPrefix, LPCTSTR userData, BOOL useBmpPrinting)
 	{
 		static BYTE parms[] = VTS_BSTR VTS_BSTR VTS_BSTR VTS_BSTR VTS_BOOL;
