@@ -1,4 +1,4 @@
-# Generated XMetaL interface files.
+# Generated XMetaL interface files
 
 The files in this directory were generated using Visual Studio's wizard for generating MFC class wrappers from TypeLib files (`Project > Add New Item... > MFC Class From TypeLib`). They have moved to this subdirectory so they won't clutter up the main project directory. We only need the dozen classes found here, as they represent the only XMetaL APIs we currently use.
 
