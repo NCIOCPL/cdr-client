@@ -43,16 +43,16 @@ I have [reported this bug to Microsoft](https://developercommunity.visualstudio.
 
 In one case, a class name needed to be modified because it clashed with the [MFC `CDocument` class](https://learn.microsoft.com/en-us/cpp/mfc/reference/cdocument-class). The solution adopted was to
 - rename `CDocument.h` to `CDocument0.h`
-- change all occurrences of "CDocument" in that header to "CDocument0"
+- change all occurrences of `CDocument` in that header to `CDocument0`
 
 Our own code, of course, uses the modified class name.
 
 The ideal solution would have been to have all of the XMetaL APIs wrapped in their own namespace. Unfortunately, the Visual Studio wizard does not expose the ability to suppress the use of the `no_namespace` directive which it always injects into the class generation process. I have submitted [an enhancement request](https://developercommunity.visualstudio.com/t/Allow-suppression-of-no_namespace-direct/10206995) to Microsoft for correcting this gap in the IDE's functionality.
 
-### Fix Managled Class Name
+### Fix Mangled Class Name
 
 In another case, a bug in Visual Studio 2019 transformed the class name `CDocuments` to `Cocuments`. The fix was similar to the workaround for the `CDocument` name conflict:
 - rename `Cocuments.h` to `CDocuments.h`
-- change all occurrence of "Cocuments" in that header to "CDocuments"
+- change all occurrence of `Cocuments` in that header to `CDocuments`
 
 I have confirmed that this bug has been fixed in Visual Studio 2022.
