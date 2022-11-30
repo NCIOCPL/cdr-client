@@ -1488,6 +1488,7 @@ void CdrClient::launchClient() {
     if (xmver == XM17 && !_waccess(_T(".\\CDR\\cdr.xm17"), 0)) {
         log(_T("Swapping in DLL for XMetaL 17.0\n"));
         system(".\\regcdrdll --unregister Cdr\\Cdr.dll");
+        Sleep(2000);
         BOOL success = CopyFileA("CDR\\Cdr.xm17", "CDR\\Cdr.dll", FALSE);
         if (!success)
             throw _T("Failure swapping DLL for XMetaL 17.0");
