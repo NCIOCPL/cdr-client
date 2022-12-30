@@ -612,7 +612,7 @@ void cdr::extract_ctl_info(::CDOMNode& node, CdrDocCtrlInfo& info) {
                                 info.blocked = true;
                         }
                     }
-                    child = child.get_nextSibling();
+                    grandchild = grandchild.get_nextSibling();
                 }
 
                 // Once we've seen CdrDocCtl, we're done.
