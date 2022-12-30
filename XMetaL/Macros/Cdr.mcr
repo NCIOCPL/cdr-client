@@ -1,11 +1,62 @@
 <?xml version="1.0"?>
 
 <!--
-     Javascript macros implementing customized behavior of XMetaL for the CDR.
+     Macros implementing customized behavior of XMetaL for the CDR.
   -->
 
 <!DOCTYPE MACROS SYSTEM "macros.dtd">
 <MACROS>
+
+<MACRO name="CDR Disk Free From Python" key="Ctrl+Alt+F" lang="Python">
+import requests
+
+def show_cdr_server_free_space():
+    """Show that we can talk to the CDR server directly from our script."""
+    try:
+        response = requests.get("https://cdr.cancer.gov/cgi-bin/cdr/df.py")
+        ActiveDocument.Host.Alert(response.text)
+    except Exception as e:
+        ActiveDocument.Host.Alert(f"unable to get free space: {e}")
+
+show_cdr_server_free_space();
+</MACRO>
+
+<MACRO name="Insert Comment From Python" key="Ctrl+Alt+K" lang="Python">
+  <![CDATA[
+
+import datetime
+
+def insert_comment():
+    """Show that we can use the XMetaL APIs."""
+
+    range = ActiveDocument.Range
+    if not range.FindInsertLocation("Comment", True):
+        Application.Alert("Sorry, you can't insert a Comment element here.")
+        return
+    placeholder = "<?xm-replace_text { Your comment here }?>"
+    attrs = f'user="volker" audience="Internal" date="{datetime.date.today()}"'
+    comment = f'<Comment {attrs}>{placeholder}</Comment>'
+    range.PasteString(comment)
+    range.MoveToElement("Comment", False)
+    range.SelectElement()
+    range.Collapse(1)
+    range.MoveRight()
+    range.Select()
+
+insert_comment()
+]]>
+</MACRO>
+
+<MACRO name="Platform Info From Python" key="Ctrl+Alt+V" lang="Python">
+import platform
+
+def show_platform_info():
+    """Show our environment."""
+    python_ver = platform.python_version()
+    Application.Alert(f"Running Python {python_ver} on {platform.uname()}")
+
+show_platform_info();
+</MACRO>
 
 <MACRO  name="On_Macro_File_Load"
         lang="JScript">
