@@ -13,6 +13,7 @@ from os import getenv, putenv
 from pathlib import Path
 from subprocess import Popen, run
 from sys import executable
+from zipfile import ZipFile
 
 from lxml import etree
 from psutil import process_iter
@@ -486,10 +487,9 @@ class Control:
         file changes.
 
         The zipfile is saved in the current working directory under the
-        name CdrClientFiles.zip. The output from the command to unpack
-        the files (listing the files which were unpacked) is stored in
-        the a file named unzip.out. Any error messages from that operation
-        are stored in a file named unzip.err.
+        name CdrClientFiles.zip. We could just unpack the archive from the
+        bytes in memory, but it's better to have the archive in the file
+        system for diagnostic troubleshooting in the event of failure.
         """
 
         # Save the zipfile to the current working directory.
@@ -502,9 +502,9 @@ class Control:
 
         # Unpack the archive.
         self.logger.info("Unpacking updated files from the server")
-        command = fr".\unzip -o {self.CLIENT_FILES} >unzip.out 2>unzip.err"
         try:
-            run(command, check=True, shell=True)
+            with ZipFile(self.CLIENT_FILES) as zf:
+                zf.extractall(self.PATH)
         except:
             self.logger.exception("unpacking zipfile")
             raise Exception("Failure unpacking new files from server")
