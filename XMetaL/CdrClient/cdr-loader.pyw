@@ -365,11 +365,17 @@ class Control:
         username = getenv("USERNAME").lower()
         message= "Checking to see if %r is already running XMetaL"
         self.logger.info(message, username)
-        for process_username in [
-            p.username()
-            for p in process_iter(["name", "username"])
-            if p.name() == "xmetal.exe"
-        ]:
+        xmetal_processes = [
+            process
+            for process in process_iter(["name", "username"])
+            if process.name() == "xmetal.exe"
+        ]
+        for process in xmetal_processes:
+            try:
+                process_username = process.username()
+            except:
+                # We don't always have permission to see other user's names.
+                continue
             if process_username:
                 self.logger.info("%r is running XMetaL", process_username)
                 if "\\" in process_username:
