@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!DOCTYPE MACROS SYSTEM "macros.dtd">
+<MACROS>
+
+ <!-- Event-driven macros -->
+ <MACRO name="On_Macro_File_Load" lang="Python" hide="true">from cdr import CDR;cdr = CDR(Application)</MACRO>
+ <MACRO name="On_Application_Close" lang="Python" hide="true">cdr.on_application_close()</MACRO>
+ <MACRO name="On_Application_Document_Context_Menu" lang="Python" hide="true">cdr.on_application_document_context_menu()</MACRO>
+ <MACRO name="On_Application_ElementList_Insert" lang="Python" hide="true">cdr.on_application_elementlist_insert()</MACRO>
+ <MACRO name="On_Application_Open_Complete" lang="Python" hide="true">cdr.on_application_open_complete()</MACRO>
+ <MACRO name="On_CommandBars_Activate" lang="Python" hide="true">cdr.on_commandbars_activate()</MACRO>
+ <MACRO name="On_DTD_Open_Complete" lang="Python" hide="true">cdr.on_dtd_open_complete()</MACRO>
+ <MACRO name="On_Document_Open_Complete" lang="Python" hide="true">cdr.on_document_open_complete()</MACRO>
+ <MACRO name="On_Document_Open_View" lang="Python" hide="true">cdr.on_document_open_view()</MACRO>
+ <MACRO name="On_Mouse_Over" lang="Python" hide="true">cdr.on_mouse_over()</MACRO>
+ <MACRO name="On_Update_UI" lang="Python" hide="true">cdr.on_update_ui()</MACRO>
+
+ <!-- Shadow macro to prevent XMetaL from causing other applications to redraw themselves -->
+ <MACRO name="_On_Document_Open_Complete" lang="Python" hide="true">cdr._on_document_open_complete()</MACRO>
+
+ <!-- Publicly exposed macros -->
+ <MACRO name="Accept Change" lang="Python">cdr.accept_change()</MACRO>
+ <MACRO name="Accept Changes" lang="Python">cdr.accept_changes()</MACRO>
+ <MACRO name="Add Glossary Phrase" lang="Python">cdr.add_glossary_phrase()</MACRO>
+ <MACRO name="Administrative Subsystem" lang="Python">cdr.administrative_subsystem()</MACRO>
+ <MACRO name="Apply Revision Level" lang="Python">cdr.apply_revision_level()</MACRO>
+ <MACRO name="Audit Trail Report" lang="Python">cdr.audit_trail_report()</MACRO>
+ <MACRO name="Back Out Rejected Markup" lang="Python">cdr.back_out_rejected_markup()</MACRO>
+ <MACRO name="Bold Underline Report" lang="Python">cdr.bold_underline_report()</MACRO>
+ <MACRO name="Browser Launch Test" lang="Python">cdr.browser_launch_test()</MACRO>
+ <MACRO name="Bug Repro" lang="Python">cdr.bug_repro()</MACRO>
+ <MACRO name="CDR Advanced Search" lang="Python">cdr.advanced_search()</MACRO>
+ <MACRO name="CDR Check In" lang="Python">cdr.check_in()</MACRO>
+ <MACRO name="CDR Help" lang="Python">cdr.help()</MACRO>
+ <MACRO name="CDR Retrieve" lang="Python" key="Ctrl+Shift+I">cdr.retrieve()</MACRO>
+ <MACRO name="CDR Save" lang="Python" key="Ctrl+Shift+S">cdr.save()</MACRO>
+ <MACRO name="CDR Search" lang="Python" key="Ctrl+Q">cdr.search()</MACRO>
+ <MACRO name="CDR Validate" lang="Python">cdr.validate()</MACRO>
+ <MACRO name="Clone Doc" lang="Python">cdr.clone_doc()</MACRO>
+ <MACRO name="Character Count" lang="Python">cdr.character_count()</MACRO>
+ <MACRO name="Copy Fragment ID" lang="Python">cdr.copy_fragment_id()</MACRO>
+ <MACRO name="Copy Fragment Link" lang="Python">cdr.copy_fragment_link()</MACRO>
+ <MACRO name="Country QC Report" lang="Python">cdr.country_qc_report()</MACRO>
+ <MACRO name="Deletion" lang="Python" key="Ctrl+Alt+F1">cdr.deletion()</MACRO>
+ <MACRO name="Document History Report" lang="Python">cdr.document_history_report()</MACRO>
+ <MACRO name="DrugInfo QC Report" lang="Python">cdr.druginfo_qc_report()</MACRO>
+ <MACRO name="Edit Comment" lang="Python">cdr.edit_comment()</MACRO>
+ <MACRO name="Edit Element" lang="Python" key="Ctrl+Enter">cdr.edit_element()</MACRO>
+ <MACRO name="Edit Glossary Term Name Docs" lang="Python">cdr.edit_glossary_term_name_docs()</MACRO>
+ <MACRO name="Edit Linked Glossary Term Concept Doc" lang="Python">cdr.edit_linked_glossary_term_concept_doc()</MACRO>
+ <MACRO name="Edit SVPC Docs" lang="Python">cdr.edit_svpc_docs()</MACRO>
+ <MACRO name="Find Next" lang="Python" key="Ctrl+Alt+N">cdr.find_next()</MACRO>
+ <MACRO name="Find Next Advisory Board Markup" lang="Python">cdr.find_next_advisory_board_markup()</MACRO>
+ <MACRO name="Find Private Use Chars" lang="Python">cdr.find_private_use_chars()</MACRO>
+ <MACRO name="Full Concept QC Report" lang="Python">cdr.full_concept_qc_report()</MACRO>
+ <MACRO name="Generate QC Report" lang="Python">cdr.generate_qc_report()</MACRO>
+ <MACRO name="Glossary Phrase Search" lang="Python">cdr.glossary_phrase_search()</MACRO>
+ <MACRO name="Glossary Translation Job" lang="Python">cdr.glossary_translation_job()</MACRO>
+ <MACRO name="Glossary Translation Job Queue" lang="Python">cdr.glossary_translation_job_queue()</MACRO>
+ <MACRO name="Glossary Translation Job Workflow Report" lang="Python">cdr.glossary_translation_job_workflow_report()</MACRO>
+ <MACRO name="Glossify Document" lang="Python">cdr.glossify()</MACRO>
+ <MACRO name="Glossify Document (dig)" lang="Python">cdr.glossify(dig=True)</MACRO>
+ <MACRO name="Glossify Document (dig and wrap with Insertion)" lang="Python">cdr.glossify(dig=True, wrap=True)</MACRO>
+ <MACRO name="Glossify Document (wrap with Insertion)" lang="Python">cdr.glossify(wrap=True)</MACRO>
+ <MACRO name="Glossify Genetics Terms" lang="Python">cdr.glossify(dictionary="Genetics")</MACRO>
+ <MACRO name="Glossify Genetics Terms (include markup)" lang="Python">cdr.glossify(dictionary="Genetics", dig=True)</MACRO>
+ <MACRO name="Glossify Genetics Terms (include markup and wrap with Insertion)" lang="Python">cdr.glossify(dictionary="Genetics", dig=True, wrap=True)</MACRO>
+ <MACRO name="Glossify Genetics Terms (wrap with Insertion)" lang="Python">cdr.glossify(dictionary="Genetics", wrap=True)</MACRO>
+ <MACRO name="Glossify Patient Terms" lang="Python">cdr.glossify(audience="Patient")</MACRO>
+ <MACRO name="Glossify Patient Terms (include markup)" lang="Python">cdr.glossify(audience="Patient", dig=True)</MACRO>
+ <MACRO name="Glossify Patient Terms (include markup and wrap with Insertion)" lang="Python">cdr.glossify(audience="Patient", dig=True, wrap=True)</MACRO>
+ <MACRO name="Glossify Patient Terms (wrap with Insertion)" lang="Python">cdr.glossify(audience="Patient", wrap=True)</MACRO>
+ <MACRO name="Go To Next Element" lang="Python" key="Tab">cdr.go_to_next_element()</MACRO>
+ <MACRO name="Go To Previous Element" lang="Python" key="Shift+Tab">cdr.go_to_previous_element()</MACRO>
+ <MACRO name="Insert CitationLink" lang="Python">cdr.insert_citation_link()</MACRO>
+ <MACRO name="Insert Comment" lang="Python">cdr.insert_comment()</MACRO>
+ <MACRO name="Insert Comment For Translators" lang="Python">cdr.insert_comment_for_translators()</MACRO>
+ <MACRO name="Insert Current Date" lang="Python" key="Alt+D">cdr.insert_current_date()</MACRO>
+ <MACRO name="Insert DateLastModified" lang="Python">cdr.insert_date_last_modified()</MACRO>
+ <MACRO name="Insert DrugName Element" lang="Python">Selection.InsertElement("DrugName")</MACRO>
+ <MACRO name="Insert Emphasis Element" lang="Python">Selection.InsertElement("Emphasis")</MACRO>
+ <MACRO name="Insert ForeignWord Element" lang="Python">Selection.InsertElement("ForeignWord")</MACRO>
+ <MACRO name="Insert GeneName Element" lang="Python">Selection.InsertElement("GeneName")</MACRO>
+ <MACRO name="Insert Mailer Response" lang="Python">cdr.insert_mailer_response()</MACRO>
+ <MACRO name="Insert ResponseToComment" lang="Python">cdr.insert_response_to_comment()</MACRO>
+ <MACRO name="Insert ScientificName Element" lang="Python">Selection.InsertElement("ScientificName")</MACRO>
+ <MACRO name="Insert Strong Element" lang="Python">Selection.InsertElement("Strong")</MACRO>
+ <MACRO name="Insert Subscript Element" lang="Python">Selection.InsertElement("Subscript")</MACRO>
+ <MACRO name="Insert Superscript Element" lang="Python">Selection.InsertElement("Superscript")</MACRO>
+ <MACRO name="Insert TypeOfChange" lang="Python">cdr.insert_type_of_change()</MACRO>
+ <MACRO name="Insert User ID" lang="Python" key="Alt+U">cdr.insert_user_id()</MACRO>
+ <MACRO name="Insertion" lang="Python" key="Ctrl+Alt+I">cdr.insertion()</MACRO>
+ <MACRO name="Itemized List" lang="Python" key="Alt+L">cdr.itemized_list()</MACRO>
+ <MACRO name="Jump Before Element" lang="Python" key="Ctrl+Alt+Shift+B">cdr.jump_before_element()</MACRO>
+ <MACRO name="Jump Past Element" lang="Python" key="Ctrl+Alt+Shift+P">cdr.jump_past_element()</MACRO>
+ <MACRO name="Licensee QC Report" lang="Python">cdr.licensee_qc_report()</MACRO>
+ <MACRO name="Linked Docs Report" lang="Python">cdr.linked_docs_report()</MACRO>
+ <MACRO name="Linked Fragment Docs Report" lang="Python">cdr.linked_fragment_docs_report()</MACRO>
+ <MACRO name="Make Citation Supplementary Info Doc" lang="Python">cdr.make_citation_supplementary_info_doc()</MACRO>
+ <MACRO name="Make Glossary Term Name Doc" lang="Python">cdr.make_glossary_term_name_doc()</MACRO>
+ <MACRO name="Media Side-by-Side Report" lang="Python">cdr.media_side_by_side_report()</MACRO>
+ <MACRO name="Media Translation Job" lang="Python">cdr.media_translation_job()</MACRO>
+ <MACRO name="Media Translation Job Queue" lang="Python">cdr.media_translation_job_queue()</MACRO>
+ <MACRO name="Media Translation Job Workflow Report" lang="Python">cdr.media_translation_job_workflow_report()</MACRO>
+ <MACRO name="Navigate Comments" lang="Python" key="Ctrl+Alt+C">cdr.navigate_comments()</MACRO>
+ <MACRO name="Next Element" lang="Python" key="Tab">cdr.next_element()</MACRO>
+ <MACRO name="New CDR Document" lang="Python">cdr.add()</MACRO>
+ <MACRO name="New Summary Section" lang="Python">cdr.new_summary_section()</MACRO>
+ <MACRO name="Open Application Macros" lang="Python">cdr.open_application_macros()</MACRO>
+ <MACRO name="Open Board Member Doc" lang="Python">cdr.open_board_member_doc()</MACRO>
+ <MACRO name="Open Document Macros" lang="Python">cdr.open_document_macros()</MACRO>
+ <MACRO name="Open HP Summary" lang="Python">cdr.open_hp_summary()</MACRO>
+ <MACRO name="Open Link For Editing" lang="Python">cdr.open_link_for_editing()</MACRO>
+ <MACRO name="Open Link Readonly" lang="Python">cdr.open_link_readonly()</MACRO>
+ <MACRO name="Open Original English Media Doc" lang="Python">cdr.open_original_english_media_doc()</MACRO>
+ <MACRO name="Open Original English Summary" lang="Python">cdr.open_original_english_summary()</MACRO>
+ <MACRO name="Open Patient Summary" lang="Python">cdr.open_patient_summary()</MACRO>
+ <MACRO name="Open Person Doc For Board Member" lang="Python">cdr.open_person_doc_for_board_member()</MACRO>
+ <MACRO name="Open Translated Media Doc" lang="Python">cdr.open_translated_media_doc()</MACRO>
+ <MACRO name="Open Translated Summary" lang="Python">cdr.open_translated_summary()</MACRO>
+ <MACRO name="Ordered List" lang="Python" key="Alt+O">cdr.ordered_list()</MACRO>
+ <MACRO name="Paste Fragment ID" lang="Python">cdr.paste_fragment_id()</MACRO>
+ <MACRO name="Paste Fragment Link" lang="Python">cdr.paste_fragment_link()</MACRO>
+ <MACRO name="Patient Summary BU QC Report" lang="Python">cdr.patient_summary_bu_qc_report()</MACRO>
+ <MACRO name="Patient Summary RS QC Report" lang="Python">cdr.patient_summary_rs_qc_report()</MACRO>
+ <MACRO name="Persons Linking To This Location" lang="Python">cdr.persons_linking_to_org_loc()</MACRO>
+ <MACRO name="PI Bug Repro" lang="Python" key="Ctrl+Alt+O">cdr.pi_bug_repro()</MACRO>
+ <MACRO name="Previous Element" lang="Python" key="Shift+Tab">cdr.previous_element()</MACRO>
+ <MACRO name="Print" lang="Python">cdr.print()</MACRO>
+ <MACRO name="Publish Preview" lang="Python">cdr.publish_preview()</MACRO>
+ <MACRO name="Redline Strikeout Report" lang="Python">cdr.redline_strikeout_report()</MACRO>
+ <MACRO name="Reject Change" lang="Python">cdr.reject_change()</MACRO>
+ <MACRO name="Reload CSS" lang="Python" key="Ctrl+Alt+S">cdr.reload_css()</MACRO>
+ <MACRO name="Retrieve Org Postal Address" lang="Python">cdr.retrieve_org_postal_address()</MACRO>
+ <MACRO name="Review Markup" lang="Python" key="Ctrl+Alt+A">cdr.review_markup()</MACRO>
+ <MACRO name="SC 3quart" lang="Python">cdr.sc_3quart()</MACRO>
+ <MACRO name="SC Down" lang="Python">cdr.sc_down()</MACRO>
+ <MACRO name="SC Left" lang="Python">cdr.sc_left()</MACRO>
+ <MACRO name="SC Right" lang="Python">cdr.sc_right()</MACRO>
+ <MACRO name="SC TM" lang="Python">cdr.sc_tm()</MACRO>
+ <MACRO name="SC Up" lang="Python">cdr.sc_up()</MACRO>
+ <MACRO name="SC alpha" lang="Python">cdr.sc_alpha()</MACRO>
+ <MACRO name="SC beta" lang="Python">cdr.sc_beta()</MACRO>
+ <MACRO name="SC copy" lang="Python">cdr.sc_copy()</MACRO>
+ <MACRO name="SC cross" lang="Python">cdr.sc_cross()</MACRO>
+ <MACRO name="SC dblx" lang="Python">cdr.sc_dblx()</MACRO>
+ <MACRO name="SC deg" lang="Python">cdr.sc_deg()</MACRO>
+ <MACRO name="SC delta" lang="Python">cdr.sc_delta()</MACRO>
+ <MACRO name="SC gamma" lang="Python">cdr.sc_gamma()</MACRO>
+ <MACRO name="SC ge" lang="Python">cdr.sc_ge()</MACRO>
+ <MACRO name="SC half" lang="Python">cdr.sc_half()</MACRO>
+ <MACRO name="SC lapos" lang="Python">cdr.sc_lapos()</MACRO>
+ <MACRO name="SC le" lang="Python">cdr.sc_le()</MACRO>
+ <MACRO name="SC lquot" lang="Python">cdr.sc_lquot()</MACRO>
+ <MACRO name="SC mdash" lang="Python">cdr.sc_mdash()</MACRO>
+ <MACRO name="SC mu" lang="Python">cdr.sc_mu()</MACRO>
+ <MACRO name="SC nbsp" lang="Python">cdr.sc_nbsp()</MACRO>
+ <MACRO name="SC plusmin" lang="Python">cdr.sc_plusmin()</MACRO>
+ <MACRO name="SC quarter" lang="Python">cdr.sc_quarter()</MACRO>
+ <MACRO name="SC rapos" lang="Python">cdr.sc_rapos()</MACRO>
+ <MACRO name="SC reg" lang="Python">cdr.sc_reg()</MACRO>
+ <MACRO name="SC rquot" lang="Python">cdr.sc_rquot()</MACRO>
+ <MACRO name="Search PubMed" lang="Python">cdr.search_pubmed()</MACRO>
+ <MACRO name="Set Last Reviewed Date Attribute" lang="Python">cdr.set_last_reviewed_date()</MACRO>
+ <MACRO name="Set Non-Public" lang="Python">cdr.set_non_public()</MACRO>
+ <MACRO name="Set Public" lang="Python">cdr.set_public()</MACRO>
+ <MACRO name="Set Source to Advisory Board" lang="Python">cdr.set_source_to_advisory_board()</MACRO>
+ <MACRO name="Set Source to Editorial Board" lang="Python">cdr.set_source_to_editorial_board()</MACRO>
+ <MACRO name="Show Checked Out Docs" lang="Python">cdr.show_checked_out_docs()</MACRO>
+ <MACRO name="Show Doc Blob" lang="Python">cdr.show_doc_blob()</MACRO>
+ <MACRO name="Show Glossary Term Names" lang="Python">cdr.show_glossary_term_names()</MACRO>
+ <MACRO name="Show Linked Object" lang="Python">cdr.show_linked_object()</MACRO>
+ <MACRO name="Show Next Validation Error" lang="Python" key="Alt+E">cdr.show_next_validation_error()</MACRO>
+ <MACRO name="Spanish Link ID Swap" lang="Python">cdr.spanish_link_id_swap()</MACRO>
+ <MACRO name="Strip cdr:id Attributes" lang="Python">cdr.strip_id_attributes()</MACRO>
+ <MACRO name="Table" lang="Python">cdr.table()</MACRO>
+ <MACRO name="Term Hierarchy" lang="Python">cdr.term_hierarchy()</MACRO>
+ <MACRO name="TermName with Concept QC Report" lang="Python">cdr.termname_with_concept_qc_report()</MACRO>
+ <MACRO name="TermSet QC Report" lang="Python">cdr.termset_qc_report()</MACRO>
+ <MACRO name="Test Env Fetch" lang="Python">cdr.test_env_fetch()</MACRO>
+ <MACRO name="Translation Job" lang="Python">cdr.translation_job()</MACRO>
+ <MACRO name="Translation Job Queue" lang="Python">cdr.translation_job_queue()</MACRO>
+ <MACRO name="Translation Job Workflow Report" lang="Python">cdr.translation_job_workflow_report()</MACRO>
+ <MACRO name="Update SummaryRef Titles" lang="Python">cdr.update_summary_ref_titles()</MACRO>
+ <MACRO name="View SVPC Docs" lang="Python">cdr.view_svpc_docs()</MACRO>
+ <MACRO name="View Glossary Term Name Docs" lang="Python">cdr.view_gtn_docs()</MACRO>
+ <MACRO name="View Linked Glossary Term Concept Doc" lang="Python">cdr.view_linked_gtc_doc()</MACRO>
+ <MACRO name="View SVPC Docs" lang="Python">cdr.view_svpc_docs()</MACRO>
+ <MACRO name="XPath Bug Repro" lang="Python">cdr.xpath_bug_repro()</MACRO>
+
+ <!-- A few extras, not connected to toolbars or menus -->
+ <MACRO name="Show Platform Info" lang="Python" key="Ctrl+Shift+P">cdr.show_info()</MACRO>
+ <MACRO name="Disk Free Space" lang="Python" key="Ctrl+Shift+D">cdr.show_server_free_space()</MACRO>
+ <MACRO name="Refresh Macros" lang="Python" key="Ctrl+Shift+R">Application.RefreshMacros()</MACRO>
+</MACROS>

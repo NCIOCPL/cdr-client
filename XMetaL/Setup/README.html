@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CDR XMetaL Installation</title>
+    <style>
+      body { font-family: Verdana, Helvetica, Arial, sans-serif }
+      main { width: 80%; margin: 0 auto; }
+      code { font-size: 1.1em; color: maroon; }
+      h1, footer { text-align: center; }
+      h1, h2, h3, h4 { color: navy; }
+      ul { margin-top: 1rem; margin-bottom: 1rem; }
+      ul > li { list-style-type: disc; }
+      .note { color: green; font-size: .9em; font-style: italic; }
+      .important {
+          color: red;
+          border: 2px solid red;
+          padding: 1rem;
+          font-size: .95em;
+          font-style: italic;
+      }
+      .important code {
+          display: block;
+          margin: .5rem 3rem;
+          font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>CDR XMetaL Installation</h1>
+    </header>
+    <main>
+      <h2>Instructions for installing XMetaL 17 customized for the CDR</h2>
+      <p>
+        The standard approach for running these steps is to copy the folder
+        in which this file resides (<code>CdrSetup17</code>) to the user's
+        desktop.
+      </p>
+      <p>
+        A normal installation for a new machine should take under ten minutes
+        providing no unexpected problems arise. Allow fifteen minutes for an
+        upgrade of a machine currently running the 9.0 version of CDR XMetaL.
+      </p>
+      <p class="note">
+        <b>Note:</b>
+        The first two steps are not necessary for the test RDP server, as
+        they have already been performed.
+      </p>
+      <h3>Steps run by administrator</h3>
+      <p>
+        These first two steps require administrative privileges on the
+        machine.
+      </p>
+      <ol>
+        <li>
+          <h4>Install XMetaL 17</h4>
+          <ul>
+            <li>
+              right-click on <code>install-xmetal.cmd</code> in this folder
+            </li>
+            <li>select <em>Run as administrator</em></li>
+            <li>grant permission as requested</li>
+            <li>expected time for this script is well under a minute</li>
+            <li>
+              if XMetaL 9 needs to be uninstalled, the script may
+              take 2-4 minutes longer
+            </li>
+          </ul>
+          <p class="note">
+            <b>Note to developers:</b>
+            Make sure we get a version of the XMetaL installation
+            files which includes the patch which has been installed on
+            the shared testing server before using these instructions
+            to upgrade XMetaL on the users' machines. Otherwise, we'll
+            need an extra step to apply that patch, which we'd very
+            much prefer to avoid. Also, make sure we have replaced the
+            trial license with the production version.
+          </p>
+        </li>
+        <li>
+          <h4>Install Python 3.11</h4>
+          <ul>
+            <li>
+              right-click on <code>install-python.py</code> in this folder
+            </li>
+            <li>select <em>Run as administrator</em></li>
+            <li>grant permission as requested</li>
+            <li>
+              if a failure is reported which is not easily corrected,
+              contact the CDR developers, providing any error output
+              and logs from the PythonFiles subdirectory
+            </li>
+            <li>
+              note that we try an uninstall first, in case a misconfigured
+              installation is in place; will do nothing in most cases
+            </li>
+            <li>
+              expected time for this script is under two minutes (under
+              three minutes if an uninstall is required)
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Steps run as the CDR XMetaL user</h3>
+      <ol start="3">
+        <li>
+          <h4>Install the CDR client files</h4>
+          <p class="important">
+            This step <strong>must</strong> be done logged in as the user.
+            Do not attempt to run this as admin.
+            If you do, the client files will be setup for your admin account
+            <code>
+              C:\Users\ADMIN-USER\AppData\Roaming\SoftQuad\XMetaL\17.0
+            </code>
+            instead of the user running XMetaL
+            <code>
+              C:\Users\USERNAME\AppData\Roaming\SoftQuad\XMetaL\17.0
+            </code>
+            If necessary (because the user does not have sufficient
+            permissions to run a script), add the user temporarily to a
+            group which does have such permissions.
+          </p>
+          <ul>
+            <li>
+              if the user has been made a temporary member of a group which
+              can run scripts directly, double-click on the
+              <code>setup-client-files.py</code> script in this directory
+            </li>
+            <li>
+              otherwise, right-click on the file and select
+              <em>Run with elevated permissions</em>, entering the user's
+              username and password when prompted
+            </li>
+            <li>
+              the script will say where it found XMetaL and will
+              describe what it is about to do, identifying the source
+              and destination directories; you can abort at this point
+              if something doesn't look right, but that's pretty
+              unlikely, and in most cases you should just press the
+              <b>Enter</b> key to proceed
+            </li>
+            <li>
+              the script generally takes less than a second to complete once
+              you have confirmed that it can run
+            </li>
+            <li>
+              if the CDR icon on the desktop is a generic rectangle instead
+              of a green circle, refer to the <em>Repairing XMetaL</em>
+              section at the bottom of these instructions.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <h4>Test the installation</h4>
+          <p>
+            At this point the user should be able to log into CDR XMetaL
+            by double-clicking the CDR shortcut on the desktop, selecting
+            a tier (currently on the DEV tier is supported), and entering
+            his or her NIH domain credentials.
+          </p>
+          <p class="note">
+            <b>Note:</b>
+            Until the non-trial licenses have been acquired, the user may
+            need to click a button to confirm continuing with the trial
+            evaluation copy.
+          </p>
+        </li>
+      </ol>
+
+      <h2>Optional Post-Installation Procedures</h2>
+      <p>
+        A new machine may need to have two additional sets of files installed.
+      </p>
+      <ol>
+        <li>
+          <h4>For Board Managers</h4>
+          <p>
+            Install the CDR Word Macros and adjust MS Word settings by
+            following the instructions in <em>Teams</em> (search for the
+            <em>NCI OCPL Platform Support</em> channel and select the
+            <em>Files</em> tab and navigate to
+            <code>General > Systems > CDR</code>
+            where you will find the document
+            <em>Adding Word Macros to New Computer</em>).
+          </p>
+        </li>
+        <li>
+          <h4>
+            For users with the need (and the license) for a medical dictionary
+          </h4>
+          <p>
+            Install the dictionary file from the
+            <em>Stedman's Medical Dictionary</em> following
+            these instructions:
+          </p>
+          <ul>
+            <li>
+              start XMetaL (double-click on the green "CDR" icon on the
+              desktop)
+            </li>
+            <li>load a document</li>
+            <li>
+              start the spellchecker
+              (<code>Tools > Spell Checker...</code> or press <code>F7</code>)
+            </li>
+            <li>
+              on the <b>Writing Tools</b> pop-up window select the
+              <em>Spell Checker</em> tab
+            </li>
+            <li>click <b>Options</b></li>
+            <li>select <em>Main Word Lists...</em></li>
+            <li>click <em>Add List...</em></li>
+            <li>
+              navigate to the directory on the L-drive
+              <code>L:\OCPL\_Cross\CDR\STEDMANS</code>
+              and select one of the <code>*.lex</code> files
+              (TRADE, STEDMANS, or GENERIC)
+              <p class="note">
+                <b>Note:</b>
+                It is recommended to add the dictionaries in the above order!
+              </p>
+            </li>
+            <li>click <b>Open</b></li>
+            <li>
+              repeat the <em>Add List...</em> steps for the other
+              two <code>*.lex</code> files
+            </li>
+            <li>close the pop-up windows</li>
+          </ul>
+          <p>
+            You are now using the latest
+            <em>Stedman's Medical Dictionary</em>.
+          </p>
+          <p>
+            Users who already have a dictionary loaded that is located
+            in a different directory may want to disable that
+            dictionary or remove it from the list.
+          </p>
+        </li>
+      </ol>
+
+      <h2>Repairing XMetaL</h2>
+      <p>
+        If the installation of XMetaL following the instructions above
+        failed for any reason, it is generally preferable to attempt
+        to repair the installation (rather than removing it and
+        reinstalling), as follows.
+      </p>
+      <ul>
+        <li>open a command console window as administrator.</li>
+        <li>run appwiz.cpl</li>
+        <li>select <em>XMetaL Author Essential (x64)</em></li>
+        <li>
+          click the <b>Change</b> button at the top of the list
+          of installed programs
+        </li>
+        <li>
+          select the <b>Repair</b> button on the
+          <em>Program Maintenance</em> dialog box
+        </li>
+        <li>click the Next button</li>
+        <li>follow the instructions to proceed with the repair</li>
+        <li>run <code>setup-client-files.py</code> again</li>
+        <li>
+          if the CDR desktop icon is not a green circle, report the
+          problem to the CDR developers and abort the CDR XMetaL setup
+        </li>
+      </ul>
+      <p>
+        On the other hand, the XMetaL application may at some point in the
+        furture occasionally fail to start properly, and ask for the location
+        of the installation files. If this happens it is generally best to
+        reinstall XMetaL. To do this, run the <code>repair-xmetal.cmd</code>
+        script (which will actually remove and then reinstall XMetaL) in this
+        directory as administrator. The script should complete in under a
+        minute.
+      </p>
+    </main>
+    <footer>
+      <p class="note">Instructions last updated 2022-01-03</p>
+    </footer>
+  </body>
+</html>
