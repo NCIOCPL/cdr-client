@@ -113,30 +113,22 @@
       </ol>
 
       <h3>Steps run as the CDR XMetaL user</h3>
+      <p class="important">
+        This next step <strong>must</strong> be taken logged in as the user.
+        Do not attempt to run this as admin.
+        If you do, the client files will be setup for your admin account
+        <code>C:\Users\ADMINUSER\AppData\Roaming\SoftQuad\XMetaL\17.0</code>
+        <code class="mobile">C:\Users\ADMINUSER\AppData\...</code>
+        instead of the user running XMetaL
+        <code>C:\Users\USERNAME\AppData\Roaming\SoftQuad\XMetaL\17.0</code>
+        <code class="mobile">C:\Users\USERNAME\AppData\...</code>
+        If necessary (because the user does not have sufficient
+        permissions to run a script), add the user temporarily to a
+        group which does have such permissions.
+      </p>
       <ol start="3">
         <li>
           <h4>Install the CDR client files</h4>
-          <p class="important">
-            This step <strong>must</strong> be done logged in as the user.
-            Do not attempt to run this as admin.
-            If you do, the client files will be setup for your admin account
-            <code>
-              C:\Users\ADMINUSER\AppData\Roaming\SoftQuad\XMetaL\17.0
-            </code>
-            <code class="mobile">
-              C:\Users\ADMINUSER\AppData\...
-            </code>
-            instead of the user running XMetaL
-            <code>
-              C:\Users\USERNAME\AppData\Roaming\SoftQuad\XMetaL\17.0
-            </code>
-            <code class="mobile">
-              C:\Users\USERNAME\AppData\...
-            </code>
-            If necessary (because the user does not have sufficient
-            permissions to run a script), add the user temporarily to a
-            group which does have such permissions.
-          </p>
           <ul>
             <li>
               if the user has been made a temporary member of a group which
