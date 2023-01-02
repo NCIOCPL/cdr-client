@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CDR XMetaL Installation</title>
     <style>
       body { font-family: Verdana, Helvetica, Arial, sans-serif }
@@ -21,8 +22,16 @@
       }
       .important code {
           display: block;
-          margin: .5rem 3rem;
+          margin: .5rem 2rem;
           font-style: normal;
+      }
+      .important code.mobile { display: none; }
+      @media only screen and (max-width: 600px) {
+          .important code { display: none; }
+          .important code.mobile { display: block; margin-left: 1rem; }
+	  main { width: 100%; margin: 0; }
+	  ul { padding-left: 1rem; }
+	  ol { padding-left: 1.5rem; }
       }
     </style>
   </head>
@@ -112,11 +121,17 @@
             Do not attempt to run this as admin.
             If you do, the client files will be setup for your admin account
             <code>
-              C:\Users\ADMIN-USER\AppData\Roaming\SoftQuad\XMetaL\17.0
+              C:\Users\ADMINUSER\AppData\Roaming\SoftQuad\XMetaL\17.0
+            </code>
+            <code class="mobile">
+              C:\Users\ADMINUSER\AppData\...
             </code>
             instead of the user running XMetaL
             <code>
               C:\Users\USERNAME\AppData\Roaming\SoftQuad\XMetaL\17.0
+            </code>
+            <code class="mobile">
+              C:\Users\USERNAME\AppData\...
             </code>
             If necessary (because the user does not have sufficient
             permissions to run a script), add the user temporarily to a
