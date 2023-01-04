@@ -4554,6 +4554,13 @@ class CDR:
                 filename.insert("end", path)
                 self.logger.debug("filename is %s", path)
 
+        def keep_comment_short(_event=None):
+            value = comment.get("1.0", "end")
+            if len(value) > 255:
+                dialog.bell()
+                comment.delete("1.0", "end")
+                comment.insert("end", value[:255])
+
         def publishable_onclick(_event=None):
             """We need a valid version for publication."""
 
@@ -4621,7 +4628,7 @@ class CDR:
             file_row = ttk.Frame(dialog.form)
             file_row.grid(row=row, column=0, padx=20, pady=(0, 20), sticky="w")
             label = ttk.Label(file_row, text="File Name", anchor="w", width=10)
-            label.grid(row=0, column=0)#, padx=(0,5))
+            label.grid(row=0, column=0)
             filename = ttk.Entry(file_row, width=45)
             filename.grid(row=0, column=1, padx=(10, 31))
             dialog.add_button("Browse", browse_for_blob, 0, 2, frame=file_row)
@@ -4633,7 +4640,9 @@ class CDR:
         row += 1
         label = ttk.Label(comment_row, text="Comment")
         label.grid(row=0, column=0, padx=(0, 14))
-        comment = dialog.add_textarea(0, 1, frame=comment_row, width=46, height=5)
+        opts = dict(frame=comment_row, width=46, height=5)
+        comment = dialog.add_textarea(0, 1, **opts)
+        comment.bind("<KeyRelease>", keep_comment_short)
 
         # Conditionally add a row for a checkbox to block the document.
         if not blocked:
