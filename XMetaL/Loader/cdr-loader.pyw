@@ -53,6 +53,7 @@ class Control:
                 exit(0)
 
         # Make sure we've got the latest and greatest client files.
+        self._clear_caches()
         if not self.opts.skip_refresh and not self.opts.restarted:
             checksum = self.checksum
             self._refresh_client_files()
@@ -394,7 +395,8 @@ class Control:
         for these DTDs. Sometimes XMetaL ignores our changes; at other times
         XMetaL simply crashes. We eliminate these problems by clearing out
         XMetaL's compiled RLX files. We have to do this recursively, because
-        sometimes XMetaL changes the location of those files.
+        sometimes XMetaL changes the location of those files. Confirmed that
+        the bug is still present in XMetaL 17 (as of 2023-01-05).
         """
 
         for path in Path(self.PATH, "Cdr", "Media").glob("*"):
