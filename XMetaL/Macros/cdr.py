@@ -3233,6 +3233,7 @@ class CDR:
                 self.logger.debug("selected doc: %s", selected_document)
                 match = re.search(r"^ \[([^]]+)\]", selected_document)
                 doc_id = match.group(1)
+                dialog.make_not_topmost()
                 self._fetch_and_open_doc(doc_id, checkout=lock.get())
                 dialog.close()
 
