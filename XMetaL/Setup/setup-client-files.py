@@ -10,6 +10,8 @@ from logging import basicConfig, info, exception
 from os import getenv
 from pathlib import Path
 from shutil import copy, copytree
+from subprocess import run
+from sys import executable
 
 # Find the XMetaL executable.
 def find_xmetal():
@@ -27,12 +29,16 @@ def find_xmetal():
 
 
 # Establish locations for everything.
+PYTHON_DIR = Path(executable).parent.resolve()
+PYTHON_DLLS = PYTHON_DIR / "DLLs"
 SOURCE = Path(__file__).parent.resolve() / "ClientFiles"
 APPDATA = Path(getenv("APPDATA"))
 USER_PROFILE = Path(getenv("USERPROFILE"))
 DESKTOP = USER_PROFILE / "Desktop"
 DOCUMENTS = USER_PROFILE / "Documents"
 CLIENT_DIR = APPDATA / "SoftQuad" / "XMetaL" / "17.0"
+MACROS = CLIENT_DIR / "Macros"
+PYTHON_PATH = f"{PYTHON_DLLS};{MACROS}"
 XMETAL_INI = CLIENT_DIR / "XMetaL.ini"
 XMETAL_INI_ORIGINAL = CLIENT_DIR / "XMetaL.ini.original"
 ICONS = CLIENT_DIR / "Icons"
@@ -95,6 +101,16 @@ format = "%(asctime)s [%(levelname)s] %(message)s"
 basicConfig(filename=LOGFILE, format=format, level="INFO")
 info("Installing from %s", SOURCE)
 info("Installing to %s", CLIENT_DIR)
+
+# Set the PYTHONPATH environment variable.
+print("Setting the PYTHONPATH environment variable.")
+info("Setting PYTHONPATH=%s", PYTHON_PATH)
+process = run(["SETX", "PYTHONPATH", PYTHON_PATH, ">", "NUL"], shell=True)
+info("SETX return code=%s", process.returncode)
+if process.returncode:
+    print("Unable to set the PYTHONPATH environment variable")
+    input("Press Enter to quit ... ")
+    exit(1)
 
 # Install the icon files.
 print("Installing icon files.")
