@@ -3320,7 +3320,7 @@ class CDR:
         left = ttk.Frame(middle)
         left.grid(row=0, column=0, sticky="w", pady=0)
         doctype_wrapper = ttk.Frame(left)
-        doctype_wrapper.grid(row=1, column=0, sticky="w", pady=0)
+        doctype_wrapper.grid(row=1, column=0, sticky="w", pady=(10, 0))
         label = ttk.Label(doctype_wrapper, text="Document Type")
         label.grid(row=0, column=0, padx=(0, 10), pady=0, sticky="w")
         doctypes = ["Any Type"] + sorted(self.doctypes)
