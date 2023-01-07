@@ -261,7 +261,7 @@ class Control:
 
         # Create the root window.
         window = Tk()
-        window.eval("tk::PlaceWindow . center")
+        window.attributes("-alpha", 0.0)
         window.bind("<Return>", on_ok)
         window.bind("<Escape>", lambda _: window.quit())
         window.title("CDR Client")
@@ -334,6 +334,20 @@ class Control:
             row += 1
             if row > 1:
                 row, col = 0, 1
+
+        # Center the window. See https://stackoverflow.com/questions/3352918.
+        window.update_idletasks()
+        width = window.winfo_width()
+        frame_width = window.winfo_rootx() - window.winfo_x()
+        window_width = width + 2 * frame_width
+        height = window.winfo_height()
+        titlebar_height = window.winfo_rooty() - window.winfo_y()
+        window_height = height + titlebar_height + frame_width
+        x = window.winfo_screenwidth() // 2 - window_width // 2
+        y = window.winfo_screenheight() // 2 - window_height // 2
+        window.geometry(f"{width}x{height}+{x}+{y}")
+        window.deiconify()
+        window.attributes("-alpha", 1.0)
 
         # This will be cleared when the OK button is clicked.
         self.cancelled = True
