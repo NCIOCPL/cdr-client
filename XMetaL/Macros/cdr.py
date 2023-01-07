@@ -5740,6 +5740,7 @@ class DialogBox(tkinter.Tk):
         """
 
         tkinter.Tk.__init__(self)
+        self.attributes("-alpha", 0.0)
         self.cdr = cdr
         self.values = DialogBox.Values()
         self.closed = False
@@ -5753,15 +5754,6 @@ class DialogBox(tkinter.Tk):
         self.bind("<Escape>", self.close)
         self.form = ttk.Frame(self, padding=15)
         self.form.grid()
-        hwnd = int(self.form.master.frame(), 16)
-        old_style = DialogBox.get_window_long(hwnd, DialogBox.GWL_STYLE)
-        new_style = old_style & self.CONTROLS_MASK
-        DialogBox.set_window_long(hwnd, DialogBox.GWL_STYLE, new_style)
-        left, top, right, bottom = cdr.window_rect
-        x = int(left + (right - left) / 2 - 200)
-        y = int(top + (bottom - top) / 2 - 100)
-        self.cdr.logger.debug(f"DialogBox position: x={x} y={y}")
-        DialogBox.set_window_pos(hwnd, 0, x, y, 0, 0, self.SWP_FLAGS)
 
     def add_button(self, label, command, row, col, **opts):
         """Add an action button to the form.
@@ -6059,13 +6051,35 @@ class DialogBox(tkinter.Tk):
         """Start the dialog's main processing loop."""
 
         try:
+            self._center_and_style()
             self.make_topmost()
-            self.update()
             self.mainloop()
         except:
             if not self.closed:
                 self.close()
             raise
+
+    def _center_and_style(self):
+        """Set the position and styling for the dialog window."""
+
+        self.update_idletasks()
+        width = self.winfo_width()
+        frame_width = self.winfo_rootx() - self.winfo_x()
+        window_width = width + 2 * frame_width
+        height = self.winfo_height()
+        titlebar_height = self.winfo_rooty() - self.winfo_y()
+        window_height = height + titlebar_height + frame_width
+        hwnd = int(self.form.master.frame(), 16)
+        old_style = DialogBox.get_window_long(hwnd, DialogBox.GWL_STYLE)
+        new_style = old_style & self.CONTROLS_MASK
+        DialogBox.set_window_long(hwnd, DialogBox.GWL_STYLE, new_style)
+        left, top, right, bottom = self.cdr.window_rect
+        x = int(left + (right - left) // 2 - window_width // 2)
+        y = int(top + (bottom - top) // 2 - window_height // 2)
+        self.cdr.logger.debug(f"DialogBox position: x={x} y={y}")
+        DialogBox.set_window_pos(hwnd, 0, x, y, 0, 0, self.SWP_FLAGS)
+        self.deiconify()
+        self.attributes("-alpha", 1.0)
 
 
 class ValidationErrors:
