@@ -2,12 +2,12 @@
 
 """Ensure that the CDR client files are up-to-date, then launch XMetaL.
 
-Processing logic for the standard flow:
+Processing logic for the most common flow:
 
   1. Get the user's credentials and options.
   2. Make sure the user's client files are up to date.
   3. Create a new CDR login session.
-  4. Export the values our scripts will need (such as session ID)
+  4. Export the values our scripts will need (such as session ID).
   5. Launch XMetaL.
 """
 
