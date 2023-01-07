@@ -8,8 +8,8 @@ Word.
 ## CDR Loader
 
 This script runs on the user's machine. It ensures that the CDR client
-files are up to date, then launches XMetaL our own custom Python macros
-enabled. To learn exactly how it does this, you can examine the
+files are up to date, then launches XMetaL with our own custom Python
+macros enabled. To learn exactly how it does this, you can examine the
 [script](XMetaL/Loader/cdr-loader.pyw), in particular the documentation
 comments for the `_refresh_client_files()` method.
 
