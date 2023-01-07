@@ -921,7 +921,7 @@ class CDR:
         frame = ttk.Frame(top)
         frame.grid(row=0, column=1, padx=(25, 5))
         button_opts = dict(focus=True, frame=frame, pady=3)
-        dialog.add_button("Accept", callback, 0, 0, **button_opts)
+        accept = dialog.add_button("Accept", callback, 0, 0, **button_opts)
         dialog.add_button("Cancel", dialog.close, 1, 0, frame=frame, pady=3)
         label = ttk.Label(text="Levels", style="Bold.TLabel")
         bottom = ttk.LabelFrame(dialog.form, labelwidget=label)
@@ -939,7 +939,7 @@ class CDR:
             box_opts["checked"] = checked
             checkboxes[name] = dialog.add_checkbox(name, 0, col, **box_opts)
             col += 1
-        dialog.run()
+        dialog.run(accept)
 
         # Make sure at least one level was selected.
         self.logger.debug("Accept Changes: levels=%r", dialog.values.levels)
@@ -1070,9 +1070,9 @@ class CDR:
             column = ttk.Frame(dialog)
             column.grid(row=0, column=1)
             opts = dict(frame=column, padx=(20, 40), pady=3, focus=True)
-            dialog.add_button("OK", callback, 0, 0, **opts)
+            ok = dialog.add_button("OK", callback, 0, 0, **opts)
             dialog.add_button("Cancel", dialog.quit, 1, 0, **opts)
-            dialog.run()
+            dialog.run(ok)
             level = dialog.values.level
             if level:
                 count = self._set_rev_markup_attrs("RevisionLevel", level)
@@ -1253,7 +1253,7 @@ class CDR:
         instructions.grid(row=0, column=0, padx=15, pady=15)
         buttons = ttk.Frame(top)
         buttons.grid(row=0, column=1, padx=10, pady=10)
-        dialog.add_button("OK", callback, 0, 0, frame=buttons, focus=True)
+        ok = dialog.add_button("OK", callback, 0, 0, frame=buttons, focus=True)
         dialog.add_button("Cancel", dialog.close, 1, 0, frame=buttons)
         bottom = ttk.Frame(dialog.form)
         bottom.grid(row=1, column=0, pady=(5, 15))
@@ -1261,7 +1261,7 @@ class CDR:
         label.grid(row=0, column=0, pady=3)
         comment = dialog.add_textarea(1, 0, width=50, height=6, frame=bottom)
         comment.bind("<KeyRelease>", keep_comment_short)
-        dialog.run()
+        dialog.run(ok)
 
         if dialog.values.confirmed:
             cdr_id = self.cdr_id
@@ -1535,9 +1535,9 @@ class CDR:
         buttons.grid(row=0, column=1, padx=(20, 40))
         opts = dict(frame=buttons, pady=4)
         dialog.add_button("Prev", find_prev_callback, 0, 0, **opts)
-        dialog.add_button("Next", find_next_callback, 1, 0, **opts)
+        next = dialog.add_button("Next", find_next_callback, 1, 0, **opts)
         dialog.add_button("Done", dialog.close, 2, 0, **opts)
-        dialog.run()
+        dialog.run(next)
 
     @handle_exceptions
     def find_next_advisory_board_markup(self):
@@ -2119,10 +2119,13 @@ class CDR:
             ["Done", dialog.close, False],
         )
         opts = dict(frame=buttons, pady=3)
+        next = None
         for row, (label, command, focus) in enumerate(button_info):
             opts["focus"] = focus
-            dialog.add_button(label, command, row, 0, **opts)
-        dialog.run()
+            button = dialog.add_button(label, command, row, 0, **opts)
+            if focus:
+                next = button
+        dialog.run(next)
 
     @handle_exceptions
     def new_summary_section(self):
@@ -2627,7 +2630,7 @@ class CDR:
         checkout_field = dialog.add_checkbox("Check Out?", 1, 1)
         dialog.add_button("OK", retrieve_callback, 0, 2)
         dialog.add_button("Cancel", dialog.close, 1, 2, pady=5)
-        dialog.run()
+        dialog.run(doc_id_field)
         values = dialog.values
         if values.doc_id:
             self._fetch_and_open_doc(values.doc_id, checkout=values.checkout)
@@ -2916,7 +2919,7 @@ class CDR:
                 label_opts["pady"] = display_opts["pady"] = (0, 10)
             ttk.Label(frame, text=label, width=10).grid(**label_opts)
             ttk.Label(frame, textvariable=var, width=30).grid(**display_opts)
-        dialog.run()
+        dialog.run(buttons["Next"])
 
 
     @handle_exceptions
@@ -3393,7 +3396,7 @@ class CDR:
             document_opts["value"] = selected_document
         document = dialog.add_listbox(documents, 2, 0, **document_opts)
         title.select_range(0, "end")
-        dialog.run()
+        dialog.run(title)
 
     @handle_exceptions
     def search_pubmed(self):
@@ -4756,7 +4759,7 @@ class CDR:
         buttons = ttk.Frame(dialog.form)
         buttons.grid(sticky="E", row=0, column=0)
         opts = dict(frame=buttons, focus=True, pady=4)
-        dialog.add_button("OK", validation_callback, 0, 0, **opts)
+        ok = dialog.add_button("OK", validation_callback, 0, 0, **opts)
         dialog.add_button("Cancel", dialog.close, 1, 0, frame=buttons)
         checkbox_wrapper = ttk.Frame(dialog.form)
         opts = dict(sticky="W", row=1, column=0, padx=(30,20), pady=(0, 20))
@@ -4771,7 +4774,7 @@ class CDR:
         for i, (key, name, checked) in enumerate(box_values):
             opts = dict(frame=checkbox_wrapper, checked=checked, sticky="W")
             boxes[key] = dialog.add_checkbox(name, i, 0, **opts)
-        dialog.run()
+        dialog.run(ok)
         return dialog.values
 
     def _is_contained_in(self, *names):
@@ -5118,7 +5121,7 @@ class CDR:
         dialog.add_button("View", link_view_callback, 2, 0, **button_opts)
         button_opts["pady"] = 40
         dialog.add_button("Cancel", dialog.close, 3, 0, **button_opts)
-        dialog.run()
+        dialog.run(title)
         target = dialog.values.target
         self.logger.debug("_pick_link_target() returning %r", target)
         return target
@@ -5200,7 +5203,7 @@ class CDR:
         buttons.grid(row=0, column=1, padx=(20, 15), sticky="N")
         dialog.add_button("OK", callback, 0, 0, pady=3, frame=buttons)
         dialog.add_button("Cancel", dialog.close, 1, 0, pady=3, frame=buttons)
-        dialog.run()
+        dialog.run(box)
         return dialog.values.value
 
     def _pick_version(self, root, doc_id, versions, lock):
@@ -5490,9 +5493,7 @@ class CDR:
         message.grid(row=1, pady=(5, 10))
         ok = dialog.add_button("OK", callback, 0, 1, frame=top_row, focus=True)
         ok.bind("<Return>", callback)
-        #button = ttk.Button(dialog, text="OK", command=dialog.quit)
-        #button.grid(row=0, column=1)
-        dialog.run()
+        dialog.run(ok)
 
     def _strip_cdr_id_attributes(self, node):
         """Recursively remove the cdr:id attributes from the document.
@@ -5769,6 +5770,9 @@ class DialogBox(tkinter.Tk):
             padx - integer or two-integer tuple for horizontal padding
             frame - override for self.form as enclosing wrapper
             focus - if True, the button is given the initial focus
+
+        Return:
+            reference to button widget
         """
 
         self.cdr.logger.trace("added %s button", label)
@@ -6047,12 +6051,18 @@ class DialogBox(tkinter.Tk):
         """Ensure visibility of this dialog box."""
         self.attributes("-topmost", True)
 
-    def run(self):
-        """Start the dialog's main processing loop."""
+    def run(self, focus_field=None):
+        """Start the dialog's main processing loop.
+
+        Optional argument:
+            focus_field - field which should get the initial focus
+        """
 
         try:
             self._center_and_style()
             self.make_topmost()
+            if focus_field:
+                focus_field.focus()
             self.mainloop()
         except:
             if not self.closed:
