@@ -5350,7 +5350,7 @@ class CDR:
             etree.SubElement(control, "DocId").text = cdr_id
         etree.SubElement(control, "DocType").text = doctype
         etree.SubElement(control, "DocTitle").text = title
-        if self.document_blocked:
+        if options.block:
             etree.SubElement(control, "DocActiveStatus").text = "I"
         if options.comment:
             etree.SubElement(control, "DocComment").text = options.comment
@@ -5676,13 +5676,13 @@ class CDRDocument:
             raise Exception("Missing CdrDocCtl element")
         node = doc_ctl.find("ReadyForReview")
         self.ready_for_review = CDR.get_text(node) == "Y"
-        self.blocked = doc_ctl.get("blocked") == "Y"
         self.title = CDR.get_text(doc_ctl.find("DocTitle"))
         self.active_status = CDR.get_text(doc_ctl.find("DocActiveStatus"))
         self.val_status = CDR.get_text(doc_ctl.find("DocValStatus"))
         self.modified = CDR.get_text(doc_ctl.find("DocModified"))
         self.modifier = CDR.get_text(doc_ctl.find("DocModifier"))
         self.comment = CDR.get_text(doc_ctl.find("DocComment"))
+        self.blocked = self.active_status == "I"
         doc_xml = doc.find("CdrDocXml")
         if doc_xml is None:
             raise Exception("Response has no CdrDocXml element")
