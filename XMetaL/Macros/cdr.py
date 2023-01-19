@@ -5459,7 +5459,8 @@ class CDR:
 
     def _set_title_bar(self):
         """Identify the application as the CDR editor on the selected tier."""
-        win32gui.SetWindowText(self.app.WindowHandle, f"CDR Editor {self.tier}")
+        win32gui.SetWindowText(self.app.WindowHandle,
+                               f"CDR Editor ({self.tier})")
 
     def _set_view_mode(self, mode):
         """Put the currently active document in the specified view mode.
