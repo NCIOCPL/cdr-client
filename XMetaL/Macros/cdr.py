@@ -3177,7 +3177,6 @@ class CDR:
                 return
             if not fragment and operator == "eq":
                 return
-            print(f"doctype={doctype_name} fragment={fragment} operator={operator}")
 
             # Remember these values.
             self.last_search["title"] = fragment
@@ -3324,7 +3323,7 @@ class CDR:
         label.grid(row=0, column=0, padx=(0, 10), pady=0, sticky="w")
         doctypes = ["Any Type"] + sorted(self.doctypes)
         doctype_opts = dict(state="readonly", width=43, values=doctypes)
-        doctype_opts["height"] = 20
+        doctype_opts["height"] = 24
         doctype = ttk.Combobox(doctype_wrapper, **doctype_opts)
         doctype.bind("<Key>", autocomplete)
         doctype.bind("<<ComboboxSelected>>", search_check_searchable)
