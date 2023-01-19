@@ -196,12 +196,8 @@ class CDR:
 
         allowed = self.XM_VIEW_NORMAL, self.XM_VIEW_TAGS_ON
         if self.document.ViewType not in allowed:
-            message = "Change to Tags On or Normal view to run macros."
-            self.app.Alert(message)
             return False
         if not self.document.IsXML:
-            message = "Cannot run macros because the document is not XML."
-            self.app.Alert(message)
             return False
         return True
 
