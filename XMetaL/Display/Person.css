@@ -151,6 +151,7 @@ Person,
 /*************************************************************************/
 /*                           BLOCK ELEMENTS                              */
 /*************************************************************************/
+/* Elements not specified here are by default inline elements!           */
 AcceptsCalls,
 AdministrativeInformation, /* not titled here; use in structure css */
 BoardCertifiedSpecialty,
@@ -218,6 +219,7 @@ Prefix,
 PrivatePractice,
 PrivatePracticeLocation,
 ProfessionalInformation,
+ProfessionalSuffix,
 ProfessionalType,
 ProvidesServices,
 Role,
@@ -968,7 +970,9 @@ SpecificPhone                     :before,
 SpecificPostalAddress             :before,
 SpecificTollFreePhone             :before,
 SpecificWebSite                   :before,
+/*
 StandardProfessionalSuffix        :before,
+*/
 StateCertificationNumber          :before,
 StateCertificationState           :before,
 SurName                           :before,
