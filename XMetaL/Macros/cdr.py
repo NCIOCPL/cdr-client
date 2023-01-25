@@ -3260,7 +3260,7 @@ class CDR:
                     versions.append(f" [{number}] {date} {comment} ")
                 self.logger.info("Search found %d versions", len(versions))
                 if versions:
-                    self._pick_version(dialog, doc_id, versions, lock.get())
+                    self._pick_version(dialog, doc_id, versions)
                 else:
                     self.app.Alert("No versions found.")
 
@@ -4156,7 +4156,8 @@ class CDR:
 
     def _fetch_candidate_link_targets(self, doctype, element_name, fragment):
         fragment = fragment.replace("[", "[[]").replace("_", "[_]")
-        self.logger.debug("element=%s fragment=%s doctype=%s", element_name, fragment, doctype)
+        self.logger.debug("element=%s fragment=%s doctype=%s",
+                          element_name, fragment, doctype)
         targets = []
         if doctype == "Person" and element_name == "FamilialCancerSyndrome":
             command_set = CommandSet(self, "CdrReport")
@@ -4200,8 +4201,8 @@ class CDR:
         """
 
         self.logger.debug( "_fetch_doc(%s) with opts %s", doc_id, opts)
-        checkout = opts.get("checkout", False)
         version = opts.get("version", None)
+        checkout = opts.get("checkout", False) and not version
         command_set = CommandSet(self, "CdrGetDoc")
         command = command_set.command
         command.set("includeBlob", "N")
@@ -4987,7 +4988,7 @@ class CDR:
 
         # Pull out the optional argument values.
         version = opts.get("version")
-        checkout = opts.get("checkout")
+        checkout = opts.get("checkout") and not version
         version_suffix = f"-V{version}" if version else ""
 
         # Catch and log any exceptions from the CDRDocument constructor.
@@ -5201,13 +5202,13 @@ class CDR:
         dialog.run(box)
         return dialog.values.value
 
-    def _pick_version(self, root, doc_id, versions, lock):
+    def _pick_version(self, root, doc_id, versions):
         """Allow the user to select which version of a document to open.
 
         Required positional arguments:
             root - dialog window used to select the document
             doc_id - unique CDR ID for the selected document
-            lock - if True, check out the document for editing
+            versions - versions of the document available for selection
         """
 
         def pick_version_callback(_event=None):
@@ -5220,8 +5221,6 @@ class CDR:
                 self.logger.debug("selected version: %s", selected_version)
                 match = re.search(r"^ \[(\d+)\] ", selected_version)
                 opts = dict(version=int(match.group(1)))
-                if lock:
-                    opts["checkout"] = True
                 message = "calling _fetch_and_open_doc(%s) with opts %s"
                 self.logger.debug(message, doc_id, opts)
                 root.close()
