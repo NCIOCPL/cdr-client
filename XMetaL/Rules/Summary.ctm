@@ -288,6 +288,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>MiscellaneousDocLink</Name>
+   <TagColor>#ECFFDC</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
