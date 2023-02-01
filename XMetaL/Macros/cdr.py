@@ -3262,7 +3262,9 @@ class CDR:
                 if versions:
                     self._pick_version(dialog, doc_id, versions)
                 else:
+                    dialog.make_not_topmost()
                     self.app.Alert("No versions found.")
+                    dialog.make_topmost()
 
 
         def search_check_searchable(event=None):
