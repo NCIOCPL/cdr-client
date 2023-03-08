@@ -622,6 +622,10 @@ class CDR:
             self._add_macro("-", "")
             self._add_macro("Strip cdr:id Attributes")
 
+        # Add macro available when the current document is open as read-only.
+        if self.cdr_id and readonly:
+            self._add_macro("Edit Document")
+
     @handle_exceptions
     def on_application_elementlist_insert(self):
         """Enhance the glossary processing status block."""
@@ -1410,6 +1414,14 @@ class CDR:
             text = self._edit_multiline_text(title, comment, readonly=readonly)
             if not readonly and text is not None:
                 element.setAttribute("comment", text)
+
+    @handle_exceptions
+    def edit_document(self):
+        """Check out and open the current document for editing."""
+
+        cdr_id = self.cdr_id
+        if cdr_id and not self.active_document_is_writable:
+            self._fetch_and_open_doc(cdr_id, checkout=True)
 
     @handle_exceptions
     def edit_element(self):

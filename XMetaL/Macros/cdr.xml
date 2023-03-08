@@ -45,6 +45,7 @@
  <MACRO name="Document History Report" lang="Python">cdr.document_history_report()</MACRO>
  <MACRO name="DrugInfo QC Report" lang="Python">cdr.druginfo_qc_report()</MACRO>
  <MACRO name="Edit Comment" lang="Python">cdr.edit_comment()</MACRO>
+ <MACRO name="Edit Document" lang="Python">cdr.edit_document()</MACRO>
  <MACRO name="Edit Element" lang="Python" key="Ctrl+Enter">cdr.edit_element()</MACRO>
  <MACRO name="Edit Glossary Term Name Docs" lang="Python">cdr.edit_glossary_term_name_docs()</MACRO>
  <MACRO name="Edit Linked Glossary Term Concept Doc" lang="Python">cdr.edit_linked_glossary_term_concept_doc()</MACRO>
