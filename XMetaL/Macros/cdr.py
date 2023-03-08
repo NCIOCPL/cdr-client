@@ -3214,7 +3214,9 @@ class CDR:
                 buttons["Retrieve"].config(state="normal")
                 buttons["Versions"].config(state="normal")
             else:
+                dialog.make_not_topmost()
                 self.app.Alert("No documents match this query.")
+                dialog.make_topmost()
                 buttons["Retrieve"].config(state="disabled")
                 buttons["Versions"].config(state="disabled")
 
