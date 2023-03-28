@@ -70,7 +70,8 @@ MiscellaneousDocumentTitle,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 MiscellaneousDocumentText,
-PdqKey
+PdqKey,
+TranslationOf
     { display: block; }
 
 
@@ -89,6 +90,7 @@ MiscellaneousDocumentType         :before { content: "Type *: "; }
 Note                              :before { content: " [Note: "; }
 Note                              :after  { content: "]"; }
 PdqKey                            :before { content: "PDQ Key &: "; }
+TranslationOf                     :before { content: "Translation of & @: ";}
 
 
 /*************************************************************************/
@@ -103,6 +105,7 @@ MiscellaneousDocumentMetadata
       margin-bottom: 6pt; }
 
 DateLastModified                  :before,
+TranslationOf                     :before
     { font-weight: bold;
       color: black;  }
 
@@ -140,6 +143,7 @@ Audience,
 Language,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
+TranslationOf
     { background-color: white; }
 
 Audience                          :before,
@@ -160,10 +164,17 @@ Language,
     { margin-left: 80pt;
       text-indent: -72.5pt;}
 
+
+DateLastModified           { margin-left: 17pt; }
+/* TranslationOf              { text-indent: -138pt; }  */
+
+
 Audience,
+DateLastModified,
 Language,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
+TranslationOf
     { margin-bottom: 4pt; }
 
 DateLastModified,
