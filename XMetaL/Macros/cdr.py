@@ -789,7 +789,8 @@ class CDR:
 
         # Allow the cdr-eid attribute everywhere.
         for element_type in doctype.elementTypes:
-            self.logger.trace("adding the cdr-eid attribute to %s", element_type)
+            self.logger.trace("adding the cdr-eid attribute to %s",
+                              element_type)
             #doctype.addAttribute(doctype.elementType(i), "cdr-eid", "", 1, 0)
             doctype.addAttribute(element_type, "cdr-eid", "", 1, 0)
 
@@ -4022,11 +4023,11 @@ class CDR:
             child = node.find("WidthPixels")
             if child is not None:
                 self.logger.debug("image width: %s", width)
-                child.text = str(width)
+                self._replace_element_content(child, width)
             child = node.find("HeightPixels")
             if child is not None:
                 self.logger.debug("image height: %s", height)
-                child.text = str(height)
+                self._replace_element_content(child, height)
 
         # Determine the duration of an audio Media file.
         for node in root.iter("SoundData"):
@@ -4035,7 +4036,7 @@ class CDR:
             child = node.find("RunSeconds")
             if child is not None:
                 self.logger.debug("setting audio seconds to %s", seconds)
-                child.text = str(seconds)
+                self._replace_element_content(child, seconds)
 
     def _adjust_toolbar_visibility(self):
         """Separated out so we can call it directly ourselves."""
@@ -4189,9 +4190,10 @@ class CDR:
             command_set = CommandSet(self, "CdrSearchLinks")
             command = command_set.command
             command.set("MaxDocs", "150")
+            pattern = f"{fragment}%"
             etree.SubElement(command, "SourceDocType").text = doctype
             etree.SubElement(command, "SourceElementType").text = element_name
-            etree.SubElement(command, "TargetTitlePattern").text = f"{fragment}%"
+            etree.SubElement(command, "TargetTitlePattern").text = pattern
             response = command_set.send()
             nodes = response.iter("QueryResult")
         for node in nodes:
@@ -5064,7 +5066,8 @@ class CDR:
             if not fragment:
                 messagebox.showwarning(message="Title field is empty.")
             else:
-                links = self._fetch_candidate_link_targets(doctype, element, fragment)
+                args = doctype, element, fragment
+                links = self._fetch_candidate_link_targets(*args)
                 dialog.values.links = links
                 self.logger.debug("links=%r", links)
                 if links:
@@ -5103,7 +5106,8 @@ class CDR:
                 self.app.Alert("No link selected.")
             print(f"link view callback")
 
-        dialog = DialogBox(self, "Edit Linked CDR Element", link_lookup_callback)
+        dialog = DialogBox(self, "Edit Linked CDR Element",
+                           link_lookup_callback)
         left = ttk.Frame(dialog.form)
         left.grid(row=0, column=0, padx=(12,0), pady=(0, 10))
         title_wrapper = ttk.Frame(left)
@@ -5309,6 +5313,17 @@ class CDR:
         parms = "&".join(parms)
         url = f"{self.cgi_bin}/PublishPreview.py?{parms}"
         self.browser.open_new_tab(url)
+
+    def _replace_element_content(self, element, text):
+        """Set the content of an element to a single text node.
+
+        Required positional arguments:
+            element - parsed XML element to clear and repopulate
+            text - content to be set
+        """
+
+        element.clear()
+        element.text = str(text)
 
     def _remove_doc(self, cdr_id):
         """Remove the editable document from the file system.
