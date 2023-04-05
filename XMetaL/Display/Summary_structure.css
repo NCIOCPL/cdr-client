@@ -127,13 +127,18 @@ Board,
 BoardMember,
 Caption,
 ChangeDate,
+CodeSystem,
+CodeSystemName,
 Comment,
 ComprehensiveReviewDate,
 TypeOfSummaryChange > Comment,
 Date,
 DateLastModified,
+DateOfEntry,
 Diagnosis,
+DiagnosisCode,
 Drug,
+EHRDiagnosisInformation,
 EmbeddedVideo,
 EnteredBy,
 Intervention,
@@ -142,6 +147,8 @@ MainTopics,
 MediaID,
 MediaLink,
 MobileURL,
+PageTitle,
+PageURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
@@ -154,6 +161,7 @@ ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
+Snippet,
 SpecificMediaCaption,
 SpecificMediaTitle,
 SpecificVideoPresentationTemplate,
@@ -192,16 +200,21 @@ Board                             :before { content: "Summary Board"; }
 BoardMember                       :before { content: "Board Member"; }
 Caption                           :before { content: "Caption"; }
 ChangeDate                        :before { content: "Change Date"; }
+CodeSystem                        :before { content: "CODE SYSTEM"; }
+CodeSystemName                    :before { content: "Code System Name"; }
 Comment                           :before { content: "Comment"; }
 TypeOfSummaryChange > Comment     :before { content: "Comment"; }
 ComprehensiveReviewDate
                                   :before { content: "Review Date"; }
 Date                              :before { content: "Date"; }
 DateLastModified                  :before { content: "Last Modified"; }
+DateOfEntry                       :before { content: "Date of Entry"; }
 Diagnosis                         :before { content: "Diagnosis"; }
+DiagnosisCode                     :before { content: "Diagnosis Code"; }
 Drug                              :before { content: "Drug"; }
-EnteredBy                         :before { content: "Entered By"; }
+EHRDiagnosisInformation           :before { content: "EHR DIAGNOSIS"; }
 EmbeddedVideo                     :before { content: "VIDEOLINK"; }
+EnteredBy                         :before { content: "Entered By"; }
 FigureNumber                      :before { content: ""; }
 Intervention                      :before { content: "Intervention"; }
 KeyPoint                          :before { content: "Key Point"; }
@@ -209,6 +222,8 @@ MainTopics                        :before { content: "Main Topics"; }
 MediaID                           :before { content: "Media ID"; }
 MediaLink                         :before { content: "MEDIALINK"; }
 MobileURL                         :before { content: "Mobile URL"; }
+PageTitle                         :before { content: "Page Title"; }
+PageURL                           :before { content: "Page URL"; }
 Para                              :before { content: counter(para)". Paragraph"; }
 SummarySection>SummarySection>Para
                                   :before { content: counter(subpara)". Subparagraph"; }
@@ -225,6 +240,7 @@ ReferencedTableNumber             :before { content: ""; }
 SecondaryTopics                   :before { content: "Secondary Topics" }
 SectMetaData                      :before { content: "Section Metadata"; }
 SectionType                       :before { content: "Section Type"; }
+Snippet                           :before { content: "Snippet"; }
 SpecificMediaCaption              :before { content: "Caption"; }
 SpecificMediaTitle                :before { content: "Title"; }
 SpecificVideoPresentationTemplate :before { content: "Display"; }
@@ -380,16 +396,24 @@ WillReplace                       :before
 /*************************************************************************/
 AltTitle                          :before,
 Caption                           :before,
+CodeSystem                        :before,
+CodeSystemName                    :before,
 ComprehensiveReviewDate           :before,
 ChangeDate                        :before,
+DiagnosisCode                     :before,
+DateOfEntry                       :before,
 TypeOfSummaryChange > Comment     :before,
 TypeOfSummaryChange > Date        :before,
 TypeOfSummaryChange > User        :before,
+EHRDiagnosisInformation           :before,
 EnteredBy                         :before,
 DateLastModified                  :before,
 KeyPoint                          :before,
 MediaID                           :before,
+PageTitle                         :before,
+PageURL                           :before,
 PatientVersionOf                  :before,
+Snippet                           :before,
 SpecificMediaCaption              :before,
 SpecificMediaTitle                :before,
 SpecificVideoPresentationTemplate :before,
@@ -432,19 +456,26 @@ Board,
 BoardMember,
 Caption,
 ChangeDate,
+CodeSystem,
+CodeSystemName,
 TypeOfSummaryChange > Comment,
 Comment,
 ComprehensiveReviewDate,
 Date,
 DateLastModified,
+DateOfEntry,
 Diagnosis,
+DiagnosisCode,
 Drug,
+EHRDiagnosisInformation,
 EnteredBy,
 Intervention,
 KeyPoint,
 MainTopics,
 MediaID,
 MobileURL,
+PageTitle,
+PageURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey,
@@ -456,6 +487,7 @@ SecondaryTopics,
 SectMetaData,
 SectionTitle,
 SectionType,
+Snippet,
 SpecificMediaCaption,
 SpecificMediaTitle,
 SpecificVideoPresentationTemplate,
@@ -500,17 +532,25 @@ WillReplace
 Board                             :before,
 BoardMember                       :before,
 ChangeDate                        :before,
+CodeSystem                        :before,
+CodeSystemName                    :before,
 Comment                           :before,
 Comment                           :after,
 TypeOfSummaryChange > Comment     :before,
 Date                              :before,
+DateOfEntry                       :before,
+DiagnosisCode                     :before,
+EHRDiagnosisInformation           :before,
 EnteredBy                         :before,
 MainTopics                        :before,
 MobileURL                         :before,
+PageTitle                         :before,
+PageURL                           :before,
 PDQBoard                          :before,
 PMID                              :before,
 PurposeText                       :before,
 SecondaryTopics                   :before,
+Snippet                           :before,
 Summary[SVPC="Yes"],
 Summary[PartnerMergeSet="Yes"],
 SummaryAbstract                   :before,
@@ -535,18 +575,25 @@ BoardMember,
 Caption,
 ComprehensiveReviewDate,
 ChangeDate,
+CodeSystem,
+CodeSystemName,
 TypeOfSummaryChange > Comment,
 Date,
 DateLastModified,
+DateOfEntry,
+DiagnosisCode,
+EHRDiagnosisInformation,
 EnteredBy,
 MainTopics>Term,
 MediaID,
 MobileURL,
+PageTitle,
+PageURL,
 PatientVersionOf,
 PMID,
 PurposeText,
 ReplacementFor,
-SecondaryTopics>Term,
+Snippet,
 SpecificMediaCaption,
 SpecificMediaTitle,
 SpecificVideoPresentationTemplate,
@@ -559,6 +606,7 @@ SummaryKeyWords>SummaryKeyWord,
 SummaryLanguage,
 SummaryType,
 SummaryURL,
+SecondaryTopics>Term,
 TranslationOf,
 TypeOfChange,
 TypeOfSummaryChange,
