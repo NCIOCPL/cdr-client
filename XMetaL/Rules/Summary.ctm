@@ -637,7 +637,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>TranslationOf</Name>
-   <TagColor>purple</TagColor>
+   <TagColor>#f0a2fd</TagColor>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
@@ -673,7 +673,7 @@
   </ElementProperties>
   <ElementProperties>
    <Name>WillReplace</Name>
-   <TagColor>purple</TagColor>
+   <TagColor>#f0a2fd</TagColor>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">TypeOfChange</Name>

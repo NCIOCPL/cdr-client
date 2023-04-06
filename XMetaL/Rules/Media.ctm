@@ -699,6 +699,15 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">TranslationOf</Name>
+   <TagColor>#f0a2fd</TagColor>
+   <PrettyPrintOptions>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+     <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">Phone</Name>
    <PrettyPrintOptions></PrettyPrintOptions>
    <IndentContent/>
@@ -1503,6 +1512,12 @@
                    Select a terminology link (required)
                    }?></Topic>
   </Topics>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TranslationOf</Name>
+   <MiniTemplate><![CDATA[<TranslationOf><?xm-replace_text {
+                   TranslationOf
+                   }?></TranslationOf>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">ContentDescrptions</Name>
