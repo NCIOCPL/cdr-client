@@ -34,6 +34,7 @@ PYTHON_DLLS = PYTHON_DIR / "DLLs"
 SOURCE = Path(__file__).parent.resolve() / "ClientFiles"
 APPDATA = Path(getenv("APPDATA"))
 USER_PROFILE = Path(getenv("USERPROFILE"))
+PUBLIC_DESKTOP = Path(getenv("PUBLIC")) / "Desktop"
 DESKTOP = USER_PROFILE / "Desktop"
 DOCUMENTS = USER_PROFILE / "Documents"
 CLIENT_DIR = APPDATA / "SoftQuad" / "XMetaL" / "17.0"
@@ -51,11 +52,12 @@ XMETAL_AUTHOR = "XMetaL Author"
 LOADER = "cdr-loader.pyw"
 SHORTCUT = "shortcut"
 CDR_LNK = "CDR.lnk"
+LICENSE = "XMES.lic"
 SHORTCUT_PATH = DESKTOP / CDR_LNK
 CDR_ICO = "cdr.ico"
 INSTRUCTIONS = f"""
 CDR XMetaL is now ready to use. Double-click on the CDR desktop shortcut to
-launch XMetaL, and if asked for the location of the licence file, navigate
+launch XMetaL, and if asked for the location of the license file, navigate
 to the {CLIENT_DIR} directory.
 """
 
@@ -168,6 +170,19 @@ except Exception as e:
     input("Press Enter to quit ... ")
     exit(1)
 
+# Copy the license file.
+print("Copying the license file.")
+source = SOURCE / LICENSE
+target = CLIENT_DIR / LICENSE
+info("Copying %s", target)
+try:
+    copy(source, target)
+except Exception as e:
+    exception("Failure copying %s", target)
+    print(f"Failure copying {LICENSE}: {e}")
+    input("Press Enter to quit ... ")
+    exit(1)
+
 # Install the desktop shortcut.
 print("Installing the Desktop shortcut.")
 source = SOURCE / SHORTCUT
@@ -187,6 +202,17 @@ print("Moving the original XMetaL shortcut.")
 filename = f"{XMETAL_AUTHOR}.lnk"
 source = DESKTOP / filename
 destination = DOCUMENTS / filename
+if source.exists():
+    info("Moving %s", source)
+    try:
+        source.rename(destination)
+    except:
+        info("Failure moving %s (removing instead)", source)
+        try:
+            source.unlink()
+        except:
+            exception("Failure removing %s", source)
+source = PUBLIC_DESKTOP / filename
 if source.exists():
     info("Moving %s", source)
     try:
