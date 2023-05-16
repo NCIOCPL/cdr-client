@@ -29,9 +29,9 @@
       @media only screen and (max-width: 600px) {
           .important code { display: none; }
           .important code.mobile { display: block; margin-left: 1rem; }
-	  main { width: 100%; margin: 0; }
-	  ul { padding-left: 1rem; }
-	  ol { padding-left: 1.5rem; }
+          main { width: 100%; margin: 0; }
+          ul { padding-left: 1rem; }
+          ol { padding-left: 1.5rem; }
       }
     </style>
   </head>
@@ -44,22 +44,24 @@
       <p>
         The standard approach for running these steps is to copy the folder
         in which this file resides (<code>CdrSetup17</code>) to the user's
-        desktop.
+        desktop. It is recommended that this folder be retained on the
+        desktop after setup, in case the <code>repair-xmetal.cmd</code>
+        script is needed at some time in the future, and to preserve the
+        location of the XMetaL 17 license file.
       </p>
       <p>
         A normal installation for a new machine should take under ten minutes
         providing no unexpected problems arise. Allow fifteen minutes for an
         upgrade of a machine currently running the 9.0 version of CDR XMetaL.
       </p>
-      <p class="note">
-        <b>Note:</b>
-        The first two steps are not necessary for the test RDP server, as
-        they have already been performed.
-      </p>
-      <h3>Steps run by administrator</h3>
+      <h3>Steps run with elevated privileges</h3>
       <p>
-        These first two steps require administrative privileges on the
-        machine.
+        These first two steps require permission to install softwre on the
+        machine. As of spring 2023, we have been assured by CBIIT that all
+        of the CDR XMetaL users have that privilege. If that turns out not
+        to be true for a particular user's account, a ticket will need to
+        be filed to have CBIIT either grant that permission or to assist
+        with this setup.
       </p>
       <ol>
         <li>
@@ -68,24 +70,14 @@
             <li>
               right-click on <code>install-xmetal.cmd</code> in this folder
             </li>
-            <li>select <em>Run as administrator</em></li>
-            <li>grant permission as requested</li>
+            <li>select <em>Run elevated</em></li>
+            <li>submit the justification and password</li>
             <li>expected time for this script is well under a minute</li>
             <li>
               if XMetaL 9 needs to be uninstalled, the script may
               take 2-4 minutes longer
             </li>
           </ul>
-          <p class="note">
-            <b>Note to developers:</b>
-            Make sure we get a version of the XMetaL installation
-            files which includes the patch which has been installed on
-            the shared testing server before using these instructions
-            to upgrade XMetaL on the users' machines. Otherwise, we'll
-            need an extra step to apply that patch, which we'd very
-            much prefer to avoid. Also, make sure we have replaced the
-            trial license with the production version.
-          </p>
         </li>
         <li>
           <h4>Install Python 3.11</h4>
@@ -93,8 +85,8 @@
             <li>
               right-click on <code>install-python.cmd</code> in this folder
             </li>
-            <li>select <em>Run as administrator</em></li>
-            <li>grant permission as requested</li>
+            <li>select <em>Run elevated</em></li>
+            <li>submit the justification and password</li>
             <li>
               if a failure is reported which is not easily corrected,
               contact the CDR developers, providing any error output
@@ -131,14 +123,9 @@
           <h4>Install the CDR client files</h4>
           <ul>
             <li>
-              if the user has been made a temporary member of a group which
-              can run scripts directly, double-click on the
-              <code>run-setup.cmd</code> script in this directory
-            </li>
-            <li>
-              otherwise, right-click on the file and select
-              <em>Run with elevated permissions</em>, entering the user's
-              username and password when prompted
+              right-click on the <code>run-setup.cmd</code> script and select
+              <em>Run elevated</em>, entering the user's password
+              and justification when prompted
             </li>
             <li>
               the script will say where it found XMetaL and will
@@ -154,7 +141,8 @@
             </li>
             <li>
               if the CDR icon on the desktop is a generic rectangle instead
-              of a green circle, refer to the <em>Repairing XMetaL</em>
+              of a green circle, refer to the 
+              <a href="#repairing-xmetal"><em>Repairing XMetaL</em></a>
               section at the bottom of these instructions.
             </li>
           </ul>
@@ -164,14 +152,7 @@
           <p>
             At this point the user should be able to log into CDR XMetaL
             by double-clicking the CDR shortcut on the desktop, selecting
-            a tier (currently only the DEV tier is supported), and entering
-            his or her NIH domain credentials.
-          </p>
-          <p class="note">
-            <b>Note:</b>
-            Until the non-trial licenses have been acquired, the user may
-            need to click a button to confirm continuing with the trial
-            evaluation copy.
+            a tier, and entering his or her NIH domain credentials.
           </p>
         </li>
       </ol>
@@ -194,7 +175,7 @@
             following the instructions in <em>Teams</em> (search for the
             <em>NCI OCPL Platform Support</em> channel and select the
             <em>Files</em> tab and navigate to
-            <code>General > Systems > CDR</code>
+            <code>General &gt; Systems &gt; CDR</code>
             where you will find the document
             <em>Adding Word Macros to New Computer</em>).
           </p>
@@ -216,7 +197,8 @@
             <li>load a document</li>
             <li>
               start the spellchecker
-              (<code>Tools > Spell Checker...</code> or press <code>F7</code>)
+              (<code>Tools &gt; Spell Checker...</code> or press 
+              <code>F7</code>)
             </li>
             <li>
               on the <b>Writing Tools</b> pop-up window select the
@@ -254,7 +236,7 @@
         </li>
       </ol>
 
-      <h2>Repairing XMetaL</h2>
+      <h2 id="repairing-xmetal">Repairing XMetaL</h2>
       <p>
         If the installation of XMetaL following the instructions above
         failed for any reason, it is generally preferable to attempt
@@ -292,7 +274,7 @@
       </p>
     </main>
     <footer>
-      <p class="note">Instructions last updated 2022-01-03</p>
+      <p class="note">Instructions last updated 2023-05-16</p>
     </footer>
   </body>
 </html>
