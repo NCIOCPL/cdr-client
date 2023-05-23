@@ -137,7 +137,9 @@ MiscellaneousDocumentTitle
 /*                               FORM DATA                               */
 /*************************************************************************/
 Audience,
+Caption                           :before,
 Language,
+MediaID                           :before,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
     { background-color: white; }
