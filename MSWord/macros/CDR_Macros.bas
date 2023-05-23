@@ -1,4 +1,4 @@
-Attribute VB_Name = "CDRMacros"
+Attribute VB_Name = "NewMacros"
 Sub ATimeStamp()
     MsgBox "Last Modified:  2016-05-26"
 End Sub
@@ -911,34 +911,39 @@ Sub HeaderFooterDefault()
     ActiveWindow.ActivePane.View.SeekView = wdSeekMainDocument
     Selection.HomeKey Unit:=wdStory
 End Sub
-Sub Macro_DIS()
+
+'Sub Macro_DIS()
 '
 ' Macro for Diana Blais (Copy of Marcro_DB)
 '
+' Christina Norwood is not using this macro. Therefore it does
+' not need to be maintained anymore.
     ' Auto adjust table width
-    AutoFitTableWidth
-    
+    'AutoFitTableWidth
+    '
     ' Convert larger text to 12pt
-    ReduceLargerFontSize
-    
+    'ReduceLargerFontSize
+    '
     ' Setting font to Arial
-    DocumentArial
-    
+    'DocumentArial
+    '
     ' Adding normal Header and Footer
-    HeaderFooterDefault
-    
+    'HeaderFooterDefault
+    '
     ' Removing the SummaryType and Audience
-    DeleteSubHeader
-    
+    'DeleteSubHeader
+    '
     ' Removing the entire TOC List
-    RemoveTOCList
-    
+    'RemoveTOCList
+    '
     ' Change the font of the text to 11 pt
-    ChangeFontSizeLoopTo11
-    
+    ' ChangeFontSizeLoopTo11
+    'ReplaceFontSize12to11
+    '
     ' Setting the margins to 0.5 inches
-    MarginNarrow
-End Sub
+    'MarginNarrow
+' End Sub
+
 Sub Macro_Genetics()
 '
 ' Macro for Robin Juthe (Copy of Macro_RJ)
@@ -1056,6 +1061,10 @@ Sub Macro_Treatment()
 '
 ' Macro for Victoria Shields (Copy of Macro_VS)
 '
+    ' Change the font of the text to 10 pt
+    ' ChangeFontSizeLoopTo10
+    ReplaceFontSize12to10
+    
     ' Auto adjust table width
     AutoFitTableWidth
     
@@ -1076,10 +1085,6 @@ Sub Macro_Treatment()
     
     ' Delete the Changes to This Summary Section
     RemoveChangesSection
-    
-    ' Change the font of the text to 10 pt
-    ChangeFontSizeLoopTo10
-
 End Sub
 Sub MarginNarrow()
 '
@@ -1391,3 +1396,32 @@ Attribute RemoveFirstTOCEntry.VB_ProcData.VB_Invoke_Func = "Project.NewMacros.Re
     Selection.EndKey Unit:=wdLine, Extend:=wdExtend
 '    Selection.Delete Unit:=wdCharacter, Count:=1
 End Sub
+Sub ReplaceFontSize12to10()
+'
+' Find all text with FontSize 12pt and replace to 10pt
+'
+' This will replace the ChangeFontSizeLoop because it is a lot faster (order of magnitude)
+'
+     With Selection.Find
+          .ClearFormatting
+          .Font.Size = 12
+          .Replacement.ClearFormatting
+          .Replacement.Font.Size = 10
+          .Execute Replace:=wdReplaceAll, Forward:=True
+     End With
+End Sub
+Sub ReplaceFontSize12to11()
+'
+' Find all text with FontSize 12pt and replace to 11pt
+'
+' This will replace the ChangeFontSizeLoop because it is a lot faster (order of magnitude)
+'
+     With Selection.Find
+          .ClearFormatting
+          .Font.Size = 12
+          .Replacement.ClearFormatting
+          .Replacement.Font.Size = 11
+          .Execute Replace:=wdReplaceAll, Forward:=True
+     End With
+End Sub
+
