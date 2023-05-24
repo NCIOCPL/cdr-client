@@ -5459,14 +5459,14 @@ class CDR:
         self.app.Selection.ReadOnlyContainer = False
         count = 0
         cursor = selection.Duplicate
-        cursor.Collapse()
+        cursor.Collapse(self.XM_COLLAPSE_START)
         moved = cursor.MoveToElement(element_name)
         while moved:
             if selection.Contains(cursor):
                 count += 1
                 node = cursor.ContainerNode
                 node.setAttribute(attribute_name, value)
-            moved = selection.MoveToElement(element_name)
+            moved = cursor.MoveToElement(element_name)
         self.app.Selection.ReadOnlyContainer = original_value
         return count
 
