@@ -1060,19 +1060,19 @@ class CDR:
             self.app.Alert("A writable document is not currently active.")
         else:
             def apply_revision_level_callback(_event=None):
-                dialog.values.level = level.get()
+                dialog.values.level = radios.get()
                 dialog.close()
 
             callback = apply_revision_level_callback
             dialog = DialogBox(self, "Apply Revision Level", callback)
             levels = "approved", "proposed", "publish", "rejected"
             opts = dict(default="approved", width=15)
-            level = dialog.add_radios("Select Level", levels, 0, 0, **opts)
+            radios = dialog.add_radios("Select Level", levels, 0, 0, **opts)
             column = ttk.Frame(dialog)
             column.grid(row=0, column=1)
             opts = dict(frame=column, padx=(20, 40), pady=3, focus=True)
             ok = dialog.add_button("OK", callback, 0, 0, **opts)
-            dialog.add_button("Cancel", dialog.quit, 1, 0, **opts)
+            dialog.add_button("Cancel", dialog.close, 1, 0, **opts)
             dialog.run(ok)
             level = dialog.values.level
             if level:
