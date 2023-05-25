@@ -201,6 +201,8 @@ PubMedPubDate,
 PubStatus,
 RefSource,
 StartPage,
+SupplMeshList,
+SupplMeshName,
 PDQCitation>AuthorList>Author>Suffix,
 Title,
 URL,
@@ -360,6 +362,8 @@ MedlineCitation>Article>AuthorList>Author>Suffix
                      :before { content: " "; }
 PDQCitation>AuthorList>Author>Suffix
                      :before { content: "Suffix &: "; }
+SupplMeshList        :before { content: "SUPPL MESH LIST &"; }
+SupplMeshName        :before { content: "Mesh Name + @: "; }
 Journal>Title        :before { content: "Journal &: "; }
 URL[URLType="Full_Text"]>URLstring
                      :before { content: "Full Text At @: "; }
@@ -405,6 +409,7 @@ FullTextArticle,
 GrantList,
 MedlineJournalInfo,
 MeshHeadingList,
+SupplMeshList,
 PublicationDetails,
     { margin-top: 1em; }
 
@@ -426,6 +431,7 @@ MedlineJournalInformation:before,
 MedlineJournalInfo      :before,
 MedlineCitation         :before,
 MeshHeadingList         :before,
+SupplMeshList           :before,
 VerificationDetails     :before,
    {  font-weight: bold;
       color: black;  }
@@ -533,6 +539,7 @@ RefSource               :before,
 Status                  :before,
 PDQCitation>AuthorList>Author>Suffix
                         :before,
+SupplMeshName           :before,
 Title                   :before,
 VernacularTitle         :before,
 Volume                  :before,
@@ -752,6 +759,11 @@ ElectronicPubDate
 ELinkingID
     { margin-left: 110pt;
       text-indent: -106pt; }
+SupplMeshList
+    { margin-left: 0pt; }
+SupplMeshName
+    { margin-left: 110pt;
+      text-indent: -100pt; }
 
 /* Key element for length = PubMedPubDate    */
 
@@ -947,6 +959,8 @@ QualifierName,
 RefSource,
 Season,
 Season               :before,
+SupplMeshList,
+SupplMeshName,
 PDQCitation>AuthorList>Author>Suffix,
 Title,
 URL,
@@ -1076,6 +1090,7 @@ RefSource,
 RegistryNumber,
 Season,
 Season               :before,
+SupplMeshName,
 Title,
 URL                  :before,
 URLstring,
@@ -1182,6 +1197,8 @@ RefSource            :before,
 RegistryNumber:after,
 RegistryNumber       :before,
 PDQCitation>AuthorList>Author>Suffix:before,
+SupplMeshList        :before,
+SupplMeshName        :before,
 Title                :before,
 VernacularTitle      :before,
 Volume               :before,

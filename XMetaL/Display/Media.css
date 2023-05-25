@@ -55,6 +55,7 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DateLastReviewed,
 DefaultVideoPresentationTemplate,
 DemographicInformation,
 DerivationMethod,
@@ -161,6 +162,7 @@ ContentDescription        :before { content: "Cont. Descr. * + @: ";}
 Creator                   :before { content: "Creator &: ";}
 DateCreated               :before { content: "Date Created &: ";}
 DateLastModified          :before { content: "Last Modified &: ";}
+DateLastReviewed          :before { content: "Last Reviewed &: ";}
 DefaultVideoPresentationTemplate
                           :before { content: "Display &: ";}
 DemographicInformation    :before { content: "DEMOGRAPHIC INFORMATION &";},
@@ -269,6 +271,7 @@ ContentDescription                     :before,
 Creator                                :before,
 DateCreated                            :before,
 DateLastModified                       :before,
+DateLastReviewed                       :before,
 DefaultVideoPresentationTemplate       :before,
 DemographicInformation                 :before,
 DerivationMethod                       :before,
@@ -388,6 +391,9 @@ DateCreated,
 DateLastModified,
                         { margin-left: 120pt;
                           text-indent: -97pt; }
+DateLastReviewed,
+                        { margin-left: 120pt;
+                          text-indent: -104.5pt; }
 DefaultVideoPresentationTemplate,
                         { margin-left: 120pt;
                           text-indent: -63pt; }
@@ -574,6 +580,7 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DateLastReviewed,
 DefaultVideoPresentationTemplate,
 Diagnosis,
 DocTitle,
@@ -663,6 +670,7 @@ ContentDescription,
 Creator,
 DateCreated,
 DateLastModified,
+DateLastReviewed,
 DerivationMethod,
 DefaultVideoPresentationTemplate,
 Diagnosis,
@@ -732,6 +740,7 @@ ContentDescription                     :before,
 Creator                                :before,
 DateCreated                            :before,
 DateLastModified                       :before,
+DateLastReviewed                       :before,
 DerivationMethod                       :before,
 DefaultVideoPresentationTemplate       :before,
 DemographicInformation                 :before,

@@ -140,7 +140,9 @@ MiscellaneousDocumentTitle
 /*                               FORM DATA                               */
 /*************************************************************************/
 Audience,
+Caption                           :before,
 Language,
+MediaID                           :before,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 TranslationOf

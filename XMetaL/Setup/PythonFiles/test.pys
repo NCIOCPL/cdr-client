@@ -1,0 +1,4 @@
+print("The 'debugging is disabled' message can be ignored.")
+print("Importing win32api")
+import win32api
+print("Registration of Python Windows scripting successful.")
