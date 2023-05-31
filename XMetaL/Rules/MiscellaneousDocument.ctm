@@ -407,6 +407,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>TranslationOf</Name>
+      <TagColor>#f0a2fd</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
      <Name ns="">VideoID</Name>
      <TagColor>#EE9A4D</TagColor>
      <PrettyPrintOptions></PrettyPrintOptions>
@@ -505,6 +513,10 @@
     <Template>
       <Name>ItemizedList</Name>
       <MiniTemplate><![CDATA[<ItemizedList Style="bullet"></ItemizedList>]]></MiniTemplate>
+    </Template>
+    <Template>
+      <Name>TranslationOf</Name>
+      <MiniTemplate><![CDATA[<TranslationOf><?xm-replace_text {Optionally link to the original English document} ?></TranslationOf>]]></MiniTemplate>
     </Template>
   </Templates>
 </DTDExtensions>

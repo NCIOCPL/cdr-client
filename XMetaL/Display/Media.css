@@ -217,7 +217,7 @@ SupplementaryInfoLink     :before { content: "Sup Info Link * + @: ";}
 TextDateCreated           :before { content: "Txt Date Created &: ";}
 Topic                     :before { content: "Topic * + @: ";}
 Topics                    :before { content: "TOPICS & ";}
-TranslationOf             :before { content: "Translation of & @: ";},
+TranslationOf             :before { content: "Translation of & @: ";}
 VideoData                 :before { content: "VIDEO DATA * ";}
 VideoEncoding             :before { content: "Video Encoding *: ";}
 VideoHosting              :before { content: "Video Hosting *: ";}
