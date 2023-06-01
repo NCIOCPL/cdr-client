@@ -212,6 +212,14 @@
    <NewLineBeforeStartTag/>
   </ElementProperties>
   <ElementProperties>
+   <Name ns="">DateLastReviewed</Name>
+   <TagColor>#FFD1CB</TagColor>
+   <PrettyPrintOptions></PrettyPrintOptions>
+   <IndentContent/>
+   <NewLineBeforeEndTag/>
+   <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
    <Name ns="">DemographicInformation</Name>
    <TagColor>#FFD1CB</TagColor>
    <PrettyPrintOptions></PrettyPrintOptions>
@@ -697,6 +705,15 @@
    <IndentContent/>
    <NewLineBeforeEndTag/>
    <NewLineBeforeStartTag/>
+  </ElementProperties>
+  <ElementProperties>
+   <Name ns="">TranslationOf</Name>
+   <TagColor>#f0a2fd</TagColor>
+   <PrettyPrintOptions>
+     <NewLineBeforeEndTag/>
+     <NewLineBeforeStartTag/>
+     <IndentContent/>
+   </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
    <Name ns="">Phone</Name>
@@ -1393,7 +1410,13 @@
    <Name ns="">DateLastModified</Name>
    <MiniTemplate><![CDATA[<DateLastModified><?xm-replace_text {
                    Optionally enter the date of the last record modification
-                   }?></LastModified>]]></MiniTemplate>
+                   }?></DateLastModified>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">DateLastReviewed</Name>
+   <MiniTemplate><![CDATA[<DateLastReviewed><?xm-replace_text {
+                   Optionally enter the date of the last demographic info review
+                   }?></DateLastReviewed>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">TextDateCreated</Name>
@@ -1503,6 +1526,12 @@
                    Select a terminology link (required)
                    }?></Topic>
   </Topics>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name ns="">TranslationOf</Name>
+   <MiniTemplate><![CDATA[<TranslationOf><?xm-replace_text {
+                   TranslationOf
+                   }?></TranslationOf>]]></MiniTemplate>
   </Template>
   <Template>
    <Name ns="">ContentDescrptions</Name>

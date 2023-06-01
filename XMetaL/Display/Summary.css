@@ -926,6 +926,16 @@ ResponseToComment,
       background-color: green;
       color: white; }
 
+Comment[specific-internal-audience='translators'],
+    { font-style: italic;
+      background-color: lightseagreen !important;
+      color: white; }
+
+ResponseToComment[specific-internal-audience='translators'],
+    { font-style: italic;
+      background-color: lightseagreen !important;
+      color: white; }
+
 Comment                      :before
     { color: white;
       background-color: green;
@@ -955,6 +965,32 @@ Comment[audience='External'] :after
     { color: white;
       background-color: green;
       content: " (External)"; }
+
+/* Markup internal comments for translators with different background color */
+Comment[audience='Internal'][specific-internal-audience='translators'] :before
+    { background-color: #20B2AA;        /* lightseagreen */
+      content: "Comment-Translators: "; }
+
+Comment[audience='Internal'][specific-internal-audience='translators']
+    { background-color: #20B2AA; }      /* lightseagreen */
+
+Comment[audience='Internal'][specific-internal-audience='translators'] :after
+    { color: white;
+      background-color: #20B2AA;        /* lightseagreen */
+      content: " (Internal-Translators)"; }
+
+ResponseToComment[audience='Internal']
+                 [specific-internal-audience='translators'] :before
+    { background-color: #20B2AA;        /* lightseagreen */
+      content: "Response-Translators: "; }
+
+ResponseToComment[audience='Internal'][specific-internal-audience='translators']
+    { background-color: #20B2AA; }      /* lightseagreen */
+
+ResponseToComment[audience='Internal'][specific-internal-audience='translators'] :after
+    { color: white;
+      background-color: #20B2AA;        /* lightseagreen */
+      content: " (Internal-Translators)"; }
 
 ResponseToComment            :before
     { color: white;
