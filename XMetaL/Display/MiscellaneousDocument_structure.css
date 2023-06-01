@@ -33,10 +33,10 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
-@import "CdrCommonSchema_structure.css";  
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
+@import "CdrCommonSchema_structure.css";
 
 @sq-plus-minus;
 
@@ -50,24 +50,24 @@
 	  margin-top: 0px;
 	  margin-bottom: 0px;
 	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	  font-style: normal;
 	  font-weight: bold;
 	  color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Audience,
 DateLastModified,
 EmbeddedVideo,
@@ -78,33 +78,35 @@ MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 MiscellaneousDocumentText,
 PdqKey,
-Term 
+Term,
+TranslationOf
     { display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Element includes attributes */
 
-Audience:before				{ content: "Audience "; }
-DateLastModified:before			{ content: "Last Modified "; }
-Language:before				{ content: "Language "; }
-MiscellaneousDocument:before		{ content: "MISCELLANEOUS DOCUMENT "; }
-MiscellaneousDocumentMetadata:before	{ content: "METADATA "; }
-MiscellaneousDocumentText:before	{ content: "Text "; }
-MiscellaneousDocumentTitle:before	{ content: "TITLE "; }
-MiscellaneousDocumentType:before	{ content: "Type "; }
-Para:before				{ content: counter(para)". Paragraph "; }
-PdqKey:before				{ content: "PDQ Key "; }
+Audience                      :before { content: "Audience "; }
+DateLastModified              :before { content: "Last Modified "; }
+Language                      :before { content: "Language "; }
+MiscellaneousDocument         :before { content: "MISCELLANEOUS DOCUMENT "; }
+MiscellaneousDocumentMetadata :before { content: "METADATA "; }
+MiscellaneousDocumentText     :before { content: "Text "; }
+MiscellaneousDocumentTitle    :before { content: "TITLE "; }
+MiscellaneousDocumentType     :before { content: "Type "; }
+Para                          :before { content: counter(para)". Paragraph "; }
+PdqKey                        :before { content: "PDQ Key "; }
+TranslationOf                 :before { content: "Translation of"; }
 
 
-/***************************************************************************/ 
-/*                             HEADINGS                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                             HEADINGS                                    */
+/***************************************************************************/
 Audience                          :before,
 DateLastModified                  :before,
 EmbeddedVideo                     :before,
@@ -116,30 +118,30 @@ MiscellaneousDocumentTitle        :before,
 MiscellaneousDocumentType         :before,
 Para                              :before,
 PdqKey                            :before
-     { color: black; 
+     { color: black;
        font-weight: bold;
        font-size: 10pt; }
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     COUNTER DEFINITIONS                                 */
+/***************************************************************************/
 Para
      {  counter-increment: para;  }
 
 
-/***************************************************************************/ 
-/*                            BORDER CONTROL                               */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            BORDER CONTROL                               */
+/***************************************************************************/
 EmbeddedVideo,
 MiscellaneousDocumentMetadata
      { border: none; }
 
 
 
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
 Audience,
 DateLastModified,
 EmbeddedVideo,
@@ -149,14 +151,15 @@ MiscellaneousDocumentTitle,
 MiscellaneousDocumentType,
 MiscellaneousDocumentMetadata,
 MiscellaneousDocumentText,
-PdqKey
+PdqKey,
+TranslationOf
      { color: white;
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                            FORM CONTROL                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            FORM CONTROL                                 */
+/***************************************************************************/
 Audience                          :before,
 Language                          :before,
 MiscellaneousDocumentType         :before,

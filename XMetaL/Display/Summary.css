@@ -212,18 +212,25 @@ AltTitle,
 Board,
 BoardMember,
 ChangeDate,
+CodeSystem,
+CodeSystemName,
 TypeOfSummaryChange > Comment,
 ComprehensiveReviewDate,
 Date,
 DateLastModified,
+DateOfEntry,
 Diagnosis,
+DiagnosisCode,
 Drug,
+EHRDiagnosisInformation,
 EnteredBy,
 Intervention,
 KeyPoint,
 MainTopics,
 MiscellaneousDocLink,
 MobileURL,
+PageTitle,
+PageURL,
 PatientVersionOf,
 PDQBoard,
 PdqKey /* in both Summary and SummarySection */,
@@ -233,6 +240,7 @@ ReplacementFor,
 SecondaryTopics,
 SectMetaData,
 SectionType,
+Snippet,
 SummaryAudience,
 SummaryDescription,
 SummaryKeyWord,
@@ -258,9 +266,17 @@ WillReplace,
 
 Board,
 BoardMember,
+CodeSystem,
+CodeSystemName,
+EHRDiagnosisInformation,
+DateOfEntry,
+DiagnosisCode,
 MobileURL,
+PageTitle,
+PageURL,
 PMID,
 PurposeText,
+Snippet,
 SummaryAudience,
 SummaryBoard,
 SummaryDescription,
@@ -290,24 +306,31 @@ Board                        :before { content: "Summary Board @: "; }
 BoardMember                  :before { content: "Board Member & + @: "; }
 Caption                      :before { content: "Caption &: "; }
 ChangeDate                   :before { content: "Change Date *: "; }
+CodeSystem                   :before { content: "CODE SYSTEM * +"; }
+CodeSystemName               :before { content: "Code System Name *: "; }
 TypeOfSummaryChange > Comment
                              :before { content: "Comment & @: "; }
 TypeOfSummaryChange > Comment
                              :after  { content: ""; }
 ComprehensiveReviewDate      :before { content: "Review Date & @: "; }
 DateLastModified             :before { content: "Last Modified &: "; }
-/*KeyPoint                   :before { content: "Key Point & +: "; } */
+DateOfEntry                  :before { content: "Date of Entry *: "; }
+DiagnosisCode                :before { content: "Diagnosis Code * +: "; }
+EHRDiagnosisInformation      :before { content: "EHR DIAGNOSIS &"; }
 EnteredBy                    :before { content: "Entered By *: "; }
 MainTopics>Term              :before { content: "Main Topics * + @: "; }
 MediaID                      :before { content: "Media ID * @: "; }
 MiscellaneousDocLink         :before { content: "Misc Doc &: "; }
 MobileURL                    :before { content: "Mobile URL & @: "; }
+PageTitle                    :before { content: "Page Title *: "; }
+PageURL                      :before { content: "Page URL *: "; }
 PatientVersionOf             :before { content: "Patient Version of & @: "; }
 PdqKey                       :before { content: "PDQ Key &: "; }
 PMID                         :before { content: "PMID &: "; }
 PurposeText                  :before { content: "Purpose Text &: "; }
 ReplacementFor               :before { content: "Replcmnt for & @: "; }
 SecondaryTopics>Term         :before { content: "Second. Topics & + @: " }
+Snippet                      :before { content: "Snippet *: "; }
 SpecificMediaCaption         :before { content: "Caption &: " ; }
 SpecificMediaTitle           :before { content: "Title &: " ; }
 SpecificVideoPresentationTemplate
@@ -334,7 +357,6 @@ WillReplace                  :before { content: "Will Replace & @: "; }
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
 /***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
-
 TranslationOf,
 PatientVersionOf,
 ReplacementFor,
@@ -387,13 +409,21 @@ Board                        :before,
 BoardMember                  :before,
 ChangeDate                   :before,
 Caption                      :before,
-Date                         :before,
+CodeSystem                   :before,
+CodeSystemName               :before,
 TypeOfSummaryChange > Comment:before,
+Date                         :before,
+DateOfEntry                  :before,
+DiagnosisCode                :before,
+EHRDiagnosisInformation      :before,
 EnteredBy                    :before,
 MainTopics>Term              :before,
 MediaID                      :before,
+PageTitle                    :before,
+PageURL                      :before,
 PurposeText                  :before,
 SecondaryTopics>Term         :before,
+Snippet                      :before,
 SpecificMediaCaption         :before,
 SpecificMediaTitle           :before,
 SpecificVideoPresentationTemplate
@@ -409,6 +439,8 @@ VideoID                      :before
 BoardMember,
     { margin-left: 1em; }
 
+CodeSystem,
+EHRDiagnosisInformation,
 PDQBoard,
 SummaryKeyWords
     { margin-top: 1em;
@@ -901,6 +933,16 @@ ResponseToComment,
       background-color: green;
       color: white; }
 
+Comment[specific-internal-audience='translators'],
+    { font-style: italic;
+      background-color: lightseagreen !important;
+      color: white; }
+
+ResponseToComment[specific-internal-audience='translators'],
+    { font-style: italic;
+      background-color: lightseagreen !important;
+      color: white; }
+
 Comment                      :before
     { color: white;
       background-color: green;
@@ -930,6 +972,32 @@ Comment[audience='External'] :after
     { color: white;
       background-color: green;
       content: " (External)"; }
+
+/* Markup internal comments for translators with different background color */
+Comment[audience='Internal'][specific-internal-audience='translators'] :before
+    { background-color: #20B2AA;        /* lightseagreen */
+      content: "Comment-Translators: "; }
+
+Comment[audience='Internal'][specific-internal-audience='translators']
+    { background-color: #20B2AA; }      /* lightseagreen */
+
+Comment[audience='Internal'][specific-internal-audience='translators'] :after
+    { color: white;
+      background-color: #20B2AA;        /* lightseagreen */
+      content: " (Internal-Translators)"; }
+
+ResponseToComment[audience='Internal']
+                 [specific-internal-audience='translators'] :before
+    { background-color: #20B2AA;        /* lightseagreen */
+      content: "Response-Translators: "; }
+
+ResponseToComment[audience='Internal'][specific-internal-audience='translators']
+    { background-color: #20B2AA; }      /* lightseagreen */
+
+ResponseToComment[audience='Internal'][specific-internal-audience='translators'] :after
+    { color: white;
+      background-color: #20B2AA;        /* lightseagreen */
+      content: " (Internal-Translators)"; }
 
 ResponseToComment            :before
     { color: white;
@@ -984,13 +1052,21 @@ SummarySection>Table,
 Board                        :before,
 BoardMember                  :before,
 ChangeDate                   :before,
+CodeSystem                   :before,
+CodeSystemName               :before,
 TypeOfSummaryChange > Comment:before,
 Date                         :before,
+DateOfEntry                  :before,
+DiagnosisCode                :before,
+EHRDiagnosisInformation      :before,
 EnteredBy                    :before,
 MobileURL                    :before,
+PageTitle                    :before,
+PageURL                      :before,
 PDQBoard,
-PMID				     :before,
+PMID				         :before,
 PurposeText                  :before,
+Snippet                      :before,
 SummaryMetaData,
 SummaryAbstract              :before,
 SummaryAudience              :before,
@@ -1009,6 +1085,12 @@ TypeOfSummaryChangeValue     :before
     { background-color: #CCCCFF; }
 
 
+PageTitle,
+PageURL,
+Snippet,
+CodeSystemName,
+DiagnosisCode,
+DateOfEntry,
 Board,
 BoardMember,
 Caption                      :before,
@@ -1042,6 +1124,29 @@ VideoID                      :before
 
 
 /* Key element for length = SummaryLanguage                               */
+
+EHRDiagnosisInformation,
+                             { margin-left: 25pt; }
+PageTitle,
+                             { margin-left: 110pt;
+                               text-indent: -71pt;}
+PageURL,
+                             { margin-left: 110pt;
+                               text-indent: -72.5pt;}
+Snippet,
+                             { margin-left: 110pt;
+                               text-indent: -59pt;}
+CodeSystem,
+                             { margin-left: 25pt; }
+CodeSystemName,
+                             { margin-left: 85pt;
+                               text-indent: -127.5pt;}
+DiagnosisCode,
+                             { margin-left: 85pt;
+                               text-indent: -117pt;}
+DateOfEntry,
+                             { margin-left: 110pt;
+                               text-indent: -90pt;}
 
 Board,
                              { margin-left: 135pt;
@@ -1134,6 +1239,12 @@ MediaLink, EmbeddedVideo
       margin-top: 6pt;
       margin-bottom: 6pt; }
 
+PageTitle,
+PageURL,
+Snippet,
+CodeSystemName,
+DiagnosisCode,
+DateOfEntry,
 Board,
 BoardMember,
 ChangeDate,
