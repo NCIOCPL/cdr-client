@@ -72,6 +72,18 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>CodeSystem</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>CodeSystemName</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>ComprehensiveReviewDate</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
@@ -110,8 +122,21 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>DateOfEntry</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>Diagnosis</Name>
    <TagColor>FFFF99</TagColor>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+    <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>DiagnosisCode</Name>
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
@@ -144,6 +169,12 @@
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>EHRDiagnosisInformation</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
@@ -303,6 +334,18 @@
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
+   <Name>PageTitle</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>PageURL</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
    <Name>Para</Name>
    <TagColor>CC99FF</TagColor>
    <PrettyPrintOptions>
@@ -421,6 +464,12 @@
    <PrettyPrintOptions>
     <NewLineBeforeStartTag/>
     <IndentContent/>
+   </PrettyPrintOptions>
+  </ElementProperties>
+  <ElementProperties>
+   <Name>Snippet</Name>
+   <PrettyPrintOptions>
+    <NewLineBeforeStartTag/>
    </PrettyPrintOptions>
   </ElementProperties>
   <ElementProperties>
@@ -1198,6 +1247,72 @@
                    Optionally link to the summary to be replaced
                    by this document
                    }?></WillReplace>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PageTitle</Name>
+   <MiniTemplate><![CDATA[<PageTitle><?xm-replace_text {
+                   PageTitle
+                   }?></PageTitle>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>PageURL</Name>
+   <MiniTemplate><![CDATA[<PageURL><?xm-replace_text {
+                   PageURL
+                   }?></PageURL>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Snippet</Name>
+   <MiniTemplate><![CDATA[<Snippet><?xm-replace_text {
+                   Snippet
+                   }?></Snippet>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CodeSystemName</Name>
+   <MiniTemplate><![CDATA[<CodeSystemName><?xm-replace_text {
+                   Select a Code System Name
+                   }?></CodeSystemName>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>DiagnosisCode</Name>
+   <MiniTemplate><![CDATA[<DiagnosisCode><?xm-replace_text {
+                   DiagnosisCode
+                   }?></DiagnosisCode>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>EHRDiagnosisInformation</Name>
+   <MiniTemplate><![CDATA[<EHRDiagnosisInformation>
+       <PageTitle><?xm-replace_text {
+                   PageTitle
+                   }?></PageTitle>
+       <PageURL><?xm-replace_text {
+                   PageURL
+                   }?></PageURL>
+       <Snippet><?xm-replace_text {
+                   Snippet
+                   }?></Snippet>
+       <CodeSystem>
+         <CodeSystemName><?xm-replace_text {
+                   Select a Code System Name
+                   }?></CodeSystemName>
+         <DiagnosisCode><?xm-replace_text {
+                   DiagnosisCode
+                   }?></DiagnosisCode>
+       </CodeSystem>
+       <DateOfEntry><?xm-replace_text {
+                   DateOfEntry
+                   }?></DateOfEntry>
+       </EHRDiagnosisInformation>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>CodeSystem</Name>
+   <MiniTemplate><![CDATA[<CodeSystem>
+         <CodeSystemName><?xm-replace_text {
+                   Select a Code System Name
+                   }?></CodeSystemName>
+         <DiagnosisCode><?xm-replace_text {
+                   DiagnosisCode
+                   }?></DiagnosisCode>
+       </CodeSystem>]]></MiniTemplate>
   </Template>
  </Templates>
  <ChangeLists>
