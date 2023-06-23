@@ -83,6 +83,8 @@ TranslationOf
 /* @ = Attribute assigned to element */
 /* & = Optional element */
 
+TableNumber                       :before { content: "[#]"; }
+ReferencedTableNumber             :before { content: "[#]"; }
 Audience                          :before { content: "Audience *: "; }
 DateLastModified                  :before { content: "Last Modified &: "; }
 Language                          :before { content: "Language *: "; }
