@@ -608,9 +608,10 @@ class CDR:
                 else:
                     self._add_macro("Edit Comment")
                     self._add_macro("Set Last Reviewed Date Attribute")
-            if not readonly and self.cdr_id and self.is_spanish_summary:
-                self._add_macro("-", "")
-                self._add_macro("Spanish Link ID Swap")
+            if not readonly and self.cdr_id:
+                if self._get_single_element("TranslationOf"):
+                    self._add_macro("-", "")
+                    self._add_macro("Spanish Link ID Swap")
 
         # Finish off with some miscellaneous macros.
         if not readonly:
