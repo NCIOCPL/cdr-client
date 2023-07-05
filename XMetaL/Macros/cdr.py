@@ -608,9 +608,11 @@ class CDR:
                 else:
                     self._add_macro("Edit Comment")
                     self._add_macro("Set Last Reviewed Date Attribute")
-            if not readonly and self.cdr_id and self.is_spanish_summary:
+            if not readonly and self.cdr_id:
                 self._add_macro("-", "")
-                self._add_macro("Spanish Link ID Swap")
+                self._add_macro("Swap Summary Fragment Refs")
+                if self.is_spanish_summary:
+                    self._add_macro("Spanish Link ID Swap")
 
         # Finish off with some miscellaneous macros.
         if not readonly:
@@ -3710,6 +3712,46 @@ class CDR:
         else:
             self._strip_cdr_id_attributes(self.current_element)
 
+
+    @handle_exceptions
+    def swap_summary_fragment_refs(self):
+        """Redirect summary fragment links to point to the current document."""
+
+        # Make sure we have what we need.
+        doc = self.document
+        node = self._get_single_element("WillReplace", doc) if doc else None
+        if node is None and doc:
+            node = self._get_single_element("ReplacementFor", doc)
+        if node is None:
+            return self.app.Alert("WillReplace element not found.")
+        old_id = node.getAttribute("cdr:ref")
+        new_id = self.cdr_id if doc else None
+        if not new_id:
+            return self.app.Alert("Summary has not yet been saved.")
+        if len(new_id) != 13 or not new_id.startswith("CDR"):
+            return self.app.Alert(f"Malformed document ID: {new_id}")
+        if not old_id:
+            return self.app.Alert("WillReplace document ID not found.")
+        if len(old_id) != 13 or not old_id.startswith("CDR"):
+            return self.app.Alert(f"Malformed WillReplace ID: {old_id}")
+
+        # Handle the links.
+        replaced = 0
+        links = doc.getElementsByTagName("SummaryFragmentRef")
+        for i in range(links.length):
+            node = links.item(i)
+            element = self.cast(node)
+            link_id = element.getAttribute("cdr:href")
+            if link_id and link_id.startswith(old_id):
+                new_value = f"{new_id}{link_id[13:]}"
+                element.setAttribute("cdr:href", new_value)
+                replaced += 1
+                args = "SummaryFragmentRef", "cdr:href", link_id, new_value
+                self.logger.debug("%s/@%s: replaced %r with %r", *args)
+
+        # Show the number of replacements we made.
+        s = "" if replaced == 1 else "s"
+        self.app.Alert(f"Swapped {replaced} link{s}.")
 
     @handle_exceptions
     def table(self):
