@@ -2951,6 +2951,8 @@ class CDR:
         location_id = self.location_id
         start = datetime.datetime.now()
         response = self._save_document(self.cdr_id, doctype, parms)
+        if response is None:
+            return
         elapsed = datetime.datetime.now() - start
 
         # Make sure the document has a CDR ID.
