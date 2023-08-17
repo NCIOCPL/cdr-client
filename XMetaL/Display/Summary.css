@@ -214,6 +214,7 @@ BoardMember,
 ChangeDate,
 CodeSystem,
 CodeSystemName,
+RelatedDocuments > Comment,
 TypeOfSummaryChange > Comment,
 ComprehensiveReviewDate,
 Date,
@@ -236,6 +237,7 @@ PDQBoard,
 PdqKey /* in both Summary and SummarySection */,
 PMID,
 PurposeText,
+RelatedDocuments,
 ReplacementFor,
 SecondaryTopics,
 SectMetaData,
@@ -308,6 +310,10 @@ Caption                      :before { content: "Caption &: "; }
 ChangeDate                   :before { content: "Change Date *: "; }
 CodeSystem                   :before { content: "CODE SYSTEM * +"; }
 CodeSystemName               :before { content: "Code System Name *: "; }
+RelatedDocuments > Comment
+                             :before { content: "Comment & @: "; }
+RelatedDocuments > Comment
+                             :after  { content: ""; }
 TypeOfSummaryChange > Comment
                              :before { content: "Comment & @: "; }
 TypeOfSummaryChange > Comment
@@ -377,6 +383,7 @@ WillReplace                { text-indent: -125pt; }
 /*                      DOCUMENT, ID, AND SUMMARY META DATA                */
 /***************************************************************************/
 SummaryMetaData,
+RelatedDocuments,
 TypeOfSummaryChange
     { border: solid;
       border-color: black;
@@ -386,6 +393,7 @@ TypeOfSummaryChange
       margin-bottom: 1em;
       background-color: #CCCCFF; }
 
+RelatedDocuments         :before,
 TypeOfSummaryChange      :before
     { font-weight: bold; }
 
@@ -411,6 +419,7 @@ ChangeDate                   :before,
 Caption                      :before,
 CodeSystem                   :before,
 CodeSystemName               :before,
+RelatedDocuments    > Comment:before,
 TypeOfSummaryChange > Comment:before,
 Date                         :before,
 DateOfEntry                  :before,
@@ -920,6 +929,9 @@ Deletion[RevisionLevel='proposed']>SummarySection:before,
     { text-decoration: line-through; color: green; }
 
 
+/***************************************************************************/
+/*              COMMENT ELEMENT - STYLING INLINE AND BLOCK STYLE           */
+/***************************************************************************/
 /* InLine comments and responses are receiving special labels */
 /* according to the attributes the element carries            */
 /* ---------------------------------------------------------- */
@@ -1026,6 +1038,13 @@ SummarySection>Comment
       margin-top: 15pt;
       margin-bottom: 10pt; }
 
+/* Block comments - based on their parent element             */
+/* ---------------------------------------------------------- */
+RelatedDocuments > Comment,
+TypeOfSummaryChange > Comment
+    { color: black;
+      font-style: normal; }
+
 
 /***************************************************************************/
 /*                         SECTION META DATA                               */
@@ -1054,6 +1073,7 @@ BoardMember                  :before,
 ChangeDate                   :before,
 CodeSystem                   :before,
 CodeSystemName               :before,
+RelatedDocuments    > Comment:before,
 TypeOfSummaryChange > Comment:before,
 Date                         :before,
 DateOfEntry                  :before,
@@ -1095,6 +1115,7 @@ Board,
 BoardMember,
 Caption                      :before,
 ChangeDate,
+RelatedDocuments > Comment,
 TypeOfSummaryChange > Comment,
 Date,
 EnteredBy,
@@ -1166,6 +1187,9 @@ User
 Date
                              { margin-left: 135pt;
                                text-indent: -90pt;}
+RelatedDocuments > Comment
+                             { margin-left: 145pt;
+                               text-indent: -91pt;}
 TypeOfSummaryChange > Comment
                              { margin-left: 135pt;
                                text-indent: -91pt;}
@@ -1248,6 +1272,7 @@ DateOfEntry,
 Board,
 BoardMember,
 ChangeDate,
+RelatedDocuments > Comment,
 TypeOfSummaryChange > Comment,
 Date,
 EnteredBy,
@@ -1279,6 +1304,7 @@ ReplacementFor,
 WillReplace,
     { margin-top: 4pt; }
 
+RelatedDocuments > Comment
 TypeOfSummaryChange > Comment
     { font-style: normal;
       color: black; }

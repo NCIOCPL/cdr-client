@@ -807,6 +807,20 @@
                    }?></CitationLink>]]></MiniTemplate>
   </Template>
   <Template>
+   <Name>Comment</Name>
+   <Parent>RelatedDocuments</Parent>
+   <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+                   Optionally insert a comment
+                   }?></Comment>]]></MiniTemplate>
+  </Template>
+  <Template>
+   <Name>Comment</Name>
+   <Parent>TypeOfSummaryChange</Parent>
+   <MiniTemplate><![CDATA[<Comment><?xm-replace_text {
+                   Optionally insert a comment
+                   }?></Comment>]]></MiniTemplate>
+  </Template>
+  <Template>
    <Name>Diagnosis</Name>
    <MiniTemplate><![CDATA[<Diagnosis><?xm-replace_text {
                    Optionally select a diagnosis
