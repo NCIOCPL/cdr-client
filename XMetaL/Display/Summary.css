@@ -478,7 +478,7 @@ ComprehensiveReviewDate      :before,
 DateLastModified             :before,
 /*SummaryModuleLink            :before, */
 PatientVersionOf             :before,
-ReplacementFor               :before,
+ReplacementFor               :before
      { font-weight: bold;
        margin-bottom: 10pt;
        margin-top: 10pt;
