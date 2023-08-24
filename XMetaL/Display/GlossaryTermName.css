@@ -30,7 +30,7 @@ $PROCINS
       font-weight: normal;
       background-color: white; }
 
-GlossaryTermName,
+GlossaryTermName
     { background-color: #CCCCFF;
       text-decoration: none;
       color: black; }
@@ -58,7 +58,7 @@ TermPronunciation,
 TranslatedName,
 TranslationResource,
 TranslatedNameStatus,
-TranslatedNameStatusDate,
+TranslatedNameStatusDate
      { display: block; }
 
 
@@ -97,11 +97,11 @@ TranslatedNameStatusDate     :before { content: "Transl. Status Date &: "; }
 /***************************************************************************/
 DateLastModified,
 DateLastReviewed,
-ProcessingStatuses,
+ProcessingStatuses
      { margin-top: 1em }
 
 ProcessingStatus,
-ProcessingStatuses,
+ProcessingStatuses
      { margin-bottom: 1em; }
 
 /***************************************************************************/
@@ -125,11 +125,11 @@ TermPronunciation            :before,
 TranslatedName               :before,
 TranslationResource          :before,
 TranslatedNameStatus         :before,
-TranslatedNameStatusDate     :before,
+TranslatedNameStatusDate     :before
      { font-weight: bold;
        color: black; }
 
-ReplacementText              :after,
+ReplacementText              :after
     { font-weight: bold;
       color: teal; }
 
@@ -142,11 +142,11 @@ ReplacementText              :after,
 
 /* Key element for length = SpanishTermName                       */
 
-Comment,                     { margin-left: 135pt;
+Comment                      { margin-left: 135pt;
                                text-indent: -107pt; }
-GlossaryTermConcept,         { margin-left: 135pt;
+GlossaryTermConcept          { margin-left: 135pt;
                                text-indent: -133.5pt; }
-ReplacementText,             { margin-left: 135pt;
+ReplacementText              { margin-left: 135pt;
                                text-indent: -134pt; }
 ProcessingStatus             { margin-left:  20pt; }
 ProcessingStatusValue        { margin-left:  20pt; }
@@ -155,33 +155,33 @@ ProcessingStatus Comment     { margin-left:   0pt;
                                text-indent:   0pt; }
 ProcessingStatus Comment     { margin-left:  20pt; }
 
-PronunciationResource,       { margin-left: 135pt;
+PronunciationResource        { margin-left: 135pt;
                                text-indent: -116.5pt; }
-TermNameStatus,              { margin-left: 135pt;
+TermNameStatus               { margin-left: 135pt;
                                text-indent: -89pt; }
-TermNameStatusDate,          { margin-left: 135pt;
+TermNameStatusDate           { margin-left: 135pt;
                                text-indent: -86pt; }
-TermNameString,              { margin-left: 135pt;
+TermNameString               { margin-left: 135pt;
                                text-indent: -97.5pt; }
-TermNameSource,              { margin-left: 135pt;
+TermNameSource               { margin-left: 135pt;
                                text-indent: -61.5pt; }
-TermNameSourceVerification,  { margin-left: 135pt;
+TermNameSourceVerification   { margin-left: 135pt;
                                text-indent: -128.5pt; }
-TermNameVerificationResource,{ margin-left: 135pt;
+TermNameVerificationResource { margin-left: 135pt;
                                text-indent: -118pt; }
-TermPronunciation,           { margin-left: 135pt;
+TermPronunciation            { margin-left: 135pt;
                                text-indent: -101pt; }
-TermSource,                  { margin-left: 135pt;
+TermSource                   { margin-left: 135pt;
                                text-indent: -89pt; }
-TermType,                    { margin-left: 135pt;
+TermType                     { margin-left: 135pt;
                                text-indent: -86pt; }
-TranslationResource,         { margin-left: 135pt;
+TranslationResource          { margin-left: 135pt;
                                text-indent: -106pt; }
-TranslatedNameStatus,        { margin-left: 135pt;
+TranslatedNameStatus         { margin-left: 135pt;
                                text-indent: -94.5pt; }
-TranslatedNameStatusDate,    { margin-left: 135pt;
+TranslatedNameStatusDate     { margin-left: 135pt;
                                text-indent: -128.5pt; }
-DateLastModified,            { margin-left: 135pt;
+DateLastModified             { margin-left: 135pt;
                                text-indent: -97pt; }
 
 
@@ -191,15 +191,15 @@ DateLastModified,            { margin-left: 135pt;
 /***************************************************************************/
 GlossaryTermConcept,
 TermName,
-TranslatedName,
+TranslatedName
      { margin-top: 1.5em; }
 
-GlossaryTermConcept,
+GlossaryTermConcept
      { margin-bottom: 1em; }
 
 
 
-TermNameString,
+TermNameString
     { margin-top: 4pt; }
 
 /* ******************************************************* */
@@ -219,7 +219,7 @@ TermNameVerificationResource,
 TermPronunciation,
 TranslationResource,
 TranslatedNameStatus,
-TranslatedNameStatusDate,
+TranslatedNameStatusDate
      { margin-bottom: 4pt; }
 
 
@@ -241,7 +241,7 @@ TermNameString,
 TermPronunciation,
 TranslationResource,
 TranslatedNameStatus,
-TranslatedNameStatusDate,
+TranslatedNameStatusDate
      { background-color: white; }
 
 
@@ -261,17 +261,17 @@ TermNameVerificationResource :before,
 TermNameString               :before,
 TranslationResource          :before,
 TranslatedNameStatus         :before,
-TranslatedNameStatusDate     :before,
+TranslatedNameStatusDate     :before
      { background-color: #CCCCFF; }  /* light blue */
 
 TermName,
 TermName                                    :before,
 TermName                                   *:before,
 TermNameStatus                              :before,
-TermNameStatusDate                          :before,
+TermNameStatusDate                          :before
      { background-color: #FFCC99; }   /* brown */
 
 TranslatedName,
 TranslatedName               :before,
-TranslatedName              *:before,
+TranslatedName              *:before
      { background-color: #99FFFF; }   /* another light-blue */

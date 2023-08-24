@@ -39,7 +39,7 @@ $PROCINS
       font-weight: normal;
       background-color: white;}
 
-GlossaryTermName,
+GlossaryTermName
     { background-color: white;
       text-decoration: none;
       color: black;  }
@@ -56,7 +56,7 @@ ProcessingStatus,
 ProcessingStatusValue,
 PronunciationResource,
 TermName,
-TermPronunciation,
+TermPronunciation
     { display: block; }
 
 
@@ -87,16 +87,16 @@ TranslatedNameStatusDate     :before { content: "Translated Name Status Date"; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-GlossaryTerm                 :before,
+GlossaryTerm                 :before
     { color: black; }
-     
+
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
 /***************************************************************************/
 Comment                      :before,
 TermName                     :before,
-TermPronunciation            :before,
+TermPronunciation            :before
     { font-weight: bold;
       color: black;  }
 
@@ -106,7 +106,7 @@ TermPronunciation            :before,
 /***************************************************************************/
 TermSource                   :before,
 TermStatus                   :before,
-TermType                     :before,
+TermType                     :before
     { font-weight: bold;
       color: black;  }
 
@@ -131,7 +131,7 @@ TermNameVerificationResource,
 TermPronunciation,
 TranslationResource,
 TranslatedNameStatus,
-TranslatedNameStatusDate,
+TranslatedNameStatusDate
     { text-indent: 0pt; }
 
 
@@ -155,7 +155,7 @@ TermPronunciation,
 TranslationResource,
 TranslatedName,
 TranslatedNameStatus,
-TranslatedNameStatusDate,
+TranslatedNameStatusDate
     { color: white;
       background-color: white; }
 
@@ -177,5 +177,5 @@ TermPronunciation            :before,
 TranslationResource          :before,
 TranslatedName               :before,
 TranslatedNameStatus         :before,
-TranslatedNameStatusDate     :before,
+TranslatedNameStatusDate     :before
     { background-color: white; }

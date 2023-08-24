@@ -62,7 +62,6 @@
 @import "CdrCommonSchema.css";
 
 $DOCUMENT
-
     { font-family: Arial, sans-serif;
       font-size: 12pt;
       color: black;
@@ -70,19 +69,16 @@ $DOCUMENT
       margin-left: 5px; }
 
 $COMMENT
-
     { display: block;
       color: purple;
       white-space: pre; }
 
 $PROCINS
-
     { color: blue;
       font-weight: normal;
       background-color: white; }
 
-Term,
-
+Term
     { background-color: #CCCCFF; }
 
 
@@ -129,7 +125,7 @@ TermRelationship,
 TermStatus,
 TermType,
 TermTypeName,
-VocabularySource,
+VocabularySource
     { display: block; }
 
 
@@ -187,7 +183,7 @@ VocabularySource     :before { content: "Vocabulary Source * +:"; }
 /*************************************************************************/
 /*                     SECTION TITLES AND BORDERS                        */
 /*************************************************************************/
-MenuInformation,
+MenuInformation
     { border: solid;
       border-color: black;
       border-width: thin;
@@ -196,13 +192,13 @@ MenuInformation,
       background-color: #CCCCFF; }
 
 ParentTerm:before,
-RelatedTerm:before,
+RelatedTerm:before
     { font-weight: bold;
       color: black; }
 
 OtherName,
 Definition,
-TermRelationship,
+TermRelationship
     { border: solid;
       border-width: thin;
       border-color: black;
@@ -214,12 +210,12 @@ OtherName,
 SourceInformation,
 TermRelationship,
 TermStatus,
-TermType,
+TermType
     { margin-top: 1em }
 
 ParentTerm,
 RelatedTerm,
-VocabularySource,
+VocabularySource
     { margin-top: .5em }
 
 Definition:before,
@@ -227,7 +223,7 @@ OtherName:before,
 SourceInformation:before,
 TermRelationship:before,
 TermType:before,
-VocabularySource:before,
+VocabularySource:before
     { font-weight: bold;
       color: black; }
 
@@ -237,10 +233,10 @@ VocabularySource:before,
 CTGovInterventionType,
 PreferredName,
 SemanticType,
-SemanticTypeText,
+SemanticTypeText
     { margin-top: 1em; }
 
-ReviewStatus,
+ReviewStatus
     { margin-top: 1.5em; }
 
 OtherTermName,
@@ -248,7 +244,7 @@ ReferenceSource,
 SourceCode,
 DefinitionText,
 TermId,
-TermType > TermTypeName:first-child,
+TermType > TermTypeName:first-child
     { margin-top: .5em; }
 
 
@@ -278,7 +274,7 @@ ReferenceSource              :before,
 SemanticType                 :before,
 SemanticTypeText             :before,
 SourceTermId                 :before,
-TermId                       :before,
+TermId                       :before
     { font-weight: bold;
       color: black;  }
 
@@ -294,7 +290,7 @@ ReviewStatus                 :before,
 SourceCode                   :before,
 SourceTermType               :before,
 TermStatus                   :before,
-TermTypeName                 :before,
+TermTypeName                 :before
     { font-weight: bold;
       color: black;  }
 
@@ -306,76 +302,76 @@ TermTypeName                 :before,
 
 /* Key element for length = Preferred Name    */
 
-PreferredName,         { margin-left: 130pt;
+PreferredName          { margin-left: 130pt;
                          text-indent: -129.5pt; }
-OtherTermName,         { margin-left: 130pt;
+OtherTermName          { margin-left: 130pt;
                          text-indent: -114.5pt; }
-OtherNameType,         { margin-left: 130pt;
+OtherNameType          { margin-left: 130pt;
                          text-indent: -124pt; }
-ReferenceSource,       { margin-left: 130pt;
+ReferenceSource        { margin-left: 130pt;
                          text-indent: -118pt; }
-SourceCode,            { margin-left: 130pt;
+SourceCode             { margin-left: 130pt;
                          text-indent: -90pt; }
-SourceTermType,        { margin-left: 130pt;
+SourceTermType         { margin-left: 130pt;
                          text-indent: -120pt; }
-SourceTermId,          { margin-left: 130pt;
+SourceTermId           { margin-left: 130pt;
                          text-indent: -103.5pt; }
-ReviewStatus,          { margin-left: 130pt;
+ReviewStatus           { margin-left: 130pt;
                          text-indent: -102.0pt; }
-OtherName > Comment,   { margin-left: 130pt;
+OtherName > Comment    { margin-left: 130pt;
                          text-indent: -82pt; }
 
 /* Key element for length = DefinitionSourceName   */
 
-DefinitionText,        { margin-left: 130pt;
+DefinitionText         { margin-left: 130pt;
                          text-indent: -98.5pt; }
-DefinitionType,        { margin-left: 130pt;
+DefinitionType         { margin-left: 130pt;
                          text-indent: -102.0pt; }
-DefinitionSourceName,  { margin-left: 130pt;
+DefinitionSourceName   { margin-left: 130pt;
                          text-indent: -124.5pt; }
-DefinedTermId,         { margin-left: 130pt;
+DefinedTermId          { margin-left: 130pt;
                          text-indent: -112pt; }
-Definition > Comment,  { margin-left: 130pt;
+Definition > Comment   { margin-left: 130pt;
                          text-indent: -82.5pt; }
 
 /* Key element for length = SemanticTypeText    */
 
 CTGovInterventionType  { margin-left: 142pt;
                          text-indent: -131.5pt; }
-TermTypeName,          { margin-left: 142pt;
+TermTypeName           { margin-left: 142pt;
                          text-indent: -121.5pt; }
-SemanticType,          { margin-left: 142pt;
+SemanticType           { margin-left: 142pt;
                          text-indent: -129pt; }
-SemanticTypeText,      { margin-left: 142pt;
+SemanticTypeText       { margin-left: 142pt;
                          text-indent: -142pt; }
 
 /* Key element for length = RelationshipType    */
 
-ParentTerm > TermId,   { margin-left: 120pt;
+ParentTerm > TermId    { margin-left: 120pt;
                          text-indent: -75pt; }
-ParentType,            { margin-left: 120pt;
+ParentType             { margin-left: 120pt;
                          text-indent: -84.5pt; }
-ParentTerm > Comment,  { margin-left: 120pt;
+ParentTerm > Comment   { margin-left: 120pt;
                          text-indent: -82pt; }
 
-RelatedTerm > TermId,  { margin-left: 120pt;
+RelatedTerm > TermId   { margin-left: 120pt;
                          text-indent: -75pt; }
-RelationshipType,      { margin-left: 120pt;
+RelationshipType       { margin-left: 120pt;
                          text-indent: -119pt; }
-RelatedTerm > Comment, { margin-left: 120pt;
+RelatedTerm > Comment  { margin-left: 120pt;
                          text-indent: -82pt; }
 
 /* Key element for length = DateLastModified    */
 
-TermStatus,            { margin-left: 120pt;
+TermStatus             { margin-left: 120pt;
                          text-indent: -84.5pt; }
-Term > Comment,        { margin-left: 120pt;
+Term > Comment         { margin-left: 120pt;
                          text-indent: -82pt; }
 NCIThesaurusConcept    { margin-left: 120pt;
                          text-indent: -118.5pt; }
-DateLastModified,      { margin-left: 120pt;
+DateLastModified       { margin-left: 120pt;
                          text-indent: -96pt; }
-PdqKey,                { margin-left: 120pt;
+PdqKey                 { margin-left: 120pt;
                          text-indent: -71pt; }
 
 /* Key element for length = MenuParent */
@@ -430,7 +426,7 @@ TermRelationship,
 TermStatus,
 TermType,
 TermTypeName,
-VocabularySource,
+VocabularySource
     { margin-bottom: 4pt; }
 
 
@@ -477,7 +473,7 @@ TermRelationship,
 TermStatus,
 TermType,
 TermTypeName,
-VocabularySource,
+VocabularySource
     { background-color: white; }
 
 
@@ -532,5 +528,5 @@ TermType,
 TermType                     :before,
 TermTypeName                 :before,
 VocabularySource,
-VocabularySource             :before,
+VocabularySource             :before
     { background-color: #CCCCFF; }

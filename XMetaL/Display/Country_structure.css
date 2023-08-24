@@ -39,22 +39,22 @@
        margin-top: 0px;
        margin-bottom: 0px;
        font-family: Arial, sans-serif;
-       font-size: 10pt; 
+       font-size: 10pt;
        font-style: normal;
        font-weight: bold;
        color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-Country,
+Country
      { background-color: white; }
 
 
@@ -71,7 +71,7 @@ InternationalDialingCode,
 ISOShortCountryName,
 ISOAlpha2CountryCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { display: block; }
 
 
@@ -97,7 +97,7 @@ PostalCodePosition:before       { content: "Postal Code Position "; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-Country:before,
+Country:before
      { color: black; }
 
 
@@ -115,7 +115,7 @@ DateLastModified:before,
 InternationalDialingCode:before,
 ISOShortCountryName:before,
 ISOAlpha2CountryCode:before,
-PdqKey:before,
+PdqKey:before
      { color: black; }
 
 
@@ -123,7 +123,7 @@ PdqKey:before,
 /*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
 /***************************************************************************/
 Continent:before,
-PostalCodePosition:before,
+PostalCodePosition:before
      { color: black; }
 
 
@@ -142,7 +142,7 @@ InternationalDialingCode,
 ISOShortCountryName,
 ISOAlpha2CountryCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { text-indent: 0pt; }
 
 
@@ -159,7 +159,7 @@ InternationalDialingCode,
 ISOShortCountryName,
 ISOAlpha2CountryCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { color: white;
        background-color: white; }
 
@@ -173,5 +173,5 @@ InternationalDialingCode:before,
 ISOShortCountryName:before,
 ISOAlpha2CountryCode:before,
 PdqKey:before,
-PostalCodePosition:before,
+PostalCodePosition:before
      { background-color: white; }

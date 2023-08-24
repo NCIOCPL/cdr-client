@@ -49,9 +49,9 @@
 /*                                                                        */
 /**************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 @import "CdrCommonSchema_structure.css";
 
 @sq-plus-minus;
@@ -66,31 +66,28 @@
        margin-top: 0px;
        margin-bottom: 0px;
        font-family: Arial, sans-serif;
-       font-size: 10pt; 
+       font-size: 10pt;
        font-style: normal;
        font-weight: bold;
        color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-Organization,
-
+Organization
      { background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
@@ -106,13 +103,13 @@ DayTime,
 FormerName,
 CCOP,
 CIPSContact,
-CIPSContactPerson, 
+CIPSContactPerson,
 ClinicalTrialsOfficeContact,
 ClinicalTrialsOfficeContactEmail,
 ClinicalTrialsOfficeContactName,
 ClinicalTrialsOfficeContactPhone,
 Comment,
-CooperativeGroup, 
+CooperativeGroup,
 CurrentStatus,
 Date
 DateLastModified,
@@ -120,7 +117,7 @@ Directory,
 IncludeInDirectory,
 Location,
 LOESummary,
-MainMember, 
+MainMember,
 MainMemberOf,
 MeetingDate,
 MeetingTime,
@@ -142,9 +139,9 @@ OrganizationType,
 ParentOrganization,
 PDQBoardInformation,
 PdqKey,
-PersonAssigned, 
+PersonAssigned,
 PreferredDirectoryContactMode,
-PreferredProtocolContactMode, 
+PreferredProtocolContactMode,
 PreferredProtocolOrganization,
 ProtocolIDAcronym,
 ProtocolParticipation,
@@ -157,9 +154,9 @@ Year
      { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 AdvisoryBoardFor     :before { content: "Advisory Board For"; }
 AffiliateMemberOf    :before { content: "AFFILIATE MEMBER OF"; }
 AlternateName        :before { content: "Alternate Name "; }
@@ -184,16 +181,16 @@ ClinicalTrialsOfficeContactName
                      :before { content: "Name "; }
 ClinicalTrialsOfficeContactPhone
                      :before { content: "Phone "; }
-Comment              :before { content: "Comments "; } 
+Comment              :before { content: "Comments "; }
 CooperativeGroup     :before { content: "Cooperative Group "; }
 CurrentStatus        :before { content: "Current Status "; }
-Date:before, MeetingDate:before 
+Date:before, MeetingDate:before
                              { content: "Date "; }
 DateLastModified     :before { content: "Last Modified"; }
-IncludeInDirectory   :before { content: "Include in Directory? "; } 
+IncludeInDirectory   :before { content: "Include in Directory? "; }
 Location             :before { content: "LOCATION "; }
 LOESummary           :before { content: "LOE Summary"; }
-MainMember           :before { content: "Main Member "; } 
+MainMember           :before { content: "Main Member "; }
 MainMemberOf         :before { content: "MAIN MEMBER OF "; }
 MediaLink            :before { content: "Media Link"; }
 MeetingDate          :before { content: "Date"; }
@@ -208,7 +205,7 @@ MemberOfCooperativeGroups
                      :before { content: "Member of Cooperative Groups "; }
 MemberOfProfessionalOrganization
                      :before
-                             { content: "Member Prof Org" ; } 
+                             { content: "Member Prof Org" ; }
 Name                 :before { content: "Name " ; }
 OfficialName         :before { content: "Official Name" ; }
 Organization         :before { content: "ORGANIZATION "; }
@@ -239,7 +236,7 @@ PreferredProtocolContactMode
                      :before { content: "Preferred Prot Contact"; }
 PreferredProtocolOrganization
                      :before { content: "Preferred Protocol Org"; }
-ProtocolParticipation:before { content: "Protocol Participation? "; } 
+ProtocolParticipation:before { content: "Protocol Participation? "; }
 ProtocolIDAcronym    :before { content: "Protocol ID Acronym"; }
 ResearchBaseFor      :before { content: "Research Base For "; }
 ShortName            :before { content: "Short Name "; }
@@ -250,16 +247,16 @@ Year                 :before { content: "Year "; }
 
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
-OrganizationLocation,
+/***************************************************************************/
+/*                     COUNTER DEFINITIONS                                 */
+/***************************************************************************/
+OrganizationLocation
      {  counter-increment: Loc;  }
 
 
-/***************************************************************************/ 
-/*                             HEADINGS                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                             HEADINGS                                    */
+/***************************************************************************/
 AdvisoryBoardFor                  :before,
 AffiliateMemberOf                 :before,
 BoardDescription                  :before,
@@ -289,17 +286,17 @@ ShortName                         :before,
 Status                            :before,
 Year                              :before
      {  font-weight: bold;
-        color: black;        }  
+        color: black;        }
 
 
-/***************************************************************************/ 
-/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */
+/***************************************************************************/
 CCOP                              :before,
 CIPSContactPerson                 :before,
 CooperativeGroup                  :before,
 CurrentStatus                     :before,
-IncludeInDirectory                :before, 
+IncludeInDirectory                :before,
 MainMember                        :before,
 MemberOfAdHocGroup                :before,
 MemberOfProfessionalOrganization  :before,
@@ -309,14 +306,14 @@ PreferredProtocolContactMode      :before,
 PreferredProtocolOrganization     :before,
 ProtocolParticipation             :before,
 ResearchBaseFor                   :before,
-Type                              :before,
+Type                              :before
      {  font-weight: bold;
         color: black;  }
 
 
-/***************************************************************************/ 
-/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */
+/***************************************************************************/
 AlternateName                     :before,
 ClinicalTrialsOfficeContactEmail  :before,
 ClinicalTrialsOfficeContactName   :before,
@@ -332,26 +329,26 @@ OfficialName > Name               :before,
 ShortName > Name                  :before,
 ParentOrganization                :before,
 ProtocolIDAcronym                 :before,
-ShortName > Name                  :before,
+ShortName > Name                  :before
      {  font-weight: bold;
         color: black;  }
 
 
-/***************************************************************************/ 
-/*                            BORDER CONTROL                               */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            BORDER CONTROL                               */
+/***************************************************************************/
 ClinicalTrialsOfficeContact,
 OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
 PDQBoardInformation,
-Status,
+Status
      { border: none;  }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 /* Remove negative text-indent settings  */
 AdvisoryBoardFor,
 AffiliateMemberOf,
@@ -371,14 +368,14 @@ ClinicalTrialsOfficeContactEmail,
 ClinicalTrialsOfficeContactName,
 ClinicalTrialsOfficeContactPhone,
 Comment,
-CooperativeGroup, 
+CooperativeGroup,
 CurrentStatus,
 Date,
 DateLastModified,
 IncludeInDirectory,
 Location,
 LOESummary,
-MainMember, 
+MainMember,
 MainMemberOf,
 MediaLink,
 MeetingDate,
@@ -396,11 +393,11 @@ OrganizationLocations,
 OrganizationNameInformation,
 OrganizationParent,
 OrganizationType,
-ParentOrganization, 
+ParentOrganization,
 PDQBoardInformation,
 PdqKey,
 PersonAssigned,
-PreferredDirectoryContactMode, 
+PreferredDirectoryContactMode,
 PreferredProtocolContactMode,
 PreferredProtocolOrganization,
 ProtocolIDAcronym,
@@ -415,9 +412,9 @@ Year
      { text-indent: 0pt; }
 
 
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
 AdvisoryBoardFor,
 AffiliateMemberOf,
 AlternateName,
@@ -429,13 +426,13 @@ BoardMeetingDates,
 BoardNameTranslation,
 CCOP,
 CIPSContact,
-CIPSContactPerson, 
+CIPSContactPerson,
 ClinicalTrialsOfficeContact,
 ClinicalTrialsOfficeContactEmail,
 ClinicalTrialsOfficeContactName,
 ClinicalTrialsOfficeContactPhone,
 Comment,
-CooperativeGroup, 
+CooperativeGroup,
 CurrentStatus,
 Date,
 DateLastModified,
@@ -445,7 +442,7 @@ FormerName,
 IncludeInDirectory,
 Location,
 LOESummary,
-MainMember, 
+MainMember,
 MainMemberOf,
 MediaID,
 MeetingDate,
@@ -466,11 +463,11 @@ OrganizationParent,
 OrganizationType,
 OrganizationType[Public="No"]     :after,
 OrganizationType:after,
-ParentOrganization, 
+ParentOrganization,
 PDQBoardInformation,
 PdqKey,
 PersonAssigned,
-PreferredDirectoryContactMode, 
+PreferredDirectoryContactMode,
 PreferredProtocolContactMode,
 PreferredProtocolOrganization,
 ProtocolIDAcronym,
@@ -481,7 +478,7 @@ ShortName,
 ShowReviewerInfo,
 Status,
 Type,
-Year,
+Year
      { color: white;
        background-color: white; }
 
@@ -503,7 +500,7 @@ ClinicalTrialsOfficeContactEmail  :before,
 ClinicalTrialsOfficeContactName   :before,
 ClinicalTrialsOfficeContactPhone  :before,
 Comment                           :before,
-CooperativeGroup                  :before, 
+CooperativeGroup                  :before,
 CurrentStatus                     :before,
 Date                              :before,
 DateLastModified                  :before,
@@ -512,7 +509,7 @@ FormerName                        :before,
 IncludeInDirectory                :before,
 Location                          :before,
 LOESummary                        :before,
-MainMember                        :before, 
+MainMember                        :before,
 MainMemberOf,
 MediaLink                         :before,
 MeetingDate                       :before,
@@ -533,11 +530,11 @@ OrganizationLocations,
 OrganizationNameInformation       :before,
 OrganizationParent,
 OrganizationType                  :before,
-ParentOrganization                :before, 
+ParentOrganization                :before,
 PDQBoardInformation               :before,
 PdqKey                            :before,
 PersonAssigned                    :before,
-PreferredDirectoryContactMode     :before, 
+PreferredDirectoryContactMode     :before,
 PreferredProtocolContactMode      :before,
 PreferredProtocolOrganization     :before,
 ProtocolIDAcronym                 :before,

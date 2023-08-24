@@ -36,7 +36,7 @@ $PROCINS
      { color: blue;
        background-color: white; }
 
-PublishingSystem,
+PublishingSystem
      { background-color: #CCCCFF; }
 
 
@@ -186,7 +186,7 @@ Subdirectory          :before,
 SubsetFilters         :before,
 SubsetOptions         :before,
 SubsetParameters      :before,
-SubsetSpecifications  :before,
+SubsetSpecifications  :before
    {  font-weight: bold;
       color: black;  }
 
@@ -228,7 +228,7 @@ SystemDescription     :before,
 SystemName            :before,
 SystemSubset          :before,
 UserSelect            :before,
-UserSelectDoctype     :before,
+UserSelectDoctype     :before
    {  font-weight: bold;
       color: black;  }
 
@@ -240,19 +240,19 @@ UserSelectDoctype     :before,
 
 /* Key element for length = SystemDescription                  */
 
-SystemName,
+SystemName
    { margin-left: 130pt;
      text-indent: -94pt; }
-SystemDescription,
+SystemDescription
    { margin-left: 130pt;
      text-indent: -127pt; }
 
 /* Key element for length = SubsetDescription                  */
 
-SubsetName,
+SubsetName
    { margin-left: 100pt;
      text-indent: -55.5pt; }
-SubsetDescription,
+SubsetDescription
    { margin-left: 100pt;
      text-indent: -81pt; }
 
@@ -286,54 +286,54 @@ ParmValue
    { margin-left: 100pt;
      text-indent: -80pt; }
 
-SubsetActionName,
+SubsetActionName
    { margin-left: 100pt;
      text-indent: -100pt; }
-ProcessScript,
+ProcessScript
    { margin-left: 100pt;
      text-indent: -88.5pt; }
 
-SpecificationName,
+SpecificationName
    { margin-left: 100pt;
      text-indent: -79pt; }
 
-UserSelectDoctype,
+UserSelectDoctype
    { margin-left: 100pt;
      text-indent: -84pt; }
 
-SubsetSQL,
+SubsetSQL
    { margin-left: 100pt
      text-indent: -97.5pt; }
 
-SubsetXQL,
+SubsetXQL
    { margin-left: 100pt;
      text-indent: -97.5pt; }
 
-SubsetFilterId,
+SubsetFilterId
    { margin-left: 100pt;
      text-indent: -58.5pt; }
 
-SubsetFilterName,
+SubsetFilterName
    { margin-left: 100pt;
      text-indent: -79.5pt; }
 
-Subdirectory,
+Subdirectory
    { margin-left: 100pt;
      text-indent: -91pt; }
 
-OptionName,
+OptionName
    { margin-left: 100pt;
      text-indent: -53.5pt; }
 
-OptionValue,
+OptionValue
    { margin-left: 100pt;
      text-indent: -88.5pt; }
 
-Doctype,
+Doctype
    { margin-left: 100pt;
      text-indent: -64pt; }
 
-MaxErrors,
+MaxErrors
    { margin-left: 100pt;
      text-indent: -78pt; }
 

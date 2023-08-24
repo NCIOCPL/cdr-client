@@ -21,22 +21,22 @@
        margin-top: 0px;
        margin-bottom: 0px;
        font-family: Arial, sans-serif;
-       font-size: 10pt; 
+       font-size: 10pt;
        font-style: normal;
        font-weight: bold;
        color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-SupplementaryInfo,
+SupplementaryInfo
      { background-color: white; }
 
 
@@ -45,11 +45,11 @@ SupplementaryInfo,
 /***************************************************************************/
 Category,
 Description,
-MimeType,   
+MimeType,
 OriginalFilename,
 Source,
 SupplementaryInfo,
-Title,
+Title
      { display: block; }
 
 
@@ -68,7 +68,7 @@ Title:before                      { content: "Title "; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-SupplementatyInfo:before,
+SupplementatyInfo:before
      { color: black; }
 
 
@@ -84,14 +84,14 @@ Description:before,
 MimeType:before,
 OriginalFilename:before,
 Source:before,
-Title:before,
+Title:before
      { color: black; }
 
 
 /***************************************************************************/
 /*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
 /***************************************************************************/
-dummy:before,
+dummy:before
      { color: black; }
 
 
@@ -102,10 +102,10 @@ dummy:before,
 
 Category,
 Description,
-MimeType,   
+MimeType,
 OriginalFilename,
 Source,
-Title,
+Title
      { text-indent: 0pt; }
 
 
@@ -114,10 +114,10 @@ Title,
 /***************************************************************************/
 Category,
 Description,
-MimeType,   
+MimeType,
 OriginalFilename,
 Source,
-Title,
+Title
      { color: white;
        background-color: white; }
 
@@ -126,5 +126,5 @@ Description:before,
 MimeType:before,
 OriginalFilename:before,
 Source:before,
-Title:before,
+Title:before
      { background-color: white; }

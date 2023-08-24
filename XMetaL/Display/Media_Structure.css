@@ -8,45 +8,43 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
- 
+
 @sq-plus-minus;
- 
+
 /* @sq-structure-view-icons; */
- 
+
 /* @sq-start-only-tags;      */
- 
+
 *   { white-space: nowrap;
-      text-align: left;   
-      margin-left: 10px;  
-      margin-top: 0px;    
-      margin-bottom: 0px; 
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
       font-family: Arial, sans-serif;
       font-size: 10pt;
       font-style: normal;
-      font-weight: bold; 
-      color: black; }    
-                                                                 
+      font-weight: bold;
+      color: black; }
+
       /* top-level elements */
-      
+
 $DOCUMENT > *
-                                                           
      { margin-left: 0px;  }
-                                                                     
+
 $PROCINS
-                                                                
      { color: white;
        font-weight: normal;
-       background-color: white;} 
+       background-color: white;}
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Acknowledgement,
 Age,
 AlternativeText,
@@ -132,14 +130,14 @@ VideoData,
 VideoEncoding,
 VideoHosting,
 VideoType,
-WidthPixels,
+WidthPixels
     { display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 Acknowledgement           :before { content: "Acknowledgement "; }
 Age                       :before { content: "Age "; }
 AlternativeText           :before { content: "Alternative Text "; }
@@ -163,7 +161,7 @@ DerivedFrom               :before { content: "DERIVED FROM "; }
 Diagnoses                 :before { content: "DIAGNOSES "; }
 Diagnosis                 :before { content: "Diagnosis "; }
 DocTitle                  :before { content: "Doc Title "; }
-ProcessingStatus>EnteredBy:before,
+ProcessingStatus>EnteredBy:before
                                   { content: "Entered By "; }
 Ethnicity                 :before { content: "Ethnicity "; }
 ExternalRef               :before { content: "ExternalRef "; }
@@ -197,9 +195,9 @@ PermissionResponse        :before { content: "Response"; }
 PermissionResponseDate    :before { content: "Resp. Date"; }
 PermissionExpirationDate  :before { content: "Expiration"; }
 ApprovedUse               :before { content: "APPROVED USE"; }
-SpanishTranslationPermissionRequested 
+SpanishTranslationPermissionRequested
                           :before { content: "Spn Permission Req"; }
-SpanishTranslationPermissionResponse 
+SpanishTranslationPermissionResponse
                           :before { content: "Spn Permission Resp"; }
 PublisherPermissionText   :before { content: "Publisher Txt"; }
 PhysicalMedia             :before { content: "PHYSICAL MEDIA "; }
@@ -237,13 +235,13 @@ WidthPixels               :before { content: "Width (Pixels) "; }
 /*                      DOCUMENT TITLE AND ID                              */
 /***************************************************************************/
 DemographicInformation,
-MediaSource, 
+MediaSource,
 MediaContent,
-PhysicalMedia, 
+PhysicalMedia,
 ProcessingStatuses,
-RelatedDocuments,
+RelatedDocuments
        { border: none;   }
-        
+
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
@@ -265,15 +263,15 @@ PhysicalMedia                          :before,
 ProcessingStatus                       :before,
 ProcessingStatuses                     :before,
 ProposedUse                            :before,
-Topics                                 :before,
+Topics                                 :before
    { color: black;
      font-size: 10pt; }
 
 
 
-/***************************************************************************/ 
-/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */
+/***************************************************************************/
 Acknowledgement                        :before,
 Age                                    :before,
 AlternativeText                        :before,
@@ -357,8 +355,8 @@ VideoData                              :before,
 VideoEncoding                          :before,
 VideoHosting                           :before,
 VideoType                              :before,
-WidthPixels                            :before,
-     { color: black;  
+WidthPixels                            :before
+     { color: black;
        background-color: white; }
 
 
@@ -434,7 +432,7 @@ VideoData,
 VideoEncoding,
 VideoHosting,
 VideoType,
-WidthPixels,
+WidthPixels
      { text-indent: 0pt; }
 
 
@@ -508,15 +506,15 @@ VideoData,
 VideoEncoding,
 VideoHosting,
 VideoType,
-WidthPixels,
+WidthPixels
      { color: white;
        background-color: white; }
 /*       background-color: green; } */
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 /* Background color for Fields (Do not include Container Elements here */
 AlternativeText                        :before,
 Age                                    :before,
@@ -581,7 +579,7 @@ VideoData                              :before,
 VideoEncoding                          :before,
 VideoHosting                           :before,
 VideoType                              :before,
-WidthPixels                            :before,
+WidthPixels                            :before
    { background-color: white; }
 
 
@@ -649,5 +647,5 @@ VideoData,
 VideoEncoding,
 VideoHosting,
 VideoType,
-WidthPixels,
+WidthPixels
    { background-color: white; }

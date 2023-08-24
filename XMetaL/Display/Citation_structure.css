@@ -82,11 +82,9 @@
 /* top-level elements */
 
 $DOCUMENT > *
-
     { margin-left: 0px;  }
 
 $PROCINS
-
     { color: white;
       font-weight: normal;
       background-color: white;}
@@ -196,8 +194,7 @@ Verified,
 VerifiedIn,
 VernacularTitle,
 Volume,
-Year,
-
+Year
     { display: block; }
 
 
@@ -344,7 +341,7 @@ History,
 VerificationDetails,
 MedlineCitation,
 PDQCitation,
-PubMedData,
+PubMedData
     { border: none;   }
 
 
@@ -382,7 +379,7 @@ PubMedPubDate[PubStatus="Medline"]:before,
 PubMedPubDate[PubStatus="PubMed"] :before,
 URL[URLType="Full_Text"]          :before,
 URL[URLType="Summary"]            :before,
-VerificationDetails               :before,
+VerificationDetails               :before
     {  color: black;
        font-size: 10pt; }
 
@@ -464,7 +461,7 @@ URL                               :before,
 URLstring                         :before,
 VernacularTitle                   :before,
 Volume                            :before,
-Year                              :before,
+Year                              :before
     { color: black;     }
 
 
@@ -476,7 +473,7 @@ PdqKey                            :before,
 PublishedIn                       :before,
 PubStatus                         :before,
 Verified                          :before,
-VerifiedIn                        :before,
+VerifiedIn                        :before
     {  color: black;  }
 
 
@@ -544,13 +541,13 @@ PubMedPubDate,
 RefSource,
 StartPage,
 SupplMeshName,
-Title, 
+Title,
 URL,
 URLstring,
 Verified,
 VerifiedIn,
 VernacularTitle,
-Volume,
+Volume
     { text-indent: 0pt; }
 
 
@@ -650,7 +647,7 @@ Initials                          :after,
 LastName                          :after,
 PublishedIn                       :after,
 QualifierName                     :after,
-RegistryNumber                    :after,
+RegistryNumber                    :after
     { color: white;
       background-color: white; }
 
@@ -677,7 +674,7 @@ QualifierName,
 RegistryNumber,
 Season,
 Suffix,
-Year,
+Year
     { display: none; }
 
 
@@ -761,5 +758,5 @@ VerifiedIn                        :before,
 VerificationDetails,
 VerificationDetails               :before,
 VernacularTitle                   :before,
-Volume                            :before,
+Volume                            :before
     { background-color: white; }

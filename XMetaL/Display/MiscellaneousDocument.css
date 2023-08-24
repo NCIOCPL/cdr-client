@@ -109,21 +109,21 @@ TranslationOf                     :before
     { font-weight: bold;
       color: black;  }
 
-MiscellaneousDocumentMetaData,
+MiscellaneousDocumentMetaData
     { font-size: 12pt; }
 
 Audience                          :before,
 Language                          :before,
-MiscellaneousDocumentType         :before,
+MiscellaneousDocumentType         :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
 
-PdqKey                            :before,
+PdqKey                            :before
     { font-weight: bold;
       color: purple; }
 
-PdqKey,
+PdqKey
     { margin-top: 4pt;  }
 
 
@@ -156,13 +156,13 @@ MiscellaneousDocumentMetadata
     { background-color: #CCCCFF; }
 
 /* Key element for length = Language                               */
-MiscellaneousDocumentType,
+MiscellaneousDocumentType
     { margin-left: 80pt;
       text-indent: -43.5pt; }
-Audience,
+Audience
     { margin-left: 80pt;
       text-indent: -69pt;}
-Language,
+Language
     { margin-left: 80pt;
       text-indent: -72.5pt;}
 
@@ -178,7 +178,7 @@ TranslationOf
     { margin-bottom: 4pt; }
 
 DateLastModified,
-MiscellaneousDocumentType,
+MiscellaneousDocumentType
     { margin-top: 4pt; }
 
 Title

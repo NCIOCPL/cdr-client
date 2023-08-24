@@ -39,7 +39,7 @@ $PROCINS
       font-weight: normal;
       background-color: white;}
 
-GlossaryTermConcept,
+GlossaryTermConcept
     { background-color: white;
       text-decoration: none;
       color: black;  }
@@ -79,7 +79,7 @@ TermSource,
 TermStatus,
 TermType,
 TranslationResource,
-VideoID,
+VideoID
     { display: block; }
 
 
@@ -115,10 +115,10 @@ SpecificVideoPresentationTemplate
                              :before { content: "Display"; }
 StatusDate                   :before { content: "Status Date"; }
 TranslatedTermDefinition     :before { content: "TRANSLATED DEFINITION"; }
-TranslatedTermDefinition>DefinitionText            
+TranslatedTermDefinition>DefinitionText
                              :before { content: "Translated Definition"; }
 TermDefinition               :before { content: "TERM DEFINITION"; }
-TermDefinition>DefinitionText                 
+TermDefinition>DefinitionText
                              :before { content: "Term Definition "; }
 TermName                     :before { content: "Term Name "; }
 TermPronunciation            :before { content: "Term Pronunciation "; }
@@ -134,9 +134,9 @@ VideoID                      :before { content: "Video ID"; }
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-GlossaryTerm:before,
+GlossaryTerm:before
     { color: black; }
-     
+
 
 /***************************************************************************/
 /*                         BORDER CONTROL                                  */
@@ -144,7 +144,7 @@ GlossaryTerm:before,
 ProcessingStatuses,
 RelatedInformation,
 TermDefinition,
-TranslatedTermDefinition,
+TranslatedTermDefinition
     { border: none; }
 
 
@@ -159,7 +159,7 @@ Dictionary          :before,
 TranslatedStatusDate:before,
 TermName            :before,
 TermPronunciation   :before,
-TranslationRecourse :before,
+TranslationRecourse :before
     { font-weight: bold;
       color: black;  }
 
@@ -169,7 +169,7 @@ TranslationRecourse :before,
 /***************************************************************************/
 TermSource          :before,
 TermStatus          :before,
-TermType            :before,
+TermType            :before
     { font-weight: bold;
       color: black;  }
 
@@ -256,7 +256,7 @@ VideoID
       background-color: white; }
 
 
-Audience                    :before,   
+Audience                    :before,
 Comment                     :before,
 DateLastModified            :before,
 DateLastReviewed            :before,

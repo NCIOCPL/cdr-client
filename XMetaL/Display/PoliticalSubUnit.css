@@ -27,13 +27,13 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
 
      { font-family: Arial, sans-serif;
        font-size: 12pt;
@@ -41,26 +41,23 @@ $DOCUMENT
        margin-left: 5px;
        color:black;         }
 
-$COMMENT 
-
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
+$PROCINS
      { color: blue;
        background-color: white; }
 
-PoliticalSubUnit,
-
+PoliticalSubUnit
      { background-color: #CCCCFF; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+
 
 Country,
 DateLastModified,
@@ -68,15 +65,14 @@ PdqKey,
 PoliticalSubUnit,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
 	{ display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 
 
 /* * = Required field */
@@ -94,14 +90,14 @@ PoliticalSubUnitShortName:before	{ content: "Short Name &: "; }
 
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
- 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 
 
 Country:before,
@@ -109,17 +105,15 @@ DateLastModified:before,
 PdqKey:before,
 PoliticalSubUnitAlternateName:before,
 PoliticalSubUnitFullName:before,
-PoliticalSubUnitShortName:before,
-
-
+PoliticalSubUnitShortName:before
    {  font-weight: bold;
       color: black;  }
 
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 
 /* Each tag is manually positioned to right-align                          */
 
@@ -127,47 +121,49 @@ PoliticalSubUnitShortName:before,
 
 /* Key element for length = PoliticalUnitAlternateName                     */
 
-PoliticalSubUnitAlternateName,		{ margin-left: 120pt; 
-					  text-indent: -116pt; }
-PoliticalSubUnitFullName,		{ margin-left: 120pt; 
-					  text-indent: -72pt; }
-PoliticalSubUnitShortName,		{ margin-left: 120pt; 
-					  text-indent: -87pt; }
-Country,				{ margin-left: 120pt; 
-					  text-indent: -76.5pt; }
+PoliticalSubUnitAlternateName 		
+    { margin-left: 120pt;
+      text-indent: -116pt; }
+PoliticalSubUnitFullName 		
+    { margin-left: 120pt;
+      text-indent: -72pt; }
+PoliticalSubUnitShortName 		
+    { margin-left: 120pt;
+      text-indent: -87pt; }
+Country 				
+    { margin-left: 120pt;
+      text-indent: -76.5pt; }
 
 /* Key element for length = DateLastModified				   */
 
-DateLastModified,			{ margin-left: 100pt;
-					  text-indent: -96pt; }
-PdqKey,					{ margin-left: 100pt;
-					  text-indent: -71pt; }
+DateLastModified 			
+    { margin-left: 100pt;
+      text-indent: -96pt; }
+PdqKey 					
+    { margin-left: 100pt;
+      text-indent: -71pt; }
 
 DateLastModified,
 Country,
 PdqKey,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
 	{ margin-bottom: 4pt; }
 
-PoliticalSubUnitFullName,
-
+PoliticalSubUnitFullName
 	{ margin-top: 8pt; }
 
-Country,
-
+Country
 	{ margin-top: 10pt; }
 
-DateLastModified,
-
+DateLastModified
 	{ margin-top: 2em; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 
 
 DateLastModified,
@@ -175,8 +171,7 @@ Country,
 PdqKey,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
 	{ background-color: white; }
 
 
@@ -185,6 +180,5 @@ Country:before,
 PdqKey:before,
 PoliticalSubUnitAlternateName:before,
 PoliticalSubUnitFullName:before,
-PoliticalSubUnitShortName:before,
-
+PoliticalSubUnitShortName:before
 	{ background-color: #CCCCFF; }

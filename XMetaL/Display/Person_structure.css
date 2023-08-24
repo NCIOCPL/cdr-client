@@ -95,7 +95,7 @@ $PROCINS
       font-weight: normal;
       background-color: white; }
 
-Person,
+Person
     { background-color: white; }
 
 
@@ -189,7 +189,7 @@ StateCertificationState,
 Status,
 SurName,
 UpdateMode,
-Verified,
+Verified
     { display: block; }
 
 
@@ -287,7 +287,7 @@ Verified                          :before { content: "Verified?"; }
 /*************************************************************************/
 /*                     COUNTER DEFINITIONS                               */
 /*************************************************************************/
-OtherPracticeLocation,
+OtherPracticeLocation
      {  counter-increment: Other;  }
 
 
@@ -318,7 +318,7 @@ PrivatePracticeLocation           :before,
 ProfessionalInformation           :before,
 SpecificPostalAddress             :before,
 StateCertification                :before,
-Status                            :before,
+Status                            :before
     { color: black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
@@ -343,7 +343,7 @@ PersonTitle                       :before,
 Prefix                            :before,
 ServiceLimitations                :before,
 SurName                           :before,
-UpdateMode                        :before,
+UpdateMode                        :before
     { color:  black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
@@ -390,7 +390,7 @@ SpecificPostalAddress             :before,
 SpecificTollFreePhone             :before,
 SpecificWebSite                   :before,
 StandardProfessionalSuffix        :before,
-Verified                          :before,
+Verified                          :before
     { color: black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
@@ -408,7 +408,7 @@ OtherPracticeLocation,
 PDQBoardMembershipDetails,
 PhysicianDetails,
 PrivatePractice,
-Status,
+Status
     { border: none; }
 
 
@@ -485,7 +485,7 @@ StateCertificationState,
 Status>Comment,
 SurName,
 UpdateMode,
-Verified,
+Verified
     { text-indent: 0pt; }
 
 
@@ -567,7 +567,7 @@ UpdateMode[MailerType="Protocol_SandP"]
                                   :after,
 UpdateMode[MailerType="Protocol_Abstract"]
                                   :after,
-Verified,
+Verified
     { color: white;
       background-color: white; }
 
@@ -641,5 +641,5 @@ StateCertificationNumber          :before,
 StateCertificationState           :before,
 SurName                           :before,
 UpdateMode                        :before,
-Verified                          :before,
+Verified                          :before
     { background-color: white; }

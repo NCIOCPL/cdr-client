@@ -64,32 +64,29 @@
      margin-top: 0px;
      margin-bottom: 0px;
      font-family: Arial, sans-serif;
-     font-size: 10pt; 
+     font-size: 10pt;
      font-style: normal;
      font-weight: bold;
      color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-Term,
-
+Term
      { background-color: white; }
 
 
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
-Comment, 
+Comment,
 CTGovInterventionType,
 DateLastModified,
 Definition,
@@ -113,7 +110,7 @@ ParentTerm,
 ParentType,
 PdqKey,
 PreferredName,
-ReferenceSource, 
+ReferenceSource,
 RelatedTerm,
 RelationshipType,
 ReviewStatus,
@@ -128,7 +125,7 @@ TermId,
 TermRelationship,
 TermStatus,
 TermType,
-TermTypeName,  
+TermTypeName,
 VocabularySource,
 
 
@@ -139,7 +136,7 @@ VocabularySource,
 /***************************************************************************/
 /*                       BEFORE AND AFTER TAGS                             */
 /***************************************************************************/
-Comment                      :before { content: "Comments "; } 
+Comment                      :before { content: "Comments "; }
 CTGovInterventionType        :before { content: "CTGov Intervention "; }
 DateLastModified             :before { content: "Last Modified "; }
 Definition                   :before { content: "DEFINITION "; }
@@ -168,32 +165,32 @@ ReferenceSource              :before { content: "Reference Source "; }
 RelatedTerm                  :before { content: counter(RT)". RELATED TERM "; }
 RelationshipType             :before { content: "Relationship Type "; }
 ReviewStatus                 :before { content: "Review Status "; }
-SemanticType                 :before { content: "Semantic Type  "; } 
+SemanticType                 :before { content: "Semantic Type  "; }
 SemanticTypeText             :before { content: "Semantic Type Text "; }
 SourceCode                   :before { content: "Source Code "; }
 SourceTermId                 :before { content: "Source Term ID "; }
 SourceTermType               :before { content: "Source Term Type "; }
 SourceInformation            :before { content: "Source Information "; }
-Term                         :before { content: "TERM  "; }   
-TermId                       :before { content: "Term ID  "; } 
+Term                         :before { content: "TERM  "; }
+TermId                       :before { content: "Term ID  "; }
 TermRelationship             :before { content: "TERM RELATIONSHIP "; }
 TermStatus                   :before { content: "Term Status "; }
-TermType                     :before { content: "TERM TYPE  "; } 
-TermTypeName                 :before { content: "Term Type Name "; } 
+TermType                     :before { content: "TERM TYPE  "; }
+TermTypeName                 :before { content: "Term Type Name "; }
 VocabularySource             :before { content: "Vocabulary Source  "; }
 
 
 /***************************************************************************/
 /*                     COUNTER DEFINITIONS                                 */
 /***************************************************************************/
-RelatedTerm,
+RelatedTerm
     { counter-increment: RT;  }
 
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
-Term                         :before,
+Term                         :before
      { color: black;      }
 
 
@@ -240,9 +237,7 @@ SourceInformation            :before,
 TermId                       :before,
 TermRelationship             :before,
 TermType                     :before,
-VocabularySource             :before,
-
-
+VocabularySource             :before
     { font-weight: bold;
       color: black;  }
 
@@ -259,7 +254,7 @@ ReviewStatus                 :before,
 SourceCode                   :before,
 SourceTermType               :before,
 TermStatus                   :before,
-TermTypeName                 :before,
+TermTypeName                 :before
     {  font-weight: bold;
        color: black;  }
 
@@ -268,7 +263,7 @@ TermTypeName                 :before,
 /*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
 /***************************************************************************/
 /* Remove negative text-indent settings  */
-Comment, 
+Comment,
 CTGovInterventionType,
 DateLastModified,
 Definition,
@@ -293,7 +288,7 @@ ParentTerm,
 ParentType,
 PdqKey,
 PreferredName,
-ReferenceSource, 
+ReferenceSource,
 RelatedTerm,
 RelationshipType,
 ReviewStatus,
@@ -308,8 +303,8 @@ TermId,
 TermRelationship,
 TermStatus,
 TermType,
-TermTypeName,  
-VocabularySource,
+TermTypeName,
+VocabularySource
      { text-indent: 0pt; }
 
 
@@ -317,7 +312,7 @@ VocabularySource,
 /***************************************************************************/
 /*                              HIDE TEXT                                  */
 /***************************************************************************/
-Comment, 
+Comment,
 CTGovInterventionType,
 DateLastModified,
 Definition,
@@ -342,7 +337,7 @@ ParentTerm,
 ParentType,
 PdqKey,
 PreferredName,
-ReferenceSource, 
+ReferenceSource,
 RelatedTerm,
 RelationshipType,
 ReviewStatus,
@@ -357,13 +352,13 @@ TermId,
 TermRelationship,
 TermStatus,
 TermType,
-TermTypeName,  
-VocabularySource,
+TermTypeName,
+VocabularySource
     { color: white;
       background-color: white; }
 
 
-Comment                      :before, 
+Comment                      :before,
 CTGovInterventionType        :before,
 DateLastModified             :before,
 Definition                   :before,
@@ -388,7 +383,7 @@ ParentTerm                   :before,
 ParentType                   :before,
 PdqKey                       :before,
 PreferredName                :before,
-ReferenceSource              :before, 
+ReferenceSource              :before,
 RelatedTerm                  :before,
 RelationshipType             :before,
 ReviewStatus                 :before,
@@ -403,6 +398,6 @@ TermId                       :before,
 TermRelationship             :before,
 TermStatus                   :before,
 TermType                     :before,
-TermTypeName                 :before,  
-VocabularySource             :before,
+TermTypeName                 :before,
+VocabularySource             :before
     { background-color: white; }

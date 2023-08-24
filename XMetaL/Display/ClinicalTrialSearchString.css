@@ -2,36 +2,36 @@
  * Rules for ClinicalTrialSearchStrings.
  */
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 @import "CdrCommonSchema.css";
 
 $DOCUMENT
-   { font-family: Arial, sans-serif;       
+   { font-family: Arial, sans-serif;
      font-size: 12pt;
      margin-top: 5px;
-     margin-left: 5px;  
+     margin-left: 5px;
      color: black;        }
 
-$COMMENT 
+$COMMENT
    { display: block;
      color: purple;
      white-space: pre;  }
 
-$PROCINS 
+$PROCINS
    { color: blue;
      background-color: white;  }
 
-ClinicalTrialSearchString,
+ClinicalTrialSearchString
    { background-color: white;
      text-decoration: none;
      color: black; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 ClinicalTrialSearchString,
 CdrDocCtl,
 DocId,
@@ -43,9 +43,9 @@ Use
    { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
@@ -58,18 +58,18 @@ SearchString           :before { content: "Search String * @: "; }
 Use                    :before { content: "Use & +: "; }
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 Description         :before,
 EnteredBy           :before,
 EntryDate           :before,
 SearchString        :before,
-Use                 :before,
+Use                 :before
    {  font-weight: bold; color: black;  }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
 LastChangedDate
@@ -79,19 +79,19 @@ LastChangedDate
 /***************************************************************************/
 /*                  MARGINS FOR ALIGNING TAGS AND TEXT                     */
 /***************************************************************************/
-Description                      { margin-left: 110pt; 
+Description                      { margin-left: 110pt;
                                    text-indent: -82.0pt; }
 
-SearchString                     { margin-left: 110pt; 
+SearchString                     { margin-left: 110pt;
                                    text-indent: -109.0pt; }
 
-Use                              { margin-left: 110pt; 
+Use                              { margin-left: 110pt;
                                    text-indent:  -52.5pt; }
 
-EnteredBy                        { margin-left: 110pt; 
+EnteredBy                        { margin-left: 110pt;
                                    text-indent:  -79.5pt; }
 
-EntryDate                        { margin-left: 110pt; 
+EntryDate                        { margin-left: 110pt;
                                    text-indent:  -75.5pt; }
 
 
@@ -101,13 +101,13 @@ Description,
 EnteredBy,
 EntryDate,
 SearchString,
-Use,
+Use
 	{ margin-bottom: 4pt; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 Description,
 EnteredBy,
 EntryDate,

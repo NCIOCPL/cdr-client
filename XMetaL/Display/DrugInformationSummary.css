@@ -30,7 +30,7 @@ $PROCINS
      { color: blue;
        background-color: white; }
 
-DrugInformationSummary,
+DrugInformationSummary
      { background-color: #CCCCFF;
        text-decoration: none;
        color: black; }
@@ -91,43 +91,43 @@ User
 /* @ = Attribute assigned to element */
 
 
-Audience                 :before, { content: "Audience *: "; }
-ApprovedIndication       :before, { content: "Appr Indication & +: "; }
-DrugInformationSummary>Comment :before, { content: "Comments &: "; }
-DrugReference>Comment    :before, { content: "Comments & +: "; }
-ProcessingStatus>Comment :before, { content: "Comments & +: "; }
-TypeOfDISChange>Comment  :before, { content: "Comment & +: "; }
-ComprehensiveReviewDate  :before, { content: "Review Date & @: "; }
-Date                     :before, { content: "Date *: "; }
-DateLastModified         :before, { content: "Date Last Modified &: "; }
-Description              :before, { content: "Description *: "; }
-DrugInfoMetaData         :before, { content: "DRUG INFO META DATA *"; }
-DrugInfoType             :before, { content: "Drug Info Type *: "; }
-DrugReference            :before, { content: "DRUG REFERENCE & +"; }
-DrugReferenceDescription :before, { content: "Description * @: "; }
-DrugReferenceLink        :before, { content: "Link * @: "; }
-DrugReferencePostedDate  :before, { content: "Posted Date &: "; }
-DrugReferenceType        :before, { content: "Type *: "; }
-DrugType                 :before, { content: "DrugType & +: "; }
-EnteredBy                :before, { content: "Entered By *: "; }
-EntryDate                :before, { content: "Entry Date *: "; }
-FDAApproved              :before, { content: "FDA Approved *: "; }
-GlossaryLink             :before, { content: "Glossary Link * @: "; }
-Manufacturer             :before, { content: "Manufacturer & @: "; }
-StatusDate               :before, { content: "Status Date *: "; }
-SummarySection           :before, { content: "Drug Info Summary *: "; }
+Audience                 :before  { content: "Audience *: "; }
+ApprovedIndication       :before  { content: "Appr Indication & +: "; }
+DrugInformationSummary>Comment :before  { content: "Comments &: "; }
+DrugReference>Comment    :before  { content: "Comments & +: "; }
+ProcessingStatus>Comment :before  { content: "Comments & +: "; }
+TypeOfDISChange>Comment  :before  { content: "Comment & +: "; }
+ComprehensiveReviewDate  :before  { content: "Review Date & @: "; }
+Date                     :before  { content: "Date *: "; }
+DateLastModified         :before  { content: "Date Last Modified &: "; }
+Description              :before  { content: "Description *: "; }
+DrugInfoMetaData         :before  { content: "DRUG INFO META DATA *"; }
+DrugInfoType             :before  { content: "Drug Info Type *: "; }
+DrugReference            :before  { content: "DRUG REFERENCE & +"; }
+DrugReferenceDescription :before  { content: "Description * @: "; }
+DrugReferenceLink        :before  { content: "Link * @: "; }
+DrugReferencePostedDate  :before  { content: "Posted Date &: "; }
+DrugReferenceType        :before  { content: "Type *: "; }
+DrugType                 :before  { content: "DrugType & +: "; }
+EnteredBy                :before  { content: "Entered By *: "; }
+EntryDate                :before  { content: "Entry Date *: "; }
+FDAApproved              :before  { content: "FDA Approved *: "; }
+GlossaryLink             :before  { content: "Glossary Link * @: "; }
+Manufacturer             :before  { content: "Manufacturer & @: "; }
+StatusDate               :before  { content: "Status Date *: "; }
+SummarySection           :before  { content: "Drug Info Summary *: "; }
 DrugInformationSummary>Title
-                         :before, { content: "Title *: "; }
-ProcessingStatus         :before, { content: "PROCESSING STATUS BLOCK & +"; }
-ProcessingStatusValue    :before, { content: "Status Value *: "; }
-RefDescription           :before, { content: "Ref Description *: "; }
-RefLink                  :before, { content: "Ref Link *: "; }
-ReviewStatus             :before, { content: "Review Status &: "; }
-TypeOfDISChange          :before, { content: "TYPE OF CHANGE BLOCK & +"; }
-TypeOfDISChangeValue     :before, { content: "Change value *: "; }
-TerminologyLink          :before, { content: "Term Link * @: "; }
-URL                      :before, { content: "URL * @: "; }
-User                     :before, { content: "User *: "; }
+                         :before  { content: "Title *: "; }
+ProcessingStatus         :before  { content: "PROCESSING STATUS BLOCK & +"; }
+ProcessingStatusValue    :before  { content: "Status Value *: "; }
+RefDescription           :before  { content: "Ref Description *: "; }
+RefLink                  :before  { content: "Ref Link *: "; }
+ReviewStatus             :before  { content: "Review Status &: "; }
+TypeOfDISChange          :before  { content: "TYPE OF CHANGE BLOCK & +"; }
+TypeOfDISChangeValue     :before  { content: "Change value *: "; }
+TerminologyLink          :before  { content: "Term Link * @: "; }
+URL                      :before  { content: "URL * @: "; }
+User                     :before  { content: "User *: "; }
 
 
 /***************************************************************************/
@@ -200,7 +200,7 @@ Para>ResponseToComment
 
 Row>entry>Comment,
 ListItem>Comment,
-Para>Comment 
+Para>Comment
    { font-style: italic;
      background-color: green;
      color: white; }
@@ -225,10 +225,10 @@ Para>ResponseToComment   :before
 /***************************************************************************/
 /* Each tag is manually positioned to right-align                          */
 
-Audience,
+Audience
                         { margin-left: 130pt;
                           text-indent: -70pt; }
-ApprovedIndication,
+ApprovedIndication
                         { margin-left: 130pt;
                           text-indent: -117pt; }
 Caption
@@ -237,64 +237,64 @@ Caption
 ComprehensiveReviewDate
                         { margin-left: 130pt;
                           text-indent: -106.5pt; }
-Date,
+Date
                         { margin-left: 0pt;
                           text-indent: -43pt; }
-DateLastModified,
+DateLastModified
                         { margin-left: 130pt;
                           text-indent: -126pt; }
-DrugInformationSummary>Comment,
+DrugInformationSummary>Comment
                         { margin-left: 130pt;
                           text-indent: -82.5pt; }
-DrugReference>Comment,
+DrugReference>Comment
                         { margin-left: 130pt;
                           text-indent: -92pt; }
-ProcessingStatus>Comment,
+ProcessingStatus>Comment
                         { margin-left: 0pt;
                           text-indent: -92pt; }
-TypeOfDISChange>Comment,
+TypeOfDISChange>Comment
                         { margin-left: 0pt;
                           text-indent: -86pt; }
-Description,
+Description
                         { margin-left: 130pt;
                           text-indent: -82pt; }
-DrugInfoType,
+DrugInfoType
                         { margin-left: 130pt;
                           text-indent: -100.5pt; }
-DrugInformationSummary>Title,
+DrugInformationSummary>Title
                         { margin-left: 130pt;
                           text-indent: -40pt; }
-DrugReferenceDescription,
+DrugReferenceDescription
                         { margin-left: 130pt;
                           text-indent: -97pt; }
-DrugReferenceLink,
+DrugReferenceLink
                         { margin-left: 130pt;
                           text-indent: -55.5pt; }
-DrugReferencePostedDate,
+DrugReferencePostedDate
                         { margin-left: 130pt;
                           text-indent: -90pt; }
-DrugReferenceType,
+DrugReferenceType
                         { margin-left: 130pt;
                           text-indent: -44pt; }
-DrugType,
+DrugType
                         { margin-left: 130pt;
                           text-indent: -87pt; }
-EnteredBy,
+EnteredBy
                         { margin-left: 130pt;
                           text-indent: -79.5pt; }
-ProcessingStatus>EnteredBy,
+ProcessingStatus>EnteredBy
                         { margin-left: 0pt;
                           text-indent: -40.pt; }
-EntryDate,
+EntryDate
                         { margin-left: 130pt;
                           text-indent: -76pt; }
-FDAApproved,
+FDAApproved
                         { margin-left: 130pt;
                           text-indent: -100pt; }
-GlossaryLink,
+GlossaryLink
                         { margin-left: 130pt;
                           text-indent: -109.5pt; }
-Manufacturer,
+Manufacturer
                         { margin-left: 130pt;
                           text-indent: -111pt; }
 MediaID
@@ -309,46 +309,46 @@ SpecificMediaTitle
 SpecificVideoPresentationTemplate
                         { margin-left: 130pt;
                           text-indent: -63pt; }
-SummarySection>Para,
+SummarySection>Para
                         { margin-left: 130pt; }
 
-SummarySection>ItemizedList,
+SummarySection>ItemizedList
                         { margin-left: 130pt; }
 
-SummarySection>OrderedList,
+SummarySection>OrderedList
                         { margin-left: 130pt; }
 
-ProcessingStatus,
+ProcessingStatus
                         { margin-left: 130pt;
                           text-indent: -125.5pt; }
-ProcessingStatusValue,
+ProcessingStatusValue
                         { margin-left: 0pt;
                           text-indent: -88pt; }
-RefDescription,
+RefDescription
                         { margin-left: 70pt;
                           text-indent: -104pt; }
-RefLink,
+RefLink
                         { margin-left: 70pt;
                           text-indent: -63pt; }
-ReviewStatus,
+ReviewStatus
                         { margin-left: 130pt;
                           text-indent: -103pt; }
-StatusDate,
+StatusDate
                         { margin-left: 0pt;
                           text-indent: -82pt; }
-TerminologyLink,
+TerminologyLink
                         { margin-left: 130pt;
                           text-indent: -88pt; }
-TypeOfDISChange, 
+TypeOfDISChange
                         { margin-left: 130pt;
                           text-indent: -125.5pt; }
-TypeOfDISChangeValue,
+TypeOfDISChangeValue
                         { margin-left: 0pt;
                           text-indent: -95pt; }
-URL,
+URL
                         { margin-left: 130pt;
                           text-indent: -56pt; }
-User,
+User
                         { margin-left: 0pt;
                           text-indent: -43.5pt; }
 VideoID
@@ -393,7 +393,7 @@ ProcessingStatus>EnteredBy
     { margin-top: 4pt; }
 
 
-EnteredBy,
+EnteredBy
     { margin-top: 20pt; }
 
 ProcessingStatus,
@@ -410,7 +410,7 @@ TypeOfDISChange
 	{ margin-bottom: 10pt; }
 
 
-SummarySection>Title,
+SummarySection>Title
     { font-size  : 16pt;
       font-weight: bold;
       margin-top : 10pt; }

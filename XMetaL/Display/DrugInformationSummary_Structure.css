@@ -7,45 +7,44 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
- 
+
 @sq-plus-minus;
- 
+
 /* @sq-structure-view-icons; */
- 
+
 /* @sq-start-only-tags;      */
- 
+
 *   { white-space: nowrap;
-      text-align: left;   
-      margin-left: 10px;  
-      margin-top: 0px;    
-      margin-bottom: 0px; 
+      text-align: left;
+      margin-left: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
       font-family: Arial, sans-serif;
       font-size: 10pt;
       font-style: normal;
-      font-weight: bold; 
-      color: black; }    
-                                                                 
+      font-weight: bold;
+      color: black; }
+
       /* top-level elements */
-      
+
 $DOCUMENT > *
-                                                           
      { margin-left: 0px;  }
-                                                                     
+
 $PROCINS,
-DrugInformationSummary,
+DrugInformationSummary
      { color: white;
        font-weight: normal;
-       background-color: white;} 
+       background-color: white;}
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Audience,
 ApprovedIndication,
 DrugInformationSummary>Comment,
@@ -82,65 +81,65 @@ User
     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
-AltTitle                 :before, { content: "Alternate Title"; }
-ApprovedIndication       :before, { content: "Approved Indication"; }
-Audience                 :before, { content: "Audience"; }
-DrugInformationSummary>Comment, 
-                         :before, { content: "Comment"; }
-DrugReference>Comment    :before, { content: "Comment"; }
-TypeOfDISChange>Comment  :before, { content: "Comment"; }
-Date                     :before, { content: "Date"; }
-DateLastModified         :before, { content: "Date Last Modified"; }
-Description              :before, { content: "Description"; }
-DrugInfoMetaData         :before, { content: "DRUG INFO META DATA"; }
-DrugInfoType             :before, { content: "Drug Info Type"; }
-DrugReference            :before, { content: "DRUG REFERENCE"; }
-DrugReferenceDescription :before, { content: "Description"; }
-DrugReferenceLink        :before, { content: "Link"; }
-DrugReferencePostedDate  :before, { content: "Posted Date"; }
-DrugReferenceType        :before, { content: "Type"; }
-DrugType                 :before, { content: "DrugType"; }
-EnteredBy                :before, { content: "Entered By"; }
-EntryDate                :before, { content: "Entry Date"; }
-FDAApproved              :before, { content: "FDA Approved"; }
-GlossaryLink             :before, { content: "Glossary Link"; }
-Manufacturer             :before, { content: "Manufacturer"; }
-DrugInformationSummary>Title             
-                         :before, { content: "Title"; }
-Para                     :before, { content: counter(para)". Paragraph"; }
-ProcessingStatus         :before, { content: "PROCESSING STATUS"; }
-ProcessingStatusValue    :before, { content: "Status Value"; }
-RefDescription           :before, { content: "Ref Description"; }
-RefLink                  :before, { content: "Ref Link"; }
-ReviewStatus             :before, { content: "Review Status"; }
-SectionType              :before, { content: "Section Type"; }
-SectMetaData             :before, { content: "Section Metadata"; }
-TerminologyLink          :before, { content: "Term Link"; }
-TypeOfDISChange          :before, { content: "TYPE OF CHANGE"; }
-TypeOfDISChangeValue     :before, { content: "Change Value"; }
-StatusDate               :before, { content: "Status Date"; }
-SummarySection           :before, { content: "Drug Info Summary"; }
-SummarySection>Title     :before, { content: "Section Title"; }
-URL                      :before, { content: "URL"; }
-User                     :before, { content: "User"; }
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
+AltTitle                 :before  { content: "Alternate Title"; }
+ApprovedIndication       :before  { content: "Approved Indication"; }
+Audience                 :before  { content: "Audience"; }
+DrugInformationSummary>Comment
+                         :before  { content: "Comment"; }
+DrugReference>Comment    :before  { content: "Comment"; }
+TypeOfDISChange>Comment  :before  { content: "Comment"; }
+Date                     :before  { content: "Date"; }
+DateLastModified         :before  { content: "Date Last Modified"; }
+Description              :before  { content: "Description"; }
+DrugInfoMetaData         :before  { content: "DRUG INFO META DATA"; }
+DrugInfoType             :before  { content: "Drug Info Type"; }
+DrugReference            :before  { content: "DRUG REFERENCE"; }
+DrugReferenceDescription :before  { content: "Description"; }
+DrugReferenceLink        :before  { content: "Link"; }
+DrugReferencePostedDate  :before  { content: "Posted Date"; }
+DrugReferenceType        :before  { content: "Type"; }
+DrugType                 :before  { content: "DrugType"; }
+EnteredBy                :before  { content: "Entered By"; }
+EntryDate                :before  { content: "Entry Date"; }
+FDAApproved              :before  { content: "FDA Approved"; }
+GlossaryLink             :before  { content: "Glossary Link"; }
+Manufacturer             :before  { content: "Manufacturer"; }
+DrugInformationSummary>Title
+                         :before  { content: "Title"; }
+Para                     :before  { content: counter(para)". Paragraph"; }
+ProcessingStatus         :before  { content: "PROCESSING STATUS"; }
+ProcessingStatusValue    :before  { content: "Status Value"; }
+RefDescription           :before  { content: "Ref Description"; }
+RefLink                  :before  { content: "Ref Link"; }
+ReviewStatus             :before  { content: "Review Status"; }
+SectionType              :before  { content: "Section Type"; }
+SectMetaData             :before  { content: "Section Metadata"; }
+TerminologyLink          :before  { content: "Term Link"; }
+TypeOfDISChange          :before  { content: "TYPE OF CHANGE"; }
+TypeOfDISChangeValue     :before  { content: "Change Value"; }
+StatusDate               :before  { content: "Status Date"; }
+SummarySection           :before  { content: "Drug Info Summary"; }
+SummarySection>Title     :before  { content: "Section Title"; }
+URL                      :before  { content: "URL"; }
+User                     :before  { content: "User"; }
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
-Para,
+/***************************************************************************/
+/*                     COUNTER DEFINITIONS                                 */
+/***************************************************************************/
+Para
     { counter-increment: para; }
 
 
 /***************************************************************************/
 /*                      DOCUMENT TITLE AND ID                              */
 /***************************************************************************/
-ProcessingStatuses,
+ProcessingStatuses
        { border: none;   }
-        
+
 
 /***************************************************************************/
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
@@ -151,9 +150,9 @@ ProcessingStatuses,
 
 
 
-/***************************************************************************/ 
-/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */
+/***************************************************************************/
 Audience                 :before,
 ApprovedIndication       :before,
 Date                     :before,
@@ -184,7 +183,7 @@ TypeOfDISChange          :before,
 TypeOfDISChangeValue     :before,
 URL                      :before,
 User                     :before
-     { color: black;  
+     { color: black;
        background-color: white; }
 
 
@@ -264,9 +263,9 @@ User
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 /* Background color for Fields (Do not include Container Elements here */
 AlternativeText                   :before,
 ApprovedIndication                :before,

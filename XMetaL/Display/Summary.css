@@ -187,7 +187,7 @@ Summary[SVPC="Yes"] SummaryMetaData Comment:before,
 Summary[PartnerMergeSet="Yes"] SummaryMetaData Comment:before,
 Summary[SVPC="Yes"] SummaryMetaData ResponseToComment:before
 Summary[PartnerMergeSet="Yes"] SummaryMetaData ResponseToComment:before
-   { background-color: green; 
+   { background-color: green;
      color: white; }
 
 Summary[SVPC="Yes"] :before
@@ -261,7 +261,7 @@ TypeOfChange,
 TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
-WillReplace,
+WillReplace
     { display: block; }
 
 
@@ -395,7 +395,7 @@ RelatedDocuments         :before,
 TypeOfSummaryChange      :before
     { font-weight: bold; }
 
-SummaryMetaData,
+SummaryMetaData
     { font-size: 12pt; }
 
 MobileURL                    :before,
@@ -443,7 +443,7 @@ VideoID                      :before
       font-size: 12pt;
       color: black; }
 
-BoardMember,
+BoardMember
     { margin-left: 1em; }
 
 CodeSystem,
@@ -454,14 +454,14 @@ SummaryKeyWords
       margin-bottom: 1em;  }
 
 
-SecondaryTopics>Term,
+SecondaryTopics>Term
     { prefix-format: "[ %attribute-list; ]"; }
 
 
 /***************************************************************************/
 /*                            SUMMARY TITLE                                */
 /***************************************************************************/
-SummaryTitle,
+SummaryTitle
      { font-size: 20pt;
        font-weight: bold;
        margin-top: 12pt; }
@@ -492,17 +492,17 @@ SummaryModuleLink            :before
 
 PdqKey                       :before,
 TranslationOf                :before,
-WillReplace                  :before,
+WillReplace                  :before
      { font-weight: bold;
        color: purple; }
 
-PdqKey,
+PdqKey
      { margin-bottom: 10pt;  }
 
-PMID,
+PMID
      { margin-bottom: 10pt;  }
 
-SummaryAbstract>Para,
+SummaryAbstract>Para
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
@@ -518,35 +518,35 @@ SummaryModuleLink[UsedFor='qc-only']
        border-color: red;
        border-width: 5px; }
 
-SummarySection>AltTitle,
+SummarySection>AltTitle
      { font-weight: bold;
        font-size: 14pt;
        color: blue; }
 
-SummarySection>Para,
+SummarySection>Para
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
-SummarySection>Title,
+SummarySection>Title
      { font-weight: bold;
        font-size: 16pt;
        color: blue; }
 
-Title,
+Title
      { font-size: 14pt;
        font-weight: bold;
        text-align: left; }
 
-SummarySection>SummarySection,
+SummarySection>SummarySection
     { margin-left: 20pt; }
 
-SummarySection>SummarySection>SummarySection,
+SummarySection>SummarySection>SummarySection
     { margin-left: 40pt; }
 
 SummarySection>SummarySection>Title:before,
 SummarySection>SummarySection>Title,
 SummarySection>SummarySection>Insertion>Title:before,
-SummarySection>SummarySection>Insertion>Title,
+SummarySection>SummarySection>Insertion>Title
     { font-style: italic; }
 
 Insertion>SummarySection,
@@ -591,7 +591,7 @@ Insertion>Table>TGroup>TFoot>Row>entry>CitationLink:after,
 Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Insertion>SummarySection:before,
+Insertion>SummarySection:before
     { color: red; }
 
 
@@ -637,7 +637,7 @@ Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:aft
 Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Insertion[RevisionLevel='publish']>SummarySection:before,
+Insertion[RevisionLevel='publish']>SummarySection:before
     { color:            #8B0000;
       background-color: #FFEBCD; }
 
@@ -684,7 +684,7 @@ Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:af
 Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Insertion[RevisionLevel='rejected']>SummarySection:before,
+Insertion[RevisionLevel='rejected']>SummarySection:before
     { color:            #8B0000; }
 
 
@@ -730,7 +730,7 @@ Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>CitationLink:af
 Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Insertion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Insertion[RevisionLevel='proposed']>SummarySection:before,
+Insertion[RevisionLevel='proposed']>SummarySection:before
     { color: green; }
 
 
@@ -776,7 +776,7 @@ Deletion>Table>TGroup>TFoot>Row>entry>CitationLink:after,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Deletion>SummarySection:before,
+Deletion>SummarySection:before
     { text-decoration:
       line-through; color: red; }
 
@@ -823,7 +823,7 @@ Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>CitationLink:afte
 Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='publish']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Deletion[RevisionLevel='publish']>SummarySection:before,
+Deletion[RevisionLevel='publish']>SummarySection:before
     { text-decoration: line-through;
       color:            #8B0000;
       background-color: #FFEBCD; }
@@ -871,7 +871,7 @@ Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>CitationLink:aft
 Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='rejected']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Deletion[RevisionLevel='rejected']>SummarySection:before,
+Deletion[RevisionLevel='rejected']>SummarySection:before
     { text-decoration: line-through;
       color:            #8B0000; }
 
@@ -918,7 +918,7 @@ Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>CitationLink:aft
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef,
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:before,
 Deletion[RevisionLevel='proposed']>Table>TGroup>TFoot>Row>entry>SummaryRef:after,
-Deletion[RevisionLevel='proposed']>SummarySection:before,
+Deletion[RevisionLevel='proposed']>SummarySection:before
     { text-decoration: line-through; color: green; }
 
 
@@ -928,22 +928,22 @@ Deletion[RevisionLevel='proposed']>SummarySection:before,
 /* InLine comments and responses are receiving special labels */
 /* according to the attributes the element carries            */
 /* ---------------------------------------------------------- */
-Comment,
+Comment
     { font-style: italic;
       background-color: green;
       color: white; }
 
-ResponseToComment,
+ResponseToComment
     { font-style: italic;
       background-color: green;
       color: white; }
 
-Comment[specific-internal-audience='translators'],
+Comment[specific-internal-audience='translators']
     { font-style: italic;
       background-color: lightseagreen !important;
       color: white; }
 
-ResponseToComment[specific-internal-audience='translators'],
+ResponseToComment[specific-internal-audience='translators']
     { font-style: italic;
       background-color: lightseagreen !important;
       color: white; }
@@ -1042,7 +1042,7 @@ TypeOfSummaryChange > Comment
 /***************************************************************************/
 /*                         SECTION META DATA                               */
 /***************************************************************************/
-SectMetaData,
+SectMetaData
      { text-align: right;
        font-weight: lighter;
        font-style: oblique;
@@ -1052,7 +1052,7 @@ SectMetaData,
 /***************************************************************************/
 /*                               TABLES                                    */
 /***************************************************************************/
-SummarySection>Table,
+SummarySection>Table
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
@@ -1139,33 +1139,33 @@ VideoID                      :before
 
 /* Key element for length = SummaryLanguage                               */
 
-EHRDiagnosisInformation,
+EHRDiagnosisInformation
                              { margin-left: 25pt; }
-PageTitle,
+PageTitle
                              { margin-left: 110pt;
                                text-indent: -71pt;}
-PageURL,
+PageURL
                              { margin-left: 110pt;
                                text-indent: -72.5pt;}
-Snippet,
+Snippet
                              { margin-left: 110pt;
                                text-indent: -59pt;}
-CodeSystem,
+CodeSystem
                              { margin-left: 25pt; }
-CodeSystemName,
+CodeSystemName
                              { margin-left: 85pt;
                                text-indent: -127.5pt;}
-DiagnosisCode,
+DiagnosisCode
                              { margin-left: 85pt;
                                text-indent: -117pt;}
-DateOfEntry,
+DateOfEntry
                              { margin-left: 110pt;
                                text-indent: -90pt;}
 
-Board,
+Board
                              { margin-left: 135pt;
                                text-indent: -116pt;}
-BoardMember,
+BoardMember
                              { margin-left: 135pt;
                                text-indent: -129pt;}
 ChangeDate
@@ -1189,7 +1189,7 @@ TypeOfSummaryChange > Comment
 EnteredBy
                              { margin-left: -10pt;
                                text-indent: -79.5pt;}
-MobileURL,
+MobileURL
                              { margin-left: 135pt;
                                text-indent: -101pt; }
 PMID
@@ -1202,50 +1202,50 @@ PurposeText
 SummaryAbstract  	         { margin-left: 155pt;
                                text-indent: 95pt;}
 							
-SummaryAudience,
+SummaryAudience
                              { margin-left: 88pt;
                                text-indent: -80pt;}
-SummaryDescription,
+SummaryDescription
                              { margin-left: 135pt;
                                text-indent: -107pt; }
-SummaryKeyWord,
+SummaryKeyWord
                              { margin-left: 145pt;
                                text-indent: -80pt; }
-SummaryLanguage,
+SummaryLanguage
                              { margin-left: 135pt;
                                text-indent: -131pt;}
-SummaryType,
+SummaryType
                              { margin-left: 135pt;
                                text-indent: -102pt; }
-SummaryURL,
+SummaryURL
                              { margin-left: 135pt;
                                text-indent: -114pt; }
-MainTopics>Term,
+MainTopics>Term
                              { margin-left: 135pt;
                                text-indent: -109.5pt; }
-SecondaryTopics>Term,
+SecondaryTopics>Term
                              { margin-left: 135pt;
                                text-indent: -134pt; }
 TypeOfChange
                              { margin-left: -10pt;
                                text-indent: -92pt;}
 
-Caption,
+Caption
                              { margin-left: 100pt;
                                text-indent: -65pt; }
-MediaID,
+MediaID
                              { margin-left: 100pt;
                                text-indent: -79.5pt; }
-VideoID,
+VideoID
                              { margin-left: 100pt;
                                text-indent: -79pt; }
-SpecificMediaTitle,
+SpecificMediaTitle
                              { margin-left: 100pt;
                                text-indent: -44pt; }
-SpecificMediaCaption,
+SpecificMediaCaption
                              { margin-left: 100pt;
                                text-indent: -65pt; }
-SpecificVideoPresentationTemplate,
+SpecificVideoPresentationTemplate
                              { margin-left: 100pt;
                                text-indent: -63pt; }
 
@@ -1294,7 +1294,7 @@ PMID,
 SummaryType,
 TranslationOf,
 ReplacementFor,
-WillReplace,
+WillReplace
     { margin-top: 4pt; }
 
 RelatedDocuments > Comment

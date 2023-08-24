@@ -26,7 +26,7 @@
 /*************************************************************************/
 @import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
@@ -59,7 +59,7 @@ InternationalDialingCode,
 ISOShortCountryName,
 ISOAlpha2CountryCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { display: block; }
 
 
@@ -97,7 +97,7 @@ DateLastModified:before,
 InternationalDialingCode:before,
 ISOShortCountryName:before,
 ISOAlpha2CountryCode:before,
-PdqKey:before,
+PdqKey:before
      { font-weight: bold;
        color: black;  }
 
@@ -106,7 +106,7 @@ PdqKey:before,
 /*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
 /***************************************************************************/
 Continent:before,
-PostalCodePosition:before,
+PostalCodePosition:before
      { font-weight: bold;
        color: black;      }
 
@@ -119,19 +119,19 @@ PostalCodePosition:before,
 
 /* Key element for length = PostalCodePosition    */
 
-Continent,    
-     { margin-left: 130pt; 
+Continent
+     { margin-left: 130pt;
        text-indent: -71pt; }
 
-CountryFullName,    
+CountryFullName
      { margin-left: 130pt;
        text-indent: -121.5pt; }
 
-CountryAlternateName,    
+CountryAlternateName
      { margin-left: 130pt;
        text-indent: -116pt; }
 
-CountryShortName,    
+CountryShortName
      { margin-left: 130pt;
        text-indent: -87pt; }
 
@@ -147,17 +147,17 @@ ISOAlpha2CountryCode
      { margin-left: 130pt;
        text-indent: -121pt; }
 
-PostalCodePosition,    
+PostalCodePosition
      { margin-left: 130pt;
        text-indent: -135pt; }
 
 /* Key element for length = DateLastModified    */
 
-DateLastModified,    
+DateLastModified
      { margin-left: 100pt;
        text-indent: -96pt; }
 
-PdqKey,    
+PdqKey
      { margin-left: 100pt;
        text-indent: -71pt; }
 
@@ -171,13 +171,13 @@ ISOShortCountryName,
 ISOAlpha2CountryCode,
 InternationalDialingCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { margin-bottom: 4pt; }
 
-CountryFullName,
+CountryFullName
      { margin-top: 10pt; }
 
-DateLastModified,
+DateLastModified
      { margin-top: 2em; }
 
 
@@ -193,7 +193,7 @@ InternationalDialingCode,
 ISOShortCountryName,
 ISOAlpha2CountryCode,
 PdqKey,
-PostalCodePosition,
+PostalCodePosition
      { background-color: white; }
 
 Continent:before,
@@ -205,5 +205,5 @@ InternationalDialingCode:before,
 ISOShortCountryName:before,
 ISOAlpha2CountryCode:before,
 PdqKey:before,
-PostalCodePosition:before,
+PostalCodePosition:before
      { background-color: #CCCCFF; }

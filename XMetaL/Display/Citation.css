@@ -211,7 +211,7 @@ VerificationDetails,
 Verified,
 VerifiedIn,
 VernacularTitle,
-Volume,
+Volume
     { display: block; }
 
 
@@ -383,7 +383,7 @@ Volume               :before { content: "Volume: "; }
 History,
 VerificationDetails,
 MedlineCitation,
-PDQCitation,
+PDQCitation
    { border: solid;
      border-width: thin;
      border-color: black;
@@ -399,7 +399,7 @@ MedlineCitation,
 PDQCitation,
 PdqKey,
 PubMedArticle,
-VerificationDetails,
+VerificationDetails
     { margin-top: .5em; }
 
 Article,
@@ -410,10 +410,10 @@ GrantList,
 MedlineJournalInfo,
 MeshHeadingList,
 SupplMeshList,
-PublicationDetails,
+PublicationDetails
     { margin-top: 1em; }
 
-AuthorList,
+AuthorList
     { margin-top: .5em;
       margin-bottom: 1em; }
 
@@ -432,21 +432,21 @@ MedlineJournalInfo      :before,
 MedlineCitation         :before,
 MeshHeadingList         :before,
 SupplMeshList           :before,
-VerificationDetails     :before,
+VerificationDetails     :before
    {  font-weight: bold;
       color: black;  }
 
 
-PDQCitation             :before,
+PDQCitation             :before
    {  font-weight: bold;
       color: blue;  }
 
 PDQCitation             :before,
-PubMedArticle           :before,
+PubMedArticle           :before
    { font-weight: bold;
      color: green;  }
 
-PubmedData              :before,
+PubmedData              :before
    { font-weight: bold;
      color: navy;  }
 
@@ -542,7 +542,7 @@ PDQCitation>AuthorList>Author>Suffix
 SupplMeshName           :before,
 Title                   :before,
 VernacularTitle         :before,
-Volume                  :before,
+Volume                  :before
    {  font-weight: bold;
       color: black;  }
 
@@ -557,13 +557,13 @@ URL[URLType="Full_Text"]>URLstring
                         :before,
 URL[URLType="Summary"]URLstring
                         :before,
-URL                     :before,
+URL                     :before
    {  font-weight: bold;
       color: navy;  }
 
 Date                    :before,
 Month                   :before,
-Season                  :before,
+Season                  :before
    { color: black;     }
 
 
@@ -576,7 +576,7 @@ PublishedIn             :after,
 PubStatus               :before,
 Verified                :before,
 VerifiedIn              :before,
-PublishedIn             :after,
+PublishedIn             :after
    {  font-weight: bold;
       color: black;  }
 
@@ -595,7 +595,7 @@ PublicationDetails,
 PublicationYear,
 URLstring,
 Verified,
-VerifiedIn,
+VerifiedIn
    {  color: black;  }
 
 
@@ -609,148 +609,148 @@ VerifiedIn,
 
 /* Key element for length = VerifiedIn 85     */
 
-Verified,
+Verified
     { margin-left: 110pt;
       text-indent: -58.5pt; }
-VerifiedIn,
+VerifiedIn
     { margin-left: 110pt;
       text-indent: -76.6pt; }
-Citation>Comment,
+Citation>Comment
     { margin-left: 110pt;
       text-indent: -75pt; }
 
 /* Key element for length = DateCompleted 100    */
 
-MedlineID,
+MedlineID
     { margin-left: 110pt;
       text-indent: -67pt; }
-PMID,
+PMID
     { margin-left: 110pt;
       text-indent: -37.5pt; }
-DateCreated,
+DateCreated
     { margin-left: 110pt;
       text-indent: -82pt; }
-DateCompleted,
+DateCompleted
     { margin-left: 110pt;
       text-indent: -99pt; }
-DateRevised,
+DateRevised
     { margin-left: 110pt;
       text-indent: -83pt; }
 
-AccessionNumber,
+AccessionNumber
     { margin-left: 110pt;
       text-indent:-100pt; }
-CopyrightInformation,
+CopyrightInformation
     { margin-left: 110pt;
       text-indent: -92pt; }
-DataBankName,
+DataBankName
     { margin-left: 110pt;
       text-indent: -75pt; }
-StartPage,
+StartPage
     { margin-left: 110pt;
       text-indent: -76.5pt; }
-EndPage,
+EndPage
     { margin-left: 110pt;
       text-indent: -73pt; }
-Coden,
+Coden
     { margin-left: 110pt;
       text-indent: -58.5pt; }
-ISOAbbreviation,
+ISOAbbreviation
     { margin-left: 110pt;
       text-indent: -76pt; }
-Journal>Title,
+Journal>Title
     { margin-left: 110pt;
       text-indent: -64pt; }
-ISSN,
+ISSN
     { margin-left: 110pt;
       text-indent: -36pt; }
-ISSNLinking,
+ISSNLinking
     { margin-left: 110pt;
       text-indent: -94pt; }
-Volume,
+Volume
     { margin-left: 110pt;
       text-indent: -51pt; }
-Issue,
+Issue
     { margin-left: 110pt;
       text-indent: -38pt; }
-PubDate,
+PubDate
     { margin-left: 110pt;
       text-indent: -73pt; }
-MedlineDate,
+MedlineDate
     { text-indent: -81pt; }
 
 /* Key element for length = MedlinePgn    */
 
-ArticleTitle,
+ArticleTitle
     { margin-left: 45pt;
       text-indent: -41pt; }
 
-ArticleDate,
+ArticleDate
     { margin-left: 45pt;
       text-indent: -30pt; }
 
-MedlinePgn,
+MedlinePgn
     { margin-left: 110pt;
       text-indent: -43.5pt; }
 
-ELocationID,
+ELocationID
     { margin-left: 110pt;
       text-indent:-103pt; }
 
-AbstractText,
+AbstractText
     { margin-left: 45pt;
       text-indent: -39.5pt; }
 
-Affiliation,
+Affiliation
     { margin-left: 110pt;
       text-indent: -61pt; }
-MedlineCitation>Article>AuthorList>Author,
+MedlineCitation>Article>AuthorList>Author
     { margin-left: 45pt;
       text-indent: -0pt; }
 
-Language,
+Language
     { margin-left: 110pt;
       text-indent: -73pt; }
-Grant,
+Grant
     { margin-left: 45pt;
       text-indent: -0pt; }
-PublicationType,
+PublicationType
     { margin-left: 110pt;
       text-indent: -62pt; }
 
 /* Key element for length = VernacularTitle    */
 
-VernacularTitle,
+VernacularTitle
     { margin-left: 110pt;
       text-indent: -97pt; }
-Country,
+Country
     { margin-left: 110pt;
       text-indent: -54pt; }
-MedlineTA,
+MedlineTA
     { margin-left: 110pt;
       text-indent: -95pt; }
-MedlineCode,
+MedlineCode
     { margin-left: 110pt;
       text-indent: -85.5pt; }
-Chemical,
+Chemical
     { margin-left: 45pt;
       text-indent: -0pt; }
-CitationSubset,
+CitationSubset
     { margin-left: 110pt;
       text-indent: -95pt; }
-RefSource,
+RefSource
     { margin-left: 110pt;
       text-indent: -110pt; }
-MeshHeading,
+MeshHeading
     { margin-left: 45pt;
       text-indent: -0pt; }
-NumberOfReferences,
+NumberOfReferences
     { margin-left: 110pt;
       text-indent: -73pt; }
-NlmUniqueID,
+NlmUniqueID
     { margin-left: 110pt;
       text-indent: -67.5pt; }
-MedlineCitation>Comment,
+MedlineCitation>Comment
     { margin-left: 110pt;
       text-indent: -63pt; }
 ElectronicPubDate
@@ -767,59 +767,59 @@ SupplMeshName
 
 /* Key element for length = PubMedPubDate    */
 
-PubMedPubDate[PubStatus="pubmed"],
+PubMedPubDate[PubStatus="pubmed"]
     { margin-left: 130pt;
       text-indent: -125pt; }
-PubMedPubDate[PubStatus="medline"],
+PubMedPubDate[PubStatus="medline"]
     { margin-left: 130pt;
       text-indent: -122pt; }
-PubMedPubDate[PubStatus="entrez"],
+PubMedPubDate[PubStatus="entrez"]
     { margin-left: 130pt;
       text-indent: -116pt; }
-ArticleIdList>ArticleId[IdType="pubmed"],
+ArticleIdList>ArticleId[IdType="pubmed"]
     { margin-left: 130pt;
       text-indent: -124pt; }
-ArticleIdList>ArticleId[IdType="medline"],
+ArticleIdList>ArticleId[IdType="medline"]
     { margin-left: 130pt;
       text-indent: -121pt; }
-ArticleIdList>ArticleId[IdType="pii"],
+ArticleIdList>ArticleId[IdType="pii"]
     { margin-left: 130pt;
       text-indent: -91pt; }
-ArticleIdList>ArticleId[IdType="doi"],
+ArticleIdList>ArticleId[IdType="doi"]
     { margin-left: 130pt;
       text-indent: -97.5pt; }
-ArticleIdList>ArticleId[IdType="sici"],
+ArticleIdList>ArticleId[IdType="sici"]
     { margin-left: 130pt;
       text-indent: -100pt; }
-ArticleIdList>ArticleId[IdType="pmcpid"],
+ArticleIdList>ArticleId[IdType="pmcpid"]
     { margin-left: 130pt;
       text-indent: -124pt; }
-ArticleIdList>ArticleId[IdType="pmpid"],
+ArticleIdList>ArticleId[IdType="pmpid"]
     { margin-left: 130pt;
       text-indent: -115pt; }
-ArticleIdList>ArticleId[IdType="pmcid"],
+ArticleIdList>ArticleId[IdType="pmcid"]
     { margin-left: 130pt;
       text-indent: -115.5pt; }
 
-URL[URLType="Full_Text"]>URLstring,
+URL[URLType="Full_Text"]>URLstring
     { margin-left: 130pt;
       text-indent: -86pt; }
-URL[URLType="Summary"]>URLstring,
+URL[URLType="Summary"]>URLstring
     { margin-left: 130pt;
       text-indent: -120pt; }
-URL,
+URL
     { margin-left: 130pt;
       text-indent: -33pt; }
 
 /* Key element for length = DateLastModified    */
 
-PublicationStatus,
+PublicationStatus
     { margin-left: 130pt;
       text-indent: -70.5pt; }
-PdqKey,
+PdqKey
     { margin-left: 130pt;
       text-indent: -59pt; }
-DateLastModified,
+DateLastModified
     { margin-left: 100pt;
       text-indent: -96pt; }
 
@@ -828,58 +828,58 @@ DateLastModified,
 
 /* Key element for length = CitationType    */
 
-CitationType,
+CitationType
     { margin-left: 85pt;
       text-indent: -69pt; }
-CitationTitle,
+CitationTitle
     { margin-left: 85pt;
       text-indent: -48.5pt; }
-PDQCitation>AuthorList>Author>CollectiveName,
+PDQCitation>AuthorList>Author>CollectiveName
     { margin-left: 110pt;
       text-indent: -107pt; }
-PDQCitation>AuthorList>Author>FirstName,
+PDQCitation>AuthorList>Author>FirstName
     { margin-left: 110pt;
       text-indent: -76.5pt; }
-PDQCitation>AuthorList>Author>ForeName,
+PDQCitation>AuthorList>Author>ForeName
     { margin-left: 110pt;
       text-indent: -73pt; }
-PDQCitation>AuthorList>Author>Initials,
+PDQCitation>AuthorList>Author>Initials
     { margin-left: 110pt;
       text-indent: -56pt; }
-PDQCitation>AuthorList>Author>LastName,
+PDQCitation>AuthorList>Author>LastName
     { margin-left: 110pt;
       text-indent: -76pt; }
-PDQCitation>AuthorList>Author>MiddleName,
+PDQCitation>AuthorList>Author>MiddleName
     { margin-left: 110pt;
       text-indent: -93pt; }
-PDQCitation>AuthorList>Author>Suffix,
+PDQCitation>AuthorList>Author>Suffix
     { margin-left: 110pt;
       text-indent: -52.5pt; }
-Author>Affiliation,
+Author>Affiliation
     { margin-left: 110pt;
       text-indent: -73pt; }
 
 /* Key element for length = OtherPublicationInformation    */
 
-PublishedIn,
+PublishedIn
     { margin-left: 120pt;
       text-indent: -82.5pt }
-InternetInformation,
+InternetInformation
     { margin-left: 100pt;
       text-indent: -88.5pt; }
-PublicationInformation,
+PublicationInformation
     { margin-left: 100pt;
       text-indent: -64pt; }
-OtherPublicationInformation,
+OtherPublicationInformation
     { margin-left: 20pt; }
-PublicationYear,
+PublicationYear
     { margin-left: 120pt;
       text-indent: -72pt; }
-CancerLitID,
+CancerLitID
     { margin-left: 100pt;
       text-indent: -87pt; }
 
-FullTextArticle,
+FullTextArticle
     { margin-left: 125pt;
       text-indent: -123pt; }
 
@@ -969,7 +969,7 @@ Verified,
 VerifiedIn,
 VernacularTitle,
 Volume,
-Year,
+Year
     { margin-bottom: 4pt; }
 
 Author,
@@ -977,7 +977,7 @@ PDQCitation>AuthorList>Author>CollectiveName,
 PDQCitation>AuthorList>Author>LastName,
 Verified,
 InternetInformation,
-MedlineID,
+MedlineID
     { margin-top: 4pt; }
 
 Abstract,
@@ -985,18 +985,18 @@ ArticleTitle,
 AuthorList,
 CitationTitle,
 MedlineTA,
-OtherPublicationInformation,
+OtherPublicationInformation
     { margin-top: 1em; }
 
 PDQCitation>AuthorList>Author,
 AbstractText,
 PublicationInformation,
-PublishedIn,
+PublishedIn
     { margin-top: .5em; }
 
 ChemicalList,
 GrantList,
-MeshHeadingList,
+MeshHeadingList
     { margin-bottom: 1em; }
 
 
@@ -1098,7 +1098,7 @@ Verified,
 VerifiedIn,
 VernacularTitle,
 Volume,
-Year,
+Year
     { background-color: white; }
 
 Day                  :before,
@@ -1109,7 +1109,7 @@ RegistryNumber:after,
 RegistryNumber       :before,
 QualifierName:after,
 QualifierName        :before,
-Season               :before,
+Season               :before
     { font-weight: bold; }
 
 ArticleList,
@@ -1119,7 +1119,7 @@ URLstring            :before,
 Verified             :before,
 VerifiedIn           :before,
 VerificationDetails,
-VerificationDetails  :before,
+VerificationDetails  :before
     { background-color: #CCCCFF; }  /*light blue*/
 
 
@@ -1201,6 +1201,6 @@ SupplMeshList        :before,
 SupplMeshName        :before,
 Title                :before,
 VernacularTitle      :before,
-Volume               :before,
+Volume               :before
     { background-color: #CCFFCC; }  /*light green*/
 

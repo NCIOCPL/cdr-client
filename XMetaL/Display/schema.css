@@ -32,8 +32,8 @@ $PROCINS {
 annotation,       attribute,        choice,           complexType,
 element,          enumeration,      extension,        field,
 fractionDigits,   group,            include,          key,
-keyref,           length,           maxInclusive,     maxLength, 
-minInclusive,     minLength,        pattern,          restriction, 
+keyref,           length,           maxInclusive,     maxLength,
+minInclusive,     minLength,        pattern,          restriction,
 selector,         sequence,         simpleType,       totalDigits {
     display: block;
     margin-left: 1em;
@@ -69,11 +69,11 @@ DocId { color: gray; }
 /*
  * Document title.
  */
-DocTitle { 
-    color: blue; 
-    font-size: 20pt; 
-    border: solid; 
-    text-align: center; 
+DocTitle {
+    color: blue;
+    font-size: 20pt;
+    border: solid;
+    text-align: center;
     font-family: sans-serif;
 }
 
@@ -81,83 +81,83 @@ DocTitle {
 /*
  * Top-level element for document type.
  */
-schema > element:before { 
-    content: "Top-level Element [" attr(name) "] of type [" attr(type) "]"; 
-    color: purple; 
-    font-size: 18pt;  
+schema > element:before {
+    content: "Top-level Element [" attr(name) "] of type [" attr(type) "]";
+    color: purple;
+    font-size: 18pt;
 }
 
 /*
  * Complex type expansions.
  */
-complexType[mixed='true']:before { 
-    content: "Complex type [" attr(name) "] (mixed content model)"; 
-    color: purple; 
-    font-size: 18pt; 
+complexType[mixed='true']:before {
+    content: "Complex type [" attr(name) "] (mixed content model)";
+    color: purple;
+    font-size: 18pt;
     border-top: solid ;
 }
-complexType:before { 
+complexType:before {
     content: "Complex type [" attr(name) "]";
-    color: purple; 
-    font-size: 18pt; 
+    color: purple;
+    font-size: 18pt;
     border-top: solid ;
 }
 
 /*
  * Simple type header.
  */
-simpleType:before { 
+simpleType:before {
     content: "Simple type [" attr(name) "]";
-    color: purple; 
-    font-size: 18pt; 
+    color: purple;
+    font-size: 18pt;
 }
 
 /*
  * Sequences.
  */
-sequence[minOccurs][maxOccurs]:before { 
-    content: "Sequence (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
-    color: green; 
-    font-size: 16pt; 
+sequence[minOccurs][maxOccurs]:before {
+    content: "Sequence (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")";
+    color: green;
+    font-size: 16pt;
 }
-sequence[minOccurs]:before { 
+sequence[minOccurs]:before {
     content: "Sequence (min: " attr(minOccurs) ")";
-    color: green; 
-    font-size: 16pt; 
+    color: green;
+    font-size: 16pt;
 }
-sequence[maxOccurs]:before { 
-    content: "Sequence (max: " attr(maxOccurs) ")"; 
-    color: green; 
-    font-size: 16pt; 
+sequence[maxOccurs]:before {
+    content: "Sequence (max: " attr(maxOccurs) ")";
+    color: green;
+    font-size: 16pt;
 }
-sequence:before { 
-    content: "Sequence"; 
-    color: green; 
-    font-size: 16pt; 
+sequence:before {
+    content: "Sequence";
+    color: green;
+    font-size: 16pt;
 }
 
 /*
  * Choices.
  */
-choice[minOccurs][maxOccurs]:before { 
-    content: "Choice (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
-    color: green; 
-    font-size: 16pt; 
+choice[minOccurs][maxOccurs]:before {
+    content: "Choice (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")";
+    color: green;
+    font-size: 16pt;
 }
-choice[minOccurs]:before { 
+choice[minOccurs]:before {
     content: "Choice (min: " attr(minOccurs) ")";
-    color: green; 
-    font-size: 16pt; 
+    color: green;
+    font-size: 16pt;
 }
-choice[maxOccurs]:before { 
-    content: "Choice (max: " attr(maxOccurs) ")"; 
-    color: green; 
-    font-size: 16pt; 
+choice[maxOccurs]:before {
+    content: "Choice (max: " attr(maxOccurs) ")";
+    color: green;
+    font-size: 16pt;
 }
-choice:before { 
-    content: "Choice"; 
-    color: green; 
-    font-size: 16pt; 
+choice:before {
+    content: "Choice";
+    color: green;
+    font-size: 16pt;
 }
 
 /*
@@ -290,23 +290,23 @@ selector, field {
 /*
  * Element expansions.
  */
-element[minOccurs][maxOccurs]:before { 
-    font-size: 14pt; 
+element[minOccurs][maxOccurs]:before {
+    font-size: 14pt;
     color: teal;
-    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")"; 
+    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) "; max: " attr(maxOccurs) ")";
 }
-element[minOccurs]:before { 
-    font-size: 14pt; 
+element[minOccurs]:before {
+    font-size: 14pt;
     color: teal;
-    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) ")"; 
+    content: "Element [" attr(name) "] of type [" attr(type) "] (min: " attr(minOccurs) ")";
 }
-element[maxOccurs]:before { 
-    font-size: 14pt; 
+element[maxOccurs]:before {
+    font-size: 14pt;
     color: teal;
-    content: "Element [" attr(name) "] of type [" attr(type) "] (max: " attr(maxOccurs) ")"; 
+    content: "Element [" attr(name) "] of type [" attr(type) "] (max: " attr(maxOccurs) ")";
 }
-element:before { 
-    font-size: 14pt; 
+element:before {
+    font-size: 14pt;
     color: teal;
     content: "Element [" attr(name) "] of type [" attr(type) "]";
 }
@@ -314,13 +314,13 @@ element:before {
 /*
  * Attribute expansions.
  */
-attribute[minOccurs='0']:before { 
-    font-size: 14pt; 
+attribute[minOccurs='0']:before {
+    font-size: 14pt;
     color: teal;
     content: "Optional attribute [" attr(name) "] of type [" attr(type) "]";
 }
-attribute:before { 
-    font-size: 14pt; 
+attribute:before {
+    font-size: 14pt;
     color: teal;
     content: "Attribute [" attr(name) "] of type [" attr(type) "]";
 }

@@ -41,7 +41,7 @@ $PROCINS
        font-weight: normal;
        background-color: white; }
 
-PDQBoardMemberInfo,
+PDQBoardMemberInfo
      { background-color: white; }
 
 
@@ -91,7 +91,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { display: block; }
 
 
@@ -155,7 +155,7 @@ BoardMemberAssistant              :before,
 BoardMemberContact                :before,
 BoardMembershipDetails            :before,
 BoardMemberName                   :before,
-SpecificBoardMemberContact        :before,
+SpecificBoardMemberContact        :before
     { color: black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
@@ -200,7 +200,7 @@ ResponseDate                      :before,
 ResponseToInvitation              :before,
 TermRenewalFrequency              :before,
 TermEndReason                     :before,
-TransferFromBoard                 :before,
+TransferFromBoard                 :before
     { color: black;
       font-family: Arial, "sans serif";
       font-size: 10pt;
@@ -213,7 +213,7 @@ TransferFromBoard                 :before,
 BoardMemberContactMode            :before,
 ResponseToInvitation              :before,
 TermRenewalFrequency              :before,
-AreaOfExpertise                   :before,
+AreaOfExpertise                   :before
     { color: black;
       font-family: Arial, "sans serif";
       font-size:  10pt;
@@ -278,7 +278,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { text-indent: 0pt; }
 
 
@@ -322,7 +322,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { color: white;
       background-color: white; }
 
@@ -372,5 +372,5 @@ TerminationDate                   :before,
 TerminationReason                 :before,
 TermRenewalFrequency              :before,
 TermStartDate                     :before,
-TransferFromBoard                 :before,
+TransferFromBoard                 :before
     { background-color: white; }

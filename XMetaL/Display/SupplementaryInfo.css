@@ -8,7 +8,7 @@
 /*************************************************************************/
 @import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
@@ -36,7 +36,7 @@ Description,
 MimeType,
 OriginalFilename,
 Source,
-Title,
+Title
      { display: block; }
 
 
@@ -69,7 +69,7 @@ Description:before,
 MimeType:before,
 OriginalFilename:before,
 Source:before,
-Title:before,
+Title:before
      { font-weight: bold;
        color: black;  }
 
@@ -77,7 +77,7 @@ Title:before,
 /***************************************************************************/
 /*     TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS            */
 /***************************************************************************/
-dummy:before,
+dummy:before
      { font-weight: bold;
        color: black;      }
 
@@ -88,28 +88,28 @@ dummy:before,
 /***************************************************************************/
 /* Key element for length = PostalCodePosition    */
 
-Category,
-     { margin-left: 120pt; 
+Category
+     { margin-left: 120pt;
        text-indent: -68pt; }
 
-Description,
-     { margin-left: 120pt; 
+Description
+     { margin-left: 120pt;
        text-indent: -86pt; }
 
-MimeType,
-     { margin-left: 120pt; 
+MimeType
+     { margin-left: 120pt;
        text-indent: -77pt; }
 
-OriginalFilename,
-     { margin-left: 120pt; 
+OriginalFilename
+     { margin-left: 120pt;
        text-indent: -119pt; }
 
-Source,
-     { margin-left: 120pt; 
+Source
+     { margin-left: 120pt;
        text-indent: -61.5pt; }
 
-Title,
-     { margin-left: 120pt; 
+Title
+     { margin-left: 120pt;
        text-indent: -40pt; }
 
 
@@ -121,10 +121,10 @@ Description,
 MimeType,
 OriginalFilename,
 Source,
-Title,
+Title
      { margin-bottom: 4pt; }
 
-dummy,
+dummy
      { margin-top: 10pt; }
 
 
@@ -136,7 +136,7 @@ Description,
 MimeType,
 OriginalFilename,
 Source,
-Title,
+Title
      { background-color: white; }
 
 
@@ -145,5 +145,5 @@ Description:before,
 MimeType:before,
 OriginalFilename:before,
 Source:before,
-Title:before,
+Title:before
      { background-color: #CCCCFF; }

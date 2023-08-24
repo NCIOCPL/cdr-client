@@ -35,7 +35,7 @@ $PROCINS
 /***************************************************************************/
 /*                          INLINE ELEMENTS                                */
 /***************************************************************************/
-GrantID,
+GrantID
     { display: inline; }
 
 
@@ -81,7 +81,7 @@ TestActivation,
 TestExtension,
 TestInactivation,
 UsageDescription,
-UserName,
+UserName
     { display: block; }
 
 
@@ -120,7 +120,7 @@ LicenseeNameInformation :before { content: "LICENSEE NAME INFORMATION"; }
 LicenseeStatus          :before { content: "Status"; }
 LicenseeStatusDates     :before { content: "STATUS DATES"; }
 LicenseeType            :before { content: "Licensee Type"; }
-ApplicationInformation>Name 
+ApplicationInformation>Name
                         :before { content: "Application Info"; }
 OfficialName>Name       :before { content: "Official Name"; }
 AlternateName>Name      :before { content: "Alternate Name"; }
@@ -144,7 +144,7 @@ UserName                :before { content: "User Name"; }
 ApplicationInformation,
 ContactPersons,
 FtpInformation,
-LicenseeInformation,
+LicenseeInformation
    { border: none; }
 
 
@@ -156,16 +156,16 @@ LicenseeInformation,
       color: black;  }
 
 
-PDQCitation             :before,
+PDQCitation             :before
    {  font-weight: bold;
       color: blue;  }
 
 PDQCitation             :before,
-PubMedArticle           :before,
+PubMedArticle           :before
    { font-weight: bold;
      color: green;  }
 
-PubmedData              :before,
+PubmedData              :before
    { font-weight: bold;
      color: navy;  }
 
@@ -205,7 +205,7 @@ ProductionInactivation  :before,
 TestActivation          :before,
 TestExtension           :before,
 TestInactivation        :before,
-UserName                :before,
+UserName                :before
     {  color: black;  }
 
 
@@ -250,7 +250,7 @@ TestActivation,
 TestExtension,
 TestInactivation,
 UsageDescription,
-UserName,
+UserName
     { color: white;
       background-color: white; }
 
@@ -290,15 +290,15 @@ TestActivation          :before,
 TestExtension           :before,
 TestInactivation        :before,
 UsageDescription        :before,
-UserName                :before,
+UserName                :before
     { background-color: white; }
 
     { font-weight: bold; }
 
-VerificationDetails     :before,
+VerificationDetails     :before
     { background-color: #CCCCFF; }  /*light blue*/
 
 
-Volume                  :before,
+Volume                  :before
     { background-color: #CCFFCC; }  /*light green*/
 

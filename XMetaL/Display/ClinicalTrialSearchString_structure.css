@@ -21,17 +21,17 @@
        margin-top: 0px;
        margin-bottom: 0px;
        font-family: Arial, sans-serif;
-       font-size: 10pt; 
+       font-size: 10pt;
        font-style: normal;
        font-weight: bold;
        color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
@@ -40,7 +40,7 @@ $PROCINS
 /***************************************************************************/
 /*                           BLOCK ELEMENTS                                */
 /***************************************************************************/
-ClinicalTrialSearchString,
+ClinicalTrialSearchString
      { display: block; }
 
 
@@ -70,8 +70,8 @@ Description         :before,
 EnteredBy           :before,
 EntryDate           :before,
 SearchString        :before,
-Use                 :before,
-     { color: black; 
+Use                 :before
+     { color: black;
        background-color: white; }
 
 
@@ -101,6 +101,6 @@ Description,
 EnteredBy,
 EntryDate,
 SearchString,
-Use,
+Use
      { color: white;
        background-color: white; }

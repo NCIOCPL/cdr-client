@@ -148,7 +148,7 @@ SupplementaryInfoLink,
 TitleType,
 TreatmentIntervention,
 User,
-WarehouseBoxNumber,
+WarehouseBoxNumber
    { display: block; }
 
 
@@ -194,9 +194,9 @@ RelatedPublications>EnteredBy:before
                                 { content: "Entered By &: "; }
 EntryCriteria           :before { content: "Entry Criteria *: "; }
 EntryDate               :before { content: "Entry Date *: "; }
-PublishedResults>EntryDate:before                
+PublishedResults>EntryDate:before
                                 { content: "Entry Date &: "; }
-RelatedPublications>EntryDate:before                
+RelatedPublications>EntryDate:before
                                 { content: "Entry Date &: "; }
 ExclusionCriteria       :before { content: "Exclusion Criteria & + @: "; }
 ExpectedEnrollment      :before { content: "Expected Enrollment &: "; }
@@ -295,7 +295,7 @@ ProtocolProcessingDetails:before,
 ProtocolRelatedLinks    :before,
 PublishedResults        :before,
 RelatedPublications     :before,
-StudyCategory           :before,
+StudyCategory           :before
    {  font-weight: bold;
       color: black;  }
 
@@ -350,7 +350,7 @@ StudyCategoryName       :before,
 SupplementaryInfoLink   :before,
 TreatmentIntervention   :before,
 User                    :before,
-WarehouseBoxNumber      :before,
+WarehouseBoxNumber      :before
    {  font-weight: bold;
       color: black;  }
 
@@ -378,7 +378,7 @@ RelatedProtocols        :before,
 RelatedPublications     :before,
 StudyCategoryType       :before,
 StudyCategoryName       :before,
-StudyType               :before,
+StudyType               :before
    {  font-weight: bold;
       color: black;  }
 
@@ -389,10 +389,10 @@ StudyType               :before,
 DiseaseCharacteristics,
 GeneralEligibilityCriteria,
 PatientCharacteristics,
-PriorConcurrentTherapy,
+PriorConcurrentTherapy
    {  margin-left: 1em;  }
 
-Section,
+Section
    { margin-left: 20pt;  }
 
 
@@ -410,7 +410,7 @@ ProtocolProcessingDetails,
 ProtocolRelatedLinks,
 PublishedResults,
 RelatedDocuments,
-RelatedPublications,
+RelatedPublications
    {  border: solid;
       border-color: gray;
       border-width: thin;
@@ -421,27 +421,27 @@ AmendmentID,
 DatedAction,
 MissingRequiredInformation,
 ProtocolPhase,
-RelatedDocuments,
+RelatedDocuments
    {  margin-top: 1em;    }
 
 StudyCategory>Comment,
-Eligibility,
+Eligibility
    {  margin-bottom: 1em;  }
 
 ProtocolAmendmentInformation,
 ProtocolProcessingDetails,
-RelatedDocuments,
+RelatedDocuments
    {  margin-bottom: .5em;  }
 
 ArmsOrGroups,
 Intervention,
 ProtocolTitle,
-StudyCategory,
+StudyCategory
    { margin-top: 1em;
      margin-bottom: 1em;  }
 
-ArmOrGroup,
-  {  margin-bottom: 1em;  } 
+ArmOrGroup
+  {  margin-bottom: 1em;  }
 
 
 /***************************************************************************/
@@ -451,172 +451,172 @@ ArmOrGroup,
 
 /* Key element for length = IDType           */
 
-IDstring,                       { margin-left: 95pt;
+IDstring                        { margin-left: 95pt;
                                   text-indent: -74.5pt; }
-ProtocolIDs>PrimaryID>Comment,  { margin-left: 95pt;
+ProtocolIDs>PrimaryID>Comment   { margin-left: 95pt;
                                   text-indent: -82.5pt; }
-IDType,                         { margin-left: 95pt;
+IDType                          { margin-left: 95pt;
                                   text-indent: -93.5pt; }
-IDString,                       { margin-left: 95pt;
+IDString                        { margin-left: 95pt;
                                   text-indent: -75pt; }
-ProtocolIDs>OtherID>IDString,   { margin-left: 95pt;
+ProtocolIDs>OtherID>IDString    { margin-left: 95pt;
                                   text-indent: -76.5pt; }
-ProtocolIDs>OtherID>Comment,    { margin-left: 95pt;
+ProtocolIDs>OtherID>Comment     { margin-left: 95pt;
                                   text-indent: -82.5pt; }
 
 /* Key element for length = AmendmentDate            */
 
-AmendmentID,                    { margin-left: 130pt;
+AmendmentID                     { margin-left: 130pt;
                                   text-indent: -104pt; }
-AmendmentDate,                  { margin-left: 130pt;
+AmendmentDate                   { margin-left: 130pt;
                                   text-indent: -114pt; }
-AmendmentSource,                { margin-left: 130pt;
+AmendmentSource                 { margin-left: 130pt;
                                   text-indent: -57pt; }
-AmendmentStatus,                { margin-left: 130pt;
+AmendmentStatus                 { margin-left: 130pt;
                                   text-indent: -129pt; }
-ProtocolAmendment>DateReceived, { margin-left: 130pt;
+ProtocolAmendment>DateReceived  { margin-left: 130pt;
                                   text-indent: -98pt; }
-ProtocolAmendment>DateCompleted,{ margin-left: 130pt;
+ProtocolAmendment>DateCompleted { margin-left: 130pt;
                                   text-indent: -107pt; }
-ChangeType,                     { margin-left: 130pt;
+ChangeType                      { margin-left: 130pt;
                                   text-indent: -102pt; }
-ProtocolAmendment>Comment,      { margin-left: 130pt;
+ProtocolAmendment>Comment       { margin-left: 130pt;
                                   text-indent: -82.5pt; }
-ProtocolAmendmentInformation>DatedAction,
+ProtocolAmendmentInformation>DatedAction
                                 { margin-left:  20pt; }
-ProtocolAmendmentInformation>DatedAction>ActionDescription,
+ProtocolAmendmentInformation>DatedAction>ActionDescription
                                 { margin-left: 110pt;
                                   text-indent: -55.5pt; }
-ProtocolAmendmentInformation>DatedAction>ActionDate,
+ProtocolAmendmentInformation>DatedAction>ActionDate
                                 { margin-left: 110pt;
                                   text-indent: -42pt; }
-ProtocolAmendmentInformation>DatedAction>Comment,
+ProtocolAmendmentInformation>DatedAction>Comment
                                 { margin-left: 110pt;
                                   text-indent: -82.5pt; }
 
-Professional>Comment, Patient>Comment          
+Professional>Comment, Patient>Comment
                                 { margin-left: 90pt;
                                   text-indent: -82.5pt; }
 
 /* Key element for length = StudyCategoryName           */
 
-StudyType,                      { margin-left: 150pt;
+StudyType                       { margin-left: 150pt;
                                   text-indent: -81pt; }
-StudyCategoryType,              { margin-left: 150pt;
+StudyCategoryType               { margin-left: 150pt;
                                   text-indent: -136.5pt; }
-StudyCategoryName,              { margin-left: 150pt;
+StudyCategoryName               { margin-left: 150pt;
                                   text-indent: -141pt; }
-StudyFocus,                     { margin-left: 150pt;
+StudyFocus                      { margin-left: 150pt;
                                   text-indent: -103pt; }
-InterventionType,               { margin-left: 150pt;
+InterventionType                { margin-left: 150pt;
                                   text-indent: -130.5pt; }
-InterventionNameLink,           { margin-left: 150pt;
+InterventionNameLink            { margin-left: 150pt;
                                   text-indent: -149pt; }
-ArmOrGroupLink                  { margin-left: 150pt; 
+ArmOrGroupLink                  { margin-left: 150pt;
                                   text-indent: -135pt; }
 InterventionDescription         { margin-left: 150pt;
                                   text-indent: -121pt; }
-Condition,                      { margin-left: 150pt;
+Condition                       { margin-left: 150pt;
                                   text-indent: -101pt; }
-Gene,                           { margin-left: 150pt;
+Gene                            { margin-left: 150pt;
                                   text-indent: -75pt; }
 
 /* Key element for length = ExclusionCriteria           */
 
-HealthyVolunteers,              { margin-left: 150pt;
+HealthyVolunteers               { margin-left: 150pt;
                                   text-indent: -136.5pt; }
-LowAge,                         { margin-left: 150pt;
+LowAge                          { margin-left: 150pt;
                                   text-indent: -108pt; }
-HighAge,                        { margin-left: 150pt;
+HighAge                         { margin-left: 150pt;
                                   text-indent: -107pt; }
-AgeText,                        { margin-left: 150pt;
+AgeText                         { margin-left: 150pt;
                                   text-indent: -118pt; }
-Gender,                         { margin-left: 150pt;
+Gender                          { margin-left: 150pt;
                                   text-indent: -62pt; }
-Diagnosis,                      { margin-left: 150pt;
+Diagnosis                       { margin-left: 150pt;
                                   text-indent: -103pt; }
-ExclusionCriteria,              { margin-left: 150pt;
+ExclusionCriteria               { margin-left: 150pt;
                                   text-indent: -146pt; }
 
 /* Key element for length = Citation           */
 
-RelatedProtocols,               { margin-left: 150pt;
+RelatedProtocols                { margin-left: 150pt;
                                   text-indent: -142.5pt; }
-RelatedWebsites,                { margin-left: 150pt;
+RelatedWebsites                 { margin-left: 150pt;
                                   text-indent: -144pt; }
-Citation,                       { margin-left: 150pt;
+Citation                        { margin-left: 150pt;
                                   text-indent: -136pt; }
-CitationSource,                 { margin-left: 150pt;
+CitationSource                  { margin-left: 150pt;
                                   text-indent: -109pt; }
-SourceWebsite,                  { margin-left: 150pt;
+SourceWebsite                   { margin-left: 150pt;
                                   text-indent: -125pt; }
-RelatedCitation,                { margin-left: 150pt;
+RelatedCitation                 { margin-left: 150pt;
                                   text-indent: -121.5pt; }
 
 /* Key element for length = ProtocolDesign           */
 
-ProtocolPhase,                  { margin-left: 150pt;
+ProtocolPhase                   { margin-left: 150pt;
                                   text-indent: -122.0pt; }
-ExpectedEnrollment,             { margin-left: 150pt;
+ExpectedEnrollment              { margin-left: 150pt;
                                   text-indent: -149.0pt; }
-ProtocolDesign,                 { margin-left: 150pt;
+ProtocolDesign                  { margin-left: 150pt;
                                   text-indent: -117.5pt; }
 
 
-ActionDescription,              { margin-left: 100pt;
+ActionDescription               { margin-left: 100pt;
                                   text-indent: -55.5pt; }
-ActionDate,                     { margin-left: 100pt;
+ActionDate                      { margin-left: 100pt;
                                   text-indent: -42pt; }
-DatedAction>Comment,            { margin-left: 100pt;
+DatedAction>Comment             { margin-left: 100pt;
                                   text-indent: -82.5pt; }
 
 /* Elements valid for multiple sections              */
 
-Comment,                        { margin-left: 150pt;
+Comment                         { margin-left: 150pt;
                                   text-indent: -82.5pt; }
-EnteredBy,                      { margin-left: 150pt;
+EnteredBy                       { margin-left: 150pt;
                                   text-indent: -79.5pt; }
-EntryDate,                      { margin-left: 150pt;
+EntryDate                       { margin-left: 150pt;
                                   text-indent: -76pt; }
 
-/* Key element for length = ProcessingStatus */                                 
-ProcessingStatuses,
+/* Key element for length = ProcessingStatus */
+ProcessingStatuses
                                 { margin-left: 20pt; }
-ProcessingStatusInfo,
+ProcessingStatusInfo
                                 { margin-left: 20pt; }
-ProcessingStatus,
+ProcessingStatus
                                 { margin-left: 150pt;
                                   text-indent: -130.5pt; }
-ProcessingDate,
+ProcessingDate
                                 { margin-left: 150pt;
                                   text-indent: -115pt; }
-ProcessingPriority,
+ProcessingPriority
                                 { margin-left: 110pt;
                                   text-indent: -139.5pt; }
-ProcessingStatusInfo>Comment,
+ProcessingStatusInfo>Comment
                                 { margin-left: 110pt;
                                   text-indent: -82.5pt; }
-ProtocolProcessingDetails>EnteredBy,
+ProtocolProcessingDetails>EnteredBy
                                 { margin-left: 150pt;
                                   text-indent: -79.5pt; }
-EndDateTime,
+EndDateTime
                                 { margin-left: 110pt;
                                   text-indent: -73pt; }
-StartDateTime,
+StartDateTime
                                 { margin-left: 110pt;
                                   text-indent: -76.5pt; }
-User,
+User
                                 { margin-left: 110pt;
                                   text-indent: -79pt; }
-MissingRequiredInformation,
+MissingRequiredInformation
                                 { margin-left: 20pt; }
-MissingInformation,
+MissingInformation
                                 { margin-left: 130pt;
                                   text-indent: -94.5pt; }
-SupplementaryInfoLink,
+SupplementaryInfoLink
                                 { margin-left: 125pt;
                                   text-indent: -126pt; }
-WarehouseBoxNumber,
+WarehouseBoxNumber
                                 { margin-left: 125pt;
                                   text-indent: -124pt; }
 
@@ -624,7 +624,7 @@ Outcome                         { margin-left:  96pt;
                                   text-indent: -96.5pt; }
 ArmOrGroupDescription           { margin-left: 110pt;
                                   text-indent: -82pt; }
-ArmOrGroupLabel                 { margin-left: 110pt; 
+ArmOrGroupLabel                 { margin-left: 110pt;
                                   text-indent: -47pt; }
 ArmOrGroupType                  { margin-left: 110pt;
                                   text-indent: -44pt; }
@@ -693,7 +693,7 @@ ProjectedAccrual,
 ProtocolDesign,
 ProtocolDetail,
 ProtocolIDs,
-ProtocolPhase, 
+ProtocolPhase,
 ProtocolRelatedLinks,
 ProtocolTitle,
 PublishedResults,
@@ -717,7 +717,7 @@ SupplementaryInfoLink,
 TitleType,
 TreatmentIntervention,
 User,
-WarehouseBoxNumber,
+WarehouseBoxNumber
            { margin-bottom: 4pt; }
 
 
@@ -736,13 +736,13 @@ RelatedProtocols,
 RelatedWebsites,
 StudyCategoryType,
 StudyType,
-SupplementaryInfoLink,
+SupplementaryInfoLink
            { margin-top: 4pt; }
 
 
 Patient>EnteredBy,
 Professional>EnteredBy,
-ProtocolDetail>EnteredBy,
+ProtocolDetail>EnteredBy
            { margin-top: 1em; }
 
 
@@ -799,7 +799,7 @@ Outcome,
 Outline,
 Para,
 PatientCharacteristics,
-ProcessingDate,                                                                 
+ProcessingDate,
 ProcessingPriority,
 ProcessingStatus,
 ProjectedAccrual,
@@ -833,7 +833,7 @@ THead>Row>entry,
 TitleType,
 TreatmentIntervention,
 User,
-WarehouseBoxNumber,
+WarehouseBoxNumber
   {  background-color: white; }
 
 /* *************************************************************************/
@@ -848,7 +848,7 @@ ProcessingStatusInfo>Comment    :before,
 ProtocolProcessingDetails>Comment:before,
 RelatedDocuments,
 SupplementaryInfoLink           :before,
-WarehouseBoxNumber              :before,
+WarehouseBoxNumber              :before
   {  background-color: #CCCCFF; }  /*light blue*/
 
 
@@ -945,14 +945,14 @@ StudyCategoryType               :before,
 StudyFocus                      :before,
 StudyType                       :before,
 TreatmentIntervention,
-User                            :before,
+User                            :before
   {  background-color: #CCFFCC; }  /*light green*/
 
 
 ExpectedEnrollment              :before,
 ProtocolDesign                  :before,
 ProtocolPhase                   :before,
-ProtocolTitle                   :before,
+ProtocolTitle                   :before
   {  font-weight: bold;
      color: green;      }
 
