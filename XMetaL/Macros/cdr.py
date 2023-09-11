@@ -4223,7 +4223,7 @@ class CDR:
         if doctype == "Person" and element_name == "FamilialCancerSyndrome":
             command_set = CommandSet(self, "CdrReport")
             command = command_set.command
-            etree.SubElement(command, "ReportName").text = "GeneticsSyndromes"
+            etree.SubElement(command, "ReportName").text = "Genetics Syndromes"
             params = etree.SubElement(command, "ReportParams")
             param = etree.SubElement(params, "ReportParam")
             param.set("Name", "TitlePattern")
