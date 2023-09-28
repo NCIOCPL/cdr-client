@@ -2724,7 +2724,7 @@ class CDR:
             """Navigate to the next revision markup element."""
 
             # Determine which markup elements we want.
-            desired_level = level_filter.get() or "all"
+            desired_level = level_filter.get() or "approved"
 
             # Set up ranges to look for Insertion and Deletion elements.
             del_range = self.document.Range
@@ -2888,7 +2888,7 @@ class CDR:
         levels = "all", "publish", "approved", "proposed"
         opts = dict(
             frame=top,
-            default="all",
+            default="approved",
             width=23,
             sticky="W",
             padx=0,
@@ -2897,7 +2897,7 @@ class CDR:
         args = "Markup Level(s)", levels, 0, 0
         level_filter = dialog.add_radios(*args, **opts)
 
-        # Add the action buttons to the right of the
+        # Add the action buttons to the right of the level choices.
         button_box = ttk.Frame(top)
         button_box.grid(row=0, column=1, padx=(20,0), sticky="W")
         button_info = (
