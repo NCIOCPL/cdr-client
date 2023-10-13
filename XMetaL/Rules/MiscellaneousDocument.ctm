@@ -31,6 +31,14 @@
       </PrettyPrintOptions>
     </ElementProperties>
     <ElementProperties>
+      <Name>CitationLink</Name>
+      <TagColor>#CCCCFF</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
       <Name>City</Name>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
@@ -140,6 +148,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>ListItem</Name>
+      <TagColor>66FFFF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -168,6 +177,23 @@
     </ElementProperties>
     <ElementProperties>
       <Name>MiscellaneousDocument</Name>
+      <TagColor>#ECFFDC</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MiscellaneousDocumentMetadata</Name>
+      <TagColor>#ECFFDC</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>MiscellaneousDocumentText</Name>
+      <TagColor>#ECFFDC</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -175,6 +201,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>MiscellaneousDocumentTitle</Name>
+      <TagColor>#ECFFDC</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -205,6 +232,7 @@
     </ElementProperties>
     <ElementProperties>
       <Name>Para</Name>
+      <TagColor>CC99FF</TagColor>
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <IndentContent/>
@@ -304,6 +332,14 @@
       <PrettyPrintOptions>
         <NewLineBeforeStartTag/>
         <NewLineBeforeEndTag/>
+        <IndentContent/>
+      </PrettyPrintOptions>
+    </ElementProperties>
+    <ElementProperties>
+      <Name>Section</Name>
+      <TagColor>66FF66</TagColor>
+      <PrettyPrintOptions>
+        <NewLineBeforeStartTag/>
         <IndentContent/>
       </PrettyPrintOptions>
     </ElementProperties>

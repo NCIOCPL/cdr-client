@@ -228,6 +228,7 @@ EnteredBy,
 Intervention,
 KeyPoint,
 MainTopics,
+MiscellaneousDocLink,
 MobileURL,
 PageTitle,
 PageURL,
@@ -325,6 +326,7 @@ EHRDiagnosisInformation      :before { content: "EHR DIAGNOSIS &"; }
 EnteredBy                    :before { content: "Entered By *: "; }
 MainTopics>Term              :before { content: "Main Topics * + @: "; }
 MediaID                      :before { content: "Media ID * @: "; }
+MiscellaneousDocLink         :before { content: "Misc Doc &: "; }
 MobileURL                    :before { content: "Mobile URL & @: "; }
 PageTitle                    :before { content: "Page Title *: "; }
 PageURL                      :before { content: "Page URL *: "; }
@@ -476,14 +478,19 @@ ComprehensiveReviewDate      :before,
 DateLastModified             :before,
 /*SummaryModuleLink            :before, */
 PatientVersionOf             :before,
-ReplacementFor               :before,
-/*TypeOfSummaryChange          :before
+ReplacementFor               :before
      { font-weight: bold;
-       font-size: 12pt;
-       color: black;
-       margin-top: 15pt;
-       margin-bottom: 10pt; }
-*/
+       margin-bottom: 10pt;
+       margin-top: 10pt;
+       color: black; }
+
+MiscellaneousDocLink
+     { font-weight: bold;
+       margin-bottom: 10pt;
+       margin-top: 10pt;
+       color: black; 
+       background-color: #AFE1AF; }
+
 SummaryModuleLink            :before
      { font-weight: bold;
        margin-bottom: 10pt;
