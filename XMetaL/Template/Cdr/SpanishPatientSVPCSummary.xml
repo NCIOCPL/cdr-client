@@ -67,6 +67,20 @@
          Paragraph
          }?></Para>
  </SummarySection>
+ <SummarySection>
+  <SectMetaData>
+   <SectionType>Changes to summary</SectionType>
+  </SectMetaData>
+  <Title>Actualizaciones más recientes a este resumen (MM/DD/YYYY)</Title>
+  <Para>Los sumarios del PDQ con información sobre el cáncer se
+         revisan con regularidad y se actualizan en la medida en que se
+         obtiene nueva información. Esta sección describe los cambios
+         más recientes introducidos en este sumario a partir de la 
+         fecha arriba indicada.</Para>
+  <Para><?xm-replace_text {
+         Texto...
+         }?>.</Para>
+ </SummarySection>
  <DateLastModified><?xm-replace_text {
          Optionally enter the date of the last record modification
          }?></DateLastModified>
