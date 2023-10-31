@@ -8,37 +8,37 @@
 /*                                                                       */
 /*************************************************************************/
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema.css";
 
-$DOCUMENT 
+$DOCUMENT
     { font-family: Arial, sans-serif;
       font-size: 12pt;
       margin-top: 5px;
       margin-left: 5px;
       color:black;         }
 
-$COMMENT 
+$COMMENT
     { display: block;
       color: purple;
       white-space: pre; }
 
-$PROCINS 
+$PROCINS
     { color: blue;
       background-color: white; }
 
-Media,
-    { background-color: #CCCCFF; 
-      text-decoration: none;    
+Media
+    { background-color: #CCCCFF;
+      text-decoration: none;
       color: black; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Acknowledgement,
 Age,
 AlternativeText,
@@ -125,22 +125,22 @@ VideoData,
 VideoEncoding,
 VideoHosting,
 VideoType,
-WidthPixels,
+WidthPixels
     { display: block; }
 
 
-/***************************************************************************/ 
-/* Redefine CitationLink which is by default an inline element             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/* Redefine CitationLink which is by default an inline element             */
+/***************************************************************************/
 CitationLink             :before
     { text-decoration: none; }
 CitationLink,
 ExternalRef
     { text-decoration: none; }
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* Container elements are displayed in ALL CAPS */
 /* * = Required field */
 /* & = Optional element */
@@ -230,32 +230,32 @@ PermissionResponse        :before { content: "Response &: ";}
 PermissionResponseDate    :before { content: "Resp. Date &: ";}
 PermissionExpirationDate  :before { content: "Expiration &: ";}
 ApprovedUse               :before { content: "APPROVED USE & ";}
-SpanishTranslationPermissionRequested 
+SpanishTranslationPermissionRequested
                           :before { content: "Spn Perm Req &: ";}
-SpanishTranslationPermissionResponse 
+SpanishTranslationPermissionResponse
                           :before { content: "Spn Perm Resp &: ";}
 PublisherPermissionText   :before { content: "Publisher Txt &: ";}
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                         BORDERED SECTIONS                               */
 /***************************************************************************/
 DemographicInformation,
-MediaContent, 
-MediaSource, 
+MediaContent,
+MediaSource,
 PhysicalMedia,
 ProcessingStatuses,
-RelatedDocuments,
+RelatedDocuments
     { border: solid;
-      border-width: thin; 
+      border-width: thin;
       border-color: black;
       margin-top: 1em;
       margin-bottom: 6pt; }
 
 
-/***************************************************************************/ 
-/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*             TAG PROPERTIES FOR TEXT INPUT AND CONTAINER FIELDS          */
+/***************************************************************************/
 Acknowledgement                        :before,
 Age                                    :before,
 AlternativeText                        :before,
@@ -348,9 +348,9 @@ WidthPixels                            :before
 
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 
 /* Each tag is manually positioned to right-align                          */
 
@@ -358,64 +358,64 @@ WidthPixels                            :before
 
 /* Key element for length = PoliticalUnitAlternateName                     */
 
-Acknowledgement,
+Acknowledgement
                         { margin-left: 120pt;
                           text-indent: -120pt; }
-Age,
+Age
                         { margin-left: 120pt;
                           text-indent: -55.5pt; }
-AlternativeText,
-                        { margin-left: 120pt; 
+AlternativeText
+                        { margin-left: 120pt;
                           text-indent: -104pt; }
-Color,
+Color
                         { margin-left: 120pt;
                           text-indent: -47.5pt; }
-Category,
+Category
                         { margin-left: 120pt;
                           text-indent: -78pt; }
-Comment,        
-                        { margin-left: 120pt; 
+Comment
+                        { margin-left: 120pt;
                           text-indent: -79pt; }
-ProcessingStatus>Comment,        
-                        { margin-left: 110pt; 
+ProcessingStatus>Comment
+                        { margin-left: 110pt;
                           text-indent: -98pt; }
-ContentDescription,
+ContentDescription
                         { margin-left: 120pt;
                           text-indent: -111pt; }
-Creator,
+Creator
                         { margin-left: 120pt;
                           text-indent: -63pt; }
-DateCreated,
+DateCreated
                         { margin-left: 120pt;
                           text-indent: -94.5pt; }
-DateLastModified,
+DateLastModified
                         { margin-left: 120pt;
                           text-indent: -97pt; }
-DateLastReviewed,
+DateLastReviewed
                         { margin-left: 120pt;
                           text-indent: -104.5pt; }
-DefaultVideoPresentationTemplate,
+DefaultVideoPresentationTemplate
                         { margin-left: 120pt;
                           text-indent: -63pt; }
-DerivationMethod,
+DerivationMethod
                         { margin-left: 120pt;
                           text-indent: 0pt; }
-Diagnosis,
+Diagnosis
                         { margin-left: 120pt;
                           text-indent: -98pt; }
-DocTitle,
-                        { margin-left: 120pt; 
+DocTitle
+                        { margin-left: 120pt;
                           text-indent: -100pt; }
-ProcessingStatus>EnteredBy,
+ProcessingStatus>EnteredBy
                         { margin-left: 110pt;
                           text-indent: -79.5pt; }
-Ethnicity,
+Ethnicity
                         { margin-left: 120pt;
                           text-indent: -95pt; }
-ExternalRef,
+ExternalRef
                         { margin-left: 120pt;
                           text-indent: -112pt; }
-FromCdrMedia,
+FromCdrMedia
                         { margin-left: 120pt;
                           text-indent: -112.5pt; }
 
@@ -423,111 +423,111 @@ Caption                 { margin-left:  20pt;
                           text-indent: -75pt; }
 MediaID                 { margin-left:  20pt;
                           text-indent: -79.5pt; }
-FromExternalFile,
+FromExternalFile
                         { margin-left: 120pt;
                           text-indent: -119pt; }
-FromMethod,
+FromMethod
                         { margin-left: 120pt;
                           text-indent: -111pt; }
-Glossary,
+Glossary
                         { margin-left: 120pt;
                           text-indent: -82pt; }
-HeightPixels,
+HeightPixels
                         { margin-left: 120pt;
                           text-indent: -98pt; }
-HostingID,   
+HostingID
                         { margin-left: 120pt;
                           text-indent: -76pt; }
-ImageType,
+ImageType
                         { margin-left: 120pt;
                           text-indent: -82pt; }
-ImageEncoding,
+ImageEncoding
                         { margin-left: 120pt;
                           text-indent: -109pt; }
-Inlined,
+Inlined
                         { margin-left: 120pt;
                           text-indent: -58.5pt; }
-Labeled,
+Labeled
                         { margin-left: 120pt;
                           text-indent: -61.5pt; }
-LabelName,
+LabelName
                         { margin-left: 120pt;
                           text-indent: -97.5pt; }
-Language,
+Language
                         { margin-left: 120pt;
                           text-indent: 0pt; }
-MediaCaption,        
-                        { margin-left: 120pt; 
+MediaCaption
+                        { margin-left: 120pt;
                           text-indent: -85.5pt; }
-MediaLanguage,
+MediaLanguage
                         { margin-left: 120pt;
                           text-indent: -115pt; }
-MediaTitle,
-                        { margin-left: 120pt; 
+MediaTitle
+                        { margin-left: 120pt;
                           text-indent: -73.5pt; }
-MinWidthPixels,
+MinWidthPixels
                         { margin-left: 120pt;
                           text-indent: -118.5pt; }
-ProcessingStatus,
+ProcessingStatus
                         { margin-left: 10pt; }
-ProcessingStatusDate,
+ProcessingStatusDate
                         { margin-left: 110pt;
                           text-indent: -82pt; }
-ProcessingStatusValue,
+ProcessingStatusValue
                         { margin-left: 110pt;
                           text-indent: -88pt; }
-Race,
+Race
                         { margin-left: 120pt;
                           text-indent: -74pt; }
-RequestedBy,
+RequestedBy
                         { margin-left: 120pt;
                           text-indent: -110.5pt; }
-RunSeconds,
+RunSeconds
                         { margin-left: 120pt;
                           text-indent: -75pt; }
-Sex,
+Sex
                         { margin-left: 120pt;
                           text-indent: -51.5pt; }
-SkinTone,
+SkinTone
                         { margin-left: 120pt;
                           text-indent: -102.5pt; }
-SoundEncoding,
+SoundEncoding
                         { margin-left: 120pt;
                           text-indent: -112.5pt; }
-SoundType,
+SoundType
                         { margin-left: 120pt;
                           text-indent: -85.5pt; }
-SourceFilename,
+SourceFilename
                         { margin-left: 120pt;
                           text-indent: -116pt; }
-SourcePublication,
+SourcePublication
                         { margin-left: 120pt;
                           text-indent: -107.5pt; }
-Summary,
+Summary
                         { margin-left: 120pt;
                           text-indent: -85.5pt; }
-SupplementaryInfoLink,
+SupplementaryInfoLink
                         { margin-left: 120pt;
                           text-indent: -116pt; }
-TextDateCreated,
+TextDateCreated
                         { margin-left: 120pt;
                           text-indent: -115.5pt; }
-Topic,
+Topic
                         { margin-left: 120pt;
                           text-indent: -73pt; }
 TranslationOf
                         { margin-left: 120pt;
                           text-indent: -114pt; }
-VideoEncoding,
+VideoEncoding
                         { margin-left: 120pt;
                           text-indent: -107.5pt; }
-VideoHosting, 
+VideoHosting
                         { margin-left: 120pt;
                           text-indent: -97pt; }
-VideoType,
+VideoType
                         { margin-left: 120pt;
                           text-indent: -80pt; }
-WidthPixels,
+WidthPixels
                         { margin-left: 120pt;
                           text-indent: -94pt; }
 
@@ -565,9 +565,9 @@ CitationLink
                         { margin-left: 120pt;
                           text-indent: -89pt; }
 
-/***************************************************************************/ 
-/*                     MARGINS BETWEEN TEXT ELEMENTS                       */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS BETWEEN TEXT ELEMENTS                       */
+/***************************************************************************/
 Acknowledgement,
 Age,
 AlternativeText,
@@ -594,7 +594,7 @@ Glossary,
 HeightPixels,
 HostingID,
 ImageType,
-ImageEncoding, 
+ImageEncoding,
 Labeled,
 LabelName,
 MediaCaption,
@@ -647,16 +647,16 @@ ProcessingStatus,
 ProcessingStatuses,
 ProposedUse,
 RelatedDocuments,
-Topics,
+Topics
 	{ margin-bottom: 10pt; }
 
 ImageDimensions
     { margin-top: 10pt; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 /* Background color for Fields (Do not include Container Elements here */
 Acknowledgement,
 Age,
@@ -730,7 +730,7 @@ Age                                    :before,
 AlternativeText                        :before,
 Audience                               :before,
 Color                                  :before,
-Captions                               :before, 
+Captions                               :before,
 Categories                             :before,
 Category                               :before,
 CitationLink                           :before,

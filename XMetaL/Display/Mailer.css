@@ -50,7 +50,7 @@ $PROCINS
     { color: blue;
       background-color: white; }
 
-Mailer,
+Mailer
     { background-color: #CCCCFF;
       text-decoration: none;
       color: black; }
@@ -78,7 +78,7 @@ RemailerFor,
 Resolution,
 Response,
 Sent,
-Type,
+Type
 	{ display: block; }
 
 
@@ -118,20 +118,20 @@ Type                     :before { content: "Type *: "; }
 /*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
 /***************************************************************************/
 Address:before,
-MailerAddress:before,
+MailerAddress:before
     { font-weight: bold;
       font-size: 12pt;
       color: black;        }
 
 Address,
-MailerAddress,
+MailerAddress
     { margin-top: .5em;
       margin-bottom: .5em;   }
 
 CallLog,
 Document,
 Response,
-Type,
+Type
     { margin-top: 1em;  }
 
 
@@ -140,7 +140,7 @@ Type,
 /***************************************************************************/
 Address,
 MailerAddress,
-Response,
+Response
     { border: solid;
       border-color: black;
       border-width: thin;
@@ -148,7 +148,7 @@ Response,
       margin-bottom: 6pt; }
 
 Address:before,
-MailerAddress:before,
+MailerAddress:before
     { font-weight: bold;
       font-size: 12pt;
       color: black;  }
@@ -171,7 +171,7 @@ Recipient                :before,
 RemailerFor              :before,
 Resolution               :before,
 Response                 :before,
-Sent                     :before,
+Sent                     :before
     { font-weight: bold;
       color: black;  }
 
@@ -180,7 +180,7 @@ Sent                     :before,
 /*      TAG PROPERTIES FOR EMUMERATED VALUE AND PICKLIST FIELDS            */
 /***************************************************************************/
 ChangesCategory          :before,
-Type                     :before,
+Type                     :before
     { font-weight: bold;
       color: black;      }
 
@@ -188,7 +188,7 @@ Type                     :before,
 /***************************************************************************/
 /*        SUPPRESS REMAILERFOR TEXT, DISPLAY ONLY THE ATTRIBUTE            */
 /***************************************************************************/
-RemailerFor,
+RemailerFor
     { color:  #CCCCFF;}
 
 
@@ -201,46 +201,46 @@ RemailerFor,
 /* Key element for length = RemailerFor (line up other elements with the   */
 /* colon in the RemailerFor before text (can't display:none the text)	   */
 /* Otherwise, the elements should have a left margin of 95pt               */
-Type,                             { margin-left: 115pt;
+Type                              { margin-left: 115pt;
                                     text-indent: -43.5pt; }
-RemailerFor,                      { margin-left: 220pt;
+RemailerFor                       { margin-left: 220pt;
                                     text-indent: -212pt; }
-JobId,                            { margin-left: 115pt;
+JobId                             { margin-left: 115pt;
                                     text-indent: -51.5pt; }
-Recipient,                        { margin-left: 115pt;
+Recipient                         { margin-left: 115pt;
                                     text-indent: -84pt; }
-ProtocolOrg,                      { margin-left: 115pt;
+ProtocolOrg                       { margin-left: 115pt;
                                     text-indent: -92pt; }
 
 /* Key element for length = AddressLine                                    */
-MailerAddress>Country,            { margin-left: 125pt;
+MailerAddress>Country             { margin-left: 125pt;
                                     text-indent: -61.5pt; }
-PostalCode,                       { margin-left: 125pt;
+PostalCode                        { margin-left: 125pt;
                                     text-indent: -89.5pt; }
-AddressLine,                      { margin-left: 125pt;
+AddressLine                       { margin-left: 125pt;
                                     text-indent: -100.5pt; }
 
 
 /* Key element for length = Document   */
-Document,                         { margin-left: 95pt;
+Document                          { margin-left: 95pt;
                                     text-indent: -89pt; }
-Sent,                             { margin-left: 95pt;
+Sent                              { margin-left: 95pt;
                                     text-indent: -41.5pt; }
-Deadline,                         { margin-left: 95pt;
+Deadline                          { margin-left: 95pt;
                                     text-indent: -70pt; }
 
 /* Key element for length = ChangesCategory                                */
-Received,                         { margin-left: 125pt;
+Received                          { margin-left: 125pt;
                                     text-indent: -68.5pt; }
-ChangesCategory,                  { margin-left: 125pt;
+ChangesCategory                   { margin-left: 125pt;
                                     text-indent: -122.5pt; }
-Comment,                          { margin-left: 125pt;
+Comment                           { margin-left: 125pt;
                                     text-indent: -82.5pt; }
-CallLog>Comment,                  { margin-left: 125pt;
+CallLog>Comment                   { margin-left: 125pt;
                                     text-indent: -88pt; }
-CallLog>Resolution+Comment,       { margin-left: 125pt;
+CallLog>Resolution+Comment        { margin-left: 125pt;
                                     text-indent: -92pt; }
-Resolution,                       { margin-left: 125pt;
+Resolution                        { margin-left: 125pt;
                                     text-indent: -78pt; }
 
 Address,
@@ -260,14 +260,14 @@ Recipient,
 RemailerFor,
 Response,
 Sent,
-Type,
+Type
     { margin-bottom: 4pt; }
 
 CallLog>Comment,
-Received,
+Received
     { margin-top: 4pt; }
 
-PostalAddress,
+PostalAddress
     { margin-top: 8pt; }
 
 
@@ -290,7 +290,7 @@ Received,
 Recipient,
 /*RemailerFor,*/
 Sent,
-Type,
+Type
     { background-color: white; }
 
 
@@ -318,5 +318,5 @@ Resolution               :before,
 Response,
 Response                 :before,
 Sent                     :before,
-Type                     :before,
+Type                     :before
     { background-color: #CCCCFF; }

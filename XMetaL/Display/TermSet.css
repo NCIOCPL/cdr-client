@@ -26,7 +26,7 @@ $PROCINS
       font-weight: normal;
       background-color: white; }
 
-TermSet,
+TermSet
     { background-color: #CCCCFF; }
 
 
@@ -37,7 +37,7 @@ Comment,
 GeneratedFrom,
 TermSetMember,
 TermSetName,
-TermSetType,
+TermSetType
     { display: block; }
 
 
@@ -61,7 +61,7 @@ TermSetType          :before { content: "TS Type *: "; }
 /*************************************************************************/
 /* Section Heading Margins   */
 Comment,
-TermSetName,
+TermSetName
     { margin-top: 1em; }
 
 
@@ -72,7 +72,7 @@ Comment             :before,
 GeneratedFrom       :before,
 TermSetMember       :before,
 TermSetName         :before,
-TermSetType         :before,
+TermSetType         :before
     { font-weight: bold;
       color: black;  }
 
@@ -83,15 +83,15 @@ TermSetType         :before,
 /* Each tag is manually positioned to right-align                        */
 /* Key element for length = Preferred Name                               */
 /*************************************************************************/
-Comment,               { margin-left: 130pt;
+Comment                { margin-left: 130pt;
                          text-indent: -92pt; }
-GeneratedFrom,         { margin-left: 130pt;
+GeneratedFrom          { margin-left: 130pt;
                          text-indent: -127.5pt; }
-TermSetMember,         { margin-left: 130pt;
+TermSetMember          { margin-left: 130pt;
                          text-indent: -109.5pt; }
-TermSetName,           { margin-left: 130pt;
+TermSetName            { margin-left: 130pt;
                          text-indent: -67.5pt; }
-TermSetType,           { margin-left: 130pt;
+TermSetType            { margin-left: 130pt;
                          text-indent: -63pt; }
 
 
@@ -103,7 +103,7 @@ Comment,
 GeneratedFrom,
 TermSetMember,
 TermSetName,
-TermSetType,
+TermSetType
     { margin-bottom: 4pt; }
 
 
@@ -114,7 +114,7 @@ Comment,
 GeneratedFrom,
 TermSetMember,
 TermSetName,
-TermSetType,
+TermSetType
     { background-color: white; }
 
 
@@ -122,5 +122,5 @@ Comment                 :before,
 GeneratedFrom           :before,
 TermSetMember           :before,
 TermSetName             :before,
-TermSetType             :before,
+TermSetType             :before
     { background-color: #CCCCFF; }

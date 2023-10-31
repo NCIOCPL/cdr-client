@@ -26,9 +26,9 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
 @import "CdrCommonSchema_structure.css";
 
@@ -44,34 +44,31 @@
 	  margin-top: 0px;
 	  margin-bottom: 0px;
 	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	  font-style: normal;
 	  font-weight: bold;
 	  color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-PoliticalSubUnit,
-
+PoliticalSubUnit
      { background-color: white; }
 
 
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+
 
 Country,
 DateLastModified,
@@ -79,15 +76,14 @@ PdqKey,
 PoliticalSubUnit,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
 	{ display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 
 
 Country:before				{ content: "Country "; }
@@ -100,26 +96,25 @@ PoliticalSubUnitShortName:before	{ content: "Short Name "; }
 
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 
-PoliticalSubUnit:before,
 
+PoliticalSubUnit:before
 	{     color: black;      }
-	 
 
 
-/***************************************************************************/ 
+
+/***************************************************************************/
 /*                         BORDER CONTROL                                  */
 /***************************************************************************/
-  
 
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */ 
-/***************************************************************************/ 
+
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR TEXT INPUT FIELDS                */
+/***************************************************************************/
 
 
 Country:before,
@@ -127,15 +122,13 @@ DateLastModified:before,
 PdqKey:before,
 PoliticalSubUnitAlternateName:before,
 PoliticalSubUnitFullName:before,
-PoliticalSubUnitShortName:before,
-
-
+PoliticalSubUnitShortName:before
    {  color: black;  }
 
 
-/***************************************************************************/ 
-/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     MARGINS FOR ALIGNING TAGS AND TEXT                  */
+/***************************************************************************/
 
 /* Remove negative text-indent settings  */
 
@@ -145,15 +138,14 @@ PdqKey,
 PoliticalSubUnit,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
 	{ text-indent: 0pt; }
 
 
-/***************************************************************************/ 
-/*                              HIDE TEXT                                  */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                              HIDE TEXT                                  */
+/***************************************************************************/
+
 
 Country,
 DateLastModified,
@@ -161,8 +153,7 @@ PdqKey,
 PoliticalSubUnit,
 PoliticalSubUnitAlternateName,
 PoliticalSubUnitFullName,
-PoliticalSubUnitShortName,
-
+PoliticalSubUnitShortName
      { color: white;
        background-color: white; }
 
@@ -172,6 +163,5 @@ PdqKey:before,
 PoliticalSubUnit:before,
 PoliticalSubUnitAlternateName:before,
 PoliticalSubUnitFullName:before,
-PoliticalSubUnitShortName:before,
-
+PoliticalSubUnitShortName:before
      { background-color: white; }

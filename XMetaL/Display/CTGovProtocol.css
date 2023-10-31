@@ -2,26 +2,26 @@
 /* Style sheets for new document type for ClinicalTrials.gov documents.  */
 /*************************************************************************/
 
-/*************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                */ 
-/*************************************************************************/ 
-  
+/*************************************************************************/
+/*                     DEFAULT PROPERTIES                                */
+/*************************************************************************/
+
 @import "CdrCommonSchema.css";
 @import "CommonProtocolInfo.css";
 
 $DOCUMENT
-  {  font-family: Arial, sans-serif;       
+  {  font-family: Arial, sans-serif;
      font-size: 12pt;
      margin-top: 5px;
-     margin-left: 5px;  
+     margin-left: 5px;
      color: black;        }
 
-$COMMENT 
+$COMMENT
   {  display: block;
      color: purple;
      white-space: pre;  }
 
-$PROCINS 
+$PROCINS
   {  color: blue;
      background-color: white;  }
 /*
@@ -183,9 +183,9 @@ VerificationDate
     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 /* * = Required field */
 /* + = Multiply-occurring field */
 /* @ = Attribute assigned to element */
@@ -339,15 +339,15 @@ AgeText                           :before { content: "Age Criteria (Text) *: "; 
 Diagnosis                         :before { content: "Diagnosis & + @: "; }
 ExclusionCriteria                 :before { content: "Exclusion Criteria & + @: "; }
 EnteredBy                         :before { content: "Entered By *: "; }
-ProtocolProcessingDetails > EnteredBy                         
+ProtocolProcessingDetails > EnteredBy
                                   :before { content: "Entered By &: "; }
 EntryDate                         :before { content: "Entry Date *: "; }
 VerificationDate                  :before { content: "Verification Date *: "; }
 LastChangedDate                   :before { content: "Last Changed Date &: "; }
 
-/***************************************************************************/ 
-/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                     TAG PROPERTIES FOR SECTION HEADINGS                 */
+/***************************************************************************/
 Affiliation                       :before,
 AgeText                           :before,
 ArmOrGroup                        :before,
@@ -479,7 +479,7 @@ NIHGrantContractType              :before,
 GrantContractNo                   :before,
 OtherGrantContractInfo            :before,
 CTGovOwnershipTransferContactLog  :before,
-CTGovOwnershipTransferContactResponse 
+CTGovOwnershipTransferContactResponse
                                   :before,
 CTGovOwnershipTransferDate        :before,
 Date                              :before,
@@ -488,16 +488,16 @@ CTGovOwnerOrganization            :before,
 PRSUserName                       :before,
 ProtocolSpecialCategory           :before,
 SpecialCategory                   :before
-    { font-weight: bold; 
+    { font-weight: bold;
       color: black;  }
 
 
-/***************************************************************************/ 
+/***************************************************************************/
 /*                    BORDERED ELEMENTS AND SECTIONS                       */
 /***************************************************************************/
-Phone 
+Phone
     { margin-top: 0em; }
-Para  
+Para
     { margin-bottom: 1em; }
 
 IDInfo,
@@ -509,7 +509,7 @@ BriefTitle,
 CTRPInfo,
 CTRPStatus,
 OfficialTitle
-    { margin-top: 1em; 
+    { margin-top: 1em;
       margin-bottom: 1em; }
 
 BiospecRetention,
@@ -550,7 +550,7 @@ VerificationDate
     { margin-top: 1em; }
 
 CTRPOverallOfficial
-    { margin-top: 0.5em; 
+    { margin-top: 0.5em;
       margin-bottom: 1em; }
 
 CTRPOverallOfficial PDQPerson
@@ -570,7 +570,7 @@ PDQAdminInfo,
 PDQIndexing,
 Sponsors,
 RequiredHeader
-    { border: solid; 
+    { border: solid;
       border-color: gray;
       border-width: thin;
       margin-top: 1em;  }
@@ -585,28 +585,28 @@ CTIntervention
 /***************************************************************************/
 /*                  MARGINS FOR ALIGNING TAGS AND TEXT                     */
 /***************************************************************************/
-DownloadDate                     
-                            { margin-left: 110pt; 
+DownloadDate
+                            { margin-left: 110pt;
                               text-indent: -103.5pt; }
-LinkText                         
-                            { margin-left: 110pt; 
+LinkText
+                            { margin-left: 110pt;
                               text-indent:  -68.0pt; }
-URL                              
-                            { margin-left: 110pt; 
+URL
+                            { margin-left: 110pt;
                               text-indent:  -41.0pt; }
 
 /*  CTRP Info Elements  */
 /*  =================== */
 CTRPFacility                { margin-left:   30pt; }
 
-CTRPOrgName                 { margin-left:   100pt; 
+CTRPOrgName                 { margin-left:   100pt;
                               text-indent:  -73pt; }
 
 CTRPInfo PDQPerson
                             { margin-left: 100pt;
                               text-indent:-106pt; }
 
-PDQOrganization             { margin-left:   100pt; 
+PDQOrganization             { margin-left:   100pt;
                               text-indent:  -81pt; }
 
 CTRPStatus                  { margin-left:   30pt; }
@@ -615,317 +615,317 @@ CTRPContact                 { margin-left:   30pt; }
 
 CTRPInvestigator            { margin-left:   30pt; }
 
-CTRPInfo GivenName               
-                            { margin-left: 100pt; 
+CTRPInfo GivenName
+                            { margin-left: 100pt;
                               text-indent:  -77pt; }
-CTRPInfo MiddleInitial               
-                            { margin-left: 100pt; 
+CTRPInfo MiddleInitial
+                            { margin-left: 100pt;
                               text-indent:  -79pt; }
-CTRPInfo Surname               
-                            { margin-left: 100pt; 
+CTRPInfo Surname
+                            { margin-left: 100pt;
                               text-indent:  -72pt; }
 
-CTRPInfo Role               
-                            { margin-left: 100pt; 
+CTRPInfo Role
+                            { margin-left: 100pt;
                               text-indent:  -46.5pt; }
 
-CTRPInfo Street               
-                            { margin-left:  70pt; 
+CTRPInfo Street
+                            { margin-left:  70pt;
                               text-indent:  -64pt; }
 
-CTRPInfo City               
-                            { margin-left:  70pt; 
+CTRPInfo City
+                            { margin-left:  70pt;
                               text-indent:  -43pt; }
 
-CTRPInfo PoliticalSubUnit_State               
-                            { margin-left:  70pt; 
+CTRPInfo PoliticalSubUnit_State
+                            { margin-left:  70pt;
                               text-indent:  -83pt; }
 
-CTRPInfo Country               
-                            { margin-left:  70pt; 
+CTRPInfo Country
+                            { margin-left:  70pt;
                               text-indent:  -77pt; }
 
-CTRPInfo PostalCode_ZIP               
-                            { margin-left:  70pt; 
+CTRPInfo PostalCode_ZIP
+                            { margin-left:  70pt;
                               text-indent:  -90pt; }
 
 CTRPOverallOfficial         { margin-left:   30pt; }
 
 CTRPLocation                { margin-left:   30pt; }
 
-CTSource                         
-                            { margin-left: 110pt; 
+CTSource
+                            { margin-left: 110pt;
                               text-indent:  -81.0pt; }
 
-OrgStudyID                       
-                            { margin-left: 110pt; 
+OrgStudyID
+                            { margin-left: 110pt;
                               text-indent:  -89.0pt; }
-SecondaryID                      
-                            { margin-left: 110pt; 
+SecondaryID
+                            { margin-left: 110pt;
                               text-indent: -107.0pt; }
-NCT_Alias                        
-                            { margin-left: 110pt; 
+NCT_Alias
+                            { margin-left: 110pt;
                               text-indent:  -90.0pt; }
-NCTID                            
-                            { margin-left: 110pt; 
+NCTID
+                            { margin-left: 110pt;
                               text-indent:  -53.0pt; }
-CTAcronym                         
-                            { margin-left: 110pt; 
+CTAcronym
+                            { margin-left: 110pt;
                               text-indent:  -101.0pt; }
 
-PDQSponsorship                   
-                            { margin-left: 135pt; 
+PDQSponsorship
+                            { margin-left: 135pt;
                               text-indent: -123.5pt; }
-LeadSponsor                      
-                            { margin-left: 135pt; 
+LeadSponsor
+                            { margin-left: 135pt;
                               text-indent: -116.0pt; }
-Collaborator                     
-                            { margin-left: 135pt; 
+Collaborator
+                            { margin-left: 135pt;
                               text-indent: -116.5pt; }
-Sponsors GivenName               
-                            { margin-left: 135pt; 
+Sponsors GivenName
+                            { margin-left: 135pt;
                               text-indent:  -89.5pt; }
-Sponsors MiddleInitial           
-                            { margin-left: 135pt; 
+Sponsors MiddleInitial
+                            { margin-left: 135pt;
                               text-indent:  -90.5pt; }
-Sponsors Surname                 
-                            { margin-left: 135pt; 
+Sponsors Surname
+                            { margin-left: 135pt;
                               text-indent:  -72.0pt; }
-Sponsors ProfessionalSuffix      
-                            { margin-left: 135pt; 
+Sponsors ProfessionalSuffix
+                            { margin-left: 135pt;
                               text-indent: -128.0pt; }
-Sponsors Phone                   
-                            { margin-left: 135pt; 
+Sponsors Phone
+                            { margin-left: 135pt;
                               text-indent:  -73.0pt; }
-Sponsors PhoneExt                
-                            { margin-left: 135pt; 
+Sponsors PhoneExt
+                            { margin-left: 135pt;
                               text-indent: -118.5pt; }
-Sponsors Email                   
-                            { margin-left: 135pt; 
+Sponsors Email
+                            { margin-left: 135pt;
                               text-indent:  -67.0pt; }
-Sponsors Role                    
-                            { margin-left: 135pt; 
+Sponsors Role
+                            { margin-left: 135pt;
                               text-indent:  -46.5pt; }
-Sponsors Affiliation             
-                            { margin-left: 135pt; 
+Sponsors Affiliation
+                            { margin-left: 135pt;
                               text-indent:  -73.5pt; }
 
-OverallStatus                    
-                            { margin-left: 135pt; 
+OverallStatus
+                            { margin-left: 135pt;
                               text-indent:  -95.0pt; }
-ReasonStopped                    
-                            { margin-left: 135pt; 
+ReasonStopped
+                            { margin-left: 135pt;
                               text-indent:-116pt; }
-StartDate                        
-                            { margin-left: 135pt; 
+StartDate
+                            { margin-left: 135pt;
                               text-indent:-76.5pt; }
-EndDate                          
-                            { margin-left: 135pt; 
+EndDate
+                            { margin-left: 135pt;
                               text-indent:-72.5pt; }
-PrimaryCompletionDate                          
-                            { margin-left: 135pt; 
+PrimaryCompletionDate
+                            { margin-left: 135pt;
                               text-indent:-137pt; }
 
-Phase                            
-                            { margin-left: 135pt; 
+Phase
+                            { margin-left: 135pt;
                               text-indent:  -61.5pt; }
 
-CTStudyType                            
-                            { margin-left: 135pt; 
+CTStudyType
+                            { margin-left: 135pt;
                               text-indent:-105pt; }
 
-CTStudyDesign                    
-                            { margin-left: 100pt; 
+CTStudyDesign
+                            { margin-left: 100pt;
                               text-indent:  -97.5pt; }
-CTCondition                      
-                            { margin-left: 100pt; 
+CTCondition
+                            { margin-left: 100pt;
                               text-indent:  -86.5pt; }
-CTInterventionType               
-                            { margin-left: 100pt; 
+CTInterventionType
+                            { margin-left: 100pt;
                               text-indent:  -44.5pt; }
-CTInterventionName               
-                            { margin-left: 100pt; 
+CTInterventionName
+                            { margin-left: 100pt;
                               text-indent:  -49.0pt; }
-CTInterventionOtherName               
-                            { margin-left: 100pt; 
+CTInterventionOtherName
+                            { margin-left: 100pt;
                               text-indent:  -97.5pt; }
-CTInterventionDescription        
-                            { margin-left: 100pt; 
+CTInterventionDescription
+                            { margin-left: 100pt;
                               text-indent:  -86.0pt; }
-CTIntervention > ArmOrGroupLabel    
-                            { margin-left: 100pt; 
+CTIntervention > ArmOrGroupLabel
+                            { margin-left: 100pt;
                               text-indent:  -61.5pt; }
 
 CTKeyword
-                            { margin-left: 100pt; 
+                            { margin-left: 100pt;
                               text-indent:  -82pt; }
-CTSamplingMethod             
-                            { margin-left: 150pt; 
+CTSamplingMethod
+                            { margin-left: 150pt;
                               text-indent: -120pt; }
-CTExpectedEnrollment             
-                            { margin-left: 150pt; 
+CTExpectedEnrollment
+                            { margin-left: 150pt;
                               text-indent: -139.5pt; }
-CTGender                         
-                            { margin-left: 150pt; 
+CTGender
+                            { margin-left: 150pt;
                               text-indent:  -62.0pt; }
-CTMinimumAge                     
-                            { margin-left: 150pt; 
+CTMinimumAge
+                            { margin-left: 150pt;
                               text-indent:  -97.5pt; }
-CTMaximumAge                     
-                            { margin-left: 150pt; 
+CTMaximumAge
+                            { margin-left: 150pt;
                               text-indent: -100.5pt; }
 
-Facility Name                    
-                            { margin-left: 135pt; 
+Facility Name
+                            { margin-left: 135pt;
                               text-indent: -111.5pt; }
 
 PostalAddress               { margin-left:  30pt; }
-Facility City                    
-                            { margin-left: 105pt; 
+Facility City
+                            { margin-left: 105pt;
                               text-indent:  -42.5pt; }
-Facility PoliticalSubUnit_State  
-                            { margin-left: 105pt; 
+Facility PoliticalSubUnit_State
+                            { margin-left: 105pt;
                               text-indent:  -83.0pt; }
-Facility Country                 
-                            { margin-left: 105pt; 
+Facility Country
+                            { margin-left: 105pt;
                               text-indent:  -77.0pt; }
-Facility PostalCode_ZIP          
-                            { margin-left: 105pt; 
+Facility PostalCode_ZIP
+                            { margin-left: 105pt;
                               text-indent:  -90.0pt; }
 
-Status                           
-                            { margin-left: 135pt; 
+Status
+                            { margin-left: 135pt;
                               text-indent:  -52.5pt; }
-Role                             
-                            { margin-left: 135pt; 
+Role
+                            { margin-left: 135pt;
                               text-indent:  -46.5pt; }
 
-Location GivenName               
-                            { margin-left: 135pt; 
+Location GivenName
+                            { margin-left: 135pt;
                               text-indent:  -89.5pt; }
-Location MiddleInitial           
-                            { margin-left: 135pt; 
+Location MiddleInitial
+                            { margin-left: 135pt;
                               text-indent:  -90.5pt; }
-Location Surname                 
-                            { margin-left: 135pt; 
+Location Surname
+                            { margin-left: 135pt;
                               text-indent:  -72.0pt; }
-Location ProfessionalSuffix      
-                            { margin-left: 135pt; 
+Location ProfessionalSuffix
+                            { margin-left: 135pt;
                               text-indent: -128.0pt; }
-Location Phone                   
-                            { margin-left: 135pt; 
+Location Phone
+                            { margin-left: 135pt;
                               text-indent:  -73.0pt; }
-Location PhoneExt                
-                            { margin-left: 135pt; 
+Location PhoneExt
+                            { margin-left: 135pt;
                               text-indent: -118.5pt; }
-Location Email                   
-                            { margin-left: 135pt; 
+Location Email
+                            { margin-left: 135pt;
                               text-indent:  -67.0pt; }
 
 PDQPerson
                             { margin-left: 135pt;
                               text-indent: -105.5pt; }
 
-StudyType                        
-                            { margin-left: 150pt; 
+StudyType
+                            { margin-left: 150pt;
                               text-indent:  -81.0pt; }
-StudyCategoryType                
-                            { margin-left: 150pt; 
+StudyCategoryType
+                            { margin-left: 150pt;
                               text-indent: -136.5pt; }
-StudyCategoryName                
-                            { margin-left: 150pt; 
+StudyCategoryName
+                            { margin-left: 150pt;
                               text-indent: -141.2pt; }
-InterventionType                 
-                            { margin-left: 150pt; 
+InterventionType
+                            { margin-left: 150pt;
                               text-indent: -130.5pt; }
-InterventionNameLink             
-                            { margin-left: 150pt; 
+InterventionNameLink
+                            { margin-left: 150pt;
                               text-indent: -149.0pt; }
-ProtocolDesign                   
-                            { margin-left: 150pt; 
+ProtocolDesign
+                            { margin-left: 150pt;
                               text-indent: -122.0pt; }
-Condition                        
-                            { margin-left: 150pt; 
+Condition
+                            { margin-left: 150pt;
                               text-indent: -101.0pt; }
-Gene                             
-                            { margin-left: 150pt; 
+Gene
+                            { margin-left: 150pt;
                               text-indent:  -75.0pt; }
-HealthyVolunteers                
-                            { margin-left: 150pt; 
+HealthyVolunteers
+                            { margin-left: 150pt;
                               text-indent: -136.5pt; }
-LowAge                           
-                            { margin-left: 150pt; 
+LowAge
+                            { margin-left: 150pt;
                               text-indent:  -66.0pt; }
-HighAge                          
-                            { margin-left: 150pt; 
+HighAge
+                            { margin-left: 150pt;
                               text-indent:  -68.5pt; }
-AgeText                          
-                            { margin-left: 150pt; 
+AgeText
+                            { margin-left: 150pt;
                               text-indent: -118.0pt; }
-Diagnosis                        
-                            { margin-left: 150pt; 
+Diagnosis
+                            { margin-left: 150pt;
                               text-indent: -103.0pt; }
-ExclusionCriteria                
-                            { margin-left: 150pt; 
+ExclusionCriteria
+                            { margin-left: 150pt;
                               text-indent: -146.0pt; }
-EnteredBy                        
-                            { margin-left: 150pt; 
+EnteredBy
+                            { margin-left: 150pt;
                               text-indent:  -79.5pt; }
-EntryDate                        
-                            { margin-left: 150pt; 
+EntryDate
+                            { margin-left: 150pt;
                               text-indent:  -76.0pt; }
 
-VerificationDate                 
-                            { margin-left: 135pt; 
+VerificationDate
+                            { margin-left: 135pt;
                               text-indent: -109.5pt; }
-LastChangedDate                  
-                            { margin-left: 135pt; 
+LastChangedDate
+                            { margin-left: 135pt;
                               text-indent: -130pt; }
-FirstReceivedDate                  
-                            { margin-left: 135pt; 
+FirstReceivedDate
+                            { margin-left: 135pt;
                               text-indent: -131pt; }
 
-CTAuthority                  
+CTAuthority
                             { margin-left: 135pt;
                               text-indent:-102pt; }
-HasDMC                  
+HasDMC
                             { margin-left: 135pt;
                               text-indent: -73.5pt; }
 
-CTOutcome, ArmOrGroup                  
+CTOutcome, ArmOrGroup
                             { margin-left: 20pt; }
 
-CTOutcomeMeasure                  
+CTOutcomeMeasure
                             { margin-left: 115pt;
                               text-indent: -64.5pt; }
-CTOutcomeTimeFrame                  
+CTOutcomeTimeFrame
                             { margin-left: 115pt;
                               text-indent: -87pt; }
-CTOutcomeSafetyIssue                  
+CTOutcomeSafetyIssue
                             { margin-left: 115pt;
                               text-indent: -90pt; }
 
-CTNumberOfArms                  
+CTNumberOfArms
                             { margin-left: 135pt;
                               text-indent:-106.5pt; }
-CTNumberOfGroups                  
+CTNumberOfGroups
                             { margin-left: 135pt;
                               text-indent:-119pt; }
-CTEnrollment                  
+CTEnrollment
                             { margin-left: 135pt;
                               text-indent:-117pt; }
 
-BiospecRetention                  
+BiospecRetention
                             { margin-left: 135pt;
                               text-indent:-126pt; }
-RelatedWebsites                  
+RelatedWebsites
                             { margin-left: 135pt;
                               text-indent:-133pt; }
 
-CTCitation                  
+CTCitation
                             { margin-left: 135pt;
                               text-indent: -84pt; }
-PMID                  
+PMID
                             { margin-left: 135pt;
                               text-indent: -50pt; }
 
@@ -935,10 +935,10 @@ ProtocolProcessingDetails > ProcessingStatus
 ProtocolProcessingDetails > EnteredBy
                             { margin-left: 135pt;
                               text-indent: -84pt; }
-ProcessingEndDateTime     
+ProcessingEndDateTime
                             { margin-left: 135pt;
                               text-indent: -73pt; }
-ProcessingStartDateTime     
+ProcessingStartDateTime
                             { margin-left: 135pt;
                               text-indent: -76.5pt; }
 ProtocolProcessingDetails > ProcessingDate
@@ -948,21 +948,21 @@ ProtocolProcessingDetails > Comment
                             { margin-left: 135pt;
                               text-indent: -82.5pt; }
 Eligibility > Comment
-                            { margin-left: 150pt; 
+                            { margin-left: 150pt;
                               text-indent: -82.5pt; }
 
 PDQProtocolIDs              { margin-left: 30pt; }
 PrimaryID, OtherID          { margin-left: 30pt; }
-IDString                    { margin-left: 90pt; 
+IDString                    { margin-left: 90pt;
                               text-indent:-28pt; }
-IDType                      { margin-left: 90pt; 
+IDType                      { margin-left: 90pt;
                               text-indent:-59pt; }
-PDQProtocolIDs Comment      { margin-left: 90pt; 
+PDQProtocolIDs Comment      { margin-left: 90pt;
                               text-indent:-82.5pt; }
 
 FundingInfo                 { margin-left: 30pt; }
 NIHGrantContract            { margin-left: 30pt; }
-NIHGrantContractType        { margin-left: 90pt; 
+NIHGrantContractType        { margin-left: 90pt;
                               text-indent:-94pt; }
 GrantContractNo             { margin-left: 90pt;
                               text-indent:-85pt; }
@@ -978,18 +978,18 @@ Date                        { margin-left: 120pt;
                               text-indent: -42pt; }
 
 CTGovOwnershipTransferInfo  { margin-left:  30pt; }
-CTGovOwnerOrganization      { margin-left: 120pt; 
+CTGovOwnerOrganization      { margin-left: 120pt;
                               text-indent:-127pt; }
-PRSUserName                 { margin-left: 120pt; 
+PRSUserName                 { margin-left: 120pt;
                               text-indent:-104pt; }
-CTGovOwnershipTransferDate  { margin-left: 120pt; 
+CTGovOwnershipTransferDate  { margin-left: 120pt;
                               text-indent: -93pt; }
 
 ProtocolSpecialCategory     { margin-left:  30pt; }
-SpecialCategory             { margin-left: 120pt; 
+SpecialCategory             { margin-left: 120pt;
                               text-indent:-113pt; }
 
-ArmOrGroupDescription       { margin-left: 110pt; 
+ArmOrGroupDescription       { margin-left: 110pt;
                               text-indent: -86pt; }
 
 /***************************************************************************/
@@ -997,7 +997,7 @@ ArmOrGroupDescription       { margin-left: 110pt;
 /***************************************************************************/
 Affiliation,
 AgeText,
-City, 
+City,
 Collaborator,
 Comment,
 Condition,
@@ -1088,9 +1088,9 @@ SpecialCategory
 	{ margin-bottom: 4pt; }
 
 
-/***************************************************************************/ 
-/*                               COLOR                                     */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               COLOR                                     */
+/***************************************************************************/
 Affiliation,
 AgeText,
 ArmsOrGroups,
@@ -1286,7 +1286,7 @@ CTRPLocation MiddleInitial   :before,
 CTRPLocation PDQOrganization :before,
 CTRPLocation PDQPerson       :before,
 CTRPLocation Phone           :before,
-CTRPLocation PoliticalSubUnit_State          
+CTRPLocation PoliticalSubUnit_State
                              :before,
 CTRPLocation PostalAddress,
 CTRPLocation PostalCode_ZIP  :before,
@@ -1302,7 +1302,7 @@ CTRPOverallOfficial MiddleInitial   :before,
 CTRPOverallOfficial PDQOrganization :before,
 CTRPOverallOfficial PDQPerson       :before,
 CTRPOverallOfficial Phone           :before,
-CTRPOverallOfficial PoliticalSubUnit_State          
+CTRPOverallOfficial PoliticalSubUnit_State
                                     :before,
 CTRPOverallOfficial PostalAddress,
 CTRPOverallOfficial PostalCode_ZIP  :before,
@@ -1337,7 +1337,7 @@ PrimaryCompletionDate        :before,
 ReasonStopped                :before,
 StartDate                    :before,
 VerificationDate             :before
-    { font-weight: bold; 
+    { font-weight: bold;
       color: navy; }
 
 
@@ -1404,7 +1404,7 @@ NIHGrantContractType              :before,
 GrantContractNo                   :before,
 OtherGrantContractInfo,
 CTGovOwnershipTransferContactLog,
-CTGovOwnershipTransferContactResponse 
+CTGovOwnershipTransferContactResponse
                                   :before,
 CTGovOwnershipTransferDate        :before,
 Date                              :before,
@@ -1413,18 +1413,18 @@ PRSUserName                       :before,
 SpecialCategory                   :before
     { background-color: #FFCC66; }  /*light purple*/
 
-Foobar    
-    { font-weight: bold; 
+Foobar
+    { font-weight: bold;
       color: green; }
 
 /* Override common css, which formats elements of this name as inline markup */
-InterventionNameLink 
-    { text-decoration: none; 
+InterventionNameLink
+    { text-decoration: none;
       color: black; }
 
-ItemizedList      
+ItemizedList
     { margin-left: 50pt; }
-ListItem 
-    { display: list-item; 
-      list-style-type: disc; 
+ListItem
+    { display: list-item;
+      list-style-type: disc;
       margin-left: 0pt; }

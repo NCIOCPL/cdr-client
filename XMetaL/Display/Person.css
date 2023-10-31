@@ -145,7 +145,7 @@ $PROCINS
     { color: blue;
       background-color: white; }
 
-Person,
+Person
     { background-color: #CCCCFF;  }
 
 /*************************************************************************/
@@ -238,7 +238,7 @@ StateCertificationState,
 Status,
 SurName,
 UpdateMode,
-Verified,
+Verified
     { display: block; }
 
 
@@ -368,7 +368,7 @@ PhysicianMembershipInformation    :before,
 PhysicianSpecialtyInformation     :before,
 SpecificPostalAddress             :before,
 StateCertification                :before,
-Status                            :before,
+Status                            :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
@@ -378,12 +378,12 @@ OtherPracticeLocation,
 PDQBoardMembershipDetails,
 PersonLocations,
 PersonNameInformation,
-PersonNameInformation             :before,
+PersonNameInformation             :before
     { margin-bottom: 1em; }
 
 Directory,
 GeneticsBoardCertification,
-PhysicianSpecialtyInformation,
+PhysicianSpecialtyInformation
     { margin-top: .5em;
       margin-bottom: .5em; }
 
@@ -397,20 +397,20 @@ PDQAdvisoryBoard,
 PDQVoluntaryProtocolReviewBoard,
 Organization,
 OrganizationLocation,
-StateCertification,
+StateCertification
     { margin-top: .5em; }
 
 CIPSContact,
 DateLastModified,
 InterdisciplinaryTeamMember,
-LegacyGeneticsData,
+LegacyGeneticsData
     { margin-top: 1.5em; }
 
-MemberOfCooperativeGroup,
+MemberOfCooperativeGroup
     { margin-top: .5em;
       margin-bottom: 1em; }
 
-SpecificPhone,
+SpecificPhone
     { margin-top: 1em; }
 
 
@@ -422,7 +422,7 @@ Home                              :before,
 PDQBoardMembershipDetails         :before,
 PhysicianDetails                  :before,
 PrivatePractice                   :before,
-PrivatePracticeLocation           :before,
+PrivatePracticeLocation           :before
     { font-weight: bold;
       font-size: 12pt;
       color: black;  }
@@ -433,7 +433,7 @@ OtherPracticeLocation,
 PDQBoardMembershipDetails,
 PhysicianDetails,
 PrivatePractice,
-Status,
+Status
     { border: solid;
       border-color: black;
       border-width: thin;
@@ -479,7 +479,7 @@ StateCertificationState           :before,
 StateCertificationNumber          :before,
 SurName                           :before,
 UpdateMode                        :before,
-UpdateMode                        :after,
+UpdateMode                        :after
     { font-weight: bold;
       color: black; }
 
@@ -520,7 +520,7 @@ ProvidesServices                  :before,
 RoleAtAffiliatedOrganization      :before,
 StandardProfessionalSuffix        :before,
 UpdateMode                        :before,
-Verified                          :before,
+Verified                          :before
     { font-weight: bold;
       color: black; }
 
@@ -531,239 +531,239 @@ Verified                          :before,
 /* Each tag is manually positioned to right-align                        */
 
 /* Key element for length = GenerationSuffix */
-GivenName,
+GivenName
          { margin-left: 110pt;
            text-indent: -88.5pt; }
-MiddleInitial,
+MiddleInitial
          { margin-left: 110pt;
            text-indent: -90pt; }
-SurName,
+SurName
          { margin-left: 110pt;
            text-indent: -67pt; }
-Prefix,
+Prefix
          { margin-left: 110pt;
            text-indent: -52.5pt; }
-GenerationSuffix,
+GenerationSuffix
          { margin-left: 110pt;
            text-indent: -108pt; }
-StandardProfessionalSuffix,
+StandardProfessionalSuffix
          { margin-left: 110pt;
            text-indent: -112pt; }
-CustomProfessionalSuffix,
+CustomProfessionalSuffix
          { margin-left: 110pt;
            text-indent: -110pt; }
-NameFormat,
+NameFormat
          { margin-left: 110pt;
            text-indent: -96pt; }
-PersonNameInformation>Comment,
+PersonNameInformation>Comment
          { margin-left: 110pt;
            text-indent: -82pt; }
 
 
 /* Key element for length = PDQAdvisoryBoard  */
-PDQAdvisoryBoard,
+PDQAdvisoryBoard
          { margin-left: 150pt;
            text-indent: -148.5pt; }
-PDQEditorialBoard,
+PDQEditorialBoard
          { margin-left: 150pt;
            text-indent: -144.5pt; }
-PDQVoluntaryProtocolReviewBoard,
+PDQVoluntaryProtocolReviewBoard
          { margin-left: 150pt;
            text-indent: -132pt; }
 
 
 /* Key element for length = MemberOfMedicalSociety */
-BoardCertifiedSpecialtyName,
+BoardCertifiedSpecialtyName
          { margin-left: 150pt;
            text-indent: -106pt; }
-Certified,
+Certified
          { margin-left: 150pt;
            text-indent: -70.5pt; }
-CertificationVerification,
+CertificationVerification
          { margin-left: 150pt;
            text-indent: -70.5pt; }
-Directory>Comment, 
+Directory>Comment
          { margin-left: 150pt;
            text-indent: -82pt; }
-PhysicianDetails>Comment,
+PhysicianDetails>Comment
          { margin-left: 150pt;
            text-indent: -82pt; }
-Directory>Date,
+Directory>Date
          { margin-left: 150pt;
            text-indent: -41pt; }
-Include,
+Include
          { margin-left: 150pt;
            text-indent: -97.5pt; }
-EnteredBy,
+EnteredBy
          { margin-left: 150pt;
            text-indent: -78.5pt; }
-CooperativeGroup,
+CooperativeGroup
          { margin-left: 150pt;
            text-indent: -139pt; }
-MemberOfMedicalSociety,
+MemberOfMedicalSociety
          { margin-left: 150pt;
            text-indent: -147.5pt; }
-OtherSpecialty,
+OtherSpecialty
          { margin-left: 150pt;
            text-indent: -112pt; }
-PreferredContactMode,
+PreferredContactMode
          { margin-left: 150pt;
            text-indent: -121pt; }
-Verified,
+Verified
          { margin-left: 150pt;
            text-indent: -70.5pt; }
 
 /* Key element for length = GeneticsTeamServices */
-Date,
+Date
          { margin-left: 150pt;
            text-indent: -41pt; }
-GeneticsSpecialtyName,
+GeneticsSpecialtyName
          { margin-left: 150pt;
            text-indent: -120.5pt; }
-GeneticsBoardName,
+GeneticsBoardName
          { margin-left: 150pt;
            text-indent: -50.5pt; }
-CertificationStatus,
+CertificationStatus
          { margin-left: 150pt;
            text-indent: -51.5pt; }
-EligibilityYear,
+EligibilityYear
          { margin-left: 150pt;
            text-indent: -100pt; }
-GeneticsBoardCertification>Comment,
+GeneticsBoardCertification>Comment
          { margin-left: 150pt;
            text-indent: -82pt; }
-InterdisciplinaryTeamMember,
+InterdisciplinaryTeamMember
          { margin-left: 150pt;
            text-indent: -148.5pt; }
-GeneticsTeamServices,
+GeneticsTeamServices
          { margin-left: 150pt;
            text-indent: -145.5pt; }
-ProvidesServices,
+ProvidesServices
          { margin-left: 150pt;
            text-indent: -126pt; }
-AcceptsCalls,
+AcceptsCalls
          { margin-left: 150pt;
            text-indent: -100.5pt; }
-ServiceLimitations,
+ServiceLimitations
          { margin-left: 150pt;
            text-indent: -100pt; }
-FamilialCancerSyndrome,
+FamilialCancerSyndrome
          { margin-left: 150pt;
            text-indent: -145.5pt; }
-MemberOfGeneticsSociety,
+MemberOfGeneticsSociety
          { margin-left: 150pt;
            text-indent: -119pt; }
-GeneticsProfessionalDetails>Comment,
+GeneticsProfessionalDetails>Comment
          { margin-left: 150pt;
            text-indent: -82pt; }
 
 /* Key element for length = PoliticalSubUnit_State */
-OrganizationLocation,
+OrganizationLocation
          { margin-left: 100pt;
            text-indent: -94pt; }
-PersonTitle,
+PersonTitle
          { margin-left: 100pt;
            text-indent: -88pt; }
-PersonRole,
+PersonRole
          { margin-left: 100pt;
            text-indent: -100pt; }
-SpecificPostalAddress>Country,
+SpecificPostalAddress>Country
          { margin-left: 100pt;
            text-indent: -76.5pt; }
-SpecificEmail,
+SpecificEmail
          { margin-left: 100pt;
            text-indent: -85pt; }
-SpecificFax,
+SpecificFax
          { margin-left: 100pt;
            text-indent: -59pt; }
-SpecificPhone,
+SpecificPhone
          { margin-left: 100pt;
            text-indent: -91pt; }
-SpecificTollFreePhone,
+SpecificTollFreePhone
          { margin-left: 100pt;
            text-indent: -88pt; }
-SpecificWebSite,
+SpecificWebSite
          { margin-left: 100pt;
            text-indent: -100.5pt; }
 
-Organization,
+Organization
          { margin-left: 100pt;
            text-indent: -93pt; }
-RoleAtAffiliatedOrganization,
+RoleAtAffiliatedOrganization
          { margin-left: 100pt;
            text-indent: -97.5pt; }
 
-CIPSContact,
+CIPSContact
          { margin-left: 100pt;
            text-indent: -91.5pt; }
 
-ProfessionalType,
+ProfessionalType
          { margin-left: 100pt;
            text-indent: -85.5pt; }
 
-UpdateMode,
+UpdateMode
          { margin-left: 100pt;
            text-indent: -101pt; }
 
 
-PersonLocations>Comment,
+PersonLocations>Comment
          { margin-left: 100pt;
            text-indent: -82pt; }
 
-CurrentStatus,
+CurrentStatus
          { margin-left: 100pt;
            text-indent: -98pt; }
-Status>EnteredBy,
+Status>EnteredBy
          { margin-left: 100pt;
            text-indent: -78.5pt; }
-Status>EntryDate,
+Status>EntryDate
          { margin-left: 100pt;
            text-indent: -75pt; }
-Status>Comment,
+Status>Comment
          { margin-left: 100pt;
            text-indent: -82pt; }
 
 /* Key element for length = DateLastModified */
 
-DateLastModified,
+DateLastModified
          { margin-left: 100pt;
            text-indent: -96pt; }
-PdqKey,
+PdqKey
          { margin-left: 100pt;
            text-indent: -71pt; }
 
 
-LegacyGeneticsData, StateCertification,
+LegacyGeneticsData, StateCertification
          { margin-left:  30pt; }
 
-LastUpdateBeforeConversion,
+LastUpdateBeforeConversion
          { margin-left: 120pt;
            text-indent: -85pt; }
-LastUpdateUserBeforeConversion,
+LastUpdateUserBeforeConversion
          { margin-left: 120pt;
            text-indent: -70.5pt; }
-LegacyID,
+LegacyID
          { margin-left: 120pt;
            text-indent: -73pt; }
-OracleID,
+OracleID
          { margin-left: 120pt;
            text-indent: -72pt; }
-OriginalCreationDate,
+OriginalCreationDate
          { margin-left: 120pt;
            text-indent:-109.5pt; }
-OriginalCreationUser,
+OriginalCreationUser
          { margin-left: 120pt;
            text-indent:-110pt; }
-LegacyUserName,
+LegacyUserName
          { margin-left: 120pt;
            text-indent: -83pt; }
-LegacyPassword,
+LegacyPassword
          { margin-left: 120pt;
            text-indent: -78pt; }
-StateCertificationNumber,
+StateCertificationNumber
          { margin-left:  90pt;
            text-indent: -64pt; }
-StateCertificationState,
+StateCertificationState
          { margin-left:  90pt;
            text-indent: -45pt; }
 
@@ -834,7 +834,7 @@ StateCertificationNumber,
 StateCertificationState,
 SurName,
 UpdateMode,
-Verified,
+Verified
     { margin-bottom: 4pt; }
 
 
@@ -904,7 +904,7 @@ StateCertificationNumber,
 StateCertificationState,
 SurName,
 UpdateMode,
-Verified,
+Verified
     { background-color: white; }
 
 AcceptsCalls                      :before,
@@ -975,5 +975,5 @@ StateCertificationNumber          :before,
 StateCertificationState           :before,
 SurName                           :before,
 UpdateMode                        :before,
-Verified                          :before,
+Verified                          :before
     { background-color: #CCCCFF; }

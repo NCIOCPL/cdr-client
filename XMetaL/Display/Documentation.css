@@ -26,38 +26,35 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
-@import "CdrCommonSchema.css";  
+@import "CdrCommonSchema.css";
 
 
-$DOCUMENT 
-
+$DOCUMENT
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        color: black;
        margin-top: 5px;
        margin-left: 5px; }
 
-$COMMENT 
-
+$COMMENT
      { display: block;
        color: purple;
        white-space: pre; }
 
-$PROCINS 
-
+$PROCINS
      { color: navy;
        font-weight: normal;
        background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+
 
 ActionDate,
 ActionDescription,
@@ -78,15 +75,13 @@ Tip,
 TopicRelationship,
 TopicSection,
 TopicText,
-TopicSectionTitle,
-
-
+TopicSectionTitle
     { display: block; }
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 
 ActionDate:before			{ content: "Date: "; }
 ActionDescription:before		{ content: "Action: "; }
@@ -109,135 +104,122 @@ Subject:before				{ content: "Keyword: "; }
 Tip:before				{ content: "Tip: "; }
 
 
-/***************************************************************************/ 
-/*                      DOCUMENT, ID, AND SUMMARY META DATA                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                      DOCUMENT, ID, AND SUMMARY META DATA                */
+/***************************************************************************/
 
 
-Metadata,
-
-   { border: solid; 
+Metadata
+   { border: solid;
      border-color: black;
      border-width: thin;
      margin-top: 1em;
      margin-bottom: 6pt; }
 
-Metadata,
-
+Metadata
      { font-size: 12pt; }
 
-DocType:before, 
-Function:before, 
-Subject:before,
-
+DocType:before,
+Function:before,
+Subject:before
      { font-weight: bold;
        font-size: 12pt;
        color: black; }
 
 
-/***************************************************************************/ 
-/*                      DOCUMENTATION TITLE                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                      DOCUMENTATION TITLE                                */
+/***************************************************************************/
 
-DocumentationTitle,
-
+DocumentationTitle
      { font-size: 20pt;
        font-weight: bold;
        margin-top: 12pt; }
 
 
-/***************************************************************************/ 
-/*                TOPOIC SECTION TITLES, INDENTS, SUBSECTIONS              */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                TOPOIC SECTION TITLES, INDENTS, SUBSECTIONS              */
+/***************************************************************************/
 
 
 DocumentationRef,
 DocumentationFragmentRef
      { color: blue; }
 
-DateLastModified:before,
-
+DateLastModified:before
      { font-weight: bold;
        font-size: 12pt;
-       color: black;  
+       color: black;
        margin-top: 15pt;
        margin-bottom: 10pt; }
 
-TopicSectionTitle,
-
+TopicSectionTitle
      { font-weight: bold;
        font-size: 14pt;
        color: blue; }
 
-TopicText>Para, 
-
+TopicText>Para
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
 Example:before,
 RelatedTopic:before,
-Tip:before,
-
+Tip:before
      { font-weight: bold;
        font-size: 12pt;
        color: blue; }
 
-Metadata:before,
-
+Metadata:before
      { font-weight: bold; }
 
-RelatedTopicID,
-
+RelatedTopicID
      { margin-left: 10pt; }
 
-OrderedList>ListTitle,
+OrderedList>ListTitle
      { font-weight: bold;
        font-size: 12pt;
        color: blue; }
 
-/***************************************************************************/ 
-/*                               TABLES                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               TABLES                                    */
+/***************************************************************************/
 
 
-TopicText>Table, 
-
+TopicText>Table
      { margin-left: 20pt;
        margin-bottom: .5em; }
 
 
 
-/***************************************************************************/ 
-/*                               FORM DATA                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                               FORM DATA                                 */
+/***************************************************************************/
 
 
 DocType:before,
 Function:before,
 Metadata,
-Subject:before,
-
+Subject:before
 	{ background-color: #CCCCFF; }
 
 
 DocType,
 Function,
-Subject,
-
+Subject
 	{ background-color: white; }
 
 
 /* Key element for length = SummaryLanguage                               */
 
-DocType,				{ margin-left: 80pt;
+DocType 				{ margin-left: 80pt;
 					  text-indent: -62pt; }
-Function,				{ margin-left: 80pt; 
+Function 				{ margin-left: 80pt;
 					  text-indent: -58.5pt;}
-Subject,				{ margin-left: 80pt; 
+Subject 				{ margin-left: 80pt;
 					  text-indent: -59pt;}
-ActionDescription,			{ margin-left: 80pt; 
+ActionDescription 			{ margin-left: 80pt;
 					  text-indent: -44pt;}
-ActionDate,				{ margin-left: 80pt; 
+ActionDate 				{ margin-left: 80pt;
 					  text-indent: -34pt;}
 
 DocType,
@@ -245,15 +227,12 @@ Example,
 Function,
 Subject,
 RelatedTopicID,
-Tip,
-
+Tip
 	{ margin-bottom: 4pt; }
 
 DateLastModified,
-DocType,
-
+DocType
 	{ margin-top: 4pt; }
 
-ListItem,
-
+ListItem
 	{ margin-top: .5em; }

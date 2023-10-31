@@ -81,7 +81,6 @@
 @import "CdrCommonSchema.css";
 
 $DOCUMENT
-
      { font-family: Arial, sans-serif;
        font-size: 12pt;
        margin-top: 5px;
@@ -89,18 +88,15 @@ $DOCUMENT
        color:black;         }
 
 $COMMENT
-
      { display: block;
        color: purple;
        white-space: pre; }
 
 $PROCINS
-
      { color: blue;
        background-color: white; }
 
-Organization,
-
+Organization
      { background-color: #CCCCFF; }
 
 
@@ -199,7 +195,7 @@ FormerName           :before { content: "Former Name & +: "; }
 CCOP                 :before { content: "CCOP * @: "; }
 CIPSContact          :before { content: "CIPS Contact *: "; }
 CIPSContactPerson    :before { content: "CIPS Contact Person & @: "; }
-ClinicalTrialsOfficeContact        
+ClinicalTrialsOfficeContact
                      :before { content: "CLINICAL TRIAL OFFICE CONTACT & @"; }
 ClinicalTrialsOfficeContactEmail
                      :before { content: "Email & @: "; }
@@ -223,39 +219,39 @@ MeetingDate[WebEx="Yes"]:after
                              { content: " (WebEx)"; }
 MeetingTime          :before { content: "Time * +: "; }
 MemberOfAdHocGroup   :before { content: "Member Ad-Hoc Grp & + @: "; }
-MemberOfCCOP[CCOPMemberType="Component"]        
+MemberOfCCOP[CCOPMemberType="Component"]
                      :before { content: "MEMBER OF CCOP [COMPONENT] & @"; }
-MemberOfCCOP[CCOPMemberType="Affiliate"]          
+MemberOfCCOP[CCOPMemberType="Affiliate"]
                      :before { content: "MEMBER OF CCOP [AFFILIATE] & @"; }
 MemberOfCCOP                 { content: "MEMBER OF CCOP & @"; }
 MemberOfCooperativeGroups    { content: "Member of Cooperative Groups & +: "; }
-MemberOfProfessionalOrganization           
+MemberOfProfessionalOrganization
                      :before { content: "Member Prof Org & +: "; }
 OfficialName > Name  :before { content: "Official Name * @: "; }
-OrganizationAdministrativeInformation       
+OrganizationAdministrativeInformation
                      :before { content: "ADMINISTRATIVE INFORMATION * + @"; }
-OrganizationAffiliations           
+OrganizationAffiliations
                      :before { content: "AFFILIATIONS &"; }
 OrganizationDetails  :before { content: "ORGANIZATION DETAILS *"; }
 OrganizationLocation :before { content: "ORGANIZATION LOCATION * + @"; }
-OrganizationLocation[PreviousLocation="Yes"]       
+OrganizationLocation[PreviousLocation="Yes"]
                  :before { content: "ORGANIZATION LOCATION [Previous] * + @"; }
 OrganizationLocations:before { content: "ORGANIZATION LOCATIONS *"; }
-OrganizationNameInformation           
+OrganizationNameInformation
                      :before { content: "ORGANIZATION NAME INFORMATION *"; }
 OrganizationType     :before { content: "Organization Type * + @: " }
-OrganizationType[Public="No"]:after    
+OrganizationType[Public="No"]:after
                              { content: " (Not public) "; }
 OrganizationType:after       { content: " (Public) "; }
 ParentOrganization   :before { content: "Parent Org & @: "; }
 PDQBoardInformation  :before { content: "PDQ BOARD INFORMATION &"; }
 PdqKey               :before { content: "PDQ Key &: "; }
 PersonAssigned       :before { content: "Person Assigned: "; }
-PreferredDirectoryContactMode           
+PreferredDirectoryContactMode
                      :before { content: "Preferred Dir Contact &: "; }
-PreferredProtocolContactMode           
+PreferredProtocolContactMode
                      :before { content: "Preferred Prot Contact &: "; }
-PreferredProtocolOrganization           
+PreferredProtocolOrganization
                      :before { content: "Preferd Protocol Org & @: "; }
 ProtocolIDAcronym    :before { content: "Protocol ID Acronym & +: "; }
 ProtocolParticipation:before { content: "Protocol Participation? *: "; }
@@ -307,20 +303,20 @@ Year                 :before
       color: black;        }
 
 
-OrganizationNameInformation:before,
+OrganizationNameInformation:before
     { margin-bottom: 1em;  }
 
 
 AffiliateMemberOf,
 MainMemberOf,
-OrganizationAdministrativeInformation,
+OrganizationAdministrativeInformation
     {  margin-top: .5em;
     margin-bottom: .5em;   }
 
 
 PDQBoardInformation,
 BoardMeetingDates,
-BoardMeetings,
+BoardMeetings
     {  margin-top: 1em;
     margin-bottom: 1em;   }
 
@@ -338,19 +334,19 @@ OrganizationLocation,
 OrganizationParent,
 PreferredProtocolOrganization,
 ProtocolIDAcronym,
-ResearchBaseFor,
+ResearchBaseFor
     { margin-top: .5em;  }
 
 
 MemberOfAdHocGroup,
 ParentOrganization,
-PreferredProtocolContactMode,
+PreferredProtocolContactMode
     { margin-top: 1em;   }
 
 
 CIPSContact,
 DateLastModified,
-OrganizationType,
+OrganizationType
     { margin-top: 1.5em; }
 
 
@@ -362,7 +358,7 @@ OrganizationAffiliations,
 OrganizationDetails,
 OrganizationLocation,
 PDQBoardInformation,
-Status,
+Status
    { border: solid;
      border-width: thin;
      border-color: black;
@@ -388,7 +384,7 @@ PersonAssigned                    :before,
 OfficialName > Name               :before,
 ParentOrganization                :before,
 ProtocolIDAcronym                 :before,
-ShortName > Name                  :before,
+ShortName > Name                  :before
    {  font-weight: bold;
       color: black;  }
 
@@ -414,7 +410,7 @@ PreferredDirectoryContactMode     :before,
 PreferredProtocolContactMode      :before,
 PreferredProtocolOrganization     :before,
 ProtocolParticipation             :before,
-ResearchBaseFor                   :before,
+ResearchBaseFor                   :before
    {  font-weight: bold;
       color: black;  }
 
@@ -426,124 +422,124 @@ ResearchBaseFor                   :before,
 
 /* Key element for length = AlternateName    */
 
-OfficialName > Name,                   { margin-left: 120pt;
+OfficialName > Name                    { margin-left: 120pt;
                                          text-indent: -105pt; }
-ShortName > Name,                      { margin-left: 120pt;
+ShortName > Name                       { margin-left: 120pt;
                                          text-indent: -112pt; }
-AlternateName,                         { margin-left: 120pt;
+AlternateName                          { margin-left: 120pt;
                                          text-indent: -116pt; }
-FormerName,                            { margin-left: 120pt;
+FormerName                             { margin-left: 120pt;
                                          text-indent: -107pt; }
-OrganizationNameInformation>Comment,   { margin-left: 120pt;
+OrganizationNameInformation>Comment    { margin-left: 120pt;
                                          text-indent: -82pt; }
-ParentOrganization,                    { margin-left: 120pt;
+ParentOrganization                     { margin-left: 120pt;
                                          text-indent: -96pt; }
-OrganizationParent>Comment,            { margin-left: 120pt;
+OrganizationParent>Comment             { margin-left: 120pt;
                                          text-indent: -82pt; }
 
 
 /* Key element for length = CIPSContactPerson     */
 
-CIPSContactPerson,                     { margin-left: 160pt;
+CIPSContactPerson                      { margin-left: 160pt;
                                          text-indent: -155pt; }
-IncludeInDirectory,                    { margin-left: 160pt;
+IncludeInDirectory                     { margin-left: 160pt;
                                          text-indent: -133.5pt; }
 OrganizationAdministrativeInformation > Date
                                        { margin-left: 160pt;
                                          text-indent: -52pt; }
-PreferredDirectoryContactMode,         { margin-left: 160pt;
+PreferredDirectoryContactMode          { margin-left: 160pt;
                                          text-indent: -140pt; }
-PreferredProtocolContactMode,          { margin-left: 160pt;
+PreferredProtocolContactMode           { margin-left: 160pt;
                                          text-indent: -147.5pt; }
-OrganizationAdministrativeInformation > Comment,
+OrganizationAdministrativeInformation > Comment
                                        { margin-left: 160pt;
                                          text-indent: -82pt; }
-OrganizationDetails > Comment,         { margin-left: 160pt;
+OrganizationDetails > Comment          { margin-left: 160pt;
                                          text-indent: -82pt; }
 
 
 /* Key element for length = PoliticalSubUnit_State    */
 
-CIPSContact,                           { margin-left: 100pt;
+CIPSContact                            { margin-left: 100pt;
                                          text-indent: -91.5pt; }
-OrganizationLocations > Comment,       { margin-left: 100pt;
+OrganizationLocations > Comment        { margin-left: 100pt;
                                          text-indent: -82pt; }
 
 
 /* Key element for length = MemberOfAdHocGroup    */
 
-ResearchBaseFor,                       { margin-left: 160pt;
+ResearchBaseFor                        { margin-left: 160pt;
                                          text-indent: -154pt; }
-MemberOfProfessionalOrganization,      { margin-left: 160pt;
+MemberOfProfessionalOrganization       { margin-left: 160pt;
                                          text-indent: -126pt; }
-CCOP,                                  { margin-left: 160pt;
+CCOP                                   { margin-left: 160pt;
                                          text-indent: -65pt; }
-MemberOfAdHocGroup,                    { margin-left: 160pt;
+MemberOfAdHocGroup                     { margin-left: 160pt;
                                          text-indent: -160pt; }
-CooperativeGroup,                      { margin-left: 160pt;
+CooperativeGroup                       { margin-left: 160pt;
                                          text-indent: -139pt; }
-ProtocolParticipation,                 { margin-left: 160pt;
+ProtocolParticipation                  { margin-left: 160pt;
                                          text-indent: -146pt; }
-MainMember,                            { margin-left: 160pt;
+MainMember                             { margin-left: 160pt;
                                          text-indent: -110pt; }
 
 
 /* Key element for length = PreferredProtocolOrganization    */
 
-ProtocolIDAcronym,                     { margin-left: 160pt;
+ProtocolIDAcronym                      { margin-left: 160pt;
                                          text-indent: -148pt; }
 
-PreferredProtocolOrganization,         { margin-left: 160pt;
+PreferredProtocolOrganization          { margin-left: 160pt;
                                          text-indent: -152pt; }
-OrganizationType,                      { margin-left: 160pt;
+OrganizationType                       { margin-left: 160pt;
                                          text-indent: -145pt; }
 
-CurrentStatus,                         { margin-left: 100pt;
+CurrentStatus                          { margin-left: 100pt;
                                          text-indent: -98.5pt; }
-Status>Comment,                        { margin-left: 100pt;
+Status>Comment                         { margin-left: 100pt;
                                          text-indent: -82pt; }
-        
+
 
 /* Key element for length = DateLastModified    */
 
-DateLastModified,                      { margin-left: 100pt;
+DateLastModified                       { margin-left: 100pt;
                                          text-indent: -96pt; }
-PdqKey,                                { margin-left: 100pt;
+PdqKey                                 { margin-left: 100pt;
                                          text-indent: -71pt; }
 
 
-ClinicalTrialsOfficeContactEmail       { margin-left: 110pt; 
+ClinicalTrialsOfficeContactEmail       { margin-left: 110pt;
                                          text-indent: -96pt; }
-ClinicalTrialsOfficeContactPhone       { margin-left: 110pt; 
+ClinicalTrialsOfficeContactPhone       { margin-left: 110pt;
                                          text-indent: -107pt; }
-ClinicalTrialsOfficeContactName        { margin-left: 110pt; 
+ClinicalTrialsOfficeContactName        { margin-left: 110pt;
                                          text-indent: -82.5pt; }
 
-AdvisoryBoardFor                       { margin-left: 160pt; 
+AdvisoryBoardFor                       { margin-left: 160pt;
                                          text-indent: -112.5pt; }
-BoardDescription                       { margin-left: 160pt; 
+BoardDescription                       { margin-left: 160pt;
                                          text-indent: -82pt; }
-BoardManager                           { margin-left: 160pt; 
+BoardManager                           { margin-left: 160pt;
                                          text-indent: -65pt; }
-BoardManagerPhone                      { margin-left: 160pt; 
+BoardManagerPhone                      { margin-left: 160pt;
                                          text-indent: -68pt; }
-BoardManagerEmail                      { margin-left: 160pt; 
+BoardManagerEmail                      { margin-left: 160pt;
                                          text-indent: -62pt; }
-BoardNameTranslation                   { margin-left: 160pt; 
+BoardNameTranslation                   { margin-left: 160pt;
                                          text-indent:-133.5pt; }
-LOESummary                             { margin-left: 160pt; 
+LOESummary                             { margin-left: 160pt;
                                          text-indent: -113pt; }
-ShowReviewerInfo                       { margin-left: 160pt; 
+ShowReviewerInfo                       { margin-left: 160pt;
                                          text-indent: -134pt; }
-DayTime                                { margin-left: 100pt; 
+DayTime                                { margin-left: 100pt;
                                          text-indent: -43.5pt; }
 BoardMeetings                          { margin-left:  30pt; }
 BoardMeeting                           { margin-left:  30pt; }
-BoardMeetingDates > Year               { margin-left: 100pt; 
+BoardMeetingDates > Year               { margin-left: 100pt;
                                          text-indent: -41.5pt; }
-BoardMeeting > MeetingDate             { margin-left: 100pt; 
+BoardMeeting > MeetingDate             { margin-left: 100pt;
                                          text-indent: -51.5pt; }
-BoardMeeting > MeetingTime             { margin-left: 100pt; 
+BoardMeeting > MeetingTime             { margin-left: 100pt;
                                          text-indent: -53pt; }
 BoardMeeting > MediaLink               { margin-left: 100pt;
                                          text-indent: -79pt; }

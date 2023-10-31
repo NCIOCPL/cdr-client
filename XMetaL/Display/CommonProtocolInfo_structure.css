@@ -49,17 +49,14 @@
 /* top-level elements */
 
 $DOCUMENT > *
-
      { margin-left: 0px;  }
 
 $PROCINS
-
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-OutOfScopeProtocol,
-
+OutOfScopeProtocol
      { background-color: white; }
 
 
@@ -82,7 +79,7 @@ ChangeType,
 Citation,
 CitationSource,
 Comment,
-ProtocolProcessingDetails>Comment, 
+ProtocolProcessingDetails>Comment,
 Condition,
 DateCompleted,
 DatedAction,
@@ -153,7 +150,7 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-User,
+User
    { display: block; }
 
 
@@ -288,7 +285,7 @@ ProtocolSpecialCategory           :before,
 PublishedResults                  :before,
 RelatedPublications               :before,
 StudyCategory                     :before,
-TitleType                         :before,
+TitleType                         :before
    {  font-weight: bold;
       color: black;  }
 
@@ -339,7 +336,7 @@ Stratification                    :before,
 StudyCategoryName                 :before,
 StudyFocus                        :before,
 TreatmentIntervention             :before,
-User                              :before,
+User                              :before
    {  font-weight: bold;
       color: black;  }
 
@@ -372,7 +369,7 @@ SourceWebsite                     :before,
 SpecialCategory                   :before,
 StudyCategoryType                 :before,
 StudyCategoryName                 :before,
-StudyType                         :before,
+StudyType                         :before
    {  font-weight: bold;
       color: black;  }
 
@@ -393,7 +390,7 @@ ProtocolSpecialCategory,
 PublishedResults,
 RelatedDocuments,
 RelatedPublications,
-ProtocolTitle,
+ProtocolTitle
    { border: none;  }
 
 
@@ -415,7 +412,7 @@ ChangeType,
 Citation,
 CitationSource,
 Comment,
-ProtocolProcessingDetails>Comment, 
+ProtocolProcessingDetails>Comment,
 Condition,
 DateCompleted,
 DateReceived,
@@ -483,7 +480,7 @@ StudyCategory,
 StudyType,
 TitleType,
 TreatmentIntervention,
-User,
+User
    {  color: white;
       background-color: white;  }
 
@@ -498,7 +495,7 @@ ProtocolProcessingDetails>Comment :before,
 DatedAction,
 ProcessingDate                    :before,
 ProcessingStatus                  :before,
-ProtocolProcessingDetails,
+ProtocolProcessingDetails
      { background-color: white; }
 
 /* Green = Scientific Information                                        */
@@ -603,7 +600,7 @@ SupplementaryInfoLink             :before,
 TreatmentIntervention,
 ProtocolIDs                       :before,
 TitleType                         :before,
-User                              :before,
+User                              :before
      { background-color: white; }
 
 
@@ -627,7 +624,7 @@ ArmOrGroupType,
 ChangeType,
 Citation,
 CitationSource,
-ProtocolProcessingDetails>Comment,  
+ProtocolProcessingDetails>Comment,
 ProcessingStatusInfo>Comment,
 DatedAction>Comment,
 Eligibility>Comment,
@@ -661,7 +658,7 @@ Gene,
 HealthyVolunteers,
 HighAge,
 IDString,
-IDType,     
+IDType,
 InScopeDocID,
 InterventionDescription,
 InterventionNameLink,
@@ -686,7 +683,7 @@ StudyFocus,
 StudyType,
 SupplementaryInfoLink,
 TitleType,
-User,
+User
      { text-indent: 0pt; }
 
 

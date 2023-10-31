@@ -3,7 +3,7 @@
  */
 
 
-@import "CdrCommonSchema_structure.css"; 
+@import "CdrCommonSchema_structure.css";
 @import "CommonProtocolInfo_structure.css";
 
 @sq-plus-minus;
@@ -18,31 +18,28 @@
 	  margin-top: 0px;
 	  margin-bottom: 0px;
 	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	  font-style: normal;
 	  font-weight: bold;
 	  color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-InScopeProtocol,
-
+InScopeProtocol
 	{ background-color: white; }
 
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
 Affiliation,
 AgeText,
 ArmOrGroup,
@@ -190,9 +187,9 @@ StudyType,
 Surname,
 URL,
 VerificationDate
-    { display: block; 
-      text-indent: 0pt; 
-      color: white; 
+    { display: block;
+      text-indent: 0pt;
+      color: white;
       background-color: white;
       border: none; }
 
@@ -332,13 +329,13 @@ StudyType                    :before,
 Surname                      :before,
 URL                          :before,
 VerificationDate             :before
-    { color: black; 
+    { color: black;
       background-color: white; }
 
 
-/***************************************************************************/ 
-/*                      BEFORE AND AFTER TAGS                              */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                      BEFORE AND AFTER TAGS                              */
+/***************************************************************************/
 /* CDR Doc Control   */
 CdrDocCtl                         :before { content: "CDR DOC CONTROL"; }
 DocId                             :before { content: "Doc ID"; }
@@ -493,10 +490,10 @@ VerificationDate                  :before { content: "Verification Date"; }
 
 
 
-/***************************************************************************/ 
-/*                     NON-DISPLAY ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                     NON-DISPLAY ELEMENTS                                */
+/***************************************************************************/
+
 
 Para, ListItem
 
@@ -504,11 +501,10 @@ Para, ListItem
 
 
 
-/***************************************************************************/ 
-/*                     COUNTER DEFINITIONS                                 */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                     COUNTER DEFINITIONS                                 */
+/***************************************************************************/
 
-Location,
-  
+
+Location
      { counter-increment: Loc;  }

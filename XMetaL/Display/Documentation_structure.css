@@ -34,11 +34,11 @@
 
 
 
-/**************************************************************************/ 
-/*                     DEFAULT PROPERTIES                                 */ 
-/**************************************************************************/ 
+/**************************************************************************/
+/*                     DEFAULT PROPERTIES                                 */
+/**************************************************************************/
 
-@import "CdrCommonSchema_Structure.css";  
+@import "CdrCommonSchema_Structure.css";
 
 @sq-plus-minus;
 
@@ -52,27 +52,25 @@
 	  margin-top: 0px;
 	  margin-bottom: 0px;
 	  font-family: Arial, sans-serif;
-	  font-size: 10pt; 
+	  font-size: 10pt;
 	  font-style: normal;
 	  font-weight: bold;
 	  color: black; }
 
 /* top-level elements */
 
-$DOCUMENT > * 
-
+$DOCUMENT > *
      { margin-left: 0px;  }
 
-$PROCINS 
-
+$PROCINS
      { color: white;
        font-weight: normal;
        background-color: white;}
 
-/***************************************************************************/ 
-/*                           BLOCK ELEMENTS                                */ 
-/***************************************************************************/ 
-  
+/***************************************************************************/
+/*                           BLOCK ELEMENTS                                */
+/***************************************************************************/
+
 
 ActionDate,
 ActionDescription,
@@ -93,15 +91,14 @@ Tip,
 TopicRelationship,
 TopicSection,
 TopicSectionTitle,
-TopicText,
-
+TopicText
     { display: block; }
 
 
 
-/***************************************************************************/ 
-/*                       BEFORE AND AFTER TAGS                             */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                       BEFORE AND AFTER TAGS                             */
+/***************************************************************************/
 
 
 Body:before				{ content: "Body "; }
@@ -130,9 +127,9 @@ TopicText:before			{ content: "Text "; }
 
 
 
-/***************************************************************************/ 
-/*                             HEADINGS                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                             HEADINGS                                    */
+/***************************************************************************/
 
 
 Documentation:before,
@@ -140,55 +137,50 @@ Metadata:before,
 Para:before,
 RelatedTopic:before,
 TopicRelationship:before,
-TopicSection:before,
-
-     { color: black; 
+TopicSection:before
+     { color: black;
        font-weight: bold;
        font-size: 10pt; }
 
-DocumentationTitle:before,
-
+DocumentationTitle:before
      { color: navy;
        font-weight: bold; }
 
 DocType:before,
 Function:before,
-Subject:before,
-
+Subject:before
 	{ font-size: 10pt; }
 
 
-/***************************************************************************/ 
-/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                 TAG PROPERTIES FOR TEXT INPUT FIELDS                    */
+/***************************************************************************/
 
 
 DateLastModified:before,
 Example:before,
 Tip:before,
 Example:before,
-TopicText:before,
-
-     { color: black; 
-       font-weight: bold; 
+TopicText:before
+     { color: black;
+       font-weight: bold;
        font-size: 10pt; }
 
 
 
-/***************************************************************************/ 
-/*                            BORDER CONTROL                               */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            BORDER CONTROL                               */
+/***************************************************************************/
 
 
-Metadata,
-
+Metadata
      { border: none; }
 
 
 
-/***************************************************************************/ 
-/*                            HIDE TEXT                                    */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            HIDE TEXT                                    */
+/***************************************************************************/
 
 
 ActionDate,
@@ -201,8 +193,7 @@ Example,
 Metadata,
 Tip,
 TopicSection,
-TopicText,
-
+TopicText
      { color: white;
        background-color: white; }
 
@@ -213,41 +204,37 @@ Para,
 ItemizedList,
 OrderedList,
 Tip,
-TopicText,
-
+TopicText
      { display: none; }
 
 
 
-/***************************************************************************/ 
-/*                            DISPLAY TEXT                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            DISPLAY TEXT                                 */
+/***************************************************************************/
 
 DocType,
 DocumentationTitle,
 Function,
 RelatedTopicID,
 Subject,
-TopicSectionTitle,
-
+TopicSectionTitle
      { color: navy;
        font-weight: bold; }
 
 
-/***************************************************************************/ 
-/*                            FORM CONTROL                                 */ 
-/***************************************************************************/ 
+/***************************************************************************/
+/*                            FORM CONTROL                                 */
+/***************************************************************************/
 
 DocType:before,
 Function:before,
-Subject:before,
-
+Subject:before
 	{ background-color: white; }
 
 
 DocType,
 Function,
-Subject,
-
+Subject
 	{ text-indent: 0pt; }
 

@@ -29,7 +29,7 @@ $PROCINS
     { color: blue;
       background-color: white; }
 
-PDQBoardMemberInfo,
+PDQBoardMemberInfo
     { background-color: #CCCCFF; }
 
 
@@ -81,7 +81,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { display: block; }
 
 
@@ -146,8 +146,7 @@ TermStartDate                :before { content: "Term Start Date &: "; }
 TransferFromBoard            :before { content: "Transfer from Board &: "; }
 
 /*
-SpecificBoardMemberContact,
-
+SpecificBoardMemberContact
    { border: solid;
      border-color: black;
      border-width: thin;
@@ -162,14 +161,14 @@ BoardMemberContact                :before,
 BoardMembershipDetails            :before,
 BoardMemberName                   :before,
 EditorInChief                     :before,
-SpecificBoardMemberContact        :before,
+SpecificBoardMemberContact        :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
 
 BoardMemberAssistant              :before,
 BoardMembershipDetails            :before,
-SpecificBoardMemberContact        :before,
+SpecificBoardMemberContact        :before
     { margin-bottom: 1em; }
 
 
@@ -178,10 +177,10 @@ BoardContactOrganizationName,
 BoardName,
 ConflictOfInterestFormSigned,
 EditorInChief>TermStartDate,
-PersonContactID,
+PersonContactID
     { margin-top: .5em;  }
 
-AreaOfExpertise,
+AreaOfExpertise
          { margin-top: 1em; }
 
 
@@ -197,7 +196,7 @@ BoardContactPhone
 Affiliations                      :before,
 BoardMemberAssistant              :before,
 BoardMembershipDetails            :before,
-SpecificBoardMemberContact        :before,
+SpecificBoardMemberContact        :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
@@ -205,14 +204,14 @@ SpecificBoardMemberContact        :before,
 Affiliations,
 BoardMemberAssistant,
 BoardMembershipDetails,
-SpecificBoardMemberContact,
+SpecificBoardMemberContact
     { border: solid;
       border-color: black;
       border-width: thin;
       margin-top: 1em;
       margin-bottom: 6pt; }
 
-DatedAction,
+DatedAction
     { border: none; }
 
 
@@ -264,7 +263,7 @@ TerminationDate                   :before,
 TerminationReason                 :before,
 TermRenewalFrequency              :before,
 TermStartDate                     :before,
-TransferFromBoard                 :before,
+TransferFromBoard                 :before
     { font-weight: bold;
       color: black; }
 
@@ -278,7 +277,7 @@ ResponseToInvitation              :before,
 TermRenewalFrequency              :before,
 TermEndReason                     :before,
 TerminationReason                 :before,
-AreaOfExpertise                   :before,
+AreaOfExpertise                   :before
     { font-weight: bold;
       color: black; }
 
@@ -298,92 +297,92 @@ AffiliationPlace
            text-indent: -48.5pt; }
 
 /* Contact Information */
-BoardMemberName,
+BoardMemberName
          { margin-left:  88pt;
            text-indent: -88.5pt; }
-BoardMemberContactMode,
+BoardMemberContactMode
          { margin-left: 100pt;
            text-indent: -98pt; }
-PersonContactID,
+PersonContactID
          { margin-left: 100pt;
            text-indent: -106pt; }
-GovernmentEmployee,
+GovernmentEmployee
          { margin-left: 100pt;
            text-indent: -106pt; }
 
 /*  Board Member Assistant     */
-AssistantEmail,
+AssistantEmail
          { margin-left: 100pt;
            text-indent: -67pt; }
-AssistantFax,
+AssistantFax
          { margin-left: 100pt;
            text-indent: -41.5pt; }
-AssistantName,
+AssistantName
          { margin-left: 100pt;
            text-indent: -48pt; }
-AssistantPhone,
+AssistantPhone
          { margin-left: 100pt;
            text-indent: -61pt; }
-BoardContactEmail,
+BoardContactEmail
          { margin-left: 100pt;
            text-indent: -67pt; }
-BoardContactFax,
+BoardContactFax
          { margin-left: 100pt;
            text-indent: -44.5pt; }
-BoardContactPhone,
+BoardContactPhone
          { margin-left: 100pt;
            text-indent: -67.5pt; }
-BoardContactPostalAddress>Country,
+BoardContactPostalAddress>Country
          { margin-left: 100pt;
            text-indent: -77pt; }
-PostalCode_Zip,
+PostalCode_Zip
          { margin-left: 100pt;
            text-indent: -99.5pt; }
 
 /* Board Membership Details */
-AreaOfExpertise,
+AreaOfExpertise
          { margin-left: 135pt;
            text-indent: -118.5pt; }
-BoardName,
+BoardName
          { margin-left: 135pt;
            text-indent: -87pt; }
-CurrentMember,
+CurrentMember
          { margin-left: 135pt;
            text-indent: -108pt; }
-EditorInChief>TermEndDate,
+EditorInChief>TermEndDate
          { margin-left: 135pt;
            text-indent: -108.5pt; }
-EditorInChief>TermStartDate,
+EditorInChief>TermStartDate
          { margin-left: 135pt;
            text-indent: -107pt; }
-InvitationDate,
+InvitationDate
          { margin-left: 135pt;
            text-indent: -97.5pt; }
-MemberOfSubgroup,
+MemberOfSubgroup
          { margin-left: 135pt;
            text-indent: -127pt; }
-RecommendedBy,
+RecommendedBy
          { margin-left: 135pt;
            text-indent: -126pt; }
-ResponseDate,
+ResponseDate
          { margin-left: 135pt;
            text-indent: -108pt; }
-ResponseToInvitation,
+ResponseToInvitation
          { margin-left: 135pt;
            text-indent: -119.5pt; }
-TermRenewalFrequency,
+TermRenewalFrequency
          { margin-left: 135pt;
            text-indent: -121.5pt; }
-TerminationDate,
+TerminationDate
          { margin-left: 135pt;
            text-indent: -118pt; }
-TerminationReason,
+TerminationReason
          { margin-left: 135pt;
            text-indent: -136pt; }
-TermStartDate,
+TermStartDate
          { margin-left: 135pt;
            text-indent: -108.5pt; }
-TransferFromBoard,
+TransferFromBoard
          { margin-left: 135pt;
            text-indent: -135.5pt; }
 
@@ -453,7 +452,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { margin-bottom: 4pt; }
 
 
@@ -499,7 +498,7 @@ TerminationDate,
 TerminationReason,
 TermRenewalFrequency,
 TermStartDate,
-TransferFromBoard,
+TransferFromBoard
     { background-color: white; }
 
 Affiliation                       :before,
@@ -543,5 +542,5 @@ TerminationDate                   :before,
 TerminationReason                 :before,
 TermRenewalFrequency              :before,
 TermStartDate                     :before,
-TransferFromBoard                 :before,
+TransferFromBoard                 :before
     { background-color: #CCCCFF; }

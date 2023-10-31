@@ -30,7 +30,7 @@ $PROCINS
       font-weight: normal;
       background-color: white; }
 
-GlossaryTermConcept,
+GlossaryTermConcept
     { background-color: #CCCCFF;
       text-decoration: none;
       color: black; }
@@ -71,7 +71,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-TranslationResource,
+TranslationResource
     { display: block; }
 
 
@@ -121,16 +121,16 @@ ReplacementText              :before { content: "Replacemnt Txt & + @: "; }
 ReplacementText              :after  { content: " ["attr(name)"]"; }
 StatusDate                   :before { content: "Status Date &: "; }
 TranslatedTermDefinition     :before { content: "TRANSLATED DEFINITION ["attr(language)"] * +"; }
-TranslatedTermDefinition>DefinitionText       
+TranslatedTermDefinition>DefinitionText
                              :before { content: "Definition *: "; }
 TranslatedStatus             :before { content: "Def Status &: "; }
 TranslatedStatusDate         :before { content: "Status Date *: "; }
-TermDefinition>TranslatedStatusDate                      
+TermDefinition>TranslatedStatusDate
                              :before { content: "Status Date &: "; }
-TranslatedTermDefinition>TranslatedStatusDate                      
+TranslatedTermDefinition>TranslatedStatusDate
                              :before { content: "Status Date &: "; }
 TermDefinition               :before { content: "TERM DEFINITION * +"; }
-TermDefinition>DefinitionText       
+TermDefinition>DefinitionText
                              :before { content: "Term Definition *: "; }
 TermName                     :before { content: "Term Name *: "; }
 TermPronunciation            :before { content: "Pronunciation &: "; }
@@ -148,12 +148,12 @@ MediaLink,
 ProcessingStatuses,
 TranslatedTermDefinition,
 TermDefinition,
-TermSource,
+TermSource
     { margin-top: 1em; }
 
 MediaLink,
 ProcessingStatus,
-ProcessingStatuses,
+ProcessingStatuses
     { margin-bottom: 1em; }
 
 /***************************************************************************/
@@ -186,11 +186,11 @@ TranslatedTermDefinition     :before,
 TermDefinition               :before,
 TermName                     :before,
 TermPronunciation            :before,
-TranslationResource          :before,
+TranslationResource          :before
     { font-weight: bold;
       color: black; }
 
-ReplacementText              :after,
+ReplacementText              :after
     { font-weight: bold;
       color: teal; }
 
@@ -200,7 +200,7 @@ ReplacementText              :after,
 TermDefinition,
 ProcessingStatuses,
 RelatedInformation,
-TranslatedTermDefinition,
+TranslatedTermDefinition
     { border: solid;
       border-color: black;
       border-width: thin;
@@ -214,7 +214,7 @@ TranslatedTermDefinition,
 PdqKey:before,
 TermSource:before,
 TermStatus:before,
-TermType:before,
+TermType:before
     {  font-weight: bold;
        color: black; }
 
@@ -228,11 +228,11 @@ TermType:before,
 
 Audience                     { margin-left: 135pt;
                                text-indent: -79.5pt; }
-Comment,                     { margin-left: 135pt;
+Comment                      { margin-left: 135pt;
                                text-indent: -107pt; }
-DateLastModified,            { margin-left: 135pt;
+DateLastModified             { margin-left: 135pt;
                                text-indent: -97pt; }
-DateLastReviewed,            { margin-left: 135pt;
+DateLastReviewed             { margin-left: 135pt;
                                text-indent: -104pt; }
 DefinitionResource           { margin-left: 135pt;
                                text-indent: -108pt; }
@@ -240,9 +240,9 @@ DefinitionStatus             { margin-left: 135pt;
                                text-indent: -79.5pt; }
 Dictionary                   { margin-left: 135pt;
                                text-indent: -88.5pt; }
-NCIThesaurusID,              { margin-left: 135pt;
+NCIThesaurusID               { margin-left: 135pt;
                                text-indent: -118pt; }
-/* 
+/*
 ProcessingStatus             { margin-left: 135pt; }
 ProcessingStatusValue        { margin-left:   0pt;
                                text-indent: -62pt; }
@@ -252,52 +252,52 @@ ProcessingStatus > Comment   { margin-left:   0pt;
 ProcessingStatus             { margin-left:  20pt; }
 ProcessingStatusValue        { margin-left:  20pt; }
 
-ProcessingStatus Comment     { margin-left:   0pt; 
+ProcessingStatus Comment     { margin-left:   0pt;
                                text-indent:   0pt; }
 ProcessingStatus  Comment    { margin-left:  20pt; }
 
-PronunciationResource,       { margin-left: 135pt;
+PronunciationResource        { margin-left: 135pt;
                                text-indent: -116.5pt; }
-PdqKey,                      { margin-left: 135pt;
+PdqKey                       { margin-left: 135pt;
                                text-indent: -71pt; }
-PDQTerm,                     { margin-left: 135pt;
+PDQTerm                      { margin-left: 135pt;
                                text-indent: -79pt; }
-ReplacementText,             { margin-left: 135pt;
+ReplacementText              { margin-left: 135pt;
                                text-indent: -134pt; }
-RelatedDrugSummaryLink,      { margin-left: 135pt;
+RelatedDrugSummaryLink       { margin-left: 135pt;
                                text-indent: -120pt; }
-RelatedExternalRef,          { margin-left: 135pt;
+RelatedExternalRef           { margin-left: 135pt;
                                text-indent: -105pt; }
-RelatedSummaryRef,           { margin-left: 135pt;
+RelatedSummaryRef            { margin-left: 135pt;
                                text-indent: -112.5pt; }
-RelatedGlossaryTermNameLink, { margin-left: 135pt;
+RelatedGlossaryTermNameLink  { margin-left: 135pt;
                                text-indent: -124.5pt; }
 StatusDate                   { margin-left: 135pt;
                                text-indent: -86pt; }
-TermName,                    { margin-left: 135pt;
+TermName                     { margin-left: 135pt;
                                text-indent: -81pt; }
-TermPronunciation,           { margin-left: 135pt;
+TermPronunciation            { margin-left: 135pt;
                                text-indent: -101pt; }
-TermSource,                  { margin-left: 135pt;
+TermSource                   { margin-left: 135pt;
                                text-indent: -89pt; }
-TermType,                    { margin-left: 135pt;
+TermType                     { margin-left: 135pt;
                                text-indent: -86pt; }
-TermStatus,                  { margin-left: 135pt;
+TermStatus                   { margin-left: 135pt;
                                text-indent: -85pt; }
-TermDefinition>DefinitionText,          
+TermDefinition>DefinitionText
                              { margin-left: 135pt;
                                text-indent: -102.5pt; }
 TranslationResource          { margin-left: 135pt;
                                text-indent: -121.5pt; }
-TranslatedTermDefinition>DateLastModified, 
+TranslatedTermDefinition>DateLastModified
                              { margin-left: 135pt;
                                text-indent: -97pt; }
-TranslatedTermDefinition>DefinitionText,   
+TranslatedTermDefinition>DefinitionText
                              { margin-left: 135pt;
                                text-indent: -70.5pt; }
 TranslatedStatus             { margin-left: 135pt;
                                text-indent: -79.5pt; }
-TranslatedStatusDate,        { margin-left: 135pt;
+TranslatedStatusDate         { margin-left: 135pt;
                                text-indent: -86pt; }
 
 
@@ -306,7 +306,7 @@ TranslatedStatusDate,        { margin-left: 135pt;
 /* ******************************************************* */
 /* Section Heading Margins                                 */
 /* ******************************************************* */
-TermName,
+TermName
     { margin-top: 1em; }
 
 
@@ -322,12 +322,12 @@ DefinitionStatus,
 DefinitionText,
 Dictionary,
 NCIThesaurusID,
-PdqKey, 
+PdqKey,
 PDQTerm,
 ProcessingStatusValue,
 PronunciationResource,
 RelatedDrugSummaryLink,
-RelatedExternalRef, 
+RelatedExternalRef,
 RelatedSummaryRef,
 RelatedGlossaryTermNameLink,
 ReplacementText,
@@ -341,7 +341,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-TranslationResource,
+TranslationResource
     { margin-bottom: 4pt; }
 
 
@@ -357,7 +357,7 @@ DefinitionStatus,
 DefinitionText,
 Dictionary,
 NCIThesaurusID,
-PdqKey, 
+PdqKey,
 PDQTerm,
 ProcessingStatusValue,
 PronunciationResource,
@@ -374,7 +374,7 @@ TermPronunciation,
 TermSource,
 TermStatus,
 TermType,
-TranslationResource,
+TranslationResource
     { background-color: white; }
 
 
@@ -383,7 +383,7 @@ DateLastModified             :before,
 DateLastReviewed             :before,
 DefinitionResource           :before,
 NCIThesaurusID               :before,
-PdqKey                       :before, 
+PdqKey                       :before,
 PDQTerm                      :before,
 ProcessingStatusValue        :before,
 PronunciationResource        :before,
@@ -400,7 +400,7 @@ TermPronunciation            :before,
 TermSource                   :before,
 TermStatus                   :before,
 TermType                     :before,
-TranslationResource          :before,
+TranslationResource          :before
     { background-color: #CCCCFF; }  /* light blue */
 
 
@@ -409,12 +409,12 @@ TermDefinition *:before
     { background-color: #FFCC99; }  /* brown */
 
 TranslatedTermDefinition,
-TranslatedTermDefinition *:before,
+TranslatedTermDefinition *:before
     { background-color: #99FFFF; }  /* another light-blue */
 
 
 /* Need to reset the Inline elements */
-PlaceHolder                  :before,
-    { background-color: white;  
+PlaceHolder                  :before
+    { background-color: white;
       font-weight: bold;
       color: teal; }

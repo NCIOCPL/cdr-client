@@ -108,7 +108,7 @@ Table,
 TollFreePhone,
 TT,
 VideoID,
-WebSite,
+WebSite
     { display: block; }
 
 
@@ -149,7 +149,7 @@ SummaryFragmentLink,
 SummaryFragmentRef,
 SummaryLink,
 SummaryRef,
-Superscript,
+Superscript
     { display: inline;  }
 
 
@@ -218,7 +218,7 @@ PostalAddress                :before,
 QandAEntry                   :before,
 QandADiv                     :before,
 Table                        :before,
-TT                           :before,
+TT                           :before
      { color: black;
        font-size: 10pt;
        font-weight: bold; }
@@ -241,7 +241,7 @@ RelatedDocuments             :before,
 Street                       :before,
 SupplementaryInfoLink        :before,
 TollFreePhone                :before,
-WebSite                      :before,
+WebSite                      :before
      { color:  black;
        font-weight: bold;    }
 
@@ -250,7 +250,7 @@ WebSite                      :before,
 /*      TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS           */
 /***************************************************************************/
 PostalAddress>Country        :before,
-PoliticalSubUnit_State       :before,
+PoliticalSubUnit_State       :before
      { font-weight: bold;
        color: black;      }
 
@@ -262,7 +262,7 @@ PoliticalSubUnit_State       :before,
 CdrDocCtl,
 DatedAction,
 PostalAddress,
-RelatedDocuments,
+RelatedDocuments
      { border: none;  }
 
 ActionDate                   :before,
@@ -307,7 +307,7 @@ WebSite                      :before
 
 CdrDocCtl,
 DocId,
-DocTitle,
+DocTitle
      { text-indent: 0pt; }
 
 Caption,
@@ -329,14 +329,14 @@ Street,
 SupplementaryInfoLink,
 TollFreePhone,
 VideoID,
-WebSite,
+WebSite
      { text-indent: 0pt; }
 
 /* Dated Actions  */
 
 ActionDate,
 ActionDescription,
-DatedAction>Comment,
+DatedAction>Comment
      { text-indent: 0pt; }
 
 
@@ -384,7 +384,7 @@ Table,
 TollFreePhone,
 TT,
 VideoID,
-WebSite,
+WebSite
      { color: white;
        background-color: white; }
 
@@ -474,7 +474,7 @@ TitleMarkupElements,
   Strong,
   Subscript,
   Superscript,
-Table>Title,
+Table>Title
    {display: none; }
 
 

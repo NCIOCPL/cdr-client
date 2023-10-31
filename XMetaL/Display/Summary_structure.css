@@ -297,22 +297,22 @@ WillReplace                       :before { content: "Will Replace"; }
 /*************************************************************************/
 /*                     COUNTER DEFINITIONS                               */
 /*************************************************************************/
-SummarySection,
+SummarySection
     { counter-reset: para; }
 
-Para,
+Para
     { counter-increment: para; }
 
-SummarySection>SummarySection,
+SummarySection>SummarySection
     { counter-reset: subpara; }
 
-SummarySection>SummarySection>Para,
+SummarySection>SummarySection>Para
     { counter-increment: subpara; }
 
-QandADiv,
+QandADiv
     { counter-reset: qanda; }
 
-QandAEntry,
+QandAEntry
     { counter-increment: qanda; }
 
 
@@ -325,11 +325,11 @@ SecondaryTopics                   :before,
 SectMetaData                      :before,
 Summary                           :before,
 SummaryMetaData                   :before,
-SummaryTitle                      :before,
+SummaryTitle                      :before
     { color: black;
       font-weight: bold; }
 
-SummarySection                    :before,
+SummarySection                    :before
     { color: navy;
       font-weight: bold; }
 
@@ -359,7 +359,7 @@ ResponseToComment                 :before
       background-color: white; }
 
 SummarySection>SummarySection>Title:before,
-SummarySection>SummarySection>Title,
+SummarySection>SummarySection>Title
     { font-style: italic; }
 
 
@@ -431,12 +431,12 @@ TypeOfChange                      :before,
 TypeOfSummaryChange               :before,
 TypeOfSummaryChangeValue          :before,
 VideoID                           :before,
-WillReplace                       :before,
+WillReplace                       :before
     { color: black;
       font-weight: bold;
       font-size: 10pt; }
 
-Title,
+Title
     { color: black;
       font-weight: normal;  }
 

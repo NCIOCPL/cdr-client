@@ -25,7 +25,7 @@ $PROCINS
     { color: blue;
       background-color: white; }
 
-Licensee,
+Licensee
     { background-color: #CCCCFF;  }
 
 /***************************************************************************/
@@ -70,7 +70,7 @@ TestActivation,
 TestExtension,
 TestInactivation,
 UsageDescription,
-UserName,
+UserName
     { display: block; }
 
 
@@ -112,7 +112,7 @@ LicenseeNameInformation:before { content: "LICENSEE NAME INFORMATION &: "; }
 LicenseeStatus         :before { content: "Status &: "; }
 LicenseeStatusDates    :before { content: "STATUS DATES &: "; }
 LicenseeType           :before { content: "Licensee Type &: "; }
-ApplicationInformation>Name 
+ApplicationInformation>Name
                        :before { content: "Application Info &: "; }
 OfficialName>Name      :before { content: "Official Name *: "; }
 AlternateName>Name     :before { content: "Alternate Name & +: "; }
@@ -150,7 +150,7 @@ LicenseeNameInformation,
 LicenseeStatusDates,
 OfficicalName,
 OtherNames,
-Statistics,
+Statistics
     { margin-bottom: 1em;  }
 
 ApplicationInformation>Audiences,
@@ -159,7 +159,7 @@ DisplayOfSummaries,
 InterestedDocTypes,
 LicenseeStatusDates,
 LicenseeType,
-Statistics,
+Statistics
     { margin-top: 1em;  }
 
 
@@ -169,7 +169,7 @@ Statistics,
 ApplicationInformation,
 ContactPersons,
 FtpInformation,
-LicenseeInformation,
+LicenseeInformation
     { border: solid;
       border-color: black;
       border-width: thin;
@@ -220,7 +220,7 @@ TestActivation         :before,
 TestExtension          :before,
 TestInactivation       :before,
 UsageDescription       :before,
-UserName               :before,
+UserName               :before
     {  font-weight: bold;
        color: black;       }
 
@@ -229,7 +229,7 @@ UserName               :before,
 /*         TAG PROPERTIES FOR ENUMERATED VALUES AND PICKLIST FIELDS        */
 /***************************************************************************/
 /* some properties don't get applied on the first element in a list        */
-Verified:before,
+Verified:before
     {  font-weight: bold;
        color: black;  }
 
@@ -241,93 +241,93 @@ Verified:before,
 /* Key element for length = GenerationSuffix    */
 
 /* LicenseeInformation Group */
-LicenseeNameInformation,
+LicenseeNameInformation
     { margin-left: 30pt; }
-  Comment,
+  Comment
     { margin-left: 100pt;
       text-indent: -76pt; }
-  OfficialName,
-    { margin-left: 100pt; 
+  OfficialName
+    { margin-left: 100pt;
       text-indent: -91pt; }
-  AlternateName,
-    { margin-left: 100pt; 
+  AlternateName
+    { margin-left: 100pt;
       text-indent:-117pt; }
-  FormerName,
-    { margin-left: 100pt; 
+  FormerName
+    { margin-left: 100pt;
       text-indent:-107pt; }
 
-LicenseeDepartment,
+LicenseeDepartment
     { margin-left: 130pt;
-      text-indent: -87pt; }  
-LicenseeStatus,
+      text-indent: -87pt; }
+LicenseeStatus
     { margin-left: 130pt;
-      text-indent: -57pt; }  
-LicenseeType,
+      text-indent: -57pt; }
+LicenseeType
     { margin-left: 130pt;
-      text-indent:-103.5pt; }  
-ContentTranslation,
+      text-indent:-103.5pt; }
+ContentTranslation
     { margin-left: 130pt;
-      text-indent: -93pt; }  
-UsageDescription,
+      text-indent: -93pt; }
+UsageDescription
     { margin-left: 130pt;
-      text-indent:-125pt; }  
-InterestedDocTypes,
-    { margin-left: 30pt; }  
-DocType,
-    { margin-left: 100pt;
-      text-indent:-84pt; }  
-DisplayOfSummaries,
-    { margin-left: 30pt; }  
-Display,
-    { margin-left: 100pt;
-      text-indent:-73pt; }  
-
-LicenseeStatusDates,
+      text-indent:-125pt; }
+InterestedDocTypes
     { margin-left: 30pt; }
-  ProductionActivation,
+DocType
     { margin-left: 100pt;
-      text-indent:-108pt; }  
-  ProductionInactivation,
+      text-indent:-84pt; }
+DisplayOfSummaries
+    { margin-left: 30pt; }
+Display
     { margin-left: 100pt;
-      text-indent:-117pt; }  
-  TestActivation,
-    { margin-left: 100pt;
-      text-indent:-100.5pt; }  
-  TestExtension,
-    { margin-left: 100pt;
-      text-indent:-106pt; }  
-  TestInactivation,
-    { margin-left: 100pt;
-      text-indent:-114pt; }  
+      text-indent:-73pt; }
 
-  UserName,
+LicenseeStatusDates
+    { margin-left: 30pt; }
+  ProductionActivation
+    { margin-left: 100pt;
+      text-indent:-108pt; }
+  ProductionInactivation
+    { margin-left: 100pt;
+      text-indent:-117pt; }
+  TestActivation
+    { margin-left: 100pt;
+      text-indent:-100.5pt; }
+  TestExtension
+    { margin-left: 100pt;
+      text-indent:-106pt; }
+  TestInactivation
+    { margin-left: 100pt;
+      text-indent:-114pt; }
+
+  UserName
     { margin-left: 130pt;
-      text-indent: -83pt; }  
-  SecondaryUserName,
+      text-indent: -83pt; }
+  SecondaryUserName
     { margin-left: 130pt;
-      text-indent: -109pt; }  
-  ExternalGmailAddress,
+      text-indent: -109pt; }
+  ExternalGmailAddress
     { margin-left: 130pt;
-      text-indent: -103pt; }  
-  Password,
+      text-indent: -103pt; }
+  Password
     { margin-left: 130pt;
-      text-indent: -78pt; }  
-  AccountBlocked,
+      text-indent: -78pt; }
+  AccountBlocked
     { margin-left: 130pt;
-      text-indent:-114pt; }  
+      text-indent:-114pt; }
 
 /* Technical Contacts Group */
-ContactDetail,  ContactPerson,
+ContactDetail,  ContactPerson
     { margin-left:  30pt; }
-  ContactName,
+  ContactName
     { margin-left: 100pt;
-      text-indent: -49pt; }  
-  ContactRole,
+      text-indent: -49pt; }
+  ContactRole
     { margin-left: 100pt;
-      text-indent: -57pt; }  
+      text-indent: -57pt; }
 
 /* Technical Contacts Group */
-ApplicationInformation,
+ApplicationInformation
     { margin-left:   0pt; }
 
   DistributionMethods, Audiences, PostalAddress
@@ -336,21 +336,21 @@ ApplicationInformation,
   PostallAddress *
     { text-indent: -30pt; }
 
-    DistributionMethod, Audience,
+    DistributionMethod, Audience
     { margin-left: 130pt;
-      text-indent: -7.5pt; }  
+      text-indent: -7.5pt; }
 
 /* Misc Info Group */
 Status
     { margin-left: 130pt; }
 
-DateLastModified,
+DateLastModified
     { margin-left: 130pt;
-      text-indent:-126pt; }  
+      text-indent:-126pt; }
 
-OrganizationType,
+OrganizationType
     { margin-left: 130pt;
-      text-indent: -73pt; }  
+      text-indent: -73pt; }
 
 
 
@@ -384,7 +384,7 @@ TestExtension,
 TestInactivation,
 UsageDescription,
 UserName,
-Web,
+Web
     { margin-bottom: 4pt; }
 
 
@@ -420,7 +420,7 @@ TestActivation,
 TestExtension,
 TestInactivation,
 UsageDescription,
-Web,
+Web
     { background-color: white; }
 
 AccountBlocked         :before,
@@ -451,5 +451,5 @@ TestActivation         :before,
 TestExtension          :before,
 TestInactivation       :before,
 UsageDescription       :before,
-Web                    :before,
+Web                    :before
     { background-color: #CCCCFF; }
