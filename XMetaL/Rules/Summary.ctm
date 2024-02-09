@@ -3,7 +3,7 @@
 <!-- Added Jean's couleurs. -->
 <DTDExtensions Version="2.0">
  <ElementPropertiesList>
-    <!--
+    <!-- 
         Do not remove following option or validation might fail!!!
         The option preserves inline whitespace.
     -->
@@ -868,6 +868,9 @@
    <Name>SummarySection</Name>
    <MiniTemplate><![CDATA[<SummarySection>
           <SectMetaData>
+            <Diagnosis><?xm-replace_text {
+                   Optionally select a diagnosis
+                   }?></Diagnosis>
             <SectionType><?xm-replace_text {
                    Optionally select a section type
                    }?></SectionType>
@@ -1031,6 +1034,9 @@
   <Template>
    <Name>SectMetaData</Name>
    <MiniTemplate><![CDATA[<SectMetaData>
+     <Diagnosis><?xm-replace_text {
+                   Optionally select a diagnosis
+                   }?></Diagnosis>
      <SectionType><?xm-replace_text {
                    Optionally select a section type
                    }?></SectionType>

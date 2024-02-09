@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
-<Summary xmlns:cdr="cips.nci.nih.gov/cdr" AvailableAsModule="Yes"
-                                                       SVPC="Yes"
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr" AvailableAsModule="Yes" 
+                                                       SVPC="Yes" 
                                   SuppressOnThisPageSection="Yes">
  <CdrDocCtl>
   <DocId><?xm-replace_text {
@@ -50,6 +50,9 @@
  </SummarySection>
  <SummarySection>
   <SectMetaData>
+   <Diagnosis><?xm-replace_text {
+         Optionally select a diagnosis
+         }?></Diagnosis>
    <SectionType><?xm-replace_text {
          Optionally select a section type
          }?></SectionType>
@@ -72,7 +75,7 @@
   <Para>Los sumarios del PDQ con información sobre el cáncer se
          revisan con regularidad y se actualizan en la medida en que se
          obtiene nueva información. Esta sección describe los cambios
-         más recientes introducidos en este sumario a partir de la
+         más recientes introducidos en este sumario a partir de la 
          fecha arriba indicada.</Para>
   <Para><?xm-replace_text {
          Texto...
