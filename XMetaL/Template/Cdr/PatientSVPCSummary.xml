@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE Summary SYSTEM "Summary.dtd">
-<Summary xmlns:cdr="cips.nci.nih.gov/cdr" AvailableAsModule="Yes" 
-                                                       SVPC="Yes" 
+<Summary xmlns:cdr="cips.nci.nih.gov/cdr" AvailableAsModule="Yes"
+                                                       SVPC="Yes"
                                   SuppressOnThisPageSection="Yes">
  <CdrDocCtl>
   <DocId><?xm-replace_text {
@@ -50,9 +50,6 @@
  </SummarySection>
  <SummarySection>
   <SectMetaData>
-   <Diagnosis><?xm-replace_text {
-         Optionally select a diagnosis
-         }?></Diagnosis>
    <SectionType><?xm-replace_text {
          Optionally select a section type
          }?></SectionType>
@@ -72,12 +69,12 @@
    <SectionType>Changes to summary</SectionType>
   </SectMetaData>
   <Title>Latest Updates to This PDQ Summary (MM/DD/YYYY)</Title>
-  <Para>The PDQ cancer information summaries are reviewed regularly 
-         and updated as new information becomes available.  This section 
-         describes the latest changes made to this summary as of the 
+  <Para>The PDQ cancer information summaries are reviewed regularly
+         and updated as new information becomes available.  This section
+         describes the latest changes made to this summary as of the
          date above.</Para>
   <Para>
-   <StandardWording>This summary was completely reformatted and some 
+   <StandardWording>This summary was completely reformatted and some
          content was added.</StandardWording></Para>
  </SummarySection>
  <DateLastModified><?xm-replace_text {
