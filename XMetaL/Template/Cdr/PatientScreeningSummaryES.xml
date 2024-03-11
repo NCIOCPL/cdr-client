@@ -57,8 +57,9 @@
   <Title>Información general sobre el cáncer de X</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>El cáncer de X es una enfermedad en la que se forman 
          células malignas (cancerosas) en X.</KeyPoint>
@@ -80,7 +81,9 @@
   </SummarySection>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>A, B y C pueden afectar el riesgo de enfermarse de 
          cáncer de X.</KeyPoint>

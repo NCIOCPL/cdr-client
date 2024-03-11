@@ -35,7 +35,9 @@
  <AltTitle TitleType="Short">Prevención del cáncer de X</AltTitle>
  <SummarySection>
   <SectMetaData>
-   <SectionType>Rationale for prevention</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
   </SectMetaData>
 
   <Title>¿Qué es prevención?</Title>
@@ -71,8 +73,9 @@
   <Title>Información general sobre el cáncer de X</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>El cáncer de X es una enfermedad por la que las células 
          malignas (cancerosas) en x.</KeyPoint>
@@ -83,7 +86,9 @@
    
   <SummarySection>
    <SectMetaData>
-    <SectionType>Incidence</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint><?xm-replace_text {
          Incidence key point
@@ -98,7 +103,9 @@
   <Title>Prevención del cáncer de X</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Prevention methods</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Evitar los factores de riesgo y aumentar los factores de 
          protección puede ayudar a prevenir el cáncer.</KeyPoint>
@@ -109,7 +116,9 @@
 
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Los siguentes factores de <Emphasis>riesgo</Emphasis> 
          pueden aumentar las posibilidades de cáncer de X:</KeyPoint>
@@ -134,7 +143,9 @@
 
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Los siguientes factores de <Emphasis>protección</Emphasis> 
          pueden disminuir el riesgo de cáncer de X:</KeyPoint>
@@ -156,7 +167,9 @@
     
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>No se comprobó si los siguientes aspectos son factores 
          de riesgo para el cáncer de X; tampoco se conocen sus efectos 
@@ -203,7 +216,9 @@
     
   <SummarySection>
    <SectMetaData>
-    <SectionType>Current clinical trials</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>En los ensayos clínicos se estudian nuevas maneras de 
          prevenir el cáncer de X.</KeyPoint>

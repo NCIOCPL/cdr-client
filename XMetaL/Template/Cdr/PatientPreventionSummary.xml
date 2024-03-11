@@ -37,7 +37,9 @@
          }?></AltTitle>
  <SummarySection>
   <SectMetaData>
-   <SectionType>Rationale for prevention</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
   </SectMetaData>
 
   <Title>What is prevention?</Title>
@@ -70,8 +72,9 @@
   <Title>General Information About X Cancer</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
          form in the x.</KeyPoint>
@@ -86,7 +89,9 @@
   </SummarySection>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Incidence</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint><?xm-replace_text {
          Incidence key point
@@ -101,7 +106,9 @@
   <Title>X Cancer Prevention</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Prevention methods</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>Avoiding risk factors and increasing protective factors may 
          help prevent cancer.</KeyPoint>
@@ -111,7 +118,9 @@
 
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>The following <Emphasis>risk</Emphasis> factors may increase 
          the risk of x cancer:</KeyPoint>
@@ -141,7 +150,9 @@
    </SummarySection></SummarySection>
    <SummarySection>
     <SectMetaData>
-     <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
     </SectMetaData>
     <KeyPoint>The following <Emphasis>protective</Emphasis> factors may 
          decrease the risk of x cancer:</KeyPoint>
@@ -171,7 +182,9 @@
     </SummarySection></SummarySection>
     <SummarySection>
     <SectMetaData>
-     <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
     </SectMetaData>
     <KeyPoint>
      <Comment>Include and tailor to each summary, if applicable: </Comment>
@@ -226,7 +239,9 @@
  
    <SummarySection>
     <SectMetaData>
-     <SectionType>Current clinical trials</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
     </SectMetaData>
     <KeyPoint>
      <Comment>Clinical trial key point if applicable:</Comment> 

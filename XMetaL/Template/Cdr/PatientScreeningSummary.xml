@@ -54,8 +54,9 @@
   <Title>General Information About X Cancer</Title>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
          form in the x.</KeyPoint>
@@ -83,7 +84,9 @@
   </SummarySection>
   <SummarySection>
    <SectMetaData>
-    <SectionType>Risk factors</SectionType>
+    <SectionType><?xm-replace_text {
+         Enter section type
+         }?></SectionType>
    </SectMetaData>
    <KeyPoint>A, B, and C can affect the risk of developing x cancer.</KeyPoint>
    <Para>Anything that increases the chance of getting a disease is 
