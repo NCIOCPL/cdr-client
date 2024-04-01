@@ -34,11 +34,6 @@
  <SummaryTitle>Prevención del cáncer de X</SummaryTitle>
  <AltTitle TitleType="Short">Prevención del cáncer de X</AltTitle>
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
 
   <Title>¿Qué es prevención?</Title>
   <Para>La prevención es un conjunto de acciones destinadas a reducir 
@@ -72,11 +67,6 @@
  <SummarySection>
   <Title>Información general sobre el cáncer de X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>El cáncer de X es una enfermedad por la que las células 
          malignas (cancerosas) en x.</KeyPoint>
   
@@ -85,11 +75,6 @@
   </SummarySection>
    
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint><?xm-replace_text {
          Incidence key point
          }?></KeyPoint>
@@ -102,11 +87,6 @@
  <SummarySection>
   <Title>Prevención del cáncer de X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Evitar los factores de riesgo y aumentar los factores de 
          protección puede ayudar a prevenir el cáncer.</KeyPoint>
          
@@ -115,11 +95,6 @@
   </SummarySection>
 
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los siguentes factores de <Emphasis>riesgo</Emphasis> 
          pueden aumentar las posibilidades de cáncer de X:</KeyPoint>
    <SummarySection>
@@ -142,11 +117,6 @@
   </SummarySection>
 
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los siguientes factores de <Emphasis>protección</Emphasis> 
          pueden disminuir el riesgo de cáncer de X:</KeyPoint>
    <SummarySection>
@@ -166,11 +136,6 @@
   </SummarySection>
     
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>No se comprobó si los siguientes aspectos son factores 
          de riesgo para el cáncer de X; tampoco se conocen sus efectos 
          sobre el riesgo de este tipo de cáncer:</KeyPoint>
@@ -215,11 +180,6 @@
   </SummarySection>
     
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>En los ensayos clínicos se estudian nuevas maneras de 
          prevenir el cáncer de X.</KeyPoint>
    <Para>Los ensayos clínicos se realizan en muchas partes del país. 

@@ -49,11 +49,6 @@
          }?></Para>
  </SummarySection>
  <SummarySection>
-  <SectMetaData>
-   <SectionType><?xm-replace_text {
-         Optionally select a section type
-         }?></SectionType>
-  </SectMetaData>
   <Title><?xm-replace_text {
          Section title
          }?></Title>

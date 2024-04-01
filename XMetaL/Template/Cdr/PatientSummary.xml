@@ -33,11 +33,6 @@
  <SummarySection>
   <Title>General Information About X Cancer</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
          form in the tissues of the x.</KeyPoint>
    <Para><?xm-replace_text {
@@ -45,11 +40,6 @@
          }?></Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>A, B, C can [insert "affect" or "increase" as appropriate] 
          the risk of developing x cancer.</KeyPoint>
    <Para>Anything that increases your risk of getting a disease is called 
@@ -74,11 +64,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>X cancer is sometimes caused by inherited gene 
          mutations.</KeyPoint>
    <ItemizedList Style="bullet"> 
@@ -94,11 +79,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Possible signs of x cancer include A, B, C.</KeyPoint>
    <Para>These and other symptoms may be caused by x cancer. Other 
          conditions may cause the same symptoms. A doctor should be 
@@ -119,11 +99,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Tests that examine the A, B, and C are used to detect (find) 
          and diagnose x cancer.</KeyPoint>
    <Para>The following tests and procedures may be used:</Para>
@@ -148,11 +123,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Certain factors affect prognosis (chance of recovery) and 
          treatment options.</KeyPoint>
    <Para>The prognosis (chance of recovery) depends on the following: 
@@ -194,11 +164,6 @@
  <SummarySection>
   <Title>Stages of X Cancer</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>After x cancer has been diagnosed, tests are done to find 
          out if cancer cells have spread within the x or to other parts 
          of the body.</KeyPoint>
@@ -224,21 +189,11 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>There are three ways that cancer spreads in the body.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000584249#_22">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>The following stages are used for x cancer: 
     <Comment>[Linking note: Link first occurrence of all glossary terms 
          under each stage or substage.]</Comment></KeyPoint>
@@ -268,11 +223,6 @@
  </SummarySection>
 
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>Recurrent X Cancer</Title>
   <Para>Recurrent x cancer is cancer that has recurred (come back) after 
         it has been treated. The cancer may come back in the x or in 
@@ -282,11 +232,6 @@
  <SummarySection>
   <Title>Treatment Option Overview</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>There are different types of treatment for patients 
          with x cancer.</KeyPoint>
    <Para>
@@ -316,11 +261,6 @@
          to patients who have not started treatment.</Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Children with x cancer should have their treatment planned 
          by a team of health care providers who are experts in treating 
          cancer in children. <Comment>[Use for childhood treatment 
@@ -370,11 +310,6 @@
    </Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint># types of standard treatment are used:</KeyPoint>
    <SummarySection>
     <KeyPoint>Surgery</KeyPoint>
@@ -437,11 +372,6 @@
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>New types of treatment are being tested in clinical 
          trials.</KeyPoint>
    <Para>This summary section describes treatments that are being 
@@ -466,33 +396,18 @@
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Patients may want to think about taking part in a 
          clinical trial.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000584249#_13">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Patients can enter clinical trials before, during, or 
          after starting their cancer treatment.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000584249#_28">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Follow-up tests may be needed.</KeyPoint>
   <MiscellaneousDocLink cdr:ref="CDR0000584249#_32">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
@@ -500,19 +415,12 @@
  </SummarySection>
 
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>Treatment Options by Stage</Title>
   <MiscellaneousDocLink cdr:ref="CDR0000584249#_36">Patient Summary
          Fragments;Patient summary fragments</MiscellaneousDocLink>
   <Comment>[Linking note: Link first occurrence of all glossary terms 
         under each stage or substage.]</Comment>
   <SummarySection>
-   <SectMetaData>
-   </SectMetaData>
    <Title>Stage 0 (Carcinoma in Situ)</Title>
    <Para>Treatment of stage 0 (carcinoma in situ) may include the 
          following:</Para>
@@ -527,8 +435,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-   </SectMetaData>
    <Title>Stage I X Cancer</Title>
    <Para>Treatment of stage I x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
@@ -542,8 +448,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-   </SectMetaData>
    <Title>Stage II X Cancer</Title>
    <Para>Treatment of stage II x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
@@ -557,8 +461,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-   </SectMetaData>
    <Title>Stage III X Cancer</Title>
    <Para>Treatment of stage III x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
@@ -572,8 +474,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-   </SectMetaData>
    <Title>Stage IV X Cancer</Title>
    <Para>Treatment of stage IV x cancer may include the following:</Para>
    <ItemizedList Style="bullet">
@@ -589,11 +489,6 @@
  </SummarySection>
 
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>Treatment Options for Recurrent X Cancer</Title>
   <Para>Treatment of recurrent x cancer may include the following:</Para>
   <ItemizedList Style="bullet">
@@ -608,11 +503,6 @@
  </SummarySection>
 
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>To Learn More About X Cancer</Title>
   <Para>For more information from the National Cancer Institute 
         about x cancer, see the following:</Para>

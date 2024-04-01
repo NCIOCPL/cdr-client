@@ -31,11 +31,6 @@
  <SummarySection>
   <Title>Información general sobre el cáncer del X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>El cáncer del X es una enfermedad por la cual se forman 
          células malignas (cancerosas) en los tejidos del x.</KeyPoint>
    <Para><?xm-replace_text {
@@ -43,11 +38,6 @@
          }?></Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>A, B, C pueden influir o aumentar en el riesgo de padecer 
          de cáncer de x.</KeyPoint>
    <Para>Cualquier cosa que aumenta el riesgo de padecer de 
@@ -70,11 +60,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los signos posibles de cáncer de x
          incluyen A, B, C.</KeyPoint>
    <Para>Estos y otros síntomas se pueden deber al cáncer de x. 
@@ -94,11 +79,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Para detectar (encontrar) y diagnosticar el cáncer de x,
          se utilizan pruebas que examinan el A, B, y C.</KeyPoint>
    <Para>Se pueden utilizar las siguientes pruebas y procedimientos:</Para>
@@ -111,11 +91,6 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Ciertos factores afectan el pronóstico (probabilidad de
          recuperación) y las opciones de tratamiento.</KeyPoint>
    <Para>El pronóstico (probabilidad de recuperación) depende de los
@@ -140,11 +115,6 @@
   </SummarySection>
  </SummarySection>
  <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
   <Title>Estadios de cáncer de X</Title>
   <SummarySection>
    <KeyPoint>Después que se diagnostica el cáncer del x, se 
@@ -168,20 +138,10 @@
    </ItemizedList>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>El cáncer se disemina en el cuerpo de tres maneras.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000586392#_13">Patient Summary Fragments[Spanish] [_13]</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Se utilizan los siguientes
          estadios para el cáncer de x:</KeyPoint>
    <SummarySection>
@@ -371,11 +331,6 @@
    </SummarySection>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Se están probando nuevos tipos de tratamiento en 
          ensayos clínicos.</KeyPoint>
    <Para>En la presente sección del sumario se hace referencia a 
@@ -399,43 +354,23 @@
          }?></Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los pacientes deben pensar en participar en un ensayo 
          clínico.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000586392#_15">Patient Summary Fragments[Spanish] [_15]</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los pacientes pueden entrar a formar parte de los ensayos 
          clínicos antes, durante o después de comenzar su tratamiento para 
          el cáncer.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000586392#_16">Patient Summary Fragments[Spanish] [_16]</MiscellaneousDocLink>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Pueden necesitarse pruebas de seguimiento.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000586392#_17">Patient Summary Fragments[Spanish] [_17]</MiscellaneousDocLink>
   </SummarySection>
  </SummarySection>
 
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>Opciones de tratamiento por estadios</Title>
   <MiscellaneousDocLink cdr:ref="CDR0000586392#_18">Patient Summary Fragments[Spanish] [_18]</MiscellaneousDocLink>
   <SummarySection>
@@ -509,11 +444,6 @@
   </ItemizedList>
  </SummarySection>
  <SummarySection>
-  <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-  </SectMetaData>
   <Title>Información adicional sobre el cáncer del x</Title>
   <Para>Para obtener mayor información en inglés del Instituto Nacional 
          del Cáncer sobre <?xm-replace_text {
