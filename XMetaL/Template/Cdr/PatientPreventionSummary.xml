@@ -36,10 +36,6 @@
          Alternate Summary title
          }?></AltTitle>
  <SummarySection>
-  <SectMetaData>
-   <SectionType>Rationale for prevention</SectionType>
-  </SectMetaData>
-
   <Title>What is prevention?</Title>
    <Para>Cancer prevention is action taken to lower the chance of getting 
          cancer. By preventing cancer, the number of new cases of cancer 
@@ -69,10 +65,6 @@
  <SummarySection>
   <Title>General Information About X Cancer</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
-   </SectMetaData>
    <KeyPoint>X cancer is a disease in which malignant (cancer) cells 
          form in the x.</KeyPoint>
    <Para><?xm-replace_text {
@@ -85,9 +77,6 @@
    </Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Incidence</SectionType>
-   </SectMetaData>
    <KeyPoint><?xm-replace_text {
          Incidence key point
          }?></KeyPoint>
@@ -100,9 +89,6 @@
  <SummarySection>
   <Title>X Cancer Prevention</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Prevention methods</SectionType>
-   </SectMetaData>
    <KeyPoint>Avoiding risk factors and increasing protective factors may 
          help prevent cancer.</KeyPoint>
    <MiscellaneousDocLink cdr:ref="CDR0000584249#_52">Patient Summary
@@ -110,9 +96,6 @@
   </SummarySection>
 
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Risk factors</SectionType>
-   </SectMetaData>
    <KeyPoint>The following <Emphasis>risk</Emphasis> factors may increase 
          the risk of x cancer:</KeyPoint>
    <SummarySection>
@@ -140,9 +123,6 @@
          }?></Para>
    </SummarySection></SummarySection>
    <SummarySection>
-    <SectMetaData>
-     <SectionType>Risk factors</SectionType>
-    </SectMetaData>
     <KeyPoint>The following <Emphasis>protective</Emphasis> factors may 
          decrease the risk of x cancer:</KeyPoint>
     <SummarySection>
@@ -170,9 +150,6 @@
          }?></Para>
     </SummarySection></SummarySection>
     <SummarySection>
-    <SectMetaData>
-     <SectionType>Risk factors</SectionType>
-    </SectMetaData>
     <KeyPoint>
      <Comment>Include and tailor to each summary, if applicable: </Comment>
      The following have been proven not to be risk factors for x cancer or 
@@ -225,9 +202,6 @@
    </SummarySection>
  
    <SummarySection>
-    <SectMetaData>
-     <SectionType>Current clinical trials</SectionType>
-    </SectMetaData>
     <KeyPoint>
      <Comment>Clinical trial key point if applicable:</Comment> 
      New ways to prevent x cancer are being studied in clinical 
