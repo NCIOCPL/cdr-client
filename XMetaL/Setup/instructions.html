@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CDR XMetaL Installation</title>
     <style>
-      body { font-family: Verdana, Helvetica, Arial, sans-serif }
-      main { width: 80%; margin: 0 auto; }
-      code { font-size: 1.1em; color: maroon; }
-      h1, footer { text-align: center; }
-      h1, h2, h3, h4 { color: navy; }
-      ul { margin-top: 1rem; margin-bottom: 1rem; }
-      ul > li { list-style-type: disc; }
-      .note { color: green; font-size: .9em; font-style: italic; }
-      .important {
-          color: #b11;
-          border: 1px solid #b11;
-          padding: 1rem;
-          font-size: .95em;
-          font-style: italic;
-      }
-      .important code {
-          display: block;
-          margin: .5rem 2rem;
-          font-style: normal;
-      }
-      .important code.mobile { display: none; }
-      @media only screen and (max-width: 600px) {
-          .important code { display: none; }
-          .important code.mobile { display: block; margin-left: 1rem; }
-          main { width: 100%; margin: 0; }
-          ul { padding-left: 1rem; }
-          ol { padding-left: 1.5rem; }
-      }
+     body { font-family: Verdana, Helvetica, Arial, sans-serif }
+     main { width: 80%; margin: 0 auto; }
+     code { font-size: 1.1em; color: maroon; }
+     h1, footer { text-align: center; }
+     h1, h2, h3, h4 { color: navy; }
+     ul { margin-top: 1rem; margin-bottom: 1rem; }
+     ul > li { list-style-type: disc; }
+     img { margin: 1rem auto 2rem; max-width: 100%}
+     .note { color: green; font-size: .9em; font-style: italic; }
+     .important {
+         color: #b11;
+         border: 1px solid #b11;
+         padding: 1rem;
+         font-size: .95em;
+         font-style: italic;
+     }
+     .important code {
+         display: block;
+         margin: .5rem 2rem;
+         font-style: normal;
+     }
+     .important code.mobile { display: none; }
+     @media only screen and (max-width: 600px) {
+         .important code { display: none; }
+         .important code.mobile { display: block; margin-left: 1rem; }
+         main { width: 100%; margin: 0; }
+         ul { padding-left: 1rem; }
+         ol { padding-left: 1.5rem; }
+     }
     </style>
   </head>
   <body>
@@ -47,114 +48,164 @@
         desktop. It is recommended that this folder be retained on the
         desktop after setup, in case the <code>repair-xmetal.cmd</code>
         script is needed at some time in the future, and to preserve the
-        location of the XMetaL 17 license file.
+        location of the XMetaL 17 license file. If at some point in the
+        future you are instructed to refresh the contents of the folder in
+        order to be able to take advantage of new enhancements or bug fixes,
+        drag the folder to the desktop again, and when asked whether to
+        replace or skip files, choose <em>Replace the files in the
+        destination</em>.
       </p>
       <p>
         A normal installation for a new machine should take under ten minutes
-        providing no unexpected problems arise. Allow fifteen minutes for an
-        upgrade of a machine currently running the 9.0 version of CDR XMetaL.
+        providing no unexpected problems arise.
       </p>
-      <h3>Steps run with elevated privileges</h3>
       <p>
-        These first two steps require permission to install software on the
-        machine. All of the CDR XMetaL users should have that permission.
-        You will need to file a ticket to have CBIIT grant that permission
-        if it is missing.
+        These steps require permission to install software on the machine.
+        All of the current CDR XMetaL users are in the NCI CIPS CDR USERS
+        security group and should have that permission but users need to
+        refresh the security policies to ensure that they have the current
+        version of those policies applied. You will need to file a
+        ticket to have CBIIT grant that permission if it is missing.
+        To run a command double-click on the command file in Windows Explorer.
+        You will be presented with the <em>BeyondTrust Privilege Manager</em>
+        window. Select <em>One-Off Task: I need to install an application</em>
+        and click </strong>OK</strong> to proceed with the installation.
+      </p>
+      <p>
+        Note that for the names of the commands invoked, the <code>.cmd</code>
+        suffix may not be displayed if your computer is configured to suppress
+        display of file-type suffixes.
+      </p>
+      <h3>Refresh Security Policies</h3>
+      <p>
+        Perform these steps to refresh security policies on your laptop before
+        starting the installation processes. You do not need to be connected
+        to the NIH VPN to perform the following steps. If you receive a failure
+        message, ensure that you’re not connected to the NIH VPN then try
+        again.
       </p>
       <ol>
         <li>
-          <h4>Install XMetaL 17</h4>
-          <ul>
-            <li>
-              right-click on <code>install-xmetal.cmd</code> in this folder
-            </li>
-            <li>select <em>Run elevated</em></li>
-            <li>submit the justification and password</li>
-            <li>expected time for this script is well under a minute</li>
-            <li>
-              if XMetaL 9 needs to be uninstalled, the script may
-              take 2-4 minutes longer
-            </li>
-          </ul>
+          Click on the Hidden Icons up arrow sign at the lower right corner of
+          your laptop.
+          <br>
+          <img src="media\UpArrow.png" alt="Up Arrow Icon">
         </li>
         <li>
-          <h4>Install Python 3.11</h4>
-          <ul>
-            <li>
-              right-click on <code>install-python.cmd</code> in this folder
-            </li>
-            <li>select <em>Run elevated</em></li>
-            <li>submit the justification and password</li>
-            <li>
-              if a failure is reported which is not easily corrected,
-              contact the CDR developers, providing any error output
-              and logs from the PythonFiles subdirectory
-            </li>
-            <li>
-              note that we try an uninstall first, in case a misconfigured
-              installation is in place; will do nothing in most cases
-            </li>
-            <li>
-              expected time for this script is under two minutes (under
-              three minutes if an uninstall is required)
-            </li>
-          </ul>
+          Locate the <em>BeyondTrust Privilege Management</em> icon
+          in the list of applications displayed.
+          <br>
+          <img src="media\BeyondTrust.png" alt="BeyondTrust Icon">
+        </li>
+        <li>
+          Right-click on that icon and select <em>Refresh all policies</em>
+          from the context menu which appears.
+          <br>
+          <img src="media\BeyondTrustRightClick.png"
+               alt="BeyondTrust Right Click">
+        </li>
+        <ul>
+          <li>
+            You should get a notification about the status of the refresh.
+            Ensure that the message is not a failure message. It is OK if
+            you get the message <em>No Policy updates were found at this
+            time. You have the latest version available</em>.
+            <br>
+            <img src="media\BeyondTrustNotification.png"
+                 alt="BeyondTrust Notification">
+          </li>
+          <li>
+            The message could also be hidden in the Notifications section of
+            your laptop. Click on the Notifications icon to reveal the
+            messages.
+            <br>
+            <img src="media\BeyondTrustNotificationHidden.png"
+                 alt="BeyondTrust Notification Hidden">
+            <br>
+            <img src="media\BeyondTrustNotificationHiddenRevealed.png"
+                 alt="BeyondTrust Notification Hidden Revealed">
+          </li>
+          <li>
+            If you see a failure message like the one below, disconnect
+            from the VPN (if you’re connected) and try to Refresh the
+            policies again.
+            If you’re not connected to the VPN and you continue to get
+            a failure message, report this problem before proceeding with
+            the installation.
+            <br>
+            <img src="media\BeyondTrustFailure.png"
+                 alt="BeyondTrust Notification Hidden Revealed">
+          </li>
+          <li>
+            It is OK if you receive a <em>Refresh Complete</em> message
+            like the one below:
+            <br>
+            <img src="media\BeyondTrustComplete.png"
+                 alt="BeyondTrust Notification Hidden Revealed">
+          </li>
+          <li>
+            Once you have confirmed that the policy update has been
+            successful, you may continue with the next steps of the
+            installation.
+          </li>
+        </ul>
+        <li>
+          <strong>Please take note of the following when you begin the
+          installation process</strong>: When you attempt to install
+          software by double-clicking on a file, you will be presented
+          with a window to choose a justification for the installation.
+          Select <em>One-Off Task: I need to install an application</em>
+          and click OK to proceed with the installation.
+          <br>
+          <img src="media\BeyondTrustJustification.png"
+               alt="BeyondTrust Notification Hidden Revealed">
         </li>
       </ol>
-
-      <h3>Steps run as the CDR XMetaL user</h3>
-      <p class="important">
-        This next step <strong>must</strong> be taken logged in as the user.
-        Do not attempt to run this as admin.
-        If you do, the client files will be setup for your admin account
-        <code>C:\Users\ADMINUSER\AppData\Roaming\SoftQuad\XMetaL\17.0</code>
-        <code class="mobile">C:\Users\ADMINUSER\AppData\...</code>
-        instead of the user running XMetaL
-        <code>C:\Users\USERNAME\AppData\Roaming\SoftQuad\XMetaL\17.0</code>
-        <code class="mobile">C:\Users\USERNAME\AppData\...</code>
-        If necessary (because the user does not have sufficient
-        permissions to run a script), add the user temporarily to a
-        group which does have such permissions.
-      </p>
-      <ol start="3">
+      <h3>Basic Installation Steps</h3>
+      <ol>
         <li>
-          <h4>Install the CDR client files</h4>
-          <ul>
-            <li>
-              right-click on the <code>run-setup.cmd</code> script and select
-              <em>Run elevated</em>, entering the user's password
-              and justification when prompted
-            </li>
-            <li>
-              the script will say where it found XMetaL and will
-              describe what it is about to do, identifying the source
-              and destination directories; you can abort at this point
-              if something doesn't look right, but that's pretty
-              unlikely, and in most cases you should just press the
-              <b>Enter</b> key to proceed
-            </li>
-            <li>
-              the script generally takes less than a second to complete once
-              you have confirmed that it can run
-            </li>
-            <li>
-              if the CDR icon on the desktop is a generic rectangle instead
-              of a green circle, refer to the 
-              <a href="#repairing-xmetal"><em>Repairing XMetaL</em></a>
-              section at the bottom of these instructions.
-            </li>
-          </ul>
+          <h4>Install XMetaL</h4>
+          <p>
+            Run the <code>install-xmetal.cmd</code> script as described above.
+            Expected time for the script is under a minute.
+          </p>
         </li>
         <li>
-          <h4>Test the installation</h4>
+          <h4>Install Python</h4>
           <p>
-            At this point the user should be able to log into CDR XMetaL
-            by double-clicking the CDR shortcut on the desktop, selecting
-            a tier, and entering his or her NIH domain credentials.
+            Run the <code>install-python.cmd</code> script as described above.
+            If a failure is reported which is not easily corrected, contact
+            the CDR developers, providing any error output and logs from the
+            PythonFiles subdirectory. Expected time for this script is under
+            two minutes.
+          </p>
+        </li>
+        <li>
+          <h4>Install the CDR client files</h4>
+          <p>
+            Run the <code>run-setup.cmd</code> script as described above.
+            The script will say where it found the XMetaL program and will
+            describe what it is about to do, identifying the source and
+            destination directories. You can abort at this point if something
+            doesn't look right, but that's pretty unlikely, and in most
+            cases you should just press the <strong>Enter</strong> key to
+            proceed. The script generally takes less than a second to complete
+            once you have confirmed that it can run.
+          </p>
+          <p>
+            If the CDR icon on the desktop is a generic rectangle instead
+            of a green circle, refer to the
+            <a href="#repairing-xmetal"><em>Repairing XMetaL</em></a>
+            section at the bottom of these instructions.
           </p>
         </li>
       </ol>
-
+      <h3>Test the Installation</h3>
+      <p>
+        At this point you should be able to log into CDR XMetaL
+        by double-clicking the CDR shortcut on the desktop, selecting
+        a tier, and entering your NIH domain credentials.
+      </p>
       <h2>Optional Post-Installation Procedures</h2>
       <p>
         A new machine may need to have two additional sets of files installed.
@@ -195,7 +246,7 @@
             <li>load a document</li>
             <li>
               start the spellchecker
-              (<code>Tools &gt; Spell Checker...</code> or press 
+              (<code>Tools &gt; Spell Checker...</code> or press
               <code>F7</code>)
             </li>
             <li>
@@ -272,7 +323,7 @@
       </p>
     </main>
     <footer>
-      <p class="note">Instructions last updated 2023-05-16</p>
+      <p class="note">Instructions last updated 2024-10-08</p>
     </footer>
   </body>
 </html>
