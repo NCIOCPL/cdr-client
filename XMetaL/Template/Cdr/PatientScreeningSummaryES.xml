@@ -56,21 +56,12 @@
  <SummarySection>
   <Title>Información general sobre el cáncer de X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Cancer description</SectionType>
-    <SectionType>Organ description</SectionType>
-   </SectMetaData>
    <KeyPoint>El cáncer de X es una enfermedad en la que se forman 
          células malignas (cancerosas) en X.</KeyPoint>
    <Para>Para mayor información sobre el cáncer de X, consultar el 
          siguiente sumario del PDQ:</Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint><?xm-replace_text {
          Enter incidence keypoint
          }?></KeyPoint>
@@ -79,9 +70,6 @@
          }?></Para>
   </SummarySection>
   <SummarySection>
-   <SectMetaData>
-    <SectionType>Risk factors</SectionType>
-   </SectMetaData>
    <KeyPoint>A, B y C pueden afectar el riesgo de enfermarse de 
          cáncer de X.</KeyPoint>
    <Para>Cualquier cosa que aumenta el riesgo de contraer una enfermedad 
@@ -105,11 +93,6 @@
  <SummarySection>
   <Title>Exámenes de detección del cáncer de X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Se usan pruebas para detectar distintos tipos de cáncer.</KeyPoint>
    <Para>Se usan algunas pruebas de detección porque demostraron ser 
          útiles tanto para encontrar cánceres tempranamente como para 
@@ -165,11 +148,6 @@
  <SummarySection>
   <Title>Riesgos de los exámenes de detección del cáncer de X</Title>
   <SummarySection>
-   <SectMetaData>
-    <SectionType><?xm-replace_text {
-         Enter section type
-         }?></SectionType>
-   </SectMetaData>
    <KeyPoint>Los exámenes de detección tienen riesgos.</KeyPoint>
    <Para>Las decisiones sobre los exámenes de detección pueden ser 
          difíciles. No todos estos exámenes son útiles y la mayoría 
