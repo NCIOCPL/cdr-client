@@ -1,13 +1,13 @@
-@REM Install Python 3.11 with Windows/scripting support.
+@REM Install Python 3.12 with Windows/scripting support.
 @ECHO OFF
 
 REM Set up the values we'll need
 CD /D "%~dp0"
 CD PythonFiles
-SET PYTHON_DIR=%SystemDrive%\Python311
+SET PYTHON_DIR=%SystemDrive%\Python312
 SET AXSCRIPT=%PYTHON_DIR%\lib\site-packages\win32comext\axscript
 SET PYSCRIPT=%AXSCRIPT%\client\pyscript.py
-SET INSTALLER=python-3.11.1-amd64.exe
+SET INSTALLER=python-3.12.3-amd64.exe
 SET INSTALL_OPTS=InstallAllUsers=1 PrependPath=1 CompileAll=1 AssociateFiles=1 Include_test=0
 
 REM Start with a clean slate, just in case.
@@ -20,7 +20,8 @@ ECHO Installing Python .............................
 
 REM Add contributed packages we'll need.
 ECHO Installing third-party libraries ..............
-py -m pip install -r requirements.txt > pip.log
+py -m ensurepip --upgrade >> pip.log
+py -m pip install -r requirements.txt >> pip.log
 
 REM We need a search path for our custom modules which defers expansion of APPDATA.
 ECHO Setting Python search path ....................

@@ -62,7 +62,7 @@ to the {CLIENT_DIR} directory.
 """
 
 # Create the customized settings file.
-XMETAL_SETTINGS = f"""\
+XMETAL_SETTINGS = rf"""\
 ai_sort_attr = false
 ai_sort_type =
 draw_grid_on_borderless_tables = true
