@@ -188,7 +188,9 @@ TypeOfChange,
 TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
-WillReplace
+WillReplace,
+WorkingGroupName,
+WorkingGroups
     { display: block; }
 
 
@@ -292,6 +294,8 @@ ReplacementFor                    :before { content: "Replacement For"; }
 User                              :before { content: "User"; }
 VideoID                           :before { content: "Video ID"; }
 WillReplace                       :before { content: "Will Replace"; }
+WorkingGroupName                  :before { content: "Name"; }
+WorkingGroups                     :before { content: "WORKING GROUP(s)"; }
 
 
 /*************************************************************************/
@@ -348,7 +352,9 @@ SummaryKeyWords                   :before,
 SummaryLanguage                   :before,
 SummaryType                       :before,
 SummaryURL                        :before,
-Term                              :before
+Term                              :before,
+WorkingGroupName                  :before,
+WorkingGroups                     :before
     { font-size: 10pt; }
 
 Comment                           :before,
@@ -431,7 +437,8 @@ TypeOfChange                      :before,
 TypeOfSummaryChange               :before,
 TypeOfSummaryChangeValue          :before,
 VideoID                           :before,
-WillReplace                       :before
+WillReplace                       :before,
+WorkingGroupName                  :before
     { color: black;
       font-weight: bold;
       font-size: 10pt; }
@@ -517,7 +524,8 @@ TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
 VideoID,
-WillReplace
+WillReplace,
+WorkingGroupName
     { color: white;
       background-color: white; }
 
@@ -572,7 +580,8 @@ SecondaryTopics>Term              :before,
 TypeOfChange                      :before,
 TypeOfSummaryChange               :before,
 TypeOfSummaryChangeValue          :before,
-User                              :before
+User                              :before,
+WorkingGroupName                  :before
     { background-color: white; }
 
 Board,
@@ -619,7 +628,8 @@ TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
 VideoID,
-WillReplace
+WillReplace,
+WorkingGroupName
     { text-indent: 0pt; }
 
 

@@ -262,7 +262,9 @@ TypeOfChange,
 TypeOfSummaryChange,
 TypeOfSummaryChangeValue,
 User,
-WillReplace
+WillReplace,
+WorkingGroupName,
+WorkingGroups
     { display: block; }
 
 
@@ -288,7 +290,9 @@ SummaryURL,
 SummaryKeyWord,
 SummaryKeyWords,
 MainTopics > Term,
-SecondaryTopics > Term
+SecondaryTopics > Term,
+WorkingGroupName,
+WorkingGroups
     { font-weight: bold; }
 
 
@@ -357,6 +361,8 @@ TypeOfSummaryChangeValue     :before { content: "Change Type *: "; }
 User                         :before { content: "Change User *: "; }
 Date                         :before { content: "Change Date *: "; }
 WillReplace                  :before { content: "Will Replace & @: "; }
+WorkingGroupName             :before { content: "Name & + @: "; }
+WorkingGroups                :before { content: "WORKING GROUPS &"; }
 
 
 /***************************************************************************/
@@ -440,7 +446,9 @@ SpecificVideoPresentationTemplate
 TypeOfChange                 :before,
 TypeOfSummaryChangeValue     :before,
 User                         :before,
-VideoID                      :before
+VideoID                      :before,
+WorkingGroupName             :before,
+WorkingGroups                :before
     { font-weight: bold;
       font-size: 12pt;
       color: black; }
@@ -451,7 +459,8 @@ BoardMember
 CodeSystem,
 EHRDiagnosisInformation,
 PDQBoard,
-SummaryKeyWords
+SummaryKeyWords,
+WorkingGroups
     { margin-top: 1em;
       margin-bottom: 1em;  }
 
@@ -1140,7 +1149,8 @@ SecondaryTopics>Term,
 TypeOfChange,
 TypeOfSummaryChangeValue,
 User,
-VideoID                      :before
+VideoID                      :before,
+WorkingGroupName
     { background-color: white; }
 
 
@@ -1255,6 +1265,11 @@ SpecificMediaCaption
 SpecificVideoPresentationTemplate
                              { margin-left: 100pt;
                                text-indent: -63pt; }
+WorkingGroupName,
+                             { margin-left: 100pt;
+                               text-indent: -63pt; }
+WorkingGroups,
+                             { margin-left: 20pt; }
 
 MediaLink, EmbeddedVideo
     { border: solid;
@@ -1290,7 +1305,8 @@ MainTopics>Term,
 SecondaryTopics>Term,
 TypeOfChange,
 TypeOfSummaryChangeValue,
-User
+User,
+WorkingGroupName
     { margin-bottom: 4pt; }
 
 ComprehensiveReviewDate,
